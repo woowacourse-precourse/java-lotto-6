@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_IS_NOT_IN_RANGE;
+import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_MUST_BE_UNIQUE;
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_SIZE_IS_NOT_FULFILL;
 
 public class Lotto {
@@ -19,6 +20,7 @@ public class Lotto {
     public static Lotto from(final List<Integer> numbers) {
         validateLottoSize(numbers);
         validateEachNumberIsInRange(numbers);
+        validateLottoHasDuplicateNumber(numbers);
         return new Lotto(numbers);
     }
 
@@ -37,5 +39,18 @@ public class Lotto {
     private static boolean hasOutOfRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < LOWER_BOUND || number > UPPER_BOUND);
+    }
+
+
+    private static void validateLottoHasDuplicateNumber(final List<Integer> numbers) {
+        if (hasDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_MUST_BE_UNIQUE.message);
+        }
+    }
+
+    private static boolean hasDuplicateNumber(final List<Integer> number) {
+        return number.stream()
+                .distinct()
+                .count() != TOTAL_SIZE;
     }
 }

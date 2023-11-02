@@ -27,8 +27,8 @@ class LottoTest {
     @DisplayName("로또 객체의 정보를 정상적으로 표시하는지 테스트합니다..")
     @Test
     void toString_테스트() {
-        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isEqualTo("[1, 2, 3, 4, 5, 6, 7]");
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString())
+                .isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     // 아래에 추가 테스트 작성 가능

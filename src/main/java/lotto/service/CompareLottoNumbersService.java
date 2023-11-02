@@ -6,9 +6,9 @@ import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
-public class CheckWinningLottoNumbersService {
+public class CompareLottoNumbersService {
 
-	public int checkWinningLottoNumbers(final AnswerLotto answerLotto, final Lotto lotto) {
+	public int getLottoPrice(final AnswerLotto answerLotto, final Lotto lotto) {
 		int winningNumberCount = getWinningNumberCount(answerLotto, lotto);
 
 		boolean isBonusNumber = checkSameAsBonusNumber(answerLotto, lotto);

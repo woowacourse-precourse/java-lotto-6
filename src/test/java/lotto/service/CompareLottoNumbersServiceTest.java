@@ -13,9 +13,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 
-public class CheckWinningLottoNumbersServiceTest {
+public class CompareLottoNumbersServiceTest {
 
-	private final CheckWinningLottoNumbersService service = new CheckWinningLottoNumbersService();
+	private final CompareLottoNumbersService service = new CompareLottoNumbersService();
 
 	@DisplayName("일치한 로또 번호 수와 보너스 번호 유뮤에 따른 로또 상금을 확인한다.")
 	@MethodSource("createCheckWinningLottoNumbersServiceMethodParameter")

@@ -18,11 +18,11 @@ public class InputValidator {
 
     public List<Integer> numbersValidator(String numbers) {
 
-        numbers = numbers.replace(" ","");
+        numbers = numbers.replace(" ", "");
         List<String> eachNumbers = List.of(numbers.split(","));
         List<Integer> lottoNumbers = new ArrayList<>();
 
-        for (String number : eachNumbers){
+        for (String number : eachNumbers) {
             int verifiedNum = validNumber(number);
             validOverlap(lottoNumbers, verifiedNum);
             lottoNumbers.add(verifiedNum);
@@ -43,19 +43,18 @@ public class InputValidator {
     }
 
     private void validOverlap(List<Integer> numbers, int num) {
-        if(numbers.contains(num)){
+        if (numbers.contains(num)) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자 입니다. : " + num);
         }
     }
 
     private void validRange(int num) {
-        if (num < 1 || num > 45){
+        if (num < 1 || num > 45) {
             throw new IllegalArgumentException("[ERROR] 범위를 벗어난 숫자입니다. : " + num);
         }
     }
 
     private int validNumber(String num) {
-
         int number;
         try {
             number = Integer.parseInt(num);
@@ -63,7 +62,6 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다. : " + num);
         }
         return number;
-
     }
 
     private void negativeNumber(int num) {

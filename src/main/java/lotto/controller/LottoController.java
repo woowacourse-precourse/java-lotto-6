@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.model.LottoPrize;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoIssuer;
 import lotto.service.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,14 +29,19 @@ public class LottoController {
         LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator);
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
-        List<Integer> winningNumbers = readWinningNumbers();
+        Lotto winningNumbers = readWinningNumbers();
         Integer bonusNumber = readBonusNumber();
+        List<LottoPrize> result = new ArrayList<>();
+        for (Lotto lotto : boughtLotto) {
+            result.add(LottoPrize.from(lotto.count(winningNumbers), lotto.contains(bonusNumber)));
+        }
+        System.out.println("result = " + result);
     }
 
-    private List<Integer> readWinningNumbers() {
-        return Arrays.stream(inputView.readWinningNumbers().split(","))
+    private Lotto readWinningNumbers() {
+        return new Lotto(Arrays.stream(inputView.readWinningNumbers().split(","))
                 .map(Integer::parseInt)
-                .toList();
+                .toList());
     }
 
     private Integer readBonusNumber() {

@@ -1,9 +1,9 @@
 # 로또
 
 ## 기능 요구 사항
-- [ ] 구매 금액을 입력받는다.
+- [ ] 구매 금액을 입력받는다. InputManager#receiveUserInput
   - [x] 1000원으로 나누어 떨어지지 않으면 예외 처리한다. InputValidator#validateDivision1000
-  - [ ] 숫자가 아니면 예외 처리한다.
+  - [x] 숫자가 아니면 예외 처리한다. InputValidator#validateIsNumeric
   - [ ] 공백이 있다면 없애버린다.
 - [ ] 당첨 번호를 입력받는다.
   - [ ] 쉼표로 구분한다.

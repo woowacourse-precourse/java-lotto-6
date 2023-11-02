@@ -6,6 +6,14 @@ import java.util.stream.Collectors;
 
 public class InputValidator {
 
+    public static void validateIsNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+    }
+
     public static void validateDivision1000(int number) {
         if (number % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.");

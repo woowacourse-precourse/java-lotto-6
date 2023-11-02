@@ -24,4 +24,14 @@ class InputUITest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expect);
     }
+
+
+    @ParameterizedTest
+    @CsvSource({"100,[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.","-20,[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.","\0,[ERROR] 보너스 번호는 정수여야 합니다.","삼십,[ERROR] 보너스 번호는 정수여야 합니다."})
+    void checkValidBonusNum_보너스_입력값_에러여부_판단(String input, String expect) {
+
+        assertThatThrownBy(()->inputUI.checkValidBonusNum(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expect);
+    }
 }

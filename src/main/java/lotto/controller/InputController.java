@@ -1,9 +1,15 @@
 package lotto.controller;
 
+
+import camp.nextstep.edu.missionutils.Console;
+import lotto.view.InputView;
+
 public class InputController {
     public static String scanBudget() {
-        // TO DO: 구입 금액 입력받은 값 반환
-        return "";
+        System.out.println(InputView.enterBudgetMessage());
+        String userInput = Console.readLine();
+        // TO DO: 사용자 입력 검증해야 함
+        return userInput;
     }
 
     public static String scanWinningLottoTicket() {

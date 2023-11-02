@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoConstants;
 import lotto.constant.LottoPrize;
 
 public class WinningStatistics {
@@ -25,16 +24,14 @@ public class WinningStatistics {
     public Map<LottoPrize, Integer> calculateWinningStatistics() {
         Map<LottoPrize, Integer> prizeCounter = new HashMap<>();
         for (Lotto lotto : lottoTicketsPurchased) {
-            int matchedCount = lotto.getMatchedCount(winningLotto.getLotto());
-            if (matchedCount < LottoConstants.THE_MINIMUM_NUMBER_OF_MATCHES_TO_WIN_A_PRIZE) {
+            LottoPrize lottoPrize = LottoPrize.valueOf(
+                    lotto.getMatchedCount(winningLotto.getLotto()),
+                    lotto.contains(winningLotto.getBonusNumber())
+            );
+            if (lottoPrize == LottoPrize.NOTHING) {
                 continue;
             }
-            addPrize(prizeCounter,
-                    LottoPrize.valueOf(
-                            matchedCount,
-                            lotto.contains(winningLotto.getBonusNumber())
-                    )
-            );
+            addPrize(prizeCounter, lottoPrize);
         }
         return prizeCounter;
     }

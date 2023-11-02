@@ -49,4 +49,8 @@ public class Lotto {
     public int getNumber(int index) {
     	return numbers.get(index);
     }
+    
+    public int getSize() {
+    	return numbers.size();
+    }
 }

@@ -14,3 +14,9 @@
   1000으로 나눠떨어지지 않으면 "[ERROR] 금액이 1000원으로 나누어 떨어지지 않아요."가 출력된다.
 - validateDigit(char) : 입력값이 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
 - validateRemainder(int) : 입력값이 1000으로 나눴을 때 나머지가 0이 아니라면 IllegalArgumentException을 발생시킨다.
+
+### Lotto
+- Lotto(List<Integer>) : 
+  정수형 리스트를 받아 검증한 뒤 numbers에 저장한다.
+  입력 받은 리스트의 길이가 6이 아니면 "[Error] 로또 번호는 6개로 이루어져 있어야 해요."가 출력된다.
+  입력 받은 리스트에 중복된 숫자가 포함되면 "[Error] 로또 번호는 중복된 숫자가 있으면 안돼요."가 출력된다.

@@ -20,6 +20,7 @@ public class InputView {
     public static List<String> readWinnerLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
+        validateBlank(numbers);
         return splitWord(numbers);
     }
 

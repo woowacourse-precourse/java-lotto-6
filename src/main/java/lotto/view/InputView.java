@@ -1,7 +1,13 @@
 package lotto.view;
 
+import lotto.domain.AnswerLotto;
 import lotto.validation.Validator;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 
@@ -20,6 +26,24 @@ public class InputView {
             return inputPrice();
         }
         return Integer.parseInt(inputNumber);
+    }
+
+    public List<Integer> inputAnswerNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String numbers = readLine().trim();
+        try {
+            Validator.validateContainComma(numbers);
+            Validator.validateOnlyNumber(numbers.replace(",",""));
+            Validator.validateDuplicateNumbers(numbers.split(","));
+            Validator.validate1To45Numbers(numbers.split(","));
+        } catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 1,2,3,4,5,6 와 같은 형식으로 입력하세요.");
+            return inputAnswerNumbers();
+        }
+        return Arrays.stream(numbers.split(","))
+                .mapToInt(number -> Integer.parseInt(number))
+                .boxed()
+                .collect(Collectors.toList());
     }
 
 

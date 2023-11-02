@@ -7,15 +7,13 @@ import lotto.constant.LottoConstants;
 import lotto.constant.LottoPrize;
 
 public class WinningStatistics {
-    private final Lotto winningLottoTicket;
-    private final int bonusNumber;
+    private final WinningLotto winningLotto;
     private final List<Lotto> lottoTicketsPurchased;
 
     private final Map<LottoPrize, Integer> prizeCount;
 
-    public WinningStatistics(Lotto winningLottoTicket, int bonusNumber, List<Lotto> lottoTicketsPurchased) {
-        this.winningLottoTicket = winningLottoTicket;
-        this.bonusNumber = bonusNumber;
+    public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased) {
+        this.winningLotto = winningLotto;
         this.lottoTicketsPurchased = lottoTicketsPurchased;
         prizeCount = calculateWinningStatistics();
     }
@@ -27,12 +25,12 @@ public class WinningStatistics {
     public Map<LottoPrize, Integer> calculateWinningStatistics() {
         Map<LottoPrize, Integer> prizeCount = new HashMap<>();
         for (Lotto lotto : lottoTicketsPurchased) {
-            int matchedCount = lotto.getMatchedCount(winningLottoTicket);
+            int matchedCount = lotto.getMatchedCount(winningLotto.getLotto());
             if (matchedCount < LottoConstants.THE_MINIMUM_NUMBER_OF_MATCHES_TO_WIN_A_PRIZE) {
                 continue;
             }
 
-            boolean bonusMatched = lotto.contains(bonusNumber);
+            boolean bonusMatched = lotto.contains(winningLotto.getBonusNumber());
             LottoPrize lottoPrize = LottoPrize.valueOf(matchedCount, bonusMatched);
             if (prizeCount.containsKey(lottoPrize)) {
                 prizeCount.put(lottoPrize, prizeCount.get(lottoPrize) + 1);

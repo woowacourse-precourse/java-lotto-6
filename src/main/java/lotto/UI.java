@@ -12,11 +12,15 @@ public class UI {
         String price=camp.nextstep.edu.missionutils.Console.readLine();
 
         member.setPrice(price);
+
+        purchaseCount(member.getCount());
     }
 
     public void purchaseCount(int count){
         String purchase=count+"개를 구매했습니다.";
         System.out.println(purchase);
+
+        lottoOutput(member.getMemberLotto());
     }
 
     public void lottoOutput(List<Lotto> memberLotto){

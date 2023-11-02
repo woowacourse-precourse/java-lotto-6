@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoNumberGenerator {
 
@@ -9,4 +11,8 @@ public class LottoNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    public static List<List<Integer>> generateLottoNumbers(int ticketNumber) {
+        return Stream.generate(() -> generateLottoNumber()).limit(ticketNumber)
+                .collect(Collectors.toList());
+    }
 }

@@ -36,7 +36,8 @@
 ## 로또 진행
    - _게임을 진행하는 interface Game_
    * _Game 을 구현하는 1~45 까지의 로또 게임을 진행하는 oneTo45LottoGame_
-   * start(), 이하 구조 구현
+   * start()
+   * init() 게임에 필요한 로또 번호 생성
 
 
 ## 출력

@@ -29,6 +29,8 @@ public interface ExceptionMessage {
     enum InputException {
         INPUT_MUST_NOT_CONTAINS_SPACE("공백없이 입력해주세요."),
         INPUT_MUST_BE_NUMERIC("숫자를 입력해주세요."),
+        PURCHASE_AMOUNT_MUST_BE_POSITIVE("구입 금액은 음수가 될 수 없습니다."),
+        PURCHASE_AMOUNT_MUST_MEET_SPECIFIC_UNIT("1000원 단위로 구입금액을 입력해주세요."),
         ;
 
         public final String message;

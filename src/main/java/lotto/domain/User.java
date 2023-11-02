@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class User {
-    private static final int LOTTO_PURCHASE_UNIT = 1000;
+    public static final int LOTTO_PURCHASE_UNIT = 1000;
 
     private final List<Lotto> lottos;
 

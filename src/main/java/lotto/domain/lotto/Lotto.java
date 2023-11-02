@@ -8,7 +8,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    private void sortNumbers(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
     }
 
     private void validate(List<Integer> numbers) {
@@ -17,7 +22,6 @@ public class Lotto {
         checkValidNumbersInLotto(numbers);
     }
 
-    // TODO: 추가 기능 구현
     private void validateSizeOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또에 6개 번호가 입력되지 않았습니다.");

@@ -1,8 +1,14 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorConstants.ERROR_DIVIDE_BY_AMOUNT;
+import static lotto.constants.ErrorConstants.ERROR_GREATER_THAN_MAX_AMOUNT;
+import static lotto.constants.ErrorConstants.ERROR_LESS_THAN_MIN_AMOUNT;
+import static lotto.constants.ErrorConstants.ERROR_QUANTITY_NON_EQUALS;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.ConsumerException;
 
 public class Consumer {
 
@@ -29,19 +35,19 @@ public class Consumer {
 
     private static void buyAmountLessThanMinAmount(int buyAmount) {
         if (AMOUNT > buyAmount) {
-            throw new IllegalArgumentException();
+            throw ConsumerException.of(ERROR_LESS_THAN_MIN_AMOUNT);
         }
     }
 
     private static void buyAmountGreaterThanMaxAmount(int buyAmount) {
         if (MAX_AMOUNT < buyAmount) {
-            throw new IllegalArgumentException();
+            throw ConsumerException.of(ERROR_GREATER_THAN_MAX_AMOUNT);
         }
     }
 
     private static void buyAmountDivideByAmount(int buyAmount) {
         if (buyAmount % AMOUNT != 0) {
-            throw new IllegalArgumentException();
+            throw ConsumerException.of(ERROR_DIVIDE_BY_AMOUNT);
         }
     }
 
@@ -62,7 +68,7 @@ public class Consumer {
         int availableQuantity = getBuyAvailableQuantity();
 
         if (quantity != availableQuantity) {
-            throw new IllegalArgumentException();
+            throw ConsumerException.of(ERROR_QUANTITY_NON_EQUALS);
         }
     }
 }

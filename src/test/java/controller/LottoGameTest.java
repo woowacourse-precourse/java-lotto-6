@@ -30,6 +30,13 @@ public class LottoGameTest extends NsTest {
     }
 
     @Test
+    @DisplayName("추가 테스트 : 에러가 발생하면 정상적인 입력이 들어올 때까지 입력을 다시 받는다.")
+    void input_until_no_error_occurs(){
+        run("APPLE","12323","2000");
+        assertThat(output()).contains(ERROR_MESSAGE, "2");
+    }
+
+    @Test
     @DisplayName("구입 금액을 입력받아 1000으로 나눈 결과를 lottoQuantity에 저장한다.")
     void initialize_LottoGame(){
         run("8000");

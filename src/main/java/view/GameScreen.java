@@ -11,10 +11,17 @@ public class GameScreen {
     public GameScreen(){}
 
     public void runGame(){
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                this.game = new LottoGame(Console.readLine());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        this.game.printLottoQuantity();
         try{
-            System.out.println("구입금액을 입력해 주세요.");
-            this.game = new LottoGame(Console.readLine());
-            this.game.printLottoQuantity();
             this.game.createLottos();
             printLottos();
         }catch (IllegalArgumentException e){

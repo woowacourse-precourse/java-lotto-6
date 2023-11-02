@@ -2,11 +2,10 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SplittableRandom;
 
 public class InputValidator {
 
-    public int amountValidator(String amount) {
+    public static int amountValidator(String amount) {
 
         int validAmount = validNumber(amount);
 
@@ -16,7 +15,7 @@ public class InputValidator {
 
     }
 
-    public List<Integer> numbersValidator(String numbers) {
+    public static List<Integer> numbersValidator(String numbers) {
 
         numbers = numbers.replace(" ", "");
         List<String> eachNumbers = List.of(numbers.split(","));
@@ -28,11 +27,12 @@ public class InputValidator {
             validRange(verifiedNum);
             lottoNumbers.add(verifiedNum);
         }
+        validLen(lottoNumbers);
 
         return lottoNumbers;
     }
 
-    public int bonusValidator(List<Integer> lottoNumbers, String bonus) {
+    public static int bonusValidator(List<Integer> lottoNumbers, String bonus) {
 
         int bonusNumber = validNumber(bonus);
 
@@ -43,19 +43,25 @@ public class InputValidator {
 
     }
 
-    private void validOverlap(List<Integer> numbers, int num) {
+    private static void validLen(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validOverlap(List<Integer> numbers, int num) {
         if (numbers.contains(num)) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자 입니다. : " + num);
         }
     }
 
-    private void validRange(int num) {
+    private static void validRange(int num) {
         if (num < 1 || num > 45) {
             throw new IllegalArgumentException("[ERROR] 범위를 벗어난 숫자입니다. : " + num);
         }
     }
 
-    private int validNumber(String num) {
+    private static int validNumber(String num) {
         int number;
         try {
             number = Integer.parseInt(num);
@@ -65,7 +71,7 @@ public class InputValidator {
         return number;
     }
 
-    private void negativeNumber(int num) {
+    private static void negativeNumber(int num) {
         if (num < 0) {
             throw new IllegalArgumentException("[ERROR] 음수를 입력받았습니다. : " + num);
         }

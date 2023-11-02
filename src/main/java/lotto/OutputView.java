@@ -1,12 +1,14 @@
 package lotto;
 
+import java.util.List;
+
 public class OutputView {
 
     private static final String inputAmount = "구입금액을 입력해 주세요.";
-    private static final String buy = "개를 구매했습니다.";
-    private static final String inputNumbers = "당첨 번호를 입력해 주세요.";
-    private static final String inputBonus = "보너스 번호를 입력해 주세요.";
-    private static final String stats = "당첨 통계";
+    private static final String buy = "\n%d개를 구매했습니다.\n";
+    private static final String inputNumbers = "\n당첨 번호를 입력해 주세요.";
+    private static final String inputBonus = "\n보너스 번호를 입력해 주세요.";
+    private static final String stats = "\n당첨 통계";
     private static final String dash = "---";
     private static final String result = "총 수익률은 ";
 
@@ -15,16 +17,17 @@ public class OutputView {
     }
 
     public static void printBuy(int purchasesNumber) {
-        System.out.println(purchasesNumber+buy);
+        System.out.printf(buy, purchasesNumber);
     }
 
-    public static void printNumbers(){
-        System.out.println(inputNumbers);
+    public static void printMyLottos(List<List<Integer>> myLottos) {
+        for (List<Integer> myLotto : myLottos) {
+            System.out.println(myLotto);
+        }
     }
+    public static void printNumbers() { System.out.println(inputNumbers); }
 
-    public static void printBonus(){
-        System.out.println(inputBonus);
-    }
+    public static void printBonus() { System.out.println(inputBonus); }
 
     public static void printStats() {
         System.out.println(stats);
@@ -34,7 +37,7 @@ public class OutputView {
         System.out.println(dash);
     }
 
-    public static void printResult(){
+    public static void printResult() {
         System.out.println(result);
     }
 

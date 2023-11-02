@@ -10,4 +10,10 @@ public class InputView {
         System.out.println(message.getMessage());
         return Console.readLine();
     }
+
+    public static String readWinningNumbers() {
+        Message message = Message.WINNING_NUMBERS_INPUT_MESSAGE;
+        System.out.println(message.getMessage());
+        return Console.readLine();
+    }
 }

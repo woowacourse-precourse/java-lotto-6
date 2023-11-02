@@ -10,8 +10,8 @@ public class LottoBuyInputView extends Input{
     public int requestLottoPurchaseAmount() {
         printRequestLottoPurchaseAmount();
         int amount = parseInt(readLine());
-        checkIsMultipleOfDenomination(amount, DENOMINATION);
         checkIsValidLottoAmount(amount);
+        checkIsMultipleOfDenomination(amount, DENOMINATION);
         return amount;
     }
 

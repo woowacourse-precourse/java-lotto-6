@@ -6,6 +6,8 @@ import lotto.view.input.LottoBuyInputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
@@ -35,7 +37,7 @@ class LottoBuyInputViewTest {
 
     @Test
     @DisplayName("Lotto의 금액이 1000원 단위가 아니면 예외가 발생한다.")
-    public void requestLottoPurchaseAmountException() {
+    public void checkIsMultipleOfDenomination() {
         //given
         String input = "9200";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -43,6 +45,18 @@ class LottoBuyInputViewTest {
         assertThatThrownBy(() -> lottoBuyInputView.requestLottoPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+    }
+
+    @ParameterizedTest(name = "{index}: 금액이 {0}이면 예외가 발생한다.")
+    @DisplayName("Lotto의 금액이 0보다 크지 않으면 예외가 발생한다.")
+    @ValueSource(strings = {"0","-1000","-1500"})
+    public void checkIsValidLottoAmount(String input) {
+        // given
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // when // then
+        assertThatThrownBy(() -> lottoBuyInputView.requestLottoPurchaseAmount())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
     }
 
 }

@@ -20,34 +20,30 @@ public class LottoController {
     }
 
     public void run() {
-
         final LottoFactory lottoFactory = getLottoFactory();
+        outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
 
-        final Lotto answerLotto = getAnswerLotto(lottoFactory);
+        final Lotto answerLotto = getAnswerLotto();
 
         final Result result = getResult(lottoFactory, answerLotto);
 
-        final float rateOfReturn = result.calculateRate();
-
         outputView.printResult(ResultsDto.of(result));
-        outputView.printRateOfReturn(rateOfReturn);
+        outputView.printRateOfReturn(result.calculateRate());
     }
 
     private LottoFactory getLottoFactory() {
         while (true) {
             try {
-                int money = inputView.enterMoney();
-                return LottoFactory.create(new RandomNumberGenerator(), money);
+                return LottoFactory.create(new RandomNumberGenerator(), inputView.enterMoney());
             } catch (LottoException lottoException) {
                 outputView.printError(lottoException.getMessage());
             }
         }
     }
 
-    private Lotto getAnswerLotto(final LottoFactory lottoFactory) {
+    private Lotto getAnswerLotto() {
         while (true) {
             try {
-                outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
                 return new Lotto(inputView.enterLotto());
             } catch (LottoException lottoException) {
                 outputView.printError(lottoException.getMessage());

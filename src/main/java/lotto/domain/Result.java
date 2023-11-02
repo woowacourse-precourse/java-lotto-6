@@ -19,10 +19,10 @@ public class Result {
     }
 
     public float calculateRate() {
-        return (float) rankCount.entrySet()
+        return rankCount.entrySet()
                 .stream()
                 .mapToLong(Result::calculateEntryPrice)
-                .sum() / getInputMoney() * 100;
+                .sum() / getInputMoney() * 100.0F;
     }
 
     private static long calculateEntryPrice(final Entry<Rank, Long> entry) {

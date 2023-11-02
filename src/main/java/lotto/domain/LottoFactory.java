@@ -29,8 +29,7 @@ public class LottoFactory {
         return new LottoFactory(createLottos(numberGenerator, money), money);
     }
 
-    private static List<Lotto> createLottos(final NumberGenerator numberGenerator,
-            final int money) {
+    private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final int money) {
         validateMoney(money);
 
         final int lottoCount = money / MONEY_UNIT.getValue();

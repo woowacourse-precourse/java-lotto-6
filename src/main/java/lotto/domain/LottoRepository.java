@@ -11,6 +11,10 @@ public class LottoRepository {
 	
 	private static final List<Lotto> lottos = new ArrayList<>();
 	
+	private LottoRepository() {
+		throw new AssertionError();
+	}
+	
 	public static List<Lotto> getLottos(){
 		return Collections.unmodifiableList(lottos);
 	}

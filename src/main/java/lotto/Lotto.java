@@ -2,10 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -33,9 +31,15 @@ public class Lotto {
         Lotto[] lottos = new Lotto[size];
         for(int i = 0; i < size; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            sortNumbers(lottoNumbers);
             lottos[i] = new Lotto(lottoNumbers);
         }
         return lottos;
+    }
+
+    public static List<Integer> sortNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 
     public static void printLottos(Lotto[] lottos) {

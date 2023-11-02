@@ -18,6 +18,22 @@ public enum LottoPrize {
         this.statisticsFormat = statisticsFormat;
     }
 
+    public static LottoPrize valueOf(int matchedCount, boolean bonusMatched) {
+        if (matchedCount < LottoConstants.THE_MINIMUM_NUMBER_OF_MATCHES_TO_WIN_A_PRIZE) {
+            return NOTHING;
+        }
+        if (SECOND.matchedCount == matchedCount && bonusMatched) {
+            return SECOND;
+        }
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (lottoPrize.matchedCount == matchedCount && lottoPrize != SECOND) {
+                return lottoPrize;
+            }
+        }
+
+        return NOTHING;
+    }
+
     public Long getPrize() {
         return prize;
     }

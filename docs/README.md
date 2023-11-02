@@ -28,3 +28,4 @@
 
 ### GameScreen
 - run : 로또 게임의 입출력 UI를 담당한다.
+- printLottos : 구매한 횟수만큼 로또를 출력한다.

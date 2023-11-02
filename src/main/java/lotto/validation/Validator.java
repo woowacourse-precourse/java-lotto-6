@@ -16,9 +16,15 @@ public class Validator {
 
     public static void winningValidate(String[] input) {
         blankValidate(input);
-        duplicateValidate(input);
+        winningNumDuplicatedValidate(input);
         winningNumValidate(input);
         numberRangeValidate(input);
+    }
+
+    public static void bonusValidate(String input, ArrayList<Integer> winningNum) {
+        numberValidate(input);
+        bonusRangeValidate(input);
+        bonusNumDuplicatedValidate(input, winningNum);
     }
 
     private static Integer numberValidate(String input){
@@ -51,7 +57,7 @@ public class Validator {
         }
     }
 
-    private static void duplicateValidate(String[] winningNum) {
+    private static void winningNumDuplicatedValidate(String[] winningNum) {
         long numSize=Arrays.stream(winningNum)
                 .distinct()
                 .count();
@@ -77,6 +83,28 @@ public class Validator {
                 OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    private static void bonusRangeValidate(String bonusNum) {
+        Integer number = Integer.parseInt(bonusNum);
+
+        if (number < MINIMUM || number > MAXIMUM) {
+            OutputView.errorMessage(ErrorMessage.BONUS_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void bonusNumDuplicatedValidate(String bonusNum, ArrayList<Integer> winningNum) {
+        winningNum.add(Integer.parseInt(bonusNum));
+
+        long count = winningNum.stream()
+                .distinct()
+                .count();
+
+        if (count != 7) {
+            OutputView.errorMessage(ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 }

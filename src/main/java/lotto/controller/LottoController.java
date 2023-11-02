@@ -14,6 +14,6 @@ public class LottoController {
     public void run() {
         Integer money = inputView.inputMoney();
         ArrayList<Integer> winningNumber = inputView.winningNumber();
-        Integer bonusNumber = inputView.bonusNumber();
+        Integer bonusNumber = inputView.bonusNumber(winningNumber);
     }
 }

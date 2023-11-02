@@ -28,9 +28,11 @@ public class InputView {
                                     .toList());
     }
 
-    public Integer bonusNumber() {
+    public Integer bonusNumber(ArrayList<Integer> winningNumber) {
         OutputView.bonusMessage();
         String bonusNumber = Console.readLine();
+
+        Validator.bonusValidate(bonusNumber, winningNumber);
 
         return Integer.parseInt(bonusNumber);
     }

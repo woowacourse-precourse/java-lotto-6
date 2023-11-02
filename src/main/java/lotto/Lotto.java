@@ -7,7 +7,7 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException{
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;

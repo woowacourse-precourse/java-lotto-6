@@ -7,20 +7,26 @@ public class UI {
     public UI() {
     }
 
-    public void priceInput(){
+    public void priceComment(){
         System.out.println("구입금액을 입력해 주세요.");
+
+        priceInput();
+    }
+
+    public void priceInput(){
         String price=camp.nextstep.edu.missionutils.Console.readLine();
+        System.out.println();
 
         member.setPrice(price);
 
-        purchaseCount(member.getCount());
+        purchaseComment(member.getCount());
     }
 
-    public void purchaseCount(int count){
+    public void purchaseComment(int count){
         String purchase=count+"개를 구매했습니다.";
         System.out.println(purchase);
 
-        lottoOutput(member.getMemberLotto());
+        //lottoOutput(member.getMemberLotto());
     }
 
     public void lottoOutput(List<Lotto> memberLotto){

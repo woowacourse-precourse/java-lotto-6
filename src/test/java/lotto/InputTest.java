@@ -1,6 +1,5 @@
 package lotto;
 
-
 import lotto.contents.ContentErrors;
 import lotto.utils.ValidationUtil;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +18,7 @@ class InputTest {
         int negativeAmount = -1000;
         assertThatThrownBy(() -> ValidationUtil.validateNonNegative(negativeAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("구입 금액은 음수일 수 없습니다.");
+                .hasMessageContaining(ContentErrors.NEGATIVE_AMOUNT.getErrorMessage());
     }
 
     @DisplayName("1000원 단위가 아닌 금액을 입력하면 예외가 발생한다.")
@@ -28,7 +27,7 @@ class InputTest {
         int invalidAmount = 1500;
         assertThatThrownBy(() -> ValidationUtil.validateThousandUnit(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력한 금액이 유효하지 않습니다. 1,000원 단위로 입력해주세요.");
+                .hasMessageContaining(ContentErrors.INVALID_AMOUNT.getErrorMessage());
     }
 
     @Test
@@ -77,5 +76,24 @@ class InputTest {
         assertThatThrownBy(() -> ValidationUtil.validateSpecialCharacters(invalidCharactersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ContentErrors.INVALID_NUMBER_FORMAT.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 1~45 범위를 벗어나면 예외를 발생시킨다.")
+    void validateBonusNumberOutOfRange() {
+        int bonusNumber = 46; // 범위를 벗어나는 경우
+        assertThatThrownBy(() -> ValidationUtil.validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ContentErrors.INVALID_BONUS_NUMBER.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외를 발생시킨다.")
+    void validateBonusNumberDuplicateWithWinningNumbers() {
+        int bonusNumber = 10;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 10); // 중복되는 경우
+        assertThatThrownBy(() -> ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ContentErrors.BONUS_NUMBER_DUPLICATE.getErrorMessage());
     }
 }

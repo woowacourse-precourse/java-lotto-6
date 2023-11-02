@@ -18,7 +18,7 @@ public class Mainview {
     }
 
     public void printresult(int[] result) {
-        System.out.println("당첨통\n---");
+        System.out.println("당첨통계\n---");
         for (int i = 0; i < result.length; i++) {
             System.out.println(3 + i + "개 일치 ("+MONEY_OF_WINNING[i]+" -"+result[i]+"개");
         }

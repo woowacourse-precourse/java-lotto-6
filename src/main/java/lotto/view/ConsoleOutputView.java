@@ -14,6 +14,10 @@ public class ConsoleOutputView implements OutputView {
         printEmptyLine();
     }
 
+    public void printIterableMessage(Iterable<?> iterable) {
+        iterable.forEach(System.out::println);
+    }
+
     public void printEmptyLine() {
         System.out.println();
     }

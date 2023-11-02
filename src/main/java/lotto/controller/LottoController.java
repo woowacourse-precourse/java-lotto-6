@@ -16,10 +16,12 @@ public class LottoController {
         this.outputView = Objects.requireNonNull(outputView);
     }
     public void run() {
-        String purchaseMoney = inputView.requestPurchaseMoney();
-        LottoTickets lottoTicket = LottoTickets.purchase(purchaseMoney);
+        String inputMoney = inputView.requestPurchaseMoney();
+        LottoTickets lottoTickets = LottoTickets.purchase(inputMoney);
 
-        int lottoTicketQuantity = lottoTicket.getLottoTicketCount();
+        int lottoTicketQuantity = lottoTickets.getLottoTicketQuantity();
         outputView.printDynamicMessage(NOTICE_PURCHASE_QUANTITY, lottoTicketQuantity);
+
+        outputView.printIterableMessage(lottoTickets.getLottoNumbers());
     }
 }

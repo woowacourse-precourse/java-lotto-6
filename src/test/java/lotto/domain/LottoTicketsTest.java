@@ -14,8 +14,8 @@ public class LottoTicketsTest {
     @DisplayName("[Success] 구매한 금액을 1,000으로 나누어 구매 개수를 리턴한다.")
     @ParameterizedTest
     @CsvSource(value = {"1000:1", "2000:2", "4000:4"}, delimiter = ':')
-    void getLottoTicketByPurchaseMoney(String purchaseMoney, int expected) {
-        assertThat(LottoTickets.purchase(purchaseMoney).getLottoTicketCount())
+    void getLottoTicketByPurchaseMoney(String input, int expected) {
+        assertThat(LottoTickets.purchase(input).getLottoTicketQuantity())
                 .isEqualTo(expected);
     }
 
@@ -23,7 +23,7 @@ public class LottoTicketsTest {
     @Test
     void getLottoTicketByNotNumberInput() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase("숫자가아님").getLottoTicketCount())
+                .isThrownBy(() -> LottoTickets.purchase("숫자가아님").getLottoTicketQuantity())
                 .withMessage(NOT_NUMBER.getMessage());
     }
 
@@ -33,7 +33,7 @@ public class LottoTicketsTest {
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
     void getLottoTicketByNullInput(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase(input).getLottoTicketCount())
+                .isThrownBy(() -> LottoTickets.purchase(input).getLottoTicketQuantity())
                 .withMessage(EMPTY.getMessage());
     }
 
@@ -41,7 +41,7 @@ public class LottoTicketsTest {
     @Test
     void getLottoTicketByIndivisibleInput() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase("1200").getLottoTicketCount())
+                .isThrownBy(() -> LottoTickets.purchase("1200").getLottoTicketQuantity())
                 .withMessage(INDIVISIBLE.getMessage());
     }
 }

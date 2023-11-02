@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,6 +17,11 @@ public class Lotto {
         }
     }
 
+    public String getLottoNumber() {
+        return numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
     // 유저 인풋, 로또 번호 모두 이 모델을 활용하기
     // 로또는 리스트를 파라미터로 받아 생성함
     // 다른 도메인에서 인풋 받은 것을 나누어 여기로 보내줌

@@ -2,10 +2,9 @@ package lotto;
 
 public class Player {
     private static LottoCount lottoCount;
-    private static Lotto lotto;
+    private static Lotto[] lottos;
 
-    public void setLottoAmount() {
-        LottoCount.setCount();
+    public void setLottoCount(int amount) {
+        lottoCount = new LottoCount(amount);
     }
-
 }

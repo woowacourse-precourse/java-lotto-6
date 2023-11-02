@@ -74,6 +74,6 @@ public class WinningNumbers {
     }
 
     private String[] extractNumbers(String winningNumber) {
-        return winningNumber.split("\\D+");
+        return winningNumber.split("(,+|\\s+)+");
     }
 }

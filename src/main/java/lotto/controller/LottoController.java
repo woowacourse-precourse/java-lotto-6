@@ -32,6 +32,6 @@ public class LottoController {
         Calculator calculator = new Calculator(winningLottos, money);
         double profitRate = calculator.calculateProfitRate();
 
-
+        output.printWinningResult(winningLottos, profitRate);
     }
 }

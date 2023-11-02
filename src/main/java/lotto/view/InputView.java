@@ -1,10 +1,8 @@
 package lotto.view;
 
-import lotto.domain.AnswerLotto;
 import lotto.validation.Validator;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,15 +44,16 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int inputBonusNumber(){
+    public int inputBonusNumber(List<Integer> answerNumbers){
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = readLine().trim();
         try{
             Validator.validateOnlyNumber(bonusNumber);
             Validator.validate1To45Number(Integer.parseInt(bonusNumber));
+            Validator.validateDuplicateBonusNumber(answerNumbers, Integer.parseInt(bonusNumber));
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 1~45사이의 숫자를 입력하세요.");
-            return inputBonusNumber();
+            return inputBonusNumber(answerNumbers);
         }
         return Integer.parseInt(bonusNumber);
     }

@@ -56,6 +56,17 @@ public class Lotto {
                 .count() != TOTAL_SIZE;
     }
 
+    public int calculateMatchCount(final Lotto compare) {
+        return (int) compare.getNumbers()
+                .stream()
+                .filter(this::isNumberInclude)
+                .count();
+    }
+
+    public boolean isNumberInclude(final int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

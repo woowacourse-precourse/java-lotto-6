@@ -1,5 +1,8 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Mainview {
 
     private final static String[] MONEY_OF_WINNING = {"5,000원", "50,000원", "1,500,000원",
@@ -27,5 +30,14 @@ public class Mainview {
     public void printRateOfProfit(String rate)
     {
         System.out.println("총 수익률은"+rate+"%입니다.");
+    }
+
+    public void printHowManyAndLottos(List<Integer[]> computerLottos)
+    {
+        System.out.println(computerLottos.size()+"개를 구매했습니다.");
+        for (Integer[] lotto : computerLottos)
+        {
+            System.out.println("["+Arrays.toString(lotto)+"]");
+        }
     }
 }

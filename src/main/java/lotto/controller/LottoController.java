@@ -7,6 +7,7 @@ import lotto.view.input.LottoBuyInputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoController {
 
@@ -17,14 +18,15 @@ public class LottoController {
     }
 
     public Lottos buyLottos(){
-        List<Lotto> lottos = new ArrayList<>();
-
         int amount = lottoBuyInputView.requestLottoPurchaseAmount();
-
-        for (; amount > 0; amount -= 1000) {
-            lottos.add(LottoFactory.getLotto());
-        }
+        List<Lotto> lottos = createLottos(amount);
 
         return new Lottos(lottos);
+    }
+
+    private List<Lotto> createLottos(int amount) {
+        return Stream.generate(LottoFactory::getLotto)
+                .limit(amount / 1000)
+                .toList();
     }
 }

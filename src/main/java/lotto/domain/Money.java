@@ -21,6 +21,10 @@ public class Money {
         return amount;
     }
 
+    public int getDividedBy1000Test() {
+        return (int) (amount / 1_000);
+    }
+
     private void validateNullOrEmpty(String amount) {
         if (amount == null || amount.isBlank()) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_ERROR_MESSAGE);

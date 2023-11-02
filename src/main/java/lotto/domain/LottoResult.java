@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum LottoResult {
 
     THREE(3, false, 5000),
@@ -16,6 +18,28 @@ public enum LottoResult {
         this.count = count;
         this.validBonus = validBonus;
         this.prize = prize;
+    }
+
+    public static LottoResult findByCountAndValidBonus(int count, boolean bonus) {
+        if (count != 5) {
+            return Arrays.stream(LottoResult.values()).filter(lottoResult -> lottoResult.getCount() == count).findAny()
+                    .orElse(null);
+        }
+        return Arrays.stream(LottoResult.values())
+                .filter(lottoResult -> lottoResult.getCount() == count && lottoResult.isValidBonus() == bonus)
+                .findAny().orElse(null);
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isValidBonus() {
+        return validBonus;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
 }

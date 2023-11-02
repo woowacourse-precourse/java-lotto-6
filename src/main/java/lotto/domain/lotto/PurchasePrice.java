@@ -1,7 +1,10 @@
 package lotto.domain.lotto;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PurchasePrice {
-    private static final String priceRegex = "^[0-9]+(,*\\d)*$";
+    private static final Pattern priceRegex = Pattern.compile("^[0-9]+(,*\\d)*$");
 
     private final int price;
 
@@ -27,7 +30,10 @@ public class PurchasePrice {
     }
 
     private void validateFormat(String purchasePrice) {
-        if (!purchasePrice.matches(priceRegex)) {
+        Matcher matcher = priceRegex.matcher(purchasePrice);
+        boolean isNotMatch = !matcher.matches();
+
+        if (isNotMatch) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자와 ,외에 다른 문자를 입력할 수 없습니다.");
         }
     }

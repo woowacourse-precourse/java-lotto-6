@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WinningNumbers {
-    private static final String winningNumbersRegex = "\\d+(,*\\s*\\d*)*";
+    private static final Pattern winningNumbersRegex = Pattern.compile("\\d+(,*\\s*\\d*)*");
 
     private final List<Integer> numbers;
 
@@ -28,7 +30,10 @@ public class WinningNumbers {
     }
 
     private void validateFormat(String winningNumber) {
-        if (!winningNumber.matches(winningNumbersRegex)) {
+        Matcher matcher = winningNumbersRegex.matcher(winningNumber);
+        boolean isNotMatch = !matcher.matches();
+
+        if (isNotMatch) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에는 숫자, 공백, 콤마(,)만 입력할 수 있습니다.");
         }
     }

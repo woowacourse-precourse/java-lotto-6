@@ -62,6 +62,6 @@ public class Application {
         Lotto user = new Lotto(setRandomNumbers());
         int bonus = getUserBonus(user);
 
-        
+        judge(winNumber, user, bonus);
     }
 }

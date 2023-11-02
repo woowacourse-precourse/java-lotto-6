@@ -9,6 +9,7 @@ import lotto.model.WinningStatistics;
 public class OutputView {
     public static final String LOTTO_TICKETS_COUNT_FORMAT = "%d개를 구매했습니다.";
     public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
+    public static final String WINNING_STATISTICS_TEMPLATE_HEADER = "당첨 통계\n---\n";
 
     public String lottoTicketsCountTemplate(int count) {
         return String.format(LOTTO_TICKETS_COUNT_FORMAT, count);
@@ -27,7 +28,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         Map<LottoPrize, Integer> prizeCount = winningStatistics.getPrizeCounter();
 
-        sb.append("당첨 통계\n---\n");
+        sb.append(WINNING_STATISTICS_TEMPLATE_HEADER);
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             if (lottoPrize == LottoPrize.NOTHING) {
                 continue;

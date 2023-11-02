@@ -1,7 +1,7 @@
 package lotto.utility;
 
 public class Utility {
-    public int makeStringToInt(String Input) {
+    public int getIntFromString(String Input) {
         try {
             int number = Integer.parseInt(Input);
             return number;

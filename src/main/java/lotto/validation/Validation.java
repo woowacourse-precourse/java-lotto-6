@@ -11,7 +11,7 @@ public class Validation {
 
     public void validateUnit(String Input) {
         int payment = Integer.parseInt(Input);
-        
+
         if(payment % 1000 != 0) {
             throw new IllegalArgumentException("입력값이 1,000원 단위가 아닙니다.");
         }

@@ -11,6 +11,7 @@ public class GameConfig {
     public final static String SEPARATOR_WITH_BLANK = ", ";
     public final static String PRINT_PREFIX = "[";
     public final static String PRINT_SUFFIX = "]";
+    public final static int ROUND_DIGIT = 1;
     public enum WINNING{
         FIRST(2_000_000_000, 1, "6"),
         SECOND(30_000_000, 2, "5+1"),
@@ -47,14 +48,12 @@ public class GameConfig {
                     .orElse(null);
         }
 
-        public static WINNING valueOfMatch(String match){
+        public static WINNING valueOfMatch(String match) {
             return Arrays.stream(values())
                     .filter(value -> value.match.equals(match))
                     .findAny()
                     .orElse(null);
         }
-
-
 
     }
 }

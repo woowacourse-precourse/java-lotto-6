@@ -18,6 +18,11 @@ public class Money {
         return money/GameConfig.MONEY_UNIT;
     }
 
+    public String getYield(int winning){
+        String roundFormat = "%.".concat(Integer.toString(GameConfig.ROUND_DIGIT).concat("f"));
+        return String.format(roundFormat, (double)winning * 100 / money).concat("%");
+    }
+
     private int validateNumeric(String money){
         try {
             return Integer.parseInt(money);

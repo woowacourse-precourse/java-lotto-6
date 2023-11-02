@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class LottoBuyInputViewTest {
 
-    LottoBuyInputView lottoBuyInputView = new LottoBuyInputView();
+    private LottoBuyInputView lottoBuyInputView = new LottoBuyInputView();
 
     @AfterEach
     void tearDown(){

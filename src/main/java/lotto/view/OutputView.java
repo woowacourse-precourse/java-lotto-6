@@ -7,7 +7,7 @@ import lotto.dto.ResultsDto;
 public class OutputView {
 
     private static final String LOTTO_BUY_FORMAT = "\n%d개를 구매했습니다.\n";
-    private static final String LOTTO_RESULT_HEADER = "당첨 통계\n---";
+    private static final String LOTTO_RESULT_HEADER = "\n당첨 통계\n---";
     private static final String LOTTO_RESULT_FORMAT = "%d개 일치%s (%,d원) - %d개\n";
     private static final String HAS_BONUS = ", 보너스 볼 일치";
     private static final String NONE_BONUS = "";

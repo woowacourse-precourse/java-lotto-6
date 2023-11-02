@@ -14,7 +14,7 @@ public class InputView {
     private static final Pattern ZERO_OR_PASITIVE_NUMBER = Pattern.compile("^[0-9]+$");
     private static final String ENTER_MONEY = "구입금액을 입력해 주세요.";
     private static final String ENTER_MAIN_LOTTO = "\n당첨 번호를 입력해 주세요.";
-    private static final String ENTER_BONUS_LOTTO = "보너스 번호를 입력해 주세요.";
+    private static final String ENTER_BONUS_LOTTO = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_SPLIT_SIGNAL = ",";
 
     public int enterMoney() {

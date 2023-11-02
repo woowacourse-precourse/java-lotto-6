@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.ExceptionMessage.LottoMachineException.BONUS_NUMBER_MUST_BE_UNIQUE;
+import static lotto.exception.ExceptionMessage.LottoException.BONUS_NUMBER_MUST_BE_UNIQUE;
 
 public class WinningLottoHolder {
     private final Lotto winningLotto;

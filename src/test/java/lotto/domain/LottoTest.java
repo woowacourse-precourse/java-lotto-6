@@ -14,20 +14,20 @@ import static lotto.exception.ExceptionMessage.LottoException.LOTTO_SIZE_IS_NOT_
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @Test
-    @DisplayName("로또 번호의 개수가 6개를 초과하면 예외가 발생한다.")
-    void throwExceptionByLottoSizeIsOver() {
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
+    @ParameterizedTest
+    @MethodSource("invalidSize")
+    @DisplayName("로또 번호의 개수가 6개가 아니면(초과 or 미만) 예외가 발생한다.")
+    void throwExceptionByInvalidLottoSize(final List<Integer> numbers) {
+        assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_SIZE_IS_NOT_FULFILL.message);
     }
 
-    @Test
-    @DisplayName("로또 번호의 개수가 6개 미만이면 예외가 발생한다.")
-    void throwExceptionByLottoSizeIsLess() {
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_SIZE_IS_NOT_FULFILL.message);
+    private static Stream<Arguments> invalidSize() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7)), // 초과
+                Arguments.of(List.of(1, 2, 3, 4, 5)) // 미만
+        );
     }
 
     @ParameterizedTest

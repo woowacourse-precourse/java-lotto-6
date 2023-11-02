@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.constant.NumberConstant;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
+
+import static lotto.constant.NumberConstant.BUYING_PRICE_UNIT;
 
 public class GameManager {
 
@@ -19,6 +22,8 @@ public class GameManager {
 
     private void prepareGame() {
         messagePrinter.printBuyingPriceMessage();
-        messageReceiver.receiveBuyingPrice();
+        int buyingPrice = messageReceiver.receiveBuyingPrice();
+        int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
+        messagePrinter.printBuyingAmountMessage(buyingAmount);
     }
 }

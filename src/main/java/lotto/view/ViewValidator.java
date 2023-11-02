@@ -6,9 +6,7 @@ import static lotto.constant.NumberConstant.ZERO;
 
 public class ViewValidator {
 
-    public boolean validateBuyingPrice(final String buyingPriceText) {
-        int buyingPrice = Integer.parseInt(buyingPriceText);
-
+    public boolean validateBuyingPrice(final int buyingPrice) {
         try {
             validateMod(buyingPrice);
         } catch (IllegalArgumentException e) {

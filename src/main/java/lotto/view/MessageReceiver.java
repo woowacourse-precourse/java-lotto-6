@@ -10,12 +10,16 @@ public class MessageReceiver {
         this.viewValidator = viewValidator;
     }
 
-    public void receiveBuyingPrice() {
+    public int receiveBuyingPrice() {
         boolean validInput = false;
+        int buyingPrice = 0;
 
         while (!validInput) {
             String buyingPriceText = Console.readLine();
-            validInput = viewValidator.validateBuyingPrice(buyingPriceText);
+            buyingPrice = Integer.parseInt(buyingPriceText);
+            validInput = viewValidator.validateBuyingPrice(buyingPrice);
         }
+
+        return buyingPrice;
     }
 }

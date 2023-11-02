@@ -1,18 +1,17 @@
 # 로또
 
 ## 기능 요구 사항
-- [ ] 구매 금액을 입력받는다. InputManager#receiveUserInput
+- [ ] 유저에게 입력을 받는다.
+  - [ ] 입력시 공백은 제거한다. InputManager#removeInputSpace
+- [ ] 구매 금액을 입력받는다.
   - [x] 1000원으로 나누어 떨어지지 않으면 예외 처리한다. InputValidator#validateDivision1000
   - [x] 숫자가 아니면 예외 처리한다. InputValidator#validateIsNumeric
-  - [ ] 공백이 있다면 없애버린다.
 - [ ] 당첨 번호를 입력받는다.
   - [ ] 쉼표로 구분한다.
-  - [ ] 공백이 있다면 없애버린다.
   - [ ] 1-45 숫자가 아니면 예외 처리한다.
   - [ ] 6개의 숫자가 아니면 예외 처리한다.
   - [ ] 숫자에 중복이 있으면 예외 처리한다.
 - [ ] 보너스 번호를 입력받는다.
-  - [ ] 공백이 있다면 없애버린다. 
   - [ ] 1-45 숫자가 아니면 예외 처리한다.
   - [ ] 당첨 번호와 중복된 숫자가 있으면 예외 처리한다.
 - [x] 범위 1-45까지의 숫자를 중복되지 않게 6개 뽑아 로또를 발행한다. LottoNumberGenerator#generateLottoNumber

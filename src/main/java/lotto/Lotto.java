@@ -12,7 +12,6 @@ import static lotto.constant.LottoRanking.THIRD;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.constant.ErrorMessage;
 import lotto.constant.LottoRanking;
 import lotto.model.LottoNumber;
 

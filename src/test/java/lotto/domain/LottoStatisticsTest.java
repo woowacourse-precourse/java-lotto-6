@@ -3,6 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,9 @@ public class LottoStatisticsTest {
     void getWinningResult() {
         // given
         final WinningLottoHolder winningLottoHolder = createLottoWinningMachine();
-        final User userLottoCaseA = createUsersCaseA();
-        final User userLottoCaseB = createUsersCaseB();
-        final User userLottoCaseC = createUsersCaseC();
+        final User userLottoCaseA = createUserLottosCaseA();
+        final User userLottoCaseB = createUserLottosCaseB();
+        final User userLottoCaseC = createUserLottosCaseC();
 
         // when
         final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseA);
@@ -57,6 +58,28 @@ public class LottoStatisticsTest {
         );
     }
 
+    @Test
+    @DisplayName("구매한 로또 N장에 대한 수익률을 조회한다")
+    void getEarningRate() {
+        // given
+        final WinningLottoHolder winningLottoHolder = createLottoWinningMachine();
+        final User userLottoCaseA = createUserLottosCaseA();
+        final User userLottoCaseB = createUserLottosCaseB();
+        final User userLottoCaseC = createUserLottosCaseC();
+
+        // when
+        final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseA);
+        final LottoStatistics caseB = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseB);
+        final LottoStatistics caseC = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseC);
+
+        // then
+        assertAll(
+                () -> assertThat(caseA.calculateEarningRate()).isEqualTo(BigDecimal.valueOf(16930083.3)),
+                () -> assertThat(caseB.calculateEarningRate()).isEqualTo(BigDecimal.valueOf(88.2)),
+                () -> assertThat(caseC.calculateEarningRate()).isEqualTo(BigDecimal.valueOf(62.5))
+        );
+    }
+
     private WinningLottoHolder createLottoWinningMachine() {
         return WinningLottoHolder.drawWinningLotto(
                 Arrays.asList(1, 2, 3, 4, 5, 6),
@@ -64,7 +87,12 @@ public class LottoStatisticsTest {
         );
     }
 
-    private User createUsersCaseA() {
+    /**
+     * 구매 금액 = 12_000 <br>
+     * 당첨 금액 = 2,031,610,000 <br>
+     * -> 수익률 = 169,300.83333333333333333333333333... = 16930083.33% = 16930083.3%
+     */
+    private User createUserLottosCaseA() {
         return User.provideLottos(
                 List.of(
                         Lotto.create(Arrays.asList(8, 9, 10, 11, 12, 13)), // None
@@ -83,7 +111,12 @@ public class LottoStatisticsTest {
         );
     }
 
-    private User createUsersCaseB() {
+    /**
+     * 구매 금액 = 17000 <br>
+     * 당첨 금액 = 15000 <br>
+     * -> 수익률 = 0.88235294117647058823529411764706... = 88.23% = 88.2%
+     */
+    private User createUserLottosCaseB() {
         return User.provideLottos(
                 List.of(
                         Lotto.create(Arrays.asList(8, 9, 10, 11, 12, 13)), // None
@@ -107,7 +140,12 @@ public class LottoStatisticsTest {
         );
     }
 
-    private User createUsersCaseC() {
+    /**
+     * 구매 금액 = 8000 <br>
+     * 당첨 금액 = 5000 <br>
+     * -> 수익률 = 0.625 = 62.5%
+     */
+    private User createUserLottosCaseC() {
         return User.provideLottos(
                 List.of(
                         Lotto.create(Arrays.asList(8, 21, 23, 41, 42, 43)), // None

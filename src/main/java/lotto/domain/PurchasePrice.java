@@ -10,6 +10,10 @@ public class PurchasePrice {
         this.price = Integer.parseInt(purchasePrice);
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     private void validate(String purchasePrice) {
         validateFormat(purchasePrice);
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LottoFactory;
 import lotto.domain.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -19,5 +20,7 @@ public class LottoController {
         LottoFactory lottoFactory = LottoFactory.create(new RandomNumberGenerator(), money);
 
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
+        List<Integer> inputLotto = inputView.enterLotto();
+        //int bonusNumber = inputView.enterBonusNumber();
     }
 }

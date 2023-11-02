@@ -10,7 +10,7 @@ public class OutputView {
     private static final String inputBonus = "\n보너스 번호를 입력해 주세요.";
     private static final String stats = "\n당첨 통계";
     private static final String dash = "---";
-    private static final String result = "총 수익률은 ";
+    private static final String result = "총 수익률은 %s%%입니다.";
 
     public static void printAmount() {
         System.out.println(inputAmount);
@@ -37,8 +37,8 @@ public class OutputView {
         System.out.println(dash);
     }
 
-    public static void printResult() {
-        System.out.println(result);
+    public static void printResult(float rate) {
+        System.out.printf(result, String.format("%.1f", rate));
     }
 
 

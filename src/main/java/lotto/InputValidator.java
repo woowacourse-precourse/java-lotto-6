@@ -66,7 +66,7 @@ public class InputValidator {
         try {
             number = Integer.parseInt(num);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다. : " + num);
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. : " + num);
         }
         return number;
     }

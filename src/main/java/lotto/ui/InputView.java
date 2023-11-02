@@ -1,7 +1,27 @@
 package lotto.ui;
 
+import static lotto.contents.ContentStrings.INPUT_BONUS_NUMBER;
+import static lotto.contents.ContentStrings.INPUT_PURCHASE_AMOUNT;
+import static lotto.contents.ContentStrings.INPUT_WINNING_NUMBERS;
+
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
-    /**
-     * 사용자 입력을 처리하는 클래스
-     */
+
+    public static String inputPurchaseAmount() {
+        System.out.println(INPUT_PURCHASE_AMOUNT);
+        return Console.readLine();
+    }
+
+    public static String inputWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBERS);
+        return Console.readLine();
+    }
+
+    public static String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        return Console.readLine();
+    }
 }
+
+

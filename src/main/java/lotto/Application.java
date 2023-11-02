@@ -43,8 +43,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        Lotto winNumber = new Lotto(setRandomNumbers());
-        Lotto user = new Lotto(getUserNumbers());
+        Lotto winNumber = new Lotto(getUserNumbers());
+        Lotto user = new Lotto(setRandomNumbers());
         int bonus = getUserBonus(user);
     }
 }

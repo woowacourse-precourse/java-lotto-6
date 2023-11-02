@@ -9,4 +9,7 @@ public class InputView {
     public String winningNumber(){
         return Console.readLine();
     }
+    public int bonusNumber(){
+        return Integer.parseInt(Console.readLine());
+    }
 }

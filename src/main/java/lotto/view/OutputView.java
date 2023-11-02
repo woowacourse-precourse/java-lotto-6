@@ -12,4 +12,10 @@ public class OutputView {
     public  void lottoNumberMessage(String lottoNumber){
         System.out.println(lottoNumber);
     }
+    public void winningNumberMessage(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+    public void bonusNumberMessage(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

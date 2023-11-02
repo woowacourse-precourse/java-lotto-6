@@ -6,7 +6,10 @@ import java.util.Set;
 
 import static lotto.exception.ErrorMessage.*;
 
-abstract public class LottoNumberException {
+public class LottoNumberException {
+    private LottoNumberException() {
+    }
+
     public static void validate(List<Integer> numbers) {
         lottoSizeValidate(numbers);
         lottoNumberDuplicateValidate(numbers);

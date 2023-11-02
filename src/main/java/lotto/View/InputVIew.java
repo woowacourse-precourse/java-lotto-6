@@ -8,19 +8,31 @@ public class InputVIew {
     private static final String INPUT_TICKETS_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-
-    public static String inputTicketsAmount(){
+    //TODO : 무한루프 방지
+    public static int inputTicketsAmount(){
         System.out.println(INPUT_TICKETS_AMOUNT);
-        return Console.readLine();
+        try {
+            return validateNum(Console.readLine());
+        } catch (IllegalArgumentException e){
+            return inputTicketsAmount();
+        }
     }
     public static List<Integer> inputWinningNumbers(){
         System.out.println(INPUT_WINNING_NUMBERS);
-        String input = Console.readLine();
-        return toWinningNumbers(input);
+        try {
+            return toWinningNumbers(Console.readLine());
+        } catch (IllegalArgumentException e){
+            return inputWinningNumbers();
+        }
+
     }
     public static int inputBonusNumber(){
         System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        try {
+            return validateNum(Console.readLine());
+        } catch (IllegalArgumentException e){
+            return inputBonusNumber();
+        }
     }
     private static List<Integer> toWinningNumbers(String input){
         String[] strWinningNums = input.split(",");
@@ -29,6 +41,14 @@ public class InputVIew {
             winningNumbers.add(Integer.parseInt(s.trim()));
         }
         return winningNumbers;
+    }
+
+    private static int validateNum(String input){
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

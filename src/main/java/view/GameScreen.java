@@ -11,6 +11,16 @@ public class GameScreen {
     public GameScreen(){}
 
     public void runGame(){
+        initialize();
+        this.game.printLottoQuantity();
+        try{
+            this.game.createLottos();
+            printLottos();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void initialize(){
         while(true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
@@ -20,15 +30,7 @@ public class GameScreen {
                 System.out.println(e.getMessage());
             }
         }
-        this.game.printLottoQuantity();
-        try{
-            this.game.createLottos();
-            printLottos();
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
     }
-
     private void printLottos(){
         List<Lotto> lottos = this.game.getLottos();
         for(Lotto lotto : lottos)

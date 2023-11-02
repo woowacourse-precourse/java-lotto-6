@@ -10,13 +10,17 @@ public class BonusNumber {
 
     private final int number;
 
-    public BonusNumber(String bonusNumber) {
-        validate(bonusNumber);
-        this.number = parseBonusNum(bonusNumber);
+    public static BonusNumber create(String bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 
     public int getNumber() {
         return number;
+    }
+
+    private BonusNumber(String bonusNumber) {
+        validate(bonusNumber);
+        this.number = parseBonusNum(bonusNumber);
     }
 
     private void validate(String bonusNumber) {
@@ -41,7 +45,7 @@ public class BonusNumber {
         }
     }
 
-    private static int parseBonusNum(String bonusNumber) {
+    private int parseBonusNum(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
     }
 

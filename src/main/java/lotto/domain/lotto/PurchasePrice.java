@@ -11,13 +11,17 @@ public class PurchasePrice {
 
     private final int price;
 
-    public PurchasePrice(String purchasePrice) {
-        validate(purchasePrice);
-        this.price = Integer.parseInt(purchasePrice);
+    public static PurchasePrice create(String purchasePrice) {
+        return new PurchasePrice(purchasePrice);
     }
 
     public int getPrice() {
         return price;
+    }
+
+    private PurchasePrice(String purchasePrice) {
+        validate(purchasePrice);
+        this.price = Integer.parseInt(purchasePrice);
     }
 
     private void validate(String purchasePrice) {

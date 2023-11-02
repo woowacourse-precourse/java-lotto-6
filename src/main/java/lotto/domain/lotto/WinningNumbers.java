@@ -15,19 +15,23 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumbers(String winningNumber) {
-        validate(winningNumber);
-        this.numbers = winningNumbersToList(winningNumber);
+    public static WinningNumbers create(String winningNumber) {
+        return new WinningNumbers(winningNumber);
     }
 
     public Collection<Integer> getNumbers() {
         return Collections.unmodifiableCollection(numbers);
     }
 
+    private WinningNumbers(String winningNumber) {
+        validate(winningNumber);
+        this.numbers = parseWinningNumbers(winningNumber);
+    }
+
     private void validate(String winningNumber) {
         validateFormat(winningNumber);
 
-        List<Integer> winningNumbers = winningNumbersToList(winningNumber);
+        List<Integer> winningNumbers = parseWinningNumbers(winningNumber);
         validateSize(winningNumbers);
         validateRange(winningNumbers);
     }
@@ -62,7 +66,7 @@ public class WinningNumbers {
         return num >= 1 && num <= 45;
     }
 
-    private List<Integer> winningNumbersToList(String winningNumber) {
+    private List<Integer> parseWinningNumbers(String winningNumber) {
         return Arrays.stream(extractNumbers(winningNumber))
                 .mapToInt(Integer::parseInt)
                 .boxed()

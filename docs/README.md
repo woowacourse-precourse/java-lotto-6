@@ -12,6 +12,7 @@
   구입 금액을 입력받아 1000으로 나눈 결과를 lottoQuantity에 저장한다.
   입력 스트링에서 숫자가 아닌 문자 포함시 "[ERROR] 숫자로만 입력해 주세요."가 출력된다.
   1000으로 나눠떨어지지 않으면 "[ERROR] 금액이 1000원으로 나누어 떨어지지 않아요."가 출력된다.
+- 추가 테스트 : 에러가 발생하면 정상적인 입력이 들어올 때까지 입력을 다시 받는다.
 - validateDigit(char) : 입력값이 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
 - validateRemainder(int) : 입력값이 1000으로 나눴을 때 나머지가 0이 아니라면 IllegalArgumentException을 발생시킨다.
 

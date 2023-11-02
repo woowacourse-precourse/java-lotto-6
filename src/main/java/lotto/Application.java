@@ -34,4 +34,10 @@ class User{
         }
         PrintLottoPaper(cnt, mylotto);
     }
+    public static void PrintLottoPaper(int cnt, ArrayList<List<Integer>> lotto){
+        System.out.println(cnt+"개를 구매했습니다.");
+        for (List<Integer> row : lotto) {
+            System.out.println(row);
+        }
+    }
 }

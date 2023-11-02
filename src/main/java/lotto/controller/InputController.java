@@ -20,10 +20,16 @@ public class InputController {
     }
 
     public static String scanWinningLottoTicket() {
-        System.out.println(InputView.enterWinningLottoTicket());
-        String userInput = Console.readLine();
-        // TO DO: 사용자 입력 검증해야 함
-        return userInput;
+        while (true) {
+            try {
+                System.out.println(InputView.enterWinningLottoTicket());
+                String userInput = Console.readLine();
+                InputValidator.validateLottoTicket(userInput);
+                return userInput;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String scanBonusNumber() {

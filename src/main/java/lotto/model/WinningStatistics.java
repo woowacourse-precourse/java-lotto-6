@@ -10,41 +10,47 @@ public class WinningStatistics {
     private final WinningLotto winningLotto;
     private final List<Lotto> lottoTicketsPurchased;
 
-    private final Map<LottoPrize, Integer> prizeCount;
+    private final Map<LottoPrize, Integer> prizeCounter;
 
     public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased) {
         this.winningLotto = winningLotto;
         this.lottoTicketsPurchased = lottoTicketsPurchased;
-        prizeCount = calculateWinningStatistics();
+        prizeCounter = calculateWinningStatistics();
     }
 
-    public Map<LottoPrize, Integer> getPrizeCount() {
-        return prizeCount;
+    public Map<LottoPrize, Integer> getPrizeCounter() {
+        return prizeCounter;
     }
 
     public Map<LottoPrize, Integer> calculateWinningStatistics() {
-        Map<LottoPrize, Integer> prizeCount = new HashMap<>();
+        Map<LottoPrize, Integer> prizeCounter = new HashMap<>();
         for (Lotto lotto : lottoTicketsPurchased) {
             int matchedCount = lotto.getMatchedCount(winningLotto.getLotto());
             if (matchedCount < LottoConstants.THE_MINIMUM_NUMBER_OF_MATCHES_TO_WIN_A_PRIZE) {
                 continue;
             }
-
-            boolean bonusMatched = lotto.contains(winningLotto.getBonusNumber());
-            LottoPrize lottoPrize = LottoPrize.valueOf(matchedCount, bonusMatched);
-            if (prizeCount.containsKey(lottoPrize)) {
-                prizeCount.put(lottoPrize, prizeCount.get(lottoPrize) + 1);
-            } else {
-                prizeCount.put(lottoPrize, 1);
-            }
+            addPrize(prizeCounter,
+                    LottoPrize.valueOf(
+                            matchedCount,
+                            lotto.contains(winningLotto.getBonusNumber())
+                    )
+            );
         }
-        return prizeCount;
+        return prizeCounter;
+    }
+
+    private void addPrize(Map<LottoPrize, Integer> prizeCount, LottoPrize lottoPrize) {
+        if (prizeCount.containsKey(lottoPrize)) {
+            prizeCount.put(lottoPrize, prizeCount.get(lottoPrize) + 1);
+            return;
+        }
+        prizeCount.put(lottoPrize, 1);
     }
 
     public Long calculateSumOfPrize() {
         long sum = 0L;
-        for (LottoPrize lottoPrize : prizeCount.keySet()) {
-            Long count = Long.valueOf(prizeCount.get(lottoPrize));
+        for (LottoPrize lottoPrize : prizeCounter.keySet()) {
+            Long count = Long.valueOf(prizeCounter.get(lottoPrize));
             Long prize = lottoPrize.getPrize();
             sum += prize * count;
         }

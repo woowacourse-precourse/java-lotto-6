@@ -25,7 +25,7 @@ public class OutputView {
 
     public static String winningStatisticsTemplate(WinningStatistics winningStatistics) {
         StringBuilder sb = new StringBuilder();
-        Map<LottoPrize, Integer> prizeCount = winningStatistics.getPrizeCount();
+        Map<LottoPrize, Integer> prizeCount = winningStatistics.getPrizeCounter();
 
         sb.append("당첨 통계\n---\n");
         for (LottoPrize lottoPrize : LottoPrize.values()) {

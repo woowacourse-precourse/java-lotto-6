@@ -68,6 +68,10 @@ public class LottoStatistics {
         return BigDecimal.valueOf((long) reward * count);
     }
 
+    public int getWinningCountByRank(final WinningRank winningRank) {
+        return winningResult.getOrDefault(winningRank, 0);
+    }
+
     public Map<WinningRank, Integer> getWinningResult() {
         return Collections.unmodifiableMap(winningResult);
     }

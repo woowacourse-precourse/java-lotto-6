@@ -1,7 +1,9 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -33,9 +35,24 @@ public class StringTest {
         String numbers = "(1,2)";
 
         // when
-        numbers = numbers.substring(1,4);
+        numbers = numbers.substring(1, 4);
 
         // then
         assertThat(numbers).isEqualTo("1,2");
+    }
+
+
+    @DisplayName("charAt()사용과 인덱스 예외 처리")
+    @Test
+    void 특정_문자_가져오기() {
+
+        // given
+        String abc = "abc";
+
+        // when, then
+        assertThat(abc.charAt(0)).isEqualTo('a');
+        assertThatThrownBy(() -> abc.charAt(3))
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessage("String index out of range: 3");
     }
 }

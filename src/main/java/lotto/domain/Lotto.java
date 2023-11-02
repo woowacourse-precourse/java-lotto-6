@@ -42,7 +42,7 @@ public class Lotto {
     	}
     }
     
-    private boolean isNumberOutOfRange(int number) {
+    protected boolean isNumberOutOfRange(int number) {
     	return number > MAX_NUMBER || number < MIN_NUMBER;
     }
  

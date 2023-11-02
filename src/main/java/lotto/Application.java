@@ -69,20 +69,17 @@ public class Application {
 
     private static int judge(Lotto winNum, Lotto user, int bonus) {
         int ct = winNum.countMatch(user.getNumbers());
-        if (ct > 5) {
+        if (ct > 5) 
             return 0;
-        }
         if (ct > 4) {
             if (user.lottoContains(bonus))
                 return 1;
             return 2;
         }
-        if (ct > 3) {
+        if (ct > 3) 
             return 3;
-        }
-        if (ct > 2) {
+        if (ct > 2) 
             return 4;
-        }
         return 5;
     }
 

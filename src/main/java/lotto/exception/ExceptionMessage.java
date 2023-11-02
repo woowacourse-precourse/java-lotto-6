@@ -14,4 +14,15 @@ public interface ExceptionMessage {
             this.message = message;
         }
     }
+
+    enum LottoMachineException {
+        BONUS_NUMBER_MUST_BE_UNIQUE("보너스 번호는 당첨 번호와 중복되지 않아야 합니다."),
+        ;
+
+        public final String message;
+
+        LottoMachineException(final String message) {
+            this.message = message;
+        }
+    }
 }

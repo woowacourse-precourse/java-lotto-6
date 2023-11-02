@@ -39,6 +39,30 @@ public class InputDeviceTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨번호_1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,ㅁ");
+            assertThat(output()).contains(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨번호_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨번호_3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

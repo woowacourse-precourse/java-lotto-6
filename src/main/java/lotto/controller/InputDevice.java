@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.view.ErrorMessage;
 import lotto.view.Printer;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InputDevice {
     public Integer inputLottoPurchasePayment(){
@@ -13,33 +16,69 @@ public class InputDevice {
             Printer.printInputLottoPurchasePayment();
             try{
                 String inputValue = Console.readLine();
-                checkValidLottoPurchasePayment(inputValue);
-                return Integer.valueOf(inputValue);
+                checkIsNumber(inputValue);
+                Integer lottoPurchasePayment = Integer.valueOf(inputValue);
+                checkValidLottoPurchasePayment(lottoPurchasePayment);
+                return lottoPurchasePayment;
             } catch (IllegalArgumentException e){
                 Printer.printErrorMessage(ErrorMessage.INVALID_PURCHASE_PAYMENT.getMessage());
             }
         }
     }
 
-    private void checkValidLottoPurchasePayment(String inputValue){
-        checkIsNumber(inputValue);
-        Integer number = Integer.parseInt(inputValue);
-        checkValidNumber(number);
+    public List<Integer> inputWinningNumbers(){
+        while(true){
+            Printer.printInputWinningNumbers();
+            try{
+                String inputValue = Console.readLine();
+                String[] row = inputValue.split(",");
+                checkIsNumberList(row);
+                List<Integer> numbers = parsingNumbers(row);
+                checkValidWinningLotto(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e){
+                Printer.printErrorMessage(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
+            }
+        }
     }
+
 
     private void checkIsNumber(String inputValue){
         String regex = "^[1-9]\\d*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(inputValue);
         if(!matcher.matches()){
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
+        }
+    }
+
+    private void checkValidLottoPurchasePayment(Integer number){
+        int term = number % 1_000;
+        if(term != 0){
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_PAYMENT.getMessage());
         }
     }
 
-    private void checkValidNumber(Integer number){
-        int term = number % 1_000;
-        if(term != 0){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_PAYMENT.getMessage());
+    private List<Integer> parsingNumbers(String[] row) {
+        return Arrays.stream(row).toList().stream()
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
+    }
+
+    private void checkIsNumberList(String[] row){
+        for(String number : row){
+            checkIsNumber(number);
+        }
+    }
+
+    private void checkValidWinningLotto(List<Integer> numbers){
+        for(int number : numbers){
+            if(!(1 <= number && number <= 45)){
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+            }
+        }
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
         }
     }
 }

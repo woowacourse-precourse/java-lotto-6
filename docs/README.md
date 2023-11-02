@@ -9,8 +9,8 @@
 - ###  Player
 - [x] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
 - [x] 로또 구입 금액 만큼 보유 금액을 사용 - HoldingMoney
-- [ ] 로또 구입 금액 만큼 사용 금액을 업데이트 - UsedMoney
-- [ ] 로또 구입에 사용한 금액을 사용 금액에 저장 - UsedMoney
+- [x] 로또 구입 금액 만큼 사용 금액을 업데이트 - UsedMoney
+- [x] 로또 구입에 사용한 금액을 사용 금액에 저장 - UsedMoney
 - [ ] 로또 구입 금액을 보유 금액, 사용금액에 저장 - PlayerMoney
 - [ ] 로또 구입 금액을 가지고 있으며 구입 금액으로 Ticket을 발행받음 - Player
 - [ ] 로또 구입 금액에 따라 Ticket 을 발급해줌 - Ticket

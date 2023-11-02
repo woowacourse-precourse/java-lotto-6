@@ -1,5 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoGame {
@@ -28,6 +32,10 @@ public class LottoGame {
             System.out.println("[ERROR] 투입 금액은 1,000원 단위여야합니다.");
             inputPurchase();
         }
+    }
+
+    List<Integer> makeLotto(){
+      return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
 

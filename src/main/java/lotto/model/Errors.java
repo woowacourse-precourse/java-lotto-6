@@ -26,5 +26,12 @@ public class Errors {
         }
     }
 
+    public static void isWrongRange (int num) throws IllegalArgumentException {
+        if(num < 1 || num > 45) {
+            OutputView.printIsWrongRange();
+            throw new IllegalArgumentException();
+        }
+    }
+
 
 }

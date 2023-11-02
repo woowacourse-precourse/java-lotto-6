@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.view.InputView;
 import lotto.model.Logics;
+import lotto.model.Errors;
 
 public class LottoController {
     private int money = 0;
@@ -19,13 +20,32 @@ public class LottoController {
     }
 
     private void inputMoney () {
-        String strMoney = InputView.printInputMoney();
-        this.money = Logics.strToInt(strMoney);
+        boolean isValidate = false;
+        while(!isValidate) {
+            try {
+                String strMoney = InputView.printInputMoney();
+                this.money = Errors.isInteger(strMoney);
+                Errors.isMinMoney(this.money);
+                Errors.isWrongMoney(this.money);
+                isValidate = true;
+            } catch (IllegalArgumentException e) {
+                isValidate = false;
+            }
+        }
     }
 
     private void inputBonus () {
-        String strBonus = InputView.printInputBonus();
-        this.bonus = Logics.strToInt(strBonus);
+        boolean isValidate = false;
+        while(!isValidate) {
+            try {
+                String strBonus = InputView.printInputBonus();
+                this.bonus = Errors.isInteger(strBonus);
+                Errors.isWrongRange(this.bonus);
+                isValidate = true;
+            } catch (IllegalArgumentException e) {
+                isValidate = false;
+            }
+        }
     }
 
 }

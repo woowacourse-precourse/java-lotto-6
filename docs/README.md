@@ -66,3 +66,7 @@
 - validateBonusNumberLength(String[]) : 입력값의 길이가 1이 아니라면 IllegalArgumentException을 발생시킨다.
 - validateBonusNumberType(String[]) : 입력값이 숫자로 표현된 것이 아니라면 IllegalArgumentException을 발생시킨다.
 - validateBonusNumberRange(String[]) : 입력값이 1~45 범위 안에 있지 않으면 IllegalArgumentException을 발생시킨다.
+
+- printLottoResult : 모든 로또 결과를 출력한다.
+- printWinResult : 테스트용 1,3,4,5등 결과를 출력한다.
+- printBonusResult : 테스트용 2등 결과를 출력한다.

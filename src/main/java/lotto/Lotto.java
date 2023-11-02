@@ -25,6 +25,36 @@ public class Lotto {
         return msg.toString();
     }
 
+    public LottoResult getLottoResult(List<Integer> winningNumberList, Integer bonusNum) {
+        LottoResult[] resultMapper = {
+                LottoResult.OTHER,
+                LottoResult.OTHER,
+                LottoResult.MATCH3,
+                LottoResult.MATCH4,
+                LottoResult.MATCH5,
+                LottoResult.MATCH6
+        };
+        LottoResult result = resultMapper[checkWinningCount(winningNumberList)];
+        if (result == LottoResult.MATCH5 && checkBonusNumber(bonusNum)){
+            result = LottoResult.MATCH5_AND_BONUS;
+        }
+        return result;
+    }
+
+    private Integer checkWinningCount(List<Integer> winningNumberList) {
+        Integer count = 0;
+        for (Integer num : numbers) {
+            if (winningNumberList.contains(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean checkBonusNumber(Integer bonusNum) {
+        return numbers.contains(bonusNum);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 정확히 6자리여야 합니다.");

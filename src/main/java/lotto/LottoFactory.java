@@ -5,7 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoFactory {
-    public static Lotto createLotto() {
+    public static List<Lotto> buyLotto(Integer cost) {
+        ArrayList<Lotto> lottoList = new ArrayList<>();
+        while (cost > 0) {
+            lottoList.add(createLotto());
+        }
+        return lottoList;
+    }
+
+    private static Lotto createLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

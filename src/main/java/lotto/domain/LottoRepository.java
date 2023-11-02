@@ -19,7 +19,7 @@ public class LottoRepository {
 		return Collections.unmodifiableList(lottos);
 	}
 	
-	public String printLottoNumbers() {
+	public static String printLottoNumbers() {
 		StringJoiner strJoiner = new StringJoiner(DELIMITER);
 		
 		for(Lotto lotto : lottos) {

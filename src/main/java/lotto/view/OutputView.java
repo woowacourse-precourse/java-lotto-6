@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.LottoRepository;
 import lotto.io.OutputViewPrinter;
 import lotto.util.message.ProgressMessage;
 
@@ -13,6 +14,10 @@ public class OutputView {
 
 	public void printBuyedLottoNumberMessage(int buyedCount) {
 		PRINTER.printLine(ProgressMessage.BUYED_LOTTO_NUMBER.getForMatMessage(buyedCount));
+	}
+
+	public void printLottoNumbers() {
+		PRINTER.printLine(LottoRepository.printLottoNumbers());
 	}
 
 	public void printInputAnswerLottoNumberMessage() {

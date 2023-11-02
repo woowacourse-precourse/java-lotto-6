@@ -1,5 +1,8 @@
 package lotto;
-
+/*
+    2023 11 03 주가해야할 요구사항:
+    JUnit 5와 AssertJ,enum,도메인 로직 단위테스트 구현
+*/
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;

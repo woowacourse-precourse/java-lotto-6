@@ -30,6 +30,17 @@ public class InputManager {
         }
     }
 
+    public static Integer inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                Integer cost = inputOneBonusNumber(winningNumbers);
+                return cost;
+            }catch(IllegalArgumentException err) {
+                System.out.println(err.getMessage());
+            }
+        }
+    }
+
     private static Integer inputOneCost() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputText = Console.readLine();
@@ -81,4 +92,26 @@ public class InputManager {
                 .collect(Collectors.toList());
     }
 
+    private static Integer inputOneBonusNumber(List<Integer> winningNumberList) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputText = Console.readLine();
+
+        if (!Pattern.matches(InputRegex.BONUS_NUMBER_REGEX.getRegex(), inputText)) {
+            throw new IllegalArgumentException(CustomErrorMessages.UNMATCHED_WITH_INPUT_FORM.getMsg());
+        }
+
+        Integer bonusNum = Integer.parseInt(inputText);
+        validateBonusNumber(bonusNum, winningNumberList);
+
+        return bonusNum;
+    }
+
+    private static void validateBonusNumber(Integer bonusNum, List<Integer> winningNumberList) {
+        if (bonusNum < 1 || bonusNum > 45) {
+            throw new IllegalArgumentException(CustomErrorMessages.OUT_OF_VALID_NUMBER_RANGE.getMsg());
+        }
+        if (winningNumberList.contains(bonusNum)) {
+            throw new IllegalArgumentException(CustomErrorMessages.DUPLICATED_BONUS_NUMBER.getMsg());
+        }
+    }
 }

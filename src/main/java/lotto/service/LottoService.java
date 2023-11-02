@@ -26,6 +26,11 @@ public class LottoService {
 
     public LottoResult compare(List<LottoNumber> lottoNumbers, Lotto lotto) {
         Map<LottoRanking, Integer> winningCounts = new HashMap<>();
+
+        for (LottoRanking lottoRanking : LottoRanking.values()) {
+            winningCounts.put(lottoRanking, 0);
+        }
+
         for (LottoNumber lottoNumber : lottoNumbers) {
             LottoRanking lottoRanking = lotto.calculateLottoRanking(lottoNumber);
             winningCounts.put(lottoRanking, winningCounts.getOrDefault(lottoRanking, 0) + 1);

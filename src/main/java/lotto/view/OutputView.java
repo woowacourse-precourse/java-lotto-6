@@ -17,6 +17,7 @@ public class OutputView {
 
     public static void printLottoNumbers(List<LottoNumber> lottoNumbers) {
         System.out.printf(LOTTO_NUMBERS_SIZE_MESSAGE, lottoNumbers.size());
+        System.out.println();
         for (LottoNumber lottoNumber : lottoNumbers) {
             List<Integer> numbers = lottoNumber.getNumbers();
             System.out.printf(
@@ -45,8 +46,9 @@ public class OutputView {
             System.out.printf(
                     WINNING_COUNT_MESSAGE,
                     lottoRanking.getWinningCondition(),
-                    lottoRanking.getPrizeMoney()
+                    winningCounts.get(lottoRanking)
             );
+            System.out.println();
         }
     }
 

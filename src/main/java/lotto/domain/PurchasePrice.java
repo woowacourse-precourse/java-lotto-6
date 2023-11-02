@@ -19,4 +19,11 @@ public class PurchasePrice {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateBelow1000won(String purchasePrice) {
+        int price = Integer.parseInt(purchasePrice.replaceAll(",", ""));
+        if (price < 1000) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

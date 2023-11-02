@@ -59,3 +59,35 @@
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+
+
+## 패키지 구성도
+```
+│
+├── domain
+│   ├── Lotto.java                 // 로또 번호를 나타내는 클래스
+│   ├── WinningNumbers.java        // 당첨 번호를 나타내는 클래스 (VO)
+│   ├── LottoMachine.java          // 로또 티켓을 생성하는 클래스
+│   ├── LottoResult.java           // 당첨 결과를 계산하는 클래스
+│   └── Prize.java                 // 당첨 등수와 상금을 나타내는 클래스
+│
+├── application
+│   ├── LottoService.java          // 도메인 객체들을 사용하여 로또 게임의 비즈니스 로직을 처리하는 클래스
+│   └── LottoStatistics.java       // 로또 통계를 계산하는 클래스
+│
+├── ui
+│   ├── InputView.java             // 사용자 입력을 처리하는 클래스
+│   └── ResultView.java            // 결과를 사용자에게 보여주는 클래스
+│
+├── utils
+│   ├── RandomUtil.java            // 랜덤 번호 생성 유틸리티
+│   └── ValidationUtil.java        // 입력 검증 유틸리티
+│
+├── controller
+│   └── LottoController.java       // UI와 Application 사이를 연결하는 클래스
+│
+└── contents
+    ├── ContentStrings.java       // 문자열 상수를 관리하는 Enum 클래스
+    ├── ContentNumbers.java       // 숫자 상수를 관리하는 Enum 클래스
+    └── ContentErrors.java        // 에러 메시지를 관리하는 Enum 클래스
+````

@@ -22,6 +22,7 @@ public class LottoProcessor {
 
     public void run() {
         buyLotto();
+        initLottoWinningMachine();
     }
 
     private void buyLotto() {
@@ -32,7 +33,20 @@ public class LottoProcessor {
 
                 user = User.provideLottos(lottos);
                 OutputProcessor.printPurchaseInformation(user.getLottos());
+                break;
+            } catch (final IllegalArgumentException e) {
+                OutputProcessor.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 
+    private void initLottoWinningMachine() {
+        while (true) {
+            try {
+                final List<Integer> winingNumbers = InputProcessor.readWiningNumbers();
+                final int bonusNumber = InputProcessor.readBonusNumber();
+
+                winningLottoHolder = WinningLottoHolder.drawWinningLotto(winingNumbers, bonusNumber);
                 break;
             } catch (final IllegalArgumentException e) {
                 OutputProcessor.printErrorMessage(e.getMessage());

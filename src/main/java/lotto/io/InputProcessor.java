@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.User;
+import lotto.io.validator.BonusNumberValidator;
 import lotto.io.validator.LottoPurchaseAmountValidator;
 import lotto.io.validator.WinningNumberValidator;
 
@@ -36,5 +37,14 @@ public class InputProcessor {
         return Arrays.stream(userInput.split(COMMA))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        final String userInput = Console.readLine();
+        BonusNumberValidator.validate(userInput);
+
+        return Integer.parseInt(userInput);
     }
 }

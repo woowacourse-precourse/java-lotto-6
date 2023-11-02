@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.dto.CreateUserDto;
 import lotto.global.ErrorMessage;
 
 public class User {
@@ -10,9 +11,17 @@ public class User {
     private int quantity;
     // 당첨 금액은 20억보다 클 수 있기 때문에 int시 overFlow 가능성 있음
     private long totalReward;
-    private List<Lotto> lotto = new ArrayList<>();
+    private List<Lotto> lotto;
 
-    private User(){}
+    private User() {
+    }
+    public static User create(CreateUserDto createUserDto){
+        User user = new User();
+        user.purchaseAmount = createUserDto.getPurchaseAmount();
+        user.quantity = createUserDto.getQuantity();
+        user.lotto = createUserDto.getPublishedLotto();
+        return user;
+    }
 
     public int getPurchaseAmount() {
         return purchaseAmount;
@@ -28,25 +37,5 @@ public class User {
 
     public List<Lotto> getLotto() {
         return lotto;
-    }
-
-    public static User create(long purchaseAmount) {
-        User user = new User();
-        user.purchaseAmount = user.purchaseAmountValidate(purchaseAmount);
-        user.quantity = user.purchaseAmount/1000;
-        return user;
-    }
-
-    private int purchaseAmountValidate(long inputPurchaseAmount){
-        if(purchaseAmount == 0){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_MINIMUM_PURCHASE_AMOUNT.getMessage());
-        }
-        if(purchaseAmount > 2000000000){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
-        }
-        if(purchaseAmount % 1000 != 0){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_PURCHASE_UNIT.getMessage());
-        }
-        return purchaseAmount;
     }
 }

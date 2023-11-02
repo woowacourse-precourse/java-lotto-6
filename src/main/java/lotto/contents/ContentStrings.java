@@ -3,15 +3,17 @@ package lotto.contents;
 public enum ContentStrings {
     INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    SPLIT_COMMA(","),
+    DASH("-");
 
-    private final String message;
+    private final String value;
 
-    ContentStrings(String message) {
-        this.message = message;
+    ContentStrings(String value) {
+        this.value = value;
     }
 
-    public String getMessage() {
-        return message;
+    public String getValue() {
+        return value;
     }
 }

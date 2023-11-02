@@ -18,4 +18,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public boolean lottoContains(int a){
+        for (Integer integer : numbers) {
+            if (a == integer) return true;
+        }
+        return false;
+    }
 }

@@ -18,26 +18,26 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        correctSize(numbers);
-        unique(numbers);
-        inRange(numbers);
-    }
-
-    private void correctSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (!correctSize(numbers)) {
             throw new IllegalArgumentException(NUMBERS_SIZE_MISMATCH.message());
         }
-    }
-
-    private void unique(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
+        if (!unique(numbers)) {
             throw new IllegalArgumentException(NUMBER_DUPLICATION.message());
         }
-    }
-
-    private void inRange(List<Integer> numbers) {
-        if (numbers.stream().allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER)) {
+        if (!inRange(numbers)) {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.message());
         }
+    }
+
+    private boolean correctSize(List<Integer> numbers) {
+        return numbers.size() == SIZE;
+    }
+
+    private boolean unique(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private boolean inRange(List<Integer> numbers) {
+        return numbers.stream().allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
     }
 }

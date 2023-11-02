@@ -53,23 +53,23 @@ public class Application {
         return 0;
     }
 
-    private static int getNumOfLotto() {
+    private static int numOfLotto() {
         int money = Integer.parseInt(Console.readLine());
         if (money%1000 != 0) throw new IllegalArgumentException();
+        System.out.println(String.format("%d개를 구매했습니다.",money/1000));
         return money/1000;
     }
 
-    private static List<Lotto> setUser(int n){
+    private static List<Lotto> setUser(){
         List<Lotto> user = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < numOfLotto(); i++) {
             new Lotto(setRandomNumbers());     
         }          
         return user;
     }
 
     public static void main(String[] args) {
-        int numoflotto = getNumOfLotto();
-        List<Lotto> user = setUser(numoflotto);
+        List<Lotto> user = setUser();
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
         

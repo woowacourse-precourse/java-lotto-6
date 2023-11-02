@@ -10,4 +10,8 @@ public class InputService {
     public static String provideBonusNumber() {
         return Console.readLine();
     }
+
+    public static String purchasePrice() {
+        return Console.readLine();
+    }
 }

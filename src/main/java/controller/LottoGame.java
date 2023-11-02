@@ -49,7 +49,13 @@ public class LottoGame {
             this.lottoQuantity--;
         }
     }
-
+    public List<Lotto> getLottos() {
+        final List<Lotto> printingLottos = new ArrayList<>();
+        for(Lotto lotto : this.lottos){
+            printingLottos.add(lotto);
+        }
+        return printingLottos;
+    }
     private void validateLottoQuantity() throws IllegalArgumentException{
         if(this.lottoQuantity == 0)
             throw new IllegalArgumentException("[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");

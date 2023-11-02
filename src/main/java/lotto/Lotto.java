@@ -33,4 +33,18 @@ public class Lotto {
         if(numberKinds.size() != numbers.size())
             throw new IllegalArgumentException("[Error] 로또 번호는 중복된 숫자가 있으면 안돼요.");
     }
+
+    @Override
+    public String toString() {
+        StringBuilder numbers = new StringBuilder();
+        numbers.append("[");
+        for(int index = 0; index < this.numbers.size(); index++){
+            int currentNumber = this.numbers.get(index);
+            numbers.append(currentNumber);
+            if(index != (this.numbers.size()-1))
+                numbers.append(", ");
+        }
+        numbers.append("]");
+        return numbers.toString();
+    }
 }

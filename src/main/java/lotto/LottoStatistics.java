@@ -8,15 +8,15 @@ public class LottoStatistics {
     private Map<LottoResult, Integer> statistics;
     private Float returnRate;
 
-    public LottoStatistics(Integer totalCost) {
-        statistics = Map.of(
+    public LottoStatistics() {
+        statistics = new HashMap<>(Map.of(
                 LottoResult.OTHER, 0,
                 LottoResult.MATCH3, 0,
                 LottoResult.MATCH4, 0,
                 LottoResult.MATCH5, 0,
                 LottoResult.MATCH5_AND_BONUS, 0,
                 LottoResult.MATCH6, 0
-        );
+        ));
     }
 
     public void calcStatistics(List<Lotto> lottoList, List<Integer> winningNumberList, Integer bonusNumber) {
@@ -31,16 +31,16 @@ public class LottoStatistics {
     public String toString() {
         StringBuilder msgBuilder = new StringBuilder("");
         msgBuilder.append("3개 일치 (5,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개");
+                .append(statistics.get(LottoResult.MATCH3)).append("개\n");
         msgBuilder.append("4개 일치 (50,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개");
+                .append(statistics.get(LottoResult.MATCH4)).append("개\n");
         msgBuilder.append("5개 일치 (1,500,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개");
+                .append(statistics.get(LottoResult.MATCH5)).append("개\n");
         msgBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개");
+                .append(statistics.get(LottoResult.MATCH5_AND_BONUS)).append("개\n");
         msgBuilder.append("6개 일치 (2,000,000,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개");
-        msgBuilder.append("총 수익률은 ").append(returnRate).append("%입니다.");
+                .append(statistics.get(LottoResult.MATCH6)).append("개\n");
+        msgBuilder.append("총 수익률은 ").append(returnRate).append("%입니다.\n");
         return msgBuilder.toString();
     }
 

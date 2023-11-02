@@ -23,4 +23,8 @@ public class BonusNumber {
     private static boolean isOutOfRange(final int value) {
         return value < Lotto.LOWER_BOUND || value > Lotto.UPPER_BOUND;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

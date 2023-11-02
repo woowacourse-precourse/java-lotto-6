@@ -23,4 +23,12 @@ public class LottoWinningMachine {
             throw new IllegalArgumentException(BONUS_NUMBER_MUST_BE_UNIQUE.message);
         }
     }
+
+    public List<Integer> getWinningLotteryNumbers() {
+        return winningLotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getValue();
+    }
 }

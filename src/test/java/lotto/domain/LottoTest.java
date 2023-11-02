@@ -10,17 +10,13 @@ import org.junit.jupiter.api.Test;
 import lotto.util.ErrorMessage;
 
 class LottoTest {
-	
-	private static final int MIN_NUMBER = 1;
-	private static final int MAX_NUMBER = 45;
-	private static final int LOTTO_SIZE = 6;
-	
+		
     @DisplayName("로또 번호의 개수가 LOTTO_SIZE를 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.LOTTO_SIZE_ERROR.getForMatMessage(LOTTO_SIZE));
+                .hasMessageContaining(ErrorMessage.LOTTO_SIZE_ERROR.getForMatMessage(Lotto.LOTTO_SIZE));
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -38,7 +34,9 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성	
         assertThatThrownBy(() -> new Lotto(List.of(0, 45, 3, 4, 6, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-        		.hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getForMatMessage(MIN_NUMBER, MAX_NUMBER));
+        		.hasMessageContaining(
+        				ErrorMessage.LOTTO_NUMBER_RANGE_ERROR
+        						.getForMatMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
     }
 
     // 아래에 추가 테스트 작성 가능

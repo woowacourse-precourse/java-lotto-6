@@ -17,8 +17,8 @@ public class CountOfCorrectLotto {
         return winning.getDescription();
     }
 
-    public String getWinningPrice() {
-        return winning.getPrice();
+    public Integer getWinningPrize() {
+        return winning.getPrize();
     }
 
     public int getCount() {

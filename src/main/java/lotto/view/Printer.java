@@ -2,13 +2,13 @@ package lotto.view;
 
 import lotto.model.CountOfCorrectLotto;
 import lotto.model.Lotto;
-import lotto.model.Winning;
 import lotto.model.WinningDetail;
 
+import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Map;
 
 public class Printer {
+
     public static void printWhiteSpace() {
         System.out.println();
     }
@@ -41,10 +41,16 @@ public class Printer {
     }
 
     public static void printWinningDetail(WinningDetail winningDetail) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         for (CountOfCorrectLotto countOfCorrectLotto : winningDetail.getCountOfCorrectLottos()) {
             System.out.println(countOfCorrectLotto.getWinningDescription() +
-                    " " + "(" + countOfCorrectLotto.getWinningPrice() + ")" + " - " +
+                    " " + "(" + decimalFormat.format(countOfCorrectLotto.getWinningPrize()) +"원" + ")" + " - " +
                     countOfCorrectLotto.getCount() + "개");
         }
+    }
+
+    public static void printTotalReturn(Double totalReturn) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        System.out.println("총 수익률은 " + decimalFormat.format(totalReturn) + "%입니다.");
     }
 }

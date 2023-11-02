@@ -1,7 +1,9 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        Set<Integer> removeDuplicateNumbers = new HashSet<>(numbers);
+        if (removeDuplicateNumbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

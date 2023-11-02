@@ -7,9 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class NumberOfPurchaseLottoTest {
     @Test
     public void testNumberOfPurchaseLottoTest(){
-        int lottoPurchasePayment = 2000;
-        int lottoPrice = 1000;
-        NumberOfPurchaseLotto numberOfPurchaseLotto = new NumberOfPurchaseLotto(lottoPurchasePayment);
-        assertEquals(lottoPurchasePayment/lottoPrice, numberOfPurchaseLotto.getNumberOfPurchaseLotto());
+        int NUMBER_OF_PURCHASE_LOTTO = 200;
+        NumberOfPurchaseLotto numberOfPurchaseLotto = new NumberOfPurchaseLotto(NUMBER_OF_PURCHASE_LOTTO);
+        assertEquals(NUMBER_OF_PURCHASE_LOTTO, numberOfPurchaseLotto.getNumberOfPurchaseLotto());
     }
 }

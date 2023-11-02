@@ -6,7 +6,7 @@ import lotto.enums.ErrorMessage;
 import lotto.util.Convertor;
 
 public class InputValidator {
-    private static final String ZERO = "0";
+    private static final int ZERO = 0;
     private static final String COMMA = ",";
     private static final int STANDARD_OF_DIVIDE = 1000;
     private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
@@ -23,7 +23,7 @@ public class InputValidator {
 
     public static void validateWinningNumber(String input) {
         validateNull(input);
-        validateIsNumberSeparatedByComma(input);
+        validateIsNumber(input);
         validateSeparator(input);
     }
 
@@ -39,7 +39,8 @@ public class InputValidator {
     }
 
     private static void validateZero(String input) {
-        if (input.equals(ZERO)) {
+        int price = Convertor.convertStringToInt(input);
+        if (price == ZERO) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ZERO.getMessage());
         }
     }
@@ -67,7 +68,7 @@ public class InputValidator {
     }
 
     private static boolean isNotDivisibleByThousand(int price) {
-        if ((price % STANDARD_OF_DIVIDE) != 0) {
+        if ((price % STANDARD_OF_DIVIDE) != ZERO) {
             return true;
         }
         return false;

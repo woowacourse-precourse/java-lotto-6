@@ -12,6 +12,8 @@ public class LottoPurchase {
     private List<Integer> lottoNumbers;
 
     public int getPurchasePrice() {
-        return validateService.validateNumber(inputService.inputValue());
+        purchasePrice = validateService.validateNumber(inputService.inputValue());
+        validateService.validateAll(purchasePrice);
+        return purchasePrice;
     }
 }

@@ -27,8 +27,10 @@ public class Application {
         return box;
     }
 
-    private static int getUserBonus(){
-        return Integer.parseInt(Console.readLine());
+    private static int getUserBonus(List<Integer> userNumbers){
+        int bonus = Integer.parseInt(Console.readLine());
+        if (userNumbers.contains(bonus)) throw new IllegalArgumentException();
+        return bonus;
     }
 
     public static void main(String[] args) {

@@ -18,8 +18,11 @@ public enum ErrorConstants {
     ERROR_LESS_THAN_MIN_AMOUNT("구매 금액이 최소 구매 금액(1,000원)보다 미만입니다."),
     ERROR_GREATER_THAN_MAX_AMOUNT("구매 금액이 최대 구매 금액(100,000원)보다 초과 되었습니다."),
     ERROR_DIVIDE_BY_AMOUNT("구매 금액이 1,000원으로 나누어 떨어지지 않습니다."),
-    ERROR_QUANTITY_NON_EQUALS("구매 가능 수량이 구매 수량과 일치하지 않습니다.");
-    
+    ERROR_QUANTITY_NON_EQUALS("구매 가능 수량이 구매 수량과 일치하지 않습니다."),
+
+    // 당첨 로또 번호 에러
+    ERROR_LOTTO_NUMBER_FORMAT("입력 한 형식이 로또 번호 형식이 아닙니다.\n 입력 예) 1,2,3,4,5,6");
+
 
     private final String message;
 

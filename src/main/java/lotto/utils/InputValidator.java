@@ -1,12 +1,15 @@
 package lotto.utils;
 
 import static lotto.constants.ErrorConstants.ERROR_BLANK_INPUT;
+import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_FORMAT;
 import static lotto.constants.ErrorConstants.ERROR_NON_NUMBER_TYPE_INPUT;
 import static lotto.constants.ErrorConstants.ERROR_NULL_INPUT;
 
 import lotto.exception.InputException;
 
 public class InputValidator {
+
+    private static final String LOTTO_NUMBER_REGEX = "^[0-9,]+$";
 
     public static void nullCheck(String inputValue) {
         if (inputValue == null) {
@@ -25,6 +28,12 @@ public class InputValidator {
             Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
             throw InputException.of(ERROR_NON_NUMBER_TYPE_INPUT);
+        }
+    }
+
+    public static void lottoFormatCheck(String inputValue) {
+        if (!inputValue.matches(LOTTO_NUMBER_REGEX)) {
+            throw InputException.of(ERROR_LOTTO_NUMBER_FORMAT);
         }
     }
 }

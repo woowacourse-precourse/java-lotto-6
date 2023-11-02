@@ -37,5 +37,11 @@ public class Validator {
         }
     }
 
+    public static void validateContainComma(String str){
+        if(!str.contains(",")){
+            throw new IllegalArgumentException("컴마가 들어있지 않습니다.");
+        }
+    }
+
 
 }

@@ -7,4 +7,8 @@ public class OutputView {
     public void printReadMoneyAmountMessage() {
         System.out.println(READ_MONEY_AMOUNT_MESSAGE);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.model.LottoMoney;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,9 +14,20 @@ public class LottoGameController {
         this.outputView = outputView;
     }
 
+    private LottoMoney readLottoMoney() {
+        while (true) {
+            outputView.printReadMoneyAmountMessage();
+
+            try {
+                return new LottoMoney(inputView.readMoneyAmount());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     public void play() {
-        outputView.printReadMoneyAmountMessage();
-        long moneyAmount = inputView.readMoneyAmount();
+        LottoMoney lottoMoney = readLottoMoney();
 
     }
 }

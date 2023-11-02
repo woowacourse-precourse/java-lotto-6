@@ -13,37 +13,38 @@ class InputValidatorTest {
     private final String BLANK_TEXT = "";
     private final String NOT_NUMBER_TEXT = "1NO";
     private final String NUMBER_TEXT = "1000";
+    private final String ERROR_PREFIX_TEXT = "[ERROR]";
 
     @Test
-    @DisplayName("입력값 null 예외 발생")
+    @DisplayName("입력값 NULL 예외 발생")
     void nullTest() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> InputValidator.nullCheck(NULL_TEXT))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "NULL 값이 입력 되었습니다.");
     }
 
     @Test
     @DisplayName("입력값 공백,빈값 예외 발생")
     void whiteSpaceBlankTest() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> InputValidator.blankCheck(WHITE_SPACE_TEXT))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.");
         assertThatThrownBy(() -> InputValidator.blankCheck(BLANK_TEXT))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.");
     }
 
     @Test
     @DisplayName("입력 값 Number type 아닌 경우 예외 발생")
     void NonNumberTypeTest() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> InputValidator.numberTypeCheck(NOT_NUMBER_TEXT))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "숫자 타입의 값이 입력되지 않았습니다.");
     }
 
     @Test
     @DisplayName("입력 값 Number type 으로 변환 정상 처리")
     void numberTypeTest() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         int number = InputValidator.numberTypeCheck(NUMBER_TEXT);
         assertThat(number).isEqualTo(1000);
     }

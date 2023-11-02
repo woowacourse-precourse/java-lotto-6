@@ -25,7 +25,8 @@ public class LottoController {
 
         final Lotto answerLotto = getAnswerLotto();
 
-        final int bonusNumber = getBonusNumber(lottoFactory, answerLotto);
+        final int bonusNumber = getBonusNumber(answerLotto);
+
         Result result = Result.of(lottoFactory.calculateResult(answerLotto, bonusNumber));
 
         outputView.printResult(ResultsDto.of(result));
@@ -52,7 +53,7 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber(final LottoFactory lottoFactory, final Lotto answerLotto) {
+    private int getBonusNumber(final Lotto answerLotto) {
         while (true) {
             try {
                 int bonusNumber = inputView.enterBonusNumber();

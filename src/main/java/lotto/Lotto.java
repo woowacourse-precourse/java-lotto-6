@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -21,5 +20,12 @@ public class Lotto {
         return lottoNumber;
     }
 
+    public int[] toIntegerArr(){
+        int[] lottoNumber = new int[6];
+        for(int i=0;i<numbers.size();i++){
+            lottoNumber[i] = numbers.get(i);
+        }
+        return lottoNumber;
+    }
     // TODO: 추가 기능 구현
 }

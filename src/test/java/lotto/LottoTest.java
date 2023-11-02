@@ -1,5 +1,9 @@
 package lotto;
 
+import lotto.exception.WrongCommasFormatException;
+import lotto.exception.WrongTypeFormatException;
+import lotto.service.impl.ValidateServiceImpl;
+import lotto.vo.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +27,45 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 콤마 위치가 잘못되면 IllegalArgumentException 예외가 발생한다.")
+    @Test
+    void createLottoByWrongCommasFormatOne() {
+
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,6,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호 콤마 위치가 잘못되면 WrongCommasFormatException 예외가 발생한다.")
+    @Test
+    void createLottoByWrongCommasFormatTwo() {
+
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,,6"))
+                .isInstanceOf(WrongCommasFormatException.class);
+    }
+
+    @DisplayName("로또 번호 6개보다 적게 들어오면 IllegalArgumentException 예외가 발생한다.")
+    @Test
+    void createLottoByLessNumbers() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 문자가 들어오면 WrongTypeFormatException 예외가 발생한다.")
+    @Test
+    void createLottoByWrongChar() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,a"))
+                .isInstanceOf(WrongTypeFormatException.class);
+    }
+
+    @DisplayName("로또 번호에 특수 문자가 들어오면 WrongTypeFormatException 예외가 발생한다.")
+    @Test
+    void createLottoByWrongSpecialChar() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,!"))
+                .isInstanceOf(WrongTypeFormatException.class);
+    }
 }

@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private static final String ERROR_HEAD_MESSAGE = "[ERROR]";
+    public static final String ERROR_HEAD_MESSAGE = "[ERROR]";
     @DisplayName("로또 번호의 개수가 6개 초과인 경우 예외 확인")
     @Test
     void 로또_번호_사이즈_확인() {

@@ -1,24 +1,25 @@
 package lotto.model;
 
+import static lotto.model.MagicVariable.NUMBERS_MIN_RANGE;
+import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
+import static lotto.model.MagicVariable.NUMBERS_SIZE;
+import static lotto.model.MagicVariable.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.LottoProcessException;
 
 public class LottoProcess {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int NUMBERS_SIZE = 6;
-    private static final int NUMBERS_MIN_RANGE = 1;
-    private static final int NUMBERS_MAX_RANGE = 45;
-
     private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(NUMBERS_MIN_RANGE, NUMBERS_MAX_RANGE, NUMBERS_SIZE);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(NUMBERS_MIN_RANGE.getNumber(),
+        NUMBERS_MAX_RANGE.getNumber(), NUMBERS_SIZE.getNumber());
         return new Lotto(randomNumbers);
     }
 
     public List<Lotto> purchaseLotto(int money) {
         LottoProcessException.checkPurchaseMoney(money);
-        int numberOfLotto = money / LOTTO_PRICE;
+        int numberOfLotto = money / LOTTO_PRICE.getNumber();
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             lotto.add(generateRandomLotto());

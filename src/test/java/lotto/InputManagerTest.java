@@ -23,6 +23,7 @@ class InputManagerTest {
     void resetSysinStream() {
         System.setIn(stdIn);
     }
+
     @DisplayName("구입 금액을 입력받는 테스트.")
     @Test
     void inputCost_테스트() {
@@ -32,7 +33,7 @@ class InputManagerTest {
         assertThat(InputManager.inputCost()).isEqualTo(1000);
     }
 
-    @DisplayName("부정확한 입력을 받았을 때 다시 입력을 받는지 테스트.")
+    @DisplayName("부정확한 구입금액 입력을 받았을 때 다시 입력을 받는지 테스트.")
     @Test
     void inputCost_예외_테스트() {
         String inputData = "1200\n1300\n01000\n1000";
@@ -41,5 +42,24 @@ class InputManagerTest {
         assertThat(InputManager.inputCost()).isEqualTo(1000);
     }
 
+    @DisplayName("당첨 번호를 입력받는 테스트.")
+    @Test
+    void inputWinningNumberList_테스트() {
+        String inputData = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(inputData.getBytes()));
+
+        assertThat(InputManager.inputWinningNumbers())
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("부정확한 당첨 번호를 입력을 받았을 때 다시 입력을 받는지 테스트.")
+    @Test
+    void inputWinningNumberList_예외_테스트() {
+        String inputData = "1,2,3,4,5,60\n1.5,2,3,4,5,6\n1,-2,3,4,5,6\n0,2,3,4,5,6\n1,2,3,4,5,6,7\n1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(inputData.getBytes()));
+
+        assertThat(InputManager.inputWinningNumbers())
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
     // 아래에 추가 테스트 작성 가능
 }

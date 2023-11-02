@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.Stream;
 
+import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.generator.LottoNumberGenerator;
@@ -21,5 +22,9 @@ public class CreateLottoService {
 		
 	private Lotto generateLotto() {
 		return new Lotto(GENERATOR.generate());
+	}
+	
+	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber	) {
+		return new AnswerLotto(numbers, bonusNumber);
 	}
 }

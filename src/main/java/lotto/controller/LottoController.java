@@ -15,5 +15,6 @@ public class LottoController {
 
     public void start() {
         output.printInputPurchaseAmountMessage();
+        int money = input.getUserAmount();
     }
 }

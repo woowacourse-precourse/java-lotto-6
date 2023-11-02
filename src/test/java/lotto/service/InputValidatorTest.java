@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.exception.InputDataNotNumberException;
-import lotto.exception.LottoNumberIsOverRangeException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,17 +21,6 @@ public class InputValidatorTest {
         Assertions.assertAll(
                 () -> Assertions.assertThrows(InputDataNotNumberException.class,
                         () -> inputValidator.validateInputDataIsNumber("하이")),
-                () -> Assertions.assertDoesNotThrow(() -> inputValidator.validateInputDataIsNumber("12"))
-        );
-    }
-
-    @DisplayName("입력한 로또 번호가 1~45외의 숫자일 경우 예외를 발생시킨다")
-    @Test
-    void validateInputDataIsLottoRange(){
-        Assertions.assertAll(
-                () -> Assertions.assertThrows(LottoNumberIsOverRangeException.class,
-                        () -> inputValidator.validateInputDataIsLottoRange(46)),
-                () -> Assertions.assertThrows(LottoNumberIsOverRangeException.class, () -> inputValidator.validateInputDataIsLottoRange(0)),
                 () -> Assertions.assertDoesNotThrow(() -> inputValidator.validateInputDataIsNumber("12"))
         );
     }

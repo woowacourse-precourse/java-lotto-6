@@ -1,4 +1,5 @@
 package lotto.view;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validation.InputValidator;
 
@@ -17,5 +18,11 @@ public class InputView {
         String winningNumbers = Console.readLine();
         InputValidator.validateWinningNumber(winningNumbers);
         return winningNumbers;
+    }
+
+    public static String inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        InputValidator.validateBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 }

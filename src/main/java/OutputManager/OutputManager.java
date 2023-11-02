@@ -11,4 +11,8 @@ public class OutputManager {
             System.out.println(lotto);
         }
     }
+
+    void printTotalResult(LottoStatistics totalResult) {
+        System.out.println(totalResult);
+    }
 }

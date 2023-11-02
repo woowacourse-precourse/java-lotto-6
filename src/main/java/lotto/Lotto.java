@@ -13,6 +13,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         NumberSizeCheck(numbers);
         DuplicateNumberCheck(numbers);
+        NumberRangeCheck(numbers);
     }
 
     private void NumberSizeCheck(List<Integer> numbers) {
@@ -29,6 +30,13 @@ public class Lotto {
                 .count();
 
         if (numbers.size() != count) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void NumberRangeCheck(List<Integer> numbers) {
+        boolean overRangeResult = numbers.stream().anyMatch(num -> num <= 0 || num > 45);
+        if (overRangeResult) {
             throw new IllegalArgumentException();
         }
     }

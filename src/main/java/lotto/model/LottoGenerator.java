@@ -1,4 +1,5 @@
 package lotto.model;
 
-public class LottoGenerator {
+public interface LottoGenerator {
+    Lotto generate();
 }

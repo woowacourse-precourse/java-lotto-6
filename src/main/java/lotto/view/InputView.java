@@ -14,6 +14,7 @@ public class InputView {
     private static final Pattern ZERO_OR_PASITIVE_NUMBER = Pattern.compile("^[0-9]+$");
     private static final String ENTER_MONEY = "구입금액을 입력해 주세요.";
     private static final String ENTER_MAIN_LOTTO = "당첨 번호를 입력해 주세요.";
+    private static final String ENTER_BONUS_LOTTO = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_SPLIT_SIGNAL = ",";
 
     public int enterMoney() {
@@ -59,5 +60,11 @@ public class InputView {
     private void validateInputLotto(String inputLotto) {
         Arrays.stream(inputLotto.split(LOTTO_SPLIT_SIGNAL))
                 .forEach(this::validateNumber);
+    }
+
+    public int enterBonusNumber() {
+        System.out.println(ENTER_BONUS_LOTTO);
+
+        return convertToInt(readLine());
     }
 }

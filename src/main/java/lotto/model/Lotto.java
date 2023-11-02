@@ -15,6 +15,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         consistOfLottoSize(numbers);
         isNotDuplicated(numbers);
@@ -34,7 +38,7 @@ public class Lotto {
     }
 
     private void isInRange(List<Integer> numbers) {
-        boolean isInRangeValue = numbers.stream().allMatch(number -> number > MIN_LOTTO_NUMBER && number < MAX_LOTTO_NUMBER);
+        boolean isInRangeValue = numbers.stream().allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
         if(!isInRangeValue){
             ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }

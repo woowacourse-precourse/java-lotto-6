@@ -13,20 +13,19 @@ public class InputLottoAmount {
 
     }
 
-    private static int setLottoTicketCount(int amount) {
-        return amount / 1000;
-    }
-
     public static int setAmount() {
-        int amount = 0;
         try {
             String input = Console.readLine();
             isNumeric(input);
+            int amount = Integer.parseInt(input);
+            checkZero(amount);
+            checkTicket(amount);
+            return amount;
         } catch (IllegalArgumentException e) {
             ErrorMessage.printErrorMessage(e);
-            return setInputLottoAmount();
+            PrintMessage.printStart();
+            return setAmount();
         }
-        return amount;
     }
 
     public static void isNumeric(String input) {
@@ -35,4 +34,22 @@ public class InputLottoAmount {
         }
 
     }
+
+
+    private static void checkZero(int amount) {
+        if (amount == 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ZERRO);
+        }
+    }
+
+    private static void checkTicket(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_TICKET_COUNT);
+        }
+    }
+
+    private static int setLottoTicketCount(int amount) {
+        return amount / 1000;
+    }
+
 }

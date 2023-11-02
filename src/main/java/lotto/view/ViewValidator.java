@@ -21,7 +21,7 @@ public class ViewValidator {
 
     private void validateMod(final int buyingPrice) {
         if (buyingPrice % BUYING_PRICE_UNIT != ZERO) {
-            throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION.message);
+            throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION);
         }
     }
 

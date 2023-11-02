@@ -17,7 +17,7 @@ public class InputView {
         return validateInteger(amount);
     }
 
-    public static List<String> readWinnerLottoNumber() {
+    public static List<Integer> readWinnerLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
         validateBlank(numbers);
@@ -38,8 +38,9 @@ public class InputView {
         }
     }
 
-    private static List<String> splitWord(String input) {
+    private static List<Integer> splitWord(String input) {
         return Arrays.stream(input.split(","))
+                .map(InputView::validateInteger)
                 .collect(Collectors.toList());
     }
 }

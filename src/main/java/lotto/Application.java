@@ -10,6 +10,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+    final static int[] prices = {2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0};
+
     // 랜덤 번호 6개 뽑기
     private static List<Integer> setRandomNumbers() {
         List<Integer> box = new ArrayList<>();
@@ -79,18 +81,30 @@ public class Application {
         return user;
     }
 
-    public static void main(String[] args) {
+    public static int[] resList(List<Lotto> user, Lotto winNumber, int bonus){
+        int[] res = {0, 0, 0, 0, 0, 0};
+        for (int i = 0; i < user.size(); i++) {
+            int idx = judge(winNumber, user.get(i), bonus);
+            res[idx]++;
+        }
+        return res;
+    }
+
+    public static int sumPrice(int[] res){
+        int userPrice = 0;
+        for (int i = 0; i < res.length; i++) {
+            userPrice += prices[i]*res[i];
+        }
+        return userPrice;
+    }
+
+    public static void main(String[] args) {        
         int n = numOfLotto();
         List<Lotto> user = setUser(n);
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
+
+        int returnRate = sumPrice(resList(user, winNumber, bonus));
         
-        
-        List<Integer> res = new ArrayList<>(List.of(0,0,0,0,0,0));
-        for (int i = 0; i < user.size(); i++) {
-            int idx = judge(winNumber, user.get(i), bonus);
-            res.set(idx, res.get(idx)+1);
-        }
-        System.out.println(res);
     }
 }

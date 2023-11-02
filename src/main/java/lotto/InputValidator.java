@@ -25,6 +25,7 @@ public class InputValidator {
         for (String number : eachNumbers) {
             int verifiedNum = validNumber(number);
             validOverlap(lottoNumbers, verifiedNum);
+            validRange(verifiedNum);
             lottoNumbers.add(verifiedNum);
         }
 

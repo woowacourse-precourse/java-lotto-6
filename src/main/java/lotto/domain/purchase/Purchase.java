@@ -11,7 +11,6 @@ public class Purchase {
         System.out.println();
         int lottoQuantity = paidPrice / 1000;
         System.out.println(lottoQuantity + "개를 구매했습니다.");
-        System.out.println();
     }
 
     public void purchaseLotto() {

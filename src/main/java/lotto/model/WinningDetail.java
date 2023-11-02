@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningDetail {
-    List<CountOfCorrectLotto> countOfCorrectLottos;
+    private final List<CountOfCorrectLotto> countOfCorrectLottos;
 
     public WinningDetail(){
         this.countOfCorrectLottos = new ArrayList<>();

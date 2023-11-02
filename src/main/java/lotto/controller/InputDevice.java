@@ -5,7 +5,9 @@ import lotto.view.ErrorMessage;
 import lotto.view.Printer;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -91,7 +93,8 @@ public class InputDevice {
         for(int number : numbers){
             checkValidLottoNumber(number);
         }
-        if(numbers.size() != 6){
+        Set<Integer> removeDuplicatedNumbers = new HashSet<>(numbers);
+        if(removeDuplicatedNumbers.size() != 6){
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
         }
     }

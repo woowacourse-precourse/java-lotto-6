@@ -1,8 +1,8 @@
 package lotto.model;
 
 public class CountOfCorrectLotto {
-    private Winning winning;
-    private int count;
+    private final Winning winning;
+    private final int count;
 
     public CountOfCorrectLotto(Winning winning, int count) {
         this.winning = winning;

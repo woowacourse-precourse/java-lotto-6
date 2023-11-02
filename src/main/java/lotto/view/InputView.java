@@ -11,6 +11,12 @@ public class InputView {
         return purchaseAmount;
     }
 
+    public String inputWinningNumber() {
+        System.out.println(InputConstant.WINNING_NUMBER.getMessage());
+        String winningNumber = getUserInput();
+        return winningNumber;
+    }
+
     private String getUserInput() {
         return Console.readLine();
     }

@@ -49,6 +49,20 @@ public class Validator {
         }
     }
 
+    public static void validate1To45Numbers(String[] numbers){
+        boolean is1To45 = Arrays.stream(numbers)
+                .allMatch(number -> Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45);
+        if(!is1To45){
+            throw new IllegalArgumentException("1~45사이의 숫자가 아닙니다.");
+        }
+    }
+
+    public static void validate1To45Number(int number){
+        if(!(number >= 1 && number <=45)){
+            throw new IllegalArgumentException("1~45사이의 숫자가 아닙니다.");
+        }
+    }
+
 
 
 

@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -45,8 +45,7 @@ class InputValidatorTest {
     @Test
     @DisplayName("입력 값 Number type 으로 변환 정상 처리")
     void numberTypeTest() {
-        int number = InputValidator.numberTypeCheck(NUMBER_TEXT);
-        assertThat(number).isEqualTo(1000);
+        assertThatNoException().isThrownBy(() -> InputValidator.numberTypeCheck(NUMBER_TEXT));
     }
 
 

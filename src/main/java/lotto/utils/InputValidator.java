@@ -20,9 +20,9 @@ public class InputValidator {
         }
     }
 
-    public static int numberTypeCheck(String inputValue) {
+    public static void numberTypeCheck(String inputValue) {
         try {
-            return Integer.parseInt(inputValue);
+            Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
             throw InputException.of(ERROR_NON_NUMBER_TYPE_INPUT);
         }

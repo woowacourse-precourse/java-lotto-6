@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Consumer {
 
-    private static final int MIN_AMOUNT = 1000;
+    private static final int AMOUNT = 1000;
     private static final int MAX_AMOUNT = 100000;
 
     private final List<Lotto> lottos = new ArrayList<>();
@@ -17,25 +17,25 @@ public class Consumer {
     }
 
     private static void validate(int buyAmount) {
-        buyAmountLessThan1000(buyAmount);
-        buyAmountGreaterThan100000(buyAmount);
-        divideByBuyAmount1000(buyAmount);
+        buyAmountLessThanMinAmount(buyAmount);
+        buyAmountGreaterThanMaxAmount(buyAmount);
+        buyAmountDivideByAmount(buyAmount);
     }
 
-    private static void buyAmountLessThan1000(int buyAmount) {
-        if (MIN_AMOUNT > buyAmount) {
+    private static void buyAmountLessThanMinAmount(int buyAmount) {
+        if (AMOUNT > buyAmount) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void buyAmountGreaterThan100000(int buyAmount) {
+    private static void buyAmountGreaterThanMaxAmount(int buyAmount) {
         if (MAX_AMOUNT < buyAmount) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void divideByBuyAmount1000(int buyAmount) {
-        if (buyAmount % MIN_AMOUNT != 0) {
+    private static void buyAmountDivideByAmount(int buyAmount) {
+        if (buyAmount % AMOUNT != 0) {
             throw new IllegalArgumentException();
         }
     }

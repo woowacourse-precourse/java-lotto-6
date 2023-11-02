@@ -22,7 +22,7 @@ public enum Rank {
         this.isCorrectBonusNumber = isCorrectBonusNumber;
     }
 
-    public Rank getRank(int matchNumber, boolean isCorrectBonusNumber) {
+    public static Rank getRank(int matchNumber, boolean isCorrectBonusNumber) {
         return Stream.of(Rank.values())
                 .filter(rank ->
                         rank.matchNumber == matchNumber

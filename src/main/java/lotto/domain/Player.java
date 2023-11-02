@@ -32,4 +32,8 @@ public class Player {
     public double calculateRateOfReturn(int totalPrizeMoney) {
         return ((double) totalPrizeMoney / (double) purchaseAmount) * PERCENTAGE;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

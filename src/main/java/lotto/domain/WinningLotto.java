@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class WinningLotto extends Lotto {
 
@@ -14,8 +13,9 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int comparePlayerLottoNumbers(List<Integer> playerLottoNumbers) {
+    private int comparePlayerLottoNumbers(Lotto playerLotto) {
         int matchNumber = 0;
+        List<Integer> playerLottoNumbers = playerLotto.getNumbers();
 
         for (Integer playerLottoNumber : playerLottoNumbers) {
             if (winningNumbers.contains(playerLottoNumber))
@@ -25,7 +25,14 @@ public class WinningLotto extends Lotto {
         return matchNumber;
     }
 
-    public boolean isCorrectBonusNumber(List<Integer> playerLottoNumbers) {
-        return playerLottoNumbers.contains(bonusNumber);
+    private boolean isCorrectBonusNumber(Lotto playerLotto) {
+        return playerLotto.getNumbers().contains(bonusNumber);
+    }
+
+    public Rank getRank(Lotto playerLotto) {
+        int matchNumber = comparePlayerLottoNumbers(playerLotto);
+        boolean isCorrectBonusNumber = isCorrectBonusNumber(playerLotto);
+
+        return Rank.getRank(matchNumber, isCorrectBonusNumber);
     }
 }

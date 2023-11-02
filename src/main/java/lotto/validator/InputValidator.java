@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstants;
+import lotto.model.Lotto;
 import lotto.utils.Parser;
 
 public class InputValidator {
@@ -15,6 +16,25 @@ public class InputValidator {
         List<String> numbers = Parser.parseWithComma(userInput);
         numbers.forEach(InputValidator::validateInteger);
         numbers.forEach(InputValidator::validateNumberInRange);
+        validateDuplication(numbers);
+    }
+
+    private static void validateDuplication(List<String> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MESSAGE.getMessage());
+        }
+    }
+
+    public static void validateBonusNumber(Lotto winningLottoTicket, String userInput) {
+        validateInteger(userInput);
+        int bonusNumber = Integer.parseInt(userInput);
+        validateDuplication(winningLottoTicket, bonusNumber);
+    }
+
+    private static void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
+        if (winningLottoTicket.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MESSAGE.getMessage());
+        }
     }
 
     private static void validateInteger(String userInput) {

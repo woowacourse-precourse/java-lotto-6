@@ -17,4 +17,7 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
     }
 
     // TODO: 추가 기능 구현
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

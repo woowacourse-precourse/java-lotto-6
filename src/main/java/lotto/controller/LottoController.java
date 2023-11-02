@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
@@ -26,13 +27,14 @@ public class LottoController {
 
         final Lotto mainLotto = getMainLotto();
         final int bonusNumber = getBonusNumber(mainLotto);
-
         AnswerLotto answerLotto = AnswerLotto.create(mainLotto, bonusNumber);
 
         Result result = Result.of(lottoFactory.calculateResult(answerLotto));
 
         outputView.printResult(ResultsDto.of(result));
         outputView.printRateOfReturn(result.calculateRate());
+
+        Console.close();
     }
 
     private LottoFactory getLottoFactory() {

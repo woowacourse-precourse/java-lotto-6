@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import lotto.controller.InputController;
+import lotto.service.NumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,16 +25,23 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void validateNumbersInRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            validateLottoNumberInRange(number);
-        }
+    public Lotto generateWinnerLotto(InputController inputController) {
+        return new Lotto(inputController.inputLottoNumbers());
     }
 
-    private void validateLottoNumberInRange(int lottoNumber) {
-        if (lottoNumber < LottoNumbers.MIN_LOTTO_NUMBER.getNumber()
-                || lottoNumber > LottoNumbers.MAX_LOTTO_NUMBER.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45까지의 숫자만 입력할 수 있습니다.");
+    public List<Lotto> generatePlayerLotto(InputController inputController) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<Lotto> playerLotto = new ArrayList<>();
+        for (int i = 0; i < Unit.getPurchaseNumber(inputController.inputPurchasePrice())) {
+            playerLotto.add(new Lotto(lottoGenerator.generateSixNumbers()));
+        }
+        return playerLotto;
+    }
+
+    private void validateNumbersInRange(List<Integer> numbers) {
+        NumberValidator numberValidator = new NumberValidator();
+        for (int number : numbers) {
+            numberValidator.validateNumberInRange(number);
         }
     }
 

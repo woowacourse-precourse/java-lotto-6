@@ -1,16 +1,31 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
     private final static int dividePrice=1000;
+    private final static int randomness=6;
     int price;
     int count;
-    List<Lotto> memberLotto;
+    List<Lotto> memberLotto=new ArrayList<>();
 
     public Member() {
     }
 
+    public List<Lotto> getMemberLotto(){
+        return memberLotto;
+    }
+    public int getCount(){
+        return this.count;
+    }
+    public void setCount(int price){
+        this.count=price/dividePrice;
+
+        createMemberLotto(this.count);
+    }
     public void setPrice(String prices){ //숫자인지 판단
         try{
             this.price=Integer.parseInt(prices);
@@ -31,18 +46,16 @@ public class Member {
             setCount(price);
 
     }
-    public List<Lotto> getMemberLotto(){
-        return memberLotto;
-    }
-    public int getCount(){
-        return this.count;
-    }
-    public void setCount(int price){
-        this.count=price/dividePrice;
+    public List<Integer> randomNumber(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        createMemberLotto(this.count);
+        return numbers;
     }
     public void createMemberLotto(int count){
+
+        for(int i=0;i<count;i++){
+            this.memberLotto.add(new Lotto(randomNumber()));
+        }
 
     }
 }

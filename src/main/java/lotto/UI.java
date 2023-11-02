@@ -26,13 +26,14 @@ public class UI {
         String purchase=count+"개를 구매했습니다.";
         System.out.println(purchase);
 
-        //lottoOutput(member.getMemberLotto());
+        lottoOutput(member.getMemberLotto());
     }
 
     public void lottoOutput(List<Lotto> memberLotto){
 
         for(int i=0;i<memberLotto.size();i++){
-            System.out.println(memberLotto.get(i));
+            Lotto lotto=memberLotto.get(i);
+            System.out.println(lotto.toString());
         }
 
         System.out.println();

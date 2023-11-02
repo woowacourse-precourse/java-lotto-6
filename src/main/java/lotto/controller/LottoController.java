@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER;
+import static lotto.constant.ErrorMessage.PRICE_IS_NOT_NUMBER;
+import static lotto.constant.ErrorMessage.WINNING_NUMBER_IS_NOT_NUMBER;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +49,7 @@ public class LottoController {
         try {
             return Integer.parseInt(InputView.inputMoney());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(PRICE_IS_NOT_NUMBER.getMessage());
         }
     }
 
@@ -56,7 +60,7 @@ public class LottoController {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(WINNING_NUMBER_IS_NOT_NUMBER.getMessage());
         }
     }
 
@@ -64,7 +68,7 @@ public class LottoController {
         try {
             return Integer.parseInt(InputView.inputBonusNumber());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
         }
     }
 }

@@ -35,14 +35,33 @@ public class LottoController {
     }
 
     public void doLotto() {
-        int money = createMoney();
-        List<LottoNumber> lottoNumbers = lottoNumberGenerator.createLottoNumbers(money);
+        List<LottoNumber> lottoNumbers;
+        do {
+            lottoNumbers = createLottoNumbers();
+        } while (lottoNumbers == null);
         OutputView.printLottoNumbers(lottoNumbers);
-        Lotto lotto = new Lotto(createWinningNumber());
-        lotto.setBonusNumber(createBonusNumber());
+
+        Lotto lotto;
+        do {
+            lotto = createLotto();
+        } while (lotto == null);
+
+        do {
+            setLottoBonusNumber(lotto);
+        } while (!lotto.hasBonusNumber());
 
         LottoResult lottoResult = lottoService.compare(lottoNumbers, lotto);
         OutputView.printLottoResult(lottoResult);
+    }
+
+    private List<LottoNumber> createLottoNumbers() {
+        try {
+            int money = createMoney();
+            return lottoNumberGenerator.createLottoNumbers(money);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return null;
+        }
     }
 
     private int createMoney() {
@@ -50,6 +69,15 @@ public class LottoController {
             return Integer.parseInt(InputView.inputMoney());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(PRICE_IS_NOT_NUMBER.getMessage());
+        }
+    }
+
+    private Lotto createLotto() {
+        try {
+            return new Lotto(createWinningNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return null;
         }
     }
 
@@ -64,11 +92,14 @@ public class LottoController {
         }
     }
 
-    private int createBonusNumber() {
+    private void setLottoBonusNumber(Lotto lotto) {
         try {
-            return Integer.parseInt(InputView.inputBonusNumber());
+            int bonusNumber = Integer.parseInt(InputView.inputBonusNumber());
+            lotto.setBonusNumber(bonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
         }
     }
 }

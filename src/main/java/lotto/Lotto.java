@@ -85,9 +85,16 @@ public class Lotto {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        if (bonusNumber < LOTTO_NUMBER_MIN || LOTTO_NUMBER_MAX < bonusNumber) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
         }
         this.bonusNumber = bonusNumber;
+    }
+
+    public boolean hasBonusNumber() {
+        return bonusNumber != 0;
     }
 }

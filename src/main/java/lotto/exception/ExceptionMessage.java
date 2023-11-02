@@ -31,6 +31,7 @@ public interface ExceptionMessage {
         INPUT_MUST_BE_NUMERIC("숫자를 입력해주세요."),
         PURCHASE_AMOUNT_MUST_BE_POSITIVE("구입 금액은 음수가 될 수 없습니다."),
         PURCHASE_AMOUNT_MUST_MEET_SPECIFIC_UNIT("1000원 단위로 구입금액을 입력해주세요."),
+        WINNING_NUMBER_MUST_BE_SPLIT_BY_COMMA("당첨번호는 쉼표(,)로 구분해서 공백없이 입력해주세요."),
         ;
 
         public final String message;

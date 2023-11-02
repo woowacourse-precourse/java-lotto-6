@@ -23,8 +23,8 @@
     - [X] 1000원 단위로 입력
     - [X] 잘못된 입력일 경우 `IllegalArgumentException`을 발생시킨 후 재입력
 - [ ] 당첨 번호를 입력한다
-    - [ ] `쉼표(,)`를 기준으로 입력
-    - [ ] 잘못된 입력일 경우 `IllegalArgumentException`을 발생시킨 후 재입력
+    - [X] `쉼표(,)`를 기준으로 입력
+    - [X] 잘못된 입력일 경우 `IllegalArgumentException`을 발생시킨 후 재입력
 - [ ] 보너스 번호를 입력한다
 
 ### 출력

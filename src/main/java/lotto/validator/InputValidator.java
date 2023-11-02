@@ -13,25 +13,12 @@ public class InputValidator {
         validateDividedBy1000(userInput);
     }
 
-    private static void validateDividedBy1000(String userInput) {
-        int number = Integer.parseInt(userInput);
-        if (number % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_1000_MESSAGE.getMessage());
-        }
-    }
-
     public static void validateLottoTicket(String userInput) {
         List<String> numbers = Parser.parseWithComma(userInput);
         validateLottoTicketSize(numbers.size());
         numbers.forEach(InputValidator::validateInteger);
         numbers.forEach(InputValidator::validateNumberInRange);
         validateDuplication(numbers);
-    }
-
-    private static void validateLottoTicketSize(int size) {
-        if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_DIFFERNT.getMessage());
-        }
     }
 
     public static void validateBonusNumber(Lotto winningLottoTicket, String userInput) {
@@ -57,6 +44,19 @@ public class InputValidator {
         }
     }
 
+    private static void validateDividedBy1000(String userInput) {
+        int number = Integer.parseInt(userInput);
+        if (number % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_1000_MESSAGE.getMessage());
+        }
+    }
+
+    private static void validateLottoTicketSize(int size) {
+        if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_DIFFERNT.getMessage());
+        }
+    }
+    
     private static void validateNumberInRange(String userInput) {
         int number = Integer.parseInt(userInput);
         if (number < LottoConstants.LOTTO_NUMBER_MIN || number > LottoConstants.LOTTO_NUMBER_MAX) {

@@ -21,4 +21,8 @@ public class LottoGame {
         }
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
 }

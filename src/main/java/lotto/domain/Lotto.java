@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 import lotto.util.ErrorMessage;
 
@@ -9,6 +10,10 @@ public class Lotto {
 	public static final int MIN_NUMBER = 1;
 	public static final int MAX_NUMBER = 45;
 	public static final int LOTTO_SIZE = 6;
+	
+	protected static final String PREFIX = "[";
+	protected static final String SUFFIX = "]";
+	protected static final String DELIMITER = ", ";
 	
     private final List<Integer> numbers;
 
@@ -46,6 +51,16 @@ public class Lotto {
     	return number > MAX_NUMBER || number < MIN_NUMBER;
     }
  
+    public String printNumbers() {
+    	StringJoiner strJoiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
+    	
+    	for(Integer number : numbers) {
+    		strJoiner.add(String.valueOf(number));
+    	}
+    	
+    	return strJoiner.toString();
+    }
+    
     public int getNumber(int index) {
     	return numbers.get(index);
     }

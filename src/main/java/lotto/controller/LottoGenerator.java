@@ -2,16 +2,15 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.LottoMetaData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
     private Lotto generateLotto(){
-        final int LOTTO_LENGTH = 6;
-        final int LOTTO_START_NUMBER = 1;
-        final int LOTTO_END_NUMBER = 45;
-        List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_LENGTH);
+        List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(
+                LottoMetaData.LOWER.getValue(), LottoMetaData.UPPER.getValue(), LottoMetaData.SIZE.getValue());
         return new Lotto(numbers);
     }
 

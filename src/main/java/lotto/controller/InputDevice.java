@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoMetaData;
 import lotto.view.ErrorMessage;
 import lotto.view.Printer;
 
@@ -71,7 +72,7 @@ public class InputDevice {
     }
 
     private void checkValidLottoPurchasePayment(Integer number){
-        int term = number % 1_000;
+        int term = number % LottoMetaData.PRICE.getValue();
         if(term != 0){
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_PAYMENT.getMessage());
         }
@@ -94,13 +95,13 @@ public class InputDevice {
             checkValidLottoNumber(number);
         }
         Set<Integer> removeDuplicatedNumbers = new HashSet<>(numbers);
-        if(removeDuplicatedNumbers.size() != 6){
+        if(removeDuplicatedNumbers.size() != LottoMetaData.SIZE.getValue()){
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
         }
     }
 
     private void checkValidLottoNumber(Integer number){
-        if(!(1 <= number && number <= 45)){
+        if(!(LottoMetaData.LOWER.getValue() <= number && number <= LottoMetaData.UPPER.getValue())){
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
         }
     }

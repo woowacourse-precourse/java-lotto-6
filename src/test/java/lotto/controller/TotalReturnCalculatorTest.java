@@ -20,7 +20,7 @@ public class TotalReturnCalculatorTest {
         // when
         Double totalReturn = totalReturnCalculator.calculateTotalReturn(winningDetail, numberOfPurchaseLotto);
         Double totalPrize = (double) Winning.THIRD.getPrize() * NUMBER_OF_THIRD;
-        Double totalPayment =  (double) NUMBER_OF_PURCHASE_LOTTO * LottoPrice.PRICE.getValue();
+        Double totalPayment =  (double) NUMBER_OF_PURCHASE_LOTTO * LottoMetaData.PRICE.getValue();
         Double expectTotalReturn = totalPrize / totalPayment * 100.0;
         System.out.println(expectTotalReturn);
         // then

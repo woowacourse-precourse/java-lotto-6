@@ -25,19 +25,16 @@ public class LottoGame {
 
     private NumberOfPurchaseLotto makeNumberOfPurchaseLotto(){
         Integer payment = inputDevice.inputLottoPurchasePayment();
-        NumberOfPurchaseLotto numberOfPurchaseLotto = new NumberOfPurchaseLotto(payment/LottoPrice.PRICE.getValue());
-        return numberOfPurchaseLotto;
+        return new NumberOfPurchaseLotto(payment/ LottoMetaData.PRICE.getValue());
     }
 
     private MyLotto makeMyLotto(int numberOfPurchaseLotto){
-        MyLotto myLotto = new MyLotto(lottoGenerator.generateLottos(numberOfPurchaseLotto));
-        return myLotto;
+        return new MyLotto(lottoGenerator.generateLottos(numberOfPurchaseLotto));
     }
 
     private WinningLotto makeWinningLotto(){
         List<Integer> winningNumbers = inputDevice.inputWinningNumbers();
         Integer bonusNumber = inputDevice.inputBonusNumber(winningNumbers);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        return winningLotto;
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }

@@ -1,12 +1,16 @@
 package lotto.model;
 
-public enum LottoPrice {
+public enum LottoMetaData {
     PRICE(1000),
+    LOWER(1),
+    UPPER(45),
+    SIZE(6),
+    MINIMAL_NEED_CORRECT_NUMBER(3),
     ;
 
     private final int value;
 
-    LottoPrice(int value){
+    LottoMetaData(int value){
         this.value = value;
     }
 

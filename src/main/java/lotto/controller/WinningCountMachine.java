@@ -23,15 +23,21 @@ public class WinningCountMachine {
     }
 
     private Map<Integer, Integer> makeNumberOfCorrectLottoInfo(Lotto winningLotto, List<Lotto> myLottos) {
-        Map<Integer, Integer> numberOfCorrectLottoInfo = new HashMap<>();
-        for(Winning winning : Winning.values()){
-            numberOfCorrectLottoInfo.put(winning.getNeedCorrectNumber(), 0);
-        }
+        Map<Integer, Integer> numberOfCorrectLottoInfo = initNumberOfCorrectLottoInfo();
         for (Lotto myLotto : myLottos) {
             Integer numberOfCorrectNumberInLotto = getNumberOfCorrectNumberInLotto(winningLotto, myLotto);
-            if(numberOfCorrectNumberInLotto >= 3){
-                numberOfCorrectLottoInfo.put(numberOfCorrectNumberInLotto, numberOfCorrectLottoInfo.get(numberOfCorrectNumberInLotto)+1);
+            if (numberOfCorrectNumberInLotto >= LottoMetaData.MINIMAL_NEED_CORRECT_NUMBER.getValue()) {
+                numberOfCorrectLottoInfo.put(
+                        numberOfCorrectNumberInLotto, numberOfCorrectLottoInfo.get(numberOfCorrectNumberInLotto) + 1);
             }
+        }
+        return numberOfCorrectLottoInfo;
+    }
+
+    private static Map<Integer, Integer> initNumberOfCorrectLottoInfo() {
+        Map<Integer, Integer> numberOfCorrectLottoInfo = new HashMap<>();
+        for (Winning winning : Winning.values()) {
+            numberOfCorrectLottoInfo.put(winning.getNeedCorrectNumber(), 0);
         }
         return numberOfCorrectLottoInfo;
     }

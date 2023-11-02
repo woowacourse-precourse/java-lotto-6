@@ -10,6 +10,14 @@ public class InputValidator {
     public static void validateBudget(String userInput) {
         validateInteger(userInput);
         validatePositiveInteger(userInput);
+        validateDividedBy1000(userInput);
+    }
+
+    private static void validateDividedBy1000(String userInput) {
+        int number = Integer.parseInt(userInput);
+        if (number % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_1000_MESSAGE.getMessage());
+        }
     }
 
     public static void validateLottoTicket(String userInput) {

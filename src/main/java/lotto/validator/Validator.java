@@ -1,35 +1,43 @@
 package lotto.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 import lotto.utils.Parser;
 
-public class InputValidator {
-    public static void validateBudget(String userInput) {
+public class Validator {
+    public static void validateBudgetInput(String userInput) {
         validateInteger(userInput);
-        validatePositiveInteger(userInput);
-        validateDividedBy1000(userInput);
+        int number = Integer.parseInt(userInput);
+        validatePositiveInteger(number);
+        validateDividedBy1000(number);
     }
 
-    public static void validateLottoTicket(String userInput) {
-        List<String> numbers = Parser.parseWithComma(userInput);
+    public static void validateLottoTicketInput(String userInput) {
+        List<String> parsedNumbers = Parser.parseWithComma(userInput);
+        parsedNumbers.forEach(Validator::validateInteger);
+
+        List<Integer> numbers = new ArrayList<>();
+        parsedNumbers.forEach(number -> numbers.add(Integer.parseInt(number)));
+        validateNumbers(numbers);
+    }
+
+    public static void validateNumbers(List<Integer> numbers) {
         validateLottoTicketSize(numbers.size());
-        numbers.forEach(InputValidator::validateInteger);
-        numbers.forEach(InputValidator::validateNumberInRange);
+        numbers.forEach(Validator::validateNumberInRange);
         validateDuplication(numbers);
     }
 
-    public static void validateBonusNumber(Lotto winningLottoTicket, String userInput) {
+    public static void validateBonusNumberInput(Lotto winningLottoTicket, String userInput) {
         validateInteger(userInput);
-        validateNumberInRange(userInput);
-
         int bonusNumber = Integer.parseInt(userInput);
+        validateNumberInRange(bonusNumber);
         validateDuplication(winningLottoTicket, bonusNumber);
     }
 
-    private static void validateInteger(String userInput) {
+    public static void validateInteger(String userInput) {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
@@ -37,34 +45,31 @@ public class InputValidator {
         }
     }
 
-    private static void validatePositiveInteger(String userInput) {
-        int number = Integer.parseInt(userInput);
+    public static void validatePositiveInteger(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NON_POSITIVE_INTEGER_MESSAGE.getMessage());
         }
     }
 
-    private static void validateDividedBy1000(String userInput) {
-        int number = Integer.parseInt(userInput);
+    public static void validateDividedBy1000(int number) {
         if (number % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_1000_MESSAGE.getMessage());
         }
     }
 
-    private static void validateLottoTicketSize(int size) {
+    public static void validateLottoTicketSize(int size) {
         if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_DIFFERNT.getMessage());
         }
     }
-    
-    private static void validateNumberInRange(String userInput) {
-        int number = Integer.parseInt(userInput);
+
+    public static void validateNumberInRange(int number) {
         if (number < LottoConstants.LOTTO_NUMBER_MIN || number > LottoConstants.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_IN_RANGE_MESSAGE.getMessage());
         }
     }
 
-    private static void validateDuplication(List<String> numbers) {
+    public static void validateDuplication(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MESSAGE.getMessage());
         }

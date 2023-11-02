@@ -73,7 +73,7 @@
 
 ### 예외 상황 처리
 
-- [ ] 입력 문자열을 숫자로 변환한다.
+- [x] 입력 문자열을 숫자로 변환한다.
     - 숫자 변환 실패 시 IllegalArgumentException 발생
 - [ ] 숫자가 올바른 단위인지 검사한다.
     - 단위가 올바르지 않을 경우 IllegalArgumentException 발생

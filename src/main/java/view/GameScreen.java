@@ -16,14 +16,16 @@ public class GameScreen {
         initialize();
         this.game.printLottoQuantity();
 
-        generateLottos();
         printLottos();
         System.out.println();
 
         inputWinNumbers();
-//      //only for test
-//      printWinNumbers();
+        //printWinNumbers();
         inputBonusNumber();
+
+        printLottoResult();
+        //printWinResult();
+        //printBonusResult();
 
     }
     private void initialize(){
@@ -37,18 +39,11 @@ public class GameScreen {
             }
         }
     }
-    private void printLottos(){
+    private void printLottos() throws IllegalArgumentException{
         List<Lotto> lottos = this.game.getLottos();
         for(Lotto lotto : lottos)
         {
             System.out.println(lotto);
-        }
-    }
-    private void generateLottos(){
-        try{
-            this.game.createLottos();
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
         }
     }
 
@@ -166,4 +161,20 @@ public class GameScreen {
         if(currentNumber < 1 || currentNumber > 45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45의 범위 안으로 입력해 주세요.");
     }
+
+    private void printLottoResult(){
+        String result = this.game.getLottoResult();
+        System.out.println(result);
+    }
+    //only for test
+    private void printWinResult(){
+        String result = this.game.getWinLottoResult();
+        System.out.println(result);
+    }
+    //only for test
+    private void printBonusResult(){
+        String result = this.game.getBonusLottoResult();
+        System.out.println(result);
+    }
+
 }

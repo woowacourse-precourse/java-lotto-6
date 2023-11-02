@@ -130,6 +130,53 @@ public class LottoGame {
             countWithBonusNumber(lotto);
         }
     }
-
+    public String getLottoResult(){
+        findWinnersWithWinNumber();
+        findWinnersWithBonusNumber();
+        StringBuilder printer = new StringBuilder();
+        printer.append("3개 일치 (5,000원) - ")
+                .append(winnerQuantity.get(FIFTH_PLACE))
+                .append("개\n")
+                .append("4개 일치 (50,000원) - ")
+                .append(winnerQuantity.get(FORTH_PLACE))
+                .append("개\n")
+                .append("5개 일치 (1,500,000원) - ")
+                .append(winnerQuantity.get(THIRD_PLACE))
+                .append("개\n")
+                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
+                .append(winnerQuantity.get(SECOND_PLACE))
+                .append("개\n")
+                .append("6개 일치 (2,000,000,000원) - ")
+                .append(winnerQuantity.get(FIRST_PLACE))
+                .append("개");
+        return printer.toString();
+    }
+    public String getWinLottoResult(){
+        findWinnersWithWinNumber();
+        findWinnersWithBonusNumber();
+        StringBuilder printer = new StringBuilder();
+        printer.append("3개 일치 (5,000원) - ")
+                .append(winnerQuantity.get(FIFTH_PLACE))
+                .append("개\n")
+                .append("4개 일치 (50,000원) - ")
+                .append(winnerQuantity.get(FORTH_PLACE))
+                .append("개\n")
+                .append("5개 일치 (1,500,000원) - ")
+                .append(winnerQuantity.get(THIRD_PLACE))
+                .append("개\n")
+                .append("6개 일치 (2,000,000,000원) - ")
+                .append(winnerQuantity.get(FIRST_PLACE))
+                .append("개");
+        return printer.toString();
+    }
+    public String getBonusLottoResult(){
+        findWinnersWithWinNumber();
+        findWinnersWithBonusNumber();
+        StringBuilder printer = new StringBuilder();
+        printer.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
+                .append(winnerQuantity.get(SECOND_PLACE))
+                .append("개");
+        return printer.toString();
+    }
 }
 

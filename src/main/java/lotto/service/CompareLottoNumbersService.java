@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import lotto.domain.AnswerLotto;
@@ -7,8 +8,13 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
 public class CompareLottoNumbersService {
-
-	public LottoRank getMatchedLottoRank(final AnswerLotto answerLotto, final Lotto lotto) {
+	
+	public List<LottoRank> getMatchedLottoRanks(final AnswerLotto answerLotto, final List<Lotto> lottos){
+		return lottos.stream().map(lotto -> getMatchedLottoRank(answerLotto, lotto))
+						.toList();
+	}
+	
+	private LottoRank getMatchedLottoRank(final AnswerLotto answerLotto, final Lotto lotto) {
 		int winningNumberCount = getWinningNumberCount(answerLotto, lotto);
 
 		boolean isBonusNumber = checkSameAsBonusNumber(answerLotto, lotto);

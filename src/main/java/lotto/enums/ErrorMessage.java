@@ -1,7 +1,6 @@
 package lotto.enums;
 
 public enum ErrorMessage {
-    PREFIX("[ERROR] "),
     NOT_NULL("아무런 값을 입력하지 않았습니다."),
     NOT_ZERO("구입가격은 0을 입력할 수 없습니다."),
     NOT_DIVIDE("1000원 단위의 수를 입력해야 합니다."),
@@ -18,6 +17,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return PREFIX + message;
+        return "[ERROR] " + message;
     }
 }

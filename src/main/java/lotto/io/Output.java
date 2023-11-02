@@ -18,5 +18,10 @@ public class Output {
             System.out.println(lottoNumbers);
         }
     }
+
+    public void printInputWinningNumbersMessage() {
+        System.out.println();
+        System.out.println(Constants.INPUT_WINNING_NUMBERS);
+    }
 }
 

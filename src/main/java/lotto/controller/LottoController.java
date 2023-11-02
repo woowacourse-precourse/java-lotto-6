@@ -27,6 +27,7 @@ public class LottoController {
         List<String> myLottos = lottos.getMyLottos();
         output.printMyLottos(myLottos);
 
+        output.printInputWinningNumbersMessage();
         List<Integer> winningNumbers = input.getWinningNumbers();
 
     }

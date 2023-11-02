@@ -40,5 +40,10 @@ public class OutputView {
         System.out.printf("6개 일치 (%,d원) - %d개\n", Rank.FIRST_PLACE.getWinningPrice(), count);
     }
 
+    public void printRateOfReturn(double rateOfReturn){
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
+
+
 
 }

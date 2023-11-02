@@ -28,4 +28,12 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return numbers;
     }
+
+    public int countMatch(List<Integer> user){
+        int count = 0;
+        for (Integer integer : user) {
+            if (lottoContains(integer)) count++;
+        }
+        return count;
+    }
 }

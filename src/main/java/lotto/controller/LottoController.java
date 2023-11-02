@@ -19,6 +19,7 @@ public class LottoController {
         output.printInputWinningNumbersMessage();
         List<Integer> winningNumbers = input.getWinningNumbers();
         output.printInputBonusNumberMessage();
+        int bonusNumber = input.getBonusNumber();
 
     }
 }

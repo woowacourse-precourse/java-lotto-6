@@ -33,6 +33,15 @@ public class Application {
         return bonus;
     }
 
+    private void judge(Lotto winNum, Lotto user, int bonus){
+        int ct = winNum.countMatch(user.getNumbers());
+        if(ct < 3) return;
+        if(ct < 4);
+        if(ct < 5);
+        if(ct < 6);
+        winNum.lottoContains(bonus);
+    }
+
     public static void main(String[] args) {
         Lotto winNumber = new Lotto(setRandomNumbers());
         Lotto user = new Lotto(getUserNumbers());

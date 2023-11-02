@@ -25,4 +25,17 @@ public class StringTest {
                 .containsExactly("1");
 
     }
+
+    @Test
+    void 문자열_자르기() {
+
+        // given
+        String numbers = "(1,2)";
+
+        // when
+        numbers = numbers.substring(1,4);
+
+        // then
+        assertThat(numbers).isEqualTo("1,2");
+    }
 }

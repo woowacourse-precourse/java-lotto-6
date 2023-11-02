@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printLottoNumbers (String numbers) {
+    public static void printLottoNumbers (StringBuilder numbers) {
         System.out.println(numbers);
     }
 
@@ -36,5 +36,13 @@ public class OutputView {
 
     public static void printIsWrongRange () {
         System.out.println("[ERROR] 1 ~ 45 사이의 숫자여야 합니다.");
+    }
+
+    public static void printIsWrongLength () {
+        System.out.println("[ERROR] 6개의 숫자를 입력해야 합니다.");
+    }
+
+    public static void printIsDuplicate () {
+        System.out.println("[ERROR] 중복된 값이 아니여야 합니다.");
     }
 }

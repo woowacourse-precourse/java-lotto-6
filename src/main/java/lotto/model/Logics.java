@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 public class Logics {
-    public List<Integer> makeRandomList() {
+    public static List<Integer> makeRandomList() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
@@ -18,10 +18,6 @@ public class Logics {
         }
         result.append("]");
         return result;
-    }
-
-    public static int strToInt (String str) {
-        return Integer.parseInt(str);
     }
 
 }

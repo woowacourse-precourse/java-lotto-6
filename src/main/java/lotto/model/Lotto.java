@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
+import lotto.view.OutputView;
 
 public class Lotto {
     final int MIN_NUMBER = 1;
@@ -22,13 +23,17 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public int getNumbers(int idx) {
-        return numbers.get(idx);
+    public int getNumber(int idx) {
+        return this.numbers.get(idx);
+    }
+
+    public List<Integer> getLotto () {
+        return this.numbers;
     }
     public int countMatch (Lotto answers, int bonus) {
         int result = 0;
-        for(int i = 0; i < numbers.size(); i++) {
-            if(isContain(answers.getNumbers(i))) {
+        for(int i = 0; i < this.numbers.size(); i++) {
+            if(isContain(answers.getNumber(i))) {
                 result++;
             }
         }

@@ -1,6 +1,8 @@
 package lotto.model;
 
+import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.util.List;
 
 public class Errors {
     public static int isInteger (String str) throws IllegalArgumentException {
@@ -30,6 +32,15 @@ public class Errors {
         if(num < 1 || num > 45) {
             OutputView.printIsWrongRange();
             throw new IllegalArgumentException();
+        }
+    }
+
+    public static void isDuplicate (List<Integer> List, int num) throws IllegalArgumentException {
+        for(int i = 0; i < List.size(); i++) {
+            if(List.get(i) == num) {
+                OutputView.printIsDuplicate();
+                throw new IllegalArgumentException();
+            }
         }
     }
 

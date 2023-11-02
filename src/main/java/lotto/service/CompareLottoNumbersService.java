@@ -8,12 +8,12 @@ import lotto.domain.LottoRank;
 
 public class CompareLottoNumbersService {
 
-	public int getLottoPrice(final AnswerLotto answerLotto, final Lotto lotto) {
+	public LottoRank getMatchedLottoRank(final AnswerLotto answerLotto, final Lotto lotto) {
 		int winningNumberCount = getWinningNumberCount(answerLotto, lotto);
 
 		boolean isBonusNumber = checkSameAsBonusNumber(answerLotto, lotto);
 
-		return LottoRank.getLottoRank(winningNumberCount, isBonusNumber).getPrice();
+		return LottoRank.getLottoRank(winningNumberCount, isBonusNumber);
 	}
 
 	protected int getWinningNumberCount(final AnswerLotto answerLotto, final Lotto lotto) {

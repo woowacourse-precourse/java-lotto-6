@@ -12,6 +12,10 @@ import lotto.vo.Lotto;
 import lotto.vo.Money;
 
 public class LottoProduceServiceImpl implements LottoProduceService {
+
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int LOTTO_COUNT = 6;
     private final SortService sortService;
     private final IoAdapter ioAdapter;
 
@@ -41,7 +45,7 @@ public class LottoProduceServiceImpl implements LottoProduceService {
     }
 
     private List<Integer> makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_COUNT);
         List<Integer> sortedLotto = sortService.sortLottoAsc(numbers);
         ioAdapter.printLotto(sortedLotto);
         return sortedLotto;

@@ -31,7 +31,7 @@ public class Money {
 		return money;
 	}
 	
-	public int getTryCount() {
+	public int getBuyedCount() {
 		return money / UNIT;
 	}
 }

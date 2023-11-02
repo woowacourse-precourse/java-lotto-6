@@ -13,10 +13,10 @@ public class CreateLottoService {
 	private static final LottoNumberGenerator GENERATOR = new LottoNumberGenerator();
 	
 	public List<Lotto> generateLottos(Money money){
-		int tryCount = money.getTryCount();
+		int buyedCount = money.getBuyedCount();
 		
 		return Stream.generate(() -> generateLotto())
-						.limit(tryCount)
+						.limit(buyedCount)
 						.toList();
 	}
 		
@@ -27,4 +27,5 @@ public class CreateLottoService {
 	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber	) {
 		return new AnswerLotto(numbers, bonusNumber);
 	}
+	
 }

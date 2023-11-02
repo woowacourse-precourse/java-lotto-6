@@ -14,10 +14,6 @@ public class StandardIoAdapter implements IoAdapter {
     }
 
     @Override
-    public void printPurchaseLotto(List<Lotto> lottoBundle) {
-    }
-
-    @Override
     public void printStatistics(Statistics statistics) {
 
     }

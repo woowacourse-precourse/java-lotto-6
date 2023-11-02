@@ -8,4 +8,9 @@ public class Validator {
         }
     }
 
+    public static void validateOnlyNumber(String str){
+        if(!str.matches("[0-9]+")){
+            throw new IllegalArgumentException("숫자로만 이루어진 문자가 아닙니다.");
+        }
+    }
 }

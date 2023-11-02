@@ -13,10 +13,10 @@ public class LottoShop {
 
     public List<Lotto> createByBuyerLotto(Amount amount) {
         int lottoCount = amount.getLottoCount();
-        List<Lotto> playerLottos = new ArrayList<>();
+        List<Lotto> buyerLotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            playerLottos.add(new Lotto(numberGenerator.generate()));
+            buyerLotto.add(new Lotto(numberGenerator.generate()));
         }
-        return playerLottos;
+        return buyerLotto;
     }
 }

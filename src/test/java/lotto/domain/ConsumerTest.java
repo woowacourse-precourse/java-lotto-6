@@ -17,7 +17,7 @@ class ConsumerTest {
     private final int LESS_AMOUNT = 900;
     private final int GREATER_AMOUNT = 101000;
     private final int DIVIDE_AMOUNT = 1250;
-    private final int AMOUNT = 2000;
+    private final int AMOUNT = 1000;
 
     @ParameterizedTest
     @ValueSource(ints = {LESS_AMOUNT, GREATER_AMOUNT, DIVIDE_AMOUNT})
@@ -33,6 +33,25 @@ class ConsumerTest {
     void buyAmountSave(int amount) {
         Consumer consumer = new Consumer(amount);
         assertThat(consumer.getBuyAmount()).isEqualTo(amount);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 3000})
+    @DisplayName("구매자의 구매 금액이 정상적인 경우 구매 가능 수량 확인")
+    void buyAvailableQuantity(int amount) {
+        Consumer consumer = new Consumer(amount);
+
+        assertThat(consumer.getBuyAvailableQuantity()).isEqualTo(amount / AMOUNT);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 3000})
+    @DisplayName("구매자의 구매 금액이 정상적인 경우 구매 가능 수량이 다른 경우 예외 발생 확인")
+    void buyAvailableQuantityException(int amount) {
+        Consumer consumer = new Consumer(amount);
+
+        assertThatThrownBy(() -> consumer.buyQuantityCheck())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

@@ -60,16 +60,17 @@ public class Application {
         return money/1000;
     }
 
-    private static List<Lotto> setUser(){
+    private static List<Lotto> setUser(int n){
         List<Lotto> user = new ArrayList<>();
-        for (int i = 0; i < numOfLotto(); i++) {
+        for (int i = 0; i < n; i++) {
             new Lotto(setRandomNumbers());     
         }          
         return user;
     }
 
     public static void main(String[] args) {
-        List<Lotto> user = setUser();
+        int n = numOfLotto();
+        List<Lotto> user = setUser(n);
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
         

@@ -35,26 +35,22 @@ public class Application {
         return bonus;
     }
 
-    private static void judge(Lotto winNum, Lotto user, int bonus){
+    private static int judge(Lotto winNum, Lotto user, int bonus){
         int ct = winNum.countMatch(user.getNumbers());
         if(ct > 5){
-            System.out.println("1등");
-            return;
+            return 1;
         }
         if(ct > 4) {
-            if (winNum.lottoContains(bonus)) System.out.println("2등");
-            else System.out.println("3등");
-            return;
+            if (winNum.lottoContains(bonus)) return 2;
+            return 3;
         }
         if(ct > 3) {
-            System.out.println("4등");
-            return;
+            return 4;
         }
         if(ct > 2) {
-            System.out.println("5등");
-            return;
+            return 5;
         }
-        System.out.println("꽝");
+        return 0;
     }
 
     public static void main(String[] args) {
@@ -62,6 +58,9 @@ public class Application {
         int bonus = getUserBonus(winNumber);
         Lotto user = new Lotto(setRandomNumbers());
 
-        judge(winNumber, user, bonus);
+        List<Integer> res = new ArrayList<>(List.of(0,0,0,0,0,0));
+        int idx = judge(winNumber, user, bonus);
+        res.add(idx, res.get(idx)+1);
+        System.out.println(res);
     }
 }

@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 
@@ -36,7 +38,7 @@ class InputValidatorTest {
 
     @Test
     @DisplayName("입력 값 Number type 아닌 경우 예외 발생")
-    void NonNumberTypeTest() {
+    void nonNumberTypeTest() {
         assertThatThrownBy(() -> InputValidator.numberTypeCheck(NOT_NUMBER_TEXT))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX_TEXT, "숫자 타입의 값이 입력되지 않았습니다.");
@@ -46,6 +48,22 @@ class InputValidatorTest {
     @DisplayName("입력 값 Number type 으로 변환 정상 처리")
     void numberTypeTest() {
         assertThatNoException().isThrownBy(() -> InputValidator.numberTypeCheck(NUMBER_TEXT));
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 값 숫자와 , 로 이루 어진 값이 아닌 경우 예외 처리")
+    @ValueSource(strings = {"1,23,12,ㅂ", "1.231,23,1", "ㅁㄴ", " ", ""})
+    void NumberAndCommaExceptionTest(String inputValue) {
+        assertThatThrownBy(() -> InputValidator.lottoFormatCheck(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "입력 한 형식이 로또 번호 형식이 아닙니다.\n 입력 예) 1,2,3,4,5,6");
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 값 숫자와 , 로 이루 어진 값의 경우 정상 처리")
+    @ValueSource(strings = {"1", "1,2", "12,3"})
+    void NumberAndCommaTest(String inputValue) {
+        assertThatNoException().isThrownBy(() -> InputValidator.lottoFormatCheck(inputValue));
     }
 
 

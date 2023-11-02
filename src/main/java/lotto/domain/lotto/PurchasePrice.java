@@ -21,7 +21,7 @@ public class PurchasePrice {
 
     private PurchasePrice(String purchasePrice) {
         validate(purchasePrice);
-        this.price = Integer.parseInt(purchasePrice);
+        this.price = parsePrice(purchasePrice);
     }
 
     private void validate(String purchasePrice) {

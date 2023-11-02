@@ -14,4 +14,8 @@ public class Lottos {
     public List<Lotto> toElements() {
         return Collections.unmodifiableList(elements);
     }
+
+    public int numOfElement() {
+        return elements.size();
+    }
 }

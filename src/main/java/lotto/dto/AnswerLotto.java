@@ -12,7 +12,11 @@ public class AnswerLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getAnswerNumbers() {
+        return answerNumbers;
+    }
 
-
-
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.io.Input;
 import lotto.io.Output;
 
@@ -11,5 +12,7 @@ public class LottoController {
 
         Input input = new Input();
         int money = input.getMoney();
+
+        Lottos lottos = new Lottos(money);
     }
 }

@@ -28,4 +28,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 중복될 수 없습니다.");
         }
     }
+
+    public int countMatches(Lotto lotto) {
+        Long count = lotto.numbers.stream()
+                .filter(number -> this.numbers.contains(number))
+                .count();
+
+        return count.intValue();
+    }
 }

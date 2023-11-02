@@ -7,12 +7,16 @@
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 # Model
 - ###  Player
-- [ ] 로또 구입 금액을 저장 - PlayerMoney
+- [ ] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
+- [ ] 로또 구입 금액 만큼 보유 금액을 사용 - HoldingMoney
+- [ ] 로또 구입 금액 만큼 사용 금액을 업데이트 - UsedMoney
+- [ ] 로또 구입에 사용한 금액을 사용 금액에 저장 - UsedMoney
+- [ ] 로또 구입 금액을 보유 금액, 사용금액에 저장 - PlayerMoney
 - [ ] 로또 구입 금액을 가지고 있으며 구입 금액으로 Ticket을 발행받음 - Player
 - [ ] 로또 구입 금액에 따라 Ticket 을 발급해줌 - Ticket
 - [ ] 랜덤 로또를 발급함 - Ticket
 - [ ] 로또를 구매함 - Player
-- [ ] 로또 상금을 받아 수익률을 계산함 - PlayerMoney
+- [ ] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
 - [ ] 수익률을 저장함 - RateOfReturn
 - ### Lotto
 - [ ] Lotto 를 상속받아 당첨번호와 보너스 번호를 저장 - WinLotto

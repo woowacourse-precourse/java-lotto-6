@@ -18,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSizeOfNumbers(numbers);
+        validateDuplicateNumber(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -27,4 +28,13 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        long uniqueLottoNumSize = numbers.stream()
+                .distinct()
+                .count();
+
+        if (uniqueLottoNumSize != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

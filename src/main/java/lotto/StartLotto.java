@@ -31,7 +31,7 @@ public class StartLotto {
         for(String s: inputString) {
             int number = changeStringToInteger(s);
             checkNumberInRange(number);
-            checkDuplicatedNumber(number);
+            checkDuplicatedNumber(number, retVal);
             retVal.add(number);
         }
 
@@ -44,9 +44,9 @@ public class StartLotto {
         }
     }
 
-    private void checkDuplicatedNumber(int number) {
-        for(Integer winningNumber: this.winningNumbers) {
-            if(number == winningNumber) {
+    private void checkDuplicatedNumber(int number, List<Integer> numberList) {
+        for(Integer oneNumber: numberList) {
+            if(number == oneNumber) {
                 throw new IllegalArgumentException();
             }
         }
@@ -95,7 +95,7 @@ public class StartLotto {
 
         int bonusNumber = changeStringToInteger(bonusNumberString);
         checkNumberInRange(bonusNumber);
-        checkDuplicatedNumber(bonusNumber);
+        checkDuplicatedNumber(bonusNumber, this.winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 

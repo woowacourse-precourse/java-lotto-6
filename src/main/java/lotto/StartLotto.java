@@ -102,4 +102,18 @@ public class StartLotto {
     private void printMessageForInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요");
     }
+
+    private void generateLottoList() {
+        int listLen = this.purchasePrice / 1000;
+
+        for(int i = 0; i < listLen; i++) {
+            Lotto oneLotto = generateLotto();
+            this.lottoList.add(oneLotto);
+        }
+    }
+
+    private Lotto generateLotto() {
+        List<Integer> temp = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(temp);
+    }
 }

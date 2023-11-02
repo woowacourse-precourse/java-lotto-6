@@ -45,8 +45,7 @@ public class LottoGame {
 
 
     private int getWinningResult(List<Integer> lottoNumbers) {
-        return winningLotto
-                .getSixNumberWinningResult(IntStream.range(0, BONUS_NUMBER_INDEX - 1)
+        return winningLotto.getMatchingNumber(IntStream.range(0, BONUS_NUMBER_INDEX - 1)
                         .mapToObj(lottoNumbers::get)
                         .toList());
     }

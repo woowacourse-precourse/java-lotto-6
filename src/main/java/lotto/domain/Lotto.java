@@ -17,9 +17,9 @@ public class Lotto {
         }
     }
 
-    public int getSixNumberWinningResult(List<Integer> consumerSixNumber) {
+    public int getMatchingNumber(List<Integer> consumerNumber) {
         return numbers.stream()
-                .filter(consumerSixNumber::contains)
+                .filter(consumerNumber::contains)
                 .toList()
                 .size();
     }

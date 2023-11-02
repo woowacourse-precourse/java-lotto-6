@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println(purchasedLotto.size() + "개를 구매했습니다.");
         for(Lotto lotto : purchasedLotto) {
             System.out.print("[");
-            System.out.print(String.join(",", lotto.getNumbers()
+            System.out.print(String.join(", ", lotto.getNumbers()
                     .stream()
                     .map(String::valueOf)
                     .toList()));

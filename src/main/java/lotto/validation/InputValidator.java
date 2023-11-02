@@ -11,6 +11,7 @@ public class InputValidator {
     private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
     private static final int MIN_NUMBER_RANGE = 1;
     private static final int MAX_NUMBER_RANGE = 45;
+    private static final int WINNING_NUMBER_SIZE = 6;
 
 
     private InputValidator() {
@@ -67,5 +68,16 @@ public class InputValidator {
         if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
         }
+    }
+
+    public static void validateNumberSize(String input) {
+        String[] winningNumbers = splitByComma(input);
+        if (winningNumbers.length != WINNING_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE.getMessage());
+        }
+    }
+
+    private static String[] splitByComma(String input) {
+        return input.split(COMMA);
     }
 }

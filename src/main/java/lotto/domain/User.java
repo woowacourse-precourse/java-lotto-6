@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -11,5 +12,9 @@ public class User {
 
     public static User provideLottos(final List<Lotto> lottos) {
         return new User(lottos);
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

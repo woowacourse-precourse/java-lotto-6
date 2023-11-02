@@ -24,6 +24,14 @@ public class WinningLottoHolder {
         }
     }
 
+    public int calculateLottoMatchCount(final Lotto userLotto) {
+        return winningLotto.calculateMatchCount(userLotto);
+    }
+
+    public boolean isBonusNumberInclude(final Lotto userLotto) {
+        return userLotto.isNumberInclude(bonusNumber.getValue());
+    }
+
     public List<Integer> getWinningLotteryNumbers() {
         return winningLotto.getNumbers();
     }

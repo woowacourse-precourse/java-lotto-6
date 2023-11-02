@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -8,7 +9,7 @@ public class Player {
     private static final int PERCENTAGE = 100;
 
     private int purchaseAmount;
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public Player(int purchaseAmount) {
         // 구입 금액 검증

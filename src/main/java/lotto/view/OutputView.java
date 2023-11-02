@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println();
         System.out.println(lottos.size() + BUY_N);
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers());
         }
     }
 

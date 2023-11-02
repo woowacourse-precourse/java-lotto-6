@@ -11,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicateNumber(numbers);
+        validateDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -21,7 +21,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicateNumber(List<Integer> numbers){
+    private void validateDuplicateNumbers(List<Integer> numbers){
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if(nonDuplicateNumbers.size() != LOTTO_NUMBERS_SIZE){
             throw new IllegalArgumentException("로또 번호들은 중복 될 수 없습니다.");
@@ -29,5 +29,8 @@ public class Lotto {
 
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() { //메소드 확인용 지워야됨
+        return numbers;
+    }
+// TODO: 추가 기능 구현
 }

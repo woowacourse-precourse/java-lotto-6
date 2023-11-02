@@ -2,7 +2,9 @@ package util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.Lotto;
 
 public class LottoGenerator {
@@ -24,6 +26,7 @@ public class LottoGenerator {
 
     public static Lotto generateLotto(Integer[] userNumbers)
     {
-        return new Lotto(Arrays.asList(userNumbers));
+        Set<Integer> forDuplication = new HashSet<>(Arrays.asList(userNumbers));
+        return new Lotto(new ArrayList<>(forDuplication));
     }
 }

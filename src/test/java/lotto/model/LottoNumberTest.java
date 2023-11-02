@@ -19,7 +19,7 @@ class LottoNumberTest {
         LottoNumber lottoNumber = new LottoNumber();
         List<Integer> numbers = lottoNumber.getNumbers();
 
-        assertThat(numbers.size()).isEqualTo(LOTTO_NUMBER_SIZE);
+        assertThat(numbers).hasSize(LOTTO_NUMBER_SIZE);
         for (Integer number : numbers) {
             assertThat(number).isBetween(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
         }

@@ -19,7 +19,7 @@ class WinningNumberTest {
         WinningNumber winningNumber = new WinningNumber();
         List<Integer> numbers = winningNumber.getNumbers();
 
-        assertThat(numbers.size()).isEqualTo(WINNING_NUMBER_SIZE);
+        assertThat(numbers).hasSize(WINNING_NUMBER_SIZE);
         for (Integer number : numbers) {
             assertThat(number).isBetween(WINNING_NUMBER_MIN, WINNING_NUMBER_MAX);
         }

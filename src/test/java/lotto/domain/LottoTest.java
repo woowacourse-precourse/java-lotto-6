@@ -2,12 +2,10 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,7 +14,7 @@ import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_MUST_
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_SIZE_IS_NOT_FULFILL;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
     @Nested
@@ -73,17 +71,18 @@ class LottoTest {
             );
         }
 
-        @Test
+        @ParameterizedTest
+        @MethodSource("success")
         @DisplayName("Lotto를 생성한다")
-        void create() {
-            // when
-            final Lotto lottoA = Lotto.create(Arrays.asList(1, 3, 2, 4, 5, 6)); // sortable -> Arrays.asList
-            final Lotto lottoB = Lotto.create(Arrays.asList(44, 1, 10, 23, 18, 6));
+        void create(final List<Integer> numbers) {
+            assertDoesNotThrow(() -> Lotto.create(numbers));
+        }
 
-            // then
-            assertAll(
-                    () -> assertThat(lottoA.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6),
-                    () -> assertThat(lottoB.getNumbers()).containsExactly(1, 6, 10, 18, 23, 44)
+        private static Stream<Arguments> success() {
+            return Stream.of(
+                    Arguments.of(List.of(1, 2, 3, 4, 5, 6)),
+                    Arguments.of(List.of(1, 6, 10, 18, 23, 44)),
+                    Arguments.of(List.of(1, 5, 10, 30, 44, 45))
             );
         }
     }
@@ -105,13 +104,13 @@ class LottoTest {
 
     private static Stream<Arguments> matchCase() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 4, 5, 7), 5),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 4, 7, 8), 4),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 7, 8, 9), 3),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 7, 8, 9, 10), 2),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 7, 8, 9, 10, 11), 1),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(7, 8, 9, 10, 11, 12), 0)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7), 5),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 7, 8), 4),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 7, 8, 9), 3),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 7, 8, 9, 10), 2),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 7, 8, 9, 10, 11), 1),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(7, 8, 9, 10, 11, 12), 0)
         );
     }
 }

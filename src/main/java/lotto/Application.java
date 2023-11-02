@@ -10,8 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
-    final static IllegalArgumentException numError = new IllegalArgumentException(
-            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    final static IllegalArgumentException numError = new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     final static IllegalArgumentException dupError = new IllegalArgumentException("[ERROR] 로또 번호는 중복할 수 없습니다.");
 
     final static int[] prices = { 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0 };

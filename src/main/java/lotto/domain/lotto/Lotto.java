@@ -19,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSizeOfNumbers(numbers);
         validateDuplicateNumber(numbers);
+        checkValidNumbersInLotto(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -35,6 +36,14 @@ public class Lotto {
 
         if (uniqueLottoNumSize != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkValidNumbersInLotto(List<Integer> numbers) {
+        for (Integer num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

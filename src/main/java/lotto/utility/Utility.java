@@ -1,9 +1,10 @@
 package lotto.utility;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Utility {
-    public int getNumber(String input) {
+    public int parseInt(String input) {
         try {
             int number = Integer.parseInt(input);
             return number;
@@ -12,9 +13,15 @@ public class Utility {
         }
     }
 
-    public String[] splitInput (String input) {
-        String[] numbers = input.split(",");
-
+    public List<Integer> getRandomNumbers(int length) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, length);
         return numbers;
     }
+
+    public String[] splitInput (String input) {
+        String[] numbers = input.split(",");
+        return numbers;
+    }
+
+
 }

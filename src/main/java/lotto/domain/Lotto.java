@@ -2,7 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.impl.oneTo45LottoGame.ONE_TO_45_NUMBER_COUNT;
+import static lotto.impl.oneTo45LottoNumberProvider.ONE_TO_45_NUMBER_COUNT;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,15 +19,11 @@ public class Lotto {
         }
     }
 
-    public int getFiveNumberWinningResult(List<Integer> consumerFiveNumber) {
+    public int getSixNumberWinningResult(List<Integer> consumerSixNumber) {
         return numbers.stream()
-                .filter(consumerFiveNumber::contains)
+                .filter(consumerSixNumber::contains)
                 .toList()
                 .size();
-    }
-
-    public int getBonusNumberWinningResult(int consumerBonusNumber) {
-        return numbers.get(ONE_TO_45_NUMBER_COUNT - 1) == consumerBonusNumber ? 1 : 0;
     }
 
     public List<Integer> getNumbers() {

@@ -4,13 +4,17 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoGame {
     public static int purchase = 0;
+    public static int count;
+
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
         inputPurchase();
+        System.out.println(count+"개를 구입했습니다.");
     }
 
     void inputPurchase(){
         checkValidPurchase(readLine());
+        count = purchase/1000;
     }
 
     void checkValidPurchase(String input){
@@ -25,5 +29,7 @@ public class LottoGame {
             inputPurchase();
         }
     }
+
+
 
 }

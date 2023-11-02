@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Validator {
+    private static Integer MINIMUM_MONEY=1000;
     private static Integer MINIMUM = 1;
     private static Integer MAXIMUM = 45;
+    private static Integer WINNING_NUM_LENGTH = 6;
+    private static Integer BONUS_NUM_LENGTH = 7;
 
     public static void moneyValidate(String input) {
         Integer money = numberValidate(input);
@@ -42,7 +45,7 @@ public class Validator {
     }
 
     private static void noMoneyValidate(Integer money) {
-        if(money<1000){
+        if(money<MINIMUM_MONEY){
             OutputView.errorMessage(ErrorMessage.NO_MONEY.getMessage());
 
             throw new IllegalArgumentException();
@@ -62,7 +65,7 @@ public class Validator {
                 .distinct()
                 .count();
 
-        if(numSize!=6){
+        if(numSize!=WINNING_NUM_LENGTH){
             OutputView.errorMessage(ErrorMessage.DUPLICATED_ERROR.getMessage());
 
             throw new IllegalArgumentException();
@@ -102,7 +105,7 @@ public class Validator {
                 .distinct()
                 .count();
 
-        if (count != 7) {
+        if (count != BONUS_NUM_LENGTH) {
             OutputView.errorMessage(ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage());
             throw new IllegalArgumentException();
         }

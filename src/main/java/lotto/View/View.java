@@ -17,12 +17,21 @@ public class View {
     }
     private int stringToList(String money){
         if(!isValidString(money)){
-            System.out.println("[ERROR] 로또 구입 금액은 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 이루어져야 합니다.");
+        }
+        if(!isDivideNumber(money)){
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천원단위로 나눠져야 합니다.");
         }
         return Integer.parseInt(money);
     }
     private boolean isValidString(String money){
         String pattern = "^[0-9]*$";
         return Pattern.matches(pattern, money);
+    }
+    private boolean isDivideNumber(String money){
+        if(Integer.parseInt(money) % 1000 != 0){
+            return false;
+        }
+        return true;
     }
 }

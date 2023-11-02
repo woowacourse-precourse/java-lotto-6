@@ -26,9 +26,9 @@ public class Lotto {
                 GameConfig.PRINTING_SUFFIX;
     }
 
-    public int getResult(List<Integer> winnings, int bonus){
-        int rank = GameConfig.WINNING.valueOfMatch(countMatch(winnings)).getRank();
-        if (rank == GameConfig.WINNING.THIRD.getRank() && countBonus(winnings, bonus)){
+    public int getResult(Winning winnings, Bonus bonus){
+        int rank = GameConfig.WINNING.valueOfMatch(countMatch(winnings.getWinnings())).getRank();
+        if (rank == GameConfig.WINNING.THIRD.getRank() && countBonus(winnings.getWinnings(), bonus.getBonus())){
             return GameConfig.WINNING.SECOND.getRank();
         }
         return rank;

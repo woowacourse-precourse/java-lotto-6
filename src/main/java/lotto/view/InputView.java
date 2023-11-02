@@ -3,8 +3,12 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String getMoneyInput() {
+    private String getMoneyInput() {
         return Console.readLine();
+    }
+
+    public int getMoney() {
+        return Integer.parseInt(getMoneyInput());
     }
 
     public String getWinningNumbersInput() {

@@ -24,6 +24,24 @@ public class BonusNumber {
         return value < Lotto.LOWER_BOUND || value > Lotto.UPPER_BOUND;
     }
 
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        final BonusNumber other = (BonusNumber) object;
+        return value == other.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
+    }
+
     public int getValue() {
         return value;
     }

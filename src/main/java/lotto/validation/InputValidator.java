@@ -9,6 +9,9 @@ public class InputValidator {
     private static final String COMMA = ",";
     private static final int STANDARD_OF_DIVIDE = 1000;
     private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
+    private static final int MIN_NUMBER_RANGE = 1;
+    private static final int MAX_NUMBER_RANGE = 45;
+
 
     private InputValidator() {
     }
@@ -56,6 +59,13 @@ public class InputValidator {
     public static void validateSeparator(String input) {
         if (!input.contains(COMMA)) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_COMMA.getMessage());
+        }
+    }
+
+    public static void validateNumberRange(String input) {
+        int number = Convertor.convertStringToInt(input);
+        if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
         }
     }
 }

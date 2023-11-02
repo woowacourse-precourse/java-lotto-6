@@ -46,7 +46,6 @@ public class WinningNumbers {
 
     private List<Integer> winningNumbersToList(String winningNumber) {
         return Arrays.stream(extractNumbers(winningNumber))
-                .sorted()
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();

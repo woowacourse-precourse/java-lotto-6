@@ -38,5 +38,13 @@ public class PurchasedLotto {
         return results;
     }
 
+    public List<String> getPurchasedLotto() {
+        List<String> result = new ArrayList<>();
+
+        purchased.forEach(e -> result.add(e.toString()));
+
+        return result;
+    }
+
 
 }

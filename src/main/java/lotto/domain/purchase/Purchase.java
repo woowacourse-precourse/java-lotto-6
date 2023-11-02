@@ -31,5 +31,9 @@ public class Purchase {
         if (paidPrice % 1000 != 0) {
             throw new IllegalArgumentException();
         }
+
+        if (paidPrice == 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

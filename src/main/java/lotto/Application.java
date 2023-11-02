@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +13,17 @@ public class Application {
 
 class User{
     public static void InputMoney(){
-        System.out.println("구입금액을 입력해 주세요.");
-        String m = Console.readLine();
-        int money = Integer.parseInt(m);
-        LottoPaper(CorrectMoney(money));
+        while(true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String m = Console.readLine();
+            try {
+                int money = Integer.parseInt(m);
+                LottoPaper(CorrectMoney(money));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 제대로 된 값을 입력해주세요.");
+            }
+        }
     }
     public static int CorrectMoney(int money){
         if (money % 1000 == 0){

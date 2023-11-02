@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoRandomGenerator;
 import lotto.model.WinningStatistics;
+import lotto.utils.Parser;
 
 public class LottoController {
     public void run() {
@@ -28,9 +29,10 @@ public class LottoController {
         // 보너스 번호 입력 받기
         int bonusNumber = getBonusNumber(winningLottoTicket);
 
-        // 당첨 통계 계산 및 출력
-        WinningStatistics winningStatistics = calculateWinningStatistics(winningLottoTicket, bonusNumber,
+        // 당첨 통계 계산
+        WinningStatistics winningStatistics = new WinningStatistics(winningLottoTicket, bonusNumber,
                 lottoTicketsPurchased);
+        // 당첨 통계 출력
         OutputController.printWinningStatistics(winningStatistics);
 
         // 수익률 계산 및 출력
@@ -44,7 +46,12 @@ public class LottoController {
     }
 
     private Lotto getWinningLottoTicket() {
-        return userInputToLotto(InputController.scanWinningLottoTicket());
+        // TO DO: "1,2,3,4,5,6" String으로 Lotto 객체 생성해서 반환
+        String userInput = InputController.scanWinningLottoTicket();
+        List<Integer> lotto = new ArrayList<>();
+        Parser.parseWithComma(userInput)
+                .forEach(number -> lotto.add(Integer.parseInt(number)));
+        return new Lotto(lotto);
     }
 
     private int getBonusNumber(Lotto winningLottoTicket) {
@@ -74,11 +81,6 @@ public class LottoController {
             lottoTickets.add(createRandomLottoTicket(new LottoRandomGenerator()));
         }
         return lottoTickets;
-    }
-
-    private Lotto userInputToLotto(String userInput) {
-        // TO DO: "1,2,3,4,5,6" String으로 Lotto 객체 생성해서 반환
-        return null;
     }
 
     private Lotto createRandomLottoTicket(LottoGenerator lottoGenerator) {

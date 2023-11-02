@@ -30,33 +30,47 @@ Lotto Game Program
 
 ## ii) 클래스 및 메소드
 - ### *Model*
-    Lottos Class // 발행된 로또의 목록
+    **Lottos Class** // 발행된 로또의 목록
     ```agsl
-    - getLottos // 발행된 로또 번호들을 반환한다.
-    - addLotto // 발행된 로또를 list에 추가한다.
-    
-    Lotto Class// 로또 하나의 클래스
-    - getNumbers // 로또의 번호들을 반환받는다.
+    - getLottos     // 발행된 로또 번호들을 반환한다.
+    - addLotto      // 발행된 로또를 list에 추가한다.
+    ```
+  
+    **Lotto Class**// 로또 하나의 클래스
+    ```agsl
+    - getNumbers    // 로또의 번호들을 반환받는다.
+    - validate      // 로또 발급 번호의 유효성 검사
     ```
 
 
 - ### *View*
-    Print Class
+    **PrintView Class** //프로그램 출력을 위한 클래스
     ```agsl
-    - printLottos // 발행한 로도 수량 및 번호들을 출력한다.
-    - printResult // 당첨 내역을 출력한다.
+    - printLottos       // 발행한 로도 수량 및 번호들을 출력한다.
+    - printResult       // 당첨 내역을 출력한다.
     ```
 
 - ### *Controller*
-    Input Class
+    **InputController Class** // 사용자의 데이터 입력을 위한 클래스
     ```agsl
-    - inputMoney // 사용자로부터 구입 금액을 입력받는다.
-    - inputNumbers // 사용자로부터 당첨번호를 입력받는다.
+    - inputMoney        // 사용자로부터 구입 금액을 입력받는다.
+    - inputNumbers      // 사용자로부터 당첨번호를 입력받는다.
     ```
-    Exception Class
+    **ExceptionController Class** // 입력값에 대한 예외처리를 위한 클래스
+    ```agsl
+    - moneyException    // 금액 입력에 대한 예외처리
+    - numbersException  // 당첨번호 입력에 대한 예외처리
     ```
-    - moneyException // 금액 입력에 대한 예외처리
-    - numbersException // 당첨번호 입력에 대한 예외처리
+  
+    **LottoGeneratorController Class** // 로또 번호를 생성한다.
+    ```agsl
+    - lottoGenerate     // 1개의 로또에 대한 로또번호를 생성한다.
+    ```
+  
+    **MainController Class** // 로또의 결과 및 Model과 View를 잇는 main Controller
+    ```agsl
+    - lottoCheck    // 몇개의 로또가 맞았는지 체크해주는 메소드
+    - getRevenue    // 수익률 계산
     ```
 
 ----

@@ -55,7 +55,11 @@ public class WinningNumbers {
 
     private static boolean hasInvalidRangeNumber(List<Integer> winningNumbers) {
         return winningNumbers.stream()
-                .allMatch(num -> num >= 1 && num <= 45);
+                .allMatch(num -> isValidRange(num));
+    }
+
+    private static boolean isValidRange(Integer num) {
+        return num >= 1 && num <= 45;
     }
 
     private List<Integer> winningNumbersToList(String winningNumber) {

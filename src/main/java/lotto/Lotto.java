@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -9,7 +10,15 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(Integer integer) {
+        return numbers.contains(integer);
     }
 
     private void validateSize(List<Integer> numbers) {

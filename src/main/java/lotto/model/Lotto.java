@@ -16,27 +16,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        isSixElements(numbers);
+        consistOfLottoSize(numbers);
         isNotDuplicated(numbers);
         isInRange(numbers);
     }
 
-    private void isSixElements(List<Integer> numbers) {
+    private void consistOfLottoSize(List<Integer> numbers) {
         if(numbers.size()!= LOTTO_SIZE){
-            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.getMessage(LOTTO_SIZE);
+            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.throwException(LOTTO_SIZE);
         }
     }
 
     private void isNotDuplicated(List<Integer> numbers) {
         if(numbers.stream().distinct().count() != numbers.size()){
-            ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.getMessage();
+            ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.throwException();
         }
     }
 
     private void isInRange(List<Integer> numbers) {
         boolean isInRangeValue = numbers.stream().allMatch(number -> number > MIN_LOTTO_NUMBER && number < MAX_LOTTO_NUMBER);
         if(!isInRangeValue){
-            ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+            ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }
     }
 }

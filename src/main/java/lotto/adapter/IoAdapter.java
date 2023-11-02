@@ -14,4 +14,6 @@ public interface IoAdapter {
     void printStatistics(Statistics statistics);
 
     void printMessage(String message);
+
+    void printLotto(List<Integer> lotto);
 }

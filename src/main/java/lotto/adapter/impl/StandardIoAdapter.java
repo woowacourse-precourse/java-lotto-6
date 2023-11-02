@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.adapter.IoAdapter;
 import lotto.domain.Statistics;
-import lotto.domain.Wallet;
 import lotto.vo.Lotto;
 
 public class StandardIoAdapter implements IoAdapter {
@@ -25,6 +24,11 @@ public class StandardIoAdapter implements IoAdapter {
 
     @Override
     public void printMessage(String message) {
+        System.out.println(message);
+    }
 
+    @Override
+    public void printLotto(List<Integer> lotto) {
+        System.out.println(lotto);
     }
 }

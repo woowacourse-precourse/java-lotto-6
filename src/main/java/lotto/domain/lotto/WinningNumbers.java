@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lotto.exception.winningNumber.WinningNumberFormatException;
-import lotto.exception.winningNumber.WinningNumberRangeException;
-import lotto.exception.winningNumber.WinningNumberSizeException;
+import lotto.exception.domain.winningnumber.WinningNumberFormatException;
+import lotto.exception.domain.winningnumber.WinningNumberRangeException;
+import lotto.exception.domain.winningnumber.WinningNumberSizeException;
 
 public class WinningNumbers {
     private static final Pattern winningNumbersRegex = Pattern.compile("\\d+(,*\\s*\\d*)*");

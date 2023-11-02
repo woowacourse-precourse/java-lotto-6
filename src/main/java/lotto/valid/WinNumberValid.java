@@ -9,10 +9,14 @@ public class WinNumberValid {
         List<String> nums = ConvertStr.splitByComma(input);
         validOnlyNum(nums);
         List<Integer> intNums = ConvertStr.strListToIntList(nums);
+        validLottoNums(intNums);
+        return intNums;
+    }
+
+    public static void validLottoNums(List<Integer> intNums) {
         validWinNumberSize(intNums);
         validWinNumberDistinctSize(intNums);
         validWinNumberValue(intNums);
-        return intNums;
     }
 
     private static void validOnlyNum(List<String> nums) {

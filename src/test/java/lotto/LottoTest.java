@@ -24,6 +24,79 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("3개 당첨 테스트.")
+    @Test
+    void 로또결과_테스트_3개() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
+        List<Integer> lottoNum = List.of(1, 2, 3, 10, 11, 12);
+        List<Integer> winningNum = List.of(1, 2, 3, 4, 6, 7);
+        Integer bonus = 8;
+
+        assertThat(new Lotto(lottoNum)
+                .getLottoResult(winningNum, bonus))
+                .isEqualTo(LottoResult.MATCH3);
+    }
+
+    @DisplayName("4개 당첨 테스트.")
+    @Test
+    void 로또결과_테스트_4개() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
+        List<Integer> lottoNum = List.of(1, 2, 3, 4, 11, 12);
+        List<Integer> winningNum = List.of(1, 2, 3, 4, 6, 7);
+        Integer bonus = 8;
+
+        assertThat(new Lotto(lottoNum)
+                .getLottoResult(winningNum, bonus))
+                .isEqualTo(LottoResult.MATCH4);
+    }
+
+    @DisplayName("5개 당첨 테스트.")
+    @Test
+    void 로또결과_테스트_5개() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
+        List<Integer> lottoNum = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNum = List.of(1, 2, 3, 4, 6, 7);
+        Integer bonus = 10;
+
+        assertThat(new Lotto(lottoNum)
+                .getLottoResult(winningNum, bonus))
+                .isEqualTo(LottoResult.MATCH5);
+
+    }
+
+    @DisplayName("5개 + 보너스 번호 당첨 테스트.")
+    @Test
+    void 로또결과_테스트_5개_보너스() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
+        List<Integer> lottoNum = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNum = List.of(1, 2, 3, 4, 6, 7);
+        Integer bonus = 7;
+
+        assertThat(new Lotto(lottoNum)
+                .getLottoResult(winningNum, bonus))
+                .isEqualTo(LottoResult.MATCH5_AND_BONUS);
+
+    }
+
+    @DisplayName("6개 당첨 테스트.")
+    @Test
+    void 로또결과_테스트_6개() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
+        List<Integer> lottoNum = List.of(1, 2, 3, 4, 6, 7);
+        List<Integer> winningNum = List.of(1, 2, 3, 4, 6, 7);
+        Integer bonus = 8;
+
+        assertThat(new Lotto(lottoNum)
+                .getLottoResult(winningNum, bonus))
+                .isEqualTo(LottoResult.MATCH6);
+
+    }
+
     @DisplayName("로또 객체의 정보를 정상적으로 표시하는지 테스트합니다..")
     @Test
     void toString_테스트() {

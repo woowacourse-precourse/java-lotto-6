@@ -38,9 +38,9 @@ public class Lotto {
         return lottos;
     }
 
-    /*public static void printLottos(Lotto[] lottos) {
+    public static void printLottos(Lotto[] lottos) {
         for(int i = 0; i < lottos.length; i++) {
             System.out.println(lottos[i].numbers);
         }
-    }*/
+    }
 }

@@ -9,7 +9,7 @@
 [] 발행한 로또 수량 및 번호를 출력
     [x] 로또 발행 X 로또 수량만큼  //MakeLottoNumbers
     [] 로또 번호는 오름차순으로 정렬     //SortLottoNumbers
-    [] 로또 수량 및 번호 출력    //PrintLotto
+    [x] 로또 수량 및 번호 출력    //PrintLotto
 
 [] 당첨 번호(,기준)와 보너스 번호를 입력   //EnterNumbers
     [] 예외처리

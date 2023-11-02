@@ -1,8 +1,6 @@
 package lotto;
 import camp.nextstep.edu.missionutils.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,7 +11,7 @@ public class Application {
         System.out.println(size + "개를 구매했습니다.");
 
         Lotto[] lottos = Lotto.makeLottoNumbers(size);
-        //Lotto.printLottos(lottos);
+        Lotto.printLottos(lottos);
     }
 
 

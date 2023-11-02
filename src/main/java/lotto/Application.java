@@ -30,19 +30,27 @@ public class Application {
         return box;
     }
 
+    private static void isBoundary(int n){
+        if (n > 45)
+            throw numError;
+    }
+
+    private static int myParseInt(String s){
+        int n = 0;
+        try {
+            n = Integer.parseInt(s);
+        } catch (Exception e) {
+            throw numError;
+        }
+        return n;
+    }
+
     private static List<Integer> setNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> box = new ArrayList<>();
         for (String s : Console.readLine().split(",")) {
-            int n = 0;
-            try {
-                n = Integer.parseInt(s);
-            } catch (Exception e) {
-                throw numError;
-            }
-            if (n > 45)
-                throw numError;
-
+            int n = myParseInt(s);
+            isBoundary(n);
             box.add(Integer.parseInt(s));
         }
         System.out.println();
@@ -51,14 +59,8 @@ public class Application {
 
     private static int setBonus(Lotto userNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus = 0;
-        try {
-            bonus = Integer.parseInt(Console.readLine());
-        } catch (Exception e) {
-            throw numError;
-        }
-        if (bonus > 45)
-            throw numError;
+        int bonus = myParseInt(Console.readLine());
+        isBoundary(bonus);
         if (userNumbers.lottoContains(bonus))
             throw dupError;
         System.out.println();

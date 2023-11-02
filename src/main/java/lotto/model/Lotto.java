@@ -10,4 +10,8 @@ public class Lotto {
         LottoException.checkNumbersException(numbers);
         this.numbers = numbers;
     }
+
+    public String sortNumbers() {
+        return numbers.stream().sorted().map(String::valueOf).reduce((a,b) -> a + ", " + b).orElse("");
+    }
 }

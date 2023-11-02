@@ -2,6 +2,7 @@ package lotto.model;
 
 import com.sun.security.auth.NTSidPrimaryGroupPrincipal;
 import java.util.List;
+import java.util.function.Predicate;
 import lotto.exception.LottoException;
 
 public class Lotto {
@@ -18,5 +19,9 @@ public class Lotto {
 
     public boolean hasBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public int countMatchNumbers(Lotto winningLotto) {
+        return (int) numbers.stream().filter((Predicate<? super Integer>) winningLotto.numbers::contains).count();
     }
 }

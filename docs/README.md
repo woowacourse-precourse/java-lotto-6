@@ -75,7 +75,7 @@
 
 - [x] 입력 문자열을 숫자로 변환한다.
     - 숫자 변환 실패 시 IllegalArgumentException 발생
-- [ ] 숫자가 올바른 단위인지 검사한다.
+- [x] 숫자가 올바른 단위인지 검사한다.
     - 단위가 올바르지 않을 경우 IllegalArgumentException 발생
 - [ ] 숫자가 1 ~ 45 범위내 숫자인지 확인한다.
     - 범위 밖일 경우 IllegalArgumentException 발생

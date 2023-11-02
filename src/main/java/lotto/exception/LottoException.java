@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public class LottoException extends IllegalArgumentException {
+
     private LottoException(final ErrorMessage errorMessage) {
         super(errorMessage.getMessage());
     }

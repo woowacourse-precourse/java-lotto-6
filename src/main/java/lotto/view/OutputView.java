@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.Comparator;
 import java.util.List;
 import lotto.dto.ResultDto;
 import lotto.dto.ResultsDto;
@@ -13,6 +12,7 @@ public class OutputView {
     private static final String HAS_BONUS = ", 보너스 볼 일치";
     private static final String NONE_BONUS = "";
     private static final String RATE_OF_RETURN = "총 수익률은 %,.1f%%입니다.\n";
+
     public void printLottoNumbers(final List<List<Integer>> lottoNumbers) {
         System.out.printf(LOTTO_BUY_FORMAT, lottoNumbers.size());
 

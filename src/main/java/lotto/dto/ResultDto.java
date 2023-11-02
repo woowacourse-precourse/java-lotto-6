@@ -3,12 +3,14 @@ package lotto.dto;
 import lotto.constant.Rank;
 
 public class ResultDto implements Comparable<ResultDto> {
+
     private final int sameNumberCount;
     private final boolean hasBonus;
     private final int reward;
     private final Long count;
 
-    private ResultDto(final int sameNumberCount, final boolean hasBonus, final int reward, final Long count) {
+    private ResultDto(final int sameNumberCount, final boolean hasBonus, final int reward,
+            final Long count) {
         this.sameNumberCount = sameNumberCount;
         this.hasBonus = hasBonus;
         this.reward = reward;

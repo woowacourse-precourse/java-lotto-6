@@ -4,10 +4,10 @@ import static lotto.constant.LottoConstant.MONEY_UNIT;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import lotto.constant.LottoConstant;
 import lotto.constant.Rank;
 
 public class Result {
+
     private final Map<Rank, Long> rankCount;
 
     private Result(final Map<Rank, Long> rankCount) {

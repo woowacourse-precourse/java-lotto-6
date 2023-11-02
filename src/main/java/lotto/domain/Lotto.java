@@ -13,6 +13,7 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {

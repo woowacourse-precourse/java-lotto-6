@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static lotto.constant.LottoConstant.MONEY_UNIT;
-import static lotto.constant.Rank.NONE;
 import static lotto.exception.ErrorMessage.INVALID_UNIT;
 import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 
@@ -9,15 +8,14 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.constant.LottoConstant;
 import lotto.constant.Rank;
 import lotto.exception.LottoException;
 
 public class LottoFactory {
+
     private static final int ZERO = 0;
     private final List<Lotto> lottos;
     private final int inputMoney;
@@ -31,7 +29,8 @@ public class LottoFactory {
         return new LottoFactory(createLottos(numberGenerator, money), money);
     }
 
-    private static List<Lotto> createLottos(final NumberGenerator numberGenerator , final int money) {
+    private static List<Lotto> createLottos(final NumberGenerator numberGenerator,
+            final int money) {
         validateMoney(money);
 
         final int lottoCount = money / MONEY_UNIT.getValue();

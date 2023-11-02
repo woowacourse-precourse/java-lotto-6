@@ -15,6 +15,7 @@ public class LottoGameController {
 
     public void play() {
         outputView.printReadMoneyAmountMessage();
+        long moneyAmount = inputView.readMoneyAmount();
 
     }
 }

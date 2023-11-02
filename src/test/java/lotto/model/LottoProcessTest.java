@@ -15,4 +15,11 @@ class LottoProcessTest {
     void 랜덤_번호_생성_확인() {
         Assertions.assertNotNull(lottoProcess);
     }
+
+    @DisplayName("로또 구매 확인")
+    @Test
+    void 로또_구매_확인() {
+        int money = 3000;
+        assertThat(lottoProcess.purchaseLotto(money).size()).isEqualTo(money / LOTTO_PRICE);
+    }
 }

@@ -10,16 +10,22 @@ public class InputView {
 
     public static String inputMoney() {
         System.out.println(INPUT_MONEY_MESSAGE);
-        return Console.readLine();
+        String money = Console.readLine();
+        System.out.println();
+        return money;
     }
 
     public static String inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
-        return Console.readLine();
+        String winningNumbers =  Console.readLine();
+        System.out.println();
+        return winningNumbers;
     }
 
     public static String inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return bonusNumber;
     }
 }

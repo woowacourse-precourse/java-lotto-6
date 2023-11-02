@@ -13,6 +13,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private static final String SEPARATOR = ",";
+
     private static LottoController lottoController;
 
     private final LottoNumberGenerator lottoNumberGenerator = LottoNumberGenerator.getInstance();
@@ -31,6 +33,7 @@ public class LottoController {
     public void doLotto() {
         int money = createMoney();
         List<LottoNumber> lottoNumbers = lottoNumberGenerator.createLottoNumbers(money);
+        OutputView.printLottoNumbers(lottoNumbers);
         Lotto lotto = new Lotto(createWinningNumber());
         lotto.setBonusNumber(createBonusNumber());
 
@@ -47,7 +50,7 @@ public class LottoController {
     }
 
     private List<Integer> createWinningNumber() {
-        String[] numbers = InputView.inputWinningNumbers().split(",");
+        String[] numbers = InputView.inputWinningNumbers().split(SEPARATOR);
         try {
             return Arrays.stream(numbers)
                     .map(Integer::parseInt)

@@ -25,21 +25,49 @@ public class StartLotto {
         }
     }
 
+    private List<Integer> changeStringToInteger(String[] inputString) {
+        List<Integer> retVal = new ArrayList<Integer>();
+
+        for(String s: inputString) {
+            int number = changeStringToInteger(s);
+            checkNumberInRange(number);
+            checkDuplicatedNumber(number);
+            retVal.add(number);
+        }
+
+        return retVal;
+    }
+
+    private void checkNumberInRange(int number) {
+        if(number < 1 || 45 < number) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkDuplicatedNumber(int number) {
+        for(Integer winningNumber: this.winningNumbers) {
+            if(number == winningNumber) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     private void inputPurchasePrice() {
         printMessageForInputPurchasePrice();
 
         String purchasePrice = Console.readLine();
 
-        this.purchasePrice = changeStringToInteger(purchasePrice);
-        checkIs1000wonUnit();
+        int purchaseNumber = changeStringToInteger(purchasePrice);
+        checkIs1000wonUnit(purchaseNumber);
+        this.purchasePrice = purchaseNumber;
     }
 
     private void printMessageForInputPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    private void checkIs1000wonUnit() {
-        if(this.purchasePrice % 1000 != 0) {
+    private void checkIs1000wonUnit(int price) {
+        if(price % 1000 != 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -49,7 +77,7 @@ public class StartLotto {
         String winningNumbers = Console.readLine();
 
         String[] splitWinningNumbers = splitInputString(winningNumbers);
-        changeStringToInteger(splitWinningNumbers);
+        this.winningNumbers = changeStringToInteger(splitWinningNumbers);
     }
 
     private void printMessageForInputWinningNumbers() {
@@ -61,26 +89,17 @@ public class StartLotto {
         return winningNumbers.split(",", 0);
     }
 
-    private void changeStringToInteger(String[] inputString) {
-        for(int i = 0; i < inputString.length; i++) {
-            int winningNumber = changeStringToInteger(inputString[i]);
-            checkWinningNumberInRange(winningNumber);
-            checkDuplicatedNumber(winningNumber);
-            this.winningNumbers.add(winningNumber);
-        }
+    private void inputBonusNumber() {
+        printMessageForInputBonusNumber();
+        String bonusNumberString = Console.readLine();
+
+        int bonusNumber = changeStringToInteger(bonusNumberString);
+        checkNumberInRange(bonusNumber);
+        checkDuplicatedNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
-    private void checkWinningNumberInRange(int winningNumber) {
-        if(winningNumber < 1 || 45 < winningNumber) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkDuplicatedNumber(int winningNumber) {
-        for(int i = 0; i < this.winningNumbers.size(); i++) {
-            if(winningNumber == this.winningNumbers.get(i)) {
-                throw new IllegalArgumentException();
-            }
-        }
+    private void printMessageForInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요");
     }
 }

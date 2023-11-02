@@ -11,6 +11,7 @@ public class LottoBuyInputView extends Input{
         printRequestLottoPurchaseAmount();
         int amount = parseInt(readLine());
         checkIsMultipleOfDenomination(amount, DENOMINATION);
+        checkIsValidLottoAmount(amount);
         return amount;
     }
 
@@ -18,9 +19,15 @@ public class LottoBuyInputView extends Input{
         System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE);
     }
 
-    private void checkIsMultipleOfDenomination(int value, int denomination) {
-        if (value % denomination != 0) {
+    private void checkIsMultipleOfDenomination(int amount, int denomination) {
+        if (amount % denomination != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+        }
+    }
+
+    public void checkIsValidLottoAmount(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
         }
     }
 

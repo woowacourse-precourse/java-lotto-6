@@ -61,6 +61,10 @@ public class Lotto {
     	return strJoiner.toString();
     }
     
+    public boolean isContain(int number) {
+    	return numbers.contains(number);
+    }
+    
     public int getNumber(int index) {
     	return numbers.get(index);
     }

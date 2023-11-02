@@ -59,8 +59,8 @@ public class Application {
 
     public static void main(String[] args) {
         Lotto winNumber = new Lotto(getUserNumbers());
+        int bonus = getUserBonus(winNumber);
         Lotto user = new Lotto(setRandomNumbers());
-        int bonus = getUserBonus(user);
 
         judge(winNumber, user, bonus);
     }

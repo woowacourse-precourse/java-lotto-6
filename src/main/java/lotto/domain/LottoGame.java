@@ -21,4 +21,10 @@ public final class LottoGame {
         }
         return new LottoGame(lottos, buyingAmount);
     }
+
+    public void OrderByAsc() {
+        for (Lotto lotto : lottos) {
+            lotto.numbersOrderByAsc();
+        }
+    }
 }

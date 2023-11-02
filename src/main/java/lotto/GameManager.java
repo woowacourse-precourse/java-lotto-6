@@ -1,7 +1,5 @@
 package lotto;
 
-import lotto.constant.NumberConstant;
-import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
@@ -28,5 +26,6 @@ public class GameManager {
         int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
         messagePrinter.printBuyingAmountMessage(buyingAmount);
         LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
+        lottoGame.OrderByAsc();
     }
 }

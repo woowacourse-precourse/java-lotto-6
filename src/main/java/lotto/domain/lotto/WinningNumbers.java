@@ -17,6 +17,7 @@ public class WinningNumbers {
         validateFormat(winningNumber);
         List<Integer> winningNumbers = winningNumbersToList(winningNumber);
         validateSize(winningNumbers);
+        validateRange(winningNumbers);
     }
 
     private void validateFormat(String winningNumber) {
@@ -31,6 +32,16 @@ public class WinningNumbers {
         }
     }
 
+    private void validateRange(List<Integer> winningNumbers) {
+        if (hasInvalidRangeNum(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static boolean hasInvalidRangeNum(List<Integer> winningNumbers) {
+        return winningNumbers.stream().allMatch(num -> num >= 1 && num <= 45);
+    }
+
     private List<Integer> winningNumbersToList(String winningNumber) {
         return Arrays.stream(extractNumbers(winningNumber))
                 .sorted()
@@ -42,5 +53,4 @@ public class WinningNumbers {
     private String[] extractNumbers(String winningNumber) {
         return winningNumber.split("\\D+");
     }
-
 }

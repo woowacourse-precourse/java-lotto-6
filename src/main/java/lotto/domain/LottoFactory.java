@@ -54,12 +54,12 @@ public class LottoFactory {
                 .toList();
     }
 
-    public Map<Rank, Integer> calculateResult(Lotto answerLotto, int bonusNumber) {
+    public Map<Rank, Long> calculateResult(Lotto answerLotto, int bonusNumber) {
         answerLotto.validateBonusNumber(bonusNumber);
 
         return lottos.stream()
                 .map(lotto -> lotto.getRank(answerLotto, bonusNumber))
-                .collect(Collectors.groupingBy());
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
 
     }
 }

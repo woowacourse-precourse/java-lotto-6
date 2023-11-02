@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constant.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.RandomNumberGenerator;
+import lotto.domain.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,9 +25,14 @@ public class LottoController {
 
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
 
-        List<Integer> inputLotto = inputView.enterLotto();
+        Lotto answerLotto = new Lotto(inputView.enterLotto());
         int bonusNumber = inputView.enterBonusNumber();
 
-        lottoFactory.calculateResult(new Lotto(inputLotto), bonusNumber);
+        Result result = Result.of(lottoFactory.calculateResult(answerLotto, bonusNumber));
+
+        float rateOfReturn = result.calculateRate(money);
+
+        outputView.printResult(result);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 }

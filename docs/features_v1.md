@@ -6,6 +6,8 @@
 
 ### `class Money`: 금액 검증 및 표시
 
+    `spend(int amount)`: 현재 소지금에서 `amount`만큼 차감
+
 ---
 
 ### `class Wallet`: 잔액을 담을 수 있는 지갑을 표현
@@ -20,7 +22,7 @@
 ### `class Lotto`: 로또 번호 6자리를 담은 티켓
 
     - [ ] 필드:
-      `List <Integer> numbers`: 로또 번호 6자리
+      `List <LottoNumber> numbers`: 로또 번호 6자리
 
     - [ ] 기능:
       `boolean contains(int): 특정 숫자 포함 여부 반환
@@ -29,38 +31,39 @@
 ### `class Lottos`: 로또 일급 컬렉션
 
     - [ ] 필드:
-      `List <Integer> numbers`: 로또 번호 6자리
+      `List <Lotto> lottos`: 사용자가 구매한 모든 로또 소유
 
 ---
 
-## `class LottoDispenser`: 로또 발행기
+## `class LottoStore`: 로또 판매점
 
     - [ ] 필드:
-      `List <Integer> numbers`: 로또 번호 6자리
+        `RandomLottoGenerator`
+        `static Money PRICE_PER_LOTTO`
+    - [ ] 기능:
+        `Lottos buyUntilOutOfMoney(Money)`: 모든 금액을 소비하여 로또 구매
+
+---
+
+## `class LottoGenerator`: 로또 발행기
+
+    - [ ] 필드:
+        `SizedNumbersGenerator`: N자리의 숫자로 이루어진 리스트 생성기
 
     - [ ] 기능:
-      `Lotto dispense()`: 로또 발행 기능
+        `Lotto generate()`: 임의의 번호를 가진 로또 발행
 
 ---
 
 ## `interface SizedNumbersGenerator`: N자리의 랜덤 숫자 배열 반환
 
     - [ ] 필드:
+        `startInclusive`: 생성할 랜덤 숫자의 최소 범위
+        `endInclusive`: 생성할 랜덤 숫자의 최대 범위
+        `size`: 생성할 숫자 배열 길이
 
     - [ ] 기능:
       `List <Integer> generate`: N자리의 랜덤 숫자 리스트 반환
-
-  
----
-
-## `class LottoStore`: 로또 판매점
-
-    - [ ] 필드:
-      `static Money PRICE_PER_LOTTO`
-      `List <Integer> numbers`: 로또 번호 6자리
-
-    - [ ] 기능:
-      `buyUntilOutOfMoney`: 가진 금액을 모두 소진할 때까지 로또 구매
 
 ---
 

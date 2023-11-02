@@ -13,8 +13,10 @@ public class InputController {
     }
 
     public static String scanWinningLottoTicket() {
-        // TO DO: 당첨 번호 입력받은 값 반환
-        return "";
+        System.out.println(InputView.enterWinningLottoTicket());
+        String userInput = Console.readLine();
+        // TO DO: 사용자 입력 검증해야 함
+        return userInput;
     }
 
     public static String scanBonusNumber() {

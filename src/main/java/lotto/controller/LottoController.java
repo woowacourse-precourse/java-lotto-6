@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -21,6 +22,8 @@ public class LottoController {
 
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
         List<Integer> inputLotto = inputView.enterLotto();
+        Lotto answerLott = new Lotto(inputLotto);
         int bonusNumber = inputView.enterBonusNumber();
+
     }
 }

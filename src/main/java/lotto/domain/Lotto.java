@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.utils.ValidationUtil;
 
 public class Lotto {
@@ -29,7 +30,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public List<Integer> getNumbers(){
-        return Collections.unmodifiableList(numbers);
+    public LottoDto toDTO() {
+        return new LottoDto(numbers);
     }
 }

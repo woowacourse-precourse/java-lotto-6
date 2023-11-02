@@ -24,6 +24,7 @@ public class LottoController {
         validatePurchaseAmountInput(purchaseAmountInput);
         //구입처리
         lottoService.purchaseLottoTickets(purchaseAmountInput);
+        outputView.printLottos(lottoService.getLottoDtos());
         // 사용자로부터 당첨 번호를 입력받고
 
         // 사용자로부터 보너스 번호를 입력받고

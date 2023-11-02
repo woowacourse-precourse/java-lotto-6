@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,8 @@ class LottoTest {
 
         // when
         Lotto lotto = lottoMachine.generateLotto();
-        List<Integer> numbers = lotto.getNumbers();
+        LottoDto lottoDto = lotto.toDTO();
+        List<Integer> numbers = lottoDto.getNumbers();
 
         // then
         List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());

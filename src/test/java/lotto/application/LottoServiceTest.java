@@ -19,6 +19,6 @@ public class LottoServiceTest {
         lottoService.purchaseLottoTickets(purchaseAmount);
 
         // then
-        assertThat(lottoService.getLottos().size()).isEqualTo(14); // 14,000원으로 14장의 로또를 살 수 있음
+        assertThat(lottoService.getLottoDtos().size()).isEqualTo(14); // 14,000원으로 14장의 로또를 살 수 있음
     }
 }

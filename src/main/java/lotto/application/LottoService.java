@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
+import lotto.dto.LottoDto;
 
 public class LottoService {
 
@@ -33,7 +34,9 @@ public class LottoService {
         );
     }
 
-    public List<Lotto> getLottos(){
-        return Collections.unmodifiableList(lottos);
+    public List<LottoDto> getLottoDtos() {
+        return lottos.stream()
+                .map(Lotto::toDTO)
+                .toList();
     }
 }

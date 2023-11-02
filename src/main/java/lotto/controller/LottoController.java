@@ -16,7 +16,10 @@ public class LottoController {
         int quantity = budget / 1000;
         List<Lotto> lottoTicketsPurchased = createLottoTickets(quantity);
 
-        // 구입한 로또 개수와 로또 번호 출력
+        // 구입한 로또 개수 출력
+        OutputController.printLottoTicketsCount(lottoTicketsPurchased.size());
+
+        // 구입한 로또 번호들 출력
         OutputController.printLottoTickets(lottoTicketsPurchased);
 
         // 당첨 번호 입력 받기

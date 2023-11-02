@@ -4,6 +4,7 @@ import static lotto.view.constant.Message.*;
 
 import java.util.Objects;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,5 +24,8 @@ public class LottoController {
         outputView.printDynamicMessage(NOTICE_PURCHASE_QUANTITY, lottoTicketQuantity);
 
         outputView.printIterableMessage(lottoTickets.getLottoNumbers());
+
+        String inputWinningNumber = inputView.requestWinningNumber();
+        WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
     }
 }

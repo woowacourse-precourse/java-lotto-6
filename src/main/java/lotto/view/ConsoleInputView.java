@@ -10,4 +10,9 @@ public class ConsoleInputView implements InputView{
         System.out.println(ASK_PURCHASE_MONEY.getMessage());
         return readLine();
     }
+
+    public String requestWinningNumber() {
+        System.out.println(ASK_WINNING_NUMBER.getMessage());
+        return readLine();
+    }
 }

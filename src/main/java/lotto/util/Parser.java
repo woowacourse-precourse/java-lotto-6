@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.util.validator.LottoValidator;
 
 public class Parser {
@@ -11,5 +13,10 @@ public class Parser {
         LottoValidator.validateNotNull(input);
         LottoValidator.validateNumeric(input);
         return Integer.parseInt(input);
+    }
+
+    public static List<String> splitByComma(String input) {
+        LottoValidator.validateNotNull(input);
+        return Arrays.asList(input.trim().split(","));
     }
 }

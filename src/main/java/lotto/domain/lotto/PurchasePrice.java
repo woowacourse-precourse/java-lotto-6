@@ -1,7 +1,6 @@
 package lotto.domain.lotto;
 
 public class PurchasePrice {
-
     private static final String priceRegex = "^[0-9]+(,*\\d)*$";
     private final int price;
 

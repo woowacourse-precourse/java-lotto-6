@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
-
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(PurchasePrice price) {

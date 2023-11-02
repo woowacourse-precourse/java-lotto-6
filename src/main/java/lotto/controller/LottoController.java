@@ -7,6 +7,7 @@ import lotto.service.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -26,6 +27,13 @@ public class LottoController {
         LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator);
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
+        List<Integer> winningNumbers = readWinningNumbers();
+    }
+
+    private List<Integer> readWinningNumbers() {
+        return Arrays.stream(inputView.readWinningNumbers().split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private Integer buyLottoTicket(Integer amount) {

@@ -23,5 +23,10 @@ public class Output {
         System.out.println();
         System.out.println(Constants.INPUT_WINNING_NUMBERS);
     }
+
+    public void printInputBonusNumberMessage() {
+        System.out.println();
+        System.out.println(Constants.INPUT_BONUS_NUMBER);
+    }
 }
 

@@ -6,7 +6,7 @@ import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
 import lotto.exception.domain.bonusnumber.BonusNumberRangeException;
 
 public class BonusNumber {
-    private static final Pattern bonusNumberRegex = Pattern.compile("\\d");
+    private static final Pattern bonusNumberRegex = Pattern.compile("\\d+");
 
     private final int number;
 

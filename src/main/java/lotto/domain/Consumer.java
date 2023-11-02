@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Consumer {
     private static final int AMOUNT = 1000;
     private static final int MAX_AMOUNT = 100000;
 
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
     private final int buyAmount;
 
     public Consumer(int buyAmount) {
@@ -50,5 +51,18 @@ public class Consumer {
 
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
+    }
+
+    public int getBuyAvailableQuantity() {
+        return buyAmount / AMOUNT;
+    }
+
+    public void buyQuantityCheck() {
+        int quantity = lottos.size();
+        int availableQuantity = getBuyAvailableQuantity();
+
+        if (quantity != availableQuantity) {
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -15,4 +15,8 @@ public class InputView {
     public List<Integer> readWinningNumbers() {
         return Convert.stringToIntegerList(readLine());
     }
+
+    public Integer readBonusNumber() {
+        return Convert.stringToInteger(readLine());
+    }
 }

@@ -1,11 +1,21 @@
 package lotto.Controller;
 
+import lotto.Model.LottoRandom;
 import lotto.View.View;
+
+import java.util.List;
 
 public class Controller {
     public void LotteStart(){
         View view = new View();
+        LottoRandom randLotto = new LottoRandom();
+
         int myMoney = view.buyMoney();
-        view.buyLotto(myMoney);
+        int count = view.buyLotto(myMoney);
+
+        System.out.println(myMoney / 1000 + "개를 구매했습니다.");
+        List listLotto = randLotto.getBuyLotto(count);
+        view.myLotto(listLotto);
+
     }
 }

@@ -2,9 +2,15 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class View {
+    public void myLotto(List<Integer> k){
+        for(int i = 0; i < k.size(); i++){
+            System.out.println(k.get(i));
+        }
+    }
 
     public int buyMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -12,7 +18,6 @@ public class View {
         return stringToList(money);
     }
     public int buyLotto(int buyMoney){
-        System.out.println(buyMoney / 1000 + "개를 구매했습니다.");
         return buyMoney / 1000;
     }
     private int stringToList(String money){

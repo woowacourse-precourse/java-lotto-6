@@ -8,9 +8,11 @@ public class LottoGenerator {
 
     private static final int LOTTO_SIZE = 6;
 
-    private final List<Integer> lottoNumbers = new ArrayList<>();
+    private List<Integer> lottoNumbers;
 
     public List<Integer> generateLottoNumbers() {
+        lottoNumbers = new ArrayList<>();
+
         while (lottoNumbers.size() != LOTTO_SIZE) {
             int randomNumber = RandomGenerator.generateNumber();
             if (!isDuplicateNumber(randomNumber) && isValidNumberRange(randomNumber)) {

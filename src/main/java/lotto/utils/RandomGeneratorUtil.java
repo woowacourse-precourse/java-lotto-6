@@ -1,7 +1,15 @@
 package lotto.utils;
 
+import static lotto.contents.ContentNumbers.LOTTO_MAX_NUMBER;
+import static lotto.contents.ContentNumbers.LOTTO_MIN_NUMBER;
+import static lotto.contents.ContentNumbers.LOTTO_NUMBERS_COUNT;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+
 public class RandomGeneratorUtil {
-    /**
-     * 랜덤 번호 생성 유틸리티
-     */
+    public static List<Integer> generateRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getNumber(), LOTTO_MAX_NUMBER.getNumber(),
+                LOTTO_NUMBERS_COUNT.getNumber());
+    }
 }

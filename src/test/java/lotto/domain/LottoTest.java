@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +26,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("발행된 로또 번호는 오름차순으로 정렬되어야 한다.")
+    @Test
+    void lottoNumbersShouldBeSorted() {
+        // given
+        LottoMachine lottoMachine = new LottoMachine();
+
+        // when
+        Lotto lotto = lottoMachine.generateLotto();
+        List<Integer> numbers = lotto.getNumbers();
+
+        // then
+        List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+        assertThat(numbers).isEqualTo(sortedNumbers);
+    }
 }

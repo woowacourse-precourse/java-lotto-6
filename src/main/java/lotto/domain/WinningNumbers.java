@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import lotto.utils.ValidationUtil;
 
 import java.util.List;
@@ -12,18 +13,21 @@ public class WinningNumbers {
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumbers(winningNumbers, bonusNumber);
+        this.winningNumbers = Collections.unmodifiableList(winningNumbers);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         ValidationUtil.validateCorrectNumbersCount(winningNumbers);
         ValidationUtil.validateNoDuplicates(winningNumbers);
         ValidationUtil.validateNumberRange(winningNumbers);
         ValidationUtil.validateBonusNumber(bonusNumber);
         ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
-
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+        return Collections.unmodifiableList(winningNumbers);
     }
 
     public int getBonusNumber() {

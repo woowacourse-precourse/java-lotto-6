@@ -8,17 +8,17 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public static String inputPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
+        System.out.println(INPUT_PURCHASE_AMOUNT.getValue());
         return Console.readLine();
     }
 
     public static String inputWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS);
+        System.out.println(INPUT_WINNING_NUMBERS.getValue());
         return Console.readLine();
     }
 
     public static String inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER);
+        System.out.println(INPUT_BONUS_NUMBER.getValue());
         return Console.readLine();
     }
 }

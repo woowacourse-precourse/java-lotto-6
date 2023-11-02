@@ -42,7 +42,7 @@ public class ValidationUtil {
     // 각 숫자가 1~45 범위에 있는지 검사합니다.
     public static void validateNumberRange(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < LOTTO_MAX_NUMBER.getNumber() || number > LOTTO_MIN_NUMBER.getNumber())) {
+                .anyMatch(number -> number < LOTTO_MIN_NUMBER.getNumber() || number > LOTTO_MAX_NUMBER.getNumber())) {
             throw new IllegalArgumentException(INVALID_RANGE.getErrorMessage());
         }
     }

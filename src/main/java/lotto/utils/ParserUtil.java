@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ParserUtil {
 
     public static int parseStringToInt(String input) {
-        return Integer.parseInt(input.trim());
+        return Integer.parseInt(input);
     }
 
     public static List<Integer> parseStringToIntList(String input) {

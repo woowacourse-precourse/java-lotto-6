@@ -18,7 +18,8 @@ class LottoControllerTest {
     public void buyLottos() {
         // given
         String amount = "10000";
-        LottoController lottoController = new LottoController(new LottoBuyInputView());
+        int denomination = 1000;
+        LottoController lottoController = new LottoController(new LottoBuyInputView(denomination));
         System.setIn(new ByteArrayInputStream(amount.getBytes()));
         // when
         Lottos lottos = lottoController.buyLottos();

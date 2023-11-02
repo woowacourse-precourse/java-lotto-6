@@ -17,8 +17,9 @@ class InputValidatorTest {
     public void checkIsMultipleOfDenomination() {
         // given
         int number = 1200;
+        int denomination = 1000;
         // when // then
-        assertThatThrownBy(() -> inputValidator.checkIsMultipleOfDenomination(number))
+        assertThatThrownBy(() -> inputValidator.checkIsMultipleOfDenomination(number, denomination))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
     }

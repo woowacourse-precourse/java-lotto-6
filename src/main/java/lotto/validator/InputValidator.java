@@ -4,10 +4,8 @@ import lotto.message.ErrorMessage;
 
 public class InputValidator {
 
-    private static final int DENOMINATION = 1000;
-
-    public void checkIsMultipleOfDenomination(int amount) {
-        if (amount % DENOMINATION != 0) {
+    public void checkIsMultipleOfDenomination(int amount, int denomination) {
+        if (amount % denomination != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
     }

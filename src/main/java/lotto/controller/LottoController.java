@@ -5,11 +5,12 @@ import lotto.domain.lotto.Lottos;
 import lotto.util.LottoFactory;
 import lotto.view.input.LottoBuyInputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoController {
+
+    private static final int DENOMINATION = 1000;
 
     private final LottoBuyInputView lottoBuyInputView;
 
@@ -19,14 +20,12 @@ public class LottoController {
 
     public Lottos buyLottos(){
         int amount = lottoBuyInputView.requestLottoPurchaseAmount();
-        List<Lotto> lottos = createLottos(amount);
-
-        return new Lottos(lottos);
+        return new Lottos(createLottos(amount));
     }
 
     private List<Lotto> createLottos(int amount) {
         return Stream.generate(LottoFactory::getLotto)
-                .limit(amount / 1000)
+                .limit(amount / DENOMINATION)
                 .toList();
     }
 }

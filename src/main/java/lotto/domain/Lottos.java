@@ -9,4 +9,14 @@ public class Lottos {
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public String getPurchasedLottos() {
+        StringBuilder purchasedLottos = new StringBuilder();
+
+        for (Lotto lotto : lottos) {
+            purchasedLottos.append(lotto.getNumbers()).append("\n");
+        }
+
+        return purchasedLottos.toString();
+    }
 }

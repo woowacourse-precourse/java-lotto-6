@@ -11,10 +11,13 @@ public class LottoIssueController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
-    private int getLottoCount() {
+    public int getMoneyInput() {
         outputView.printInputMoneyMessage();
-        int moneyInput = inputView.getMoney();
-        return moneyInput / LottoSetting.LOTTO_PRICE.getNumber();
+        return inputView.getMoney();
+    }
+
+    public int getLottoCount(int inputMoney) {
+        return inputMoney / LottoSetting.LOTTO_PRICE.getNumber();
     }
 
     private Lotto createLotto() {
@@ -22,12 +25,16 @@ public class LottoIssueController {
         return new Lotto(randomNumberGenerator.getRandomNumbers());
     }
 
-    public Lottos createLottos() {
+    public Lottos createLottos(int lottoCount) {
         Lottos lottos = new Lottos();
-        int lottoCount = getLottoCount();
         for (int count = 0; count < lottoCount; count++) {
             lottos.addLotto(createLotto());
         }
         return lottos;
+    }
+
+    public void getPurchaseDetails(Lottos lottos, int lottoCount) {
+        outputView.printPurchaseDetailsMessage(lottoCount);
+        outputView.printPurchasedLottos(lottos.getPurchasedLottos());
     }
 }

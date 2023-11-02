@@ -8,6 +8,15 @@ public class OutputView {
         System.out.println(OutputViewMessage.INPUT_MONEY_MESSAGE.getMessage());
     }
 
+    public void printPurchaseDetailsMessage(int lottoCount) {
+        System.out.printf(OutputViewMessage.PURCHASE_DETAILS_MESSAGE.getMessage(), lottoCount);
+        System.out.println();
+    }
+
+    public void printPurchasedLottos(String purchasedLottos) {
+        System.out.print(purchasedLottos);
+    }
+
     public void printInputWinningNumbersMessage() {
         System.out.println(OutputViewMessage.INPUT_WINNING_NUMBERS.getMessage());
     }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -8,11 +7,11 @@ public class Lottos {
     private final List<Lotto> elements;
 
     public Lottos(final List<Lotto> elements) {
-        this.elements = Collections.unmodifiableList(elements);
+        this.elements = List.copyOf(elements);
     }
 
     public List<Lotto> toElements() {
-        return Collections.unmodifiableList(elements);
+        return List.copyOf(elements);
     }
 
     public int numOfElement() {

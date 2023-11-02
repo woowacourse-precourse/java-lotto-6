@@ -59,8 +59,6 @@ public class LottoFactory {
     }
 
     public Map<Rank, Long> calculateResult(final Lotto answerLotto, final int bonusNumber) {
-        answerLotto.validateBonusNumber(bonusNumber);
-
         return lottos.stream()
                 .collect(Collectors.toMap(lotto -> lotto.getRank(answerLotto, bonusNumber),
                         value -> 1L,

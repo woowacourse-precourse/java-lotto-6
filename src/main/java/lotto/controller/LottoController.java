@@ -25,7 +25,8 @@ public class LottoController {
 
         final Lotto answerLotto = getAnswerLotto();
 
-        final Result result = getResult(lottoFactory, answerLotto);
+        final int bonusNumber = getBonusNumber(lottoFactory, answerLotto);
+        Result result = Result.of(lottoFactory.calculateResult(answerLotto, bonusNumber));
 
         outputView.printResult(ResultsDto.of(result));
         outputView.printRateOfReturn(result.calculateRate());
@@ -51,11 +52,13 @@ public class LottoController {
         }
     }
 
-    private Result getResult(final LottoFactory lottoFactory, final Lotto answerLotto) {
+    private int getBonusNumber(final LottoFactory lottoFactory, final Lotto answerLotto) {
         while (true) {
             try {
                 int bonusNumber = inputView.enterBonusNumber();
-                return Result.of(lottoFactory.calculateResult(answerLotto, bonusNumber));
+                answerLotto.validateBonusNumber(bonusNumber);
+
+                return bonusNumber;
             } catch (LottoException lottoException) {
                 outputView.printError(lottoException.getMessage());
             }

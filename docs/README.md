@@ -15,7 +15,7 @@
 - validateDigit(char) : 입력값이 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
 - validateRemainder(int) : 입력값이 1000으로 나눴을 때 나머지가 0이 아니라면 IllegalArgumentException을 발생시킨다.
 
-- createLottos : 
+- createLottos() : 
   구입 횟수에서 1씩 차감하며 Lotto를 생성해 lottos에 저장한다.
   1씩 차감하는 이유는 해당 메서드가 public이기 때문에 다시 어딘가에서 원치 않는 호출로 다시 로또 번호가 생성됨을 막기 위함이다.
   lottoQuantity가 0이면 "[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다."가 출력된다.
@@ -27,7 +27,8 @@
   입력 받은 리스트에 중복된 숫자가 포함되면 "[Error] 로또 번호는 중복된 숫자가 있으면 안돼요."가 출력된다.
 
 ### GameScreen
-- runGame : 
+- runGame() : 
   로또 게임의 입출력 UI를 담당한다. 
   에러가 발생하면 정상적인 입력이 들어올 때까지 입력을 다시 받는다.
-- printLottos : 구매한 횟수만큼 로또를 출력한다.
+- initialize() : 구입급액을 입력받아 LottoGame을 생성한다. 
+- printLottos() : 구매한 횟수만큼 로또를 출력한다.

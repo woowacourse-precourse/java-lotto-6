@@ -9,8 +9,8 @@ public class InputLottoAmount {
         PrintMessage.printStart();
         int amount = setAmount();
         int lottoTicketCount = setLottoTicketCount(amount);
+        PrintMessage.printTicketCount(lottoTicketCount);
         return lottoTicketCount;
-
     }
 
     public static int setAmount() {

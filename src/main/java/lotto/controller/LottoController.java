@@ -8,7 +8,7 @@ public class LottoController {
     }
 
     public void setAmount() {
-
         int lottoTicketCount = InputLottoAmount.setInputLottoAmount();
+
     }
 }

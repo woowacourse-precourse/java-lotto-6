@@ -13,8 +13,10 @@ public class LottoController {
         // 구입 금액 입력 받기
         int budget = getBudget();
 
-        // 구입한 금액만큼 로또 생성
+        // 구입할 수 있는 로또 개수 계산
         int quantity = budget / 1000;
+
+        // 구입한 만큼 로또 생성
         List<Lotto> lottoTicketsPurchased = createLottoTickets(quantity);
 
         // 구입한 로또 개수 출력

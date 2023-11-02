@@ -15,6 +15,7 @@ public class WinningNumbers {
 
     private void validate(String winningNumber) {
         validateFormat(winningNumber);
+
         List<Integer> winningNumbers = winningNumbersToList(winningNumber);
         validateSize(winningNumbers);
         validateRange(winningNumbers);

@@ -5,13 +5,13 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputUI {
     private final int ERR_NUM = Integer.MIN_VALUE;
     private int bonusNum;
+    private int cost;
 
-    public int purchase() {
+    public void purchase() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             String tempCost = Console.readLine();
-            int cost = checkValidPurchase(tempCost);
-            return cost;
+            cost = checkValidPurchase(tempCost);
         } catch (IllegalArgumentException e) {
             throw e;
         }

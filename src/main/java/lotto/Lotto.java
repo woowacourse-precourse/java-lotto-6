@@ -20,7 +20,7 @@ public class Lotto {
     }
     private void validateIs6Numbers(List<Integer> numbers){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[Error] 로또 번호는 6개로 이루어져 있어야 해요.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개로 이루어져 있어야 해요.");
         }
     }
     private void validateNoDuplicateNumber(List<Integer> numbers)
@@ -31,7 +31,7 @@ public class Lotto {
             numberKinds.add(number);
         }
         if(numberKinds.size() != numbers.size())
-            throw new IllegalArgumentException("[Error] 로또 번호는 중복된 숫자가 있으면 안돼요.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 있으면 안돼요.");
     }
 
     @Override

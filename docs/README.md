@@ -18,13 +18,13 @@
 - createLottos() : 
   구입 횟수에서 1씩 차감하며 Lotto를 생성해 lottos에 저장한다.
   1씩 차감하는 이유는 해당 메서드가 public이기 때문에 다시 어딘가에서 원치 않는 호출로 다시 로또 번호가 생성됨을 막기 위함이다.
-  lottoQuantity가 0이면 "[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다."가 출력된다.
+  lottoQuantity가 0이면 "[ERROR] 구입 금액이 0이면 로또번호를 생성할 수 없습니다."가 출력된다.
 
 ### Lotto
 - Lotto(List<Integer>) : 
   정수형 리스트를 받아 검증한 뒤 numbers에 저장한다.
-  입력 받은 리스트의 길이가 6이 아니면 "[Error] 로또 번호는 6개로 이루어져 있어야 해요."가 출력된다.
-  입력 받은 리스트에 중복된 숫자가 포함되면 "[Error] 로또 번호는 중복된 숫자가 있으면 안돼요."가 출력된다.
+  입력 받은 리스트의 길이가 6이 아니면 "[ERROR] 로또 번호는 6개로 이루어져 있어야 해요."가 출력된다.
+  입력 받은 리스트에 중복된 숫자가 포함되면 "[ERROR] 로또 번호는 중복된 숫자가 있으면 안돼요."가 출력된다.
 
 ### GameScreen
 - runGame() : 
@@ -32,3 +32,13 @@
   에러가 발생하면 정상적인 입력이 들어올 때까지 입력을 다시 받는다.
 - initialize() : 구입급액을 입력받아 LottoGame을 생성한다. 
 - printLottos() : 구매한 횟수만큼 로또를 출력한다.
+
+- inputWinNumbers(String) : 쉼표로 구분되는 정수가 나열된 문자열을 쉼표로 나눠 List<Integer>형태의 리스트를 반환한다.
+  나열된 문자열이 각각 숫자가 아니면 "[ERROR] 당첨 번호는 숫자로 입력해 주세요."가 출력된다.
+  나열된 문자열의 길이가 6이 아니면 "[ERROR] 당첨 번호는 6개여야 해요."가 출력된다.
+  나열된 문자열의 각 요소가 1~45 범위 안에 있지 않으면 "[ERROR] 각 번호는 1에서 45의 범위 안으로 입력해 주세요."가 출력된다.
+  입력된 문자열에 에러가 없을 때까지 다시 입력을 받는다.
+- validateWinNumberLength(String[]) : 입력값의 길이가 6이 아니라면 IllegalArgumentException을 발생시킨다.
+- validateWinNumberType(String[]) : 입력값이 숫자로 표현된 것이 아니라면 IllegalArgumentException을 발생시킨다.
+- validateWinNumberRange(String[]) : 입력값이 1~45 범위 안에 있지 않으면 IllegalArgumentException을 발생시킨다.
+

@@ -58,7 +58,7 @@ public class LottoGame {
     }
     private void validateLottoQuantity() throws IllegalArgumentException{
         if(this.lottoQuantity == 0)
-            throw new IllegalArgumentException("[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
     }
 }
 

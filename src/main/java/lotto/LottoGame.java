@@ -6,7 +6,10 @@ public class LottoGame {
     }
 
     public void startProcess(){
-        GuideMessage.ofInputMoney();
-        int money = GameInput.insertMoney();
+        int money = -1;
+        while(money < 0){
+            GuideMessage.ofInputMoney();
+            money = GameInput.insertMoney();
+        }
     }
 }

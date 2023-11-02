@@ -1,6 +1,10 @@
 package lotto.validation;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 import lotto.util.Convertor;
 
@@ -74,6 +78,16 @@ public class InputValidator {
         String[] winningNumbers = splitByComma(input);
         if (winningNumbers.length != WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE.getMessage());
+        }
+    }
+
+    public static void validateDuplication(String input) {
+        String[] winningNumbers = splitByComma(input);
+        int deDuplicatedCount = Arrays.stream(winningNumbers)
+                .collect(Collectors.toSet())
+                .size();
+        if (winningNumbers.length != deDuplicatedCount) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATION.getMessage());
         }
     }
 

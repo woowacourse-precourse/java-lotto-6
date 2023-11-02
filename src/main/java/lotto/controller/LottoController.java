@@ -1,6 +1,10 @@
 package lotto.controller;
 
+import lotto.service.LottoGenerator;
+import lotto.service.NumberGenerator;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -12,5 +16,7 @@ public class LottoController {
 
     public void run() {
         String purchaseAmount = inputView.readPurchaseAmount();
+        NumberGenerator<List<Integer>> generator = new LottoGenerator();
+
     }
 }

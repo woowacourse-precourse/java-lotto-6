@@ -11,11 +11,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
-    }
-
     private void validate(List<Integer> numbers) {
         validateSizeOfNumbers(numbers);
         validateDuplicateNumber(numbers);

@@ -22,4 +22,12 @@ public class Validation {
             throw new IllegalArgumentException("입력값이 6개가 아닙니다.");
         }
     }
+
+    public void validateRange(String input) {
+        int number = Integer.parseInt(input);
+
+        if(number <= 0 || number > 45) {
+            throw new IllegalArgumentException("입력값이 1이상 45이하가 아닙니다.");
+        }
+    }
 }

@@ -28,19 +28,19 @@ public class PurchasePrice {
 
     private void validateFormat(String purchasePrice) {
         if (!purchasePrice.matches(priceRegex)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자와 ,외에 다른 문자를 입력할 수 없습니다.");
         }
     }
 
     private void validateNotBelowOptimalPrice(int numberOfPrice) {
         if (numberOfPrice < 1000) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 이상이어야 합니다.");
         }
     }
 
     private void validateDivisibleByProperAmount(int numberOfPrice) {
         if (numberOfPrice % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위여야 합니다.");
         }
     }
 }

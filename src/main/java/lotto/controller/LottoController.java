@@ -14,8 +14,9 @@ public class LottoController {
 
     private final LottoBuyInputView lottoBuyInputView;
 
-    public LottoController(LottoBuyInputView lottoBuyInputView) {
-        this.lottoBuyInputView = lottoBuyInputView;
+    public LottoController() {
+        //로또 구매 단위가 변경되면 LottoBuyInputView의 영향(test등)을 파악하기 위해서 매개변수 삭제
+        this.lottoBuyInputView = new LottoBuyInputView(DENOMINATION);
     }
 
     public Lottos buyLottos(){

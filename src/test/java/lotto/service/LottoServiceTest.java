@@ -12,8 +12,8 @@ class LottoServiceTest {
 
     private final LottoService lottoService;
 
-    LottoServiceTest(LottoService lottoService) {
-        this.lottoService = lottoService;
+    LottoServiceTest() {
+        this.lottoService = new LottoService();
     }
 
     @DisplayName("로또 구입 금액 단위가 1,000원이 아니면 false")

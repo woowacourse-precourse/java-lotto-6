@@ -19,7 +19,9 @@ class LottoServiceTest {
     @DisplayName("로또 구입 금액 단위가 1,000원이 아니면 false")
     @Test
     void invalidPurchasePriceTest() {
+        assertThat(lottoService.validatePurchasePrice(1)).isFalse();
         assertThat(lottoService.validatePurchasePrice(1001)).isFalse();
+        assertThat(lottoService.validatePurchasePrice(1000)).isTrue();
     }
 
     @DisplayName("입력 받은 로또 구입 금액만큼 로또 발행")

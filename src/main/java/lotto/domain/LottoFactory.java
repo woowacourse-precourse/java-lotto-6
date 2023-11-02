@@ -18,15 +18,13 @@ public class LottoFactory {
 
     private static final int ZERO = 0;
     private final List<Lotto> lottos;
-    private final int inputMoney;
 
-    private LottoFactory(final List<Lotto> lottos, final int inputMoney) {
+    private LottoFactory(final List<Lotto> lottos) {
         this.lottos = lottos;
-        this.inputMoney = inputMoney;
     }
 
     public static LottoFactory create(final NumberGenerator numberGenerator, final int money) {
-        return new LottoFactory(createLottos(numberGenerator, money), money);
+        return new LottoFactory(createLottos(numberGenerator, money));
     }
 
     private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final int money) {

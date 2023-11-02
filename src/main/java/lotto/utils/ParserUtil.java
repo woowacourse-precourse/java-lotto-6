@@ -16,6 +16,6 @@ public class ParserUtil {
         return Arrays.stream(input.split(SPLIT_COMMA.getValue()))
                 .map(String::trim)
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

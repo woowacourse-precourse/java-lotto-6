@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import lotto.dto.WinningNumbersDto;
 import lotto.utils.ValidationUtil;
 
 import java.util.List;
@@ -26,11 +27,7 @@ public class WinningNumbers {
         ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return Collections.unmodifiableList(winningNumbers);
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
+    public WinningNumbersDto toDto() {
+        return new WinningNumbersDto(winningNumbers, bonusNumber);
     }
 }

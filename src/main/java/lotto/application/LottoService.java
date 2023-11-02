@@ -4,19 +4,21 @@ import static lotto.contents.ContentNumbers.LOTTO_PRICE;
 import static lotto.contents.ContentNumbers.ZERO;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
+import lotto.domain.WinningNumbers;
 import lotto.dto.LottoDto;
+import lotto.dto.WinningNumbersDto;
 
 public class LottoService {
 
     private final LottoMachine lottoMachine;
     private final List<Lotto> lottos;
     private LottoResult lottoResult;
+    private WinningNumbers winningNumbers;
 
     public LottoService(LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
@@ -34,9 +36,19 @@ public class LottoService {
         );
     }
 
+    public void processWinningNumbers(List<Integer> winningNumbersInput, int bonusNumber) {
+        // 당첨 번호 객체 생성
+        this.winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
+        // 당첨 결과 계산
+    }
+
     public List<LottoDto> getLottoDtos() {
         return lottos.stream()
                 .map(Lotto::toDTO)
                 .toList();
+    }
+
+    public WinningNumbersDto getWinningNumbersDto() {
+        return winningNumbers.toDto();
     }
 }

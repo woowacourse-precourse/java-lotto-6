@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -16,5 +16,10 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 유저 인풋, 로또 번호 모두 이 모델을 활용하기
+    // 로또는 리스트를 파라미터로 받아 생성함
+    // 다른 도메인에서 인풋 받은 것을 나누어 여기로 보내줌
+    // 여기서 확인 하는 예외 사항
+    // 1. 개수
+    // 2. 중복 숫자
 }

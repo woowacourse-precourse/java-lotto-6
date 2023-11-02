@@ -14,17 +14,27 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class ConsumerTest {
 
-    private final int LESS_AMOUNT = 900;
-    private final int GREATER_AMOUNT = 101000;
-    private final int DIVIDE_AMOUNT = 1250;
-    private final int AMOUNT = 1000;
+    private static final int LESS_AMOUNT = 900;
+    private static final int GREATER_AMOUNT = 101000;
+    private static final int DIVIDE_AMOUNT = 1250;
+    private static final int AMOUNT = 1000;
+    private static final String ERROR_PREFIX_TEXT = "[ERROR]";
 
     @ParameterizedTest
-    @ValueSource(ints = {LESS_AMOUNT, GREATER_AMOUNT, DIVIDE_AMOUNT})
+    @MethodSource("errorAmountData")
     @DisplayName("구매 금액의 제약조건에 의해 예외 발생 상황 테스트")
-    void buyAmountExceptionTest(int amount) {
+    void buyAmountExceptionTest(int amount, String errorPrefix, String errorMessage) {
         assertThatThrownBy(() -> new Consumer(amount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(errorPrefix, errorMessage);
+    }
+
+    static Stream<Arguments> errorAmountData() {
+        return Stream.of(
+                Arguments.of(LESS_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 최소 구매 금액(1,000원)보다 미만입니다."),
+                Arguments.of(GREATER_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 최대 구매 금액(100,000원)보다 초과 되었습니다."),
+                Arguments.of(DIVIDE_AMOUNT, ERROR_PREFIX_TEXT, "구매 금액이 1,000원으로 나누어 떨어지지 않습니다.")
+        );
     }
 
     @ParameterizedTest
@@ -51,7 +61,8 @@ class ConsumerTest {
         Consumer consumer = new Consumer(amount);
 
         assertThatThrownBy(() -> consumer.buyQuantityCheck())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "구매 가능 수량이 구매 수량과 일치하지 않습니다.");
     }
 
     @ParameterizedTest

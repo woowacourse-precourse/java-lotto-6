@@ -29,7 +29,7 @@ class LottoTest {
     }
 
     @DisplayName("구매한 로또 번호와 당첨 로또 번호 중 일치하는 번호의 갯수 반환")
-    @ParameterizedTest(name = "{displayName} : {0}")
+    @ParameterizedTest(name = "{displayName} : {0}, 기대값: {1}")
     @MethodSource("matchCountParametersProvide")
     void checkMatchCount(List<Integer> bought, int expected) {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -45,4 +45,22 @@ class LottoTest {
                 Arguments.of(List.of(10, 2, 3, 45, 5, 30), 3)
         );
     }
+
+    @DisplayName("구매한 로또 번호와 보너스 번호가 일치하는지 확인")
+    @ParameterizedTest(name = "{displayName} : {0}, 기대값: {1}")
+    @MethodSource("bonusNumberMatchParametersProvide")
+    void checkBonusNumberMatch(List<Integer> bought, boolean expected) {
+        Integer bonusNumber = 7;
+        Lotto boughtLotto = new Lotto(bought);
+        assertThat(boughtLotto.contains(bonusNumber)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> bonusNumberMatchParametersProvide() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), false),
+                Arguments.of(List.of(10, 2, 3, 45, 5, 7), true)
+        );
+    }
+
+
 }

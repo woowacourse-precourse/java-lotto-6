@@ -13,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateDuplicateNumber(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -28,6 +29,14 @@ public class Lotto {
         if (nonDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되어 생성되었습니다.");
         }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        numbers.stream().forEach(number -> {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        });
     }
 
 }

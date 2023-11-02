@@ -20,7 +20,7 @@ public class CheckWinningLottoNumbersServiceTest {
 	@DisplayName("일치한 로또 번호 수와 보너스 번호 유뮤에 따른 로또 상금을 확인한다.")
 	@MethodSource("createCheckWinningLottoNumbersServiceMethodParameter")
 	@ParameterizedTest
-	void test(AnswerLotto answerLotto, Lotto lotto, int expect, boolean isBonus) {
+	void checkWinningLottoCountAndBonusNumber(AnswerLotto answerLotto, Lotto lotto, int expect, boolean isBonus) {
 		int winningNumberCount = service.getWinningNumberCount(answerLotto, lotto);
 
 		boolean isBonusNumber = service.checkSameAsBonusNumber(answerLotto, lotto);

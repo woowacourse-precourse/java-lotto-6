@@ -5,8 +5,7 @@ import lotto.domain.LottoGame;
 
 import java.util.List;
 
-import static lotto.constant.MessageConstant.BUYING_AMOUNT_MESSAGE;
-import static lotto.constant.MessageConstant.BUYING_PRICE_MESSAGE;
+import static lotto.constant.MessageConstant.*;
 
 public class MessagePrinter {
 
@@ -24,5 +23,9 @@ public class MessagePrinter {
             List<Integer> numbers = lotto.getNumbers();
             System.out.println(numbers);
         }
+    }
+
+    public void printWinningNumberMessage() {
+        System.out.println(WINNING_NUMBER_MESSAGE);
     }
 }

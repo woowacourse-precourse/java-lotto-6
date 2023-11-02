@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.type.Prize;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     public static void printPurchasedLotto(List<Lotto> purchasedLotto) {
@@ -16,5 +18,20 @@ public class OutputView {
             System.out.println("]");
         }
         System.out.println();
+    }
+
+    public static void printLottoResults(List<Prize> result) {
+        System.out.println("당첨 통계\n---");
+        for(Prize prize: Prize.values()) {
+            if(prize.equals(Prize.NONE)) {
+                continue;
+            }
+            int num = result.stream()
+                    .filter(r -> prize.getResult().equals(r.getResult()))
+                    .toList()
+                    .size();
+            System.out.print(prize.getResult());
+            System.out.println(" - "+ num +"개");
+        }
     }
 }

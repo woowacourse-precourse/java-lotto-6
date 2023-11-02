@@ -1,6 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -12,6 +15,12 @@ public class InputView {
         String amount = Console.readLine();
         validateBlank(amount);
         return validateInteger(amount);
+    }
+
+    public static List<String> readWinnerLottoNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String numbers = Console.readLine();
+        return splitWord(numbers);
     }
 
     private static void validateBlank(String input) {
@@ -26,5 +35,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
+    }
+
+    private static List<String> splitWord(String input) {
+        return Arrays.stream(input.split(","))
+                .collect(Collectors.toList());
     }
 }

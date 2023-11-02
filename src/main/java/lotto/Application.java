@@ -35,7 +35,7 @@ public class Application {
         return bonus;
     }
 
-    private void judge(Lotto winNum, Lotto user, int bonus){
+    private static void judge(Lotto winNum, Lotto user, int bonus){
         int ct = winNum.countMatch(user.getNumbers());
         if(ct > 5){
             System.out.println("1등");
@@ -61,5 +61,7 @@ public class Application {
         Lotto winNumber = new Lotto(getUserNumbers());
         Lotto user = new Lotto(setRandomNumbers());
         int bonus = getUserBonus(user);
+
+        
     }
 }

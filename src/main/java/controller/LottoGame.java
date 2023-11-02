@@ -1,7 +1,14 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoGame {
     private int lottoQuantity;
+    private List<Lotto> lottos;
 
     public LottoGame(String amount) throws IllegalArgumentException{
         char[] money = amount.toCharArray();
@@ -13,11 +20,11 @@ public class LottoGame {
         validateRemainder(inputMoney);
         inputMoney = Math.floorDiv(inputMoney,1000);
         this.lottoQuantity = inputMoney;
-        printLottoQuantity();
+        lottos = new ArrayList<>();
     }
 
     public void printLottoQuantity() {
-        System.out.println("lottoQuantity is "+this.lottoQuantity);
+        System.out.println(this.lottoQuantity+"개를 구매했습니다.");
     }
 
     private void validateDigit(char c){
@@ -30,4 +37,22 @@ public class LottoGame {
             throw new IllegalArgumentException("[ERROR] 금액이 1000원으로 나누어 떨어지지 않아요.");
         }
     }
+
+    public void createLottos() throws IllegalArgumentException {
+        List<Integer> numbers;
+        validateLottoQuantity();
+        while(true){
+            if(this.lottoQuantity == 0)
+                break;
+            numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+            lottos.add(new Lotto(numbers));
+            this.lottoQuantity--;
+        }
+    }
+
+    private void validateLottoQuantity() throws IllegalArgumentException{
+        if(this.lottoQuantity == 0)
+            throw new IllegalArgumentException("[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
+    }
 }
+

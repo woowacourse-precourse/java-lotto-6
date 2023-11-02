@@ -21,7 +21,7 @@ public class LottoGameTest extends NsTest {
     }
 
     @Test
-    @DisplayName("입력값이 숫자가 아니라면 예외가 발생한다.")
+    @DisplayName("입력값이 1000으로 나눴을 때 0이 아니면 예외가 발생한다.")
     void is_Input_Remainder_Zero(){
         assertSimpleTest(() -> {
             runException("12300");
@@ -34,6 +34,15 @@ public class LottoGameTest extends NsTest {
     void initialize_LottoGame(){
         run("8000");
         assertThat(output()).contains("8");
+    }
+
+    @Test
+    @DisplayName("구입 가능횟수가 0이면 예외가 발생한다.")
+    void zero_lottoQuantity(){
+        assertSimpleTest(()->{
+            runException("00");
+            assertThat(output()).contains("[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
+        });
     }
 
     @Override

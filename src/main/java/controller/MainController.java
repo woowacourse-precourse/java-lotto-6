@@ -19,6 +19,11 @@ public class MainController {
     private MainModel mainModel;
     private final static int EXCEPTION_NUMBER = -1;
 
+    public MainController() {
+        this.view = new Mainview();
+        this.inputMan = new InputMan();
+    }
+
     public void turnOn() {
         leadGame();
     }
@@ -82,7 +87,7 @@ public class MainController {
             try {
                 bonusNumber = inputMan.receiveBonusNumber(userLotto);
                 if (bonusNumber == -1) {
-                    throw new IllegalArgumentException("[ERROR]제대로 된 숫자를 입력하세요.");
+                    throw new IllegalArgumentException("[ERROR] 제대로 된 숫자를 입력하세요.");
                 }
                 break;
             } catch (IllegalArgumentException e) {

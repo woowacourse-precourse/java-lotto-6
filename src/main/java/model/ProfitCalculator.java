@@ -24,7 +24,7 @@ public class ProfitCalculator {
         int profit = 0;
         for(int i = 0; i < result.length; i++)
         {
-            profit += MONEY_OF_WINNING[i]*result[i];
+            profit += (MONEY_OF_WINNING[i]*result[i]);
         }
         return profit;
     }

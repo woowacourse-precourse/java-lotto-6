@@ -23,13 +23,23 @@ public class Mainview {
     public void printresult(int[] result) {
         System.out.println("당첨통계\n---");
         for (int i = 0; i < result.length; i++) {
-            System.out.println(3 + i + "개 일치 ("+MONEY_OF_WINNING[i]+" -"+result[i]+"개");
+            if(i <= 2) {
+                System.out.println(3 + i + "개 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
+            }
+            else if(i == 3)
+            {
+                System.out.println(5+ "개 일치, 보너스 볼 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
+            }
+            else if(i == result.length-1)
+            {
+                System.out.println(6+ "개 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
+            }
         }
     }
 
     public void printRateOfProfit(String rate)
     {
-        System.out.println("총 수익률은"+rate+"%입니다.");
+        System.out.println("총 수익률은 "+rate+"%입니다.");
     }
 
     public void printHowManyAndLottos(List<Integer[]> computerLottos)
@@ -37,7 +47,7 @@ public class Mainview {
         System.out.println(computerLottos.size()+"개를 구매했습니다.");
         for (Integer[] lotto : computerLottos)
         {
-            System.out.println("["+Arrays.toString(lotto)+"]");
+            System.out.println(Arrays.toString(lotto));
         }
     }
 }

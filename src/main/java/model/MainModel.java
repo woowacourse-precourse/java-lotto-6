@@ -31,27 +31,28 @@ public class MainModel {
 
         for (Lotto computerLotto : computerLottos) {
             addRank(result, compareNumbers(new LinkedHashSet<>(computerLotto.getNumbers()),
-                    new LinkedHashSet<>(computerLotto.getNumbers()),
+                    new LinkedHashSet<>(userLotto.getNumbers()),
                     bonusNumber));
         }
         return result;
     }
 
     private void addRank(int[] result, Rank rank) {
-        switch (rank) {
-            case FIRST -> result[0]++;
-            case SECOND -> result[1]++;
-            case THIRD -> result[2]++;
-            case FOURTH -> result[3]++;
-            case FIFTH -> result[4]++;
+        if(rank != null) {
+            switch (rank) {
+                case FIRST -> result[4]++;
+                case SECOND -> result[3]++;
+                case THIRD -> result[2]++;
+                case FOURTH -> result[1]++;
+                case FIFTH -> result[0]++;
+            }
         }
     }
 
     private Rank compareNumbers(Set<Integer> computerNumbers, Set<Integer> userNumbers,
                                 int bonusNumber) {
-        int countOfMatch = 0;
         computerNumbers.retainAll(userNumbers);
-        return getRank(countOfMatch, computerNumbers.contains((Integer) bonusNumber));
+        return getRank(computerNumbers.size(), computerNumbers.contains(bonusNumber));
     }
 
     private Rank getRank(int countOfMatch, boolean matchBonus) {

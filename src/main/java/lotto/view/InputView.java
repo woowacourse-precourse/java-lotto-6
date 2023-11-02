@@ -38,8 +38,12 @@ public class InputView {
             System.out.println("[ERROR] 1,2,3,4,5,6 와 같은 형식으로 입력하세요.");
             return inputAnswerNumbers();
         }
+        return mapStringToIntList(numbers);
+    }
+
+    private List<Integer> mapStringToIntList(String numbers) {
         return Arrays.stream(numbers.split(","))
-                .mapToInt(number -> Integer.parseInt(number))
+                .mapToInt(Integer::parseInt)
                 .boxed()
                 .collect(Collectors.toList());
     }

@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.PurchasePrice;
 
@@ -12,6 +13,10 @@ public class LottoTickets {
 
     public LottoTickets(PurchasePrice price) {
         this.lottoTickets = createLottoTickets(price);
+    }
+
+    public Collection<Lotto> getLottoTickets() {
+        return Collections.unmodifiableCollection(lottoTickets);
     }
 
     private List<Lotto> createLottoTickets(PurchasePrice price) {

@@ -14,4 +14,15 @@ public class LottoService {
                 .map(lotto -> lotto.calculateLottoWinnings(answerLotto))
                 .collect(Collectors.toList());
     }
+
+    public double findRateOfReturn(List<Rank> ranks){
+        int purchasePrice = ranks.size() * 1000;
+
+        double totalWinningPrice = ranks.stream()
+                .mapToDouble(rank -> rank.getWinningPrice())
+                .sum();
+
+        double rate = totalWinningPrice / purchasePrice * 100;
+        return Math.round(rate * 100)/ 100.0;
+    }
 }

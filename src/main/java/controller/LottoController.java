@@ -11,16 +11,19 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoController {
     private int money;
+    private int bonusNumber;
 
     private List<Lotto> lottoList = new ArrayList<>();
+    private static Lotto lottoWinningNumbers;
 
 //    public LottoController() {
 //    }
 
     public void set() {
-        money = InputView.Money();
+        money = InputView.money();
         int ticketCount = OutputView.LottoTicketCount(money);
         makeLottoLists(ticketCount);
+        getWinningNumbers();
     }
 
     private void makeLottoLists(int ticketCount) {
@@ -29,5 +32,10 @@ public class LottoController {
             lottoList.add(new Lotto(numbers));
             lottoList.get(i).printNumbers();
         }
+    }
+
+    private void getWinningNumbers() {
+        lottoWinningNumbers = InputView.winningNumbers();
+        bonusNumber = InputView.bonusNumber();
     }
 }

@@ -1,0 +1,16 @@
+package lotto.view;
+
+import lotto.Lotto;
+
+import java.util.List;
+
+//TODO: 인터페이스를 사용하기 (현재는 파라미터에 어떤 값을 넣을지 정하지 못하였다)
+public class OutputView {
+
+    public void printBoughtLotto(List<Lotto> boughtLotto) {
+        System.out.printf("%s개를 구매했습니다.%s", boughtLotto.size(), System.lineSeparator());
+        for (Lotto lotto : boughtLotto) {
+            System.out.println(lotto.toString());
+        }
+    }
+}

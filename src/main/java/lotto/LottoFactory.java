@@ -9,6 +9,7 @@ public class LottoFactory {
         ArrayList<Lotto> lottoList = new ArrayList<>();
         while (cost > 0) {
             lottoList.add(createLotto());
+            cost -= 1000;
         }
         return lottoList;
     }

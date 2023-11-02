@@ -1,28 +1,43 @@
 package lotto.validation;
 
+import java.util.regex.Pattern;
 import lotto.enums.ErrorMessage;
 import lotto.util.Convertor;
 
 public class InputValidator {
     private static final String ZERO = "0";
     private static final int STANDARD_OF_DIVIDE = 1000;
+    private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
 
     private InputValidator() {
     }
 
-    public static void validateNull(String input) {
+    public static void validate(String input) {
+        validateNull(input);
+        validateZero(input);
+        validateIsNumber(input);
+        validateDivisibleByThousand(input);
+    }
+
+    private static void validateNull(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NULL.getMessage());
         }
     }
 
-    public static void validateZero(String input) {
+    private static void validateZero(String input) {
         if (input.equals(ZERO)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ZERO.getMessage());
         }
     }
 
-    public static void validateDivisibleByThousand(String input) {
+    private static void validateIsNumber(String input) {
+        if (NOT_NUMBER.matcher(input).matches()) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateDivisibleByThousand(String input) {
         int price = Convertor.convertStringToInt(input);
         if (isNotDivisibleByThousand(price)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDE.getMessage());

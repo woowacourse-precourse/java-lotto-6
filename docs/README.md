@@ -24,7 +24,7 @@
 - [ ] 보너스 번호가 중복되는 경우
 - [ ] 당첨 번호가 숫자가 아닌 경우
 - [ ] 보너스 번호가 숫자가 아닌 경우
-- [ ] 당첨 번호의 개수가 6개가 아닌 경우
+- [x] 당첨 번호의 개수가 6개가 아닌 경우
 - [ ] 사용자가 잘못된 값을 입력한 경우 IllegalArgumentException를 발생
 - [ ] 예외 메시지 "[ERROR]"로 시작하는 에러 메시지 출력
 - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리

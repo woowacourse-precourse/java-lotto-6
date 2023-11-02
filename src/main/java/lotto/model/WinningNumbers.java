@@ -12,6 +12,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers) {
         validateNumberInRange(winningNumbers);
+        validateWinningNumbersCount(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
@@ -25,5 +26,11 @@ public class WinningNumbers {
 
     private boolean isWinningNumberValid(Integer winningNumber) {
         return winningNumber < START_NUMBER || winningNumber > END_NUMBER;
+    }
+
+    private void validateWinningNumbersCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입력해야 합니다.");
+        }
     }
 }

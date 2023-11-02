@@ -11,7 +11,11 @@ public class MessageReceiver {
     }
 
     public void receiveBuyingPrice() {
-        String buyingPriceText = Console.readLine();
-        viewValidator.validateBuyingPrice(buyingPriceText);
+        boolean validInput = false;
+
+        while (!validInput) {
+            String buyingPriceText = Console.readLine();
+            validInput = viewValidator.validateBuyingPrice(buyingPriceText);
+        }
     }
 }

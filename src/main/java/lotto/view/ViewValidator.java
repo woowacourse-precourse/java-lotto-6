@@ -4,7 +4,7 @@ import static lotto.constant.ExceptionConstant.BUYING_PRICE_INPUT_EXCEPTION;
 
 public class ViewValidator {
 
-    public void validateBuyingPrice(final String buyingPriceText) {
+    public boolean validateBuyingPrice(final String buyingPriceText) {
         int buyingPrice = Integer.parseInt(buyingPriceText);
 
         try {
@@ -14,6 +14,9 @@ public class ViewValidator {
         } catch (IllegalArgumentException e) {
             String exceptionMessage = e.getMessage();
             System.out.println(exceptionMessage);
+            return false;
         }
+
+        return true;
     }
 }

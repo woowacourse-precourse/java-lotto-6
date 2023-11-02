@@ -18,11 +18,11 @@ public enum ExceptionMessage {
     }
 
     public void throwException() {
-        throw new IllegalArgumentException(ERROR_TAG + exceptionMessage);
+        throw new IllegalArgumentException(ERROR_TAG.getMessage() + exceptionMessage);
     }
 
     public void throwException(String value) {
-        throw new IllegalArgumentException(ERROR_TAG + String.format(exceptionMessage, value));
+        throw new IllegalArgumentException(ERROR_TAG.getMessage() + String.format(exceptionMessage, value));
     }
 }
 

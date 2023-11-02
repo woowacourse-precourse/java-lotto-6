@@ -7,10 +7,19 @@
 
 ## LottoTarget
 
-- [ ] 당첨 번호, 보너스 번호 저장
+- [X] Lotto, 보너스 번호를 변수로 갖는 클래스 생성
+- [X] Lotto(일급컬렉션) 를 입력으로 받아 ResultStatus를 return하는 grading 함수
 
 ## LottoUtil
 
-- [ ] 구입 금액 1000 단위인지 검증
-- [ ] 금액을 입력 받으면 Lotto 생성
-- [ ] Lotto List를 받아서 당첨 통계
+- [X] 구입 금액 1000 단위인지 검증
+- [X] 금액을 입력 받으면 Lotto 생성
+- [ ] 수익률 계산하는 함수 생성
+
+## ResultStatus
+
+- [X] 로또 결과를 표현하는 Enum 생성
+
+## ViewManager
+
+- [ ] UI에 대한 전반적인 관리를 하는 클래스

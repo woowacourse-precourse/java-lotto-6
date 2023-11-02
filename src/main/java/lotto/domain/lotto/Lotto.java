@@ -28,7 +28,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSizeOfNumbers(numbers);
         validateDuplicateNumber(numbers);
-        checkValidNumbersInLotto(numbers);
+        validateRangeOfNumber(numbers);
     }
 
     private void validateSizeOfNumbers(List<Integer> numbers) {
@@ -47,7 +47,7 @@ public class Lotto {
         }
     }
 
-    private void checkValidNumbersInLotto(List<Integer> numbers) {
+    private void validateRangeOfNumber(List<Integer> numbers) {
         if (hasInvalidRangeNumber(numbers)) {
             throw new LottoNumRangeException();
         }

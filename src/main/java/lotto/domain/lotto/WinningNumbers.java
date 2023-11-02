@@ -33,7 +33,7 @@ public class WinningNumbers {
 
         List<Integer> winningNumbers = parseWinningNumbers(winningNumber);
         validateSize(winningNumbers);
-        validateRange(winningNumbers);
+        validateRangeOfNumber(winningNumbers);
     }
 
     private void validateFormat(String winningNumber) {
@@ -51,7 +51,7 @@ public class WinningNumbers {
         }
     }
 
-    private void validateRange(List<Integer> winningNumbers) {
+    private void validateRangeOfNumber(List<Integer> winningNumbers) {
         if (hasInvalidRangeNumber(winningNumbers)) {
             throw new WinningNumberRangeException();
         }

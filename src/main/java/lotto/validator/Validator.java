@@ -59,7 +59,7 @@ public class Validator {
 
     public static void validateLottoTicketSize(int size) {
         if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_DIFFERNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_NOT_PROPER_MESSAGE.getMessage());
         }
     }
 

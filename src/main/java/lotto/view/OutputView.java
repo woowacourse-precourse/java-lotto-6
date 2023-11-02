@@ -14,6 +14,6 @@ public class OutputView {
     }
 
     public static void errorMessage(String message) {
-        System.out.printf("[ERROR] %s",message);
+        System.out.printf("[ERROR] %s\n",message);
     }
 }

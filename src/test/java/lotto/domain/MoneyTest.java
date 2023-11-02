@@ -11,7 +11,7 @@ public class MoneyTest {
 	
 	@DisplayName("돈의 단위가 UNIT이 아니라면 예외가 발생한다.")
     @Test
-    void createAnswerLottoByDuplicatedBonusNumber() {
+    void createMoneyByWrongMoneyUnit() {
         assertThatThrownBy(() -> new Money(1200))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.MONEY_UNIT_ERROR.getForMatMessage(Money.UNIT));

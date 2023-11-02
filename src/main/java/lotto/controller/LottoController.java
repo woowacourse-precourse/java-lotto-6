@@ -28,12 +28,17 @@ public class LottoController {
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
         List<Integer> winningNumbers = readWinningNumbers();
+        Integer bonusNumber = readBonusNumber();
     }
 
     private List<Integer> readWinningNumbers() {
         return Arrays.stream(inputView.readWinningNumbers().split(","))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private Integer readBonusNumber() {
+        return Integer.parseInt(inputView.readBonusNumber());
     }
 
     private Integer buyLottoTicket(Integer amount) {

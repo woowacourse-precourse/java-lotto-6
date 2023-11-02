@@ -15,6 +15,12 @@ public class InputViewImpl implements InputView {
         return readLine();
     }
 
+    @Override
+    public String readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return readLine();
+    }
+
     protected String readLine() {
         return Console.readLine();
     }

@@ -11,13 +11,13 @@ public class LottoGame {
         }
         int inputMoney = Integer.parseInt(amount);
         validateRemainder(inputMoney);
-        inputMoney /= 1000;
+        inputMoney = Math.floorDiv(inputMoney,1000);
         this.lottoQuantity = inputMoney;
-        System.out.println("lottoQuantity is "+this.lottoQuantity);
+        printLottoQuantity();
     }
 
-    public int getLottoQuantity() {
-        return lottoQuantity;
+    public void printLottoQuantity() {
+        System.out.println("lottoQuantity is "+this.lottoQuantity);
     }
 
     private void validateDigit(char c){

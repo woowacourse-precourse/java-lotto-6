@@ -10,19 +10,31 @@ public class InputView {
 
     public static String inputPurchasePrice() {
         String purchasePrice = Console.readLine();
-        InputValidator.validatePurchasePrice(purchasePrice);
+        try {
+            InputValidator.validatePurchasePrice(purchasePrice);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
         return purchasePrice;
     }
 
     public static String inputWinningNumbers() {
         String winningNumbers = Console.readLine();
-        InputValidator.validateWinningNumber(winningNumbers);
+        try {
+            InputValidator.validateWinningNumber(winningNumbers);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
         return winningNumbers;
     }
 
     public static String inputBonusNumber() {
         String bonusNumber = Console.readLine();
-        InputValidator.validateBonusNumber(bonusNumber);
+        try {
+            InputValidator.validateBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
         return bonusNumber;
     }
 }

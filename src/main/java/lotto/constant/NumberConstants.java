@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum Constants {
+public enum NumberConstants {
     LOTTO_PRICE(1000),
     WINNING_NUMBER_TOTAL(6),
     BONUS_NUMBER_TOTAL(1),
@@ -10,7 +10,7 @@ public enum Constants {
 
     private final Integer number;
 
-    Constants(Integer number) {
+    NumberConstants(Integer number) {
         this.number = number;
     }
 

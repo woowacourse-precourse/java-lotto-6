@@ -58,9 +58,9 @@ public class LottoFactory {
                 .toList();
     }
 
-    public Map<Rank, Long> calculateResult(final Lotto answerLotto, final int bonusNumber) {
+    public Map<Rank, Long> calculateResult(final AnswerLotto answerLotto) {
         return lottos.stream()
-                .collect(Collectors.toMap(lotto -> lotto.getRank(answerLotto, bonusNumber),
+                .collect(Collectors.toMap(answerLotto::getRank,
                         value -> 1L,
                         Long::sum,
                         getEnumMapSupplier()));

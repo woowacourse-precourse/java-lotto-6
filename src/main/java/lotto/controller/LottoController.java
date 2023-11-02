@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.RandomNumberGenerator;
@@ -23,11 +24,12 @@ public class LottoController {
         final LottoFactory lottoFactory = getLottoFactory();
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
 
-        final Lotto answerLotto = getAnswerLotto();
+        final Lotto mainLotto = getMainLotto();
+        final int bonusNumber = getBonusNumber(mainLotto);
 
-        final int bonusNumber = getBonusNumber(answerLotto);
+        AnswerLotto answerLotto = AnswerLotto.create(mainLotto, bonusNumber);
 
-        Result result = Result.of(lottoFactory.calculateResult(answerLotto, bonusNumber));
+        Result result = Result.of(lottoFactory.calculateResult(answerLotto));
 
         outputView.printResult(ResultsDto.of(result));
         outputView.printRateOfReturn(result.calculateRate());
@@ -43,7 +45,7 @@ public class LottoController {
         }
     }
 
-    private Lotto getAnswerLotto() {
+    private Lotto getMainLotto() {
         while (true) {
             try {
                 return new Lotto(inputView.enterLotto());

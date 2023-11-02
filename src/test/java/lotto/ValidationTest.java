@@ -10,6 +10,35 @@ import org.junit.jupiter.api.Test;
 class ValidationTest {
 
     @Test
+    void isInRange() {
+        // given
+        List<Integer> case1 = new ArrayList<>(List.of(1, 1, 45));
+        List<Integer> case2 = new ArrayList<>(List.of(45, 1, 45));
+        List<Integer> case3 = new ArrayList<>(List.of(0, 1, 45));
+        List<Integer> case4 = new ArrayList<>(List.of(46, 1, 45));
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            Validation.isInRange(case1.get(0), case1.get(1), case1.get(2));
+        });
+        Throwable result2 = catchThrowable(() -> {
+            Validation.isInRange(case2.get(0), case2.get(1), case2.get(2));
+        });
+        Throwable result3 = catchThrowable(() -> {
+            Validation.isInRange(case3.get(0), case3.get(1), case3.get(2));
+        });
+        Throwable result4 = catchThrowable(() -> {
+            Validation.isInRange(case4.get(0), case4.get(1), case4.get(2));
+        });
+
+        // then
+        assertThat(result1).as("case1").doesNotThrowAnyException();
+        assertThat(result2).as("case2").doesNotThrowAnyException();
+        assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
+        assertThat(result4).as("case4").isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void isValidUnit() {
         // given
         List<Integer> case1 = new ArrayList<>(List.of(10000, 1000));

@@ -1,8 +1,7 @@
 package lotto.Util;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,15 +13,16 @@ public class ValidatorTest {
     public void isNullOrEmptyTest() {
         String nullValue = null;
         String empty = "";
-        
-        //null 입력 예외 발생
-        Throwable nullException = assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateNullOrEmpty(nullValue));
-        assertTrue(nullException.getMessage().contains(Validator.NULL_OR_EMPTY_MESSAGE));
-        // 빈 문자열 예외 발생
-        Throwable emptyException = assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateNullOrEmpty(empty));
-        assertTrue(emptyException.getMessage().contains(Validator.NULL_OR_EMPTY_MESSAGE));
+
+        // null 입력 예외 발생 확인
+        assertThatThrownBy(() -> Validator.validateNullOrEmpty(nullValue))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Validator.NULL_OR_EMPTY_MESSAGE);
+
+        // 빈 문자열 예외 발생 확인
+        assertThatThrownBy(() -> Validator.validateNullOrEmpty(empty))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Validator.NULL_OR_EMPTY_MESSAGE);
     }
 
     @Test
@@ -32,10 +32,9 @@ public class ValidatorTest {
         String validInput = "19000";
 
         // 유효하지 않은 입력에 대한 테스트
-        Throwable invalidBudgetException = assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateBudgetInThousands(invalidInput));
-        assertTrue(
-            invalidBudgetException.getMessage().contains(Validator.THOUSANDS_MULTIPLE_MESSAGE));
+        assertThatThrownBy(() -> Validator.validateBudgetInThousands(invalidInput))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Validator.THOUSANDS_MULTIPLE_MESSAGE);
 
         // 유효한 입력에 대한 테스트
         assertDoesNotThrow(() -> Validator.validateBudgetInThousands(validInput));

@@ -1,10 +1,15 @@
 package lotto.domain;
 
+import static lotto.constant.Rank.NONE;
 import static lotto.exception.ErrorMessage.INVALID_UNIT;
 import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 
+import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.constant.Rank;
@@ -58,8 +63,27 @@ public class LottoFactory {
         answerLotto.validateBonusNumber(bonusNumber);
 
         return lottos.stream()
-                .map(lotto -> lotto.getRank(answerLotto, bonusNumber))
-                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+                .collect(Collectors.toMap(getKeyMapper(answerLotto, bonusNumber),
+                        value -> 1L,
+                        Long::sum,
+                        getEnumMapSupplier()));
 
     }
+
+    private static Function<Lotto, Rank> getKeyMapper(Lotto answerLotto, int bonusNumber) {
+        return lotto -> lotto.getRank(answerLotto, bonusNumber);
+    }
+
+    private static Supplier<EnumMap<Rank, Long>> getEnumMapSupplier() {
+        return () -> {
+            EnumMap<Rank, Long> enumMap = new EnumMap<>(Rank.class);
+            EnumSet.allOf(Rank.class)
+                    .stream()
+                    .filter(rank -> rank != NONE)
+                    .forEach(rank -> enumMap.put(rank, 0L));
+
+            return enumMap;
+        };
+    }
+
 }

@@ -7,4 +7,5 @@ public interface OutputView {
         return new ConsoleOutputView();
     }
     public void printMessage(Message message);
+    public void printDynamicMessage(Message message, Object... args);
 }

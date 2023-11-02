@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -9,11 +10,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class LottoGame {
     public static int purchase = 0;
     public static int count;
+    public static List<Lotto> lottos = new ArrayList<>();
 
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
         inputPurchase();
         System.out.println(count+"개를 구입했습니다.");
+        printLottos();
     }
 
     void inputPurchase(){
@@ -38,6 +41,12 @@ public class LottoGame {
       return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    void printLottos(){
+        for(int i=0;i<count;i++){
+            lottos.add(new Lotto(makeLotto()));
+            System.out.println(lottos.get(i));
+        }
+    }
 
 
 }

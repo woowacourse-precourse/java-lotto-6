@@ -16,5 +16,13 @@ public class LottoProcess {
         return new Lotto(randomNumbers);
     }
 
-
+    public List<Lotto> purchaseLotto(int money) {
+        LottoProcessException.checkPurchaseMoney(money);
+        int numberOfLotto = money / LOTTO_PRICE;
+        List<Lotto> lotto = new ArrayList<>();
+        for (int i = 0; i < numberOfLotto; i++) {
+            lotto.add(generateRandomLotto());
+        }
+        return lotto;
+    }
 }

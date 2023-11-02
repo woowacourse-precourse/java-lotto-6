@@ -91,7 +91,7 @@
 - [ ] 총 수익률 출력 수행
 
 ### Service
-2. LottoService
+1. LottoService
 - [ ] 당첨 번호 생성
   - [ ] 당첨 번호를 위한 난수 생성
 - [ ] 각 로또의 당첨 여부 계산

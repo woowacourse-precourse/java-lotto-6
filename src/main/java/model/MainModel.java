@@ -8,18 +8,32 @@ import lotto.Lotto;
 
 public class MainModel {
     private List<Lotto> computerLottos;
+    private final static int RANK_INDEX = 5;
 
     public MainModel(List<Lotto> computerLottos) {
         this.computerLottos = computerLottos;
     }
 
-    public List<Integer> judgeLotto(Lotto userLotto, int bonusNumber) {
-        List<Integer> result = new ArrayList<>();
+    public int[] judgeLotto(Lotto userLotto, int bonusNumber) {
+        int[] result = new int[RANK_INDEX];
 
         for (Lotto computerLotto : computerLottos) {
-            Rank rank = compareNumbers(new LinkedHashSet<>(computerLotto.getNumbers()),
+            addRank(result, compareNumbers(new LinkedHashSet<>(computerLotto.getNumbers()),
                     new LinkedHashSet<>(computerLotto.getNumbers()),
-                    bonusNumber);
+                    bonusNumber));
+        }
+        return result;
+    }
+
+    private void addRank(int[] result, Rank rank)
+    {
+        switch (rank)
+        {
+            case FIRST -> result[0]++;
+            case SECOND -> result[1]++;
+            case THIRD -> result[2]++;
+            case FOURTH -> result[3]++;
+            case FIFTH -> result[4]++;
         }
     }
 
@@ -27,7 +41,7 @@ public class MainModel {
                                 int bonusNumber) {
         int countOfMatch = 0;
         computerNumbers.retainAll(userNumbers);
-        return getRank(countOfMatch,);
+        return getRank(countOfMatch,computerNumbers.contains((Integer)bonusNumber));
     }
 
     private Rank getRank(int countOfMatch, boolean matchBonus) {

@@ -20,7 +20,7 @@
 - []당첨 내역 출력
 - []수익률 출력
 
-## [RandomLottoGenerator]
+## [RandomLotto]
 -  []입력값에 맞는 랜덤 로또 번호 생성
 -  []보너스 볼 생성
 

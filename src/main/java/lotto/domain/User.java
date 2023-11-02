@@ -30,22 +30,34 @@ public class User {
     }
 
     public List<Integer> inputWinningNumbers() {
+        Arrays.stream(Console.readLine().split(",")).toList().forEach(s -> winningNumbers.add(Integer.valueOf(s)));
 
-        Arrays.stream(Console.readLine().split(","))
-                .toList()
-                .forEach(s -> winningNumbers.add(Integer.valueOf(s)));
+        retry();
 
-        if (NumberCheckValidator.validateWinningNumber(winningNumbers)) {
-            return winningNumbers;
-        }
-        throw new IllegalArgumentException("[ERROR] 1 ~ 45사이의 숫자를 중복없이 입력해 주세요");
+        return winningNumbers;
     }
 
     public int inputBonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
-        if (NumberCheckValidator.validateBonusNumber(winningNumbers,bonusNumber)) {
-            return bonusNumber;
+
+        retry(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private void retry() {
+        try {
+            NumberCheckValidator.validateWinningNumber(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            inputWinningNumbers();
         }
-        throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이 숫자 중 로또번호와 중복되지 않는 수를 입력해 주세요");
+    }
+
+    private void retry(int bonusNumber) {
+        try {
+            NumberCheckValidator.validateBonusNumber(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            inputBonusNumber();
+        }
     }
 }

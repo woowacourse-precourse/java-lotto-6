@@ -12,4 +12,8 @@ public class InputView {
     public int inputMoney() {
         return inputUtil.readNaturalNumber();
     }
+
+    public String inputWinningNumber() {
+        return inputUtil.readString();
+    }
 }

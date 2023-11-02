@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.*;
+import java.util.stream.Collectors;
+import lotto.exception.InputException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +16,33 @@ public class LottoController {
     }
 
     public void run() {
-        int money = inputView.inputMoney();
-        System.out.println(money);
+        int money = receiveMoney();
+        List<Integer> winningNumbers = receiveWinningNumbers();
+    }
+
+    private int receiveMoney() {
+        try {
+            outputView.printInputMoneyMessage();
+            return inputView.inputMoney();
+        } catch (InputException e) {
+            System.out.println(e.getMessage());
+            return receiveMoney(); // 재귀구
+        }
+    }
+
+    private List<Integer> receiveWinningNumbers() {
+        try {
+            outputView.printInputWinningNumbersMessage();
+            return parseWinningNumbers(inputView.inputWinningNumber());
+        } catch (InputException e) {
+            System.out.println(e.getMessage());
+            return receiveWinningNumbers(); // 재귀
+        }
+    }
+
+    private List<Integer> parseWinningNumbers(String numbers) {
+        return Arrays.stream(numbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

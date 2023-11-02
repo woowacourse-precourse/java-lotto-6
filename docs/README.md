@@ -1,5 +1,5 @@
 ## 기능 구현 목록
--[ ] 사용자의 금액을 입력받는다. - InputView#inputCash
+-[x] 사용자의 금액을 입력받는다. - InputView#inputCash
   - [ ] 예외 - 1000 단위인지 판단한다. - Validator#validateCash
 -[ ] 금액으로 발행 횟수를 책정한다. - Util#calculate
 -[ ] 별개의 1 ~ 45 무작위 값 6개를 생성한다. - LottoGenerator#generate

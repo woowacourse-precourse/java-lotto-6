@@ -23,10 +23,10 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i=0; i<number; i++){
+            //랜덤값이 나오는지 확인해야함
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> sortedNumbers = new ArrayList<>(numbers);
             Collections.sort(sortedNumbers);
-
             lottos.add(new Lotto(sortedNumbers));
         }
         return lottos;

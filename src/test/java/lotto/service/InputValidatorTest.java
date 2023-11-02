@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.exception.InputDataNotNumberException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +18,7 @@ public class InputValidatorTest {
     @Test
     void validateIsNotNumber() {
         Assertions.assertAll(
-                () -> Assertions.assertThrows(InputDataNotNumberException.class,
+                () -> Assertions.assertThrows(IllegalArgumentException.class,
                         () -> inputValidator.validateInputDataIsNumber("하이")),
                 () -> Assertions.assertDoesNotThrow(() -> inputValidator.validateInputDataIsNumber("12"))
         );

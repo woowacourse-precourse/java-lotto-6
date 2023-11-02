@@ -4,7 +4,7 @@ import lotto.util.message.ErrorMessage;
 
 public class Money {
 	
-	private static final int UNIT = 1000;
+	public static final int UNIT = 1000;
 	
 	private final int money;
 	
@@ -18,12 +18,12 @@ public class Money {
 	}
 	
 	private void validateMoneyUnit(int money) {
-		if(!checkMoneyUnit(money)) {
+		if(isNotUnit(money)) {
 			throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR.getForMatMessage(UNIT));
 		}
 	}
 	
-	private boolean checkMoneyUnit(int money) {
+	private boolean isNotUnit(int money) {
 		return money % UNIT != 0;
 	}
 	

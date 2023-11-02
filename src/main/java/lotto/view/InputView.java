@@ -8,6 +8,14 @@ public class InputView {
     }
 
     public static String readPurchaseAmount() {
-        return Console.readLine();
+        String amount = Console.readLine();
+        validateBlank(amount);
+        return amount;
+    }
+
+    private static void validateBlank(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 빈 값이 입력되었습니다.");
+        }
     }
 }

@@ -3,7 +3,7 @@
 - [x] 구입금액을 입력한다.
     - [ ] 구입금액은 1000원 단위로 나누어 떨어지지 않으면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [ ] 숫자 이외의 값이 들어오면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] 빈 값이 들어오면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [x] 빈 값이 들어오면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [ ] 로또 한장의 가격은 1000원이다.
     - [ ] 구입금액을 입력할 때 1000원 미만의 값이 입력되면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 

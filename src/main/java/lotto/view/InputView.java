@@ -15,7 +15,7 @@ public class InputView {
     public String inputPurchaseAmount() {
         System.out.println(InputConstant.PURCHASE_AMOUNT.getMessage());
         String purchaseAmount = getUserInput();
-        inputValidator.validateUserInput(purchaseAmount);
+        inputValidator.validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;
     }
 

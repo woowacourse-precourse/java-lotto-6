@@ -7,14 +7,14 @@ public class InputValidator {
 
     private static final Pattern INPUT_NUMBER_REGEX = Pattern.compile("[0-9]+");
 
-    public void validateUserInput(String userInput) {
+    public void validatePurchaseAmount(String userInput) {
         if (isValidateNull(userInput)) {
             throw new NullPointerException(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
         }
         if (isValidateBlank(userInput)) {
             throw new IllegalArgumentException(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
         }
-        if (!isValidateNumber(userInput)) {
+        if (!isValidatePurchaseNumber(userInput)) {
             throw new IllegalArgumentException(ExceptionConstant.INPUT_IS_NUMBER.getMessage());
         }
     }
@@ -27,7 +27,7 @@ public class InputValidator {
         return userInput.isBlank();
     }
 
-    private boolean isValidateNumber(String userInput) {
+    private boolean isValidatePurchaseNumber(String userInput) {
         return INPUT_NUMBER_REGEX.matcher(userInput).matches();
     }
 }

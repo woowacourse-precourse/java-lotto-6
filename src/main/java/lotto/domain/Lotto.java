@@ -17,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from(final List<Integer> numbers) {
+    public static Lotto create(final List<Integer> numbers) {
         validateLottoSize(numbers);
         validateEachNumberIsInRange(numbers);
         validateLottoHasDuplicateNumber(numbers);

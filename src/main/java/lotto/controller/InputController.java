@@ -3,16 +3,24 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
-import lotto.validator.Validator;
+import lotto.model.Validator;
 import lotto.view.InputView;
 
 public class InputController {
-    public static String scanBudget() {
+    private final InputView inputView;
+    private final Validator validator;
+
+    public InputController(InputView inputView, Validator validator) {
+        this.validator = validator;
+        this.inputView = inputView;
+    }
+
+    public String scanBudget() {
         while (true) {
             try {
-                System.out.println(InputView.enterBudgetMessage());
+                System.out.println(inputView.enterBudgetMessage());
                 String userInput = Console.readLine();
-                Validator.validateBudgetInput(userInput);
+                validator.validateBudgetInput(userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -20,12 +28,12 @@ public class InputController {
         }
     }
 
-    public static String scanWinningLottoTicket() {
+    public String scanWinningLottoTicket() {
         while (true) {
             try {
-                System.out.println(InputView.enterWinningLottoTicket());
+                System.out.println(inputView.enterWinningLottoTicket());
                 String userInput = Console.readLine();
-                Validator.validateLottoTicketInput(userInput);
+                validator.validateLottoTicketInput(userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -33,12 +41,12 @@ public class InputController {
         }
     }
 
-    public static String scanBonusNumber(Lotto winningLottoTicket) {
+    public String scanBonusNumber(Lotto winningLottoTicket) {
         while (true) {
             try {
-                System.out.println(InputView.enterBonusNumber());
+                System.out.println(inputView.enterBonusNumber());
                 String userInput = Console.readLine();
-                Validator.validateBonusNumberInput(winningLottoTicket, userInput);
+                validator.validateBonusNumberInput(winningLottoTicket, userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -2,21 +2,24 @@ package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class LottoService {
 
     public Integer readPurchasePrice() {
+        String errorMessage = "[ERROR] 로또 구입 금액은 1,000원 단위의 숫자여야 합니다.";
+
         Integer result;
         try {
             result = Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위의 숫자여야 합니다.");
+            throw new IllegalArgumentException(errorMessage);
         }
 
         if (validatePurchasePrice(result)) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위의 숫자여야 합니다.");
+            throw new IllegalArgumentException(errorMessage);
         }
 
         return null;
@@ -31,11 +34,39 @@ public class LottoService {
     }
 
     public List<Integer> readWinningNumbers() {
-        return null;
+        String errorMessage = "[ERROR] 당첨 번호는 1부터 45 사이의 중복되지 않는 숫자여야 합니다.";
+
+        List<Integer> result;
+        try {
+            result = convertStringToIntegerList(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        return result;
+    }
+
+    private List<Integer> convertStringToIntegerList(String input) {
+        List<Integer> result = new ArrayList<>();
+        String[] fragments = readLine().split(",");
+        for (String fragment : fragments) {
+            result.add(Integer.parseInt(fragment));
+        }
+
+        return result;
     }
 
     public Integer readBonusNumber() {
-        return null;
+        String errorMessage = "[ERROR] 보너스 번호는 1부터 45 사이의 당첨 번호와 중복되지 않는 숫자여야 합니다.";
+
+        Integer result;
+        try {
+            result = Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        return result;
     }
 
     public List<Lotto> issueLotto(Integer purchasePrice) {

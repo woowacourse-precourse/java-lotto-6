@@ -9,6 +9,7 @@ import java.util.List;
 public class LottoGame {
     private int lottoQuantity;
     private List<Lotto> lottos;
+    private List<Integer> winNumber;
 
     public LottoGame(String amount) throws IllegalArgumentException{
         char[] money = amount.toCharArray();
@@ -21,6 +22,7 @@ public class LottoGame {
         inputMoney = Math.floorDiv(inputMoney,1000);
         this.lottoQuantity = inputMoney;
         lottos = new ArrayList<>();
+        winNumber = new ArrayList<>();
     }
 
     public void printLottoQuantity() {
@@ -59,6 +61,13 @@ public class LottoGame {
     private void validateLottoQuantity() throws IllegalArgumentException{
         if(this.lottoQuantity == 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
+    }
+    public void setWinNumber(List<Integer> input){
+        this.winNumber = input;
+    }
+
+    public List<Integer> getWinNumber() {
+        return winNumber;
     }
 }
 

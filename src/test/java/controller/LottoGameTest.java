@@ -5,6 +5,9 @@ import lotto.Application;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,6 +53,21 @@ public class LottoGameTest extends NsTest {
             runException("00");
             assertThat(output()).contains("[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다.");
         });
+    }
+
+    @Test
+    @DisplayName("정수형 리스트을 입력으로 받아 당첨번호를 저장한다.")
+    void setting_win_numbers(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6");
+                    assertThat(output()).contains(
+                            "1,2,3,4,5,6"
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
     }
 
     @Override

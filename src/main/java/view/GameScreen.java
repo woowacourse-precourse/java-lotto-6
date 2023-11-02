@@ -21,6 +21,7 @@ public class GameScreen {
         System.out.println();
 
         inputWinNumbers();
+        printWinNumbers();
 
     }
     private void initialize(){
@@ -55,12 +56,13 @@ public class GameScreen {
             try{
                 System.out.println("당첨 번호를 입력해 주세요.");
                 inputNumbers = inputNumbers(Console.readLine());
-                //todo: 밥먹고 와서 inputNumbers LottoGame->setWinNumbers에 집어넣기
+                this.game.setWinNumber(inputNumbers);
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
+
     }
 
     private List<Integer> inputNumbers(String input) throws IllegalArgumentException{
@@ -75,6 +77,17 @@ public class GameScreen {
             winNumbers.add(Integer.parseInt(number));
         }
         return winNumbers;
+    }
+    //only for test
+    private void printWinNumbers(){
+        List<Integer> winNumber = this.game.getWinNumber();
+        StringBuilder printer = new StringBuilder();
+        for(int index = 0; index < winNumber.size(); index++){
+            printer.append(winNumber.get(index));
+            if(index != winNumber.size()-1)
+                printer.append(",");
+        }
+        System.out.println(printer);
     }
     private void validateWinNumberLength(String[] inputNumbers)
             throws IllegalArgumentException{

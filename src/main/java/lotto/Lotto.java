@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -30,6 +32,10 @@ public class Lotto {
         for (Integer num : numbers) {
             if (num < 1 || num > 45)
                 throw new IllegalArgumentException("각 로또번호는 1 ~ 45 사이의 정수여야 합니다.");
+        }
+        Set<Integer> distinctList = new HashSet<>(numbers);
+        if (numbers.size() != distinctList.size()) {
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 

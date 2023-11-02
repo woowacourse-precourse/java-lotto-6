@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.exception.winningNumber.WinningNumberFormatException;
+import lotto.exception.winningNumber.WinningNumberRangeException;
+import lotto.exception.winningNumber.WinningNumberSizeException;
 
 public class WinningNumbers {
     private static final Pattern winningNumbersRegex = Pattern.compile("\\d+(,*\\s*\\d*)*");
@@ -34,19 +37,19 @@ public class WinningNumbers {
         boolean isNotMatch = !matcher.matches();
 
         if (isNotMatch) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에는 숫자, 공백, 콤마(,)만 입력할 수 있습니다.");
+            throw new WinningNumberFormatException();
         }
     }
 
     private void validateSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자가 필요합니다.");
+            throw new WinningNumberSizeException();
         }
     }
 
     private void validateRange(List<Integer> winningNumbers) {
         if (hasInvalidRangeNumber(winningNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new WinningNumberRangeException();
         }
     }
 

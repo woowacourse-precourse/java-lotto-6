@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Lotto { // 당첨된 로또를 만들어주는 클래스
     private final List<Integer> numbers;
-
+    
     public Lotto(List<Integer> numbers) { 
         validate(numbers);
         this.numbers = numbers;
@@ -15,8 +15,5 @@ public class Lotto { // 당첨된 로또를 만들어주는 클래스
             throw new IllegalArgumentException();
         }
     }
-   
-   public List<Integer> generate() {
-	   return numbers;
-   }
+    // TODO: 추가 기능 구현
 }

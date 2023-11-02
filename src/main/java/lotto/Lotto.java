@@ -16,12 +16,12 @@ public class Lotto {
     private final WinningNumber winningNumber;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
+        validate();
         this.winningNumber = new WinningNumber(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate() {
         validateSize();
         checkIsDuplicated();
         validateRange();

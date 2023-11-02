@@ -21,7 +21,8 @@ public class Logics {
     }
 
     public static double benefit (int money, int sum) {
-        return Math.round((sum / money) * 100)/100;
+        double temp = (double) sum / (double) money;
+        return temp*100;
     }
 
 }

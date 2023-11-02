@@ -9,9 +9,12 @@ public class OutputView {
             "4개 일치 (50,000원) - ",
             "5개 일치 (1,500,000원) - ",
             "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-            "6개 일치 (200,000,000원) - ",
+            "6개 일치 (2,000,000,000원) - ",
     };
 
+    public static void printBuyNumbers (int number) {
+        System.out.println(number+"개를 구매했습니다.");
+    }
     public static void printLottoNumbers (StringBuilder numbers) {
         System.out.println(numbers);
     }

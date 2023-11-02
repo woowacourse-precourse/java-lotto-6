@@ -6,19 +6,25 @@ import java.util.List;
 import lotto.view.OutputView;
 
 public class Lotto {
-    final int MIN_NUMBER = 1;
-    final int MAX_NUMBER = 45;
-    final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicate (List<Integer> numbers) {
+        for(int i = 0; i < numbers.size(); i++) {
+            if(isContain(numbers, numbers.get(i), i+1)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -33,19 +39,19 @@ public class Lotto {
     public int countMatch (Lotto answers, int bonus) {
         int result = 0;
         for(int i = 0; i < this.numbers.size(); i++) {
-            if(isContain(answers.getNumber(i))) {
+            if(isContain(numbers, answers.getNumber(i),0)) {
                 result++;
             }
         }
 
-        if(result == 5 && isContain(bonus)) {
+        if(result == 5 && isContain(numbers, bonus, 0)) {
             result=-1;
         }
 
         return result;
     }
-    private boolean isContain (int num) {
-        for(int i = 0; i < numbers.size(); i++) {
+    private boolean isContain (List<Integer> numbers, int num, int start) {
+        for(int i = start; i < numbers.size(); i++) {
             if(numbers.get(i) == num) {
                 return true;
             }

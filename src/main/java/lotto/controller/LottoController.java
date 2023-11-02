@@ -32,7 +32,6 @@ public class LottoController {
         initLottos();
         printLottos();
         inputAnswer();
-//        System.out.println(Logics.ListToString(this.answer.getLotto()));
         inputBonus();
         checkEachLottos();
         sumOfNumbers();
@@ -74,7 +73,7 @@ public class LottoController {
         boolean isValidate = false;
         while(!isValidate) {
             try {
-                String strAnswer = InputView.printInputBonus();
+                String strAnswer = InputView.printInputAnswer();
                 String[] tempAnswer = strAnswer.trim().split(",");
                 List<Integer> temp = checkInputAnswer(tempAnswer);
                 this.answer = new Lotto(temp);
@@ -109,6 +108,7 @@ public class LottoController {
     }
 
     private void printLottos () {
+        OutputView.printBuyNumbers(this.money/1000);
         for(int i = 0; i < this.lottos.length; i++) {
             StringBuilder temp = Logics.ListToString(this.lottos[i].getLotto());
             OutputView.printLottoNumbers(temp);
@@ -140,6 +140,6 @@ public class LottoController {
         for(int i = 0; i < this.standard.length; i++) {
             this.sum+=standard[i]*results[i];
         }
-        this.percentage = Logics.benefit(this.money, this.sum)*100;
+        this.percentage = Logics.benefit(this.money, this.sum);
     }
 }

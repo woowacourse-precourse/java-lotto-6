@@ -22,4 +22,11 @@ public class InputView {
         Lotto lotto = new Lotto(Arrays.stream(splitedInput).map(Integer::valueOf).toList());
         return lotto;
     }
+
+    public static int inputBonus(){
+        String input = Console.readLine();
+        int bonus = Integer.parseInt(input);
+
+        return bonus;
+    }
 }

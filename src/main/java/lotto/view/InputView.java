@@ -2,12 +2,20 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.InputConstant;
+import lotto.validation.InputValidator;
 
 public class InputView {
+
+    private final InputValidator inputValidator;
+
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
 
     public String inputPurchaseAmount() {
         System.out.println(InputConstant.PURCHASE_AMOUNT.getMessage());
         String purchaseAmount = getUserInput();
+        inputValidator.validateUserInput(purchaseAmount);
         return purchaseAmount;
     }
 

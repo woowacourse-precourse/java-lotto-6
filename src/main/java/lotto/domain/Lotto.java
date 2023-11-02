@@ -4,6 +4,7 @@ import static lotto.constant.LottoConstant.COUNT;
 import static lotto.exception.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.exception.ErrorMessage.WRONG_SIZE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoConstant;
@@ -52,4 +53,7 @@ public class Lotto {
                         number > LottoConstant.MAX_NUMBER.getValue());
     }
 
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
 }

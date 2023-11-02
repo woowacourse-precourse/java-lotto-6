@@ -17,5 +17,7 @@ public class LottoController {
     public void run() {
         int money = inputView.enterMoney();
         LottoFactory lottoFactory = LottoFactory.create(new RandomNumberGenerator(), money);
+
+        outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
     }
 }

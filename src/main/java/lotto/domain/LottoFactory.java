@@ -45,5 +45,9 @@ public class LottoFactory {
         return money % UNIT != 0;
     }
 
-
+    public List<List<Integer>> getLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }

@@ -63,6 +63,12 @@ public class Validator {
         }
     }
 
+    public static void validateDuplicateBonusNumber(List<Integer> answerNumbers, int bonusNumber){
+        if(answerNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("당첨번호 중 보너스 번호와 중복되는 번호가 있습니다.");
+        }
+    }
+
 
 
 

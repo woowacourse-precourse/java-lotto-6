@@ -56,7 +56,6 @@ public class Application {
     private static int numOfLotto() {
         int money = Integer.parseInt(Console.readLine());
         if (money%1000 != 0) throw new IllegalArgumentException();
-        System.out.println(String.format("%d개를 구매했습니다.",money/1000));
         return money/1000;
     }
 
@@ -74,7 +73,7 @@ public class Application {
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
         
-
+        System.out.println(String.format("%d개를 구매했습니다.", n));
         List<Integer> res = new ArrayList<>(List.of(0,0,0,0,0,0));
         for (int i = 0; i < user.size(); i++) {
             int idx = judge(winNumber, user.get(i), bonus);

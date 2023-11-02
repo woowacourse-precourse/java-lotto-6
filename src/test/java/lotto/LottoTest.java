@@ -3,9 +3,13 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -25,12 +29,20 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
     // 발행된 로또의 번호가 1 ~ 45 사이의 숫자 인지 확인 기능
-    @Test
+    @ParameterizedTest
+    @MethodSource("errorLottoData")
     @DisplayName("로또 번호가 1 ~ 45 사이의 숫자가 아니면 예외가 발생한다.")
-    void createLottoByOverRangeNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Lotto(List.of(0, -1, 3, 4, 5, 6)))
+    void createLottoByOverRangeNumber(List<Integer> lottoNumber) {
+        assertThatThrownBy(() -> new Lotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    static Stream<Arguments> errorLottoData() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 46)),
+                Arguments.of(List.of(0, 2, 3, 4, 5, 6)),
+                Arguments.of(List.of(-1, 2, 3, 4, 5, 6))
+        );
+    }
+
 }

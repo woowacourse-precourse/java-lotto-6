@@ -6,6 +6,7 @@ import lotto.util.Convertor;
 
 public class InputValidator {
     private static final String ZERO = "0";
+    private static final String COMMA = ",";
     private static final int STANDARD_OF_DIVIDE = 1000;
     private static final Pattern NOT_NUMBER = Pattern.compile(".*[\\D].*");
 
@@ -17,6 +18,7 @@ public class InputValidator {
         validateZero(input);
         validateIsNumber(input);
         validateDivisibleByThousand(input);
+        validateSeparator(input);
     }
 
     private static void validateNull(String input) {
@@ -49,5 +51,11 @@ public class InputValidator {
             return true;
         }
         return false;
+    }
+
+    public static void validateSeparator(String input) {
+        if (!input.contains(COMMA)) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_COMMA.getMessage());
+        }
     }
 }

@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     // 랜덤 번호 6개 뽑기
-    public static List<Integer> setRandomNumbers() {
+    private static List<Integer> setRandomNumbers() {
         List<Integer> box = new ArrayList<>();
         while (box.size() != 6) {
             int rd = Randoms.pickNumberInRange(1, 45);
@@ -53,22 +53,23 @@ public class Application {
         return 0;
     }
 
-    private static int numOfLotto() {
+    private static int getNumOfLotto() {
         int money = Integer.parseInt(Console.readLine());
         if (money%1000 != 0) throw new IllegalArgumentException();
         return money/1000;
     }
 
-    private static List<Lotto> setUser(){
+    private static List<Lotto> setUser(int n){
         List<Lotto> user = new ArrayList<>();
-        for (int i = 0; i < numOfLotto(); i++) {
+        for (int i = 0; i < n; i++) {
             new Lotto(setRandomNumbers());     
         }          
         return user;
     }
 
     public static void main(String[] args) {
-        List<Lotto> user = setUser();
+        int numoflotto = getNumOfLotto();
+        List<Lotto> user = setUser(numoflotto);
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
         

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoPrice;
 import lotto.service.InputService;
 import lotto.service.ValidateService;
 
@@ -21,5 +22,9 @@ public class LottoPurchase {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public int getPurchaseAmount() {
+        return getPurchasePrice() / LottoPrice.LOTTO_PRICE.getNumber();
     }
 }

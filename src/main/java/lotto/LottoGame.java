@@ -108,6 +108,13 @@ public class LottoGame {
         }
     }
 
+    int calculateEarningRate(){
+        return ((reward.fifth.money*rewardList.get(0))
+                +(reward.fourth.money*rewardList.get(1))
+                +(reward.third.money*rewardList.get(3))
+                +(reward.second.money*rewardList.get(2))
+                +(reward.first.money*rewardList.get(4)))/purchase;
+    }
 
     void printReward(){
         System.out.println("당첨 통계");
@@ -117,6 +124,7 @@ public class LottoGame {
         System.out.println("5개 일치 ("+reward.third.money+") - "+rewardList.get(3)+"개");
         System.out.println("5개 일치, 보너스 볼 일치 ("+reward.second.money+") - "+rewardList.get(2)+"개");
         System.out.println("6개 일치 ("+reward.first.money+") - "+rewardList.get(4)+"개");
+        System.out.println("총 수익률은 "+calculateEarningRate()+"%입니다.");
     }
 
 

@@ -14,6 +14,7 @@ public class WinningNumbers {
 
     private void validate(String winningNumbers) {
         validateFormat(winningNumbers);
+        List<Integer> winningNumber = winningNumbersToList(winningNumbers);
     }
 
     private void validateFormat(String winningNumbers) {
@@ -22,6 +23,16 @@ public class WinningNumbers {
         }
     }
 
+    private List<Integer> winningNumbersToList(String winningNumbers) {
+        return Arrays.stream(extractNumbers(winningNumbers))
+                .sorted()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+    }
 
+    private String[] extractNumbers(String winningNumbers) {
+        return winningNumbers.split("\\D+");
+    }
 
 }

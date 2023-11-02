@@ -97,24 +97,26 @@ public class Application {
         return user;
     }
 
-    public static int[] resList(List<Lotto> user, Lotto winNumber, int bonus){
-        int[] target = {6, 5, 5, 4, 3, 0};
+    private static void printres(int[] res){
+        int i = 4;
+        System.out.println(String.format("6개 일치 (%d) - %d개",prices[i],res[i--]));
+        System.out.println(String.format("5개 일치 (%d) - %d개",prices[i],res[i--]));
+        System.out.println(String.format("5개 일치 (%d) - %d개",prices[i],res[i--]));
+        System.out.println(String.format("4개 일치, 보너스 볼 일치 (%d) - %d개",prices[i],res[i--]));
+        System.out.println(String.format("3개 일치 (%d) - %d개",prices[i],res[i--]));
+    }
+
+    public static int[] resultList(List<Lotto> user, Lotto winNumber, int bonus){        
         int[] res = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < user.size(); i++) {
             int idx = judge(winNumber, user.get(i), bonus);
             res[idx]++;
         }
-        System.out.println("당첨통계\n---");
-        int i = 4;
-        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
-        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
-        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
-        System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%d) - %d개",target[i],prices[i],res[i--]));
-        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
+        printres(res);
         return res;
     }
 
-    public static void calReturnRate(int[] res, int money){
+    public static void calulateReturnRate(int[] res, int money){
         float userPrice = 0;
         for (int i = 0; i < res.length; i++) {
             userPrice += prices[i]*res[i];
@@ -129,6 +131,6 @@ public class Application {
         Lotto winNumber = new Lotto(setNumbers());
         int bonus = setBonus(winNumber); 
 
-        calReturnRate(resList(user, winNumber, bonus), m);
+        calulateReturnRate(resultList(user, winNumber, bonus), m);
     }
 }

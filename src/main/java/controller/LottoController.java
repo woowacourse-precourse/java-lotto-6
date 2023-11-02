@@ -1,29 +1,40 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import constant.Rank;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import lotto.Lotto;
 import view.InputView;
 import view.OutputView;
-
-import lotto.Lotto;
-
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoController {
     private int money;
     private int bonusNumber;
 
     private List<Lotto> lottoList = new ArrayList<>();
-    private static Lotto lottoWinningNumbers;
+    private HashMap<Rank, Integer> rankCountsMap;
+    private Lotto winningNumbers;
 
-//    public LottoController() {
-//    }
 
-    public void set() {
+    public LottoController() {
+        initRankCountsMap();
+    }
+
+    private void initRankCountsMap() {
+        rankCountsMap = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            rankCountsMap.put(rank, 0);
+        }
+    }
+
+    public void start() {
         money = InputView.money();
         int ticketCount = OutputView.LottoTicketCount(money);
         makeLottoLists(ticketCount);
         getWinningNumbers();
+        result();
     }
 
     private void makeLottoLists(int ticketCount) {
@@ -35,7 +46,20 @@ public class LottoController {
     }
 
     private void getWinningNumbers() {
-        lottoWinningNumbers = InputView.winningNumbers();
+        winningNumbers = InputView.winningNumbers();
         bonusNumber = InputView.bonusNumber();
+    }
+
+    private void result() {
+        OutputView.resultStart();
+
+        for (Lotto lotto : lottoList) {
+            Rank rank = lotto.getRank(winningNumbers.getNumbers(), bonusNumber);
+
+            int currentCount = rankCountsMap.getOrDefault(rank, 0);
+            rankCountsMap.put(rank, currentCount + 1);
+        }
+
+        OutputView.printStatistics(rankCountsMap);
     }
 }

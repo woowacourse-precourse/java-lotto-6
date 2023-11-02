@@ -3,6 +3,8 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.View.ExceptionMessage;
+import lotto.View.InputVIew;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,16 +25,17 @@ public class Lotto {
             System.out.println(e.getMessage());
             InputVIew.inputWinningNumbers();
         }
+
     }
     private void validateLength(List<Integer> numbers){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_LENGTH);
         }
     }
     private  void validateNumbers(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE);
             }
         }
     }
@@ -40,7 +43,7 @@ public class Lotto {
         Set<Integer> seen = new HashSet<>();
         for (Integer number : numbers) {
             if (seen.contains(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_INPUT_NUMBER);
             }
             seen.add(number);
         }

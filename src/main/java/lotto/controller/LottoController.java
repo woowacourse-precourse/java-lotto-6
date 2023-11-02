@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Calculator;
 import lotto.domain.Lottos;
 import lotto.domain.WinningChecker;
@@ -24,6 +25,7 @@ public class LottoController {
         List<Integer> winningNumbers = input.getWinningNumbers();
         output.printInputBonusNumberMessage();
         int bonusNumber = input.getBonusNumber();
+        Console.close();
 
         WinningChecker winningChecker = new WinningChecker(lottos, winningNumbers, bonusNumber);
         List<Integer> matchedNumberCountEachLotto = winningChecker.countMatchedNumbersEachLotto();

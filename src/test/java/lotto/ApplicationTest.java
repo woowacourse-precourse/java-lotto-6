@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -58,17 +57,26 @@ class ApplicationTest extends NsTest {
 
     @Test
     @DisplayName("로또_값_포함_테스트")
-    void LottoTest(){
-        List<Integer> l = List.of(1,4,25,36,41,44);
+    void LottoTest() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
         Lotto lotto = new Lotto(l);
         assertThat(lotto.hasNum(1)).isTrue();
     }
+
     @Test
     @DisplayName("로또_값_포함_테스트2")
-    void LottoTest2(){
-        List<Integer> l = List.of(1,4,25,36,41,44);
+    void LottoTest2() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
         Lotto lotto = new Lotto(l);
         assertThat(lotto.hasNum(43)).isFalse();
+    }
+
+    @Test
+    @DisplayName("로또_출력_테스트")
+    void LottoTest3() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
+        Lotto lotto = new Lotto(l);
+        assertThat(lotto.toString()).isEqualTo("[1, 4, 25, 36, 41, 44]");
     }
 
     @Override

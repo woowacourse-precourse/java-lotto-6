@@ -12,4 +12,8 @@ public class OutputView {
     public static void bonusMessage() {
         System.out.println(Message.BONUS_NUM.getMessage());
     }
+
+    public static void errorMessage(String message) {
+        System.out.printf("[ERROR] %s",message);
+    }
 }

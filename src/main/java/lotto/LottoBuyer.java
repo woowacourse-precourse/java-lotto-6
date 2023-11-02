@@ -1,12 +1,18 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 
 public class LottoBuyer {
+    final int LOTTO_PURCHASE_UNIT = 1000;
     private int purchaseAmount;
+    private int purchaseLottoCount;
+    private ArrayList<Lotto> myLottos;
 
     public LottoBuyer() {
         this.purchaseAmount = 0;
+        this.purchaseLottoCount = 0;
+        this.myLottos = new ArrayList<>();
     }
 
     public void inputPurchaseAmount() {
@@ -31,5 +37,21 @@ public class LottoBuyer {
         }
 
         return resultAmount;
+    }
+
+    public void addMyLottos(Lotto publishedLotto) {
+        myLottos.add(publishedLotto);
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public int calculatePublishCount() {
+        return purchaseAmount / LOTTO_PURCHASE_UNIT;
+    }
+
+    public ArrayList<Lotto> getMyLotts() {
+        return myLottos;
     }
 }

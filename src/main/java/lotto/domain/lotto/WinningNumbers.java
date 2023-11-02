@@ -8,31 +8,39 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumbers(String winningNumbers) {
-        validate(winningNumbers);
+    public WinningNumbers(String winningNumber) {
+        validate(winningNumber);
+        this.numbers = winningNumbersToList(winningNumber);
     }
 
-    private void validate(String winningNumbers) {
-        validateFormat(winningNumbers);
-        List<Integer> winningNumber = winningNumbersToList(winningNumbers);
+    private void validate(String winningNumber) {
+        validateFormat(winningNumber);
+        List<Integer> winningNumbers = winningNumbersToList(winningNumber);
+        validateSize(winningNumbers);
     }
 
-    private void validateFormat(String winningNumbers) {
-        if (!winningNumbers.matches(winningNumbersRegex)) {
+    private void validateFormat(String winningNumber) {
+        if (!winningNumber.matches(winningNumbersRegex)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에는 숫자, 공백, 콤마(,)만 입력할 수 있습니다.");
         }
     }
 
-    private List<Integer> winningNumbersToList(String winningNumbers) {
-        return Arrays.stream(extractNumbers(winningNumbers))
+    private void validateSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자가 필요합니다.");
+        }
+    }
+
+    private List<Integer> winningNumbersToList(String winningNumber) {
+        return Arrays.stream(extractNumbers(winningNumber))
                 .sorted()
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
     }
 
-    private String[] extractNumbers(String winningNumbers) {
-        return winningNumbers.split("\\D+");
+    private String[] extractNumbers(String winningNumber) {
+        return winningNumber.split("\\D+");
     }
 
 }

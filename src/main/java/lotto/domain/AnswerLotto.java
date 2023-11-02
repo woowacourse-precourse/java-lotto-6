@@ -12,5 +12,7 @@ public class AnswerLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    
+
+
+
 }

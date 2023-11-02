@@ -30,7 +30,7 @@ public class User {
             throw new IllegalArgumentException(ErrorMessage.NOT_MEET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
         }
         if(purchaseAmount % 1000 != 0){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MEET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_MEET_PURCHASE_UNIT.getMessage());
         }
         return (int) purchaseAmount;
     }

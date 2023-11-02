@@ -1,7 +1,7 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
-import lotto.domain.PurchaseAmount;
+import lotto.formatter.OutputFormatter;
 import lotto.io.InputManager;
 import lotto.io.InputMapper;
 import lotto.io.InputValidator;
@@ -9,6 +9,7 @@ import lotto.io.InputView;
 import lotto.io.OutputView;
 import lotto.repository.DomainRepository;
 import lotto.service.LottoService;
+import lotto.utils.LottoPublisher;
 
 public class ComponentFactory {
 
@@ -28,11 +29,15 @@ public class ComponentFactory {
     }
 
     private LottoService lottoService() {
-        return new LottoService(purchaseAmountRepository());
+        return new LottoService(purchaseAmountRepository(), lottoPublisher());
     }
 
-    private DomainRepository<PurchaseAmount> purchaseAmountRepository() {
-        return new DomainRepository<>();
+    private LottoPublisher lottoPublisher() {
+        return new LottoPublisher();
+    }
+
+    private DomainRepository purchaseAmountRepository() {
+        return new DomainRepository();
     }
 
     private InputManager inputManager() {
@@ -52,6 +57,10 @@ public class ComponentFactory {
     }
 
     private OutputView outputView() {
-        return new OutputView();
+        return new OutputView(outputFormatter());
+    }
+
+    private OutputFormatter outputFormatter() {
+        return new OutputFormatter();
     }
 }

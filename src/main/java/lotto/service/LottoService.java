@@ -1,17 +1,29 @@
 package lotto.service;
 
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.repository.DomainRepository;
+import lotto.utils.LottoPublisher;
 
 public class LottoService {
 
-    private final DomainRepository<PurchaseAmount> purchaseAmountRepository;
+    private final DomainRepository domainRepository;
+    private final LottoPublisher lottoPublisher;
 
-    public LottoService(final DomainRepository<PurchaseAmount> purchaseAmountRepository) {
-        this.purchaseAmountRepository = purchaseAmountRepository;
+    public LottoService(
+            final DomainRepository domainRepository, final LottoPublisher lottoPublisher) {
+        this.domainRepository = domainRepository;
+        this.lottoPublisher = lottoPublisher;
     }
 
     public void savePurchaseAmount(final PurchaseAmount purchaseAmount) {
-        purchaseAmountRepository.save(purchaseAmount);
+        domainRepository.savePurchaseAmount(purchaseAmount);
+    }
+
+    public Lottos purchase() {
+        final PurchaseAmount purchaseAmount = domainRepository.getPurchaseAmount();
+        final Lottos lottos = lottoPublisher.createLottos(purchaseAmount);
+        domainRepository.saveLottos(lottos);
+        return lottos;
     }
 }

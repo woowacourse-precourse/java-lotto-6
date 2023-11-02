@@ -21,6 +21,8 @@ public class InputView {
         OutputView.winningMessage();
         String[] winningNumber = Console.readLine().split(",");
 
+        Validator.winningValidate(winningNumber);
+
         return new ArrayList<>(Arrays.stream(winningNumber)
                                     .map(Integer::parseInt)
                                     .toList());

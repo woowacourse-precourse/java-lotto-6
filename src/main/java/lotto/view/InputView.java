@@ -9,14 +9,17 @@ public class InputView {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static String inputMoney() {
+        System.out.println(INPUT_MONEY_MESSAGE);
         return Console.readLine();
     }
 
     public static String inputWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         return Console.readLine();
     }
 
     public static String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }
 }

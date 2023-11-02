@@ -1,6 +1,8 @@
 package lotto.domain.lotto;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class WinningNumbers {
@@ -11,6 +13,10 @@ public class WinningNumbers {
     public WinningNumbers(String winningNumber) {
         validate(winningNumber);
         this.numbers = winningNumbersToList(winningNumber);
+    }
+
+    public Collection<Integer> getNumbers() {
+        return Collections.unmodifiableCollection(numbers);
     }
 
     private void validate(String winningNumber) {

@@ -10,6 +10,10 @@ public class BonusNumber {
         this.number = parseBonusNum(bonusNumber);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(String bonusNumber) {
         validateFormat(bonusNumber);
         validateRange(bonusNumber);

@@ -1,8 +1,10 @@
 package lotto.validation;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Validator {
 
@@ -30,8 +32,12 @@ public class Validator {
         }
     }
 
-    public static void validateDuplicateNumbers(List<Integer> numbers){
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+    public static void validateDuplicateNumbers(String[] numbers){
+        List<Integer> mappedNumbers = Arrays.stream(numbers)
+                .mapToInt(str -> Integer.parseInt(str))
+                .boxed()
+                .collect(Collectors.toList());
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(mappedNumbers);
         if(nonDuplicateNumbers.size() != 6){
             throw new IllegalArgumentException("번호들은 중복 될 수 없습니다.");
         }
@@ -42,6 +48,9 @@ public class Validator {
             throw new IllegalArgumentException("컴마가 들어있지 않습니다.");
         }
     }
+
+
+
 
 
 }

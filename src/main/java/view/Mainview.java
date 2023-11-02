@@ -23,4 +23,9 @@ public class Mainview {
             System.out.println(3 + i + "개 일치 ("+MONEY_OF_WINNING[i]+" -"+result[i]+"개");
         }
     }
+
+    public void printRateOfProfit(String rate)
+    {
+        System.out.println("총 수익률은"+rate+"%입니다.");
+    }
 }

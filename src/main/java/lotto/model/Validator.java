@@ -77,7 +77,7 @@ public class Validator {
         }
     }
 
-    private void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
+    public void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
         if (winningLottoTicket.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MESSAGE.getMessage());
         }

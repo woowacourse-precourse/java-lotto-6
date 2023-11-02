@@ -14,15 +14,22 @@ public class InputValidator {
 
     public static void validateLottoTicket(String userInput) {
         List<String> numbers = Parser.parseWithComma(userInput);
+        validateLottoTicketSize(numbers.size());
         numbers.forEach(InputValidator::validateInteger);
         numbers.forEach(InputValidator::validateNumberInRange);
         validateDuplication(numbers);
     }
 
+    private static void validateLottoTicketSize(int size) {
+        if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_DIFFERNT.getMessage());
+        }
+    }
+
     public static void validateBonusNumber(Lotto winningLottoTicket, String userInput) {
         validateInteger(userInput);
         validateNumberInRange(userInput);
-        
+
         int bonusNumber = Integer.parseInt(userInput);
         validateDuplication(winningLottoTicket, bonusNumber);
     }

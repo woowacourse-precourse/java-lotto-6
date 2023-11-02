@@ -9,6 +9,7 @@ import java.util.Set;
 public class Lotto {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final int REQUIRED_MATCHING_NUMBERS_FOR_BONUS = 5;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -35,27 +36,30 @@ public class Lotto {
         List<Integer> answerNumbers = answerLotto.getAnswerNumbers();
         int bonusNumber = answerLotto.getBonusNumber();
         int matchedNumber = 0;
-        boolean hasBonusNumber = false;
 
         for(int i=0; i<LOTTO_NUMBERS_SIZE; i++){
             for(int j=0; j<LOTTO_NUMBERS_SIZE; j++){
-                if(numbers.get(i) == answerNumbers.get(j)){
-                    matchedNumber++;
-                }
+                matchedNumber = getMatchedNumber(matchedNumber, numbers.get(i), answerNumbers.get(j));
             }
         }
+        return Rank.findRankByMatchedNBonusNumber(matchedNumber, hasBonusNumber(bonusNumber, matchedNumber));
+    }
 
-        if(matchedNumber == 5){
-            hasBonusNumber = numbers.stream()
+    private boolean hasBonusNumber(int bonusNumber, int matchedNumber) {
+        if(matchedNumber == REQUIRED_MATCHING_NUMBERS_FOR_BONUS){
+            return numbers.stream()
                     .anyMatch(number -> number == bonusNumber);
         }
-        return Rank.findRankByMatchedNBonusNumber(matchedNumber, hasBonusNumber);
+        return false;
     }
 
-    public List<Integer> getNumbers() { //메소드 확인용 지워야됨
-        return numbers;
+    private int getMatchedNumber(int matchedNumber, Integer number, Integer answerNumber) {
+        if(number == answerNumber){
+            matchedNumber++;
+        }
+        return matchedNumber;
     }
-
+    
     @Override
     public String toString() {
         return numbers.toString();

@@ -21,7 +21,9 @@ public class GameScreen {
         System.out.println();
 
         inputWinNumbers();
-        printWinNumbers();
+//      //only for test
+//      printWinNumbers();
+        inputBonusNumber();
 
     }
     private void initialize(){
@@ -69,26 +71,31 @@ public class GameScreen {
         List<Integer> winNumbers = new ArrayList<>();
         String[] inputNumbers = input.split(",");
 
-        validateWinNumberType(inputNumbers);
-        validateWinNumberLength(inputNumbers);
-        validateWinNumberRange(inputNumbers);
+        validateWinNumber(inputNumbers);
 
         for(String number : inputNumbers){
             winNumbers.add(Integer.parseInt(number));
         }
         return winNumbers;
     }
-    //only for test
-    private void printWinNumbers(){
-        List<Integer> winNumber = this.game.getWinNumber();
-        StringBuilder printer = new StringBuilder();
-        for(int index = 0; index < winNumber.size(); index++){
-            printer.append(winNumber.get(index));
-            if(index != winNumber.size()-1)
-                printer.append(",");
-        }
-        System.out.println(printer);
+//    //only for test
+//    private void printWinNumbers(){
+//        List<Integer> winNumber = this.game.getWinNumber();
+//        StringBuilder printer = new StringBuilder();
+//        for(int index = 0; index < winNumber.size(); index++){
+//            printer.append(winNumber.get(index));
+//            if(index != winNumber.size()-1)
+//                printer.append(",");
+//        }
+//        System.out.println(printer);
+//    }
+    private void validateWinNumber(String[] inputNumbers) throws IllegalArgumentException{
+        validateWinNumberType(inputNumbers);
+        validateWinNumberLength(inputNumbers);
+        validateWinNumberRange(inputNumbers);
     }
+
+    //todo: 반복되는 에러처리 refactor하기
     private void validateWinNumberLength(String[] inputNumbers)
             throws IllegalArgumentException{
         int length = inputNumbers.length;
@@ -114,5 +121,49 @@ public class GameScreen {
             if(currentNumber < 1 || currentNumber > 45)
                 throw new IllegalArgumentException("[ERROR] 각 번호는 1에서 45의 범위 안으로 입력해 주세요.");
         }
+    }
+
+    private void inputBonusNumber(){
+        int inputNumber;
+        while(true){
+            try{
+                System.out.println("보너스 번호를 입력해 주세요.");
+                inputNumber = inputNumber(Console.readLine());
+                //this.game.setBonusNumber(inputNumber) int
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+    private int inputNumber(String number) throws IllegalArgumentException{
+        validateBonusNumber(number);
+        return Integer.parseInt(number);
+    }
+    private void validateBonusNumber(String number) throws IllegalArgumentException{
+        validateBonusNumberLength(number);
+        validateBonusNumberType(number);
+        validateBonusNumberRange(number);
+    }
+
+    //todo: 반복되는 에러처리 refactor하기
+    private void validateBonusNumberLength(String inputNumber)
+            throws IllegalArgumentException{
+        int length = inputNumber.length();
+        if(length != 1)
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개여야 해요.");
+    }
+    private void validateBonusNumberType(String inputNumber) throws IllegalArgumentException{
+        char[] temp = inputNumber.toCharArray();
+        for(char current : temp){
+            if(!Character.isDigit(current))
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
+        }
+    }
+    private void validateBonusNumberRange(String inputNumber) throws IllegalArgumentException{
+        int currentNumber = Integer.parseInt(inputNumber);
+        if(currentNumber < 1 || currentNumber > 45)
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45의 범위 안으로 입력해 주세요.");
     }
 }

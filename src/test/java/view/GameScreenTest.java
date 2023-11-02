@@ -74,6 +74,51 @@ public class GameScreenTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("입력받은 문자열이 숫자로 표현되지 않으면 에러가 발생한다.")
+    void is_input_bonus_number_digit(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "B", "4");
+                    assertThat(output()).contains(
+                            "[ERROR] 보너스 번호는 숫자로 입력해 주세요."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+    }
+
+    @Test
+    @DisplayName("입력받은 문자열의 길이가 1이 아니면 에러가 발생한다.")
+    void is_input_bonus_number_length_one(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "687", "4");
+                    assertThat(output()).contains(
+                            "[ERROR] 보너스 번호는 1개여야 해요."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+    }
+
+    @Test
+    @DisplayName("입력받은 문자열이 1~45 범위 안에 있지 않으면 에러가 발생한다.")
+    void is_input_bonus_number_in_range(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "0", "4");
+                    assertThat(output()).contains(
+                            "[ERROR] 보너스 번호는 1에서 45의 범위 안으로 입력해 주세요."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -45,3 +45,8 @@
 - validateWinNumberType(String[]) : 입력값이 숫자로 표현된 것이 아니라면 IllegalArgumentException을 발생시킨다.
 - validateWinNumberRange(String[]) : 입력값이 1~45 범위 안에 있지 않으면 IllegalArgumentException을 발생시킨다.
 
+- inputBonusNumber : 정수로 표현된 문자열을 받아 정수로 반환한다. 
+  입력받은 문자열의 길이가 1이 아니면 "[ERROR] 보너스 번호는 1개여야 해요."가 출력된다.
+  입력받은 문자열이 숫자로 표현되지 않으면 "[ERROR] 보너스 번호는 숫자로 입력해 주세요."가 출력된다.
+  입력받은 문자열이 1~45 범위 안에 있지 않으면 "[ERROR] 보너스 번호는 1에서 45의 범위 안으로 입력해 주세요."가 출력된다. 
+  입력된 문자열에 에러가 없을 때까지 다시 입력을 받는다.

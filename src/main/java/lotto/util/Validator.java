@@ -14,4 +14,10 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMERIC);
         }
     }
+
+    public static void isThousandUnit(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_THOUSAND_UNIT);
+        }
+    }
 }

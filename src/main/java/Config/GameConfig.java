@@ -4,6 +4,7 @@ public class GameConfig {
     public final static int MIN_LOTTO = 1;
     public final static int MAX_LOTTO = 45;
     public final static int LOTTO_NUMBER = 6;
+    public final static int MONEY_UNIT = 1_000;
     public final static String SEPARATOR = ",";
     public enum WINNING{
         FIRST(2_000_000_000, 1),

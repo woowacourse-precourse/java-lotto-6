@@ -24,4 +24,9 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void  테스트(){
+        long maxValue = Long.MAX_VALUE;
+        System.out.println(maxValue);
+    }
 }

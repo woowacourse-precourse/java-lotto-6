@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -22,4 +20,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

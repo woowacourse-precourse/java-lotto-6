@@ -23,30 +23,43 @@ public class LottoGame {
         this.outputView = new OutputView();
     }
 
-    public void run(){
+    public void run() {
         int price = inputView.inputPrice();
+        List<Lotto> lottos = purchaseLottos(price);
+        printLottos(lottos);
 
+        AnswerLotto answerLotto = receiveWinningNumbers();
+        List<Rank> winningResults = evaluateWinningResults(lottos, answerLotto);
+
+        printResults(winningResults);
+        printRateOfReturn(winningResults);
+    }
+
+    private List<Lotto> purchaseLottos(int price) {
         LottoMachine lottoMachine = LottoMachine.getInstance();
-        List<Lotto> lottos = lottoMachine.produceLottos(price);
+        return lottoMachine.produceLottos(price);
+    }
+
+    private void printLottos(List<Lotto> lottos) {
         outputView.printLottoNumbers(lottos);
-//        for(Lotto lotto : lottos){
-//            System.out.println(lotto.getNumbers().toString());
-//        }
+    }
+
+    private AnswerLotto receiveWinningNumbers() {
         List<Integer> answerNumbers = inputView.inputAnswerNumbers();
-//        System.out.println(answerNumbers.toString());
         int bonusNumber = inputView.inputBonusNumber(answerNumbers);
-//        System.out.println(bonusNumber);
+        return new AnswerLotto(answerNumbers, bonusNumber);
+    }
 
-        AnswerLotto answerLotto = new AnswerLotto(answerNumbers, bonusNumber);
+    private List<Rank> evaluateWinningResults(List<Lotto> lottos, AnswerLotto answerLotto) {
+        return lottoService.findWinningResult(lottos, answerLotto);
+    }
 
-        List<Rank> winningResults = lottoService.findWinningResult(lottos, answerLotto);
-//        System.out.println(Arrays.toString(winningResults.toArray()));
-
-        double rateOfReturn = lottoService.findRateOfReturn(winningResults);
-
+    private void printResults(List<Rank> winningResults) {
         outputView.printResult(winningResults);
+    }
+
+    private void printRateOfReturn(List<Rank> winningResults) {
+        double rateOfReturn = lottoService.findRateOfReturn(winningResults);
         outputView.printRateOfReturn(rateOfReturn);
-
-
     }
 }

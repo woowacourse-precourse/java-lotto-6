@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.View.ExceptionView;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionView.sizeException();
             throw new IllegalArgumentException();
         }
     }

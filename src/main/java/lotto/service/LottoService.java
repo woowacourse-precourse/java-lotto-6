@@ -1,9 +1,14 @@
 package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.domain.Lotto.MAX;
+import static lotto.domain.Lotto.MIN;
+import static lotto.domain.Lotto.NUMBER_LENGTH;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Game;
 import lotto.domain.Lotto;
 
 public class LottoService {
@@ -70,7 +75,11 @@ public class LottoService {
     }
 
     public List<Lotto> issueLotto(Integer purchasePrice) {
-        return null;
+        List<Lotto> result = new ArrayList<>();
+        for(int i = 0; i < purchasePrice / 1000; i++) {
+            result.add(new Lotto(pickUniqueNumbersInRange(MIN, MAX, NUMBER_LENGTH)));
+        }
+        return result;
     }
 
     public void printResult() {

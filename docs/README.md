@@ -33,6 +33,9 @@
  * List<Integer> getRandomNumber
 
 
+## 로또 구매자
+ - 로또 구매자는 자신의 번호를 가지고 있는다 List<Lotto>
+
 ## 로또 진행
    - _게임을 진행하는 interface Game_
    * _Game 을 구현하는 1~45 까지의 로또 게임을 진행하는 oneTo45LottoGame_

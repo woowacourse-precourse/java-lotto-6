@@ -2,9 +2,11 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,6 +50,15 @@ class LottoTest {
                 Arguments.of(List.of(0, 2, 3, 4, 5, 6)),
                 Arguments.of(List.of(-1, 2, 3, 4, 5, 6))
         );
+    }
+
+    @Test
+    @DisplayName("로또의 번호 생성 테스트")
+    void createLottoNumberRangeCheckTest() {
+        List<Integer> createLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        // new Lotto 생성 시 로또 범위 1 ~ 45 / 로또 번호 중복 / 로또 갯수 검증
+        Assertions.assertThatNoException().isThrownBy(() -> new Lotto(createLottoNumber));
     }
 
 }

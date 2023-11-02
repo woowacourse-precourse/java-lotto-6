@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_IS_NOT_IN_RANGE;
@@ -21,6 +22,7 @@ public class Lotto {
         validateLottoSize(numbers);
         validateEachNumberIsInRange(numbers);
         validateLottoHasDuplicateNumber(numbers);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
@@ -52,5 +54,9 @@ public class Lotto {
         return number.stream()
                 .distinct()
                 .count() != TOTAL_SIZE;
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

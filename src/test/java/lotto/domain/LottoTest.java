@@ -1,17 +1,21 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_IS_NOT_IN_RANGE;
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_NUMBER_MUST_BE_UNIQUE;
 import static lotto.exception.ExceptionMessage.LottoException.LOTTO_SIZE_IS_NOT_FULFILL;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LottoTest {
     @ParameterizedTest
@@ -62,6 +66,20 @@ class LottoTest {
                 Arguments.of(List.of(1, 1, 1, 1, 2, 3)),
                 Arguments.of(List.of(1, 1, 1, 1, 1, 2)),
                 Arguments.of(List.of(1, 1, 1, 1, 1, 1))
+        );
+    }
+
+    @Test
+    @DisplayName("Lotto를 생성한다")
+    void create() {
+        // when
+        final Lotto lottoA = Lotto.create(Arrays.asList(1, 3, 2, 4, 5, 6)); // sortable -> Arrays.asList
+        final Lotto lottoB = Lotto.create(Arrays.asList(44, 1, 10, 23, 18, 6));
+
+        // then
+        assertAll(
+                () -> assertThat(lottoA.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6),
+                () -> assertThat(lottoB.getNumbers()).containsExactly(1, 6, 10, 18, 23, 44)
         );
     }
 }

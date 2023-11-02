@@ -8,9 +8,9 @@ public enum LottoPrize {
     FIRST(6, 2_000_000_000L, "6개 일치 (2,000,000,000원) - %d개"),
     NOTHING(0, 0L, "");
 
-    private int matchedCount;
-    private Long prize;
-    private String statisticsFormat;
+    private final int matchedCount;
+    private final Long prize;
+    private final String statisticsFormat;
 
     LottoPrize(int matchedCount, long prize, String statisticsFormat) {
         this.matchedCount = matchedCount;

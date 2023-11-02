@@ -1,5 +1,7 @@
 package validation;
 
+import lotto.Lotto;
+
 public class ValidationMan {
 
     private final static int STANDARD_MONEY = 1000;
@@ -31,9 +33,13 @@ public class ValidationMan {
         return true;
     }
 
-    public boolean valudateBonusNumber(String userBonusNumber)
+    public boolean valudateBonusNumber(Lotto userLotto, String userBonusNumber)
     {
         if (!userBonusNumber.matches("\\d+")) {
+            return false;
+        }
+        if(userLotto.getNumbers().contains(Integer.parseInt(userBonusNumber)))
+        {
             return false;
         }
         return true;

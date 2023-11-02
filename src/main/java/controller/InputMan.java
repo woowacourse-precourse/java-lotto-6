@@ -1,6 +1,7 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import validation.ValidationMan;
 
 class InputMan {
@@ -45,10 +46,10 @@ class InputMan {
         return userNumbers;
     }
 
-    int receiveBonusNumber()
+    int receiveBonusNumber(Lotto userLotto)
     {
         String userBonusNumber = Console.readLine();
-        if(!validationMan.valudateBonusNumber(userBonusNumber))
+        if(!validationMan.valudateBonusNumber(userLotto,userBonusNumber))
         {
             return EXCEPTION_NUMBER;
         }

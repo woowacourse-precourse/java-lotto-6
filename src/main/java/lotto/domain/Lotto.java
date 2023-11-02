@@ -55,5 +55,9 @@ public class Lotto {
     public List<Integer> getNumbers() { //메소드 확인용 지워야됨
         return numbers;
     }
-// TODO: 추가 기능 구현
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

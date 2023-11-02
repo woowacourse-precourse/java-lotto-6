@@ -39,10 +39,13 @@ public class Lotto {
     }
 
     private void checkValidNumbersInLotto(List<Integer> numbers) {
-        for (Integer num : numbers) {
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+        if (hasInvalidRangeNumber(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    private boolean hasInvalidRangeNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .allMatch(num -> num >= 1 && num <= 45);
     }
 }

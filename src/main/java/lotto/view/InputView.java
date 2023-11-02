@@ -16,4 +16,10 @@ public class InputView {
         System.out.println(message.getMessage());
         return Console.readLine();
     }
+
+    public static String readBonusNumber() {
+        Message message = Message.BONUS_NUMBER_INPUT_MESSAGE;
+        System.out.println(message.getMessage());
+        return Console.readLine();
+    }
 }

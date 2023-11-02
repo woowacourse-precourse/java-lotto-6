@@ -25,5 +25,7 @@ public class LottoManager {
         for (int i = 0; i < publishCount; i++) {
             lottoBuyer.addMyLottos(new Lotto(createLottoNumber()));
         }
+
+        lottoBuyer.printMyLottos();
     }
 }

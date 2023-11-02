@@ -54,4 +54,12 @@ public class LottoBuyer {
     public ArrayList<Lotto> getMyLotts() {
         return myLottos;
     }
+
+    public void printMyLottos() {
+        System.out.printf("%d개를 구매했습니다.\n", calculatePublishCount());
+
+        for (Lotto lotto : myLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
 }

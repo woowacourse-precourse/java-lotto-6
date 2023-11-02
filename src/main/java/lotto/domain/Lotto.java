@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -16,6 +17,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        validateNumberDuplication(numbers);
+    }
+
+    private void validateNumberDuplication(List<Integer> numbers) {
+        Set numbersToSet = new HashSet(numbers);
+        for (int i : numbers) {
+            numbersToSet.add(i);
+        }
+        if (numbers.size() != numbersToSet.size()) {
             throw new IllegalArgumentException();
         }
     }

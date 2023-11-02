@@ -8,20 +8,28 @@ import java.util.List;
 public class Input {
 
     public int getMoney() {
-        return Integer.parseInt(Console.readLine());
+        String userInput = Console.readLine();
+        try {
+            validateOnlyNumber(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            getMoney();
+        }
+        return Integer.parseInt(userInput);
+    }
+
+    private void validateOnlyNumber(String userInput) {
+        for (int i = 0; i < userInput.length(); i++) {
+            if(!(userInput.charAt(i) >= '0' && userInput.charAt(i) <= '9')) {
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }
     }
 
     public List<Integer> getWinningNumbers() {
         List<String> numbers = List.of(Console.readLine().split(","));
-        //validateNumbersCount(numbers);
         return numbers.stream().mapToInt(Integer::parseInt).boxed().toList();
     }
-
-    /*private void validateNumbersCount(List<String> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }*/
 
     public int getBonusNumber() {
         return Integer.parseInt(Console.readLine());

@@ -1,10 +1,10 @@
 package lotto.util;
 
-import lotto.domain.LottoConstant;
+import lotto.domain.Constant;
 
 public class Util {
     public static int calculateAttempt(int cash) {
-        int attempt = cash / LottoConstant.CASH_UNIT.getValue();
+        int attempt = cash / Constant.CASH_UNIT.getValue();
         return attempt;
     }
 

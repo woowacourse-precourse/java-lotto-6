@@ -20,7 +20,7 @@ public class LottoMachine {
     public List<Lotto> produceLottos(int price){
         int number = price / 1000;
 
-        List<Lotto> lottos = new List<Lotto>;
+        List<Lotto> lottos = new ArrayList<>();
 
         for(int i=0; i<number; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

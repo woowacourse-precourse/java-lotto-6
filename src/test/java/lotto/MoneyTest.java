@@ -29,4 +29,14 @@ class MoneyTest {
                 .hasMessage("[ERROR] 숫자가 아닌 값은 입력이 불가능합니다.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("money가 1000 미만의 값 이면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "-9000"})
+    void validateRangeTest(String input) {
+        // when, then
+        assertThatThrownBy(() -> new Money(input))
+                .hasMessage("[ERROR] 1000 이상의 숫자만 입력 가능합니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

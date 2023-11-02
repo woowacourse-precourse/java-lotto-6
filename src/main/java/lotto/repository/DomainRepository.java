@@ -1,18 +1,35 @@
 package lotto.repository;
 
-import java.util.Optional;
 import lotto.constant.ErrorMessage;
+import lotto.domain.Lottos;
+import lotto.domain.PurchaseAmount;
 
-public class DomainRepository<T> {
+import java.util.Optional;
+import java.util.function.Supplier;
 
-    private T domain;
+public class DomainRepository {
 
-    public void save(final T domain) {
-        this.domain = domain;
+    private PurchaseAmount purchaseAmount;
+    private Lottos lottos;
+
+    public void saveLottos(final Lottos lottos) {
+        this.lottos = lottos;
     }
 
-    public T get() {
-        return Optional.ofNullable(domain)
+    public Lottos getLottos() {
+        return get(() -> this.lottos);
+    }
+
+    public void savePurchaseAmount(final PurchaseAmount purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+
+    public PurchaseAmount getPurchaseAmount() {
+        return get(() -> this.purchaseAmount);
+    }
+
+    private <T> T get(final Supplier<T> supplier) {
+        return Optional.ofNullable(supplier.get())
                 .orElseThrow(
                         () -> new IllegalStateException(ErrorMessage.NOT_INITIALIZED.toValue()));
     }

@@ -19,11 +19,11 @@ public class Lotto {
     }
 
     public String getLotto(){
-        return GameConfig.PRINT_PREFIX +
+        return GameConfig.PRINTING_PREFIX +
                 numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(GameConfig.SEPARATOR_WITH_BLANK)) +
-                GameConfig.PRINT_SUFFIX;
+                GameConfig.PRINTING_SUFFIX;
     }
 
     public int getResult(List<Integer> winnings, int bonus){

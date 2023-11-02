@@ -9,8 +9,8 @@ public class GameConfig {
     public final static int MONEY_UNIT = 1_000;
     public final static String SEPARATOR = ",";
     public final static String SEPARATOR_WITH_BLANK = ", ";
-    public final static String PRINT_PREFIX = "[";
-    public final static String PRINT_SUFFIX = "]";
+    public final static String PRINTING_PREFIX = "[";
+    public final static String PRINTING_SUFFIX = "]";
     public final static int ROUND_DIGIT = 1;
     public enum WINNING{
         FIRST(2_000_000_000, 1, "6"),

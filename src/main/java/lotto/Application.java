@@ -41,10 +41,20 @@ public class Application {
             System.out.println("1등");
             return;
         }
-        if(ct > 4)
-        if(ct > 3)
-        if(ct > 2)
-        if(ct > 1)
+        if(ct > 4) {
+            if (winNum.lottoContains(bonus)) System.out.println("2등");
+            else System.out.println("3등");
+            return;
+        }
+        if(ct > 3) {
+            System.out.println("4등");
+            return;
+        }
+        if(ct > 2) {
+            System.out.println("5등");
+            return;
+        }
+        System.out.println("꽝");
     }
 
     public static void main(String[] args) {

@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoFactory {
@@ -15,7 +16,9 @@ public class LottoFactory {
     }
 
     public static Lotto getLotto(){
-        return new Lotto(getLottoNumbers());
+        List<Integer> lottoNumbers = getLottoNumbers();
+        Collections.sort(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
     private static List<Integer> getLottoNumbers(){

@@ -14,14 +14,17 @@ public class LottoGame {
     public static int count;
     public static List<Lotto> lottos = new ArrayList<>();
     public static Lotto winningLotto;
+    public static int bonusNumber;
 
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
         inputPurchase();
         System.out.println(count+"개를 구입했습니다.");
         printLottos();
-        System.out.println("당첨 번호를 입력해 주세요");
+        System.out.println("당첨 번호를 입력해 주세요.");
         inputWinningNumber();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        inputBonusNumber();
     }
 
     void inputPurchase(){
@@ -65,5 +68,8 @@ public class LottoGame {
         winningLotto = new Lotto(splitNumber);
     }
 
+    void inputBonusNumber(){
+        bonusNumber = Integer.valueOf(readLine());
+    }
 
 }

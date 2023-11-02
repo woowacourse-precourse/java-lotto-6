@@ -17,4 +17,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException();
         }
     }
+
+    public int numOfLotto() {
+        return this.value / PURCHASE_AMOUNT_UNIT;
+    }
 }

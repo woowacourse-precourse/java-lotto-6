@@ -15,14 +15,14 @@ public class LottoTickets {
     }
 
     private List<Lotto> createLottoTickets(PurchasePrice price) {
-        List<Lotto> lottoTickets = new ArrayList<>();
+        List<Lotto> tickets = new ArrayList<>();
         int numberOfTickets = getNumberOfTickets(price);
 
         while (numberOfTickets-- > 0) {
-            lottoTickets.add(createNewLotto());
+            tickets.add(createNewLotto());
         }
 
-        return lottoTickets;
+        return tickets;
     }
 
     private int getNumberOfTickets(PurchasePrice price) {

@@ -62,7 +62,7 @@ public class Application {
     private static List<Lotto> setUser(int n){
         List<Lotto> user = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            new Lotto(setRandomNumbers());     
+            user.add(new Lotto(setRandomNumbers()));
         }          
         return user;
     }
@@ -77,7 +77,7 @@ public class Application {
         List<Integer> res = new ArrayList<>(List.of(0,0,0,0,0,0));
         for (int i = 0; i < user.size(); i++) {
             int idx = judge(winNumber, user.get(i), bonus);
-            res.add(idx, res.get(idx)+1);
+            res.set(idx, res.get(idx)+1);
         }
         System.out.println(res);
     }

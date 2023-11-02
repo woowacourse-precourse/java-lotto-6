@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.WinningChecker;
 import lotto.io.Input;
 import lotto.io.Output;
 
@@ -22,6 +23,10 @@ public class LottoController {
         List<Integer> winningNumbers = input.getWinningNumbers();
         output.printInputBonusNumberMessage();
         int bonusNumber = input.getBonusNumber();
+
+        WinningChecker winningChecker = new WinningChecker(lottos, winningNumbers, bonusNumber);
+        List<Integer> matchedNumberCountEachLotto = winningChecker.countMatchedNumbersEachLotto();
+        List<Integer> winningLottos = winningChecker.countWinningLottos(matchedNumberCountEachLotto);
 
 
 

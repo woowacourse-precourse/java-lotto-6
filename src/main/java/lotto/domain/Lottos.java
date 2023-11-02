@@ -31,4 +31,12 @@ public class Lottos {
         }
         return myLottosForPrint;
     }
+
+    public List<Integer> matchNumbersEachLotto(List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> matchedNumbersEachLotto = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            matchedNumbersEachLotto.add(lotto.checkResult(winningNumbers, bonusNumber));
+        }
+        return matchedNumbersEachLotto;
+    }
 }

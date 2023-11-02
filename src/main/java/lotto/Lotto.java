@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +19,16 @@ public class Lotto {
         }
     }
 
+    public boolean containsAll(Lotto lotto) {
+        return this.numbers.containsAll(lotto.numbers);
+    }
+
+    public boolean contain(int number){
+        return this.numbers.contains(number);
+    }
+
+    public int returnNumber(int index){
+        return this.numbers.get(index);
+    }
     // TODO: 추가 기능 구현
 }

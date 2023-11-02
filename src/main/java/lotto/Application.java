@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     // 랜덤 번호 6개 뽑기
-    public List<Integer> randomLottoNumber(){
+    public static List<Integer> randomLottoNumbers(){
         List<Integer> box = new ArrayList<>();
         while(box.size() != 6) {
             int rd = Randoms.pickNumberInRange(1, 45);
@@ -19,7 +19,20 @@ public class Application {
         return box;
     }
     
+    private static List<Integer> getUserNumbers(){
+        List<Integer> box = new ArrayList<>();
+        for (String s : Console.readLine().split(",")) {
+            box.add(Integer.parseInt(s));
+        }
+        return box;
+    }
+
+    private static int getUserBonus(){
+        return Integer.parseInt(Console.readLine());
+    }
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Lotto winNumber = new Lotto(randomLottoNumbers());
+        System.err.println(randomLottoNumbers());
     }
 }

@@ -81,8 +81,8 @@ public class LottoStatisticsTest {
 
     private WinningLottoHolder createLottoWinningMachine() {
         return WinningLottoHolder.drawWinningLotto(
-                List.of(1, 2, 3, 4, 5, 6),
-                7
+                Lotto.create(List.of(1, 2, 3, 4, 5, 6)),
+                BonusNumber.create(7)
         );
     }
 
@@ -100,11 +100,11 @@ public class LottoStatisticsTest {
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
                         Lotto.create(List.of(1, 2, 3, 11, 12, 13)), // 5등 (당첨 3개)
-                        Lotto.create(List.of(1, 2, 3, 7, 12, 13)), // 5등 (당첨 3개 + 보너스 1개)
+                        Lotto.create(List.of(1, 2, 3, 7, 12, 13)), // 5등 (당첨 3개 with 보너스 1개)
                         Lotto.create(List.of(1, 2, 3, 4, 12, 13)), // 4등 (당첨 4개)
-                        Lotto.create(List.of(1, 2, 3, 4, 7, 13)), // 4등 (당첨 4개 + 보너스 1개)
+                        Lotto.create(List.of(1, 2, 3, 4, 7, 13)), // 4등 (당첨 4개 with 보너스 1개)
                         Lotto.create(List.of(1, 2, 3, 4, 5, 13)), // 3등 (당첨 5개)
-                        Lotto.create(List.of(1, 2, 3, 4, 5, 7)), // 2등 (당첨 5개 + 보너스 1개)
+                        Lotto.create(List.of(1, 2, 3, 4, 5, 7)), // 2등 (당첨 5개 with 보너스 1개)
                         Lotto.create(List.of(1, 2, 3, 4, 5, 6)) // 1등 (당첨 6개)
                 )
         );
@@ -134,7 +134,7 @@ public class LottoStatisticsTest {
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
                         Lotto.create(List.of(1, 2, 3, 11, 12, 13)), // 5등 (당첨 3개)
                         Lotto.create(List.of(1, 2, 3, 11, 12, 13)), // 5등 (당첨 3개)
-                        Lotto.create(List.of(1, 2, 3, 7, 12, 13)) // 5등 (당첨 3개 + 보너스 1개)
+                        Lotto.create(List.of(1, 2, 3, 7, 12, 13)) // 5등 (당첨 3개 with 보너스 1개)
                 )
         );
     }

@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
-
 import static lotto.exception.ExceptionMessage.LottoMachineException.BONUS_NUMBER_MUST_BE_UNIQUE;
 
 public class WinningLottoHolder {
@@ -13,13 +11,13 @@ public class WinningLottoHolder {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLottoHolder drawWinningLotto(final List<Integer> winningNumbers, final int bonusNumber) {
-        validateBonusNumberIsDuplicate(winningNumbers, bonusNumber);
-        return new WinningLottoHolder(Lotto.create(winningNumbers), BonusNumber.create(bonusNumber));
+    public static WinningLottoHolder drawWinningLotto(final Lotto winningLotto, final BonusNumber bonusNumber) {
+        validateBonusNumberIsDuplicate(winningLotto, bonusNumber);
+        return new WinningLottoHolder(winningLotto, bonusNumber);
     }
 
-    private static void validateBonusNumberIsDuplicate(final List<Integer> winningNumbers, final int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
+    private static void validateBonusNumberIsDuplicate(final Lotto winningLotto, final BonusNumber bonusNumber) {
+        if (winningLotto.isNumberInclude(bonusNumber.getValue())) {
             throw new IllegalArgumentException(BONUS_NUMBER_MUST_BE_UNIQUE.message);
         }
     }
@@ -30,13 +28,5 @@ public class WinningLottoHolder {
 
     public boolean isBonusNumberInclude(final Lotto userLotto) {
         return userLotto.isNumberInclude(bonusNumber.getValue());
-    }
-
-    public List<Integer> getWinningLotteryNumbers() {
-        return winningLotto.getNumbers();
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber.getValue();
     }
 }

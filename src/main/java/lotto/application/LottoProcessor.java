@@ -1,5 +1,6 @@
 package lotto.application;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoProvider;
@@ -12,10 +13,10 @@ import lotto.io.OutputProcessor;
 import java.util.List;
 
 public class LottoProcessor {
-    private static User user;
-    private static WinningLottoHolder winningLottoHolder;
-
     private final LottoGenerator lottoGenerator;
+
+    private User user;
+    private WinningLottoHolder winningLottoHolder;
 
     public LottoProcessor(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
@@ -43,12 +44,26 @@ public class LottoProcessor {
     }
 
     private void initLottoWinningMachine() {
+        final Lotto winningLotto = readWinningNumbers();
+        readBonusNumber(winningLotto);
+    }
+
+    private Lotto readWinningNumbers() {
         while (true) {
             try {
                 final List<Integer> winingNumbers = InputProcessor.readWiningNumbers();
-                final int bonusNumber = InputProcessor.readBonusNumber();
+                return Lotto.create(winingNumbers);
+            } catch (final IllegalArgumentException e) {
+                OutputProcessor.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 
-                winningLottoHolder = WinningLottoHolder.drawWinningLotto(winingNumbers, bonusNumber);
+    private void readBonusNumber(final Lotto winningLotto) {
+        while (true) {
+            try {
+                final BonusNumber bonusNumber = BonusNumber.create(InputProcessor.readBonusNumber());
+                winningLottoHolder = WinningLottoHolder.drawWinningLotto(winningLotto, bonusNumber);
                 break;
             } catch (final IllegalArgumentException e) {
                 OutputProcessor.printErrorMessage(e.getMessage());

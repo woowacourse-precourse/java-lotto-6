@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.constant.LottoRanking;
+import lotto.model.LottoNumber;
 import lotto.model.WinningNumber;
 
 public class Lotto {
@@ -47,5 +49,9 @@ public class Lotto {
         if (number < LOTTO_NUMBER_MIN || LOTTO_NUMBER_MAX < number) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public LottoRanking calculateLottoRanking(LottoNumber lottoNumber) {
+        return winningNumber.compareNumbers(lottoNumber.getNumbers());
     }
 }

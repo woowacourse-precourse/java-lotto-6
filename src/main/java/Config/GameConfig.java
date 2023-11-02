@@ -1,4 +1,4 @@
-package lotto;
+package Config;
 
 public class GameConfig {
     public final static int MIN_LOTTO = 1;

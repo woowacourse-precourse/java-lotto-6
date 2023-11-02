@@ -10,7 +10,7 @@ public final class Lotto {
     /**
      * 각 로또 용지가 갖는 로또 번호의 개수입니다. 요구 사항에 따라 6자리 고정 크기로 설정 되었습니다.
      */
-    private static final int LOTTO_NUMBERS_LENGTH = 6;
+    public static final int LOTTO_NUMBERS_LENGTH = 6;
 
     /**
      * `Lotto` 객체의 유일한 필드이자 6자리의 로또 번호를 나타냅니다.

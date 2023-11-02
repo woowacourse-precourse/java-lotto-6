@@ -10,11 +10,11 @@ public record LottoNumber(int value) {
     /**
      * 최소 로또 번호는 1입니다.
      */
-    private static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MIN_LOTTO_NUMBER = 1;
     /**
      * 최대 로또 번호는 45입니다.
      */
-    private static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MAX_LOTTO_NUMBER = 45;
 
     /**
      * @apiNote LottoNumber 생성 시, <h3 color="#bf0f4d">value는 반드시 1 이상 45 이하의 범위에 속해야 합니다.</h3>

@@ -8,8 +8,7 @@ public class LottoService {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
 
     public Lotto generateLotto() {
-        Lotto lotto = new Lotto(lottoGenerator.generateLottoNumbers());
-        return lotto;
+        return new Lotto(lottoGenerator.generateLottoNumbers());
     }
 
 }

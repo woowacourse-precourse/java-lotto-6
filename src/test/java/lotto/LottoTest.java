@@ -10,7 +10,7 @@ import java.util.List;
 
 class LottoTest {
 
-    @DisplayName("로또 번호 비교 테스트 : 로또 번호를 비교하여 일치하는 개수를 반환한다.현")
+    @DisplayName("로또 번호 비교 테스트 : 로또 번호를 비교하여 일치하는 개수를 반환한다.")
     @Test
     void countMatches() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

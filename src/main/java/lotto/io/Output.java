@@ -1,5 +1,7 @@
 package lotto.io;
 
+import java.util.List;
+
 public class Output {
 
     public void printInputPurchaseAmountMessage() {
@@ -10,4 +12,11 @@ public class Output {
         System.out.println();
         System.out.printf(Constants.QUANTITY_MESSAGE, lottoQuantity);
     }
+
+    public void printMyLottos(List<String> myLottos) {
+        for (String lottoNumbers : myLottos) {
+            System.out.println(lottoNumbers);
+        }
+    }
 }
+

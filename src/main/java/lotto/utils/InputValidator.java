@@ -1,16 +1,22 @@
 package lotto.utils;
 
+import static lotto.constants.ErrorConstants.ERROR_BLANK_INPUT;
+import static lotto.constants.ErrorConstants.ERROR_NON_NUMBER_TYPE_INPUT;
+import static lotto.constants.ErrorConstants.ERROR_NULL_INPUT;
+
+import lotto.exception.InputException;
+
 public class InputValidator {
 
     public static void nullCheck(String inputValue) {
         if (inputValue == null) {
-            throw new IllegalArgumentException();
+            throw InputException.of(ERROR_NULL_INPUT);
         }
     }
 
     public static void blankCheck(String inputValue) {
         if (inputValue.isBlank()) {
-            throw new IllegalArgumentException();
+            throw InputException.of(ERROR_BLANK_INPUT);
         }
     }
 
@@ -18,7 +24,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e.getCause());
+            throw InputException.of(ERROR_NON_NUMBER_TYPE_INPUT);
         }
     }
 }

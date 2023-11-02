@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     // 랜덤 번호 6개 뽑기
-    public static List<Integer> randomLottoNumbers(){
+    public static List<Integer> setRandomNumbers(){
         List<Integer> box = new ArrayList<>();
         while(box.size() != 6) {
             int rd = Randoms.pickNumberInRange(1, 45);
@@ -32,7 +32,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        Lotto winNumber = new Lotto(randomLottoNumbers());
-        System.err.println(randomLottoNumbers());
+        Lotto winNumber = new Lotto(setRandomNumbers());
+        Lotto user = new Lotto(getUserNumbers());
     }
 }

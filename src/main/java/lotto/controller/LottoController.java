@@ -4,6 +4,8 @@ import lotto.domain.Lottos;
 import lotto.io.Input;
 import lotto.io.Output;
 
+import java.util.List;
+
 public class LottoController {
 
     public void start() {
@@ -15,7 +17,7 @@ public class LottoController {
         Lottos lottos = new Lottos(money);
 
         output.printInputWinningNumbers();
-
+        List<Integer> winnigNumbers = input.getWinningNumbers();
 
     }
 }

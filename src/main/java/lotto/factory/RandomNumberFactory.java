@@ -5,10 +5,10 @@ import lotto.type.LottoType;
 
 import java.util.List;
 
-public class RandomNumberProviderFactory {
+public class RandomNumberFactory {
     private final List<RandomNumberProvider> randomNumberProviders;
 
-    public RandomNumberProviderFactory(List<RandomNumberProvider> randomNumberProviders) {
+    public RandomNumberFactory(List<RandomNumberProvider> randomNumberProviders) {
         this.randomNumberProviders = randomNumberProviders;
     }
 

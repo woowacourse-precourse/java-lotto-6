@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.impl.oneTo45LottoNumberProvider.BONUS_NUMBER_INDEX;
+import static lotto.impl.OneTo45LottoNumberProvider.BONUS_NUMBER_INDEX;
 
 public class LottoGame {
     private final Lotto winningNumber;

@@ -9,9 +9,9 @@ public class Validation {
         }
     }
 
-//    public void validateLength(String[] ) {
-//        if (numbers.size() != 6) {
-//
-//        }
-//    }
+    public void validateLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("입력된 숫자가 6개가 아닙니다.");
+        }
+    }
 }

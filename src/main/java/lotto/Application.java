@@ -29,7 +29,7 @@ public class Application {
         return box;
     }
 
-    private static List<Integer> getUserNumbers() {
+    private static List<Integer> setNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> box = new ArrayList<>();
         for (String s : Console.readLine().split(",")) {
@@ -47,7 +47,7 @@ public class Application {
         return box;
     }
 
-    private static int setUserBonus(Lotto userNumbers) {
+    private static int setBonus(Lotto userNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = 0;
         try {
@@ -126,8 +126,8 @@ public class Application {
     public static void main(String[] args) {  
         int m = setMoney();
         List<Lotto> user = setUser(m/1000);
-        Lotto winNumber = new Lotto(getUserNumbers());
-        int bonus = setUserBonus(winNumber); 
+        Lotto winNumber = new Lotto(setNumbers());
+        int bonus = setBonus(winNumber); 
 
         calReturnRate(resList(user, winNumber, bonus), m);
     }

@@ -7,7 +7,7 @@
     [x] 로또 수량 계산 //CountLotto    
     
 [] 발행한 로또 수량 및 번호를 출력
-    [] 로또 발행 X 로또 수량만큼  //MakeLottoNumbers
+    [x] 로또 발행 X 로또 수량만큼  //MakeLottoNumbers
     [] 로또 번호는 오름차순으로 정렬     //SortLottoNumbers
     [] 로또 수량 및 번호 출력    //PrintLotto
 

@@ -1,5 +1,10 @@
 package lotto;
 
+import org.junit.jupiter.api.Test;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class Price {
     private final int price;
 
@@ -9,12 +14,13 @@ public class Price {
     }
 
     private void validate(int price) {
-        if((price % 1000) > 0) {
+        if (price % 1000 != 0)
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
-        }
     }
 
-    public int countLotto(Price price){
+    public int countLotto(Price price) {
         return price.price / 1000;
     }
+
+
 }

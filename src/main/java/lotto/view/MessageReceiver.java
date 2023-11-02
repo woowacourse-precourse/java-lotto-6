@@ -1,6 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningLotto;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.constant.SymbolConstant.COMMA;
 
 public class MessageReceiver {
 
@@ -21,5 +27,11 @@ public class MessageReceiver {
         }
 
         return buyingPrice;
+    }
+
+    public void receiveWinningNumbers() {
+        String winningNumbersText = Console.readLine();
+        List<String> winningNumbers = Arrays.asList(winningNumbersText.split(COMMA));
+        WinningLotto winningLotto = WinningLotto.of(winningNumbers);
     }
 }

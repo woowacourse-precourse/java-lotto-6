@@ -25,7 +25,7 @@ public class MessagePrinter {
         }
     }
 
-    public void printWinningNumberMessage() {
-        System.out.println(WINNING_NUMBER_MESSAGE);
+    public void printWinningNumbersMessage() {
+        System.out.println(WINNING_NUMBERS_MESSAGE);
     }
 }

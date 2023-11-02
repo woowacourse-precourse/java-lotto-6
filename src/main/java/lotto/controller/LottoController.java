@@ -36,8 +36,7 @@ public class LottoController {
         OutputController.printWinningStatistics(winningStatistics);
 
         // 수익률 계산 및 출력
-        int winningMoney = budget - calculateWinningAmount(winningStatistics);
-        double rateOfReturn = calculateRateOfReturn(budget, winningMoney);
+        double rateOfReturn = calculateRateOfReturn(budget, winningStatistics.calculateSumOfPrize());
         OutputController.printRateOfReturn(rateOfReturn);
     }
 
@@ -58,20 +57,8 @@ public class LottoController {
         return Integer.parseInt(InputController.scanBonusNumber(winningLottoTicket));
     }
 
-    private double calculateRateOfReturn(int budget, int winningMoney) {
-        // TO DO: 수익률 반환
-        return 0;
-    }
-
-    private int calculateWinningAmount(WinningStatistics winningStatistics) {
-        // TO DO: 당첨 금액의 합 반환
-        return 0;
-    }
-
-    private WinningStatistics getWinningStatistics(Lotto winningLottoTicket, int bonusNumber,
-                                                   List<Lotto> lottoTicketsPurchased) {
-        return new WinningStatistics(winningLottoTicket, bonusNumber,
-                lottoTicketsPurchased);
+    private Double calculateRateOfReturn(int budget, Long earnedAmount) {
+        return earnedAmount * 100 / (double) budget;
     }
 
     private List<Lotto> createLottoTickets(int quantity) {

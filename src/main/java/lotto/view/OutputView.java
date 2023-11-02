@@ -8,7 +8,7 @@ import lotto.model.WinningStatistics;
 
 public class OutputView {
     public static final String LOTTO_TICKETS_COUNT_FORMAT = "%d개를 구매했습니다.";
-    public static final String WINNING_STATISTICS_TEMPLATE = "";
+    public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static String lottoTicketsCountTemplate(int count) {
         return String.format(LOTTO_TICKETS_COUNT_FORMAT, count);
@@ -41,5 +41,9 @@ public class OutputView {
                     .append("\n");
         }
         return sb.toString();
+    }
+
+    public static String rateOfReturnTemplate(double rateOfReturn) {
+        return String.format(RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
 }

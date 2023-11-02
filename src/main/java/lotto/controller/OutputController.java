@@ -18,6 +18,7 @@ public class OutputController {
         System.out.println(OutputView.winningStatisticsTemplate(winningStatistics));
     }
 
-    public static void printRateOfReturn(double winning) {
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println(OutputView.rateOfReturnTemplate(rateOfReturn));
     }
 }

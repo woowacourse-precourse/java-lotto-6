@@ -47,7 +47,7 @@ public class LottoService {
         for (LottoRanking lottoRanking : winningCounts.keySet()) {
             prizeMoney += (long) lottoRanking.getPrizeMoney() * winningCounts.get(lottoRanking);
         }
-        return (double) prizeMoney / originalPrice;
+        return (double) prizeMoney / originalPrice * 100;
     }
 
     private int calculateOriginalPrice(List<LottoNumber> lottoNumbers) {

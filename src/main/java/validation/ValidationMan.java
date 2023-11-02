@@ -13,4 +13,23 @@ public class ValidationMan {
         }
         return true;
     }
+
+    public boolean validateNumbers(String[] userNumbers)
+    {
+        try
+        {
+            Integer[] forException = new Integer[userNumbers.length];
+            for(int i = 0; i < userNumbers.length; i++)
+            {
+                forException[i] = Integer.parseInt(userNumbers[i]);
+            }
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
 }

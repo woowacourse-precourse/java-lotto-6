@@ -11,4 +11,8 @@ public class OutputView {
     public void printInputWinningNumbersMessage() {
         System.out.println(OutputViewMessage.INPUT_WINNING_NUMBERS.getMessage());
     }
+
+    public void printInputBonusNumberMessage() {
+        System.out.println(OutputViewMessage.INPUT_BONUS_NUMBER.getMessage());
+    }
 }

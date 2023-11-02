@@ -14,6 +14,18 @@ public class MainModel {
         this.computerLottos = computerLottos;
     }
 
+    public List<Integer[]> getComputerLottos() {
+        List<Integer[]> temp = new ArrayList<>();
+
+        for (Lotto computerLotto : computerLottos) {
+            List<Integer> list = computerLotto.getNumbers();
+            Integer[] convertedToArray = list.toArray(new Integer[0]);
+            temp.add(convertedToArray);
+        }
+
+        return temp;
+    }
+
     public int[] judgeLotto(Lotto userLotto, int bonusNumber) {
         int[] result = new int[RANK_INDEX];
 
@@ -25,10 +37,8 @@ public class MainModel {
         return result;
     }
 
-    private void addRank(int[] result, Rank rank)
-    {
-        switch (rank)
-        {
+    private void addRank(int[] result, Rank rank) {
+        switch (rank) {
             case FIRST -> result[0]++;
             case SECOND -> result[1]++;
             case THIRD -> result[2]++;
@@ -41,7 +51,7 @@ public class MainModel {
                                 int bonusNumber) {
         int countOfMatch = 0;
         computerNumbers.retainAll(userNumbers);
-        return getRank(countOfMatch,computerNumbers.contains((Integer)bonusNumber));
+        return getRank(countOfMatch, computerNumbers.contains((Integer) bonusNumber));
     }
 
     private Rank getRank(int countOfMatch, boolean matchBonus) {

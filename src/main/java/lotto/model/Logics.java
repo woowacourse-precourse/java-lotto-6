@@ -20,4 +20,8 @@ public class Logics {
         return result;
     }
 
+    public static double benefit (int money, int sum) {
+        return Math.round((sum / money) * 100)/100;
+    }
+
 }

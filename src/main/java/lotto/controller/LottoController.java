@@ -5,8 +5,6 @@ import lotto.model.Logics;
 import lotto.model.Lotto;
 import lotto.model.Errors;
 import lotto.view.OutputView;
-
-import java.awt.image.LookupTable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +14,19 @@ public class LottoController {
 
     private Lotto[] lottos;
     private Lotto answer;
-    private int sameThree = 0;
-    private int sameFour = 0;
-    private int sameFive = 0;
-    private int sameBonus = 0;
-    private int sameAll = 0;
-    private int result = 0;
+
+    private int[] results = new int[5];
+
+    private int[] standard = {
+            5000,
+            50000,
+            1500000,
+            30000000,
+            2000000000,
+    };
+
+    private int sum;
+    private double percentage;
     public void gamePlay () {
         inputMoney();
         initLottos();
@@ -29,6 +34,10 @@ public class LottoController {
         inputAnswer();
 //        System.out.println(Logics.ListToString(this.answer.getLotto()));
         inputBonus();
+        checkEachLottos();
+        sumOfNumbers();
+        OutputView lottoResult = new OutputView();
+        lottoResult.printLottoResult(results, percentage);
     }
 
     private void inputMoney () {
@@ -53,6 +62,7 @@ public class LottoController {
                 String strBonus = InputView.printInputBonus();
                 this.bonus = Errors.isInteger(strBonus);
                 Errors.isWrongRange(this.bonus);
+                Errors.isDuplicate(answer.getLotto(), bonus);
                 isValidate = true;
             } catch (IllegalArgumentException e) {
                 isValidate = false;
@@ -105,7 +115,31 @@ public class LottoController {
         }
     }
 
-    private void
+    private void checkEachLottos () {
+        for(int i = 0; i < this.lottos.length; i++) {
+            int count = this.lottos[i].countMatch(this.answer, this.bonus);
+            comparing(count);
+        }
+    }
 
+    private void comparing (int count) {
+        if(count == 3) {
+            this.results[0]++;
+        } else if (count == 4) {
+            this.results[1]++;
+        } else if (count == 5) {
+            this.results[2]++;
+        } else if (count == 6) {
+            this.results[4]++;
+        } else if (count == -1) {
+            this.results[3]++;
+        }
+    }
 
+    private void sumOfNumbers () {
+        for(int i = 0; i < this.standard.length; i++) {
+            this.sum+=standard[i]*results[i];
+        }
+        this.percentage = Logics.benefit(this.money, this.sum)*100;
+    }
 }

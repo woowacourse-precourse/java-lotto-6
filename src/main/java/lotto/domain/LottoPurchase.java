@@ -12,8 +12,14 @@ public class LottoPurchase {
     private List<Integer> lottoNumbers;
 
     public int getPurchasePrice() {
-        purchasePrice = validateService.validateNumber(inputService.inputValue());
-        validateService.validateAll(purchasePrice);
-        return purchasePrice;
+        while (true) {
+            try {
+                purchasePrice = validateService.validateNumber(inputService.inputValue());
+                validateService.validateAll(purchasePrice);
+                return purchasePrice;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

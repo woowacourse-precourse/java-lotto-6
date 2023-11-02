@@ -15,6 +15,7 @@ public class OutputProcessor {
     private static final String WINNING_FORMAT = "%s (%s원) - %d개";
     private static final String REWARD_FORMAT = "#,###";
     private static final String EARNING_FORMAT = "총 수익률은 %s%%입니다.";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
 
     private OutputProcessor() {
     }
@@ -61,5 +62,9 @@ public class OutputProcessor {
 
     private static void addEarningRate(final StringBuilder result, final LottoStatistics lottoStatistics) {
         result.append(String.format(EARNING_FORMAT, lottoStatistics.calculateEarningRate()));
+    }
+
+    public static void printErrorMessage(final String message) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
 }

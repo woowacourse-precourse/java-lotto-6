@@ -24,10 +24,7 @@ public class WinningStatistics {
     public Map<LottoPrize, Integer> calculateWinningStatistics() {
         Map<LottoPrize, Integer> prizeCounter = new HashMap<>();
         for (Lotto lotto : lottoTicketsPurchased) {
-            LottoPrize lottoPrize = LottoPrize.valueOf(
-                    lotto.getMatchedCount(winningLotto.getLotto()),
-                    lotto.contains(winningLotto.getBonusNumber())
-            );
+            LottoPrize lottoPrize = winningLotto.compare(lotto);
             if (lottoPrize == LottoPrize.NOTHING) {
                 continue;
             }

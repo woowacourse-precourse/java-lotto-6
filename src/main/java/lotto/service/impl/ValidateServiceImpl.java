@@ -1,6 +1,7 @@
 package lotto.service.impl;
 
 import lotto.exception.DifferentUnitFormatException;
+import lotto.exception.WrongTypeFormatException;
 import lotto.service.ValidateService;
 
 public class ValidateServiceImpl implements ValidateService {
@@ -8,7 +9,7 @@ public class ValidateServiceImpl implements ValidateService {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
+            throw new WrongTypeFormatException();
         }
     }
 

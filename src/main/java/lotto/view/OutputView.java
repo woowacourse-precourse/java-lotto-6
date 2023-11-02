@@ -17,9 +17,7 @@ public class OutputView {
     }
 
     public void printResult(List<Rank> results){
-
         Map<Rank, Integer> rankCount = new HashMap<>();
-
         for(int i=0; i<results.size(); i++){
             rankCount.put(results.get(i), rankCount.getOrDefault(results.get(i), 0) + 1);
         }
@@ -29,7 +27,6 @@ public class OutputView {
         printThirdPlace(rankCount.getOrDefault(Rank.THIRD_PLACE,0));
         printSecondPlace(rankCount.getOrDefault(Rank.SECOND_PLACE,0));
         printFirstPlace(rankCount.getOrDefault(Rank.FIRST_PLACE,0));
-
     }
 
     public void printFifthPlace(int count){
@@ -51,7 +48,5 @@ public class OutputView {
     public void printRateOfReturn(double rateOfReturn){
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
-
-
 
 }

@@ -8,7 +8,7 @@ public class Application {
             Controller controller = new Controller();
             controller.LotteStart();
         } catch (IllegalArgumentException e){
-            System.out.println("[ERROR]");
+            System.out.println(e.getMessage());
         }
 
     }

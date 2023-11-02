@@ -5,6 +5,8 @@ import lotto.io.Constants;
 import lotto.io.Input;
 import lotto.io.Output;
 
+import java.util.List;
+
 public class LottoController {
 
     final Input input;
@@ -22,5 +24,8 @@ public class LottoController {
         output.printPurchaseQuantity(lottoQuantity);
 
         Lottos lottos = new Lottos(lottoQuantity);
+        List<String> myLottos = lottos.getMyLottos();
+        output.printMyLottos(myLottos);
+
     }
 }

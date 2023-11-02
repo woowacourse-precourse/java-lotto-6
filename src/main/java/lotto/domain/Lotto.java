@@ -14,4 +14,8 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getNumbers() {
+        return numbers.toString();
+    }
 }

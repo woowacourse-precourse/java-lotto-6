@@ -21,4 +21,12 @@ public class Lottos {
         }
         return lottoNumbers;
     }
+
+    public List<String> getMyLottos() {
+        List<String> myLottos = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            myLottos.add(lotto.getNumbers());
+        }
+        return myLottos;
+    }
 }

@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.domain.Lottos;
+import java.util.List;
 
 public class Output {
 
@@ -19,5 +19,10 @@ public class Output {
 
     public void printInputBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printMyLottos(List<String> myLottosForPrint) {
+        myLottosForPrint.stream().forEach(System.out::println);
+        System.out.println();
     }
 }

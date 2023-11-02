@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Lottos {
 
@@ -21,5 +22,13 @@ public class Lottos {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    public List<String> makeMyLottosForPrint() {
+        List<String> myLottosForPrint = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            myLottosForPrint.add(lotto.getLottoNumbers());
+        }
+        return myLottosForPrint;
     }
 }

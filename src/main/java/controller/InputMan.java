@@ -45,4 +45,14 @@ class InputMan {
         return userNumbers;
     }
 
+    int receiveBonusNumber()
+    {
+        String userBonusNumber = Console.readLine();
+        if(!validationMan.valudateBonusNumber(userBonusNumber))
+        {
+            return EXCEPTION_NUMBER;
+        }
+        return Integer.parseInt(userBonusNumber);
+    }
+
 }

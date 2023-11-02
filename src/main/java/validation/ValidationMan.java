@@ -31,5 +31,12 @@ public class ValidationMan {
         return true;
     }
 
+    public boolean valudateBonusNumber(String userBonusNumber)
+    {
+        if (!userBonusNumber.matches("\\d+")) {
+            return false;
+        }
+        return true;
+    }
 
 }

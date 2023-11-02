@@ -4,7 +4,12 @@ import lotto.Controller.Controller;
 
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.LotteStart();
+        try{
+            Controller controller = new Controller();
+            controller.LotteStart();
+        } catch (IllegalArgumentException e){
+            System.out.println("[ERROR]");
+        }
+
     }
 }

@@ -21,7 +21,18 @@ public class Utility {
     }
 
     public String[] splitInput (String input) {
-        String[] numbers = input.split(",");
+        String[] splitResult = input.split(",");
+        return splitResult;
+    }
+
+    public List<Integer> getIntList (String[] inputs) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for(String input : inputs) {
+            int number = parseInt(input);
+            numbers.add(number);
+        }
+
         return numbers;
     }
 }

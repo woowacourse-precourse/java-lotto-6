@@ -9,9 +9,9 @@ public class Validation {
         }
     }
 
-    public void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-
-        }
-    }
+//    public void validateLength(String[] ) {
+//        if (numbers.size() != 6) {
+//
+//        }
+//    }
 }

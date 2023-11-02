@@ -16,7 +16,7 @@ public class LottoGame {
     public static Lotto winningLotto;
     public static int bonusNumber;
     public static int result;
-    public static List<Integer> rewardList = List.of(0,0,0,0,0);
+    public static List<Integer> rewardList = Arrays.asList(0,0,0,0,0);
 
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -27,6 +27,8 @@ public class LottoGame {
         inputWinningNumber();
         System.out.println("보너스 번호를 입력해 주세요.");
         inputBonusNumber();
+        calculateReward();
+        printReward();
     }
 
     void inputPurchase(){
@@ -91,23 +93,31 @@ public class LottoGame {
                 here = rewardList.get(1);
                 rewardList.set(1,here+1);
             }
+            if(correct==5 && !lotto.contain(bonusNumber)){
+                here = rewardList.get(2);
+                rewardList.set(2,here+1);
+            }
             if(correct==5 && lotto.contain(bonusNumber)){
                 here = rewardList.get(3);
                 rewardList.set(3,here+1);
-            }
-            if(correct==5){
-                here = rewardList.get(2);
-                rewardList.set(2,here+1);
             }
             if(correct==6){
                 here = rewardList.get(4);
                 rewardList.set(4,here+1);
             }
-
-
         }
     }
 
+
+    void printReward(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 ("+reward.fifth.money+") - "+rewardList.get(0)+"개");
+        System.out.println("4개 일치 ("+reward.fourth.money+") - "+rewardList.get(1)+"개");
+        System.out.println("5개 일치 ("+reward.third.money+") - "+rewardList.get(3)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 ("+reward.second.money+") - "+rewardList.get(2)+"개");
+        System.out.println("6개 일치 ("+reward.first.money+") - "+rewardList.get(4)+"개");
+    }
 
 
 }

@@ -8,13 +8,13 @@ public enum reward {
     fifth(5000)
     ;
 
-    private int money;
+    public int money;
 
     reward(int money) {
         this.money = money;
     }
 
-    public int getMoney(){
-        return money;
-    }
+//    public int getMoney(){
+//        return money;
+//    }
 }

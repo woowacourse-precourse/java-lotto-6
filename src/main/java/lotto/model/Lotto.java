@@ -25,13 +25,18 @@ public class Lotto {
     public int getNumbers(int idx) {
         return numbers.get(idx);
     }
-    public int countMatch (Lotto answers) {
+    public int countMatch (Lotto answers, int bonus) {
         int result = 0;
         for(int i = 0; i < numbers.size(); i++) {
             if(isContain(answers.getNumbers(i))) {
                 result++;
             }
         }
+
+        if(result == 5 && isContain(bonus)) {
+            result=-1;
+        }
+
         return result;
     }
     private boolean isContain (int num) {
@@ -42,6 +47,4 @@ public class Lotto {
         }
         return false;
     }
-
-
 }

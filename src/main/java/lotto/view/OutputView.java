@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
+
     public static void printLottoNumbers (String numbers) {
         System.out.println(numbers);
     }
@@ -15,5 +16,25 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+sameFiveBonus+"개");
         System.out.println("6개 일치 (200,000,000원) - "+sameAll+"개");
         System.out.println("총 수익률은 "+result+"입니다.");
+    }
+
+    public static void printIsInteger () {
+        System.out.println("[ERROR] 숫자 형태의 값이여야 합니다.");
+    }
+
+    public static void printIsWrongMoney () {
+        System.out.println("[ERROR] 1000원 단위의 금액이여야 합니다.");
+    }
+
+    public static void printIsMinMoney () {
+        System.out.println("[ERROR] 1000원 이상의 금액이여야 합니다.");
+    }
+
+    public static void printIsUnique () {
+        System.out.println("[ERROR] 고유한 값들 이여야 합니다.");
+    }
+
+    public static void printIsWrongRange () {
+        System.out.println("[ERROR] 1 ~ 45 사이의 숫자여야 합니다.");
     }
 }

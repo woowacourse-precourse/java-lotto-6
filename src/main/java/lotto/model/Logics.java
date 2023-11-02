@@ -19,4 +19,9 @@ public class Logics {
         result.append("]");
         return result;
     }
+
+    public static int strToInt (String str) {
+        return Integer.parseInt(str);
+    }
+
 }

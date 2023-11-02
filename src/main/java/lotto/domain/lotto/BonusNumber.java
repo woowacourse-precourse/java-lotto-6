@@ -2,6 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
+import lotto.exception.domain.bonusnumber.BonusNumberRangeException;
 
 public class BonusNumber {
     private static final Pattern bonusNumberRegex = Pattern.compile("\\d");
@@ -24,10 +26,10 @@ public class BonusNumber {
 
     private void validateFormat(String bonusNumber) {
         Matcher matcher = bonusNumberRegex.matcher(bonusNumber);
-        boolean isNotMatch = !matcher.matches();
+        boolean isInvalidFormat = !matcher.matches();
 
-        if (isNotMatch) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 숫자만 입력해야 합니다.");
+        if (isInvalidFormat) {
+            throw new BonusNumberFormatException();
         }
     }
 
@@ -35,7 +37,7 @@ public class BonusNumber {
         int bonusNum = parseBonusNum(bonusNumber);
 
         if (isInvalidRange(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1~45사이의 숫자여야 합니다.");
+            throw new BonusNumberRangeException();
         }
     }
 

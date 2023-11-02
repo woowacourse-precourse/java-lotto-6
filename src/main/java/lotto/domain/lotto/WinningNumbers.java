@@ -34,9 +34,9 @@ public class WinningNumbers {
 
     private void validateFormat(String winningNumber) {
         Matcher matcher = winningNumbersRegex.matcher(winningNumber);
-        boolean isNotMatch = !matcher.matches();
+        boolean isInvalidFormat = !matcher.matches();
 
-        if (isNotMatch) {
+        if (isInvalidFormat) {
             throw new WinningNumberFormatException();
         }
     }
@@ -54,7 +54,7 @@ public class WinningNumbers {
     }
 
     private static boolean hasInvalidRangeNumber(List<Integer> winningNumbers) {
-        return winningNumbers.stream()
+        return !winningNumbers.stream()
                 .allMatch(num -> isValidRange(num));
     }
 

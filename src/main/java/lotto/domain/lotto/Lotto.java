@@ -4,6 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.domain.lotto.LottoDuplicateNumException;
+import lotto.exception.domain.lotto.LottoNumRangeException;
+import lotto.exception.domain.lotto.LottoSizeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,7 +33,7 @@ public class Lotto {
 
     private void validateSizeOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또에 6개 번호가 입력되지 않았습니다.");
+            throw new LottoSizeException();
         }
     }
 
@@ -40,18 +43,22 @@ public class Lotto {
                 .count();
 
         if (uniqueLottoNumSize != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또에 중복된 번호가 존재합니다.");
+            throw new LottoDuplicateNumException();
         }
     }
 
     private void checkValidNumbersInLotto(List<Integer> numbers) {
         if (hasInvalidRangeNumber(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new LottoNumRangeException();
         }
     }
 
     private boolean hasInvalidRangeNumber(List<Integer> numbers) {
-        return numbers.stream()
-                .allMatch(num -> num >= 1 && num <= 45);
+        return !numbers.stream()
+                .allMatch(num -> isValidRange(num));
+    }
+
+    private static boolean isValidRange(Integer num) {
+        return num >= 1 && num <= 45;
     }
 }

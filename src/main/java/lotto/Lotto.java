@@ -29,6 +29,7 @@ public class Lotto {
         LottoResult[] resultMapper = {
                 LottoResult.OTHER,
                 LottoResult.OTHER,
+                LottoResult.OTHER,
                 LottoResult.MATCH3,
                 LottoResult.MATCH4,
                 LottoResult.MATCH5,

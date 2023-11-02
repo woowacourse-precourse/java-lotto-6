@@ -17,7 +17,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    "})
     void 입력값이_빈칸일_경우_예외발생(String userInput) {
-        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(userInput))
+        assertThatThrownBy(() -> inputValidator.validateUserInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
     }
@@ -25,7 +25,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @NullSource
     void 입력값이_null일_경우_예외발생(String userInput) {
-        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(userInput))
+        assertThatThrownBy(() -> inputValidator.validateUserInput(userInput))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessageContaining(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
     }
@@ -33,7 +33,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"일", "2삼"})
     void 입력값이_숫자가_아닐경우_예외발생(String userInput) {
-        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(userInput))
+        assertThatThrownBy(() -> inputValidator.validateUserInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionConstant.INPUT_IS_NUMBER.getMessage());
     }
@@ -41,15 +41,22 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "99"})
     void 입력값이_정수일_경우_예외발생_하지않음(String userInput) {
-        assertThatCode(() -> inputValidator.validatePurchaseAmount(userInput))
+        assertThatCode(() -> inputValidator.validateUserInput(userInput))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"-1", "-99"})
     void 입력값이_정수가_아닐경우_예외발생(String userInput) {
-        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(userInput))
+        assertThatThrownBy(() -> inputValidator.validateUserInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionConstant.INPUT_IS_NUMBER.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5"})
+    void 입력값이_정수가예외발생(String userInput) {
+        assertThatCode(() -> inputValidator.validateUserInput(userInput.replaceAll(",", "")))
+                .doesNotThrowAnyException();
     }
 }

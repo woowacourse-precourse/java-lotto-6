@@ -15,19 +15,21 @@ public class InputView {
     public String inputPurchaseAmount() {
         System.out.println(InputConstant.PURCHASE_AMOUNT.getMessage());
         String purchaseAmount = getUserInput();
-        inputValidator.validatePurchaseAmount(purchaseAmount);
+        inputValidator.validateUserInput(purchaseAmount);
         return purchaseAmount;
     }
 
     public String inputWinningNumber() {
         System.out.println(InputConstant.WINNING_NUMBER.getMessage());
         String winningNumber = getUserInput();
+        inputValidator.validateUserInput(winningNumber.replaceAll(",", ""));
         return winningNumber;
     }
 
     public String inputBonusNumber() {
         System.out.println(InputConstant.BONUS_NUMBER.getMessage());
         String bonusNumber = getUserInput();
+        inputValidator.validateUserInput(bonusNumber);
         return bonusNumber;
     }
 

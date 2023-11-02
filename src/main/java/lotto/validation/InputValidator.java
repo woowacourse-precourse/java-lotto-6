@@ -7,7 +7,7 @@ public class InputValidator {
 
     private static final Pattern INPUT_NUMBER_REGEX = Pattern.compile("[0-9]+");
 
-    public void validatePurchaseAmount(String userInput) {
+    public void validateUserInput(String userInput) {
         if (isValidateNull(userInput)) {
             throw new NullPointerException(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
         }

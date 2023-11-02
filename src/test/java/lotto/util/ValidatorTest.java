@@ -23,4 +23,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_NUMERIC);
     }
+
+    @ParameterizedTest
+    @DisplayName("1,000원 단위가 아닌 입력 예외 테스트")
+    @ValueSource(strings = {"1001", "999", "100", "1100", "100001"})
+    void invalidInputsTest3(String input) {
+        Assertions.assertThatThrownBy(() -> Validator.isThousandUnit(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INPUT_THOUSAND_UNIT);
+    }
 }

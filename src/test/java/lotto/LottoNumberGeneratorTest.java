@@ -17,4 +17,17 @@ class LottoNumberGeneratorTest {
                 .allSatisfy(number -> assertThat(number).isBetween(1, 45));
     }
 
+    @Test
+    void 로또_여러장_생성() {
+        int ticketNumber = 5;
+        List<List<Integer>> lottos = LottoNumberGenerator.generateLottoNumbers(5);
+
+        assertThat(lottos)
+                .hasSize(5)
+                .allSatisfy(lotto -> {
+                    assertThat(lotto)
+                            .hasSize(6)
+                            .allSatisfy(number -> assertThat(number).isBetween(1, 45));
+                });
+    }
 }

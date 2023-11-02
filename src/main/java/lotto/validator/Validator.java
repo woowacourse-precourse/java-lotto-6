@@ -8,6 +8,7 @@ import lotto.model.Lotto;
 import lotto.utils.Parser;
 
 public class Validator {
+    // 구입 금액 입력 검증
     public static void validateBudgetInput(String userInput) {
         validateInteger(userInput);
         int number = Integer.parseInt(userInput);
@@ -15,6 +16,7 @@ public class Validator {
         validateDividedBy1000(number);
     }
 
+    // 당첨 번호 입력 검증
     public static void validateLottoTicketInput(String userInput) {
         List<String> parsedNumbers = Parser.parseWithComma(userInput);
         parsedNumbers.forEach(Validator::validateInteger);
@@ -24,12 +26,7 @@ public class Validator {
         validateNumbers(numbers);
     }
 
-    public static void validateNumbers(List<Integer> numbers) {
-        validateLottoTicketSize(numbers.size());
-        numbers.forEach(Validator::validateNumberInRange);
-        validateDuplication(numbers);
-    }
-
+    // 보너스 번호 입력 검증
     public static void validateBonusNumberInput(Lotto winningLottoTicket, String userInput) {
         validateInteger(userInput);
         int bonusNumber = Integer.parseInt(userInput);
@@ -55,6 +52,12 @@ public class Validator {
         if (number % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_1000_MESSAGE.getMessage());
         }
+    }
+
+    public static void validateNumbers(List<Integer> numbers) {
+        validateLottoTicketSize(numbers.size());
+        numbers.forEach(Validator::validateNumberInRange);
+        validateDuplication(numbers);
     }
 
     public static void validateLottoTicketSize(int size) {

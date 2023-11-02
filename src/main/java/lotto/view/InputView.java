@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validation.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,8 @@ public class InputView {
     public Integer inputMoney() {
         OutputView.moneyMessage();
         String money= Console.readLine();
+
+        Validator.moneyValidate(money);
 
         return Integer.parseInt(money);
     }

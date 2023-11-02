@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.dto.AnswerLotto;
@@ -16,8 +17,7 @@ public class LottoService {
     }
 
     public double findRateOfReturn(List<Rank> ranks){
-        int purchasePrice = ranks.size() * 1000;
-
+        int purchasePrice = ranks.size() * LottoConstant.LOTTO_TICKET_PRICE;
         double totalWinningPrice = ranks.stream()
                 .mapToDouble(rank -> rank.getWinningPrice())
                 .sum();

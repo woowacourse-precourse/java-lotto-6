@@ -1,12 +1,10 @@
 package lotto.controller;
 
-import java.util.List;
-import java.util.Map;
-import lotto.constant.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.RandomNumberGenerator;
 import lotto.domain.Result;
+import lotto.dto.ResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,7 +30,7 @@ public class LottoController {
 
         float rateOfReturn = result.calculateRate(money);
 
-        outputView.printResult(result);
+        outputView.printResult(ResultsDto.of(result));
         outputView.printRateOfReturn(rateOfReturn);
     }
 }

@@ -29,6 +29,14 @@ public enum Rank {
 
     }
 
+    public int getSameNumberCount() {
+        return sameNumberCount;
+    }
+
+    public boolean isNeedBonus() {
+        return needBonus;
+    }
+
     public int getReward() {
         return reward;
     }

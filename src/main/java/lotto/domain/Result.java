@@ -25,4 +25,8 @@ public class Result {
     private static long calculateEntryPrice(Entry<Rank, Long> entry) {
         return entry.getKey().getReward() * entry.getValue();
     }
+
+    public Map<Rank, Long> getRankCount() {
+        return rankCount;
+    }
 }

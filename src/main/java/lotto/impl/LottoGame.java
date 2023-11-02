@@ -2,40 +2,50 @@ package lotto.impl;
 
 import lotto.RandomNumberProvider;
 import lotto.domain.Lotto;
+import lotto.type.Prize;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.impl.OneTo45LottoNumberProvider.BONUS_NUMBER_INDEX;
+import static lotto.impl.RandomNumberImpl.BONUS_NUMBER_INDEX;
 
 public class LottoGame {
-    private final Lotto winningNumber;
-    private final int bonusNumber;
+    private Lotto winningLotto;
+    private int bonusNumber;
     private final RandomNumberProvider randomNumberProvider;
 
-    public LottoGame(RandomNumberProvider randomNumberProvider, Lotto winningNumber, int bonusNumber) {
-        this.winningNumber = winningNumber;
+    public LottoGame(RandomNumberProvider randomNumberProvider) {
         this.randomNumberProvider = randomNumberProvider;
+    }
+
+    public void start(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningLotto = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public int getResult(Lotto consumerLotto) {
+    public Prize getPrize(Lotto consumerLotto) {
        List<Integer> lottoNumbers = consumerLotto.getNumbers();
        int winningResult = getWinningResult(lottoNumbers);
        if(isCheckSecond(winningResult)) {
-           if(getBonusNumberResult(lottoNumbers)) {
-               return 6;
-           }
+           return Prize.valueOf(winningResult, true);
        }
-       return winningResult;
+        return Prize.valueOf(winningResult, false);
+    }
+
+    public List<Prize> getResult(List<Lotto> consumerLottos) {
+        return consumerLottos.stream()
+                 .map(this::getPrize)
+                 .collect(Collectors.toList());
     }
 
     private boolean isCheckSecond(int correctNum) {
         return correctNum == BONUS_NUMBER_INDEX;
     }
 
+
     private int getWinningResult(List<Integer> lottoNumbers) {
-        return winningNumber
+        return winningLotto
                 .getSixNumberWinningResult(IntStream.range(0, BONUS_NUMBER_INDEX - 1)
                         .mapToObj(lottoNumbers::get)
                         .toList());

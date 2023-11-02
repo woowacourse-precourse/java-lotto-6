@@ -20,7 +20,9 @@ public class InputController {
     }
 
     public static String scanBonusNumber() {
-        // TO DO: 보너스 번호 입력박은 값 반환
-        return "";
+        System.out.println(InputView.enterBonusNumber());
+        String userInput = Console.readLine();
+        // TO DO: 사용자 입력 검증해야 함
+        return userInput;
     }
 }

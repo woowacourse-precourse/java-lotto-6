@@ -7,7 +7,6 @@ import static lotto.contents.ContentStrings.INPUT_WINNING_NUMBERS;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-
     public static String inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
         return Console.readLine();

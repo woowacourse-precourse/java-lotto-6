@@ -15,6 +15,11 @@
 - validateDigit(char) : 입력값이 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
 - validateRemainder(int) : 입력값이 1000으로 나눴을 때 나머지가 0이 아니라면 IllegalArgumentException을 발생시킨다.
 
+- createLottos : 
+  구입 횟수에서 1씩 차감하며 Lotto를 생성해 lottos에 저장한다.
+  1씩 차감하는 이유는 해당 메서드가 public이기 때문에 다시 어딘가에서 원치 않는 호출로 다시 로또 번호가 생성됨을 막기 위함이다.
+  lottoQuantity가 0이면 "[Error] 구입 금액이 0이면 로또번호를 생성할 수 없습니다."가 출력된다.
+
 ### Lotto
 - Lotto(List<Integer>) : 
   정수형 리스트를 받아 검증한 뒤 numbers에 저장한다.

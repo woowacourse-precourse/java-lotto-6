@@ -1,7 +1,15 @@
 package lotto.view;
 
+import static lotto.constant.LottoRanking.FIFTH;
+import static lotto.constant.LottoRanking.FIRST;
+import static lotto.constant.LottoRanking.FOURTH;
+import static lotto.constant.LottoRanking.SECOND;
+import static lotto.constant.LottoRanking.THIRD;
+
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
+import javax.swing.text.NumberFormatter;
 import lotto.constant.LottoRanking;
 import lotto.dto.LottoResult;
 import lotto.model.LottoNumber;
@@ -12,8 +20,10 @@ public class OutputView {
     private static final String LOTTO_NUMBERS_MESSAGE = "[%d, %d, %d, %d, %d, %d]";
     private static final String LOTTO_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE = "---";
-    private static final String WINNING_COUNT_MESSAGE = "%s - %d개";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f입니다.";
+    private static final String WINNING_COUNT_MESSAGE = "%s (%s원) - %d개";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
+    private static final List<LottoRanking> rankingOrder = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
 
     public static void printLottoNumbers(List<LottoNumber> lottoNumbers) {
         System.out.printf(LOTTO_NUMBERS_SIZE_MESSAGE, lottoNumbers.size());
@@ -42,10 +52,11 @@ public class OutputView {
     }
 
     private static void printWinningCounts(Map<LottoRanking, Integer> winningCounts) {
-        for (LottoRanking lottoRanking : winningCounts.keySet()) {
+        for (LottoRanking lottoRanking : rankingOrder) {
             System.out.printf(
                     WINNING_COUNT_MESSAGE,
                     lottoRanking.getWinningCondition(),
+                    NumberFormat.getInstance().format(lottoRanking.getPrizeMoney()),
                     winningCounts.get(lottoRanking)
             );
             System.out.println();

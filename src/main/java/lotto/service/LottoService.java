@@ -43,9 +43,9 @@ public class LottoService {
     }
 
     private double calculateProfitRate(Map<LottoRanking, Integer> winningCounts, int originalPrice) {
-        int prizeMoney = 0;
+        long prizeMoney = 0;
         for (LottoRanking lottoRanking : winningCounts.keySet()) {
-            prizeMoney += lottoRanking.getPrizeMoney() * winningCounts.get(lottoRanking);
+            prizeMoney += (long) lottoRanking.getPrizeMoney() * winningCounts.get(lottoRanking);
         }
         return (double) prizeMoney / originalPrice;
     }

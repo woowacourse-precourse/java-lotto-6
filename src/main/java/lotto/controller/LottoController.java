@@ -13,7 +13,7 @@ public class LottoController {
 
     public void run(){
         InputView inputView = new InputView();
-        String purchaseAmount = inputView.getPurchaseAmount();
+        long purchaseAmount = inputView.getPurchaseAmount();
         User user = lottoService.buyLotto(purchaseAmount);
     }
 }

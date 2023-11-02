@@ -63,12 +63,12 @@ public class Application {
         return 5;
     }
 
-    private static int numOfLotto() {
+    private static int setMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         int money = Integer.parseInt(Console.readLine());
         if (money%1000 != 0) throw new IllegalArgumentException();
         System.out.println();
-        return money/1000;
+        return money;
     }
 
     private static List<Lotto> setUser(int n){
@@ -82,29 +82,36 @@ public class Application {
     }
 
     public static int[] resList(List<Lotto> user, Lotto winNumber, int bonus){
+        int[] target = {6, 5, 5, 4, 3, 0};
         int[] res = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < user.size(); i++) {
             int idx = judge(winNumber, user.get(i), bonus);
             res[idx]++;
         }
+        int i = 4;
+        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
+        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
+        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
+        System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%d) - %d개",target[i],prices[i],res[i--]));
+        System.out.println(String.format("%d개 일치 (%d) - %d개",target[i],prices[i],res[i--]));
         return res;
     }
 
-    public static int sumPrice(int[] res){
+    public static void calReturnRate(int[] res, int money){
         int userPrice = 0;
         for (int i = 0; i < res.length; i++) {
             userPrice += prices[i]*res[i];
         }
-        return userPrice;
+        int returnRate = userPrice/money*100;
+        System.out.println(String.format("총 수익률은 %d입니다.", returnRate));
     }
 
     public static void main(String[] args) {        
-        int n = numOfLotto();
-        List<Lotto> user = setUser(n);
+        int m = setMoney();
+        List<Lotto> user = setUser(m/1000);
         Lotto winNumber = new Lotto(getUserNumbers());
         int bonus = getUserBonus(winNumber); 
 
-        int returnRate = sumPrice(resList(user, winNumber, bonus));
-        
+        calReturnRate(resList(user, winNumber, bonus), m);
     }
 }

@@ -78,8 +78,6 @@ public class LottoFactory {
         return () -> {
             EnumMap<Rank, Long> enumMap = new EnumMap<>(Rank.class);
             EnumSet.allOf(Rank.class)
-                    .stream()
-                    .filter(rank -> rank != NONE)
                     .forEach(rank -> enumMap.put(rank, 0L));
 
             return enumMap;

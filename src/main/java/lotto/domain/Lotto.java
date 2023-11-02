@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.valid.WinNumberValid.validLottoNums;
+
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        validLottoNums(numbers);
     }
 
     // TODO: 추가 기능 구현

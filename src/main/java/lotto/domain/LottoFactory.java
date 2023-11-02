@@ -4,7 +4,10 @@ import static lotto.exception.ErrorMessage.INVALID_UNIT;
 import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.constant.Rank;
 import lotto.exception.LottoException;
 
 public class LottoFactory {
@@ -51,9 +54,12 @@ public class LottoFactory {
                 .toList();
     }
 
-    public void calculateResult(Lotto answerLott, int bonusNumber) {
-        answerLott.validateBonusNumber(bonusNumber);
+    public Map<Rank, Integer> calculateResult(Lotto answerLotto, int bonusNumber) {
+        answerLotto.validateBonusNumber(bonusNumber);
 
+        return lottos.stream()
+                .map(lotto -> lotto.getRank(answerLotto, bonusNumber))
+                .collect(Collectors.groupingBy());
 
     }
 }

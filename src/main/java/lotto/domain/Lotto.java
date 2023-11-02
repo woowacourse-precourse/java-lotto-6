@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoConstant;
+import lotto.constant.Rank;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
@@ -74,6 +75,19 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+
+    public Rank getRank(Lotto answerLotto, int bonusNumber) {
+        int sameNumberCount = answerLotto.checkSameNumber(numbers);
+        boolean hasBonus = numbers.contains(bonusNumber);
+
+        return Rank.of(sameNumberCount, hasBonus);
+    }
+
+    private int checkSameNumber(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
     }
 
 

@@ -38,7 +38,7 @@ public class LottoController {
         int quantity = budget / 1000;
 
         // 구입한 만큼 로또 생성
-        List<Lotto> lottoTicketsPurchased = createLottoTickets(quantity);
+        List<Lotto> lottoTicketsPurchased = createLottoTickets(quantity, new LottoRandomGenerator());
 
         // 구입한 로또 개수 출력
         outputController.printLottoTicketsCount(lottoTicketsPurchased.size());
@@ -83,15 +83,11 @@ public class LottoController {
         return earnedAmount * 100 / (double) budget;
     }
 
-    private List<Lotto> createLottoTickets(int quantity) {
+    private List<Lotto> createLottoTickets(int quantity, LottoGenerator lottoGenerator) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
-            lottoTickets.add(createRandomLottoTicket(new LottoRandomGenerator()));
+            lottoTickets.add(lottoGenerator.generate());
         }
         return lottoTickets;
-    }
-
-    private Lotto createRandomLottoTicket(LottoGenerator lottoGenerator) {
-        return lottoGenerator.generate();
     }
 }

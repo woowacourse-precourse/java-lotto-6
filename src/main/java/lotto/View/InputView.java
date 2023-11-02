@@ -14,7 +14,7 @@ public class InputView {
     private static void validate(String inputLottoPrice) {
         try {
             int lottoPrice = toInt(inputLottoPrice);
-            if (isNotDivideWithOneThousands(lottoPrice)) {
+            if (isNotDivideWithOneThousands(lottoPrice) || isNotCorrectMoneyRange(lottoPrice)) {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
@@ -29,5 +29,9 @@ public class InputView {
 
     private static boolean isNotDivideWithOneThousands(int lottoPrice) {
         return lottoPrice % 1000 != 0;
+    }
+
+    private static boolean isNotCorrectMoneyRange(int lottoPrice) {
+        return lottoPrice <= 0 || lottoPrice > 2000000000;
     }
 }

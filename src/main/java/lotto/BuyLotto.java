@@ -4,12 +4,15 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BuyLotto {
 	static int count;
-	
+
+	public BuyLotto() {
+		this.getMoney();
+	}
+
 	public void getMoney() { // 사용자의 금액 입력을 받는 메서드
 		System.out.println("구입 금액을 입력해주세요.");
 		String userInput = readLine().trim();
 		this.isValidInput(userInput);
-		System.out.printf("%n%s개를 구매하셨습니다. %n", count);
 	}
 
 	public void isValidInput(String input) { // 사용자가 입력한 값이 숫자가 맞는지 예외처리
@@ -33,5 +36,10 @@ public class BuyLotto {
 
 	private void setCount(int input) {
 		count = input / 1000;
+	}
+	
+	public int getCount() {
+		System.out.printf("%n%s개를 구매하셨습니다. %n", count);
+		return count;
 	}
 }

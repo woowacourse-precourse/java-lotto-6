@@ -1,19 +1,24 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
-public class Lotto { // 당첨된 로또를 만들어주는 클래스
-    private final List<Integer> numbers;
-    
-    public Lotto(List<Integer> numbers) { 
-        validate(numbers);
-        this.numbers = numbers;
-    }
+public class Lotto {
+	private final List<Integer> numbers;
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-    // TODO: 추가 기능 구현
+	public Lotto(List<Integer> numbers) { // 사용자가 입력한 값을 넣을때 사용해야함
+		validate(numbers);
+		this.numbers = numbers;
+	}
+	
+	private void validate(List<Integer> numbers) {
+		if (numbers.size() != 6) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+	
 }

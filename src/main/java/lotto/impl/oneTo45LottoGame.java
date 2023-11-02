@@ -7,7 +7,7 @@ import lotto.type.GameType;
 
 public class oneTo45LottoGame implements Game {
     private final int LOTTO_ROUND;
-    private Lotto lotto;
+    private Lotto winningNumber;
     private final RandomNumberProvider randomNumberProvider;
 
     public oneTo45LottoGame(int LOTTO_ROUND, RandomNumberProvider randomNumberProvider1) {
@@ -26,6 +26,6 @@ public class oneTo45LottoGame implements Game {
     }
 
     private void initThisRound() {
-        lotto = new Lotto(randomNumberProvider.generateRandomNumber());
+        winningNumber = new Lotto(randomNumberProvider.generateRandomNumber());
     }
 }

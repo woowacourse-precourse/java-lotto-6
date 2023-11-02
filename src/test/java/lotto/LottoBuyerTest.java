@@ -1,7 +1,9 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +22,21 @@ class LottoBuyerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생")
+    @DisplayName("로또 금액이 음수일 경우 예외가 발생")
     @Test
     void inputNotPositiveNumber() {
         assertThatThrownBy(() -> new LottoBuyer().buyLotto("-1000"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구매한로또_정상발행확인() {
+        LottoBuyer buyer = new LottoBuyer();
+        Lotto lotto = new Lotto(List.of(6, 1, 4, 5, 12, 41));
+
+        buyer.addMyLottos(lotto);
+        Lotto compareLotto = buyer.getMyLotts().get(0);
+
+        assertThat(compareLotto.getNumbers()).containsExactly(6, 1, 4, 5, 12, 41);
     }
 }

@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.exception.ErrorMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -19,7 +21,7 @@ public class Lotto {
 
     private void lottoSizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR.printMessage() + LOTTO_SIZE.printMessage());
         }
     }
 
@@ -27,7 +29,7 @@ public class Lotto {
         Set<Integer> validate = new HashSet<>(numbers);
 
         if (validate.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR.printMessage() + LOTTO_DUPLICATE.printMessage());
         }
     }
 }

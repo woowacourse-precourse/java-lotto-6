@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     final int MIN_NUMBER = 1;
@@ -41,5 +42,6 @@ public class Lotto {
         }
         return false;
     }
+
 
 }

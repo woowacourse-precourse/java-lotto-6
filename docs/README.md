@@ -3,7 +3,7 @@
   - [ ] 예외 - 1000 단위인지 판단한다. - Validator#validateCash
 -[x] 금액으로 발행 횟수를 책정한다. - Util#calculateAttempt
 -[x] 별개의 1 ~ 45 무작위 값 6개를 생성한다. - LottoGenerator#generate
--[ ] 로또 번호 6개를 입력받는다. - InputView#inputLotto
+-[x] 로또 번호 6개를 입력받는다. - InputView#inputLotto
 -[ ] 보너스 번호를 입력받는다. 앞선 6개의 번호와 별개이어야 한다. - InputView#inputBonus
 -[ ] 로또 번호 + 보너스 번호와 랜덤 6개 값을 비교한다. - Comparator#compare
    -[ ] 로또 번호와 보너스 번호를 구분해서 비교한다. - Comparator#compareLotto

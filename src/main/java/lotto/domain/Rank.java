@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     FIRST_PLACE(6, false, 2000000000),
@@ -18,6 +20,23 @@ public enum Rank {
         this.hasBonusNumber = hasBonusNumber;
         this.winningPrice = winningPrice;
     }
+
+    public static Rank findRankByMatchedNBonusNumber(int matchedNumber, boolean hasBonusNumber){
+        Rank findRank = Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchedNumber() == matchedNumber)
+                .findAny()
+                .orElse(Rank.NOTHING);
+
+        if((findRank == Rank.SECOND_PLACE || findRank == Rank.THIRD_PLACE) && hasBonusNumber){
+            return Rank.SECOND_PLACE;
+        }
+        if((findRank == Rank.SECOND_PLACE || findRank == Rank.THIRD_PLACE) && !hasBonusNumber){
+            return Rank.THIRD_PLACE;
+        }
+        return findRank;
+    }
+
+
 
     public int getMatchedNumber() {
         return matchedNumber;

@@ -13,6 +13,7 @@ public class PurchasePrice {
     private void validate(String purchasePrice) {
         validateFormat(purchasePrice);
         validateBelowOptimalPrice(purchasePrice);
+        validateDivisibleByProperAmount(purchasePrice);
     }
 
     private void validateFormat(String purchasePrice) {
@@ -24,6 +25,13 @@ public class PurchasePrice {
     private void validateBelowOptimalPrice(String purchasePrice) {
         int price = Integer.parseInt(purchasePrice.replaceAll(",", ""));
         if (price < 1000) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDivisibleByProperAmount(String purchasePrice) {
+        int price = Integer.parseInt(purchasePrice.replaceAll(",", ""));
+        if (price % 1000 != 0) {
             throw new IllegalArgumentException();
         }
     }

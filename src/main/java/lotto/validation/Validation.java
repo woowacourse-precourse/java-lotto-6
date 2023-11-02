@@ -1,6 +1,8 @@
 package lotto.validation;
 
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Validation {
     public void validateUnit(int payment) {
@@ -20,6 +22,14 @@ public class Validation {
             if(number < 1 || 45 < number) {
                 throw new IllegalArgumentException("숫자 범위는 1 이상 45 이하여야 합니다.");
             }
+        }
+    }
+
+    public void validateDuplication(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if(numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException("중복된 숫자가 있습니다.");
         }
     }
 }

@@ -14,10 +14,14 @@ public class PurchaseAmount {
         this.price = convertStringToInt(price);
     }
 
+    public int getPurchaseAmount(){
+        return price;
+    }
+
     private void validate(String price) {
         IsNumber(price);
         IsPositive(convertStringToInt(price));
-        IsThousandUnits(convertStringToInt(price));
+        IsMultipleOfUnit(convertStringToInt(price));
     }
 
     private String removeSeparator(String price) {
@@ -33,14 +37,14 @@ public class PurchaseAmount {
     }
 
     private void IsPositive(int price) {
-        if (price < 0) {
-            ExceptionMessage.INPUT_UNDER_ZERO_MESSAGE.throwException();
+        if (price <= 0) {
+            ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.throwException();
         }
     }
 
-    private void IsThousandUnits(int price) {
+    private void IsMultipleOfUnit(int price) {
         if (price % PURCHASE_AMOUNT_UNIT != 0) {
-            ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(String.valueOf(PURCHASE_AMOUNT_UNIT));
+            ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(PURCHASE_AMOUNT_UNIT);
         }
     }
 

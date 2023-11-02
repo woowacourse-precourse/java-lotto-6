@@ -20,4 +20,11 @@ public class Validator {
         }
     }
 
+    public static void validateMoreThan1000(int number){
+        if(number < 1000){
+            throw new IllegalArgumentException("1000 이상의 숫자가 아닙니다.");
+        }
+    }
+
+
 }

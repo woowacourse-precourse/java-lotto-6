@@ -27,14 +27,15 @@ public class Application {
         return box;
     }
 
-    private static int getUserBonus(List<Integer> userNumbers){
+    private static int getUserBonus(Lotto userNumbers){
         int bonus = Integer.parseInt(Console.readLine());
-        if (userNumbers.contains(bonus)) throw new IllegalArgumentException();
+        if (userNumbers.lottoContains(bonus)) throw new IllegalArgumentException();
         return bonus;
     }
 
     public static void main(String[] args) {
         Lotto winNumber = new Lotto(setRandomNumbers());
         Lotto user = new Lotto(getUserNumbers());
+        int bonus = getUserBonus(user);
     }
 }

@@ -11,6 +11,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         String amount = Console.readLine();
         Validator.validatePurChaseAmount(amount);
+        System.out.println();
         return Integer.parseInt(amount) / 1000;
     }
 
@@ -18,6 +19,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNum = Console.readLine();
         Validator.validateWinningNumber(winningNum);
+        System.out.println();
         return Parser.parseWinningNumber(winningNum, ",");
     }
 

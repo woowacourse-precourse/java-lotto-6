@@ -6,7 +6,6 @@ public class LottoGame {
     private final LottoPurchase lottoPurchase = new LottoPurchase();
     public void LottoPlay(){
         messageService.inputPurchasePrice();
-        System.out.println(lottoPurchase.getPurchaseAmount());
-
+        messageService.outputPurchaseAmount(lottoPurchase.getPurchaseAmount());
     }
 }

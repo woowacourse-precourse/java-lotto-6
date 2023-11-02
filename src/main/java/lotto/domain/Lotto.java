@@ -1,14 +1,16 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
 import lotto.dto.AnswerLotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constant.LottoConstant.*;
+
 public class Lotto {
 
-    private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final int REQUIRED_MATCHING_NUMBERS_FOR_BONUS = 5;
     private final List<Integer> numbers;
 
@@ -59,7 +61,7 @@ public class Lotto {
         }
         return matchedNumber;
     }
-    
+
     @Override
     public String toString() {
         return numbers.toString();

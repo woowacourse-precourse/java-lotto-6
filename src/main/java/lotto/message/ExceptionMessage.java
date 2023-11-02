@@ -12,7 +12,7 @@ public enum ExceptionMessage {
     private final String exceptionMessage;
 
     ExceptionMessage(String exceptionMessage) {
-        this.exceptionMessage = exceptionMessage;
+        this.exceptionMessage = ERROR_TAG + exceptionMessage;
     }
 
     public String getMessage(Object... values) {
@@ -20,7 +20,7 @@ public enum ExceptionMessage {
     }
 
     public void throwException(Object ... values) {
-        throw new IllegalArgumentException(ERROR_TAG + String.format(exceptionMessage, values));
+        throw new IllegalArgumentException(String.format(exceptionMessage, values));
     }
 }
 

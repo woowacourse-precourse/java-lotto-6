@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import lotto.enums.ErrorMessage;
 import lotto.util.Convertor;
@@ -22,7 +23,7 @@ public class InputValidator {
 
     public static void validateWinningNumber(String input) {
         validateNull(input);
-        validateIsNumber(input);
+        validateIsNumberSeparatedByComma(input);
         validateSeparator(input);
     }
 
@@ -45,6 +46,15 @@ public class InputValidator {
 
     private static void validateIsNumber(String input) {
         if (NOT_NUMBER.matcher(input).matches()) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateIsNumberSeparatedByComma(String input) {
+        String[] numbers = Convertor.splitByComma(input);
+        boolean hasNonNumber = Arrays.stream(numbers)
+                .anyMatch(number -> NOT_NUMBER.matcher(number).matches());
+        if (hasNonNumber) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }
     }

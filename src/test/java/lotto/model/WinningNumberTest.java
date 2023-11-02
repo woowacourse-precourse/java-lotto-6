@@ -16,7 +16,7 @@ class WinningNumberTest {
     @Test
     @DisplayName("당첨 번호 생성 테스트")
     void createWinningNumber() {
-        WinningNumber winningNumber = new WinningNumber();
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> numbers = winningNumber.getNumbers();
 
         assertThat(numbers).hasSize(WINNING_NUMBER_SIZE);

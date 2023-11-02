@@ -12,4 +12,8 @@ public final class Money {
     public boolean isLottoCountSameAsMoney(Integer count) {
         return money.equals(count * 1000);
     }
+
+    public String lottoExchangeCount() {
+        return Integer.toString(money / 1000);
+    }
 }

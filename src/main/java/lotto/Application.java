@@ -41,7 +41,7 @@ public class Application {
             return 0;
         }
         if(ct > 4) {
-            if (winNum.lottoContains(bonus)) return 1;
+            if (user.lottoContains(bonus)) return 1;
             return 2;
         }
         if(ct > 3) {

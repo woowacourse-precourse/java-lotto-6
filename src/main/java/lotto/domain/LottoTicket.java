@@ -10,6 +10,10 @@ public class LottoTicket {
         ticketNumber = Integer.parseInt(input) / TICKET_PRICE;
     }
 
+    public int getTicketNumber () {
+        return ticketNumber;
+    }
+
     private void validateIsNumber(String input) {
         if (input.matches("\\d*")) {
             return;

@@ -13,9 +13,11 @@ class PurchaseTest {
         // When
         int validPrice = 2000;
         int invalidPrice = 1234;
+        int zeroPrice = 0;
 
         // Then
         Assertions.assertDoesNotThrow(() -> purchase.validatePrice(validPrice));
         Assertions.assertThrows(IllegalArgumentException.class, () -> purchase.validatePrice(invalidPrice));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> purchase.validatePrice(zeroPrice));
     }
 }

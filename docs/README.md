@@ -7,8 +7,8 @@
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 # Model
 - ###  Player
-- [ ] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
-- [ ] 로또 구입 금액 만큼 보유 금액을 사용 - HoldingMoney
+- [x] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
+- [x] 로또 구입 금액 만큼 보유 금액을 사용 - HoldingMoney
 - [ ] 로또 구입 금액 만큼 사용 금액을 업데이트 - UsedMoney
 - [ ] 로또 구입에 사용한 금액을 사용 금액에 저장 - UsedMoney
 - [ ] 로또 구입 금액을 보유 금액, 사용금액에 저장 - PlayerMoney

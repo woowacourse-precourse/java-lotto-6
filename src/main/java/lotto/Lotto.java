@@ -16,5 +16,10 @@ public class Lotto {
         }
     }
 
+    public String toString(){
+        String lottoNumber = String.join(", ", String.valueOf(numbers));
+        return lottoNumber;
+    }
+
     // TODO: 추가 기능 구현
 }

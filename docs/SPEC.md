@@ -1,14 +1,16 @@
 ## 📋 구현 기능 목록
 
+### 컨트롤러
+- [ ] `IllegalArgumentException`가 발생되면 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
+
 ### 서비스
 
 #### 입력값 검증
 
 - [ ] 사용자로부터 값을 입력받음
-- [ ] 입력값 검증
-    - [ ] 로또 구입 금액 : 1,000원 단위
-    - [ ] 잘못된 값인 경우 `IllegalArgumentException`를 발생
-- [ ] `IllegalArgumentException`가 발생되면 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
+- [x] 입력값 검증
+    - [x] 로또 구입 금액 : 1,000원 단위
+    - [x] 잘못된 값인 경우 `IllegalArgumentException`를 발생
 
 #### 로또 진행
 

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.Calculator;
 import lotto.domain.Lottos;
 import lotto.io.Input;
 import lotto.io.Output;
@@ -24,7 +23,7 @@ public class LottoController {
         output.printInputBonusNumberMessage();
         int bonusNumber = input.getBonusNumber();
 
-        Calculator calculator = new Calculator(lottos, winningNumbers, bonusNumber);
+
 
 
     }

@@ -12,4 +12,10 @@ public class InputView {
         InputValidator.validatePurchasePrice(purchasePrice);
         return purchasePrice;
     }
+
+    public static String inputWinningNumbers() {
+        String winningNumbers = Console.readLine();
+        InputValidator.validateWinningNumber(winningNumbers);
+        return winningNumbers;
+    }
 }

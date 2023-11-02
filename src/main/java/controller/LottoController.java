@@ -61,5 +61,6 @@ public class LottoController {
         }
 
         OutputView.printStatistics(rankCountsMap);
+        OutputView.printProfitRatio(rankCountsMap, money);
     }
 }

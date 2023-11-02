@@ -14,7 +14,7 @@ public class InputController {
                 String userInput = Console.readLine();
                 InputValidator.validateBudget(userInput);
                 return userInput;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -27,7 +27,7 @@ public class InputController {
                 String userInput = Console.readLine();
                 InputValidator.validateLottoTicket(userInput);
                 return userInput;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -40,7 +40,7 @@ public class InputController {
                 String userInput = Console.readLine();
                 InputValidator.validateBonusNumber(winningLottoTicket, userInput);
                 return userInput;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

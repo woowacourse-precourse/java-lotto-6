@@ -21,7 +21,7 @@ public class BonusNumber {
         }
     }
     private void validateRange(int bonus){
-        if(bonus < 0 || bonus > 45 ){
+        if(bonus < ExceptionMessage.MIN_NUM || bonus > ExceptionMessage.MAX_NUM ){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER);
         }
     }

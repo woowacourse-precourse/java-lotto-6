@@ -16,6 +16,10 @@ public class Consumer {
         this.buyAmount = buyAmount;
     }
 
+    public int getBuyAmount() {
+        return buyAmount;
+    }
+
     private static void validate(int buyAmount) {
         buyAmountLessThanMinAmount(buyAmount);
         buyAmountGreaterThanMaxAmount(buyAmount);

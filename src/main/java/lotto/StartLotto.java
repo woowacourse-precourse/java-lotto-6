@@ -52,18 +52,16 @@ public class StartLotto {
         }
     }
 
-    private void inputPurchasePrice() {
-        printMessageForInputPurchasePrice();
+    private void printMessageForInputPurchasePrice() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
 
+    private void inputPurchasePrice() {
         String purchasePrice = Console.readLine();
 
         int purchaseNumber = changeStringToInteger(purchasePrice);
         checkIs1000wonUnit(purchaseNumber);
         this.purchasePrice = purchaseNumber;
-    }
-
-    private void printMessageForInputPurchasePrice() {
-        System.out.println("구입금액을 입력해 주세요.");
     }
 
     private void checkIs1000wonUnit(int price) {
@@ -72,16 +70,15 @@ public class StartLotto {
         }
     }
 
+    private void printMessageForInputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
     private void inputWinningNumbers() {
-        printMessageForInputWinningNumbers();
         String winningNumbers = Console.readLine();
 
         String[] splitWinningNumbers = splitInputString(winningNumbers);
         this.winningNumbers = changeStringToInteger(splitWinningNumbers);
-    }
-
-    private void printMessageForInputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     private String[] splitInputString(String winningNumbers) {
@@ -89,18 +86,17 @@ public class StartLotto {
         return winningNumbers.split(",", 0);
     }
 
+    private void printMessageForInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요");
+    }
+
     private void inputBonusNumber() {
-        printMessageForInputBonusNumber();
         String bonusNumberString = Console.readLine();
 
         int bonusNumber = changeStringToInteger(bonusNumberString);
         checkNumberInRange(bonusNumber);
         checkDuplicatedNumber(bonusNumber, this.winningNumbers);
         this.bonusNumber = bonusNumber;
-    }
-
-    private void printMessageForInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요");
     }
 
     private void generateLottoList() {

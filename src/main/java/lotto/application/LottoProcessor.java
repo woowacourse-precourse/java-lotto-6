@@ -3,6 +3,7 @@ package lotto.application;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoProvider;
+import lotto.domain.LottoStatistics;
 import lotto.domain.User;
 import lotto.domain.WinningLottoHolder;
 import lotto.io.InputProcessor;
@@ -23,6 +24,7 @@ public class LottoProcessor {
     public void run() {
         buyLotto();
         initLottoWinningMachine();
+        notifyLottoResult();
     }
 
     private void buyLotto() {
@@ -52,5 +54,10 @@ public class LottoProcessor {
                 OutputProcessor.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void notifyLottoResult() {
+        final LottoStatistics lottoStatistics = LottoStatistics.checkLottoResult(winningLottoHolder, user);
+        OutputProcessor.printWinningStatistics(lottoStatistics);
     }
 }

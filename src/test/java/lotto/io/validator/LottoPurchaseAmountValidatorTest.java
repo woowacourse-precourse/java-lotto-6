@@ -13,12 +13,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LottoPurchaseAmountValidatorTest {
-    private final LottoPurchaseAmountValidator sut = new LottoPurchaseAmountValidator();
-
     @Test
     @DisplayName("로또 구입금액에 공백이 존재하면 예외가 발생한다")
     void throwExceptionByInputHasSpace() {
-        assertThatThrownBy(() -> sut.validate("8000 "))
+        assertThatThrownBy(() -> LottoPurchaseAmountValidator.validate("8000 "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_MUST_NOT_CONTAINS_SPACE.message);
     }
@@ -26,7 +24,7 @@ public class LottoPurchaseAmountValidatorTest {
     @Test
     @DisplayName("로또 구입금액이 숫자가 아니면 예외가 발생한다")
     void throwExceptionByInputIsNotNumeric() {
-        assertThatThrownBy(() -> sut.validate("1000a"))
+        assertThatThrownBy(() -> LottoPurchaseAmountValidator.validate("1000a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_MUST_BE_NUMERIC.message);
     }
@@ -34,7 +32,7 @@ public class LottoPurchaseAmountValidatorTest {
     @Test
     @DisplayName("로또 구입금액이 음수면 예외가 발생한다")
     void throwExceptionByPurchaseAmountIsNegative() {
-        assertThatThrownBy(() -> sut.validate("-8000"))
+        assertThatThrownBy(() -> LottoPurchaseAmountValidator.validate("-8000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_AMOUNT_MUST_BE_POSITIVE.message);
     }
@@ -43,7 +41,7 @@ public class LottoPurchaseAmountValidatorTest {
     @ValueSource(strings = {"800", "7800", "10900"})
     @DisplayName("로또 구입금액이 1000원 단위가 아니면 예외가 발생한다")
     void throwExceptionByPurchaseAmountNotMeetSpecificUnit(final String userInput) {
-        assertThatThrownBy(() -> sut.validate(userInput))
+        assertThatThrownBy(() -> LottoPurchaseAmountValidator.validate(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_AMOUNT_MUST_MEET_SPECIFIC_UNIT.message);
     }
@@ -51,6 +49,6 @@ public class LottoPurchaseAmountValidatorTest {
     @Test
     @DisplayName("로또 구입금액 검증에 성공한다")
     void success() {
-        assertDoesNotThrow(() -> sut.validate("8000"));
+        assertDoesNotThrow(() -> LottoPurchaseAmountValidator.validate("8000"));
     }
 }

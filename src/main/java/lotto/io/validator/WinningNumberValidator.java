@@ -8,19 +8,18 @@ import static lotto.exception.ExceptionMessage.InputException.WINNING_NUMBER_MUS
 public class WinningNumberValidator extends InputValidator {
     private static final String COMMA = ",";
 
-    @Override
-    void validate(final String userInput) {
+    public static void validate(final String userInput) {
         validateInputHasSpace(userInput);
         inputSplitByComma(userInput)
-                .forEach(this::validateInputElementIsNumeric);
+                .forEach(WinningNumberValidator::validateInputElementIsNumeric);
     }
 
-    private List<String> inputSplitByComma(final String userInput) {
+    private static List<String> inputSplitByComma(final String userInput) {
         return Arrays.stream(userInput.split(COMMA))
                 .toList();
     }
 
-    private void validateInputElementIsNumeric(final String userInput) {
+    private static void validateInputElementIsNumeric(final String userInput) {
         try {
             Integer.parseInt(userInput);
         } catch (final NumberFormatException exception) {

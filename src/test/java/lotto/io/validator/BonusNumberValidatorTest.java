@@ -9,12 +9,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class BonusNumberValidatorTest {
-    private final BonusNumberValidator sut = new BonusNumberValidator();
-
     @Test
     @DisplayName("보너스 번호에 공백이 존재하면 예외가 발생한다")
     void throwExceptionByInputHasSpace() {
-        assertThatThrownBy(() -> sut.validate("7 "))
+        assertThatThrownBy(() -> BonusNumberValidator.validate("7 "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_MUST_NOT_CONTAINS_SPACE.message);
     }
@@ -22,7 +20,7 @@ public class BonusNumberValidatorTest {
     @Test
     @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다")
     void throwExceptionByInputIsNotNumeric() {
-        assertThatThrownBy(() -> sut.validate("a"))
+        assertThatThrownBy(() -> BonusNumberValidator.validate("a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_MUST_BE_NUMERIC.message);
     }
@@ -30,6 +28,6 @@ public class BonusNumberValidatorTest {
     @Test
     @DisplayName("보너스 번호 검증에 성공한다")
     void success() {
-        assertDoesNotThrow(() -> sut.validate("7"));
+        assertDoesNotThrow(() -> BonusNumberValidator.validate("7"));
     }
 }

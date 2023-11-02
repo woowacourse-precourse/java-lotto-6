@@ -4,8 +4,9 @@ import lotto.constant.IllegalArgumentExceptionType;
 
 public class LottoMoney {
 
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MAX_AMOUNT = 2_000_000_000; // 20억. Integer의 범위에 근접한 수
+    static final int ZERO = 0;
+    static final int LOTTO_PRICE = 1000;
+    static final int MAX_AMOUNT = 2_000_000_000; // 20억. Integer의 범위에 근접한 수
     private final long amount;
 
     public LottoMoney(long amount) {
@@ -13,6 +14,10 @@ public class LottoMoney {
         validateRemains();
         validateMinPrice();
         validateMaxPrice();
+    }
+
+    private boolean hasRemain() {
+        return amount % LOTTO_PRICE != ZERO;
     }
 
     private void validateMinPrice() {
@@ -27,7 +32,7 @@ public class LottoMoney {
     }
 
     void validateRemains() {
-        if (amount % LOTTO_PRICE != 0) {
+        if (hasRemain()) {
             throw IllegalArgumentExceptionType.MONEY_REMAINS_EXIST.getException();
         }
     }

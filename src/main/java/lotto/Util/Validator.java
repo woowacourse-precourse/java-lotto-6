@@ -10,6 +10,11 @@ public class Validator {
     public static final String THOUSANDS_MULTIPLE_MESSAGE = "1000의 배수를 입력해주세요";
     public static final String THOUSANDS_MULTIPLE_REGEX = "^[1-9][0-9]*000$";
 
+    public static void validateBudget(String input) throws IllegalArgumentException {
+        validateNullOrEmpty(input);
+        validateBudgetInThousands(input);
+    }
+
     protected static void validateNullOrEmpty(String input) throws IllegalArgumentException {
         if (input == null || input.equals(EMPTY)) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_MESSAGE);

@@ -16,10 +16,11 @@ public enum Prize {
         this.money = i;
     }
 
-    public String getUI(){
+    public String getUI() {
         return this.ui;
     }
-    public int getMoney(){
+
+    public int getMoney() {
         return this.money;
     }
 }

@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("6개의 로또 번호만 입력할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 6개의 로또 번호만 입력할 수 있습니다.");
         }
     }
 
@@ -30,7 +30,7 @@ public class Lotto {
     private void validateLottoNumberInRange(int lottoNumber) {
         if (lottoNumber < LottoNumbers.MIN_LOTTO_NUMBER.getNumber()
                 || lottoNumber > LottoNumbers.MAX_LOTTO_NUMBER.getNumber()) {
-            throw new IllegalArgumentException("로또 번호는 1~45까지의 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45까지의 숫자만 입력할 수 있습니다.");
         }
     }
 
@@ -38,7 +38,7 @@ public class Lotto {
         Set<Integer> copyNumbers = new HashSet<>();
         copyNumbers.addAll(numbers);
         if (copyNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("로또 번호가 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되었습니다.");
         }
     }
 }

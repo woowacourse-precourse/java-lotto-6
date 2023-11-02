@@ -15,6 +15,7 @@ public class OutputController {
     }
 
     public static void printWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println(OutputView.winningStatisticsTemplate(winningStatistics));
     }
 
     public static void printRateOfReturn(double winning) {

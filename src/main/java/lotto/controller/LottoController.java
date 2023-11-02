@@ -68,11 +68,10 @@ public class LottoController {
         return 0;
     }
 
-    private WinningStatistics calculateWinningStatistics(Lotto winningLottoTicket, int bonusNumber,
-                                                         List<Lotto> lottoTicketsPurchased) {
-        // TO DO: 당첨 통계 계산, 반환
-        WinningStatistics winningStatistics = new WinningStatistics();
-        return winningStatistics;
+    private WinningStatistics getWinningStatistics(Lotto winningLottoTicket, int bonusNumber,
+                                                   List<Lotto> lottoTicketsPurchased) {
+        return new WinningStatistics(winningLottoTicket, bonusNumber,
+                lottoTicketsPurchased);
     }
 
     private List<Lotto> createLottoTickets(int quantity) {

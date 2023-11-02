@@ -53,14 +53,31 @@ public class Application {
         return 0;
     }
 
+    private static int numOfLotto() {
+        int money = Integer.parseInt(Console.readLine());
+        if (money%1000 != 0) throw new IllegalArgumentException();
+        return money/1000;
+    }
+
+    private static List<Lotto> setUser(){
+        List<Lotto> user = new ArrayList<>();
+        for (int i = 0; i < numOfLotto(); i++) {
+            new Lotto(setRandomNumbers());     
+        }          
+        return user;
+    }
+
     public static void main(String[] args) {
+        List<Lotto> user = setUser();
         Lotto winNumber = new Lotto(getUserNumbers());
-        int bonus = getUserBonus(winNumber);
-        Lotto user = new Lotto(setRandomNumbers());
+        int bonus = getUserBonus(winNumber); 
+        
 
         List<Integer> res = new ArrayList<>(List.of(0,0,0,0,0,0));
-        int idx = judge(winNumber, user, bonus);
-        res.add(idx, res.get(idx)+1);
+        for (int i = 0; i < user.size(); i++) {
+            int idx = judge(winNumber, user.get(i), bonus);
+            res.add(idx, res.get(idx)+1);
+        }
         System.out.println(res);
     }
 }

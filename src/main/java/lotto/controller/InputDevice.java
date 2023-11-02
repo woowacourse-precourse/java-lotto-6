@@ -42,6 +42,22 @@ public class InputDevice {
         }
     }
 
+    public Integer inputBonusNumber(List<Integer> winningNumbers){
+        while(true){
+            Printer.printInputBonusNumber();
+            try{
+                String inputValue = Console.readLine();
+                checkIsNumber(inputValue);
+                Integer bonusNumber = Integer.valueOf(inputValue);
+                checkValidLottoNumber(bonusNumber);
+                checkIsContainBonusNumberInWinningNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e){
+                Printer.printErrorMessage(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+            }
+        }
+    }
+
 
     private void checkIsNumber(String inputValue){
         String regex = "^[1-9]\\d*$";
@@ -73,12 +89,22 @@ public class InputDevice {
 
     private void checkValidWinningLotto(List<Integer> numbers){
         for(int number : numbers){
-            if(!(1 <= number && number <= 45)){
-                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
-            }
+            checkValidLottoNumber(number);
         }
         if(numbers.size() != 6){
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_LOTTO.getMessage());
+        }
+    }
+
+    private void checkValidLottoNumber(Integer number){
+        if(!(1 <= number && number <= 45)){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private void checkIsContainBonusNumberInWinningNumber(Integer bonusNumber, List<Integer> winningNumbers){
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         }
     }
 }

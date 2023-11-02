@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.model.*;
 import lotto.view.Printer;
 
+import java.util.List;
+
 
 public class LottoGame {
     private final InputDevice inputDevice = new InputDevice();
@@ -14,6 +16,8 @@ public class LottoGame {
         NumberOfPurchaseLotto numberOfPurchaseLotto = new NumberOfPurchaseLotto(payment);
         myLotto = new MyLotto(lottoGenerator.generateLottos(numberOfPurchaseLotto.getNumberOfPurchaseLotto()));
         Printer.printLottos(myLotto.getLottos());
-        WinningLotto winningLotto  = new WinningLotto(inputDevice.inputWinningNumbers());
+        List<Integer> winningNumbers = inputDevice.inputWinningNumbers();
+        Integer bonusNumber = inputDevice.inputBonusNumber(winningNumbers);
+        WinningLotto winningLotto  = new WinningLotto(winningNumbers, bonusNumber);
     }
 }

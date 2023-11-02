@@ -47,4 +47,7 @@ public class Lotto {
         numbers.append("]");
         return numbers.toString();
     }
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
 }

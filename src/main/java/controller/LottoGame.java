@@ -4,9 +4,17 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
+    private final static int FIFTH_PLACE = 3;
+    private final static int FORTH_PLACE = 4;
+    private final static int THIRD_PLACE = 5;
+    private final static int SECOND_PLACE = 7;
+    private final static int FIRST_PLACE = 6;
+
     private int lottoQuantity;
     private List<Lotto> lottos;
     private List<Integer> winNumber;
@@ -24,6 +32,8 @@ public class LottoGame {
         this.lottoQuantity = inputMoney;
         lottos = new ArrayList<>();
         winNumber = new ArrayList<>();
+        winnerQuantity = new HashMap<>();
+        initWinnerQuantity();
     }
 
     public void printLottoQuantity() {
@@ -41,7 +51,7 @@ public class LottoGame {
         }
     }
 
-    public void createLottos() throws IllegalArgumentException {
+    private void createLottos() throws IllegalArgumentException {
         List<Integer> numbers;
         validateLottoQuantity();
         while(true){
@@ -52,7 +62,8 @@ public class LottoGame {
             this.lottoQuantity--;
         }
     }
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLottos() throws IllegalArgumentException {
+        createLottos();
         final List<Lotto> printingLottos = new ArrayList<>();
         for(Lotto lotto : this.lottos){
             printingLottos.add(lotto);
@@ -74,5 +85,51 @@ public class LottoGame {
         if(this.winNumber.contains(input))
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없어요.");
     }
+
+    private Map<Integer, Integer> winnerQuantity;
+
+    private void initWinnerQuantity(){
+        this.winnerQuantity.put(FIRST_PLACE, 0);
+        this.winnerQuantity.put(SECOND_PLACE, 0);
+        this.winnerQuantity.put(THIRD_PLACE, 0);
+        this.winnerQuantity.put(FORTH_PLACE, 0);
+        this.winnerQuantity.put(FIFTH_PLACE, 0);
+    }
+    private void countWithWinNumber(Lotto lotto){
+        int winNumberCount = 0;
+        List<Integer> currentLotto = lotto.getNumbers();
+        for(int number : this.winNumber){
+            if(currentLotto.contains(number))
+                winNumberCount++;
+        }
+        this.winnerQuantity.put(winNumberCount,
+                winnerQuantity.getOrDefault(winNumberCount,0)+1);
+    }
+    private void countWithBonusNumber(Lotto lotto){
+        int winNumberCount = 0;
+        boolean bonusFlag = false;
+        List<Integer> currentLotto = lotto.getNumbers();
+        for(int number : this.winNumber){
+            if(currentLotto.contains(number))
+                winNumberCount++;
+        }
+        if(currentLotto.contains(this.bonusNumber))
+            bonusFlag = true;
+        if(bonusFlag && winNumberCount == 5) {
+            this.winnerQuantity.put(SECOND_PLACE,
+                    winnerQuantity.getOrDefault(winNumberCount, 0) + 1);
+        }
+    }
+    public void findWinnersWithWinNumber(){
+        for(Lotto lotto : this.lottos){
+            countWithWinNumber(lotto);
+        }
+    }
+    public void findWinnersWithBonusNumber(){
+        for(Lotto lotto : this.lottos){
+            countWithBonusNumber(lotto);
+        }
+    }
+
 }
 

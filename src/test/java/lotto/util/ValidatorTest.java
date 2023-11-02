@@ -14,4 +14,13 @@ class ValidatorTest {
                 isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_VALUE);
     }
+
+    @ParameterizedTest
+    @DisplayName("숫자가 아닌 입력 예외 테스트")
+    @ValueSource(strings = {"1a", "abd21", "45.2", "뮹2", ",g"})
+    void invalidInputsTest2(String input) {
+        Assertions.assertThatThrownBy(() -> Validator.isNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INPUT_NUMERIC);
+    }
 }

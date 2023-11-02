@@ -17,6 +17,12 @@ public class InputView {
         return winningNumber;
     }
 
+    public String inputBonusNumber() {
+        System.out.println(InputConstant.BONUS_NUMBER.getMessage());
+        String bonusNumber = getUserInput();
+        return bonusNumber;
+    }
+
     private String getUserInput() {
         return Console.readLine();
     }

@@ -1,5 +1,9 @@
 package lotto.validation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Validator {
 
     public static void validateInt(String str){
@@ -23,6 +27,13 @@ public class Validator {
     public static void validateMoreThan1000(int number){
         if(number < 1000){
             throw new IllegalArgumentException("1000 이상의 숫자가 아닙니다.");
+        }
+    }
+
+    public static void validateDuplicateNumbers(List<Integer> numbers){
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if(nonDuplicateNumbers.size() != 6){
+            throw new IllegalArgumentException("번호들은 중복 될 수 없습니다.");
         }
     }
 

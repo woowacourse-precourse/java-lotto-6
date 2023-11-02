@@ -9,6 +9,7 @@ public class Output {
     }
 
     public void printMyLottoCount(int money) {
+        System.out.println();
         System.out.printf("%d개를 구매했습니다.", money/1000);
         System.out.println();
     }

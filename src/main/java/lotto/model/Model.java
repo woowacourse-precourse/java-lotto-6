@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    public List<Integer> getRandomNumbers() {
+    public List<Integer> get6RandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        
+
         return numbers;
     }
 }

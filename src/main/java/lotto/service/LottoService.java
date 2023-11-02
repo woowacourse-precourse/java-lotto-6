@@ -5,9 +5,8 @@ import lotto.domain.Player;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -28,7 +27,7 @@ public class LottoService {
             winningStatistics.put(rank, winningStatistics.get(rank) + 1);
         }
 
-        return winningStatistics;
+        return sortWinningStatistics(winningStatistics);
     }
 
     public Map<Rank, Integer> initWinningStatistics() {
@@ -36,6 +35,14 @@ public class LottoService {
         for (Rank rank : Rank.values())
             winningStatistics.put(rank, 0);
         return winningStatistics;
+    }
+
+    public Map<Rank, Integer> sortWinningStatistics(Map<Rank, Integer> winningStatistics) {
+        return winningStatistics.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals(Rank.NONE))
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().getPrizeMoney()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 
 }

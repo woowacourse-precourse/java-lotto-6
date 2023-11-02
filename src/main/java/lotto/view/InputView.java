@@ -18,7 +18,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNum = Console.readLine();
         Validator.validateWinningNumber(winningNum);
-        return Parser.parseWinningNumber(winningNum);
+        return Parser.parseWinningNumber(winningNum, ",");
     }
 
     public static int readBonusNumber() {

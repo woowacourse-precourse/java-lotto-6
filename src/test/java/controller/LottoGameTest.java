@@ -70,6 +70,19 @@ public class LottoGameTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("중복되지 않는 정수를 입력으로 받아 보너스 번호를 저장한다.")
+    void setting_bonus_numbers(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "6", "9");
+                    assertThat(output()).contains("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없어요.");
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

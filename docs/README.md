@@ -22,6 +22,10 @@
 
 - setWinNumbers(List<Integer>) :
   정수형 리스트을 입력으로 받아 당첨번호를 저장한다.
+- setBonusNumber(int) :
+  정수를 입력으로 받아 보너스 번호를 저장한다.
+  당첨번호와 비교해서 중복되는 것이 있으면 "[ERROR] 보너스 번호는 당첨번호와 중복될 수 없어요."가 출력된다.
+- validateBonusNumber(int) : 입력값이 당첨 번호와 중복되면 IllegalArgumentException을 발생시킨다.
 
 ### Lotto
 - Lotto(List<Integer>) : 

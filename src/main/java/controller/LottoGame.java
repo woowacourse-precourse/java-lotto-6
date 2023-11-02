@@ -10,6 +10,7 @@ public class LottoGame {
     private int lottoQuantity;
     private List<Lotto> lottos;
     private List<Integer> winNumber;
+    private int bonusNumber;
 
     public LottoGame(String amount) throws IllegalArgumentException{
         char[] money = amount.toCharArray();
@@ -65,9 +66,13 @@ public class LottoGame {
     public void setWinNumber(List<Integer> input){
         this.winNumber = input;
     }
-
-    public List<Integer> getWinNumber() {
-        return winNumber;
+    public void setBonusNumber(int input) throws IllegalArgumentException{
+        validateBonusNumber(input);
+        this.bonusNumber = input;
+    }
+    private void validateBonusNumber(int input) throws IllegalArgumentException{
+        if(this.winNumber.contains(input))
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없어요.");
     }
 }
 

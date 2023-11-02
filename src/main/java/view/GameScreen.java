@@ -129,7 +129,7 @@ public class GameScreen {
             try{
                 System.out.println("보너스 번호를 입력해 주세요.");
                 inputNumber = inputNumber(Console.readLine());
-                //this.game.setBonusNumber(inputNumber) int
+                this.game.setBonusNumber(inputNumber);
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());

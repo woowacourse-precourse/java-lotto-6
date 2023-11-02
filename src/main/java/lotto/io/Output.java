@@ -23,7 +23,7 @@ public class Output {
     }
 
     public void printMyLottos(List<String> myLottosForPrint) {
-        myLottosForPrint.stream().forEach(System.out::println);
+        myLottosForPrint.forEach(System.out::println);
         System.out.println();
     }
 }

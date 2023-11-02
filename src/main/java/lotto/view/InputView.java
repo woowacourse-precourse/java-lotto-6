@@ -14,6 +14,7 @@ public class InputView {
             InputValidator.validatePurchasePrice(purchasePrice);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
+            return inputPurchasePrice();
         }
         return purchasePrice;
     }
@@ -24,6 +25,7 @@ public class InputView {
             InputValidator.validateWinningNumber(winningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
+            return inputWinningNumbers();
         }
         return winningNumbers;
     }
@@ -34,6 +36,7 @@ public class InputView {
             InputValidator.validateBonusNumber(bonusNumber);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
+            return inputBonusNumber();
         }
         return bonusNumber;
     }

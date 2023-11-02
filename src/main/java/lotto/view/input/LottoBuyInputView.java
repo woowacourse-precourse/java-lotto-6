@@ -1,16 +1,15 @@
-package lotto.view;
+package lotto.view.input;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.message.ErrorMessage;
 
-public class LottoBuyInputView {
+public class LottoBuyInputView extends Input{
 
     private static final String PURCHASE_AMOUNT_PROMPT_MESSAGE = "구입할 Lotto 금액을 입력해 주세요.";
     private static final int DENOMINATION = 1000;
 
     public int requestLottoPurchaseAmount() {
         printRequestLottoPurchaseAmount();
-        int amount = parseInt(Console.readLine());
+        int amount = parseInt(readLine());
         checkIsMultipleOfDenomination(amount, DENOMINATION);
         return amount;
     }
@@ -25,13 +24,4 @@ public class LottoBuyInputView {
         }
     }
 
-    private int parseInt(String requestAmount) {
-        int amount;
-        try {
-            amount = Integer.parseInt(requestAmount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_FORMAT.getMessage());
-        }
-        return amount;
-    }
 }

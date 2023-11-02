@@ -21,7 +21,7 @@ public class LottoFactory {
     }
 
     private static List<Lotto> createLottos(NumberGenerator numberGenerator , int money) {
-        validate(money);
+        validateMoney(money);
 
         int lottoCount = money / UNIT;
 
@@ -31,7 +31,7 @@ public class LottoFactory {
                 .toList();
     }
 
-    private static void validate(int money) {
+    private static void validateMoney(int money) {
         if (money <= ZERO) {
             throw LottoException.of(NOT_ENOUGH_MONEY);
         }
@@ -49,5 +49,11 @@ public class LottoFactory {
         return lottos.stream()
                 .map(Lotto::getNumbers)
                 .toList();
+    }
+
+    public void calculateResult(Lotto answerLott, int bonusNumber) {
+        answerLott.validateBonusNumber(bonusNumber);
+
+
     }
 }

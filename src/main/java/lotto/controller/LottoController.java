@@ -21,9 +21,10 @@ public class LottoController {
         LottoFactory lottoFactory = LottoFactory.create(new RandomNumberGenerator(), money);
 
         outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
+
         List<Integer> inputLotto = inputView.enterLotto();
-        Lotto answerLott = new Lotto(inputLotto);
         int bonusNumber = inputView.enterBonusNumber();
 
+        lottoFactory.calculateResult(new Lotto(inputLotto), bonusNumber);
     }
 }

@@ -43,17 +43,38 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         if (isWrongRange(numbers)) {
-            throw  LottoException.of(ErrorMessage.WRONG_RANGE);
+            throw LottoException.of(ErrorMessage.WRONG_RANGE);
+        }
+    }
+
+    private void validateRange(int bonusNumber) {
+        if (isWrongRange(bonusNumber)) {
+            throw LottoException.of(ErrorMessage.WRONG_RANGE);
         }
     }
 
     private static boolean isWrongRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < LottoConstant.MIN_NUMBER.getValue() ||
-                        number > LottoConstant.MAX_NUMBER.getValue());
+                .anyMatch(Lotto::isWrongRange);
+    }
+
+    private static boolean isWrongRange(Integer number) {
+        return number < LottoConstant.MIN_NUMBER.getValue() ||
+                number > LottoConstant.MAX_NUMBER.getValue();
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        validateRange(bonusNumber);
+
+        if (numbers.contains(bonusNumber)) {
+            throw LottoException.of(DUPLICATE_NUMBER);
+        }
+
     }
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
+
+
 }

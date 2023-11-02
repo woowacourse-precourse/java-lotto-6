@@ -15,7 +15,7 @@
   - [ ] 공백이 있다면 없애버린다. 
   - [ ] 1-45 숫자가 아니면 예외 처리한다.
   - [ ] 당첨 번호와 중복된 숫자가 있으면 예외 처리한다.
-- [ ] 범위 1-45까지의 숫자를 중복되지 않게 6개 뽑아 로또를 발행한다. LottoNumberGenerator#generateLottoNumber
+- [x] 범위 1-45까지의 숫자를 중복되지 않게 6개 뽑아 로또를 발행한다. LottoNumberGenerator#generateLottoNumber
 - [ ] 입력 받은 값만큼 로또를 만들어 발행한다. LottoNumberGenerator#generateLottoNumbers
 - [ ] 1등부터 5등까지의 금액을 나타낸다.
 - [ ] 해당 로또가 몇 등인지 체크한다.

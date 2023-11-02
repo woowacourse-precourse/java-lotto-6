@@ -18,7 +18,8 @@ public class Lottos {
             RandomLottoNumberGenerator lottoGenerator = new RandomLottoNumberGenerator();
             List<Integer> numbers = lottoGenerator.generateNumbers();
             Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto.makeLotto());
+            lottos.add(lotto);
         }
+        return lottos;
     }
 }

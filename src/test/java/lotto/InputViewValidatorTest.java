@@ -19,7 +19,7 @@ public class InputViewValidatorTest {
     void checkNumber() {
         String testNumber = "k";
 
-        Assertions.assertThatThrownBy(() -> InputValidator.isLottoDigit(testNumber))
+        Assertions.assertThatThrownBy(() -> inputValidator.checkInputDigit(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_NUMBER_MESSAGE.getMessage());
     }
@@ -29,7 +29,7 @@ public class InputViewValidatorTest {
     void checkBlack() {
         String testNumber = " ";
 
-        Assertions.assertThatThrownBy(() -> inputValidator.checkLottoBlank(testNumber))
+        Assertions.assertThatThrownBy(() -> inputValidator.checkInputBlank(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_BLANK_MESSAGE.getMessage());
     }
@@ -39,7 +39,7 @@ public class InputViewValidatorTest {
     void checkEmpty() {
         String testNumber = "";
 
-        Assertions.assertThatThrownBy(() -> inputValidator.checkLottoEmpty(testNumber))
+        Assertions.assertThatThrownBy(() -> inputValidator.checkInputEmpty(testNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY_MESSGAE.getMessage());
     }

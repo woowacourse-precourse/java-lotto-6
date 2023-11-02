@@ -57,9 +57,9 @@ public class PurchaseAmountTest {
     @Test
     void inputNotMultipleOfUnits() {
         String inputValue = "1001";
-        int unit = 1000;
+        Object [] values = {1000};
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.getMessage(unit));
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.getMessage(values));
     }
 }

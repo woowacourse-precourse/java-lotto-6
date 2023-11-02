@@ -15,7 +15,7 @@ public class LottoTicketTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"10001", "0"})
+    @ValueSource(strings = {"10001", "100"})
     void 나누어떨어지지_않는값_예외처리_테스트(String input) {
         assertThatThrownBy(() -> new LottoTicket(input)).isInstanceOf(IllegalArgumentException.class);
     }

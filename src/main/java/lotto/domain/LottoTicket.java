@@ -1,11 +1,13 @@
 package lotto.domain;
 
 public class LottoTicket {
-    int lottoCount;
+    private static final int TICKET_PRICE = 1000;
+    int ticketNumber;
 
     public LottoTicket(String input) {
         validateIsNumber(input);
-        lottoCount = Integer.parseInt(input);
+        validateIsDivided(input);
+        ticketNumber = Integer.parseInt(input) / TICKET_PRICE;
     }
 
     private void validateIsNumber(String input) {
@@ -13,5 +15,13 @@ public class LottoTicket {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
+    }
+
+    private void validateIsDivided(String input) {
+        int paid = Integer.parseInt(input);
+        if (paid % TICKET_PRICE == 0) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format("[ERROR] 잔돈이 남습니다. %d 원 단위로 입력해주세요. ", TICKET_PRICE));
     }
 }

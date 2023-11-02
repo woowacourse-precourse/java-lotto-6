@@ -13,7 +13,7 @@ public class OutputView {
     private static final String LOTTO_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE = "---";
     private static final String WINNING_COUNT_MESSAGE = "%s - %d개";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.2f입니다.";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f입니다.";
 
     public static void printLottoNumbers(List<LottoNumber> lottoNumbers) {
         System.out.printf(LOTTO_NUMBERS_SIZE_MESSAGE, lottoNumbers.size());

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoManager {
@@ -16,7 +17,10 @@ public class LottoManager {
     }
 
     public List<Integer> createLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sortedLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(sortedLottoNumber);
+        
+        return sortedLottoNumber;
     }
 
     public void publishLotto() {

@@ -21,6 +21,8 @@ public class InputValidator {
 
     public static void validateBonusNumber(Lotto winningLottoTicket, String userInput) {
         validateInteger(userInput);
+        validateNumberInRange(userInput);
+        
         int bonusNumber = Integer.parseInt(userInput);
         validateDuplication(winningLottoTicket, bonusNumber);
     }

@@ -1,8 +1,11 @@
 package lotto.validation;
 
+import java.util.regex.Pattern;
 import lotto.constant.ExceptionConstant;
 
 public class InputValidator {
+
+    private static final Pattern INPUT_NUMBER_REGEX = Pattern.compile("[0-9]+");
 
     public void validateUserInput(String userInput) {
         if (isValidateNull(userInput)) {
@@ -10,6 +13,9 @@ public class InputValidator {
         }
         if (isValidateBlank(userInput)) {
             throw new IllegalArgumentException(ExceptionConstant.INPUT_IS_ESSENTIAL.getMessage());
+        }
+        if (!isValidateNumber(userInput)) {
+            throw new IllegalArgumentException(ExceptionConstant.INPUT_IS_NUMBER.getMessage());
         }
     }
 
@@ -19,5 +25,9 @@ public class InputValidator {
 
     private boolean isValidateBlank(String userInput) {
         return userInput.isBlank();
+    }
+
+    private boolean isValidateNumber(String userInput) {
+        return INPUT_NUMBER_REGEX.matcher(userInput).matches();
     }
 }

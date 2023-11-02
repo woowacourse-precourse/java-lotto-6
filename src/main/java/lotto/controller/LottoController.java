@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoRandomGenerator;
 import lotto.model.WinningStatistics;
 
 public class LottoController {
@@ -42,7 +43,7 @@ public class LottoController {
     private Lotto getWinningLottoTicket() {
         return userInputToLotto(InputController.scanWinningLottoTicket());
     }
-    
+
     private int getBonusNumber(Lotto winningLottoTicket) {
         return Integer.parseInt(InputController.scanBonusNumber(winningLottoTicket));
     }
@@ -67,7 +68,7 @@ public class LottoController {
     private List<Lotto> createLottoTickets(int quantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
-            lottoTickets.add(createRandomLottoTicket(new LottoGenerator()));
+            lottoTickets.add(createRandomLottoTicket(new LottoRandomGenerator()));
         }
         return lottoTickets;
     }
@@ -78,7 +79,6 @@ public class LottoController {
     }
 
     private Lotto createRandomLottoTicket(LottoGenerator lottoGenerator) {
-        // TO DO: 랜덤으로 생성된 로또 반환
-        return null;
+        return lottoGenerator.generate();
     }
 }

@@ -13,8 +13,15 @@ public class Input {
 
     public List<Integer> getWinningNumbers() {
         List<String> numbers = List.of(Console.readLine().split(","));
+        //validateNumbersCount(numbers);
         return numbers.stream().mapToInt(Integer::parseInt).boxed().toList();
     }
+
+    /*private void validateNumbersCount(List<String> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }*/
 
     public int getBonusNumber() {
         return Integer.parseInt(Console.readLine());

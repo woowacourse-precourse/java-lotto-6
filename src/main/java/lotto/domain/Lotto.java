@@ -2,37 +2,41 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Lotto {
 
     private static final int SECOND_RANK = 9;
-    private final Set<Integer> numbers;
+    private final List<Integer> numbers;
 
-    public Lotto(Set<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(Set<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
     public String getLottoNumbers() {
-        return numbers.toString();
+        Set arrangeNumbers = new TreeSet(numbers);
+        String lottoNumbers = arrangeNumbers.toString();
+        return lottoNumbers;
     }
 
     public int checkResult(List<Integer> winningNumbers, int bonusNumber) {
         int matchedNumberCount = 0;
+        Set arrangeNumbers = new TreeSet(numbers);
         for (int i = 0; i < 6; i++) {
-            if(numbers.contains(winningNumbers.get(i))) {
+            if(arrangeNumbers.contains(winningNumbers.get(i))) {
                 matchedNumberCount++;
-                numbers.remove(winningNumbers.get(i));
+                arrangeNumbers.remove(winningNumbers.get(i));
             }
         }
         if (matchedNumberCount == 5) {
-            if (numbers.contains(bonusNumber)) {
+            if (arrangeNumbers.contains(bonusNumber)) {
                 matchedNumberCount = SECOND_RANK;
             }
         }

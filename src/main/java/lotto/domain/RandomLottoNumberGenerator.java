@@ -10,8 +10,8 @@ public class RandomLottoNumberGenerator {
     public static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public Set<Integer> generateNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
-        return new TreeSet<>(randomNumbers);
+    public List<Integer> generateNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
+
     }
 }

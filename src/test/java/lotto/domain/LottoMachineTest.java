@@ -12,11 +12,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMachineTest {
 
+    LottoMachine lottoMachine = LottoMachine.getInstance();
+
     @ParameterizedTest
     @DisplayName("요청 갯수 만큼 로또 번호 생성 테스트")
     @ValueSource(ints = {1, 5, 10, 23})
     void createLottoNumberRangeCheckTest(int quantity) {
-        LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = lottoMachine.createLottos(quantity);
 
         Assertions.assertThat(lottos.size()).isEqualTo(quantity);
@@ -26,9 +27,8 @@ class LottoMachineTest {
     @DisplayName("입력된 당첨 번호 로또 생성 테스트")
     @MethodSource("initWitLottoData")
     void winLottoNumberRangeCheckTest(List<Integer> winLottoNumber) {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         // new Lotto 생성 시 로또 범위 1 ~ 45 / 로또 번호 중복 / 로또 갯수 검증
-        Assertions.assertThatNoException().isThrownBy(() -> new Lotto(winLottoNumber));
+        Assertions.assertThatNoException().isThrownBy(() -> lottoMachine.setWinLotto(winLottoNumber));
     }
 
     static Stream<Arguments> initWitLottoData() {

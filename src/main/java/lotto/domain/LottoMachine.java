@@ -6,10 +6,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
+    private static LottoMachine instance;
 
     private Lotto winLotto;
 
-    public LottoMachine() {
+    private LottoMachine() {
+    }
+
+    public static LottoMachine getInstance() {
+        if (instance == null) {
+            synchronized (LottoMachine.class) {
+                instance = new LottoMachine();
+            }
+        }
+        return instance;
     }
 
     public List<Lotto> createLottos(int quantity) {
@@ -32,5 +42,9 @@ public class LottoMachine {
 
     private void lottoSort(List<Integer> lottoNumber) {
         Collections.sort(lottoNumber);
+    }
+
+    public void setWinLotto(List<Integer> winLotto) {
+        this.winLotto = new Lotto(winLotto);
     }
 }

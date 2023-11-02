@@ -11,6 +11,7 @@ public class OutputController {
     }
 
     public static void printLottoTickets(List<Lotto> lottoTickets) {
+        System.out.println(OutputView.lottoTicketsTemplate(lottoTickets));
     }
 
     public static void printWinningStatistics(WinningStatistics winningStatistics) {

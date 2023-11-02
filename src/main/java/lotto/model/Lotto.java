@@ -20,4 +20,9 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

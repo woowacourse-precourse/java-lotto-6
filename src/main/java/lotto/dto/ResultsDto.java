@@ -12,7 +12,7 @@ public class ResultsDto {
         this.resultsDto = resultsDto;
     }
 
-    public static ResultsDto of(Result result) {
+    public static ResultsDto of(final Result result) {
         return new ResultsDto(result.getRankCount()
                 .entrySet()
                 .stream()

@@ -23,7 +23,7 @@ public class InputView {
         return convertToInt(readLine());
     }
 
-    private int convertToInt(String money) {
+    private int convertToInt(final String money) {
         validateNumber(money);
 
         return Integer.parseInt(money);
@@ -49,7 +49,7 @@ public class InputView {
         return convertToIntegerList(readLine());
     }
 
-    private List<Integer> convertToIntegerList(String inputLotto) {
+    private List<Integer> convertToIntegerList(final String inputLotto) {
         validateInputLotto(inputLotto);
 
         return Arrays.stream(inputLotto.split(LOTTO_SPLIT_SIGNAL))
@@ -57,7 +57,7 @@ public class InputView {
                 .toList();
     }
 
-    private void validateInputLotto(String inputLotto) {
+    private void validateInputLotto(final String inputLotto) {
         Arrays.stream(inputLotto.split(LOTTO_SPLIT_SIGNAL))
                 .forEach(this::validateNumber);
     }

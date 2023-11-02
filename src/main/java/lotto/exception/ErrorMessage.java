@@ -11,7 +11,7 @@ public enum ErrorMessage {
     private final String message;
     private static final String header = "[ERROR] ";
 
-    ErrorMessage(String message) {
+    ErrorMessage(final String message) {
         this.message = message;
     }
 

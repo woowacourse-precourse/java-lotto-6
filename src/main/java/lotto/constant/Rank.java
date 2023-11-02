@@ -20,7 +20,7 @@ public enum Rank {
         this.reward = reward;
     }
 
-    public static Rank of(int sameNumberCount, boolean hasBonus) {
+    public static Rank of(final int sameNumberCount, final boolean hasBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.sameNumberCount == sameNumberCount)
                 .filter(rank -> !rank.needBonus || hasBonus)

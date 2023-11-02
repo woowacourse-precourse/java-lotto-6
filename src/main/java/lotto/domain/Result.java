@@ -10,11 +10,11 @@ import lotto.constant.Rank;
 public class Result {
     private final Map<Rank, Long> rankCount;
 
-    private Result(Map<Rank, Long> rankCount) {
+    private Result(final Map<Rank, Long> rankCount) {
         this.rankCount = rankCount;
     }
 
-    public static Result of(Map<Rank, Long> rankCount) {
+    public static Result of(final Map<Rank, Long> rankCount) {
         return new Result(rankCount);
     }
 
@@ -25,7 +25,7 @@ public class Result {
                 .sum() / getInputMoney() * 100;
     }
 
-    private static long calculateEntryPrice(Entry<Rank, Long> entry) {
+    private static long calculateEntryPrice(final Entry<Rank, Long> entry) {
         return entry.getKey().getReward() * entry.getValue();
     }
 

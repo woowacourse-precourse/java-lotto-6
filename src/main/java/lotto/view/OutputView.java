@@ -13,16 +13,16 @@ public class OutputView {
     private static final String HAS_BONUS = ", 보너스 볼 일치";
     private static final String NONE_BONUS = "";
     private static final String RATE_OF_RETURN = "총 수익률은 %,.1f%%입니다.\n";
-    public void printLottoNumbers(List<List<Integer>> lottoNumbers) {
+    public void printLottoNumbers(final List<List<Integer>> lottoNumbers) {
         System.out.printf(LOTTO_BUY_FORMAT, lottoNumbers.size());
 
         lottoNumbers.forEach(System.out::println);
     }
 
-    public void printResult(ResultsDto resultsDto) {
+    public void printResult(final ResultsDto resultsDto) {
         System.out.println(LOTTO_RESULT_HEADER);
 
-        List<ResultDto> results = resultsDto.getResultsDto();
+        final List<ResultDto> results = resultsDto.getResultsDto();
 
         results.forEach(result -> System.out.printf(LOTTO_RESULT_FORMAT,
                 result.getSameNumberCount(),
@@ -31,7 +31,7 @@ public class OutputView {
                 result.getCount()));
     }
 
-    private String getBonus(ResultDto result) {
+    private String getBonus(final ResultDto result) {
         if (result.isHasBonus()) {
             return HAS_BONUS;
         }
@@ -39,11 +39,11 @@ public class OutputView {
         return NONE_BONUS;
     }
 
-    public void printRateOfReturn(float rateOfReturn) {
+    public void printRateOfReturn(final float rateOfReturn) {
         System.out.printf(RATE_OF_RETURN, rateOfReturn);
     }
 
-    public void printError(String message) {
+    public void printError(final String message) {
         System.out.println(message);
     }
 }

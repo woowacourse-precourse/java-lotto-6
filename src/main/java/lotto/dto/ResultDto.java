@@ -8,14 +8,14 @@ public class ResultDto implements Comparable<ResultDto> {
     private final int reward;
     private final Long count;
 
-    private ResultDto(int sameNumberCount, boolean hasBonus, int reward, Long count) {
+    private ResultDto(final int sameNumberCount, final boolean hasBonus, final int reward, final Long count) {
         this.sameNumberCount = sameNumberCount;
         this.hasBonus = hasBonus;
         this.reward = reward;
         this.count = count;
     }
 
-    public static ResultDto of(Rank rank, Long count) {
+    public static ResultDto of(final Rank rank, final Long count) {
         return new ResultDto(rank.getSameNumberCount(),
                 rank.isNeedBonus(),
                 rank.getReward(),

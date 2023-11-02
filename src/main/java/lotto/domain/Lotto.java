@@ -15,56 +15,56 @@ import lotto.exception.LottoException;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != COUNT.getValue()) {
             throw LottoException.of(WRONG_SIZE);
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         if (isDuplicateNumber(numbers)) {
             throw LottoException.of(DUPLICATE_NUMBER);
         }
     }
 
-    private static boolean isDuplicateNumber(List<Integer> numbers) {
+    private static boolean isDuplicateNumber(final List<Integer> numbers) {
         return numbers.size() != Set.copyOf(numbers).size();
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateRange(final List<Integer> numbers) {
         if (isWrongRange(numbers)) {
             throw LottoException.of(ErrorMessage.WRONG_RANGE);
         }
     }
 
-    private void validateRange(int bonusNumber) {
+    private void validateRange(final int bonusNumber) {
         if (isWrongRange(bonusNumber)) {
             throw LottoException.of(ErrorMessage.WRONG_RANGE);
         }
     }
 
-    private static boolean isWrongRange(List<Integer> numbers) {
+    private static boolean isWrongRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(Lotto::isWrongRange);
     }
 
-    private static boolean isWrongRange(Integer number) {
+    private static boolean isWrongRange(final Integer number) {
         return number < LottoConstant.MIN_NUMBER.getValue() ||
                 number > LottoConstant.MAX_NUMBER.getValue();
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    public void validateBonusNumber(final int bonusNumber) {
         validateRange(bonusNumber);
 
         if (numbers.contains(bonusNumber)) {
@@ -77,14 +77,14 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    public Rank getRank(Lotto answerLotto, int bonusNumber) {
+    public Rank getRank(final Lotto answerLotto, final int bonusNumber) {
         int sameNumberCount = answerLotto.checkSameNumber(numbers);
         boolean hasBonus = numbers.contains(bonusNumber);
 
         return Rank.of(sameNumberCount, hasBonus);
     }
 
-    private int checkSameNumber(List<Integer> numbers) {
+    private int checkSameNumber(final List<Integer> numbers) {
         return (int) numbers.stream()
                 .filter(this.numbers::contains)
                 .count();

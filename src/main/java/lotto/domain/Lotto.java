@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.StringJoiner;
 
-import lotto.util.ErrorMessage;
+import lotto.util.message.ErrorMessage;
 
 public class Lotto {
 	

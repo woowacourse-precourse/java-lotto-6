@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import lotto.util.ErrorMessage;
+import lotto.util.message.ErrorMessage;
 
 public class AnswerLotto extends Lotto{
 	

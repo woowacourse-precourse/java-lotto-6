@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.util.ErrorMessage;
+import lotto.util.message.ErrorMessage;
 
 class LottoTest {
 		

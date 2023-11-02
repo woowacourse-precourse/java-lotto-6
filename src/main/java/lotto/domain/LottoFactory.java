@@ -22,19 +22,19 @@ public class LottoFactory {
     private final List<Lotto> lottos;
     private final int inputMoney;
 
-    private LottoFactory(List<Lotto> lottos, int inputMoney) {
+    private LottoFactory(final List<Lotto> lottos, final int inputMoney) {
         this.lottos = lottos;
         this.inputMoney = inputMoney;
     }
 
-    public static LottoFactory create(NumberGenerator numberGenerator, int money) {
+    public static LottoFactory create(final NumberGenerator numberGenerator, final int money) {
         return new LottoFactory(createLottos(numberGenerator, money), money);
     }
 
-    private static List<Lotto> createLottos(NumberGenerator numberGenerator , int money) {
+    private static List<Lotto> createLottos(final NumberGenerator numberGenerator , final int money) {
         validateMoney(money);
 
-        int lottoCount = money / MONEY_UNIT.getValue();
+        final int lottoCount = money / MONEY_UNIT.getValue();
 
         return Stream.generate(numberGenerator::generate)
                 .limit(lottoCount)
@@ -42,7 +42,7 @@ public class LottoFactory {
                 .toList();
     }
 
-    private static void validateMoney(int money) {
+    private static void validateMoney(final int money) {
         if (money <= ZERO) {
             throw LottoException.of(NOT_ENOUGH_MONEY);
         }
@@ -52,7 +52,7 @@ public class LottoFactory {
         }
     }
 
-    private static boolean isCorrectUnit(int money) {
+    private static boolean isCorrectUnit(final int money) {
         return money % MONEY_UNIT.getValue() != 0;
     }
 
@@ -62,19 +62,15 @@ public class LottoFactory {
                 .toList();
     }
 
-    public Map<Rank, Long> calculateResult(Lotto answerLotto, int bonusNumber) {
+    public Map<Rank, Long> calculateResult(final Lotto answerLotto, final int bonusNumber) {
         answerLotto.validateBonusNumber(bonusNumber);
 
         return lottos.stream()
-                .collect(Collectors.toMap(getKeyMapper(answerLotto, bonusNumber),
+                .collect(Collectors.toMap(lotto -> lotto.getRank(answerLotto, bonusNumber),
                         value -> 1L,
                         Long::sum,
                         getEnumMapSupplier()));
 
-    }
-
-    private static Function<Lotto, Rank> getKeyMapper(Lotto answerLotto, int bonusNumber) {
-        return lotto -> lotto.getRank(answerLotto, bonusNumber);
     }
 
     private static Supplier<EnumMap<Rank, Long>> getEnumMapSupplier() {

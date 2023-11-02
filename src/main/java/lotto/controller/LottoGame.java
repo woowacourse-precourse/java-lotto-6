@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.LottoGenerator;
 import lotto.model.MyLotto;
+import lotto.model.NumberOfPurchaseLotto;
 import lotto.view.Printer;
 
 public class LottoGame {
@@ -11,9 +12,10 @@ public class LottoGame {
 
     public void run(){
         Integer payment = inputDevice.inputLottoPurchasePayment();
-        int numberOfPurchaseLotto = payment / 1000;
-        myLotto = new MyLotto(lottoGenerator.generateLottos(numberOfPurchaseLotto));
-        Printer.printNumberOfPurchaseLotto(numberOfPurchaseLotto);
+        NumberOfPurchaseLotto numberOfPurchaseLotto = new NumberOfPurchaseLotto(payment);
+        Printer.printNumberOfPurchaseLotto(numberOfPurchaseLotto.getNumberOfPurchaseLotto());
+        Printer.printWhiteSpace();
+        myLotto = new MyLotto(lottoGenerator.generateLottos(numberOfPurchaseLotto.getNumberOfPurchaseLotto()));
         Printer.printLottos(myLotto.getLottos());
     }
 }

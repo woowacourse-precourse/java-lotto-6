@@ -5,6 +5,9 @@ import lotto.model.Lotto;
 import java.util.List;
 
 public class Printer {
+    public static void printWhiteSpace(){
+        System.out.println();
+    }
     public static void printErrorMessage(String errorMessage){
         System.out.println(errorMessage);
     }

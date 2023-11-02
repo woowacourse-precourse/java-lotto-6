@@ -27,23 +27,21 @@ public enum Rank {
                 .findAny()
                 .orElse(Rank.NOTHING);
 
-        if((findRank == Rank.SECOND_PLACE || findRank == Rank.THIRD_PLACE) && hasBonusNumber){
-            return Rank.SECOND_PLACE;
-        }
-        if((findRank == Rank.SECOND_PLACE || findRank == Rank.THIRD_PLACE) && !hasBonusNumber){
-            return Rank.THIRD_PLACE;
+        if(findRank == Rank.SECOND_PLACE || findRank == Rank.THIRD_PLACE){
+            return getSecondOrThirdRank(hasBonusNumber);
         }
         return findRank;
     }
 
-
+    private static Rank getSecondOrThirdRank(boolean hasBonusNumber) {
+        if (hasBonusNumber){
+            return Rank.SECOND_PLACE;
+        }
+        return Rank.THIRD_PLACE;
+    }
 
     public int getMatchedNumber() {
         return matchedNumber;
-    }
-
-    public boolean isHasBonusNumber() {
-        return hasBonusNumber;
     }
 
     public int getWinningPrice() {

@@ -28,6 +28,7 @@ public class OutputView {
                     numbers.get(4),
                     numbers.get(5)
             );
+            System.out.println();
         }
         System.out.println();
     }
@@ -35,8 +36,8 @@ public class OutputView {
     public static void printLottoResult(LottoResult lottoResult) {
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.println(LINE);
-        printWinningCounts(lottoResult.winningCounts());
-        printProfitRate(lottoResult.profitRate());
+        printWinningCounts(lottoResult.getWinningCounts());
+        printProfitRate(lottoResult.getProfitRate());
     }
 
     private static void printWinningCounts(Map<LottoRanking, Integer> winningCounts) {

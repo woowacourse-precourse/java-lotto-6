@@ -16,7 +16,7 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             RandomLottoNumberGenerator lottoGenerator = new RandomLottoNumberGenerator();
-            List<Integer> numbers = lottoGenerator.generateNumbers();
+            Set<Integer> numbers = lottoGenerator.generateNumbers();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

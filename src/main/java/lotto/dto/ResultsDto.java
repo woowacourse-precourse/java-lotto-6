@@ -16,7 +16,7 @@ public class ResultsDto {
         return new ResultsDto(result.getRankCount()
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getKey() == Rank.NONE)
+                .filter(entry -> entry.getKey() != Rank.NONE)
                 .map((entry -> ResultDto.of(entry.getKey(), entry.getValue())))
                 .sorted()
                 .toList());

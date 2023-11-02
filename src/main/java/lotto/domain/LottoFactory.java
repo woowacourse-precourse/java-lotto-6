@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.MONEY_UNIT;
 import static lotto.constant.Rank.NONE;
 import static lotto.exception.ErrorMessage.INVALID_UNIT;
 import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
@@ -12,26 +13,28 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.constant.LottoConstant;
 import lotto.constant.Rank;
 import lotto.exception.LottoException;
 
 public class LottoFactory {
-    private static final int UNIT = 1000;
     private static final int ZERO = 0;
     private final List<Lotto> lottos;
+    private final int inputMoney;
 
-    private LottoFactory(List<Lotto> lottos) {
+    private LottoFactory(List<Lotto> lottos, int inputMoney) {
         this.lottos = lottos;
+        this.inputMoney = inputMoney;
     }
 
     public static LottoFactory create(NumberGenerator numberGenerator, int money) {
-        return new LottoFactory(createLottos(numberGenerator, money));
+        return new LottoFactory(createLottos(numberGenerator, money), money);
     }
 
     private static List<Lotto> createLottos(NumberGenerator numberGenerator , int money) {
         validateMoney(money);
 
-        int lottoCount = money / UNIT;
+        int lottoCount = money / MONEY_UNIT.getValue();
 
         return Stream.generate(numberGenerator::generate)
                 .limit(lottoCount)
@@ -50,7 +53,7 @@ public class LottoFactory {
     }
 
     private static boolean isCorrectUnit(int money) {
-        return money % UNIT != 0;
+        return money % MONEY_UNIT.getValue() != 0;
     }
 
     public List<List<Integer>> getLottoNumbers() {

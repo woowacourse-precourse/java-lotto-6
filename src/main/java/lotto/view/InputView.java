@@ -7,17 +7,17 @@ import static lotto.constant.DisplayMessages.*;
 public class InputView {
 
     public static String PurchaseAmount() {
-        System.out.println(LOTTO_PURCHASE_AMOUNT);
+        System.out.println(LOTTO_PURCHASE_AMOUNT.getMessage());
         return Console.readLine();
     }
 
     public static String WinningNumber() {
-        System.out.println(REQUEST_WINNING_NUMBER);
+        System.out.println(REQUEST_WINNING_NUMBER.getMessage());
         return Console.readLine();
     }
 
     public static String BonusNumber() {
-        System.out.println(REQUEST_BONUS_NUMBER);
+        System.out.println(REQUEST_BONUS_NUMBER.getMessage());
         return Console.readLine();
     }
 }

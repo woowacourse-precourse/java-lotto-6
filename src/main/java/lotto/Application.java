@@ -38,17 +38,17 @@ public class Application {
     private static int judge(Lotto winNum, Lotto user, int bonus){
         int ct = winNum.countMatch(user.getNumbers());
         if(ct > 5){
-            return 1;
+            return 5;
         }
         if(ct > 4) {
-            if (winNum.lottoContains(bonus)) return 2;
+            if (winNum.lottoContains(bonus)) return 4;
             return 3;
         }
         if(ct > 3) {
-            return 4;
+            return 2;
         }
         if(ct > 2) {
-            return 5;
+            return 1;
         }
         return 0;
     }

@@ -27,5 +27,6 @@ public class GameManager {
         messagePrinter.printBuyingAmountMessage(buyingAmount);
         LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
         lottoGame.OrderByAsc();
+        messagePrinter.printLottoNumbers(lottoGame);
     }
 }

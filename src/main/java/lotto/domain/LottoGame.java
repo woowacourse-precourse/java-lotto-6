@@ -27,4 +27,13 @@ public final class LottoGame {
             lotto.numbersOrderByAsc();
         }
     }
+
+    // getter
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getBuyingAmount() {
+        return buyingAmount;
+    }
 }

@@ -17,10 +17,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSizeOfNumbers(numbers);
+    }
+
+    // TODO: 추가 기능 구현
+    private void validateSizeOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
 }

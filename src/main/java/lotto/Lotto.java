@@ -1,10 +1,13 @@
 package lotto;
 
-import java.util.HashSet;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int LottoSize = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,20 +16,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoSize) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 갯수가 6개가 아닙니다.");
         }
     }
 
     private void duplicate(List<Integer> numbers) {
-        HashSet<Integer> duplicateNumber = new HashSet<>();
+        boolean isPresent = numbers.stream()
+                .distinct()
+                .count() == numbers.size();
 
-        for (Integer number : numbers) {
-            if (duplicateNumber.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 발생했습니다.");
-            }
-
-            duplicateNumber.add(number);
+        if(!isPresent) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 발생했습니다.");
         }
     }
 
@@ -34,4 +35,5 @@ public class Lotto {
     public List<Integer> lottoNumber() {
         return numbers;
     }
+
 }

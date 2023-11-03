@@ -53,5 +53,7 @@
 ### LottoGenerator
 > 입력 받은 금액 만큼 로또를 생성하는 클래스
 ## Constants
+### ExceptionMessage
+> 예외 메세지를 담은 클래스
 ### LottosConstants
 > 로또의 당첨 여부와 과련된 상수를 관리 하는 enum 클래스

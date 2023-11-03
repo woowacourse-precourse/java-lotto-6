@@ -5,19 +5,19 @@ import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public class LottoBundleDto {
-    private final List<Lotto> lottoBundle;
-    private final int totalNumberOfLotto;
+    private final List<Lotto> lottoBundleData;
+    private final int numberOfLottoBundle;
 
-    public LottoBundleDto(List<Lotto> lottoBundle, int totalNumberOfLotto) {
-        this.lottoBundle = lottoBundle;
-        this.totalNumberOfLotto = totalNumberOfLotto;
+    public LottoBundleDto(List<Lotto> lottoBundleData, int numberOfLottoBundle) {
+        this.lottoBundleData = lottoBundleData;
+        this.numberOfLottoBundle = numberOfLottoBundle;
     }
 
-    public List<Lotto> getLottoBundle() {
-        return Collections.unmodifiableList(lottoBundle);
+    public List<Lotto> getLottoBundleData() {
+        return Collections.unmodifiableList(lottoBundleData);
     }
 
-    public int getTotalNumberOfLotto() {
-        return totalNumberOfLotto;
+    public int getNumberOfLottoBundle() {
+        return numberOfLottoBundle;
     }
 }

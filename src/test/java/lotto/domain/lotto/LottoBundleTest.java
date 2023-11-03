@@ -19,6 +19,6 @@ public class LottoBundleTest {
         lottoBundle.addLotto(lotto);
         LottoBundleDto lottoBundleDto = lottoBundle.makeLottoDto();
         // Then
-        assertThat(lottoBundleDto.getLottoBundle()).contains(lotto);
+        assertThat(lottoBundleDto.getLottoBundleData()).contains(lotto);
     }
 }

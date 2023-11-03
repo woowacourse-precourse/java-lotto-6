@@ -56,7 +56,7 @@ public class LottoTicketTest {
         lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
         // when
         lottoTicket = lottoTicket.changeAllTicketToLotto(boughtLotto, lottoBundle);
-        List<Lotto> lottoData = lottoBundle.makeLottoDto().getLottoBundle();
+        List<Lotto> lottoData = lottoBundle.makeLottoDto().getLottoBundleData();
         // then
         assertThat(lottoData.size()).isEqualTo(10);
         assertThat(lottoData).contains(boughtLotto);

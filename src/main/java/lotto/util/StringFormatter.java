@@ -11,8 +11,8 @@ public class StringFormatter {
     private static final String LOTTO_FORMAT = "[%s]";
     private static final String DELIMITER = ", ";
     private static final String FIFTH_FORMAT = "3개 일치 (5,000원) - %s개";
-    private static final String FOURTH_FORMAT = "4개 일치 (50,000원) - %s";
-    private static final String THIRD_FORMAT = "5개 일치 (1,500,000원) - %s";
+    private static final String FOURTH_FORMAT = "4개 일치 (50,000원) - %s개";
+    private static final String THIRD_FORMAT = "5개 일치 (1,500,000원) - %s개";
     private static final String SECOND_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
     private static final String FIRST_FORMAT = "6개 일치 (2,000,000,000원) - %s개";
     private static final String YIELD_FORMAT = "총 수익률은 %.1f%%입니다.";

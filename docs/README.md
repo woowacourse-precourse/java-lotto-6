@@ -47,6 +47,8 @@
 - sameNumberCount : 당첨 번호와 로또 번호를 비교했을 때 같았던 숫자 갯수
   보너스 번호가 있는 2등은 7로 표기
 - prize : 각 등수 별 당첨액
+- getPrizeList : 당첨금이 5등 4등 3등 2등 1등 순으로 나열된 문자열형 리스트 반환한다.
+- getSameNumberCountList : 맞힌 숫자와 보너스 번호에 따라 정해진 정수를 5등 4등 3등 2등 1등 순으로 나열된 정수형 리스트 반환한다.
 
 ### Lotto
 - Lotto(List<Integer>) : 

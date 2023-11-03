@@ -5,7 +5,6 @@ import java.util.List;
 public class Lotto {
 
     private static final String LOTTO_NUMBER_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호가 중복됩니다.";
-    private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -30,7 +29,7 @@ public class Lotto {
     }
 
     private boolean isLottoSizeEqualToSix(List<Integer> numbers) {
-        return countUniqueLottoNumbers(numbers) != LOTTO_SIZE;
+        return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_SIZE;
     }
 
     private int countUniqueLottoNumbers(List<Integer> numbers) {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    public List<Lotto> purchase(int money) {
+    public List<Lotto> roulette(int money) {
         List<Lotto> lottos = new ArrayList<>();
 
         int quantity = money / 1000;

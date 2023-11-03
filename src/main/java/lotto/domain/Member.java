@@ -12,7 +12,6 @@ public class Member {
         this.purchasedMoney = purchasedMoney;
         this.purchasedLottos = purchasedLottos;
     }
-
     public List<Lotto> getLottos() {
         return purchasedLottos;
     }

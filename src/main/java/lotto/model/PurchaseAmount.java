@@ -15,6 +15,7 @@ public class PurchaseAmount {
 
     private void validate(Integer amount) {
         validateRange(amount);
+        validateUnit(amount);
     }
 
     private void validateRange(Integer amount) {
@@ -23,6 +24,11 @@ public class PurchaseAmount {
         }
     }
 
+    private void validateUnit(Integer amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     public Integer exchangeLottoTicket() {
         return amount / 1000;

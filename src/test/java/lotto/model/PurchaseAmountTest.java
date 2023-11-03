@@ -15,4 +15,12 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> PurchaseAmount.of(value).exchangeLottoTicket())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @ParameterizedTest(name = "{displayName} value:{0}")
+    @ValueSource(ints = {1234, 3300, 10001, 2002})
+    void createInvalidUnit(Integer value) {
+        assertThatThrownBy(() -> PurchaseAmount.of(value).exchangeLottoTicket())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

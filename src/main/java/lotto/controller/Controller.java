@@ -49,7 +49,8 @@ public class Controller {
         outputView.printTotalResult(totalResult);
 
         long totalPrize = model.getProfit(totalResult);
-        double result = utility.getReturnRate(payment, totalPrize);
-        System.out.println(result);
+        double returnRate = utility.getReturnRate(payment, totalPrize);
+
+        outputView.printReturnRate(returnRate);
     }
 }

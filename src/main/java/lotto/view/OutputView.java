@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.Lotto;
+import java.text.DecimalFormat;
 
 public class OutputView {
     public void printAllLottoNumbers(List<Lotto> lottos) {
@@ -19,5 +20,12 @@ public class OutputView {
         System.out.println("5개 일치 (1,500,000원) - " + totalResult[5][0] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + totalResult[5][1] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + totalResult[6][0] + "개");
+    }
+
+    public void printReturnRate(double returnRate) {
+        returnRate *= 100;
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        String formattedReturnRate = decimalFormat.format(returnRate);
+        System.out.println("총 수익률은 " + formattedReturnRate + "% 입니다.");
     }
 }

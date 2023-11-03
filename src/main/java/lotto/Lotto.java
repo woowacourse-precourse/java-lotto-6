@@ -30,7 +30,7 @@ public class Lotto {
     private boolean isDuplicate(List<Integer> numbers) {
         List<Integer> distinctNumbers = new ArrayList<>();
 
-        for (Integer number: numbers) {
+        for (Integer number : numbers) {
             if (!(distinctNumbers.contains(number))) {
                 distinctNumbers.add(number);
             }
@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     private boolean isBetweenTwoNumbers(List<Integer> numbers, int start, int end) {
-        for (Integer number: numbers) {
+        for (Integer number : numbers) {
             if (!((start <= number) && (start <= end))) {
                 return false;
             }

@@ -33,6 +33,12 @@ public class LottoController {
     private void informLottoResult() {
         LottoTotalResult totalResult = gameManager.calculateResult();
         informWinningResult(totalResult);
+        informRateOfReturn(totalResult);
+    }
+
+    private void informRateOfReturn(final LottoTotalResult totalResult) {
+        double rateOfReturn = financeManager.calculateRateOfReturn(totalResult);
+        outputView.informRateOfReturn(rateOfReturn);
     }
 
     private void informWinningResult(final LottoTotalResult totalResult) {

@@ -1,7 +1,7 @@
 package lotto.exception;
 
-import static lotto.enums.AmountStatus.MAX_VALUE;
-import static lotto.enums.AmountStatus.MIN_VALUE;
+import static lotto.enums.AmountEnum.MAX_VALUE;
+import static lotto.enums.AmountEnum.MIN_VALUE;
 
 public class IllegalAmountException extends LottoApplicationException {
     private static final String DEFAULT_MESSAGE =

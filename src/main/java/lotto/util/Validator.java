@@ -1,11 +1,23 @@
 package lotto.util;
 
+import static lotto.exception.ErrorMessage.COMMA_START_END;
 import static lotto.exception.ErrorMessage.HAS_REMAINING_NUMBER;
 import static lotto.exception.ErrorMessage.HAS_SPACE;
 import static lotto.exception.ErrorMessage.NOT_INTEGER;
+import static lotto.exception.ErrorMessage.NUMBER_DUPLICATE;
+import static lotto.exception.ErrorMessage.NUMBER_MISS;
+import static lotto.exception.ErrorMessage.SIZE_MISS;
+import static lotto.util.ConstantMessages.INPUT_PARSER_CHAR;
+import static lotto.util.ConstantMessages.SPACE;
+import static lotto.util.ConstantNumbers.LOTTO_NUMBER_QUANTITY;
+import static lotto.util.ConstantNumbers.MAXIMUM_Lotto_NUMBER;
+import static lotto.util.ConstantNumbers.MINIMUM_Lotto_NUMBER;
 import static lotto.util.ConstantNumbers.RESET_INTEGER_NUMBER;
 import static lotto.util.ConstantNumbers.TICKET_PRICE;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lotto.exception.LottoException;
 
 public class Validator {
@@ -15,8 +27,14 @@ public class Validator {
         }
     }
 
+    public static void validateListIsInteger(List<String> input) {
+        for (String validator : input) {
+            validateIsInteger(validator);
+        }
+    }
+
     public static void validateHasSpace(String input) {
-        if (input.contains(" ")) {
+        if (input.contains(SPACE.getMessage())) {
             throw LottoException.of(HAS_SPACE);
         }
     }
@@ -24,6 +42,40 @@ public class Validator {
     public static void validateHasRemainingNumber(Integer input) {
         if (input % TICKET_PRICE.getConstant() != RESET_INTEGER_NUMBER.getConstant()) {
             throw LottoException.of(HAS_REMAINING_NUMBER);
+        }
+    }
+
+    public static void validateCommaStartEnd(String input) {
+        boolean ifCommaStartEnd = input.startsWith(INPUT_PARSER_CHAR.getMessage())
+                || input.endsWith(INPUT_PARSER_CHAR.getMessage());
+
+        if (ifCommaStartEnd) {
+            throw LottoException.of(COMMA_START_END);
+        }
+    }
+
+    public static void validateSizeMiss (List<Integer> input) {
+        if (input.size() != LOTTO_NUMBER_QUANTITY.getConstant()) {
+            throw LottoException.of(SIZE_MISS);
+        }
+    }
+
+    public static void validateNumberMinimumOrMaximum(List<Integer> input) {
+        boolean ifNumberError = input.stream().allMatch(
+                number -> number < MINIMUM_Lotto_NUMBER.getConstant()
+                        || number > MAXIMUM_Lotto_NUMBER.getConstant()
+        );
+
+        if (ifNumberError) {
+            throw LottoException.of(NUMBER_MISS);
+        }
+    }
+
+    public static void validateDuplicateNumber(List<Integer> input) {
+        Set<Integer> ifDuplicateNumber = new HashSet<>(input);
+
+        if (ifDuplicateNumber.size() != input.size()) {
+            throw LottoException.of(NUMBER_DUPLICATE);
         }
     }
 }

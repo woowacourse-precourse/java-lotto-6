@@ -2,10 +2,9 @@ package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
 import static lotto.util.ConstantNumbers.LOTTO_NUMBER_QUANTITY;
-import static lotto.util.ConstantNumbers.MAXIMUM_RANDOM_NUMBER;
-import static lotto.util.ConstantNumbers.MINIMUM_RANDOM_NUMBER;
+import static lotto.util.ConstantNumbers.MAXIMUM_Lotto_NUMBER;
+import static lotto.util.ConstantNumbers.MINIMUM_Lotto_NUMBER;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
@@ -30,7 +29,12 @@ public class RandomLottoNumbers {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i=0; i < count; i++) {
-            Lotto lotto = new Lotto(pickUniqueNumbersInRange(MINIMUM_RANDOM_NUMBER.getConstant(), MAXIMUM_RANDOM_NUMBER.getConstant(), LOTTO_NUMBER_QUANTITY.getConstant()));
+            Lotto lotto = new Lotto(pickUniqueNumbersInRange(
+                    MINIMUM_Lotto_NUMBER.getConstant(),
+                    MAXIMUM_Lotto_NUMBER.getConstant(),
+                    LOTTO_NUMBER_QUANTITY.getConstant()
+                )
+            );
 
             lottoTickets.add(lotto);
         }

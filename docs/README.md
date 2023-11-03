@@ -38,12 +38,13 @@
 1. view - InputView, OutputView  
 2. domain - Winning(checkLotto), Lotto(generateLotto), Lottos, Amount  
 3. controller - Controller 
-4. utilities  
+4. utilities - Parse
 5. factory - LottoFactory 
 6. exception 
 7. service -  CalculateEarningRate  
-8. validation - InputValidation
-9. system - SystemMessage
+8. validation - CommonValidation, AmountValidation
+9. system - SystemMessage, ExceptionMessage
+10. dto - AmountDto, LottoDto, LottosDto
 
 ## 기능 정리
 Controller

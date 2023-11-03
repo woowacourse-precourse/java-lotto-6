@@ -27,5 +27,8 @@ public class LottoController {
 
         String inputWinningNumber = inputView.requestWinningNumber();
         WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
+
+        String inputBonusNumber = inputView.requestBonusNumber();
+        winningNumber.createBonusNumber(inputBonusNumber);
     }
 }

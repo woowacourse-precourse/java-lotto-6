@@ -7,4 +7,5 @@ public interface InputView {
 
     public String requestPurchaseMoney();
     public String requestWinningNumber();
+    public String requestBonusNumber();
 }

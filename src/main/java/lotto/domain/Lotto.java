@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.util.validator.LottoValidator;
+import lotto.util.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,5 +29,9 @@ public class Lotto {
         return numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
+    }
+
+    public Boolean hasSameNumber(int number) {
+        return numbers.contains(number);
     }
 }

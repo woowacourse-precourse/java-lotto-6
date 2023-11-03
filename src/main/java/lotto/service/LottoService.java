@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,21 +46,21 @@ public class LottoService {
         return rewardCount;
     }
     public double getRewardRatio(int purchaseAmount, Map<Prize, Integer> lotteryResult){
-        int totalReward = 0;
+        double totalReward = 0;
         for (Prize prize : lotteryResult.keySet()) {
             totalReward += (lotteryResult.get(prize) * prize.getReward());
         }
-        double rewardRatio = (totalReward / purchaseAmount);
+        double rewardRatio = ((totalReward  * 100) / (double) purchaseAmount);
         return Utils.roundNumberBySecondDecimalPlace(rewardRatio);
     }
 
     public Map<Prize,Integer> initializeRewardCount(){
-        Map<Prize, Integer> rewardCount = new HashMap<>();
-        rewardCount.put(Prize.FIRST_REWARD, 0);
-        rewardCount.put(Prize.SECOND_REWARD, 0);
-        rewardCount.put(Prize.THIRD_REWARD, 0);
-        rewardCount.put(Prize.FOURTH_REWARD, 0);
+        Map<Prize, Integer> rewardCount = new LinkedHashMap<>();
         rewardCount.put(Prize.FIFTH_REWARD, 0);
+        rewardCount.put(Prize.FOURTH_REWARD, 0);
+        rewardCount.put(Prize.THIRD_REWARD, 0);
+        rewardCount.put(Prize.SECOND_REWARD, 0);
+        rewardCount.put(Prize.FIRST_REWARD, 0);
         return rewardCount;
     }
 

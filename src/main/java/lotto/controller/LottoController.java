@@ -31,7 +31,7 @@ public class LottoController {
         Map<Prize, Integer> lotteryResult = lottoService.getLotteryResult(user, winningNumbers);
         outputView.winningRecord(lotteryResult);
         double rewardRatio = lottoService.getRewardRatio(user.getPurchaseAmount(), lotteryResult);
-
+        outputView.rewardRatioRecord(rewardRatio);
     }
     private CreateUserDto checkUser(){
         long purchaseAmount = inputView.getPurchaseAmount();

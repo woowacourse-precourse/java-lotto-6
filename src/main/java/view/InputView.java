@@ -10,11 +10,9 @@ public class InputView {
     private InputView() {
     }
 
-    public static int money() {
+    public static String money() {
         System.out.println("구입금액을 입력해 주세요.");
-        String money = Console.readLine();
-
-        return Integer.parseInt(money);
+        return Console.readLine();
     }
 
     public static Lotto winningNumbers() {

@@ -22,6 +22,7 @@
 - [ ] Lotto 를 상속받아 당첨번호와 보너스 번호를 저장 - WinLotto
 - [x] 보너스 번호를 저장 - BonusNumber
 - [x] 로또에 번호가 있는지 확인 - Lotto
+- [x] 로또끼리 비교해 서로 일치하는 숫자 개수 반환 - Lotto
 - [x] 로또에 보너스 번호가 있는지 확인 - BonusNumber
 - [ ] Lotto 와 비교해 일치하는 개수를 반환 - WinLotto
 - [ ] Lotto 에 보너스 번호가 있는지 확인 - WinLotto

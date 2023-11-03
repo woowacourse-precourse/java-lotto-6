@@ -16,7 +16,13 @@ public class Lotto {
         }
     }
 
-    protected boolean hasNumber(int number) {
+    boolean hasNumber(int number) {
         return numbers.contains(number);
+    }
+
+    int compareLottoNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::hasNumber)
+                .count();
     }
 }

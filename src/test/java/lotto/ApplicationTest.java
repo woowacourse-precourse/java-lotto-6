@@ -10,6 +10,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.Progress.PURCHASE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
@@ -69,6 +70,17 @@ class ApplicationTest extends NsTest {
 
         // then
         assertThat(output().contains("[3, 5, 7, 11, 16, 22]"));
+    }
+
+    @Test
+    @DisplayName("로또 게임 진행 메세지 출력 테스트")
+    void printProgressMessageTest(){
+        // given, when
+        DataOutput dataOutputSets = new DataOutput();
+        dataOutputSets.printProgressMessage(PURCHASE);
+
+        // then
+        assertThat(output().contains("구입금액을 입력해 주세요."));
     }
 
     @Override

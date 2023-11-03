@@ -1,5 +1,7 @@
 package lotto.util.generator;
 
-public interface Generator {
+import java.util.List;
 
+public interface Generator {
+    List<Integer> generate();
 }

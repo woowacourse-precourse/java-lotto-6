@@ -12,6 +12,7 @@ public class WinnerNumberValidator {
         validateDividedByComma(inputNumbers);
         validateNaturalNumber(inputNumbers);
         validateNumberLength(inputNumbers);
+        validateDuplicatedNumber(inputNumbers);
     }
 
     private static void validateDividedByComma(String inputNumbers) {
@@ -34,5 +35,12 @@ public class WinnerNumberValidator {
             throw new IllegalArgumentException(ExceptionMessage.WRONG_NUMBER_LENGTH.getMessage());
         }
     }
-    
+
+    private static void validateDuplicatedNumber(String inputNumbers) {
+        List<Integer> numbers = LottoUtil.convert(inputNumbers);
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATED_NUMBER.getMessage());
+        }
+    }
+
 }

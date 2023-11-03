@@ -7,7 +7,7 @@ public class Customer {
     private int wallet;
     private List<Lotto> customerLotto;
 
-    Customer(int coin) {
+    public Customer(int coin) {
         validateCoin(coin);
         this.wallet = coin;
         this.customerLotto = new ArrayList<>();

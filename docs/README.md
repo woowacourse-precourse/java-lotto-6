@@ -44,11 +44,11 @@
 
 ### Config
 
-- [ ] LottoConfig
-    - [ ] LOTTO_SIZE (로또 번호의 개수)
-    - [ ] LOTTO_RANGE_START (로또 번호의 최솟값)
-    - [ ] LOTTO_RANGE_END (로또 번호의 최댓값)
-    - [ ] LOTTO_PRICE (로또 하나의 가격)
+- [x] LottoConfig
+    - [x] LOTTO_SIZE (로또 번호의 개수): 6
+    - [x] LOTTO_RANGE_START (로또 번호의 최솟값): 1
+    - [x] LOTTO_RANGE_END (로또 번호의 최댓값): 45
+    - [x] LOTTO_PRICE (로또 하나의 가격): 1000
 - [ ] WinningConfig
     - [ ] 5, "3개 일치", 5000
     - [ ] 4, "4개 일치", 50000

@@ -56,5 +56,7 @@ public class GameController {
         purchaseLottos();
         setWinningNumber();
         matchLottos();
+        LottoResultController lottoResultController = new LottoResultController();
+        lottoResultController.findStatistics(lottos);
     }
 }

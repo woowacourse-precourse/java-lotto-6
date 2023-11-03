@@ -24,6 +24,14 @@ public class Lottos {
         return lottos;
     }
 
+    public List<Integer> getWinningCount() {
+        return winningCount;
+    }
+
+    public List<Boolean> getHasBonusNumber() {
+        return hasBonusNumber;
+    }
+
     public String getPurchaseDetails() {
         StringBuilder purchasedLottos = new StringBuilder();
 

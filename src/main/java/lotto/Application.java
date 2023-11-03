@@ -12,6 +12,7 @@ public class Application {
         LottoStore lottoStore = new LottoStore();
         String lottoPurchaseAmount = InputView.inputLottoPurchaseAmount();
         List<Lotto> purchasedLottos = customer.buyLotto(lottoStore, lottoPurchaseAmount);
-        OutView.printPurchasedLottos(customer.getPurchasedLottoNumbers(), customer.getLottoQuantity());
+        OutView.printPurchasedLottos(customer.getPurchasedLottoNumbers());
+
     }
 }

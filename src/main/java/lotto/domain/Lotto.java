@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -20,10 +21,17 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         numbers.forEach(this::validateNumber);
+        validateNoDuplicatedNumbers(numbers);
     }
 
     private void validateNumber(final Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNoDuplicatedNumbers(final List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

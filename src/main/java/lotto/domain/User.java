@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+import lotto.Lotto;
 import lotto.ui.Computer;
 
 public class User {
@@ -7,6 +9,8 @@ public class User {
     private Integer lottoCount;
 
     private boolean isPurchasing = true;
+
+    private List<Lotto> lottos;
 
     public void purchaseLotto() {
         while (isPurchasing) {

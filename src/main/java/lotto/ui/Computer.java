@@ -1,6 +1,9 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+import lotto.Lotto;
 
 public class Computer {
 
@@ -36,6 +39,12 @@ public class Computer {
         Integer lottoCount = money / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
+    }
+
+    public Lotto calculateLottoNumber(){
+
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1,45, 6));
+
     }
 
 

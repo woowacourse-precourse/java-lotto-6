@@ -4,7 +4,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.input.view.output.GeneratedLottoOutputView;
+import lotto.input.view.output.GeneratedLottoOutput;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class LottoGeneratorTest {
     @DisplayName("구매 금액 만큼 로또 번호 생성")
     void generateLottos() {
         List<Lotto> lottos = generator.generateLottos();
-        GeneratedLottoOutputView outputView = new GeneratedLottoOutputView(lottos);
+        GeneratedLottoOutput outputView = new GeneratedLottoOutput(lottos);
         outputView.printGeneratedLottos();
         Assertions.assertThat(lottos.size()).isEqualTo(LOTTONUMBER);
     }

@@ -6,7 +6,7 @@ import static lotto.input.constant.Constant.PURCHASEAMOUNTINPUT_ERROR;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.input.Validator.InputValidate;
 
-public class PurchaseAmountInputView {
+public class PurchaseAmountInput {
     private final InputValidate inputValidate = new InputValidate();
 
     public Integer userAmountInput() {

@@ -3,12 +3,12 @@ package lotto.input.view.output;
 import java.util.List;
 import lotto.Lotto;
 
-public class GeneratedLottoOutputView {
+public class GeneratedLottoOutput {
     private final List<Lotto> lottos;
 
     private final Integer lottoNumber;
-    
-    public GeneratedLottoOutputView(List<Lotto> lottos) {
+
+    public GeneratedLottoOutput(List<Lotto> lottos) {
         this.lottos = lottos;
         this.lottoNumber = lottos.size();
     }

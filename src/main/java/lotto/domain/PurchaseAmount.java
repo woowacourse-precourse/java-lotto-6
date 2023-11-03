@@ -11,9 +11,14 @@ public class PurchaseAmount {
 
 	private final int amount;
 
+
 	public PurchaseAmount(String amount) {
 		validate(amount);
 		this.amount = Integer.parseInt(amount);
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 	private void validate(String amount) {

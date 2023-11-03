@@ -12,5 +12,10 @@ class InputValidationTest {
         Assertions.assertThatThrownBy(()->new InputValidation().checkRemainder(42500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    @DisplayName("입력값이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void validationInteger(){
+        Assertions.assertThatThrownBy(()->new InputValidation().checkInteger("1sds"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

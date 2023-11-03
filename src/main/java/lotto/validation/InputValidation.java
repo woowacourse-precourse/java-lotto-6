@@ -10,5 +10,10 @@ public class InputValidation {
              throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요");
         }
     }
+    public void checkInteger(String money){
+        if(!Constants.INTEGER.matcher(money).matches()){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요");
+        }
+    }
 
 }

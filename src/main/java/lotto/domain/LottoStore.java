@@ -22,4 +22,15 @@ public class LottoStore {
     public List<Lotto> getLotto() {
         return lottos;
     }
+
+    public String getLottoHistory() {
+        List<Lotto> lottos = lottoStore.getLotto();
+        StringBuilder sb = new StringBuilder();
+
+        for (Lotto lotto : lottos) {
+            sb.append(lotto.getNumbers().toString()+"\n");
+        }
+
+        return String.valueOf(sb);
+    }
 }

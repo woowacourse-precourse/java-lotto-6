@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -30,6 +32,51 @@ class NumberTest {
         void rangeValidationTest_whenInRange(int number) {
 
             assertDoesNotThrow(() -> Number.from(number));
+        }
+    }
+
+    @Nested
+    @DisplayName("동치성 테스트")
+    class EqualityTest {
+
+        private static final int EXAMPLE_VALUE = 5;
+        private static final int ANOTHER_VALUE = 6;
+
+        @Test
+        @DisplayName("같은 인스턴스를 같다고 판단할 수 있다")
+        void equalsTest_whenSameInstance() {
+            Number number = Number.from(EXAMPLE_VALUE);
+
+            assertThat(number).isEqualTo(number)
+                    .hasSameHashCodeAs(number);
+        }
+
+        @Test
+        @DisplayName("다른 클래스의 인스턴스를 다르다고 판단할 수 있다")
+        void equalsTest_whenDifferentClass() {
+            Number number = Number.from(EXAMPLE_VALUE);
+            Object object = new Object();
+
+            assertThat(number).isNotEqualTo(object);
+        }
+
+        @Test
+        @DisplayName("다른 인스턴스, 값은 값을 가지는 두 객체를 같다도 판단할 수 있다")
+        void equalsTest_whenDifferentInstanceSameValue() {
+            Number number = Number.from(EXAMPLE_VALUE);
+            Number comparedNumber = Number.from(EXAMPLE_VALUE);
+
+            assertThat(number).isEqualTo(comparedNumber)
+                    .hasSameHashCodeAs(comparedNumber);
+        }
+
+        @Test
+        @DisplayName("다른 인스턴스, 다른 값을 가지는 두 객체를 같다도 판단할 수 있다")
+        void equalsTest_whenDifferentInstanceDifferentValue() {
+            Number number = Number.from(EXAMPLE_VALUE);
+            Number comparedNumber = Number.from(ANOTHER_VALUE);
+
+            assertThat(number).isNotEqualTo(comparedNumber);
         }
     }
 }

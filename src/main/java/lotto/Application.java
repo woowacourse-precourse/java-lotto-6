@@ -31,7 +31,7 @@ public class Application {
         }
 
         // 5. 당첨 번호 입력
-        List<Integer> lottoNumbers;
+        List<Integer> lottoNumbers = new ArrayList<>();
         boolean isRunning = true;
         while (isRunning) {
             try {
@@ -57,6 +57,31 @@ public class Application {
                 System.out.println(ex.getMessage());
             }
         }
+
+        // 6. 보너스 번호 입력
+        isRunning = true;
+        while (isRunning) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String userInput = computer.getInput();
+
+                computer.checkNumber(userInput);
+                computer.checkZero(userInput);
+
+                Integer bonusNumber = Integer.parseInt(userInput);
+                computer.checkRange(bonusNumber);
+                computer.isIncluding(lottoNumbers,bonusNumber);
+
+                lottoNumbers.add(Integer.parseInt(userInput));
+
+
+                isRunning = false;
+
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
 
     }
 }

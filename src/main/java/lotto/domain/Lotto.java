@@ -20,7 +20,12 @@ public class Lotto {
         }
     }
 
-    public int checkWinningNumberCount(List<Integer> targetNumbers) {
+    public boolean contains(Integer number) {
+        return numbers.stream()
+                .anyMatch(isEqual(number));
+    }
+
+    public int countMatchingNumbers(List<Integer> targetNumbers) {
         long count = targetNumbers.stream()
                 .filter(this::compareNumbers)
                 .count();

@@ -7,8 +7,4 @@ public class InvalidNumberException extends IllegalArgumentException {
     public InvalidNumberException() {
         super(INVALID_NUMBER);
     }
-
-    public InvalidNumberException(String s) {
-        super(s);
-    }
 }

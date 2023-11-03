@@ -3,7 +3,9 @@ package lotto.handler;
 import lotto.exception.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputHandler {
 
@@ -33,6 +35,8 @@ public class InputHandler {
             winningNumbers.add(winningNumber);
         }
 
+        validateWinningNumbers(winningNumbers);
+
         return winningNumbers;
     }
 
@@ -53,8 +57,10 @@ public class InputHandler {
     }
 
     private int parseInteger(String input) {
+        String trimmedInput = input.trim();
+
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(trimmedInput);
         } catch (Exception e) {
             throw new ParseException();
         }
@@ -69,6 +75,13 @@ public class InputHandler {
     private void validateNumber(int number) {
         if (number < 1 || number > 45) {
             throw new InvalidNumberException();
+        }
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
+        if (uniqueWinningNumbers.size() != 6) {
+            throw new InvalidWinningNumbersException();
         }
     }
 

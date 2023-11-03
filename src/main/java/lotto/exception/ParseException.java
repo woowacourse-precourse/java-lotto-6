@@ -7,8 +7,4 @@ public class ParseException extends IllegalArgumentException {
     public ParseException() {
         super(INVALID_INPUT);
     }
-
-    public ParseException(String s) {
-        super(s);
-    }
 }

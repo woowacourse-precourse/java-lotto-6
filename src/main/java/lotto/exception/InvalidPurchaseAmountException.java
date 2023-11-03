@@ -7,8 +7,4 @@ public class InvalidPurchaseAmountException extends IllegalArgumentException {
     public InvalidPurchaseAmountException() {
         super(INVALID_PURCHASE_AMOUNT);
     }
-
-    public InvalidPurchaseAmountException(String s) {
-        super(s);
-    }
 }

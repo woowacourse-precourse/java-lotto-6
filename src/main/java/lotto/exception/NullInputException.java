@@ -6,8 +6,4 @@ public class NullInputException extends IllegalArgumentException {
     public NullInputException() {
         super(NULL_INPUT);
     }
-
-    public NullInputException(String s) {
-        super(s);
-    }
 }

@@ -7,8 +7,4 @@ public class InvalidBonusNumberException extends IllegalArgumentException {
     public InvalidBonusNumberException() {
         super(INVALID_BONUS_NUMBER);
     }
-
-    public InvalidBonusNumberException(String s) {
-        super(s);
-    }
 }

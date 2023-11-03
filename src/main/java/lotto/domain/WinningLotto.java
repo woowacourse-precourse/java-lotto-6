@@ -13,25 +13,9 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private int comparePlayerLottoNumbers(Lotto playerLotto) {
-        int matchNumber = 0;
-        List<Integer> playerLottoNumbers = playerLotto.getNumbers();
-
-        for (Integer playerLottoNumber : playerLottoNumbers) {
-            if (winningNumbers.contains(playerLottoNumber))
-                matchNumber++;
-        }
-
-        return matchNumber;
-    }
-
-    private boolean isCorrectBonusNumber(Lotto playerLotto) {
-        return playerLotto.isCorrectBonusNumber(bonusNumber);
-    }
-
     public Rank getRank(Lotto playerLotto) {
-        int matchNumber = comparePlayerLottoNumbers(playerLotto);
-        boolean isCorrectBonusNumber = isCorrectBonusNumber(playerLotto);
+        int matchNumber = playerLotto.compareWinningLottoNumbers(winningNumbers);
+        boolean isCorrectBonusNumber = playerLotto.isCorrectBonusNumber(bonusNumber);
 
         return Rank.getRank(matchNumber, isCorrectBonusNumber);
     }

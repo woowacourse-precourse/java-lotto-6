@@ -30,6 +30,16 @@ public class Lotto {
         return numbers;
     }
 
+    public int compareWinningLottoNumbers(List<Integer> winningNumbers) {
+        int matchNumber = 0;
+
+        for (Integer playerNumber : numbers) {
+            if (winningNumbers.contains(playerNumber))
+                matchNumber++;
+        }
+        return matchNumber;
+    }
+
     public boolean isCorrectBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }

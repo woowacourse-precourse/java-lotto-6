@@ -29,4 +29,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean isCorrectBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

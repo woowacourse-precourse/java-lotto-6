@@ -26,7 +26,7 @@ public class WinningLotto extends Lotto {
     }
 
     private boolean isCorrectBonusNumber(Lotto playerLotto) {
-        return playerLotto.getNumbers().contains(bonusNumber);
+        return playerLotto.isCorrectBonusNumber(bonusNumber);
     }
 
     public Rank getRank(Lotto playerLotto) {

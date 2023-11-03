@@ -17,7 +17,8 @@ public class OutputView {
         });
     }
 
-    public static void displayResult(Map<Rank, Integer> result) {
-        System.out.println(RESULT_HEADER + LottoUtil.convertResultToDisplayFormat(result));
+    public static void displayResult(Map<Rank, Integer> result, float rateOfReturn) {
+        System.out.print(RESULT_HEADER + LottoUtil.convertResultToDisplayFormat(result));
+        System.out.printf("총 수익률은 %.1f%% 입니다.", rateOfReturn);
     }
 }

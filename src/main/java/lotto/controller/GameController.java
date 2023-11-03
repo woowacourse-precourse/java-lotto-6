@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningStatistics;
 import lotto.handler.InputHandler;
 import lotto.service.LottoService;
 import lotto.view.GameView;
@@ -20,10 +21,25 @@ public class GameController {
 
     public void startGame() {
         int lottoQuantity = getLottoQuantity();
-        List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
 
+        List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
         gameView.showLottos(lottos);
 
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+
+        WinningStatistics winningStatistics = lottoService.getWinningStatistics(lottos, winningNumbers, bonusNumber);
+        gameView.showWinningStatistics(winningStatistics);
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        String bonusNumberInput = gameView.getBonusNumberInput();
+        return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        String winningNumbersInput = gameView.getWinningNumbersInput();
+        return inputHandler.handleWinningNumbers(winningNumbersInput);
     }
 
     private int getLottoQuantity() {

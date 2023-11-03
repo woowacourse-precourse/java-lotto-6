@@ -2,15 +2,19 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.WinningStatistics;
 import lotto.utils.LottoFormatter;
+import lotto.utils.WinningStatisticsFormatter;
 
 import java.util.List;
 
 public class GameView {
     private final LottoFormatter lottoFormatter;
+    private final WinningStatisticsFormatter winningStatisticsFormatter;
 
-    public GameView(LottoFormatter lottoFormatter) {
+    public GameView(LottoFormatter lottoFormatter, WinningStatisticsFormatter winningStatisticsFormatter) {
         this.lottoFormatter = lottoFormatter;
+        this.winningStatisticsFormatter = winningStatisticsFormatter;
     }
 
     public String getPurchaseAmountInput() {
@@ -35,11 +39,16 @@ public class GameView {
         return input;
     }
 
-    public String getBonusNumber() {
+    public String getBonusNumberInput() {
         System.out.println("보너스 번호를 입력해주세요.");
         String input = getInput();
 
         return input;
+    }
+
+    public void showWinningStatistics(WinningStatistics winningStatistics) {
+        String statistics = winningStatisticsFormatter.format(winningStatistics);
+        System.out.println(statistics);
     }
 
     private String getInput() {

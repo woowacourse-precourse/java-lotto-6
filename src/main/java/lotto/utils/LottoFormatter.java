@@ -2,7 +2,9 @@ package lotto.utils;
 
 import java.util.List;
 
-public class LottoFormatter {
+public class LottoFormatter implements Formatter<List<Integer>> {
+
+    @Override
     public String format(List<Integer> numbers) {
         String convertedNumber = convert(numbers);
 

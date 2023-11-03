@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -123,5 +124,29 @@ class LottoManagerTest {
 
         assertThatThrownBy(() -> manager.setBonusNumber(listToStream))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨결과확인() {
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+
+        List<String> winningNumbers = List.of("1", "2", "3", "4", "8", "9");
+        List<String> bonusNumber = List.of("10");
+
+        manager.setWinningNumbers(winningNumbers);
+        manager.setBonusNumber(bonusNumber);
+        buyer.addMyLottos(lotto1);
+        buyer.addMyLottos(lotto2);
+
+
+        manager.setWinningResult();
+        manager.announceResult();
+        Hashtable<Integer, Integer> copiedWinningHash = manager.getWinningCountHash();
+
+        assertThat(copiedWinningHash.get(4)).isEqualTo(2);
     }
 }

@@ -23,7 +23,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호는 1 ~ 45 사이여야 한다.")
+    @DisplayName("로또 번호에 1 ~ 45 바깥의 값이 있으면 예외가 발생한다.")
     @Test
     void createLottoByUnderOrOverNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 46)))

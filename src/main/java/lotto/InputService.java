@@ -9,6 +9,14 @@ public class InputService {
         return readLine();
     }
 
+    private static int validateAmount(String purchaseAmount) {
+        try {
+            return Integer.parseInt(purchaseAmount);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.CONVERT_ERROR);
+        }
+    }
+
 
 
 }

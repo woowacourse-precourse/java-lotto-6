@@ -65,15 +65,17 @@ public class Lotto {
     }
 
     public WinningRank findWinningRank(Lotto winningLotto, int bonus) {
-        //TODO: 실제 보너스 매치 유무를 구하기
-        boolean isBonusMatch = true;
-        return WinningRank.find(countWinningNumber(winningLotto), isBonusMatch);
+        return WinningRank.find(countWinningNumber(winningLotto), isBonusMatch(bonus));
     }
 
     private int countWinningNumber(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
                 .count();
+    }
+
+    private boolean isBonusMatch(int bonus) {
+        return numbers.contains(bonus);
     }
 
     @Override

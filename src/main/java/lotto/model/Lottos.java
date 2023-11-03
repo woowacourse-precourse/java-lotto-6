@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.Quicksort;
 
@@ -65,6 +66,16 @@ public class Lottos {
         } else if (count == 3) {
             this.winningCounts.add(5);
         }
+    }
+
+    public int getLottoMoney(){
+        int money = 0;
+        money += Collections.frequency(getWinningCounts(),5) * 5000;
+        money += Collections.frequency(getWinningCounts(),4) * 50000;
+        money += Collections.frequency(getWinningCounts(),3) * 1500000;
+        money += Collections.frequency(getWinningCounts(),2) * 30000000;
+        money += Collections.frequency(getWinningCounts(),1) * 200000000;
+        return money;
     }
 
 }

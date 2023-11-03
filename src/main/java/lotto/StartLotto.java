@@ -118,4 +118,23 @@ public class StartLotto {
     private void sortLottoNumber(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
     }
+
+    private void printLottoList() {
+        int listLen = this.purchasePrice / 1000;
+
+        for(int i = 0; i < listLen; i++) {
+            Lotto oneLotto = this.lottoList.get(i);
+            printOneLotto(oneLotto);
+        }
+    }
+
+    private void printOneLotto(Lotto oneLotto) {
+        System.out.print('[');
+
+        for(int i = 0; i < 5; i++) {
+            System.out.print(oneLotto.getNumbers().get(i) + ", ");
+        }
+
+        System.out.print(oneLotto.getNumbers().get(5) + ']');
+    }
 }

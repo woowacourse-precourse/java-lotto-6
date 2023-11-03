@@ -1,17 +1,18 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }

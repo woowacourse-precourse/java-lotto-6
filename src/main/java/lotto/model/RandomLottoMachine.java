@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Constant;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RandomLottoMachine implements LottoMachine {
@@ -12,6 +13,8 @@ public class RandomLottoMachine implements LottoMachine {
 
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        List<Integer> randomLotto = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        Collections.sort(randomLotto);
+        return randomLotto;
     }
 }

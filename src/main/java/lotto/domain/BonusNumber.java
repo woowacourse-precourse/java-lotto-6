@@ -6,8 +6,8 @@ public class BonusNumber {
 
     private int bonusNumber;
 
-    public BonusNumber(String bonusNumber) {
-        this.bonusNumber = BonusNumberValid.validBonusNumber(bonusNumber);
+    public BonusNumber(WinNumber winNumber, String bonusNumber) {
+        this.bonusNumber = BonusNumberValid.validBonusNumber(winNumber, bonusNumber);
     }
 
     public int getBonusNumber() {

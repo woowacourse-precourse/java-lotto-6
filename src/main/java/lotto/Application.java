@@ -55,19 +55,31 @@ public class Application {
                 }
             }
 
-            if (sameNumberCount == 3)
+            if (sameNumberCount == 3) {
                 goodLuck.set(0, goodLuck.get(0) + 1);
-            if (sameNumberCount == 4)
+            }
+            if (sameNumberCount == 4) {
                 goodLuck.set(1, goodLuck.get(1) + 1);
+            }
             if (sameNumberCount == 5) {
                 if (!allLotto.get(i).contains(bonusNumber)) {
                     goodLuck.set(2, goodLuck.get(2) + 1);
-                } else
+                } else {
                     goodLuck.set(3, goodLuck.get(3) + 1);
+                }
             }
-            if (sameNumberCount == 6)
+            if (sameNumberCount == 6) {
                 goodLuck.set(4, goodLuck.get(4) + 1);
+            }
         }
+        double sumPrize = 0;
+        sumPrize += 5000 * goodLuck.get(0);
+        sumPrize += 50000 * goodLuck.get(1);
+        sumPrize += 1500000 * goodLuck.get(2);
+        sumPrize += 30000000 * goodLuck.get(3);
+        sumPrize += 2000000000 * goodLuck.get(4);
 
+        double beforeRate = sumPrize / purchase * 100;
+        double Rate = Math.round(beforeRate * 10.0) / 10.0;
     }
 }

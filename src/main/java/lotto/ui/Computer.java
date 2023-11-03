@@ -22,7 +22,7 @@ public class Computer {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 숫자만(소수점 제외) 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자만(양수) 입력해주세요.");
         }
     }
 

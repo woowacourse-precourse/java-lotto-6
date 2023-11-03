@@ -51,8 +51,9 @@ public class Application {
 
                     inputNumber.add(Integer.parseInt(userInput));
                 }
-                winningLotto = new Lotto(inputNumber);
                 System.out.println(inputNumber);
+                winningLotto = new Lotto(inputNumber);
+
 
                 isRunning = false;
 

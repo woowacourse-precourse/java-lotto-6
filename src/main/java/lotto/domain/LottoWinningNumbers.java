@@ -12,22 +12,31 @@ public class LottoWinningNumbers {
     private final ValidateService validateService = new ValidateService();
     private List<Integer> winningNumbers;
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+
+    public List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
+                List<String> inputValues = Arrays.asList(inputService.inputValue().split(","));
+                winningNumbers = getWinningNumbers(inputValues);
+                validateService.validateInputWinningNumbersAll(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
-    public List<Integer> inputWinningNumbers(){
-        List<String> inputValues = Arrays.asList(inputService.inputValue().split(","));
-        List<Integer> winningNumbers = new ArrayList<>();
-        for(String value: inputValues){
+    private List<Integer> getWinningNumbers(List<String> inputValues) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String value : inputValues) {
             try {
                 int number = Integer.parseInt(value.trim());
-                winningNumbers.add(number);
+                numbers.add(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
             }
         }
-        validateService.validateInputWinningNumbersAll(winningNumbers);
-        return winningNumbers;
+        return numbers;
     }
 }

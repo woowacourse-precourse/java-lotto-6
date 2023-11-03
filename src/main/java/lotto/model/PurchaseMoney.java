@@ -11,6 +11,10 @@ public class PurchaseMoney {
         this.value = Integer.valueOf(money);
     }
 
+    public int getValue(){
+        return value;
+    }
+
     private void validate(String money){
 
         if(isEmpty(money)){

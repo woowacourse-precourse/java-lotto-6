@@ -9,9 +9,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
         validateDistinct(numbers);
-        this.numbers = numbers.stream()
-                .map(LottoNumber::new)
-                .toList();
+        this.numbers = convertNumbersToLottoNumbers(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
@@ -32,5 +30,10 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private List<LottoNumber> convertNumbersToLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+    }
+    
 }

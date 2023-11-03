@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Lotto {
 
-    private final List<Integer> numbers; //선택된 번호
+    private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -42,8 +42,8 @@ public class Lotto {
         return numbers
                 .stream()
                 .anyMatch(number
-                        -> number < LottoConstants.MIN_LOTTO_NUMBER.getValue()
-                        || number > LottoConstants.MAX_LOTTO_NUMBER.getValue());
+                        -> number < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
+                        || number > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue());
     }
 
 }

@@ -22,6 +22,17 @@ public final class LottoGame {
         return new LottoGame(lottos, buyingAmount);
     }
 
+    public WinningResult calculateWinning(final WinningLotto winningLotto) {
+        WinningResult winningResult = new WinningResult();
+        for (Lotto lotto : lottos) {
+            int correctAmount = lotto.calculateCorrectAmount(winningLotto);
+            boolean bonusCorrect = lotto.calculateBonusCorrect(winningLotto);
+            winningResult.winningRank(correctAmount, bonusCorrect);
+        }
+
+        return winningResult;
+    }
+
     // getter
     public List<Lotto> getLottos() {
         return lottos;

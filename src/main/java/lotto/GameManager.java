@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoGame;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
 
@@ -18,20 +19,32 @@ public class GameManager {
     }
 
     public void startGame() {
-        prepareGame();
+        LottoGame lottoGame = getLottoGame();
+        WinningLotto winningLotto = getWinningLotto();
+        playGame(lottoGame, winningLotto);
     }
 
-    private void prepareGame() {
+    private LottoGame getLottoGame() {
         messagePrinter.printBuyingPriceMessage();
         int buyingPrice = messageReceiver.receiveBuyingPrice();
         int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
         messagePrinter.printBuyingAmountMessage(buyingAmount);
         LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
         messagePrinter.printLottoNumbers(lottoGame);
+        return lottoGame;
+    }
+
+    private WinningLotto getWinningLotto() {
         messagePrinter.printWinningNumbersMessage();
         WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();
         messagePrinter.printBonusNumberMessage();
         int bonusNumber = messageReceiver.receiveBonusNumber();
         winningLotto.createBonusNumber(bonusNumber);
+
+        return winningLotto;
+    }
+
+    private void playGame(final LottoGame lottoGame, final WinningLotto winningLotto) {
+        WinningResult winningResult = lottoGame.calculateWinning(winningLotto);
     }
 }

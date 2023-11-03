@@ -30,6 +30,31 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public int calculateCorrectAmount(final WinningLotto winningLotto) {
+        int correctAmount = 0;
+        for (int number : numbers) {
+            if (isCorrect(winningLotto, number)) {
+                correctAmount++;
+            }
+        }
+
+        return correctAmount;
+    }
+
+    public boolean calculateBonusCorrect(final WinningLotto winningLotto) {
+        int bonusNumber = winningLotto.getBonusNumber();
+        return numbers.contains(bonusNumber);
+    }
+
+    private boolean isCorrect(final WinningLotto winningLotto, final int number) {
+        for (int winningNumber : winningLotto.getWinningNumbers()) {
+            if (number == winningNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // getter
     public List<Integer> getNumbers() {
         return numbers;

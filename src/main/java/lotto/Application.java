@@ -45,7 +45,7 @@ public class Application {
     }
 
     private static void isBoundary(int n){
-        if (n > 45)
+        if (n > 45 || n < 0)
             throw new IllegalArgumentException(ErrorType.NUMBERS.getName());
     }
 

@@ -21,7 +21,7 @@ public record BuyingResults(List<BuyingResult> buyingResults) {
                 .collect(Collectors.joining("\n"));
     }
 
-    public int getCount() {
+    public int getBuyingCount() {
         return buyingResults.size();
     }
 }

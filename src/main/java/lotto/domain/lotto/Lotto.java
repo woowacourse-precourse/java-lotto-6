@@ -1,16 +1,14 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.lotto.boxed.LottoNumber;
+import lotto.domain.lotto.validator.LottoValidator;
 
 /**
  * 사용자가 입력한 금액으로 구매한 로또 용지를 나타내는 클래스입니다. 6자리의 로또 번호를 가지고 있습니다.
  */
-public final class Lotto {
+public final class Lotto implements LottoTicket {
 
-    /**
-     * 각 로또 용지가 갖는 로또 번호의 개수입니다. 요구 사항에 따라 6자리 고정 크기로 설정 되었습니다.
-     */
-    public static final int LOTTO_NUMBERS_LENGTH = 6;
 
     /**
      * `Lotto` 객체의 유일한 필드이자 6자리의 로또 번호를 나타냅니다.
@@ -21,7 +19,7 @@ public final class Lotto {
      * @apiNote Lotto 생성 시, <h3 color="#bf0f4d">numbers의 요소는 반드시 6개여야 합니다.</h3>
      */
     public Lotto(final List<Integer> numbers) {
-        validateLotto(numbers);
+        LottoValidator.validateLotto(numbers);
         this.numbers = intoLottoNumbers(numbers);
     }
 
@@ -35,13 +33,12 @@ public final class Lotto {
                 .toList();
     }
 
+
     /**
-     * 입력된 로또 번호가 6자리인지 검증합니다. 6자리가 아닐 경우 예외가 발생합니다.
+     * 로또 번호 포함 여부
      */
-    private void validateLotto(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
-            throw new IllegalArgumentException();
-        }
+    public boolean contains(final LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
 }

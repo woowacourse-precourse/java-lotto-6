@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -118,5 +120,22 @@ class WinningNumbersGeneratorTest {
         assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("당첨 번호 생성 후 저장")
+    @Test
+    void generateWinningNumber() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String numbers = "1,2,6,7,43,21";
+        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> expectedWinningNumbers = List.of(1, 2, 6, 7, 43, 21);
+
+        //then
+        List<Integer> winningNumbers = winningNumbersGenerator.getWinningNumbers();
+        assertThat(winningNumbers.size()).isEqualTo(6);
+        assertThat(winningNumbers).containsAnyElementsOf(expectedWinningNumbers);
     }
 }

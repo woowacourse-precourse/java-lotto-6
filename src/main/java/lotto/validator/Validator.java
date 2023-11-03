@@ -93,4 +93,15 @@ public class Validator {
         }
     }
 
+    public int parseAndValidateBonusNumber(String userInput) {
+        int bonusNumber = parseAndValidateInteger(userInput);
+        validateRangeOfNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    public void checkDuplicateBonusNumber(List<Integer> targetNumbers, int bonusNumber) {
+        if (targetNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER_ERROR_MESSAGE.toString());
+        }
+    }
 }

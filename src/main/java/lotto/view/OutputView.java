@@ -9,7 +9,7 @@ public class OutputView {
     }
 
     public static void buyComplete(Integer money) {
-        System.out.printf("\n%d개를 구매했습니다.\n",money/1000);
+        System.out.printf("\n%d개를 구매했습니다.\n",money/PRICE);
     }
 
     public static void printLotto(LottoTickets lottoTickets) {
@@ -22,6 +22,10 @@ public class OutputView {
 
     public static void bonusMessage() {
         System.out.println(Message.BONUS_NUM.getMessage());
+    }
+
+    public static void resultMessage() {
+        System.out.println(Message.RESULT.getMessage());
     }
 
     public static void errorMessage(String message) {

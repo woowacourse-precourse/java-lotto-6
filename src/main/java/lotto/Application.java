@@ -15,5 +15,7 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        lottoManager.printLottos(new User(lottoManager.getPrice()));
     }
 }

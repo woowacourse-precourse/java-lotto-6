@@ -28,4 +28,11 @@ class LottoManagerTest {
         LottoManager lottoManager = new LottoManager("5000");
         assertThat(lottoManager.getPrice() / Const.priceUnit).isEqualTo(5);
     }
+
+    @DisplayName("금액에 맞는 로또의 개수를 알 수 있다.")
+    @Test
+    void getLottos() {
+        User user = new User(8000);
+        assertThat(user.getLottos().size()).isEqualTo(8);
+    }
 }

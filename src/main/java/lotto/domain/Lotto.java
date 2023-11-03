@@ -16,10 +16,14 @@ public class Lotto {
         }
     }
 
-    public int countCorrectLottoNumbers(List<Integer> answerLotto) {
+    public int countCorrectLottoNumbers(Lotto answerLotto) {
         return (int) numbers.stream()
                 .filter(answerLotto::contains)
                 .count();
+    }
+
+    public boolean contains(int lottoNumber) {
+        return this.numbers.contains((lottoNumber));
     }
 
 }

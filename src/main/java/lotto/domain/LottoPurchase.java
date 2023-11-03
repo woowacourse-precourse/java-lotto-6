@@ -21,7 +21,7 @@ public class LottoPurchase {
         while (true) {
             try {
                 int purchasePrice = validateService.validateNumber(inputService.inputValue());
-                validateService.validateAll(purchasePrice);
+                validateService.validatePurchasePriceAll(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

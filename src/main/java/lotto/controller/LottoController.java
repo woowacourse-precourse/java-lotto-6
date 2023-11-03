@@ -33,6 +33,7 @@ public class LottoController {
         String goalNumbersInput = inputView.readLine();
         outputView.askBonusNumber();
         String bonusNumberInput = inputView.readLine();
+        outputView.alertResult();
     }
 
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {

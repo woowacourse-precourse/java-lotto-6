@@ -36,4 +36,11 @@ public class ConsoleOutputView implements OutputView {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    @Override
+    public void alertResult() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

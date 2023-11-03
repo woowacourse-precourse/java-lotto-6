@@ -1,12 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.validator.InputViewValidator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private final InputViewValidator inputViewValidator;
+
+    public InputView(InputViewValidator inputViewValidator){
+        this.inputViewValidator = inputViewValidator;
+    }
     //구입금액입력
     public Long inputTotalAmount(){
         String string = Console.readLine();

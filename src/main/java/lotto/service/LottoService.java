@@ -31,8 +31,8 @@ public class LottoService {
         return lottos;
     }
 
-    public WinningStatistics getWinningStatistics(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
-        List<Result> results = matchLotto(lottos, winnerNumbers, bonusNumber);
+    public WinningStatistics getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        List<Result> results = matchLotto(lottos, winningNumbers, bonusNumber);
 
         Map<Rank, Integer> rankCount = new HashMap<>();
         for (Result result : results) {
@@ -50,9 +50,9 @@ public class LottoService {
         return new Lotto(generatedNumbers);
     }
 
-    private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
+    private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         List<Result> results = lottos.stream()
-                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winnerNumbers, bonusNumber))
+                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winningNumbers, bonusNumber))
                 .toList();
 
         return results;

@@ -7,6 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateEmpty(numbers);
         validateSixNumbersCount(numbers);
         validateInvalidLottoNumberRange(numbers);
         validateDuplicateNumbers(numbers);
@@ -15,6 +16,14 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private void validateEmpty(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number.equals(0)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호가 비었습니다.");
+            }
+        }
     }
 
     private void validateSixNumbersCount(List<Integer> numbers) {

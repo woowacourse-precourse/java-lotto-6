@@ -29,4 +29,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 하실 수 없습니다.");
         }
     }
+
+    public boolean containLottoNumber(LottoNumber lottoNumber){
+        return numbers.contains(lottoNumber);
+    }
 }

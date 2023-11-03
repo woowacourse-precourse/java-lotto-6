@@ -1,8 +1,5 @@
 package lotto.repository;
 
-import lotto.domain.Lotto;
-import lotto.domain.WinNum;
-import lotto.enums.LottoEnum;
 import lotto.template.InputTemplate;
 import lotto.valid.Valid;
 
@@ -14,29 +11,22 @@ public class LottoRepository {
 
     private final InputTemplate inputTemplate = new InputTemplate();
     public int getPrice() {
-        String price = inputTemplate.execute("구입금액을 입력해 주세요.", text -> Valid.validPrice(text));
+        String price = inputTemplate.execute("구입금액을 입력해 주세요.", text -> Valid.validPrice(text), null);
         return Integer.parseInt(price);
     }
 
     public List<Integer> getWinNum() {
-        String winNumStr = inputTemplate.execute("당첨 번호를 입력해 주세요.", text -> Valid.validWinNum(text));
-
-        return Arrays.stream(winNumStr.split(","))
+        String winNumStr = inputTemplate.execute("당첨 번호를 입력해 주세요.", text -> Valid.validWinNum(text), null);
+        String[] split = winNumStr.split(",");
+        return Arrays.stream(split)
             .mapToInt(Integer::parseInt)
             .boxed()
             .collect(Collectors.toList());
     }
 
-    public int getBonusNum() {
-        String bonusNumStr = inputTemplate.execute("보너스 번호를 입력해 주세요.", text -> Valid.validBonusNum(text));
+    public int getBonusNum(List<Integer> winNum) {
+        String bonusNumStr = inputTemplate.execute("보너스 번호를 입력해 주세요.", text -> Valid.validBonusNum(text), winNum);
         return Integer.parseInt(bonusNumStr);
     }
 
-    public void distinctCheck(List<Integer> winNum, int bonusNum) {
-        Valid.distinctCheck(winNum, bonusNum);
-    }
-
-    public LottoEnum countResult(Lotto lotto, WinNum winNum) {
-        return winNum.countResult(lotto);
-    }
 }

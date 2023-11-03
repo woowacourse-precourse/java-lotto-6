@@ -2,8 +2,8 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-import lotto.domain.Result;
 import lotto.domain.WinNum;
+import lotto.enums.LottoEnum;
 import lotto.repository.LottoRepository;
 
 import java.util.ArrayList;
@@ -25,8 +25,7 @@ public class LottoService {
 
         for (int i = 0; i < amount; i++) {
             List<Integer> lottoList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_COUNT);
-            Lotto lotto = new Lotto(lottoList);
-            temp.add(lotto);
+            temp.add(new Lotto(lottoList));
         }
         return temp;
     }
@@ -41,20 +40,14 @@ public class LottoService {
 
     public WinNum createWinNum() {
         List<Integer> winNum = lottoRepository.getWinNum();
-        int bonusNum = lottoRepository.getBonusNum();
-        lottoRepository.distinctCheck(winNum, bonusNum);
+        int bonusNum = lottoRepository.getBonusNum(winNum);
         return new WinNum(winNum, bonusNum);
     }
 
-    public Result getResult(List<Lotto> myLottoList, WinNum winNum) {
-        Result result = new Result();
+    public void getResult(List<Lotto> myLottoList, WinNum winNum) {
         for (Lotto lotto : myLottoList) {
-            result.count(lottoRepository.countResult(lotto, winNum));
+            lotto.countResult(winNum);
         }
-        return result;
     }
 
-    public void printResult(Result result, int amount) {
-        result.printResult(amount);
-    }
 }

@@ -20,7 +20,7 @@ public class InputView {
         return winningNumbers;
     }
 
-    public String requestBonusNumbers() {
+    public String requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumbers = Console.readLine();
         System.out.println();

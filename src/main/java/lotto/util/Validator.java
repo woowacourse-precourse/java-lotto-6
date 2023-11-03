@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.exception.ErrorMessage.COMMA_START_END;
 import static lotto.exception.ErrorMessage.HAS_REMAINING_NUMBER;
 import static lotto.exception.ErrorMessage.HAS_SPACE;
@@ -60,14 +61,16 @@ public class Validator {
         }
     }
 
-    public static void validateNumberMinimumOrMaximum(List<Integer> input) {
-        boolean ifNumberError = input.stream().allMatch(
-                number -> number < MINIMUM_Lotto_NUMBER.getConstant()
-                        || number > MAXIMUM_Lotto_NUMBER.getConstant()
-        );
-
-        if (ifNumberError) {
+    public static void validateNumberMinimumOrMaximum(Integer input) {
+        if (input < MINIMUM_Lotto_NUMBER.getConstant()
+                || input > MAXIMUM_Lotto_NUMBER.getConstant()) {
             throw LottoException.of(NUMBER_MISS);
+        }
+    }
+
+    public static void validateListNumberMinimumOrMaximum(List<Integer> input) {
+        for (Integer eachInput : input) {
+            validateNumberMinimumOrMaximum(eachInput);
         }
     }
 
@@ -76,6 +79,12 @@ public class Validator {
 
         if (ifDuplicateNumber.size() != input.size()) {
             throw LottoException.of(NUMBER_DUPLICATE);
+        }
+    }
+
+    public static void validateAlreadyHasNumber(List<Integer> lotto, Integer bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            throw LottoException.of(BONUS_NUMBER_DUPLICATE);
         }
     }
 }

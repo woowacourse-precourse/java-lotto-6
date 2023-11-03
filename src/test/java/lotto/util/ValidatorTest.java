@@ -8,21 +8,16 @@ import static lotto.exception.ErrorMessage.NUMBER_DUPLICATE;
 import static lotto.exception.ErrorMessage.NUMBER_MISS;
 import static lotto.exception.ErrorMessage.SIZE_MISS;
 import static lotto.util.Validator.*;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.LottoException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
-
-    @BeforeEach
-    void reset() {
-
-    }
 
     @Test
     @DisplayName("숫자 아닐 경우 예외 발생")
@@ -91,8 +86,13 @@ class ValidatorTest {
     void testNumberMinimumOrMaximum() {
         List<Integer> input = new ArrayList<>();
         input.add(55);
+        input.add(1);
+        input.add(2);
+        input.add(3);
+        input.add(4);
+        input.add(5);
 
-        assertThatThrownBy(() -> validateNumberMinimumOrMaximum(input))
+        assertThatThrownBy(() -> validateListNumberMinimumOrMaximum(input))
                 .isInstanceOf(LottoException.class)
                 .hasMessageContaining(NUMBER_MISS.getMessage());
     }

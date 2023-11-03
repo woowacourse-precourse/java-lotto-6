@@ -6,12 +6,9 @@ import static lotto.util.Parser.*;
 import static lotto.util.Validator.*;
 
 import java.util.List;
-import lotto.util.Convertor;
-import lotto.util.Parser;
-import lotto.util.Validator;
 
 public class InputView {
-    public static String inputTicketQuantity() {
+    public static String inputNumber() {
         return readLine();
     }
 

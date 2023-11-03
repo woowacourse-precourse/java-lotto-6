@@ -19,8 +19,15 @@ public class LottoResultHandlerModel {
         this.lottoGroup = lottoGroup;
     }
 
+    public void checkAllWinning(){
+        for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
+            Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
+            Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
+            lottoResult.addPrizeCount(matchCount);
+        }
+    }
 
-    public Integer checkWinning(Lotto winningLotto, Lotto purchasedLotto) {
+    private Integer checkWinning(Lotto winningLotto, Lotto purchasedLotto) {
         List<Integer> matchNumbers = new ArrayList<>(purchasedLotto.getNumbers());
         matchNumbers.retainAll(winningLotto.getNumbers());
         return matchNumbers.size();

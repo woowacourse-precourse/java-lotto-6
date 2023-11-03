@@ -12,12 +12,7 @@ public class LottoGame {
         int purchaseAmount = lottoPurchase.getPurchaseAmount();
         messageService.outputPurchaseAmount(purchaseAmount);
         lottoPurchase.purchaseLottoNumbers(purchaseAmount);
-        messageService.inputWinningNumberMessage();
-        List<Integer> winningNumbers = lottoWinningNumbers.inputWinningNumbers();
-        messageService.inputBonusNumberMessage();
-        int bonusNumber = lottoWinningNumbers.inputBonusNumber();
-        System.out.println(bonusNumber);
+        LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
 
     }
-
 }

@@ -5,29 +5,36 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.service.InputService;
+import lotto.service.MessageService;
 import lotto.service.ValidateService;
 
 public class LottoWinningNumbers {
     private final InputService inputService = new InputService();
     private final ValidateService validateService = new ValidateService();
+    private final MessageService messageService = new MessageService();
     private int bonusNumber;
     private List<Integer> winningNumbers;
 
-    public List<Integer> inputWinningNumbers() {
+    public LottoWinningNumbers getWinningNumbersInfo(){
+        this.winningNumbers = getWinningNumbers();
+        this.bonusNumber = getBonusNumber();
+        return this;
+    }
+    public List<Integer> getWinningNumbers() {
+        messageService.inputWinningNumberMessage();
         while (true) {
             try {
                 List<String> inputValues = Arrays.asList(inputService.inputValue().split(","));
-                List<Integer> winningNumbers = getWinningNumbers(inputValues);
+                List<Integer> winningNumbers = separateNumbers(inputValues);
                 validateService.validateInputWinningNumbersAll(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
-    private List<Integer> getWinningNumbers(List<String> inputValues) {
+    private List<Integer> separateNumbers(List<String> inputValues) {
         winningNumbers = new ArrayList<>();
         for (String value : inputValues) {
             try {
@@ -40,7 +47,8 @@ public class LottoWinningNumbers {
         return winningNumbers;
     }
 
-    public int inputBonusNumber() {
+    public int getBonusNumber() {
+        messageService.inputBonusNumberMessage();
         while (true) {
             try {
                 bonusNumber = validateService.validateNumber(inputService.inputValue());
@@ -52,7 +60,4 @@ public class LottoWinningNumbers {
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

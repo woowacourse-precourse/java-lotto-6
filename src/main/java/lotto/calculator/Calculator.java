@@ -1,7 +1,7 @@
 package lotto.calculator;
 
-public interface Calculator<Integer, U> {
+public interface Calculator<T extends Number, U> {
 	
-	Integer calculateSum(U data);
-    Double calculateTotalReturn(Integer money, Integer priceSum);
+	T calculateSum(U data);
+    Double calculateTotalReturn(T money, T priceSum);
 }

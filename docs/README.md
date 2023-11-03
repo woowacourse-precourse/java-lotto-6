@@ -19,10 +19,10 @@
 
 ## <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">🔨</font></font> 기능 목록
 
-- [ ] 구입 금액을 입력받는다.
+- [x] 구입 금액을 입력받는다.
   - 예외 처리
-    - [ ] 입력한 구입 금액이 1,000원 이하인 경우 `IllegalArgumentException`을 발생시킨다.
-    - [ ] 입력한 구입 금액이 1,000원으로 나누어 떨어지지 않으면 `IllegalArgumentException`을 발생시킨다.
+    - [x] 입력한 구입 금액이 1,000원 이하인 경우 `IllegalArgumentException`을 발생시킨다.
+    - [x] 입력한 구입 금액이 1,000원으로 나누어 떨어지지 않으면 `IllegalArgumentException`을 발생시킨다.
 
 - [ ] 1,000원당 한 장의 로또를 발행한다.
 

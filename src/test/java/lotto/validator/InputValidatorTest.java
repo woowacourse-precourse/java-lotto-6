@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
-
     @Nested
     @DisplayName("validatePurchaseAmount 메소드 test")
     class validatePurchaseAmountTest {

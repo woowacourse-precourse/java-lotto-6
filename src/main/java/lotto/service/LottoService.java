@@ -13,16 +13,17 @@ public class LottoService {
     private static final int MAX_RANDOMNUMBER = 45;
     private static final int MAX_LOTTO_NUMBER_SIZE = 6;
 
-    public void createLotto() {
+    public Lotto createLotto() {
         List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
         Lotto lotto = new Lotto(numbers);
+        return lotto;
     }
 
     private Set<Integer> generateLottoNumbers() {
         Set<Integer> numbers = new HashSet<>();
         do {
             numbers.add(Randoms.pickNumberInRange(MIN_RANDOMNUMBER, MAX_RANDOMNUMBER));
-        } while (numbers.size() == MAX_LOTTO_NUMBER_SIZE);
+        } while (!(numbers.size() == MAX_LOTTO_NUMBER_SIZE));
         return numbers;
     }
 }

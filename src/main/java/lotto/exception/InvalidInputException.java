@@ -10,4 +10,9 @@ public class InvalidInputException {
         String message = ExceptionMessage.OUT_OF_RANGE.getMessage();
         throw new IllegalArgumentException(message);
     }
+
+    public void  notIntegerValueException(){
+        String message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
+        throw new IllegalArgumentException(message);
+    }
 }

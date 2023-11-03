@@ -1,8 +1,8 @@
 package lotto.exception;
 
-public class PurchaseExceptionMessage extends IllegalArgumentException{
+public class PurchaseExceptionMessage extends IllegalArgumentException {
 
-    public PurchaseExceptionMessage(String message){
+    public PurchaseExceptionMessage(String message) {
         super(message);
     }
 

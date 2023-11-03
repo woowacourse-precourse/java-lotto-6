@@ -15,8 +15,7 @@ public class InputParser {
     public List<Integer> parseLottoNumbers(String numbers) {
         try {
             return Arrays.stream(numbers.split(SPLIT_DELIMITER))
-                    .mapToInt(Integer::parseInt)
-                    .boxed()
+                    .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new LottoGameException(String.format(INVALID_LOTTO_INPUT.getMessage(), numbers));

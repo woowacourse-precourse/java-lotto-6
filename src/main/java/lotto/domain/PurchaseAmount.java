@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_HAS_REMAINDER;
 
@@ -28,5 +28,9 @@ public class PurchaseAmount {
 
     private boolean hasRemainder(int purchaseAmount) {
         return purchaseAmount % MIN_PURCHASE_AMOUNT != NO_REMAINDER;
+    }
+
+    public int getAvailablePurchase() {
+        return this.purchaseAmount / MIN_PURCHASE_AMOUNT;
     }
 }

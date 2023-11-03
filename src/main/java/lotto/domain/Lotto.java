@@ -1,16 +1,17 @@
 package lotto.domain;
 
+import static lotto.domain.LottoNumber.EXACT_LOTTO_COUNTS;
+import static lotto.domain.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MIN_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.LOTTO_COUNTS_INVALID;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBERS_DUPLICATED;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.exception.LottoGameException;
 
 public class Lotto {
-    public static final int EXACT_LOTTO_COUNTS = 6;
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,15 +32,20 @@ public class Lotto {
     }
 
     private static boolean isInvalidSize(List<Integer> numbers) {
-        return numbers.size() != EXACT_LOTTO_COUNTS;
+        return numbers.size() != EXACT_LOTTO_COUNTS.getNumber();
     }
 
     private static boolean isNumberOutOfRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < MIN_LOTTO_NUMBER || MAX_LOTTO_NUMBER < number);
+                .anyMatch(number -> number < MIN_LOTTO_NUMBER.getNumber() || MAX_LOTTO_NUMBER.getNumber() < number);
     }
 
     private static boolean isDuplicated(List<Integer> numbers) {
-        return numbers.stream().distinct().count() != EXACT_LOTTO_COUNTS;
+        return numbers.stream().distinct().count() != EXACT_LOTTO_COUNTS.getNumber();
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers.stream()
+                .collect(Collectors.toUnmodifiableList());
     }
 }

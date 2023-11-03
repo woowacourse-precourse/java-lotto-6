@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,5 +42,16 @@ class LottoTest {
                 arguments(List.of(-1, 1, 2, 3, 4, 5)),
                 arguments(List.of(46, 1, 2, 3, 4, 5))
         );
+    }
+
+    @DisplayName("로또 번호를 반환한다.")
+    @Test
+    void getNumbersTest() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        for (int i = 0; i < lottoNumbers.size(); i++) {
+            assertThat(lottoNumbers.get(i)).isEqualTo(numbers.get(i));
+        }
     }
 }

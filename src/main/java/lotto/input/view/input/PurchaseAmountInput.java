@@ -1,7 +1,7 @@
 package lotto.input.view.input;
 
-import static lotto.input.constant.Constant.PURCHASEAMOUNTINPUT;
-import static lotto.input.constant.Constant.PURCHASEAMOUNTINPUT_ERROR;
+import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT;
+import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_ERROR;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.input.Validator.InputValidate;
@@ -10,7 +10,7 @@ public class PurchaseAmountInput {
     private final InputValidate inputValidate = new InputValidate();
 
     public Integer userAmountInput() {
-        System.out.println(PURCHASEAMOUNTINPUT);
+        System.out.println(PURCHASE_AMOUNT_INPUT);
         return validateCheck();
     }
 
@@ -22,7 +22,7 @@ public class PurchaseAmountInput {
                 amount = inputValidate.valueValidate(value);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(PURCHASEAMOUNTINPUT_ERROR);
+                System.out.println(PURCHASE_AMOUNT_INPUT_ERROR);
             }
         }
         return getCount(amount);

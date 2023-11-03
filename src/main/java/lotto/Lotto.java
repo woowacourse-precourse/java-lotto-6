@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static Lotto createWinningNumbers() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(Const.winningRangeStartNumber, Const.winningRangeEndNumber, Const.LottoCount));
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Const.winningRangeStartNumber, Const.winningRangeEndNumber, Const.LottoCount);
+        Collections.sort(lottoNumbers);
+
+        return new Lotto(lottoNumbers);
     }
 
     private void duplicateValidate(List<Integer> numbers) {

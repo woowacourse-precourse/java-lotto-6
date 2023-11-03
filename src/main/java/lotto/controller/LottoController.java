@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.Constant.ONE_LOTTO_PRICE;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMaker;
@@ -10,12 +12,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private static final int ONE_LOTTO_PRICE = 1000;
-    private static final int DEFAULT_INT_VALUE = 0;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoMaker lottoMaker;
-
 
     public LottoController() {
         this(new LottoMaker());

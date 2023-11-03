@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.NEW_LINE;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
@@ -11,7 +13,6 @@ public record LottoResult(Map<LottoPrizes, Integer> result) {
     private static final String SPACE = " ";
     private static final String DASH_WITH_SPACE = " - ";
     private static final String COUNT_TO_KOREAN = "개";
-    private static final String NEW_LINE = System.getProperty("line.separator");
 
 
     public String getStatistics() {

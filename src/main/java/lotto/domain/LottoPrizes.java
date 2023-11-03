@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.ZERO_COUNT;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
@@ -12,7 +14,6 @@ public enum LottoPrizes {
     FIVE_NUMBER_AND_BONUS_MATCHED("5개 일치, 보너스 볼 일치", new BigDecimal(30_000_000)),
     SIX_NUMBER_MATCHED("6개 일치", new BigDecimal(2_000_000_000));
 
-    private static final int ZERO_COUNT = 0;
     private static final String WON = "원";
     private static final String DECIMAL_FORMAT = "###,###";
     private final String term;

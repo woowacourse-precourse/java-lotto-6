@@ -1,13 +1,13 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.FIVE;
+import static lotto.constant.Constant.FOUR;
+import static lotto.constant.Constant.SIX;
+import static lotto.constant.Constant.THREE;
+
 import java.util.List;
 
 public record WinningLotto(List<Integer> numbers, int bonusNumber) {
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-    private static final int FIVE = 5;
-    private static final int SIX = 6;
-
     public LottoPrizes compare(Lotto lotto) {
         long matchCount = getMatchCount(lotto);
         if (matchCount == THREE) {

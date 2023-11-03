@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.MAX_RANGE;
+import static lotto.constant.Constant.MIN_RANGE;
+import static lotto.constant.Constant.SIX;
 import static lotto.domain.Lotto.LottoErrorMessage.COUNT_NOT_SIX;
 import static lotto.domain.Lotto.LottoErrorMessage.HAS_DUPLICATE_NUBMER;
 import static lotto.domain.Lotto.LottoErrorMessage.NOT_IN_RANGE;
@@ -7,9 +10,6 @@ import static lotto.domain.Lotto.LottoErrorMessage.NOT_IN_RANGE;
 import java.util.List;
 
 public class Lotto {
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
-    private static final int SIX = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

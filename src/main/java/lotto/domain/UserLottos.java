@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.NEW_LINE;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -7,7 +9,6 @@ import java.util.stream.Collectors;
 
 public record UserLottos(List<Lotto> lottos) {
     private static final int COUNT_UNIT = 1;
-    private static final String NEW_LINE = System.getProperty("line.separator");
 
     public LottoResult compareAllLottos(WinningLotto winningLotto) {
         Map<LottoPrizes, Integer> prizesCountMap = LottoPrizes.getPrizesCountMap();

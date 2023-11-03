@@ -21,9 +21,8 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
-        for(Lotto lotto : lottos) {
-            System.out.println(Lotto.countMatched(lotto, inputNumbers));
-        }
+        Lotto.compareTo(lottos, inputNumbers, bonusNumber);
+        Ranks.printResult();
     }
 
 

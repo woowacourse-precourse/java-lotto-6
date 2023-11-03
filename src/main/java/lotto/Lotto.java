@@ -67,6 +67,22 @@ public class Lotto {
         return inputNumbers;
     }
 
+    public static void compareTo(Lotto[] lottos, List<Integer> inputNumbers, int bonusNumber) {
+        for (Lotto lotto : lottos) {
+            int count = countMatched(lotto, inputNumbers);
+            if (count == 6) Ranks.FIRST.amount++;
+            else if (count == 5) {
+                if (checkBonusNumber(lotto, bonusNumber)) {
+                    Ranks.SECOND.amount++;
+                    return;
+                }
+                Ranks.THIRD.amount++;
+            }
+            else if (count == 4) Ranks.FOURTH.amount++;
+            else if (count == 3) Ranks.FIFTH.amount++;
+        }
+    }
+
     //각 로또별 맞은 개수 계산
     public static int countMatched(Lotto lotto, List<Integer> inputNumbers) {
         int count = 0;

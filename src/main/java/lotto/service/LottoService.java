@@ -2,6 +2,8 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +17,7 @@ public class LottoService {
 
     public Lotto createLotto() {
         List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
+        Collections.sort(numbers);
         Lotto lotto = new Lotto(numbers);
         return lotto;
     }

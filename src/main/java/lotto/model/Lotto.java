@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final int LOTTO_NUMBERS_RANGE_START = 1;
+    private static final int LOTTO_NUMBERS_RANGE_END = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +20,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -35,7 +40,7 @@ public class Lotto {
     }
 
     private void validateSingleNumberRange(int number) {
-        if (number > 45 || number < 1) {
+        if (number > LOTTO_NUMBERS_RANGE_END || number < LOTTO_NUMBERS_RANGE_START) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
         }
     }

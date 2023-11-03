@@ -17,4 +17,8 @@ public class UserLotteries {
     public int lotteriesCount() {
         return Lotteries.size();
     }
+
+    public List<Lotto> getLotteries() {
+        return Lotteries;
+    }
 }

@@ -1,0 +1,28 @@
+package lotto.view;
+
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.InputMismatchException;
+
+public class InputMoneyView {
+    private final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력해주세요.";
+    private final String UNIT_NOT_THOUSAND = "1000원 단위로 입력하세요.";
+    public int Number(){
+        String input = Console.readLine();
+
+        try {
+            int money = Integer.parseInt(input);
+            if(isUnit(money)){
+                return Integer.parseInt(input);
+            }
+            System.out.println("[ERROR] " + UNIT_NOT_THOUSAND);
+        }   catch (NumberFormatException e){
+            System.out.println("[ERROR] " + NUMBER_FORMAT_EXCEPTION);
+        }
+        return 0;
+    }
+
+    private boolean isUnit(int money) {
+        return money % 1000 == 0;
+    }
+}

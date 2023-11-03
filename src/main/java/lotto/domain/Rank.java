@@ -9,8 +9,8 @@ public enum Rank {
     NONE(0, 0, false);
 
     private final int matchCount;
-    private final boolean bonusMatch;
     private final int prizeMoney;
+    private final boolean bonusMatch;
 
     Rank(int matchCount, int prizeMoney, boolean bonusMatch) {
         this.matchCount = matchCount;

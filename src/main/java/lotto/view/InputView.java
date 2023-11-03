@@ -21,7 +21,7 @@ public class InputView {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = readLine();
 
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(", "))
                 .map(Integer::parseInt)
                 .toList();
     }

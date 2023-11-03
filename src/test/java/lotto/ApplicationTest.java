@@ -66,6 +66,16 @@ class ApplicationTest extends NsTest {
         Console.close();
     }
 
+    @DisplayName("당첨번호 입력 테스트")
+    @Test
+    void 당첨번호_입력_테스트() {
+        command("1,2,3,4,5,6");
+        String userInput = InputViewer.requestWinningNumberInput();
+        assertThat(output()).contains("당첨 번호를 입력해 주세요.");
+        assertThat(userInput).contains("1,2,3,4,5,6");
+        Console.close();
+    }
+
     @DisplayName("입력한 금액에 맞는 갯수만큼 로또 번호를 출력한다.")
     @Test
     @SuppressWarnings("unchecked")

@@ -1,7 +1,6 @@
 package lotto.userInterface;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.StringChanger;
 
 public class InputViewer {
     private InputViewer() {
@@ -9,6 +8,11 @@ public class InputViewer {
 
     public static String requestAmountInput() {
         OutputViewer.printRequestAmountMessage();
-        return StringChanger.trimString(Console.readLine());
+        return Console.readLine();
+    }
+
+    public static String requestWinningNumberInput() {
+        OutputViewer.printRequestWinningNumberMessage();
+        return Console.readLine();
     }
 }

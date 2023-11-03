@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.service.LottoSeller;
 import lotto.userInterface.InputViewer;
 import lotto.userInterface.OutputViewer;
+import lotto.utils.StringChanger;
 
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
@@ -23,6 +24,7 @@ public class LottoGame {
 
     public void run() {
         purchaseLotto();
+        getWinningNumbers();
     }
 
     private void purchaseLotto() {
@@ -31,8 +33,14 @@ public class LottoGame {
         requestPrintPurchasedLottos();
     }
 
+    private void getWinningNumbers() {
+        String userInput = InputViewer.requestWinningNumberInput();
+        List<String> inputNumbers = StringChanger.stringToTrimmedStringList(userInput);
+    }
+
     private void inputAmount() {
         String userInput = InputViewer.requestAmountInput();
+        userInput = StringChanger.trimString(userInput);
         userAmount = lottoSeller.getAmount(userInput);
     }
 
@@ -42,7 +50,7 @@ public class LottoGame {
     }
 
     private void requestPrintPurchasedLottos() {
-        OutputViewer.printPurchasedCountOfLottos(countOfLottos);
+        OutputViewer.printCountOfPurchaseLottos(countOfLottos);
         for (Lotto lotto : userLottos) {
             OutputViewer.printPurchasedLotto(lotto);
         }

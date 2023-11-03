@@ -7,6 +7,7 @@ public enum ErrorMessage {
             ERROR.Message + LottoNumber.START_NUMBER.getNumber() + " ~ " + LottoNumber.END_NUMBER.getNumber()
                     + " 의 값이 아닙니다."),
     INPUT_DUPLICATE_NUMBER_ERROR(ERROR.Message + "중복된 숫자를 입력하셨습니다."),
+    INPUT_DUPLICATE_BONUS_NUMBER_ERROR(ERROR.Message + "당첨번호와 중복된 숫자를 입력하셨습니다."),
     INPUT_INCORRECT_NUMBER_COUNT_ERROR(
             ERROR.Message + "당첨 번호는 " + LottoNumber.LOTTO_COUNT.getNumber() + "개를 입력하셔야 합니다."),
     INSUFFICIENT_PRICE_MESSAGE(ERROR.Message + "로또를 사기에 돈이 부족합니다."),

@@ -10,6 +10,8 @@ import lotto.service.ValidateService;
 public class LottoWinningNumbers {
     private final InputService inputService = new InputService();
     private final ValidateService validateService = new ValidateService();
+    private int bonusNumber;
+    private List<Integer> winningNumbers;
 
     public List<Integer> inputWinningNumbers() {
         while (true) {
@@ -26,15 +28,31 @@ public class LottoWinningNumbers {
     }
 
     private List<Integer> getWinningNumbers(List<String> inputValues) {
-        List<Integer> numbers = new ArrayList<>();
+        winningNumbers = new ArrayList<>();
         for (String value : inputValues) {
             try {
                 int number = Integer.parseInt(value.trim());
-                numbers.add(number);
+                winningNumbers.add(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
             }
         }
-        return numbers;
+        return winningNumbers;
+    }
+
+    public int inputBonusNumber() {
+        while (true) {
+            try {
+                bonusNumber = validateService.validateNumber(inputService.inputValue());
+                validateService.validateBonusNumber(bonusNumber,winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

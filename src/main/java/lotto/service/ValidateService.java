@@ -26,8 +26,9 @@ public class ValidateService {
         validateWinningNumbersCount(winningNumbers);
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberRange(bonusNumber);
+        validateDuplicationWinningNumbersAndBonusNumber(bonusNumber, winningNumbers);
     }
 
     private void validatePrice(int purchasePrice) {
@@ -66,6 +67,12 @@ public class ValidateService {
     private void validateWinningNumbersCount(List<Integer> numbers) {
         if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplicationWinningNumbersAndBonusNumber(int bonusNumber, List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_BONUS_NUMBER_ERROR.getMessage());
         }
     }
 

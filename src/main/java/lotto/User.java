@@ -7,29 +7,24 @@ import java.util.List;
 
 public class User {
 
-    private List<Integer> winningNumbers = new ArrayList<Integer>();
-    private int bonusNumber;
-    private int purchaseAmount;
-
-
     public String getUserInput(String message) {
         System.out.println(message);
         return Console.readLine();
     }
 
-    public void getPurchaseAmount() {
+    public Integer getPurchaseAmount() {
         String input = getUserInput("구입금액을 입력해 주세요.");
-        validatePurchaseAmount(input);
+        return validatePurchaseAmount(input);
     }
 
-    public void getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         String input = getUserInput("당첨 번호를 입력해 주세요.");
-        splitWinningNumbers(input);
+        return splitWinningNumbers(input);
     }
 
-    public void getBonusNumber() {
+    public Integer getBonusNumber() {
         String input = getUserInput("보너스 번호를 입력해 주세요.");
-        this.bonusNumber = validateNumber(input);
+        return validateNumber(input);
     }
 
     private Integer validateNumber(String number) {
@@ -41,27 +36,20 @@ public class User {
         }
     }
 
-    private void validatePurchaseAmount(String input) {
-        this.purchaseAmount = validateNumber(input);
-        if (this.purchaseAmount % 1000 != 0) {
+    private Integer validatePurchaseAmount(String input) {
+        Integer tmp = validateNumber(input);
+        if (tmp % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위여야 합니다.");
         }
-
+        return tmp;
     }
 
-    private void splitWinningNumbers(String input) {
-
+    private List<Integer> splitWinningNumbers(String input) {
         String[] numberStrings = input.split(",");
-        if (numberStrings.length != 6) {
-            throw new IllegalArgumentException("입력한 번호의 개수가 올바르지 않습니다.");
-        }
+        List<Integer> winningNumbers = new ArrayList<Integer>();
         for (String number : numberStrings) {
-            addNumber(validateNumber(number));
+            winningNumbers.add(validateNumber(number));
         }
-
-    }
-
-    private void addNumber(Integer number) {
-        this.winningNumbers.add(number);
+        return winningNumbers;
     }
 }

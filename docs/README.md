@@ -31,11 +31,11 @@
     - [x] 구입한 로또의 번호 중 1~45를 벗어나는 수가 존재하면 `IllegalArgumentException`을 발생시킨다.
     - [x] 구입한 로또의 번호에 중복된 값이 존재하면 `IllegalArgumentException`을 발생시킨다.
 
-- [ ] 당첨 번호를 입력받는다.
+- [x] 당첨 번호를 입력받는다.
   - 예외 처리
     - [ ] 당첨 번호 6자리가 쉼표로 구분되지 않으면 `IllegalArgumentException`을 발생시킨다.
-    - [ ] 당첨 번호 6자리 중 1~45를 벗어나는 수가 존재하면 `IllgalArgumentException`을 발생시킨다.
-    - [ ] 당첨 번호 6자리에 중복된 값이 존재하면 `IllgalArgumentException`을 발생시킨다.
+    - [x] 당첨 번호 6자리 중 1~45를 벗어나는 수가 존재하면 `IllgalArgumentException`을 발생시킨다.
+    - [x] 당첨 번호 6자리에 중복된 값이 존재하면 `IllgalArgumentException`을 발생시킨다.
 
 - [ ] 보너스 번호를 입력받는다.
   - 예외 처리

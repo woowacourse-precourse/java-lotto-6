@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
 import java.util.List;
 
 public class Shop {

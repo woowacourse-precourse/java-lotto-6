@@ -14,8 +14,8 @@ public class Controller {
 
     }
 
-    public void purchaseLotto() {
-        int amount = Integer.parseInt(InputView.enterPurchaseAmount());
+    private void purchaseLotto() {
+        String amount = InputView.enterPurchaseAmount();
         buyer = purchasingService.purchaseLotto(amount);
     }
 }

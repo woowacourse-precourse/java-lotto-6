@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.InputConverter.convertPrice;
-import static lotto.controller.InputConverter.convertWinningNumber;
+import static lotto.controller.InputConverter.*;
 
 public class convertPriceTest {
     @DisplayName("입력받은 가격 정수형으로 후처리")
@@ -34,5 +33,15 @@ public class convertPriceTest {
         List<Integer> returnWinningNumbers = convertWinningNumber(inputWinningNumber);
 
         Assertions.assertThat(winningNumbers).isEqualTo(returnWinningNumbers);
+    }
+
+    @DisplayName("입력받은 보너스 숫자 정수형으로")
+    @Test
+    void convertBonusNumberTest() {
+        String inputBonusNumber = "1";
+
+        int bonusNumber = convertBonusNumber(inputBonusNumber);
+
+        Assertions.assertThat(bonusNumber).isEqualTo(1);
     }
 }

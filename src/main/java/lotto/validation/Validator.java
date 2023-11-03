@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.domain.WinningNum;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -7,10 +8,7 @@ import java.util.Arrays;
 
 public class Validator {
     private static Integer PRICE=1000;
-    private static Integer MINIMUM = 1;
     private static Integer MAXIMUM = 45;
-    private static Integer WINNING_NUM_LENGTH = 6;
-    private static Integer BONUS_NUM_LENGTH = 7;
 
     public static void moneyValidate(String input) {
         Integer money = numberValidate(input);
@@ -20,17 +18,9 @@ public class Validator {
 
     public static void winningValidate(String[] input) {
         blankValidate(input);
-        winningNumDuplicatedValidate(input);
         winningNumValidate(input);
         numberRangeValidate(input);
     }
-
-    public static void bonusValidate(String input, ArrayList<Integer> winningNum) {
-        numberValidate(input);
-        bonusRangeValidate(input);
-        bonusNumDuplicatedValidate(input, winningNum);
-    }
-
     private static Integer numberValidate(String input){
         Integer money;
 
@@ -62,22 +52,12 @@ public class Validator {
     }
 
     private static void blankValidate(String[] winningNum) {
-        if (winningNum.length!=6){
-            OutputView.errorMessage(ErrorMessage.BLANK_ERROR.getMessage());
+        for (String num : winningNum) {
+            if(num.trim().isEmpty()){
+                OutputView.errorMessage(ErrorMessage.BLANK_ERROR.getMessage());
 
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void winningNumDuplicatedValidate(String[] winningNum) {
-        long numSize=Arrays.stream(winningNum)
-                .distinct()
-                .count();
-
-        if(numSize!=WINNING_NUM_LENGTH){
-            OutputView.errorMessage(ErrorMessage.DUPLICATED_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -91,32 +71,10 @@ public class Validator {
         for (String num : winningNum) {
             Integer number = Integer.parseInt(num);
 
-            if(number<MINIMUM || number>MAXIMUM){
+            if(number>MAXIMUM){
                 OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
-        }
-    }
-
-    private static void bonusRangeValidate(String bonusNum) {
-        Integer number = Integer.parseInt(bonusNum);
-
-        if (number < MINIMUM || number > MAXIMUM) {
-            OutputView.errorMessage(ErrorMessage.BONUS_RANGE_ERROR.getMessage());
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void bonusNumDuplicatedValidate(String bonusNum, ArrayList<Integer> winningNum) {
-        winningNum.add(Integer.parseInt(bonusNum));
-
-        long count = winningNum.stream()
-                .distinct()
-                .count();
-
-        if (count != BONUS_NUM_LENGTH) {
-            OutputView.errorMessage(ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage());
-            throw new IllegalArgumentException();
         }
     }
 }

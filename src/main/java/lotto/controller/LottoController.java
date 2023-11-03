@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningNum;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,8 +22,6 @@ public class LottoController {
         OutputView.buyComplete(money);
         OutputView.printLotto(lottoTickets);
 
-        ArrayList<Integer> winningNumber = inputView.winningNumber();
-
-        Integer bonusNumber = inputView.bonusNumber(winningNumber);
+        WinningNum winningNum = inputView.winningNumber();
     }
 }

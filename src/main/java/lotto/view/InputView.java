@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningNum;
 import lotto.validation.Validator;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class InputView {
         }
     }
 
-    public ArrayList<Integer> winningNumber() {
+    public WinningNum winningNumber() {
         try {
             OutputView.winningMessage();
-            String[] winningNumber = Console.readLine().split(",");
+            String[] winningNumber = Console.readLine().split(",",-1);
 
             Validator.winningValidate(winningNumber);
 
@@ -34,22 +35,22 @@ public class InputView {
         }
     }
 
-    public Integer bonusNumber(ArrayList<Integer> winningNumber) {
+    public Integer bonusNumber(WinningNum winningNum) {
         try {
             OutputView.bonusMessage();
             String bonusNumber = Console.readLine();
 
-            Validator.bonusValidate(bonusNumber, winningNumber);
-
             return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {
-            return bonusNumber(winningNumber);
+            return bonusNumber(winningNum);
         }
     }
 
-    private ArrayList<Integer> createWinningNumber(String[] winningNumber) {
-        return new ArrayList<>(Arrays.stream(winningNumber)
+    private WinningNum createWinningNumber(String[] winningNumber) {
+        ArrayList<Integer> winningNum = new ArrayList<>(Arrays.stream(winningNumber)
                 .map(Integer::parseInt)
                 .toList());
+
+        return new WinningNum(winningNum);
     }
 }

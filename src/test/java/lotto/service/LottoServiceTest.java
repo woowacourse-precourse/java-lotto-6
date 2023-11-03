@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchasedLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,13 +41,13 @@ class LottoServiceTest {
     void createLottoList(Integer lottoCount) {
         // given
         List<Integer> randomNumbers = lottoService.createRandomNumbers();
+        PurchasedLotto purchasedLotto = new PurchasedLotto();
 
         // when
-        List<Lotto> lottos = IntStream.range(0, lottoCount)
-                        .mapToObj(i -> new Lotto(randomNumbers))
-                        .collect(Collectors.toList());
+        IntStream.range(0, lottoCount)
+                .forEach(i -> purchasedLotto.addLotto(new Lotto(randomNumbers)));
 
         // then
-        assertEquals(lottos.size(), lottoCount);
+        assertEquals(purchasedLotto.getLottos().size(), lottoCount);
     }
 }

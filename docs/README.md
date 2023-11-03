@@ -3,7 +3,7 @@
 ## 기능 요구 사항
 - [x] 유저에게 입력을 받는다. InputManager#receiveUserInput
   - [x] 입력시 공백은 제거한다. InputManager#removeInputSpace
-- [ ] 구매 금액을 입력받는다.
+- [x] 구매 금액을 입력받는다. Application#purchaseAmountInput
   - [x] 1000원으로 나누어 떨어지지 않으면 예외 처리한다. InputValidator#validateDivision1000
   - [x] 숫자가 아니면 예외 처리한다. InputValidator#validateIsNumeric
 - [ ] 당첨 번호를 입력받는다.

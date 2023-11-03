@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class Calculator {
     private Map<Prize, Integer> count;
@@ -37,5 +38,20 @@ public class Calculator {
                 return;
             }
         }
+    }
+    public long prizeSum(){
+        long sum=0;
+        for(Prize p:Prize.values()){
+            sum+=p.getMoney() * count.get(p);
+        }
+        return sum;
+    }
+
+    public String statistics(){
+        StringJoiner sj = new StringJoiner("\n");
+        for(Prize p:Prize.values()){
+            sj.add(String.format("%s%d개", p.getUI(), count.get(p)));
+        }
+        return sj.toString();
     }
 }

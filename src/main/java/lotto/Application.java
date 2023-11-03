@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.domain.Controller.LottoController;
-import lotto.domain.Model.Lotto;
 import lotto.domain.Model.LottoMaker;
 import lotto.domain.View.LottoView;
 

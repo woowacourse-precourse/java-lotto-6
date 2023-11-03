@@ -6,7 +6,6 @@ import lotto.domain.Model.LottoMaker;
 import lotto.domain.Model.Prize;
 import lotto.domain.View.LottoView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

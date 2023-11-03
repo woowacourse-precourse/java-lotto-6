@@ -31,11 +31,11 @@ public class LottoGroup {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    private Integer findLottoNumbersSize() {
+    public Integer findLottoNumbersSize() {
         return lottoGroup.size();
     }
 
-    private Lotto findLottoByIndex(Integer index) {
+    public Lotto findLottoByIndex(Integer index) {
         return lottoGroup.get(index);
     }
 }

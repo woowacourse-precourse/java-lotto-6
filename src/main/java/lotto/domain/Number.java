@@ -1,0 +1,29 @@
+package lotto.domain;
+
+public class Number {
+
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 45;
+
+    private final int value;
+
+    private Number(int value) {
+        validate(value);
+        this.value = value;
+    }
+
+    private void validate(int value) {
+        if (isOutOfRange(value)) {
+            String exceptionMessage = "로또 숫자는 %d 이상 %d 이하이어야 합니다".formatted(MIN_VALUE, MAX_VALUE);
+            throw new IllegalArgumentException(exceptionMessage);
+        }
+    }
+
+    private boolean isOutOfRange(int value) {
+        return value < MIN_VALUE || value > MAX_VALUE;
+    }
+
+    public static Number from(int value) {
+        return new Number(value);
+    }
+}

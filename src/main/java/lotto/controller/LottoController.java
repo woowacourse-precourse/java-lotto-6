@@ -6,6 +6,7 @@ import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.LottoTickets;
 import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.WinningNumbers;
+import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
 import lotto.service.LottoChecker;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -46,17 +47,32 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber() {
-        String bonusNumber = inputView.inputBonusNumber();
-        return BonusNumber.create(bonusNumber);
+        try {
+            String bonusNumber = inputView.inputBonusNumber();
+            return BonusNumber.create(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getBonusNumber();
+        }
     }
 
     private WinningNumbers getWinningNumbers() {
-        String winningNumbers = inputView.inputWinningNumbers();
-        return WinningNumbers.create(winningNumbers);
+        try {
+            String winningNumbers = inputView.inputWinningNumbers();
+            return WinningNumbers.create(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private PurchasePrice getPurchasePrice() {
-        String money = inputView.inputPurchasePrice();
-        return PurchasePrice.create(money);
+        try {
+            String money = inputView.inputPurchasePrice();
+            return PurchasePrice.create(money);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getPurchasePrice();
+        }
     }
 }

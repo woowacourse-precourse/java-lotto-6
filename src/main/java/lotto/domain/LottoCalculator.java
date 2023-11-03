@@ -26,6 +26,13 @@ public class LottoCalculator {
         result.put(Prize.NONE, 0);
     }
 
+    public String calculateProfitRate(int money) {
+        long totalPrize = calculateTotalPrize();
+        double profit = ((double) totalPrize - money) / money * 100;
+
+        return String.format("%.1f%%", profit);
+    }
+
     public void makePrizeResult(List<Lotto> lottoTickets) {
         initResult();
         for (Lotto oneTicket : lottoTickets) {

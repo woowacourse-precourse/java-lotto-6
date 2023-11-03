@@ -15,7 +15,7 @@ public class Application {
     public static void main(String[] args) {
         GameShop lottoGameShop = new GameShop(new LottoGame(new RandomNumberImpl()));
 
-        Consumer consumer = new Consumer(lottoGameShop.purchase(InputView.readPurChaseLottoAmount()));
+        Consumer consumer = Consumer.purchaseLotto(lottoGameShop.purchase(InputView.readPurChaseLottoAmount()));
         OutputView.printPurchasedLotto(consumer.getPurchasedLotto());
 
         lottoGameShop.startLottoGame(InputView.readWinningNumber(), InputView.readBonusNumber());

@@ -11,8 +11,12 @@ public class Consumer {
 
     private List<Prize> prizeResult;
 
-    public Consumer(List<Lotto> purchasedLotto) {
+    private Consumer(List<Lotto> purchasedLotto) {
         this.purchasedLotto = purchasedLotto;
+    }
+
+    public static Consumer purchaseLotto(List<Lotto> purchasedLotto) {
+        return new Consumer(purchasedLotto);
     }
 
     public double getReturnRate() {

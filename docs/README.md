@@ -24,7 +24,6 @@
   - 유효성 검사를 수행하고, Lotto 객체를 생성한다.
   - 로또 번호를 저장하는 멤버변수를 가진다.
   - Lotto 객체의 번호를 반환한다.
-  - Lotto 객체를 비교한다.
 - LottoGenerator
   - 로또 번호를 생성한다.
 - LottoTicket

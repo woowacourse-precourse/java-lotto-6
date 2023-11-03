@@ -22,4 +22,27 @@ class ValidatorTest {
                 .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("1000단위로");
     }
+
+    @Test
+    void 로또_당첨번호_검증_예외_테스트(){
+        String lottoNumbers = "1,2,3,49,32,25";
+
+        assertThatThrownBy(()->{
+            Validator.validateWinningNumber(lottoNumbers);
+        }).hasMessageContaining("[ERROR]")
+                .hasMessageContaining("1~45까지만");
+    }
+
+    @Test
+    void 로또_보너스번호_검증_예외_테스트(){
+        assertThatThrownBy(()->{
+            Validator.validateBonusNumber("81");
+        }).hasMessageContaining("[ERROR]")
+                .hasMessageContaining("1~45까지만");
+    }
+
+
+
+
+
 }

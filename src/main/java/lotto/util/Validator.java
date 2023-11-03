@@ -34,6 +34,11 @@ public class Validator {
         });
     }
 
+    public static void validateBonusNumber(String bonusNumberStr){
+        validateNumericInput(bonusNumberStr);
+        validateNumberInRange(Integer.parseInt(bonusNumberStr));
+    }
+
 
 
     private static void validateNumberInRange(int number){

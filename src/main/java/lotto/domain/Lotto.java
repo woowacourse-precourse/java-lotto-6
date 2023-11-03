@@ -13,4 +13,8 @@ public class Lotto {
         this.numbers = numbers;
         this.rank = DEFAULT_RANK;
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

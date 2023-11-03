@@ -6,35 +6,58 @@ public class Money {
 
     private static final int NON_POSITIVE_STANDARD = 0;
     private static final String NON_POSITIVE_MONEY_MESSAGE = "돈은 양수여야 합니다.";
+    private static final String UNKNOWN_MONEY_MESSAGE = "알 수 없는 돈과 해당 연산을 수행할 수 없습니다.";
 
-    private final int money;
+    private final int value;
 
-    private Money(int money) {
-        this.money = money;
+    private Money(int value) {
+        this.value = value;
     }
 
-    public static Money from(int money) {
-        checkPositiveMoney(money);
+    public static Money from(int value) {
+        checkPositiveMoney(value);
 
-        return new Money(money);
+        return new Money(value);
     }
 
-    private static void checkPositiveMoney(int money) {
-        if (money <= NON_POSITIVE_STANDARD) {
+    private static void checkPositiveMoney(int value) {
+        if (value <= NON_POSITIVE_STANDARD) {
             throw new IllegalArgumentException(NON_POSITIVE_MONEY_MESSAGE);
         }
+    }
+
+    public int divide(Money target) {
+        checkMoneyNonNull(target);
+
+        return this.value / target.value;
+    }
+
+    public boolean hasRemainderWith(Money target) {
+        checkMoneyNonNull(target);
+
+        return (this.value % target.value) != 0;
+    }
+
+    private void checkMoneyNonNull(Money target) {
+        if (Objects.isNull(target)) {
+            throw new IllegalArgumentException(UNKNOWN_MONEY_MESSAGE);
+        }
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Money money1 = (Money) o;
-        return money == money1.money;
+        Money money = (Money) o;
+        return value == money.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(money);
+        return Objects.hash(value);
     }
 }

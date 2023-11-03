@@ -16,7 +16,7 @@ public class LottoPurchasePrice {
 
     private void validateThousandUnit(Integer purchasePrice) {
         if (isNotThousandUnit(purchasePrice)) {
-             throw new NotThousandUnitException();
+            throw new NotThousandUnitException();
         }
     }
 

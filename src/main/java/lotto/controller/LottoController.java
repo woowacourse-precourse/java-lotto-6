@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import lotto.domain.AmountLotto;
-import lotto.domain.LottoRanking;
+import lotto.domain.RankingLotto;
 import lotto.domain.MyLottos;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.HashMap;
 
 public class LottoController {
     public void start(){
@@ -16,23 +18,20 @@ public class LottoController {
         AmountLotto amountLotto = new AmountLotto();
         MyLottos myLottos = new MyLottos();
         WinningLotto winningLotto = new WinningLotto();
-        LottoRanking lottoRanking = new LottoRanking();
-
         settingLottoGame(myLottos,amountLotto,winningLotto);
+        HashMap<RankingLotto, Integer> lottoRank = RankingLotto.makeHashMapLottoRanking();
+        int money = 0;
 
-        matchLotto(amountLotto, myLottos, winningLotto, lottoRanking);
-        OutputView.winningResult(lottoRanking);
-    }
-
-
-    private void matchLotto(AmountLotto amountLotto, MyLottos myLottos, WinningLotto winningLotto, LottoRanking lottoRanking) {
-        for(int i = 0 ; i < myLottos.getLottos().size(); i++){
-            int matchCount = myLottos.getLottos().get(i).countMatch(winningLotto.getLotto());
-            boolean matchBouns = myLottos.getLottos().get(i).containMatch(winningLotto.getBonus());
-
-            lottoRanking.checkRanking(matchCount, matchBouns);
-
+        for(int i = 0 ; i < amountLotto.calculateAmountLotto(); i++){
+            RankingLotto rankingLotto = winningLotto.matchLotto(myLottos.getLottos().get(i));
+            String reward = rankingLotto.getReward().replace(",", "");
+            money += Integer.parseInt(reward);
+            lottoRank.put(rankingLotto, lottoRank.get(rankingLotto)+1);
         }
+        double profitPercentage = ((double)money / (double)amountLotto.getAmount() * 100);
+        OutputView.winningResult(lottoRank);
+        OutputView.printLottoYield(profitPercentage);
+
     }
 
     private void settingLottoGame(MyLottos myLottos ,AmountLotto amountLotto, WinningLotto winningLotto) {

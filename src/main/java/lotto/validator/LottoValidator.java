@@ -47,7 +47,7 @@ public class LottoValidator {
         return lotto.stream().anyMatch(LottoValidator::lottoNumberRangeValidator);
     }
 
-    private static boolean inputLottoDuplicationNumberValidator(List<Integer> lotto){
+    public static boolean inputLottoDuplicationNumberValidator(List<Integer> lotto){
         int duplicationLottoSize = (int) lotto.stream().distinct().count();
         if(duplicationLottoSize != lotto.size()){
             throw new IllegalArgumentException(LOTTO_INPUT_DUPLICATION_NUMBER_EXCEPTION_MESSAGE);

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.validator.LottoValidator;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        LottoValidator.inputLottoDuplicationNumberValidator(numbers);
         this.numbers = numbers;
     }
 
@@ -18,6 +20,7 @@ public class Lotto {
         }
     }
     // TODO: 추가 기능 구현
+
     public List<Integer> getNumbers() {
         return numbers;
     }

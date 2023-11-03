@@ -39,6 +39,12 @@ public class WinningLotto {
     }
 
 
+    public RankingLotto matchLotto(Lotto myLotto){
+        int matchCount = myLotto.countMatch(this.getLotto());
+        boolean bonus = myLotto.containMatch(this.getBonus());
+
+        return RankingLotto.matchRank(matchCount, bonus);
+    }
 
 
 

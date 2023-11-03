@@ -14,6 +14,10 @@ public class AmountLotto {
         this.amount = Integer.parseInt(amount);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public int calculateAmountLotto(){
         return amount / lottoAmount;
     }

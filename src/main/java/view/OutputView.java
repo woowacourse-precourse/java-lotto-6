@@ -44,4 +44,8 @@ public class OutputView {
         });
         System.out.print(sb);
     }
+
+    public void informRateOfReturn(final double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
 }

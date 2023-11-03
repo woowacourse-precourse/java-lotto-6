@@ -1,9 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.BonusNumber;
-import lotto.domain.WinningNumber;
-import lotto.util.Convertor;
 import lotto.validation.InputValidator;
 
 public class InputView {
@@ -11,36 +8,21 @@ public class InputView {
     private InputView() {
     }
 
-    public static int inputPurchasePrice() {
+    public static String inputPurchasePrice() {
         String input = Console.readLine();
-        try {
-            InputValidator.validatePurchasePrice(input);
-            return Convertor.convertStringToInt(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputPurchasePrice();
-        }
+        InputValidator.validatePurchasePrice(input);
+        return input;
     }
 
-    public static WinningNumber inputWinningNumbers() {
+    public static String inputWinningNumber() {
         String input = Console.readLine();
-        try {
-            InputValidator.validateWinningNumber(input);
-            return WinningNumber.from(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputWinningNumbers();
-        }
+        InputValidator.validateWinningNumber(input);
+        return input;
     }
 
-    public static BonusNumber inputBonusNumber() {
+    public static String inputBonusNumber() {
         String input = Console.readLine();
-        try {
-            InputValidator.validateBonusNumber(input);
-            return BonusNumber.from(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputBonusNumber();
-        }
+        InputValidator.validateBonusNumber(input);
+        return input;
     }
 }

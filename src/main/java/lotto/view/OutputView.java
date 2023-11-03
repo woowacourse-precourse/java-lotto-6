@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printPurchasedLottoTickets(int amount, LottoTicket lottoTicket){
+    public static void printPurchasedLottoTickets(int amount, LottoTicket lottoTicket) {
         System.out.printf("%d개를 구매했습니다.\n", amount / 1000);
         lottoTicket.getLottoTickets().forEach(lotto -> System.out.println(formatLotto(lotto)));
         System.out.println();

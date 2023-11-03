@@ -1,5 +1,7 @@
 package controller;
 
+import model.FinanceManager;
+import model.GameManager;
 import view.InputView;
 import view.OutputView;
 
@@ -7,9 +9,40 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private FinanceManager financeManager;
+    private GameManager gameManager;
 
-    public LottoController(final InputView inputView, OutputView outputView) {
+    public LottoController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+    }
+
+    public void run() {
+        initGame();
+        informLottos();
+    }
+
+    private void informLottos() {
+        outputView.informLottoCount(financeManager.calcuateLottoCount());
+    }
+
+    private void initGame() {
+        initFinanceManager();
+        initGameManager();
+    }
+
+    private void initFinanceManager() {
+        outputView.askPurchaseAmount();
+        String inputPurchase = inputView.read();
+        while (!FinanceManager.isValidArgument(inputPurchase)) {
+            inputPurchase = inputView.read();
+        }
+
+        financeManager = FinanceManager.createDefault(inputPurchase);
+    }
+
+    private void initGameManager() {
+        int lottoCount = financeManager.calcuateLottoCount();
+        gameManager = GameManager.createDefault(lottoCount);
     }
 }

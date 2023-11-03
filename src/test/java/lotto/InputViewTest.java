@@ -70,8 +70,16 @@ public class InputViewTest {
 
     @DisplayName("당첨번호가 6자리가 아닐 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3","1,2,3,4,5,6,8,9","1,2","1" })
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3", "1,2,3,4,5,6,8,9", "1,2", "1"})
     void readWinningNumber_IsNotSixNumber_ExceptionThrow(String input) {
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호에 중복된 입력이 들어올 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,2,3,3,3,3", "3,4,4,5,5,6"})
+    void readWinningNumber_IsDuplicateNumber_ExceptionThrow(String input) {
         setInputValues(input);
         assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
     }

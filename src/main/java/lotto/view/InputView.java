@@ -1,6 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -16,6 +19,17 @@ public class InputView {
         validateSpaceWinningNumber(input);
         validateNotIntegerWinningNumber(input);
         validateIsSixNumberWinningNumber(input);
+        validateDuplicatedWinningNumber(input);
+    }
+
+
+    public static void validateDuplicatedWinningNumber(String input) {
+        String[] splits = input.split(",");
+        int[] numbers = Arrays.stream(splits).mapToInt(Integer::parseInt).toArray();
+        int[] distinctNumbers = Arrays.stream(numbers).distinct().toArray();
+        if (numbers.length != distinctNumbers.length) {
+            throw new IllegalArgumentException("[ERROR] 중복된 값이 입력되었습니다.");
+        }
     }
 
     public static void validateNotIntegerWinningNumber(String input) {

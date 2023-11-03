@@ -31,4 +31,11 @@ public class ControllerTest {
     void getLottoCountFromPriceException(int userMoney) {
         assertThatThrownBy(() -> controller.getLottoCount(userMoney)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 구매 기능 테스트")
+    @Test
+    void purchaseLottoTicketsTest() {
+        controller.purchaseLotto(8);
+        assertThat(8).isEqualTo(controller.getLottoTickets().size());
+    }
 }

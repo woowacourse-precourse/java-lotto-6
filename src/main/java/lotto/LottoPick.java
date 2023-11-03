@@ -18,7 +18,7 @@ public class LottoPick {
         numbers = new List[this.attempt];
     }
 
-
+    // 랜덤 6자리 숫자 배열 후 오름차순 정리
     public void makeLottoPick() {
         for(int i = 0; i < attempt; i++) {
             numbers[i] = randomCreate();
@@ -28,11 +28,12 @@ public class LottoPick {
         }
     }
 
+    // 로또 값 출력.
     public void outputLottoPick(){
         System.out.println(Arrays.toString(numbers));
     }
 
-    // 금액 확인.
+    // 금액 입증 확인.
     private void validate(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("금액은 1000단위로 나누어 져야 합니다.");

@@ -31,11 +31,21 @@ public class LottoUtil {
             if (rank.equals(Rank.NO_RANK)) {
                 continue;
             }
+            if (rank.equals(Rank.SECOND)) {
+                convertSecondRankToDisplayFormat(sb, result.getOrDefault(Rank.SECOND, 0));
+                continue;
+            }
             sb.append(String.format("%d개 일치 (%s원) - %d개\n", rank.getMatchingCount(),
                     LottoUtil.convertPrizeToDisplayFormat(rank.getPrize()),
                     result.getOrDefault(rank, 0)));
         }
         return sb.toString();
+    }
+
+    public static void convertSecondRankToDisplayFormat(StringBuilder sb, int count) {
+        sb.append(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", Rank.SECOND.getMatchingCount(),
+                LottoUtil.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
+                count));
     }
 
     public static String convertPrizeToDisplayFormat(long prize) {

@@ -1,7 +1,8 @@
 package lotto.view.output;
 
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+
+import java.util.List;
 
 public class LottoBuyOutputView {
 
@@ -11,8 +12,14 @@ public class LottoBuyOutputView {
         System.out.println(String.format(PURCHASED_LOTTO_COUNT_MESSAGE, lottos.size()));
     }
 
-    public void printLottoNumbers(Lotto lotto) {
-        System.out.println(lotto.lottoNumbersAsString());
+    public void printAllLottoNumbers(Lottos lottos) {
+        List<String> allLottoNumbers = lottos.allLottoNumbersAsString();
+        allLottoNumbers.stream()
+                .forEach(this::printLottoNumbers);
+    }
+
+    private void printLottoNumbers(String lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 
 }

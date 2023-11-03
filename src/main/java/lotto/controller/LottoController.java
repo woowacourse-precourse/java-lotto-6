@@ -24,8 +24,7 @@ public class LottoController {
 
     public void printBuyLottos(Lottos lottos) {
         lottoBuyOutputView.printPurchaseLottoCountMessage(lottos);
-
-
+        lottoBuyOutputView.printAllLottoNumbers(lottos);
     }
 
     public Lottos buyLottos() {
@@ -38,4 +37,5 @@ public class LottoController {
                 .limit(amount / DENOMINATION)
                 .toList();
     }
+
 }

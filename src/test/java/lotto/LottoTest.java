@@ -30,7 +30,7 @@ class LottoTest {
     void printLottoNumberByString() {
         Lotto lotto = new Lotto(List.of(8, 12, 28, 30, 31, 41));
 
-        String lottoNumbers = lotto.getLottoNumberString();
+        String lottoNumbers = lotto.getLottoNumbersText();
 
         assertThat(lottoNumbers).isEqualTo("[8, 12, 28, 30, 31, 41]");
     }

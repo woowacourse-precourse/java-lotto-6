@@ -11,7 +11,7 @@ public enum LottoConfig {
         this.value = value;
     }
 
-    public int from() {
+    public int getValue() {
         return value;
     }
 }

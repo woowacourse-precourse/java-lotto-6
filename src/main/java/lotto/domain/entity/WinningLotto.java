@@ -11,4 +11,8 @@ public class WinningLotto extends Lotto {
         WinningLottoValidator.validate(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

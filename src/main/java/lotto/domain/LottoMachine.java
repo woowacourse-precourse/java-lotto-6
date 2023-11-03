@@ -21,12 +21,12 @@ class LottoMachine {
     }
 
     public static LottoMachine from(LottoFactory factory) {
-        checkFactoryNonNUll(factory);
+        checkFactoryNonNull(factory);
 
         return new LottoMachine(factory);
     }
 
-    private static void checkFactoryNonNUll(LottoFactory factory) {
+    private static void checkFactoryNonNull(LottoFactory factory) {
         if (Objects.isNull(factory)) {
             throw new IllegalArgumentException(UNKNOWN_FACTORY_MESSAGE);
         }

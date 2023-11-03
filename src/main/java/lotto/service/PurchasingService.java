@@ -24,14 +24,14 @@ public class PurchasingService {
     }
 
     private int checkAmount(String value) {
-        validateNotNumber(value);
+        validateOnlyNumber(value);
         int amount = Integer.parseInt(value);
         validateMinPurchase(amount);
         validatePurchaseUnits(amount);
         return amount;
     }
 
-    private void validateNotNumber(String amount) {
+    private void validateOnlyNumber(String amount) {
         try {
             Integer.parseInt(amount);
         } catch (NumberFormatException e) {

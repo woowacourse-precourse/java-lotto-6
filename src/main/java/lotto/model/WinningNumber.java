@@ -5,14 +5,30 @@ import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
 import java.util.List;
+import lotto.record.LottoNumberRecord;
 
-public class WinningNumber extends Lotto {
+public class WinningNumber {
+    private final List<Integer> numbers;
     private final int bonusNumber;
 
     public WinningNumber(List<Integer> numbers, int bonusNumber) {
-        super(numbers);
         validateBonusNumber(numbers, bonusNumber);
+        this.numbers = numbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public int countMatchingNumbers(LottoNumberRecord lottoNumberRecord) {
+        int matches = 0;
+        for (int number : lottoNumberRecord.numbers()) {
+            if (numbers.contains(number)) {
+                matches++;
+            }
+        }
+        return matches;
+    }
+
+    public boolean hasMatchingBonusNumber(LottoNumberRecord lottoNumberRecord) {
+        return lottoNumberRecord.numbers().contains(bonusNumber);
     }
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {

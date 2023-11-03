@@ -10,6 +10,7 @@ public class Application {
 		int price;
 		int lottoCount;
 		Lotto winLotto;
+		int bonusNumber;
 		// 로또 구입 금액을 입력받는 기능
 		while (true) {
 			System.out.println("구입금액을 입력해 주세요.");
@@ -52,27 +53,72 @@ public class Application {
 			} catch (IllegalArgumentException e ) {
 				System.out.println("[ERROR] 당첨 번호는 6개의 숫자입니다.");
 			} catch (IllegalStateException e) {
-				System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+				System.out.println(e.getMessage());
 			}
 			
 		}
+		List<Integer> winNumbers = winLotto.getNumbers();
 		System.out.println();
-		
 		//보너스 번호를 입력받는 기능
 		while(true) {
 			
 			try {
 				System.out.println("보너스 번호를 입력해 주세요.");
-				int bonusNumber = Integer.parseInt(Console.readLine());
-				checkBonusNumber(bonusNumber);
+				bonusNumber = Integer.parseInt(Console.readLine());
+				checkBonusNumber(bonusNumber, winNumbers);
 				break;
 			} catch	(NumberFormatException e) {
 				System.out.println("[ERROR] 숫자를 입력해 주세요.");
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+			} catch (IllegalStateException e) {
+				System.out.println("[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.");
 			}
 		}
 		
+		// 사용자가 구매한 로또 번호와 당첨 번호를 비교하는 기능
+		int first = 0;
+		int second = 0;
+		int third = 0;
+		int fourth = 0;
+		int fifth = 0;
+		for (Map.Entry<Integer, List<Integer>> entry : lotto.entrySet()) {
+			
+			int count = 0;
+			boolean bonus = false;
+				List<Integer> numbers = entry.getValue();
+				for (Integer number : winNumbers) {
+					
+					if(numbers.contains(number)) {
+						count++;	
+					}
+					if(numbers.contains(bonusNumber)) {
+						bonus = true;
+					}
+				}
+				System.out.println(bonus);
+			if (count == 6) {
+				first++;
+			}
+			if (count == 5 && bonus) {
+				second++;
+			}
+			if (count == 5 && bonus == false) {
+				third++;
+			}
+			if (count == 4) {
+				fourth++;
+			}
+			if (count == 3) {
+				fifth++;
+			}
+		}
+		// 당첨 내역을 출력하는 기능
+		System.out.println("3개 일치 (5,000원) -" + fifth +"개");
+		System.out.println("4개 일치 (50,000원) -" + fourth +"개");
+		System.out.println("5개 일치 (1,500,000원) -" + third +"개");
+		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) -" + second +"개");
+		System.out.println("6개 일치 (2,000,000,000원) -" + first +"개");
 	}
 
 	// 1000원으로 나누어 떨어지는지 확인하는 메소드
@@ -115,10 +161,14 @@ public class Application {
 	}
 	
 	//보너스 번호 유효성 검사 메소드
-	private static void checkBonusNumber(int bonusNumber) {
+	private static void checkBonusNumber(int bonusNumber, List<Integer> winNumbers) {
 		
 		if(bonusNumber < 1 || bonusNumber > 45) {
 			throw new IllegalArgumentException();
+		} else if (winNumbers.contains(bonusNumber)) {
+			throw new IllegalStateException();
 		}
 	}
+	
+	
 }

@@ -23,6 +23,6 @@ public class LottoController {
     public void run() {
         output.requestPurchasePrice();
         PurchasePrice purchasePrice = lottoService.createPurchasePrice(input);
-
+        output.purchaseCount(purchasePrice);
     }
 }

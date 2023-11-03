@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+
 import lotto.validator.InputValidator;
 
 public class PurchasePrice {
@@ -24,5 +26,9 @@ public class PurchasePrice {
 
     public int getPrice() {
         return price;
+    }
+
+    public int calculatePurchaseCount() {
+        return price / LOTTO_PRICE;
     }
 }

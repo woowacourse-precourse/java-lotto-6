@@ -8,7 +8,8 @@ public class LottoGenerator {
 
 
     private static List<Integer> generateLotteryNumber() {
-        List<Integer> lottertyNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottertyNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(lottertyNumbers);
         return lottertyNumbers;
     }
 

@@ -26,4 +26,8 @@ public class MessageService {
         System.out.println(stringBuilder);
     }
 
+    public void inputWinningNumberMessage(){
+        System.out.println();
+        System.out.println(InputMessage.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
+    }
 }

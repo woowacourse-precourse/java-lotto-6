@@ -2,26 +2,28 @@ package lotto.model;
 
 public class PurchasePrice {
 
-    private static int PIECE_OF_LOTTO;
+    private final int PIECE_OF_LOTTO;
     private static final int LOTTO_PRICE_EACH = 1000;
-    private void countPieceOfLotto(String purchasePrice){
-        int PIECE_OF_LOTTO = Integer.parseInt(purchasePrice) / LOTTO_PRICE_EACH;
-        purchasePriceUnder1000(purchasePrice);
-        this.PIECE_OF_LOTTO = PIECE_OF_LOTTO;
+
+    public PurchasePrice(String PIECE_OF_LOTTO){
+        isUnder1000(PIECE_OF_LOTTO);
+        isNotDivisibleBy1000(PIECE_OF_LOTTO);
+        this.PIECE_OF_LOTTO = Integer.parseInt(PIECE_OF_LOTTO);
     }
 
     public int getCountPieceOfLotto(){
-        return PIECE_OF_LOTTO;
+        return this.PIECE_OF_LOTTO;
     }
 
-    private void purchasePriceUnder1000(String purchasePrice){
-        try{
-            if(Integer.parseInt(purchasePrice) < LOTTO_PRICE_EACH){
-                throw new IllegalArgumentException("[ERROR] 로또는 한장은 1000원입니다.");
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            countPieceOfLotto(purchasePrice);
+    private void isUnder1000(String purchasePrice) throws IllegalArgumentException{
+        if(Integer.parseInt(purchasePrice) < LOTTO_PRICE_EACH){
+            throw new IllegalArgumentException("[ERROR] 로또 한장은 1000원입니다.");
+        }
+
+    }
+    private void isNotDivisibleBy1000(String purchasePrice) throws IllegalArgumentException{
+        if(Integer.parseInt(purchasePrice) % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
         }
     }
 }

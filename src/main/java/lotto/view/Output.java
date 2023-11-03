@@ -6,7 +6,7 @@ public class Output {
 
     private static final String LINE_BREAK = "\n";
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String BUY_COUNT_FORMAT = "%n%d개를 구매했습니다.%n";
+    private static final String BUY_COUNT_FORMAT = "%d개를 구매했습니다.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public void showMoneyInputMessage() {
@@ -19,10 +19,12 @@ public class Output {
     }
 
     private void showLottoNumbers(LottoTickets lottoTickets) {
+        lineBreak();
         lottoTickets.getLottos().forEach(System.out::println);
     }
 
     private void showBuyCount(LottoTickets lottoTickets) {
+        lineBreak();
         System.out.printf(BUY_COUNT_FORMAT, lottoTickets.getSize());
     }
 

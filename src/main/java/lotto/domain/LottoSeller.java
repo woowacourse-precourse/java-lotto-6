@@ -1,9 +1,8 @@
-package lotto.service;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.utils.Validator;
 
 public class LottoSeller {
@@ -22,11 +21,11 @@ public class LottoSeller {
 
     public List<Lotto> giveLotto() {
         int countOfLotto = amount / LOTTO_PRICE;
-        makeLottoPaper(countOfLotto);
+        issueLottos(countOfLotto);
         return new ArrayList<>(lottos);
     }
 
-    public void makeLottoPaper(int countOfLotto) {
+    public void issueLottos(int countOfLotto) {
         for (int i = 1; i <= countOfLotto; i++) {
             lottos.add(generateAutoLotto());
         }

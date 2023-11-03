@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.service.LottoSeller;
+import lotto.domain.LottoSeller;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -22,30 +22,21 @@ public class LottoSellerTest {
     @Test
     void notNumberAmountInput() {
         String userInput = "1000원";
-        LottoSeller lottoSeller = new LottoSeller();
-        assertThatThrownBy(() -> lottoSeller.getAmount(userInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEADER + " 숫자만 입력해주세요.");
+        assertInputAmountTest(userInput, ERROR_MESSAGE_HEADER + " 숫자만 입력해주세요.");
     }
 
     @DisplayName("입력한 구매 금액이 1000원 밑이면 예외가 발생한다.")
     @Test
     void lessThanLottoPrice() {
         String userInput = "999";
-        LottoSeller lottoSeller = new LottoSeller();
-        assertThatThrownBy(() -> lottoSeller.getAmount(userInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEADER + " " + LOTTO_PRICE + " 이상의 수를 입력하세요.");
+        assertInputAmountTest(userInput, ERROR_MESSAGE_HEADER + " " + LOTTO_PRICE + " 이상의 수를 입력하세요.");
     }
 
     @DisplayName("입력한 구매 금액이 1000으로 나누어지지 않으면 예외가 발생한다.")
     @Test
     void notDividedByLottoPrice() {
         String userInput = "1500";
-        LottoSeller lottoSeller = new LottoSeller();
-        assertThatThrownBy(() -> lottoSeller.getAmount(userInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE_HEADER + " " + LOTTO_PRICE + " 단위로만 입력하세요.");
+        assertInputAmountTest(userInput, ERROR_MESSAGE_HEADER + " " + LOTTO_PRICE + " 단위로만 입력하세요.");
     }
 
     @DisplayName("구매 금액에 맞는 갯수의 자동 로또(로또 규칙에 맞는 번호를 가짐)를 생성한다.")
@@ -55,7 +46,6 @@ public class LottoSellerTest {
         int validAmount;
         LottoSeller lottoSeller = new LottoSeller();
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-
         try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
             mock.when(() -> Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                     .thenReturn(List.of(1, 2, 3, 4, 5, 6));
@@ -64,5 +54,12 @@ public class LottoSellerTest {
             assertThat(lottos.size()).isEqualTo(validAmount / LOTTO_PRICE);
             assertThat(lottos.get(0).showNumbers()).isEqualTo(lotto.showNumbers());
         }
+    }
+
+    private void assertInputAmountTest(String userInput, String errorMessage) {
+        LottoSeller lottoSeller = new LottoSeller();
+        assertThatThrownBy(() -> lottoSeller.getAmount(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(errorMessage);
     }
 }

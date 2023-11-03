@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Objects;
+
 public final class UserMoney {
     private static final String NEGATIVE_MONEY_EXCEPTION = "사용자가 투입한 금액에서 음수는 입력할 수 없습니다.";
     private static final String ZERO_MONEY_EXCEPTION = "사용자가 투입한 금액에서 0원은 입력할 수 없습니다.";
@@ -15,30 +17,56 @@ public final class UserMoney {
     }
 
     private void validate(int money) {
-        ensurePositive(money);
-        ensureNotZero(money);
-        ensureBelowMaximumLimit(money);
+        validatePositive(money);
+        validateNotZero(money);
+        validateBelowMaximumLimit(money);
+        validateDivisibilityByLottoPrice(money);
     }
 
-    private void ensurePositive(int money) {
+    private void validatePositive(int money) {
         if (money < ZERO_MONEY) {
             throw new IllegalArgumentException(NEGATIVE_MONEY_EXCEPTION);
         }
     }
 
-    private void ensureNotZero(int money) {
+    private void validateNotZero(int money) {
         if (money == ZERO_MONEY) {
             throw new IllegalArgumentException(ZERO_MONEY_EXCEPTION);
         }
     }
 
-    private void ensureBelowMaximumLimit(int money) {
+    private void validateBelowMaximumLimit(int money) {
         if (money > ONE_HUNDRED_MILLION_MONEY) {
             throw new IllegalArgumentException(ONE_HUNDRED_MILLION_MONEY_EXCEPTION);
         }
     }
 
+    private void validateDivisibilityByLottoPrice(int money) {
+        LottoPrice.STANDARD_PRICE.validateDivisibility(money);
+    }
+
     public static UserMoney from(int money) {
         return new UserMoney(money);
+    }
+
+    public int calculateLottoPurchaseCount(int lottoPrice) {
+        return money / lottoPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UserMoney userMoney = (UserMoney) o;
+        return money == userMoney.money;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(money);
     }
 }

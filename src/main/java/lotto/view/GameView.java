@@ -51,6 +51,10 @@ public class GameView {
         System.out.println(formattedStatistics);
     }
 
+    public void showError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private String getInput() {
         return Console.readLine();
     }

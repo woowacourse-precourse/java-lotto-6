@@ -33,17 +33,35 @@ public class GameController {
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
-        String bonusNumberInput = gameView.getBonusNumberInput();
-        return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
+        while (true) {
+            try {
+                String bonusNumberInput = gameView.getBonusNumberInput();
+                return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                gameView.showError(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> getWinningNumbers() {
-        String winningNumbersInput = gameView.getWinningNumbersInput();
-        return inputHandler.handleWinningNumbers(winningNumbersInput);
+        while (true) {
+            try {
+                String winningNumbersInput = gameView.getWinningNumbersInput();
+                return inputHandler.handleWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                gameView.showError(e.getMessage());
+            }
+        }
     }
 
     private int getLottoQuantity() {
-        String purchaseAmountInput = gameView.getPurchaseAmountInput();
-        return inputHandler.handlePurchaseAmount(purchaseAmountInput);
+        while (true) {
+            try {
+                String purchaseAmountInput = gameView.getPurchaseAmountInput();
+                return inputHandler.handlePurchaseAmount(purchaseAmountInput);
+            } catch (IllegalArgumentException e) {
+                gameView.showError(e.getMessage());
+            }
+        }
     }
 }

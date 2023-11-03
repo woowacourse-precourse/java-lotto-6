@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import java.util.Arrays;
+
 public class Validator {
 
     public static void purchaseAmount(String inputPurchaseAmount) {
@@ -17,6 +19,45 @@ public class Validator {
             throw new IllegalArgumentException("1000원 단위로만 입력이 가능합니다.");
         }
     }
+
+    public static void inputWinningNumbers(String inputWinningNumbers) {
+        String[] winningNumbers = inputWinningNumbers.split(",");
+
+        if (isInvalidWinningNumbersSize(winningNumbers)) {
+            throw new IllegalArgumentException(",로 구분하여 총 6개의 숫자를 입력해주세요");
+        }
+
+        if (isNotIntegerWinningNumbers(winningNumbers)) {
+            throw new IllegalArgumentException("당첨 번호에 정수가 아닌 값이 존재합니다.");
+        }
+
+        if (isNumberOutOfRange(winningNumbers)) {
+            throw new IllegalArgumentException("1~45 범위에서 벗어난 숫자가 존재합니다.");
+        }
+
+        if (isDuplicateWinningNumbers(winningNumbers)) {
+            throw new IllegalArgumentException("중복된 값이 존재합니다.");
+        }
+    }
+
+    private static boolean isDuplicateWinningNumbers(String[] winningNumbers) {
+        return Arrays.stream(winningNumbers).distinct().count() != winningNumbers.length;
+    }
+
+    private static boolean isNumberOutOfRange(String[] winningNumbers) {
+        return Arrays.stream(winningNumbers)
+                .mapToInt(Integer::parseInt)
+                .noneMatch(number -> 1 <= number && number <= 45);
+    }
+
+    private static boolean isNotIntegerWinningNumbers(String[] winningNumbers) {
+         return Arrays.stream(winningNumbers).anyMatch(Validator::isNotInteger);
+    }
+
+    private static boolean isInvalidWinningNumbersSize(String[] winningNumbers) {
+        return winningNumbers.length != 6;
+    }
+
 
     private static boolean isPurchaseAmountZero(int purchaseAmount) {
         return purchaseAmount == 0;

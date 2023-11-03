@@ -1,19 +1,19 @@
 package lotto.controller;
 
 import lotto.model.domain.Player;
-import lotto.model.dto.MoneyRequestDto;
+import lotto.model.dto.PlayerRequestDto;
 import lotto.view.InputView;
 
 public class LottoController {
 
     public void run() {
-        getPlayer();
+        System.out.println(getPlayer());
     }
 
     private Player getPlayer() {
         try {
-            MoneyRequestDto moneyRequestDto = InputView.getLottoMoney();
-            return moneyRequestDto.toPlayer();
+            PlayerRequestDto playerRequestDto = InputView.getLottoMoney();
+            return playerRequestDto.toPlayer();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPlayer();

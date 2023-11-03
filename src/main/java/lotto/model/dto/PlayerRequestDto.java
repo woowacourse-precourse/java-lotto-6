@@ -4,18 +4,18 @@ import lotto.model.domain.Player;
 
 import static lotto.constants.Error.NUMERIC_INVALID;
 
-public class MoneyRequestDto {
+public class PlayerRequestDto {
     private final int money;
 
-    public MoneyRequestDto(String money) {
+    public PlayerRequestDto(String money) {
         this.money = validateNumber(money);
     }
 
     public Player toPlayer() {
-        return new Player(money);
+        return Player.from(money);
     }
 
-    private int validateNumber(String money) {
+    private static int validateNumber(String money) {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {

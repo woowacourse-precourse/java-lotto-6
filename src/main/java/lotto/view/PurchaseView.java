@@ -11,7 +11,7 @@ import static lotto.constant.PurchaseMessage.ASK_PURCHASE_PRICE;
 public class PurchaseView {
 
     public static int requestMoney() {
-        printConstantMessage(ASK_PURCHASE_PRICE);
+        printPurchaseMessage(ASK_PURCHASE_PRICE);
         String input = Console.readLine();
         validateMoney(input);
         return createFromInput(input);
@@ -22,7 +22,7 @@ public class PurchaseView {
         return money;
     }
 
-    public static void printConstantMessage(PurchaseMessage purchaseMessage) {
+    public static void printPurchaseMessage(PurchaseMessage purchaseMessage) {
         System.out.println(purchaseMessage.getMessage());
     }
 

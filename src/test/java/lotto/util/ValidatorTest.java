@@ -8,7 +8,7 @@ import static lotto.util.Validator.*;
 class ValidatorTest {
 
     @Test
-    void 로또_구매_금액_검증_예외() {
+    void 로또_구매_금액_검증_예외_테스트() {
 
         assertThatThrownBy(()->{
             Validator.validateAmount("1000g");

@@ -2,6 +2,7 @@ package lotto.util;
 
 public enum ErrorMessage {
     INVALID_NUMBER_FORMAT("숫자만 입력해 주세요"),
+    INVALID_NUMBER_RANGE("번호는 1~45까지만 입력해 주세요"),
     INVALID_PURCHASE_AMOUNT("금액은 1000단위로 입력해 주세요");
 
     private final String message;

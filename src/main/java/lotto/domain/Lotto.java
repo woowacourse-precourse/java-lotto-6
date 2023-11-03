@@ -11,13 +11,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if ( !(isDuplicated(numbers) && numbers.size() == 6)) {
+        if (!(isDuplicated(numbers) && numbers.size() == 6)) {
             throw new IllegalArgumentException();
         }
     }
+
     private boolean isDuplicated(List<Integer> numbers) {
         int size = numbers.size();
-        return size == numbers.stream().distinct().count();
+        return size == numbers.stream()
+                                .distinct()
+                                .count();
     }
 
 

@@ -125,4 +125,48 @@ public class LottoManager {
         }
     }
 
+    public void printWinningResult(User user) {
+        List<Lotto> purchasedLottos = user.getLottos();
+        int bonusNumber = user.getBonusNumber();
+
+        for (Lotto lotto : purchasedLottos) {
+            countMatchingNumbers(user, lotto, bonusNumber);
+        }
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        String sb = Const.fifthPlaceCount + " " + Const.fifthPrize + " - " + user.getFifthPlace() + "개" +
+                '\n' + Const.fourthPlaceCount + " " + Const.fourthPrize + " - " + user.getFourthPlace() + "개" +
+                '\n' + Const.thirdPlaceCount + " " + Const.thirdPrize + " - " + user.getThirdPlace() + "개" +
+                '\n' + Const.secondPlaceCount + " " + Const.secondPrize + " - " + user.getSecondPlace() + "개" +
+                '\n' + Const.firstPlaceCount + " " + Const.firstPrize + " - " + user.getFirstPlace() + "개";
+
+        System.out.println(sb);
+    }
+
+    private void countMatchingNumbers(User user, Lotto purchasedLotto, int bonusNumber) {
+        int count = 0;
+        boolean bonusHit = false;
+
+        for (Integer lotto : user.getUserLotto().getNumbers()) {
+            if (purchasedLotto.getNumbers().contains(lotto)) {
+                count++;
+            }
+        }
+        if (purchasedLotto.getNumbers().contains(bonusNumber)) {
+            count++;
+            bonusHit = true;
+        }
+
+        countScore(user, count, bonusHit);
+    }
+
+    private void countScore(User user, int count, boolean bonusHit) {
+        user.setFifthPlace(count);
+        user.setFourthPlace(count);
+        user.setThirdPlace(count);
+        user.setSecondPlace(count, bonusHit);
+        user.setFirstPlace(count);
+    }
 }

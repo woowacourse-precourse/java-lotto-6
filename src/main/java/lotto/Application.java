@@ -14,6 +14,7 @@ public class Application {
         user.setUserLotto(lotto);
 
         lottoManager.bonusNumberInput(user);
-        System.out.println(user.getBonusNumber());
+
+        lottoManager.printWinningResult(user);
     }
 }

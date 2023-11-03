@@ -9,6 +9,11 @@ public class User {
     private final List<Lotto> lottos;
     private Lotto userLotto;
     private int bonusNumber;
+    private int fifthPlace;
+    private int fourthPlace;
+    private int thirdPlace;
+    private int secondPlace;
+    private int firstPlace;
 
     public User(int price) {
         this.lottoCount = price / Const.priceUnit;
@@ -41,5 +46,55 @@ public class User {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public void setFifthPlace(int count) {
+        if (count == 3) {
+            fifthPlace++;
+        }
+    }
+
+    public int getFifthPlace() {
+        return fifthPlace;
+    }
+
+    public void setFourthPlace(int count) {
+        if (count == 4) {
+            fourthPlace++;
+        }
+    }
+
+    public int getFourthPlace() {
+        return fourthPlace;
+    }
+
+    public void setThirdPlace(int count) {
+        if (count == 5) {
+            thirdPlace++;
+        }
+    }
+
+    public int getThirdPlace() {
+        return thirdPlace;
+    }
+
+    public void setSecondPlace(int count, boolean bonusHit) {
+        if (count == 5 && bonusHit) {
+            secondPlace++;
+        }
+    }
+
+    public int getSecondPlace() {
+        return secondPlace;
+    }
+
+    public void setFirstPlace(int count) {
+        if (count == 6) {
+            firstPlace++;
+        }
+    }
+
+    public int getFirstPlace() {
+        return firstPlace;
     }
 }

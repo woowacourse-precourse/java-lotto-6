@@ -21,16 +21,22 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputView.getPurchaseAmount();
 
-        List<Lotto> purchaseLotto = lottoProcess.purchaseLotto(purchaseAmount);
-
-        outputView.showPurchasedLottos(purchaseLotto);
-
-        Lotto winningNumbers = inputView.getWinningNumbers();
-
-        int bonusNumber = inputView.getBonusNumber();
-
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        List<Lotto> purchaseLotto = getPurchaseLotto(purchaseAmount);
+        WinningLotto winningLotto = getWinningLotto();
 
         outputView.showPrizeResult(purchaseLotto, winningLotto, purchaseAmount);
+    }
+
+    private List<Lotto> getPurchaseLotto(int purchaseAmount) {
+        List<Lotto> purchaseLotto = lottoProcess.purchaseLotto(purchaseAmount);
+        outputView.showPurchasedLottos(purchaseLotto);
+        return purchaseLotto;
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto winningNumbers = inputView.getWinningNumbers();
+        int bonusNumber = inputView.getBonusNumber();
+
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }

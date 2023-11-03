@@ -3,13 +3,13 @@ package lotto.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record LottoResultResponseDto(List<Integer> prizeCount, BigDecimal profitRate) {
+public record LottoResultResponseDto(List<Integer> prizeReuslts, BigDecimal profitRate) {
 
-    public int prizeCountValue(int index) {
-        return prizeCount.get(index);
+    public int getPrizeResultCount(int index) {
+        return prizeReuslts.get(index);
     }
 
-    public String profitRatePrint() {
+    public String toStringProfitRate() {
         return profitRate.stripTrailingZeros()
                 .toPlainString();
     }

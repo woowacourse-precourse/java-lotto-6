@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
 
     public OutputView() {
@@ -54,15 +56,15 @@ public class OutputView {
     /**
      * 당첨 통계
      */
-    public static void winStatisticsOutput() {
+    public static void lottoResultOutput(List<Integer> prizeResults, String profitRate) {
         System.out.println("당첨 통계");
         System.out.println("----");
-        System.out.println("3개 일치 (5,000원) - 1개");
-        System.out.println("4개 일치 (50,000원) - 0개");
-        System.out.println("5개 일치 (1,500,000원) - 0개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
-        System.out.println("6개 일치 (2,000,000,000원) - 0개");
-        System.out.println("총 수익률은 62.5%입니다.");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", prizeResults.get(4));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", prizeResults.get(3));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", prizeResults.get(2));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", prizeResults.get(1));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", prizeResults.get(0));
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
     /**

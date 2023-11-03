@@ -10,6 +10,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.WinLotto;
 import lotto.dto.AmountRequestDto;
 import lotto.dto.BonusRequestDto;
+import lotto.dto.LottoResultResponseDto;
 import lotto.dto.WinLottoRequestDto;
 import lotto.exception.InputException;
 import lotto.exception.LottoException;
@@ -20,6 +21,7 @@ public class LottoStoreController {
 
     private final LottoMachine lottoMachine;
     private Consumer consumer;
+    private LottoResult lottoResult;
 
     public LottoStoreController() {
         this.lottoMachine = LottoMachine.getInstance();
@@ -36,20 +38,17 @@ public class LottoStoreController {
         // 로또 당첨 번호 및 보너스 번호 입력
         enterWinningNumber();
 
-        // ======================= 로또 당첨 비교 기능 start =======================
-        List<LottoPrize> lottoRanks = new ArrayList<>();
-        List<Lotto> lottos = consumer.getLottos();
-        for (Lotto lotto : lottos) {
-            lottoRanks.add(lottoMachine.lottoWinningResult(lotto));
-        }
-        LottoResult lottoResult = new LottoResult(lottoRanks, consumer.getBuyAmount());
-        lottoResult.getLottoWinningResults();
-        // ======================= 로또 당첨 비교 기능 end =======================
+        // 로또 당첨 결과
+        lottoWinningResults();
 
-        // ======================= 수익률 출력 기능 start =======================
-        // ======================= 수익률 출력 기능 end =======================
+        // 당첨 결과 출력
+        resultPrint();
+
     }
 
+    /**
+     * 구매 금액 등록
+     */
     private void enterBuyerPurchaseAmount() {
         try {
             // 구매 금액 입력 문구 출력
@@ -73,6 +72,9 @@ public class LottoStoreController {
         }
     }
 
+    /**
+     * 로또 구매
+     */
     private void buyerLottoPurchase() {
         // 요청 한 갯수만큼의 로또 생성
         List<Lotto> createLottos = lottoMachine.createLottos(consumer.getBuyAvailableQuantity());
@@ -87,6 +89,11 @@ public class LottoStoreController {
         OutputView.newLineOutput();
     }
 
+    /**
+     * 로또 정보 출력
+     *
+     * @param lottos
+     */
     private void createLottosPrint(List<Lotto> lottos) {
         // 구입 로또 수량 출력
         OutputView.lottoBuyQuantityOutput(consumer.getBuyAvailableQuantity());
@@ -97,6 +104,9 @@ public class LottoStoreController {
         }
     }
 
+    /**
+     * 로또 당첨 번호 등록
+     */
     private void enterWinningNumber() {
         try {
             // 당첨 번호 입력 문구 출력
@@ -123,6 +133,11 @@ public class LottoStoreController {
         }
     }
 
+    /**
+     * 로또 보너스 번호 등록
+     *
+     * @param lotto
+     */
     private void enterBonusNumber(Lotto lotto) {
         try {
             // 보너스 번호 입력 문구 출력
@@ -145,6 +160,32 @@ public class LottoStoreController {
             // 보너스 번호 재 입력
             enterBonusNumber(lotto);
         }
+    }
+
+    /**
+     * 로또 당첨 결과
+     */
+    private void lottoWinningResults() {
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+        List<Lotto> lottos = consumer.getLottos();
+        for (Lotto lotto : lottos) {
+            lottoPrizes.add(lottoMachine.lottoWinningResult(lotto));
+        }
+
+        // 로또 당첨 결과 등록
+        lottoResult = new LottoResult(lottoPrizes, consumer.getBuyAmount());
+    }
+
+    /**
+     * 당첨 결과 출력
+     */
+    private void resultPrint() {
+        LottoResultResponseDto lottoResultResponseDto = new LottoResultResponseDto(
+                lottoResult.getLottoWinningCounts()
+                , lottoResult.getProfitRate()
+        );
+        OutputView.lottoResultOutput(lottoResultResponseDto.prizeReuslts(),
+                lottoResultResponseDto.toStringProfitRate());
     }
 
 }

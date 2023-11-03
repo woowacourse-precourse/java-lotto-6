@@ -3,13 +3,13 @@ package lotto.validator;
 import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_MESSAGE;
 import static lotto.constant.ErrorMessage.NOT_NUMBER_MESSAGE;
 import static lotto.constant.ErrorMessage.OVER_RANGE_MESSAGE;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 import lotto.view.Output;
 
 public class InputValidator {
     //상수들 역할에 따라 분리
-    private static final int DIVISIBLE_VALUE = 0;
-    private static final int UNIT_PRICE = 1000;
+
     private static final String NUMBER_REGEX = "[0-9]+";
 
     public static void onlyNumber(String input) {
@@ -46,7 +46,7 @@ public class InputValidator {
 
     private static boolean isNotDivisibleUnit(int price) {
         //상수화를 시키는 것이 오히려 가독성을 떨어뜨리는 느낌?
-        if ((price % UNIT_PRICE == 0) && (price != 0)) {
+        if ((price % LOTTO_PRICE == 0) && (price != 0)) {
             return false;
         }
         return true;

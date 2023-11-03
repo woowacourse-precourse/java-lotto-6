@@ -1,5 +1,6 @@
-package lotto;
+package lotto.handler;
 
+import lotto.manager.LottoManager;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -27,7 +28,7 @@ public class LottoHandler {
         this.lottoViewResolver = lottoViewResolver;
     }
 
-    void run() {
+    public void run() {
         Money money = getMoney();
         Lottos lottos = lottoManager.createLottos(money.getMoney());
 

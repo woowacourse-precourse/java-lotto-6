@@ -7,9 +7,9 @@ import lotto.view.InputView;
 
 public class InputController {
     private static String inputLottoPurchaseAmount;
-    public static void inputController(InputDto inputDto) {
 
-        while(lottoPurchaseAmountValidator(getInputPurchase())) {
+    public static void InputLottoPurchaseAmount(InputDto inputDto) {
+        while (lottoPurchaseAmountValidator(getInputPurchase())) {
             inputDto.setLottoPurchaseAmount(inputLottoPurchaseAmount);
         }
     }

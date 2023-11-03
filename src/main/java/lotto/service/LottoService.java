@@ -29,7 +29,7 @@ public class LottoService {
 
     public Map<Prize, Integer> getLotteryResult(User user, WinningNumbers winningNumbers) {
         Set<Integer> originalWinningNumbers = winningNumbers.getOriginalWinningNumbers();
-        Map<Prize, Integer> rewardMap = new HashMap<>();
+        Map<Prize, Integer> rewardCount = initializeRewardCount();
         for (Lotto lotto : user.getLotto()) {
             int count = countLottoByWinningNumbers(lotto, originalWinningNumbers);
             boolean isExistBonusNumber = false;
@@ -38,10 +38,19 @@ public class LottoService {
             }
             Prize prize = getPrize(count, isExistBonusNumber);
             if (prize != null) {
-                rewardMap.put(prize, rewardMap.getOrDefault(prize, 0) + 1);
+                rewardCount.put(prize, rewardCount.get(prize) + 1);
             }
         }
-        return rewardMap;
+        return rewardCount;
+    }
+    public Map<Prize,Integer> initializeRewardCount(){
+        Map<Prize, Integer> rewardCount = new HashMap<>();
+        rewardCount.put(Prize.FIRST_REWARD, 0);
+        rewardCount.put(Prize.SECOND_REWARD, 0);
+        rewardCount.put(Prize.THIRD_REWARD, 0);
+        rewardCount.put(Prize.FOURTH_REWARD, 0);
+        rewardCount.put(Prize.FIFTH_REWARD, 0);
+        return rewardCount;
     }
 
     public int countLottoByWinningNumbers(Lotto lotto, Set<Integer> winningNumbers) {

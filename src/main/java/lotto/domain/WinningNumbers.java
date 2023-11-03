@@ -22,7 +22,7 @@ public class WinningNumbers {
         }
         validateLottoRange(bonusNumber);
         if(originalWinningNumbers.contains(bonusNumber)){
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_WINNING_NUMBERS_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_CONTAINS_BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
         }
     }
     

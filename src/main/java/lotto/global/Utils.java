@@ -1,9 +1,12 @@
 package lotto.global;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class ValidationUtils {
+public class Utils {
     public static final Pattern NUMBER_CHECK_PATTERN = Pattern.compile("^[0-9]+$");
+    public static final NumberFormat NUMBER_FORMAT_US = NumberFormat.getNumberInstance(Locale.US);
 
     public static void checkNumber(String input){
         if(!NUMBER_CHECK_PATTERN.matcher(input).matches()){

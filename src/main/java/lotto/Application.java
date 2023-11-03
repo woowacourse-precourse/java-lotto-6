@@ -1,7 +1,16 @@
 package lotto;
 
+import lotto.domain.Controller.LottoController;
+import lotto.domain.Model.Lotto;
+import lotto.domain.Model.LottoMaker;
+import lotto.domain.View.LottoView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoView view = new LottoView();
+        LottoMaker lottoMaker = new LottoMaker();
+        LottoController controller = new LottoController(view, lottoMaker);
+
+        controller.run();
     }
 }

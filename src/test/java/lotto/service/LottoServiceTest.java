@@ -1,9 +1,16 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +32,22 @@ class LottoServiceTest {
 
         // then
         assertTrue(lottoCount.equals(expectedLottoCount));
+    }
+
+    @DisplayName("로또 개수만큼의 로또 리스트를 생성하는지")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8})
+    void createLottoList(Integer lottoCount) {
+        // given
+        List<Integer> randomNumbers = lottoService.createRandomNumbers();
+
+        // when
+        List<Lotto> lottos = IntStream.range(0, lottoCount)
+                        .mapToObj(i -> new Lotto(randomNumbers))
+                        .collect(Collectors.toList());
+
+        // then
+        assertEquals(lottos.size(), lottoCount);
     }
 
 }

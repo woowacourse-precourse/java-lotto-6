@@ -17,7 +17,7 @@ public class LottoNumberException {
 
     private static void lottoSizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR.printMessage() + LOTTO_SIZE.printMessage());
+            throw new IllegalArgumentException(ERROR.getMessage() + LOTTO_SIZE.getMessage());
         }
     }
 
@@ -25,7 +25,7 @@ public class LottoNumberException {
         Set<Integer> validate = new HashSet<>(numbers);
 
         if (validate.size() != 6) {
-            throw new IllegalArgumentException(ERROR.printMessage() + LOTTO_DUPLICATE.printMessage());
+            throw new IllegalArgumentException(ERROR.getMessage() + LOTTO_DUPLICATE.getMessage());
         }
     }
 }

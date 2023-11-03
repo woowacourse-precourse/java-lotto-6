@@ -11,6 +11,6 @@ class CustomerTest {
     void createCustomerByNotNumber() {
         assertThatThrownBy(() -> new Customer("테스트!"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 숫자를 입력해주세요.");
     }
 }

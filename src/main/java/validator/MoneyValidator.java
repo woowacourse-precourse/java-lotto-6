@@ -3,6 +3,7 @@ package validator;
 import static constant.ExceptionMessage.ERROR_MESSAGE;
 import static constant.ExceptionMessage.NON_INTEGER_AMOUNT;
 import static constant.ExceptionMessage.NON_MULTIPLE_OF_1000;
+import static constant.ExceptionMessage.ZERO_INTEGER_AMOUNT;
 
 public class MoneyValidator {
     private MoneyValidator() {
@@ -14,6 +15,15 @@ public class MoneyValidator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + NON_INTEGER_AMOUNT.getMessage()
+            );
+        }
+    }
+
+    public static void isZero(String money) {
+        int integerMoney = Integer.parseInt(money);
+        if (integerMoney == 0) {
+            throw new IllegalArgumentException(
+                    ERROR_MESSAGE.getMessage() + ZERO_INTEGER_AMOUNT.getMessage()
             );
         }
     }

@@ -12,6 +12,7 @@ public class Money {
 
     private void validate(String money) {
         MoneyValidator.isNumeric(money);
+        MoneyValidator.isZero(money);
         MoneyValidator.isThousandUnit(money);
     }
 

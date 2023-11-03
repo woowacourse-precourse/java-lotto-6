@@ -18,7 +18,7 @@ public class InputService {
         return Long.parseLong(input);
     }
 
-    // 리팩토링 필요
+    // 리팩토링 필요 !!!
     private static void validateExpenseValue(String input) {
         for (int i = 1; i < 4; i++)
             if (input.charAt(input.length() - i) != '0')
@@ -34,6 +34,7 @@ public class InputService {
     }
 
 
+    // 정렬 기능 추가해야 !!!
     public static List<Integer> readWinNumbers() {
         List<Integer> winNumbers = new ArrayList<>();
         String[] input = readLine().split(SPLIT_DELIMITER);
@@ -43,9 +44,9 @@ public class InputService {
             winNumbers.add(Integer.parseInt(num));
         }
 
+        winNumbers.sort(Integer::compareTo);
         return winNumbers;
     }
-
 
     public static int readBonusNumber() {
         String input = readLine();

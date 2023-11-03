@@ -1,5 +1,6 @@
 package lotto.domain.money;
 
+import java.util.Objects;
 import lotto.domain.money.exception.InvalidMoneyAmountException;
 
 /**
@@ -8,7 +9,7 @@ import lotto.domain.money.exception.InvalidMoneyAmountException;
  * <p>
  * 또한 다른 `Money` 혹은 `int`와 금액 비교도 가능합니다.
  */
-public final class Money {
+public class Money {
 
     /**
      * Money가 반드시 가져야 하는 최소 금액입니다.
@@ -18,12 +19,12 @@ public final class Money {
     /**
      * Money의 잔액을 나타내는 필드입니다. 메소드를 통해 변경 가능합니다.
      */
-    private int amount;
+    protected int amount;
 
     /**
      * Money 생성 시, <h3 color="#bf0f4d">amount는 반드시 0 이상이어야 합니다.</h3>
      */
-    private Money(final int amount) {
+    protected Money(final int amount) {
         validateMoneyAmount(amount);
         this.amount = amount;
     }
@@ -51,14 +52,19 @@ public final class Money {
         }
     }
 
+    public Money increased(final Money other) {
+        return new Money(amount + other.amount);
+    }
 
     /**
      * 현재 가진 소지금에서 amount 만큼을 제합니다.
      */
-    public void spend(final Money other) {
-        final int remainedAmount = this.amount - other.amount;
-        validateMoneyAmount(remainedAmount);
-        this.amount = remainedAmount;
+    public Money decreased(final Money other) {
+        return new Money(amount - other.amount);
+    }
+
+    public Money multiplied(final int x) {
+        return new Money(amount * x);
     }
 
     /**
@@ -66,5 +72,26 @@ public final class Money {
      */
     public boolean isLessThan(final Money other) {
         return this.amount < other.amount;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Money money = (Money) o;
+        return amount == money.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
+    }
+
+    public double toDouble() {
+        return amount;
     }
 }

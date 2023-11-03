@@ -19,6 +19,10 @@ public class LottoFactory {
         return new Lotto(getSortedLottoNumbers());
     }
 
+    public static Lotto getLotto(List<Integer> numbers){
+        return new Lotto(numbers);
+    }
+
     private static List<Integer> getSortedLottoNumbers() {
         List<Integer> lottoNumbers = getLottoNumbers();
         Collections.sort(lottoNumbers);

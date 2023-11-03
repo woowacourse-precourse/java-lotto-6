@@ -38,4 +38,9 @@ public class LottoController {
                 .toList();
     }
 
+    public Lotto requestWinningLotto() {
+        List<Integer> winningLottoNumbers = lottoBuyInputView.requestWinningLottoNumbers();
+        return LottoFactory.getLotto(winningLottoNumbers);
+    }
+
 }

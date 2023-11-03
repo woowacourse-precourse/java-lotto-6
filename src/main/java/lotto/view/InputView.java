@@ -24,14 +24,13 @@ public class InputView {
         String input = readLine();
         InputValidator.validateWinningNumbers(input);
 
-        return Arrays.stream(input.split(", "))
-                .map(Integer::parseInt)
-                .toList();
+        return Arrays.stream(input.split(", ")).map(Integer::parseInt).toList();
     }
 
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String input = readLine();
+        InputValidator.validateBonusNumber(input);
 
         return Integer.parseInt(input);
     }

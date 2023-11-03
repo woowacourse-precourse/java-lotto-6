@@ -5,9 +5,23 @@ import java.util.List;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Integer> winningCount = new ArrayList<>();
+    private final List<Boolean> hasBonusNumber = new ArrayList<>();
 
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
+    }
+
+    public void addWinningCount(int count) {
+        winningCount.add(count);
+    }
+
+    public void checkBonusNumberMatched(boolean isBonusNumber) {
+        hasBonusNumber.add(isBonusNumber);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     public String getPurchaseDetails() {

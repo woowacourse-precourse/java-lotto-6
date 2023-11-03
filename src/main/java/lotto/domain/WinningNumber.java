@@ -24,7 +24,11 @@ public class WinningNumber {
         this.bonusNumber = inputBonusNumber;
     }
 
-    public boolean isWinningNumber(int lottoNumber) {
+    public boolean isWinningNumbersMatched(int lottoNumber) {
         return winningNumbers.get(lottoNumber);
+    }
+
+    public boolean hasBonusNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream().anyMatch(number -> number == bonusNumber);
     }
 }

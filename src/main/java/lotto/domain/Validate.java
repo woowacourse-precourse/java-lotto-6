@@ -3,15 +3,16 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.Application;
 import lotto.constants.ErrorMessage;
 
 public class Validate {
-    private final int CURRENCY_UNIT = 1000;
     private final int MAX_NUMBER = 45;
     private final int MIN_NUMBER = 1;
     private final int MAKE_ERROR_NUMBER = -1;
     private final int SIZE_OF_NUMBERS = 6;
     private final String SEPARATOR = ",";
+
     // InputPrice
     public long validateInputPrice(String input) {
         long result;
@@ -33,11 +34,11 @@ public class Validate {
     }
 
     private boolean canDivide(long input) {
-        if (input % CURRENCY_UNIT != 0 || input == 0) {
+        if (input % Application.CURRENCY_UNIT != 0 || input == 0) {
             throw new IllegalArgumentException();
         }
 
-        if (input % CURRENCY_UNIT == 0) {
+        if (input % Application.CURRENCY_UNIT == 0) {
             return true;
         }
 
@@ -92,6 +93,40 @@ public class Validate {
         return null;
     }
 
+
+    private boolean checkInputListSize(List<?> list) {
+        int result = list.size();
+        if (result == SIZE_OF_NUMBERS) {
+            return true;
+        }
+        return false;
+    }
+
+    // BonusNumber
+    public int validateBonusNumber(String input, List<Integer> list) {
+        int result = MAKE_ERROR_NUMBER;
+        try {
+            int number = Integer.parseInt(input);
+
+            if (!list.contains(checkRangeOfNumber(number))) {
+                return number;
+            }
+            throw new IllegalArgumentException(ErrorMessage.CHECK_NOT_CONTAIN_NUMBERS.toString());
+        } catch (NumberFormatException e) {
+            errorNotNumber();
+            return MAKE_ERROR_NUMBER;
+        } catch (IllegalArgumentException e) {
+            System.out.print(ErrorMessage.ERROR_MESSAGE);
+            System.out.println(e);
+        }
+
+        return result;
+    }
+
+    private void errorNotNumber() {
+        System.out.print(ErrorMessage.ERROR_MESSAGE);
+        System.out.println(ErrorMessage.IS_NOT_NUMBER);
+    }
     private int checkRangeOfNumber(int number) {
         int result = number;
 
@@ -104,18 +139,5 @@ public class Validate {
         }
 
         return MAKE_ERROR_NUMBER;
-    }
-
-    private boolean checkInputListSize(List<?> list) {
-        int result = list.size();
-        if (result == SIZE_OF_NUMBERS) {
-            return true;
-        }
-        return false;
-    }
-
-    private void errorNotNumber() {
-        System.out.print(ErrorMessage.ERROR_MESSAGE);
-        System.out.println(ErrorMessage.IS_NOT_NUMBER);
     }
 }

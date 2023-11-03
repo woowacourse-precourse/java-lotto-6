@@ -6,6 +6,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final int ERROR_NUMBER = -1;
+    private final int MIN_PRICE = 1000;
     Validate validate = new Validate();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -15,7 +17,7 @@ public class LottoController {
         while (true) {
             price = validate.validateInputPrice(inputPrice);
 
-            if (price >= 1) {
+            if (price >= MIN_PRICE) {
                 break;
             }
 
@@ -31,11 +33,27 @@ public class LottoController {
         while (true) {
             result = validate.validateWinnerNumbers(inputNumbers);
 
-            if (!result.contains(-1)) {
+            if (!result.contains(ERROR_NUMBER)) {
                 break;
             }
 
             inputNumbers = inputView.inputMessageWinnerNumbers();
+        }
+
+        return result;
+    }
+
+    public int BonusNumbers(List<Integer> list) {
+        int result = 0;
+        String inputNumber = inputView.inputMessageBonusNumber();
+        while (true) {
+            result = validate.validateBonusNumber(inputNumber, list);
+
+            if (result > ERROR_NUMBER) {
+                break;
+            }
+
+            inputNumber = inputView.inputMessageBonusNumber();
         }
 
         return result;

@@ -5,7 +5,7 @@ import static lotto.enums.NumberCondition.LOWEST_PRIZE_RANK;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import lotto.model.User;
 import lotto.utils.Converter;
@@ -40,14 +40,23 @@ public class OutputView {
     private static void printTicket(List<Integer> numbers) {
         StringBuilder ticket = new StringBuilder();
         int lottoSize = LOTTO_SIZE.number();
-        Collections.sort(numbers);
+        int[] sortedNumbers = sortNumbers(numbers, lottoSize);
         for (int index = 0; index < lottoSize; index++) {
-            ticket.append(numbers.get(index));
+            ticket.append(sortedNumbers[index]);
             if (index < lottoSize - 1) {
                 ticket.append(NUMBER_DIVISOR);
             }
         }
         System.out.printf((TICKET) + "%n", ticket);
+    }
+
+    private static int[] sortNumbers(List<Integer> numbers, int lottoSize) {
+        int[] sortedNumbers = new int[lottoSize];
+        for (int index = 0; index < lottoSize; index++) {
+            sortedNumbers[index] = numbers.get(index);
+        }
+        Arrays.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     public static void printPrizeDetails(int[] nthPrizeNumber) {

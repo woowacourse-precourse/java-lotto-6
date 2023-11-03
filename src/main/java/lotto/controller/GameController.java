@@ -135,8 +135,8 @@ public class GameController {
         BigDecimal money = new BigDecimal(count * MONEY_UNIT.number());
         BigDecimal totalPrizeMoney = new BigDecimal(totalPrizeMoney());
         BigDecimal convertToPercent = new BigDecimal(PERCENT_CONVERTER);
-        returnRate = totalPrizeMoney.divide(money, 2, RoundingMode.HALF_UP)
-                .multiply(convertToPercent);
+        returnRate = totalPrizeMoney.multiply(convertToPercent)
+                .divide(money, 1, RoundingMode.HALF_UP);
     }
 
     private int totalPrizeMoney() {

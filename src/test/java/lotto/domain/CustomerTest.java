@@ -43,7 +43,7 @@ class CustomerTest {
     void possibleBuyLottoByCashInHand() {
         Customer customer = new Customer("10000");
 
-        int result = customer.calculateLottoNum();
+        Integer result = customer.calculateLottoNum();
 
         assertThat(result).isEqualTo(10);
     }

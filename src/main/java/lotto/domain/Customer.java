@@ -9,4 +9,8 @@ public class Customer {
         validate(money);
         this.MONEY = Integer.parseInt(money);
     }
+
+    public Integer calculateLottoNum() {
+        return MONEY / 1000;
+    }
 }

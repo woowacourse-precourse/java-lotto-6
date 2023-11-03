@@ -14,17 +14,19 @@ public class UserLotto {
         printMyLotto();
     }
 
-    private void buyLotto(){
-        int count = InputHandler.readMoney()/1000;
-        for(int i=0;i<count;i++){
+    private void buyLotto() {
+        int count = InputHandler.readMoney() / 1000;
+        for (int i = 0; i < count; i++) {
             userLottory.add(makeLotto());
         }
     }
-    private Lotto makeLotto(){
+
+    private Lotto makeLotto() {
         return new Lotto(RandomNumGenerator.makeUniqueRandomList());
     }
 
-    private void printMyLotto(){
+    private void printMyLotto() {
+        OutputHandler.printReceipts(userLottory.size());
         userLottory.printAllLotto();
     }
 }

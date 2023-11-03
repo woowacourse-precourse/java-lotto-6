@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         lottoSizeValidate(numbers);
         lottoNumberRangeValidate(numbers);
+        lottoDuplicateNumberValidate(numbers);
     }
 
     private void lottoSizeValidate(List<Integer> numbers) {
@@ -32,5 +34,11 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         });
+    }
+
+    private void lottoDuplicateNumberValidate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -71,7 +71,7 @@ public class Validator {
     private static boolean isNumberOutOfRange(String[] winningNumbers) {
         return Arrays.stream(winningNumbers)
                 .mapToInt(Integer::parseInt)
-                .noneMatch(number -> 1 <= number && number <= 45);
+                .anyMatch(number -> !(1 <= number && number <= 45));
     }
 
     private static boolean isNotIntegerWinningNumbers(String[] winningNumbers) {

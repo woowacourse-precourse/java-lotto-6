@@ -50,6 +50,4 @@ public class Lotto {
             exceptionCodeThrow(LOTTO_NUMBER_OVER_OR_UNDER_SIZE);
         }
     }
-
-    // TODO: 추가 기능 구현
 }

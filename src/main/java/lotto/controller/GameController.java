@@ -26,8 +26,9 @@ public class GameController {
         outputLottos();
         System.out.println();
 
-        WinningNumber winningNumber = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
-        BonusNumber bonusNumber = new BonusNumber(inputBonusNumber()); // 보너스 번호 입력 받기
+        WinningNumber winningNumbers = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
+        System.out.println();
+        BonusNumber bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
     }
 
     private static String inputPurchaseMoney(){

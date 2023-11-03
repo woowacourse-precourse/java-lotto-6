@@ -3,7 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 
 public class LottoService {
     public List<Lotto> publish(int quantity) {
@@ -15,5 +17,7 @@ public class LottoService {
         }
         return publishedLotto;
     }
-
+    public WinningNumbers getWinningNumbers(Set<Integer> originalWinningNumbers, int bonusNumber){
+        return new WinningNumbers(originalWinningNumbers, bonusNumber);
+    }
 }

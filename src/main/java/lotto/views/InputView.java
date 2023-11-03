@@ -21,13 +21,6 @@ public class InputView {
         return Long.parseLong(input);
     }
 
-    public WinningNumbers getWinningNumbers(){
-        Set<Integer> originalWinningNumbers = getOriginalWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(originalWinningNumbers, bonusNumber);
-        return winningNumbers;
-    }
-
     public Set<Integer> getOriginalWinningNumbers(){
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
         String[] input = Console.readLine().split(",");

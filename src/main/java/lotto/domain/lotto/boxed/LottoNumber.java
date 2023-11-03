@@ -1,5 +1,6 @@
 package lotto.domain.lotto.boxed;
 
+import java.util.Objects;
 import lotto.domain.lotto.exception.InvalidLottoNumberException;
 
 /**
@@ -37,4 +38,23 @@ public sealed class LottoNumber permits BonusNumber {
         }
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null ||
+                (o.getClass() != LottoNumber.class && o.getClass() != BonusNumber.class) ||
+                (getClass() != LottoNumber.class && getClass() != BonusNumber.class)
+        ) {
+            return false;
+        }
+        final LottoNumber that = (LottoNumber) o;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }

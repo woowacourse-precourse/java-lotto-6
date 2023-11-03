@@ -25,30 +25,48 @@ public class ConsoleView {
 
     public static List<Integer> getListInput() {
         String _input = getInput();
+        try {
+            List<Integer> parsedOutput = toIntegerList(_input);
+            validate6Length(parsedOutput);
+            return parsedOutput;
+        } catch (NumberFormatException e) {
+            print("[ERROR] 올바르지 못한 숫자");
+        } catch (IllegalArgumentException e) {
+            print("[ERROR] 로또 번호는 1 이상 45 사이 숫자 중 중복 없이 6개를 골라야 합니다.");
+        }
+        return getListInput();
+    }
+    private static List<Integer> toIntegerList(String _input) throws NumberFormatException, IllegalArgumentException{
         List<Integer> parsedOutput = new ArrayList<>();
         for (String s : _input.split(",")) {
-            try {
-                int number = Integer.parseInt(s);
-                if (parsedOutput.contains(number)) {
-                    throw new IllegalArgumentException();
-                }
-                if(number < 1 || number < 45){
-                    throw new IllegalArgumentException();
-                }
-                parsedOutput.add(number);
-
-            } catch (NumberFormatException e) {
-                print("[ERROR] 올바르지 못한 숫자");
-                return getListInput();
-            } catch (IllegalArgumentException e) {
-                print("[ERROR] 로또 번호는 중복되면 안됩니다.");
-            }
-        }
-        if(parsedOutput.size()!=6){
-            print("[ERROR] 당첨번호는 6개만 입력해주세요.");
-            return getListInput();
+            int number = Integer.parseInt(s);
+            validateDuplicate(parsedOutput, number);
+            validateInRange(number);
+            parsedOutput.add(number);
         }
         return parsedOutput;
     }
+
+    private static void validateInRange(int number) throws IllegalArgumentException {
+        if (number < 1) {
+            throw new IllegalArgumentException();
+        }
+        if (number > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> parsedOutput, int number) throws IllegalArgumentException {
+        if (parsedOutput.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validate6Length(List<Integer> parsedOutput) {
+        if (parsedOutput.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
 }

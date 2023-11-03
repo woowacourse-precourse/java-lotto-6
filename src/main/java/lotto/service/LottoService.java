@@ -6,10 +6,14 @@ import static lotto.domain.Lotto.MAX;
 import static lotto.domain.Lotto.MIN;
 import static lotto.domain.Lotto.NUMBER_LENGTH;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Game;
+import java.util.Locale;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.ResultCode;
 
 public class LottoService {
 
@@ -76,13 +80,30 @@ public class LottoService {
 
     public List<Lotto> issueLotto(Integer purchasePrice) {
         List<Lotto> result = new ArrayList<>();
-        for(int i = 0; i < purchasePrice / 1000; i++) {
+        for (int i = 0; i < purchasePrice / 1000; i++) {
             result.add(new Lotto(pickUniqueNumbersInRange(MIN, MAX, NUMBER_LENGTH)));
         }
         return result;
     }
 
-    public void printResult() {
+    public void printResult(Map<ResultCode, Integer> resultMap) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Arrays.stream(ResultCode.values()).forEach(v -> printSingleResult(v, resultMap.getOrDefault(v, 0)));
+    }
 
+    private void printSingleResult(ResultCode resultCode, Integer value) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+
+        System.out.printf("%d개 일치", resultCode.matchCount);
+        if (resultCode.bonusMatch) {
+            System.out.print(", 보너스 볼 일치");
+        }
+        System.out.printf(" (%s원) - %d개", numberFormat.format(resultCode.prize), value);
+        System.out.println();
+    }
+
+    public void printProfitability(double profitability) {
+        System.out.printf("총 수익률은 %f%입니다.", profitability);
     }
 }

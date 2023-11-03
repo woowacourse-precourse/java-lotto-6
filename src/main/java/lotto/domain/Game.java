@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Game implements Constraints {
 
@@ -48,7 +47,7 @@ public class Game implements Constraints {
                 continue;
             }
 
-            updateMap(result, calculateResultCode(lotto, matchCount));
+            updateMap(result, calculateResultCode(matchCount, containsBonusNumber(lotto)));
         }
         return result;
     }
@@ -57,21 +56,11 @@ public class Game implements Constraints {
         return winningNumbers.stream().filter(lotto.getNumbers()::contains).count();
     }
 
-    private ResultCode calculateResultCode(Lotto lotto, long matchCount) {
-        if (matchCount == 6) {
-            return ResultCode.FIRST;
-        }
-        if (matchCount == 5 && containsBonusNumber(lotto)) {
-            return ResultCode.SECOND;
-        }
-        if (matchCount == 5) {
-            return ResultCode.THIRD;
-        }
-        if (matchCount == 4) {
-            return ResultCode.FOURTH;
-        }
-
-        return ResultCode.FIFTH;
+    private ResultCode calculateResultCode(long matchCount, boolean isBonusNumberMatch) {
+        return Arrays.stream(ResultCode.values())
+                .filter(v -> v.matchCount == matchCount && v.bonusMatch == isBonusNumberMatch)
+                .findFirst()
+                .orElse(null);
     }
 
     private boolean containsBonusNumber(Lotto lotto) {

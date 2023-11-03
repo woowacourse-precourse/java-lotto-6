@@ -6,7 +6,10 @@ public class AmountLotto {
     private static final int lottoAmount = 1000;
     private int amount;
 
-    public AmountLotto(String amount){
+    public AmountLotto(){
+    }
+
+    public void responseAmountLotto(String amount){
         LottoValidator.amountInputValidator(amount);
         this.amount = Integer.parseInt(amount);
     }

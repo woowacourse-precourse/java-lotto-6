@@ -5,7 +5,6 @@ import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import lotto.validator.InputValidator;
 
 public class PurchasePrice {
-    //static 적어주어야하나
 
     private final int price;
 

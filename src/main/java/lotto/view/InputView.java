@@ -8,9 +8,14 @@ import java.util.List;
 
 public class InputView {
     public static int readPurChaseLottoAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String amount = Console.readLine();
-        Validator.validatePurChaseAmount(amount);
+        String amount = "";
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            amount = Console.readLine();
+            Validator.validatePurChaseAmount(amount);
+        } catch (IllegalArgumentException e) {
+            readPurChaseLottoAmount();
+        }
         System.out.println();
         return Integer.parseInt(amount) / 1000;
     }

@@ -2,12 +2,12 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.domain.lottoresult.LottoResultStatus;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class WinningStatusTest {
+class LottoResultStatusTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -16,8 +16,8 @@ class WinningStatusTest {
             "2, false, FAIL"
     })
     @DisplayName("맞힌 개수가 3개 미만이면 보너스번호와 상관없이 FAIL 이다.")
-    void testFailWinningStatus(int matchCount, boolean withBonusNum, WinningStatus expected) {
-        WinningStatus result = WinningStatus.getWinningStatus(matchCount, withBonusNum);
+    void testFailWinningStatus(int matchCount, boolean withBonusNum, LottoResultStatus expected) {
+        LottoResultStatus result = LottoResultStatus.getResultStatus(matchCount, withBonusNum);
 
         assertEquals(expected, result);
     }
@@ -32,8 +32,8 @@ class WinningStatusTest {
             "6, true, ALL_MATCH"
     })
     @DisplayName("맞힌 개수가 3개 이상이면 알맞은 결과를 나타낸다.")
-    void testGetWinningStatus(int matchCount, boolean withBonusNum, WinningStatus expected) {
-        WinningStatus result = WinningStatus.getWinningStatus(matchCount, withBonusNum);
+    void testGetWinningStatus(int matchCount, boolean withBonusNum, LottoResultStatus expected) {
+        LottoResultStatus result = LottoResultStatus.getResultStatus(matchCount, withBonusNum);
 
         assertEquals(expected, result);
     }

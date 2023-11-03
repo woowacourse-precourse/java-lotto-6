@@ -4,9 +4,9 @@ import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
-import lotto.domain.EarningRate;
-import lotto.domain.LottoCheckResult;
-import lotto.domain.WinningStatus;
+import lotto.domain.lottoresult.EarningRate;
+import lotto.domain.lottoresult.LottoCheckResult;
+import lotto.domain.lottoresult.LottoResultStatus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoTickets;
 
@@ -25,17 +25,17 @@ public class OutputView {
     public static void printResult(LottoCheckResult lottoCheckResult, EarningRate earningRate) {
         System.out.println("\n당첨 통계\n---");
 
-        Map<WinningStatus, Integer> result = lottoCheckResult.getResult();
+        Map<LottoResultStatus, Integer> result = lottoCheckResult.getResult();
 
         Locale locale = new Locale("ko", "KR");
         NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
 
-        for (Map.Entry<WinningStatus, Integer> entry : result.entrySet()) {
-            WinningStatus status = entry.getKey();
+        for (Map.Entry<LottoResultStatus, Integer> entry : result.entrySet()) {
+            LottoResultStatus status = entry.getKey();
             if (status.getMatchCount() == 0) continue;
-            if (status == WinningStatus.FIVE_MATCH_WITH_BONUS) {
+            if (status == LottoResultStatus.FIVE_MATCH_WITH_BONUS) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", status.getMatchCount(), formatter.format(status.getPrize()).substring(1), entry.getValue());
-            } else if (entry.getKey() != WinningStatus.FIVE_MATCH_WITH_BONUS) {
+            } else if (entry.getKey() != LottoResultStatus.FIVE_MATCH_WITH_BONUS) {
                 System.out.printf("%d개 일치 (%s원) - %d개\n", status.getMatchCount(), formatter.format(status.getPrize()).substring(1), entry.getValue());
             }
         }

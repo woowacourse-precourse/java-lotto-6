@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.domain.lottoresult;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 
-public enum WinningStatus {
+public enum LottoResultStatus {
 
     FAIL(0, 0, (matchCount, withBonusNumber) -> matchCount < 3),
     THREE_MATCH(3, 5_000, (matchCount, withBonusNumber) -> matchCount == 3),
@@ -16,14 +16,14 @@ public enum WinningStatus {
     private final int prize;
     private final BiPredicate<Long, Boolean> checker;
 
-    WinningStatus(long matchCount, int prize, BiPredicate<Long, Boolean> checker) {
+    LottoResultStatus(long matchCount, int prize, BiPredicate<Long, Boolean> checker) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.checker = checker;
     }
 
-    public static WinningStatus getWinningStatus(long matchCount, boolean withBonusNum) {
-        return Arrays.stream(WinningStatus.values())
+    public static LottoResultStatus getResultStatus(long matchCount, boolean withBonusNum) {
+        return Arrays.stream(LottoResultStatus.values())
                 .filter(status -> status.checker.test(matchCount, withBonusNum))
                 .findAny()
                 .orElse(FAIL);

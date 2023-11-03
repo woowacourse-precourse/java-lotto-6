@@ -1,11 +1,10 @@
 package lotto.service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
-import lotto.domain.EarningRate;
-import lotto.domain.LottoCheckResult;
-import lotto.domain.WinningStatus;
+import lotto.domain.lottoresult.EarningRate;
+import lotto.domain.lottoresult.LottoCheckResult;
+import lotto.domain.lottoresult.LottoResultStatus;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoTickets;
@@ -18,21 +17,21 @@ public class LottoChecker {
         LottoCheckResult result = new LottoCheckResult();
 
         for (Lotto lotto : tickets) {
-            WinningStatus checkResult = checkLotto(lotto, winningNumbers, bonusNumber);
+            LottoResultStatus resultStatus = checkLotto(lotto, winningNumbers, bonusNumber);
 
-            result.updateResult(checkResult);
+            result.updateResult(resultStatus);
         }
 
         return result;
     }
 
     public EarningRate calculateEarningRate(LottoCheckResult lottoResult) {
-        Map<WinningStatus, Integer> result = lottoResult.getResult();
+        Map<LottoResultStatus, Integer> result = lottoResult.getResult();
         double numOfTickets = 0;
         double earnedMoney = 0;
 
-        for (Map.Entry<WinningStatus, Integer> entry : result.entrySet()) {
-            WinningStatus status = entry.getKey();
+        for (Map.Entry<LottoResultStatus, Integer> entry : result.entrySet()) {
+            LottoResultStatus status = entry.getKey();
             Integer tickets = entry.getValue();
 
             numOfTickets += tickets;
@@ -42,7 +41,7 @@ public class LottoChecker {
         return new EarningRate(numOfTickets, earnedMoney);
     }
 
-    private WinningStatus checkLotto(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private LottoResultStatus checkLotto(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         Collection<Integer> checkLotto = lotto.getLotto();
         Collection<Integer> winningNum = winningNumbers.getNumbers();
         int bonusNum = bonusNumber.getNumber();
@@ -53,6 +52,6 @@ public class LottoChecker {
 
         boolean withBonus = checkLotto.contains(bonusNum);
 
-        return WinningStatus.getWinningStatus(matchCount, withBonus);
+        return LottoResultStatus.getResultStatus(matchCount, withBonus);
     }
 }

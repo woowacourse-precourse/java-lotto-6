@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lottoresult;
 
 public class EarningRate {
     private final double rate;

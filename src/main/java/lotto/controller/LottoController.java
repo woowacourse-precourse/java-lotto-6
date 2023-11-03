@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.EarningRate;
-import lotto.domain.LottoCheckResult;
+import lotto.domain.lottoresult.EarningRate;
+import lotto.domain.lottoresult.LottoCheckResult;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.LottoTickets;
 import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.WinningNumbers;
-import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
 import lotto.service.LottoChecker;
 import lotto.view.InputView;
 import lotto.view.OutputView;

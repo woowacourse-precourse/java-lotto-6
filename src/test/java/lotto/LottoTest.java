@@ -17,7 +17,7 @@ class LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘어갈 수 없다.")
     @Test
-    void createLottoByOverSize() {
+    void checkNumbersSize() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호의 개수는 최대 6개입니다.");
@@ -25,11 +25,17 @@ class LottoTest {
 
     @DisplayName("로또 번호에 중복된 숫자를 포함할 수 없다.")
     @Test
-    void createLottoByDuplicatedNumber() {
+    void checkNumbersDuplication() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호에 중복된 숫자를 포함할 수 없습니다.");
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("알 수 없는 숫자 목록을 받을 수 없다.")
+    @Test
+    void checkNumbersNonNull() {
+        assertThatThrownBy(() -> Lotto.from(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("알 수 없는 숫자 목록으로 로또를 생성할 수 없습니다.");
+    }
 }

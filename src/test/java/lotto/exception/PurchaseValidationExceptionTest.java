@@ -23,4 +23,11 @@ class PurchaseValidationExceptionTest {
                 PurchaseValidationException.checkIsNumeric(numericInput));
     }
 
+    @Test
+    @DisplayName("구매 금액이 로또 티켓 가격 단위의 배수가 아닐 때 PurchaseValidationException 예외 발생")
+    void whenAmountIsNotMultipleOfTicketPrice_thenThrowPurchaseValidationException() {
+        int invalidAmount = 1550; // 가정: LOTTO_TICKET_PRICE_UNIT가 1000이라고 할 때
+        assertThrows(PurchaseValidationException.class, () ->
+                PurchaseValidationException.checkValidPurchaseAmount(invalidAmount));
+    }
 }

@@ -1,0 +1,41 @@
+# Lotto 
+- ## Steps
+  - "구입금액을 입력해 주세요."
+    - take in boughtAmount using given api
+      - each lotto card is 1000 won
+        - if boughtAmount cannot be divided by 1000 throw exception
+        - throw exception if negative
+        - throw exception if non-integer
+    -  make lotto card
+      - unique 6 numbers
+        - one bonus number
+        - make_random_number()
+            - 1~45****
+  - "당첨 번호를 입력해 주세요."
+    - correct 6 numbers
+      - throw exception if not within 1~45
+      - throw exception if there are duplicates
+      - split by ',' and remove all spaces
+  - "보너스 번호를 입력해 주세요."
+    - bonus number
+      - throw exception if not within 1~45
+      - throw exception if non-integer
+
+  - Profit Percentage
+    - round to the second place
+    -  profit = total_jackpot / boughtAmount * 100
+  - jackpot stats
+    - (ex)
+      -  3개 일치 (5,000원) - 1개
+      -  4개 일치 (50,000원) - 0개
+      -  5개 일치 (1,500,000원) - 0개
+      -  5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+      -  6개 일치 (2,000,000,000원) - 0개
+      -  총 수익률은 62.5%입니다.
+
+-  ## common methods to be built
+  - exceptions
+    - 1~45 integers
+      - throw if non-integer or negative
+  - uniqueSix()
+    - check if lotto numbers are unique

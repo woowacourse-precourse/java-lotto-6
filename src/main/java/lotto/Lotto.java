@@ -14,8 +14,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        LottoUtil.sortByAsc(numbers);
-        this.numbers = numbers;
+        List<Integer> numbersCopy = new ArrayList<>(numbers);
+        LottoUtil.sortByAsc(numbersCopy);
+        this.numbers = numbersCopy;
     }
 
     public static Lotto generateUserLotto() {

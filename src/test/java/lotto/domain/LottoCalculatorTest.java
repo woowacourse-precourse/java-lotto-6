@@ -35,7 +35,7 @@ class LottoCalculatorTest {
         assertThat(calculator.countMatchNumbers(lotto)).isEqualTo(7);
     }
 
-    @DisplayName("모든 로또의 등수를 판별하는 기능")
+    @DisplayName("2등, 3등 당첨 시 해당 등수만 결과에 기록하는 기능 테스트")
     @Test
     void makePrizeResult() {
         //given
@@ -71,5 +71,20 @@ class LottoCalculatorTest {
         long totalPrize = calculator.calculateTotalPrize();
 
         assertThat(totalPrize).isEqualTo(2030050000);
+    }
+
+    @DisplayName("3000원을 넣고 4등 당첨 시 수익률 반환 테스트")
+    @Test
+    public void calculateProfitRate() {
+        //given
+        numbers.makeWinningNumber("4,12,39,43,1,17");
+        numbers.makeBonusNumber("3");
+        Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 17, 18, 45)); // 4등
+        LottoCalculator calculator = new LottoCalculator(numbers);
+        calculator.makePrizeResult(List.of(fourthLotto));
+        //when
+        String profitRate = calculator.calculateProfitRate(4000);
+        //then
+        assertThat(profitRate).isEqualTo("1150.0%");
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LotteryChecker;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.WinningNumbers;
@@ -15,6 +16,7 @@ public class Application {
         LottoMachine lottoMachine = new LottoMachine();
         int amount = lottoMachine.purchaseLotto();
         WinningNumbers winningNumbers = new WinningNumbers();
+        LotteryChecker lotteryChecker = new LotteryChecker();
 
         while (true) {
             if (lottoMachine.calculateAmount(amount) != -1) {
@@ -40,7 +42,14 @@ public class Application {
         List<Integer> bonusNumber = winningNumbers.createBonusNumber();
         System.out.println("bonusNumber.toString() = " + bonusNumber.toString());
 
+        lotteryChecker.prizeCheck(lottoList, winningNumber);
 
+        for (Lotto lotto : lottoList) {
+            int prize = lotto.getPrize();
+            System.out.println("등수 = " + prize);
+        }
 
+        List<Integer> integers = lotteryChecker.prizeCalculate(lottoList);
+        System.out.println("integers.toString() = " + integers.toString());
     }
 }

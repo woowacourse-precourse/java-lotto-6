@@ -6,11 +6,11 @@ import lotto.ui.Computer;
 
 public class User {
     private Integer money;
-    private Integer lottoCount;
+    public Integer lottoCount;
 
     private boolean isPurchasing = true;
 
-    private List<Lotto> lottos;
+
 
     public void purchaseLotto() {
         while (isPurchasing) {

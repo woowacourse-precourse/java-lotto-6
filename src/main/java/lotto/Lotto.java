@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    static final int MAX_LOTTO_NUMBER = 45;
+    static final int MIN_LOTTO_NUMBER = 1;
+    static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,7 +33,7 @@ public class Lotto {
 
     private void validateOverRangeNumber(List<Integer> numbers){
         for(int number : numbers){
-            if(number > 45 || number < 1){
+            if(number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER){
                 throw new IllegalArgumentException();
             }
         }

@@ -28,7 +28,7 @@ public class InputValidator {
 
     public Boolean isMinimumValidator(Integer money){
         if(money <= MINIMUM_MONEY_STANDARD){
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 최소 0원 초과여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 최소 0원보다 커야 합니다.");
         }
         return true;
     }
@@ -43,7 +43,7 @@ public class InputValidator {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer number : numbers){
             if(!uniqueNumbers.add(number)){
-                throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.(1)");
+                throw new IllegalArgumentException("[ERROR] 6개의 숫자에 중복된 로또 번호가 존재합니다.");
             }
         }
         return true;
@@ -51,7 +51,7 @@ public class InputValidator {
 
     public Boolean isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber){
         if(numbers.contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.(2)");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 중복된 로또 번호가 존재합니다.");
         }
         return true;
     }

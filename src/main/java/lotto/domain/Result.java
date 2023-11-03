@@ -14,13 +14,10 @@ public class Result {
         return result.get(rank);
     }
 
-    public String getProfitPercentage(Integer money) {
-        Long profit=getProfit();
+    public Double getProfitPercentage(Integer money) {
+        Double percentage = (getProfit() / (double) money)*100;
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        String roundedNum = decimalFormat.format(profit / money);
-
-        return roundedNum;
+        return Math.round(percentage * 100) / 100.0;
     }
 
     private Long getProfit() {

@@ -70,4 +70,31 @@ public class WinningNum {
             throw new IllegalArgumentException();
         }
     }
+
+    public Integer compare(Lotto lotto) {
+        Integer count = 0;
+        Boolean bonus = false;
+        for (Integer num : winningNum) {
+            if(lotto.hasNumber(num)){
+                count++;
+            }
+        }
+
+        if(lotto.hasNumber(bonusNumber)) bonus = true;
+
+        return getRank(count,bonus);
+    }
+
+    private Integer getRank(int count,Boolean bonus) {
+        if(count==6) return 1;
+        if (count == 5) {
+            if(bonus) return 2;
+
+            return 3;
+        }
+        if (count==4) return 4;
+        if(count==3) return 5;
+
+        return -1;
+    }
 }

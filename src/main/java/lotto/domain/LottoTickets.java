@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LottoTickets {
     private final Integer PRICE = 1000;
+    private final Integer NOTHING = -1;
     private final LottoGenerator lottoGenerator;
 
     private ArrayList<Lotto> lottoTickets = new ArrayList<>();
@@ -27,6 +28,20 @@ public class LottoTickets {
         LottoValidator.ticketSizeValidate(lottoTickets, ticket);
 
         return lottoTickets;
+    }
+
+    public Result getResult(WinningNum winningNum) {
+        ArrayList<Integer> result = new ArrayList<>(List.of(0,0,0,0,0,0));
+
+        for (Lotto lottoTicket : lottoTickets) {
+            Integer rank = winningNum.compare(lottoTicket);
+
+            if(rank==NOTHING) continue;
+
+            result.set(rank, result.get(rank) + 1);
+        }
+
+        return new Result(result);
     }
 
     @Override

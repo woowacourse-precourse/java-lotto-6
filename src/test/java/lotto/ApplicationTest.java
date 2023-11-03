@@ -4,13 +4,26 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import view.InputView;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    @Test
+    void 문자열_입력_예외_테스트() {
+        assertThatThrownBy(() -> InputView.isNumber("123a"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 숫자를 입력해주세요.");
+    }
+
+    @Test
+    void 로또_구매_갯수_확인_테스트() {
+        assertThatThrownBy(() -> InputView.countCheck(1234))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 구매가격은 1,000원 단위로 입력해주세요.");
+    }
 
     @Test
     void 기능_테스트() {

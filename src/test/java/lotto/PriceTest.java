@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PriceTest {
-    private Price price;
+    private Price price1;
 
     @DisplayName("Price는 숫자로만 이루어져야 한다.")
     @Test
@@ -40,7 +40,7 @@ public class PriceTest {
 
     @DisplayName("Price가 1000원 단위로 떨어지지 않을 때")
     @Test
-    void divideWithOneThousands() {
+    void isDivideWithOneThousands() {
         String input = "1500";
 
         Assertions.assertThatThrownBy(() -> new Price(input))
@@ -56,5 +56,14 @@ public class PriceTest {
         Assertions.assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또구입금액은 최소 1000원입니다.");
+    }
+
+    @DisplayName("Price가 1000원 단위로 나눠지는지")
+    @Test
+    void divideWithOneThousands() {
+        price1 = new Price("5000");
+
+        Assertions.assertThat(price1.divideWithOneThousands(price1)).isEqualTo(5);
+
     }
 }

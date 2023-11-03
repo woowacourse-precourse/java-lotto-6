@@ -1,22 +1,21 @@
 # 기능 구현 목록
 
 ## 입력(예외처리 필요)
-- [ ] 로또 구입 금액 : GameData#budget
-  - [ ] 1,000원 단위 입력
-- [ ] 당첨 번호 : GameData#winningNumbers
-  - [ ] 번호는 쉼표(,)를 기준으로 구분
-- [ ] 보너스 번호 : GameData#bonusNumber
+- [x] 로또 구입 금액 : GameData#budget
+- [x] 당첨 번호 : GameData#winningNumbers
+  - [x] 번호는 쉼표(,)를 기준으로 구분
+- [x] 보너스 번호 : GameData#bonusNumber
 
 ---
 
 ## 출력
 - ### 게임시작
-  - [ ] 구입 금액 입력 요청 : view#print#AskBudget
+  - [x] 구입 금액 입력 요청 : view#print#AskBudget
 - ### 게임진행
   - [ ] 구매개수 출력 : view#print#LotteriesNumber
   - [ ] 로또별 **무작위** 선정된 **중복되지** 않은 번호 6개 출력
-  - [ ] 당첨 번호 입력 요청 : view#print#AskwinningNumbers
-  - [ ] 보너스 번호 입력 요청 : view#print#AskBonusNumber
+  - [x] 당첨 번호 입력 요청 : view#print#AskwinningNumbers
+  - [x] 보너스 번호 입력 요청 : view#print#AskBonusNumber
 - ### 실행결과
   - [ ] 당첨통계 : view#print#winningStatistics
     - [ ] 일치 개수 별 당첨금액, 당첨 개수 출력
@@ -72,18 +71,18 @@
 ---
 
 ## 메서드
-- [ ] 메시지 프린트(구입 금액 입력 요청) : view#print#AskBudget
+- [x] 메시지 프린트(구입 금액 입력 요청) : view#print#AskBudget
 - [ ] 구입 금액으로 로또 구매 개수 계산 : GameData#calculateLotteryCount
   - [ ] 로또 구매 개수 만큼 로또 객체 생성 : Controller#generateLotteries
   - [ ] 생성된 객체별 로또 번호 6자리 생성(생성자 사용_난수) : Lotto#(constructor)
-  - [ ] 일치개수, 등수 초기화 : Lotto#(constructor)
-- [ ] 메시지 프린트(당첨 번호 입력 요청) : view#print#AskwinningNumbers
-  - [ ] 당첨 번호 입력받기 : GameData#getWinningNumbersInput
-  - [ ] 당첨 번호 전환(String[]->Integer) : Convertor#convertWinningNumbersType
+- [ ] 일치개수, 등수 초기화 : GameStatistics#(constructor)
+- [x] 메시지 프린트(당첨 번호 입력 요청) : view#print#AskwinningNumbers
+  - [x] 당첨 번호 입력받기 : GameData#getWinningNumbersInput
+  - [x] 당첨 번호 전환(String[]->Integer) : Convertor#convertWinningNumbersType
   - [ ] GameData 객체 내 당첨 번호 컬렉션에 저장 : GameData#setWinningNumbers
-- [ ] 메시지 프린트(보너스 번호 입력 요청) : view#print#AskBonusNumber
-  - [ ] 보너스 번호 입력받기 : GameData#getBonusNumberInput
-  - [ ] 보너스 번호 전환(String[]->Integer) : Convertor#convertBonusNumberType
+- [x] 메시지 프린트(보너스 번호 입력 요청) : view#print#AskBonusNumber
+  - [x] 보너스 번호 입력받기 : GameData#getBonusNumberInput
+  - [x] 보너스 번호 전환(String[]->Integer) : Convertor#convertBonusNumberType
   - [ ] GameData 객체 내 보너스 번호 변수에 저장 : GameData#setBonusNumber
 - [ ] 로또별 생성 번호랑 당첨 번호+보너스 번호 비교
   - [ ] 이중 for loop/foreach 생성 번호(i)가 당첨번호(j) 중에 있으면 일치개수++ : controller#getWinningCount
@@ -94,6 +93,7 @@
       - [ ] 보너스 일치하는 경우 로또객체 등수 변수에 2등값 할당 GameData#setRank
       - [ ] 보너스 일치하지 않는 경우 3등값 할당 GameData#setRank
 - [ ] 당첨통계 출력 메서드
+  - [ ] 당첨통계 구분지점 메시지 출력 
   - [ ] Rank.foreach
 - [ ] (등수별 당첨개수)*(당첨금액) 의 합계 / 로또개수 로 수익률 계산
   - [ ] 등수별 당첨금액 산출(Enum 사용) : Rank#calculatePrizeSumByRank

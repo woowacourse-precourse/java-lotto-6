@@ -37,7 +37,7 @@ public class BuyLotto {
 	private void setCount(int input) {
 		count = input / 1000;
 	}
-	
+
 	public int getCount() {
 		System.out.printf("%n%s개를 구매하셨습니다. %n", count);
 		return count;

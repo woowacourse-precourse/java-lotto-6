@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.User;
 import lotto.ui.Computer;
@@ -24,6 +25,7 @@ public class Application {
 
         // 4. 로또 번호 출력
         for (Lotto lotto : lottos) {
+            Collections.sort(lotto.getNumbers());
             System.out.println(lotto.getNumbers());
         }
 

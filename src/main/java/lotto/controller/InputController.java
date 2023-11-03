@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,7 +16,7 @@ public class InputController {
         return Console.readLine();
     }
 
-    public String bonusNumbers() {
+    public String bonusNumber() {
         System.out.println(ENTER_BONUS_NUMBER);
         return Console.readLine();
     }

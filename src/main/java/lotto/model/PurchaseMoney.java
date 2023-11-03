@@ -1,14 +1,21 @@
 package lotto.model;
 
 public class PurchaseMoney {
+
+    private static final int ONE_THOUSAND = 1000;
+
     private int value;
 
-    public PurchaseMoney(int money){
-        this.value = money;
+    public PurchaseMoney(String money){
+        validate(money);
     }
 
     private void validate(String money){
         if(!isDigit(money)){
+            throw new IllegalArgumentException();
+        }
+
+        if(!isDividedByOneThousand(money)){
             throw new IllegalArgumentException();
         }
     }
@@ -19,5 +26,9 @@ public class PurchaseMoney {
         }
 
         return true;
+    }
+
+    private boolean isDividedByOneThousand(String money){
+        return Integer.valueOf(money) % ONE_THOUSAND == 0;
     }
 }

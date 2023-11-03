@@ -18,7 +18,8 @@ public class Input {
 
         // Integer 자료형 인지 검증
         validate.validateInteger(input);
+        int money = Integer.parseInt(input);
 
-        return Integer.parseInt(input);
+        return money;
     }
 }

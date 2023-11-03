@@ -1,13 +1,16 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.stream.Stream;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -37,5 +40,21 @@ class LottoTest {
 
         // then
         assertEquals(List.of(5, 7, 18, 25, 33, 41), sortedNumbers);
+    }
+
+    @DisplayName("로또 번호가 올바른지 검증한다.")
+    @ParameterizedTest
+    @MethodSource("provideNumbersForValidate")
+    void 로또_번호_검증(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideNumbersForValidate() {
+        return Stream.of(
+                Arguments.of((Object) List.of(1, 1, 2, 3, 4, 5)),
+                Arguments.of((Object) List.of(1, 46, 2, 3, 4, 5)),
+                Arguments.of((Object) List.of(1, 2, 3, 4, 5))
+        );
     }
 }

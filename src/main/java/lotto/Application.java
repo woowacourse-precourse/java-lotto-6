@@ -59,8 +59,46 @@ public class Application {
             }
         }
 
-    }
+        // 5. 당첨 내역 & 수익률 출력하기
+        System.out.println("당첨 통계"); System.out.println("---");
+        DecimalFormat formatter1 = new DecimalFormat("###,###,###,###");
+        float winningPrizeSum = 0;
+        int[] matchCountInfo = new int[LottoRank.values().length];
+        for(int i=0; i<lottoCount; i++){
+            // 5-1. 구매한 로또 번호와 당첨 번호 비교
+            int matchCount = compareLottoNumbers(lottoList.get(i).lottoNumbers(), winningNumbers);
+            // 5-2. 보너스 번호 비교
+            boolean matchBonusNumber = compareBonusNumber(lottoList.get(i).lottoNumbers(), bonusNumber);
 
+            // 당첨 내역 저장
+            if(matchCount > 0){
+                LottoRank rank = LottoRank.calculateRank(matchCount, matchBonusNumber);
+                if(rank != null){
+                    matchCountInfo[rank.getIndex()]++;
+                    winningPrizeSum += rank.getPrize(); // 5-3. 당첨 금액 계산
+                }
+            }
+        }
+        // 5-4. 당첨 내역 출력
+        for(LottoRank rank : LottoRank.values()){
+            int matchCount = rank.getMatchCount();
+            int prize = rank.getPrize();
+            int count = matchCountInfo[rank.getIndex()];
+
+            if(rank.getIndex() == 3){
+                System.out.println(matchCount+"개 일치, 보너스 볼 일치 ("+formatter1.format(prize)+"원) - "+count+"개");
+            }
+            if(rank.getIndex() != 3){
+                System.out.println(matchCount+"개 일치 ("+formatter1.format(prize)+"원) - "+count+"개");
+            }
+        }
+        // 5-5. 수익률 계산 (소수점 둘째 자리에서 반올림)
+        float earningRate = winningPrizeSum/purchase*100;
+//        DecimalFormat formatter2 = new DecimalFormat("###,###,###,###.#");
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
+
+
+    }
 
     // 1-1. 로또 금액 입력 받음
     public static int inputPurchase(){
@@ -163,5 +201,25 @@ public class Application {
             validate = false;
         }
         return validate;
+    }
+
+    // 5-1. 구매한 로또 번호와 당첨 번호 비교
+    public static int compareLottoNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+        int matchCount = 0;
+        for(int number : winningNumbers){
+            if(lottoNumbers.contains(number)){
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    // 5-2. 보너스 번호 비교
+    public static boolean compareBonusNumber(List<Integer> lottoNumbers, int bonusNumber){
+        boolean matchBonusNumber = false;
+        if(lottoNumbers.contains(bonusNumber)){
+            matchBonusNumber = true;
+        }
+        return matchBonusNumber;
     }
 }

@@ -1,14 +1,22 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import util.NumberValidator;
 
 public class PurchaseAmountInputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
 
     public int getInput() {
-        System.out.println(PURCHASE_AMOUNT_MESSAGE);
-        String amount = Console.readLine();
+        while (true) {
+            System.out.println(PURCHASE_AMOUNT_MESSAGE);
+            String amount = Console.readLine();
 
-        return Integer.parseInt(amount);
+            try {
+                NumberValidator.validatePurchaseAmount(amount);
+                return Integer.parseInt(amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

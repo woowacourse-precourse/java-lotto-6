@@ -3,7 +3,7 @@ package domain;
 import exception.ImpossiblePayAmountException;
 import exception.NotCorrectUnitAmountException;
 
-public class LottoPurchasingMachine {
+public class LottoTicketsPurchasingMachine {
     private static final int LOTTO_UNIT_AMOUNT = 1_000;
     public int purchaseOfLottoTickets(int purchaseAmount) {
         validateAmount(purchaseAmount);

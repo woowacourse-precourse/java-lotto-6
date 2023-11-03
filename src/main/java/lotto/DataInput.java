@@ -3,11 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class DataInput {
-    public int userInputPurchaseAmount(){
-        String userPurchaseAmount;
-        userPurchaseAmount = Console.readLine();
+    public int userInputPayment(){
+        String userPayment;
+        userPayment = Console.readLine();
         // Validate
-        return Integer.parseInt(userPurchaseAmount);
+        return Integer.parseInt(userPayment);
     }
 
     public int userInputBonusNumber(){

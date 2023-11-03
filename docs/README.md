@@ -33,15 +33,17 @@
 - [x] 숫자를 입력했는지 검증한다.
 - [ ] 쉼표를 기준으로 입력하였는지 검증한다.
 
-
 ### InputMapper 
 - [x] 로또 구입 금액을 입력 받으면 LottoPurchasePrice 객체를 반환한다.
 - [ ] 당첨 번호를 입력 받으면 WinningNumbers 객체를 반환한다.
 - [ ] 보너스 번호를 입력 받으면 BonusNumber 객체를 반환한다.
 
 ### InputManager
-- [ ] Controller 로부터 입력 요청을 관리한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 그 부분부터 다시 입력한다.
+- [x] Controller 로부터 로또 구입 금액 입력 요청을 관리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 그 부분부터 다시 입력한다.
+
+### OutputView
+- [x] 게임 화면을 출력한다.
 
 ### LottoPurchasePrice
 - [x] 로또 구입 금액을 저장한다.
@@ -72,6 +74,9 @@
 ### LottoController
 - [ ] 로또 게임을 시작한다.
 
+### LottoFactory
+- [x] 로또 게임 객체들의 의존성을 주입시켜준다.
+
 ## 유틸 목록
 
 ### LottoRandomNumber
@@ -81,6 +86,9 @@
 
 ### ErrorMessage
 - [x] 에러 메시지 상수
+
+### ProgressMessage
+- [x] 게임 진행 메시지 상수
 
 ### InputPattern
 - [x] 정규식 패턴 상수

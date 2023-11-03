@@ -10,6 +10,8 @@ public class LottoResult {
     }
 
     public void showLottoResult(List<String> winningNumbers, Integer bonus, List<Lotto> lottos) {
-        comparator.compareLotto();
+        for (Lotto lotto : lottos) {
+            comparator.compareLotto(winningNumbers, bonus, lotto);
+        }
     }
 }

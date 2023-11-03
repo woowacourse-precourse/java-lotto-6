@@ -3,8 +3,6 @@ package lotto.model;
 import static lotto.util.ConstantNumbers.TICKET_PRICE;
 import static lotto.util.Validator.*;
 
-import lotto.util.Validator;
-
 public class Money {
     private static Money instance;
 
@@ -20,7 +18,7 @@ public class Money {
 
     public static Money of (String money) {
         if (instance == null) {
-            return new Money(money);
+            instance = new Money(money);
         }
         return instance;
     }

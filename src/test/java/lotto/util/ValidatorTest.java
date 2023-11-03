@@ -13,8 +13,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
-    String userInput;
-    List<Integer> inputLottoNumbers;
 
     @BeforeEach
     void reset() {

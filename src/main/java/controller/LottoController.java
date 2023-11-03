@@ -2,6 +2,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.Rank;
+import domain.Money;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +11,10 @@ import view.InputView;
 import view.OutputView;
 
 public class LottoController {
-    private int money;
+    private Money money;
     private int bonusNumber;
 
-    private List<Lotto> lottoList = new ArrayList<>();
+    private final List<Lotto> lottoList = new ArrayList<>();
     private HashMap<Rank, Integer> rankCountsMap;
     private Lotto winningNumbers;
 
@@ -30,8 +31,8 @@ public class LottoController {
     }
 
     public void start() {
-        money = InputView.money();
-        int ticketCount = OutputView.LottoTicketCount(money);
+        money = new Money(InputView.money());
+        int ticketCount = OutputView.LottoTicketCount(money.getMoney());
         makeLottoLists(ticketCount);
         getWinningNumbers();
         result();
@@ -61,6 +62,6 @@ public class LottoController {
         }
 
         OutputView.printStatistics(rankCountsMap);
-        OutputView.printProfitRatio(rankCountsMap, money);
+        OutputView.printProfitRatio(rankCountsMap, money.getMoney());
     }
 }

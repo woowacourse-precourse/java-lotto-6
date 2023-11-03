@@ -10,7 +10,14 @@ public class Lotties {
         this.lotties = lotties;
     }
 
-
+    public static Lotties generateLottos(int lottoCnt) {
+        List<Lotto> lottoies = new ArrayList<>();
+        for (int i = 0; i < lottoCnt; i++) {
+            Lotto lotto = LottoFactory.generateLotto();
+            lottoies.add(lotto);
+        }
+        return new Lotties(lottoies);
+    }
 
 }
 

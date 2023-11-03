@@ -13,4 +13,8 @@ public class InputView {
 
         return input;
     }
+
+    public static void printWinningNumberPrompt() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

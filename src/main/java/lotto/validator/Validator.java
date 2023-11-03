@@ -40,6 +40,30 @@ public class Validator {
         }
     }
 
+    public static void inputBonusNumber(String inputBonusNumber, String[] winningNumbers) {
+        if (isNotInteger(inputBonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 정수만 입력가능합니다.");
+        }
+
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+        if (isInvalidRangeNumber(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 1~45 범위의 정수만 입력가능합니다.");
+        }
+
+        if (isBonusNumberIncluded(inputBonusNumber, winningNumbers)) {
+            throw new IllegalArgumentException("보너스 번호가 당첨 번호에 포함되어 있습니다.");
+        }
+    }
+
+    private static boolean isBonusNumberIncluded(String inputBonusNumber, String[] winningNumbers) {
+        return Arrays.stream(winningNumbers).anyMatch(number -> number.equals(inputBonusNumber));
+    }
+
+    private static boolean isInvalidRangeNumber(int inputBonusNumber) {
+        return !(1 <= inputBonusNumber && inputBonusNumber <= 45);
+    }
+
     private static boolean isDuplicateWinningNumbers(String[] winningNumbers) {
         return Arrays.stream(winningNumbers).distinct().count() != winningNumbers.length;
     }

@@ -23,7 +23,7 @@ public class LottoController {
         }
         return lottoService.generateLottos(new LottoNumberDto(inputMoney / 1000));
     }
-    
+
     public WinningNumberDto post1stNumber(String input) throws Exception {
         return lottoService.postNormalNumbers(convert2Dto(input));
     }
@@ -36,6 +36,10 @@ public class LottoController {
 
     public RanksDto calRanks(WinningNumberDto winningNumberDto, LottosDto lottosDto) {
         return lottoService.judgeRanks(winningNumberDto, lottosDto);
+    }
+
+    public RateOfReturnDto calReturnOfRate(LottoNumberDto lottoNumberDto, RanksDto ranksDto) {
+        return lottoService.calRateOfReturn(lottoNumberDto, ranksDto);
     }
 
     private NumbersDto convert2Dto(String str) {

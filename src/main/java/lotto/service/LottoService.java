@@ -2,18 +2,21 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.WinningNumber;
 import lotto.dto.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class LottoService {
+
+    private final static Prize[] prizes = Prize.values();
+
     public LottosDto generateLottos(LottoNumberDto dto) {
-        ArrayList<Lotto> lottos = new ArrayList<>();
+        Lotto[] lottos = new Lotto[dto.numberOfLottos()];
         for (int i = 0; i < dto.numberOfLottos(); i++) {
-            lottos.add(new Lotto(generateNumbers()));
+            lottos[i] = new Lotto(generateNumbers());
         }
         return new LottosDto(lottos);
     }
@@ -38,7 +41,8 @@ public class LottoService {
     }
 
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return list;
     }
 
     public RanksDto judgeRanks(WinningNumberDto winningNumberDto, LottosDto lottosDto) {
@@ -46,13 +50,24 @@ public class LottoService {
         int bonusNumber = winningNumberDto.winningNumber().getBonusNumber();
         int[] ranks = new int[5];
 
-        for (Lotto lotto : lottosDto.toArr()) {
+        for (Lotto lotto : lottosDto.lottos()) {
             int rank = rankOfLotto(lotto.toArr(), normalNumbers, bonusNumber);
             if (rank < 5) {
                 ranks[rank]++;
             }
         }
         return new RanksDto(ranks);
+    }
+
+    public RateOfReturnDto calRateOfReturn(LottoNumberDto lottoNumberDto, RanksDto ranksDto) {
+        int[] ranks = ranksDto.ranks();
+        float inputMoney = lottoNumberDto.numberOfLottos() * 1000f;
+        int finalMoney = 0;
+        for (int i = 0; i < ranks.length; i++) {
+            finalMoney += ranks[i] * prizes[i].getMoney();
+        }
+        float rate = 100 * finalMoney / inputMoney;
+        return new RateOfReturnDto(rate);
     }
 
     private int rankOfLotto(int[] checkNum, List<Integer> normalNum, int bonusNum) {

@@ -34,11 +34,13 @@ public class LottoController {
     }
 
     private List<Lotto> buyLotto(int count) {
-        return IntStream.range(0, count)
+        List<Lotto> lottos  = IntStream.range(0, count)
                 .mapToObj(
                         i -> new Lotto(
                                 Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_LENGTH)))
                 .collect(Collectors.toList());
+        outputView.printLottoInformation(lottos);
+        return lottos;
     }
 
 

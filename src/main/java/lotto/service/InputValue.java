@@ -5,7 +5,7 @@ import lotto.Lotto;
 
 public class InputValue {
 
-    public int getPurchaseAmountInput() {
-        return Integer.parseInt(Console.readLine());
+    public String getUserInput() {
+        return Console.readLine();
     }
 }

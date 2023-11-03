@@ -47,8 +47,20 @@ class LottoTest {
 
             Lotto lotto = new Lotto(lottoNumbers);
 
-            assertThat(lotto.checkWinningNumberCount(winningNumbers))
+            assertThat(lotto.countMatchingNumbers(winningNumbers))
                     .isEqualTo(3);
+        }
+
+        @Test
+        @DisplayName("로또에 특정 번호가 있는 경우를 확인")
+        void check_로또에_특정_번호가_있는_경우를_확인() {
+            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+            Integer bonusNumber = 5;
+
+            Lotto lotto = new Lotto(lottoNumbers);
+
+            assertThat(lotto.contains(bonusNumber))
+                    .isTrue();
         }
     }
 }

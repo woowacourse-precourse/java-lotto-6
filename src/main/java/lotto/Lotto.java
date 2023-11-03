@@ -12,9 +12,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateNotDuplicated(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateNotDuplicated(List<Integer> numbers) {
         if (duplicated(numbers)) {
             throw new IllegalArgumentException();
         }
@@ -26,6 +34,4 @@ public class Lotto {
                 count();
         return numbers.size() != distinctSize;
     }
-
-    // TODO: 추가 기능 구현
 }

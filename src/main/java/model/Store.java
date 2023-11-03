@@ -1,9 +1,9 @@
-package domain;
+package model;
 
+import view.UserInputStore;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

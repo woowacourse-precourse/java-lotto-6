@@ -49,7 +49,7 @@
 Controller
 - 1. 구입 금액 입력 - InputAmount()  
        - 입력 메시지 - OutputView  
-       - 숫자 6개 입력 받기 - inputView  
+       - 1000 단위 숫자 입력 받기 - inputView  
        - 1000원 단위인지, 숫자인지 검증 - InputValidation
        - 구입 금액 Amount 도메인에 저장 - Amount
           

@@ -32,7 +32,7 @@ public class GameController {
         BonusNumber bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
 
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
-
+        OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
     }
 
     private static String inputPurchaseMoney(){

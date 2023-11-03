@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Utils;
 
 public class InputView {
 
@@ -8,12 +9,12 @@ public class InputView {
         System.out.println(message);
     }
 
-    public String inputMoney() {
+    public int inputAmount() {
         showMessage(InputMessage.GET_MONEY.getValue());
-        return Console.readLine();
+        return Utils.convertStringToInteger(Console.readLine());
     }
 
-    public String inputNumbers() {
+    public String inputWinningNumbers() {
         showMessage(InputMessage.GET_NUMBERS.getValue());
         return Console.readLine();
     }

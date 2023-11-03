@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
+import lotto.model.PurchaseAmount;
 import lotto.model.Result;
 import lotto.service.Calculator;
 import lotto.service.LottoGenerator;
@@ -26,10 +27,10 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = inputView.readPurchaseAmount();
+        PurchaseAmount amount = readPurchaseAmount();
+        Integer lottoTicket = exchangeLottoTicket(amount);
         NumberGenerator<List<Integer>> generator = new LottoGenerator();
-        Integer lottoTicket = buyLottoTicket(Integer.parseInt(purchaseAmount));
-        LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator);
+        LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator); //TODO: 아예 issuer에 purchaseAmount 넘겨줘보기
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
         Lotto winningNumbers = readWinningNumbers();
@@ -56,7 +57,12 @@ public class LottoController {
         return new Bonus(number);
     }
 
-    private Integer buyLottoTicket(Integer amount) {
-        return amount / 1000;
+    private PurchaseAmount readPurchaseAmount() {
+        Integer number = Integer.parseInt(inputView.readPurchaseAmount());
+        return PurchaseAmount.of(number);
+    }
+
+    private Integer exchangeLottoTicket(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.exchangeLottoTicket();
     }
 }

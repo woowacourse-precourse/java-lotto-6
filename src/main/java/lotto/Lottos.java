@@ -8,15 +8,15 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos createByCount(int lottoCount, Strategy<List<Integer>> strategy) {
+    public static Lottos createByCount(int lottoCount, NumberGenerator<List<Integer>> lottoNumberGenerator) {
 
         List<Lotto> lottos = IntStream.range(0, lottoCount)
                 .mapToObj(idx -> {
-                    List<Integer> lottoNumbers = strategy.generate();
+                    List<Integer> lottoNumbers = lottoNumberGenerator.generate();
                     Collections.sort(lottoNumbers);
                     return new Lotto(lottoNumbers);
                 })
@@ -34,5 +34,11 @@ public class Lottos {
         return "Lottos{" +
                 "lottos=" + lottos +
                 '}';
+    }
+
+    public List<LottoRanking> calculateRanking(WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::calculateRanking)
+                .toList();
     }
 }

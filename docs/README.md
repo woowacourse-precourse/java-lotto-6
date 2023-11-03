@@ -15,7 +15,7 @@
 
 ## 유저 시나리오
 출력 : 구입금액을 입력해 주세요.
-입력 : 8000  <- 1000원 단위로 숫자 입력 검증 
+입력 : 8000 
 출력 : 개행
 
 출력 : {8}개를 구매했습니다  <- 입력을 1000으로 나눠서 개수 계산
@@ -34,15 +34,39 @@
 출력 : 3개~6개 일치 개수
 출력 : 총 수익률
 
-## 기능 정리
-
-
 ## 클래스 분류
-1. Vision
-2. Domain
-3. Controller
+1. View - Message, inputView, outputView
+2. Domain - winning, lottoTicket, lottoTickets, amount
+3. Controller  
 4. Utilities
-5. DTO
+5. DTO 
 6. Factory
-7. exception
-8. service
+7. Exception
+8. Service - generateLotto, checkLotto, calculateEarningRate
+9. Validation - checkAmount
+
+## 기능 정리
+Controller
+- 1. 구입 금액 입력 - inputAmount()
+       - 입력 메시지 - outputView
+       - 숫자 6개 입력 받기 - inputView
+       - 1000원 단위인지, 숫자인지 검증 - checkAmount
+       - amount 도메인에 저장 - amount, DTO
+          
+- 2. 발행 로또 번호 출력 - outputLottoTicket()
+       - 구입 금액 1000으로 나눠서 발행 개수 구하기 - amount.getLottoNumber
+       - 발행 개수 출력 - outputView
+       - 발행 개수만큼 for문 돌면서 중복되지 않는 랜덤 넘버 6개 발행 - generateLotto
+       - 발행 로또 저장 - lottoTicket, DTO
+       - 발행 로또를 티켓 리스트에 저장 - lottoTickets, DTO
+       - 발행 로또들 출력 - outputView
+    
+- 3. 당첨 번호 입력 - inputWinning()
+       - 입력 메시지 - outputView
+       - 당첨번호 6개 + 보너스 1개 입력 받기 - inputView
+       - 1~45인지, 숫자인지 검증 - Validation
+        
+- 4. 당첨 통계 출력 - outputResult()
+       - 로또가 당첨번호랑 맞는지 확인 - checkLotto
+       - 당첨 개수 출력 - outputView
+       - 총 수익률 계산 - calculateEarningRate

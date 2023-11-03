@@ -4,29 +4,32 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoTickets {
+
     private final List<Lotto> lottoTickets;
 
-    public LottoTickets() {
-        this.lottoTickets = new ArrayList<>();
+    private LottoTickets(List<Lotto> lottoTickets) {
+        this.lottoTickets = new ArrayList<>(lottoTickets);
     }
 
-    public LottoTickets buy(int amount) {
+    public static LottoTickets buy(int amount) {
         int numberOfLotto = amount / 1_000;
+        List<Lotto> tickets = IntStream.range(0, numberOfLotto)
+                .mapToObj(i -> generateRandomLotto())
+                .collect(Collectors.toList());
 
-        for (int i = 0; i < numberOfLotto; i++) {
-            lottoTickets.add(generateRandomLotto());
-        }
-
-        return this;
+        return new LottoTickets(tickets);
     }
 
-    private Lotto generateRandomLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    private static Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(randomNumbers);
     }
 
     public List<Lotto> getLottoTickets() {
-        return lottoTickets;
+        return new ArrayList<>(lottoTickets);
     }
 }

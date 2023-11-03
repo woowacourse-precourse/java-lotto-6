@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    List<Lotto> lottoNumbers = new ArrayList<>();
+    List<Lotto> myLottoNumbers = new ArrayList<>();
 
     public void buyMyLotto() {
         int input = InputView.getPurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(input);
 
         publishMyLotto(purchaseAmount);
-        OutputView.printMyLotto(lottoNumbers);
+        OutputView.printMyLotto(myLottoNumbers);
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {
@@ -25,7 +25,7 @@ public class LottoController {
         int lottoAmount = (purchaseAmount.getPurchaseAmount()) / 1000;
         for (int i = 1; i <= lottoAmount; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoNumbers.add(new Lotto(numbers));
+            myLottoNumbers.add(new Lotto(numbers));
         }
     }
 
@@ -34,6 +34,6 @@ public class LottoController {
 
 
     public List<Lotto> getLottoNumbers() {
-        return lottoNumbers;
+        return myLottoNumbers;
     }
 }

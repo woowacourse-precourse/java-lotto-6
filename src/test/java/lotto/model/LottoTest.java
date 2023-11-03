@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.ErrorHeadMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    public static final String ERROR_HEAD_MESSAGE = "[ERROR]";
+    String ERROR_HEAD_MESSAGE = ErrorHeadMessage.ERROR_HEAD_MESSAGE;
+
     @DisplayName("로또 번호의 개수가 6개 초과인 경우 예외 확인")
     @Test
     void 로또_번호_사이즈_초과일_때_예외_확인() {

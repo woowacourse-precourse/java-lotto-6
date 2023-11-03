@@ -43,34 +43,25 @@ public class LottoBundle {
         }
     }
 
-    public Map<String, Integer> result(Lotto winning, int bonus) {
-        Map<String, Integer> result = new HashMap<>();
+    public Map<Rank, Integer> result(Lotto winning, int bonus) {
+        Map<Rank, Integer> result = new HashMap<>();
         List<Integer> winningNumbers = winning.getNumbers();
         for (Lotto lotto : this.bundle) {
             int count = 0;
             List<Integer> lottoNumbers = lotto.getNumbers();
 
-            for (int index = 0; index < lottoNumbers.size(); index++) {
-                if (winningNumbers.contains(lottoNumbers.get(index))) {
+            for (Integer lottoNumber : lottoNumbers) {
+                if (winningNumbers.contains(lottoNumber)) {
                     count++;
                 }
             }
 
-            if (count == 3) {
-                result.put("3", result.getOrDefault("3", 0) + 1);
+            Rank rank = Rank.values()[count];
+            if (rank == Rank.THIRD && lottoNumbers.contains(bonus)) {
+                rank = Rank.SECOND;
             }
-            if (count == 4) {
-                result.put("4", result.getOrDefault("4", 0) + 1);
-            }
-            if (count == 5) {
-                if (lottoNumbers.contains(bonus)) {
-                    result.put("5+", result.getOrDefault("5+", 0) + 1);
-                }
-                result.put("5", result.getOrDefault("5", 0) + 1);
-            }
-            if (count == 6) {
-                result.put("6", result.getOrDefault("6", 0) + 1);
-            }
+
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
 
         return result;

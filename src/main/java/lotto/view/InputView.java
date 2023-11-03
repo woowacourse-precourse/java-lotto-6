@@ -8,6 +8,12 @@ import lotto.Validation;
 
 public class InputView {
 
+    /**
+     * 당첨 번호를 입력받는 함수
+     *
+     * @return : 당첨 로또
+     * @throws IllegalArgumentException : 숫자 여부, 번호 개수, 번호 범위, 중복
+     */
     public static Lotto askWinningNumber() throws IllegalArgumentException {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
@@ -27,7 +33,7 @@ public class InputView {
      *
      * @param lotto : 당첨 번호
      * @return : 보너스 번호
-     * @throws IllegalArgumentException : 숫자, 번호 개수, 번호 범위, 즁복
+     * @throws IllegalArgumentException : 숫자 여부, 번호 개수, 번호 범위, 즁복
      */
     public static int askBonusNumber(Lotto lotto) throws IllegalArgumentException {
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -46,7 +52,7 @@ public class InputView {
      * 구입 금액을 입력받는 함수
      *
      * @return : 구입 금액
-     * @throws IllegalArgumentException : 숫자, 단위
+     * @throws IllegalArgumentException : 숫자 여부, 번호 개수, 번호 범위, 단위
      */
     public static int askPrice() {
         System.out.println("구입금액을 입력해 주세요.");

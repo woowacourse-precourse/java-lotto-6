@@ -6,6 +6,11 @@ import lotto.domain.Lotto;
 
 public class Validation {
 
+    private static final int NUMBER_LENGTH = Config.NUMBER_LENGTH;
+    private static final int LOTTO_LENGTH = Config.LOTTO_LENGTH;
+    private static final int MIN = Config.MIN;
+    private static final int MAX = Config.MAX;
+
     /**
      * 보너스 번호가 올바른지 확인하는 함수
      *
@@ -14,7 +19,7 @@ public class Validation {
      */
     public static void bonusNumber(String input, Lotto lotto) {
         isNumeric(input); // 숫자 검사
-        isValidLength(input, Config.NUMBER_LENGTH); // 번호 개수 검사
+        isValidLength(input, NUMBER_LENGTH); // 번호 개수 검사
         int bonusNumber = Integer.parseInt(input);
         isInRange(bonusNumber); // 번호 검사
         if (lotto.contains(bonusNumber)) { // 중복 검사
@@ -29,12 +34,24 @@ public class Validation {
      */
     public static void winningNumber(String input) {
         isNumeric(input); // 숫자 검사
-        isValidLength(input, Config.LOTTO_LENGTH); // 번호 개수 검사
+        isValidLength(input, LOTTO_LENGTH); // 번호 개수 검사
         for (String string : input.split(",")) {
             int number = Integer.parseInt(string);
             isInRange(number); // 번호 검사
         }
         isDuplicate(input); // 중복 검사
+    }
+
+    /**
+     * 문자열이 올바른 숫자인지 검사하는 함수
+     *
+     * @param input : 올바른 단위의 숫자인지 검사할 문자열
+     */
+    public static void price(String input) {
+        isNumeric(input); // 숫자 검사
+        isValidLength(input, NUMBER_LENGTH); // 개수 검사
+        isOverMin(Integer.parseInt(input)); // 범위 검사
+        isValidUnit(Integer.parseInt(input)); // 단위 검사
     }
 
     /**
@@ -51,17 +68,6 @@ public class Validation {
             }
             checker.add(number);
         }
-    }
-
-    /**
-     * 문자열이 올바른 숫자인지 검사하는 함수
-     *
-     * @param input : 올바른 단위의 숫자인지 검사할 문자열
-     */
-    public static void price(String input) {
-        isNumeric(input); // 숫자 검사
-        isValidLength(input, Config.NUMBER_LENGTH); // 개수 검사
-        isValidUnit(Integer.parseInt(input)); // 단위 검사
     }
 
     /**
@@ -82,10 +88,19 @@ public class Validation {
      * @param number : 범위를 검사할 숫자
      */
     public static void isInRange(int number) {
-        int min = Config.MIN;
-        int max = Config.MAX;
-        if (number < min || number > max) {
-            throw new IllegalArgumentException("[ERROR] " + min + " ~ " + max + " 범위의 숫자만 가능합니다.");
+        if (number < MIN || number > MAX) {
+            throw new IllegalArgumentException("[ERROR] " + MIN + " ~ " + MAX + " 범위의 숫자만 가능합니다.");
+        }
+    }
+
+    /**
+     * 숫자가 유효 범위 내에 속하는지 검사한다.
+     *
+     * @param number : 범위를 검사할 숫자
+     */
+    public static void isOverMin(int number) {
+        if (number < MIN) {
+            throw new IllegalArgumentException("[ERROR] " + MIN + " 보다 큰 숫자만 가능합니다.");
         }
     }
 

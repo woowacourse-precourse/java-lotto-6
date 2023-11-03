@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,6 +13,8 @@ public class Application {
     static Lotto winningLotto;
     static int bonusNumber;
     static int cost;
+    static double rate;
+    static Map<Rank, Integer> result = new HashMap<>();
     static LottoBundle bundle = new LottoBundle();
 
     public static void main(String[] args) {
@@ -18,22 +22,20 @@ public class Application {
         showBundle();
         makeWinningLotto();
         setBonusNumber();
-
-        Map<String, Integer> result = bundle.result(winningLotto, bonusNumber);
-        float rate = getRate(result);
-
+        setResult();
+        setRate();
         OutputView.showResult(result, rate);
     }
 
-    private static float getRate(Map<String, Integer> result) {
-        float rate = 0;
-        rate += result.getOrDefault("3", 0) * 5000;
-        rate += result.getOrDefault("4", 0) * 50000;
-        rate += result.getOrDefault("5", 0) * 1500000;
-        rate += result.getOrDefault("5+", 0) * 30000000;
-        rate += result.getOrDefault("6", 0) * 2000000000;
+    private static void setResult() {
+        result = bundle.result(winningLotto, bonusNumber);
+    }
+
+    private static void setRate() {
+        for (Rank rank : result.keySet()) {
+            rate += result.getOrDefault(rank, 0) * rank.getPrize();
+        }
         rate = (rate / cost) * 100;
-        return rate;
     }
 
     private static void setBonusNumber() {

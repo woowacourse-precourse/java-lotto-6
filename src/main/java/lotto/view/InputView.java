@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.exception.ErrorMessage.NOT_POSITIVE_INTEGER;
 
 import java.util.Arrays;
@@ -17,10 +16,16 @@ public class InputView {
     private static final String ENTER_BONUS_LOTTO = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_SPLIT_SIGNAL = ",";
 
+    private final Input input;
+
+    public InputView(final Input input) {
+        this.input = input;
+    }
+
     public int enterMoney() {
         System.out.println(ENTER_MONEY);
 
-        return convertToInt(readLine());
+        return convertToInt(input.getInput());
     }
 
     private int convertToInt(final String money) {
@@ -46,7 +51,7 @@ public class InputView {
     public List<Integer> enterLotto() {
         System.out.println(ENTER_MAIN_LOTTO);
 
-        return convertToIntegerList(readLine());
+        return convertToIntegerList(input.getInput());
     }
 
     private List<Integer> convertToIntegerList(final String inputLotto) {
@@ -65,6 +70,6 @@ public class InputView {
     public int enterBonusNumber() {
         System.out.println(ENTER_BONUS_LOTTO);
 
-        return convertToInt(readLine());
+        return convertToInt(input.getInput());
     }
 }

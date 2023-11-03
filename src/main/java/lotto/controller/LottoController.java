@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.config.LottoConfig;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
-import lotto.domain.RandomNumberGenerator;
 import lotto.domain.Result;
 import lotto.dto.ResultsDto;
 import lotto.exception.LottoException;
@@ -38,7 +38,7 @@ public class LottoController {
     private LottoFactory makeLottoFactory() {
         while (true) {
             try {
-                return LottoFactory.create(new RandomNumberGenerator(), inputView.enterMoney());
+                return LottoConfig.getLottoFactory(inputView.enterMoney());
             } catch (LottoException lottoException) {
                 outputView.printError(lottoException.getMessage());
             }

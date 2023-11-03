@@ -23,7 +23,8 @@ public class LottoResultHandlerModel {
         for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
-
+            Integer prize = convertRank(matchCount, checkBonusNumber(lottoByIndex));
+            lottoResult.addPrizeCount(prize);
         }
     }
 
@@ -37,5 +38,18 @@ public class LottoResultHandlerModel {
         return purchasedLotto.getNumbers().contains(winningLotto.getBonusNumber().getNumber());
     }
 
-
+    private Integer convertRank(Integer matchCount, boolean isBonusNumberMatched) {
+        return switch (matchCount) {
+            case 6 -> 1;
+            case 5 -> {
+                if (isBonusNumberMatched) {
+                    yield 2;
+                }
+                yield 3;
+            }
+            case 4 -> 4;
+            case 3 -> 5;
+            default -> 0;
+        };
+    }
 }

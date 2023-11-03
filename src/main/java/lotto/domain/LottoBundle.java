@@ -1,12 +1,20 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.Config;
+import lotto.Validation;
+import lotto.domain.Lotto;
 
 public class LottoBundle {
+
+    private static final int MIN = Config.MIN;
+    private static final int MAX = Config.MAX;
+    private static final int LOTTO_LENGTH = Config.LOTTO_LENGTH;
+    private static final int LOTTO_PRICE = Config.LOTTO_PRICE;
 
     private final List<Lotto> bundle = new ArrayList<>();
 
@@ -18,11 +26,19 @@ public class LottoBundle {
         return bundle.size();
     }
 
+    public void makeLotto(int price) {
+        int quantity = price / LOTTO_PRICE;
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_LENGTH);
+            bundle.add(new Lotto(numbers));
+        }
+    }
+
     public void makeLotto(String input) {
         Validation.price(input);
-        int quantity = Integer.parseInt(input) / Config.UNIT;
+        int quantity = Integer.parseInt(input) / LOTTO_PRICE;
         for (int i = 0; i < quantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Config.MIN, Config.MAX, Config.LOTTO_LENGTH);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_LENGTH);
             bundle.add(new Lotto(numbers));
         }
     }

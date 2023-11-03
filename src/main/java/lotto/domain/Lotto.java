@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,9 +26,6 @@ public class Lotto {
             checker.add(number);
         }
     }
-
-    // TODO: 추가 기능 구현
-
 
     public List<Integer> getNumbers() {
         return numbers;

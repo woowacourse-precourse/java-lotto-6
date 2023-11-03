@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class Validation {
 
@@ -59,7 +60,7 @@ public class Validation {
      */
     public static void price(String input) {
         isNumeric(input); // 숫자 검사
-        isValidLength(input, Config.NUMBER_LENGTH);
+        isValidLength(input, Config.NUMBER_LENGTH); // 개수 검사
         isValidUnit(Integer.parseInt(input)); // 단위 검사
     }
 
@@ -109,8 +110,8 @@ public class Validation {
      * @param number : 검사할 숫자
      */
     public static void isValidUnit(int number) {
-        int unit = Config.UNIT;
-        if (number == 0 || number % unit != 0) {
+        int unit = Config.LOTTO_PRICE;
+        if (number <= 0 || number % unit != 0) {
             throw new IllegalArgumentException("[ERROR] " + unit + "단위로 입력해야 합니다.");
         }
     }

@@ -3,6 +3,8 @@ package lotto.view;
 import static lotto.enums.NumberCondition.LOTTO_SIZE;
 import static lotto.enums.NumberCondition.LOWEST_PRIZE_RANK;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.User;
@@ -14,8 +16,9 @@ public class OutputView {
     private static final String NUMBER_DIVISOR = ", ";
     private static final String PRIZE_DETAILS = "당첨 통계";
     private static final String LINE = "---";
-    private static final String NTH_PRIZE_DETAIL = "%d개 일치 (%d원) - %d개";
-    private static final String NTH_PRIZE_DETAIL_CONTAINING_BONUS = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String NTH_PRIZE_DETAIL = "%d개 일치 (%s원) - %d개";
+    private static final String NTH_PRIZE_DETAIL_CONTAINING_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String RETURN_RATE = "총 수익률은 %s 입니다.";
 
     public static void printCountAndTickets(User user, int count) {
         printCount(count);
@@ -27,8 +30,8 @@ public class OutputView {
     }
 
     public static void printTickets(User user, int count) {
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers = user.getTicket(i);
+        for (int index = 0; index < count; index++) {
+            List<Integer> numbers = user.getTicket(index);
             printTicket(numbers);
         }
     }
@@ -37,9 +40,9 @@ public class OutputView {
         StringBuilder ticket = new StringBuilder();
         int lottoSize = LOTTO_SIZE.number();
         Collections.sort(numbers);
-        for (int i = 0; i < lottoSize; i++) {
-            ticket.append(numbers.get(i));
-            if (i < lottoSize - 1) {
+        for (int index = 0; index < lottoSize; index++) {
+            ticket.append(numbers.get(index));
+            if (index < lottoSize - 1) {
                 ticket.append(NUMBER_DIVISOR);
             }
         }
@@ -56,17 +59,22 @@ public class OutputView {
     }
 
     private static void printPrizeDetail(int prizeNumber, int rank) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        int prize = Converter.rankToPrize(rank);
+        String prizeWithComma = decimalFormat.format(prize);
         if (rank != 2) {
             System.out.printf((NTH_PRIZE_DETAIL) + "%n",
                     Converter.rankToSameNumbers(rank),
-                    Converter.rankToPrize(rank),
-                    prizeNumber);
+                    prizeWithComma, prizeNumber);
         }
         if (rank == 2) {
             System.out.printf((NTH_PRIZE_DETAIL_CONTAINING_BONUS) + "%n",
                     Converter.rankToSameNumbers(rank),
-                    Converter.rankToPrize(rank),
-                    prizeNumber);
+                    prizeWithComma, prizeNumber);
         }
+    }
+
+    public static void printReturnRate(BigDecimal returnRate) {
+        System.out.printf((RETURN_RATE) + "%n", returnRate.toString());
     }
 }

@@ -20,13 +20,35 @@ public class WinningNumbers {
         this.bonus = bonus;
     }
 
-    public int countMatchingNumber(Lotto lotto) {
+    public Rank findRank(Lotto lotto) {
+        int matchingNumber = countMatchingNumber(lotto);
+        boolean bonusMatch = isEqualToBonus(lotto);
+
+        if (Rank.isEqualsToFirstRankMatchingNumber(matchingNumber)) {
+            return Rank.FIRST;
+        }
+        if (Rank.isEqualsToSecondRankMatchingNumber(matchingNumber) && Rank.isSameBonus(bonusMatch)) {
+            return Rank.SECOND;
+        }
+        if (Rank.isEqualsToThirdRankMatchingNumber(matchingNumber) && !Rank.isSameBonus(bonusMatch)) {
+            return Rank.THIRD;
+        }
+        if (Rank.isEqualsToFourthRankMatchingNumber(matchingNumber)) {
+            return Rank.FOURTH;
+        }
+        if (Rank.isEqualsToFifthRankMatchingNumber(matchingNumber)) {
+            return Rank.FIFTH;
+        }
+        return Rank.NONE;
+    }
+
+    private int countMatchingNumber(Lotto lotto) {
         return (int) winningNumbers.stream()
                 .filter(winningNumber -> lotto.hasNumber(winningNumber))
                 .count();
     }
 
-    public boolean isEqualToBonus(Lotto lotto) {
+    private boolean isEqualToBonus(Lotto lotto) {
         return lotto.hasNumber(bonus);
     }
 

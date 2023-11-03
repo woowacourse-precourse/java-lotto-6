@@ -16,7 +16,7 @@ public class Price {
 
     private void validate(String input) {
         int validInput = isNumber(input);
-        divideWithOneThousands(validInput);
+        isDivideWithOneThousands(validInput);
         isCorrectRange(validInput);
     }
 
@@ -32,7 +32,7 @@ public class Price {
         }
     }
 
-    private void divideWithOneThousands(int validInput) throws IllegalArgumentException {
+    private void isDivideWithOneThousands(int validInput) throws IllegalArgumentException {
         if (validInput % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
         }

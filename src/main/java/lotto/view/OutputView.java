@@ -1,6 +1,6 @@
 package lotto.view;
 
-
+import lotto.constant.OutputViewConstant;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printPurchasedLottoTickets(int amount, LottoTickets lottoTicket) {
-        int ticketCount = amount / 1000;
-        System.out.printf("%d개를 구매했습니다.\n", ticketCount);
-        printLottoNumbers(lottoTicket);
+    public static void printPurchasedLottoTickets(int amount, LottoTickets lottoTickets) {
+        int ticketCount = amount / OutputViewConstant.LOTTO_PRICE;
+        System.out.printf(OutputViewConstant.PURCHASED_LOTTO_TICKETS_MESSAGE, ticketCount);
+        printLottoNumbers(lottoTickets);
     }
 
-    private static void printLottoNumbers(LottoTickets lottoTicket) {
-        lottoTicket.getLottoTickets().forEach(lotto -> System.out.println(formatLottoNumbers(lotto)));
+    private static void printLottoNumbers(LottoTickets lottoTickets) {
+        lottoTickets.getLottoTickets().forEach(lotto -> System.out.println(formatLottoNumbers(lotto)));
         System.out.println();
     }
 
@@ -37,8 +37,8 @@ public class OutputView {
     }
 
     private static void printHeader() {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
+        System.out.println(OutputViewConstant.WINNING_STATISTICS_HEADER);
+        System.out.println(OutputViewConstant.SEPARATOR);
     }
 
     private static long calculateAndPrintRankDetails(Map<Rank, Integer> statistics) {
@@ -55,20 +55,19 @@ public class OutputView {
 
     private static long printRankDetail(Rank rank, Integer count) {
         long prize = rank.getPrize();
-
-        System.out.printf("%d개 일치", rank.getCountOfMatch());
+        System.out.printf(OutputViewConstant.RANK_MATCH_FORMAT, rank.getCountOfMatch());
 
         if (rank == Rank.SECOND) {
-            System.out.print(", 보너스 볼 일치");
+            System.out.print(OutputViewConstant.BONUS_BALL_TEXT);
         }
 
-        System.out.printf(" (%s원) - %d개\n", String.format("%,d", prize), count);
+        System.out.printf(OutputViewConstant.STATISTICS_FORMAT, String.format("%,d", prize), count);
 
         return prize * count;
     }
 
     private static void printEarningRate(long totalPrize, int amount) {
-        double earningRate = ((double) totalPrize / amount) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
+        double earningRate = ((double) totalPrize / amount) * OutputViewConstant.PERCENTAGE;
+        System.out.printf(OutputViewConstant.TOTAL_EARNING_RATE_FORMAT, earningRate);
     }
 }

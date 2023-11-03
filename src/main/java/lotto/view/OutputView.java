@@ -37,12 +37,16 @@ public class OutputView {
             int prizeMatchCount = prize.getMatchCount();
             String prizeMoney = decFormat.format(prize.getPrizeMoney());
             int prizeCount = matchCounts[prize.ordinal()];
-            if (prize != Prize.NONE && prize!= Prize.SECOND) {
-                System.out.println(prizeMatchCount + "개 일치 (" + prizeMoney + "원) - " + prizeCount + "개");
-            }
-            if (prize == Prize.SECOND) {
-                System.out.println(prizeMatchCount + "개 일치, 보너스 볼 일치 (" + prizeMoney + "원) - " + prizeCount + "개");
-            }
+            printFinalResult(prize, prizeMatchCount, prizeMoney, prizeCount);
+        }
+    }
+
+    private void printFinalResult(Prize prize, int prizeMatchCount, String prizeMoney, int prizeCount) {
+        if (prize != Prize.NONE && prize != Prize.SECOND) {
+            System.out.println(prizeMatchCount + "개 일치 (" + prizeMoney + "원) - " + prizeCount + "개");
+        }
+        if (prize == Prize.SECOND) {
+            System.out.println(prizeMatchCount + "개 일치, 보너스 볼 일치 (" + prizeMoney + "원) - " + prizeCount + "개");
         }
     }
 

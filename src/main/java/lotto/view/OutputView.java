@@ -1,8 +1,11 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.dto.response.LottoDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.model.LottoPrize;
+import lotto.model.TotalPrize;
 
 public class OutputView {
     private static final String EXCEPTION_FORMAT = "[ERROR] %s";
@@ -40,14 +43,37 @@ public class OutputView {
         lottos.forEach(this::printLotto);
     }
 
-    private void printEmptyLine() {
-        System.out.println();
-    }
-
     private void printLotto(LottoDto lottoDto) {
         List<Integer> numbers = lottoDto.getNumbers();
         String formattedLottoNumbers = numbers.toString();
         println(formattedLottoNumbers);
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
+    }
+
+    public void printTotalPrize(TotalPrize totalPrize) {
+        System.out.println("당첨 통계\n---");
+        Map<LottoPrize, Long> prizeSummary = totalPrize.getPrizeSummary();
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (lottoPrize == LottoPrize.NOTHING) {
+                continue;
+            }
+            printLottoPrize(lottoPrize, prizeSummary);
+        }
+    }
+
+    private void printLottoPrize(LottoPrize lottoPrize, Map<LottoPrize, Long> prizeSummary) {
+        Long count = prizeSummary.getOrDefault(lottoPrize, 0L);
+        int matchCount = lottoPrize.getMatchCount();
+        int prizeAmount = lottoPrize.getPrizeAmount();
+        String formattedPrizeAmount = String.format("%,d원", prizeAmount);
+        String message = String.format("%d개 일치 (%s) - %d개", matchCount, formattedPrizeAmount, count);
+        if (lottoPrize == LottoPrize.SECOND) {
+            message = String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개", matchCount, formattedPrizeAmount, count);
+        }
+        println(message);
     }
 
     private static class LazyHolder {

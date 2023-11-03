@@ -42,12 +42,15 @@ public enum LottoPrize {
                 .orElse(NOTHING);
     }
 
-    @Override
-    public String toString() {
-        return "LottoPrize{" +
-                "matchCount=" + matchCount +
-                ", prizeAmount=" + prizeAmount +
-                ", matchBonus=" + matchBonus +
-                '}';
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
     }
 }

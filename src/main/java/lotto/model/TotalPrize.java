@@ -4,20 +4,17 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public final class TotalPrize {
-    private final Map<LottoPrize, Long> prizeCounts;
+    private final Map<LottoPrize, Long> prizeSummary;
 
-    private TotalPrize(Map<LottoPrize, Long> prizeCounts) {
-        this.prizeCounts = new EnumMap<>(prizeCounts);
+    private TotalPrize(Map<LottoPrize, Long> prizeSummary) {
+        this.prizeSummary = new EnumMap<>(prizeSummary);
     }
 
-    public static TotalPrize from(Map<LottoPrize, Long> prizeCounts) {
-        return new TotalPrize(prizeCounts);
+    public static TotalPrize from(Map<LottoPrize, Long> prizeSummary) {
+        return new TotalPrize(prizeSummary);
     }
 
-    @Override
-    public String toString() {
-        return "TotalPrize{" +
-                "prizeCounts=" + prizeCounts +
-                '}';
+    public Map<LottoPrize, Long> getPrizeSummary() {
+        return prizeSummary;
     }
 }

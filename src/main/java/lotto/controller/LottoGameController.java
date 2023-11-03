@@ -37,6 +37,7 @@ public class LottoGameController {
         WinningTicket winningTicket = RetryUtil.retryOnFail(this::createWinningTicket, winningLotto);
         LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningTicket);
         TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
+        outputView.printTotalPrize(totalPrize);
 
     }
 

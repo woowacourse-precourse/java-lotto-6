@@ -1,46 +1,39 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.LottoNumberException;
-import lotto.vo.Number;
+import lotto.exception.LottoException;
+import lotto.vo.LottoNumber;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class LottoAutoGenerator implements LottoGenerator {
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
+import static lotto.contant.LottoConstants.*;
 
-    @Override
-    public Lotto generate() {
-        return null;
-    }
-
-    @Override
-    public Lottos generate(int count) throws LottoNumberException {
+public class LottoAutoGenerator {
+    public Lottos generate(int count) throws LottoException {
         Set<Lotto> uniqueLottos = new HashSet<>();
-
         while (uniqueLottos.size() < count) {
             List<Integer> randomNumbers = generateRandomNumbers();
-            List<Number> numbers = generateCreateNumbers(randomNumbers);
-            Lotto lotto = generateLotto(numbers);
+            List<LottoNumber> lottoNumbers = generateCreateNumbers(randomNumbers);
+            Lotto lotto = generateLotto(lottoNumbers);
             uniqueLottos.add(lotto);
         }
-
         return new Lottos(new ArrayList<>(uniqueLottos)); // 명시적 형변환
     }
 
     private static List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
     }
 
-    private static List<Number> generateCreateNumbers(List<Integer> randomNumbers) throws LottoNumberException {
+    private static List<LottoNumber> generateCreateNumbers(List<Integer> randomNumbers) throws LottoException {
         return randomNumbers.stream()
-                .map(Number::new)
+                .map(LottoNumber::new)
                 .toList();
     }
 
-    private static Lotto generateLotto(List<Number> randomNumbers) {
-        return new Lotto(randomNumbers);
+    private static Lotto generateLotto(List<LottoNumber> randomLottoNumbers) {
+        return new Lotto(randomLottoNumbers);
     }
 }

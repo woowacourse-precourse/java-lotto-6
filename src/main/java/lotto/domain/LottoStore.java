@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 import static lotto.utils.Constants.*;
 
 public class LottoStore {
+    private static final String LESS_THAN_MINIMUM_PRICE_EXCEPTION_FORMAT = "로또 구입 금액은 최소 %d원 이상이어야 합니다.";
+    private static final String INVALID_PURCHASE_AMOUNT_EXCEPTION_FORMAT = "로또 구입 금액은 %d원 단위어야 합니다.";
+
     private static final int LOTTO_PRICE = 1000;
     private static final int VALID_REMAINING_AMOUNT = 0;
 
@@ -19,10 +22,12 @@ public class LottoStore {
 
     private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("로또 구입 금액은 최소 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format(LESS_THAN_MINIMUM_PRICE_EXCEPTION_FORMAT, LOTTO_PRICE));
         }
         if (isInvalidPurchaseAmount(purchaseAmount)) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 단위어야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format(INVALID_PURCHASE_AMOUNT_EXCEPTION_FORMAT, LOTTO_PRICE));
         }
     }
 

@@ -9,6 +9,7 @@ public class InputValidatorTest {
     private static final String NULL_ERROR_MESSAGE = "금액을 입력해주세요.";
     private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해주세요.";
     private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해주세요.";
+    private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해주세요.";
     private InputMoneyValidator inputMoneyValidator;
 
     @Test
@@ -33,6 +34,14 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputMoneyValidator = new InputMoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR+NOT_NUMBER_ERROR_MESSAGE);
+    }
+
+    @Test
+    void 입력_값_1000_배수_예외_처리_테스트(){
+        String input = "1001";
+        assertThatThrownBy(() -> inputMoneyValidator = new InputMoneyValidator(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR+DIVISION_ERROR_MESSAGE);
     }
 
 }

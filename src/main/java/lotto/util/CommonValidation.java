@@ -1,19 +1,29 @@
 package lotto.util;
 
+import lotto.util.exception.ErrorMessage;
+
 import static lotto.util.Constants.INITIAL_VALUE;
 import static lotto.util.Constants.NUMBER_REGEXP;
 import static lotto.util.Constants.BLANK;
+import static lotto.util.exception.ErrorMessage.INVALID_ZERO_NUMBER;
+import static lotto.util.exception.ErrorMessage.INVALID_STRING;
+import static lotto.util.exception.ErrorMessage.INVALID_BLANK;
 
 public class CommonValidation {
     private CommonValidation(){}
 
-    public static boolean isZero(final String input) {
-        return input.equals(INITIAL_VALUE);
+    public static void validate(final String input) {
+        isBlank(input);
+        isNumber(input);
+        isZero(input);
     }
-    public static boolean isNumber(final String input) {
-        return input.matches(NUMBER_REGEXP);
+    private static void isZero(final String input) {
+        if(input.equals(INITIAL_VALUE)) throw new IllegalArgumentException(INVALID_ZERO_NUMBER.getErrorMessage());
     }
-    public static boolean isBlank(final String input) {
-        return input.equals(BLANK);
+    private static void isNumber(final String input) {
+        if(!input.matches(NUMBER_REGEXP)) throw new IllegalArgumentException(INVALID_STRING.getErrorMessage());
+    }
+    private static void isBlank(final String input) {
+        if(input.equals(BLANK)) throw new IllegalArgumentException(INVALID_BLANK.getErrorMessage());
     }
 }

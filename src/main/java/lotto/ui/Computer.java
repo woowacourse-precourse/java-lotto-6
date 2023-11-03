@@ -14,6 +14,12 @@ public class Computer {
         return Console.readLine();
     }
 
+    public void checkPositiveNumber(Integer number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
+        }
+    }
+
     public void checkNumber(String userInput) {
 
         try {

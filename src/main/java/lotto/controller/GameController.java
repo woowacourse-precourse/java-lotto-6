@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.PurchaseMoney;
@@ -26,8 +27,7 @@ public class GameController {
         System.out.println();
 
         WinningNumber winningNumber = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
-
-        inputBonusNumber(); // 보너스 번호 입력 받기
+        BonusNumber bonusNumber = new BonusNumber(inputBonusNumber()); // 보너스 번호 입력 받기
     }
 
     private static String inputPurchaseMoney(){

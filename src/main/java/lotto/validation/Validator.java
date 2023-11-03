@@ -14,7 +14,19 @@ public class Validator {
     private static final int DIVISOR = 1000;
 
 
-    public boolean isValidLength(List<String> list){
+
+    public void isValidWinningNumbers(List<Integer> winningNumbers){
+        isValidLength(winningNumbers);
+        isDuplicateNumberInList(winningNumbers);
+        isValidRangeNumberInList(winningNumbers);
+    }
+
+    public void isValidBonusNumber(List<Integer> winningNumbers,int bonusNumber){
+        isValidNumberInRange(bonusNumber);
+        isDuplicateNumber(winningNumbers,bonusNumber);
+    }
+
+    public boolean isValidLength(List<Integer> list){
         if(list.size() != MAX_NUMBER_LENGTH){
             ErrorMessage.lengthErrorMessage(MAX_NUMBER_LENGTH);
             throw new IllegalArgumentException();
@@ -22,14 +34,14 @@ public class Validator {
         return true;
     }
 
-    public void isValidRangeNumberInList(List<Integer> numbers, int start, int end){
+    public void isValidRangeNumberInList(List<Integer> numbers){
         for(int number : numbers){
-            isValidNumberInRange(number,start,end);
+            isValidNumberInRange(number);
         }
     }
-    public boolean isValidNumberInRange(int number, int start, int end){
-        start = START_NUMBER;
-        end = END_NUMBER;
+    public boolean isValidNumberInRange(int number){
+        int start = START_NUMBER;
+        int end = END_NUMBER;
         if(number < start || number > end){
             ErrorMessage.outOfRangeErrorMessage(start,end);
             throw new IllegalArgumentException();

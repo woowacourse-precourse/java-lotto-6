@@ -7,6 +7,7 @@ public class InputView {
     private static final String BUYING_PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백은 입력할 수 없습니다.";
     private static final String INTEGER_ERROR_MESSAGE = "[ERROR] 정수만 입력해야 합니다.";
     private static final String POSITIVE_INTEGER_ERROR_MESSAGE = "[ERROR] 양수만 입력해야 합니다.";
@@ -32,14 +33,14 @@ public class InputView {
     public static int inputBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         String bonusNumberInput = Console.readLine();
-        validateBlank(bonusNumberInput);
 
+        validateBlank(bonusNumberInput);
         int bonusNumber = validateAndConvertInteger(bonusNumberInput);
         validateNegativeInteger(bonusNumber);
         return bonusNumber;
     }
 
-    private static void validateBlank(String input) {
+    public static void validateBlank(String input) {
         if (Objects.isNull(input)) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
         }
@@ -56,7 +57,7 @@ public class InputView {
         }
     }
 
-    private static void validateNegativeInteger(int number) {
+    public static void validateNegativeInteger(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException(POSITIVE_INTEGER_ERROR_MESSAGE);
         }

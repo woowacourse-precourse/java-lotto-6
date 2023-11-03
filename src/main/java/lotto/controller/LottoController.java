@@ -1,7 +1,21 @@
 package lotto.controller;
 
+import lotto.constance.PrintConst;
+import lotto.exceptionhandler.ExceptionHandler;
+import lotto.exceptionhandler.RetryExceptionHandler;
+import lotto.ui.Writer;
+
 public class LottoController {
+
+    ExceptionHandler retryHandler = new RetryExceptionHandler();
+
     //TODO 1. 로또 구매
+    public void purchaseLotto(){
+        retryHandler.run(()->{
+            Writer.printGuide(PrintConst.GUIDE_PURCHASE);
+
+        });
+    }
 
     //TODO 2. 로또 생성
 

@@ -29,4 +29,12 @@ class CustomerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최소 1000원부터 최대 100,000원까지의 금액을 입력해주세요.");
     }
+
+    @DisplayName("로또 구매 금액은 1000원 단위가 아니면 안 된다.")
+    @Test
+    void createCustomerByNotThousandUnit() {
+        assertThatThrownBy(() -> new Customer("3400"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+    }
 }

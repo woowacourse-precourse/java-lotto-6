@@ -20,6 +20,7 @@ public class OutputView {
         for (LottoResponseDto responseDto : lottoResponseDtos.getLottoResponseDtos()) {
             printLottoNumbers(responseDto);
         }
+        System.out.println();
     }
 
     public void printLottoNumbers(LottoResponseDto responseDto) {

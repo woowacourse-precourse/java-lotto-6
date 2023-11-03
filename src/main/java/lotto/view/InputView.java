@@ -8,4 +8,9 @@ public class InputView {
         System.out.println(Message.INPUT_AMOUNT);
         return Console.readLine();
     }
+
+    public String getWinningNumber() {
+        System.out.println(Message.INPUT_WINNING_NUMBER);
+        return Console.readLine();
+    }
 }

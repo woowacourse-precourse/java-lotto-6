@@ -3,31 +3,15 @@ package lotto.domain;
 import lotto.utils.StringUtils;
 import lotto.utils.constant.LottoConstant;
 import lotto.utils.message.ErrorMessage;
+import lotto.validation.AmountValidation;
 
 public class Amount {
     private final int money;
 
     public Amount(String money) {
         int m = StringUtils.convertToInt(money);
-        validate(m);
+        new AmountValidation().validate(m);
         this.money = m;
-    }
-
-    private void validate(int money) {
-        validateRange(money);
-        validateDivisible(money);
-    }
-
-    private void validateRange(int money) {
-        if (money < LottoConstant.LOTTO_AMOUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_RANGE);
-        }
-    }
-
-    private void validateDivisible(int money) {
-        if (money % LottoConstant.LOTTO_AMOUNT != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_AMOUNT);
-        }
     }
 
     public int getLottoCount() {

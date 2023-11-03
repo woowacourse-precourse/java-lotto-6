@@ -17,7 +17,7 @@ public class UserController {
                 inputView.showInputPriceToUser();
                 purchasePrice = Integer.parseInt(Console.readLine());
                 if (!lottoValidation.validateInputPrice(purchasePrice)){
-                    throw new IllegalArgumentException("[ERROR]"+ OutputMessage.OUTPUT_ERROR_PRICE.getMessage());
+                    throw new IllegalArgumentException("[ERROR] "+ OutputMessage.OUTPUT_ERROR_PRICE.getMessage());
                 }
                 isValidInput = true;
             } catch (IllegalArgumentException e) {

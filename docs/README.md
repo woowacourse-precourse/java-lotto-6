@@ -54,30 +54,49 @@
 ### 게임 관련 상수 (GameConfig)
 
 - [x] 최대 구입 금액
+    - [x] 변수명 : MAX_PURCHASE_AMOUNT
 - [x] 당첨 번호의 개수
+    - [x] 변수명 : WINNING_NUMBERS_COUNT
 - [x] 보너스 볼의 개수
+    - [x] 변수명 : BONUS_NUMBER_COUNT
 
 ### 로또 메시지 관련 상수 (LottoMessage)
 
 - [x] 구입 금액을 입력하는 메시지
+    - 변수명 : PURCHASE_AMOUNT_INPUT_MESSAGE
 - [x] 구매한 로또 수량을 출력하는 메시지
+    - 변수명 : PURCHASED_LOTTO_QUANTITY_MESSAGE
 - [x] 구매한 로또 번호를 출력하는 메시지
+    - 변수명 : PURCHASED_LOTTO_NUMBERS_MESSAGE
 - [x] 당첨 번호를 입력하는 메시지
+    - 변수명 : WINNING_NUMBERS_INPUT_MESSAGE
 - [x] 보너스 번호을 입력하는 메시지
+    - 변수명 : BONUS_NUMBER_INPUT_MESSAGE
 - [x] 당첨 통계를 출력하는 메시지
+    - 변수명 : WINNING_STATISTICS_MESSAGE
 - [x] 총 수익률을 출력하는 메시지
+    - 변수명 : TOTAL_PROFIT_RATE_MESSAGE
 
 ### 예외 관련 상수 (ExceptionMessage)
 
-- [ ] 숫자가 아닌 입력이 들어온 경우 예외 메시지
-- [ ] 구입 금액이 1,000원 단위가 아닌 경우 예외 메시지
-- [ ] 최대 구입 금액인 100,000원을 초과한 경우 예외 메시지
-- [ ] 쉼표(,)로 구분되지 않은 경우 예외 메시지
-- [ ] 1부터 45 사이의 숫자가 아닌 경우 예외 메시지
-- [ ] 중복된 숫자가 입력된 경우 예외 메시지
-- [ ] 6개의 숫자가 입력되지 않은 경우 예외 메시지
-- [ ] 당첨 번호와 중복된 보너스 볼을 입력한 경우 예외 메시지
-- [ ] 1개의 숫자가 입력되지 않은 경우 예외 메시지
+- [x] 숫자가 아닌 입력이 들어온 경우 예외 메시지
+    - 변수명 : NON_NUMERIC_INPUT_EXCEPTION
+- [x] 구입 금액이 1,000원 단위가 아닌 경우 예외 메시지
+    - 변수명 : NON_THOUSAND_UNIT_AMOUNT_EXCEPTION
+- [x] 최대 구입 금액인 100,000원을 초과한 경우 예외 메시지
+    - 변수명 : EXCEED_MAX_PURCHASE_AMOUNT_EXCEPTION
+- [x] 쉼표(,)로 구분되지 않은 경우 예외 메시지
+    - 변수명 : NO_COMMA_INPUT_EXCEPTION
+- [x] 1부터 45 사이의 숫자가 아닌 경우 예외 메시지
+    - 변수명 : OUT_OF_RANGE_NUMBER_EXCEPTION
+- [x] 중복된 숫자가 입력된 경우 예외 메시지
+    - 변수명 : DUPLICATE_NUMBER_EXCEPTION
+- [x] 6개의 숫자가 입력되지 않은 경우 예외 메시지
+    - 변수명 : WINNING_NUMBERS_COUNT_EXCEPTION
+- [x] 당첨 번호와 중복된 보너스 볼을 입력한 경우 예외 메시지
+    - 변수명 : DUPLICATE_BONUS_NUMBER_EXCEPTION
+- [x] 1개의 숫자가 입력되지 않은 경우 예외 메시지
+    - 변수명 : BONUS_NUMBER_COUNT_EXCEPTION
 
 ### 기호 관련 상수 (CommonSymbol)
 

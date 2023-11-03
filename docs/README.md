@@ -3,12 +3,15 @@
 - [] 당첨 번호를 입력 받는다. 번호는 쉼표(,) 기준으로 구분
   -> 6개의 입력이 아닌 경우, 숫자가 아닌 경우, 1~45의 수가 아닌 경우
 - [] 보너스 번호를 입력 받는다 -> 숫자가 아닌 경우, 1~45의 수가 아닌 경우
-- [] 로또 한개를 발행한다. Lotto#new Lotto()
-  - [] 로또 번호 검증 Lotto#validate()
-    - [] 로또의 길이는 6가 맞는지 검증. Lotto#void validateBoundLength()
-    - [] 로또 번호는 1~45 사이의 숫자를 가지는지 검증. Lotto#void validateProperNums()
-    - [] 로또는 중복된 숫자를 가지는 지 검증. Lotto#void validateDuplicatedNums()
-- [] 로또를 구입한 개수만큼 발행한다.
+- [o] 로또 한개를 발행한다. Lotto#new Lotto()
+  - [o] 로또 번호 검증 Lotto#validate()
+    - [o] 로또의 길이는 6가 맞는지 검증. Lotto#void validateBoundLength()
+    - [o] 로또 번호는 1~45 사이의 숫자를 가지는지 검증. Lotto#void validateProperNums()
+    - [o] 로또는 중복된 숫자를 가지는 지 검증. Lotto#void validateDuplicatedNums()
+- [] 로또를 구입한 개수만큼 발행한다. LottoMarket#issueLottoes()
+  - []중복되지 않는 무작위 수를 6개를 생성한다. LottoMarket#generateNonduplicatedNums()
+  - []입력 받은 돈으로 로또 발행 개수를 구한다. LottoMarket#lottoCount()
+    - []1000원으로 나누어 떨어지지 않으면 예외. LottoMarket#valiadateMoney
 - [] 구매한 로또의 번호와 당첨 번호를 비교
 - [] 당첨 내역 출력
 - [] 수익률 출력

@@ -22,6 +22,7 @@ public class LottoMachine {
     private void checkWinningNumbers(String value) {
         validateEmpty(value);
         validateOnlyNumberAndComma(value);
+        validateValueExists(value);
         List<Integer> numbers = toListInteger(value);
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -55,6 +56,15 @@ public class LottoMachine {
             Integer.parseInt(removeComma);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
+        }
+    }
+
+    private void validateValueExists(String value) {
+        List<String> numbers = Arrays.asList(value.split(","));
+        for (String number : numbers) {
+            if (number.isEmpty()) {
+                throw new IllegalArgumentException("[ERROR] 입력되지 않은 번호가 있습니다.");
+            }
         }
     }
 

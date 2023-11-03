@@ -11,8 +11,8 @@ public class LottoController {
     public void run() {
         Player player = getPlayer();
         showPlayerLotto(player);
-        Prize prize = getPrize();
-        InputView.getLottoBonus();
+        Prize prize = getPrize(getPrizeLotto());
+        System.out.println(prize);
     }
 
     private Player getPlayer() {
@@ -29,12 +29,22 @@ public class LottoController {
         player.getLotto().forEach(lotto -> OutputView.printPlayerLotto(lotto.toString()));
     }
 
-    private Prize getPrize() {
+    private Prize getPrize(Lotto lotto) {
+        int bonus = InputView.getLottoBonus();
         try {
-            return Prize.of(new Lotto(InputView.getLottoPrize()));
+            return Prize.of(lotto, bonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getPrize();
+            return getPrize(lotto);
+        }
+    }
+
+    private Lotto getPrizeLotto() {
+        try {
+            return new Lotto(InputView.getLottoPrize());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPrizeLotto();
         }
     }
 }

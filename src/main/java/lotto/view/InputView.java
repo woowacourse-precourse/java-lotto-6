@@ -11,4 +11,11 @@ public class InputView {
         InputValidator.validateIsNumber(input);
         return Integer.parseInt(input);
     }
+
+    public static String[] inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String[] input = Console.readLine().split(",");
+        InputValidator.validateIsAllNumber(input);
+        return input;
+    }
 }

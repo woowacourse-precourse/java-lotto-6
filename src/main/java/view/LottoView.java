@@ -1,7 +1,8 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import view.constant.ConstantMessage;
 
 import java.util.List;
@@ -26,9 +27,9 @@ public class LottoView {
         System.out.print(number);
         printlnConstantMessage(ConstantMessage.BUY_RESULT);
     }
-    public static void printLottoList(List<Lotto> lottos){
-        for(int i=0; i<lottos.size(); i++){
-            System.out.println(lottos.get(i));
+    public static void printLottoList(Lottos lottos){
+        for(int i=0; i<lottos.getLottos().size(); i++){
+            System.out.println(lottos.getLottos().get(i));
         }
         printNewLine();
     }

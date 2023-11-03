@@ -4,7 +4,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.input.view.GeneratedLottoOutputView;
+import lotto.input.view.output.GeneratedLottoOutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

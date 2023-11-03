@@ -1,4 +1,4 @@
-package lotto.input.view;
+package lotto.input.view.input;
 
 import static lotto.input.constant.Constant.PURCHASEAMOUNTINPUT;
 import static lotto.input.constant.Constant.PURCHASEAMOUNTINPUT_ERROR;

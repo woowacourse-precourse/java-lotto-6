@@ -13,12 +13,15 @@
     - 1,000원 단위로 나누어 떨어지지 않으면 `IllegalArgumentException`발생
     - 1,000원 미만의 값이 입력되면 `IllegalArgumentException` 발생
     - 숫자 이외의 값이 있다면 `NumberFormatException` 발생
-    - 중복된 값이 있으면 `IllegalArgumentException` 발생
-    - 6개가 입력되지 않으면 `IllegalArgumentException` 발생
     - 모든 예외에 대해 `[ERROR]`로 시작하는 명확한 에러 메시지 출력 후 **다시 입력받는다.**
 
 2. 로또 당첨 번호 입력
-    - (,)기준으로 구분하며 잘못된 입력인 경우 `IllegalArgumentException`발생 후 `[ERROR]`로 시작하는 명확한 에러 메시지 출력 후 **다시 입력받는다.**
+    - 숫자가 아닌 경우 `NumberFormatException` 발생
+    - 1 ~ 45 사이가 아니라면 `IllegalArgumentException` 발생
+    - 중복된 값이 있으면 `IllegalArgumentException` 발생
+    - 6개가 입력되지 않으면 `IllegalArgumentException` 발생
+    - (,)기준으로 구분하며 잘못된 입력인 경우 `IllegalArgumentException`발생 
+    - 모든 예외에 대해 `[ERROR]`로 시작하는 명확한 에러 메시지 출력 후 **다시 입력받는다.**
 
 3. 보너스 번호를 입력
     - (,)기준으로 구분하며 잘못된 입력인 경우 `IllegalArgumentException`발생 후 `[ERROR]`로 시작하는 명확한 에러 메시지 출력 후 **다시 입력받는다.**
@@ -37,7 +40,8 @@
     - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
     - 3등: 5개 번호 일치 / 1,500,000원
     - 4등: 4개 번호 일치 / 50,000원
-    - 5등: 3개 번호 일치 / 5,000원 
+    - 5등: 3개 번호 일치 / 5,000원
+
 ```
 [실제 출력 내용]
 당첨 통계

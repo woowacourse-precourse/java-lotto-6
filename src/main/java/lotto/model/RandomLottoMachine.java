@@ -5,7 +5,7 @@ import lotto.constant.Constant;
 
 import java.util.List;
 
-public class RandomLottoGenerator implements LottoGenerator{
+public class RandomLottoMachine implements LottoMachine {
     private static final int LOTTO_SIZE = Constant.LOTTO_SIZE.getValue();
     private static final int MIN_LOTTO_NUMBER = Constant.MIN_LOTTO_NUMBER.getValue();
     private static final int MAX_LOTTO_NUMBER = Constant.MAX_LOTTO_NUMBER.getValue();

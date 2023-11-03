@@ -68,5 +68,8 @@
 ## Constants
 ### ExceptionMessage
 > 예외 메세지를 담은 클래스
+   - [x] 에러 메세지 상수 추가
+   - [x] 생성자 추가
+   - [ ] 예외 발생 메서드 추가
 ### LottosConstants
 > 로또의 당첨 여부와 과련된 상수를 관리 하는 enum 클래스

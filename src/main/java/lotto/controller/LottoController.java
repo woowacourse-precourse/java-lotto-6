@@ -2,9 +2,11 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -19,10 +21,18 @@ public class LottoController {
         output.showMoneyInputMessage();
         int money = toInt(input.readMoney());
 
+        makeLottoTickets(money);
+    }
+
+    private LottoTickets makeLottoTickets(int money) {
         int count = money / LOTTO_PRICE;
+
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            makeLotto();
+            lottos.add(makeLotto());
         }
+
+        return new LottoTickets(lottos);
     }
 
     private int toInt(String number) {

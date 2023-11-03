@@ -2,9 +2,7 @@ package lotto.domain;
 
 import lotto.utils.LottoWinningStrategy;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,5 +26,12 @@ public class Lotto {
 
     public Result determineResult(LottoWinningStrategy winningStrategy, List<Integer> winningNumbers, int bonusNumber) {
         return winningStrategy.determineResult(numbers, winningNumbers, bonusNumber);
+    }
+
+    public List<Integer> getSortedNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        return sortedNumbers;
     }
 }

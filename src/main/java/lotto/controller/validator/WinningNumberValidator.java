@@ -2,12 +2,10 @@ package lotto.Controller;
 
 import java.util.HashSet;
 import java.util.Set;
+import lotto.MagicNumber;
+import lotto.Message;
 
 public class WinningNumberValidator implements Validator {
-    static private final int VALID_LOTTO_NUMBER_COUNT = 6;
-    static private final int MIN_LOTTO_NUMBER = 1;
-    static private final int MAX_LOTTO_NUMBER = 45;
-
 
     @Override
     public void validate(String winningNumbers) throws IllegalArgumentException {
@@ -21,13 +19,13 @@ public class WinningNumberValidator implements Validator {
             isInRange(numericWinningNumber);
             validLottoNumbers.add(numericWinningNumber);
         }
-        
+
         checkDuplication(validLottoNumbers);
     }
 
     private void isValidLength(String[] splitWinningNumbers) {
-        if (splitWinningNumbers.length != VALID_LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+        if (splitWinningNumbers.length != MagicNumber.VALID_LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(Message.INVALID_LOTTO_NUMBER_COUNT_EXCEPTION);
         }
     }
 
@@ -35,24 +33,22 @@ public class WinningNumberValidator implements Validator {
         try {
             return Integer.parseInt(winningNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.NON_NUMERIC_EXCEPTION_MESSAGE);
         }
     }
 
     private void isInRange(int lottoNumber) {
-        if (lottoNumber < MIN_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+        if (lottoNumber < MagicNumber.MIN_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
-        if (lottoNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+        if (lottoNumber > MagicNumber.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
     private void checkDuplication(Set<Integer> validLottoNumbers) {
-        if (validLottoNumbers.size() != VALID_LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+        if (validLottoNumbers.size() != MagicNumber.VALID_LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(Message.DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
         }
     }
-
-
 }

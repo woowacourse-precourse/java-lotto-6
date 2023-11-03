@@ -1,25 +1,26 @@
 package lotto.Controller;
 
 
+import lotto.MagicNumber;
 import lotto.Message;
 
 public class PurchaseAmountValidator implements Validator {
-    private static final int UNIT_PURCHASE_PRICE = 1000;
+
 
     private int purchaseAmount;
 
-
-    public void validate(String input) throws IllegalArgumentException {
-        isNumber(input);
-        isNotZero(input);
-        isDivisibleBy1000(input);
+    @Override
+    public void validate(String purchaseAmount) throws IllegalArgumentException {
+        isNumber(purchaseAmount);
+        isNotZero(purchaseAmount);
+        isDivisibleBy1000(purchaseAmount);
     }
 
     private void isNumber(String input) {
         try {
             purchaseAmount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.NOT_A_NUMBER_EXCEPTION);
+            throw new IllegalArgumentException(Message.NON_NUMERIC_EXCEPTION_MESSAGE);
         }
     }
 
@@ -30,7 +31,7 @@ public class PurchaseAmountValidator implements Validator {
     }
 
     private void isDivisibleBy1000(String input) {
-        if (purchaseAmount % UNIT_PURCHASE_PRICE != 0) {
+        if (purchaseAmount % MagicNumber.UNIT_PURCHASE_PRICE != 0) {
             throw new IllegalArgumentException(Message.INDIVISIBLE_BY_UNIT_PRICE_EXCEPTION_MESSAGE);
         }
     }

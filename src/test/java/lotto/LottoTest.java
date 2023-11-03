@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -46,5 +48,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(List.of(4, 8, 43, 27, -5, 9)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("인자값이 해당 로또 번호중 하나인지 알려주는 기능")
+    @ParameterizedTest
+    @CsvSource(value = {"1:true","3:true","6:true","8:false"},delimiter = ':')
+    void 로또번호_포함_확인(int number,boolean expected){
+        Lotto lotto=new Lotto(List.of(6,4,1,3,5,2));
+
+        assertThat(lotto.isContains(number)).isEqualTo(expected);
     }
 }

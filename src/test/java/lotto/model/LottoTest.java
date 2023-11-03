@@ -1,7 +1,7 @@
-package lotto;
+package lotto.model;
 
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,4 +25,22 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Nested
+    @DisplayName("로또 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
+    class LottoOutOfRangeTest {
+
+        @DisplayName("범위의 아래 경곗값인 0을 포함하여 테스트")
+        @Test
+        void createLottoByOutOfRange1() {
+            assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("범위의 위 경곗값인 46을 포함하여 테스트")
+        @Test
+        void createLottoByOutOfRange() {
+            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }

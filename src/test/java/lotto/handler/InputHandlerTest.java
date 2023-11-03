@@ -73,6 +73,20 @@ class InputHandlerTest {
                 .isInstanceOf(InvalidNumberException.class);
     }
 
+    @DisplayName("당첨 번호중 중복값이 있을때 예외 발생")
+    @Test
+    void handleDuplicateWinningNumbersTest() {
+        assertThatThrownBy(() -> inputHandler.handleWinningNumbers("1, 1, 1, 1, 1, 1"))
+                .isInstanceOf(InvalidWinningNumbersException.class);
+    }
+
+    @DisplayName("당첨 번호가 6개가 아닐때 예외 발생")
+    @Test
+    void handleNotSixWinningNumbersTest() {
+        assertThatThrownBy(() -> inputHandler.handleWinningNumbers("1, 2, 3, 4, 5"))
+                .isInstanceOf(InvalidWinningNumbersException.class);
+    }
+
     @DisplayName("보너스 번호 검증 성공 테스트")
     @Test
     void handleBonusNumberSuccessTest() {

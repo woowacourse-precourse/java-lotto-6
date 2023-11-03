@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName("문자열 반환 테스트")
+    void toStringTest() {
+        List<Integer> numbers = List.of(2,3,5,7,13,31);
+        Lotto lotto = new Lotto(numbers);
+        String expectedResult ="[2, 3, 5, 7, 13, 31]";
+
+        assertThat(lotto.toString()).isEqualTo(expectedResult);
+    }
 }

@@ -6,29 +6,34 @@ import lotto.model.User;
 import lotto.utils.Converter;
 import lotto.validator.GameValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
     private User user;
     private Lotto lotto;
+    private int count;
+    private int bonusNumber;
 
-    GameController() {
+    public void progress() {
+        setCount();
         setUser();
+        OutputView.printCountAndTickets(user, count);
         setLotto();
     }
 
     private void setUser() {
-        try {
-            this.user = new User(setCount());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setUser();
-        }
+        this.user = new User(count);
     }
 
-    private int setCount() {
+    private void setCount() {
         String money = InputView.money();
-        GameValidator.validateMoney(money);
-        return Converter.moneyToCount(money);
+        try {
+            GameValidator.validateMoney(money);
+            count = Converter.moneyToCount(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setCount();
+        }
     }
 
     private void setLotto() {
@@ -44,6 +49,12 @@ public class GameController {
         String numbers = InputView.lottoNumbers();
         GameValidator.validateNumbers(numbers);
         return Converter.stringToIntArray(numbers);
+    }
+
+    private void setBonusNumber() {
+        String number = InputView.bonusNumbers();
+        GameValidator.validateBonusNumber(number, lotto);
+        bonusNumber = Integer.parseInt(number);
     }
 
 }

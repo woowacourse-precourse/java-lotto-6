@@ -184,7 +184,7 @@ public class LottoStoreController {
                 lottoResult.getLottoWinningCounts()
                 , lottoResult.getProfitRate()
         );
-        OutputView.lottoResultOutput(lottoResultResponseDto.prizeReuslts(),
+        OutputView.lottoResultOutput(lottoResultResponseDto.prizeResults(),
                 lottoResultResponseDto.toStringProfitRate());
     }
 

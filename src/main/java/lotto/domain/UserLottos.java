@@ -12,6 +12,7 @@ public record UserLottos(List<Lotto> lottos) {
     public LottoResult compareAllLottos(WinningLotto winningLotto) {
         Map<LottoPrizes, Integer> prizesCountMap = LottoPrizes.getPrizesCountMap();
 
+        // 각 로또를 비교한 뒤, 얻어낸 결과가 당첨이라면 각 당첨의 횟수를 증가시킴
         lottos.stream()
                 .map(winningLotto::compare)
                 .filter(Objects::nonNull)

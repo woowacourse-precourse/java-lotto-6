@@ -18,7 +18,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5))).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -84,6 +83,38 @@ class LottoTest {
                     .hasMessage(Lotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
             assertThatThrownBy(() -> new Lotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Lotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+        }
+    }
+
+    @Nested
+    @DisplayName("validateDuplicateNumbers 메소드 test")
+    class ValidateDuplicateNumbers {
+        @DisplayName("숫자가 중복되지 않으면 검증 통과")
+        @Test
+        void Has_unique_numbers() {
+            // given
+            List<Integer> numbers1 = List.of(1, 2, 3, 4, 5, 6);
+            List<Integer> numbers2 = List.of(45, 44, 43, 42, 41, 40);
+
+            // when
+            // then
+            Lotto lotto1 = new Lotto(numbers1);
+            Lotto lotto2 = new Lotto(numbers2);
+        }
+
+        @DisplayName("")
+        @Test
+        void Has_duplicate_numbers() {
+            // given
+            List<Integer> numbers1 = List.of(1, 1, 2, 3, 4, 5);
+            List<Integer> numbers2 = List.of(11, 11, 11, 11, 11, 11);
+
+            // when
+            // then
+            assertThatThrownBy(() -> new Lotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
+            assertThatThrownBy(() -> new Lotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
         }
     }
 }

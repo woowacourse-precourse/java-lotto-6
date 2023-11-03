@@ -10,31 +10,27 @@ import java.util.*;
 
 public class Application {
 
-    private static String purchasingAmount;
-    private static int purchasingPieces;
+    private static int purchasePieces;
     private static final InputView inputView = new InputView();
-    private static final RandomLotto random = new RandomLotto();
 
-    public static void purchaseCount() {
-        purchasingAmount = inputView.purchasingAmount();
+    public static void purchaseCount(String purchasingAmount) {
         try {
-            purchasingPieces = new Purchase(purchasingAmount).pieces();
+            purchasePieces = new Purchase(purchasingAmount).pieces();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            purchaseCount();
+            purchaseCount(purchasingAmount);
         }
     }
 
-    public static List<Integer> listSort(List<Integer> noSort) {
-        List<Integer> listSort = new ArrayList<>(noSort);
-        Collections.sort(listSort);
-        return listSort;
+    public static void randomRepeat() {
+        for (int i = 0; i < purchasePieces; i++) {
+            RandomLotto random = new RandomLotto();
+            System.out.println(random.listSort());
+        }
     }
 
     public static void main(String[] args) {
-        purchaseCount();
-        for (int i = 0; i < purchasingPieces; i++) {
-            listSort(random.generateNum());
-        }
+        purchaseCount(inputView.purchaseAmount());
+        randomRepeat();
     }
 }

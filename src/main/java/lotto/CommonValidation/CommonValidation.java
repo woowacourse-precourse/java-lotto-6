@@ -8,7 +8,7 @@ import lotto.Exception.CommonValidationException;
 public class CommonValidation {
 
 
-    public static void isValidNumberRange(Integer value) {
+    public static void isValueBetween1And45(Integer value) {
         if (value < 1 || value > 45) {
             throw new CommonValidationException(RANGE_ERROR_MESSAGE.getMessage(value));
         }

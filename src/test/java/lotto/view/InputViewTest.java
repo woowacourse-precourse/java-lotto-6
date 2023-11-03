@@ -46,7 +46,7 @@ class InputViewTest {
     static Stream<Arguments> lottoNumberProvider() {
         return Stream.of(
                 arguments("7,8,9,10,11,12", 6, List.of(7, 8, 9, 10, 11, 12)),
-                arguments("1,7,8,9,10,11", 6 ,List.of(1, 7, 8, 9, 10, 11)),
+                arguments("1,7,8,9,10,11", 6, List.of(1, 7, 8, 9, 10, 11)),
                 arguments("1,2,7,8,9,10", 6, List.of(1, 2, 7, 8, 9, 10)),
                 arguments("1,2,3,7,8,9", 6, List.of(1, 2, 3, 7, 8, 9))
         );

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class Number {
+public class Number implements Comparable<Number> {
 
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 45;
@@ -48,5 +48,10 @@ public class Number {
     @Override
     public String toString() {
         return "Number{value=%d}".formatted(value);
+    }
+
+    @Override
+    public int compareTo(Number o) {
+        return Integer.compare(this.value, o.value);
     }
 }

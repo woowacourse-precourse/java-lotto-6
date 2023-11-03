@@ -21,8 +21,7 @@ class NumberTest {
         @DisplayName("로또에서 사용하는 숫자 범위를 벗어난 숫자로 객체를 생성랗 수 없다")
         void rangeValidationTest_whenOutOfRange(int number) {
 
-            assertThatThrownBy(() -> Number.from(number))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> Number.from(number)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("로또 숫자는 1 이상 45 이하이어야 합니다");
         }
 
@@ -47,8 +46,7 @@ class NumberTest {
         void equalsTest_whenSameInstance() {
             Number number = Number.from(EXAMPLE_VALUE);
 
-            assertThat(number).isEqualTo(number)
-                    .hasSameHashCodeAs(number);
+            assertThat(number).isEqualTo(number).hasSameHashCodeAs(number);
         }
 
         @Test
@@ -66,8 +64,7 @@ class NumberTest {
             Number number = Number.from(EXAMPLE_VALUE);
             Number comparedNumber = Number.from(EXAMPLE_VALUE);
 
-            assertThat(number).isEqualTo(comparedNumber)
-                    .hasSameHashCodeAs(comparedNumber);
+            assertThat(number).isEqualTo(comparedNumber).hasSameHashCodeAs(comparedNumber);
         }
 
         @Test
@@ -77,6 +74,21 @@ class NumberTest {
             Number comparedNumber = Number.from(ANOTHER_VALUE);
 
             assertThat(number).isNotEqualTo(comparedNumber);
+        }
+    }
+
+    @Nested
+    @DisplayName("숫자 비교 기능 테스트")
+    class ComparableTest {
+
+        @Test
+        @DisplayName("숫자를 작은 수와 큰 수를 비교할 수 있다")
+        void compareToTest() {
+            Number three = Number.from(3);
+            Number four = Number.from(4);
+            Number five = Number.from(5);
+
+            assertThat(four).isLessThan(five).isGreaterThan(three);
         }
     }
 }

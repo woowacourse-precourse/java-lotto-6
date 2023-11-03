@@ -9,7 +9,8 @@ public enum ErrorMessage {
     DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 중복된 번호를 입력할 수 없습니다."),
     DUPLICATED_NUMBER("[ERROR] 당첨 번호로 중복된 수를 입력할 수 없습니다."),
     EXACTLY_ONE_NUMBER("[ERROR] 하나의 수만 입력해야 합니다."),
-    NOT_INTEGER("[ERROR] 정수 값만 입력 가능합니다.");
+    NOT_INTEGER("[ERROR] 정수 값만 입력 가능합니다."),
+    TOTAL_NUMBER("[ERROR] 숫자는 총 6개여야 합니다.");
 
     private final String value;
 

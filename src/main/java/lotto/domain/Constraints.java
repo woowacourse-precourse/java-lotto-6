@@ -7,7 +7,7 @@ public interface Constraints {
 
     Integer NUMBER_LENGTH = 6;
     Integer MAX = 45;
-    Integer MIN = 0;
+    Integer MIN = 1;
 
     default void validateNumbers(List<Integer> numbers) {
         if (numbers.size() != NUMBER_LENGTH

@@ -6,9 +6,13 @@ import verifier.MoneyVerifier;
 import verifier.Verifier;
 import verifier.WinnerNumberVerifier;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public final class InputHandler {
 
-    private static final Verifier moneyVerier = new MoneyVerifier();
+    private static final Verifier moneyVerifier = new MoneyVerifier();
     private static final Verifier bonusVerifier = new BonusNumberVerifier();
     private static final Verifier winnerNumberVerifier = new WinnerNumberVerifier();
 
@@ -19,8 +23,18 @@ public final class InputHandler {
     public static int readMoney(){
         System.out.println("구입금액을 입력해 주세요");
         String input = Console.readLine();
-        moneyVerier.check(input);
+        moneyVerifier.check(input);
         return Integer.parseInt(input);
     }
+
+    public static List<Integer> readWinnerNumber(){
+        System.out.println("당첨 번호를 입력해 주세요");
+        String input = Console.readLine();
+        winnerNumberVerifier.check(input);
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 
 }

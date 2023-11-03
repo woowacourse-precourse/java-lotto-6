@@ -120,19 +120,27 @@ public class LottoService {
         return new WinningLottoTicket(winningNumber, bonusNumber);
     }
 
-    public Map<Rank, Integer> getStatistics(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
-        Map<Rank, Integer> statistics = new HashMap<>();
-
-        for (Rank rank : Rank.values()) {
-            statistics.put(rank, 0);
-        }
+    public Map<Rank, Integer> calculateStatistics(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
+        Map<Rank, Integer> statistics = initializeStatistics();
 
         for (Lotto lotto : lottoTicket.getLottoTickets()) {
             Rank rank = winningLottoTicket.match(lotto);
-            statistics.put(rank, statistics.get(rank) + 1);
+            incrementStatistic(statistics, rank);
         }
 
         return statistics;
+    }
+
+    private Map<Rank, Integer> initializeStatistics() {
+        Map<Rank, Integer> statistics = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            statistics.put(rank, 0);
+        }
+        return statistics;
+    }
+
+    private void incrementStatistic(Map<Rank, Integer> statistics, Rank rank) {
+        statistics.put(rank, statistics.get(rank) + 1);
     }
 
     private List<Integer> changeInputToString(String input) {

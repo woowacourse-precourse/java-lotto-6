@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.constants.SystemOption.PAYMENT_UNIT_SYSTEM_VALUE;
+import static lotto.constants.SystemOption.PAYMENT_UNIT_VALUE;
 import static lotto.message.ErrorMessage.*;
 
 public class Validator {
@@ -25,7 +25,7 @@ public class Validator {
     }
 
     private void validateUnit(int payment) {
-        if (payment % PAYMENT_UNIT_SYSTEM_VALUE.getValue() != 0) {
+        if (payment % PAYMENT_UNIT_VALUE.getValue() != 0) {
             throw new IllegalArgumentException(WRONG_UNIT_ERROR_MESSAGE.toString());
         }
     }

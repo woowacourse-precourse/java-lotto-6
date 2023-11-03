@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Customer;
 import lotto.handler.InputHandler;
 import lotto.message.GuideMessage;
 
@@ -14,5 +15,8 @@ public class LottoGameController {
         System.out.println(GuideMessage.GET_PAYMENT_REQUEST_MESSAGE);
         int payment = inputHandler.getPayment();
 
+        Customer customer = Customer.createCustomer(payment);
+        customer.buyLottos();
+        customer.printInfoOfLottos();
     }
 }

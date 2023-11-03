@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -10,11 +11,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto createLotto(List<Integer> lottoNumbers) {
+        return new Lotto(lottoNumbers);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printNumbers() {
+        System.out.println(this.numbers);
+    }
+
 }

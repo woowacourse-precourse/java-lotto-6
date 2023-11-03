@@ -8,11 +8,12 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String MESSAGE_INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String MESSAGE_INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String MESSAGE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
 
     public int inputPurchaseAmount() throws IllegalArgumentException{
         System.out.println(MESSAGE_INPUT_PURCHASE_AMOUNT);
-        return getInteger();
+        return inputInteger();
     }
 
     public List<Integer> inputWinningNumbers() throws IllegalArgumentException{
@@ -24,10 +25,21 @@ public class InputView {
         return numbers;
     }
 
-    private int getInteger() throws IllegalArgumentException{
+    public int inputBonusNumber() {
+        System.out.println(MESSAGE_INPUT_BONUS_NUMBER);
+        return inputInteger(1, 45);
+    }
+
+    private int inputInteger() throws IllegalArgumentException{
         String read = Console.readLine();
         validateIsNumber(read);
         return Integer.parseInt(read);
+    }
+
+    private int inputInteger(int startInclusive, int endInclusive) {
+        int number = inputInteger();
+        validateRange(number, startInclusive, endInclusive);
+        return inputInteger();
     }
 
     private List<Integer> getNumbers(String s) {
@@ -55,9 +67,13 @@ public class InputView {
 
     private void validateRange(List<Integer> numbers, int startInclusive, int endInclusive) {
         for (int number : numbers) {
-            if (number < startInclusive || number > endInclusive) {
-                throw new IllegalArgumentException("입력한 숫자의 범위가 올바르지 않습니다");
-            }
+            validateRange(number, startInclusive, endInclusive);
+        }
+    }
+
+    private void validateRange(int number, int startInclusive, int endInclusive) {
+        if (number < startInclusive || number > endInclusive) {
+            throw new IllegalArgumentException("입력한 숫자의 범위가 올바르지 않습니다");
         }
     }
 }

@@ -43,6 +43,36 @@ public class LottoGameController {
     }
 
     private void lottoGameInit() {
+        String inputWinningNumbers = getValidInputWinningNumbers();
+        String[] winningNumbers = inputWinningNumbers.split(",");
+        lottoService.initWinningNumbers(winningNumbers);
+        String inputBonusNumber = getValidInputBonusNumber(winningNumbers);
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        lottoService.initBonusNumber(bonusNumber);
+    }
+
+    private String getValidInputBonusNumber(String[] winningNumbers) {
+        while (true) {
+            String inputBonusNumber = InputView.bonusNumber();
+            try {
+                Validator.inputBonusNumber(inputBonusNumber,winningNumbers);
+                return inputBonusNumber;
+            } catch (IllegalArgumentException e) {
+                OutputView.errorMessage(e);
+            }
+        }
+    }
+
+    private String getValidInputWinningNumbers() {
+        while (true) {
+            String inputWinningNumbers = InputView.winningNumbers();
+            try {
+                Validator.inputWinningNumbers(inputWinningNumbers);
+                return inputWinningNumbers;
+            } catch (IllegalArgumentException e) {
+                OutputView.errorMessage(e);
+            }
+        }
     }
 
     private void printLottoResults() {

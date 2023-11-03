@@ -9,6 +9,16 @@ public class LottoService {
     private static final Pattern NUMBER_MATCH = Pattern.compile("^[0-9]*$");
     private static final int LOTTO_PRICE = 1000;
     private static final int ZERO = 0;
+    private final Player player = new Player();
+
+    public int calculateLottoTicket(String inputMoney) {
+        validateBuyMoney(inputMoney);
+        return toInt(inputMoney) / LOTTO_PRICE;
+    }
+
+    public void settingBuyMoney(int inputMoney) {
+        player.settingBuyMoney(inputMoney);
+    }
 
     public void validateBuyMoney(String inputMoney) {
         validateBuyMoneyType(inputMoney);

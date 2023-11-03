@@ -28,6 +28,7 @@ public class LottoValidatorTest {
                 LottoValidator.amountInputValidator(amount)
         );
     }
+
     @Order(3)
     @ParameterizedTest
     @ValueSource(strings = {"",

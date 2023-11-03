@@ -19,6 +19,17 @@ class LottoPurchaseTest {
         lottoPurchase = new LottoPurchase("1000");
     }
 
+
+    @Test
+    void getAmount() {
+        assertThat(lottoPurchase.getAmount()).isEqualTo(1000);
+    }
+
+    @Test
+    void getNumberOfTickets() {
+        assertThat(lottoPurchase.getNumberOfTickets()).isEqualTo(1);
+    }
+
     @DisplayName("숫자형이 아닌 문자가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByString() {
@@ -36,10 +47,5 @@ class LottoPurchaseTest {
     @Test
     void createLottoPurchaseAmountByNonThousandAmount() {
         assertThatThrownBy(() -> new LottoPurchase("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
-    }
-
-    @Test
-    void getAmount() {
-        assertThat(lottoPurchase.getAmount()).isEqualTo(1000);
     }
 }

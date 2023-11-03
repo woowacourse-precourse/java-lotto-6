@@ -16,7 +16,7 @@ class LottoMachine {
 
     private final LottoFactory factory;
 
-    public LottoMachine(LottoFactory factory) {
+    private LottoMachine(LottoFactory factory) {
         this.factory = factory;
     }
 

@@ -8,7 +8,7 @@
 7. 수익률 출력
 
 ## 금액 입력 안내 출력 기능
-- [ ] `LottoOutputView::printBuyingPriceInputRequest` 메서드
+- [x] `LottoOutputView::printBuyingPriceInputRequest` 메서드
   - 금액입력 안내 메시지를 출력한다.
 
 ## 로또 구입 금액 입력 기능

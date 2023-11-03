@@ -12,7 +12,6 @@ public class LotteryChecker {
     public void prizeCheck(List<Lotto> lottoList, List<Integer> winningNumbers) {
         List<Integer> winningNum = winningNumbers.subList(0, WINNING_NUMBER_TOTAL.getValue());
         Integer bonusNum = winningNumbers.get(WINNING_NUMBER_TOTAL.getValue());
-        System.out.println("보너스 번호 : " + bonusNum);
 
         countSameNumber(lottoList, winningNum, bonusNum);
 
@@ -40,10 +39,10 @@ public class LotteryChecker {
             int count = (int) lotto.getNumbers().stream().filter(winningNumbers::contains).count();
             hasBonusNum(lotto, bonusNum);
             lotto.setMatchNumberCount(count);
-            System.out.println("로또 번호 : " + lotto.getNumbers().toString());
-            System.out.println("당첨 번호 : " + winningNumbers.toString());
-            System.out.printf("당첨 번호와 일치하는 숫자 개수 = %d", count);
-            System.out.println();
+//            System.out.println("로또 번호 : " + lotto.getNumbers().toString());
+//            System.out.println("당첨 번호 : " + winningNumbers.toString());
+//            System.out.printf("당첨 번호와 일치하는 숫자 개수 = %d", count);
+//            System.out.println();
         }
     }
 

@@ -1,9 +1,6 @@
 package lotto;
 
-import lotto.domain.LotteryChecker;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +14,7 @@ public class Application {
         int amount = lottoMachine.purchaseLotto();
         WinningNumbers winningNumbers = new WinningNumbers();
         LotteryChecker lotteryChecker = new LotteryChecker();
+        ProfitCalculator profitCalculator = new ProfitCalculator(lotteryChecker);
 
         while (true) {
             if (lottoMachine.calculateAmount(amount) != -1) {
@@ -35,21 +33,24 @@ public class Application {
         System.out.println();
 
         List<Integer> winningNumber = winningNumbers.createWinningNumber();
-        System.out.println("winningNumber.toString() = " + winningNumber.toString());
 
         System.out.println();
 
         List<Integer> bonusNumber = winningNumbers.createBonusNumber();
-        System.out.println("bonusNumber.toString() = " + bonusNumber.toString());
 
         lotteryChecker.prizeCheck(lottoList, winningNumber);
 
         for (Lotto lotto : lottoList) {
             int prize = lotto.getPrize();
-            System.out.println("등수 = " + prize);
         }
 
         List<Integer> integers = lotteryChecker.prizeCalculate(lottoList);
-        System.out.println("integers.toString() = " + integers.toString());
+
+        profitCalculator.calculate(integers);
+        int totalSum = profitCalculator.getTotalSum();
+        System.out.println("총 상금 : " + totalSum);
+
+        double v = profitCalculator.earnRate(totalSum, amount);
+        System.out.println("총 수익률은 " + v + "%입니다.");
     }
 }

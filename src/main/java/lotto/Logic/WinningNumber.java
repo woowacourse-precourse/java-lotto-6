@@ -26,14 +26,12 @@ public class WinningNumber {
         List<Integer> correct=new ArrayList<>(); // <몇 개 일치, 보너스 일치 여부>
 
         winNumbers.removeAll(lotto.getNumbers());
-        int correctCount=6-winNumbers.size();
-        correct.add(correctCount);
+        correct.add(6-winNumbers.size());
 
-        winNumbers.remove(Integer.valueOf(bonusNumber));
-
-        if(correct.get(0)==5 && 6-winNumbers.size()!=correctCount)
+        if(correct.get(0)==5 && lotto.getNumbers().contains(bonusNumber))
             correct.add(1);
-        else if (6-winNumbers.size()==correctCount)
+
+        if(correct.size()!=2)
             correct.add(0);
 
         return correct;
@@ -109,12 +107,12 @@ public class WinningNumber {
     }
 
     public void bonusValid(int bonusNumber){
-        if (bonusNumber<=0)
+        if (numbers.contains(bonusNumber))
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨번호와 중복되면 안된다");
+        else if (bonusNumber<=0)
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 0 이하로 표현하면 안된다");
         else if(bonusNumber>=46)
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 46 이상으로 표현하면 안된다");
-
-        //보너스번호가 메인 번호랑 중복되는 게 있으면 안된다
 
     }
 }

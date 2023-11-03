@@ -2,6 +2,7 @@ package lotto.View;
 
 import lotto.Logic.Lotto;
 import lotto.Logic.Member;
+import lotto.Logic.Prize;
 import lotto.Logic.WinningNumber;
 
 import java.util.ArrayList;
@@ -78,20 +79,18 @@ public class UI {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-
-
         winningNumber.calculate(member.getMemberLotto(),member);
-        //staticOutput();
-        System.out.println(member.getPrize());
+
+        staticOutput(member.prizeResult());
     }
 
-    public void staticOutput(List<Integer> result){ // [1, 0, 0, 0, 0]
+    public void staticOutput(List<Integer> result){
 
-        System.out.println("3개 일치 (5,000원) - "+result.get(0)+"개");
-        System.out.println("4개 일치 (50,000원) - "+result.get(1)+"개");
+        System.out.println("3개 일치 (5,000원) - "+result.get(4)+"개");
+        System.out.println("4개 일치 (50,000원) - "+result.get(3)+"개");
         System.out.println("5개 일치 (1,500,000원) - "+result.get(2)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.get(3)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+result.get(4)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.get(1)+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+result.get(0)+"개");
 
         //profitOutput();
     }

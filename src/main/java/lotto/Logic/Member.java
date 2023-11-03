@@ -12,15 +12,29 @@ public class Member {
     int count;
     List<Lotto> memberLotto=new ArrayList<>();
 
-//    List<Integer> result=new ArrayList<>();
+    List<Integer> result=new ArrayList<>();
     List<Prize> prize=new ArrayList<>();
 
     public Member() {
-//        this.result.add(0);
-//        this.result.add(0);
-//        this.result.add(0);
-//        this.result.add(0);
-//        this.result.add(0);
+        this.result.add(0);
+        this.result.add(0);
+        this.result.add(0);
+        this.result.add(0);
+        this.result.add(0);
+    }
+
+    public List<Integer> prizeResult(){
+
+        for (int i=0;i<this.prize.size();i++){
+
+            if(this.prize.get(i).getCount()==5)
+                continue;
+
+            int current=this.result.get(this.prize.get(i).getCount());
+            this.result.set(this.prize.get(i).getCount(),current+1);
+        }
+
+        return this.result;
     }
     public void setPrize(Prize prize){
         this.prize.add(prize);

@@ -9,4 +9,11 @@ public class DataInput {
         // Validate
         return Integer.parseInt(userPurchaseAmount);
     }
+
+    public int userInputBonusNumber(){
+        String userBonusNumber;
+        userBonusNumber = Console.readLine();
+        // Validate
+        return Integer.parseInt(userBonusNumber);
+    }
 }

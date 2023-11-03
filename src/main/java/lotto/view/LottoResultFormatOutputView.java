@@ -1,0 +1,42 @@
+package lotto.view;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Map;
+import lotto.domain.lottoresult.LottoCheckResult;
+import lotto.domain.lottoresult.LottoResultStatus;
+
+public class LottoResultFormatOutputView {
+    public static void printLottoResultFormat(LottoCheckResult lottoCheckResult) {
+        Map<LottoResultStatus, Integer> result = lottoCheckResult.getResult();
+
+        for (Map.Entry<LottoResultStatus, Integer> entry : result.entrySet()) {
+            LottoResultStatus resultStatus = entry.getKey();
+            String prize = convertToKoreanCurrency(resultStatus);
+            Integer resultCount = entry.getValue();
+            long matchCount = resultStatus.getMatchCount();
+
+            if (isSecond(resultStatus)) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", matchCount, prize, resultCount);
+            }else if (isOverFifth(resultStatus)) {
+                System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount, prize, resultCount);
+            }
+        }
+    }
+
+    private static boolean isOverFifth(LottoResultStatus resultStatus) {
+        return resultStatus != LottoResultStatus.FAIL;
+    }
+
+    private static boolean isSecond(LottoResultStatus resultStatus) {
+        return resultStatus == LottoResultStatus.FIVE_MATCH_WITH_BONUS;
+    }
+
+    private static String convertToKoreanCurrency(LottoResultStatus status) {
+        Locale locale = new Locale("ko", "KR");
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
+        int prize = status.getPrize();
+
+        return formatter.format(prize).substring(1);
+    }
+}

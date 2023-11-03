@@ -21,4 +21,13 @@ public class OutputView {
                 System.out.printf("[%s]\n", numbers);
             });
     }
+
+    public void askLottoNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
+
+    public void askBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
 }

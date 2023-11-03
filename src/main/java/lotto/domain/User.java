@@ -10,13 +10,13 @@ public class User {
 
     private List<Lotto> lottoList;
 
-    private Long totalBought;
+    private Long totalAmount;
 
     private Long totalPrize;
 
-    public User(Long totalBought){
+    public User(Long totalAmount){
         this.lottoList = DEFAULT_LOTTO_LIST;
-        this.totalBought = totalBought;
+        this.totalAmount = totalAmount;
         this.totalPrize = DEFAULT_TOTAL_PRIZE;
     }
 }

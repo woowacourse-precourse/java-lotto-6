@@ -4,9 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-  public String inputMONEY() {
+  public int inputMONEY() {
     OutputView.printInputMoneyMessage();
-    return Console.readLine();
+    String money = Console.readLine();
+    return Integer.parseInt(money);
   }
 
   public String inputWinningNumber() {

@@ -82,4 +82,36 @@ class InputValidatorTest {
                     .hasMessage(InputValidator.WRONG_INPUT_WINNING_NUMBERS_MESSAGE);
         }
     }
+
+    @Nested
+    @DisplayName("validateBonusNumber 메소드 test")
+    class ValidateBonusNumber {
+        @DisplayName("보너스 번호로 숫자가 들어오면 검증 통과")
+        @Test
+        void Bonus_number_consists_of_numbers() {
+            // given
+            String input1 = "1";
+            String input100 = "100";
+            String input10000 = "10000";
+
+            // when
+            // then
+            InputValidator.validateBonusNumber(input1);
+            InputValidator.validateBonusNumber(input100);
+            InputValidator.validateBonusNumber(input10000);
+        }
+
+        @DisplayName("보너스 번호로 숫자 외에 입력이 들어오면 예외 발생")
+        @Test
+        void Bonus_numbers_contain_characters_except_numbers() {
+            // given
+            String input = "A";
+
+            // when
+            // then
+            assertThatThrownBy(() -> InputValidator.validateBonusNumber(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(InputValidator.WRONG_INPUT_BONUS_NUMBER_MESSAGE);
+        }
+    }
 }

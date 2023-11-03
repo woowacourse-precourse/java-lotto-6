@@ -11,12 +11,9 @@ import lotto.exception.IllegalDuplicateException;
 import lotto.exception.IllegalLottoRangeException;
 import lotto.exception.IllegalLottoSizeException;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -39,7 +36,7 @@ public class Lotto {
         }
     }
 
-    private static void validateNumberIsDuplicate(List<Integer> numbers){
+    private static void validateNumberIsDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
@@ -48,7 +45,8 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers(){
+    @Override
+    public List<Integer> numbers() {
         return new ArrayList<>(numbers);
     }
 

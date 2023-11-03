@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
-import static lotto.constant.ExceptionMessage.TOO_SMALL_PRICE_TO_BUY;
+import static lotto.constant.ExceptionMessage.INSUFFICIENT_PRICE_TO_BUY;
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class PlayerController {
 
     private void validateIsMinimumPrice(Long price) {
         if (price < LOTTO_PRICE.getInfo()) {
-            throw new IllegalArgumentException(TOO_SMALL_PRICE_TO_BUY.getMessage());
+            throw new IllegalArgumentException(INSUFFICIENT_PRICE_TO_BUY.getMessage());
         }
     }
 

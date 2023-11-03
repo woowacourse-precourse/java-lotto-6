@@ -46,5 +46,6 @@ public class GameManager {
 
     private void playGame(final LottoGame lottoGame, final WinningLotto winningLotto) {
         WinningResult winningResult = lottoGame.calculateWinning(winningLotto);
+        double earningsRate = winningResult.calculateEarningsRate(lottoGame);
     }
 }

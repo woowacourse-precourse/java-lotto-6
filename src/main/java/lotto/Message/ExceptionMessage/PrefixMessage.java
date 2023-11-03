@@ -1,6 +1,6 @@
 package lotto.Message.ExceptionMessage;
 
-public enum PrefixMessage {
+enum PrefixMessage {
 
     ERROR_MESSAGE("[ERROR] "),
     ;

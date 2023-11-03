@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,8 @@ public class Prize {
 
     static void printProfitRate() {
         double initialProfitRate = (double) totalProfit / Issue.initialCash * 100;
-        String profitRate = String.format("%.1f", initialProfitRate);
+        DecimalFormat rateFormat = new DecimalFormat("###,###.0");
+        String profitRate = rateFormat.format(initialProfitRate);
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
 

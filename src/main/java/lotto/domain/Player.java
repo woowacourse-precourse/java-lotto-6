@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.enums.Ranking;
 import lotto.utils.RandomGenerator;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Player {
@@ -98,7 +99,7 @@ public class Player {
                 .append("5개 일치 (1,500,000원) - ").append(results.get(Ranking.THIRD)).append("개").append(System.lineSeparator())
                 .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(Ranking.SECOND)).append("개").append(System.lineSeparator())
                 .append("6개 일치 (2,000,000,000원) - ").append(results.get(Ranking.FIRST)).append("개").append(System.lineSeparator())
-                .append("총 수익률은 ").append(prizeRate).append("%입니다.");
+                .append("총 수익률은 ").append(new BigDecimal(prizeRate).toPlainString()).append("%입니다.");
 
         return result.toString();
     }

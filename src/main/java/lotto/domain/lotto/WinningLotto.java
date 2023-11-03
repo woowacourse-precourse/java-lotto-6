@@ -17,13 +17,14 @@ public final class WinningLotto implements LottoTicket {
     private final BonusNumber bonusNumber;
 
     /**
-     * @apiNote Lotto 생성 시, <h3 color="#bf0f4d">numbers의 요소는 반드시 6개여야 합니다.</h3>
+     * @apiNote Lotto 생성 시, <h3 color="#bf0f4d">numbers의 요소는 반드시 1~45 범위에 속하는 6개의 숫자여야 합니다.</h3>
      */
     public WinningLotto(
             final List<Integer> winningNumbers,
             final int bonusNumber
     ) {
-        LottoValidator.validateLotto(winningNumbers);
+        LottoValidator.validateLottoLength(winningNumbers);
+        LottoValidator.validateDuplicationWithBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = LottoTicket.intoLottoNumbers(winningNumbers);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
@@ -31,6 +32,7 @@ public final class WinningLotto implements LottoTicket {
     public LottoPrize draw(final Lotto lotto) {
         final int matchedCount = countContained(lotto);
         final boolean hasBonusNumber = hasBonusNumber(lotto);
+        System.out.println(hasBonusNumber);
         return LottoPrize.of(matchedCount, hasBonusNumber);
     }
 

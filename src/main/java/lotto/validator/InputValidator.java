@@ -46,7 +46,7 @@ public class InputValidator {
     }
 
     private void validateLottoNumberRange(int number) {
-        if (START_LOTTO_NUMBER <= number && number <= END_LOTTO_NUMBER) {
+        if (number < START_LOTTO_NUMBER && number > END_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }

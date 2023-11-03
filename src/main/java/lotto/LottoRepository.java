@@ -15,11 +15,21 @@ public class LottoRepository {
         Arrays.fill(ranks,0);
     }
     public void addLotto(Lotto lotto){
-        calculateRank(lotto);
+        if(calculateRank(lotto))
+            return;
         lottos.add(lotto);
     }
-    public void calculateRank(Lotto lotto){
+    private boolean calculateRank(Lotto lotto){
         int rank = lottoRank.isRank(lotto, winningLotto, bonusNum);
+        if(rank==-1){
+            System.out.println("[ERROR] 로또의 번호 개수는 6개여야 합니다.");
+            return false;
+        }
         ranks[rank-1]++;
+        return true;
+    }
+
+    public int[] getRanks() {
+        return ranks;
     }
 }

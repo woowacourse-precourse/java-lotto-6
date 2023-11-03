@@ -7,9 +7,9 @@ import lotto.View.View;
 import java.util.List;
 
 public class Controller {
+    View view = new View();
+    LottoRandom randLotto = new LottoRandom();
     public void LotteStart(){
-        View view = new View();
-        LottoRandom randLotto = new LottoRandom();
 
         int myMoney = view.buyMoney();
         int count = view.buyLotto(myMoney);
@@ -18,8 +18,17 @@ public class Controller {
 
         List listLotto = randLotto.getBuyLotto(count);
         view.myLotto(listLotto);
-        List lotto = view.correctNum();
-        Lotto lo = new Lotto(lotto);
-        view.bonusNum(lotto);
+        List correctLotto= correctLotto();
+
+    }
+    private List<Integer> correctLotto(){
+        List correctLotto = view.correctNum();
+        try{
+            new Lotto(correctLotto);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] " + e.getMessage());
+            correctLotto();
+        }
+        return correctLotto;
     }
 }

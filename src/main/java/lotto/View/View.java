@@ -54,22 +54,22 @@ public class View {
                 .map(Integer::parseInt).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public String bonusNum(List a){
+    public String bonusNum(List correctLotto){
         System.out.println("보너스 번호를 입력해 주세요.");
         String k = Console.readLine();
         try{
-            bonusNumException(a, k);
+            bonusNumException(correctLotto, k);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] " + e.getMessage());
-            bonusNum(a);
+            bonusNum(correctLotto);
         }
         return k;
     }
-    private void bonusNumException(List a, String k){
-        if(a.contains(Integer.parseInt(k))){
+    private void bonusNumException(List correctLotto, String bonus){
+        if(correctLotto.contains(Integer.parseInt(bonus))){
             throw new IllegalArgumentException("로또 번호는 중복이 불가능 합니다.");
         }
-        if(Integer.parseInt(k) > 45 || Integer.parseInt(k) < 1){
+        if(Integer.parseInt(bonus) > 45 || Integer.parseInt(bonus) < 1){
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

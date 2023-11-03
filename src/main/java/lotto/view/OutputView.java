@@ -3,8 +3,10 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.domain.Rank;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {

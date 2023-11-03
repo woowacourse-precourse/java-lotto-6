@@ -6,7 +6,7 @@ public class Money {
     private static final String INVALID_RANGE_AMOUNT = "1000원 이상 입력하세요";
     private static final int LOTTO_PRICE = 1000;
 
-    private Integer money;
+    private final Integer money;
 
     public Money(String amount) {
         this.money = validate(amount);
@@ -45,5 +45,9 @@ public class Money {
 
     private boolean isDivisibleByLottoPrice(Integer money) {
         return money % LOTTO_PRICE == 0;
+    }
+
+    public Integer getLottoCount() {
+        return money / LOTTO_PRICE;
     }
 }

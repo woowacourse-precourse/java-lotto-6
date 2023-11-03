@@ -16,4 +16,8 @@ public class LottoService {
         List<Lotto> lottos = lottoPublisher.publishLotto(purchaseAmount);
         return lottos;
     }
+
+    public void compareLotto() {
+
+    }
 }

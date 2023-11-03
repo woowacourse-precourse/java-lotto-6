@@ -22,6 +22,8 @@ public class LottoController {
     private void compareLotto() {
         List<String> winningNumbers = lottoInputView.getWinningNumbers();
         Integer bonusNumber = lottoInputView.getBonusNumber();
+
+        lottoService.compareLotto();
     }
 
     private void buyLottoTicketProcess() {

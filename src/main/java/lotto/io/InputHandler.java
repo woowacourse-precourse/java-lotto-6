@@ -1,10 +1,10 @@
-package io;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import verifier.BonusNumberVerifier;
-import verifier.MoneyVerifier;
-import verifier.Verifier;
-import verifier.WinnerNumberVerifier;
+import lotto.verifier.BonusNumberVerifier;
+import lotto.verifier.MoneyVerifier;
+import lotto.verifier.Verifier;
+import lotto.verifier.WinnerNumberVerifier;
 
 import java.util.Arrays;
 import java.util.List;

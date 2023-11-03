@@ -1,4 +1,4 @@
-package verifier;
+package lotto.verifier;
 
 public class MoneyVerifier implements Verifier {
     @Override

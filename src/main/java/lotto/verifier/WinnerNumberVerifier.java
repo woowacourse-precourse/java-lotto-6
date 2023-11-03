@@ -1,4 +1,4 @@
-package verifier;
+package lotto.verifier;
 
 import java.util.ArrayList;
 import java.util.List;

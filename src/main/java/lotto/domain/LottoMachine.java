@@ -9,19 +9,28 @@ public class LottoMachine {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoMachine(String numbers) {
-        checkNumbers(numbers);
-        winningNumbers = toListInteger(numbers);
+    public LottoMachine(String winningValue, String bonusValue) {
+        checkWinningNumbers(winningValue);
+        winningNumbers = toListInteger(winningValue);
+
+        checkBonusNumber(bonusValue);
+        bonusNumber = Integer.parseInt(bonusValue);
     }
 
-    private void checkNumbers(String value) {
+    private void checkWinningNumbers(String value) {
         validateEmpty(value);
-        validateNotNumber(value);
-        validateBlack(value);
+        validateOnlyNumberAndComma(value);
         List<Integer> numbers = toListInteger(value);
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
+    }
+
+    private void checkBonusNumber(String value) {
+        validateEmpty(value);
+        validateOnlyNumber(value);
+        validateRangeOfBonus(value);
+        validateDuplicateWinningNumbers(value);
     }
 
     private List<Integer> toListInteger(String value) {
@@ -38,18 +47,12 @@ public class LottoMachine {
         }
     }
 
-    private void validateNotNumber(String value) {
+    private void validateOnlyNumberAndComma(String value) {
         String removeComma = value.replace(",","");
         try {
             Integer.parseInt(removeComma);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 구분하는 쉼표(,)와 숫자만 입력 가능합니다.");
-        }
-    }
-
-    private void validateBlack(String value) {
-        if (value.contains(" ")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백 없이 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
         }
     }
 
@@ -68,6 +71,30 @@ public class LottoMachine {
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().filter(n -> (n >= 1) && (n <= 45)).count() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateOnlyNumber(String value) {
+        try {
+            Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validateRangeOfBonus(String value) {
+        int number = Integer.parseInt(value);
+        if ((number < 1) || (number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateDuplicateWinningNumbers(String value) {
+        int number = Integer.parseInt(value);
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber == number) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            }
         }
     }
 }

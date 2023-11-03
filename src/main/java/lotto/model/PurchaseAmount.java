@@ -24,20 +24,16 @@ public class PurchaseAmount {
         IsMultipleOfUnit(convertStringToInt(price));
     }
 
-    private String removeSeparator(String price) {
-        return price.replace(NUMBER_SEPARATOR, EMPTY);
-    }
-
     private void IsNumber(String price) {
         try {
             Integer.parseInt(price);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
             ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
         }
     }
 
     private void IsPositive(int price) {
-        if (price <= 0) {
+        if (price < 0) {
             ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.throwException();
         }
     }
@@ -46,6 +42,10 @@ public class PurchaseAmount {
         if (price % PURCHASE_AMOUNT_UNIT != 0) {
             ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(PURCHASE_AMOUNT_UNIT);
         }
+    }
+
+    private String removeSeparator(String price) {
+        return price.replace(NUMBER_SEPARATOR, EMPTY);
     }
 
     private int convertStringToInt(String price) {

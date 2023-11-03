@@ -58,8 +58,7 @@ public class LottoController {
     private AnswerLotto makeAnswerLotto(final Lotto mainLotto) {
         while (true) {
             try {
-                int bonusNumber = inputView.enterBonusNumber();
-                return AnswerLotto.create(mainLotto, bonusNumber);
+                return AnswerLotto.create(mainLotto, inputView.enterBonusNumber());
             } catch (LottoException lottoException) {
                 outputView.printError(lottoException.getMessage());
             }

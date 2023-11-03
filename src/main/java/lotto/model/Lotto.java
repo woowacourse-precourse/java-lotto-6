@@ -3,14 +3,39 @@ package lotto.model;
 import lotto.constant.Constant;
 import lotto.message.ExceptionMessage;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final String BLANK = " ";
+    private static final String EMPTY = "";
+    private static final String SEPARATOR = ",";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(String numbersInput) {
+        List<Integer> numbers = convertStringToIntList(numbersInput);
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    private List<Integer> convertStringToIntList(String numbersInput) {
+        List<String> number = splitBySeparator(numbersInput);
+        try {
+            return number.stream().map(Integer::parseInt).toList();
+        } catch (NumberFormatException ex) {
+            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
+        }
+        return Collections.emptyList();
+    }
+
+    private List<String> splitBySeparator(String numbers) {
+        return Arrays.stream(numbers.replace(BLANK, EMPTY).split(SEPARATOR)).toList();
     }
 
     public List<Integer> getNumbers() {

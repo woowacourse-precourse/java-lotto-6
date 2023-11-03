@@ -8,6 +8,7 @@ public class PurchaseMoney {
 
     public PurchaseMoney(String money){
         validate(money);
+        this.value = Integer.valueOf(money);
     }
 
     private void validate(String money){

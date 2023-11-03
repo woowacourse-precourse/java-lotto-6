@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.constant.ExceptionConstant;
+
 import java.util.List;
 
 public class LottoException extends IllegalArgumentException {
@@ -9,20 +11,20 @@ public class LottoException extends IllegalArgumentException {
     }
 
     public static void ensureValidSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != ExceptionConstant.LOTTO_NUMBER_COUNT) {
+            throw new LottoException(ExceptionConstant.LENGTH_ERROR_MESSAGE);
         }
     }
 
     public static void ensureDistinctNumbers(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        if (numbers.stream().distinct().count() != ExceptionConstant.LOTTO_NUMBER_COUNT) {
+            throw new LottoException(ExceptionConstant.DUPLICATE_ERROR_MESSAGE);
         }
     }
 
     public static void ensureNumbersWithinRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+        if (numbers.stream().anyMatch(number -> number < ExceptionConstant.MIN_LOTTO_NUMBER || number > ExceptionConstant.MAX_LOTTO_NUMBER)) {
+            throw new LottoException(ExceptionConstant.BOUNDARY_ERROR_MESSAGE);
         }
     }
 }

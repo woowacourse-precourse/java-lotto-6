@@ -1,23 +1,24 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
 public enum LottoPrizes {
-    THREE_NUMBERS_MATCHED("3개 일치", 5_000),
-    FOUR_NUMBERS_MATCHED("4개 일치", 50_000),
-    FIVE_NUMBER_MATCHED("5개 일치", 1_500_000),
-    FIVE_NUMBER_AND_BONUS_MATCHED("5개 일치, 보너스 볼 일치", 30_000_000),
-    SIX_NUMBER_MATCHED("6개 일치", 2_000_000_000);
+    THREE_NUMBERS_MATCHED("3개 일치", new BigDecimal(5_000)),
+    FOUR_NUMBERS_MATCHED("4개 일치", new BigDecimal(50_000)),
+    FIVE_NUMBER_MATCHED("5개 일치", new BigDecimal(1_500_000)),
+    FIVE_NUMBER_AND_BONUS_MATCHED("5개 일치, 보너스 볼 일치", new BigDecimal(30_000_000)),
+    SIX_NUMBER_MATCHED("6개 일치", new BigDecimal(2_000_000_000));
 
     private static final int ZERO_COUNT = 0;
     private static final String WON = "원";
     private static final String DECIMAL_FORMAT = "###,###";
     private final String term;
-    private final long winningAmount;
+    private final BigDecimal winningAmount;
 
-    LottoPrizes(String term, long winningAmount) {
+    LottoPrizes(String term, BigDecimal winningAmount) {
         this.term = term;
         this.winningAmount = winningAmount;
     }
@@ -26,7 +27,7 @@ public enum LottoPrizes {
         return term;
     }
 
-    public long getWinningAmount() {
+    public BigDecimal getWinningAmount() {
         return winningAmount;
     }
 

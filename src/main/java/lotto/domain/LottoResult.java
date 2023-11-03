@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -31,15 +32,15 @@ public record LottoResult(Map<LottoPrizes, Integer> result) {
                 + COUNT_TO_KOREAN;
     }
 
-    public long getTotalRevenue() {
+    public BigDecimal getTotalRevenue() {
         return Arrays.stream(LottoPrizes.values())
-                .mapToLong(this::getRevenue)
-                .sum();
+                .map(this::getRevenue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private long getRevenue(LottoPrizes lottoPrizes) {
-        final long winCount = result.get(lottoPrizes);
-        final long winAmount = lottoPrizes.getWinningAmount();
-        return winCount * winAmount;
+    private BigDecimal getRevenue(LottoPrizes lottoPrizes) {
+        final BigDecimal winCount = new BigDecimal(result.get(lottoPrizes));
+        final BigDecimal winAmount = lottoPrizes.getWinningAmount();
+        return winAmount.multiply(winCount);
     }
 }

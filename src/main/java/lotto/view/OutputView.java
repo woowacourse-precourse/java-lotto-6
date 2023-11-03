@@ -1,11 +1,15 @@
 package lotto.view;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class OutputView {
-    private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String EARNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
     private static final String STATUS = "당첨 통계";
     private static final String THREE_DASH = "---";
     private static final String NEW_LINE = System.getProperty("line.separator");
+    private static final int FIRST_DIGIT = 1;
     private static final int HUNDREAD = 100;
 
     public void printMessage(String message) {
@@ -25,8 +29,13 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printEarningRate(int purchaseAmount, long revenue) {
-        double earningRate = ((double) revenue / purchaseAmount) * HUNDREAD;
+    public void printEarningRate(int purchaseAmount, BigDecimal revenue) {
+        BigDecimal earningRate = revenue
+                .multiply(new BigDecimal(HUNDREAD))
+                .divide(new BigDecimal(purchaseAmount)
+                        , FIRST_DIGIT
+                        , RoundingMode.HALF_UP);
+
         System.out.printf(EARNING_RATE_MESSAGE + NEW_LINE, earningRate);
     }
 }

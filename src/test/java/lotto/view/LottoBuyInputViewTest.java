@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -57,6 +58,18 @@ class LottoBuyInputViewTest {
         assertThatThrownBy(() -> lottoBuyInputView.requestLottoPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
+    }
+    
+    @Test
+    @DisplayName("사용자는 로또 당첨번호를 입력할 수 있다.")
+    public void requestWinningLottoNumbers() {
+        //given
+        String input = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // when
+        List<Integer> lottoNumbers = lottoBuyInputView.requestWinningLottoNumbers();
+        // then
+        assertThat(lottoNumbers).allMatch(number -> number >= 1 && number <= 45);
     }
 
 }

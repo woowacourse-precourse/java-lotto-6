@@ -14,6 +14,9 @@ public class Validator {
     private static final int DIVISOR = 1000;
 
 
+    private void isValidPurchaseAmount(int amount) {
+        isMultipleNumber(amount);
+    }
 
     public void isValidWinningNumbers(List<Integer> winningNumbers){
         isValidLength(winningNumbers);
@@ -64,8 +67,8 @@ public class Validator {
         return true;
     }
 
-    public boolean isMultipleNumber(int number, int divisor){
-        divisor = DIVISOR;
+    public boolean isMultipleNumber(int number){
+        int divisor = DIVISOR;
         if(number < divisor || number % divisor != 0){
             ErrorMessage.multipleErrorMessage(divisor);
             throw new IllegalArgumentException();

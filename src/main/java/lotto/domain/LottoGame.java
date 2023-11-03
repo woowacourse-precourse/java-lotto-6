@@ -54,13 +54,7 @@ public class LottoGame {
     }
 
     private int calculateCounts(List<Integer> lottoNums, List<Integer> winNums) {
-        int count = 0;
-        for (int i = 0; i < lottoNums.size(); i++) {
-            if (winNums.contains(lottoNums.get(i))) {
-                count++;
-            }
-        }
-        return count;
+        return (int) lottoNums.stream().filter(winNums::contains).count();
     }
 
     public double calculatePrizePercentage(int money) {

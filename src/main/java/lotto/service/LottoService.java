@@ -41,11 +41,11 @@ public class LottoService {
     }
 
     private void validateIsNumeric(String input) {
-        PurchaseValidator.validateIsNumeric(input);
+        PurchaseValidator.checkIsNumeric(input);
     }
 
     private void validatePurchaseAmount(int price) {
-        PurchaseValidator.validatePurchaseAmount(price);
+        PurchaseValidator.checkValidPurchaseAmount(price);
     }
 
     public List<Integer> displayWinningNumber() {

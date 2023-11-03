@@ -24,7 +24,7 @@ public class WinningLotto {
         return new WinningLotto(new Lotto(numbers), bonusNum);
     }
 
-    public long countMatchLotto(Lotto generateLotto) {
+    public int countMatchLotto(Lotto generateLotto) {
         return this.lotto
                 .countingMatchNumbers(generateLotto);
     }

@@ -1,14 +1,9 @@
 package lotto.domain;
 
-import lotto.domain.constant.RangeConstant;
-
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.domain.constant.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
 import static lotto.domain.constant.RangeConstant.*;
-import static lotto.domain.constant.RangeConstant.END_NUM;
-import static lotto.domain.constant.RangeConstant.START_NUM;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,8 +14,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public long countingMatchNumbers(Lotto lotto) {
-        return this.numbers.stream()
+    public int countingMatchNumbers(Lotto lotto) {
+        return (int) this.numbers.stream()
                 .filter(number -> lotto.containsNumber(number))
                 .count();
     }

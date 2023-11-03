@@ -14,6 +14,10 @@ public class PlayerMoney {
         holdingMoney = holdingMoney.consumeHoldingMoney(consumeMoney);
     }
 
+    public int getHoldingMoney() {
+        return holdingMoney.getHoldingMoney();
+    }
+
     public int getUsedMoney() {
         return usedMoney.getUsedMoney();
     }

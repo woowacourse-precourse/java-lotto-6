@@ -16,5 +16,15 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printEntertWinningNumber(){
+        System.out.println();
+        System.out.println(Message.PRINT_USER_ENTER_WINNING_NUMBER.getMessage());
+    }
+
+    public static void printEnterBounsNumber(){
+        System.out.println();
+        System.out.println(Message.PRINT_USER_ENTER_BONUS_NUMBER.getMessage());
+    }
+
 
 }

@@ -1,6 +1,6 @@
 package domain;
 
-import exception.ImpossiblePayAmountException;
+import exception.NotPositivePurchaseAmountException;
 import exception.NotCorrectUnitAmountException;
 
 public class LottoTicketsPurchasingMachine {
@@ -13,7 +13,7 @@ public class LottoTicketsPurchasingMachine {
 
     private void validateAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new ImpossiblePayAmountException();
+            throw new NotPositivePurchaseAmountException();
         }
     }
 

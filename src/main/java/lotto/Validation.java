@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Validation {
 
     /**
@@ -29,6 +32,23 @@ public class Validation {
         for (String string : input.split(",")) {
             int number = Integer.parseInt(string);
             isInRange(number); // 번호 검사
+        }
+        isDuplicate(input); // 중복 검사
+    }
+
+    /**
+     * 숫자가 중복되는지 검사하는 함수
+     *
+     * @param input : 숫자로 이루어진 문자열
+     */
+    public static void isDuplicate(String input) {
+        List<Integer> checker = new ArrayList<>();
+        for (String string : input.split(",")) {
+            int number = Integer.parseInt(string);
+            if (checker.contains(number)) {
+                throw new IllegalArgumentException("[ERROR]: 번호는 중복될 수 없습니다.");
+            }
+            checker.add(number);
         }
     }
 

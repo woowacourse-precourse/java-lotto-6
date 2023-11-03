@@ -14,6 +14,10 @@ public class LottoBundle {
         return bundle;
     }
 
+    public int getSize() {
+        return bundle.size();
+    }
+
     public void makeLotto(String input) {
         Validation.price(input);
         int quantity = Integer.parseInt(input) / Config.UNIT;
@@ -37,19 +41,19 @@ public class LottoBundle {
             }
 
             if (count == 3) {
-                result.put("3", result.getOrDefault("3", 1) + 1);
+                result.put("3", result.getOrDefault("3", 0) + 1);
             }
             if (count == 4) {
-                result.put("4", result.getOrDefault("4", 1) + 1);
+                result.put("4", result.getOrDefault("4", 0) + 1);
             }
             if (count == 5) {
                 if (lottoNumbers.contains(bonus)) {
-                    result.put("5+", result.getOrDefault("5+", 1) + 1);
+                    result.put("5+", result.getOrDefault("5+", 0) + 1);
                 }
-                result.put("5", result.getOrDefault("5", 1) + 1);
+                result.put("5", result.getOrDefault("5", 0) + 1);
             }
             if (count == 6) {
-                result.put("6", result.getOrDefault("6", 1) + 1);
+                result.put("6", result.getOrDefault("6", 0) + 1);
             }
         }
 

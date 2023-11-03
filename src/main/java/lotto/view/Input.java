@@ -8,6 +8,10 @@ public class Input {
         return read();
     }
 
+    public String readWinningNumbers() {
+        return read();
+    }
+
     private String read() {
         return Console.readLine();
     }

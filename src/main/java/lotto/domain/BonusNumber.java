@@ -31,4 +31,8 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] : 보너스 번호는 1~45 사이 입니다.");
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -50,8 +50,9 @@ public class LottoView {
     }
 
     private void validateSequenceComma(String input) {
-        if (input.contains(",,")) {
-            throw new IllegalArgumentException(SEQUENCE_COMMA.getMessage());
+        long commaCount = input.chars().filter(ch -> ch == ',').count();
+        if (commaCount > 5) {
+            throw new IllegalArgumentException(ANOTHER_COMMA.getMessage());
         }
     }
 

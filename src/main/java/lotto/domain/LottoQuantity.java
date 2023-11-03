@@ -14,8 +14,8 @@ public class LottoQuantity {
         this.quantity = money;
     }
 
-    public static LottoQuantity of(int money) {
-        return new LottoQuantity(money);
+    public static int of(int money) {
+        return new LottoQuantity(money).quantity;
     }
 
     private void validateUnit(int money) {

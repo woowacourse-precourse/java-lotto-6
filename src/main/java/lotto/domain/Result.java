@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.constant.LottoConstant.MONEY_UNIT;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.constant.Rank;
@@ -18,14 +19,14 @@ public class Result {
         return new Result(rankCount);
     }
 
-    public float calculateRate() {
+    public float calculateRateToReturn() {
         return rankCount.entrySet()
                 .stream()
-                .mapToLong(Result::calculateEntryPrice)
+                .mapToLong(this::calculateEntryPrice)
                 .sum() / getInputMoney() * 100.0F;
     }
 
-    private static long calculateEntryPrice(final Entry<Rank, Long> entry) {
+    private long calculateEntryPrice(final Entry<Rank, Long> entry) {
         return entry.getKey().getReward() * entry.getValue();
     }
 
@@ -37,6 +38,6 @@ public class Result {
     }
 
     public Map<Rank, Long> getRankCount() {
-        return rankCount;
+        return Collections.unmodifiableMap(rankCount);
     }
 }

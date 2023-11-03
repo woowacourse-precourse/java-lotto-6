@@ -46,7 +46,7 @@
 9. system - SystemMessage
 
 ## 기능 정리
-LottoController
+Controller
 - 1. 구입 금액 입력 - InputAmount()  
        - 입력 메시지 - OutputView  
        - 숫자 6개 입력 받기 - inputView  

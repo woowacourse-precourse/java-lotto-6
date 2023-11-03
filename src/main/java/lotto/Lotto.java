@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -38,10 +39,12 @@ public class Lotto {
     }
 
     public String toString() {
+        List<Integer> sorted = getIntegers();
+
         StringBuilder string = new StringBuilder("[");
-        for (int index = 0; index < this.numbers.size(); index++) {
-            string.append(numbers.get(index));
-            if (index == this.numbers.size() - 1) {
+        for (int index = 0; index < sorted.size(); index++) {
+            string.append(sorted.get(index));
+            if (index == sorted.size() - 1) {
                 break;
             }
             string.append(", ");
@@ -49,5 +52,11 @@ public class Lotto {
         string.append("]");
 
         return String.valueOf(string);
+    }
+
+    private List<Integer> getIntegers() {
+        List<Integer> sorted = new ArrayList<>(this.numbers);
+        sorted.sort(Comparator.naturalOrder());
+        return sorted;
     }
 }

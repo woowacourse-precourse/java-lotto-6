@@ -17,6 +17,12 @@ public class Application {
         setBonusNumber();
 
         Map<String, Integer> result = bundle.result(winningLotto, bonusNumber);
+        float rate = getRate(result);
+
+        View.showResult(result, rate);
+    }
+
+    private static float getRate(Map<String, Integer> result) {
         float rate = 0;
         float cost = bundle.getSize() * Config.UNIT;
         rate += result.getOrDefault("3", 0) * 5000;
@@ -25,8 +31,7 @@ public class Application {
         rate += result.getOrDefault("5+", 0) * 30000000;
         rate += result.getOrDefault("6", 0) * 2000000000;
         rate = (rate / cost) * 100;
-
-        View.showResult(result, rate);
+        return rate;
     }
 
     private static void setBonusNumber() {

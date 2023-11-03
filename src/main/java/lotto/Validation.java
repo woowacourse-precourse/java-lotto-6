@@ -17,7 +17,7 @@ public class Validation {
         int bonusNumber = Integer.parseInt(input);
         isInRange(bonusNumber); // 번호 검사
         if (lotto.contains(bonusNumber)) { // 중복 검사
-            throw new IllegalArgumentException("[ERROR]: 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
@@ -46,7 +46,7 @@ public class Validation {
         for (String string : input.split(",")) {
             int number = Integer.parseInt(string);
             if (checker.contains(number)) {
-                throw new IllegalArgumentException("[ERROR]: 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 번호는 중복될 수 없습니다.");
             }
             checker.add(number);
         }
@@ -71,7 +71,7 @@ public class Validation {
     public static void isValidLength(String input, int length) {
         String[] split = input.split(",", -1);
         if (split.length != length) {
-            throw new IllegalArgumentException("[ERROR]: " + length + " 개의 번호를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] " + length + " 개의 번호를 입력해주세요.");
         }
     }
 
@@ -84,7 +84,7 @@ public class Validation {
         int min = Config.MIN;
         int max = Config.MAX;
         if (number < min || number > max) {
-            throw new IllegalArgumentException("[ERROR]: " + min + " ~ " + max + " 범위의 숫자만 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] " + min + " ~ " + max + " 범위의 숫자만 가능합니다.");
         }
     }
 
@@ -99,7 +99,7 @@ public class Validation {
                 Integer.parseInt(split);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR]: 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
     }
 
@@ -111,7 +111,7 @@ public class Validation {
     public static void isValidUnit(int number) {
         int unit = Config.UNIT;
         if (number == 0 || number % unit != 0) {
-            throw new IllegalArgumentException("[ERROR]: " + unit + "단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] " + unit + "단위로 입력해야 합니다.");
         }
     }
 }

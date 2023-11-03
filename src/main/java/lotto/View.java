@@ -29,14 +29,14 @@ public class View {
         return getInputBonusNumber(lotto);
     }
 
-    private static String getInputBonusNumber(Lotto lotto) {
+    private static String getInputBonusNumber(Lotto lotto) throws IllegalArgumentException {
         String input;
         while (true) {
             try {
                 input = Console.readLine();
                 Validation.bonusNumber(input, lotto);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -48,14 +48,14 @@ public class View {
         return getInputWinningNumber();
     }
 
-    private static String getInputWinningNumber() {
+    private static String getInputWinningNumber() throws IllegalArgumentException {
         String input;
         while (true) {
             try {
                 input = Console.readLine();
                 Validation.winningNumber(input);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -64,17 +64,17 @@ public class View {
 
     public static String askPrice(int unit) {
         System.out.println("구입금액을 입력해 주세요.");
-        return getInputPrice(unit);
+        return getInputPrice();
     }
 
-    private static String getInputPrice(int unit) {
+    private static String getInputPrice() throws IllegalArgumentException {
         String input;
         while (true) {
             try {
                 input = Console.readLine();
                 Validation.price(input);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

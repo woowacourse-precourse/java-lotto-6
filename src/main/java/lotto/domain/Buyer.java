@@ -4,15 +4,21 @@ import java.util.List;
 
 public class Buyer {
 
-    public int purchaseAmount;
-    public List<Lotto> lottos;
+    private int purchaseAmount;
+    private int purchaselottoQuantity;
+    private List<Lotto> lottoTickets;
 
-    public Buyer(int amount, List<Lotto> lottos) {
+    public Buyer(int amount, int quantity, List<Lotto> lottoTickets) {
         this.purchaseAmount = amount;
-        this.lottos = lottos;
+        this.purchaselottoQuantity = quantity;
+        this.lottoTickets = lottoTickets;
     }
 
-    public void getPurchaseAmount(int amount) {
+    public int getPurchaselottoQuantity() {
+        return purchaselottoQuantity;
+    }
 
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 }

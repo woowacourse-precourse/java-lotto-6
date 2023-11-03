@@ -13,7 +13,7 @@ public class PurchasingService {
 
     private Buyer buyer;
     private int buyerPurchaseQuantity;
-    private List<Lotto> buyerLotto = new ArrayList<>();
+    private List<Lotto> buyerLottoTickets = new ArrayList<>();
 
     public Buyer purchaseLotto(String value) {
         int amount = checkAmount(value);
@@ -58,11 +58,11 @@ public class PurchasingService {
     private void issueLotto() {
         LottoService lottoService = new LottoService();
         for (int i = ZERO; i < buyerPurchaseQuantity; i++) {
-            buyerLotto.add(lottoService.createLotto());
+            buyerLottoTickets.add(lottoService.createLotto());
         }
     }
 
     private void giveLottoToBuyer(int amount) {
-        buyer = new Buyer(amount, buyerLotto);
+        buyer = new Buyer(amount, buyerPurchaseQuantity, buyerLottoTickets);
     }
 }

@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class Lotto {
@@ -16,11 +15,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Integer countCorrectLottoNumber(Map<Integer, Boolean> correctNumbers) {
+    public int countCorrectLottoNumber(Set<Integer> prizeNumbers) {
         int correctNumberCount = 0;
 
         for (Integer number : numbers) {
-            if (correctNumbers.getOrDefault(number, false)) {
+            if (prizeNumbers.contains(number)) {
                 correctNumberCount++;
             }
         }

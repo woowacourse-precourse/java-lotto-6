@@ -15,5 +15,6 @@ public class GameController {
     public void play() {
         lottoVendingMachine.purchaseLotto(InputView.inputPurchaseAmount());
         OutputView.printLottoTicketNumber(lottoVendingMachine.getLottoTicketNumber());
+        OutputView.printPurchasedLottoTickets(lottoVendingMachine.getLottos());
     }
 }

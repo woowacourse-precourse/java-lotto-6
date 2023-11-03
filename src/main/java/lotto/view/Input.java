@@ -15,7 +15,7 @@ public class Input {
         System.out.println(INPUT_MONEY_GUIDE);
         String money = Console.readLine();
         validateBlank(money);
-        validateMoneyNumeric(money);
+        validateNumeric(money);
         return Integer.parseInt(money);
     }
 
@@ -23,6 +23,7 @@ public class Input {
         System.out.println(INPUT_WINNING_LOTTO_GUIDE);
         String winningLotto = Console.readLine();
         validateBlank(winningLotto);
+        validateWinningLottoNumeric(winningLotto);
         return Arrays.stream(winningLotto.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -34,9 +35,15 @@ public class Input {
         }
     }
 
-    private static void validateMoneyNumeric(String input) {
+    private static void validateNumeric(String input) {
         if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+        }
+    }
+
+    private static void validateWinningLottoNumeric(String winningLotto) {
+        for (String number : winningLotto.split(",")) {
+            validateNumeric(number);
         }
     }
 }

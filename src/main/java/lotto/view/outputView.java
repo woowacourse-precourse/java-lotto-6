@@ -8,16 +8,23 @@ public class outputView {
         System.out.println(amountOfLotto + "개를 구매했습니다.");
     }
 
-    public void outputLottosNumbers(int[][] LottoNumbers) {
-        for (int i = 0; i < LottoNumbers.length; i++) {
+    public void outputLottosNumbers(List<List<Integer>> outputRandomLottoNumber) {
+        for(List<Integer> row : outputRandomLottoNumber){
             System.out.print("[");
-            // 여기에 랜덤 번호를 저장한 배열을 호출하는 메소드 추가
-            System.out.println("]");
+            randomLottosNumbers(row);
+            System.out.print("]");
+            System.out.println();
         }
-        System.out.println();
     }
 
-
+    public void randomLottosNumbers(List<Integer> row) {
+        for (int i = 0; i < row.size(); i++) {
+            System.out.print(row.get(i));
+            if(i < row.size() -1){
+                System.out.println(",");
+            }
+        }
+    }
 
     public void outputWinningStatistics() {
         System.out.println("당첨 통계");

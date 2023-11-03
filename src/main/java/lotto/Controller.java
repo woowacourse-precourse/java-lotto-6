@@ -13,7 +13,7 @@ public class Controller {
         inputView inputView = new inputView();
         outputView outputView = new outputView();
         randomNumbersLotto randomNumbersLotto = new randomNumbersLotto();
-        List<Integer> outputRandomLottoNumber = new ArrayList<>();
+        List<List<Integer>> outputRandomLottoNumber = new ArrayList<>();
         String inputMoney = inputView.howMuchBuyLotto();
         // checkException(inputMoney)
 
@@ -22,7 +22,7 @@ public class Controller {
 
         for (int i = 0; i < amountLottos; i++) {
             List<Integer> lottosRandomNumbers = randomNumbersLotto.makeRandomNumLottos();
-            outputRandomLottoNumber.addAll(lottosRandomNumbers);
+            outputRandomLottoNumber.add(lottosRandomNumbers);
         }
     }
 

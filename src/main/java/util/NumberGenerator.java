@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 
-class NumberGenerator {
+public class NumberGenerator {
     private NumberGenerator() {
     }
 
-    static Lotto generateNumbers()
+    public static Lotto generateNumbers()
     {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
         return new Lotto(numbers);

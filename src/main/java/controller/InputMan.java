@@ -7,11 +7,11 @@ import validation.ValidationMan;
 class InputMan {
     private ValidationMan validationMan = new ValidationMan();
     private final static int EXCEPTION_NUMBER = -1;
-    int receiveMoney() {
+    int receiveMoney() throws IllegalArgumentException{
         String money = Console.readLine();
         if(!validationMan.validateMoney(money))
         {
-            return EXCEPTION_NUMBER;
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 하고 숫자만 입력해야 합니다.");
         }
         return Integer.parseInt(money);
     }
@@ -21,7 +21,7 @@ class InputMan {
         String[] cutNumbers = cutNumbers(Console.readLine());
         if(!validationMan.validateNumbers(cutNumbers))
         {
-            return new Integer[]{EXCEPTION_NUMBER};
+            throw new IllegalArgumentException("[ERROR] 제대로 된 값을 입력하세요.");
         }
         return arrayParseInt(cutNumbers);
     }
@@ -46,12 +46,12 @@ class InputMan {
         return userNumbers;
     }
 
-    int receiveBonusNumber(Lotto userLotto)
+    int receiveBonusNumber(Lotto userLotto) throws IllegalArgumentException
     {
         String userBonusNumber = Console.readLine();
         if(!validationMan.valudateBonusNumber(userLotto,userBonusNumber))
         {
-            return EXCEPTION_NUMBER;
+            throw new IllegalArgumentException("[ERROR] 제대로 된 값을 입력하세요.");
         }
         return Integer.parseInt(userBonusNumber);
     }

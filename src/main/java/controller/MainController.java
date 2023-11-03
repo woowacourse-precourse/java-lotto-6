@@ -1,14 +1,12 @@
 package controller;
 
-import static model.ProfitCalculator.calculateProfit;
 import static model.ProfitCalculator.calculateRateOfProfit;
-import static util.LottoGenerator.generateLotto;
 
-import java.util.List;
+import java.util.concurrent.Callable;
 import lotto.Lotto;
+import model.LottoGenerator;
 import model.MainModel;
 import model.ProfitCalculator;
-import util.LottoGenerator;
 import view.Mainview;
 
 public class MainController {
@@ -30,53 +28,17 @@ public class MainController {
 
     private int receiveValidMoney() {
         view.askForHowMany();
-        int money = 0;
-        while (true) {
-            try {
-                money = inputMan.receiveMoney();
-                if (money == EXCEPTION_NUMBER) {
-                    throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 하고 숫자만 입력해야 합니다.");
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return money;
+        return ExceptionProcessor.receiveAndExceptionForMoney(inputMan::receiveMoney);
     }
 
 
-    private Integer[] receiveValidNumbers() {
-        view.requestNumbers();
-        Integer[] userNumbers = null;
-
-        while (true) {
-            try {
-                userNumbers = inputMan.receiveNumbers();
-                if (userNumbers[0] == -1) {
-                    throw new IllegalArgumentException("[ERROR] 제대로 된 숫자를 입력하세요.");
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return userNumbers;
-    }
+//    private Integer[] receiveValidNumbers() {
+//        return ExceptionProcessor.receiveAndExceptionForNumbers(inputMan::receiveNumbers);
+//    }
 
     private Lotto makeUserLotto() {
-        Integer[] userNumbers = receiveValidNumbers();
-        Lotto userLotto = null;
-        while (true) {
-            try {
-                userLotto = LottoGenerator.generateLotto(userNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                userNumbers = receiveValidNumbers();
-            }
-        }
-        return userLotto;
+        view.requestNumbers();
+        return ExceptionProcessor.proceedtoMakingLotto(inputMan::receiveNumbers);
     }
 
     private int receiveValidBonusNumber(Lotto userLotto)

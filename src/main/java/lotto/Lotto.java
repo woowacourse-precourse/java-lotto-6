@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.util.LottoUtil;
 import lotto.validator.LottoValidator;
@@ -24,6 +25,12 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int countMatchingNumber(Lotto that) {
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
+        copyNumbers.retainAll(that.numbers);
+        return copyNumbers.size();
     }
 
 }

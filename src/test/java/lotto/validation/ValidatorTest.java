@@ -15,6 +15,7 @@ class ValidatorTest {
         String input1 = "900"; //1000원 미만 숫자 입력
         String input2 = "abc"; //정수 이외의 입력
         String input3 = "1000"; //정상 입력
+        String input4 ="1500"; //1000원으로 나누어 떨어지지 않는 입력
 
         Assertions.assertThrows(IllegalArgumentException.class, ()->{
            Validator.moneyValidate(input1);
@@ -25,6 +26,10 @@ class ValidatorTest {
         });
 
         Validator.moneyValidate(input3);
+
+        Assertions.assertThrows(IllegalArgumentException.class,()->{
+            Validator.moneyValidate(input4);
+        });
     }
 
     @Test

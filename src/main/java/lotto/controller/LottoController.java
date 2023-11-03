@@ -16,6 +16,11 @@ public class LottoController {
 
     public void run() {
         buyLottoTicketProcess();
+        compareLotto();
+    }
+
+    private void compareLotto() {
+        lottoInputView.getWinningNumbers();
     }
 
     private void buyLottoTicketProcess() {

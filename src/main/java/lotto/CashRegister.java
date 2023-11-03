@@ -3,11 +3,16 @@ package lotto;
 public class CashRegister {
     private final int LOTTO_PRICE = 1000;
 
-    private void validate(int money) {
-        if (money < LOTTO_PRICE) {
+    public int calculateLottoCount(int amount) {
+        validate(amount);
+        return amount / LOTTO_PRICE;
+    }
+
+    private void validate(int amount) {
+        if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException();
         }
-        if (money % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }

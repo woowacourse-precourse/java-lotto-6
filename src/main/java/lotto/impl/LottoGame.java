@@ -5,11 +5,11 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.type.Prize;
 
+import java.io.PipedReader;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.impl.RandomNumberImpl.BONUS_NUMBER_INDEX;
 
 public class LottoGame {
     private WinningLotto winningLotto;
@@ -23,39 +23,21 @@ public class LottoGame {
         winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public Prize getPrize(Lotto consumerLotto) {
-       List<Integer> lottoNumbers = consumerLotto.getNumbers();
-       int winningResult = getWinningResult(lottoNumbers);
-       if(needCheckSecond(winningResult)) {
-           return Prize.valueOf(winningResult, true);
-       }
-        return Prize.valueOf(winningResult, false);
-    }
-
-    public List<Prize> getResult(List<Lotto> consumerLottos) {
-        return consumerLottos.stream()
-                 .map(this::getPrize)
-                 .collect(Collectors.toList());
-    }
-
-    private boolean needCheckSecond(int correctNum) {
-        return correctNum == BONUS_NUMBER_INDEX;
-    }
-
-
-    private int getWinningResult(List<Integer> lottoNumbers) {
-        return winningLotto.getMatchingNumber(IntStream.range(0, BONUS_NUMBER_INDEX - 1)
-                        .mapToObj(lottoNumbers::get)
-                        .toList());
-    }
-
-    private boolean getBonusNumberResult(List<Integer> lottoNumbers) {
-        return lottoNumbers.contains(bonusNumber);
-    }
-
     public List<Lotto> purchase(int purchaseNum) {
         return IntStream.range(0, purchaseNum)
                 .mapToObj(index -> new Lotto(randomNumberProvider.generateRandomNumber()))
                 .toList();
     }
+
+    public Prize getPrizeResult(Lotto inputLotto) {
+        return winningLotto.matchLotto(inputLotto);
+    }
+
+    public List<Prize> getPrizeResults(List<Lotto> consumerLottos) {
+        return consumerLottos.stream()
+                 .map(this::getPrizeResult)
+                 .collect(Collectors.toList());
+    }
+
+
 }

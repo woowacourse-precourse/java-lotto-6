@@ -77,6 +77,7 @@ Lotto Game Program
   
     **MainController Class** // 로또의 결과 및 Model과 View를 잇는 main Controller
     ```agsl
+    - lottoStart    // 로또 게임 시작
     - lottoCheck    // 몇개의 로또가 맞았는지 체크해주는 메소드
     - getRevenue    // 수익률 계산
     ```

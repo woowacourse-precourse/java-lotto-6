@@ -1,19 +1,24 @@
 package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Model.Lotto;
+import lotto.Model.UserLotto;
+import lotto.View.PrintView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputController {
 
     ExceptionController exceptionController;
+    PrintView view;
 
     public InputController(){
         exceptionController = new ExceptionController();
+        view = new PrintView();
     }
 
     public int inputMoney(){
+        view.inputMoneyPrint();
         String temp = Console.readLine();
         try {
             exceptionController.moneyException(temp);
@@ -24,11 +29,12 @@ public class InputController {
             System.out.println("[ERROR] 구입 금액은 1000으로 나누어떨어져야 합니다.");
             inputMoney();
         }
-        int money = Integer.parseInt(Console.readLine());
+        int money = Integer.parseInt(temp);
         return money;
     }
 
-    public Lotto inputNumbers(){
+    public UserLotto inputNumbers(){
+        view.inputNumbersPrint();
         List<Integer> numbers = new ArrayList<>();
 
         String[] input = Console.readLine().split(",");
@@ -44,12 +50,14 @@ public class InputController {
         for(String s : input)
             numbers.add(Integer.parseInt(s));
 
-        Lotto lotto = new Lotto(numbers);
+        numbers.add(inputBonusNumber());
+        UserLotto lotto = new UserLotto(numbers);
 
         return lotto;
     }
 
-    public void inputBonusNumber(){
+    public int inputBonusNumber(){
+        view.inputBonusNumberPrint();
         String bonus_number = Console.readLine();
 
         try {
@@ -59,5 +67,7 @@ public class InputController {
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 보너스 번호는 1에서 45사이의 숫자이어야 합니다.");
         }
+
+        return Integer.parseInt(bonus_number);
     }
 }

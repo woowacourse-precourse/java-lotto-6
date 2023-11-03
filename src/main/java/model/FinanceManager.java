@@ -38,4 +38,9 @@ public class FinanceManager {
     public int calculateLottoCount() {
         return purchaseAmount / LOTTO_PRICE;
     }
+
+    public double calculateRateOfReturn(final LottoTotalResult totalResult) {
+        long resultSum=totalResult.getSum();
+        return (double) resultSum /purchaseAmount*100;
+    }
 }

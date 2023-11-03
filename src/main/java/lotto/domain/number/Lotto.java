@@ -1,6 +1,7 @@
 package lotto.domain.number;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,5 +46,11 @@ public class Lotto {
                 .stream()
                 .filter(numbers::contains)
                 .count();
+    }
+
+    public List<Number> createSortedNumbers() {
+        return numbers.stream()
+                .sorted(Comparator.comparing(Number::getValue))
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.ErrorEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,13 +19,13 @@ class LottoPurchaseTest {
     @DisplayName("숫자형이 아닌 문자가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByString() {
-        assertThatThrownBy(() -> new LottoPurchase("5wqesad")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new LottoPurchase("5wqesad")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
     }
 
     @DisplayName("양수가 아닌 수가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByNegativeNumber() {
-        assertThatThrownBy(() -> new LottoPurchase("0")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new LottoPurchase("0")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
+        assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
     }
 }

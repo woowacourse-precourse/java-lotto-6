@@ -14,43 +14,43 @@
   이번에는 이 팩토리 메소드 패턴을 사용해서 과제를 진행해 볼 예정이다.
 
 ## 유저 시나리오
-출력 : 구입금액을 입력해 주세요.
-입력 : 8000 
-출력 : 개행
+출력 : 구입금액을 입력해 주세요.  
+입력 : 8000   
+출력 : 개행  
 
-출력 : {8}개를 구매했습니다  <- 입력을 1000으로 나눠서 개수 계산
-출력 : 발행 로또번호 출력
-출력 : 개행
+출력 : {8}개를 구매했습니다  <- 입력을 1000으로 나눠서 개수 계산  
+출력 : 발행 로또번호 출력  
+출력 : 개행  
 
-출력 : 당첨 번호를 입력해 주세요.
-입력 : 숫자 6개 입력
-출력 : 개행
-출력 : 보너스 번호를 입력해 주세요.
-입력 : 숫자 1개 입력
-출력 : 개행
-
-출력 : 당첨 통계
-출력 : ---
-출력 : 3개~6개 일치 개수
-출력 : 총 수익률
+출력 : 당첨 번호를 입력해 주세요.  
+입력 : 숫자 6개 입력  
+출력 : 개행  
+출력 : 보너스 번호를 입력해 주세요.  
+입력 : 숫자 1개 입력  
+출력 : 개행  
+ 
+출력 : 당첨 통계  
+출력 : ---  
+출력 : 3개~6개 일치 개수  
+출력 : 총 수익률  
 
 ## 클래스 분류
-1. View - Message, inputView, outputView
-2. Domain - winning, lottoTicket, lottoTickets, amount
-3. Controller  
-4. Utilities
-5. DTO 
-6. Factory
-7. Exception
-8. Service - generateLotto, checkLotto, calculateEarningRate
-9. Validation - checkAmount
+1. View - Message, inputView, outputView  
+2. Domain - winning, lottoTicket, lottoTickets, amount  
+3. Controller    
+4. Utilities  
+5. DTO   
+6. Factory  
+7. Exception  
+8. Service - generateLotto, checkLotto, calculateEarningRate  
+9. Validation - checkAmount  
 
 ## 기능 정리
 Controller
-- 1. 구입 금액 입력 - inputAmount()
-       - 입력 메시지 - outputView
-       - 숫자 6개 입력 받기 - inputView
-       - 1000원 단위인지, 숫자인지 검증 - checkAmount
+- 1. 구입 금액 입력 - inputAmount()  
+       - 입력 메시지 - outputView  
+       - 숫자 6개 입력 받기 - inputView  
+       - 1000원 단위인지, 숫자인지 검증 - checkAmount  
        - amount 도메인에 저장 - amount, DTO
           
 - 2. 발행 로또 번호 출력 - outputLottoTicket()

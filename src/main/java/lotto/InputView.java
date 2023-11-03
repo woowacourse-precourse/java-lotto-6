@@ -11,12 +11,12 @@ public class InputView {
     private static final String MESSAGE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
 
-    public int inputPurchaseAmount() throws IllegalArgumentException{
+    public int inputPurchaseAmount() throws IllegalArgumentException {
         System.out.println(MESSAGE_INPUT_PURCHASE_AMOUNT);
         return inputInteger();
     }
 
-    public List<Integer> inputWinningNumbers() throws IllegalArgumentException{
+    public List<Integer> inputWinningNumbers() throws IllegalArgumentException {
         System.out.println(MESSAGE_INPUT_WINNING_NUMBERS);
         String read = Console.readLine();
         List<Integer> numbers = getNumbers(read);
@@ -25,12 +25,12 @@ public class InputView {
         return numbers;
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber() throws IllegalArgumentException {
         System.out.println(MESSAGE_INPUT_BONUS_NUMBER);
         return inputInteger(1, 45);
     }
 
-    private int inputInteger() throws IllegalArgumentException{
+    private int inputInteger() {
         String read = Console.readLine();
         validateIsNumber(read);
         return Integer.parseInt(read);

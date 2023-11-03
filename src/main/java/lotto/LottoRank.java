@@ -1,18 +1,24 @@
 package lotto;
 
 public enum LottoRank {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
+    FIFTH(0, 3, 5000),
+    FOURTH(1, 4, 50000),
+    THIRD(2, 5, 1500000),
+    SECOND(3, 5, 30000000),
+    FIRST(4, 6, 2000000000);
 
+    private final int index;
     private final int matchCount;
     private final int prize;
 
-    LottoRank(int matchCount, int prize){
+    LottoRank(int index, int matchCount, int prize){
+        this.index = index;
         this.matchCount = matchCount;
         this.prize = prize;
+    }
+
+    public int getIndex(){
+        return index;
     }
 
     public int getMatchCount(){

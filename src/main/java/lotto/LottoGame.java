@@ -10,8 +10,7 @@ public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
-    private static final int WINNING_NUMBERS_COUNT = 6;
-    private static final int BONUS_NUMBER_COUNT = 1;
+    private static final int LOTTO_NUMBERS_COUNT = 6;
 
     private int gameCount;
     private List<List<Integer>> lottogame;
@@ -31,7 +30,7 @@ public class LottoGame {
     public void generateLottoNumbers() {
         this.lottogame = new ArrayList<>();
         for (int i = 0; i < this.gameCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, WINNING_NUMBERS_COUNT);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBERS_COUNT);
             Collections.sort(numbers);
             lottogame.add(numbers);
         }

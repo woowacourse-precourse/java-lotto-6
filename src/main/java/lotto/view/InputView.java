@@ -12,10 +12,10 @@ public class InputView {
 
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount =  Integer.parseInt(Console.readLine());
-
-        InputViewException.checkLottoPriceException(amount);
-
+        String userAmount = Console.readLine();
+        InputViewException.checkLottoPriceTypeException(userAmount);
+        int amount =  Integer.parseInt(userAmount);
+        InputViewException.checkLottoPriceException(userAmount);
         return amount;
     }
 

@@ -43,6 +43,23 @@ public class LottoService {
 		return calculator.calculateTotalReturn(money, priceSum);
 	}
 
+	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {
+		StringJoiner strJoiner = new StringJoiner(DELIMITER);
+		Set<Entry<LottoRank, Integer>> lottRankCounter = countLottoRank(lottos, answerLotto).entrySet();
+
+		for (Map.Entry<LottoRank, Integer> entry : lottRankCounter) {
+			LottoRank key = entry.getKey();
+			int value = entry.getValue();
+			boolean isBonusNumber = key.getisBonusNumber();
+
+			if (key != LottoRank.NOTHING) {
+				strJoiner.add(getFormattedMessage(isBonusNumber, key, value));
+			}
+		}
+
+		return strJoiner.toString();
+	}
+
 	private EnumMap<LottoRank, Integer> countLottoRank(Lottos lottos, AnswerLotto answerLotto) {
 		EnumMap<LottoRank, Integer> lottRankCounter = LottoRank.toEnumMap();
 
@@ -53,5 +70,16 @@ public class LottoService {
 		return lottRankCounter;
 	}
 
-	
+	private String getFormattedMessage(boolean isBonusNumber, LottoRank rank, int count) {
+		WinningStatisticsMessage message = filterMessage(isBonusNumber);
+		return message.getForMatMessage(rank.getMatchedNumCount(), rank.getPrice(), count);
+	}
+
+	private WinningStatisticsMessage filterMessage(boolean isBonusNumber) {
+		if (isBonusNumber) {
+			return WinningStatisticsMessage.HAVE_BONUS_NUMBER;
+		}
+
+		return WinningStatisticsMessage.DONT_HAVE_BONUS_NUMBER;
+	}
 }

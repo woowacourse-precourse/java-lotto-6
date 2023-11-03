@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static String inputMoneyForLottos() {
+    public static int inputMoneyForLottos() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputLottoPrice = Console.readLine();
         validate(inputLottoPrice);
-        return inputLottoPrice;
+        return Integer.parseInt(inputLottoPrice);
     }
 
     private static void validate(String inputLottoPrice) {

@@ -62,6 +62,11 @@ public class Computer {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
         }
     }
+    public void isIncluding(List<Integer> lottoNumbers, Integer bonusNumber){
+        if(lottoNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
+        }
+    }
 
 
 }

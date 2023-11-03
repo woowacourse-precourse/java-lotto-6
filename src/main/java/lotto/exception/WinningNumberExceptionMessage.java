@@ -2,9 +2,9 @@ package lotto.exception;
 
 import java.util.List;
 
-public class WinningNumberExceptionMessage extends IllegalArgumentException{
+public class WinningNumberExceptionMessage extends IllegalArgumentException {
 
-    public WinningNumberExceptionMessage(String message){
+    public WinningNumberExceptionMessage(String message) {
         super(message);
     }
 

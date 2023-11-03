@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,5 +28,16 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자입니다.");
             }
         }
+    }
+
+    public static Lotto generateLottoNumbers() {
+        List<Integer> randomNumbers = new ArrayList<>();
+        while (randomNumbers.size() < 6) { // TODO: 6 상수처리
+            int randomNumber = Randoms.pickNumberInRange(1, 45); // TODO: 1, 45 상수처리
+            if (!randomNumbers.contains(randomNumber)) {
+                randomNumbers.add(randomNumber);
+            }
+        }
+        return new Lotto(randomNumbers);
     }
 }

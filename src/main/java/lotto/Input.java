@@ -1,8 +1,15 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.Lotto.*;
+
 public class Input {
     public static int lotto_count = 0;
-    public static int[] winner_list = new int[6];
+    public static List<Integer> winner = new ArrayList<>();
     public static int bonus_num = 0;
 
     public static void input_price(){
@@ -22,8 +29,20 @@ public class Input {
     }
 
     public static void input_winner(){
-
-
+                winner = new ArrayList<>();
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                String[] tmp = input.split(",");
+                for(String s : tmp){
+                    if(s.matches("[+]?\\d*(\\.\\d+)?") == false || s.equals("")){// 예외 1 : 숫자가 아닌 문자나 공백이 들어갔을 경우
+                        throw new IllegalArgumentException();
+                    }
+                    if(Integer.parseInt(s)<1||45<Integer.parseInt(s)){// 예외 2: 1~45의 숫자가 아닐 경우
+                        throw new IllegalArgumentException();
+                    }
+                    winner.add(Integer.parseInt(s));
+                }
+                Lotto l1 = new Lotto(winner);
     }
 
     public static void input_bonus(){

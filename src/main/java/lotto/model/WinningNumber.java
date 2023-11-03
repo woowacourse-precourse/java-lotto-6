@@ -10,7 +10,8 @@ public class WinningNumber {
 
     private final List<Integer> value;
 
-    public WinningNumber(final String winningNumbers){
+    public WinningNumber(String winningNumbers){
+        winningNumbers = winningNumbers.replace(" ","");
         validate(winningNumbers);
         value = makeValue(winningNumbers);
     }

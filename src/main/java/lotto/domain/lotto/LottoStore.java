@@ -38,11 +38,11 @@ public final class LottoStore {
             final List<Lotto> lottos,
             final Money money
     ) {
-        if (cannotBuyLotto(money)) {
-            return lottos;
+        if (canBuyLotto(money)) {
+            lottos.add(buyLotto(money));
+            return _buyUntilOutOfMoney(lottos, money);
         }
-        lottos.add(buyLotto(money));
-        return _buyUntilOutOfMoney(lottos, money);
+        return lottos;
     }
 
     /**
@@ -56,7 +56,7 @@ public final class LottoStore {
     /**
      * 로또를 살 소지금이 충분한지 판단합니다.
      */
-    private boolean cannotBuyLotto(final Money money) {
-        return money.isLessThan(LOTTO_PRICE);
+    private boolean canBuyLotto(final Money money) {
+        return !money.isLessThan(LOTTO_PRICE);
     }
 }

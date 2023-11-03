@@ -33,15 +33,14 @@ public class Application {
         }
 
         // 5. 당첨 번호 입력
-        List<Integer> winningNumbers = new ArrayList<>();
+        Lotto winningLotto = null;
         boolean isRunning = true;
         while (isRunning) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 List<String> userInputs = Arrays.asList(computer.getInput().split(","));
 
-                computer.checkSize(userInputs);
-                winningNumbers = new ArrayList<>();
+                List<Integer> inputNumber = new ArrayList<>();
 
                 for (String userInput : userInputs) {
                     computer.checkNumber(userInput);
@@ -50,10 +49,10 @@ public class Application {
                     Integer lottoNumber = Integer.parseInt(userInput);
                     computer.checkRange(lottoNumber);
 
-                    winningNumbers.add(Integer.parseInt(userInput));
+                    inputNumber.add(Integer.parseInt(userInput));
                 }
-                System.out.println(winningNumbers);
-                computer.checkDuplication(winningNumbers);
+                winningLotto = new Lotto(inputNumber);
+                System.out.println(inputNumber);
 
                 isRunning = false;
 
@@ -75,9 +74,7 @@ public class Application {
 
                 bonusNumber = Integer.parseInt(userInput);
                 computer.checkRange(bonusNumber);
-                computer.isIncluding(winningNumbers, bonusNumber);
-
-                //winningNumbers.add(Integer.parseInt(userInput));
+                computer.isIncluding(winningLotto.getNumbers(), bonusNumber);
 
                 isRunning = false;
 
@@ -92,7 +89,7 @@ public class Application {
         for (Lotto lotto : lottos) {
             count = 0;
             for (int i = 0; i < 6; i++) {
-                if (lotto.getNumbers().contains(winningNumbers.get(i))) {
+                if (lotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
                     count++;
                 }
             }

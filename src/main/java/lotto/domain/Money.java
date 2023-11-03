@@ -20,4 +20,8 @@ public class Money {
             throw new IllegalArgumentException(ErrorMessage.NON_THOUSAND_UNIT.getComment());
         }
     }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

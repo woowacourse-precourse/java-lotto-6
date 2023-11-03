@@ -24,18 +24,12 @@ public class OutputView {
                 + "---");
 
         for (LottoResult lottoResult : lottoMap.keySet()) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(lottoResult.getCount());
-            stringBuilder.append("개 일치");
+            String result = lottoResult.getCount() + "개 일치";
             if (lottoResult.isValidBonus()) {
-                stringBuilder.append(", 보너스 볼 일치");
+                result += ", 보너스 볼 일치";
             }
-            stringBuilder.append(" (");
-            stringBuilder.append(addCommaAtIntegers(lottoResult.getPrize()));
-            stringBuilder.append("원) - ");
-            stringBuilder.append(lottoMap.get(lottoResult));
-            stringBuilder.append("개");
-            System.out.println(stringBuilder);
+            result += " (" + addCommaAtIntegers(lottoResult.getPrize()) + "원) - " + lottoMap.get(lottoResult) + "개";
+            System.out.println(result);
         }
     }
 

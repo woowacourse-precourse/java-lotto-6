@@ -4,8 +4,6 @@ import java.util.List;
 
 public class WinningNumbers {
 
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
     private static final String WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.";
     private static final String INVALID_WINNING_NUMBERS_COUNT_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호는 6개 입력해야 합니다.";
     private static final String DUPLICATE_WINNING_NUMBERS_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호는 서로 다른 숫자로 입력해야 합니다.";
@@ -28,7 +26,7 @@ public class WinningNumbers {
     }
 
     private boolean isWinningNumberValid(Integer winningNumber) {
-        return winningNumber < START_NUMBER || winningNumber > END_NUMBER;
+        return winningNumber < LottoConstants.START_NUMBER || winningNumber > LottoConstants.END_NUMBER;
     }
 
     private void validateWinningNumbersCount(List<Integer> winningNumbers) {

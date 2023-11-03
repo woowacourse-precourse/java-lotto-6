@@ -3,8 +3,6 @@ package lotto.util.validator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import lotto.util.message.ErrorMessage;
-
 public class Validator {
 
 	public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
@@ -52,19 +50,19 @@ public class Validator {
 			throw new IllegalArgumentException(message);
 		}
 	}
-	
+
 	public static void validateNumbersOutOfRange(int number, int[] ranges, String message) {
 		if (isNumberOutOfRange(number, ranges)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
-	
+
 	public static void validateNumberInNumbers(List<Integer> numbers, int number, String message) {
 		if (numbers.contains(number)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
-	
+
 	private static boolean isNumberOutOfRange(int number, int[] ranges) {
 		return number > ranges[1] || number < ranges[0];
 	}

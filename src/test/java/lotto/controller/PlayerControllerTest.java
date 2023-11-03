@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
+import static lotto.constant.ExceptionMessage.TOO_SMALL_PRICE_TO_BUY;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerControllerTest {
@@ -18,6 +20,14 @@ class PlayerControllerTest {
         assertThatThrownBy(() -> playerController.purchaseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NON_NUMERIC_ERROR.getMessage());
+    }
+
+    @Test
+    @DisplayName(value = "입력된 금액이 로또 구입에 필요한 금액보다 적을 시 예외가 발생하는지 확인")
+    void purchaseLottoByInsufficientAmount() {
+        assertThatThrownBy(() -> playerController.purchaseLotto("800"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(TOO_SMALL_PRICE_TO_BUY.getMessage());
     }
 
 }

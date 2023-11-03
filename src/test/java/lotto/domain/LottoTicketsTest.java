@@ -1,14 +1,17 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static lotto.exception.ExceptionMessage.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static lotto.exception.ExceptionMessage.EMPTY;
+import static lotto.exception.ExceptionMessage.NOT_NUMBER;
+import static lotto.exception.ExceptionMessage.INDIVISIBLE;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 public class LottoTicketsTest {
     @DisplayName("[Success] 구매한 금액을 1,000으로 나누어 구매 개수를 리턴한다.")

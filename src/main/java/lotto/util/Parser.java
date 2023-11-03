@@ -2,8 +2,8 @@ package lotto.util;
 
 import static lotto.exception.ExceptionMessage.NOT_NUMBER;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import lotto.exception.LottoException;
 

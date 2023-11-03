@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import static lotto.view.constant.Message.*;
+import static lotto.view.constant.Message.NOTICE_PURCHASE_QUANTITY;
 
 import java.util.Objects;
-import lotto.domain.LottoTickets;
-import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.domain.LottoTickets;
+import lotto.domain.WinningNumber;
 
 public class LottoController {
     private final InputView inputView;

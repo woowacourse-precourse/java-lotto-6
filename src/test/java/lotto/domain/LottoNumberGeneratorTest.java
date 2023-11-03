@@ -1,16 +1,16 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mockStatic;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import org.mockito.MockedStatic;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoNumberGeneratorTest {
     private static MockedStatic<Randoms> randoms;

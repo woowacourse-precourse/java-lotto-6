@@ -1,7 +1,9 @@
 package lotto.view;
 
+import static lotto.view.constant.Message.ASK_BONUS_NUMBER;
+import static lotto.view.constant.Message.ASK_PURCHASE_MONEY;
+import static lotto.view.constant.Message.ASK_WINNING_NUMBER;
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.view.constant.Message.*;
 
 public class ConsoleInputView implements InputView{
     OutputView outputView = OutputView.createConsoleOutputView();

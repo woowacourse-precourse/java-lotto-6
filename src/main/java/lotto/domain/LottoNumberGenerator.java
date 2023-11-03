@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public enum LottoNumberGenerator {
     INSTANCE;

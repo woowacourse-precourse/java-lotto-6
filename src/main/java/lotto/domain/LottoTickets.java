@@ -1,12 +1,13 @@
 package lotto.domain;
 
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.exception.ExceptionMessage.INDIVISIBLE;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.exception.LottoException;
+import java.util.stream.Collectors;
 import lotto.util.Parser;
+import lotto.util.LottoValidator;
+import lotto.exception.LottoException;
 
 public class LottoTickets {
     private final LottoNumberGenerator lottoNumberGenerator = LottoNumberGenerator.INSTANCE;
@@ -18,7 +19,8 @@ public class LottoTickets {
     };
 
     public static LottoTickets purchase(String inputMoney) {
-        return new LottoTickets(Parser.StringParseInt(inputMoney));
+        LottoValidator.validateNotNull(inputMoney);
+        return new LottoTickets(Parser.parseMoney(inputMoney));
     }
 
     public int getLottoTicketQuantity() {

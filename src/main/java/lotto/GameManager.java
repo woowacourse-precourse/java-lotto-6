@@ -22,6 +22,7 @@ public class GameManager {
         LottoGame lottoGame = getLottoGame();
         WinningLotto winningLotto = getWinningLotto();
         playGame(lottoGame, winningLotto);
+        endGame();
     }
 
     private LottoGame getLottoGame() {
@@ -47,5 +48,9 @@ public class GameManager {
     private void playGame(final LottoGame lottoGame, final WinningLotto winningLotto) {
         WinningResult winningResult = lottoGame.calculateWinning(winningLotto);
         double earningsRate = winningResult.calculateEarningsRate(lottoGame);
+    }
+
+    private void endGame() {
+        messagePrinter.printWinningStatisticsMessage();
     }
 }

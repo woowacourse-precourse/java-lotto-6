@@ -32,4 +32,8 @@ public class MessagePrinter {
     public void printBonusNumberMessage() {
         System.out.println(BONUS_NUMBERS_MESSAGE);
     }
+
+    public void printWinningStatisticsMessage() {
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+    }
 }

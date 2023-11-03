@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoGame;
+import lotto.domain.WinningLotto;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
 
@@ -29,6 +30,6 @@ public class GameManager {
         lottoGame.OrderByAsc();
         messagePrinter.printLottoNumbers(lottoGame);
         messagePrinter.printWinningNumbersMessage();
-        messageReceiver.receiveWinningNumbers();
+        WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();
     }
 }

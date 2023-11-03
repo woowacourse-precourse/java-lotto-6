@@ -29,9 +29,17 @@ public class MessageReceiver {
         return buyingPrice;
     }
 
-    public void receiveWinningNumbers() {
-        String winningNumbersText = Console.readLine();
-        List<String> winningNumbers = Arrays.asList(winningNumbersText.split(COMMA));
-        WinningLotto winningLotto = WinningLotto.of(winningNumbers);
+    public WinningLotto receiveWinningNumbers() {
+        boolean validInput = false;
+        WinningLotto winningLotto = null;
+
+        while (!validInput) {
+            String winningNumbersText = Console.readLine();
+            List<String> winningNumbers = Arrays.asList(winningNumbersText.split(COMMA));
+            validInput = viewValidator.validateWinningNumbers(winningNumbers);
+            winningLotto = WinningLotto.of(winningNumbers);
+        }
+
+        return winningLotto;
     }
 }

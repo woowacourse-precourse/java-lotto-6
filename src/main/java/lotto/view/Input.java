@@ -22,6 +22,7 @@ public class Input {
     public static List<Integer> inputWinningLotto() {
         System.out.println(INPUT_WINNING_LOTTO_GUIDE);
         String winningLotto = Console.readLine();
+        validateBlank(winningLotto);
         return Arrays.stream(winningLotto.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

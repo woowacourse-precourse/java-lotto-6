@@ -1,13 +1,19 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.request.UserMoneyDto;
+import lotto.dto.request.WinningNumbersDto;
 import lotto.util.BlankValidator;
 import lotto.util.DigitsOnlyValidator;
+import lotto.util.DigitsWithCommaSeparatedValidator;
 
 public class InputView {
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자(정수)형태의 문자열만 숫자로 변환할 수 있습니다.";
+    private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBER_DELIMITER = ",";
 
     private InputView() {
     }
@@ -25,17 +31,17 @@ public class InputView {
         return new UserMoneyDto(userMoney);
     }
 
-    private void validateUserMoney(String rawMoney) {
-        BlankValidator.validate(rawMoney);
-        DigitsOnlyValidator.validate(rawMoney);
+    private void println(String message) {
+        System.out.println(message);
     }
 
     private void printEmptyLine() {
         System.out.println();
     }
 
-    private void println(String message) {
-        System.out.println(message);
+    private void validateUserMoney(String rawMoney) {
+        BlankValidator.validate(rawMoney);
+        DigitsOnlyValidator.validate(rawMoney);
     }
 
     private int convertToInt(String input) {
@@ -44,6 +50,26 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
         }
+    }
+
+    public WinningNumbersDto readWinningNumbers() {
+        println(WINNING_NUMBER_INPUT_MESSAGE);
+        String rawWinningNumber = Console.readLine();
+        printEmptyLine();
+        validateWinningNumber(rawWinningNumber);
+        List<Integer> winningNumbers = splitToInt(WINNING_NUMBER_DELIMITER, rawWinningNumber);
+        return new WinningNumbersDto(winningNumbers);
+    }
+
+    private void validateWinningNumber(String rawWinningNumber) {
+        BlankValidator.validate(rawWinningNumber);
+        DigitsWithCommaSeparatedValidator.validate(rawWinningNumber);
+    }
+
+    private List<Integer> splitToInt(String delimiter, String input) {
+        return Stream.of(input.split(delimiter))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private static class LazyHolder {

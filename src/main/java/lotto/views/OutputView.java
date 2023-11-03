@@ -1,7 +1,12 @@
 package lotto.views;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
+import lotto.global.Utils;
 
 public class OutputView {
     public static final String PURCHASE_LOTTO_OUTPUT = "개를 구매했습니다.";
@@ -20,5 +25,21 @@ public class OutputView {
             stringBuilder.append("]");
             System.out.println(stringBuilder.toString());
         }
+    }
+
+    public void winningRecord(Map<Prize,Integer> lotteryResult){
+        StringBuilder outputBuilder = new StringBuilder("당첨 통계\n"+"---\n");
+        for (Prize prize : lotteryResult.keySet()) {
+            int rank = prize.getRank();
+            String reward = Utils.NUMBER_FORMAT_US.format(prize.getReward());
+            int count = lotteryResult.get(prize);
+            outputBuilder.append(rank);
+            outputBuilder.append("개 일치 (");
+            outputBuilder.append(reward);
+            outputBuilder.append("원) - ");
+            outputBuilder.append(count);
+            outputBuilder.append("개\n");
+        }
+        System.out.println(outputBuilder.toString());
     }
 }

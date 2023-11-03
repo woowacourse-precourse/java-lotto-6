@@ -29,6 +29,7 @@ public class LottoController {
         User user = User.create(createUserDto);
         WinningNumbers winningNumbers = getWinningNumbers();
         Map<Prize, Integer> lotteryResult = lottoService.getLotteryResult(user, winningNumbers);
+        outputView.winningRecord(lotteryResult);
 
 
     }

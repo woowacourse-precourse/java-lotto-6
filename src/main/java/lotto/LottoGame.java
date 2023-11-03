@@ -17,6 +17,7 @@ public class LottoGame {
     public static int bonusNumber;
     public static int result;
     public static List<Integer> rewardList = Arrays.asList(0,0,0,0,0);
+    public static Exception exception = new Exception();
 
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -37,12 +38,10 @@ public class LottoGame {
     }
 
     void checkValidPurchase(String input){
-        try{
-            purchase = Integer.valueOf(input);
-        }catch(NumberFormatException e){
-            System.out.println("[ERROR] 투입 금액은 숫자여야합니다.");
+        if(!exception.checkInputIsNumber(input)){
             inputPurchase();
         }
+        purchase = Integer.valueOf(input);
         if(purchase%1000!=0){
             System.out.println("[ERROR] 투입 금액은 1,000원 단위여야합니다.");
             inputPurchase();
@@ -67,13 +66,21 @@ public class LottoGame {
         String input = readLine();
         List<Integer> splitNumber = new ArrayList<>();
         for(int i=0;i<6;i++){
-            splitNumber.add(Integer.valueOf(input.split(",")[i]));
+            String here = input.split(",")[i];
+            if(!exception.checkInputIsNumber(here)){
+                inputWinningNumber();
+            }
+            splitNumber.add(Integer.valueOf(here));
         }
         winningLotto = new Lotto(splitNumber);
     }
 
     void inputBonusNumber(){
-        bonusNumber = Integer.valueOf(readLine());
+        String input = readLine();
+        if(!exception.checkInputIsNumber(input)){
+            inputBonusNumber();
+        }
+        bonusNumber = Integer.valueOf(input);
     }
 
     void calculateReward(){

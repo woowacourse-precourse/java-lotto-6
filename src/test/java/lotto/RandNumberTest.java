@@ -30,9 +30,9 @@ public class RandNumberTest {
         List<Integer> lottoNumber = new ArrayList<>();
         lottoNumber.add(1);
         lottoNumber.add(2);
-
         List<Integer> bonusNumber = new ArrayList<>();
         bonusNumber.add(1);
+
         Assertions.assertThat(checkDuplicate(lottoNumber, bonusNumber)).isEqualTo(false);
     }
 
@@ -42,10 +42,24 @@ public class RandNumberTest {
         List<Integer> lottoNumber = new ArrayList<>();
         lottoNumber.add(1);
         lottoNumber.add(2);
-
         List<Integer> bonusNumber = new ArrayList<>();
         bonusNumber.add(3);
+
         Assertions.assertThat(checkDuplicate(lottoNumber, bonusNumber)).isEqualTo(true);
+    }
+
+    @DisplayName("중복된 숫자가 나오지 않을 때까지 계속 보너스 숫자 뽑기")
+    @Test
+    void reMakeBonusNumberTest() {
+        List<Integer> lottoNumber = new ArrayList<>();
+        lottoNumber.add(1);
+        lottoNumber.add(2);
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(1);
+
+        List<Integer> resultBonusNumber = reMakeBonusNumber(lottoNumber, bonusNumber);
+        System.out.println(resultBonusNumber.get(0));
+        Assertions.assertThat(resultBonusNumber.get(0)).isNotEqualTo(1);
     }
 
 }

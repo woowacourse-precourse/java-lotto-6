@@ -28,4 +28,12 @@ class MoneyTest {
         assertThrows(MoneyException.class, () -> Money.of(inputMoney));
     }
 
+
+    @DisplayName("공백이 포함된 금액을 입력했을때 예외발생하는지 확인")
+    @Test
+    void createMoneyByHasBlank() {
+        String inputMoney = "1 000";
+
+        assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
+    }
 }

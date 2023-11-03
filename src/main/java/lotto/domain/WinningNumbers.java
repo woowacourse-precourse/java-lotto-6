@@ -32,8 +32,7 @@ public class WinningNumbers {
         return Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
     }
 
-    public void makeBonusNumber(String input) throws IllegalArgumentException {
-        int bonusNumber = convertToBonusNumber(input);
+    public void makeBonusNumber(int bonusNumber) throws IllegalArgumentException {
         validateBonusNumberRange(bonusNumber);
         validateDuplicateBonus(winningNumber, bonusNumber);
 

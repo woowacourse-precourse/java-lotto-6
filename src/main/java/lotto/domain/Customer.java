@@ -9,13 +9,13 @@ public class Customer {
     private List<Lotto> lotteryTicket;
     private int money;
 
-    public void scanPocket(String input) throws IllegalArgumentException {
-        validateOnlyDigit(input);
-        this.money = Integer.parseInt(input);
+    public void scanPocket(int money) throws IllegalArgumentException {
+        validateEmptyMoney(money);
+        this.money = money;
     }
 
-    private void validateOnlyDigit(String input) {
-        if (!input.chars().allMatch(Character::isDigit) || input.equals("0")) {
+    private void validateEmptyMoney(int money) {
+        if (money == 0) {
             throw new IllegalArgumentException(NOT_MONEY.getMessage());
         }
     }

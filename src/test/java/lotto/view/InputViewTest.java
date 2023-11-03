@@ -2,10 +2,12 @@ package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import lotto.ErrorHeadMessage;
 import lotto.model.Lotto;
@@ -56,5 +58,13 @@ class InputViewTest {
         assertThatThrownBy(() ->  InputView.getPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_HEAD_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("당첨번호 입력 확인")
+    void 당첨번호_입력_확인() {
+        provideInput("3,4,5,6,7,8\n");
+        Lotto result = InputView.getWinningNumbers();
+        assertThat(result.sortNumbers()).isEqualTo("3, 4, 5, 6, 7, 8");
     }
 }

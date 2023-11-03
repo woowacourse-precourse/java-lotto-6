@@ -28,4 +28,8 @@ public class MessagePrinter {
     public void printWinningNumbersMessage() {
         System.out.println(WINNING_NUMBERS_MESSAGE);
     }
+
+    public void printBonusNumberMessage() {
+        System.out.println(BONUS_NUMBERS_MESSAGE);
+    }
 }

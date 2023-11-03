@@ -1,6 +1,7 @@
-package lotto.input;
+package lotto.input.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.input.Validator.InputValidate;
 
 public class PurchaseAmountInputView {
     private final InputValidate inputValidate = new InputValidate();

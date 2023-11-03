@@ -3,7 +3,7 @@ package lotto.ValidateTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.input.InputValidate;
+import lotto.input.Validator.InputValidate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

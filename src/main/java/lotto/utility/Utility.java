@@ -36,9 +36,8 @@ public class Utility {
         return numbers;
     }
 
-
-
-//    public double getRate(int payment, int result) {
-//
-//    }
+    public double getReturnRate(int payment, long result) {
+        double returnRate = (double) result / (double) payment;
+        return returnRate;
+    }
 }

@@ -7,7 +7,15 @@ enum LottoExceptionMessages {
             LottoConfig.NUMBERS_COUNT.getValue()
     )),
 
-    DUPLICATED_NUMBERS_COUNT("로또 번호는 중복된 값이 없어야 합니다.");
+    DUPLICATED_NUMBERS_COUNT(
+            "로또 번호는 중복된 값이 없어야 합니다."
+    ),
+
+    INVALID_NUMBER_RANGE(String.format(
+            "로또 번호는 %d부터 %d 사이의 숫자이어야 합니다.",
+            LottoConfig.MIN_NUMBER.getValue(),
+            LottoConfig.MAX_NUMBER.getValue()
+    ));
 
     private final String message;
 

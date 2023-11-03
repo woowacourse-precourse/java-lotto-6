@@ -1,0 +1,12 @@
+package lotto.constant;
+
+public class ExceptionConstant {
+    public static final String NUMBER_FORMAT_PATTERN = "^\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}$";
+    public static final String FORMAT_ERROR_MESSAGE = "[ERROR] 로또 번호는 '1,2,3,4,5,6'과 같은 형식으로 입력해야 합니다.";
+    public static final String LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    public static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    public static final String BOUNDARY_ERROR_MESSAGE = "[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.";
+    public static final int LOTTO_NUMBER_COUNT = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+}

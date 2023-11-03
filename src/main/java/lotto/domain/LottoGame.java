@@ -17,6 +17,13 @@ public class LottoGame {
         Money money = getMoney();
         List<Lotto> lottoBundle = lottoMachine.buyLotto(money);
 
+        printIssuedLotto(lottoBundle);
+
+    }
+
+    private void printIssuedLotto(List<Lotto> lottoBundle) {
+        outputView.printLottoCount(lottoBundle.size());
+        outputView.printLottoBundle(lottoBundle);
     }
 
     private Money getMoney() {

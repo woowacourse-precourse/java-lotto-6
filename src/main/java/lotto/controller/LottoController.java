@@ -39,6 +39,7 @@ public class LottoController {
         List<Integer> winningLottoCounts = winningChecker.countWinningLottos();
         ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
         double profit = profitCalculator.getLottoProfit(money);
-
+        System.out.println(profit);
+        output.printResult(winningLottoCounts, profit);
     }
 }

@@ -24,4 +24,12 @@ public class Constants {
     public static final int MATCHED_FOUR = 4;
     public static final int MATCHED_THREE = 3;
     public static final int PERCENTAGE = 100;
+    public static final String WINNING_STATS_MESSAGE = "당첨 통계";
+    public static final String THREE_HYPHEN = "---";
+    public static final String WINNING_THREE_NUMBERS = "3개 일치 (5,000원) - %d개\n";
+    public static final String WINNING_FOUR_NUMBERS = "4개 일치 (50,000원) - %d개\n";
+    public static final String WINNING_FIVE_NUMBERS = "5개 일치 (1,500,000원) - %d개\n";
+    public static final String WINNING_FIVE_ADD_BONUS_NUMBERS = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
+    public static final String WINNING_SIX_NUMBERS = "6개 일치 (2,000,000,000원) - %d개\n";
+    public static final String PROFIT = "총 수익률은 %.1f%%입니다.";
 }

@@ -12,10 +12,21 @@ public class LottoReaderValidator {
     private LottoReaderValidator() {
     }
 
-
     public static void validateWinningNumbers(String winningNumbers) {
-        if (!winningNumbers.matches(WINNING_NUMBERS)) {
-            throw new IllegalArgumentException(LottoErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getMessage());
+        if (!(winningNumbers.matches(WINNING_NUMBERS))) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    public static void validateMoney(String inputMoney) {
+        if (!(inputMoney.matches(PAYMENT))) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PAYMENT.getMessage());
+        }
+    }
+
+    public static void validateBonusNumber(String inputBonusNumber) {
+        if (!(inputBonusNumber.matches(BONUS_NUMBER))) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
     }
 

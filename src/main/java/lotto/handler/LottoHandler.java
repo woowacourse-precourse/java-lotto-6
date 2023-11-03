@@ -51,8 +51,11 @@ public class LottoHandler {
     private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
         return reader.read(() -> {
-            int bonusNumber = Integer.parseInt(Console.readLine());
+            String inputBonusNumber = Console.readLine();
+            LottoReaderValidator.validateBonusNumber(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
             LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+
             return bonusNumber;
         });
     }
@@ -68,6 +71,10 @@ public class LottoHandler {
 
     private Money getMoney() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return reader.read(() -> new Money(Integer.parseInt(Console.readLine())));
+        return reader.read(() -> {
+            String inputMoney = Console.readLine();
+            LottoReaderValidator.validateMoney(inputMoney);
+            return new Money(Integer.parseInt(inputMoney));
+        });
     }
 }

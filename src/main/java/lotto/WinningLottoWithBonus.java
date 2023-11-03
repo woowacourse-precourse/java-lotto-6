@@ -15,6 +15,14 @@ public class WinningLottoWithBonus {
         this.bonus = bonus;
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
     private void bonusValid(Lotto lotto, int number) {
         checkBonusNumRange(number);
         checkDuplicate(lotto, number);

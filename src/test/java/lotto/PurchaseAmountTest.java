@@ -31,4 +31,11 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 로또 1장 가격(1000원)보다 작을 경우 예외가 발생한다.")
+    @Test
+    void PurchaseAmountIsUnder1000(){
+        assertThatThrownBy(() -> PurchaseAmount.under1000(500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

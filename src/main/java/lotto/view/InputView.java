@@ -24,6 +24,6 @@ public class InputView {
 
     public int bonusNumberMessage() {
         showMessage(GET_BONUS_NUMBER_MESSAGE);
-        return Utils.convertStringToInteger(GET_BONUS_NUMBER_MESSAGE);
+        return Utils.convertStringToInteger(Console.readLine());
     }
 }

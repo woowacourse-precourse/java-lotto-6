@@ -1,10 +1,12 @@
 package lotto.view;
 
+import static lotto.utils.InputValidator.blankCheck;
 import static lotto.utils.InputValidator.lottoFormatCheck;
+import static lotto.utils.InputValidator.lottoNumberRangeCheck;
+import static lotto.utils.InputValidator.nullCheck;
 import static lotto.utils.InputValidator.numberTypeCheck;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.InputValidator;
 
 public class InputView {
 
@@ -29,13 +31,24 @@ public class InputView {
 
         validateNullAndBlankCheck(winLottoNumber);
         lottoFormatCheck(winLottoNumber);
-        
+
         return winLottoNumber;
     }
 
+    public static String bonusNumberInput() {
+        String bonus = input();
+
+        validateNullAndBlankCheck(bonus);
+        numberTypeCheck(bonus);
+        lottoNumberRangeCheck(bonus);
+
+        return bonus;
+    }
+
+
     private static void validateNullAndBlankCheck(String inputValue) {
-        InputValidator.nullCheck(inputValue);
-        InputValidator.blankCheck(inputValue);
+        nullCheck(inputValue);
+        blankCheck(inputValue);
     }
 
 }

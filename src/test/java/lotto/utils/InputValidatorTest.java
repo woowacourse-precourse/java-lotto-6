@@ -66,5 +66,14 @@ class InputValidatorTest {
         assertThatNoException().isThrownBy(() -> InputValidator.lottoFormatCheck(inputValue));
     }
 
+    @ParameterizedTest
+    @DisplayName("입력 값 1 ~ 45 범위 값이 아닌 경우 예외 처리")
+    @ValueSource(strings = {"46", "0", "100"})
+    void numberRangeTest(String inputValue) {
+        assertThatThrownBy(() -> InputValidator.lottoNumberRangeCheck(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "로또 번호의 범위를 벗어났습니다. ( 1 ~ 45 )");
+    }
+
 
 }

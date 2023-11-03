@@ -8,22 +8,22 @@ import java.util.Map;
 
 public class LottoResult {
 
-    Map<Rank, Prize> lottoResult;
+    Map<Integer, Prize> lottoResult;
 
     public LottoResult() {
         this.lottoResult = new HashMap<>();
-        this.lottoResult.put(FIRST, FIRST_PRIZE);
-        this.lottoResult.put(SECOND, SECOND_PRIZE);
-        this.lottoResult.put(THIRD, THIRD_PRIZE);
-        this.lottoResult.put(FOURTH, FOURTH_PRIZE);
-        this.lottoResult.put(FIFTH, FIFTH_PRIZE);
+        this.lottoResult.put(FIRST.getRank(), FIRST_PRIZE);
+        this.lottoResult.put(SECOND.getRank(), SECOND_PRIZE);
+        this.lottoResult.put(THIRD.getRank(), THIRD_PRIZE);
+        this.lottoResult.put(FOURTH.getRank(), FOURTH_PRIZE);
+        this.lottoResult.put(FIFTH.getRank(), FIFTH_PRIZE);
     }
 
-    public void addPrizeCount(Rank rank) {
+    public void addPrizeCount(Integer rank) {
         lottoResult.get(rank).addCount();
     }
 
-    public Prize findPrizeByRank(Rank rank) {
+    public Prize findPrizeByRank(Integer rank) {
         return lottoResult.get(rank);
     }
 }

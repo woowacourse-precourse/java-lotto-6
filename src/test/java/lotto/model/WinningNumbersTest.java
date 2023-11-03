@@ -45,4 +45,14 @@ class WinningNumbersTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        // given
+        final List<Integer> winningNumbers = List.of(1, 1, 2, 3, 4, 5);
+
+        // then
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

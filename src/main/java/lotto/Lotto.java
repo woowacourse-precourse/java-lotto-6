@@ -20,6 +20,9 @@ public class Lotto {
             String message = String.format("로또 숫자의 범위는 %d~%d입니다.", LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
             throw new IllegalArgumentException(message);
         }
+        if (LottoUtil.hasDuplicatedNumbers(numbers)) {
+            throw new IllegalArgumentException("로또 번호에는 중복이 있을 수 없습니다");
+        }
     }
 
     // TODO: 추가 기능 구현

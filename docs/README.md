@@ -25,7 +25,7 @@
 ## 당첨 번호 입력 기능
 - [x] `LottoInputView::getLottoWinningNumbers` 메서드
   - 로또 당첨 번호를 입력받는다.
-- [ ] `Lotto::validate` 메서드
+- [x] `Lotto::validate` 메서드
   - 입력받은 로또 번호를 검증한다.
     - `,` 를 기준으로 입력값이 6개가 아니라면 `IllegalArgumentException` 발생
     - 각각의 값이 정수가 아니라면 `IllegalArgumentException` 발생

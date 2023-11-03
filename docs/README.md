@@ -43,3 +43,12 @@ $$\text{총 당첨금}\div\text{(전체 발행수)}\times \text{(로또가격|1,
 ## 당첨 확인
 - [ ] 로또의 순위를 메긴다
 - [ ] 수익을 계산한다.
+
+
+---
+# To Do 리스트
+
+## Model
+## View
+## Controller
+

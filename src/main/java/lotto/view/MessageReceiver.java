@@ -21,9 +21,7 @@ public class MessageReceiver {
         int buyingPrice = 0;
 
         while (!validInput) {
-            String buyingPriceText = Console.readLine();
-            buyingPrice = Integer.parseInt(buyingPriceText);
-            validInput = viewValidator.validateBuyingPrice(buyingPrice);
+            validInput = viewValidator.validateBuyingPrice();
         }
 
         return buyingPrice;

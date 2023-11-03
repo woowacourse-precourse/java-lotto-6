@@ -28,4 +28,12 @@ public enum Rank {
                 .findAny()
                 .orElse(Rank.NO_RANK);
     }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

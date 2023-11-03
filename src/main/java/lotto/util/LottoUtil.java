@@ -3,7 +3,9 @@ package lotto.util;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.model.Rank;
 
 public class LottoUtil {
     public static void sortByAsc(List<Integer> numbers) {
@@ -21,6 +23,19 @@ public class LottoUtil {
         return "[" + numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")) + "]";
+    }
+
+    public static String convertResultToDisplayFormat(Map<Rank, Integer> result) {
+        StringBuilder sb = new StringBuilder();
+        for (Rank rank : Rank.values()) {
+            if (rank.equals(Rank.NO_RANK)) {
+                continue;
+            }
+            sb.append(String.format("%d 개 일치 (%s원) - %d개\n", rank.getMatchingCount(),
+                    LottoUtil.convertPrizeToDisplayFormat(rank.getPrize()),
+                    result.getOrDefault(rank, 0)));
+        }
+        return sb.toString();
     }
 
     public static String convertPrizeToDisplayFormat(long prize) {

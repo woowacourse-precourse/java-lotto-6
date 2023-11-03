@@ -26,4 +26,10 @@ public enum Rank {
                 .findAny()
                 .orElse(NOPE);
     }
+
+    public static int getReward(Rank rank) {
+        return Arrays.stream(Rank.values())
+                .filter(r -> r == rank)
+                .findAny().get().reward;
+    }
 }

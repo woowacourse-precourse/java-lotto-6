@@ -1,7 +1,9 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class WinningCalculator {
 
@@ -26,6 +28,24 @@ public class WinningCalculator {
             resultCalculate(lotto);
         }
         return this.result;
+    }
+
+    public String getProfitRate() {
+        Money money = new Money(lottos.getLottos().size() * 1000);
+
+        ProfitRate profitRate = new ProfitRate(money, getReward());
+        return profitRate.getProfitRate();
+    }
+
+    private BigDecimal getReward() {
+        BigDecimal bigDeciaml = BigDecimal.valueOf(0);
+
+        for (Entry<Rank, Integer> entry : result.entrySet()) {
+            BigDecimal reward1 = BigDecimal.valueOf(Rank.getReward(entry.getKey()));
+            BigDecimal multiply = reward1.multiply(BigDecimal.valueOf(entry.getValue()));
+            bigDeciaml = bigDeciaml.add(multiply);
+        }
+        return bigDeciaml;
     }
 
     private void resultCalculate(Lotto lotto) {

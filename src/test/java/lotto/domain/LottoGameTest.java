@@ -14,10 +14,10 @@ class LottoGameTest {
     @Test
     void createLottoGame() {
         // given
-        int buyingAmount = 10;
+        int buyingPrice = 10000;
 
         // when
-        LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
+        LottoGame lottoGame = LottoGame.createLottoGame(buyingPrice);
         List<Lotto> lottos = lottoGame.getLottos();
 
         // then

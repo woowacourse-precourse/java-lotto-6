@@ -28,9 +28,8 @@ public class GameManager {
     private LottoGame prepareLottoGame() {
         messagePrinter.printBuyingPriceMessage();
         int buyingPrice = messageReceiver.receiveBuyingPrice();
-        int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
-        messagePrinter.printBuyingAmountMessage(buyingAmount);
-        LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
+        LottoGame lottoGame = LottoGame.createLottoGame(buyingPrice);
+        messagePrinter.printBuyingAmountMessage(lottoGame);
         messagePrinter.printLottoNumbers(lottoGame);
 
         return lottoGame;

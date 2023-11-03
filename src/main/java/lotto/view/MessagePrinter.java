@@ -15,7 +15,8 @@ public class MessagePrinter {
         System.out.println(BUYING_PRICE_MESSAGE);
     }
 
-    public void printBuyingAmountMessage(final int buyingAmount) {
+    public void printBuyingAmountMessage(final LottoGame lottoGame) {
+        int buyingAmount = lottoGame.getBuyingAmount();
         System.out.println(buyingAmount + BUYING_AMOUNT_MESSAGE);
     }
 

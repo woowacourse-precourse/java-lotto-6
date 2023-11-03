@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Lotto {
@@ -13,6 +14,18 @@ public class Lotto {
         validateSixNumberCount(numbers);
         validateOverlapNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public Integer countCorrectLottoNumber(Map<Integer, Boolean> correctNumbers) {
+        int correctNumberCount = 0;
+
+        for (Integer number : numbers) {
+            if (correctNumbers.getOrDefault(number, false)) {
+                correctNumberCount++;
+            }
+        }
+
+        return correctNumberCount;
     }
 
     private void validateSixNumberCount(List<Integer> numbers) {

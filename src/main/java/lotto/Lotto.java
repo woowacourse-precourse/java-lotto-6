@@ -43,4 +43,7 @@ public class Lotto {
         }
     }
 
+    public static Lotto createUserNumbers(List<Integer> userNumbers) {
+        return new Lotto(userNumbers);
+    }
 }

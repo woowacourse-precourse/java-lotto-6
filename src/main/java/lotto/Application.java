@@ -9,5 +9,7 @@ public class Application {
         User user = new User(lottoManager.getPrice());
 
         lottoManager.printLottos(user);
+        Lotto lotto = lottoManager.createUserNumbers();
+        System.out.println(lotto.getNumbers());
     }
 }

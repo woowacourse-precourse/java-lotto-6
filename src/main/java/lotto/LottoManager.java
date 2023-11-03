@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManager {
@@ -63,6 +64,38 @@ public class LottoManager {
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public Lotto createUserNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] splitNumbers = Console.readLine().replaceAll(" ", "").split(",");
+
+        try {
+            return createLotto(splitNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return createUserNumbers();
+        }
+    }
+
+    public Lotto createLotto(String[] splitNumbers) {
+        List<Integer> userNumbers = new ArrayList<>();
+
+        for (String splitNumber : splitNumbers) {
+            int number = numberFormatValidate(splitNumber);
+            arrangeValidate(number);
+
+            userNumbers.add(number);
+        }
+
+        return Lotto.createUserNumbers(userNumbers);
+    }
+
+    private void arrangeValidate(int number) {
+        if (Const.winningRangeStartNumber > number || Const.winningRangeEndNumber < number) {
+            throw new IllegalArgumentException("[error] 숫자의 범위는 1~45 입니다.");
         }
     }
 }

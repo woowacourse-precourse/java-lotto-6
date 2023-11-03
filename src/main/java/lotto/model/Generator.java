@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Generator {
-    public LottoNumbers createNumbers() {
+    public static List<Integer> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new LottoNumbers(numbers);
+        return numbers;
     }
 
 

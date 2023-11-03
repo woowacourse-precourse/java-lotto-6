@@ -16,13 +16,11 @@ public class GeneratorTest {
     void createNumbers_IsResult_Equals_SixNumbers_Succes() {
         //given
         Generator generator = new Generator();
-        LottoNumbers lottoNumbers = generator.createNumbers();
-        List<Integer> numbers = lottoNumbers.getNumbers();
+        List<Integer> numbers = generator.createNumbers();
         //when
 
         //then
         assertThat(numbers.size()).isEqualTo(6);
-
     }
 
 

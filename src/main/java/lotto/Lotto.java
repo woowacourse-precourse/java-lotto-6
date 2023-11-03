@@ -27,7 +27,7 @@ class Lotto {
     public static Lotto from(List<Integer> numbers) {
         validate(numbers);
 
-        return null;
+        return new Lotto(mapToLottoNumber(numbers));
     }
 
     private static void validate(List<Integer> numbers) {
@@ -60,5 +60,9 @@ class Lotto {
                 .count();
     }
 
-    // TODO: 추가 기능 구현
+    private static List<LottoNumber> mapToLottoNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::from)
+                .toList();
+    }
 }

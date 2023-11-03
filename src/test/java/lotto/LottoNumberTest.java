@@ -17,6 +17,14 @@ class LottoNumberTest {
         assertThat(number).isEqualTo(other);
     }
 
+    @DisplayName("알 수 없는 번호로 로또 번호를 생성할 수 없다.")
+    @Test
+    void checkNumberNonNull() {
+        assertThatThrownBy(() -> LottoNumber.from(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("알 수 없는 숫자로 로또 번호를 생성할 수 없습니다.");
+    }
+
     @DisplayName("로또 번호는 1보다 크거나 같아야 한다.")
     @Test
     void checkInsufficient() {

@@ -15,8 +15,8 @@
 - [x] 이 외의 값엔 에외처리 : "[ERROR] 1 ~ 45의 숫자를 6개를 가질 수 있습니다."
 
 ### 당첨 번호 (Lotto + Bonus Number)
-- [ ] Lotto + Bonus
-- [ ] Bonus 값도 Lotto 와 같이 1 ~ 45 의 수, 중복 X 조건
+- [x] Lotto + Bonus
+- [x] Bonus 값도 Lotto 와 같이 1 ~ 45 의 수, 중복 X 조건
   - 예외시 "[ERROR] 1 ~ 45의 숫자를 6개를 가질 수 있습니다."
 
 ### 당첨 규칙

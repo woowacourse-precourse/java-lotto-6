@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningNumber;
@@ -11,7 +12,7 @@ import lotto.view.OutputView;
 
 public class GameController {
 
-    private static List<List<Integer>> lottos;
+    private static List<Lotto> lottos;
 
     public static void start(){
 
@@ -20,8 +21,10 @@ public class GameController {
 
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
         outputLottoCount(lottoCount.getValue());
-
         generateLottos(lottoCount.getValue()); // 로또 번호 생성
+        outputLottos();
+        System.out.println();
+
         WinningNumber winningNumber = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
         System.out.println(winningNumber.getValue());
     }
@@ -39,6 +42,10 @@ public class GameController {
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(GeneratedLottoNumber.getRandomNumber());
         }
+    }
+
+    private static void outputLottos(){
+        OutputView.showEachLotto(lottos);
     }
 
     private static String inputWinningNumber(){

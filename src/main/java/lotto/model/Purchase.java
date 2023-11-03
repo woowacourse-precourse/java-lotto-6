@@ -9,7 +9,6 @@ public class Purchase {
         this.purchasingAmount = purchasingAmount;
         validateNum(this.purchasingAmount);
         validateUnit(this.purchasingAmount);
-        pieces();
     }
 
     public void validateNum(String purchasingAmount) {

@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.Result;
 import lotto.domain.WinningStatistics;
+import lotto.utils.LottoWinningStrategy;
 import lotto.utils.NumberGenerator;
 
 import java.util.ArrayList;
@@ -12,6 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
+
+    private final LottoWinningStrategy lottoWinningStrategy;
+
+    public LottoService(LottoWinningStrategy lottoWinningStrategy) {
+        this.lottoWinningStrategy = lottoWinningStrategy;
+    }
 
     public List<Lotto> buyLottos(NumberGenerator numberGenerator, int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
@@ -42,12 +49,9 @@ public class LottoService {
     }
 
     private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
-        List<Result> results = new ArrayList<>();
-
-        for (Lotto lotto : lottos) {
-            Result result = lotto.determineResult(winnerNumbers, bonusNumber);
-            results.add(result);
-        }
+        List<Result> results = lottos.stream()
+                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winnerNumbers, bonusNumber))
+                .toList();
 
         return results;
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.LottoWinningStrategy;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,18 +26,7 @@ public class Lotto {
         }
     }
 
-    public Result determineResult(List<Integer> winningNumbers, int bonusNumber) {
-        int matchCount = 0;
-        boolean bonusMatch = false;
-        for (Integer winningNumber : winningNumbers) {
-            if (numbers.contains(winningNumber)) {
-                matchCount++;
-            }
-        }
-        if (numbers.contains(bonusNumber)) {
-            bonusMatch = true;
-        }
-
-        return new Result(matchCount, bonusMatch);
+    public Result determineResult(LottoWinningStrategy winningStrategy, List<Integer> winningNumbers, int bonusNumber) {
+        return winningStrategy.determineResult(numbers, winningNumbers, bonusNumber);
     }
 }

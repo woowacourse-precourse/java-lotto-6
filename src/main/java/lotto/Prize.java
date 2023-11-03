@@ -110,4 +110,14 @@ public class Prize {
         String profitRate = String.format("%.1f", initialProfitRate);
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
+
+    void playPrize() {
+        inputNumbers();
+        cutNumbers();
+        inputBonusNumber();
+        separateNumbers();
+        printPrize();
+        calculateProfit();
+        printProfitRate();
+    }
 }

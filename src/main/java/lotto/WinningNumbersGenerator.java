@@ -3,7 +3,6 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class WinningNumbersGenerator {
@@ -16,11 +15,11 @@ public class WinningNumbersGenerator {
     private int bonusNumber;
     private String[] inputDividedByDelimiter;
 
-    public void makeWinningNumbers(final String winningNumbersInput) {
+    public void generateWinningNumbers(final String winningNumbersInput) {
         this.dividedInputByDelimiter(winningNumbersInput);
         this.validateInputDividedByDelimiter();
         this.validateDividedInput();
-
+        this.saveWinningNumbers();
     }
 
     public void dividedInputByDelimiter(final String winningNumbersInput) {
@@ -53,5 +52,13 @@ public class WinningNumbersGenerator {
 
     public String[] getInputDividedByDelimiter() {
         return inputDividedByDelimiter;
+    }
+
+    public void saveWinningNumbers() {
+        this.winningNumbers = Arrays.stream(this.inputDividedByDelimiter).map(Integer::parseInt).toList();
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
     }
 }

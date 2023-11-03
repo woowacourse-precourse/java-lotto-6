@@ -6,13 +6,13 @@ import lotto.domain.repository.LottoRepository;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class IssueLottoController implements Controller {
+public class IssueLottoControllable implements Controllable {
     private static final int LOTTO_UNIT = 1000;
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public IssueLottoController(InputView inputView, OutputView outputView) {
+    public IssueLottoControllable(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }

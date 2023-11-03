@@ -1,5 +1,5 @@
 package lotto.controller.subcontroller;
 
-public interface Controller {
+public interface Controllable {
     public void process();
 }

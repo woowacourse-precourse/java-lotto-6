@@ -2,7 +2,9 @@ package lotto.controller;
 
 import static lotto.view.constant.Message.NOTICE_PURCHASE_QUANTITY;
 
+import java.util.List;
 import java.util.Objects;
+import lotto.domain.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.domain.LottoTickets;
@@ -24,6 +26,8 @@ public class LottoController {
 
         WinningNumber winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
+
+        List<LottoResult> results = winningNumber.compareWithLottos(lottoTickets);
     }
 
     private LottoTickets getLottoTickets() {

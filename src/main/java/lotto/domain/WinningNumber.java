@@ -27,6 +27,10 @@ public class WinningNumber {
         validateBonusNumber();
     }
 
+    public List<LottoResult> compareWithLottos(LottoTickets lottoTickets) {
+        return lottoTickets.getCompareResult(winningNumber, bonusNumber);
+    }
+
     private void validateBonusNumber() {
         LottoValidator.validateInRange(bonusNumber);
         if (winningNumber.hasSameNumber(bonusNumber)) {

@@ -46,4 +46,23 @@ class LottoTest {
                 {46, 1, 2, 3, 4, 5}
         });
     }
+
+    @DisplayName("[Success] 로또 번호와 당첨 번호 사이 일치하는 숫자의 개수를 리턴한다.")
+    @Test
+    void compareWithWinningNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.countMatchNumbers(winningNumber))
+                .isEqualTo(3);
+    }
+
+    @DisplayName("[Success] 로또 번호에 보너스 번호와 일치하는 값이 있으면 true를 리턴한다.")
+    @Test
+    void checkHasSameNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.hasSameNumber(1))
+                .isTrue();
+    }
 }

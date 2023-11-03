@@ -10,10 +10,10 @@ import lotto.util.LottoValidator;
 import lotto.exception.LottoException;
 
 public class LottoTickets {
-    private final LottoNumberGenerator lottoNumberGenerator = LottoNumberGenerator.INSTANCE;
     private final int purchaseMoney;
     private List<Lotto> lottos;
 
+    // TODO: 필드에서 purchaseMoney 없애기
     private LottoTickets(int purchaseMoney) {
         this.purchaseMoney = purchaseMoney;
     };
@@ -35,6 +35,22 @@ public class LottoTickets {
                 .collect(Collectors.toList());
     }
 
+    public List<LottoResult> getCompareResult(Lotto winningNumber, int bonusNumber) {
+        return lottos.stream()
+                    .map(lotto -> calculateMatchResult(lotto, winningNumber, bonusNumber))
+                    .collect(Collectors.toList());
+    }
+
+    private LottoResult calculateMatchResult(Lotto lotto, Lotto winningNumber, int bonusNumber) {
+        int matchCount = lotto.countMatchNumbers(winningNumber);
+        boolean matchBonusNumber = false;
+
+        if (matchCount == 5) {
+            matchBonusNumber = lotto.hasSameNumber(bonusNumber);
+        }
+        return LottoResult.create(matchCount, matchBonusNumber);
+    }
+
     private int moneyToTicket() {
         // TODO: 매직넘버 상수화하기
         if (purchaseMoney % 1_000 > 0) {
@@ -45,7 +61,7 @@ public class LottoTickets {
 
     private void generateLottoTicket(int ticketQuantity) {
         lottos = IntStream.range(0, ticketQuantity)
-                .mapToObj(lotto -> new Lotto(lottoNumberGenerator.generateLottoNumbers()))
+                .mapToObj(lotto -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
                 .collect(Collectors.toList());
     }
 }

@@ -20,18 +20,24 @@ public class Lotto {
         validateInRangeEachNumber(numbers);
     }
 
-    private void validateInRangeEachNumber(List<Integer> numbers) {
-        numbers.stream()
-                .forEach(LottoValidator::validateInRange);
-    }
-
+    // TODO: 테스트 코드 추가
     public String getLottoNumber() {
         return numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
-    public Boolean hasSameNumber(int number) {
+    public boolean hasSameNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public int countMatchNumbers(Lotto other) {
+        return (int) this.numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
+    }
+
+    private void validateInRangeEachNumber(List<Integer> numbers) {
+        numbers.forEach(LottoValidator::validateInRange);
     }
 }

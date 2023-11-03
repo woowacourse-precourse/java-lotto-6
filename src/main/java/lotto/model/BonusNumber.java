@@ -1,17 +1,22 @@
 package lotto.model;
 
+import lotto.constant.Constant;
 import lotto.message.ExceptionMessage;
 
 import java.util.List;
 
 public class BonusNumber {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int MIN_LOTTO_NUMBER = Constant.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = Constant.MAX_LOTTO_NUMBER.getValue();
     private final int bonusNumber;
 
     public BonusNumber(String bonusNumber, List<Integer> winningLotto) {
         validate(bonusNumber, winningLotto);
         this.bonusNumber = convertStringToInt(bonusNumber);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validate(String bonusNumber, List<Integer> winningLotto) {

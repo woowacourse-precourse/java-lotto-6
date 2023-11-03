@@ -1,13 +1,11 @@
 package lotto.model;
 
+import lotto.constant.Constant;
 import lotto.message.ExceptionMessage;
 
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,20 +24,22 @@ public class Lotto {
     }
 
     private void consistOfLottoSize(List<Integer> numbers) {
-        if(numbers.size()!= LOTTO_SIZE){
-            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.throwException(LOTTO_SIZE);
+        if (numbers.size() != Constant.LOTTO_SIZE.getValue()) {
+            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.throwException(Constant.LOTTO_SIZE.getValue());
         }
     }
 
     private void isInRange(List<Integer> numbers) {
-        boolean isInRangeValue = numbers.stream().allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
-        if(!isInRangeValue){
-            ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        int minLottoNumber = Constant.MIN_LOTTO_NUMBER.getValue();
+        int maxLottoNumber = Constant.MAX_LOTTO_NUMBER.getValue();
+        boolean isInRangeValue = numbers.stream().allMatch(number -> number >= minLottoNumber && number <= maxLottoNumber);
+        if (!isInRangeValue) {
+            ExceptionMessage.IS_NOT_IN_RANGE.throwException(minLottoNumber, maxLottoNumber);
         }
     }
 
     private void isNotDuplicated(List<Integer> numbers) {
-        if(numbers.stream().distinct().count() != numbers.size()){
+        if (numbers.stream().distinct().count() != numbers.size()) {
             ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.throwException();
         }
     }

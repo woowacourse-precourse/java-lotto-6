@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.Constant;
 import lotto.message.ExceptionMessage;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -11,14 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-
+    private static final int LOTTO_SIZE = Constant.LOTTO_SIZE.getValue();
+    private static final int MIN_LOTTO_NUMBER = Constant.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = Constant.MAX_LOTTO_NUMBER.getValue();
 
     @DisplayName("올바른 로또번호를 입력하면 성공한다.")
     @Test
-    void createRightLotto(){
+    void createRightLotto() {
         Lotto lotto = new Lotto(List.of(1, 2, 5, 45, 23, 24));
         assertThat(lotto.getNumbers()).size().isEqualTo(6);
     }
@@ -38,12 +38,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.getMessage());
     }
+
     @DisplayName("1부터 45사이의 범위를 넘어간 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER));
+                .hasMessageContaining(ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
     }
 
     @DisplayName("1부터 45사이의 범위를 넘어간 숫자가 있으면 예외가 발생한다.")
@@ -51,7 +52,7 @@ class LottoTest {
     void createLottoOutOfRange2() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER));
+                .hasMessageContaining(ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
     }
 
 }

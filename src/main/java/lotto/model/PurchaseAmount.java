@@ -1,9 +1,9 @@
 package lotto.model;
 
+import lotto.constant.Constant;
 import lotto.message.ExceptionMessage;
 
 public class PurchaseAmount {
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
     private static final String NUMBER_SEPARATOR = ",";
     private static final String EMPTY = "";
     private final int price;
@@ -30,8 +30,9 @@ public class PurchaseAmount {
     }
 
     private void IsMultipleOfUnit(int price) {
-        if (price % PURCHASE_AMOUNT_UNIT != 0) {
-            ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(PURCHASE_AMOUNT_UNIT);
+        int purchaseAmountUnit = Constant.PURCHASE_AMOUNT_UNIT.getValue();
+        if (price % purchaseAmountUnit != 0) {
+            ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(purchaseAmountUnit);
         }
     }
 

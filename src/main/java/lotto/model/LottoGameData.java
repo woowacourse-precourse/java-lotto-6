@@ -6,15 +6,15 @@ import lotto.util.ErrorMessage;
 import java.util.regex.Pattern;
 
 public class LottoGameData {
-    private int money;
+    private int chance;
 
-    public int getMoney() {
-        return money;
+    public int getChance() {
+        return chance;
     }
 
-    public void setMoney(String input) {
+    public void setChance(String input) {
         patternCheck(input, Constants.MONEY_PATTERN, ErrorMessage.MONEY_ERROR);
-        this.money=convert(input);
+        this.chance=convertMoneyToChances(input);
     }
 
     public void patternCheck(String input, Pattern pattern, ErrorMessage e) {
@@ -23,7 +23,7 @@ public class LottoGameData {
         }
     }
 
-    public int convert(String input){
-        return Integer.parseInt(input);
+    public int convertMoneyToChances(String input){
+        return Integer.parseInt(input) / Constants.MONEY_UNIT;
     }
 }

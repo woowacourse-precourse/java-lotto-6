@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoOutputViewTest {
     private ByteArrayOutputStream capture;
     private PrintStream old;
-    private LottoOutputView output;
+    private LottoOutputView outputView;
 
     @BeforeEach
     void setUp() {
         capture = new ByteArrayOutputStream();
         old = System.out;
         System.setOut(new PrintStream(capture));
-        output = new LottoOutputView();
+        outputView = new LottoOutputView();
     }
 
     @AfterEach
@@ -29,7 +29,7 @@ public class LottoOutputViewTest {
 
     @Test
     void printBuyingPriceInputRequest_테스트() {
-        output.printBuyingPriceInputRequest();
+        outputView.printBuyingPriceInputRequest();
         assertEquals("구입금액을 입력해 주세요.", capture.toString().trim());
     }
 }

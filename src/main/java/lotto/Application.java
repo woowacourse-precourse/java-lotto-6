@@ -17,7 +17,7 @@ public class Application {
     final static int[] prices = { 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0 };
 
     enum ErrorType { 
-        NUMBERS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
+        NUMBERANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
         DUP("[ERROR] 로또 번호는 중복할 수 없습니다."),
         MONEY("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다."),
         NOTINTEGER("[ERROR] 정수를 입력해 주세요.");
@@ -47,7 +47,7 @@ public class Application {
 
     private static void isBoundary(int n){
         if (n > 45 || n < 0)
-            throw new IllegalArgumentException(ErrorType.NUMBERS.getName());
+            throw new IllegalArgumentException(ErrorType.NUMBERANGE.getName());
     }
 
     private static int myParseInt(String s){

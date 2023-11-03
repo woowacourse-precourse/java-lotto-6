@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        checkoutDuplicate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
     // TODO: 추가 기능 구현
-    private void checkoutDuplicate(List<Integer> numbers) {
+    private void checkDuplicate(List<Integer> numbers) {
         Set<Integer> checkoutNumbers = new HashSet<>(numbers);
         if(checkoutNumbers.size() != 6) {
             throw new IllegalArgumentException();

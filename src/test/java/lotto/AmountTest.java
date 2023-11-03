@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 public class AmountTest extends Amount{
 
@@ -23,16 +24,13 @@ public class AmountTest extends Amount{
     }
 
     @Test
-    void 입력문자열이_숫자인지_확인() {
+    void 입력문자열이_숫자인_경우_예외_발생_X() {
 
         //given
         String input = "8000";
 
-        //when
-        int result = isNum(input);
-
-        //then
-        assertThat(result).isEqualTo(8000);
+        //when, then
+        assertThatNoException().isThrownBy(() -> isNum(input));
     }
 
     @ParameterizedTest

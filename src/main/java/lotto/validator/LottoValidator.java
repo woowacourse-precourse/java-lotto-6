@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.domain.Lotto;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,7 @@ public class LottoValidator {
     private static final String LOTTO_INPUT_SIZE_EXCEPTION_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요";
     private static final String LOTTO_INPUT_RANGE_EXCEPTION_MESSAGE = "[ERROR] 1~45의 숫자를 입력해주세요";
     private static final String LOTTO_INPUT_DUPLICATION_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 중복된 숫자는 입력할 수 없습니다.";
+    private static final String BONUS_INPUT_DUPLICATION_LOTTO_EXCEPTION_MESSAGE = "[ERROR] 입력한 로또 번호와 보너스 번호는 겹칠 수 없습니다.";
 
 
     public static boolean amountInputValidator(String amount){
@@ -71,8 +74,8 @@ public class LottoValidator {
             throw new IllegalArgumentException(LOTTO_INPUT_ONLY_NUMBER_EXCEPTION_MESSAGE);
         }
     }
-    public static boolean inputWinningBonusValidator(String line){
-        return inputOnlyNumberValidator(line) && lottoNumberRangeValidator(Integer.parseInt(line));
+    public static boolean inputWinningBonusValidator(List<Integer> lotto, String line){
+        return inputOnlyNumberValidator(line) && lottoNumberRangeValidator(Integer.parseInt(line)) &&inputWinningBonusDuplicationLottoValidator(lotto, Integer.parseInt(line));
     }
 
     private static boolean inputOnlyNumberValidator(String line){
@@ -93,6 +96,13 @@ public class LottoValidator {
     }
 
 
+    private static boolean inputWinningBonusDuplicationLottoValidator(List<Integer> lotto, int bonus){
+        boolean duplicationBonus = lotto.stream().anyMatch(l -> l==bonus);
+        if(duplicationBonus){
+            throw new IllegalArgumentException(BONUS_INPUT_DUPLICATION_LOTTO_EXCEPTION_MESSAGE);
+        }
+        return true;
+    }
 
 
 }

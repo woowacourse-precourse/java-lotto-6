@@ -36,6 +36,7 @@ public class LottoController {
             requestAmountLotto(amountLotto);
         }
     }
+
     public void requestWinningLotto(WinningLotto winningLotto){
         try{
             winningLotto.convertWinningLotto(InputView.winningLottoInput());
@@ -45,6 +46,7 @@ public class LottoController {
             requestWinningLotto(winningLotto);
         }
     }
+
     public void requestWinningBonus(WinningLotto winningLotto){
         try{
             winningLotto.convertWinningBonus(InputView.bonusLottoInput());

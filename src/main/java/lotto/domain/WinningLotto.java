@@ -29,7 +29,7 @@ public class WinningLotto {
     }
 
     public void convertWinningBonus(String bonus) {
-        LottoValidator.inputWinningBonusValidator(bonus);
+        LottoValidator.inputWinningBonusValidator(lotto.getNumbers(), bonus);
         this.bonus=  Integer.parseInt(bonus);
     }
 }

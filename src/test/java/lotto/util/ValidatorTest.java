@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ValidatorTest {
     @DisplayName("인자값이 숫자로만 이루어져 있는지 검증하는 기능")
     @ParameterizedTest
-    @ValueSource(strings={"abcs","1a23","aa1"," 111","11 2","   "})
+    @ValueSource(strings={"abcs","1a23","aa1"," 111","11 2","   ","-1"})
     void 숫자_검증_기능(String value){
         Validator validator=new Validator();
 

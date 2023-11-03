@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.Prize;
@@ -10,7 +10,7 @@ public class LottoCalculator {
     private final int SPECIAL_MATCH = 7;
     private final Lotto winningNumber;
     private final int bonusNumber;
-    private final Map<Prize, Integer> result = new HashMap<>();
+    private final Map<Prize, Integer> result = new LinkedHashMap<>();
 
     public LottoCalculator(WinningNumbers winningNumbers) {
         this.winningNumber = winningNumbers.getWinningNumber();
@@ -18,11 +18,11 @@ public class LottoCalculator {
     }
 
     public void initResult() {
-        result.put(Prize.FIRST, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.FOURTH, 0);
         result.put(Prize.FIFTH, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.FIRST, 0);
         result.put(Prize.NONE, 0);
     }
 

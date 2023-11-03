@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
-	
+
 	NOTHING(0, 0, false, (matchedNumCount, isBonusNumber) -> matchedNumCount < 3),
 	FIFTH(5000, 3, false, (matchedNumCount, isBonusNumber) -> matchedNumCount == 3),
 	FOURTH(50000, 4, false, (matchedNumCount, isBonusNumber) -> matchedNumCount == 4),
@@ -35,9 +35,9 @@ public enum LottoRank {
 
 	private static LottoRank getMatchedLottoRank(int matchedNumberCount, boolean isBonusNumber) {
 		return Arrays.stream(LottoRank.values())
-						.filter(lottoRank -> lottoRank.matchingCondition.test(matchedNumberCount, isBonusNumber))
-						.findAny()
-						.orElse(NOTHING);
+				.filter(lottoRank -> lottoRank.matchingCondition.test(matchedNumberCount, isBonusNumber))
+				.findAny()
+				.orElse(NOTHING);
 	}
 
 	private static int countMatchedNumber(AnswerLotto answerLotto, Lotto lotto) {
@@ -65,10 +65,10 @@ public enum LottoRank {
 		return isBonusNumber;
 	}
 
-	public static EnumMap<LottoRank, Integer> toEnumMap() {
-	    EnumMap<LottoRank, Integer> enumMap = new EnumMap<>(LottoRank.class);
-	    Arrays.stream(LottoRank.values()).forEach(value -> enumMap.put(value, 0));
-	    return enumMap;
+	public static EnumMap<LottoRank, Integer> initializeLottoRankCounter() {
+		EnumMap<LottoRank, Integer> lottRankCounter = new EnumMap<>(LottoRank.class);
+		Arrays.stream(LottoRank.values()).forEach(value -> lottRankCounter.put(value, 0));
+		return lottRankCounter;
 	}
 
 	public int getPrice() {

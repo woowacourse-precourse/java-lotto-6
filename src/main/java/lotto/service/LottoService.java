@@ -56,12 +56,11 @@ public class LottoService {
 				strJoiner.add(getFormattedMessage(isBonusNumber, key, value));
 			}
 		}
-
 		return strJoiner.toString();
 	}
 
 	private EnumMap<LottoRank, Integer> countLottoRank(Lottos lottos, AnswerLotto answerLotto) {
-		EnumMap<LottoRank, Integer> lottRankCounter = LottoRank.toEnumMap();
+		EnumMap<LottoRank, Integer> lottRankCounter = LottoRank.initializeLottoRankCounter();
 
 		lottos.getLottos().stream().map(lotto -> LottoRank.getMatchedLottoRank(answerLotto, lotto))
 				.filter(Objects::nonNull)

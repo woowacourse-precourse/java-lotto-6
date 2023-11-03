@@ -12,10 +12,6 @@ public class Consumer {
         this.purchasedLotto = purchasedLotto;
     }
 
-    public List<Lotto> getPurchasedLotto() {
-        return purchasedLotto;
-    }
-
     public double getReturnRate(List<Prize> result) {
         int sum = 0;
         for(Prize prize : result) {
@@ -23,4 +19,10 @@ public class Consumer {
         }
         return (double) sum / (purchasedLotto.size() * 1000);
     }
+
+    public List<Lotto> getPurchasedLotto() {
+        return purchasedLotto;
+    }
+
+
 }

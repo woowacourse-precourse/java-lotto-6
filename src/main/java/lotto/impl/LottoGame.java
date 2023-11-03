@@ -2,6 +2,7 @@ package lotto.impl;
 
 import lotto.RandomNumberProvider;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.type.Prize;
 
 import java.util.List;
@@ -11,8 +12,7 @@ import java.util.stream.IntStream;
 import static lotto.impl.RandomNumberImpl.BONUS_NUMBER_INDEX;
 
 public class LottoGame {
-    private Lotto winningLotto;
-    private int bonusNumber;
+    private WinningLotto winningLotto;
     private final RandomNumberProvider randomNumberProvider;
 
     public LottoGame(RandomNumberProvider randomNumberProvider) {
@@ -20,14 +20,13 @@ public class LottoGame {
     }
 
     public void start(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningLotto = new Lotto(winningNumbers);
-        this.bonusNumber = bonusNumber;
+        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
     public Prize getPrize(Lotto consumerLotto) {
        List<Integer> lottoNumbers = consumerLotto.getNumbers();
        int winningResult = getWinningResult(lottoNumbers);
-       if(isCheckSecond(winningResult)) {
+       if(needCheckSecond(winningResult)) {
            return Prize.valueOf(winningResult, true);
        }
         return Prize.valueOf(winningResult, false);
@@ -39,7 +38,7 @@ public class LottoGame {
                  .collect(Collectors.toList());
     }
 
-    private boolean isCheckSecond(int correctNum) {
+    private boolean needCheckSecond(int correctNum) {
         return correctNum == BONUS_NUMBER_INDEX;
     }
 

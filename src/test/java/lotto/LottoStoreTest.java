@@ -73,4 +73,41 @@ public class LottoStoreTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("올바른 금액 저장")
+    @Test
+    void chargeMoney() {
+        //when
+        LottoStore lottoStore = new LottoStore();
+
+        //given
+        String money = "13000";
+        lottoStore.validateMoneyInput(money);
+        lottoStore.chargeMoney(money);
+        lottoStore.validateChargedMoney();
+
+        //then
+        long moneyExpected = Long.parseLong(money);
+        assertThat(lottoStore.getChargedMoney()).isEqualTo(moneyExpected);
+    }
+
+    @DisplayName("로또 구매 금액 조회")
+    @Test
+    void checkChargedMoney() {
+        //when
+        LottoStore lottoStore = new LottoStore();
+
+        //given
+        String money = "13000";
+        lottoStore.validateMoneyInput(money);
+        lottoStore.chargeMoney(money);
+        lottoStore.validateChargedMoney();
+
+        long chargemoney = lottoStore.getChargedMoney();
+
+        //then
+        long moneyExpected = Long.parseLong(money);
+        assertThat(chargemoney).isEqualTo(moneyExpected);
+    }
+
+
 }

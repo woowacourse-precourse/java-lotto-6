@@ -12,6 +12,14 @@ public class LottosRepository {
         stores.put(LottoType.USER_LOTTO, lottos);
     }
 
+    public void saveWinningNumber(final Lotto winningNumber) {
+        stores.put(LottoType.WINNING_LOTTO, winningNumber);
+    }
+
+    public void saveBonusNumber(final int bonusNumber) {
+        stores.put(LottoType.BONUS_NUMBER, bonusNumber);
+    }
+
     public Optional<Lottos> findUserLottos() {
         return Optional.ofNullable((Lottos) stores.get(LottoType.USER_LOTTO));
     }
@@ -22,13 +30,5 @@ public class LottosRepository {
 
     public Optional<Integer> findBonusNumber() {
         return Optional.ofNullable((Integer) stores.get(LottoType.BONUS_NUMBER));
-    }
-
-    public void saveWinningNumber(final Lotto winningNumber) {
-        stores.put(LottoType.WINNING_LOTTO, winningNumber);
-    }
-
-    public void saveBonusNumber(final int bonusNumber) {
-        stores.put(LottoType.BONUS_NUMBER, bonusNumber);
     }
 }

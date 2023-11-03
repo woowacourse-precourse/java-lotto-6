@@ -28,6 +28,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int getMatchLottoNumber(WinningLotto winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::isContain)
+                .count();
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

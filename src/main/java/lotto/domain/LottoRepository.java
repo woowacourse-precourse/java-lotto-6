@@ -9,5 +9,8 @@ public class LottoRepository {
 
     private List<Lotto> lottoRepository = new ArrayList<>();
 
+    public void add(Lotto lotto){
+        lottoRepository.add(lotto);
+    }
 
 }

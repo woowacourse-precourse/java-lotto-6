@@ -2,10 +2,14 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class View {
+
     public void myLotto(List<Integer> k){
         for(int i = 0; i < k.size(); i++){
             System.out.println(k.get(i));
@@ -38,5 +42,9 @@ public class View {
             return false;
         }
         return true;
+    }
+    public List<Integer> correctNum(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Arrays.stream( Console.readLine().split(",")).map(Integer::parseInt).collect(Collectors.toCollection(ArrayList::new));
     }
 }

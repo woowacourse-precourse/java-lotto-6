@@ -71,13 +71,13 @@ public class LottoService {
     }
 
     private void validateLottoNumberFormat(String input) {
-        WinningNumberValidator.validateLottoNumberFormat(input);
+        WinningNumberValidator.checkLottoNumberFormat(input);
     }
 
     private void validateWinningNumber(List<Integer> winningNumbers) {
-        WinningNumberValidator.validateWinningNumberLength(winningNumbers);
-        WinningNumberValidator.validateDuplicateWinningNumber(winningNumbers);
-        WinningNumberValidator.validateBoundaryWinningNumber(winningNumbers);
+        WinningNumberValidator.checkWinningNumberLength(winningNumbers);
+        WinningNumberValidator.checkDuplicateWinningNumbers(winningNumbers);
+        WinningNumberValidator.checkBoundaryOfWinningNumbers(winningNumbers);
     }
 
     public int displayBonusNumber(List<Integer> winningNumbers) {

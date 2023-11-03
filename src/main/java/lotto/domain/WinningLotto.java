@@ -13,8 +13,15 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(List<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public Prize matchLotto(Lotto inputLotto) {

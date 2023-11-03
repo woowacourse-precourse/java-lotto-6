@@ -14,24 +14,37 @@ public class InputView {
             amount = Console.readLine();
             Validator.validatePurChaseAmount(amount);
         } catch (IllegalArgumentException e) {
-            readPurChaseLottoAmount();
+            System.out.println(e.getMessage());
+            return readPurChaseLottoAmount();
         }
         System.out.println();
         return Integer.parseInt(amount) / 1000;
     }
 
     public static List<Integer> readWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNum = Console.readLine();
-        Validator.validateWinningNumber(winningNum);
-        System.out.println();
+        String winningNum = "";
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            winningNum = Console.readLine();
+            Validator.validateWinningNumber(winningNum);
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWinningNumber();
+        }
         return Parser.parseWinningNumber(winningNum, ",");
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        Validator.validateBonusNumber(bonusNumber);
+        String bonusNumber = "";
+        try {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = Console.readLine();
+            Validator.validateBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBonusNumber();
+        }
         return Integer.parseInt(bonusNumber);
     }
 }

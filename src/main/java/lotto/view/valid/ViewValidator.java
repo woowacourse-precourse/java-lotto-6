@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.valid;
 
 import java.util.ArrayList;
 import java.util.List;

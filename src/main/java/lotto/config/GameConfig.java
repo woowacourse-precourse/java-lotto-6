@@ -3,7 +3,7 @@ package lotto.config;
 import lotto.GameManager;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
-import lotto.view.ViewValidator;
+import lotto.view.valid.ViewValidator;
 
 public class GameConfig {
 

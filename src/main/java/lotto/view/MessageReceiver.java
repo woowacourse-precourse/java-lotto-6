@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningLotto;
+import lotto.view.valid.InputValidation;
+import lotto.view.valid.ViewValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,12 +32,11 @@ public class MessageReceiver {
         } while (true);
     }
 
-
     public WinningLotto receiveWinningNumbers() {
         do {
             String inputText = Console.readLine();
-            List<String> winningNumbersText = Arrays.asList(inputText.split(COMMA));
             try {
+                List<String> winningNumbersText = Arrays.asList(inputText.split(COMMA));
                 viewValidator.validateWinningNumberSize(winningNumbersText);
                 List<Integer> winningNumbers = viewValidator.validateWinningNumberFormat(winningNumbersText);
                 return WinningLotto.of(winningNumbers);

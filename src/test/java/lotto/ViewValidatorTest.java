@@ -1,7 +1,6 @@
 package lotto;
 
-import lotto.view.ViewValidator;
-import org.assertj.core.api.Assertions;
+import lotto.view.valid.ViewValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

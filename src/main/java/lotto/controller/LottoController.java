@@ -6,9 +6,16 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.RandomNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private static int amount;
+
+    public void startGame() {
+        int quantity = getQuantity();
+        OutputView.printNumberOfLottoPurchase(quantity);
+        OutputView.printLottoList(purchaseLotto(quantity));
+    }
 
     private int getQuantity() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.inputAmount());

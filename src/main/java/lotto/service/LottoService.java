@@ -21,23 +21,23 @@ public class LottoService {
         return new LottoBundle(bundle, amount);
     }
 
-    public LottoResult calculateResult(LottoBundle lottoBundle, AnswerLotto answerLotto) {
+    public LottoResult calculateResult(LottoBundle lottoBundle, WinningLotto winningLotto) {
         Map<Ranking, Integer> result = new EnumMap<>(Ranking.class);
         for (Lotto lotto : lottoBundle.bundle()) {
-            int count = countMatchNumber(lotto, answerLotto);
-            boolean bonusContain = checkBonus(lotto, answerLotto);
+            int count = countMatchNumber(lotto, winningLotto);
+            boolean bonusContain = checkBonus(lotto, winningLotto);
             Ranking ranking = Ranking.findRanking(count, bonusContain);
             result.put(ranking, result.getOrDefault(ranking, 0) + 1);
         }
         return new LottoResult(result, calculateYield(result, lottoBundle.amount()));
     }
 
-    private int countMatchNumber(Lotto lotto, AnswerLotto answerLotto) {
-        return answerLotto.getMatchCount(lotto.numbers());
+    private int countMatchNumber(Lotto lotto, WinningLotto winningLotto) {
+        return winningLotto.getMatchCount(lotto.numbers());
     }
 
-    private boolean checkBonus(Lotto lotto, AnswerLotto answerLotto) {
-        return lotto.contains(answerLotto.getBonusNumber());
+    private boolean checkBonus(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.contains(winningLotto.getBonusNumber());
     }
 
     private double calculateYield(Map<Ranking, Integer> result, int amount) {

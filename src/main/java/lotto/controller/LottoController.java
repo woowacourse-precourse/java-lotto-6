@@ -21,9 +21,9 @@ public class LottoController {
         LottoBundle lottoBundle = buyLottoBundle();
         outputView.printLottoBundle(lottoBundle);
 
-        AnswerLotto answerLotto = getAnswerLotto();
+        WinningLotto winningLotto = getAnswerLotto();
 
-        LottoResult result = lottoService.calculateResult(lottoBundle, answerLotto);
+        LottoResult result = lottoService.calculateResult(lottoBundle, winningLotto);
         outputView.printLottoResult(result);
     }
 
@@ -32,10 +32,10 @@ public class LottoController {
         return lottoService.buyLottoBundle(money);
     }
 
-    private AnswerLotto getAnswerLotto() {
+    private WinningLotto getAnswerLotto() {
         Lotto answerLotto = inputView.getAnswerLotto();
         BonusNumber bonusNumber = inputView.getBonusNumber(answerLotto);
-        return new AnswerLotto(answerLotto, bonusNumber);
+        return new WinningLotto(answerLotto, bonusNumber);
     }
 
 }

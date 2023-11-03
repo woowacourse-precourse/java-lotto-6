@@ -13,13 +13,20 @@ public class Application {
         String lottoBudgetInput = View.getUserInput();
         Integer budget = Convertor.convertInputToInteger(lottoBudgetInput);
         Integer lotteryCount = Controller.calculateLotteryCount(budget);
-        gameData.generateLottoList();
+        View.printLotteryCount(lotteryCount);
 
+        gameData.generateLottoList();
+        List<Lotto> lottoList = gameData.getLottoList();
         for (int i = 0; i < lotteryCount; i++) {
             List<Integer> lotteryNumbers = Lotto.generateLotteryNumbers();
-            List<Lotto> lottoList = gameData.getLottoList();
             lottoList.add(new Lotto(lotteryNumbers));
         }
+
+        for (Lotto lotto : lottoList) {
+            List<Integer> numbers = lotto.getNumbers();
+            View.printLotteryNumbers(numbers);
+        }
+        System.out.println();
 
         View.printMessage(ASK_WINNING_NUMBERS);
         String winningNumbersInput = View.getUserInput();

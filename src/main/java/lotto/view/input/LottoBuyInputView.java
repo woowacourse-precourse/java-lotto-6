@@ -26,8 +26,7 @@ public class LottoBuyInputView extends Input{
         printRequestLottoPurchaseAmount();
 
         int amount = inputValidator.parseInt(readLine());
-        inputValidator.validateLottoAmount(amount);
-        inputValidator.validateMultipleOfDenomination(amount, denomination);
+        validateLottoAmount(amount, denomination);
 
         return amount;
     }
@@ -36,15 +35,23 @@ public class LottoBuyInputView extends Input{
         System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE);
     }
 
+    private void validateLottoAmount(int amount, int denomination) {
+        inputValidator.validateLottoAmount(amount);
+        inputValidator.validateMultipleOfDenomination(amount, denomination);
+    }
+
     //사이즈랑 정렬되서 들어왔는지 확인하기
     public List<Integer> requestWinningLottoNumbers() {
         printRequestWinningLottoNumbers();
+
         List<Integer> numbers = getNumbers();
-        inputValidator.checkForDuplicateLottoNumbers(numbers);
-        inputValidator.validateLottoSize(numbers);
-        inputValidator.validateSortedAscending(numbers);
+        validateWiningLottoNumbers(numbers);
 
         return numbers;
+    }
+
+    private void printRequestWinningLottoNumbers() {
+        System.out.println(WINNING_NUMBERS_PROMPT_MESSAGE);
     }
 
     private List<Integer> getNumbers() {
@@ -53,8 +60,10 @@ public class LottoBuyInputView extends Input{
                 .toList();
     }
 
-    private void printRequestWinningLottoNumbers() {
-        System.out.println(WINNING_NUMBERS_PROMPT_MESSAGE);
+    private void validateWiningLottoNumbers(List<Integer> numbers) {
+        inputValidator.checkForDuplicateLottoNumbers(numbers);
+        inputValidator.validateLottoSize(numbers);
+        inputValidator.validateSortedAscending(numbers);
     }
 
 }

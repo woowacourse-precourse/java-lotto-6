@@ -3,7 +3,6 @@ package lotto.validator;
 import lotto.message.ErrorMessage;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class InputValidator {
 

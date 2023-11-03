@@ -1,6 +1,8 @@
 package lotto;
 
-import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,6 +28,16 @@ public class Lotto {
             lottoNumber[i] = numbers.get(i);
         }
         return lottoNumber;
+    }
+    public Set<Integer> toSet() {
+        Set<Integer> lotto = new HashSet<>();
+        for (int i = 0; i < numbers.size(); i++) {
+            lotto.add(numbers.get(i));
+        }
+        return lotto;
+    }
+    public void sortNumber(){
+        Collections.sort(this.numbers);
     }
     // TODO: 추가 기능 구현
 }

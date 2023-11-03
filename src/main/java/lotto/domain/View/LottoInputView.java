@@ -42,7 +42,7 @@ public class LottoInputView {
                 winningNumbers = new ArrayList<>(Arrays.stream(inputValue.split(","))
                         .mapToInt(Integer::parseInt).boxed().toList());
                 winningNumbers.sort(Integer::compareTo);
-                Validator.validateWinningNumbers(winningNumbers);
+                Validator.validateLottoNumbers(winningNumbers);
                 validInputFlag = true;
             } catch (PatternSyntaxException e) {
                 System.out.println("[ERROR] 각 숫자의 구별은 쉼표(,)로 해주세요.");

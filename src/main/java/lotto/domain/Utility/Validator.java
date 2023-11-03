@@ -5,12 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Validator {
-    public static void validateNumbers(List<Integer> numbers) {
-        if (numbers.size() != Constant.LOTTO_PICK_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] " + Constant.LOTTO_PICK_NUMBER + "자리를 입력해 주세요.");
-        }
-    }
-
     public static void validateInputCash(int cash) {
         if (cash <= 0) {
             throw new IllegalArgumentException("[ERROR] 0보다 작은 값을 입력했습니다.");
@@ -23,13 +17,19 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumbers(List<Integer> winningNumbers) {
+    public static void validateLottoNumbers(List<Integer> winningNumbers) {
         validateNumbers(winningNumbers);
         Map<Integer, Integer> sameNumberCheck = new HashMap<>();
 
         for (int winningNumber : winningNumbers) {
             validateEachWinningNumber(winningNumber, sameNumberCheck);
             sameNumberCheck.put(winningNumber, sameNumberCheck.getOrDefault(winningNumber, 0) + 1);
+        }
+    }
+
+    public static void validateNumbers(List<Integer> numbers) {
+        if (numbers.size() != Constant.LOTTO_PICK_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] " + Constant.LOTTO_PICK_NUMBER + "자리를 입력해 주세요.");
         }
     }
 

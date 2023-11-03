@@ -3,6 +3,7 @@ package lotto.domain.Model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Utility.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMaker {
@@ -23,10 +24,12 @@ public class LottoMaker {
 
     public Lotto issueLottoPaper() {
         List<Integer> numbers
-                = Randoms.pickUniqueNumbersInRange(
-                Constant.LOTTO_START_NUMBER,
-                Constant.LOTTO_END_NUMBER,
-                Constant.LOTTO_PICK_NUMBER
+                = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(
+                        Constant.LOTTO_START_NUMBER,
+                        Constant.LOTTO_END_NUMBER,
+                        Constant.LOTTO_PICK_NUMBER
+                )
         );
         numbers.sort(Integer::compareTo);
 

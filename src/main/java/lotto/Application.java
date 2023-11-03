@@ -41,5 +41,10 @@ public class Application {
         for (int i = 0; i < 6; i++) {
             jackPot.add(Integer.parseInt(numbers[i]));
         }
+
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
     }
 }

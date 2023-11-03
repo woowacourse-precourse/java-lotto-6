@@ -6,7 +6,8 @@ import lotto.utils.RandomGenerator;
 import java.util.*;
 
 public class Player {
-    private int money, totalPrize;
+    private int money;
+    private long totalPrize;
     private List<Lotto> lottos = new ArrayList<>();
     private Map<Ranking, Integer> results = new HashMap<>();
 
@@ -85,7 +86,7 @@ public class Player {
 
     public void findTotalPrize() {
         for (Ranking ranking : results.keySet()) {
-            totalPrize += ranking.getPrize() * results.get(ranking);
+            totalPrize += (long) ranking.getPrize() * results.get(ranking);
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.console;
 
 import static lotto.constant.LottoMessage.REQUEST_INPUT_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.constant.LottoMessage.REQUEST_INPUT_WINNING_NUMBER_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,6 +14,16 @@ public class ConsoleInput {
         validateInput(purchaseAmount);
 
         return purchaseAmount;
+    }
+
+    public static String readWinningNumber() {
+        System.out.println(REQUEST_INPUT_WINNING_NUMBER_MESSAGE);
+
+        String winningNumber = Console.readLine();
+
+        validateInput(winningNumber);
+
+        return winningNumber;
     }
 
     private static void validateInput(String input) {

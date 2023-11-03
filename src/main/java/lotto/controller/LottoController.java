@@ -2,15 +2,20 @@ package lotto.controller;
 
 import lotto.console.ConsoleInput;
 import lotto.console.ConsoleOutput;
+import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.PurchaseAmount;
+import lotto.service.DrawingLottoService;
 import lotto.service.IssuingLottoService;
 
 public class LottoController {
     private final IssuingLottoService issuingLottoService;
+    private final DrawingLottoService drawingLottoService;
 
     public LottoController() {
         issuingLottoService = new IssuingLottoService();
+        drawingLottoService = new DrawingLottoService();
+
     }
 
     public void run() {
@@ -36,5 +41,17 @@ public class LottoController {
             }
         }
 
+    }
+
+    private Lotto readWinningNumber() {
+        while (true) {
+            try {
+                return drawingLottoService.createWinningNumber(ConsoleInput.readWinningNumber());
+            } catch (IllegalArgumentException e) {
+                ConsoleOutput.printExceptionMessage(e.getMessage());
+            } finally {
+                ConsoleOutput.printNewLine();
+            }
+        }
     }
 }

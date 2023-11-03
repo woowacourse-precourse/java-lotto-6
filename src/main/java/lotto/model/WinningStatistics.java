@@ -21,7 +21,7 @@ public class WinningStatistics {
         return prizeCounter;
     }
 
-    public Map<LottoPrize, Integer> calculateWinningStatistics() {
+    private Map<LottoPrize, Integer> calculateWinningStatistics() {
         Map<LottoPrize, Integer> prizeCounter = new HashMap<>();
         for (Lotto lotto : lottoTicketsPurchased) {
             LottoPrize lottoPrize = winningLotto.compare(lotto);

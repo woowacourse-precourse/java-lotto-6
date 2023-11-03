@@ -13,7 +13,7 @@ import lotto.model.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
+public class LottoGameController {
     private InputController inputController;
     private OutputController outputController;
 
@@ -33,14 +33,14 @@ public class LottoController {
 
     private void startLottoGame() {
         int budget = inputController.getBudget();
-        List<Lotto> lottoTicketsPurchased = buyLottoTickets(budget, new LottoRandomGenerator());
+        List<Lotto> lottoTicketsPurchased = purchaseLottoTickets(budget, new LottoRandomGenerator());
 
         WinningLotto winningLotto = inputController.getWinningLottoTicket();
 
         prepareStatistics(winningLotto, lottoTicketsPurchased, budget);
     }
 
-    private List<Lotto> buyLottoTickets(int budget, LottoGenerator lottoGenerator) {
+    private List<Lotto> purchaseLottoTickets(int budget, LottoGenerator lottoGenerator) {
         int quantity = calculateQuantity(budget);
         List<Lotto> lottoTicketsPurchased = lottoGenerator.generateLottoTickets(quantity);
 
@@ -52,7 +52,6 @@ public class LottoController {
     private void prepareStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased, int budget) {
         WinningStatistics winningStatistics
                 = new WinningStatistics(winningLotto, lottoTicketsPurchased);
-
         outputController.printWinningStatistics(winningStatistics);
 
         double rateOfReturn = calculateRateOfReturn(budget, winningStatistics.calculateSumOfPrize());
@@ -66,5 +65,4 @@ public class LottoController {
     private Double calculateRateOfReturn(int budget, Long earnedAmount) {
         return earnedAmount * 100 / (double) budget;
     }
-
 }

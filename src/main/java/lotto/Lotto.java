@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.util.LottoUtil;
 
 public class Lotto {
     private static final int MIN_LOTTO_NUM = 1;
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        LottoUtil.sortByAsc(numbers);
         this.numbers = numbers;
     }
 

@@ -19,7 +19,7 @@ public class InputView {
 
     public static String amountInput() {
         String amount = input();
-
+        
         validateNullAndBlankCheck(amount);
         numberTypeCheck(amount);
 

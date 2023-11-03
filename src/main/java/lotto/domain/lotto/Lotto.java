@@ -25,4 +25,9 @@ public class Lotto {
                 .filter(lotto::hasNumber)
                 .count();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

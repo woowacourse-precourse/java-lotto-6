@@ -10,7 +10,6 @@ public final class InputVerifier {
     }
 
     public static void validateIsNumberInRange(String input, int minInclusive, int maxInclusive) {
-        validateIsNumber(input);
         int number = Integer.parseInt(input);
         if (number < minInclusive || number > maxInclusive) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGE_NUMBER.getMessage());
@@ -20,5 +19,12 @@ public final class InputVerifier {
     public static void validateIsNumber(String input) {
         if (!numberPattern.matcher(input).matches())
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER.getMessage());
+    }
+
+    public static void validateIsDivisibleNumber(String input, int divisor) {
+        int number = Integer.parseInt(input);
+        if (number % divisor != 0) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_DIVISIBLE_NUMBER.getMessage());
+        }
     }
 }

@@ -26,7 +26,7 @@ public class LottoController {
     public int getPurchasePrice() {
         while (true) {
             try {
-                return inputView.getOneNumberInRange(LottoTicketMachine.LOTTO_PRICE, LottoTicketMachine.MAX_PURCHASE_AMOUNT);
+                return inputView.getDivisibleNumberInRange(LottoTicketMachine.LOTTO_PRICE, LottoTicketMachine.MAX_PURCHASE_AMOUNT, LottoTicketMachine.LOTTO_PRICE);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

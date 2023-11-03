@@ -1,26 +1,27 @@
 package lotto.domain;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class Result {
 
-    private final long sameNumberCount;
+    private final Map<Prize, Long> prizes;
 
-    private final long sameBonusCount;
+    private final Money winMoney;
 
-    private Result(final long sameNumberCount, final long sameBonusCount) {
-        this.sameNumberCount = sameNumberCount;
-        this.sameBonusCount = sameBonusCount;
+    public Result(final List<Prize> prizes) {
+        this.prizes = prizes.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        final List<Money> moneys = prizes.stream().map(Prize::getMoney).toList();
+        this.winMoney = moneys.stream().reduce(Money.ZERO, Money::add);
     }
 
-    public static Result of(final Lotto lotto, final WinnerNumbers winnerNumbers) {
-        return new Result(lotto.calculateSameCount(winnerNumbers),
-                lotto.calculateSameBonusCount(winnerNumbers));
+    public Long getPrizeCount(final Prize prize) {
+        return prizes.get(prize);
     }
 
-    public long getSameNumberCount() {
-        return sameNumberCount;
-    }
-
-    public long getSameBonusCount() {
-        return sameBonusCount;
+    public Money getWinMoney() {
+        return winMoney;
     }
 }

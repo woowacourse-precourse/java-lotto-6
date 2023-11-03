@@ -28,10 +28,8 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    public static int bonusNumber() {
+    public static String bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonus = Console.readLine();
-        System.out.println();
-        return Integer.parseInt(bonus);
+        return Console.readLine();
     }
 }

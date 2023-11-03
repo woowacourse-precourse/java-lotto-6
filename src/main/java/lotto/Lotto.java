@@ -3,7 +3,7 @@ package lotto;
 import constant.Rank;
 import java.util.Collections;
 import java.util.List;
-import validator.NumberValidator;
+import validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,9 +14,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        NumberValidator.sizeValidate(numbers);
-        NumberValidator.duplicateValidate(numbers);
-        NumberValidator.matchRangeValidate(numbers);
+        LottoValidator.sizeValidate(numbers);
+        LottoValidator.duplicateValidate(numbers);
+        LottoValidator.matchRangeValidate(numbers);
     }
 
     // TODO: 추가 기능 구현

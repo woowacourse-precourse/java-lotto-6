@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NumberValidator {
-    private NumberValidator() {
+public class LottoValidator {
+    private LottoValidator() {
     }
 
     public static void sizeValidate(List<Integer> numbers) {

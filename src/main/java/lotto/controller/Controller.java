@@ -13,6 +13,7 @@ public class Controller {
     public void run() {
         part1();
         part2();
+        part3();
     }
 
     public void part1() {
@@ -33,7 +34,13 @@ public class Controller {
         for (Lotto lottos : lottoies) {
             System.out.println(lottos);
         }
+    }
 
+    public void part3(){
+        OutputView.printEntertWinningNumber();
+        InputView.userInput();
+        OutputView.printEnterBounsNumber();
+        InputView.userInput();
     }
 
 

@@ -69,4 +69,59 @@ class LottoManagerTest {
         assertThatThrownBy(() -> manager.setWinningNumbers(listToStream))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스번호_당첨번호와_중복_체크() {
+        String stringBonusNumber = "1";
+        String stringWinningNumbers = "1,2,3,4,5,6";
+
+        List<String> listToStream = Arrays.stream(stringWinningNumbers.split(",")).toList();
+        List<String> listToStream2 = Arrays.stream(stringBonusNumber.split("")).toList();
+
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+        manager.setWinningNumbers(listToStream);
+
+        assertThatThrownBy(() -> manager.setBonusNumber(listToStream2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_숫자타입_체크() {
+        String stringBonusNumber = "1a";
+
+        List<String> listToStream = Arrays.stream(stringBonusNumber.split("")).toList();
+
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+
+        assertThatThrownBy(() -> manager.setBonusNumber(listToStream))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_범위_체크() {
+        String stringBonusNumber = "46";
+
+        List<String> listToStream = Arrays.stream(stringBonusNumber.split("")).toList();
+
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+
+        assertThatThrownBy(() -> manager.setBonusNumber(listToStream))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_갯수_체크() {
+        String stringBonusNumber = "42,45";
+
+        List<String> listToStream = Arrays.stream(stringBonusNumber.split(",")).toList();
+
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+
+        assertThatThrownBy(() -> manager.setBonusNumber(listToStream))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

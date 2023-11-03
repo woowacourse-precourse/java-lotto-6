@@ -1,11 +1,11 @@
-package lotto.domain.lotto;
+package lotto.domain.lotto.boxed;
 
 import lotto.domain.lotto.exception.InvalidLottoNumberException;
 
 /**
  * 6자리의 로또 번호 중, 각 자리를 나타내는 LottoNumber는 하나의 `int` 필드를 갖는 Wrapper class 입니다. `int`로 생성 가능하며, 생성 시 검증하여 유효성 보장이 가능합니다.
  */
-public record LottoNumber(int value) {
+public sealed class LottoNumber permits BonusNumber {
 
     /**
      * 최소 로또 번호는 1입니다.
@@ -15,12 +15,17 @@ public record LottoNumber(int value) {
      * 최대 로또 번호는 45입니다.
      */
     public static final int MAX_LOTTO_NUMBER = 45;
+    /**
+     * 실제 Primitive Value
+     */
+    protected final int value;
 
     /**
      * @apiNote LottoNumber 생성 시, <h3 color="#bf0f4d">value는 반드시 1 이상 45 이하의 범위에 속해야 합니다.</h3>
      */
-    public LottoNumber {
+    public LottoNumber(final int value) {
         validateLottoNumber(value);
+        this.value = value;
     }
 
     /**
@@ -31,4 +36,5 @@ public record LottoNumber(int value) {
             throw new InvalidLottoNumberException();
         }
     }
+
 }

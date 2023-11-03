@@ -6,7 +6,7 @@ import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
 import lotto.exception.BonusNumberExceptionMessage;
 import lotto.exception.PurchaseExceptionMessage;
-import lotto.exception.WinningNumberExceptionMessage;
+import lotto.exception.WinningNumberValidator;
 import lotto.view.InputView;
 
 import java.util.Arrays;
@@ -71,13 +71,13 @@ public class LottoService {
     }
 
     private void validateLottoNumberFormat(String input) {
-        WinningNumberExceptionMessage.validateLottoNumberFormat(input);
+        WinningNumberValidator.validateLottoNumberFormat(input);
     }
 
     private void validateWinningNumber(List<Integer> winningNumbers) {
-        WinningNumberExceptionMessage.validateWinningNumberLength(winningNumbers);
-        WinningNumberExceptionMessage.validateDuplicateWinningNumber(winningNumbers);
-        WinningNumberExceptionMessage.validateBoundaryWinningNumber(winningNumbers);
+        WinningNumberValidator.validateWinningNumberLength(winningNumbers);
+        WinningNumberValidator.validateDuplicateWinningNumber(winningNumbers);
+        WinningNumberValidator.validateBoundaryWinningNumber(winningNumbers);
     }
 
     public int displayBonusNumber(List<Integer> winningNumbers) {

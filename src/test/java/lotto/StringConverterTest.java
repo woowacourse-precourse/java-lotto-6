@@ -19,10 +19,10 @@ class StringConverterTest {
         numbers.addAll(List.of("1", "2", "3", "4", "5", "6"));
 
         //when
-        List<Integer> convertNumbers = stringConverter.convertToIntegerList(numbers);
+        List<Integer> convertedNumbers = stringConverter.convertToIntegerList(numbers);
 
         //then
-        assertThat(convertNumbers).hasSize(6)
+        assertThat(convertedNumbers).hasSize(6)
                 .isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
@@ -38,5 +38,20 @@ class StringConverterTest {
         assertThatThrownBy(() -> stringConverter.convertToIntegerList(numbers))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessage("[ERROR] 번호와 금액은 정수여야 합니다.");
+    }
+
+    @DisplayName("문자를 정수로 변환한다.")
+    @Test
+    void parseInt(){
+        //given
+        StringConverter stringConverter = new StringConverter();
+        String number = "1";
+
+        //when
+        int convertedNumber = stringConverter.parseInt(number);
+
+        //then
+        assertThat(convertedNumber).isInstanceOf(Integer.class)
+                .isEqualTo(1);
     }
 }

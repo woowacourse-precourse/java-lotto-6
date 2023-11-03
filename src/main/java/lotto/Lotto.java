@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     private void checkLottoNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != IntConstants.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE_MESSAGE.getMessage());
         }
     }

@@ -3,7 +3,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +48,8 @@ public class Store {
   public List<Integer> makeLottoNumber() {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+
 
 
 

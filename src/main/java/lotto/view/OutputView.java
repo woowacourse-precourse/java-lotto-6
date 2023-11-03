@@ -5,7 +5,7 @@ import lotto.util.message.ProgressMessage;
 import lotto.util.message.WinningStatisticsMessage;
 
 public class OutputView {
-	
+
 	private static final OutputViewPrinter PRINTER = new OutputViewPrinter();
 	private static final String NEWLINE = "\n";
 
@@ -32,11 +32,11 @@ public class OutputView {
 	public void printWinningStatisticsTopMessage() {
 		PRINTER.printLine(NEWLINE + WinningStatisticsMessage.TOP.getMessage());
 	}
-	
+
 	public void printWinningStatisticsMessage(String message) {
 		PRINTER.printLine(message);
 	}
-	
+
 	public void printTotalReturn(double totalReturn) {
 		PRINTER.printLine(WinningStatisticsMessage.TOTAL_RETURN.getForMatMessage(totalReturn));
 	}

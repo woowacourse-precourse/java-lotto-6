@@ -1,9 +1,11 @@
 package lotto.model;
 
-import static lotto.enumerate.ErrorCode.*;
+import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_DUPLICATE;
+import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_OVER_OR_UNDER_SIZE;
+import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
+import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
 import java.util.List;
-import lotto.enumerate.ErrorCode;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -35,12 +37,6 @@ public class Lotto {
         if (numbers.size() != 6) {
             exceptionCodeThrow(LOTTO_NUMBER_OVER_OR_UNDER_SIZE);
         }
-    }
-
-    private void exceptionCodeThrow(ErrorCode errorCode) {
-        String message;
-        message = String.valueOf(errorCode);
-        throw new IllegalArgumentException(message);
     }
 
     // TODO: 추가 기능 구현

@@ -1,5 +1,7 @@
 package lotto.readUserInput;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import org.assertj.core.api.Assertions;
@@ -7,12 +9,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PurchaseAmountTest {
-    private PurchaseAmount purchaseAmount;
+class BonusNumbersTest {
+    private BonusNumbers bonusNumbers;
 
     @BeforeEach
     void beforeSetUp() {
-        purchaseAmount = new PurchaseAmount();
+        bonusNumbers = new BonusNumbers();
     }
 
     @AfterEach
@@ -21,11 +23,10 @@ class PurchaseAmountTest {
     }
 
     @Test
-    void 로또구매() {
-        String money = "7000";
-        System.setIn(new ByteArrayInputStream(money.getBytes()));
-        purchaseAmount.read();
-        Assertions.assertThat(PurchaseAmount.lottoQuantity).isEqualTo(7000);
+    void 보너스번호입력() {
+        String number = "1";
+        System.setIn(new ByteArrayInputStream(number.getBytes()));
+        bonusNumbers.read();
+        Assertions.assertThat(BonusNumbers.number).isEqualTo(1);
     }
-
 }

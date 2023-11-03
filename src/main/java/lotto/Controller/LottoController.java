@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Amount;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +22,7 @@ public class LottoController {
         OutputView.displayLottoNumbers(lottoList);
 
         OutputView.displayWinningNumberGuide();
-        final Lotto winningLotto = inputWinningNumbers();
+        final WinningLotto winningLotto = inputWinningNumbers();
 
         OutputView.displayBonusNumberGuide();
         final BonusNumber bonusNumber = inputBonusNumber();
@@ -59,13 +60,13 @@ public class LottoController {
         return lottoList;
     }
 
-    private Lotto inputWinningNumbers() {
-        List<Integer> winningNumbers;
-        Lotto winningLotto;
+    private WinningLotto inputWinningNumbers() {
+        List<String> winningNumbers;
+        WinningLotto winningLotto;
         while (true) {
             try {
                 winningNumbers = InputView.inputWinningNumbers();
-                winningLotto = new Lotto(winningNumbers);
+                winningLotto = new WinningLotto(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -87,7 +88,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private int[] compareWinningNumbers(int lottoCount, List<Lotto> lottoList, Lotto winningLotto, BonusNumber bonusNumber) {
+    private int[] compareWinningNumbers(int lottoCount, List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
         int[] lottoResultCount = new int[5];
 
         for (int i = 0; i < lottoCount; i++) {

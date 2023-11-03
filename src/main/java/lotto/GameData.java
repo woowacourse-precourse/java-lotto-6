@@ -5,17 +5,17 @@ import java.util.List;
 
 public class GameData {
     private Integer budget;
-    private Integer LotteriesNumber;
+    private Integer LotteriesCount;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
     private List<Lotto> lottoList;
 
-    public Integer getLotteriesNumber() {
-        return LotteriesNumber;
+    public Integer getLotteriesCount() {
+        return LotteriesCount;
     }
 
-    public void setLotteriesNumber(Integer lotteriesNumber) {
-        LotteriesNumber = lotteriesNumber;
+    public void setLotteriesCount(Integer lotteriesCount) {
+        LotteriesCount = lotteriesCount;
     }
 
     public List<Integer> getWinningNumbers() {

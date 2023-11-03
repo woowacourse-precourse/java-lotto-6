@@ -5,12 +5,14 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class WinningResult {
+    private static final int PERCENTAGE = 100;
+
     private final Map<Rank, Integer> winningResult;
 
     public WinningResult() {
         this.winningResult = new EnumMap<>(Rank.class);
         Arrays.stream(Rank.values())
-                .forEach(prize -> winningResult.put(prize, 0));
+                .forEach(rank -> winningResult.put(rank, 0));
     }
 
     public void calculateWinning(Lottos lottos, WinningNumber winningNumber) {
@@ -23,5 +25,17 @@ public class WinningResult {
 
     public int getWinningCount(Rank rank) {
         return winningResult.get(rank);
+    }
+
+    public float calculateRate(Lottos lottos) {
+        int totalPrize = 0;
+        for (Rank rank : winningResult.keySet()) {
+            if (rank == Rank.BLANK) {
+                continue;
+            }
+            totalPrize += winningResult.get(rank) * rank.getPrize();
+        }
+
+        return ((float) totalPrize / lottos.getMoney()) * PERCENTAGE;
     }
 }

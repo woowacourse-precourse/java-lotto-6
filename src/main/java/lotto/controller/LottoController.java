@@ -19,6 +19,7 @@ public class LottoController {
         decideBonusNumber(winningNumber);
         WinningResult winningResult = calculateWinning(lottos, winningNumber);
         OutputView.printWinningStatics(winningResult);
+        OutputView.printRate(winningResult.calculateRate(lottos));
 
     }
 

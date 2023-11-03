@@ -20,4 +20,8 @@ public class Lotto {
     void sort() {
         Collections.sort(numbers);
     }
+
+    public List<Integer> convertType() {
+        return numbers;
+    }
 }

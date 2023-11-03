@@ -12,10 +12,19 @@ public class InputView {
     }
 
     public int inputPurchaseLotto() {
-        System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
-        int purchase = Util.convertStringToInt(Console.readLine());
-        new PurchaseLottoValidator().validate(purchase);
-        return purchase;
+        try {
+            System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
+            int purchase = Util.convertStringToInt(Console.readLine());
+            new PurchaseLottoValidator().validate(purchase);
+            return purchase;
+        } catch (IllegalArgumentException exception) {
+            printExceptionMessage(exception);
+            return inputPurchaseLotto();
+        }
+    }
+
+    private void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     private enum Message {

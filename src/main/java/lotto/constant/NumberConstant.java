@@ -15,4 +15,10 @@ public enum NumberConstant {
     public static final int THIRD_PRIZE = 1500000;
     public static final int FOURTH_PRIZE = 50000;
     public static final int FIFTH_PRIZE = 5000;
+    public static final int FIRST_CORRECT_AMOUNT = 6;
+    public static final int SECOND_CORRECT_AMOUNT = 5;
+    public static final int THIRD_CORRECT_AMOUNT = 5;
+    public static final int FOURTH_CORRECT_AMOUNT = 4;
+    public static final int FIFTH_CORRECT_AMOUNT = 3;
+    public static final int PERCENTAGE_UNIT = 100;
 }

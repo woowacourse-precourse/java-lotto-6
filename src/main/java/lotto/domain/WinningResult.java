@@ -24,7 +24,7 @@ public class WinningResult {
         int buyingPrice = buyingAmount * BUYING_PRICE_UNIT;
         int totalPrize = calculateTotalPrize();
 
-        return (((double) totalPrize / buyingPrice) * 100);
+        return (((double) totalPrize / buyingPrice) * PERCENTAGE_UNIT);
     }
 
     private int calculateTotalPrize() {
@@ -38,31 +38,31 @@ public class WinningResult {
     }
 
     private void winningRank1(final int correctAmount) {
-        if (correctAmount == 6) {
+        if (correctAmount == FIRST_CORRECT_AMOUNT) {
             rank1++;
         }
     }
 
     private void winningRank2(final int correctAmount, final boolean bonusCorrect) {
-        if (correctAmount == 5 && bonusCorrect) {
+        if (correctAmount == SECOND_CORRECT_AMOUNT && bonusCorrect) {
             rank2++;
         }
     }
 
     private void winningRank3(final int correctAmount, final boolean bonusCorrect) {
-        if (correctAmount == 5 && !bonusCorrect) {
+        if (correctAmount == THIRD_CORRECT_AMOUNT && !bonusCorrect) {
             rank3++;
         }
     }
 
     private void winningRank4(final int correctAmount) {
-        if (correctAmount == 4) {
+        if (correctAmount == FOURTH_CORRECT_AMOUNT) {
             rank4++;
         }
     }
 
     private void winningRank5(final int correctAmount) {
-        if (correctAmount == 3) {
+        if (correctAmount == FIFTH_CORRECT_AMOUNT) {
             rank5++;
         }
     }

@@ -27,8 +27,15 @@ public class Issue {
         }
     }
 
+    void printLotto() {
+        for (int i = 0; i < lottoGroup.size(); i++) {
+            System.out.println(lottoGroup.get(i));
+        }
+    }
+
     void playIssue() {
         inputCash();
         makeSortedLotto();
+        printLotto();
     }
 }

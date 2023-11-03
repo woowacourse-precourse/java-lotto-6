@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.util.Status;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,5 +36,26 @@ class LottoGameMoneyDataTest {
         LottoGameData lottoGameData = new LottoGameData();
         lottoGameData.setMoney("1000");
         assertEquals(1000, lottoGameData.getMoney());
+    }
+    @Test
+    public void setMoneyLoopTest() {
+        Status status = Status.FAIL;
+        int attempt = 0;
+
+        while (status == Status.FAIL) {
+            try {
+                lottoGameData.setMoney("test");
+                status = Status.SUCCESS;
+            }catch (IllegalArgumentException ignored){
+
+            }
+            finally {
+                attempt++;
+            }
+            if(attempt==3){
+                break;
+            }
+        }
+        assertEquals(attempt, 3);
     }
 }

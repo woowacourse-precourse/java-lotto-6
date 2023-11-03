@@ -10,12 +10,11 @@ public class BonusNumber {
         BonusNumberValidator.validateLottoNumberRange(number);
         this.number = number;
     }
-
     public static BonusNumber from(String input) {
         return new BonusNumber(Convertor.convertStringToInt(input));
     }
 
-    public int getNumber() {
-        return number;
+    public boolean isEqual(int otherNumber) {
+        return number == otherNumber;
     }
 }

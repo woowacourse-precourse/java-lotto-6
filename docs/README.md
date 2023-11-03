@@ -33,6 +33,7 @@
 - [ ] 로또 당첨 결과를 통해 총 상금 계산 - LottoPrizeMoney
 - [x] 로또 당첨 결과를 저장하는 Enum - LottoResult
 - [x] 로또 일치에 따라 당첨 결과를 반환 - LottoResult
+- [x] 로또 결과별 상금 정보 저장 및 반환 - LottoResult
 - [x] 로또 결과를 저장하기 위한 저장소 - LottoResultsRepository
 - [x] 로또 결과 저장소의 초기화를 위한 Map 제공 - LottoResult
 - [x] 로또 결과를 받아 추가 - LottoResultRepository

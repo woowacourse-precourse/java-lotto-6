@@ -17,4 +17,12 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return numbers;
     }
+
+    public Rank getRank(){
+        return rank;
+    }
+
+    public void setRank(Rank rank){
+        this.rank = rank;
+    }
 }

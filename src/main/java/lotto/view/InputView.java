@@ -21,7 +21,7 @@ public class InputView {
         return totalAmount;
     }
     //당첨번호
-    public List<Integer> winnerNumbers(){
+    public List<Integer> inputWinnerNumbers(){
         String string = Console.readLine();
         //validation
         List<Integer> winnerNumberList = Arrays.stream(string.split(","))

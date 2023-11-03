@@ -2,10 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -35,12 +32,9 @@ public class Lotto {
     }
 
     public static Lotto createLotto(final List<Integer> numbers) {
-        numbersOrderByAsc(numbers);
-        return new Lotto(numbers);
-    }
-
-    private static void numbersOrderByAsc(final List<Integer> numbers) {
-        Collections.sort(numbers);
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        return new Lotto(mutableNumbers);
     }
 
     public int calculateCorrectAmount(final WinningLotto winningLotto) {

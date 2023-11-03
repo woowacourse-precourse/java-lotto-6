@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constants;
 
 public enum LottoRank {
     FIRST_PRIZE(6),

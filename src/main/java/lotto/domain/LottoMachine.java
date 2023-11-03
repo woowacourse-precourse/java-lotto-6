@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.LottoRank;
 
 public class LottoMachine {
     private static LottoMachine instance;

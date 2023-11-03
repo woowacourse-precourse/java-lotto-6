@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum ErrorConstants {
+public enum ErrorMessage {
     // 공통
     ERROR_PREFIX("[ERROR] "),
 
@@ -29,7 +29,7 @@ public enum ErrorConstants {
 
     private final String message;
 
-    ErrorConstants(String message) {
+    ErrorMessage(String message) {
         this.message = message;
     }
 

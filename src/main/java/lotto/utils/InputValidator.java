@@ -1,10 +1,10 @@
 package lotto.utils;
 
-import static lotto.constants.ErrorConstants.ERROR_BLANK_INPUT;
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_FORMAT;
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_RANGE_OVER;
-import static lotto.constants.ErrorConstants.ERROR_NON_NUMBER_TYPE_INPUT;
-import static lotto.constants.ErrorConstants.ERROR_NULL_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_BLANK_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_FORMAT;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_RANGE_OVER;
+import static lotto.constants.ErrorMessage.ERROR_NON_NUMBER_TYPE_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_NULL_INPUT;
 
 import lotto.exception.InputException;
 

@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_DUPLICATE;
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_RANGE_OVER;
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_SIZE;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_RANGE_OVER;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_SIZE;
 
 import java.util.Collections;
 import java.util.List;

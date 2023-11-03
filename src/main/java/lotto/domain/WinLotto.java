@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import static lotto.constants.ErrorConstants.ERROR_LOTTO_CONTAINS_BONUS;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_CONTAINS_BONUS;
 
+import lotto.constants.LottoRank;
 import lotto.exception.LottoException;
 
 public class WinLotto {
@@ -40,7 +41,7 @@ public class WinLotto {
         if (rank == 5 && otherLotto.isContainsNumber(bonus)) {
             rank = -1;
         }
-        
+
         return LottoRank.getResultByMatchedNumbers(rank);
     }
 }

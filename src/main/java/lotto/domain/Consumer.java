@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.constants.ErrorConstants.ERROR_DIVIDE_BY_AMOUNT;
-import static lotto.constants.ErrorConstants.ERROR_GREATER_THAN_MAX_AMOUNT;
-import static lotto.constants.ErrorConstants.ERROR_LESS_THAN_MIN_AMOUNT;
-import static lotto.constants.ErrorConstants.ERROR_QUANTITY_NON_EQUALS;
+import static lotto.constants.ErrorMessage.ERROR_DIVIDE_BY_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_GREATER_THAN_MAX_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_LESS_THAN_MIN_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_QUANTITY_NON_EQUALS;
 
 import java.util.ArrayList;
 import java.util.Collections;

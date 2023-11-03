@@ -17,9 +17,12 @@ public class WinningStatistics {
         put(WinningPrize.FIFTH_PRIZE, 0);
     }};
 
-    WinningStatistics(List<Lotto> purchaseLottos, List<Integer> winningLotto, int bonusNumber) {
-        setWinningResult(purchaseLottos, winningLotto, bonusNumber);
-        setRateOfReturn();
+    public Map<WinningPrize, Integer> getWinningResult() {
+        return winningResult;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
     }
 
     private void setWinningResult(List<Lotto> purchaseLottos, List<Integer> winningLotto, int bonusNumber) {
@@ -35,6 +38,10 @@ public class WinningStatistics {
         }
     }
 
+    private void setRateOfReturn(int purchaseAmount) {
+        rateOfReturn = (double) totalReward / purchaseAmount;
+    }
+
     private int calculateMatchCount(List<Integer> purchaseLotto, List<Integer> winningLotto) {
         return (int) purchaseLotto.stream().filter(winningLotto::contains).count();
     }
@@ -47,9 +54,5 @@ public class WinningStatistics {
             return BonusStatus.IS_IN_LOTTO;
         }
         return BonusStatus.IS_NOT_IN_LOTTO;
-    }
-
-    private void setRateOfReturn() {
-
     }
 }

@@ -15,7 +15,8 @@ public class LottoController {
         int purchasePrice = getPurchasePrice();
         int lottoCount = getLottoCount(purchasePrice);
         OutputView.printPurchaseLotto(lottoCount);
-        List<Lotto> lottos = lottoService.generateLotto(lottoCount);
+        Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
+
     }
 
     private int getLottoCount(int purchasePrice) {

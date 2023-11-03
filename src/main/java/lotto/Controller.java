@@ -9,17 +9,26 @@ public class Controller {
     private final GameService gameService = new GameService();
 
     public void run() {
-        inputPurchaseAmount();
+        purchaseAmount();
         printIssuedLotto();
         inputWinningNumbers();
         inputBonusNumber();
         printWinningStatistics();
     }
 
-    private void inputPurchaseAmount(){
+    private void purchaseAmount(){
         OutputView.inputPurchaseAmountMessage();
-        String input = InputView.input();
-        gameService.inputPurchaseAmount(input);
+        inputPurchaseAmount();
+    }
+
+    private void inputPurchaseAmount(){
+        try{
+            String input = InputView.input();
+            gameService.inputPurchaseAmount(input);
+        } catch(IllegalArgumentException e){
+            OutputView.errorMessage(e.getMessage());
+            inputPurchaseAmount();
+        }
     }
 
     private void printIssuedLotto(){

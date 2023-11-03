@@ -53,6 +53,10 @@
 ### LottoRaffle
 > 도메인과 뷰를 이어주는 클래스
 ## Util
+### Converter
+> 입력 받은 정보를 검증 후 각 domain에 알맞은 타입으로 변환 해주는 클래스
+### Validator
+> 예외 검증 메서드들을 담고 있는 클래스
 ### LottoGenerator
 > 입력 받은 금액 만큼 로또를 생성하는 클래스
 ## Constants

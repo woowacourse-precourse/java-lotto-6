@@ -10,7 +10,6 @@ class InputValidatorTest {
     @Nested
     @DisplayName("validatePurchaseAmount 메소드 test")
     class validatePurchaseAmountTest {
-
         @DisplayName("구입 금액이 숫자일 경우 검증 성공")
         @Test
         void Purchase_amount_is_a_number() {
@@ -24,6 +23,19 @@ class InputValidatorTest {
             InputValidator.validatePurchaseAmount(input1);
             InputValidator.validatePurchaseAmount(input100);
             InputValidator.validatePurchaseAmount(input1000);
+        }
+
+        @DisplayName("구입 금액이 입력되지 않은 경우 예외 발생")
+        @Test
+        void Purchase_amount_is_empty() {
+            // given
+            String input = "";
+
+            // when
+            // then
+            assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
         }
 
         @DisplayName("구입 금액이 숫자가 아닐 경우 예외 발생")
@@ -54,6 +66,19 @@ class InputValidatorTest {
             // then
             InputValidator.validateWinningNumbers(input1);
             InputValidator.validateWinningNumbers(input2);
+        }
+
+        @DisplayName("당첨 번호가 입력되지 않은 경우 예외 발생")
+        @Test
+        void Purchase_amount_is_empty() {
+            // given
+            String input = "";
+
+            // when
+            // then
+            assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
         }
 
         @DisplayName("당첨 번호에 숫자 이외에 문자가 들어있다면 예외 발생")
@@ -99,6 +124,19 @@ class InputValidatorTest {
             InputValidator.validateBonusNumber(input1);
             InputValidator.validateBonusNumber(input100);
             InputValidator.validateBonusNumber(input10000);
+        }
+
+        @DisplayName("보너스 숫자가 입력되지 않은 경우 예외 발생")
+        @Test
+        void Purchase_amount_is_empty() {
+            // given
+            String input = "";
+
+            // when
+            // then
+            assertThatThrownBy(() -> InputValidator.validateBonusNumber(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
         }
 
         @DisplayName("보너스 번호로 숫자 외에 입력이 들어오면 예외 발생")

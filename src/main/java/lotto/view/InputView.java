@@ -72,4 +72,8 @@ public class InputView {
 
         return convertToInt(input.getInput());
     }
+
+    public void close() {
+        input.close();
+    }
 }

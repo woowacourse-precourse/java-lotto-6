@@ -20,7 +20,7 @@ class InputViewTest {
     @ValueSource(strings = {"A", "111a", "-1", "-99"})
     void convertToInt(String input) {
         // given
-        InputView inputView = new InputView(() -> input);
+        InputView inputView = new InputView(new TestInput(input));
 
         // when then
         Assertions.assertThatThrownBy(inputView::enterMoney)
@@ -33,7 +33,7 @@ class InputViewTest {
     @MethodSource("lottoNumberProvider")
     void convertToIntegerList(String input, int count, List<Integer> answer) {
         // given
-        InputView inputView = new InputView(() -> input);
+        InputView inputView = new InputView(new TestInput(input));
 
         // when
         List<Integer> lottos = inputView.enterLotto();
@@ -51,4 +51,23 @@ class InputViewTest {
                 arguments("1,2,3,7,8,9", 6, List.of(1, 2, 3, 7, 8, 9))
         );
     }
+
+    static class TestInput implements Input {
+
+        String input;
+
+        public TestInput(String input) {
+            this.input = input;
+        }
+
+        @Override
+        public String getInput() {
+            return input;
+        }
+
+        @Override
+        public void close() {
+        }
+    }
+
 }

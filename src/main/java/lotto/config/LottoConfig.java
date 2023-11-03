@@ -21,7 +21,7 @@ public class LottoConfig {
         return new OutputView();
     }
 
-    public static LottoFactory getLottoFactory(int money) {
+    public static LottoFactory getLottoFactory(final int money) {
         return LottoFactory.create(new RandomNumberGenerator(), money);
     }
 }

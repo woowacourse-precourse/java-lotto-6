@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.config.LottoConfig;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
@@ -32,7 +31,7 @@ public class LottoController {
         outputView.printResult(ResultsDto.of(result));
         outputView.printRateOfReturn(result.calculateRateToReturn());
 
-        Console.close();
+        inputView.close();
     }
 
     private LottoFactory makeLottoFactory() {

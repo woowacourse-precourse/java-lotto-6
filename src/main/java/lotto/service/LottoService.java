@@ -23,17 +23,29 @@ public class LottoService {
 
         while (true) {
             try {
-                String purchaseAmountView = InputView.getPurchaseAmountView();
-                PurchaseExceptionMessage.validateIsNumeric(purchaseAmountView);
-
-                int price = Integer.parseInt(purchaseAmountView);
-                PurchaseExceptionMessage.validatePurchaseAmount(price);
-
-                return price;
+                return parseAndValidatePurchaseAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private int parseAndValidatePurchaseAmount() {
+        String purchaseAmountView = InputView.getPurchaseAmountView();
+        validateIsNumeric(purchaseAmountView);
+
+        int price = Integer.parseInt(purchaseAmountView);
+        validatePurchaseAmount(price);
+
+        return price;
+    }
+
+    private void validateIsNumeric(String input) {
+        PurchaseExceptionMessage.validateIsNumeric(input);
+    }
+
+    private void validatePurchaseAmount(int price) {
+        PurchaseExceptionMessage.validatePurchaseAmount(price);
     }
 
     public List<Integer> displayWinningNumber() {

@@ -52,3 +52,7 @@ $$\text{총 당첨금}\div\text{(전체 발행수)}\times \text{(로또가격|1,
 ## View
 ## Controller
 
+
+---
+# 예외
+- 

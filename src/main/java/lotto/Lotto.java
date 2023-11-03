@@ -33,4 +33,8 @@ public class Lotto {
         return copyNumbers.size();
     }
 
+    public String getDisplayFormat() {
+        return LottoUtil.convertToDisplayFormat(numbers);
+    }
+
 }

@@ -15,4 +15,10 @@ public class LottoUtil {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public static String convertToDisplayFormat(List<Integer> numbers) {
+        return "[" + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ")) + "]";
+    }
 }

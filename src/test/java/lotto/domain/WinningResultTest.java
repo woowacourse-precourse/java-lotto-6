@@ -14,9 +14,13 @@ public class WinningResultTest {
     @BeforeEach
     void init() {
         winningResult = new WinningResult();
+
         Lotto firstLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto secondLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        lottos = new Lottos(List.of(firstLotto, secondLotto));
+        Lotto thirdLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto fourthLotto = new Lotto(List.of(1, 2, 3, 4, 9, 10));
+
+        lottos = new Lottos(List.of(firstLotto, secondLotto, thirdLotto, fourthLotto));
         winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
         winningNumber.setBonusNumber(7);
     }
@@ -26,14 +30,18 @@ public class WinningResultTest {
     void calculateWinningFirstTest() {
         //given
         winningResult.calculateWinning(lottos, winningNumber);
-
+        
         //when
         int firstCount = winningResult.getWinningCount(Rank.FIRST);
         int secondCount = winningResult.getWinningCount(Rank.SECOND);
+        int thirdCount = winningResult.getWinningCount(Rank.THIRD);
+        int fourthCount = winningResult.getWinningCount(Rank.FOURTH);
 
         //then
         Assertions.assertEquals(1, firstCount);
         Assertions.assertEquals(1, secondCount);
+        Assertions.assertEquals(1, thirdCount);
+        Assertions.assertEquals(1, fourthCount);
     }
 
 }

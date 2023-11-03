@@ -15,6 +15,7 @@ public class LottoService {
     public List<Lotto> purchaseLotto(Long purchaseAmount) {
         LottoPublisher lottoPublisher = new LottoPublisher();
         List<Lotto> lottos = lottoPublisher.publishLotto(purchaseAmount);
+
         return lottos;
     }
 

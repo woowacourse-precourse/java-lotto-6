@@ -1,6 +1,6 @@
 package lotto.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import lotto.domain.lottoresult.EarningRate;
 import lotto.domain.lottoresult.LottoCheckResult;
@@ -14,7 +14,7 @@ public class LottoChecker {
 
     public LottoCheckResult checkLottoTickets(LottoTickets lottoTickets, WinningNumbers winningNumbers,
                                               BonusNumber bonusNumber) {
-        Collection<Lotto> tickets = lottoTickets.getLottoTickets();
+        List<Lotto> tickets = lottoTickets.getLottoTickets();
         LottoCheckResult result = new LottoCheckResult();
 
         for (Lotto lotto : tickets) {
@@ -44,8 +44,8 @@ public class LottoChecker {
     }
 
     private LottoResultStatus checkLotto(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        Collection<Integer> checkLotto = lotto.getLotto();
-        Collection<Integer> winningNum = winningNumbers.getNumbers();
+        List<Integer> checkLotto = lotto.getLotto();
+        List<Integer> winningNum = winningNumbers.getNumbers();
         int bonusNum = bonusNumber.getNumber();
 
         long matchCount = checkLotto.stream()

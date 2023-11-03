@@ -14,8 +14,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Collection<Integer> getLotto() {
-        return Collections.unmodifiableCollection(numbers);
+    public List<Integer> getLotto() {
+        return Collections.unmodifiableList(numbers);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

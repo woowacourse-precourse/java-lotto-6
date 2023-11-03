@@ -18,8 +18,8 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumber);
     }
 
-    public Collection<Integer> getNumbers() {
-        return Collections.unmodifiableCollection(numbers);
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     private WinningNumbers(String winningNumber) {

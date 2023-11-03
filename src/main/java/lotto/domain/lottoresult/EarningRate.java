@@ -1,8 +1,8 @@
 package lotto.domain.lottoresult;
 
-public class EarningRate {
-    private static final int LOTTO_PRICE = 1_000;
+import static lotto.utils.LottoConstants.LOTTO_PRICE;
 
+public class EarningRate {
     private final double rate;
 
     public EarningRate(double numOfTickets, double earnedMoney) {

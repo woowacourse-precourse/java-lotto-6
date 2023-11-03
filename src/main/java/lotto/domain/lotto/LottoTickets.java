@@ -13,8 +13,8 @@ public class LottoTickets {
         this.lottoTickets = createLottoTickets(price);
     }
 
-    public Collection<Lotto> getLottoTickets() {
-        return Collections.unmodifiableCollection(lottoTickets);
+    public List<Lotto> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
     }
 
     private List<Lotto> createLottoTickets(PurchasePrice price) {

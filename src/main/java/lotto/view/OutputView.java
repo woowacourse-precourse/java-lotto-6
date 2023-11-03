@@ -18,18 +18,19 @@ public class OutputView {
     System.out.println(INPUT_BOUNSNUMBER_MESSAGE);
   }
 
-  public String printLottoNumbers(List<Integer> lottoNumbers) {
+  public void printLottoNumbers(List<List<Integer>> lottos) {
     String formattedNumbers = "[";
 
-    for (int i = 0; i < lottoNumbers.size(); i++) {
-      formattedNumbers += lottoNumbers.get(i);
-      if (i < lottoNumbers.size() - 1) {
-        formattedNumbers += ", ";
+    for (List<Integer> lotto : lottos) {
+      System.out.print("[");
+      for (int i = 0; i < lotto.size(); i++) {
+        System.out.print(lotto.get(i));
+        if (i < lotto.size() - 1) {
+          System.out.print(", ");
+        }
       }
+      System.out.println("]");
     }
-
-    formattedNumbers += "]";
-    return formattedNumbers;
   }
 
 }

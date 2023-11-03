@@ -6,6 +6,7 @@ public enum ErrorMessage {
 
     AMOUNT_IS_DIVIDED_LOTTO_PRICE(Amount.dd + "로 나누어 떨어져야 함"),
     AMOUNT_IS_POSITIVE("0 이거나 음수일 수 없음"),
+    LOTTOS_IS_NOT_EMPTY("로또 번호는 비어있을 수 없음."),
     INPUT_NUMBER("숫자를 입력해주세요.");
 
     private static final String PREFIX = "[ERROR]";

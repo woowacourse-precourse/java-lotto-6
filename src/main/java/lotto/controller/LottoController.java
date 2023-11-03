@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.LottoConstants;
 import lotto.controller.userIO.InputController;
 import lotto.controller.userIO.InputValidator;
 import lotto.controller.userIO.OutputController;
@@ -37,7 +38,7 @@ public class LottoController {
         int budget = getBudget();
 
         // 구입할 수 있는 로또 개수 계산
-        int quantity = budget / 1000;
+        int quantity = getQuantity(budget);
 
         // 구입한 만큼 로또 생성
         List<Lotto> lottoTicketsPurchased = createLottoTickets(quantity, new LottoRandomGenerator());
@@ -61,6 +62,10 @@ public class LottoController {
         // 수익률 계산 및 출력
         double rateOfReturn = calculateRateOfReturn(budget, winningStatistics.calculateSumOfPrize());
         outputController.printRateOfReturn(rateOfReturn);
+    }
+
+    private int getQuantity(int budget) {
+        return budget / LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET;
     }
 
     private int getBudget() {

@@ -18,6 +18,10 @@ public class NumberValidator {
         if (isZero(number)) {
             throw new IllegalArgumentException(NumberErrorMessage.INVALID_ZERO.getMessage());
         }
+
+        if (isNegative(number)) {
+            throw new IllegalArgumentException(NumberErrorMessage.NEGATIVE_NUMBER.getMessage());
+        }
     }
 
     private static boolean isNumeric(String number) {
@@ -45,5 +49,10 @@ public class NumberValidator {
             return true;
         }
         return false;
+    }
+
+    private static boolean isNegative(String number) {
+        int numericValue = Integer.parseInt(number);
+        return numericValue < 0;
     }
 }

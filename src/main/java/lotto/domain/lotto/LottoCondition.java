@@ -19,4 +19,8 @@ public enum LottoCondition {
     public static boolean isNotInRange(final int singleNumber) {
         return MIN_NUMBER.value > singleNumber || MAX_NUMBER.value < singleNumber;
     }
+
+    public static boolean isInvalidLength(final int size) {
+        return NUMBER_LENGTH.value != size;
+    }
 }

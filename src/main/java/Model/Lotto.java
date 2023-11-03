@@ -4,7 +4,9 @@ import Config.ErrorMessage;
 import Config.GameConfig;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -14,6 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
         numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
@@ -49,6 +52,13 @@ public class Lotto {
             if (number < GameConfig.MIN_LOTTO || number > GameConfig.MAX_LOTTO){
                 throw new IllegalArgumentException(String.format(ErrorMessage.NOT_IN_RANGE.getErrorMessage(), GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO));
             }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers){
+        Set<Integer> duplicationTester = new HashSet<>(numbers);
+        if (duplicationTester.size() != numbers.size()){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorMessage());
         }
     }
 }

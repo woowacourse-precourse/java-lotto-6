@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.service.LottoService;
+import lotto.util.StringFormatter;
 import lotto.util.converter.ConverterHolder;
 import lotto.util.converter.StringToLottoMoneyConverter;
 import lotto.view.InputView;
@@ -14,7 +16,7 @@ public class AppConfig {
         ConverterHolder.setConverters(List.of(
                 new StringToLottoMoneyConverter()
         ));
-        return new LottoController(inputView(), outputView());
+        return new LottoController(inputView(), outputView(), lottoService());
     }
 
     private InputView inputView() {
@@ -22,6 +24,10 @@ public class AppConfig {
     }
 
     private OutputView outputView() {
-        return new OutputView();
+        return new OutputView(new StringFormatter());
+    }
+
+    private LottoService lottoService() {
+        return new LottoService();
     }
 }

@@ -1,5 +1,9 @@
 package lotto.util;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static lotto.domain.LottoMoney.MONEY_UNIT;
 import static lotto.util.ErrorMessage.*;
 
@@ -28,4 +32,21 @@ public class Validator {
         }
     }
 
+    public static void validateNumbers(List<Integer> target) {
+        checkSize(target);
+        checkDuplicate(target);
+    }
+
+    private static void checkSize(List<Integer> target) {
+        if (target.size() != 6) {
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
+        }
+    }
+
+    private static void checkDuplicate(List<Integer> target) {
+        Set<Integer> temp = new HashSet<>(target);
+        if (temp.size() != target.size()) {
+            throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR.getMessage());
+        }
+    }
 }

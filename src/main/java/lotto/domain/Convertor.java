@@ -13,12 +13,12 @@ public class Convertor {
         List<Number> numbers = stream(separate(input))
                 .map(number -> new Number(number.trim()))
                 .collect(Collectors.toList());
+        validateDuplicated(numbers);
         return numbers;
     }
 
     private String[] separate(String input) {
-        String[] numbers = input.split(DELIMITER);
-        return numbers;
+        return input.split(DELIMITER);
     }
 
     private void validateDuplicated(List<Number> numbers) {

@@ -25,20 +25,21 @@ public class WinningStatistics {
         return rateOfReturn;
     }
 
-    private void setWinningResult(List<Lotto> purchaseLottos, List<Integer> winningLotto, int bonusNumber) {
+    public void setWinningResult(List<Lotto> purchaseLottos, List<Integer> winningLotto, int bonusNumber) {
         for (Lotto purchaseLotto : purchaseLottos) {
             List<Integer> lotto = purchaseLotto.getNumbers();
             int matchCount = calculateMatchCount(lotto, winningLotto);
             BonusStatus bonusStatus = getBonusStatus(matchCount, lotto, bonusNumber);
-            Optional<WinningPrize> winningPrize = WinningPrize.getWinningPrize(matchCount, bonusStatus);
-            if (winningPrize.isPresent()) {
-                winningResult.put(winningPrize.get(), winningResult.get(winningPrize) + 1);
-                totalReward += winningPrize.get().getReward();
+            Optional<WinningPrize> winningPrizeOrNull = WinningPrize.getWinningPrize(matchCount, bonusStatus);
+            if (winningPrizeOrNull.isPresent()) {
+                WinningPrize winningPrize = winningPrizeOrNull.get();
+                winningResult.put(winningPrize, winningResult.get(winningPrize) + 1);
+                totalReward += winningPrize.getReward();
             }
         }
     }
 
-    private void setRateOfReturn(int purchaseAmount) {
+    public void setRateOfReturn(int purchaseAmount) {
         rateOfReturn = (double) totalReward / purchaseAmount;
     }
 

@@ -1,19 +1,19 @@
 package lotto.domain.player;
 
-import lotto.domain.player.playermoney.PlayerMoney;
+import lotto.domain.player.playermoney.PlayerWallet;
 
 public class Player {
-    private final PlayerMoney playerMoney;
+    private final PlayerWallet playerWallet;
     private LottoTicket lottoTicket;
 
     public Player(int inputMoney) {
-        this.playerMoney = new PlayerMoney(inputMoney);
+        this.playerWallet = new PlayerWallet(inputMoney);
         this.lottoTicket = new LottoTicket(0);
     }
 
     public void consumeAllMoneyToLottoTicket() {
-        playerMoney.consumeMoneyToLottoTicket(playerMoney.getHoldingMoney());
-        lottoTicket = lottoTicket.issueLottoTicket(playerMoney);
+        playerWallet.consumeMoneyToLottoTicket(playerWallet.getHoldingMoney());
+        lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
     }
 
     public int getTicketNumber() {

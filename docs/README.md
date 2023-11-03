@@ -11,7 +11,7 @@
 - [x] 로또 구입 금액 만큼 보유 금액을 사용 - HoldingMoney
 - [x] 로또 구입 금액 만큼 사용 금액을 업데이트 - UsedMoney
 - [x] 로또 구입에 사용한 금액을 사용 금액에 저장 - UsedMoney
-- [x] 로또 구입 금액을 보유 금액, 사용금액에 저장 및 업데이트 - PlayerMoney
+- [x] 로또 구입 금액을 보유 금액, 사용금액에 저장 및 업데이트 - PlayerWallet
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 로또 구입 금액에 따라 Ticket 을 발급해줌 - LottoTicket
 - [ ] 랜덤 로또를 발급함 - LottoTicket
@@ -51,7 +51,7 @@
 - [ ] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - GameController
 
 # 에러 상황
-- [ ] 구입 금액을 1000단위로 입력하지 않음 - PlayerMoney
+- [ ] 구입 금액을 1000단위로 입력하지 않음 - PlayerWallet
 - [ ] 구입 금액에 숫자를 입력하지 않음 (빈칸 포함) - InputView
 - [ ] 로또 당첨 번호에 숫자가 아닌 값을 입력함 (빈칸 포함) - InputView
 - [ ] 로또 당첨 번호를 콤마 "," 로 구분하지 않음 - InputView

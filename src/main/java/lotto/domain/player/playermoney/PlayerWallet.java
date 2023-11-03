@@ -1,11 +1,11 @@
 package lotto.domain.player.playermoney;
 
-public class PlayerMoney {
+public class PlayerWallet {
     private HoldingMoney holdingMoney;
     private UsedMoney usedMoney;
 
-    public PlayerMoney(int holdingMoney) {
-        this.holdingMoney = new HoldingMoney(holdingMoney);
+    public PlayerWallet(int initialHoldingMoney) {
+        this.holdingMoney = new HoldingMoney(initialHoldingMoney);
         this.usedMoney = new UsedMoney(0);
     }
 

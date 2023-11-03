@@ -9,7 +9,7 @@ import lotto.domain.money.exception.InvalidMoneyAmountException;
  * <p>
  * 또한 다른 `Money` 혹은 `int`와 금액 비교도 가능합니다.
  */
-public class Money {
+public final class Money {
 
     /**
      * Money가 반드시 가져야 하는 최소 금액입니다.
@@ -19,12 +19,12 @@ public class Money {
     /**
      * Money의 잔액을 나타내는 필드입니다. 메소드를 통해 변경 가능합니다.
      */
-    protected int amount;
+    private final long amount;
 
     /**
      * Money 생성 시, <h3 color="#bf0f4d">amount는 반드시 0 이상이어야 합니다.</h3>
      */
-    protected Money(final int amount) {
+    private Money(final long amount) {
         validateMoneyAmount(amount);
         this.amount = amount;
     }
@@ -32,8 +32,15 @@ public class Money {
     /**
      * Money 생성 시, <h3 color="#bf0f4d">amount는 반드시 0 이상이어야 합니다.</h3>
      */
-    public static Money from(final int amount) {
+    public static Money from(final long amount) {
         return new Money(amount);
+    }
+
+    /**
+     * Money를 deepcopy합니다.
+     */
+    public static Money clone(final Money money) {
+        return new Money(money.amount);
     }
 
     /**
@@ -46,23 +53,29 @@ public class Money {
     /**
      * 입력된 `amount`를 검증하며, 음수일 경우 예외가 발생합니다.
      */
-    private static void validateMoneyAmount(final int amount) {
+    private static void validateMoneyAmount(final long amount) {
         if (amount < MIN_AMOUNT) {
             throw new InvalidMoneyAmountException();
         }
     }
 
+    /**
+     * 현재 가진 소지금에서 amount 만큼을 더한 불변 객체 반환.
+     */
     public Money increased(final Money other) {
         return new Money(amount + other.amount);
     }
 
     /**
-     * 현재 가진 소지금에서 amount 만큼을 제합니다.
+     * 현재 가진 소지금에서 amount 만큼을 제한 불변 객체 반환.
      */
     public Money decreased(final Money other) {
         return new Money(amount - other.amount);
     }
 
+    /**
+     * 현재 가진 소지금 * x
+     */
     public Money multiplied(final int x) {
         return new Money(amount * x);
     }
@@ -72,6 +85,20 @@ public class Money {
      */
     public boolean isLessThan(final Money other) {
         return this.amount < other.amount;
+    }
+
+    /**
+     * 금액이 같거나 큰지 비교
+     */
+    public boolean isEqualsOrGreaterThan(final Money other) {
+        return this.amount >= other.amount;
+    }
+
+    /**
+     * Double로 변환(Koltin과 동일한 함수명)
+     */
+    public double toDouble() {
+        return amount;
     }
 
     @Override
@@ -91,7 +118,5 @@ public class Money {
         return Objects.hash(amount);
     }
 
-    public double toDouble() {
-        return amount;
-    }
+
 }

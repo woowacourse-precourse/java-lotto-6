@@ -25,10 +25,15 @@ public class LottoController {
         output.showLottoTickets(lottoTickets);
 
         output.showWinningNumbersInputMessage();
-        String winningNumbers = input.readWinningNumbers();
+        Lotto winningLotto = makeWinningLotto(input.readWinningNumbers());
 
         output.showBonusNumberInputMessage();
         String bonusNumber = input.readBonusNumber();
+
+    }
+
+    private Lotto makeWinningLotto(String winningNumbers) {
+        return Lotto.makeWinningLotto(winningNumbers);
     }
 
     private LottoTickets makeLottoTickets(int money) {

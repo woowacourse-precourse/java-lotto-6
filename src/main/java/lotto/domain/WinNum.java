@@ -2,7 +2,10 @@ package lotto.domain;
 
 import lotto.enums.LottoEnum;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.enums.LottoEnum.*;
 
@@ -12,21 +15,21 @@ public class WinNum {
     private int bonusNum;
 
     public WinNum(List<Integer> winNum, int bonusNum) {
-        this.winNum = winNum;
+        this.winNum = winNum.stream().collect(Collectors.toUnmodifiableList());
         this.bonusNum = bonusNum;
     }
 
-    public LottoEnum countResult(Lotto lotto) {
-        int count = 0, bonusCount = 0;
-        for (int number : lotto.getNumbers()) {
-            if (winNum.contains(number)) count++;
-            if (bonusNum == number) bonusCount++;
+    public int count(int number) {
+        if (winNum.contains(number)) {
+            return 1;
         }
-        if (count == 6) return W1;
-        if (count == 5 && bonusCount == 1) return W2;
-        if (count == 5) return W3;
-        if (count == 4) return W4;
-        if (count == 3) return W5;
-        return null;
+        return 0;
+    }
+
+    public int bonusCount(int number) {
+        if (bonusNum == number) {
+            return 1;
+        }
+        return 0;
     }
 }

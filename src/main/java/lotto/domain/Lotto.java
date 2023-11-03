@@ -1,28 +1,43 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import lotto.LottoConst;
+import lotto.enums.LottoEnum;
+
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static lotto.LottoConst.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+            .sorted()
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("로또 숫자는 6개가 존재해야합니다");
         }
-        if (numbers.stream().distinct().collect(Collectors.toList()).size() != 6) {
-            throw new IllegalArgumentException("중복되는 숫자가 존재합니다");
+        Set<Integer> set = new HashSet<>();
+        for (int number : numbers) {
+            if (!set.add(number)){
+                throw new IllegalArgumentException("중복되는 숫자가 존재합니다");
+            }
         }
     }
 
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+    public void countResult(WinNum winNum) {
+        int count = 0, bonusCount = 0;
+
+        for (int number : numbers) {
+            count += winNum.count(number);
+            bonusCount += winNum.bonusCount(number);
+        }
+        LottoEnum.getLottoEnum(count, bonusCount);
     }
 
     @Override
@@ -32,7 +47,8 @@ public class Lotto {
         for (int number : numbers) {
             sb.append(number).append(", ");
         }
-        sb.delete(sb.length()-2, sb.length());
+        int index = sb.lastIndexOf(", ");
+        sb.delete(index, sb.length());
         sb.append("]");
         return sb.toString();
     }

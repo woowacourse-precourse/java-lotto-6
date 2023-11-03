@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private final Integer MAX_NUMBER = 45;
+    private final Integer MIN_NUMBER = 1;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -32,6 +34,6 @@ public class Lotto {
     }
 
     private boolean isNumbersOutOfRange(List<Integer> numbers){
-        return numbers.stream().anyMatch(number -> number < 1 || number > 45);
+        return numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
     }
 }

@@ -92,6 +92,13 @@ public class InputViewTest {
         assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 1~45를 벗어난 입력이 들어올 경우 예외가 발생한다.")
+    @Test
+    void readBonusNumber_IsNotCollectRange_ExceptionThrow() {
+        String input = "1000";
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readBonusNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
 
 
 }

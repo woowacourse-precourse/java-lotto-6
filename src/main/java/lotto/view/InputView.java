@@ -7,22 +7,35 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public static void readBuyAmount() {
+    public static String  readBuyAmount() {
         String input = Console.readLine();
         validateSpaceBuyAmount(input);
         validateNotIntegerBuyAmount(input);
         validateNotDividedBuyAmount(input);
+        return input;
     }
 
-    public static void readWinningNumber() {
+    public static String readWinningNumber() {
         String input = Console.readLine();
         validateSpaceWinningNumber(input);
         validateNotIntegerWinningNumber(input);
         validateIsSixNumberWinningNumber(input);
         validateDuplicatedWinningNumber(input);
         validateRangeWinningNumber(input);
+        return input;
     }
 
+    public static String readBonusNumber() {
+        String input = Console.readLine();
+        validateRangeBonusNumber(input);
+        return input;
+    }
+
+    public static void validateRangeBonusNumber(String input) {
+        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
+            throw new IllegalArgumentException("[ERROR] 범위를 벗어난 값이 입력되었습니다.");
+        }
+    }
 
     public static void validateRangeWinningNumber(String input) {
         String[] strs = input.split(",");

@@ -59,8 +59,8 @@ class InputValidatorTest {
     }
 
     @Test
-    @DisplayName("번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
-    public void validateLottoNumberRange() {
+    @DisplayName("번호들이 1~45사이의 숫자가 아니면 예외가 발생한다.")
+    public void validateLottoNumberRangeList() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 46, 5, 6);
         // when // then
@@ -89,6 +89,17 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateSortedAscending(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+    }
+
+    @Test
+    @DisplayName("번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
+    public void validateLottoNumberRange() {
+        // given
+        int number = 0;
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validateLottoNumberRange(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 
 }

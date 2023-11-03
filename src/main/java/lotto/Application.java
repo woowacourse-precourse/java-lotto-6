@@ -12,5 +12,6 @@ public class Application {
         Lottos lottos = lottoController.buyLottos();
         lottoController.printBuyLottos(lottos);
         Lotto winningLotto = lottoController.requestWinningLotto();
+        int bonusLottoNumber = lottoController.requestBonusLottoNumber();
     }
 }

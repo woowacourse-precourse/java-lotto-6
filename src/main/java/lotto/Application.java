@@ -27,8 +27,9 @@ public class Application {
 
         // 4. 로또 번호 출력
         for (Lotto lotto : lottos) {
-            Collections.sort(lotto.getNumbers());
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedLotto);
+            System.out.println(sortedLotto);
         }
 
         // 5. 당첨 번호 입력

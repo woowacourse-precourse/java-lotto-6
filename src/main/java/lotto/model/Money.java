@@ -2,10 +2,16 @@ package lotto.model;
 
 public class Money {
 
+    private static final int DEFAULT_VALUE = 0;
+
     private int money;
 
     private Money(final int money) {
         this.money = money;
+    }
+
+    public static Money createDefault() {
+        return new Money(DEFAULT_VALUE);
     }
 
     public static Money from(final String moneyInput) {

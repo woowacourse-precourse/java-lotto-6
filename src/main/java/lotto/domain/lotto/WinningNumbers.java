@@ -6,11 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lotto.exception.domain.lotto.LottoDuplicateNumException;
-import lotto.exception.domain.lotto.LottoNumRangeException;
-import lotto.exception.domain.lotto.LottoSizeException;
 import lotto.exception.domain.winningnumber.WinningNumberFormatException;
-import lotto.validator.LottoValidator;
+import lotto.utils.LottoValidator;
 
 public class WinningNumbers {
     private static final Pattern winningNumbersRegex = Pattern.compile("\\d+(,*\\s*\\d*)*");

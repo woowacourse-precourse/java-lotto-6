@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.utils.LottoConstants.LOTTO_PRICE;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.exception.domain.purchaseprice.PurchasePriceDivisibleException;
@@ -8,7 +10,6 @@ import lotto.exception.domain.purchaseprice.PurchasePriceLowAmountException;
 
 public class PurchasePrice {
     private static final Pattern priceRegex = Pattern.compile("^[0-9]+(,*\\d)*$");
-    private static final int LOTTO_PRICE = 1_000;
 
     private final int price;
 

@@ -1,4 +1,6 @@
-package lotto.validator;
+package lotto.utils;
+
+import static lotto.utils.LottoConstants.*;
 
 import java.util.List;
 import lotto.exception.domain.lotto.LottoDuplicateNumException;
@@ -6,9 +8,6 @@ import lotto.exception.domain.lotto.LottoNumRangeException;
 import lotto.exception.domain.lotto.LottoSizeException;
 
 public class LottoValidator {
-    private static final int LOTTO_NUM_SIZE = 6;
-    private static final int LOTTO_NUM_MIN = 1;
-    private static final int LOTTO_NUM_MAX = 45;
 
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUM_SIZE) {

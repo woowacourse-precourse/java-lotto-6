@@ -4,8 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.exception.domain.bonusnumber.BonusNumberDuplicateException;
 import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
-import lotto.exception.domain.lotto.LottoNumRangeException;
-import lotto.validator.LottoValidator;
+import lotto.utils.LottoValidator;
 
 public class BonusNumber {
     private static final Pattern bonusNumberRegex = Pattern.compile("\\d+");

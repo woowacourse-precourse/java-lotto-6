@@ -1,13 +1,9 @@
 package lotto.domain.lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.domain.lotto.LottoDuplicateNumException;
-import lotto.exception.domain.lotto.LottoNumRangeException;
-import lotto.exception.domain.lotto.LottoSizeException;
-import lotto.validator.LottoValidator;
+import lotto.utils.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;

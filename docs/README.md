@@ -53,7 +53,7 @@
 
 내 로또 구매: buyMyLotto
 * getPurchaseAmount
-* publicMyLotto
+* publishMyLotto
 * printMyLotto
 
 당첨 번호 설정: assignLotto

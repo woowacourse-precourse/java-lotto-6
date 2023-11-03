@@ -39,4 +39,8 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - 0개");
         System.out.println("총 수익률은 62.5%입니다.");
     }
+
+    public static void errorMessageOutput(String message) {
+        System.out.println(message);
+    }
 }

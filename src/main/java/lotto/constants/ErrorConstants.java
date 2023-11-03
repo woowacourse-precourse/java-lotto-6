@@ -21,7 +21,10 @@ public enum ErrorConstants {
     ERROR_QUANTITY_NON_EQUALS("구매 가능 수량이 구매 수량과 일치하지 않습니다."),
 
     // 당첨 로또 번호 에러
-    ERROR_LOTTO_NUMBER_FORMAT("입력 한 형식이 로또 번호 형식이 아닙니다.\n 입력 예) 1,2,3,4,5,6");
+    ERROR_LOTTO_NUMBER_FORMAT("입력 한 형식이 로또 번호 형식이 아닙니다.\n 입력 예) 1,2,3,4,5,6"),
+
+    // 보너스 번호 에러
+    ERROR_LOTTO_CONTAINS_BONUS("보너스 번호가 당첨 로또 번호에 중복됩니다.");
 
 
     private final String message;

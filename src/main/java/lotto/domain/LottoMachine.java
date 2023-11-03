@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoMachine {
     private static LottoMachine instance;
 
-    private Lotto winLotto;
+    private WinLotto winLotto;
 
     private LottoMachine() {
     }
@@ -44,7 +44,7 @@ public class LottoMachine {
         Collections.sort(lottoNumber);
     }
 
-    public void setWinLotto(List<Integer> winLotto) {
-        this.winLotto = new Lotto(winLotto);
+    public void setWinLotto(WinLotto winLotto) {
+        this.winLotto = winLotto;
     }
 }

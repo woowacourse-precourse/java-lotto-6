@@ -4,6 +4,7 @@ import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_DUPLICATE;
 import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_RANGE_OVER;
 import static lotto.constants.ErrorConstants.ERROR_LOTTO_NUMBER_SIZE;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoException;
 
@@ -27,7 +28,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void DuplicateNumberCheck(List<Integer> numbers) {
         long count = numbers
                 .stream()
@@ -45,4 +45,18 @@ public class Lotto {
             throw LottoException.of(ERROR_LOTTO_NUMBER_RANGE_OVER);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public boolean isContainsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

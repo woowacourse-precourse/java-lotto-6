@@ -7,7 +7,7 @@ import lotto.Lotto;
 
 public class Computer {
 
-    public static String getInput() {
+    public String getInput() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
@@ -41,9 +41,10 @@ public class Computer {
         return lottoCount;
     }
 
-    public Lotto calculateLottoNumber(){
 
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1,45, 6));
+    public Lotto calculateLottoNumber() {
+
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 
     }
 

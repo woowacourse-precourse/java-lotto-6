@@ -14,14 +14,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("들어올 수 있는 숫자는 여섯 개 숫자 입니다.");
+            throw new IllegalArgumentException("[ERROR] 들어올 수 있는 번호의 숫자는 6개 입니다.");
         }
     }
 
     // TODO: 추가 기능 구현
+
+    //당첨 번호 넘기기.
+    public List<Integer> lottoNumber(){
+        return numbers;
+    }
 
     // 보너스 숫자 넣기.
     public void bonusNumber(int number){
@@ -40,7 +44,7 @@ public class Lotto {
     private void validateBonusNumber(int number){
         for (Integer num : numbers) {
             if(num == number){
-                throw new IllegalArgumentException("보너스 숫자는 기존 숫자와 중복 되면 안됩니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존 로또 번호와 중복 되면 안됩니다.");
             }
         }
     }
@@ -50,7 +54,7 @@ public class Lotto {
     private static void validateWinningNumber(List<Integer> numbers) {
         for (Integer number : numbers) {
             if(number < 1 || 45 < number){
-                throw new IllegalArgumentException("숫자는 1~45 값이 되어야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }

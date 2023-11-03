@@ -12,10 +12,8 @@ public class Application {
         // TODO: 프로그램 구현
         LottoPick lottoPick = new LottoPick(getMoney());
         lottoPick.makeLottoPick();
-        lottoPick.outputLottoPick();
 
         Lotto lotto = new Lotto(winningNumber());
-        lotto.outputLottoNumber();
         lotto.bonusNumber(bonusNumber());
     }
 
@@ -27,19 +25,24 @@ public class Application {
 
     // 당첨 번호 받기.
     private static List<Integer> winningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> inputdate = Arrays.asList(input.split(","));
-        List<Integer> winningNumber = new ArrayList<>();
-        for (String s : inputdate) {
-            winningNumber.add(Integer.parseInt(s));
+        return stringToInteger(inputdate);
+    }
+
+    //리스트 string을 리스트 integer로 바꿈.
+    private static List<Integer> stringToInteger(List<String> string){
+        List<Integer> integers = new ArrayList<>();
+        for (String s : string) {
+            integers.add(Integer.parseInt(s));
         }
-        return winningNumber;
+        return integers;
     }
 
     //보너스 번호 받기.
     private static int bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 }

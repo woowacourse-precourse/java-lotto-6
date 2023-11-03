@@ -4,9 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import validation.ValidationMan;
 
-class InputMan {
-    private ValidationMan validationMan = new ValidationMan();
-    private final static int EXCEPTION_NUMBER = -1;
+public class InputMan {
+    private ValidationMan validationMan;
+
+    public InputMan(ValidationMan validationMan) {
+        this.validationMan = validationMan;
+    }
+
     int receiveMoney() throws IllegalArgumentException{
         String money = Console.readLine();
         if(!validationMan.validateMoney(money))

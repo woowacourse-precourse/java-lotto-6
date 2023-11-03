@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
 
-public class MainModel {
+public class MainModel implements LottoJudge{
     private List<Lotto> computerLottos;
     private final static int RANK_INDEX = 5;
 

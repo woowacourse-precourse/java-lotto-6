@@ -4,9 +4,18 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 import lotto.Lotto;
 import model.LottoGenerator;
+import view.Mainview;
 
-public class ExceptionProcessor {
-    public static <T> Integer receiveAndExceptionForMoney(Callable<T> inputMethod) {
+class InputHelperController {
+
+    private Mainview mainview;
+
+    public InputHelperController(Mainview mainview) {
+        this.mainview = mainview;
+    }
+
+    public <T> Integer checkAndRetryMoneyInput(Callable<T> inputMethod) {
+        mainview.askForHowMany();
         while (true) {
             try {
                 return (Integer) inputMethod.call();
@@ -20,7 +29,8 @@ public class ExceptionProcessor {
         }
     }
 
-    public static <T> Integer[] receiveAndExceptionForNumbers(Callable<T> inputMethod) {
+    private <T> Integer[] checkAndRetryNumbersInput(Callable<T> inputMethod) {
+        mainview.requestNumbers();
         while (true) {
             try {
                 return (Integer[]) inputMethod.call();
@@ -34,17 +44,29 @@ public class ExceptionProcessor {
         }
     }
 
-    public static <T> Lotto proceedtoMakingLotto(Callable<T> inputMethod) {
-        Integer[] userNumbers = receiveAndExceptionForNumbers(inputMethod);
+    public <T> Lotto proceedtoMakingLotto(Callable<T> inputMethod) {
+        Integer[] userNumbers = checkAndRetryNumbersInput(inputMethod);
         while (true) {
             try {
                 return LottoGenerator.generateLotto(userNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                userNumbers = receiveAndExceptionForNumbers(inputMethod);
+                userNumbers = checkAndRetryNumbersInput(inputMethod);
             }
             catch (Exception e)
             {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public <T> int checkAndRetryBonusNumberInput(InputMan inputMan, Lotto userLotto)
+    {
+        mainview.requestBonusNumber();
+        while (true) {
+            try {
+                return inputMan.receiveBonusNumber(userLotto);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

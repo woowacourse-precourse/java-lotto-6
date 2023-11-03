@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,12 +14,24 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersSize(numbers);
+        validateNumberInRange(numbers);
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
     // TODO: 추가 기능 구현
+
+    private void validateNumberInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number > 45 || number < 1)
+                throw new IllegalArgumentException();
+        }
+    }
 
     protected List<Integer> ascendingSort(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);

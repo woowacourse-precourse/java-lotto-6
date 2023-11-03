@@ -35,6 +35,10 @@
    2. LottoStore
     - [ ] 발행된 로또와 당첨번호를 저장
 
-4. validation
+4. utility
+   1. RandomNumber
+    - [ ] 로또 발행을 위해 서로다른 숫자 6자리 생성하는 기능 구현
+
+6. validation
    1. Validator
     - [ ] 사용자가 잘못된 값을 입력하는지 확인하는 검증기 구현

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final Integer MAX_NUMBER = 45;
-    private final Integer MIN_NUMBER = 1;
+    private final Integer MAX_LOTTO_NUMBER = 45;
+    private final Integer MIN_LOTTO_NUMBER = 1;
     private final List<Integer> numbers;
     private final Integer bonusNumber;
 
@@ -38,7 +38,7 @@ public class Lotto {
     }
 
     private boolean isNumbersOutOfRange(List<Integer> numbers){
-        return numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
+        return numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER);
     }
 
     private void validBonusNumber(Integer bonusNumber){
@@ -62,6 +62,6 @@ public class Lotto {
     }
 
     private boolean isNumbersOutOfRange(Integer bonusNumber){
-        return bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER;
+        return bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER;
     }
 }

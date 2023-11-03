@@ -15,6 +15,11 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String requestBonusNumber() {
+        printMessage(ASK_BONUS_NUMBER);
+        return Console.readLine();
+    }
+
     private static void printMessage(InputViewConstant inputViewConstant) {
         System.out.println(inputViewConstant.getMessage());
     }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
+    private static final int LOW_NUMBER = 1;
+    private static final int HIGH_NUMBER = 45;
 
     public static int validateParseInt(String input) {
         try {
@@ -45,6 +47,18 @@ public class Validator {
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateNumberRange(int number) {
+        if (number < LOW_NUMBER || number > HIGH_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            validateNumberRange(number);
         }
     }
 }

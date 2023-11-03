@@ -30,6 +30,11 @@ public class LottoGame {
                 List<Integer> winningNumbers = Parser.parseWinningNumbers(input);
                 Validator.valiateDuplicateNums(winningNumbers);
                 Validator.validateSize(winningNumbers);
+                Validator.validateNumbersRange(winningNumbers);
+                System.out.println();
+                String bonusInput = InputView.requestBonusNumber();
+                int bonusNumber = Validator.validateParseInt(bonusInput);
+                Validator.validateNumberRange(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();

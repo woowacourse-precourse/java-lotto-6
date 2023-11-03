@@ -37,6 +37,7 @@ public class OutputView {
     }
 
     public static void printPrizePercentage(double prizePercentage) {
+        String format = String.format("%.1f", prizePercentage);
         System.out.println("총 수익률은 " + prizePercentage + " %입니다.");
     }
 

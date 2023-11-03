@@ -31,14 +31,14 @@ class LottoTest {
 
         @DisplayName("범위의 아래 경곗값인 0을 포함하여 테스트")
         @Test
-        void createLottoByOutOfRange1() {
+        void createLottoByOutOfRangeWithBelowValue() {
             assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("범위의 위 경곗값인 46을 포함하여 테스트")
         @Test
-        void createLottoByOutOfRange() {
+        void createLottoByOutOfRangeWithAboveValue() {
             assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                     .isInstanceOf(IllegalArgumentException.class);
         }

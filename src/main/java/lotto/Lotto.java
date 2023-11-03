@@ -13,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != 6) { // TODO: 6 상수처리
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개가 필요합니다.");
         }
 
@@ -21,8 +21,10 @@ public class Lotto {
             if (Collections.frequency(numbers, number) > 1) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
             }
+
+            if (number < 1 || 45 < number) { // TODO: 1, 45 상수처리
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자입니다.");
+            }
         }
     }
-
-    // TODO: 추가 기능 구현
 }

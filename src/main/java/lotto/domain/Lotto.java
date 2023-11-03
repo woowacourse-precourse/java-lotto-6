@@ -13,4 +13,8 @@ public class Lotto implements Constraints {
     }
 
     // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

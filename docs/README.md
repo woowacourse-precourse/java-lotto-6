@@ -12,6 +12,7 @@
 
 ### 클래스
 - [ ] 구입 금액 (Amount)
+   - [ ] 구입 금액에 따라 Lotto List 리턴.
    - [ ] 구입 금액 Valid
      - [ ] 1000원 단위로 나누어 떨어지지 않으면 예외 처리
      - [ ] 가격으로 비정상적인 값을 받으면 예외 처리
@@ -24,7 +25,8 @@
   - [x] 전체 로또 번호 Valid
     - [x] 중복 된 값이 나오면 예외 처리
     - [x] 6개 이상의 값이 나오면 예외 처리
-  - [ ] WinningNumber를 입력 받아 당첨 여부 계산 및 WinningList 리턴.
+  - [ ] Lotto 번호 정렬
+  - [ ] Lotto 번호 출력
 
 - [ ] 당첨 번호 (WinningNumber : Lotto를 상속 받은 클래스)
   - [x] 보너스 번호 생성
@@ -41,7 +43,9 @@
     - [x] 6개 이상의 값이 나오면 예외 처리
 
 - [ ] 당첨 내역 (WinningList)
-  - [ ] 수익률 계산 및 ProfitRate 출력
+  - [ ] Lotto의 List와 WinningNumber를 입력 받아 당첨 여부 계산.
+  - [ ] 당첨 내역 Valid
+  - [ ] 수익률 계산 및 ProfitRate 리턴
 
 - [ ] 수익률 (ProfitRate)
   - [ ] 수익률 Valid

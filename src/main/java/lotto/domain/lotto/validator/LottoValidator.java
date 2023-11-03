@@ -5,6 +5,7 @@ import static lotto.domain.lotto.Lotto.LOTTO_NUMBERS_LENGTH;
 import java.util.List;
 import lotto.domain.lotto.exception.DuplicateLottoNumberException;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
+import lotto.exception.DuplicateBonusNumberException;
 
 public final class LottoValidator {
 
@@ -28,6 +29,23 @@ public final class LottoValidator {
         if (uniqueCount != LOTTO_NUMBERS_LENGTH) {
             throw new DuplicateLottoNumberException();
 
+        }
+    }
+
+    public static void validateDuplicationWithBonusNumber(
+            final List<Integer> numbers,
+            final int bonusNumber
+    ) {
+        validateBonusNumberDuplication(numbers, bonusNumber);
+        validateDuplication(numbers);
+    }
+
+    private static void validateBonusNumberDuplication(
+            final List<Integer> numbers,
+            final int bonusNumber
+    ) {
+        if (numbers.contains(bonusNumber)) {
+            throw new DuplicateBonusNumberException();
         }
     }
 }

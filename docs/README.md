@@ -37,7 +37,7 @@
 ## 클래스 분류
 1. view - InputView, OutputView  
 2. domain - Winning(checkLotto), Lotto(generateLotto), Lottos, Amount  
-3. controller - LottoController 
+3. controller - Controller 
 4. utilities  
 5. factory - LottoFactory 
 6. exception 

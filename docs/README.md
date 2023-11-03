@@ -87,6 +87,11 @@
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
+
+- NotNumericException
+  - [ ] 숫자를 입력하지 않을 경우 예외가 발생한다.
+  
+
   - [ ] 로또 번호의 숫자 범위는 1~45까지 아니면 예외
   - [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑지 않으면 예외
   - [ ] 로또 구입 금액이 1000 단위가 아니면 예외

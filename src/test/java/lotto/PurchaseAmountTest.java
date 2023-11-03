@@ -24,4 +24,11 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 음수인 경우 예외가 발생한다.")
+    @Test
+    void PurchaseAmountIsNegative(){
+        assertThatThrownBy(() -> PurchaseAmount.negativeNumber(-80))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

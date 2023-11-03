@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.util.Constants;
 import lotto.util.ErrorMessage;
-
 import java.util.regex.Pattern;
 
 public class LottoGameData {
@@ -19,7 +18,7 @@ public class LottoGameData {
 
     public void patternCheck(String input, Pattern pattern, ErrorMessage e) {
         if(!pattern.matcher(input).matches()){
-            throw new IllegalArgumentException(e.getMessage()+ErrorMessage.MONEY_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO + e.getMessage());
         }
     }
 

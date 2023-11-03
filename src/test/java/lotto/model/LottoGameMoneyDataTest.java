@@ -10,32 +10,32 @@ class LottoGameMoneyDataTest {
     @Test
     void invalidPatternCheck1() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setMoney("1001");
+            lottoGameData.setChance("1001");
         });
     }
     @Test
     void invalidPatternCheck2() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setMoney("100");
+            lottoGameData.setChance("100");
         });
     }
     @Test
     void invalidPatternCheck3() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setMoney("0000");
+            lottoGameData.setChance("0000");
         });
     }
     @Test
     void invalidPatternCheck4() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setMoney("a00b");
+            lottoGameData.setChance("a00b");
         });
     }
     @Test
     void validPatternCheck() {
         LottoGameData lottoGameData = new LottoGameData();
-        lottoGameData.setMoney("1000");
-        assertEquals(1000, lottoGameData.getMoney());
+        lottoGameData.setChance("1000");
+        assertEquals(1000, lottoGameData.getChance());
     }
     @Test
     public void setMoneyLoopTest() {
@@ -44,7 +44,7 @@ class LottoGameMoneyDataTest {
 
         while (status == Status.FAIL) {
             try {
-                lottoGameData.setMoney("test");
+                lottoGameData.setChance("test");
                 status = Status.SUCCESS;
             }catch (IllegalArgumentException ignored){
 

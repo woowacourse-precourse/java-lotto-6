@@ -27,7 +27,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 49})
     void createLottoByProperRange(int target) {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, target)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, target)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

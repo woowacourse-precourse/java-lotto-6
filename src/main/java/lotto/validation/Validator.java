@@ -4,11 +4,9 @@ import lotto.view.OutputView;
 
 public class Validator {
     private static Integer PRICE=1000;
-    private static Integer MINIMUM = 1;
-    private static Integer MAXIMUM = 45;
 
     public static void moneyValidate(String input) {
-        Integer money = numberValidate(input);
+        Integer money = isNum(input);
         noMoneyValidate(money);
         divideValidate(money);
     }
@@ -16,9 +14,13 @@ public class Validator {
     public static void winningValidate(String[] input) {
         blankValidate(input);
         winningNumValidate(input);
-        numberRangeValidate(input);
     }
-    private static Integer numberValidate(String input){
+
+    public static void bonusValidate(String input) {
+        isNum(input);
+    }
+
+    private static Integer isNum(String input){
         Integer money;
 
         try {
@@ -60,18 +62,7 @@ public class Validator {
 
     private static void winningNumValidate(String[] winningNum) {
         for (String num : winningNum) {
-            numberValidate(num);
-        }
-    }
-
-    private static void numberRangeValidate(String[] winningNum) {
-        for (String num : winningNum) {
-            Integer number = Integer.parseInt(num);
-
-            if(number>MAXIMUM || number<MINIMUM){
-                OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
-                throw new IllegalArgumentException();
-            }
+            isNum(num);
         }
     }
 }

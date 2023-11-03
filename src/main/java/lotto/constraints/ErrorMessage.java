@@ -8,8 +8,9 @@ public enum ErrorMessage {
         return message;
     }
 
-    private String message;
+    private final String message;
 
-    ErrorMessage(String value) {
+    ErrorMessage(String message) {
+        this.message = message;
     }
 }

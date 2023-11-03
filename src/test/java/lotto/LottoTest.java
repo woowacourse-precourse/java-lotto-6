@@ -7,6 +7,7 @@ import lotto.exception.WrongCommasFormatException;
 import lotto.exception.WrongTypeFormatException;
 import lotto.service.impl.ValidateServiceImpl;
 import lotto.vo.Lotto;
+import lotto.vo.WinnerNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,20 @@ class LottoTest {
     @Test
     void createLottoByOutOfRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinnerNumbersByDuplicatedNumber() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 44, 45),45))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 범위가 넘는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinnerNumbersByOutOfRangeNumber() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 44, 45),46))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

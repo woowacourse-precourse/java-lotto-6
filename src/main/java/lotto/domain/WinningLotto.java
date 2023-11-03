@@ -43,4 +43,13 @@ public class WinningLotto {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
         }
     }
+
+    // getter
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

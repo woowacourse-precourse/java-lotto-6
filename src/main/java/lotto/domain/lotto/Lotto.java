@@ -33,19 +33,4 @@ public class Lotto {
         LottoValidator.validateDuplicateNumber(numbers);
         LottoValidator.validateRangeOfNumber(numbers);
     }
-
-    private void validateRangeOfNumber(List<Integer> numbers) {
-        if (hasInvalidRangeNumber(numbers)) {
-            throw new LottoNumRangeException();
-        }
-    }
-
-    private boolean hasInvalidRangeNumber(List<Integer> numbers) {
-        return !numbers.stream()
-                .allMatch(num -> isValidRange(num));
-    }
-
-    private static boolean isValidRange(Integer num) {
-        return num >= 1 && num <= 45;
-    }
 }

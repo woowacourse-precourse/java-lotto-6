@@ -53,8 +53,4 @@ public class BonusNumber {
     private int parseBonusNum(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
     }
-
-    private boolean isInvalidRange(int bonusNum) {
-        return bonusNum < 1 || bonusNum > 45;
-    }
 }

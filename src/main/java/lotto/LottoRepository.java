@@ -9,6 +9,8 @@ public class LottoRepository {
     private int[] ranks=new int[6];
     private final Lotto winningLotto;
     private final int bonusNum;
+    private final int[] PRIZE={20000000,3000000,1500000,50000,5000};
+    private static final String RANK_ERROR_MESSAGE="[ERROR] 로또의 번호 개수는 6개여야 합니다.";
     public LottoRepository(Lotto winningLotto,int bonusNum){
         this.winningLotto=winningLotto;
         this.bonusNum=bonusNum;
@@ -22,7 +24,7 @@ public class LottoRepository {
     private boolean calculateRank(Lotto lotto){
         int rank = lottoRank.isRank(lotto, winningLotto, bonusNum);
         if(rank==-1){
-            System.out.println("[ERROR] 로또의 번호 개수는 6개여야 합니다.");
+            System.out.println(RANK_ERROR_MESSAGE);
             return false;
         }
         ranks[rank-1]++;
@@ -31,5 +33,15 @@ public class LottoRepository {
 
     public int[] getRanks() {
         return ranks;
+    }
+
+    public double getProfitRate(){
+        int money=lottos.size()*1000;
+        int prize=0;
+        for(int i=0;i<5;i++){
+            prize=prize+ranks[i]*PRIZE[i];
+        }
+        double rate=Math.round((double)prize*10/money)/10.0;
+        return rate;
     }
 }

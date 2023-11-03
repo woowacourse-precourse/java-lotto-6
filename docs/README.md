@@ -1,5 +1,7 @@
 ## Domain
 - 랜덤한 로또를 발행한다 [LottoPublisher]
+  - 랜덤한 로또를 발행하는 책임을 가진다 [publishLotto]
+
 - 랜덤한 로또 숫자를 검증한다 [Lotto]
 - 입력한 당첨 번호화 로또 번호를 비교한다 [LottoComparator]
 

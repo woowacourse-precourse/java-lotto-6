@@ -3,7 +3,10 @@ package lotto.validation;
 import lotto.constant.ErrorMessages;
 import lotto.constant.NumberConstants;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static lotto.constant.NumberConstants.*;
 
@@ -49,7 +52,21 @@ public class InputValidator {
                 + ErrorMessages.INVALID_AMOUNT.getMessage()
                 + ErrorMessages.SUFFIX.getMessage());
         return false;
+    }
 
+    public static boolean isDuplicate(List<Integer> winningNumbers) {
+        Set<Integer> numberSet = new HashSet<>();
 
+        for (Integer num : winningNumbers) {
+            if (numberSet.contains(num)) {
+                return true;
+            }
+            numberSet.add(num);
+        }
+        return false;
+    }
+
+    public static boolean isSixNumber(List<Integer> winningNumbers) {
+        return winningNumbers.size() == 6;
     }
 }

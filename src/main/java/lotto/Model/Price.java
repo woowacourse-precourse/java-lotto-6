@@ -10,6 +10,10 @@ public class Price {
         this.price = Integer.parseInt(input);
     }
 
+    public int divideWithOneThousands(Price price1) {
+        return price1.price / 1000;
+    }
+
     private void validate(String input) {
         int validInput = isNumber(input);
         divideWithOneThousands(validInput);

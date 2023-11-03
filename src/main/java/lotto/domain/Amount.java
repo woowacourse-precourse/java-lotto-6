@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.input.InputErrorMessage;
-
 public class Amount {
     private final static int PRICE = 1000;
     private final int amount;
@@ -16,7 +14,7 @@ public class Amount {
 
         if (remainder != 0) {
             throw new IllegalArgumentException(
-                    InputErrorMessage.INVALID_UNIT.getValue()
+                    ErrorMessage.INVALID_UNIT.getValue()
             );
         }
     }

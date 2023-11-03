@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.input.InputErrorMessage;
 import lotto.utils.Utils;
 
 public class LottoNumbers {
@@ -37,7 +36,7 @@ public class LottoNumbers {
 
         if (!hasOnlyIntegers) {
             throw new IllegalArgumentException(
-                    InputErrorMessage.INVALID_LOTTO_NUMBERS.getValue()
+                    ErrorMessage.INVALID_LOTTO_NUMBERS.getValue()
             );
         }
     }
@@ -45,7 +44,7 @@ public class LottoNumbers {
     private void validateDuplicated(List<Integer> numbers) {
         if (hasDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException(
-                    InputErrorMessage.DUPLICATED_NUMBER.getValue()
+                    ErrorMessage.DUPLICATED_NUMBER.getValue()
             );
         }
     }
@@ -57,7 +56,7 @@ public class LottoNumbers {
 
         if (!isValidNumberRange) {
             throw new IllegalArgumentException(
-                    InputErrorMessage.INVALID_NUMBER_RANGE.getValue()
+                    ErrorMessage.INVALID_NUMBER_RANGE.getValue()
             );
         }
     }

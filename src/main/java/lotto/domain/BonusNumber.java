@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.input.InputErrorMessage;
-
 public class BonusNumber {
 
     private final int number;
@@ -17,7 +15,7 @@ public class BonusNumber {
 
         if (!isValidRange) {
             throw new IllegalArgumentException(
-                    InputErrorMessage.INVALID_NUMBER_RANGE.getValue()
+                    ErrorMessage.INVALID_NUMBER_RANGE.getValue()
             );
         }
     }

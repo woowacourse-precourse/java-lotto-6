@@ -6,7 +6,7 @@ import lotto.view.OutputView;
 
 public class LottoGame {
     public static void run() {
-        getPurchaseAmountAndValidate();
+        int purchaseAmount = getPurchaseAmountAndValidate();
     }
 
     private static int getPurchaseAmountAndValidate() {

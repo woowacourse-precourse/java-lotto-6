@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.validator.InputValidator;
 
 public class InputView {
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -13,6 +14,7 @@ public class InputView {
     public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = readLine();
+        InputValidator.validatePurchaseAmount(input);
 
         return Integer.parseInt(input);
     }

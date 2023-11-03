@@ -25,6 +25,7 @@
 >### 로또 게임 진행 기능 
 >>- 구입 금액을 로또 개수로 구하는 기능
 >>  - 로또 하나에 1000원
+>>  - 1000원으로 나누어떨어지지 않으면 `IllegalArgumentException`
 >>- 로또 번호 생성 기능(6개)
 >>  - `List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);`이용
 >>  - 로또 개수 만큼 Lotto 객체 생성 : ` List<Lotto>`이용 

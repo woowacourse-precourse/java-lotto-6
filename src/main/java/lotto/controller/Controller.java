@@ -48,7 +48,7 @@ public class Controller {
             model.updateResult(totalResult, currentResult);
         }
 
-
+        outputView.printTotalResult(totalResult);
 
     }
 }

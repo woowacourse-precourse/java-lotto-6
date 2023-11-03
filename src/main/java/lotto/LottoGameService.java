@@ -14,6 +14,7 @@ public class LottoGameService {
         player.setLottoAmount(getLottoAmount());
         player.setLottoCount();
         Prints.print_lottoCount(player.getLottoCount());
+        player.createLotto();
     }
 
     private LottoAmount getLottoAmount() {

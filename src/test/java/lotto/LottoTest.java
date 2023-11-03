@@ -58,4 +58,13 @@ class LottoTest {
 
         assertThat(lotto.isContains(number)).isEqualTo(expected);
     }
+
+    @DisplayName("당첨번호와 사용자의 로또를 비교해 일치개수를 반환하는 기능.")
+    @Test
+    void 당첨번호_일치개수_반환(){
+        Lotto userLotto=new Lotto(List.of(2,4,1,3,6,8));
+        Lotto winningLotto=new Lotto(List.of(1,2,3,4,5,6));
+
+        assertThat(winningLotto.getMatchCount(userLotto)).isEqualTo(5);
+    }
 }

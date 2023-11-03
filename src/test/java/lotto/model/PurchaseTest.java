@@ -3,6 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,5 +21,12 @@ class PurchaseTest {
     void validateUnit() {
         assertThatThrownBy(() -> new Purchase("1200"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 개수 확인")
+    @Test
+    void pieces() {
+        int purchaseCount = new Purchase("12000").pieces();
+        assertThat(purchaseCount).isEqualTo(12);
     }
 }

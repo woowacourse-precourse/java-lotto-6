@@ -13,6 +13,7 @@ public class Game {
         player = new Player(inputMoney());
         player.issueLotto();
         player.sortLottos();
+        System.out.println(player.issuedLottos());
     }
 
     public void drawWinningLotto() {
@@ -22,14 +23,17 @@ public class Game {
     public void findResult() {
         player.findResults(winningLotto);
         player.findPrize();
+        System.out.println(player.lottoResults());
     }
 
     private int inputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
         String input = Reader.readLine().strip();
         return Integer.parseInt(input);
     }
 
     private List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Reader.readLine();
 
         List<Integer> winningNumbers = Arrays.stream(input.split(",", -1))
@@ -41,6 +45,7 @@ public class Game {
     }
 
     private int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Reader.readLine().strip();
         return Integer.parseInt(input);
     }

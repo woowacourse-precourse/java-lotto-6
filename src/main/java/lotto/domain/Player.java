@@ -16,6 +16,9 @@ public class Player {
 
     public Player(int money) {
         this.money = money;
+        for (int i = 1; i < 6; i++) {
+            results.put(i, 0);
+        }
     }
 
     public void issueLotto() {
@@ -83,36 +86,31 @@ public class Player {
         if (rank == -1) {
             return;
         }
-        if (results.containsKey(rank)) {
-            results.put(rank, results.get(rank) + 1);
-        }
-        if (!results.containsKey(rank)) {
-            results.put(rank, 1);
-        }
+        results.put(rank, results.get(rank) + 1);
     }
 
     public void findPrize() {
         for (Integer rank : results.keySet()) {
             if (rank == 1) {
-                prize += FIRST;
+                prize += FIRST * results.get(rank);
             }
             if (rank == 2) {
-                prize += SECOND;
+                prize += SECOND * results.get(rank);
             }
             if (rank == 3) {
-                prize += THIRD;
+                prize += THIRD * results.get(rank);
             }
             if (rank == 4) {
-                prize += FORTH;
+                prize += FORTH * results.get(rank);
             }
             if (rank == 5) {
-                prize += FIFTH;
+                prize += FIFTH * results.get(rank);
             }
         }
     }
 
     public String issuedLottos() {
-        StringBuilder result = new StringBuilder(lottos.size()).append("개를 구매했습니다.\n");
+        StringBuilder result = new StringBuilder(String.valueOf(lottos.size())).append("개를 구매했습니다.\n");
         for (Lotto lotto : lottos) {
             result.append(lotto.toString()).append('\n');
         }
@@ -121,6 +119,7 @@ public class Player {
 
     public String lottoResults() {
         double prizeRate = (int) (prize / money * 10. + 0.5) / 10.;
+        System.out.println(prize);
 
         StringBuilder result = new StringBuilder("당첨 통계\n")
                 .append("---\n")

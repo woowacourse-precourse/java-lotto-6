@@ -79,6 +79,33 @@ class CommonValidationTest {
     }
 
     @Test
+    @DisplayName("정수가 아닐때 예외가 발생하는지 확인하는 테스트")
     void isInteger() {
+        //given
+        String value1 = "1.1";
+        String value2 = "a";
+
+        //when
+        assertThatThrownBy(() -> commonValidation.isInteger(value1))
+                .isInstanceOf(CommonValidationException.class)
+                .hasMessageContaining(INTEGER_VALUE_ERROR_MESSAGE.getMessage(value1));
+
+        //then
+        assertThatThrownBy(() -> commonValidation.isInteger(value2))
+                .isInstanceOf(CommonValidationException.class)
+                .hasMessageContaining(INTEGER_VALUE_ERROR_MESSAGE.getMessage(value2));
+    }
+
+    @Test
+    @DisplayName("정수일때 정상 동작하는지에 대한 테스트")
+    void isInteger2() {
+        //given
+        String value = "1";
+
+        //when
+        commonValidation.isInteger(value);
+
+        //then
+        assertThat(true).isTrue();
     }
 }

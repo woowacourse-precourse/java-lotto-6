@@ -2,8 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 
 public class LottoView {
     private static final String REQUEST_MONEY = "구입금액을 입력해 주세요.";
@@ -45,6 +47,28 @@ public class LottoView {
         return number;
     }
 
+    public void printLottoRank(Lottos lottos){
+        System.out.print("3개 일치 (5,000원) - ");
+        System.out.print(Collections.frequency(lottos.getWinningCounts(),5));
+        System.out.print("개");
+        System.out.println();
+        System.out.print("4개 일치 (50,000원) - ");
+        System.out.print(Collections.frequency(lottos.getWinningCounts(),4));
+        System.out.print("개");
+        System.out.println();
+        System.out.print("5개 일치 (1,500,000원) - ");
+        System.out.print(Collections.frequency(lottos.getWinningCounts(),3));
+        System.out.print("개");
+        System.out.println();
+        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+        System.out.print(Collections.frequency(lottos.getWinningCounts(),2));
+        System.out.print("개");
+        System.out.println();
+        System.out.print("6개 일치 (2,000,000,000원) - ");
+        System.out.print(Collections.frequency(lottos.getWinningCounts(),1));
+        System.out.print("개");
+        System.out.println();
+    }
     private int validMoney(String input) {
         try {
             int money = Integer.parseInt(input);
@@ -80,4 +104,5 @@ public class LottoView {
     private void printRequestLOTTO() {
         System.out.println(REQUEST_LOTTO);
     }
+
 }

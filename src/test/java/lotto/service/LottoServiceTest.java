@@ -30,4 +30,14 @@ class LottoServiceTest {
             LottoException.ensureDistinctNumbers(numbersWithDuplicates);
         });
     }
+
+    @Test
+    @DisplayName("범위를 벗어난 숫자가 있으면 LottoException을 발생")
+    void testOutOfRangeThrowsException() {
+        List<Integer> numbersOutOfRange = Arrays.asList(0, 2, 3, 4, 5, 60); // 유효 범위를 벗어난 숫자 포함
+
+        assertThrows(LottoException.class, () -> {
+            LottoException.ensureNumbersWithinRange(numbersOutOfRange);
+        });
+    }
 }

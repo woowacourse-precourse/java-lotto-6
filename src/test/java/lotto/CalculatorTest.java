@@ -15,6 +15,17 @@ public class CalculatorTest {
 
         calculator.calculatePrizeDescribe(lottoNumber, prizeNumber, bonusNumber);
 
-        assertThat(calculator.getMatchedThree()).isEqualTo(1);
+        assertThat(calculator.getFifthPrize()).isEqualTo(1);
+    }
+
+    @Test
+    void 로또번호_당첨번호_5개_일치_보너스번호_일치_테스트() {
+        Lotto lottoNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> prizeNumber = List.of(1, 2, 3, 4, 5, 10);
+        int bonusNumber = 6;
+
+        calculator.calculatePrizeDescribe(lottoNumber, prizeNumber, bonusNumber);
+
+        assertThat(calculator.getSecondPrize()).isEqualTo(1);
     }
 }

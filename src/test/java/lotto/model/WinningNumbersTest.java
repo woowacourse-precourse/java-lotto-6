@@ -12,7 +12,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = List.of(0, 1, 2, 3, 4, 5);
 
         // then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
 
         // then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = List.of(1, 2, 3);
 
         // then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
 
         // then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -52,7 +52,18 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = List.of(1, 1, 2, 3, 4, 5);
 
         // then
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, 7))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
+        // given
+        final List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        final int bonus = 3;
+
+        // then
+        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

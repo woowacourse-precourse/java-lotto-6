@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.constants.ExceptionMessage.BE_OUT_OF_RANGE;
+import static lotto.domain.constants.ExceptionMessage.HAS_LETTER;
 
 public class Number {
     private static final int MIN_NUMBER = 1;
@@ -9,6 +10,7 @@ public class Number {
 
 
     public Number(String number) {
+
         this.number = Integer.parseInt(number);
         validateNumberRange(this.number);
     }
@@ -23,5 +25,15 @@ public class Number {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
+    private void validateType(String number) {
+        if (hasLetter(number)) {
+            throw new IllegalArgumentException(HAS_LETTER.getMessage());
+        }
+    }
+
+    private boolean hasLetter(String number) {
+        return number.chars()
+                .anyMatch(Character::isLetter);
+    }
 
 }

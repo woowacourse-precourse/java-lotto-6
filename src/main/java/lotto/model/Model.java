@@ -25,7 +25,7 @@ public class Model {
         return lottos;
     }
 
-    public int compareNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public Result compareNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         int match = 0;
 
@@ -35,6 +35,9 @@ public class Model {
             }
         }
 
-        return match;
+        boolean isBonus = lottoNumbers.contains(bonusNumber);
+
+        Result result = new Result(match, isBonus);
+        return result;
    }
 }

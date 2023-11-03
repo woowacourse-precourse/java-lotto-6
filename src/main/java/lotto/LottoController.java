@@ -46,5 +46,7 @@ public class LottoController {
         LottoCalculator calculator = new LottoCalculator(winningNumbers);
         calculator.makePrizeResult(customer.getLotteryTicket());
         outputView.printPrizeResult(calculator.getResult());
+        String profitRate = calculator.calculateProfitRate(customer.getMoney());
+        System.out.println(profitRate);
     }
 }

@@ -36,16 +36,6 @@ public class InputValidator {
         return number;
     }
 
-    public void checkForDuplicateNumbers(List<Integer> numbers) {
-        Set<Integer> checkNumbers = new HashSet<>();
-
-        for (int number : numbers) {
-            if(!checkNumbers.add(number)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
-            }
-        }
-    }
-
     public void validateLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (isLottoNumberRange(number)) {
@@ -68,24 +58,6 @@ public class InputValidator {
         if (LOTTO_LIMIT_VALUE != lotto.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
-    }
-
-    public void validateSortedAscending(List<Integer> lotto) {
-        if (!isSortedAscending(lotto)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
-        }
-    }
-
-    private boolean isSortedAscending(List<Integer> lotto) {
-        List<Integer> sortedNumber = getSortedNumber(lotto);
-        return sortedNumber.equals(lotto);
-    }
-
-    private List<Integer> getSortedNumber(List<Integer> lotto) {
-        List<Integer> sortedLotto = new ArrayList<>(lotto);
-        Collections.sort(sortedLotto);
-
-        return sortedLotto;
     }
 
 }

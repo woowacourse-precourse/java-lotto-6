@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.lotto.Lotto;
+import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,28 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    @DisplayName("번호가 중복되면 예외가 발생한다.")
+    public void checkForDuplicateNumbers() {
+        // given
+        List<Integer> numbers = List.of(1, 3, 3, 4, 5, 6);
+        // when // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 오름차순으로 정렬되어 있지 않으면 예외가 발생한다.")
+    public void validateSortedAscending() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 4, 3, 5, 6);
+        // when // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+    }
 
     @Test
     @DisplayName("로또의 번호들을 하나의 문자열로 반환할 수 있다.")

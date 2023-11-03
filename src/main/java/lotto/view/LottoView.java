@@ -69,6 +69,15 @@ public class LottoView {
         System.out.print("개");
         System.out.println();
     }
+
+    public void printRevenue(int tryNumber,Lottos lottos){
+        int lotto_money = lottos.getLottoMoney();
+        int use_money = tryNumber * 1000;
+        float revenue = (float) lotto_money / use_money * 100;
+        System.out.print("총 수익률은 ");
+        System.out.print(String.format("%.2f", revenue));
+        System.out.print("%입니다.");
+    }
     private int validMoney(String input) {
         try {
             int money = Integer.parseInt(input);

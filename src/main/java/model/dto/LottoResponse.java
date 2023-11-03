@@ -20,6 +20,7 @@ public class LottoResponse {
         List<String> lottoNumbers = lotto.getNumbers()
             .stream()
             .map(LottoNumber::getNumber)
+            .sorted()
             .map(String::valueOf)
             .toList();
 

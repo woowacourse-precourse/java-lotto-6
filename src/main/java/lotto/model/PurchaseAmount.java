@@ -7,7 +7,8 @@ public class PurchaseAmount {
     public static int validated(String input){
         empty(input);
         int purchaseAmount = notNumber(input);
-        return 0; //임시
+        negativeNumber(purchaseAmount);
+        return purchaseAmount;
     }
 
     public static void empty(String input){
@@ -21,6 +22,12 @@ public class PurchaseAmount {
             return Integer.parseInt(input);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_PURCHASE_AMOUNT);
+        }
+    }
+
+    public static void negativeNumber(int purchaseAmount){
+        if(purchaseAmount < 0){
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PURCHASE_AMOUNT);
         }
     }
 

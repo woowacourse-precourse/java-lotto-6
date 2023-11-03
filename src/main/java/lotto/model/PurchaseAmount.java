@@ -19,21 +19,12 @@ public class PurchaseAmount {
     }
 
     private void validate(String price) {
-        IsNumber(price);
-        IsPositive(convertStringToInt(price));
+        IsPositive(price);
         IsMultipleOfUnit(convertStringToInt(price));
     }
 
-    private void IsNumber(String price) {
-        try {
-            Integer.parseInt(price);
-        } catch (NumberFormatException ex) {
-            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
-        }
-    }
-
-    private void IsPositive(int price) {
-        if (price < 0) {
+    private void IsPositive(String price) {
+        if(!price.chars().allMatch(Character::isDigit)){
             ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.throwException();
         }
     }

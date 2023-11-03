@@ -15,7 +15,7 @@ public class Lotto {
         validate(numbers);
         validateLottoRange(numbers);
         validateDuplicateLotto(numbers);
-        this.numbers = sortedNumbers(numbers);
+        this.numbers = sortedLotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,7 +28,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    private List<Integer> sortedNumbers(List<Integer> numbers) {
+    private List<Integer> sortedLotto(List<Integer> numbers) {
         List<Integer> sortedLotto = new ArrayList<>(numbers);
         Collections.sort(sortedLotto);
         return sortedLotto;

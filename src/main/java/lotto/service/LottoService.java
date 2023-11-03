@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.Exception.InputErrorMessage;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 
@@ -13,10 +12,7 @@ public class LottoService {
     }
 
     public int getTotalPurchaseNumber(int totalMoney) {
-        if (inputValidator.validateMoney(totalMoney)) {
-            return totalMoney / LOTTO_PRICE;
-        }
-        throw new IllegalArgumentException(
-                InputErrorMessage.INVALID_UNIT.getValue());
+        inputValidator.validateMoney(totalMoney);
+        return totalMoney / LOTTO_PRICE;
     }
 }

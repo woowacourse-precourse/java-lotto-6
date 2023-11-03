@@ -49,7 +49,7 @@ class InvalidInputTest {
         //when //then
         assertThatThrownBy(() -> invalidInput.notIntegerValueException(number))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessage("[ERROR] 로또 번호는 정수여야 합니다.");
+                .hasMessage("[ERROR] 번호와 금액은 정수여야 합니다.");
     }
 
 }

@@ -9,13 +9,15 @@ import lotto.view.OutputView;
 public class Controller {
 
     private PurchasingService purchasingService = new PurchasingService();
+    private LottoMachine lottoMachine = new LottoMachine();
     private Buyer buyer;
-    private LottoMachine lottoMachine;
 
     public void run() {
      purchaseLotto();
      showPurchaseLotto();
-     inputWinningNumbers();
+     setWinningNumbers();
+     setBonusNumber();
+
 
     }
 
@@ -28,9 +30,11 @@ public class Controller {
         OutputView.printPurchaseLotto(buyer);
     }
 
-    private void inputWinningNumbers() {
-        String winningNumbers = InputView.enterWinningNumbers();
-        String bonusNumber = InputView.enterBonusNumbers();
-        lottoMachine = new LottoMachine(winningNumbers, bonusNumber);
+    private void setWinningNumbers() {
+        lottoMachine.drawWiningNumbers(InputView.enterWinningNumbers());
+    }
+
+    private void setBonusNumber() {
+        lottoMachine.drawBonusNumber(InputView.enterBonusNumbers());
     }
 }

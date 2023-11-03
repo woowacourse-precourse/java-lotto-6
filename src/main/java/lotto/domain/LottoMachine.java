@@ -9,12 +9,14 @@ public class LottoMachine {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoMachine(String winningValue, String bonusValue) {
-        checkWinningNumbers(winningValue);
-        winningNumbers = toListInteger(winningValue);
+    public void drawWiningNumbers(String value) {
+        checkWinningNumbers(value);
+        winningNumbers = toListInteger(value);
+    }
 
-        checkBonusNumber(bonusValue);
-        bonusNumber = Integer.parseInt(bonusValue);
+    public void drawBonusNumber(String value) {
+        checkBonusNumber(value);
+        bonusNumber = Integer.parseInt(value);
     }
 
     private void checkWinningNumbers(String value) {
@@ -43,7 +45,7 @@ public class LottoMachine {
 
     private void validateEmpty(String value) {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값을 넣어주세요.");
+            throw new IllegalArgumentException("[ERROR] 입력 값이 없습니다.");
         }
     }
 

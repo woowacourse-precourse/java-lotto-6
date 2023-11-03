@@ -36,7 +36,7 @@ public class Lotto {
                 throw new IllegalArgumentException();
     }
 
-    private void validateNumberInRange(List<Integer> numbers) {
+    public static void validateNumberInRange(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(n -> n < LOTTO_NUMBER_START | n > LOTTO_NUMBER_END))
             throw new IllegalArgumentException();

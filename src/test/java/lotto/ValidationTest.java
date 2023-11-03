@@ -23,15 +23,15 @@ class ValidationTest {
             Validation.isValidLength(case2, 6);
         });
         Throwable result3 = catchThrowable(() -> {
-            Validation.isValidLength(case3, 1);
+            Validation.isValidLength(case3, 6);
         });
         Throwable result4 = catchThrowable(() -> {
-            Validation.isValidLength(case4, 1);
+            Validation.isValidLength(case4, 6);
         });
 
         // then
         assertThat(result1).as("case1").doesNotThrowAnyException();
-        assertThat(result2).as("case2").doesNotThrowAnyException();
+        assertThat(result2).as("case2").isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
         assertThat(result4).as("case4").isInstanceOf(IllegalArgumentException.class);
     }

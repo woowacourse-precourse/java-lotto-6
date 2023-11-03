@@ -14,7 +14,7 @@ public class View {
         System.out.println("5개 일치 (1,500,000원) - " + result.getOrDefault("5", 0) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getOrDefault("5+", 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + result.getOrDefault("6", 0) + "개");
-        System.out.printf("총 수익률은 %.1f%% 입니다.", rate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
     }
 
     public static void showBundle(List<Lotto> bundle) {

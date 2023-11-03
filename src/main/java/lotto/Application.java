@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.Bonus;
+import lotto.domain.Lotto;
 import lotto.domain.Tickets;
 import lotto.domain.Winning;
 import lotto.view.View;
@@ -9,7 +12,9 @@ public class Application {
     public static void main(String[] args) {
         Tickets tickets = getValidTickets();
 
-        // 금액만큼 로또 발행 및 출력
+        List<Lotto> lottos = new ArrayList<>();
+        lottos = Lotto.createLottos(tickets.getNumberOfTickets());
+        // 로또 출력
 
         Winning winning = getValidWinning();
         Bonus bonus = getValidBonus(winning);

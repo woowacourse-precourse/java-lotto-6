@@ -24,4 +24,8 @@ public class Tickets {
     private boolean isInvalidPayment(int payment) {
         return payment < 0 || payment % 1000 != 0;
     }
+
+    public int getNumberOfTickets() {
+        return numberOfTickets;
+    }
 }

@@ -40,4 +40,12 @@ public class Lotto {
         }
         return new Lotto(randomNumbers);
     }
+
+    public static List<Lotto> createLottos(int numberOfTickets) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfTickets; i++) {
+            lottos.add(generateLottoNumbers());
+        }
+        return lottos;
+    }
 }

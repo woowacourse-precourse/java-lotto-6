@@ -7,17 +7,14 @@ import java.util.List;
 public class InputView {
 
     public static String inputPurchaseAmount() {
-        String amount = Console.readLine();
-        return amount;
+        return Console.readLine();
     }
 
     public static List<String> inputWinningNumbers() {
-        List<String> winningNumbersStr = List.of(Console.readLine().split(","));
-        return winningNumbersStr;
+        return List.of(Console.readLine().split(","));
     }
 
     public static String inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        return bonusNumber;
+        return Console.readLine();
     }
 }

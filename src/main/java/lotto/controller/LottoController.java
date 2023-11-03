@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

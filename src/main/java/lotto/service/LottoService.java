@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.LottoGenerator;
 
 public class LottoService {

@@ -1,8 +1,11 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.LottoGenerator;
+import lotto.controller.dto.ResponseLottoDto;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,6 +13,15 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public ResponseLottoDto toResponseDto(){
+        sort();
+        return new ResponseLottoDto(numbers);
+    }
+
+    private void sort(){
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {

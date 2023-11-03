@@ -20,6 +20,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복되지 않은 숫자로 구성되어 있어야 합니다.");
     }
 }

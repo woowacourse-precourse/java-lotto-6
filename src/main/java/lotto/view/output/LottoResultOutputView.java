@@ -13,6 +13,7 @@ public class LottoResultOutputView {
     }
 
     public void printLottoAllMatch() {
+
         printThreeLottoMatch();
         printFourLottoMatch();
         printFiveLottoMatch();

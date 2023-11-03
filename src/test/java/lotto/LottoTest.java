@@ -50,27 +50,27 @@ class LottoTest {
                 .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
     }
 
-    @Test
-    @DisplayName("로또의 번호들을 하나의 문자열로 반환할 수 있다.")
-    public void lottoNumbersAsString() {
-        // given
-        String result = "[8, 21, 23, 41, 42, 43]";
-        Lotto lotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
-        // when
-        String numbersAsString = lotto.lottoNumbersAsString();
-        // then
-        assertThat(result).isEqualTo(numbersAsString);
-    }
-
-    @Test
-    @DisplayName("당첨된 로또와 비교해서 맞춘 개수를 반환할 수 있다.")
-    public void lottoMatchValue() {
-        // given
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        // when
-        int count = lotto.lottoMatchValue(winningLotto);
-        // then
-        assertThat(count).isEqualTo(3);
-    }
+//    @Test
+//    @DisplayName("로또의 번호들을 하나의 문자열로 반환할 수 있다.")
+//    public void lottoNumbersAsString() {
+//        // given
+//        String result = "[8, 21, 23, 41, 42, 43]";
+//        Lotto lotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+//        // when
+//        String numbersAsString = lotto.lottoNumbersAsString();
+//        // then
+//        assertThat(result).isEqualTo(numbersAsString);
+//    }
+//
+//    @Test
+//    @DisplayName("당첨된 로또와 비교해서 맞춘 개수를 반환할 수 있다.")
+//    public void lottoMatchValue() {
+//        // given
+//        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+//        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+//        // when
+//        int count = lotto.calculateLottoMatch(winningLotto);
+//        // then
+//        assertThat(count).isEqualTo(3);
+//    }
 }

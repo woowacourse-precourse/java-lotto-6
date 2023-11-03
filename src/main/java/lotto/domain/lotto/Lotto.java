@@ -45,12 +45,19 @@ public class Lotto {
         return sortedLotto;
     }
 
-    public int lottoMatchValue(final Lotto winningLotto) {
+    public int calculateLottoMatch(final Lotto winningLotto) {
         final List<Integer> winningNumbers = winningLotto.numbers;
+        return getMatchCount(winningNumbers);
+    }
 
+    private int getMatchCount(List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public boolean isContainsBonus(final int bonus) {
+        return numbers.contains(bonus);
     }
 
     public List<Integer> getNumbers() {

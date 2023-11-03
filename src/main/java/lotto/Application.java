@@ -15,7 +15,6 @@ public class Application {
         lottoController.printBuyLottos(lottos);
         Lotto winningLotto = lottoController.requestWinningLotto();
         int bonusLottoNumber = lottoController.requestBonusLottoNumber(winningLotto);
-        Map<Integer, Long> lottoMatchCountMap = lottos.getLottoMatchCountMap(winningLotto);
-        System.out.println(lottoMatchCountMap.entrySet());
+
     }
 }

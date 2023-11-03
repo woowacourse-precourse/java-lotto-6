@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;

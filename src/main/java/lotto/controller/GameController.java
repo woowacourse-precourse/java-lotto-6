@@ -16,6 +16,7 @@ public class GameController {
     public static void start(){
 
         PurchaseMoney purchaseMoney = new PurchaseMoney(inputPurchaseMoney()); // 구매 금액 입력
+        System.out.println();
 
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
         outputLottoCount(lottoCount.getValue());

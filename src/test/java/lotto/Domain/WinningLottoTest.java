@@ -3,6 +3,7 @@ package lotto.Domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import lotto.Domain.WinningLotto.WinningLotto;
 import lotto.Exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

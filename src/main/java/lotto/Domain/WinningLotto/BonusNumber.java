@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Domain.WinningLotto;
 
 import static lotto.CommonValidation.CommonValidation.hasBlank;
 import static lotto.CommonValidation.CommonValidation.isInteger;

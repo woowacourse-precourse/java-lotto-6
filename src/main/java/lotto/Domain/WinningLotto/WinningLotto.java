@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Domain.WinningLotto;
 
 import static lotto.CommonValidation.CommonValidation.hasBlank;
 import static lotto.CommonValidation.CommonValidation.isInteger;
@@ -8,6 +8,7 @@ import static lotto.Util.Util.ConvertStringToInteger;
 
 import java.util.LinkedList;
 import java.util.List;
+import lotto.Domain.Lotto;
 import lotto.Exception.LottoException;
 
 public class WinningLotto {

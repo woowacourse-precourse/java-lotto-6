@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final Integer MIN_RANGE = 1;
+    private static final Integer MAX_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +17,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkLottoNumbersCount(numbers);
         isDuplicated(numbers);
+        isProperRange(numbers);
     }
 
     private void checkLottoNumbersCount(List<Integer> numbers) {
@@ -32,5 +35,13 @@ public class Lotto {
         }
     }
 
+    private void isProperRange(List<Integer> numbers) {
+        List<Integer> filteredNumbers = numbers.stream()
+                .filter(num -> num >= MIN_RANGE && num <= MAX_RANGE)
+                .toList();
 
+        if (filteredNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
+        }
+    }
 }

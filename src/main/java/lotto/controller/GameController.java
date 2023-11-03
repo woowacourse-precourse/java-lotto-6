@@ -6,6 +6,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.PurchaseMoney;
+import lotto.model.WinningDetails;
 import lotto.model.WinningNumber;
 import lotto.utils.GeneratedLottoNumber;
 import lotto.view.InputView;
@@ -29,6 +30,9 @@ public class GameController {
         WinningNumber winningNumbers = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
         System.out.println();
         BonusNumber bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
+
+        WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
+
     }
 
     private static String inputPurchaseMoney(){

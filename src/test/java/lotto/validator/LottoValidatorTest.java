@@ -2,26 +2,17 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinnerNumberValidatorTest {
-
-    @DisplayName("당첨번호 입력값에 문자가 포함되어있으면 예외처리한다")
-    @Test
-    void inputContainsCharacter() {
-        assertThatThrownBy(() -> {
-            String inputNumbers = "1,2,c,4,5,6";
-            WinnerNumberValidator.validate(inputNumbers);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
+public class LottoValidatorTest {
 
     @DisplayName("당첨번호 입력값에 자연수가 아닌 숫자가 포함되어있으면 예외처리한다")
     @Test
     void inputContainsFloat() {
         assertThatThrownBy(() -> {
-            String inputNumbers = "1,2,3,4,5,-6";
-            WinnerNumberValidator.validate(inputNumbers);
+            LottoValidator.validate(Arrays.asList(1, 0, 2, 3, 4, 5));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,8 +20,7 @@ public class WinnerNumberValidatorTest {
     @Test
     void wrongNumbersLength() {
         assertThatThrownBy(() -> {
-            String inputNumbers = "1,2,3,4,5";
-            WinnerNumberValidator.validate(inputNumbers);
+            LottoValidator.validate(Arrays.asList(1, 2, 3, 4, 5));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,8 +28,7 @@ public class WinnerNumberValidatorTest {
     @Test
     void inputHasDuplicatedNumber() {
         assertThatThrownBy(() -> {
-            String inputNumbers = "1,2,3,4,5,5";
-            WinnerNumberValidator.validate(inputNumbers);
+            LottoValidator.validate(Arrays.asList(1, 2, 3, 4, 5, 5));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,8 +36,7 @@ public class WinnerNumberValidatorTest {
     @Test
     void inputNumbersNotInRange() {
         assertThatThrownBy(() -> {
-            String inputNumbers = "1,2,3,4,5,46";
-            WinnerNumberValidator.validate(inputNumbers);
+            LottoValidator.validate(Arrays.asList(1, 2, 3, 4, 5, 46));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

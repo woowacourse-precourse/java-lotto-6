@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.util.LottoUtil;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
     private static final int MIN_LOTTO_NUM = 1;
@@ -11,15 +12,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoValidator.validate(numbers);
         LottoUtil.sortByAsc(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public static Lotto generateUserLotto() {

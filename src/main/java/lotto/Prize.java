@@ -107,7 +107,7 @@ public class Prize {
     }
 
     static void printProfitRate() {
-        double initialProfitRate = (double) totalProfit / Issue.initialCash;
+        double initialProfitRate = (double) totalProfit / Issue.initialCash * 100;
         String profitRate = String.format("%.1f", initialProfitRate);
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }

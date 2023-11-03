@@ -14,6 +14,6 @@ public class LottoController {
     }
 
     public void run() {
-        
+        outputView.askInvestMoney();
     }
 }

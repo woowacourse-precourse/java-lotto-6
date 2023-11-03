@@ -7,7 +7,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class IssueLottoController implements Controller {
-    public static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_UNIT = 1000;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -28,8 +28,7 @@ public class IssueLottoController implements Controller {
         outputView.outputLottoNumbers(LottoRepository.lotties());
     }
 
-    /* 로또 구매량 계산 */
-    private int getLottoAmount(int price) {
-        return price / LOTTO_PRICE;
+    private int getLottoAmount(int purchase) {
+        return purchase / LOTTO_UNIT;
     }
 }

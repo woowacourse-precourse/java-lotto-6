@@ -2,13 +2,26 @@ package lotto.domain;
 
 public class Money {
 
-    private final long amount;
+    public static final Money ZERO = new Money(0L);
 
-    public Money(final long amount) {
+    private final Long amount;
+
+    public Money(final Long amount) {
+        validateNotNegative(amount);
         this.amount = amount;
     }
 
-    public long getAmount() {
-        return amount;
+    private void validateNotNegative(final Long amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Money add(final Money money) {
+        return new Money(amount + money.amount);
+    }
+
+    public float getRate(final Money money) {
+        return (float) amount / money.amount;
     }
 }

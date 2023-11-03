@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.List;
 import model.FinanceManager;
 import model.GameManager;
+import model.dto.LottoResponse;
 import view.InputView;
 import view.OutputView;
 
@@ -23,7 +25,9 @@ public class LottoController {
     }
 
     private void informLottos() {
-        outputView.informLottoCount(financeManager.calcuateLottoCount());
+        outputView.informLottoCount(financeManager.calculateLottoCount());
+        List<LottoResponse> lottoResponses = gameManager.getGeneratedLottos();
+        outputView.noticeGeneratedLottos(lottoResponses);
     }
 
     private void initGame() {

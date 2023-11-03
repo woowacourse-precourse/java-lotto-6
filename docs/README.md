@@ -21,14 +21,14 @@
 
 ### 출력
 
-- [ ] 발행한 로또 수량 및 번호 출력 (번호 오름차순)
+- [x] 발행한 로또 수량 및 번호 출력 (번호 오름차순)
 - [ ] 당첨 내역 출력
 - [ ] 수익률 출력 (소수점 첫째 자리 까지)
 
 ### 로또 발행
 
-- [ ] 로또 구입 금액에 맞는 로또 수량 발행
-  - [ ] 로또 구입 금액 예외 처리
+- [x] 로또 구입 금액에 맞는 로또 수량 발행
+  - [x] 로또 구입 금액 예외 처리
 - [ ] 당첨 번호 및 보너스 번호 객체 발행
   - [ ] 당첨 번호 및 보너스 번호 예외 처리
 
@@ -40,58 +40,97 @@
 
 # 객체의 역할
 
+```text
+lotto/
+├── controller/
+│   └── LottoController.java
+├── domain/
+│   ├── Lotto.java
+│   ├── LottoMachine.java
+│   └── exceptions/
+│       ├── InputException.java
+│       └── LottoException.java
+│   └── numbergenerator
+│       ├── NumberGenerator.java
+│       └── RandomNumberGenerator.java
+
+├── service/
+│   └── LottoService.java
+├── utils/
+│   ├── validator/
+│   │   ├── Validator.java
+│   │   ├── MoneyValidator.java
+│   │   └── LottoNumbersValidator.java
+│   └── parser/
+│       ├── Parser.java
+│       ├── MoneyParser.java
+│       └── LottoNumbersParser.java
+└── view/
+    ├── InputView.java
+    └── OutputView.java
+```
+
 ## controller
 
-**모델과 뷰의 메세지 전달을 돕고, 예외처리를 책임진다.**
+**모델과 뷰의 메세지 전달을 돕고, 모든 입력값의 검증과 예외처리 (재입력)을 수행한다..**
 
-뷰에서 데이터를 전달받으면, 도메인 에서 사용 가능하도록 변환한다.
-하지만 비즈니스 규칙을 검사하지는 않는다.
+뷰에서 데이터를 전달받으면, 도메인 에서 사용 가능하도록 검증하고 변환한다.
 
 마찬가지로 도메인에서 데이터를 전달받으면 데이터를 뷰가 사용 가능하도록(정렬) 변환해서 전달한다.
 
-예외가 발생하면, 에러 메세지를 출력하고 재입력하도록 해야한다.
-
 ## view
 
-단순히 데이터를 화면에 보여주거나 단순히 데이터를 입력받는 역할을 한다.
+데이터를 화면에 보여주거나 입력받는 역할을 한다.
 
-### InputView
+### - InputView
 
-사용자의 입력을 받는다.
+사용자의 입력을 받는다. 아무런 검증도 진행하지 않는다.
 
-입력값의 "기본적인 검증"을 하고 잘못된 입력시 예외를 발생한다.
+### - OutputView
 
-### OutputView
-
-결과를 받고 알맞은 형식으로 출력한다.
-
-### InputUtil
-
-입력에 대한 기본적인  검증과 파싱하는 메소드를 InputView에게 제공한다.
+결과를 받고 알맞은 형식으로 바꿔서 출력한다.
 
 ## domain
 
-비즈니스 로직에 모든 책임이 있다.
+비즈니스 로직에 대한 모든 책임이 있다.
 
-### Lotto
+### - Lotto
 
 로또 하나의 정보를 저장한다.
 
 로또 번호의 유효성 보증 책임이 있다.
 
-### WinningNumbers
+### - WinningNumbers
 
 당첨 번호와 보너스 번호를 저장한다.
 
-그 둘의 유효성 보증 책임이 있다.
-
 또한, 로또 객체를 받아서 몇등인지 계산하고 반환해야 한다.
 
-### LottoRank
+### - LottoMachine
+
+금액을 받아 로또를 발행하고, 결과를 취합하는 역할을 한다.
+
+### Validator
+
+기본적인 검증, 비즈니스 로직 검증 등 모든 검증과정을 책임진다.
+
+### NumberGenerator
+
+숫자 생성 인터페이스
+
+### RandomNumberGenerator
+
+NumberGenerator 구현체, 무작위 숫자 반환
+
+### SettedNumberGenerator
+
+NumberGenerator 구현체, 매개변수로 받은 숫자 반환
+
+### - LottoRank
 
 당첨 등수의 정보를 열거형으로 저장한다.
 
-### LottoException
+### - LottoException
 
 발생할 수 있는 예외들의 정보를 열거형으로 저장한다.
 
@@ -134,3 +173,19 @@ public class Lotto {
 4. 테스트 코드를 작성 완료한 클래스를 구현한다.
 5. 테스트 코드가 통과하면 다음 객체의 테스트를 작성한다.
 6. 모든 테스트 통과 시 리팩토링을 시작한다.
+
+
+## 생각정리
+
+이번 과제에서는 특히 예외처리에 신경을 써야했다.
+
+예외가 발생할 경우 재입력을 받기위해 반복문 또는 재귀함수로 구현해야 하는데,
+
+지난 과제 구현처럼 기본적인 입력 검증은 View에서 하고, 비즈니스 로직 검증은 각 객체에서 별도로 수행하면
+예외를 잡아서 재입력을 받는 과정이 너무 복잡해졌다.
+
+그래서 모든 검증을 Validator 이라는 도메인 영역 클래스에 작성하고, 컨트롤러에서 호출해 수행하기로 했다.
+
+덕분에 InputView는 매우매우 간단해질 것 같다.
+
+문자열을 사용 가능한 데이터로 변환하는 과정인 파싱도 마찬가지로 따로 클래스로 분리하기로 했다.

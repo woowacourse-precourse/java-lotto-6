@@ -1,30 +1,34 @@
-package lotto.view.util;
+package lotto.view;
+
+import static lotto.exception.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 import lotto.exception.InputException;
 
-public class InputUtil {
+public final class InputUtil {
 
-    public String readString() {
+    private InputUtil() {}
+
+    public static String readString() {
         String input = Console.readLine();
         validateString(input);
         return input;
     }
 
-    public int readNaturalNumber() {
+    public static String readNaturalNumber() {
         String input = readString();
         validateInteger(input);
-        return Integer.parseInt(input);
+        return input;
     }
 
-    private void validateString(String input) {
+    private static void validateString(String input) {
         if (input == null || input.isBlank()) {
             throw new InputException();
         }
     }
 
-    private void validateInteger(String input) {
+    private static void validateInteger(String input) {
         if (!Pattern.matches("\\d+", input)) {
             throw new InputException();
         }

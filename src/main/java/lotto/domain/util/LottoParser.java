@@ -32,9 +32,17 @@ public final class LottoParser {
         return Integer.parseInt(bonusInput);
     }
 
-//    public static List<List<Integer>> parseLottoToInteger(List<Lotto> lottos) {
-//        //
-//    }
+    public static List<List<Integer>> parseLottoToInteger(List<Lotto> lottos) {
+        List<List<Integer>> sortedLottosNumber = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            List<Integer> numbersCopy = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(numbersCopy);
+            sortedLottosNumber.add(numbersCopy);
+        }
+
+        return sortedLottosNumber;
+    }
 
     public static void validateMoney(int parsedMoney) {
         if (parsedMoney < LOTTO_PRICE) {

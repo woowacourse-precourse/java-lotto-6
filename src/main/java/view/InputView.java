@@ -22,8 +22,6 @@ public class InputView {
         this.gameController = gameController;
     }
 
-    // TODO: 예외 처리 후 가공한 뒤 파라미터로 넘겨줌
-
     public void inputPayment() {
         System.out.println(OutputMessage.DEPOSIT.getMessage());
         try {
@@ -55,7 +53,12 @@ public class InputView {
 
     public void inputBonusNumber() {
         System.out.println(OutputMessage.BONUS_NUMBER.getMessage());
-//        gameController.BonusLottoAdd(Console.readLine());
+        try {
+            gameController.BonusLottoAdd(validateRange(validateInteger(Console.readLine())));
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            inputBonusNumber();
+        }
     }
 
 }

@@ -18,6 +18,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
     }

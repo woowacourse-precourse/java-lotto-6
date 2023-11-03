@@ -12,20 +12,26 @@ import java.util.List;
 
 public class Validation {
 
-    public void validateNumeric(String input) {
+    public int validateNumeric(String input) {
+        int temp;
         try {
-            int temp = Integer.parseInt(input);
+            temp = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_INTEGER+input));
         }
+        return temp;
     }
-    public void validatePositiveNumber(int input) {
+    public void validateCost(int input) {
+        validatePositiveNumber(input);
+        validateDivisible(input);
+    }
+    private void validatePositiveNumber(int input) {
         if (input <= 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_POSITIVE+input));
         }
     }
 
-    public void validateDivisible(int input) {
+    private void validateDivisible(int input) {
         if (input % 1000 != 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INDIVISIBLE_TO_THOUSAND+input));
         }

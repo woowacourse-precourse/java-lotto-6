@@ -9,10 +9,6 @@ import lotto.util.Validation;
 
 public class InputView {
 
-    private final Validation validation;
-    public InputView(Validation validation) {
-        this.validation = validation;
-    }
     public String inputPurchaseCost() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputCost = Console.readLine();
@@ -41,6 +37,7 @@ public class InputView {
         validateSpaceChar(input);
     }
     public void validateBlankInput(String input) {
+
         if (input.isBlank()) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, BLANK_INPUT+input));
         }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.Reader;
+
 import java.util.List;
 
 public class Game {
@@ -15,7 +17,8 @@ public class Game {
     }
 
     private int inputMoney() {
-        return 0;
+        String input = Reader.readLine();
+        return Integer.parseInt(input);
     }
 
     private List<Integer> inputWinningNumbers() {

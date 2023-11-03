@@ -28,7 +28,7 @@ class LottoTest {
     @DisplayName("로또가 사용자의 입력에 따라 제대로 된 사이즈가 생성 되는지 테스트")
     @Test
     void createLottosSizeTest(){
-        Lottos lottos = new Lottos("5");
+        Lottos lottos = new Lottos(5);
         assertThat(lottos.getLottos().size()).isEqualTo(5);
     }
 

@@ -8,8 +8,8 @@ import java.util.List;
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(String numberOfPurchases){
-        createLottos(Integer.parseInt(numberOfPurchases));
+    public Lottos(int numberOfPurchases){
+        createLottos(numberOfPurchases);
     }
     private void createLottos(int numberOfPurchases){
         for(int i=0; i<numberOfPurchases; i++){

@@ -30,43 +30,44 @@
 ---
 
 ## 객체, 변수
-- [ ] 로또 구입 금액 : GameData#LotteriesBudget
-- [ ] 발행 로또 수량 : GameData#LotteriesNumber
-- [ ] 당첨 번호 : GameData#WinningNumbers
-- [ ] 보너스 번호 : GameData#BonusNumber
-- [ ] 당첨내역 : GameData
-  - [ ] 당첨금액 합계 : GameData#winningLotteryPrize
-- [ ] 수익률 : GameData#budgetPrizeRatio
-  - [ ] 당첨금액 총합 : GameData#winningLotteryPrizeTotal
+- [x] 로또 구입 금액 : GameData#budget
+- [x] 발행 로또 수량 : GameData#lotteriesNumber
+- [x] 당첨 번호 : GameData#winningNumbers
+- [x] 보너스 번호 : GameData#bonusNumber
+- [x] 당첨내역 : GameData
+  - [x] 당첨금액 합계 : GameData#winningPrizeByRank
+- [x] 수익률 : GameData#budgetPrizeRatio
+  - [x] 당첨금액 총합 : GameData#totalPrize
   - [ ] 소수점 둘째 자리 반올림
-- [ ] 로또 클래스
-  - [ ] 발행 번호 Lotto#Numbers
-  - [ ] 당첨여부 Lotto#winningFlag
-  - [ ] 일치개수 Lotto#sameNumberCount
-  - [ ] 등수(default = 0) Lotto#rankNumber
-- [ ] Java Enum -> RANK
-  - [ ] 등수별 Enum(FIRST, SECOND, THIRD, FOURTH, FIFTH)
-  - [ ] 등수별 당첨금액
-  - [ ] 등수별 총 당첨금액 계산 메서드((당첨 로또 개수)*(당첨 금액))
-- [ ] Java Enum -> NOTICE
-  - [ ] 프린트 메시지
-    - [ ] 구입 금액 입력 요청 Notice#AskBudget
-    - [ ] 당첨 번호 입력 요청 Notice#AskWinningNumbers
-    - [ ] 보너스 번호 입력 요청 Notice#AskBonusNumber
+- [x] 로또 클래스
+  - [x] 발행 번호 Lotto#numbers
+- [x] 당첨 통계
+  - [x] 일치개수 Lotto#sameNumberCount
+  - [ ] 당첨여부 Lotto#winningFlag ???
+  - [] 등수(default = 0) Lotto#rankNumber ???
+- [ ] Java Enum -> Rank
+  - [x] 등수별 Enum(FIRST, SECOND, THIRD, FOURTH, FIFTH)
+  - [x] 등수별 당첨금액
+- [x] Java Enum -> NOTICE
+  - [x] 프린트 메시지
+    - [x] 구입 금액 입력 요청 Notice#AskBudget
+    - [x] 당첨 번호 입력 요청 Notice#AskWinningNumbers
+    - [x] 보너스 번호 입력 요청 Notice#AskBonusNumber
+    - [x] 당첨 통계 출력 Notice#GameStatistics
+    - [x] 구분선 출력 Notice#SeparateLine
 - [ ] Java Enum -> Error
   - [ ] 당첨(보너스) 번호
-    - [ ] 숫자가 아닐 경우
-    - [ ] 쉼표 이외의 문자가 입력될 경우
-    - [ ] 중복된 숫자가 입력될 경우
+    - [x] 숫자가 아닐 경우
+    - [x] 쉼표 이외의 문자가 입력될 경우
+    - [x] 중복된 숫자가 입력될 경우
       - [ ] 당첨 번호 내 중복 숫자
       - [ ] 당첨 번호와 보너스 번호 간 중복 숫자
-    - [ ] 범위 밖 숫자가 입력될 경우
+    - [x] 범위 밖 숫자가 입력될 경우
   - [ ] 로또 구입 금액
-    - 1,000이상
-      - 나누어 떨어지는 경우
-      - 나누어 떨어지지 않는 경우
-    - 1,000미만
-    - 숫자가 아닌 경우
+    - [x] 1,000이상
+      - [x] 나누어 떨어지지 않는 경우
+    - [x] 1,000미만
+    - [x] 숫자가 아닌 경우
 
 ---
 

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.valid.BonusNumberValid;
 import lotto.valid.MoneyValid;
 import lotto.valid.WinNumberValid;
@@ -18,20 +17,22 @@ public class InputController {
         }
     }
 
-    public static List<Integer> inputWinNums() {
+    public static String inputWinNums() {
         String winNumber = InputView.inputWinNums();
         try {
-            return WinNumberValid.validWinNumber(winNumber);
+            WinNumberValid.validWinNumber(winNumber);
+            return winNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinNums();
         }
     }
 
-    public static int inputBonusNum() {
+    public static String inputBonusNum() {
         String bonusNum = InputView.inputBonusNum();
         try {
-            return BonusNumberValid.validBonusNumber(bonusNum);
+            BonusNumberValid.validBonusNumber(bonusNum);
+            return bonusNum;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNum();

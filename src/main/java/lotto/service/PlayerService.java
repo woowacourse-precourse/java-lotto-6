@@ -26,4 +26,20 @@ public class PlayerService {
         return player.getPrice() / LOTTO_PRICE.getInfo();
     }
 
+    public int[] compareLottoNumbers(List<Integer> inputNumbers, int bonusNumber) {
+        List<Lotto> purchasedLotto = player.getPurchasedLotto();
+        int[] lottoResult = new int[7];
+
+        for (Lotto lotto : purchasedLotto) {
+            int sameCount = lottoService.compareLotto(lotto, inputNumbers);
+            if (sameCount == 5 && !lotto.isContainNumber(bonusNumber)) {
+                lottoResult[3]++;
+                continue;
+            }
+            lottoResult[7 - sameCount]++;
+        }
+
+        return lottoResult;
+    }
+
 }

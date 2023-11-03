@@ -104,4 +104,10 @@ public class Prize {
             totalProfit = totalProfit + (finalResult[4] * 5_000);
         }
     }
+
+    void printProfitRate() {
+        double initialProfitRate = (double) totalProfit / Issue.initialCash;
+        String profitRate = String.format("%.1f", initialProfitRate);
+        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+    }
 }

@@ -7,11 +7,12 @@ import java.util.List;
 
 public class Issue {
     private int lottoQuantity;
+    public static int initialCash;
     public static List<List<Integer>> lottoGroup;
 
     void inputCash() {
-        int cash = Integer.parseInt(Console.readLine());
-        lottoQuantity = cash / 1000;
+        initialCash = Integer.parseInt(Console.readLine());
+        lottoQuantity = initialCash / 1000;
     }
 
     private List<Integer> getNumbers() {

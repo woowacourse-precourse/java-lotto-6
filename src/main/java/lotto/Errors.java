@@ -1,4 +1,10 @@
 package lotto;
 
 public enum Errors {
+    IS_NUMBER,
+    IS_VALID_LITERAL,
+    IS_NUMBER_DUPLICATE,
+    IS_NUMBER_OUT_OF_RANGE,
+    IS_UNDER_1000,
+    IS_INDIVISIBLE_BY_1000
 }

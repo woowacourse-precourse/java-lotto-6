@@ -29,12 +29,21 @@ public class LottoHandler {
 
         LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 
-        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
-
         writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
         writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
 
-        lottoManager.calculateLottos(lottos, winningLotto);
+
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
+
+
+        LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);
+
+        LottoDto.Result result = LottoDto.Result.from(lottoResult);
+        writer.write(lottoViewResolver.parseLottoResult(result));
+
+        writer.write(lottoViewResolver.parseProfit(lottoResult.calculateProfit(money.getMoney())));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {

@@ -11,7 +11,9 @@ public class LottoManager {
 
         return Lottos.createByCount(
                 lottoCount,
-                () -> Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_NUMBER_SIZE)
+                () -> Randoms.pickUniqueNumbersInRange(
+                        Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_NUMBER_SIZE
+                )
         );
     }
 
@@ -20,7 +22,8 @@ public class LottoManager {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public void calculateLottos(Lottos lottos, WinningLotto winningLotto) {
+    public LottoResult calculateResult(Lottos lottos, WinningLotto winningLotto) {
         List<LottoRanking> rankings = lottos.calculateRanking(winningLotto);
+        return LottoResult.createByRankings(rankings);
     }
 }

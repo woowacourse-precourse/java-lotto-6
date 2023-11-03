@@ -36,4 +36,8 @@ public class Lotto {
     public boolean isAnswerLotto() {
         return false;
     }
+
+    public boolean isContained(LottoNo number) {
+        return numbers.contains(number);
+    }
 }

@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,19 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "5000", "13000"})
+    void validateBuyingPrice_성공_테스트(String input) {
+        Application.validateBuyingPrice(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"notInt", "-1000", "1234"})
+    void validateBuyingPrice_실패_테스트(String input) {
+        assertThatThrownBy(() -> Application.validateBuyingPrice(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

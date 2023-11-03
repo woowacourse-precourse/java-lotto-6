@@ -14,7 +14,7 @@
 ## 로또 구입 금액 입력 기능
 - [x] `LottoInputView::getBuyingPrice` 메서드
   - 로또 구입 금액을 입력받는다.
-- [ ] `validateBuyingPrice` 메서드
+- [x] `validateBuyingPrice` 메서드
   - 입력받은 로또 금액을 검증한다.
     - 정수가 아니라면 `IllegalArgumentException` 발생
     - 0보다 작다면 `IllegalArgumentException` 발생

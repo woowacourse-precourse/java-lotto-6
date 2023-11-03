@@ -37,6 +37,7 @@ public class LottoSeller {
         int amount;
         Validator.validateStringIsNumber(userInput);
         amount = Integer.parseInt(userInput);
+        Validator.validateNotLessThanNumber(amount, LOTTO_PRICE);
         Validator.validateDivisor(amount, LOTTO_PRICE);
         this.amount = amount;
     }

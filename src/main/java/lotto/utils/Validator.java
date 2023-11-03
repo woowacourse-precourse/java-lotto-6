@@ -15,6 +15,12 @@ public class Validator {
         }
     }
 
+    public static void validateNotLessThanNumber(int checkingNumber, int standardNumber) {
+        if (checkingNumber < standardNumber) {
+            raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + standardNumber + " 이상의 수를 입력하세요.");
+        }
+    }
+
     public static void validateDivisor(int dividend, int divisor) {
         boolean canNotDivide = !(dividend % divisor == 0);
         if (canNotDivide) {
@@ -35,28 +41,24 @@ public class Validator {
             int endInclusive
     ) {
         validateRange(startInclusive, endInclusive);
-        boolean isNotValidateNumbers =
-                numbers.stream()
-                        .filter(number -> number >= startInclusive && number <= endInclusive)
-                        .distinct().count() != numbers.size();
+        boolean isNotValidateNumbers = (numbers.stream()
+                .filter(number -> number >= startInclusive && number <= endInclusive)
+                .distinct().count() != numbers.size());
         if (isNotValidateNumbers) {
-            raiseIllegalArgumentException(
-                    ERROR_MESSAGE_HEADER +
-                            " 중복되지 않는 " +
-                            startInclusive + "이상 " +
-                            endInclusive + "이하의 숫자만 입력해주세요.");
+            raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " 중복되지 않는 " +
+                    startInclusive + "이상 " + endInclusive + "이하의 숫자만 입력해주세요.");
         }
     }
 
     private static void validateRange(final int startInclusive, final int endInclusive) {
         if (startInclusive > endInclusive) {
-            throw new IllegalArgumentException("startInclusive cannot be greater than endInclusive.");
+            raiseIllegalArgumentException("startInclusive cannot be greater than endInclusive.");
         }
         if (endInclusive == Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("endInclusive cannot be greater than Integer.MAX_VALUE.");
+            raiseIllegalArgumentException("endInclusive cannot be greater than Integer.MAX_VALUE.");
         }
         if (endInclusive - startInclusive >= Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("the input range is too large.");
+            raiseIllegalArgumentException("the input range is too large.");
         }
     }
 

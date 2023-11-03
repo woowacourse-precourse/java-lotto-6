@@ -58,6 +58,31 @@ public class WinningNumbersGenerator {
         this.winningNumbers = Arrays.stream(this.inputDividedByDelimiter).map(Integer::parseInt).toList();
     }
 
+    public void generateBonusNumber(final String bonusNumberInput) {
+        this.validateBonusNumberInput(bonusNumberInput);
+        this.saveWinningNumbers();
+        this.validateBonusNumber();
+    }
+
+    public void validateBonusNumberInput(final String bonusNumberInput) {
+        if (bonusNumberInput.chars().anyMatch(c -> !Character.isDigit((char) c))) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+    }
+
+    public void saveBonusNumber(final String bonusNumberInput) {
+        this.bonusNumber = Integer.parseInt(bonusNumberInput);
+    }
+
+    public void validateBonusNumber() {
+        if (this.bonusNumber > END_NUM || this.bonusNumber < START_NUM) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+        }
+        if (this.winningNumbers.contains(this.bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.");
+        }
+    }
+
     public List<Integer> getWinningNumbers() {
         return this.winningNumbers;
     }

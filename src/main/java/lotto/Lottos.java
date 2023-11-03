@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,7 +17,7 @@ public class Lottos {
 
         List<Lotto> lottos = IntStream.range(0, lottoCount)
                 .mapToObj(idx -> {
-                    List<Integer> lottoNumbers = lottoNumberGenerator.generate();
+                    List<Integer> lottoNumbers = new ArrayList<>(lottoNumberGenerator.generate());
                     Collections.sort(lottoNumbers);
                     return new Lotto(lottoNumbers);
                 })

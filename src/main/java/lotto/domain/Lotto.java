@@ -22,10 +22,11 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbersOrderByAsc(numbers);
         return new Lotto(numbers);
     }
 
-    public void numbersOrderByAsc() {
+    private static void numbersOrderByAsc(final List<Integer> numbers) {
         Collections.sort(numbers);
     }
 

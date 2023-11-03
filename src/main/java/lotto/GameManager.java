@@ -27,7 +27,6 @@ public class GameManager {
         int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
         messagePrinter.printBuyingAmountMessage(buyingAmount);
         LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
-        lottoGame.OrderByAsc();
         messagePrinter.printLottoNumbers(lottoGame);
         messagePrinter.printWinningNumbersMessage();
         WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();

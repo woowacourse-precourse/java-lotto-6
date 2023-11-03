@@ -30,6 +30,7 @@ public class LottoController {
         List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
         outputView.printEachLottoNumbers(lottoResponses);
         outputView.askGoalNumbers();
+        String goalNumbersInput = inputView.readLine();
     }
 
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {

@@ -8,8 +8,8 @@ public class Lotto {
     static int NUMBER_SIZE = 6;
     enum LottoError {
         BOUND_LENGTH("[ERROR] 로또 번호는 6개가 필요합니다."),
-        PROPER_NUMS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-        DUPLICATED_NUMS("[ERROR] 로또 번호는 중복되면 안됩니다.");
+        NON_PROPER_NUMS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+        NON_DUPLICATED_NUMS("[ERROR] 로또 번호는 중복되면 안됩니다.");
         String errorMessage;
         LottoError(String errorMessage){
             this.errorMessage = errorMessage;
@@ -43,7 +43,7 @@ public class Lotto {
             int lottoNum = numbers.get(i);
             if(lottoNum>MIN_NUMBER&&lottoNum<MAX_NUMBER){
                 throw new IllegalArgumentException(
-                        LottoError.PROPER_NUMS.getErrorMessage()
+                        LottoError.NON_PROPER_NUMS.getErrorMessage()
                 );
             }
         }
@@ -53,7 +53,7 @@ public class Lotto {
         int distinctNumbersCount = (int)numbers.stream().distinct().count();
         if(distinctNumbersCount != NUMBER_SIZE){
             throw new IllegalArgumentException(
-                    LottoError.DUPLICATED_NUMS.getErrorMessage()
+                    LottoError.NON_DUPLICATED_NUMS.getErrorMessage()
             );
         }
     }

@@ -34,6 +34,7 @@ public class User {
         while (true) {
             try {
                 List<String> sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
+                validateCommaSeparatedInput(sixLottoNumbers);
                 validateSixLottoNumbers(sixLottoNumbers);
                 validateNoDuplicateNumbers(sixLottoNumbers);
                 return sixLottoNumbers;
@@ -59,6 +60,14 @@ public class User {
                 throw new IllegalArgumentException("[ERROR] 중복된 번호가 입력되었습니다.");
             }
             uniqueNumbers.add(lottoNumber);
+        }
+    }
+
+    private void validateCommaSeparatedInput(List<String> sixLottoNumbers){
+        for (String lottoNumber : sixLottoNumbers) {
+            if (!lottoNumber.matches("[0-9]+")){
+                throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 공백없이 입력해야합니다.");
+            }
         }
     }
 }

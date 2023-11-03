@@ -5,12 +5,8 @@ import lotto.domain.Amount;
 public class AmountDto {
 	Amount amount;
 	
-	public AmountDto() {
-		amount = new Amount();
-	}
-	
-	public void setAmount(int amount) {
-		this.amount.setAmount(amount);
+	public AmountDto(int amount) {
+		this.amount = new Amount(amount);
 	}
 	
 	public int getAvailableQuantity() {

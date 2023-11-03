@@ -2,9 +2,9 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import static lotto.system.Constant.LOTTO_LENGTH;
 
 public class Lotto {
-	final static int LOTTOLENGTH = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTOLENGTH) {
+        if (numbers.size() != LOTTO_LENGTH.getconstant()) {
             throw new IllegalArgumentException();
         }
     }

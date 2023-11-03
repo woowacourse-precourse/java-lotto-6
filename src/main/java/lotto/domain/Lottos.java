@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import static lotto.system.Constant.LOTTO_LENGTH;
+import static lotto.system.Constant.LOTTO_START_NUMBER;
+import static lotto.system.Constant.LOTTO_END_NUMBER;
 
 public class Lottos {
-	final static int LOTTOSTARTNUMBER = 1;
-	final static int LOTTOENDNUMBER = 45;
-	List<Lotto> lottos;
+	final List<Lotto> lottos;
 	
 	public Lottos(int n) {
 		lottos = generateLottos(n);
@@ -17,14 +18,14 @@ public class Lottos {
 	private List<Lotto> generateLottos(int n) {
 		List<Lotto> lottos = new ArrayList<Lotto>();
 		for (int i=0; i<n; i++) {
-			Lotto lotto = new Lotto(generateRandomNumbers(Lotto.LOTTOLENGTH));
+			Lotto lotto = new Lotto(generateRandomNumbers(LOTTO_LENGTH.getconstant()));
 			lottos.add(lotto);
 		}
 		return lottos;
 	}
 	
 	private List<Integer> generateRandomNumbers(int n) {
-		return Randoms.pickUniqueNumbersInRange(LOTTOSTARTNUMBER, LOTTOENDNUMBER, n);
+		return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER.getconstant(), LOTTO_END_NUMBER.getconstant(), n);
 	}
 	
 	public List<Lotto> getLottos() {

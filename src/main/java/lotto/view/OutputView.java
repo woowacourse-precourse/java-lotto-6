@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import static lotto.system.SystemMessage.INPUT_AMOUNT_MESSAGE;
 import static lotto.system.SystemMessage.OUTPUT_QUANTITY_MESSAGE;
 import static lotto.system.SystemMessage.NEWLINE;
+import static lotto.system.SystemMessage.INPUT_WINNING_MESSAGE;
 
 public class OutputView {
 	public static void printInputAmount() {
@@ -20,6 +21,10 @@ public class OutputView {
 		for (int i=0; i<lottos.size(); i++) {
 			System.out.println(lottos.get(i).getNumbers());
 		}
-		
+		System.out.print(NEWLINE);
+	}
+	
+	public static void printInputWinning() {
+		System.out.println(INPUT_WINNING_MESSAGE);
 	}
 }

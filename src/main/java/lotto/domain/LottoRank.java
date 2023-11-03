@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
+	
 	NOTHING(0, 0, false, (matchedNumCount, isBonusNumber) -> matchedNumCount < 3),
 	FIFTH(5000, 3, false, (matchedNumCount, isBonusNumber) -> matchedNumCount == 3),
 	FOURTH(50000, 4, false, (matchedNumCount, isBonusNumber) -> matchedNumCount == 4),
@@ -15,31 +16,31 @@ public enum LottoRank {
 	private final int price;
 	private final int matchedNumCount;
 	private final boolean isBonusNumber;
-	private final BiPredicate<Integer, Boolean> matcher;
+	private final BiPredicate<Integer, Boolean> matchingCondition;
 
-	LottoRank(int price, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> matcher) {
+	LottoRank(int price, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> winningCondition) {
 		this.price = price;
 		this.matchedNumCount = matchedNumCount;
 		this.isBonusNumber = isBonusNumber;
-		this.matcher = matcher;
+		this.matchingCondition = winningCondition;
 	}
 
 	public static LottoRank getMatchedLottoRank(AnswerLotto answerLotto, Lotto lotto) {
-		int matchedNumberCount = countmatchedNumber(answerLotto, lotto);
+		int matchedNumberCount = countMatchedNumber(answerLotto, lotto);
 
-		boolean isBonusNumber = checkNumberSameAsBonusNumber(answerLotto, lotto);
+		boolean isBonusNumber = isNumberSameAsBonusNumber(answerLotto, lotto);
 
 		return LottoRank.getMatchedLottoRank(matchedNumberCount, isBonusNumber);
 	}
 
 	private static LottoRank getMatchedLottoRank(int matchedNumberCount, boolean isBonusNumber) {
 		return Arrays.stream(LottoRank.values())
-						.filter(lottoRank -> lottoRank.matcher.test(matchedNumberCount, isBonusNumber))
+						.filter(lottoRank -> lottoRank.matchingCondition.test(matchedNumberCount, isBonusNumber))
 						.findAny()
 						.orElse(NOTHING);
 	}
 
-	private static int countmatchedNumber(AnswerLotto answerLotto, Lotto lotto) {
+	private static int countMatchedNumber(AnswerLotto answerLotto, Lotto lotto) {
 		int matchedNumberCount = 0;
 
 		for (int index = 0; index < lotto.getSize(); index++) {
@@ -47,11 +48,11 @@ public enum LottoRank {
 				matchedNumberCount++;
 			}
 		}
-		
+
 		return matchedNumberCount;
 	}
 
-	private static boolean checkNumberSameAsBonusNumber(AnswerLotto answerLotto, Lotto lotto) {
+	private static boolean isNumberSameAsBonusNumber(AnswerLotto answerLotto, Lotto lotto) {
 		boolean isBonusNumber = false;
 
 		for (int index = 0; index < lotto.getSize(); index++) {
@@ -60,7 +61,7 @@ public enum LottoRank {
 				break;
 			}
 		}
-		
+
 		return isBonusNumber;
 	}
 

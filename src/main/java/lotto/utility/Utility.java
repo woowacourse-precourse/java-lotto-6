@@ -37,15 +37,15 @@ public class Utility {
         return numbers;
     }
 
-    public int getProfit(int[][] totalResult) {
-        int sum = 0;
+    public long getProfit(int[][] totalResult) {
+        long sum = 0;
         Prize prize = new Prize();
         int[][] prizes = prize.getPrize();
 
         for(int i = 3; i <= 6 ; i++) {
-            sum += totalResult[i][0]*prizes[i][0];
+            sum += (long)totalResult[i][0] * (long)prizes[i][0];
         }
-        sum += totalResult[5][1]*prizes[5][1];
+        sum += (long)totalResult[5][1] * (long)prizes[5][1];
 
         return sum;
     }

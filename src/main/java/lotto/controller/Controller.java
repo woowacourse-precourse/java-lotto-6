@@ -22,10 +22,8 @@ public class Controller {
         int payment = utility.parseInt(paymentInput);
         validation.validateUnit(payment);
 
-        // 구입 금액 만큼의 로또 생성
         List<Lotto> lottos = model.buyLotto(payment);
 
-        // 로또 번호들 출력
         outputView.printAllLottoNumbers(lottos);
 
         // 당첨 번호 입력 받고, 분리, 정수형 리스트로 변환 및 검증
@@ -50,5 +48,7 @@ public class Controller {
 
         outputView.printTotalResult(totalResult);
 
+        long totalPrize = utility.getProfit(totalResult);
+        System.out.println(totalPrize);
     }
 }

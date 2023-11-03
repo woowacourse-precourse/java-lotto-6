@@ -29,14 +29,15 @@
 - [x] 비교 결과를 통해 당첨 등수 계산 - WinLotto
 - [x] LottoTicket 에서 생성한 Lotto 를 저장 - Lotties
 - [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - Lotties
-- [ ] 로또 당첨 결과를 통해 당첨 내역 계산 - LottoPrizeMoney
-- [ ] 로또 당첨 결과를 통해 총 상금 계산 - LottoPrizeMoney
+- ### LottoResult
 - [x] 로또 당첨 결과를 저장하는 Enum - LottoResult
 - [x] 로또 일치에 따라 당첨 결과를 반환 - LottoResult
 - [x] 로또 결과별 상금 정보 저장 및 반환 - LottoResult
 - [x] 로또 결과를 저장하기 위한 저장소 - LottoResultsRepository
 - [x] 로또 결과 저장소의 초기화를 위한 Map 제공 - LottoResult
 - [x] 로또 결과를 받아 추가 - LottoResultRepository
+- [ ] 로또 당첨 결과를 통해 당첨 내역 계산 - LottoPrizeMoney
+- [ ] 로또 당첨 결과를 통해 총 상금 계산 - LottoPrizeMoney
 
 - ### Service
 - [ ] Player 가 로또를 구매해 저장함 - LottoService

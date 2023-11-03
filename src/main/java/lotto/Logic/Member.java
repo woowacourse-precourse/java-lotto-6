@@ -12,7 +12,21 @@ public class Member {
     int count;
     List<Lotto> memberLotto=new ArrayList<>();
 
+//    List<Integer> result=new ArrayList<>();
+    List<Prize> prize=new ArrayList<>();
+
     public Member() {
+//        this.result.add(0);
+//        this.result.add(0);
+//        this.result.add(0);
+//        this.result.add(0);
+//        this.result.add(0);
+    }
+    public void setPrize(Prize prize){
+        this.prize.add(prize);
+    }
+    public List<Prize> getPrize(){
+        return this.prize;
     }
 
     public List<Lotto> getMemberLotto(){

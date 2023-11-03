@@ -4,6 +4,7 @@ import lotto.Logic.Lotto;
 import lotto.Logic.Member;
 import lotto.Logic.WinningNumber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UI {
@@ -45,6 +46,7 @@ public class UI {
         System.out.println();
         numberComment();
     }
+
     public void numberComment(){
         System.out.println("당첨 번호를 입력해 주세요.");
         numberInput();
@@ -52,10 +54,13 @@ public class UI {
         System.out.println();
         bonusComment();
     }
+
+
     public void numberInput(){
         String number=camp.nextstep.edu.missionutils.Console.readLine();
         winningNumber.splitValid(number);
     }
+
     public void bonusComment(){
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusInput();
@@ -63,12 +68,37 @@ public class UI {
         System.out.println();
         staticComment();
     }
+
     public void bonusInput(){
         String bonus=camp.nextstep.edu.missionutils.Console.readLine();
         winningNumber.setBonusValid(bonus);
     }
+
     public void staticComment(){
         System.out.println("당첨 통계");
         System.out.println("---");
+
+
+
+        winningNumber.calculate(member.getMemberLotto(),member);
+        //staticOutput();
+        System.out.println(member.getPrize());
     }
+
+    public void staticOutput(List<Integer> result){ // [1, 0, 0, 0, 0]
+
+        System.out.println("3개 일치 (5,000원) - "+result.get(0)+"개");
+        System.out.println("4개 일치 (50,000원) - "+result.get(1)+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+result.get(2)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.get(3)+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+result.get(4)+"개");
+
+        //profitOutput();
+    }
+
+    public void profitOutput(double profit){ // 62.5
+        String totalProfit="총 수익률은 "+profit+"%입니다.";
+        System.out.print(totalProfit);
+    }
+
 }

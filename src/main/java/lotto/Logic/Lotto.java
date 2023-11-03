@@ -15,7 +15,9 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("[");

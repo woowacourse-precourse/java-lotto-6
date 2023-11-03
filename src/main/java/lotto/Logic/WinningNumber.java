@@ -10,6 +10,35 @@ public class WinningNumber {
 
     public WinningNumber(){
     }
+
+    public void calculate(List<Lotto> memberLotto,Member member){
+
+        for (int i=0;i<memberLotto.size();i++){
+            List<Integer> winNumbers=new ArrayList<>();
+            winNumbers.addAll(this.numbers);
+
+            List<Integer> correct=correctBonus(memberLotto.get(i),winNumbers,this.bonus);
+
+            member.setPrize(Prize.sixth.prizeDetermine(correct));
+        }
+    }
+    public List<Integer> correctBonus(Lotto lotto, List<Integer> winNumbers, int bonusNumber){
+        List<Integer> correct=new ArrayList<>(); // <몇 개 일치, 보너스 일치 여부>
+
+        winNumbers.removeAll(lotto.getNumbers());
+        int correctCount=6-winNumbers.size();
+        correct.add(correctCount);
+
+        winNumbers.remove(Integer.valueOf(bonusNumber));
+
+        if(correct.get(0)==5 && 6-winNumbers.size()!=correctCount)
+            correct.add(1);
+        else if (6-winNumbers.size()==correctCount)
+            correct.add(0);
+
+        return correct;
+    }
+
     public static boolean isParsable(String str) {
 
         for (int i = 0; i < str.length(); i++) {
@@ -21,6 +50,7 @@ public class WinningNumber {
 
         return true;
     }
+
     public void splitValid(String number){
         String[] checkNumber=number.split(",",-1);
 
@@ -77,11 +107,14 @@ public class WinningNumber {
         }
         bonusValid(this.bonus);
     }
+
     public void bonusValid(int bonusNumber){
         if (bonusNumber<=0)
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 0 이하로 표현하면 안된다");
         else if(bonusNumber>=46)
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 46 이상으로 표현하면 안된다");
+
+        //보너스번호가 메인 번호랑 중복되는 게 있으면 안된다
 
     }
 }

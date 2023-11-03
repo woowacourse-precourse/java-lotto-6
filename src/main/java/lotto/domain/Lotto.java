@@ -6,9 +6,9 @@ import java.util.List;
 import static lotto.Error.Domain.*;
 
 public final class Lotto {
-    private static final int LOTTO_LENGTH = 6;
-    private static final int MIN_LOTTO_NUMBER_SIZE = 1;
-    private static final int MAX_LOTTO_NUMBER_SIZE = 45;
+    static final int LOTTO_LENGTH = 6;
+    static final int MIN_LOTTO_NUMBER_SIZE = 1;
+    static final int MAX_LOTTO_NUMBER_SIZE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -27,16 +27,18 @@ public final class Lotto {
             throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_LENGTH.getMessage());
         }
     }
+
     private void validateLottoNumber(List<Integer> numbers) {
         boolean isMatch = numbers.stream().allMatch(e -> MIN_LOTTO_NUMBER_SIZE <= e && e <= MAX_LOTTO_NUMBER_SIZE);
-        if(!isMatch){
+        if (!isMatch) {
             throw new IllegalArgumentException(WRONG_LOTTO_SIZE.getMessage());
         }
     }
-    private void validateDuplicatedNumber(List<Integer> numbers){
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
         int distinctSize = new HashSet<>(numbers).size();
 
-        if(distinctSize != numbers.size()){
+        if (distinctSize != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }

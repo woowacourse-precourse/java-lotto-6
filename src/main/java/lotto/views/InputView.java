@@ -10,14 +10,14 @@ public class InputView {
     public static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public long getPurchaseAmount(){
+    public long getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         String input = Console.readLine();
         Utils.checkNumber(input);
         return Long.parseLong(input);
     }
 
-    public Set<Integer> getOriginalWinningNumbers(){
+    public Set<Integer> getOriginalWinningNumbers() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
         String[] input = Console.readLine().split(",");
         Set<Integer> originalWinningNumbers = new HashSet<>();
@@ -29,7 +29,7 @@ public class InputView {
         return originalWinningNumbers;
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         String input = Console.readLine();
         Utils.checkNumber(input);

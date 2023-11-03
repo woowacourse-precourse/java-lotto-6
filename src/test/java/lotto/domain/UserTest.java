@@ -19,6 +19,7 @@ public class UserTest {
         assertThat(user.getPurchaseAmount()).isEqualTo(purchaseAmount);
         assertThat(user.getQuantity()).isEqualTo(50);
     }
+
     @Test
     void create_구매_금액이_10만원_이_넘는_경우() {
         //given
@@ -29,6 +30,7 @@ public class UserTest {
                 .hasMessage(ErrorMessage.NOT_MET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
 
     }
+
     @Test
     void create_구매_금액이_0_인_경우() {
         //given
@@ -39,6 +41,7 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_MET_MINIMUM_PURCHASE_AMOUNT.getMessage());
     }
+
     @Test
     void create_구매_금액의_단위가_1000이_아닌_경우() {
         //given

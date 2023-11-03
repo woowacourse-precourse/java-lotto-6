@@ -30,14 +30,14 @@ public class CreateUserDto {
         this.publishedLotto = publishedLotto;
     }
 
-    private int purchaseAmountValidate(long purchaseAmount){
-        if(purchaseAmount == 0){
+    private int purchaseAmountValidate(long purchaseAmount) {
+        if (purchaseAmount == 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
-        if(purchaseAmount > 100000){
+        if (purchaseAmount > 100000) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
         }
-        if(purchaseAmount % 1000 != 0){
+        if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_PURCHASE_UNIT.getMessage());
         }
         return (int) purchaseAmount;

@@ -14,7 +14,7 @@ public class User {
     private User() {
     }
 
-    public static User create(CreateUserDto createUserDto){
+    public static User create(CreateUserDto createUserDto) {
         User user = new User();
         user.purchaseAmount = createUserDto.getPurchaseAmount();
         user.quantity = createUserDto.getQuantity();
@@ -25,9 +25,11 @@ public class User {
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
+
     public int getQuantity() {
         return quantity;
     }
+
     public List<Lotto> getLotto() {
         return lotto;
     }

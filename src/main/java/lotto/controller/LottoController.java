@@ -23,7 +23,7 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void run(){
+    public void run() {
         CreateUserDto createUserDto = checkUser();
         createUserDto.setPublishedLotto(lottoService.publish(createUserDto.getQuantity()));
         outputView.lottoQuantityAndNumber(createUserDto.getPublishedLotto());
@@ -37,13 +37,13 @@ public class LottoController {
         outputView.rewardRatioRecord(rewardRatio);
     }
 
-    private CreateUserDto checkUser(){
+    private CreateUserDto checkUser() {
         long purchaseAmount = inputView.getPurchaseAmount();
         CreateUserDto createUserDto = new CreateUserDto(purchaseAmount);
         return createUserDto;
     }
 
-    private WinningNumbers getWinningNumbers(){
+    private WinningNumbers getWinningNumbers() {
         Set<Integer> originalWinningNumbers = inputView.getOriginalWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
         return lottoService.getWinningNumbers(originalWinningNumbers, bonusNumber);

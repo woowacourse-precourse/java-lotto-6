@@ -1,6 +1,9 @@
-package lotto.domain.service;
+package lotto.service;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+import lotto.domain.EarningRate;
 import lotto.domain.LottoCheckResult;
 import lotto.domain.WinningStatus;
 import lotto.domain.lotto.BonusNumber;
@@ -21,6 +24,22 @@ public class LottoChecker {
         }
 
         return result;
+    }
+
+    public EarningRate calculateEarningRate(LottoCheckResult lottoResult) {
+        Map<WinningStatus, Integer> result = lottoResult.getResult();
+        double numOfTickets = 0;
+        double earnedMoney = 0;
+
+        for (Map.Entry<WinningStatus, Integer> entry : result.entrySet()) {
+            WinningStatus status = entry.getKey();
+            Integer tickets = entry.getValue();
+
+            numOfTickets += tickets;
+            earnedMoney += status.getPrize() * tickets;
+        }
+
+        return new EarningRate(numOfTickets, earnedMoney);
     }
 
     private WinningStatus checkLotto(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {

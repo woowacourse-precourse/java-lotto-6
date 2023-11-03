@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.AnswerLotto;
@@ -38,11 +37,16 @@ public class LottoGame {
 	public Money createMoney() {
 		outputView.printInputMoneyMessage();
 
+		Money money = createMoneyProgress();
+
+		return money;
+	}
+
+	private Money createMoneyProgress() {
 		while (true) {
 			try {
 				int inputValue = inputView.inputMoney();
 				Money money = moneyService.createMoney(inputValue);
-
 				return money;
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorMessage(e);
@@ -63,35 +67,43 @@ public class LottoGame {
 
 	public AnswerLotto createAnswerLotto() {
 		outputView.printInputAnswerLottoNumberMessage();
-		List<Integer> numbers = new ArrayList<>();
-		int bonusNumber = 0;
 
-		while (true) {
-			try {
-				numbers = inputView.inputAnswerLottoNumbers();
-				break;
-			} catch (IllegalArgumentException e) {
-				outputView.printErrorMessage(e);
-			}
-		}
+		List<Integer> numbers = createAnswerLottoNumbersProgress();
 
 		outputView.printInputBonusNumberMessage();
 
-		while (true) {
-			try {
-				bonusNumber = inputView.inputBonusNumber();
-				break;
-			} catch (IllegalArgumentException e) {
-				outputView.printErrorMessage(e);
-			}
-		}
+		int bonusNumber = createBonusNumberProgress(numbers);
 
 		return lottoService.createAnswerLotto(numbers, bonusNumber);
 	}
 
+	private List<Integer> createAnswerLottoNumbersProgress() {
+		while (true) {
+			try {
+				List<Integer> numbers = inputView.inputAnswerLottoNumbers();
+				return numbers;
+			} catch (IllegalArgumentException e) {
+				outputView.printErrorMessage(e);
+			}
+		}
+	}
+
+	private int createBonusNumberProgress(List<Integer> numbers) {
+		while (true) {
+			try {
+				int bonusNumber = inputView.inputBonusNumber(numbers);
+				return bonusNumber;
+			} catch (IllegalArgumentException e) {
+				outputView.printErrorMessage(e);
+			}
+		}
+	}
+
 	public void printLottoResult(Lottos lottos, AnswerLotto answerLotto, double totalReturn) {
 		outputView.printWinningStatisticsTopMessage();
+
 		String message = lottoService.getWinningStatisticsMessage(lottos, answerLotto);
+
 		outputView.printWinningStatisticsMessage(message);
 		outputView.printTotalReturn(totalReturn);
 	}

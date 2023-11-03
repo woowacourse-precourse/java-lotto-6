@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.User;
@@ -19,7 +20,7 @@ public class Application {
         user.purchaseLotto();
 
         // 로또 개수 만큼 번호 계산
-        for(int i =0; i<user.lottoCount; i++){
+        for (int i = 0; i < user.lottoCount; i++) {
             lottos.add(computer.calculateLottoNumber());
         }
 
@@ -28,6 +29,36 @@ public class Application {
             Collections.sort(lotto.getNumbers());
             System.out.println(lotto.getNumbers());
         }
+
+        // 5. 당첨 번호 입력
+
+
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                List<String> userInputs = Arrays.asList(computer.getInput().split(","));
+                List<Integer> lottoNumbers = new ArrayList<>();
+
+                for (String userInput : userInputs) {
+                    computer.checkNumber(userInput);
+                    computer.checkZero(userInput);
+
+                    Integer lottoNumber = Integer.parseInt(userInput);
+                    computer.checkRange(lottoNumber);
+
+                    lottoNumbers.add(Integer.parseInt(userInput));
+                }
+                System.out.println(lottoNumbers);
+                computer.checkDuplication(lottoNumbers);
+
+                isRunning = false;
+
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
 
     }
 }

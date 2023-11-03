@@ -12,7 +12,8 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputView.requestLottoPurchaseAmount();
-                OutputView.printPurchaseLottoAmount(calculateTicketQuantity(Parser.parsePurchaseAmount(userInput)));
+                int lottoQuantity = calculateLottoQuantity(Parser.parsePurchaseAmount(userInput));
+                OutputView.printPurchaseLottoAmount(lottoQuantity);
                 break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
@@ -20,7 +21,7 @@ public class LottoGame {
         }
     }
 
-    private int calculateTicketQuantity(int purchaseAmount) {
+    private int calculateLottoQuantity(int purchaseAmount) {
         Validator.validateDivisibleBy1000(purchaseAmount);
         return purchaseAmount / LOTTO_PRICE;
     }

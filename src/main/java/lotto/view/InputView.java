@@ -24,11 +24,11 @@ public class InputView {
         return splitWord(numbers);
     }
 
-    public static String readBonusNumber() {
+    public static int readBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         validateBlank(bonusNumber);
-        return bonusNumber;
+        return validateInteger(bonusNumber);
     }
 
     private static void validateBlank(String input) {

@@ -45,6 +45,7 @@
 - [ ] Player 와 Lotties 를 통해 수익률 계산 - LottoService
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto
+- [x] 로또의 총 개수를 반환하기 - LottoDto
 
 # View
 - [ ] 로또 구입 금액 입력 - InputView

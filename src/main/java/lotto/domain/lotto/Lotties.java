@@ -16,6 +16,6 @@ public class Lotties {
     }
 
     public LottoDto makeLottoDto() {
-        return new LottoDto(lotties);
+        return new LottoDto(lotties, lotties.size());
     }
 }

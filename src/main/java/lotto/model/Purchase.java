@@ -5,7 +5,14 @@ public class Purchase {
     private String purchasingAmount;
     public Purchase(String purchasingAmount) {
         this.purchasingAmount = purchasingAmount;
+        validateNum(this.purchasingAmount);
         validateUnit(this.purchasingAmount);
+    }
+
+    public void validateNum(String purchasingAmount) {
+        if (purchasingAmount.matches("^[a-zA-Z]*$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
     }
 
     public void validateUnit(String purchasingAmount) {

@@ -14,7 +14,7 @@
 - [x] 로또 구입 금액을 보유 금액, 사용금액에 저장 및 업데이트 - PlayerWallet
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 로또 구입 금액에 따라 Ticket 을 발급해줌 - LottoTicket
-- [ ] 랜덤 로또를 발급함 - LottoTicket
+- [x] 티켓 수 만큼 랜덤 로또로 변경하며 로또를 lotties 에 넣음 - LottoTicket
 - [ ] 로또를 구매함 - Player
 - [ ] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
 - [ ] 수익률을 저장함 - RateOfReturn

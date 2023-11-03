@@ -17,4 +17,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    // numbers 반환
+    public List<Integer> lottoNumbers(){
+        return this.numbers;
+    }
 }

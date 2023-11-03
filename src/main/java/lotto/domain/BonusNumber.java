@@ -9,4 +9,10 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] : 정답 번호와 동일한 보너스 번호가 있으면 안됩니다.");
         }
     }
+
+    public void validateBonusNumberSize(int bonusNumber) {
+        if(bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] : 보너스 번호는 1~45 사이 입니다.");
+        }
+    }
 }

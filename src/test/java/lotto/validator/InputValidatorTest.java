@@ -47,11 +47,13 @@ class InputValidatorTest {
         @Test
         void Winning_number_is_matched_winning_numbers_regex() {
             // given
-            String input = "1,2,3,4,5,6";
+            String input1 = "1,2,3,4,5,6";
+            String input2 = "100,200,300,400,500,600";
 
             // when
             // then
-            InputValidator.validateWinningNumbers(input);
+            InputValidator.validateWinningNumbers(input1);
+            InputValidator.validateWinningNumbers(input2);
         }
 
         @DisplayName("당첨 번호에 숫자 이외에 문자가 들어있다면 예외 발생")

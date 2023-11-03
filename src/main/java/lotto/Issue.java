@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Issue {
     private int lottoQuantity;
-    public static List<Lotto> lottoGroup;
+    public static List<List<Integer>> lottoGroup;
 
     void inputCash() {
         int cash = Integer.parseInt(Console.readLine());
@@ -23,7 +23,8 @@ public class Issue {
             Lotto transfer = new Lotto(getNumbers());
 
             transfer.sort();
-            lottoGroup.add(transfer);
+            List<Integer> convertedLotto = transfer.convertType();
+            lottoGroup.add(convertedLotto);
         }
     }
 

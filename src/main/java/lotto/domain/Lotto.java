@@ -28,6 +28,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateSize(int size) {
         if (size != LOTTO_COUNT) {
             throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);

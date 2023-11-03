@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_LENGTH = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,8 +13,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateLengthCheck(numbers);
             throw new IllegalArgumentException();
+        }
+
+    private void validateLengthCheck(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(String.format("로또 번호의 갯수 %d개를 만족해야합니다.",LOTTO_LENGTH));
         }
     }
 

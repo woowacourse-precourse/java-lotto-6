@@ -16,9 +16,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         Validation.validateSixLottoNumbers(numbers);
-        Validation.validateDuplicatedNumber(numbers);
+        Validation.validateDuplicatedSixNumber(numbers);
     }
-
+    public void setBonusNum(int bonusNum) {
+        Validation.validateDuplicatedBonusNum(bonusNum, numbers);
+        numbers.add(bonusNum);
+    }
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {

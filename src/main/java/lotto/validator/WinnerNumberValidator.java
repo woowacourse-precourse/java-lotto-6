@@ -1,13 +1,17 @@
 package lotto.validator;
 
+import java.util.List;
 import lotto.message.ExceptionMessage;
 import lotto.util.LottoUtil;
 
 public class WinnerNumberValidator {
 
+    private static final int LOTTO_SIZE = 6;
+
     public static void validate(String inputNumbers) {
         validateDividedByComma(inputNumbers);
         validateNaturalNumber(inputNumbers);
+        validateNumberLength(inputNumbers);
     }
 
     private static void validateDividedByComma(String inputNumbers) {
@@ -24,4 +28,11 @@ public class WinnerNumberValidator {
         }
     }
 
+    private static void validateNumberLength(String inputNumbers) {
+        List<Integer> numbers = LottoUtil.convert(inputNumbers);
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ExceptionMessage.WRONG_NUMBER_LENGTH.getMessage());
+        }
+    }
+    
 }

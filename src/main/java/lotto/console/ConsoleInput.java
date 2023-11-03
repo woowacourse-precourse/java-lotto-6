@@ -1,5 +1,6 @@
 package lotto.console;
 
+import static lotto.constant.LottoMessage.REQUEST_INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.LottoMessage.REQUEST_INPUT_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.constant.LottoMessage.REQUEST_INPUT_WINNING_NUMBER_MESSAGE;
 
@@ -24,6 +25,16 @@ public class ConsoleInput {
         validateInput(winningNumber);
 
         return winningNumber;
+    }
+
+    public static String readBonusNumber() {
+        System.out.println(REQUEST_INPUT_BONUS_NUMBER_MESSAGE);
+
+        String bonusNumber = Console.readLine();
+
+        validateInput(bonusNumber);
+
+        return bonusNumber;
     }
 
     private static void validateInput(String input) {

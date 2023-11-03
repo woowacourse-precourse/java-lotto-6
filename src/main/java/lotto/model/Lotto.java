@@ -39,4 +39,8 @@ public class Lotto {
     public String toString() {
         return numbers.stream().map(String::valueOf).collect(Collectors.joining(LOTTO_NUMBERS_DELIMITER));
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

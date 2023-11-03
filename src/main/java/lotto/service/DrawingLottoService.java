@@ -5,6 +5,7 @@ import static lotto.constant.LottoMessage.LOTTO_WINNING_NUMBERS_DELIMITER;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 
 public class DrawingLottoService {
     public Lotto createWinningNumber(String inputWinningNumber) {
@@ -30,6 +31,24 @@ public class DrawingLottoService {
             return Stream.of(inputWinningNumber.split(LOTTO_WINNING_NUMBERS_DELIMITER)).map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호은 숫자만 입력이 가능합니다.");
+        }
+    }
+
+    public WinningLotto createWinningLotto(Lotto winningNumbers, String inputBonusNumber) {
+        validateBonusNumber(inputBonusNumber);
+
+        return new WinningLotto(winningNumbers, Integer.parseInt(inputBonusNumber));
+    }
+
+    private void validateBonusNumber(String inputBonusNumber) {
+        isNumber(inputBonusNumber);
+    }
+
+    private void isNumber(String inputBonusNumber) {
+        try {
+            Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력이 가능합니다.");
         }
     }
 }

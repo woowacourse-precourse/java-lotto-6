@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningNumbers {
+public class WinningNumbers implements UserInput {
     public static List<Integer> numbers = new ArrayList<>();
 
     public void read() {

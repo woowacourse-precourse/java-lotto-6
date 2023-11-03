@@ -2,7 +2,7 @@ package lotto.readUserInput;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class BonusNumbers {
+public class BonusNumbers implements UserInput {
     public static int number;
 
     public void read() {

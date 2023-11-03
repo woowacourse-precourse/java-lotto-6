@@ -2,16 +2,19 @@ package lotto.readUserInput;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class PurchaseAmount {
+public class PurchaseAmount implements UserInput {
     public static int lottoQuantity;
 
-    public void readMoney() {
-        String money = Console.readLine();
-        moneyToLotto(money);
+    public void read() {
+        lottoQuantity = singleTypeConversion(userInput());
     }
 
-    public void moneyToLotto(String money) {
-        lottoQuantity = Integer.parseInt(money);
+    public String userInput() {
+        return Console.readLine();
+    }
+
+    public int singleTypeConversion(String money) {
+        return Integer.parseInt(money);
     }
 
 }

@@ -16,4 +16,20 @@ class LottoStoreTest {
 
         assertThat(lottos.size()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액이 1,000원보다 작다면 예외가 발생한다.")
+    void lessThanLottoPrice() {
+        assertThatThrownBy(() -> LottoStore.buyLotto(900))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 구입 금액은 최소 1000원 이상이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    void invalidPurchaseAmount() {
+        assertThatThrownBy(() -> LottoStore.buyLotto(1100))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 구입 금액은 1000원 단위어야 합니다.");
+    }
 }

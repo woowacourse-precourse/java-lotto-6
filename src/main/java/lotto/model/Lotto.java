@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,5 +18,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    // 오름차순으로 바꿔주는 로직 구현
+    public void sortDesc() {
+        Collections.sort(this.numbers);
+    }
 }

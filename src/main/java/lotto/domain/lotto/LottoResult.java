@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 public enum LottoResult {
-    FIRST(6), SECOND(5), THIRD(5), FOURTH(4), FIFTH(3);
+    FIRST(6), SECOND(5), THIRD(5), FOURTH(4), FIFTH(3), NONE(0);
 
     private final int numberOfSame;
 
@@ -24,7 +24,7 @@ public enum LottoResult {
                 .filter(lottoResult -> lottoResult != exceptLottoResult)
                 .filter(checkSameNumberOfSame(numberOfSame))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElse(NONE);
     }
 
     private static Predicate<LottoResult> checkSameNumberOfSame(int numberOfSame) {

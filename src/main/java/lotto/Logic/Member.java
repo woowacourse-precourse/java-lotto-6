@@ -1,13 +1,13 @@
-package lotto;
+package lotto.Logic;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Logic.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
     private final static int dividePrice=1000;
-    private final static int randomness=6;
     int price;
     int count;
     List<Lotto> memberLotto=new ArrayList<>();
@@ -26,7 +26,7 @@ public class Member {
 
         createMemberLotto(this.count);
     }
-    public void setPrice(String prices){ //숫자인지 판단
+    public void setPriceValid(String prices){ //숫자인지 판단
         try{
             this.price=Integer.parseInt(prices);
 

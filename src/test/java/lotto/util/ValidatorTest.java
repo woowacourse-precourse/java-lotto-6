@@ -32,4 +32,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_THOUSAND_UNIT);
     }
+
+
+    @ParameterizedTest
+    @DisplayName("로또 금액 입력 유효성 성공 테스트")
+    @ValueSource(strings = {"1000", "10000", "5000"})
+    void validInputsTest1(String input) {
+        Assertions.assertThatCode(() -> Validator.isValidPurchaseAmount(input))
+                .doesNotThrowAnyException();
+    }
 }

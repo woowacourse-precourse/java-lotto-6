@@ -24,9 +24,8 @@ public class LottoHandler {
     }
 
     void run() {
-        Lottos lottos = getLottos();
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        Money money = getMoney();
+        Lottos lottos = lottoManager.createLottos(money.getMoney());
 
         LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 
@@ -48,8 +47,8 @@ public class LottoHandler {
         return reader.inputWinningNumbers();
     }
 
-    private Lottos getLottos() {
+    private Money getMoney() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return lottoManager.createLottos(reader.inputMoney());
+        return reader.inputMoney();
     }
 }

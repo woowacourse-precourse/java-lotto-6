@@ -12,4 +12,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean containBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

@@ -31,8 +31,7 @@ class LottoTest {
     @Test
     void distinctLottoNumber() {
         // when
-        Lotto lotto = Lotto.createLotto();
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = Lotto.pickUniqueNumbersInRange();
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
 
         // then
@@ -45,7 +44,8 @@ class LottoTest {
     @Test
     void orderByAsc() {
         // when
-        Lotto lotto = Lotto.createLotto();
+        List<Integer> randomNumbers = Lotto.pickUniqueNumbersInRange();
+        Lotto lotto = Lotto.createLotto(randomNumbers);
         List<Integer> numbers = lotto.getNumbers();
 
         // then
@@ -60,8 +60,7 @@ class LottoTest {
     @Test
     void lottoNumberRange() {
         // when
-        Lotto lotto = Lotto.createLotto();
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = Lotto.pickUniqueNumbersInRange();
 
         // then 1
         assertThat(numbers.get(0)).isGreaterThan(0);

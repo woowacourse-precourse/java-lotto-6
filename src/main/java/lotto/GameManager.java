@@ -19,23 +19,24 @@ public class GameManager {
     }
 
     public void startGame() {
-        LottoGame lottoGame = getLottoGame();
-        WinningLotto winningLotto = getWinningLotto();
+        LottoGame lottoGame = prepareLottoGame();
+        WinningLotto winningLotto = prepareWinningLotto();
         WinningResult winningResult = playGame(lottoGame, winningLotto);
         endGame(winningResult, lottoGame);
     }
 
-    private LottoGame getLottoGame() {
+    private LottoGame prepareLottoGame() {
         messagePrinter.printBuyingPriceMessage();
         int buyingPrice = messageReceiver.receiveBuyingPrice();
         int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
         messagePrinter.printBuyingAmountMessage(buyingAmount);
         LottoGame lottoGame = LottoGame.createLottoGame(buyingAmount);
         messagePrinter.printLottoNumbers(lottoGame);
+
         return lottoGame;
     }
 
-    private WinningLotto getWinningLotto() {
+    private WinningLotto prepareWinningLotto() {
         messagePrinter.printWinningNumbersMessage();
         WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();
         messagePrinter.printBonusNumberMessage();

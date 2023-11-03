@@ -16,7 +16,8 @@ public final class LottoGame {
     public static LottoGame createLottoGame(final int buyingAmount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < buyingAmount; i++) {
-            Lotto lotto = Lotto.createLotto();
+            List<Integer> numbers = Lotto.pickUniqueNumbersInRange();
+            Lotto lotto = Lotto.createLotto(numbers);
             lottos.add(lotto);
         }
         return new LottoGame(lottos, buyingAmount);

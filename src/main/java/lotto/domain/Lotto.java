@@ -3,7 +3,9 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,11 +19,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        validateDuplication(numbers);
+    }
+
+    private void validateDuplication(final List<Integer> numbers) {
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     // TODO: 추가 기능 구현
-    public static Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static List<Integer> pickUniqueNumbersInRange() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public static Lotto createLotto(final List<Integer> numbers) {
         numbersOrderByAsc(numbers);
         return new Lotto(numbers);
     }

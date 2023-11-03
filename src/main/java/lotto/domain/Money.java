@@ -2,12 +2,20 @@ package lotto.domain;
 
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import static lotto.exception.Message.CANNOT_BUY_LOTTO_EXCEPTION;
+import static lotto.exception.Message.MONEY_CREATION_EXCEPTION;
 
 public class Money {
     private final long fee;
 
     public Money(long fee) {
+        if (lessThanZero(fee)) {
+            throw new IllegalArgumentException(MONEY_CREATION_EXCEPTION);
+        }
         this.fee = fee;
+    }
+
+    private boolean lessThanZero(long fee) {
+        return fee < 0;
     }
 
     public long toLottoCnt() {

@@ -10,15 +10,12 @@ public class LottoManager {
     private int price;
 
     public void start() {
-        boolean validateFlag = false;
+        try {
+            priceInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
 
-        while (!validateFlag) {
-            try {
-                priceInput();
-                validateFlag = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            start();
         }
     }
 

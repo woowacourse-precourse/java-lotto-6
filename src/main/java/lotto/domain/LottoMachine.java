@@ -22,6 +22,10 @@ public class LottoMachine {
         return instance;
     }
 
+    public void setWinLotto(WinLotto winLotto) {
+        this.winLotto = winLotto;
+    }
+
     /**
      * 입력 갯수 만큼 로또 번호 생성
      *
@@ -60,7 +64,13 @@ public class LottoMachine {
         Collections.sort(lottoNumber);
     }
 
-    public void setWinLotto(WinLotto winLotto) {
-        this.winLotto = winLotto;
+    /**
+     * 로또 당첨 확인
+     *
+     * @param otherLotto
+     * @return int
+     */
+    public LottoRank lottoWinningResult(Lotto otherLotto) {
+        return winLotto.lottoComparison(otherLotto);
     }
 }

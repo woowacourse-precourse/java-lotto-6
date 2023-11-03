@@ -65,13 +65,27 @@ public class Lotto {
      * 로또 번호에 입력 값 존재 여부 확인
      *
      * @param number
-     * @return
+     * @return boolean
      */
     public boolean isContainsNumber(int number) {
         return numbers.contains(number);
     }
 
-    public List<Integer> getNumbers() {
+    /**
+     * 로또 번호 비교
+     *
+     * @param otherLotto
+     * @return long
+     */
+    public long lottoNumberComparison(Lotto otherLotto) {
+        List<Integer> otherNumbers = otherLotto.getNumbers();
+        return numbers
+                .stream()
+                .filter(otherNumbers::contains)
+                .count();
+    }
+
+    private List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 

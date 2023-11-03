@@ -27,11 +27,20 @@ public class WinLotto {
         }
     }
 
-    public Lotto getWinLotto() {
-        return winLotto;
-    }
+    /**
+     * 로또 당첨 번호와 보너스 번호 비교
+     *
+     * @param otherLotto
+     * @return long
+     */
+    public LottoRank lottoComparison(Lotto otherLotto) {
+        int rank = (int) winLotto.lottoNumberComparison(otherLotto);
 
-    public int getBonus() {
-        return bonus;
+        // 2등 케이스 확인
+        if (rank == 5 && otherLotto.isContainsNumber(bonus)) {
+            rank = -1;
+        }
+        
+        return LottoRank.getResultByMatchedNumbers(rank);
     }
 }

@@ -8,7 +8,7 @@ public enum ErrorMessage {
     NUMBER_NOT_IN_RANGE_MESSAGE("올바른 범위의 수가 아닙니다."),
     DUPLICATED_MESSAGE("중복 값이 존재합니다.");
 
-    private static final String ERROR_HEADER = "[ERROR]";
+    private static final String ERROR_MESSAGE_HEADER = "[ERROR]";
     private final String message;
 
     ErrorMessage(String message) {
@@ -16,7 +16,7 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return ERROR_HEADER
+        return ERROR_MESSAGE_HEADER
                 + " "
                 + message;
     }

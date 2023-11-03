@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.exception.domain.lotto.LottoDuplicateNumException;
 import lotto.exception.domain.lotto.LottoNumRangeException;
 import lotto.exception.domain.lotto.LottoSizeException;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,25 +29,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateSizeOfNumbers(numbers);
-        validateDuplicateNumber(numbers);
-        validateRangeOfNumber(numbers);
-    }
-
-    private void validateSizeOfNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new LottoSizeException();
-        }
-    }
-
-    private void validateDuplicateNumber(List<Integer> numbers) {
-        long uniqueLottoNumSize = numbers.stream()
-                .distinct()
-                .count();
-
-        if (uniqueLottoNumSize != 6) {
-            throw new LottoDuplicateNumException();
-        }
+        LottoValidator.validateSize(numbers);
+        LottoValidator.validateDuplicateNumber(numbers);
+        LottoValidator.validateRangeOfNumber(numbers);
     }
 
     private void validateRangeOfNumber(List<Integer> numbers) {

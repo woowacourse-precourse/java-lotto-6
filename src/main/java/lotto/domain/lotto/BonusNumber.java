@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import lotto.exception.domain.bonusnumber.BonusNumberDuplicateException;
 import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
 import lotto.exception.domain.lotto.LottoNumRangeException;
+import lotto.validator.LottoValidator;
 
 public class BonusNumber {
     private static final Pattern bonusNumberRegex = Pattern.compile("\\d+");
@@ -26,7 +27,7 @@ public class BonusNumber {
 
     private void validate(String bonusNumber, WinningNumbers winningNumbers) {
         validateFormat(bonusNumber);
-        validateRange(bonusNumber);
+        LottoValidator.validateRangeOfNumber(parseBonusNum(bonusNumber));
         validateDuplicateNumber(bonusNumber, winningNumbers);
     }
 
@@ -36,14 +37,6 @@ public class BonusNumber {
 
         if (isInvalidFormat) {
             throw new BonusNumberFormatException();
-        }
-    }
-
-    private void validateRange(String bonusNumber) {
-        int bonusNum = parseBonusNum(bonusNumber);
-
-        if (isInvalidRange(bonusNum)) {
-            throw new LottoNumRangeException();
         }
     }
 

@@ -24,7 +24,7 @@ public class WinningStatisticsTest {
         }};
 
         // when
-        Map<LottoPrize, Integer> prizeCounter = winningStatistics.calculateWinningStatistics();
+        Map<LottoPrize, Integer> prizeCounter = winningStatistics.getPrizeCounter();
 
         // then
         assertThat(prizeCounter).isEqualTo(expected);

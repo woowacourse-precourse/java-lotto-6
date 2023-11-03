@@ -14,7 +14,7 @@ public class Money {
     }
 
     //TODO: 이 기능을 Money가 가지고 있는건 너무 많은 역할이라는 생각이 들어.
-    public Integer issueLottoTicket() {
+    public Integer calculateLottoCount() {
         return amount / LOTTO_PRICE;
     }
 

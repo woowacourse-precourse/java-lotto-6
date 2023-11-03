@@ -1,6 +1,6 @@
 # 기능 구현 목록
 - [x] 구매 금액을 입력한다. Money
-  - [x] 입력받은 금액으로 몇 개의 로또를 구매할 수 있는지 계산한다. Money#issueLottoTicket 
+  - [x] 입력받은 금액으로 몇 개의 로또를 구매할 수 있는지 계산한다. Money#calculateLottoCount 
   - [예외] 1,000원 단위가 아닌 경우
   - [예외] 0원인 경우
 

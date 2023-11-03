@@ -1,29 +1,27 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MoneyTest {
 
     @Test
     @DisplayName("입력받은 금액에 맞는 갯수의 lotto 티켓을 발행한다.")
-    void issueLottoTicket() {
+    void calculateLottoCount() {
         // given
         Integer amount = 14000;
         Money money = new Money(amount);
 
         // when
-        Integer issuedLottoTicket = money.issueLottoTicket();
+        Integer calculatedLottoCount = money.calculateLottoCount();
 
         // then
-        Integer expectTicketCount = 14;
-        assertThat(issuedLottoTicket).isEqualTo(expectTicketCount);
+        Integer expectLottoCount = 14;
+        assertThat(calculatedLottoCount).isEqualTo(expectLottoCount);
     }
 
     @ParameterizedTest

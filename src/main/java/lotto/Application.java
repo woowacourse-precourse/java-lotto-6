@@ -1,7 +1,13 @@
 package lotto;
 
+import static lotto.Notice.*;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        View.printMessage(ASK_BUDGET);
+        String LottoBudgetInput = View.getUserInput();
+        System.out.println("LottoBudgetInput = " + LottoBudgetInput);
     }
+
 }

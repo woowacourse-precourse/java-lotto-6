@@ -1,11 +1,8 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import domain.Lottos;
 import view.constant.ConstantMessage;
-
-import java.util.List;
 
 public class LottoView {
     // InputView

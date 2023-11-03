@@ -16,15 +16,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
 
-    void setInputValues(String input) {
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-    }
 
     @AfterEach
     void closeInputStream() {
         Console.close();
     }
+
+    void setInputValues(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+    }
+
 
     @DisplayName("로또 구매 금액의 입력이 공백이 입력되면 예외가 발생한다.")
     @Test

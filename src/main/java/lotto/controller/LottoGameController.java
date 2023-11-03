@@ -7,8 +7,10 @@ import lotto.dto.response.LottoGroupDto;
 import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.LottoGroup;
+import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
 import lotto.model.NumberGenerator;
+import lotto.model.TotalPrize;
 import lotto.model.UserMoney;
 import lotto.model.WinningTicket;
 import lotto.util.RetryUtil;
@@ -33,6 +35,8 @@ public class LottoGameController {
 
         Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
         WinningTicket winningTicket = RetryUtil.retryOnFail(this::createWinningTicket, winningLotto);
+        LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningTicket);
+        TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
 
     }
 

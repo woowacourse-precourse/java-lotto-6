@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class LottoGroup {
@@ -20,6 +23,14 @@ public final class LottoGroup {
         return Stream.generate(() -> Lotto.create(numberGenerator))
                 .limit(lottoCount.getCount())
                 .toList();
+    }
+
+    public TotalPrize calculateTotalPrize(WinningTicket winningTicket) {
+        Map<LottoPrize, Long> totalPrize = lottos.stream()
+                .map(lotto -> lotto.calculatePrize(winningTicket))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        return TotalPrize.from(totalPrize);
     }
 
     public List<Lotto> getLottos() {

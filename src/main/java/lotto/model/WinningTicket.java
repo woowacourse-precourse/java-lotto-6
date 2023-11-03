@@ -21,4 +21,12 @@ public class WinningTicket {
     public static WinningTicket of(Lotto winningLotto, LottoNumber bonusNumber) {
         return new WinningTicket(winningLotto, bonusNumber);
     }
+
+    public boolean containsLottoNumber(LottoNumber number) {
+        return winningLotto.contains(number);
+    }
+
+    public boolean containsBonusNumber(LottoNumber number) {
+        return bonusNumber.equals(number);
+    }
 }

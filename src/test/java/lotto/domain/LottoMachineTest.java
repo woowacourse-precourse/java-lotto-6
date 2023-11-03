@@ -33,6 +33,14 @@ class LottoMachineTest {
                 .hasMessageContaining("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
     }
 
+    @DisplayName("당첨 번호 중 빈 값이 있으면 예외가 발생한다.")
+    @Test
+    void createWiningNumbersByNoValue() {
+        assertThatThrownBy(() -> lottoMachine.drawWiningNumbers("1,2,3,,5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력되지 않은 번호가 있습니다.");
+    }
+
     @DisplayName("당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createWiningNumbersByOverSize() {

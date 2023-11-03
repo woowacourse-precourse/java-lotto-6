@@ -9,6 +9,11 @@ import lotto.model.Result;
 
 public class Model {
     public static final int LOTTO_PRICE = 1000;
+    public static final long MATCH_PRIZE_3 = 5000;
+    public static final long MATCH_PRIZE_4 = 50000;
+    public static final long MATCH_PRIZE_5 = 1500000;
+    public static final long MATCH_PRIZE_5_AND_BONUS = 30000000;
+    public static final long MATCH_PRIZE_6 = 2000000000;
 
     public List<Lotto> buyLotto(int payment) {
         Utility utility = new Utility();
@@ -61,7 +66,7 @@ public class Model {
    }
 
     public long getProfit(int[][] totalResult) {
-        long sum = 5000L * totalResult[3][0] + 50000L * totalResult[4][0] + 1500000L * totalResult[5][0] + 30000000L * totalResult[5][1] + 2000000000L * totalResult[6][0];
+        long sum = MATCH_PRIZE_3 * totalResult[3][0] + MATCH_PRIZE_4 * totalResult[4][0] + MATCH_PRIZE_5 * totalResult[5][0] + MATCH_PRIZE_5_AND_BONUS * totalResult[5][1] + MATCH_PRIZE_6 * totalResult[6][0];
         return sum;
     }
 }

@@ -27,7 +27,7 @@ public class UserLotteriesFactory {
         return userLotteries;
     }
 
-    private Integer calculateCountOfPurchasedLotto(Integer purchaseAmount) {
+    public static Integer calculateCountOfPurchasedLotto(Integer purchaseAmount) {
         return purchaseAmount / 1000;
     }
 }

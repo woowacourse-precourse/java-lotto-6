@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,5 +25,9 @@ public class Utils {
         return strings.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public static List<Integer> getRandomNumbers(int startInclusive, int endInclusive, int count) {
+        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
 }

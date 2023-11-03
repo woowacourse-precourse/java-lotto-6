@@ -55,6 +55,8 @@ public class Model {
             return;
         }
 
-        totalResult[match][0]++;
+        if(match >=3) {
+            totalResult[match][0]++;
+        }
    }
 }

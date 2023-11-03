@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.util.Constant.LOTTO_NUMBER_COUNT;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.lotto.ExistDuplicatedNumberException;
 import lotto.exception.lotto.InvalidLottoNumberException;
@@ -42,5 +43,9 @@ public class Lotto {
                 .distinct()
                 .count();
         return distinctCount != numbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

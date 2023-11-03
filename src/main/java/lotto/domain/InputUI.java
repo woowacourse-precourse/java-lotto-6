@@ -2,10 +2,20 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputUI {
     private final int ERR_NUM = Integer.MIN_VALUE;
+    private final int INIT_NUM = 0;
     private int bonusNum;
     private int cost;
+    private List<Integer> winningNums;
+
+    public InputUI() {
+        this.bonusNum = INIT_NUM;
+        this.cost = INIT_NUM;
+    }
 
     public void purchase() {
         try {
@@ -51,6 +61,40 @@ public class InputUI {
             return bonusNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
+        }
+    }
+
+    public void winnings() {
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String inputWinnings = Console.readLine();
+            String[] parsedWinnings = inputWinnings.split(",");
+            winningNums = checkValidWinnings(parsedWinnings);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+
+    }
+
+    public List<Integer> checkValidWinnings(String[] parsedWinnings) {
+        try {
+            List<Integer> winningNum = new ArrayList<>();
+            for (String element : parsedWinnings) {
+                int winning = Integer.parseInt(element);
+                checkExceptionWinning(winning);
+                winningNum.add(winning);
+            }
+            return winningNum;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
+
+    public void checkExceptionWinning(int winning) {
+        if (winning < 0 || winning > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProgramManager {
@@ -14,7 +15,7 @@ public class ProgramManager {
 
 		int price = getPrice();
 		showAmount(price);
-		List<Lotto> lottoList = showBuyLotto();
+		List<Lotto> lottoList = showBuyLotto(price);
 		Customer customer = new Customer(price, lottoList);
 
 		getLottoNumber();
@@ -31,11 +32,19 @@ public class ProgramManager {
 		outputView.showAmount(price/1000);
 	}
 
+	List<Lotto> showBuyLotto(int price) {
+		outputView.showAmount(price/1000);
 
+		List<Lotto> lottoList = new ArrayList<>();
+		LottoHost lottoHost = new LottoHost();
 
-	List<Lotto> showBuyLotto() {
+		List<Integer> numberList = lottoHost.makeRandomLottoNumber();
+		Lotto lotto = new Lotto(numberList);
+		lottoList.add(lotto);
 
-		return null;
+		outputView.showBuyLottoNumber(lottoList);
+
+		return lottoList;
 	}
 
 	void getLottoNumber() {

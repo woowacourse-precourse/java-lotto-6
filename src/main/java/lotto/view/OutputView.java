@@ -6,6 +6,7 @@ public class OutputView {
 
     private static final String REQUEST_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String REQUEST_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
 
     private void printWithNewLine(String s) {
@@ -22,6 +23,9 @@ public class OutputView {
 
     public void printRequestWinningNumberMessage() {
         printWithNewLine(REQUEST_WINNING_NUMBER_MESSAGE);
+    }
+    public void printRequestBonusNumberMessage() {
+        printWithNewLine(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 
     public void printLottoCount(int lottoCount) {

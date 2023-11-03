@@ -12,9 +12,14 @@ public class InputView {
         return Console.readLine();
     }
 
+    public int getNumberInRange(int min, int max) {
+        String input = readLine();
+        InputVerifier.validateIsNumberInRange(input, min, max);
+        return Integer.parseInt(input);
+    }
+
     public int getDivisibleNumberInRange(int min, int max, int divisor) {
         String input = readLine();
-        InputVerifier.validateIsNumber(input);
         InputVerifier.validateIsNumberInRange(input, min, max);
         InputVerifier.validateIsDivisibleNumber(input, divisor);
         return Integer.parseInt(input);

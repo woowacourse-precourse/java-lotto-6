@@ -26,6 +26,9 @@ public class LottoController {
 
         outputView.printRequestWinningNumberMessage();
         Lotto winningLotto = getWinningLotto();
+
+        outputView.printRequestBonusNumberMessage();
+        int bonusNumber = getBonusNumber();
     }
 
     public int getPurchasePrice() {
@@ -54,6 +57,16 @@ public class LottoController {
                 List<Integer> winningNumbers = inputView.getNumbersSplitByComma(Lotto.LOTTO_NUMBER_MIN,
                         Lotto.LOTTO_NUMBER_MAX, Lotto.LOTTO_NUMBERS_SIZE);
                 return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public int getBonusNumber() {
+        while (true) {
+            try {
+                return inputView.getNumberInRange(Lotto.LOTTO_NUMBER_MIN, Lotto.LOTTO_NUMBER_MAX);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

@@ -7,17 +7,20 @@ public class GeneratedLottoOutputView {
     private final List<Lotto> lottos;
 
     private final Integer lottoNumber;
-
-
+    
     public GeneratedLottoOutputView(List<Lotto> lottos) {
         this.lottos = lottos;
         this.lottoNumber = lottos.size();
     }
 
     public void printGeneratedLottos() {
-        System.out.println(lottoNumber + "개를 구매했습니다.");
+        printPhrasedLotto(lottoNumber);
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public static void printPhrasedLotto(Integer count) {
+        System.out.println(count + "개를 구매했습니다.");
     }
 }

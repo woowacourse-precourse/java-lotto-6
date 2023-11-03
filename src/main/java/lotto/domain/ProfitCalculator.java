@@ -1,19 +1,24 @@
 package lotto.domain;
 
+import lotto.constant.NumberConstants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constant.NumberConstants.*;
+
 public class ProfitCalculator {
-    private final LotteryChecker lotteryChecker;
     private int totalSum;
 
-    public ProfitCalculator(LotteryChecker lotteryChecker) {
-        this.lotteryChecker = lotteryChecker;
-    }
 
     public void calculate(List<Integer> prize) {
-        List<Integer> price = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
+        List<Integer> price = new ArrayList<>(Arrays.asList(FIFTH_PRIZE_MONEY.getValue(),
+                SECOND_PRIZE_MONEY.getValue(),
+                THIRD_PRIZE_MONEY.getValue(),
+                FORTH_PRIZE_MONEY.getValue(),
+                FIRST_PRIZE_MONEY.getValue()));
+
         for (int i = prize.size() - 1; i >= 0; i--) {
             totalSum += price.get(i) * prize.get(i);
         }

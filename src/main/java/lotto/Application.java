@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.DisplayMessages;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,7 +15,7 @@ public class Application {
         int amount = lottoMachine.purchaseLotto();
         WinningNumbers winningNumbers = new WinningNumbers();
         LotteryChecker lotteryChecker = new LotteryChecker();
-        ProfitCalculator profitCalculator = new ProfitCalculator(lotteryChecker);
+        ProfitCalculator profitCalculator = new ProfitCalculator();
 
         while (true) {
             if (lottoMachine.calculateAmount(amount) != -1) {
@@ -49,6 +50,8 @@ public class Application {
         profitCalculator.calculate(integers);
         int totalSum = profitCalculator.getTotalSum();
         System.out.println("총 상금 : " + totalSum);
+
+        DisplayMessages.MATCH_COUNT.format();
 
         double v = profitCalculator.earnRate(totalSum, amount);
         System.out.println("총 수익률은 " + v + "%입니다.");

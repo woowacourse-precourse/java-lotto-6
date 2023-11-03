@@ -31,25 +31,43 @@ public class OutputView {
     }
 
     public static void printStatistics(Map<Rank, Integer> statistics, int amount) {
+        printHeader();
+        long totalPrize = calculateAndPrintRankDetails(statistics);
+        printEarningRate(totalPrize, amount);
+    }
+
+    private static void printHeader() {
         System.out.println("당첨 통계");
         System.out.println("---------");
+    }
 
+    private static long calculateAndPrintRankDetails(Map<Rank, Integer> statistics) {
         long totalPrize = 0;
 
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
-                System.out.printf("%d개 일치", rank.getCountOfMatch());
-
-                if (rank == Rank.SECOND) {
-                    System.out.print(", 보너스 볼 일치");
-                }
-
-                System.out.printf(" (%s원) - %d개\n", String.format("%,d", rank.getPrize()), statistics.get(rank));
-
-                totalPrize += (long) rank.getPrize() * statistics.get(rank);
+                totalPrize += printRankDetail(rank, statistics.get(rank));
             }
         }
 
+        return totalPrize;
+    }
+
+    private static long printRankDetail(Rank rank, Integer count) {
+        long prize = rank.getPrize();
+
+        System.out.printf("%d개 일치", rank.getCountOfMatch());
+
+        if (rank == Rank.SECOND) {
+            System.out.print(", 보너스 볼 일치");
+        }
+
+        System.out.printf(" (%s원) - %d개\n", String.format("%,d", prize), count);
+
+        return prize * count;
+    }
+
+    private static void printEarningRate(long totalPrize, int amount) {
         double earningRate = ((double) totalPrize / amount) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
     }

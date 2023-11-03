@@ -21,7 +21,7 @@ public class WinningNumber extends Lotto {
     }
 
     private void bonusNumberUnderOverValidate(int bonus) {
-        if (bonus < 0 || bonus > 45) {
+        if (bonus < 1 || bonus > 45) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

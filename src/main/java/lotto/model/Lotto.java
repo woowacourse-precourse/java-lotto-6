@@ -22,7 +22,7 @@ public class Lotto {
     }
 
     private void lottoNumberUnderOverValidate(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 0 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

@@ -19,8 +19,8 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String bonusNumberMessage() {
+    public int bonusNumberMessage() {
         showMessage(InputMessage.GET_BONUS_NUMBER.getValue());
-        return Console.readLine();
+        return Utils.convertStringToInteger(Console.readLine());
     }
 }

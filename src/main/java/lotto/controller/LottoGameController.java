@@ -18,5 +18,8 @@ public class LottoGameController {
         Customer customer = Customer.createCustomer(payment);
         customer.buyLottos();
         customer.printInfoOfLottos();
+
+        System.out.println(GuideMessage.GET_TARGET_NUMBERS_REQUEST_MESSAGE);
+        inputHandler.getTargetNumbers();
     }
 }

@@ -28,6 +28,14 @@ public class Prize {
         bonusNumber = Integer.parseInt(number);
     }
 
+    void separateNumbers() {
+        for (int i = 0; i < Issue.lottoGroup.size(); i++) {
+            separatedLotto = Issue.lottoGroup.get(i);
+
+            checkNumbers();
+        }
+    }
+
     void checkNumbers() {
         for (int j = 0; j < separatedLotto.size(); j++) {
             if (separatedLotto.contains(luckyNumber.get(j))) {

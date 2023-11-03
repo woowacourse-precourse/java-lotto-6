@@ -2,7 +2,7 @@ package lotto.domain.money;
 
 public record LottoMoney(int value) {
 
-    private static final String INVALID_MONEY_VALUE = "[ERROR] 금액은 천원이상 만원 이하의 1000원 단위의 금액이어야 합니다.";
+    private static final String INVALID_MONEY_VALUE = "[ERROR] 금액은 천원 이상 만원 이하의 1000원 단위의 금액이어야 합니다.";
 
     public static LottoMoney from(final int value) {
         validate(value);

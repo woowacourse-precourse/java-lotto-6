@@ -13,6 +13,6 @@ class LottoMoneyTest {
     @ValueSource(ints = {999, 900, 10001, 11000})
     void createMoney_exception_withInvalidValue(final int invalidValue) {
         assertThatIllegalArgumentException().isThrownBy(() -> LottoMoney.from(invalidValue))
-                .withMessageContaining("[ERROR] 금액은 천원이상 만원 이하의 1000원 단위의 금액이어야 합니다.");
+                .withMessageContaining("[ERROR] 금액은 천원 이상 만원 이하의 1000원 단위의 금액이어야 합니다.");
     }
 }

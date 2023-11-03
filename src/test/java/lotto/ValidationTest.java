@@ -3,32 +3,49 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ValidationTest {
 
     @Test
-    void isInRange() {
+    void lottoNumber() {
         // given
-        List<Integer> case1 = new ArrayList<>(List.of(1, 1, 45));
-        List<Integer> case2 = new ArrayList<>(List.of(45, 1, 45));
-        List<Integer> case3 = new ArrayList<>(List.of(0, 1, 45));
-        List<Integer> case4 = new ArrayList<>(List.of(46, 1, 45));
+        String case1 = "1,2,3,4,5,6";
+        String case2 = "";
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            Validation.isInRange(case1.get(0), case1.get(1), case1.get(2));
+            Validation.lottoNumber(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            Validation.isInRange(case2.get(0), case2.get(1), case2.get(2));
+            Validation.lottoNumber(case2);
+        });
+
+        // then
+        assertThat(result1).as("case1").doesNotThrowAnyException();
+        assertThat(result2).as("case2").isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void isInRange() {
+        // given
+        int case1 = 1;
+        int case2 = 45;
+        int case3 = 0;
+        int case4 = 46;
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            Validation.isInRange(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            Validation.isInRange(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            Validation.isInRange(case3.get(0), case3.get(1), case3.get(2));
+            Validation.isInRange(case3);
         });
         Throwable result4 = catchThrowable(() -> {
-            Validation.isInRange(case4.get(0), case4.get(1), case4.get(2));
+            Validation.isInRange(case4);
         });
 
         // then
@@ -41,19 +58,19 @@ class ValidationTest {
     @Test
     void isValidUnit() {
         // given
-        List<Integer> case1 = new ArrayList<>(List.of(10000, 1000));
-        List<Integer> case2 = new ArrayList<>(List.of(100, 1000));
-        List<Integer> case3 = new ArrayList<>(List.of(0, 1000));
+        int case1 = 10000;
+        int case2 = 100;
+        int case3 = 0;
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            Validation.isValidUnit(case1.get(0), case1.get(1));
+            Validation.isValidUnit(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            Validation.isValidUnit(case2.get(0), case2.get(1));
+            Validation.isValidUnit(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            Validation.isValidUnit(case3.get(0), case3.get(1));
+            Validation.isValidUnit(case3);
         });
 
         // then
@@ -63,7 +80,7 @@ class ValidationTest {
     }
 
     @Test
-    void isNumber() {
+    void isNumeric() {
         // given
         String case1 = "123";
         String case2 = "abc";
@@ -74,22 +91,22 @@ class ValidationTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            Validation.isNumber(case1);
+            Validation.isNumeric(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            Validation.isNumber(case2);
+            Validation.isNumeric(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            Validation.isNumber(case3);
+            Validation.isNumeric(case3);
         });
         Throwable result4 = catchThrowable(() -> {
-            Validation.isNumber(case4);
+            Validation.isNumeric(case4);
         });
         Throwable result5 = catchThrowable(() -> {
-            Validation.isNumber(case5);
+            Validation.isNumeric(case5);
         });
         Throwable result6 = catchThrowable(() -> {
-            Validation.isNumber(case6);
+            Validation.isNumeric(case6);
         });
 
         // then

@@ -14,7 +14,7 @@ public class LottoTotalResult {
 
     private final Map<LottoRank, Integer> totalResult;
 
-    private LottoTotalResult(Map<LottoRank, Integer> result) {
+    private LottoTotalResult(final Map<LottoRank, Integer> result) {
         this.totalResult = result;
     }
 

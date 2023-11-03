@@ -13,13 +13,11 @@ public class Lotto {
 
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        List<LottoNumber> lottoNumbers = numbers.stream()
+        this.numbers = numbers.stream()
             .map(LottoNumber::new)
             .toList();
-
-        this.numbers = lottoNumbers;
     }
 
     public static Lotto createDefault() {
@@ -32,7 +30,7 @@ public class Lotto {
             NUMBER_COUNT_IN_LOTTO);
     }
 
-    private static void validate(List<Integer> numbers) {
+    private static void validate(final List<Integer> numbers) {
         validateDuplicate(numbers);
         validateSize(numbers);
     }

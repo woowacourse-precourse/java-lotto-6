@@ -18,11 +18,11 @@ public enum LottoRank {
         this.reward = reward;
     }
 
-    public boolean hasSameCount(long count) {
+    public boolean hasSameCount(final long count) {
         return count == equalCount;
     }
 
-    public boolean hasSameBonusBallCondition(boolean bonusBallCondition) {
+    public boolean hasSameBonusBallCondition(final boolean bonusBallCondition) {
         return bonusBallCondition == this.bonusBallCondition;
     }
 

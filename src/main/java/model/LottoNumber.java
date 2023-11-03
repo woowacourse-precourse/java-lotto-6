@@ -15,7 +15,7 @@ public class LottoNumber {
     }
 
     @Override
-    public boolean equals(Object value) {
+    public boolean equals(final Object value) {
         if (value == this) {
             return true;
         }

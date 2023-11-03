@@ -10,5 +10,9 @@ public class InputProcessor {
       return purchaseAmount / LOTTO_PRICE;
     }
 
+    private String[] lottoNumberSplit(String lottoWinningNumber) {
+      return lottoWinningNumber.split(" ,");
+    }
+
 }
 

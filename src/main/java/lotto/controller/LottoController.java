@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -15,7 +16,11 @@ public class LottoController {
         output.showMoneyInputMessage();
         input.readMoney();
 
-        makeLottoNumbers();
+        makeLotto();
+    }
+
+    private Lotto makeLotto() {
+        return new Lotto(makeLottoNumbers());
     }
 
     private List<Integer> makeLottoNumbers() {

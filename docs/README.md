@@ -1,27 +1,27 @@
 # 기능 구현 목록
 
 ## 입력(예외처리 필요)
-- [ ] 로또 구입 금액 : model#deposit
+- [ ] 로또 구입 금액 : GameData#budget
   - [ ] 1,000원 단위 입력
-- [ ] 당첨 번호
+- [ ] 당첨 번호 : GameData#winningNumbers
   - [ ] 번호는 쉼표(,)를 기준으로 구분
-- [ ] 보너스 번호
+- [ ] 보너스 번호 : GameData#bonusNumber
 
 ---
 
 ## 출력
 - ### 게임시작
-  - [ ] 구입 금액 입력 요청
+  - [ ] 구입 금액 입력 요청 : view#print#AskBudget
 - ### 게임진행
-  - [ ] 구매개수 출력
+  - [ ] 구매개수 출력 : view#print#LotteriesNumber
   - [ ] 로또별 **무작위** 선정된 **중복되지** 않은 번호 6개 출력
-  - [ ] 당첨 번호 입력 요청
-  - [ ] 보너스 번호 입력 요청
+  - [ ] 당첨 번호 입력 요청 : view#print#AskwinningNumbers
+  - [ ] 보너스 번호 입력 요청 : view#print#AskBonusNumber
 - ### 실행결과
-  - [ ] 당첨통계
+  - [ ] 당첨통계 : view#print#winningStatistics
     - [ ] 일치 개수 별 당첨금액, 당첨 개수 출력
     - [ ] (일치 개수)개 일치 ((당첨금액)) - (당첨 개수)개
-  - [ ] 총 수익률 출력
+  - [ ] 총 수익률 출력 view#print#
     - [ ] 총 수익률은 (수익율_소수점 둘째자리에서 반올림)%입니다.
 - ### 예외, 예외 메시지
   - "[ERROR]"로 시작
@@ -30,48 +30,75 @@
 ---
 
 ## 객체, 변수
-- [ ] 로또 구입 금액
-- [ ] 발행 로또 수량
-- [ ] 당첨 번호
-- [ ] 보너스 번호
-- [ ] 당첨내역
-  - [ ] 당첨금액 합계
-- [ ] 수익률
-  - [ ] 당첨금액 총합
+- [ ] 로또 구입 금액 : GameData#LotteriesBudget
+- [ ] 발행 로또 수량 : GameData#LotteriesNumber
+- [ ] 당첨 번호 : GameData#WinningNumbers
+- [ ] 보너스 번호 : GameData#BonusNumber
+- [ ] 당첨내역 : GameData
+  - [ ] 당첨금액 합계 : GameData#winningLotteryPrize
+- [ ] 수익률 : GameData#budgetPrizeRatio
+  - [ ] 당첨금액 총합 : GameData#winningLotteryPrizeTotal
   - [ ] 소수점 둘째 자리 반올림
 - [ ] 로또 클래스
-  - [ ] 발행 번호
-  - [ ] 당첨횟수
-  - [ ] 일치개수
-  - [ ] 등수(default = 0)
+  - [ ] 발행 번호 Lotto#Numbers
+  - [ ] 당첨여부 Lotto#winningFlag
+  - [ ] 일치개수 Lotto#sameNumberCount
+  - [ ] 등수(default = 0) Lotto#rankNumber
 - [ ] Java Enum -> RANK
   - [ ] 등수별 Enum(FIRST, SECOND, THIRD, FOURTH, FIFTH)
   - [ ] 등수별 당첨금액
   - [ ] 등수별 총 당첨금액 계산 메서드((당첨 로또 개수)*(당첨 금액))
+- [ ] Java Enum -> NOTICE
+  - [ ] 프린트 메시지
+    - [ ] 구입 금액 입력 요청 Notice#AskBudget
+    - [ ] 당첨 번호 입력 요청 Notice#AskWinningNumbers
+    - [ ] 보너스 번호 입력 요청 Notice#AskBonusNumber
+- [ ] Java Enum -> Error
+  - [ ] 당첨(보너스) 번호
+    - [ ] 숫자가 아닐 경우
+    - [ ] 쉼표 이외의 문자가 입력될 경우
+    - [ ] 중복된 숫자가 입력될 경우
+      - [ ] 당첨 번호 내 중복 숫자
+      - [ ] 당첨 번호와 보너스 번호 간 중복 숫자
+    - [ ] 범위 밖 숫자가 입력될 경우
+  - [ ] 로또 구입 금액
+    - 1,000이상
+      - 나누어 떨어지는 경우
+      - 나누어 떨어지지 않는 경우
+    - 1,000미만
+    - 숫자가 아닌 경우
 
 ---
 
 ## 메서드
-- [ ] 구입 금액 입력 요청 메시지 프린트
-- [ ] 구입 금액으로 로또 구매 개수 계산
-  - [ ] 로또 구매 개수 만큼 로또 객체 생성
-  - [ ] 생성된 객체별 로또 번호 6자리 생성(생성자 사용_난수)
-  - [ ] 일치개수, 등수 초기화
-- [ ] 당첨 번호 입력 요청 프린트
-  - [ ] gameData 객체 내 당첨 번호 컬렉션에 저장
-- [ ] 보너스 번호 입력 요청 프린트
-  - [ ] gameData 객체 내 보너스 번호 변수에 저장
+- [ ] 메시지 프린트(구입 금액 입력 요청) : view#print#AskBudget
+- [ ] 구입 금액으로 로또 구매 개수 계산 : GameData#calculateLotteryCount
+  - [ ] 로또 구매 개수 만큼 로또 객체 생성 : Controller#generateLotteries
+  - [ ] 생성된 객체별 로또 번호 6자리 생성(생성자 사용_난수) : Lotto#(constructor)
+  - [ ] 일치개수, 등수 초기화 : Lotto#(constructor)
+- [ ] 메시지 프린트(당첨 번호 입력 요청) : view#print#AskwinningNumbers
+  - [ ] 당첨 번호 입력받기 : GameData#getWinningNumbersInput
+  - [ ] 당첨 번호 전환(String[]->Integer) : Convertor#convertWinningNumbersType
+  - [ ] GameData 객체 내 당첨 번호 컬렉션에 저장 : GameData#setWinningNumbers
+- [ ] 메시지 프린트(보너스 번호 입력 요청) : view#print#AskBonusNumber
+  - [ ] 보너스 번호 입력받기 : GameData#getBonusNumberInput
+  - [ ] 보너스 번호 전환(String[]->Integer) : Convertor#convertBonusNumberType
+  - [ ] GameData 객체 내 보너스 번호 변수에 저장 : GameData#setBonusNumber
 - [ ] 로또별 생성 번호랑 당첨 번호+보너스 번호 비교
-  - [ ] 이중 for loop/foreach 생성 번호(i)가 당첨번호(j) 중에 있으면 일치개수++
-  - [ ] 5개가 아닌 경우
-    - [ ] 일치 개수별 등수 할당
-  - [ ] 5개인 경우
+  - [ ] 이중 for loop/foreach 생성 번호(i)가 당첨번호(j) 중에 있으면 일치개수++ : controller#getWinningCount
+  - [ ] 5개가 아닌 경우(normal case)
+    - [ ] 일치 개수별 등수 할당 GameData#setRank
+  - [ ] 5개인 경우(special case)
     - [ ] 해당 로또는 보너스 번호 찾는 loop 한번 더 돌리기(if->foreach)
-      - [ ] 보너스 일치하는 경우 로또객체 등수 변수에 2등값 할당
-      - [ ] 보너스 일치하지 않는 경우 3등값 할당
+      - [ ] 보너스 일치하는 경우 로또객체 등수 변수에 2등값 할당 GameData#setRank
+      - [ ] 보너스 일치하지 않는 경우 3등값 할당 GameData#setRank
+- [ ] 당첨통계 출력 메서드
+  - [ ] Rank.foreach
 - [ ] (등수별 당첨개수)*(당첨금액) 의 합계 / 로또개수 로 수익률 계산
-  - [ ] 당첨금액 총합 산출(Enum 사용)
-  - [ ] 수익률 계산
+  - [ ] 등수별 당첨금액 산출(Enum 사용) : Rank#calculatePrizeSumByRank
+  - [ ] 당첨금액 총합 산출(Enum 사용) : GameData#calCulateTotalPrize
+  - [ ] 수익률 계산 : GameData#calculateBudgetEarningRatio
+- [ ] 수익률 출력 메서드
 
 ---
 

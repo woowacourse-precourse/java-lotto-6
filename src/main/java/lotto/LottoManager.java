@@ -22,6 +22,20 @@ public class LottoManager {
         setCalculatorWinner();
         ConsoleView.print("보너스 번호를 입력해 주세요.");
         setCalculatorBonus();
+        checkWinner();
+        showStatistics();
+    }
+    public void checkWinner(){
+        for(Lotto l:lottos){
+            calculator.checkLotto(l);
+        }
+    }
+
+    public void showStatistics() {
+        ConsoleView.print("당첨 통계\n---");
+        ConsoleView.print(calculator.statistics());
+//        float margin = (float) calculator.prizeSum() / lottos.size();
+//        ConsoleView.print(String.format("총 수익률은 %.1f%%입니다.", margin));
     }
 
     private void setCalculatorWinner() {

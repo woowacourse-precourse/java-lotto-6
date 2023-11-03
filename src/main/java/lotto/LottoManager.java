@@ -34,8 +34,8 @@ public class LottoManager {
     public void showStatistics() {
         ConsoleView.print("당첨 통계\n---");
         ConsoleView.print(calculator.statistics());
-//        float margin = (float) calculator.prizeSum() / lottos.size();
-//        ConsoleView.print(String.format("총 수익률은 %.1f%%입니다.", margin));
+        float margin = (float) calculator.prizeSum() / lottos.size();
+        ConsoleView.print(String.format("총 수익률은 %.1f%%입니다.", margin));
     }
 
     private void setCalculatorWinner() {

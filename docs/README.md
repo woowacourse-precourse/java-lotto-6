@@ -14,7 +14,7 @@
 - [x] 로또 구입 금액을 보유 금액, 사용금액에 저장 및 업데이트 - PlayerWallet
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 로또 구입 금액에 따라 Ticket 을 발급해줌 - LottoTicket
-- [x] 티켓 수 만큼 랜덤 로또로 변경하며 로또를 lotties 에 넣음 - LottoTicket
+- [x] 티켓 수 만큼 랜덤 로또로 변경하며 로또를 lottoBundle 에 넣음 - LottoTicket
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
 - [ ] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
 - [ ] 수익률을 저장함 - RateOfReturn
@@ -27,8 +27,8 @@
 - [x] Lotto 와 비교해 일치하는 개수를 반환 - WinLotto
 - [x] Lotto 에 보너스 번호가 있는지 확인 - WinLotto
 - [x] 비교 결과를 통해 당첨 등수 계산 - WinLotto
-- [x] LottoTicket 에서 생성한 Lotto 를 저장 - Lotties
-- [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - Lotties
+- [x] LottoTicket 에서 생성한 Lotto 를 저장 - LottoBundle
+- [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - LottoBundle
 - [x] Lotto 를 필요 형식으로 출력하기 위해 toString 오버라이딩 - Lotto
 - ### LottoResult
 - [x] 로또 당첨 결과를 저장하는 Enum - LottoResult
@@ -43,7 +43,7 @@
 
 - ### Service
 - [ ] Player 가 로또를 구매해 저장함 - LottoService
-- [ ] Player 와 Lotties 를 통해 수익률 계산 - LottoService
+- [ ] Player 와 LottoBundle 를 통해 수익률 계산 - LottoService
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto
 - [x] 로또의 총 개수를 반환하기 - LottoDto
@@ -58,7 +58,7 @@
 
 # Controller
 - [ ] 로또 구입 금액 입력받아 Player 생성 - GameController
-- [ ] 구입 금액에 따른 로또 랜덤 생성해 Lotties 생성 - GameController
+- [ ] 구입 금액에 따른 로또 랜덤 생성해 LottoBundle 생성 - GameController
 - [ ] 로또 당첨번호, 보너스 번호 입력받아 WinLotto 생성 - GameController
 - [ ] 당첨 내역 및 수익률 계산해 출력하기 - GameController
 - [ ] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - GameController

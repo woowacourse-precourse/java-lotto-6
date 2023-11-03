@@ -4,17 +4,17 @@ import java.util.Collections;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 
-public class LottoDto {
-    private final List<Lotto> lottiesData;
+public class LottoBundleDto {
+    private final List<Lotto> lottoBundle;
     private final int totalNumberOfLotto;
 
-    public LottoDto(List<Lotto> lottiesData, int totalNumberOfLotto) {
-        this.lottiesData = lottiesData;
+    public LottoBundleDto(List<Lotto> lottoBundle, int totalNumberOfLotto) {
+        this.lottoBundle = lottoBundle;
         this.totalNumberOfLotto = totalNumberOfLotto;
     }
 
-    public List<Lotto> getData() {
-        return Collections.unmodifiableList(lottoData);
+    public List<Lotto> getLottoBundle() {
+        return Collections.unmodifiableList(lottoBundle);
     }
 
     public int getTotalNumberOfLotto() {

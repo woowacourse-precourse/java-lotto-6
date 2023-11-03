@@ -3,7 +3,7 @@ package lotto.domain.player;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.lotto.Lotties;
+import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,10 +32,10 @@ public class PlayerTest {
     void playerTest_2() {
         //given
         Lotto boughtLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotties lotties = new Lotties();
+        LottoBundle lottoBundle = new LottoBundle();
         player.consumeAllMoneyToLottoTicket();
         //when
-        player.buyRandomLottoWithAllTicket(boughtLotto, lotties);
+        player.buyRandomLottoWithAllTicket(boughtLotto, lottoBundle);
         //then
         assertThat(player.getTicketNumber()).isEqualTo(0);
     }

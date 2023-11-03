@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoResultsRepositoryTest {
 
-    @DisplayName("3등, 4등으로 로또 결과를 업데이트 해 DTO 를 통해 총 상금을 받으면, 총 상금은 1,505,000 이다.")
+    @DisplayName("3등, 4등으로 로또 결과를 업데이트 해 DTO 를 통해 총 상금을 받으면, 총 상금은 1,550,000 이다.")
     @Test
     void lottoResultRepositoryTest_1() {
         //given
@@ -18,7 +18,7 @@ class LottoResultsRepositoryTest {
         //when
         LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //then
-        Assertions.assertThat(lottoResultsDto.getTotalLottoPrizeMoney()).isEqualTo(1505000);
+        Assertions.assertThat(lottoResultsDto.getTotalLottoPrizeMoney()).isEqualTo(1550000);
     }
 
 }

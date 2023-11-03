@@ -5,13 +5,13 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class LottoRepository {
-    private static List<Lotto> lottos = new LinkedList<>();
+    private static List<Lotto> lotties = new LinkedList<>();
 
-    public static List<Lotto> lottoTickets() {
-        return lottos;
+    public static List<Lotto> lotties() {
+        return lotties;
     }
 
     public static void add(Lotto lotto) {
-        lottos.add(lotto);
+        lotties.add(lotto);
     }
 }

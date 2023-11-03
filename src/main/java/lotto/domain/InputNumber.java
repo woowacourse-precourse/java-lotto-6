@@ -1,12 +1,17 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputLotto {
+public class InputNumber {
+
+    public int InputMoney() {
+        String money = Console.readLine();
+        return Integer.parseInt(money);
+    }
+
     public List<Integer> InputLottos() {
         String userInput = Console.readLine();
         String[] lotto = userInput.split(",");
@@ -15,5 +20,10 @@ public class InputLotto {
                 .collect(Collectors.toList());
         System.out.println(lottos);
         return lottos;
+    }
+
+    public int InputBonus() {
+        String BonusNumber = Console.readLine();
+        return Integer.parseInt(BonusNumber);
     }
 }

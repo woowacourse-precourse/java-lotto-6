@@ -14,7 +14,7 @@ public enum LottoMessage {
             "5개 일치, 보너스 번호 일치 (30,000,000원) - %d개" + "\n" +
             "6개 일치 (2,000,000,000원) - %d개"),
     // 소수 둘째 자리에서 반올림한다.
-    TOTAL_RETURN_RATE_MESSAGE("총 수익률은 %.2f입니다.");
+    TOTAL_PROFIT_RATE_MESSAGE("총 수익률은 %.2f입니다.");
 
     private final String message;
 

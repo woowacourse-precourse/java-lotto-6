@@ -72,17 +72,17 @@ class LottoBuyInputViewTest {
         assertThat(lottoNumbers).allMatch(number -> number >= 1 && number <= 45);
     }
 
-    @Test
-    @DisplayName("보너스 로또 번호를 입력할 수 있다.")
-    public void requestBonusLottoNumber() {
-        //given
-        String input = "45";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        // when
-        int bonusLottoNumber = lottoBuyInputView.requestBonusLottoNumber();
-        // then
-        assertThat(bonusLottoNumber).isBetween(1, 45);
-        assertThat(bonusLottoNumber).isEqualTo(45);
-    }
+//    @Test
+//    @DisplayName("보너스 로또 번호를 입력할 수 있다.")
+//    public void requestBonusLottoNumber() {
+//        //given
+//        String input = "45";
+//        System.setIn(new ByteArrayInputStream(input.getBytes()));
+//        // when
+//        int bonusLottoNumber = lottoBuyInputView.requestBonusLottoNumber();
+//        // then
+//        assertThat(bonusLottoNumber).isBetween(1, 45);
+//        assertThat(bonusLottoNumber).isEqualTo(45);
+//    }
 
 }

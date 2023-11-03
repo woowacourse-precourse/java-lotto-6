@@ -1,5 +1,6 @@
 package lotto.view.input;
 
+import lotto.domain.lotto.Lotto;
 import lotto.message.LottoBuyMessage;
 import lotto.validator.InputValidator;
 
@@ -62,11 +63,11 @@ public class LottoBuyInputView extends Input{
         inputValidator.validateLottoNumberRange(numbers);
     }
 
-    public int requestBonusLottoNumber() {
+    public int requestBonusLottoNumber(Lotto winningLotto) {
         printRequestBonusLottoNumber();
 
         int bonusNumber = inputValidator.parseInt(readLine());
-        validateBonusLottoNumber(bonusNumber);
+        validateBonusLottoNumber(bonusNumber, winningLotto);
 
         return bonusNumber;
     }
@@ -75,8 +76,9 @@ public class LottoBuyInputView extends Input{
         System.out.println(LottoBuyMessage.BONUS_NUMBER_PROMPT_MESSAGE.getMassage());
     }
 
-    private void validateBonusLottoNumber(int bonusNumber) {
+    private void validateBonusLottoNumber(int bonusNumber, Lotto winningLotto) {
         inputValidator.validateLottoNumberRange(bonusNumber);
+        inputValidator.validateBonusNumberMatch(bonusNumber, winningLotto.getNumbers());
     }
 
 }

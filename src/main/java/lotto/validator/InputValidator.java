@@ -60,4 +60,10 @@ public class InputValidator {
         }
     }
 
+    public void validateBonusNumberMatch(int bonusNumber, List<Integer> numbers){
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_MATCH.getMessage());
+        }
+    }
+
 }

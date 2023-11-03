@@ -43,8 +43,8 @@ public class LottoController {
         return LottoFactory.getLotto(winningLottoNumbers);
     }
 
-    public int requestBonusLottoNumber() {
-        return lottoBuyInputView.requestBonusLottoNumber();
+    public int requestBonusLottoNumber(Lotto winningLotto) {
+        return lottoBuyInputView.requestBonusLottoNumber(winningLotto);
     }
 
 }

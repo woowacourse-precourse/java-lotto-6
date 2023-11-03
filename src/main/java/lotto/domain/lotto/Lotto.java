@@ -45,7 +45,7 @@ public class Lotto {
         return sortedLotto;
     }
 
-    public int lottoMatchValue(Lotto winningLotto) {
+    public int lottoMatchValue(final Lotto winningLotto) {
         final List<Integer> winningNumbers = winningLotto.numbers;
 
         return (int) numbers.stream()

@@ -24,29 +24,29 @@ public class GameLogic {
     public List<Lotto> lottoNumber(int amount){
         int count = amount / 1000;
         outputView.countMessage(count);
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottoes = new ArrayList<>();
 
         for(int i=0;i<count;i++){
             List<Integer> lottoNumbers = makingLottoNumbers();
             Lotto lotto = new Lotto(lottoNumbers);
             lotto.sortNumber();
-            lottoList.add(lotto);
+            lottoes.add(lotto);
             outputView.lottoNumberMessage(lotto.toString());
         }
-        return lottoList;
+        return lottoes;
     }
     public List<Integer> makingLottoNumbers(){
         List<Integer> tmpLottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         List<Integer> lottoNumbers = new ArrayList<>(tmpLottoNumbers);
         return lottoNumbers;
     }
-    public Lotto winningNumber(String winningNumberStr){
-        String[] winningNumberArr = winningNumberStr.split(",");
-        List<Integer> winningNumber = new ArrayList<>();
-        for(String str : winningNumberArr){
-            winningNumber.add(Integer.parseInt(str));
+    public Lotto winningNumber(String winningNumber){
+        String[] splitWinningNumber = winningNumber.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for(String str : splitWinningNumber){
+            winningNumbers.add(Integer.parseInt(str));
         }
-        Lotto lotto = new Lotto(winningNumber);
+        Lotto lotto = new Lotto(winningNumbers);
         return lotto;
     }
     public int matchCount(Lotto buyingLotto, Lotto winningLotto, int bonus){
@@ -103,7 +103,14 @@ public class GameLogic {
     public Map<Rank, Integer> getRanks(){
         return ranks;
     }
-    public Long getPrize(Rank rank){
-        return 0L;
+    public void lottoResult(Map<Rank, Integer> ranks, int amount) {
+        Double prize = 0D;
+        prize += ranks.get(Rank.FIRST) * Rank.FIRST.getAmount();
+        prize += ranks.get(Rank.SECOND) * Rank.SECOND.getAmount();
+        prize += ranks.get(Rank.THIRD) * Rank.THIRD.getAmount();
+        prize += ranks.get(Rank.FORTH) * Rank.FORTH.getAmount();
+        prize += ranks.get(Rank.FIFTH) * Rank.FIFTH.getAmount();
+
+        outputView.matchingMessage(ranks, (prize*100) / amount);
     }
 }

@@ -24,4 +24,14 @@ class UtilsTest {
         Assertions.assertThatThrownBy(() -> Utils.convertStringToIntegerList(numericString))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 문자열을_리스트로_변환한다() {
+        // given
+        final String numericString = "1,2,3,4,5,6";
+
+        // then
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> Utils.convertStringToIntegerList(numericString));
+    }
 }

@@ -18,6 +18,9 @@ public class Application {
         View.printMessage(ASK_BONUS_NUMBERS);
         String bonusNumberInput = View.getUserInput();
         Integer bonusNumberTemp = Convertor.convertInputToInteger(bonusNumberInput);
+
+        View.printMessage(GAME_STATISTICS);
+        View.printMessage(SEPARATE_LINE);
     }
 
 }

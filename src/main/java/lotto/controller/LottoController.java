@@ -16,7 +16,7 @@ public class LottoController {
     public void start() {
         int amount = lottoService.displayPurchase();
 
-        LottoTicket lottoTickets = lottoService.getLottoTicket(amount);
+        LottoTicket lottoTickets = lottoService.purchaseLottoTicket(amount);
         displayLottoTickets(amount, lottoTickets);
 
         List<Integer> winningNumbers = lottoService.displayWinningNumber();

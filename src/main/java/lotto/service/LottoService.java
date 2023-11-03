@@ -112,7 +112,7 @@ public class LottoService {
     }
 
 
-    public LottoTicket getLottoTicket(int amount) {
+    public LottoTicket purchaseLottoTicket(int amount) {
         return lottoTicket.buy(amount);
     }
 

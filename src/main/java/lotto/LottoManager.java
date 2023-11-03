@@ -21,6 +21,7 @@ public class LottoManager {
         try {
             lottos = LottoPublisher.getInstance().sell(money);
         } catch (IllegalArgumentException e) {
+            ConsoleView.print("[ERROR] 1000원 단위 양수로 입력해야 합니다.");
             getMoney();
         }
     }

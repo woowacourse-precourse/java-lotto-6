@@ -12,6 +12,7 @@ public class RandomLottos {
     public static List<Integer> pickRandomNums(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(ExceptionMessage.MIN_NUM, ExceptionMessage.MAX_NUM, ExceptionMessage.LOTTO_LENGTH);
         Collections.sort(numbers);
+        System.out.println(numbers);//삭제 예정
         return numbers;
     }
 

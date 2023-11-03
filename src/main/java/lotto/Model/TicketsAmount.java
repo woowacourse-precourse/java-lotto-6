@@ -13,6 +13,9 @@ public class TicketsAmount {
         validate(tickets);
         this.tickets = tickets;
     }
+    public int getTickets(){
+        return tickets/1000;
+    }
     private void validate(int tickets){
         try {
             validateMinimum(tickets);

@@ -12,13 +12,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final InputView inputView;
-    private final OutputView outputView;
     private final LottoChecker lottoChecker;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoChecker lottoChecker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LottoController(LottoChecker lottoChecker) {
         this.lottoChecker = lottoChecker;
     }
 
@@ -34,7 +30,7 @@ public class LottoController {
         PurchasePrice purchasePrice = getPurchasePrice();
         LottoTickets lottoTickets = new LottoTickets(purchasePrice);
 
-        outputView.printLotto(lottoTickets);
+        OutputView.printLotto(lottoTickets);
 
         return lottoTickets;
     }
@@ -43,35 +39,35 @@ public class LottoController {
         LottoCheckResult result = lottoChecker.checkLottoTickets(lottoTickets, winningNumbers, bonusNumber);
         EarningRate rate = lottoChecker.calculateEarningRate(result);
 
-        outputView.printResult(result, rate);
+        OutputView.printResult(result, rate);
     }
 
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         try {
-            String bonusNumber = inputView.inputBonusNumber();
+            String bonusNumber = InputView.inputBonusNumber();
             return BonusNumber.create(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getBonusNumber(winningNumbers);
         }
     }
 
     private WinningNumbers getWinningNumbers() {
         try {
-            String winningNumbers = inputView.inputWinningNumbers();
+            String winningNumbers = InputView.inputWinningNumbers();
             return WinningNumbers.create(winningNumbers);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getWinningNumbers();
         }
     }
 
     private PurchasePrice getPurchasePrice() {
         try {
-            String money = inputView.inputPurchasePrice();
+            String money = InputView.inputPurchasePrice();
             return PurchasePrice.create(money);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getPurchasePrice();
         }
     }

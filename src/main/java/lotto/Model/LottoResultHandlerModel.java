@@ -19,11 +19,11 @@ public class LottoResultHandlerModel {
         this.lottoGroup = lottoGroup;
     }
 
-    public void checkAllWinning(){
+    public void checkAllWinning() {
         for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
-            lottoResult.addPrizeCount(matchCount);
+
         }
     }
 
@@ -32,4 +32,10 @@ public class LottoResultHandlerModel {
         matchNumbers.retainAll(winningLotto.getNumbers());
         return matchNumbers.size();
     }
+
+    private boolean checkBonusNumber(Lotto purchasedLotto) {
+        return purchasedLotto.getNumbers().contains(winningLotto.getBonusNumber().getNumber());
+    }
+
+
 }

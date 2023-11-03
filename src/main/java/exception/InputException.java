@@ -23,8 +23,14 @@ public class InputException {
         throw new IllegalArgumentException("[ERROR] 금액은 천원 단위로 가능합니다.");
     }
 
+    public static int validateRange(int number) {
+        if(number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 가능한 숫자범위는 1-45 입니다.");
+        }
+        return number;
+    }
+
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
-
 }

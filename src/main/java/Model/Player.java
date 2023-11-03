@@ -4,6 +4,7 @@ import Config.GameConfig;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -39,11 +40,16 @@ public class Player {
         this.winningMoney = 0;
     }
 
-    public void checkWinning(){
+    public List<Integer> checkWinning(){
+        List<Integer> winningRank = new ArrayList<>(Collections.nCopies(GameConfig.WINNING.values().length, 0));
         for (Lotto lotto : lottoBundle){
             int rank = lotto.getResult(winning, bonus);
-            winningMoney += GameConfig.WINNING.valueOfRank(rank).getPrice();
+            if (rank != 0) {
+                winningMoney += GameConfig.WINNING.valueOfRank(rank).getPrice();
+                winningRank.set(rank - 1, winningRank.get(rank - 1) + 1);
+            }
         }
+        return winningRank;
     }
 
     public String calculateYield(){

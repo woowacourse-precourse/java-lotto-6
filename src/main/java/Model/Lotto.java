@@ -27,7 +27,11 @@ public class Lotto {
     }
 
     public int getResult(Winning winnings, Bonus bonus){
-        int rank = GameConfig.WINNING.valueOfMatch(winnings.countMatch(numbers)).getRank();
+        String match = winnings.countMatch(numbers);
+        if (Integer.parseInt(match) < GameConfig.MIN_MATCH){
+            return 0;
+        }
+        int rank = GameConfig.WINNING.valueOfMatch(match).getRank();
         if (rank == GameConfig.WINNING.THIRD.getRank() && bonus.matchBonus(numbers)){
             return GameConfig.WINNING.SECOND.getRank();
         }

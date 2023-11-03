@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.AnswerLotto;
@@ -36,8 +37,17 @@ public class LottoGame {
 
 	public Money createMoney() {
 		outputView.printInputMoneyMessage();
-		int money = inputView.inputMoney();
-		return moneyService.createMoney(money);
+
+		while (true) {
+			try {
+				int inputValue = inputView.inputMoney();
+				Money money = moneyService.createMoney(inputValue);
+
+				return money;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	public Lottos createLottos(Money money) {
@@ -53,10 +63,28 @@ public class LottoGame {
 
 	public AnswerLotto createAnswerLotto() {
 		outputView.printInputAnswerLottoNumberMessage();
-		List<Integer> numbers = inputView.inputAnswerLottoNumbers();
+		List<Integer> numbers = new ArrayList<>();
+		int bonusNumber = 0;
+
+		while (true) {
+			try {
+				numbers = inputView.inputAnswerLottoNumbers();
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 
 		outputView.printInputBonusNumberMessage();
-		int bonusNumber = inputView.inputBonusNumber();
+
+		while (true) {
+			try {
+				bonusNumber = inputView.inputBonusNumber();
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 
 		return lottoService.createAnswerLotto(numbers, bonusNumber);
 	}

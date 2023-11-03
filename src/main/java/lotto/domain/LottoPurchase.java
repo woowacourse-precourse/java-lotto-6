@@ -20,6 +20,10 @@ public class LottoPurchase {
         return amount;
     }
 
+    public int getNumberOfTickets() {
+        return amount / 1000;
+    }
+
     private int stringToInt(String amount) {
         try {
             return Integer.parseInt(amount);

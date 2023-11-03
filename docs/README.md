@@ -63,11 +63,15 @@
 ## 📝 기능 구현 리스트
 
 ### 💻 입력
-
-- [ ] : 구입 금액 `[ LottoTicket ]`
-  - [ ] : 로또 티켓 객체 생성 
+- [ ] : 구입 금액
+  - [X] : 유저 입력 `[ InputView ] `
+  - [X] : 로또 규정 enum 생성 `[ LottoConfig ]`
+  - [ ] : 구입 금액 객체 생성 `[ PurchaseAmount ]`
+  - [ ] : 로또 티켓 객체 생성 `[ LottoTicket ]`
+  - [ ] : 로또 구매 관련 객체 생성 `[ LottoMachine ] `
   - [ ] : 구입 금액에 따른 로또 번호 생성
   - [ ] : 🚨 구입 금액은 1,000원 단위 이며 1,000 단위가 아닐 경우 예외발생
+  - [ ] : 🚨 공백, null 또는 숫자가 아닐 경우 예외발생
 
 - [ ] : 당첨 번호 `[ WinningLotto ]`
   - [ ] : 당첨 번호 객체 생성 
@@ -94,18 +98,23 @@
 ```
 com.lotto
 ├─ config
-│  ├─ GameGuideMessage.java
 │  ├─ ErrorMessage.java
+│  ├─ GameGuideMessage.java
+│  ├─ LottoConfig.java
 │  └─ LottoRank.java
 ├─ domain
+│  ├─ PurchaseAmount.java
 │  ├─ Lotto.java
 │  ├─ LottoTicket.java
-│  ├─ WinningLotto.java
-│  └─ LottoRank.java
+│  ├─ LottoMachine.java
+│  ├─ LottoRank.java
+│  └─ WinningLotto.java
 ├─ service
 │  └─ LottoGameService.java
 ├─ view
 │  ├─ InputView.java
 │  └─ ResultView.java
+├─ util
+│  └─ NumberUtil.java
 └─ Application.java
 ```

@@ -1,11 +1,12 @@
 package lotto;
 
+import static lotto.constants.LottoConstants.LOTTO_END;
+import static lotto.constants.LottoConstants.LOTTO_START;
+
 import lotto.exception.ExceptionManager;
 
 public class WinningLottoWithBonus {
 
-    private static final int LOTTO_START = 1;
-    private static final int LOTTO_END = 45;
     private final Lotto lotto;
     private final int bonus;
 
@@ -30,7 +31,8 @@ public class WinningLottoWithBonus {
 
     private void checkBonusNumRange(int number) {
         if (number < LOTTO_START || number > LOTTO_END) {
-            ExceptionManager.throwIllegalArgumentExceptionWithMsg("로또의 숫자는 " + LOTTO_START + "~" + LOTTO_END + "까지 가능합니다.");
+            ExceptionManager.throwIllegalArgumentExceptionWithMsg(
+                    "로또의 숫자는 " + LOTTO_START + "~" + LOTTO_END + "까지 가능합니다.");
         }
     }
 

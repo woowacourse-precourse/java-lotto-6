@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.view.constants.ConstantMessage;
-
 public class OutputView {
     private OutputView() {
     }

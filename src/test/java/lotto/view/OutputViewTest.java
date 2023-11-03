@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.list;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayOutputStream;
@@ -8,6 +9,8 @@ import java.io.PrintStream;
 import java.util.List;
 
 import lotto.model.Lotto;
+import lotto.model.Prize;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 class OutputViewTest {
     private final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    private List<Lotto> lottos;
-
+    List<Lotto> lottos;
+    OutputView outputView = new OutputView();
 
     @BeforeEach
     void init() {
@@ -31,12 +34,30 @@ class OutputViewTest {
         byteArrayOutputStream.reset();
     }
 
+    @Test
+    @DisplayName("구매로또 출력 확인")
+    void 구매로또_출력_확인() {
+        outputView.showPurchasedLottos(lottos);
+        String expectedOutput = "2개를 구매했습니다.\n" + "[1, 2, 3, 4, 5, 6]\n" + "[7, 8, 9, 10, 11, 12]\n";
+        assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
+    }
 
     @Test
-    @DisplayName("구매갯수 출력 확인")
-    void 구매갯수_출력_확인() {
-        OutputView.showPurchasedLottos(lottos);
-        String expectedOutput = "2개를 구매했습니다.\n" + "[1, 2, 3, 4, 5, 6]\n" + "[7, 8, 9, 10, 11, 12]\n";
+    @DisplayName("당첨내역 출력 확인")
+    void 당첨내역_출력_확인() {
+        Lotto winningNumbers = new Lotto(List.of(2, 4, 6, 8, 10, 12));
+        int bonusNumber = 10;
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        int purchaseAmount = 1000;
+        outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
+        String expectedOutput = "\n당첨 통계\n" +
+                "---\n" +
+                "3개 일치 (5,000원) - 1개\n" +
+                "4개 일치 (50,000원) - 0개\n" +
+                "5개 일치 (1,500,000원) - 0개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
+                "6개 일치 (2,000,000,000원) - 0개\n" +
+                "총 수익률은 500.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 }

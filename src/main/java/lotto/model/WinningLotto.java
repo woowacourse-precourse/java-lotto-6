@@ -21,6 +21,6 @@ public class WinningLotto {
                 return prize;
             }
         }
-        return null;
+        return Prize.NONE;
     }
 }

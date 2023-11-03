@@ -6,10 +6,14 @@ public class GameController {
 
     private GameController() {}
 
-    public GameController getInstance() {
+    public static GameController getInstance() {
         if (gameController == null) {
             gameController = new GameController();
         }
         return gameController;
+    }
+
+    public void startGame() {
+
     }
 }

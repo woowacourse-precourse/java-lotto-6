@@ -24,10 +24,19 @@ public class Computer {
         }
     }
 
-    public void checkZero(String userInput){
-        if(userInput.charAt(0) == '0'){
+    public void checkZero(String userInput) {
+        if (userInput.charAt(0) == '0') {
             throw new IllegalArgumentException("[ERROR] 숫자 앞에 0을 입력하지 마세요.");
         }
     }
+
+
+    // 2. 로또 수량 계산 로직
+    public Integer calculateLotto(Integer money) {
+        Integer lottoCount = money / 1000;
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        return lottoCount;
+    }
+
 
 }

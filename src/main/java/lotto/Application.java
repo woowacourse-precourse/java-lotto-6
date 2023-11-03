@@ -8,5 +8,6 @@ public class Application {
 
         User user =new User();
         user.purchaseLotto();
+
     }
 }

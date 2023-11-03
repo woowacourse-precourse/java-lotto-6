@@ -4,6 +4,7 @@ import lotto.ui.Computer;
 
 public class User {
     private Integer money;
+    private Integer lottoCount;
 
     private boolean isPurchasing = true;
 
@@ -19,6 +20,8 @@ public class User {
 
                 money = Integer.parseInt(userInput);
                 computer.checkRemainder(money);
+
+                lottoCount = computer.calculateLotto(money);
 
                 isPurchasing = false;
 

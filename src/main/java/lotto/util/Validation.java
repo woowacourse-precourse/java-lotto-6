@@ -7,12 +7,15 @@ import static lotto.constants.ExceptionMessage.INVALID_COMMA;
 import static lotto.constants.ExceptionMessage.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessage.NOT_INTEGER;
 import static lotto.constants.ExceptionMessage.NOT_POSITIVE;
+import static lotto.constants.ExceptionMessage.NOT_SIX_NUMBERS;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validation {
 
-    public int validateNumeric(String input) {
+    public static int validateInteger(String input) {
         int temp;
         try {
             temp = Integer.parseInt(input);
@@ -21,53 +24,60 @@ public class Validation {
         }
         return temp;
     }
-    public void validateCost(int input) {
+    public static void validateCost(int input) {
         validatePositiveNumber(input);
         validateDivisible(input);
     }
-    private void validatePositiveNumber(int input) {
+    private static void validatePositiveNumber(int input) {
         if (input <= 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_POSITIVE+input));
         }
     }
 
-    private void validateDivisible(int input) {
+    private static void validateDivisible(int input) {
         if (input % 1000 != 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INDIVISIBLE_TO_THOUSAND+input));
         }
     }
 
-    public void validateNumberRange(int input) {
+    public static void validateNumberRange(int input) {
         if (input < 1 || input > 45) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_NUMBER+input));
         }
     }
 
-    public void validateDuplicatedNumber(int input, List<Integer> winningLotto) {
-        if (winningLotto.contains(input)) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT, DUPLICATED_NUMBER+input));
+    public static void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> temp = new HashSet<>(numbers);
+        if (temp.size() != numbers.size()) {
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT, DUPLICATED_NUMBER));
         }
     }
 
-    public void validateComma(String input) {
+    public static void validateComma(String input) {
         validateNotIncludedComma(input);
         validateFirstOrLastComma(input);
         validateContinuousComma(input);
     }
-    private void validateNotIncludedComma(String input) {
+    private static void validateNotIncludedComma(String input) {
         if (!input.contains(",")) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
         }
     }
-    private void validateFirstOrLastComma(String input) {
+    private static void validateFirstOrLastComma(String input) {
         int lastIndex = input.length()-1;
         if (input.charAt(0) == ',' || input.charAt(lastIndex) == ',') {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
         }
     }
-    private void validateContinuousComma(String input) {
+    private static void validateContinuousComma(String input) {
         if (input.contains(",,")) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
+        }
+    }
+
+    public static void validateSixLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_SIX_NUMBERS));
         }
     }
 }

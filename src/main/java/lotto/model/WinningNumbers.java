@@ -25,7 +25,6 @@ public class WinningNumbers {
     public int validate(String input, List<Integer> winningNum) {
         int oneNum = Validation.validateInteger(input);
         Validation.validateNumberRange(oneNum);
-        Validation.validateDuplicatedNumber(oneNum, winningNum);
         return oneNum;
     }
 

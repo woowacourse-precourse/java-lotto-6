@@ -1,9 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +13,7 @@ public class LottoService {
 
     public Integer purchaseLottoWithValidPrice(Integer inputMoney) {
         validateInputMoney(inputMoney);
-
-        return inputMoney/DIVIDE_STANDARD;
+        return inputMoney / DIVIDE_STANDARD;
     }
 
     private void validateInputMoney(Integer inputMoney) {
@@ -27,13 +24,11 @@ public class LottoService {
 
     public List<Integer> createRandomNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_STANDARD);
-
         return sortAscend(lottoNumbers);
     }
 
     private List<Integer> sortAscend(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
-
         return lottoNumbers;
     }
 }

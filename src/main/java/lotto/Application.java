@@ -1,7 +1,7 @@
 package lotto;
 
 
-import generalexceptionhandler.GeneralExceptionHandler;
+import generalexception.GeneralExceptionHandler;
 
 public class Application {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static generalexceptionhandler.GeneralExceptionHandler.numberExceptionHandler;
+import static generalexception.GeneralExceptionHandler.validateNumberExceptionHandler;
 
 public class Display {
 
@@ -23,12 +23,12 @@ public class Display {
 
     private void setLottoPurchaseAmount() {
         System.out.println(STRING_PURCHASE_AMOUNT_INPUT);
-        int userPurchaseAmount = numberExceptionHandler(readLine());
-        checkMinimumPurchaseAmount(userPurchaseAmount);
+        int userPurchaseAmount = validateNumberExceptionHandler(readLine());
+        validateMinimumPurchaseAmount(userPurchaseAmount);
         this.lottoPurchaseAmount = userPurchaseAmount;
     }
 
-    public void checkMinimumPurchaseAmount(int userPurchaseAmount) {
+    public void validateMinimumPurchaseAmount(int userPurchaseAmount) {
         if (userPurchaseAmount < 1000) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE);
         }

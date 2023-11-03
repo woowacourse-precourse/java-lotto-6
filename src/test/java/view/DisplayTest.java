@@ -12,10 +12,10 @@ public class DisplayTest {
 
     @DisplayName("구매금액이 1000원 미만일경우 예외처리를 발생한다.")
     @Test
-    void checkMinimumPurchaseAmountTest() {
+    void validateMinimumPurchaseAmountTest() {
         Display display = new Display(999);
 
-        assertThatThrownBy(() -> display.checkMinimumPurchaseAmount(display.getLottoPurchaseAmount()))
+        assertThatThrownBy(() -> display.validateMinimumPurchaseAmount(display.getLottoPurchaseAmount()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE);
     }

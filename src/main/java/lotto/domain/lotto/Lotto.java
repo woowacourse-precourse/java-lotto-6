@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -45,6 +46,10 @@ public class Lotto {
                 .distinct()
                 .toList()
                 .size() != numbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

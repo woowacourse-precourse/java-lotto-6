@@ -7,6 +7,7 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.LottosRepository;
 import lotto.domain.money.LottoMoney;
+import lotto.dto.BuyingResults;
 
 public class LottoMachine {
 
@@ -24,5 +25,11 @@ public class LottoMachine {
                 .toList();
         Lottos userLotto = new Lottos(lottos);
         lottosRepository.saveUserLottos(userLotto);
+    }
+
+    public BuyingResults createBuyingResults() {
+        Lottos userLottos = lottosRepository.findUserLottos()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 로또 번호가 존재하지 않습니다."));
+        return BuyingResults.createFrom(userLottos);
     }
 }

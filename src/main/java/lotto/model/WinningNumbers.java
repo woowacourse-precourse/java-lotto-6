@@ -20,6 +20,16 @@ public class WinningNumbers {
         this.bonus = bonus;
     }
 
+    public int countMatchingNumber(Lotto lotto) {
+        return (int) winningNumbers.stream()
+                .filter(winningNumber -> lotto.hasNumber(winningNumber))
+                .count();
+    }
+
+    public boolean isEqualToBonus(Lotto lotto) {
+        return lotto.hasNumber(bonus);
+    }
+
     private void validateNumberInRange(List<Integer> winningNumbers) {
         for (final Integer winningNumber : winningNumbers) {
             if (isWinningNumberValid(winningNumber)) {

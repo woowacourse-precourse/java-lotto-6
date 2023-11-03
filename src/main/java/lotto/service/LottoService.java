@@ -15,15 +15,17 @@ import java.util.Map;
 public class LottoService {
 
     private final LottoWinningStrategy lottoWinningStrategy;
+    private final NumberGenerator numberGenerator;
 
-    public LottoService(LottoWinningStrategy lottoWinningStrategy) {
+    public LottoService(LottoWinningStrategy lottoWinningStrategy, NumberGenerator numberGenerator) {
         this.lottoWinningStrategy = lottoWinningStrategy;
+        this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> buyLottos(NumberGenerator numberGenerator, int lottoQuantity) {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<Lotto> buyLottos(int lottoQuantity) {
+        List<Lotto> lottos = new ArrayList<>(lottoQuantity);
         for (int i = 0; i < lottoQuantity; i++) {
-            lottos.add(createLotto(numberGenerator));
+            lottos.add(createLotto());
         }
 
         return lottos;
@@ -43,7 +45,7 @@ public class LottoService {
         return winningStatistics;
     }
 
-    private Lotto createLotto(NumberGenerator numberGenerator) {
+    private Lotto createLotto() {
         List<Integer> generatedNumbers = numberGenerator.generateNumbers();
         return new Lotto(generatedNumbers);
     }

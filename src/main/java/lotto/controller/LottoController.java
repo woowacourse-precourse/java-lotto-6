@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.application.LottoService;
 import lotto.ui.InputView;
@@ -21,20 +22,21 @@ public class LottoController {
 
     public void run() {
         // 입력받고
-        int purchaseAmountInput = ParserUtil.parseStringToInt(inputView.inputPurchaseAmount());
+        int purchaseAmountInput = ParserUtil.parseLottoNumber(inputView.inputPurchaseAmount());
         validatePurchaseAmountInput(purchaseAmountInput);
         //구입처리
         lottoService.purchaseLottoTickets(purchaseAmountInput);
         outputView.printLottos(lottoService.getLottoDtos());
         // 사용자로부터 당첨 번호를 입력받고
-        List<Integer> winningNumbersInput = ParserUtil.parseStringToIntList(inputView.inputWinningNumbers());
+        List<Integer> winningNumbersInput = ParserUtil.parseWinningNumbers(inputView.inputWinningNumbers());
         validateWinningNumbers(winningNumbersInput);
         // 사용자로부터 보너스 번호를 입력받고
-        int bonusNumberInput = ParserUtil.parseStringToInt(inputView.inputBonusNumber());
+        int bonusNumberInput = ParserUtil.parseLottoNumber(inputView.inputBonusNumber());
         validateBonusNumber(winningNumbersInput,bonusNumberInput);
         // 당첨 번호 처리하고
         lottoService.processWinningNumbers(winningNumbersInput, bonusNumberInput);
         // 결과 출력
+        Console.close();
     }
     //젓번째 입력 검증 메소드
     private void validatePurchaseAmountInput(int input) {

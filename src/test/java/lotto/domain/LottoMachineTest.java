@@ -15,7 +15,7 @@ public class LottoMachineTest {
 
     @DisplayName("LottoMachine이 유효한 로또 번호를 생성하는지 테스트합니다.")
     @Test
-    void generateLottoCreatesValidNumbers() {
+    void generateLottoValidNumbers() {
         // given
         LottoMachine lottoMachine = new LottoMachine();
 

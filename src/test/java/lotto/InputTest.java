@@ -14,7 +14,7 @@ class InputTest {
 
     @DisplayName("음수 금액을 입력하면 예외가 발생한다.")
     @Test
-    void validateNonNegativeWithNegativeAmount() {
+    void validateNonNegativeAmount() {
         int negativeAmount = -1000;
         assertThatThrownBy(() -> ValidationUtil.validateNonNegative(negativeAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -23,7 +23,7 @@ class InputTest {
 
     @DisplayName("1000원 단위가 아닌 금액을 입력하면 예외가 발생한다.")
     @Test
-    void validateThousandUnitWithInvalidAmount() {
+    void validateThousandUnitAmount() {
         int invalidAmount = 1500;
         assertThatThrownBy(() -> ValidationUtil.validateThousandUnit(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -62,7 +62,7 @@ class InputTest {
 
     @Test
     @DisplayName("정확히 6개의 숫자가 입력되지 않은 경우 예외를 발생시킨다.")
-    void validateCorrectNumbersCount() {
+    void validateNumbersCount() {
         List<Integer> incorrectNumbersCount = Arrays.asList(1, 2, 3, 4, 5);
         assertThatThrownBy(() -> ValidationUtil.validateCorrectNumbersCount(incorrectNumbersCount))
                 .isInstanceOf(IllegalArgumentException.class)

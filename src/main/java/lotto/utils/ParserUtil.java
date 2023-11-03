@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class ParserUtil {
 
-    public static int parseStringToInt(String input) {
+    public static int parseLottoNumber(String input) {
         return Integer.parseInt(input);
     }
 
-    public static List<Integer> parseStringToIntList(String input) {
+    public static List<Integer> parseWinningNumbers(String input) {
         return Arrays.stream(input.split(SPLIT_COMMA.getValue()))
                 .map(String::trim)
                 .map(Integer::parseInt)

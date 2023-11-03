@@ -3,6 +3,8 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -24,6 +26,14 @@ public class LottoService {
     }
 
     public List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_STANDARD);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_STANDARD);
+
+        return sortAscend(lottoNumbers);
+    }
+
+    private List<Integer> sortAscend(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+
+        return lottoNumbers;
     }
 }

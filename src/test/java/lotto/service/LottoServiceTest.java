@@ -49,5 +49,4 @@ class LottoServiceTest {
         // then
         assertEquals(lottos.size(), lottoCount);
     }
-
 }

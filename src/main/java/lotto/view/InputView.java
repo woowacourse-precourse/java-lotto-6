@@ -27,4 +27,10 @@ public class InputView {
     public static void printBonusNumberPrompt() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    public static String getBonusNumber() {
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return bonusNumber;
+    }
 }

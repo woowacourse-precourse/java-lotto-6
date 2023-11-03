@@ -7,11 +7,15 @@ import java.util.ArrayList;
 
 public class WinningNum {
     private final Integer LENGTH = 6;
+    private final Integer MINIMUM = 1;
+    private final Integer MAXIMUM = 45;
     private final ArrayList<Integer> winningNum;
+    private Integer bonusNumber;
 
     public WinningNum(ArrayList<Integer> winningNum) {
         lengthValidate(winningNum);
         duplicatedValidate(winningNum);
+        numberRangeValidate(winningNum);
 
         this.winningNum = winningNum;
     }
@@ -31,6 +35,37 @@ public class WinningNum {
 
         if (count != LENGTH) {
             OutputView.errorMessage(ErrorMessage.DUPLICATED_ERROR.getMessage());
+
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void numberRangeValidate(ArrayList<Integer> winningNum) {
+        for (Integer num : winningNum) {
+            if(num>MAXIMUM || num<MINIMUM){
+                OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public void setBonusNumber(Integer number) {
+        duplicatedValidate(number);
+        bonusRangeValidate(number);
+        this.bonusNumber = number;
+    }
+
+    private void duplicatedValidate(Integer bonusNumber) {
+        if (winningNum.contains(bonusNumber)) {
+            OutputView.errorMessage(ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage());
+
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void bonusRangeValidate(Integer bonusNumber) {
+        if (bonusNumber > MAXIMUM || bonusNumber < MINIMUM) {
+            OutputView.errorMessage(ErrorMessage.BONUS_RANGE_ERROR.getMessage());
 
             throw new IllegalArgumentException();
         }

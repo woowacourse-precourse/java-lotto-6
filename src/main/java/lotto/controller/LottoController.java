@@ -5,8 +5,6 @@ import lotto.domain.WinningNum;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-
 public class LottoController {
     private final InputView inputView;
     private final LottoTickets lottoTickets;
@@ -23,5 +21,8 @@ public class LottoController {
         OutputView.printLotto(lottoTickets);
 
         WinningNum winningNum = inputView.winningNumber();
+
+        OutputView.bonusMessage();
+        inputView.bonusNumber(winningNum);
     }
 }

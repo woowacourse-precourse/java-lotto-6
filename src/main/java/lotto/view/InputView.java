@@ -40,6 +40,9 @@ public class InputView {
             OutputView.bonusMessage();
             String bonusNumber = Console.readLine();
 
+            Validator.bonusValidate(bonusNumber);
+            winningNum.setBonusNumber(Integer.parseInt(bonusNumber));
+
             return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {
             return bonusNumber(winningNum);

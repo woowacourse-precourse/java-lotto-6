@@ -20,4 +20,9 @@ public class InputConverter {
         return winningNumbers;
     }
 
+    public static int convertBonusNumber(String inputBonusNumber) {
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        return bonusNumber;
+    }
+
 }

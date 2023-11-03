@@ -4,13 +4,15 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import lotto.enumerate.Rank;
 import lotto.record.AmountRecord;
 import lotto.record.LottoNumberRecord;
-import lotto.enumerate.Rank;
 import lotto.record.ProfitRate;
 
 public class WinningList {
-    private Map<Rank, Integer> winningList;
+    private static final String WINNING_STRING_FIRST = "당첨 통계\n---";
+    private final Map<Rank, Integer> winningList;
 
     public WinningList(List<LottoNumberRecord> lottoNumberRecordList, WinningNumber winningNumber) {
         winningList = new EnumMap<>(Rank.class);
@@ -23,6 +25,22 @@ public class WinningList {
                 winningList.put(rank, winningList.get(rank) + 1);
             }
         }
+    }
+
+    public String printWinningListString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(WINNING_STRING_FIRST);
+        Map<Rank, Integer> sortedWinningList = sortMap();
+        winningList.forEach((key, value) -> sb.append(key.getRankString(value)));
+        return sb.toString();
+    }
+
+    private EnumMap<Rank, Integer> sortMap() {
+        return winningList.entrySet()
+                .stream()
+                .sorted(Entry.comparingByKey())
+                .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1,
+                        () -> new EnumMap<>(Rank.class)));
     }
 
     public ProfitRate calculateProfitRate(AmountRecord amountRecord) {

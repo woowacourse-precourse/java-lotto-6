@@ -28,7 +28,7 @@
   - [x] Lotto 번호 정렬
   - [x] Lotto 번호 출력
 
-- [ ] 당첨 번호 (WinningNumber : Lotto를 상속 받은 클래스)
+- [ ] 당첨 번호 (WinningNumber)
   - [x] 보너스 번호 생성
   - [x] 보너스 번호 Valid
     - [x] 당첨 번호 중 중복된 값이 나오면 예외 처리
@@ -45,6 +45,7 @@
 - [x] 당첨 내역 (WinningList)
   - [x] Lotto의 List와 WinningNumber를 입력 받아 당첨 여부 계산.
   - [x] 수익률 계산 및 ProfitRate 리턴
+  - [x] 당첨 내역 출력
 
 - [x] 수익률 (ProfitRate)
   - [x] 수익률 Valid

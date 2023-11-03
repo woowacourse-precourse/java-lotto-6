@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 public class WinningResultTest {
     WinningResult winningResult;
     Lottos lottos;
-
     WinningNumber winningNumber;
 
     @BeforeEach

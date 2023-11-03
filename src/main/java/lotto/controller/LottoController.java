@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import lotto.domain.Lottos;
 import lotto.domain.LottosFactory;
-import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningResult;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -19,7 +18,7 @@ public class LottoController {
         WinningNumber winningNumber = decideWinningNumber();
         decideBonusNumber(winningNumber);
         WinningResult winningResult = calculateWinning(lottos, winningNumber);
-        Arrays.stream(Rank.values()).forEach(rank -> System.out.println(winningResult.getWinningCount(rank)));
+        OutputView.printWinningStatics(winningResult);
 
     }
 
@@ -27,7 +26,9 @@ public class LottoController {
         LottosFactory lottosFactory = new LottosFactory();
         while (true) {
             try {
-                return lottosFactory.createLottos(inputView.inputAmount());
+                Lottos lottos = lottosFactory.createLottos(inputView.inputAmount());
+                OutputView.printLottos(lottos);
+                return lottos;
             } catch (IllegalArgumentException e) {
                 exceptionView.printException(e.getMessage());
             }

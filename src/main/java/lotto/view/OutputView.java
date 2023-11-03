@@ -3,8 +3,8 @@ package lotto.view;
 import java.text.DecimalFormat;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Rank1;
-import lotto.domain.WinningResult1;
+import lotto.domain.Rank;
+import lotto.domain.WinningResult;
 
 public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
@@ -24,16 +24,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinningStatics(WinningResult1 winningResult) {
+    public static void printWinningStatics(WinningResult winningResult) {
         System.out.println(LOTTO_WINNING_STATICS_MESSAGE);
         System.out.println(LINE_SEPARATE);
-        for (Rank1 rank : Rank1.values()) {
+        for (Rank rank : Rank.values()) {
             System.out.println(createWinningStaticsString(rank, winningResult));
         }
     }
 
-    private static String createWinningStaticsString(Rank1 rank, WinningResult1 winningResult) {
-        if (rank == Rank1.SECOND) {
+    private static String createWinningStaticsString(Rank rank, WinningResult winningResult) {
+        if (rank == Rank.SECOND) {
             return String.format(COUNT_MESSAGE, rank.getMatchCount()) + BONUS_MESSAGE
                     + String.format(PRIZE_MESSAGE, decFormat.format(rank.getPrize()))
                     + String.format(WINNING_COUNT_MESSAGE, winningResult.getWinningCount(rank));

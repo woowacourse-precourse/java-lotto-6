@@ -1,8 +1,17 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Lotto {
+
+    private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_START = 1;
+    private static final int LOTTO_END = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -10,11 +19,33 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        checkLottoSize(numbers);
+        checkLottoNumRange(numbers);
+        checkDuplicate(numbers);
+    }
+
+    private void checkLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            ExceptionManager.throwIllegalArgumentExceptionWithMsg(LOTTO_SIZE + "개의 숫자만 가질 수 있습니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkLottoNumRange(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number < LOTTO_START || number > LOTTO_END)
+                .findAny()
+                .ifPresent(number -> ExceptionManager.throwIllegalArgumentExceptionWithMsg("로또의 숫자는 " + LOTTO_START + "~" + LOTTO_END + "까지 가능합니다."));
+    }
+
+    private void checkDuplicate(List<Integer> numbers) {
+        Set<Integer> setNumbers = new HashSet<>(numbers);
+        if (setNumbers.size() != numbers.size()) {
+            ExceptionManager.throwIllegalArgumentExceptionWithMsg("로또의 숫자는 중복될 수 없습니다.");
+        }
+    }
 }

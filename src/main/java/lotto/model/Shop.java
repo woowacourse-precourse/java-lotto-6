@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
@@ -19,12 +20,24 @@ public class Shop {
 
     public List<Lotto> createLottosAsPaid(final int money) {
         validateIsRemainValueCorrect(money);
-        return null;
+        int lottoSize = calculateBuyLottoSize(money);
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoSize; i++) {
+            List<Integer> numbers = NumberPicker.createNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+
+        return lottos;
     }
 
     private void validateIsRemainValueCorrect(final int money) {
         if (money % lottoCost != DIVIDE_REMAIN_VALUE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private int calculateBuyLottoSize(final int money) {
+        return money / lottoCost;
     }
 }

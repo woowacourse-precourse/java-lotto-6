@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.io.InputHandler;
+import lotto.io.OutputHandler;
 
 
 public class UserLotto {
@@ -10,6 +11,7 @@ public class UserLotto {
 
     public UserLotto() {
         buyLotto();
+        printMyLotto();
     }
 
     private void buyLotto(){
@@ -20,5 +22,9 @@ public class UserLotto {
     }
     private Lotto makeLotto(){
         return new Lotto(RandomNumGenerator.makeUniqueRandomList());
+    }
+
+    private void printMyLotto(){
+        userLottory.printAllLotto();
     }
 }

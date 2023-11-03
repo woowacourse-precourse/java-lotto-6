@@ -13,4 +13,8 @@ public class LottoRepository {
         lottoRepository.add(lotto);
     }
 
+    public void printAllLotto(){
+        lottoRepository.forEach(Lotto::printLottoInfo);
+    }
+
 }

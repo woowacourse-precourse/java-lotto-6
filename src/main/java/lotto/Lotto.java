@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.io.OutputHandler;
+
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +20,10 @@ public class Lotto {
 
     public boolean contains(int number){
         return numbers.contains(number);
+    }
+
+    public void printLottoInfo(){
+        OutputHandler.printLotto(numbers);
     }
 
 }

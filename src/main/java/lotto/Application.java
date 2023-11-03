@@ -14,8 +14,21 @@ public class Application {
         // TODO: 프로그램 구현
         inputPurchaseMoney();
 
+        List<Lotto> list = createLottosLikeBuyCount();
+
     }
 
+
+    private static List<Lotto> createLottosLikeBuyCount() {
+        List<Lotto> list = new ArrayList<>();
+        for (int i = 0; i < buyCount; i++) {
+            List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(randomList);
+            lotto.printLottoList(randomList);
+            list.add(lotto);
+        }
+        return list;
+    }
 
     private static void inputPurchaseMoney() {
         try {
@@ -36,5 +49,6 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
+
 
 }

@@ -7,13 +7,17 @@ import java.util.StringJoiner;
 
 public class Calculator {
     private Map<Prize, Integer> count;
-    private final List<Integer> winner;
-    private final int bonusNum;
+    private List<Integer> winner;
+    private int bonusNum;
 
-    public Calculator(List<Integer> winner, int bonus) {
+    public Calculator() {
         count = new HashMap<>();
+    }
+    public void setWinner(List<Integer> winner){
         this.winner=winner;
-        this.bonusNum=bonus;
+    }
+    public void setBonus(int bonus){
+        bonusNum=bonus;
     }
 
 

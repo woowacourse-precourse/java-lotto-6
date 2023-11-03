@@ -6,9 +6,9 @@ package lotto.exception;
  * 에러 양식: "[ERROR] {{MESSAGE}}"
  */
 public abstract class BaseIllegalArgumentException extends IllegalArgumentException {
-    public static final String ERROR = "[ERROR] ";
+    public static final String ERROR_PREFACE = "[ERROR] ";
 
     public BaseIllegalArgumentException(String message) {
-        super(ERROR + message);
+        super(ERROR_PREFACE + message);
     }
 }

@@ -19,4 +19,10 @@ public class BonusNumberExceptionMessage extends IllegalArgumentException{
             throw new BonusNumberExceptionMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
+
+    public static void validateBoundaryBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new BonusNumberExceptionMessage("[ERROR] 보너스 번호는 1~45 사이의 숫자만 가능합니다.");
+        }
+    }
 }

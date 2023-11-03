@@ -43,7 +43,7 @@ public class LottoManager {
         try {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[error] 숫자를 입력해주십시오.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
         }
 
         return number;
@@ -51,7 +51,7 @@ public class LottoManager {
 
     private void unitValidate (int price) {
         if (price < Const.priceUnit || price % Const.priceUnit != 0) {
-            throw new IllegalArgumentException("[error] " + Const.priceUnitOutput + " 단위의 금액을 입력해주십시오.");
+            throw new IllegalArgumentException("[ERROR] " + Const.priceUnitOutput + " 단위의 금액을 입력해주십시오.");
         }
     }
 
@@ -92,7 +92,7 @@ public class LottoManager {
 
     private void arrangeValidate(int number) {
         if (Const.winningRangeStartNumber > number || Const.winningRangeEndNumber < number) {
-            throw new IllegalArgumentException("[error] 숫자의 범위는 1~45 입니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45 입니다.");
         }
     }
 
@@ -121,7 +121,7 @@ public class LottoManager {
         List<Integer> numbers = user.getUserLotto().getNumbers();
 
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[error] 보너스 번호는 당첨 번호와 중복되지 않은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않은 숫자여야 합니다.");
         }
     }
 

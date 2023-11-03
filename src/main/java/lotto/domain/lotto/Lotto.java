@@ -70,4 +70,8 @@ public class Lotto {
                 "numbers=" + numbers +
                 '}';
     }
+
+    public boolean contains(final int number) {
+        return numbers.contains(number);
+    }
 }

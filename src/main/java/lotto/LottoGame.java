@@ -45,20 +45,21 @@ public class LottoGame {
         lottoMachine.addLottoNumbers(lottoNumbers);
     }
 
+    private void inputBonusNumber() {
+        String inputNumber = inputView.inputBonusNumber();
+        InputCommonValidator.validateSingle(inputNumber);
+        lottoMachine.addBonusNumber(Integer.parseInt(inputNumber));
+    }
+
     private List<Integer> convertToNumbers(final List<String> inputNumbers) {
         return inputNumbers.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-
-    private void inputBonusNumber() {
-
-    }
-
     private int inputBuyingPrice() {
         String inputPrice = inputView.inputBuyingPrice();
-        InputCommonValidator.validateSingleInput(inputPrice);
+        InputCommonValidator.validateSingle(inputPrice);
         return Integer.parseInt(inputPrice);
     }
 

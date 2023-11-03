@@ -13,7 +13,7 @@ public class InputCommonValidator {
         inputs.forEach(InputCommonValidator::validateNumber);
     }
 
-    public static void validateSingleInput(final String input) {
+    public static void validateSingle(final String input) {
         validateNumber(input);
     }
 

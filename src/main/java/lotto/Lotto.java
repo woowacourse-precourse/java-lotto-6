@@ -29,4 +29,8 @@ public class Lotto {
         }
     }
 
+    public boolean containsGivenNumber(int given) {
+        return this.numbers.contains(given);
+    }
+
 }

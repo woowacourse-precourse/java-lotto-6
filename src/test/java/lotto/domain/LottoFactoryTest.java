@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.constant.LottoConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +14,11 @@ class LottoFactoryTest {
         // given
         int money = 5000;
 
-
         // when
         LottoFactory lottoFactory = LottoFactory.create(new RandomNumberGenerator(), money);
 
         // then
-        assertThat(lottoFactory.getLottoNumbers()).hasSize(5);
+        assertThat(lottoFactory.getLottoNumbers()).hasSize(money / LottoConstant.MONEY_UNIT.getValue());
     }
 
 }

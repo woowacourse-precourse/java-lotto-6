@@ -85,7 +85,8 @@ public class WinningLotto {
 
     private void validateDuplicate(List<Integer> winningNumbers) {
         if (hasDuplicate(winningNumbers)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());       }
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
+        }
     }
 
     private boolean hasDuplicate(List<Integer> winningNumbers) {

@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
-import lotto.exception.BonusNumberExceptionMessage;
+import lotto.exception.BonusNumberException;
 import lotto.exception.PurchaseValidattionException;
 import lotto.exception.WinningNumberValidationException;
 import lotto.view.InputView;
@@ -103,12 +103,12 @@ public class LottoService {
     }
 
     private void validateBonusNumberFormat(String input) {
-        BonusNumberExceptionMessage.validateBonusNumberFormat(input);
+        BonusNumberException.ensureValidFormat(input);
     }
 
     private void validateBoundaryAndDuplicateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        BonusNumberExceptionMessage.validateBoundaryBonusNumber(bonusNumber);
-        BonusNumberExceptionMessage.validateBonusNumber(winningNumbers, bonusNumber);
+        BonusNumberException.ensureWithinValidRange(bonusNumber);
+        BonusNumberException.ensureNotDuplicatedWithWinningNumbers(winningNumbers, bonusNumber);
     }
 
 

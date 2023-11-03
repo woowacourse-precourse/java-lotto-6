@@ -14,12 +14,30 @@ public class Amount {
     }
 
     private void validateAmount(int amount) {
+        this.validateIsDividedLottoPrice(amount);
+        this.validateIsPositive(amount);
+    }
+
+    private void validateIsDividedLottoPrice(int amount) {
         if (amount % dd != 0) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_DIVIDED_LOTTO_PRICE.message());
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_DIVIDED_LOTTO_PRICE.message());
+        }
+    }
+
+    private void validateIsPositive(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_POSITIVE.message());
         }
     }
 
     public int getPurchaseNumber() {
         return amount / dd;
+    }
+
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "amount=" + amount +
+                '}';
     }
 }

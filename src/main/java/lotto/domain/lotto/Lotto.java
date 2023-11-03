@@ -4,12 +4,14 @@ import java.util.List;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
         validateDistinct(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validateCount(List<Integer> numbers) {

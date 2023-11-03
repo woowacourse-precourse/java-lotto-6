@@ -1,6 +1,7 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Index;
@@ -35,6 +36,21 @@ public class StringTest {
         assertThat(result).contains("1", Index.atIndex(0));
         assertThat(result).containsExactly("1");
         assertThat(result.length).isOne();
+    }
+
+    @Test
+    @DisplayName("String.substring(): 블록 제거")
+    void givenWithBlock_whenSubstring_thenRemoveBlock() {
+        String numbersWithBlock = "(1,2)";
+
+        String result = numbersWithBlock.substring(1, 4);
+
+        assertThat(result).doesNotStartWith("(")
+                .doesNotEndWith(")");
+        assertThat(result).startsWith("1")
+                .endsWith("2");
+        assertThat(result).isEqualTo("1,2");
+        assertEquals("1,2", result);
     }
 
 }

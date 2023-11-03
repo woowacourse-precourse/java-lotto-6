@@ -34,5 +34,12 @@ public class Application {
             allLotto.add(oneLotto);
         }
 
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> jackPot = new ArrayList<>();
+        String[] numbers = Console.readLine().split(",");
+        for (int i = 0; i < 6; i++) {
+            jackPot.add(Integer.parseInt(numbers[i]));
+        }
     }
 }

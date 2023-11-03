@@ -14,5 +14,8 @@ public class InputView {
         this.reader = reader;
     }
 
-
+    public String readMoney(){
+        printer.print(Messages.REQUEST_MONEY.toString());
+        return Console.readLine();
+    }
 }

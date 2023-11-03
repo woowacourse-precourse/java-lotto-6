@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lotto.Lotto;
+import lotto.LottoGenerator;
 import lotto.Messages;
 import lotto.service.LottoService;
 import lotto.utils.Printer;
@@ -36,47 +36,22 @@ public class LottoController {
     }
 
     public void process(){
+        final LottoGenerator generator = insertMoney();
+        buyLottos(generator);
 
         List<Lotto> myLotto = new ArrayList<>();
-        Printer printer = new SystemPrinter();
-        // 기능 1.
-        printer.print(Messages.REQUEST_MONEY.toString());
-        int money;
-        while (true){
-            try{
-                money = Integer.parseInt(Console.readLine().trim());
-                validatePriceInput(money);
-                break;
-            }catch (NumberFormatException e){
-                System.out.println("[ERROR] 숫자 입력을 해주세요.");
-            }catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        int trial = money / 1000;
-        System.out.printf("%d개를 구매했습니다.\n", trial);
-        for(int i = 0; i < trial; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minLottoNum, maxLottoNum, baseLottoCount);
-            List<Integer> sortedNumbers = numbers.stream()
-                    .sorted()
-                    .collect(Collectors.toList());
-            Lotto newLotto = new Lotto(sortedNumbers);
-            myLotto.add(newLotto);
-
-            newLotto.toString();
-        }
 
         // 기능 2. 당첨 번호 입력
 
         while (true){
             try{
-                printer.print(String.valueOf(Messages.REQUEST_WINNING_NUMBER));
+//                printer.print(String.valueOf(Messages.REQUEST_WINNING_NUMBER));
                 List<String> answer = Arrays.stream(Console.readLine().split(DELIMETER)).map(String::trim).toList();
                 validatePickedNum(answer);
                 pickedLotto = new Lotto(answer.stream().map(Integer::parseInt).toList());
                 break;
             }catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
             }
         }
         // 기능 3. 보너스 번호 입력
@@ -89,7 +64,7 @@ public class LottoController {
                 bonusNumber = Integer.parseInt(notValidatedBonusNumber);
                 break;
             }catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
             }
         }
         Console.close();
@@ -141,7 +116,7 @@ public class LottoController {
         for (Map.Entry<Integer, Integer> entry : result.entrySet()) {
             totalReward += reward.get(entry.getKey()) * entry.getValue();
         }
-        float profitRate =  ((float)totalReward /(float) money) * 100;
+//        float profitRate =  ((float)totalReward /(float) money) * 100;
 
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -149,23 +124,28 @@ public class LottoController {
             System.out.printf("%s (%s원) - %d개%n", template.get(i), giveDot().format(reward.get(i)), result.get(i));
         }
 
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+//        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+
+    private LottoGenerator insertMoney(){
+        while (true){
+            try {
+                String moneyBeforeValidated = inputView.readMoney();
+                return LottoGenerator.createLottoGenerator(moneyBeforeValidated);
+            }catch (IllegalStateException | IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+    private void buyLottos(LottoGenerator generator){
+        int trial = generator.getTrial();
+        outputView.printWithArguments(Messages.ALARM_TRIAL.toString(), trial);
+        outputView.printLottos(lottoService.getLottos(generator));
     }
     public static DecimalFormat giveDot(){
         return new DecimalFormat("###,###");
     }
 
-    public static void validatePriceInput(int priceInput){
-        if(priceInput <= 0){
-            throw new IllegalStateException("[ERROR] 0보다 큰 수가 필요합니다.");
-        }
-        if(priceInput > maxCount * basePrice){
-            throw new IllegalArgumentException("[ERROR] 최대 구매 가능 개수를 초과했습니다.");
-        }
-        if(priceInput % 1000 > 0){
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로만 구매가 가능합니다.");
-        }
-    }
     public static void validatePickedNum(List<String> pickedNum){
         if(containsDuplicateNumber(pickedNum)){
             throw new IllegalStateException("[ERROR] 중복된 숫자가 있습니다.");

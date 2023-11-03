@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,5 +78,46 @@ class LottoTest {
         assertThat(numbers.get(3)).isLessThan(46);
         assertThat(numbers.get(4)).isLessThan(46);
         assertThat(numbers.get(5)).isLessThan(46);
+    }
+
+    @DisplayName("당첨 번호와 일치하는 숫자의 갯수를 반환한다.")
+    @Test
+    void calculateCorrectAmount() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
+        Lotto lotto = Lotto.createLotto(numbers);
+        WinningLotto winningLotto = WinningLotto.of(winningNumbers);
+        winningLotto.createBonusNumber(6);
+
+        // when
+        int correctAmount = lotto.calculateCorrectAmount(winningLotto);
+
+        // then
+        assertThat(correctAmount).isEqualTo(5);
+    }
+
+    @DisplayName("보너스 번호 일치 여부를 반환한다.")
+    @Test
+    void calculateBonusCorrect() {
+        // given 1
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = Lotto.createLotto(numbers);
+
+        // given 2
+        List<Integer> winningNumbers1 = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNumbers2 = List.of(1, 2, 3, 4, 5, 7);
+        WinningLotto winningLotto1 = WinningLotto.of(winningNumbers1);
+        WinningLotto winningLotto2 = WinningLotto.of(winningNumbers2);
+        winningLotto1.createBonusNumber(6);
+        winningLotto2.createBonusNumber(45);
+
+        // when
+        boolean bonusCorrect1 = lotto.calculateBonusCorrect(winningLotto1);
+        boolean bonusCorrect2 = lotto.calculateBonusCorrect(winningLotto2);
+
+        // then
+        assertThat(bonusCorrect1).isTrue();
+        assertThat(bonusCorrect2).isFalse();
     }
 }

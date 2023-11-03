@@ -20,7 +20,9 @@ __constants__
 - InvalidLottoNumberRange
 - NotMultipleOfThousand
 
+__exception_message__
 - ExceptionMessage : `enum`
+- ExceptionMessageBuilder 
 
 ### domain
 #### lotto
@@ -42,9 +44,10 @@ __constants__
 __constants__
 - ValidationPatterns
 
-### parser
-- Parser
+### util
 
+- Formatter
+- Parser
 
 
 ---

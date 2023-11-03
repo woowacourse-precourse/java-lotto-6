@@ -62,7 +62,7 @@ class ResultTest {
     @DisplayName("getter의 불변성이 보장된다.")
     @ParameterizedTest
     @MethodSource("rankCountProvider")
-    void getRankCount(Map<Rank, Long> rankCount, float answer) {
+    void getRankCount(Map<Rank, Long> rankCount) {
         // given
         Result result = Result.of(rankCount);
 

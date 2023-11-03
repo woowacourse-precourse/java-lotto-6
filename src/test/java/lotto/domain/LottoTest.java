@@ -59,10 +59,9 @@ class LottoTest {
     void validateBonusNumberByRange(int value) {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonus = value;
 
         // when then
-        assertThatThrownBy(() -> lotto.validateBonusNumber(bonus))
+        assertThatThrownBy(() -> lotto.validateBonusNumber(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.WRONG_RANGE.getMessage());
     }

@@ -5,6 +5,8 @@ import lotto.view.OutputValue;
 
 public class LottoController {
 
+    private int lottoCount;
+
     public LottoController() {
         lottoInit();
         lottoProcess();
@@ -14,7 +16,9 @@ public class LottoController {
     private void lottoInit() {
 
         OutputValue.purchaseMessage();
-        int purchasePrice = InputValue.getPurchasePrice();
+        lottoCount = InputValue.getPurchasePrice() / 1000;
+
+        OutputValue.lottoCountMessage(lottoCount);
 
     }
 

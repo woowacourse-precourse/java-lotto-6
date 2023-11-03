@@ -1,5 +1,9 @@
 package lotto;
 
+import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
 import lotto.view.LottoGuideMessage;
 import lotto.view.LottoReader;

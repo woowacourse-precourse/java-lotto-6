@@ -10,7 +10,7 @@ public class StringUtilsTest {
     @DisplayName("당첨 번호를 입력받을 때 숫자가 아니면 예외가 발생한다.")
     @Test
     void stringToNumbers() {
-        String[] input = {"1", "2", "3", "4", "5", "d"};
+        String input = "1,2,3,4,5,d";
         assertThatThrownBy(() -> StringUtils.stringToNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }

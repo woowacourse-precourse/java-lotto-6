@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtils {
-    public static List<Integer> stringToNumbers(String[] numbers) {
+    public static List<Integer> stringToNumbers(String numbers) {
         try {
-            return Arrays.stream(numbers)
+            return Arrays.stream(numbers.split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {

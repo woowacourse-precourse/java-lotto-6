@@ -1,9 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,6 +23,13 @@ public class Lotto {
 
         for (int number : numbers) {
             if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        Set<Integer> numbersNotSame = new HashSet<>();
+        for (int number : numbers) {
+            if (!numbersNotSame.add(number)) {
                 throw new IllegalArgumentException();
             }
         }

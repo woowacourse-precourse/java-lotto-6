@@ -24,6 +24,13 @@ public class InputView {
         return splitWord(numbers);
     }
 
+    public static String readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        validateBlank(bonusNumber);
+        return bonusNumber;
+    }
+
     private static void validateBlank(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 빈 값이 입력되었습니다.");

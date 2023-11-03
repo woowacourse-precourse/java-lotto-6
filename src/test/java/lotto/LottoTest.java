@@ -46,14 +46,14 @@ class LottoTest {
 //                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호의 숫자 중 45 초과 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호의 숫자 중 범위 초과 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByOverRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호의 숫자 중 1 미만 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호의 숫자 중 범위 미만 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByUnderRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))

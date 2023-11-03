@@ -9,17 +9,17 @@ public class Controller {
     private final GameService gameService = new GameService();
 
     public void run() {
-        inputBuyPrice();
+        inputPurchaseAmount();
         printIssuedLotto();
         inputWinningNumbers();
         inputBonusNumber();
         printWinningStatistics();
     }
 
-    private void inputBuyPrice(){
-        OutputView.inputBuyPriceMessage();
+    private void inputPurchaseAmount(){
+        OutputView.inputPurchaseAmountMessage();
         String input = InputView.input();
-        gameService.inputBuyPrice(input);
+        gameService.inputPurchaseAmount(input);
     }
 
     private void printIssuedLotto(){

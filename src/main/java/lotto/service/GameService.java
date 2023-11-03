@@ -1,13 +1,13 @@
 package lotto.service;
 
-import lotto.model.BuyPrice;
+import lotto.model.PurchaseAmount;
 
 public class GameService {
 
-    private int buyPrice;
+    private int purchaseAmount;
 
-    public void inputBuyPrice(String input){
-        buyPrice = BuyPrice.validated(input);
+    public void inputPurchaseAmount(String input){
+        purchaseAmount = PurchaseAmount.validated(input);
     }
 
 }

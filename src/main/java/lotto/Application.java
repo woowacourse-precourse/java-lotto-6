@@ -16,5 +16,7 @@ public class Application {
         lottoManager.bonusNumberInput(user);
 
         lottoManager.printWinningResult(user);
+
+        lottoManager.getYield(user);
     }
 }

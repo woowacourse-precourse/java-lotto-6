@@ -9,6 +9,10 @@ public class LottoManager {
 
     private int price;
 
+    public int getPrice() {
+        return price;
+    }
+
     public void start() {
         try {
             priceInput();
@@ -19,8 +23,11 @@ public class LottoManager {
         }
     }
 
-    public int getPrice() {
-        return price;
+    public void priceInput() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+
+        setPrice(input);
     }
 
     public void setPrice(String input) {
@@ -28,13 +35,6 @@ public class LottoManager {
         unitValidate(price);
 
         this.price = price;
-    }
-
-    public void priceInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-
-        setPrice(input);
     }
 
     private int numberFormatValidate(String input) {
@@ -136,11 +136,11 @@ public class LottoManager {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        String sb = Const.fifthPlaceCount + " " + Const.fifthPrize + " - " + user.getFifthPlace() + "개" +
-                '\n' + Const.fourthPlaceCount + " " + Const.fourthPrize + " - " + user.getFourthPlace() + "개" +
-                '\n' + Const.thirdPlaceCount + " " + Const.thirdPrize + " - " + user.getThirdPlace() + "개" +
-                '\n' + Const.secondPlaceCount + " " + Const.secondPrize + " - " + user.getSecondPlace() + "개" +
-                '\n' + Const.firstPlaceCount + " " + Const.firstPrize + " - " + user.getFirstPlace() + "개";
+        String sb = Const.fifthPlaceCount + " (" + String.format("%,d", Const.fifthPrize) + "원" + ") - " + user.getFifthPlace() + "개" +
+                '\n' + Const.fourthPlaceCount + " (" + String.format("%,d", Const.fourthPrize) + "원" + ") - " + user.getFourthPlace() + "개" +
+                '\n' + Const.thirdPlaceCount + " (" + String.format("%,d", Const.thirdPrize) + "원" + ") - " + user.getThirdPlace() + "개" +
+                '\n' + Const.secondPlaceCount + " (" + String.format("%,d", Const.secondPrize) + "원" + ") - " + user.getSecondPlace() + "개" +
+                '\n' + Const.firstPlaceCount + " (" + String.format("%,d", Const.firstPrize) + "원" + ") - " + user.getFirstPlace() + "개";
 
         System.out.println(sb);
     }
@@ -168,5 +168,16 @@ public class LottoManager {
         user.setThirdPlace(count);
         user.setSecondPlace(count, bonusHit);
         user.setFirstPlace(count);
+    }
+
+    public void getYield(User user) {
+        int total = user.getFifthPlace() * Const.fifthPrize
+                + user.getFourthPlace() * Const.fourthPrize
+                + user.getThirdPlace() * Const.thirdPrize
+                + user.getSecondPlace() * Const.secondPrize
+                + user.getFirstPlace() * Const.firstPrize;
+
+        double yield = Math.round(((double) total / price) * 100 * 100.0) / 100.0;
+        System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 }

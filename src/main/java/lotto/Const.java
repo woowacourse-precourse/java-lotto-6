@@ -14,9 +14,11 @@ public class Const {
     public static final String secondPlaceCount = "5개 일치, 보너스 볼 일치";
     public static final String firstPlaceCount = "6개 일치";
 
-    public static final String fifthPrize = "(5,000원)";
-    public static final String fourthPrize = "(50,000원)";
-    public static final String thirdPrize = "(1,500,000원)";
-    public static final String secondPrize = "(30,000,000원)";
-    public static final String firstPrize = "(2,000,000,000원)";
+    public static final int fifthPrize = 5000;
+    public static final int fourthPrize = 50000;
+    public static final int thirdPrize = 1500000;
+    public static final int secondPrize = 30000000;
+    public static final int firstPrize = 2000000000;
+
+
 }

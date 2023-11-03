@@ -7,8 +7,10 @@ public class User {
 
     private final int lottoCount;
     private final List<Lotto> lottos;
+
     private Lotto userLotto;
     private int bonusNumber;
+
     private int fifthPlace;
     private int fourthPlace;
     private int thirdPlace;

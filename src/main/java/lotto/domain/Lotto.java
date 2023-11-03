@@ -1,10 +1,12 @@
 package lotto.domain;
 
-import lotto.resource.LottoValue;
-
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,22 +21,21 @@ public class Lotto {
     }
 
     private void lottoSizeValidate(List<Integer> numbers) {
-        if (numbers.size() != LottoValue.LOTTO_SIZE.getValue()) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     private void lottoNumberRangeValidate(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number < LottoValue.LOTTO_MIN_NUMBER.getValue()
-                    || number > LottoValue.LOTTO_MAX_NUMBER.getValue()) {
+            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException();
             }
         });
     }
 
     private void lottoDuplicateNumberValidate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != LottoValue.LOTTO_SIZE.getValue()) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }

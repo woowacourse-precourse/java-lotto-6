@@ -24,4 +24,16 @@ class RankTest {
         assertEquals(5, Rank.SECOND.getCountOfMatch(), "SECOND는 5개 일치여야 함");
         assertEquals(5, Rank.THIRD.getCountOfMatch(), "THIRD는 5개 일치여야 함");
     }
+
+    @Test
+    @DisplayName("각 Rank의 상금이 올바르게 반환됨")
+    void whenGetPrize_thenReturnsCorrectPrize() {
+        assertEquals(2_000_000_000, Rank.FIRST.getPrize(), "FIRST 상금은 2,000,000,000이어야 함");
+        assertEquals(30_000_000, Rank.SECOND.getPrize(), "SECOND 상금은 30,000,000이어야 함");
+        assertEquals(1_500_000, Rank.THIRD.getPrize(), "THIRD 상금은 1,500,000이어야 함");
+        assertEquals(50_000, Rank.FOURTH.getPrize(), "FOURTH 상금은 50,000이어야 함");
+        assertEquals(5_000, Rank.FIFTH.getPrize(), "FIFTH 상금은 5,000이어야 함");
+        assertEquals(0, Rank.NONE.getPrize(), "NONE의 상금은 0이어야 함");
+    }
+
 }

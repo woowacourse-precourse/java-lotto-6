@@ -5,6 +5,7 @@ import lotto.view.Input;
 
 public class Game {
     public void start() {
-        Input.readAmount();
+        int amount = Input.readAmount();
+        System.out.println(amount);
     }
 }

@@ -9,14 +9,28 @@ import java.util.List;
 
 public class LottoController {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닙니다.";
+
     private final Output output = new Output();
     private final Input input = new Input();
 
     public void run() {
         output.showMoneyInputMessage();
-        input.readMoney();
+        int money = toInt(input.readMoney());
 
-        makeLotto();
+        int count = money / LOTTO_PRICE;
+        for (int i = 0; i < count; i++) {
+            makeLotto();
+        }
+    }
+
+    private int toInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
+        }
     }
 
     private Lotto makeLotto() {

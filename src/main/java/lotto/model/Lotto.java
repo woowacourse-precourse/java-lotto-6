@@ -36,4 +36,8 @@ public class Lotto {
 
         return count.intValue();
     }
+
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return bonusNumber.existIn(numbers);
+    }
 }

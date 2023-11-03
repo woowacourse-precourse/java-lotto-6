@@ -16,6 +16,12 @@ public class Lotto {
         }
     }
 
+    public void lottoByDuplicateNumber() {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("서로 다른 로또 번호를 입력해주세요.");
+        }
+    }
+
     public boolean contains(BounsNumber bounsNumber) {
         return numbers.contains(bounsNumber.getBounsNumber());
     }

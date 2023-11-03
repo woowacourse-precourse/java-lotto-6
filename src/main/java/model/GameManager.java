@@ -30,4 +30,13 @@ public class GameManager {
         answerLotto = new LottoWithBonus(answerNumbers.toLotto(),
             answerBonusNumber.toLottoNumber());
     }
+
+    public LottoTotalResult calculateResult () {
+        List<LottoCompareResult> results=lottos.compareAnswerLotto(answerLotto);
+        LottoTotalResult totalResult = LottoTotalResult.createDefault();
+
+        results.forEach(totalResult::reflectCompareResult);
+
+        return totalResult;
+    }
 }

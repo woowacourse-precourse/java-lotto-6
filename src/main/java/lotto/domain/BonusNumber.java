@@ -4,7 +4,7 @@ import lotto.valid.BonusNumberValid;
 
 public class BonusNumber {
 
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(WinNumber winNumber, String bonusNumber) {
         this.bonusNumber = BonusNumberValid.validBonusNumber(winNumber, bonusNumber);

@@ -3,11 +3,11 @@ package domain;
 import validator.MoneyValidator;
 
 public class Money {
-    private final int money;
+    private final long money;
 
     public Money(String money) {
         validate(money);
-        this.money = Integer.parseInt(money);
+        this.money = Long.parseLong(money);
     }
 
     private void validate(String money) {
@@ -16,7 +16,7 @@ public class Money {
         MoneyValidator.isThousandUnit(money);
     }
 
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 }

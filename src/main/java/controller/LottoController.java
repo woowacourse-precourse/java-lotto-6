@@ -5,9 +5,10 @@ import constant.Rank;
 import domain.BonusNumber;
 import domain.Lottos;
 import domain.Money;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 import lotto.Lotto;
 import view.InputView;
 import view.OutputView;
@@ -34,7 +35,7 @@ public class LottoController {
 
     public void start() {
         getLottoMoney();
-        int ticketCount = OutputView.LottoTicketCount(money.getMoney());
+        long ticketCount = OutputView.LottoTicketCount(money.getMoney());
         makeLottoLists(ticketCount);
         getWinningNumbersAndBonusNumber();
         result();
@@ -51,15 +52,18 @@ public class LottoController {
         }
     }
 
-    private void makeLottoLists(int ticketCount) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < ticketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoList.add(new Lotto(numbers));
-            lottoList.get(i).printNumbers();
-        }
+    private void makeLottoLists(long ticketCount) {
+        List<Lotto> lottoList = LongStream.range(0, ticketCount)
+                .mapToObj(lotto -> new Lotto(chooseRandomLottoNumbers()))
+                .peek(Lotto::printNumbers)
+                .collect(Collectors.toList());
+
         lottos = new Lottos(lottoList);
         System.out.println();
+    }
+
+    private List<Integer> chooseRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private void getWinningNumbersAndBonusNumber() {
@@ -101,6 +105,6 @@ public class LottoController {
         }
 
         OutputView.printStatistics(rankCountsMap);
-        OutputView.printProfitRatio(rankCountsMap, money.getMoney());
+        OutputView.printEarningtRatio(rankCountsMap, money.getMoney());
     }
 }

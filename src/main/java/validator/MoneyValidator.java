@@ -11,7 +11,7 @@ public class MoneyValidator {
 
     public static void isNumeric(String money) {
         try {
-            int integerMoney = Integer.parseInt(money);
+            long integerMoney = Long.parseLong(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + NON_INTEGER_AMOUNT.getMessage()
@@ -20,7 +20,7 @@ public class MoneyValidator {
     }
 
     public static void isZero(String money) {
-        int integerMoney = Integer.parseInt(money);
+        long integerMoney = Long.parseLong(money);
         if (integerMoney == 0) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + ZERO_INTEGER_AMOUNT.getMessage()
@@ -29,7 +29,7 @@ public class MoneyValidator {
     }
 
     public static void isThousandUnit(String money) {
-        int integerMoney = Integer.parseInt(money);
+        long integerMoney = Long.parseLong(money);
         if (integerMoney % 1000 != 0) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + NON_MULTIPLE_OF_1000.getMessage()

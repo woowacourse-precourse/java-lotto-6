@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.dto.LottoResponseDtos;
+import lotto.dto.LottoResponseDtos.LottoResponseDto;
 import lotto.utils.NumberUtils;
 import lotto.utils.constant.LottoConstant;
 import lotto.utils.message.ErrorMessage;
@@ -40,5 +42,9 @@ public class Lotto {
         if (n < LottoConstant.LOTTO_NUMBER_MIN || n > LottoConstant.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE);
         }
+    }
+
+    public LottoResponseDto toResponseDto() {
+        return new LottoResponseDto(numbers);
     }
 }

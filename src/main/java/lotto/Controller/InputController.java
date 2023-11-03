@@ -50,6 +50,14 @@ public class InputController {
     }
 
     public void inputBonusNumber(){
-        String
+        String bonus_number = Console.readLine();
+
+        try {
+            exceptionController.bonusNumberException(bonus_number);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+        }catch(IllegalStateException e){
+            System.out.println("[ERROR] 보너스 번호는 1에서 45사이의 숫자이어야 합니다.");
+        }
     }
 }

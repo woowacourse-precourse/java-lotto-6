@@ -2,7 +2,6 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
 import java.util.List;
 import lotto.Lotto;
 
@@ -39,7 +38,6 @@ public class Computer {
         }
     }
 
-
     // 2. 로또 수량 계산 로직
     public Integer calculateLotto(Integer money) {
         Integer lottoCount = money / 1000;
@@ -61,23 +59,9 @@ public class Computer {
 
     }
 
-    public void checkDuplication(List<Integer> userInput) {
-        if (userInput.size() != new HashSet<>(userInput).size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
-        }
-    }
-
     public void isIncluding(List<Integer> lottoNumbers, Integer bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
         }
     }
-
-    public void checkSize(List<String> userInputs) {
-        if (userInputs.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");
-        }
-    }
-
-
 }

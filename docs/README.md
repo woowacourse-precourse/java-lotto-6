@@ -86,3 +86,5 @@
 - printLottoResult : 모든 로또 결과를 출력한다.
 - printWinResult : 테스트용 1,3,4,5등 결과를 출력한다.
 - printBonusResult : 테스트용 2등 결과를 출력한다.
+
+- printProfitRate : 소수점 두번째 자리에서 반올림한 수익률을 출력한다.

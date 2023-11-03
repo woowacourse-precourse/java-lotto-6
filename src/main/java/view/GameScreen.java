@@ -14,7 +14,7 @@ public class GameScreen {
 
     public void runGame(){
         initialize();
-        this.game.printLottoQuantity();
+        printLottoQuantity();
 
         printLottos();
         System.out.println();
@@ -28,7 +28,7 @@ public class GameScreen {
         //printBonusResult();
 
         //printTotalPrizes();
-        this.game.calculateProfitRate();
+        printProfitRate();
     }
     private void initialize(){
         while(true) {
@@ -86,6 +86,9 @@ public class GameScreen {
 //        }
 //        System.out.println(printer);
 //    }
+    private void printLottoQuantity() {
+    System.out.println(this.game.getLottoQuantity()+"개를 구매했습니다.");
+}
     private void validateWinNumber(String[] inputNumbers) throws IllegalArgumentException{
         validateWinNumberType(inputNumbers);
         validateWinNumberLength(inputNumbers);
@@ -178,8 +181,12 @@ public class GameScreen {
 //        String result = this.game.getBonusLottoResult();
 //        System.out.println(result);
 //    }
-    //only for test
-    private void printTotalPrizes(){
-        System.out.println(this.game.sumAllPrize());
+//    //only for test
+//    private void printTotalPrizes(){
+//        System.out.println(this.game.sumAllPrize());
+//    }
+    private void printProfitRate(){
+        String profitRate = this.game.calculateProfitRate();
+        System.out.println("총 수익률은 "+ profitRate+"%입니다.");
     }
 }

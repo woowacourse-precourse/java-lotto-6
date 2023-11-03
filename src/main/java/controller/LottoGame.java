@@ -30,8 +30,8 @@ public class LottoGame {
         initWinnerQuantity();
     }
 
-    public void printLottoQuantity() {
-        System.out.println(this.lottoQuantity+"개를 구매했습니다.");
+    public int getLottoQuantity() {
+        return lottoQuantity;
     }
 
     private void validateDigit(char c){
@@ -115,12 +115,12 @@ public class LottoGame {
                     winnerQuantity.getOrDefault(winNumberCount, 0) + 1);
         }
     }
-    public void findWinnersWithWinNumber(){
+    private void findWinnersWithWinNumber(){
         for(Lotto lotto : this.lottos){
             countWithWinNumber(lotto);
         }
     }
-    public void findWinnersWithBonusNumber(){
+    private void findWinnersWithBonusNumber(){
         for(Lotto lotto : this.lottos){
             countWithBonusNumber(lotto);
         }
@@ -198,7 +198,7 @@ public class LottoGame {
         return amount;
     }
 
-    public BigInteger sumAllPrize(){
+    private BigInteger sumAllPrize(){
         BigInteger result = new BigInteger("0");
         Set<Map.Entry<Integer, Integer>> wonLottos = this.winnerQuantity.entrySet();
 
@@ -214,47 +214,47 @@ public class LottoGame {
         return result;
     }
 
-    public BigInteger calculateProfitRate(){
+    public String calculateProfitRate(){
         BigInteger result = sumAllPrize();
-        System.out.println("합산액 "+result);
+        //System.out.println("합산액 "+result);
         BigInteger cost
                 = new BigInteger(String.valueOf(this.lottoQuantity * 1000));
-        System.out.println("구입 금액 "+cost);
+        //System.out.println("구입 금액 "+cost);
         String profitRate;
-        //두번째 자리에서 반올림하는 것이므로
-        //100 00을 곱해주고
-        //뒤의 2자리와 앞의 나머지로 문자열을 자른다.
-        //뒤의 2자리를 int로 바꿔주고 1의 자리에서 반올림한 뒤
-        //문자열로 변환하고 앞의 한자리만 자르고 나머지는 버린다.
-        //아까의 앞의 나머지 뒤에 .을 붙이고 뒤에 방금의 앞의 한자리를 붙인다.
+
         if(result.toString().equals("0"))
-            return new BigInteger("0");
+            return "0";
         result = (result.multiply(new BigInteger("10000")).divide(cost));
-        System.out.println("당첨 합산액 / 초기금 = "+ result);
+        //System.out.println("당첨 합산액 / 초기금 = "+ result);
         profitRate = roundProfitRateInSecondPlace(result);
-        System.out.println("총 수익률은 "+ profitRate+"%입니다.");
-        return result;
+        return profitRate;
     }
 
-    public String roundProfitRateInSecondPlace(BigInteger result){
+    //두번째 자리에서 반올림하는 것이므로
+    //100 00을 곱해주고
+    //뒤의 2자리와 앞의 나머지로 문자열을 자른다.
+    //뒤의 2자리를 int로 바꿔주고 1의 자리에서 반올림한 뒤
+    //문자열로 변환하고 앞의 한자리만 자르고 나머지는 버린다.
+    //아까의 앞의 나머지 뒤에 .을 붙이고 뒤에 방금의 앞의 한자리를 붙인다.
+    private String roundProfitRateInSecondPlace(BigInteger result){
         String profitRate = result.toString();
         int length = profitRate.length();
 
         String front = profitRate.substring(0, length-2);
-        System.out.println("front "+front);
+        //System.out.println("front "+front);
         String back = profitRate.substring(length-2, length);
-        System.out.println("back "+back);
+        //System.out.println("back "+back);
 
         double backNumber = Double.parseDouble(back);
-        System.out.println("1 current backNumber "+backNumber);
+        //System.out.println("1 current backNumber "+backNumber);
         backNumber = backNumber/10.00;
-        System.out.println("2 current backNumber "+backNumber);
+        //System.out.println("2 current backNumber "+backNumber);
         backNumber = Math.round(backNumber);
-        System.out.println("3 current backNumber "+backNumber);
+        //System.out.println("3 current backNumber "+backNumber);
         back = String.valueOf(backNumber);
         back = back.substring(0,1);
 
-        System.out.println("back "+back);
+        //System.out.println("back "+back);
         return front+"."+back;
     }
 }

@@ -1,11 +1,12 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class InputViewTest {
         List<String> numbers = inputView.inputWinningNumbers();
 
         //then
-        Assertions.assertThat(numbers).hasSize(6)
+        assertThat(numbers).hasSize(6)
                 .isEqualTo(Arrays.asList("1", "2", "3", "4", "5","6"));
     }
 

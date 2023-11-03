@@ -64,6 +64,9 @@ public class User {
             if (1 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+            if(!lottoNumber.matches("^[1-9][0-9]?$")){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 0으로 시작할 수 없습니다. (ex) 1,8,24,47,35,6");
+            }
         }
     }
 
@@ -94,6 +97,9 @@ public class User {
     private void validateSingleNumberInput(String bonusNumber){
         if(!bonusNumber.matches("^\\d+$")){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자 1개만 입력해주세요. (ex) 7");
+        }
+        if(!bonusNumber.matches("^[1-9][0-9]?$")){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 0으로 시작할 수 없습니다.  (ex) 7");
         }
     }
 }

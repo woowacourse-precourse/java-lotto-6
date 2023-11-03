@@ -1,14 +1,20 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.Lotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    LottoService lottoService = new LottoService();
+
     public void run() {
         int purchasePrice = getPurchasePrice();
         int lottoCount = getLottoCount(purchasePrice);
         OutputView.printPurchaseLotto(lottoCount);
+        List<Lotto> lottos = lottoService.generateLotto(lottoCount);
     }
 
     private int getLottoCount(int purchasePrice) {

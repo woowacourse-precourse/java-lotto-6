@@ -24,4 +24,19 @@ class InvalidInputTest {
                 .hasMessage("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
     }
 
+    @DisplayName("숫자가 1~45 범위가 아니면 예외가 발생한다.")
+    @Test
+    void outOfRangeException(){
+        //given
+        InvalidInput invalidInput = new InvalidInput();
+        List<Integer> numbers = new ArrayList<>();
+        numbers.addAll(List.of(1, 2, 3, 4, 5, 100));
+
+        //when //then
+        assertThatThrownBy(() -> invalidInput.outOfRangeException(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호의 숫자 범위는 1 ~ 45까지이다.");
+
+    }
+
 }

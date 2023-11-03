@@ -31,14 +31,13 @@ public class Application {
         }
 
         // 5. 당첨 번호 입력
-
-
+        List<Integer> lottoNumbers;
         boolean isRunning = true;
         while (isRunning) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 List<String> userInputs = Arrays.asList(computer.getInput().split(","));
-                List<Integer> lottoNumbers = new ArrayList<>();
+                lottoNumbers = new ArrayList<>();
 
                 for (String userInput : userInputs) {
                     computer.checkNumber(userInput);
@@ -58,7 +57,6 @@ public class Application {
                 System.out.println(ex.getMessage());
             }
         }
-
 
     }
 }

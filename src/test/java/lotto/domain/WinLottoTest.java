@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -46,18 +45,6 @@ class WinLottoTest {
                 Arguments.of(List.of(2, 18, 3, 4, 5, 6), 23),
                 Arguments.of(List.of(15, 2, 23, 43, 5, 6), 19)
         );
-    }
-
-    @Test
-    @DisplayName("보너스 번호가 1 ~ 45 사이의 숫자 인지 확인 테스트")
-    void bonusNumberRangeSizeTest() {
-
-    }
-
-    @Test
-    @DisplayName("보너스 번호가 당첨 번호와의 중복 확인 테스트")
-    void bonusNumberContainsWinLottoTest() {
-
     }
 
 }

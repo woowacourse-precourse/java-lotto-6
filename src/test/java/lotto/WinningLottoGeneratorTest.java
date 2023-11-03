@@ -6,13 +6,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LottoGeneratorTest {
+public class WinningLottoGeneratorTest {
 
     @Test
     public void 생성된_수가_6개인가() {
         //given
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        Lotto lotto = lottoGenerator.create();
+        WinningLottoGenerator winningLottoGenerator = new WinningLottoGenerator();
+        Lotto lotto = winningLottoGenerator.create();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         //then
@@ -22,8 +22,8 @@ public class LottoGeneratorTest {
     @Test
     public void 중복되지_않은_수를_반환하는가() {
         //given
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        Lotto lotto = lottoGenerator.create();
+        WinningLottoGenerator winningLottoGenerator = new WinningLottoGenerator();
+        Lotto lotto = winningLottoGenerator.create();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         //when

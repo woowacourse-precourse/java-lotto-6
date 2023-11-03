@@ -3,14 +3,16 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-//당첨 번호 관리
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        numbers = sort(numbers);
         this.numbers = numbers;
     }
 
@@ -27,5 +29,14 @@ public class Lotto {
         }
     }
 
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public String toString() {
+        return "[" + numbers + "]";
+    }
 }

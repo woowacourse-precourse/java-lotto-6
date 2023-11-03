@@ -11,7 +11,7 @@ public class Controller {
         return numbers;
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
+    public void validateNumberRange(List<Integer> numbers) {
         numbers.forEach(this::validateSingleNumberRange);
     }
 

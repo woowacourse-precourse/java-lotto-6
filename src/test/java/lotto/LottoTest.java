@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +27,16 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또의 숫자를 오름차순으로 정렬한다.")
+    @Test
+    void sortLottoNumbers() {
+        //given
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
+
+        //when
+        lotto.sortDesc();
+
+        //then
+        assertThat(lotto.getNumbers()).usingRecursiveComparison().isEqualTo(List.of(1, 4, 5, 7, 11, 36));
+    }
 }

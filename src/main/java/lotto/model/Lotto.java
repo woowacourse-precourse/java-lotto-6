@@ -21,4 +21,8 @@ public class Lotto {
     public void sortDesc() {
         Collections.sort(this.numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

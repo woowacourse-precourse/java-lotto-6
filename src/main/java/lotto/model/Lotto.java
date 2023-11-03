@@ -21,8 +21,8 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         consistOfLottoSize(numbers);
-        isNotDuplicated(numbers);
         isInRange(numbers);
+        isNotDuplicated(numbers);
     }
 
     private void consistOfLottoSize(List<Integer> numbers) {
@@ -31,16 +31,16 @@ public class Lotto {
         }
     }
 
-    private void isNotDuplicated(List<Integer> numbers) {
-        if(numbers.stream().distinct().count() != numbers.size()){
-            ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.throwException();
-        }
-    }
-
     private void isInRange(List<Integer> numbers) {
         boolean isInRangeValue = numbers.stream().allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
         if(!isInRangeValue){
             ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        }
+    }
+
+    private void isNotDuplicated(List<Integer> numbers) {
+        if(numbers.stream().distinct().count() != numbers.size()){
+            ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.throwException();
         }
     }
 }

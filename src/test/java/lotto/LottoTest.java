@@ -62,22 +62,24 @@ class LottoTest {
     void lottoNumberRange() {
         // when
         List<Integer> numbers = Lotto.pickUniqueNumbersInRange();
+        Lotto lotto = Lotto.createLotto(numbers);
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
         // then 1
-        assertThat(numbers.get(0)).isGreaterThan(0);
-        assertThat(numbers.get(1)).isGreaterThan(0);
-        assertThat(numbers.get(2)).isGreaterThan(0);
-        assertThat(numbers.get(3)).isGreaterThan(0);
-        assertThat(numbers.get(4)).isGreaterThan(0);
-        assertThat(numbers.get(5)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(0)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(1)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(2)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(3)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(4)).isGreaterThan(0);
+        assertThat(lottoNumbers.get(5)).isGreaterThan(0);
 
         // then 2
-        assertThat(numbers.get(0)).isLessThan(46);
-        assertThat(numbers.get(1)).isLessThan(46);
-        assertThat(numbers.get(2)).isLessThan(46);
-        assertThat(numbers.get(3)).isLessThan(46);
-        assertThat(numbers.get(4)).isLessThan(46);
-        assertThat(numbers.get(5)).isLessThan(46);
+        assertThat(lottoNumbers.get(0)).isLessThan(46);
+        assertThat(lottoNumbers.get(1)).isLessThan(46);
+        assertThat(lottoNumbers.get(2)).isLessThan(46);
+        assertThat(lottoNumbers.get(3)).isLessThan(46);
+        assertThat(lottoNumbers.get(4)).isLessThan(46);
+        assertThat(lottoNumbers.get(5)).isLessThan(46);
     }
 
     @DisplayName("당첨 번호와 일치하는 숫자의 갯수를 반환한다.")

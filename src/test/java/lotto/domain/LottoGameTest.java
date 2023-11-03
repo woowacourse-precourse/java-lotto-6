@@ -22,5 +22,6 @@ class LottoGameTest {
 
         // then
         assertThat(lottos.size()).isEqualTo(10);
+        assertThat(lottoGame.getBuyingAmount()).isEqualTo(10);
     }
 }

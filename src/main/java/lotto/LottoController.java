@@ -17,6 +17,8 @@ public class LottoController {
     public void start() {
         List<Lotto> tickets = buyLotto();
         showTickets(tickets);
+        List<Integer> userNumbers = getUserNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private List<Lotto> buyLotto() {
@@ -35,5 +37,23 @@ public class LottoController {
             numbers.add(lotto.toString());
         }
         outputView.printGeneratedLotto(numbers);
+    }
+
+    private List<Integer> getUserNumbers() {
+        try {
+            return inputView.inputWinningNumbers();
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getUserNumbers();
+        }
+    }
+
+    private int getBonusNumber() {
+        try {
+            return inputView.inputBonusNumber();
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getBonusNumber();
+        }
     }
 }

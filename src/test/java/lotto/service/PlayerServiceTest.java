@@ -43,6 +43,7 @@ class PlayerServiceTest {
     }
 
     @Test
+    @DisplayName(value = "로또 번호와 입력 값이 일치한 만큼 배열에 성공적으로 저장되는지 확인")
     void compareLottoNumbers() {
         List<Integer> inputNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;

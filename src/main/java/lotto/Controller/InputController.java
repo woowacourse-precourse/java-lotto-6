@@ -20,6 +20,7 @@ public class InputController {
     public int inputMoney(){
         view.inputMoneyPrint();
         String temp = Console.readLine();
+        System.out.println("");
         try {
             exceptionController.moneyException(temp);
         }catch(IllegalArgumentException e){
@@ -38,6 +39,7 @@ public class InputController {
         List<Integer> numbers = new ArrayList<>();
 
         String[] input = Console.readLine().split(",");
+        System.out.println("");
         try{
             exceptionController.numbersException(input);
         }catch(IllegalStateException e){
@@ -59,7 +61,7 @@ public class InputController {
     public int inputBonusNumber(){
         view.inputBonusNumberPrint();
         String bonus_number = Console.readLine();
-
+        System.out.println("");
         try {
             exceptionController.bonusNumberException(bonus_number);
         }catch(IllegalArgumentException e){

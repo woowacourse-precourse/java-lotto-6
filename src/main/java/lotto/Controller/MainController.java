@@ -17,8 +17,6 @@ public class MainController {
         int money = inputController.inputMoney();
         Lottos lottos = generatorController.lottoGenerate(money);
         UserLotto lotto = inputController.inputNumbers();
-        System.out.println(money);
-        lotto.printNumbers();
     }
 
 

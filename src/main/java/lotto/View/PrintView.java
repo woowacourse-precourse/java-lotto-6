@@ -22,12 +22,12 @@ public class PrintView {
             Lotto lotto = it.next();
             List<Integer> numbers = lotto.getNumbers();
             Iterator num_it = numbers.iterator();
-            System.out.print("[");
+            System.out.print("[" + num_it.next());
             while(num_it.hasNext())
                 System.out.print(", " + num_it.next());
             System.out.println("]");
         }
-
+        System.out.println("");
     }
 
     public void inputNumbersPrint(){

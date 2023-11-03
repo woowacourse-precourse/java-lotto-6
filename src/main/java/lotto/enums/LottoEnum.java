@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum LottoEnums {
+public enum LottoEnum {
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),
     SELECTED_NUMBERS_SIZE(6),
@@ -8,7 +8,7 @@ public enum LottoEnums {
 
     private final int value;
 
-    LottoEnums(int value) {
+    LottoEnum(int value) {
         this.value = value;
     }
 

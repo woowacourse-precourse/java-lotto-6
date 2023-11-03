@@ -21,7 +21,8 @@ public class LottoController {
         output.showMoneyInputMessage();
         int money = toInt(input.readMoney());
 
-        makeLottoTickets(money);
+        LottoTickets lottoTickets = makeLottoTickets(money);
+        output.showLottoTickets(lottoTickets);
     }
 
     private LottoTickets makeLottoTickets(int money) {

@@ -3,7 +3,6 @@ package Model;
 import Config.ErrorMessage;
 import Config.GameConfig;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,13 +16,13 @@ public class Lotto {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
     public String getLotto(){
         return GameConfig.PRINTING_PREFIX +
                 numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(GameConfig.SEPARATOR_WITH_BLANK)) +
                 GameConfig.PRINTING_SUFFIX;

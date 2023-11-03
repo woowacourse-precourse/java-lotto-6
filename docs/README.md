@@ -19,7 +19,7 @@
     - 정수가 아니라면 `IllegalArgumentException` 발생
     - 0보다 작다면 `IllegalArgumentException` 발생
     - 1000의 배수가 아니라면 `IllegalArgumentException` 발생
-  - [ ] `isInteger` 메서드
+  - [x] `LottoUtil::isInteger` 메서드
     - 문자열을 인수로 받아 정수인지 검사한다.
 
 ## 당첨 번호 입력 기능

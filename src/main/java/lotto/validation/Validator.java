@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Validator {
-    private static Integer MINIMUM_MONEY=1000;
+    private static Integer PRICE=1000;
     private static Integer MINIMUM = 1;
     private static Integer MAXIMUM = 45;
     private static Integer WINNING_NUM_LENGTH = 6;
@@ -15,6 +15,7 @@ public class Validator {
     public static void moneyValidate(String input) {
         Integer money = numberValidate(input);
         noMoneyValidate(money);
+        divideValidate(money);
     }
 
     public static void winningValidate(String[] input) {
@@ -45,8 +46,16 @@ public class Validator {
     }
 
     private static void noMoneyValidate(Integer money) {
-        if(money<MINIMUM_MONEY){
+        if(money<PRICE){
             OutputView.errorMessage(ErrorMessage.NO_MONEY.getMessage());
+
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void divideValidate(Integer money) {
+        if(money % PRICE !=0){
+            OutputView.errorMessage(ErrorMessage.DIVIDE_ERROR.getMessage());
 
             throw new IllegalArgumentException();
         }

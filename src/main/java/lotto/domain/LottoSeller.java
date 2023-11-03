@@ -15,7 +15,6 @@ public class LottoSeller {
     private final List<Lotto> lottos = new ArrayList<>();
     private int amount;
 
-
     public int getAmount(String userInput) {
         checkAmount(userInput);
         return this.amount;

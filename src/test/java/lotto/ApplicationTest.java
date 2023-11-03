@@ -82,7 +82,7 @@ class ApplicationTest extends NsTest {
     void 자동_로또_출력테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("8000", "1,2,3,4,5,6", "7");
+                    run("8000", "1, 2, 3, 4, 5, 6 ", "7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",

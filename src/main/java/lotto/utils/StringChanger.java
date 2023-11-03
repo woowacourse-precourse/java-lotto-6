@@ -8,11 +8,15 @@ public class StringChanger {
     private StringChanger() {
     }
 
-    public static String trimString(String string) {
-        return string.trim();
+    public static String trimString(String input) {
+        return input.trim();
     }
 
-    public static List<String> stringToTrimmedStringList(String userInput) {
-        return Arrays.stream(userInput.split(",", -1)).map(String::trim).collect(Collectors.toList());
+    public static List<String> stringToTrimmedStringList(String input) {
+        return Arrays.stream(input.split(",", -1)).map(String::trim).collect(Collectors.toList());
+    }
+
+    public static int stringToInteger(String input) {
+        return Integer.parseInt(input);
     }
 }

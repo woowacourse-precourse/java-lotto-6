@@ -14,9 +14,9 @@ public class GameUtility {
 
     private GameUtility() {}
 
-    public static void buyLotties(int payment) {
+    public static User buyLotties(int payment) {
         int purchaseLottoAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
-        new User(generateLottoNumberRepeatNTimes(purchaseLottoAmount),payment);
+        return new User(generateLottoNumberRepeatNTimes(purchaseLottoAmount),payment);
     }
     public static List<Integer> generateLottoNumber() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.User;
 import lotto.utility.GameUtility;
 import lotto.validator.Validator;
 import lotto.view.InputView;
@@ -11,7 +12,7 @@ public class LottoGame {
 
     public static void run() {
         int payment = getPaymentAndValidate();
-        GameUtility.buyLotties(payment);
+        User user = GameUtility.buyLotties(payment);
     }
 
     private static int getPaymentAndValidate() {

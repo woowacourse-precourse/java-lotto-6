@@ -1,6 +1,6 @@
 package lotto.CommonValidation;
 
-import static lotto.CommonValidation.CommonValidation.isBlank;
+import static lotto.CommonValidation.CommonValidation.hasBlank;
 import static lotto.CommonValidation.CommonValidation.isInteger;
 import static lotto.CommonValidation.CommonValidation.isValueBetween1And45;
 import static lotto.Message.ExceptionMessage.CommonValidationErrorMessage.*;
@@ -52,7 +52,7 @@ class CommonValidationTest {
         String value = " ";
 
         //when
-        assertThatThrownBy(() -> isBlank(value))
+        assertThatThrownBy(() -> hasBlank(value))
                 .isInstanceOf(CommonValidationException.class)
                 .hasMessageContaining(BLANK_VALUE_ERROR_MESSAGE.getMessage(value));
     }
@@ -64,7 +64,7 @@ class CommonValidationTest {
         String value = "1";
 
         //when
-        isBlank(value);
+        hasBlank(value);
 
         //then
         assertThat(true).isTrue();

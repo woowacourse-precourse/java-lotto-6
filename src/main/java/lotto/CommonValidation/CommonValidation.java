@@ -14,7 +14,7 @@ public class CommonValidation {
         }
     }
 
-    public static void isBlank(String value) {
+    public static void hasBlank(String value) {
         if (value.contains(" ")) {
             throw new CommonValidationException(BLANK_VALUE_ERROR_MESSAGE.getMessage(value));
         }

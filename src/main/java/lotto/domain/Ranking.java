@@ -36,4 +36,8 @@ public enum Ranking {
         }
         return true;
     }
+
+    public double multiplePrize(double count) {
+        return this.prize * count;
+    }
 }

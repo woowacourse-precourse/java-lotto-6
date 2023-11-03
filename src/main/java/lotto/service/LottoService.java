@@ -7,6 +7,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.LottoMoney.MONEY_UNIT;
+
 public class LottoService {
 
     public LottoBundle buyLottoBundle(LottoMoney money) {
@@ -27,7 +29,7 @@ public class LottoService {
             Ranking ranking = Ranking.findRanking(count, bonusContain);
             result.put(ranking, result.getOrDefault(ranking, 0) + 1);
         }
-        return new LottoResult(result);
+        return new LottoResult(result, calculateYield(result, lottoBundle.amount()));
     }
 
     private int countMatchNumber(Lotto lotto, AnswerLotto answerLotto) {
@@ -36,5 +38,14 @@ public class LottoService {
 
     private boolean checkBonus(Lotto lotto, AnswerLotto answerLotto) {
         return lotto.contains(answerLotto.getBonusNumber());
+    }
+
+    private double calculateYield(Map<Ranking, Integer> result, int amount) {
+        double sumPrize = 0;
+        for (Ranking ranking : result.keySet()) {
+            double count = result.get(ranking);
+            sumPrize += ranking.multiplePrize(count);
+        }
+        return sumPrize / (amount * MONEY_UNIT);
     }
 }

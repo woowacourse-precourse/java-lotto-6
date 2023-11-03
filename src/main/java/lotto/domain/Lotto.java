@@ -14,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateLottoRange(numbers);
+        validateDuplicateLotto(numbers);
         this.numbers = sortedNumbers(numbers);
     }
 
@@ -38,6 +39,19 @@ public class Lotto {
     private boolean isLottoOverRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < MIN_LOTTO_NUMBER_RANGE || number > MAX_LOTTO_NUMBER_RANGE);
+    }
+
+    private void validateDuplicateLotto(List<Integer> numbers) {
+        if (isDuplicateLotto(numbers)) {
+            throw new IllegalArgumentException("로또 번호가 중복되었습니다.");
+        }
+    }
+
+    private boolean isDuplicateLotto(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+        return distinctCount != numbers.size();
     }
 
     public List<Integer> getNumbers() {

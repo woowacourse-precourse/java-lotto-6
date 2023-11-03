@@ -22,6 +22,9 @@ public class NumberValidator {
         if (isNegative(number)) {
             throw new IllegalArgumentException(NumberErrorMessage.NEGATIVE_NUMBER.getMessage());
         }
+        if (!isDivisibleByThousands(number)) {
+            throw new IllegalArgumentException(NumberErrorMessage.NOT_DIVISIBLE_BY_THOUSANDS.getMessage());
+        }
     }
 
     private static boolean isNumeric(String number) {
@@ -54,5 +57,10 @@ public class NumberValidator {
     private static boolean isNegative(String number) {
         int numericValue = Integer.parseInt(number);
         return numericValue < 0;
+    }
+
+    private static boolean isDivisibleByThousands(String number) {
+        int numericValue = Integer.parseInt(number);
+        return numericValue % 1000 == 0;
     }
 }

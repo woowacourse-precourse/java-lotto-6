@@ -1,8 +1,10 @@
 package lotto.view;
 
 import static lotto.constant.LottoNumber.ZERO;
+import static lotto.constant.message.ErrorMessage.NON_INTEGER_BONUS_NUMBER;
 import static lotto.constant.message.ErrorMessage.NON_INTEGER_MONEY;
 import static lotto.constant.message.ErrorMessage.NON_INTEGER_WINNING_NUMBER;
+import static lotto.constant.message.InputMessage.BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.DELIMITER;
 import static lotto.constant.message.InputMessage.PURCHASE_PRICE;
 import static lotto.constant.message.InputMessage.WINNING_NUMBER;
@@ -40,6 +42,20 @@ public class InputView {
         }
 
         return winningNumbers;
+    }
+
+    public static int requestBonusNumber() {
+        System.out.println(BONUS_NUMBER);
+
+        int bonusNumber = ZERO.getNumber();
+        try {
+            Integer.parseInt(readNumber());
+        } catch (NumberFormatException e) {
+            System.out.println(NON_INTEGER_BONUS_NUMBER);
+            requestBonusNumber();
+        }
+
+        return bonusNumber;
     }
 
     private static String readNumber() {

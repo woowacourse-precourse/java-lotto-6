@@ -26,4 +26,10 @@ public class LottoInputView {
         return Arrays.stream(userInput.split(","))
                 .toList();
     }
+
+    public Integer getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String userInput = Console.readLine();
+        return Integer.parseInt(userInput);
+    }
 }

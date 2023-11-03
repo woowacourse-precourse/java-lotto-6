@@ -20,7 +20,8 @@ public class LottoController {
     }
 
     private void compareLotto() {
-        lottoInputView.getWinningNumbers();
+        List<String> winningNumbers = lottoInputView.getWinningNumbers();
+        Integer bonusNumber = lottoInputView.getBonusNumber();
     }
 
     private void buyLottoTicketProcess() {

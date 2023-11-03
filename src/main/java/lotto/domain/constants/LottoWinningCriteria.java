@@ -19,7 +19,7 @@ public enum LottoWinningCriteria {
         this.hasBonusNumber = hasBonusNumber;
     }
 
-    public static int findPrize(int matchCount, boolean hasBonusNumber) {
+    public static int findPlace(int matchCount, boolean hasBonusNumber) {
         int place = 0;
 
         Optional<LottoWinningCriteria> matchedCriteria = Arrays.stream(LottoWinningCriteria.values())

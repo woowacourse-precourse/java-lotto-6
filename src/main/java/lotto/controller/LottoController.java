@@ -1,33 +1,45 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
-    private final LottoResultService resultService;
+    private final LottoResultService lottoResultService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, LottoResultService resultService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, LottoResultService lottoResultService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
-        this.resultService = resultService;
+        this.lottoResultService = lottoResultService;
     }
 
     public void run() {
         Integer lottoCount = purchaseLotto();
-        PurchasedLotto purchasedLotto = purchaseLottoByLottoCount(lottoCount);
 
+        PurchasedLotto purchasedLotto = purchaseLottoByLottoCount(lottoCount);
+        WinningLotto winningLotto = winningInput();
+    }
+
+    private WinningLotto winningInput() {
+        outputView.inputWinningNumbersMessage();
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+
+        outputView.inputBonusNumberMessage();
+        Integer bonusNumber = inputView.inputBonusNumber();
+
+        return new WinningLotto(winningNumbers, new BonusNumber(bonusNumber));
     }
 
     private PurchasedLotto purchaseLottoByLottoCount(Integer lottoCount) {

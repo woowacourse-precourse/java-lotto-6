@@ -1,11 +1,17 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoStoreController;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        LottoStoreController lottoStore = new LottoStoreController();
-        lottoStore.open();
+        try {
+            LottoStoreController lottoStore = new LottoStoreController();
+            lottoStore.open();
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } finally {
+            Console.close();
+        }
     }
 }

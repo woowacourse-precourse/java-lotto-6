@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.Lotto;
 
 public class Calculator {
+    private static final int LOTTO_PRICE = 1000;
     private final Lotto winnerLotto;
     private final List<Lotto> userLottos;
     private final int bonusNumber;
@@ -27,6 +28,16 @@ public class Calculator {
             calculateResult.put(rank, calculateResult.getOrDefault(rank, 0) + 1);
         }
         return calculateResult;
+    }
+
+    public float calculateRateOfReturn(Map<Rank, Integer> result) {
+        long sumOfPrize = 0;
+        int purchaseAmount = 0;
+        for (Rank rank : Rank.values()) {
+            sumOfPrize += result.getOrDefault(rank, 0) * rank.getPrize();
+            purchaseAmount += result.getOrDefault(rank, 0);
+        }
+        return sumOfPrize / purchaseAmount / LOTTO_PRICE / 100;
     }
 
 }

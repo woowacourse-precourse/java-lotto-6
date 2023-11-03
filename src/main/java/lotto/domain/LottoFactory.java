@@ -14,6 +14,6 @@ public class LottoFactory {
     }
 
     private static Lotto createLotto() {
-        return new Lotto(LottoNumbersGenerator.generate());
+        return Lotto.of(LottoNumbersGenerator.generate());
     }
 }

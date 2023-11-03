@@ -46,8 +46,16 @@ public class MessageReceiver {
         } while (true);
     }
 
-    public int receiveBonusNumber() {
-        String bonusNumberText = Console.readLine();
-        return Integer.parseInt(bonusNumberText);
+    public void receiveBonusNumber(final WinningLotto winningLotto) {
+        do {
+            String bonusNumberText = Console.readLine();
+            try {
+                int bonusNumber = viewValidator.parseInt(bonusNumberText);
+                winningLotto.createBonusNumber(bonusNumber);
+                return;
+            } catch (IllegalArgumentException e) {
+                viewValidator.printExceptionMessage(e);
+            }
+        } while (true);
     }
 }

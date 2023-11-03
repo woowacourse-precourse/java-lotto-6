@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.ExceptionConstant.BONUS_NUMBER_DUPLICATION_EXCEPTION;

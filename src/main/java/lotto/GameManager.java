@@ -37,8 +37,7 @@ public class GameManager {
         messagePrinter.printWinningNumbersMessage();
         WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();
         messagePrinter.printBonusNumberMessage();
-        int bonusNumber = messageReceiver.receiveBonusNumber();
-        winningLotto.createBonusNumber(bonusNumber);
+        messageReceiver.receiveBonusNumber(winningLotto);
 
         return winningLotto;
     }

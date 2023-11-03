@@ -4,16 +4,16 @@ public enum AmountEnum {
     MIN_VALUE(1000,"1,000"),
     MAX_VALUE(2147483000,"2,147,483,000"),
     ZERO_VALUE(0, "2,147,483,000");
-    private final Integer numbers;
+    private final Integer value;
     private final String currencyForm;
 
-    AmountEnum(Integer numbers, String currencyForm) {
-        this.numbers = numbers;
+    AmountEnum(Integer value, String currencyForm) {
+        this.value = value;
         this.currencyForm =currencyForm;
     }
 
     public Integer getAmount(){
-        return this.numbers;
+        return this.value;
     }
 
     public String getCurrencyForm(){

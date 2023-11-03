@@ -12,10 +12,10 @@ public class InputMoneyValidator {
     }
 
     public void isNumError(){
-        try{
+        try {
             Integer.parseInt(money);
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ERROR+NOT_NUMBER_ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR + NOT_NUMBER_ERROR_MESSAGE);
         }
     }
 }

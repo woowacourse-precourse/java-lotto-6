@@ -3,12 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.repository.LottoRepository;
 
 public class LottoMachine {
-    public void issueLottoTicket() {
-        Lotto lotto = new Lotto(createLottoNumbers());
-        LottoRepository.add(lotto);
+    public Lotto issueLotto() {
+        return new Lotto(createLottoNumbers());
     }
 
     private List<Integer> createLottoNumbers() {

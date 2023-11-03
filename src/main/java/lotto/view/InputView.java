@@ -10,14 +10,14 @@ public class InputView {
         return instance;
     }
 
-    public int inputPurchaseLottoPrice() {
-        System.out.print(Message.INPUT_PURCHASE_LOTTO_PRICE.message);
+    public int inputPurchaseLotto() {
+        System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
         String input = Console.readLine();
         return Util.convertStringToInt(input);
     }
 
     private enum Message {
-        INPUT_PURCHASE_LOTTO_PRICE("구입금액을 입력해 주세요.\n");
+        INPUT_PURCHASE_LOTTO("구입금액을 입력해 주세요.\n");
 
         private final String message;
 

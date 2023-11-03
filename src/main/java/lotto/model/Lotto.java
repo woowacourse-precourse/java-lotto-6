@@ -43,7 +43,7 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
     }
 
     public void validateLottoTicketSize(int size) {
-        if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
+        if (size != LottoConstants.THE_SIZE_OF_ONE_LOTTO) {
             throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_NOT_PROPER.getMessage());
         }
     }

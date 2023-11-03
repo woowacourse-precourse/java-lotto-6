@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class View {
 
-    public String getUserInput() {
+    public static String getUserInput() {
         return Console.readLine();
     }
 
-    public void printMessage(Notice notice) {
+    public static void printMessage(Notice notice) {
         System.out.println(notice.getMessage());
     }
 }

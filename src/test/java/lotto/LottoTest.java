@@ -40,6 +40,15 @@ class LottoTest {
         }
 
         @Test
+        @DisplayName("발행된 로또 번호 오름차순 출력 확인")
+        void toString_발행된_로또_번호_오름차순_출력_확인() {
+            Lotto lotto = new Lotto(List.of(1, 4, 2, 5, 3, 6));
+
+            assertThat(lotto.toString())
+                    .isEqualTo("[1, 2, 3, 4, 5, 6]");
+        }
+
+        @Test
         @DisplayName("로또 번호와 당첨 번호를 비교하여 일치하는 번호의 개수 확인")
         void isEqual_로또_번호와_당첨_번호를_비교하여_일치하는_번호의_개수_확인() {
             List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);

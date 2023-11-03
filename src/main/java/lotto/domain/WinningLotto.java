@@ -1,0 +1,17 @@
+package lotto.domain;
+
+import lotto.Lotto;
+import lotto.io.InputHandler;
+
+public class WinningLotto {
+
+    private final Lotto winningLotto;
+    public WinningLotto() {
+        winningLotto = makeWinningLotto();
+    }
+    public Lotto makeWinningLotto(){
+        return new Lotto(InputHandler.readWinnerNumber());
+    }
+
+
+}

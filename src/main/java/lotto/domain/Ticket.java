@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class Ticket {
 
-    private final int price = 1000;
+    private static final int price = 1000;
     private int count;
 
     public int getCount() {
@@ -10,6 +10,10 @@ public class Ticket {
     }
 
     public void setCount(int moneyInput) {
-        this.count = moneyInput / this.price;
+        if (moneyInput % price == 0) {
+            this.count = moneyInput / this.price;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 }

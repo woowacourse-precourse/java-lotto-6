@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.ValidateMessage;
@@ -37,8 +38,9 @@ public class Lotto {
     }
 
     private List<Integer> sortAsc(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortLotto = new ArrayList<>(numbers); //Lotto Test의 불변 리스트 List.of 때문에 새로 list 생성
+        Collections.sort(sortLotto);
+        return sortLotto;
     }
 
     public List<Integer> getNumbers() {

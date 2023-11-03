@@ -4,14 +4,19 @@ import java.util.List;
 
 public class LottoPrice {
     private final int Price;
+    private static final int BasicLottoPrice = 1000;
 
     public LottoPrice(int Price) {
         validate(Price);
         this.Price = Price;
+
     }
 
     public int makeReturnNum() {
-        return Price/1000;
+        int Num = Price/BasicLottoPrice;
+        PrintOutput printOutput = new PrintOutput();
+        printOutput.printLottoPrice(Num);
+        return Num;
     }
 
     private void validate(int Price) {

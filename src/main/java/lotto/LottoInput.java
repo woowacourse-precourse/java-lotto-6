@@ -8,6 +8,7 @@ public class LottoInput {
         PrintInput printInput = new PrintInput();
         printInput.printLottoMoney();
         String s = Console.readLine();
+        System.out.println();
         return Integer.parseInt(s);
     }
 }

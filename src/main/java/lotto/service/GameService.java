@@ -8,7 +8,7 @@ import lotto.repository.LottoRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserService {
+public class GameService {
     private final LottoRepository lottoRepository = new LottoRepository();
 
     private final User user = new User();
@@ -46,4 +46,16 @@ public class UserService {
         double round = Math.round(origin * ROUND_CONSTANT_INT_TEN) / ROUND_CONSTANT_DOUBLE_TEN;
         return round;
     }
+
+    private void initLottoResult() {
+        lottoResult.put(Rank.FIRST, 0);
+        lottoResult.put(Rank.SECOND, 0);
+        lottoResult.put(Rank.THIRD, 0);
+        lottoResult.put(Rank.FOURTH, 0);
+        lottoResult.put(Rank.FIFTH, 0);
+        lottoResult.put(Rank.NO_RANK_TWO, 0);
+        lottoResult.put(Rank.NO_RANK_ONE, 0);
+        lottoResult.put(Rank.NO_RANK_ZERO, 0);
+    }
+
 }

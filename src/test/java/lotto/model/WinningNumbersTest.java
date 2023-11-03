@@ -76,42 +76,24 @@ class WinningNumbersTest {
 
     @ParameterizedTest
     @MethodSource("lottoNumbersAndMatchingNumber")
-    public void 로또와_일치하는_숫자_개수_테스트(Lotto lotto, int matchingNumber) {
+    public void 로또와_일치하는_숫자_개수_테스트(Lotto lotto, Rank rank) {
         // given
         final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // then
-        Assertions.assertThat(winningNumbers.countMatchingNumber(lotto)).isEqualTo(matchingNumber);
+        Assertions.assertThat(winningNumbers.findRank(lotto)).isEqualTo(rank);
     }
 
     static Stream<Arguments> lottoNumbersAndMatchingNumber() {
         return Stream.of(
-                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
-                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5),
-                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 7, 8)), 4),
-                Arguments.arguments(new Lotto(List.of(1, 2, 3, 7, 8, 9)), 3),
-                Arguments.arguments(new Lotto(List.of(1, 2, 7, 8, 9, 10)), 2),
-                Arguments.arguments(new Lotto(List.of(1, 7, 8, 9, 10, 11)), 1)
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), Rank.FIRST),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 7)), Rank.SECOND),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 8)), Rank.THIRD),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 7, 8)), Rank.FOURTH),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 7, 8, 9)), Rank.FIFTH),
+                Arguments.arguments(new Lotto(List.of(1, 2, 7, 8, 9, 10)), Rank.NONE),
+                Arguments.arguments(new Lotto(List.of(1, 7, 8, 9, 10, 11)), Rank.NONE),
+                Arguments.arguments(new Lotto(List.of(7, 8, 9, 10, 11, 12)), Rank.NONE)
         );
-    }
-
-    @Test
-    public void 보너스_번호_일치하는_경우() {
-        // given
-        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-
-        // then
-        assertTrue(winningNumbers.isEqualToBonus(lotto));
-    }
-
-    @Test
-    public void 보너스_번호_일치하지_않는_경우() {
-        // given
-        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        // then
-        assertFalse(winningNumbers.isEqualToBonus(lotto));
     }
 }

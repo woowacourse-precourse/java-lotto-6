@@ -13,20 +13,22 @@ public class GameConfig {
     public final static String PRINTING_SUFFIX = "]";
     public final static int ROUND_DIGIT = 1;
     public enum WINNING{
-        FIRST(2_000_000_000, 1, "6"),
-        SECOND(30_000_000, 2, "5+1"),
-        THIRD(1_500_000, 3, "5"),
-        FOURTH(50_000, 4, "4"),
-        FIFTH(5_000, 5, "3");
+        FIRST(2_000_000_000, 1, "6", "6개 일치"),
+        SECOND(30_000_000, 2, "5+1", "5개 일치, 보너스 볼 일치"),
+        THIRD(1_500_000, 3, "5", "5개 일치"),
+        FOURTH(50_000, 4, "4", "4개 일치"),
+        FIFTH(5_000, 5, "3", "3개 일치");
 
         private final int price;
         private final int rank;
         private final String match;
+        private final String matchAmount;
 
-        WINNING(int price, int rank, String match){
+        WINNING(int price, int rank, String match, String matchAmount){
             this.price = price;
             this.rank = rank;
             this.match = match;
+            this.matchAmount = matchAmount;
         }
 
         public int getPrice(){
@@ -39,6 +41,10 @@ public class GameConfig {
 
         public String getMatch(){
             return match;
+        }
+
+        public String getMatchAmount(){
+            return matchAmount;
         }
 
         public static WINNING valueOfRank(int rank){

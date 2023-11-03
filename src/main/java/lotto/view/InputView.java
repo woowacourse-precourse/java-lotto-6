@@ -27,7 +27,7 @@ public class InputView {
 		
 		validateAnswerLottoNumbers(separatedNumbers);
 		
-		return Arrays.stream(separatedNumbers).map(Integer::new)
+		return Arrays.stream(separatedNumbers).map(Integer::valueOf)
 						.toList();
 	}
 

@@ -21,4 +21,10 @@ public class WinningNumberExceptionMessage extends IllegalArgumentException{
             throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    public static void validateDuplicateWinningNumber(List<Integer> winningNumber) {
+        if (winningNumber.stream().distinct().count() != 6) {
+            throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
 }

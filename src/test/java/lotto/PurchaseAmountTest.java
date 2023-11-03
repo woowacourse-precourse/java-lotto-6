@@ -12,8 +12,15 @@ class PurchaseAmountTest {
 
     @DisplayName("구입 금액이 빈 경우 예외가 발생한다.")
     @Test
-    void PurchaseAmountEmptyTEST() {
+    void PurchaseAmountIsEmpty() {
         assertThatThrownBy(() -> PurchaseAmount.empty(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void PurchaseAmountIsNotNumber(){
+        assertThatThrownBy(() -> PurchaseAmount.notNumber("80c"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

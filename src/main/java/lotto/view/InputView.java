@@ -1,11 +1,11 @@
-package lotto.ui;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Input {
+public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT = "구입금액을 입력해주세요.";
     private static final String WINNING_NUMBERS_INPUT = "당첨 번호를 입력해주세요.";
     private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해주세요.";

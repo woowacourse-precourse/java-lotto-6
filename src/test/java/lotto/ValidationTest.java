@@ -66,8 +66,11 @@ class ValidationTest {
     void isNumber() {
         // given
         String case1 = "123";
-        String case3 = "abc";
-        String case2 = "";
+        String case2 = "abc";
+        String case3 = "";
+        String case4 = "1,2,3,4,5,6";
+        String case5 = "a,b,c,d";
+        String case6 = ",,";
 
         // when
         Throwable result1 = catchThrowable(() -> {
@@ -79,10 +82,22 @@ class ValidationTest {
         Throwable result3 = catchThrowable(() -> {
             Validation.isNumber(case3);
         });
+        Throwable result4 = catchThrowable(() -> {
+            Validation.isNumber(case4);
+        });
+        Throwable result5 = catchThrowable(() -> {
+            Validation.isNumber(case5);
+        });
+        Throwable result6 = catchThrowable(() -> {
+            Validation.isNumber(case6);
+        });
 
         // then
         assertThat(result1).as("case1").doesNotThrowAnyException();
         assertThat(result2).as("case2").isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
+        assertThat(result4).as("case4").doesNotThrowAnyException();
+        assertThat(result5).as("case5").isInstanceOf(IllegalArgumentException.class);
+        assertThat(result6).as("case6").isInstanceOf(IllegalArgumentException.class);
     }
 }

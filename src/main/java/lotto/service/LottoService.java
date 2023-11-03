@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.utils.NumberGenerator;
 
 import java.util.ArrayList;
@@ -15,6 +16,17 @@ public class LottoService {
         }
 
         return lottos;
+    }
+
+    public List<Result> matchLotto(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
+        List<Result> results = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            Result result = lotto.determineResult(winnerNumbers, bonusNumber);
+            results.add(result);
+        }
+
+        return results;
     }
 
     private Lotto createLotto(NumberGenerator numberGenerator) {

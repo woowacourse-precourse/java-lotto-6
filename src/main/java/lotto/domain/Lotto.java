@@ -24,5 +24,18 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Result determineResult(List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = 0;
+        boolean bonusMatch = false;
+        for (Integer winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                matchCount++;
+            }
+        }
+        if (numbers.contains(bonusNumber)) {
+            bonusMatch = true;
+        }
+
+        return new Result(matchCount, bonusMatch);
+    }
 }

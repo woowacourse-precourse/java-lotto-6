@@ -7,7 +7,8 @@ public enum ErrorMessage {
     ONLY_NUMBER("숫자만 입력할 수 있습니다."),
     NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ONLY_COMMA("쉼표로 구분하여 입력해야 합니다."),
-    NUMBER_SIZE("6개의 번호를 입력해야 합니다."),
+    LOTTO_NUMBER_SIZE("로또 번호는 6개의 번호로 이뤄져야 합니다."),
+    BONUS_NUMBER_SIZE("보너스 번호는 1개의 번호로 이뤄줘야 합니다."),
     NUMBER_DUPLICATION("중복된 번호를 입력할 수 없습니다.");
 
     private final String message;

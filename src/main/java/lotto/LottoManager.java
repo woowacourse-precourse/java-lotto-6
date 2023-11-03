@@ -85,7 +85,14 @@ public class LottoManager {
             if ((key != SECOND_GRADE_KEY) && (key != FIRST_GRADE_KEY)) {
                 System.out.printf(NORMAL_MESSAGE, key, moneyFormat.format(moneyHash.get(key)), value);
             }
+            totalRevenue += (moneyHash.get(key) * value);
         });
+        totalRateOfRevenue = ((float) totalRevenue /lottoBuyer.getPurchaseAmount()) * 100f;
+        System.out.printf(TOTAL_RATE_REVENUE_MESSAGE, totalRateOfRevenue);
+    }
+
+    public float getTotalRateOfRevenue() {
+        return totalRateOfRevenue;
     }
 
     public void inputBonusNumber() {

@@ -1,6 +1,7 @@
-package lotto;
+package util;
 
 import constant.ConstantNumber;
+import domain.Lotto;
 
 import java.util.List;
 

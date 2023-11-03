@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import lotto.util.Constants;
 import lotto.util.ErrorMessage;

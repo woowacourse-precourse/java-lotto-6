@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.model.LottoGameManager;
-import lotto.model.LottoGenerator;
-import lotto.model.MoneyConverter;
+import lotto.domain.LottoGameCalculator;
+import lotto.domain.LottoGenerator;
+import lotto.domain.MoneyConverter;
 import lotto.util.Status;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,7 +12,7 @@ public class GameController {
     OutputView outputView;
     MoneyConverter moneyConverter;
     LottoGenerator lottoGenerator;
-    LottoGameManager lottoGameManager;
+    LottoGameCalculator lottoGameManager;
 
 
 

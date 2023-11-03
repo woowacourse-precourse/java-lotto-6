@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoTicket;
+import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
 import lotto.service.LottoService;
@@ -16,7 +16,7 @@ public class LottoController {
     public void start() {
         int amount = lottoService.displayPurchase();
 
-        LottoTicket lottoTickets = lottoService.purchaseLottoTicket(amount);
+        LottoTickets lottoTickets = lottoService.purchaseLottoTicket(amount);
         displayLottoTickets(amount, lottoTickets);
 
         List<Integer> winningNumbers = lottoService.displayWinningNumber();
@@ -29,7 +29,7 @@ public class LottoController {
         displayResult(statistics, amount);
     }
 
-    private static void displayLottoTickets(int amount, LottoTicket lottoTicket) {
+    private static void displayLottoTickets(int amount, LottoTickets lottoTicket) {
         OutputView.printPurchasedLottoTickets(amount, lottoTicket);
     }
 

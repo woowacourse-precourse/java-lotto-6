@@ -5,14 +5,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoTicket {
+public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
-    public LottoTicket() {
+    public LottoTickets() {
         this.lottoTickets = new ArrayList<>();
     }
 
-    public LottoTicket buy(int amount) {
+    public LottoTickets buy(int amount) {
         int numberOfLotto = amount / 1_000;
 
         for (int i = 0; i < numberOfLotto; i++) {

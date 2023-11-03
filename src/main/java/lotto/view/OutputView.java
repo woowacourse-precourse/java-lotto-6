@@ -2,7 +2,7 @@ package lotto.view;
 
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printPurchasedLottoTickets(int amount, LottoTicket lottoTicket) {
+    public static void printPurchasedLottoTickets(int amount, LottoTickets lottoTicket) {
         int ticketCount = amount / 1000;
         System.out.printf("%d개를 구매했습니다.\n", ticketCount);
         printLottoNumbers(lottoTicket);
     }
 
-    private static void printLottoNumbers(LottoTicket lottoTicket) {
+    private static void printLottoNumbers(LottoTickets lottoTicket) {
         lottoTicket.getLottoTickets().forEach(lotto -> System.out.println(formatLottoNumbers(lotto)));
         System.out.println();
     }

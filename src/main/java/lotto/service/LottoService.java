@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
 import lotto.exception.BonusNumberException;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    private final LottoTicket lottoTicket = new LottoTicket();
+    private final LottoTickets lottoTicket = new LottoTickets();
 
     public int displayPurchase() {
         InputView.promptPurchaseAmount();
@@ -112,7 +112,7 @@ public class LottoService {
     }
 
 
-    public LottoTicket purchaseLottoTicket(int amount) {
+    public LottoTickets purchaseLottoTicket(int amount) {
         return lottoTicket.buy(amount);
     }
 
@@ -120,7 +120,7 @@ public class LottoService {
         return new WinningLottoTicket(winningNumber, bonusNumber);
     }
 
-    public Map<Rank, Integer> calculateStatistics(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
+    public Map<Rank, Integer> calculateStatistics(LottoTickets lottoTicket, WinningLottoTicket winningLottoTicket) {
         Map<Rank, Integer> statistics = initializeStatistics();
 
         for (Lotto lotto : lottoTicket.getLottoTickets()) {

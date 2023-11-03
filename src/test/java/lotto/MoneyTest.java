@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.exception.DifferentUnitFormatException;
 import lotto.exception.WrongTypeFormatException;
 import lotto.service.impl.ValidateServiceImpl;
 import org.assertj.core.api.Assertions;
@@ -11,17 +10,17 @@ class MoneyTest {
 
     @DisplayName("금액 입력 시 문자가 들어가면 IllegalArgumentException 예외가 발생한다")
     @Test
-    void createMoneyByWrongInputTypeOne() {
+    void createMoneyByWrongTypeOne() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoneyInput("1000j"))
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액 입력 시 문자가 들어가면 WrongTypeFormatException 예외가 발생한다")
     @Test
-    void createMoneyByWrongInputTypeTwo() {
+    void createMoneyByWrongTypeTwo() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoneyInput("1000j"))
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1000j"))
                 .isInstanceOf(WrongTypeFormatException.class);
     }
 
@@ -29,15 +28,15 @@ class MoneyTest {
     @Test
     void createMoneyByWrongUnitTypeOne() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoneyInput("1500"))
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("금액 입력 시 1000원 단위가 아니면 DifferentUnitFormatException 예외가 발생한다")
+    @DisplayName("금액 입력 시 1000원 단위가 아니면 WrongTypeFormatException 예외가 발생한다")
     @Test
     void createMoneyByWrongUnitTypeTwo() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoneyInput("1500"))
-                .isInstanceOf(DifferentUnitFormatException.class);
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1500"))
+                .isInstanceOf(WrongTypeFormatException.class);
     }
 }

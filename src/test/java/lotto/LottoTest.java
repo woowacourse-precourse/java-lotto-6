@@ -53,7 +53,7 @@ class LottoTest {
     void createLottoByWrongCommasFormatOne() {
 
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,6,"))
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,6,"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,7 +62,7 @@ class LottoTest {
     void createLottoByWrongCommasFormatTwo() {
 
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,,6"))
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,,6"))
                 .isInstanceOf(WrongCommasFormatException.class);
     }
 
@@ -70,7 +70,7 @@ class LottoTest {
     @Test
     void createLottoByLessNumbers() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5"))
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -78,7 +78,7 @@ class LottoTest {
     @Test
     void createLottoByWrongChar() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,a"))
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,a"))
                 .isInstanceOf(WrongTypeFormatException.class);
     }
 
@@ -86,7 +86,7 @@ class LottoTest {
     @Test
     void createLottoByWrongSpecialChar() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
-        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbersInput("1,2,3,4,5,!"))
+        assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,!"))
                 .isInstanceOf(WrongTypeFormatException.class);
     }
 }

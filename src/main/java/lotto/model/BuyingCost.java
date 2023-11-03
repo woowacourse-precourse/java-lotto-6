@@ -11,20 +11,12 @@ public class BuyingCost {
     }
 
     public Integer getCost(String input) {
-        this.buyingCost = Validation.validateInteger(input);
-        Validation.validateCost(buyingCost);
+        buyingCost = validate(input);
         return buyingCost;
     }
-    public int getValidCost(InputView inputView) {
-        int validCost = 0;
-        while (true) {
-            try {
-                validCost = getCost(inputView.inputPurchaseCost());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return validCost;
+    private int validate(String input) {
+        int validNum = Validation.validateInteger(input);
+        Validation.validateCost(validNum);
+        return validNum;
     }
 }

@@ -14,15 +14,14 @@ public class WinningNumbers {
     }
 
     public Lotto getLotto(String input) {
-        Validation.validateComma(input);
         for (String token : input.split(",")) {
-            int oneNum = validate(token, numbers);
+            int oneNum = validate(token);
             numbers.add(oneNum);
         }
         return new Lotto(numbers);
     }
 
-    public int validate(String input, List<Integer> winningNum) {
+    public int validate(String input) {
         int oneNum = Validation.validateInteger(input);
         Validation.validateNumberRange(oneNum);
         return oneNum;
@@ -30,19 +29,5 @@ public class WinningNumbers {
 
     public void clearList() {
         numbers.clear();
-    }
-
-    public Lotto getValidWinningNum(InputView inputView) {
-        Lotto result;
-        while (true) {
-            try {
-                result = getLotto(inputView.inputWinnerNumbers());
-                break;
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                clearList();
-            }
-        }
-        return result;
     }
 }

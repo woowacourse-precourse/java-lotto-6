@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> numbers; // 필드 고정, private 도 고정
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

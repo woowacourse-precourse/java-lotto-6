@@ -2,9 +2,8 @@ package lotto.validator;
 
 import lotto.message.ErrorMessage;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class InputValidator {
 
@@ -49,6 +48,30 @@ public class InputValidator {
         if (number < START_LOTTO_NUMBER && number > END_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
+    }
+
+    public void validateLottoSize(List<Integer> lotto) {
+        if (LOTTO_LIMIT_VALUE != lotto.size()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    public void validateSortedAscending(List<Integer> lotto) {
+        if (!isSortedAscending(lotto)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+        }
+    }
+
+    private boolean isSortedAscending(List<Integer> lotto) {
+        List<Integer> sortedNumber = getSortedNumber(lotto);
+        return sortedNumber.equals(lotto);
+    }
+
+    private List<Integer> getSortedNumber(List<Integer> lotto) {
+        List<Integer> sortedLotto = new ArrayList<>(lotto);
+        Collections.sort(sortedLotto);
+
+        return sortedLotto;
     }
 
 }

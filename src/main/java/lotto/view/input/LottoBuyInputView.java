@@ -36,10 +36,14 @@ public class LottoBuyInputView extends Input{
         System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE);
     }
 
+    //사이즈랑 정렬되서 들어왔는지 확인하기
     public List<Integer> requestWinningLottoNumbers() {
         printRequestWinningLottoNumbers();
         List<Integer> numbers = getNumbers();
         inputValidator.checkForDuplicateLottoNumbers(numbers);
+        inputValidator.validateLottoSize(numbers);
+        inputValidator.validateSortedAscending(numbers);
+
         return numbers;
     }
 

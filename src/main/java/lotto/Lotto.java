@@ -22,13 +22,13 @@ public class Lotto {
 
     private void hasStandardSize(List<Integer> numbers) {
         if (numbers.size() != STANDARD_SIZE) {
-            throw new IllegalArgumentException("6개의 숫자를 입력하지 않았습니다.");
+            throw new IllegalArgumentException(ErrorException.WRONG_LOTTO_SIZE.getErrorDescription());
         }
     }
 
     private void hasDuplicatedNumber(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("중복된 숫자를 입력했습니다.");
+            throw new IllegalArgumentException(ErrorException.DUPLICATED_LOTTO_NUMBER.getErrorDescription());
         }
     }
 
@@ -37,7 +37,7 @@ public class Lotto {
                 .filter(number -> ((number > MAX_VALUE) || (number < MIN_VALUE)))
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException("범위에서 벗어난 수를 입력했습니다. 로또 번호 범위는 1~45까지입니다");
+            throw new IllegalArgumentException(ErrorException.OUT_OF_RANGE_LOTTO_NUMBER.getErrorDescription());
         }
     }
 }

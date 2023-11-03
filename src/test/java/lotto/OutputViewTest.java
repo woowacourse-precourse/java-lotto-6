@@ -65,8 +65,20 @@ public class OutputViewTest {
     void printRequestWinningNumber_EqualMessage_Success() {
         ByteArrayOutputStream output = captureOutputValues();
         OutputView.printRequestWinningNumber();
-        assertThat(output.toString()).isEqualTo("당첨 번호를 입력해 주세요.\n");
+        assertThat(output.toString()).isEqualTo("\n당첨 번호를 입력해 주세요.\n");
     }
+
+
+    @DisplayName("보너스 번호 입력 요청 출력 테스트")
+    @Test
+    void printRequestBonusNumber_EqualMessage_Success(){
+        ByteArrayOutputStream output = captureOutputValues();
+        OutputView.printRequestBonusNumber();
+        assertThat(output.toString()).isEqualTo("\n보너스 번호를 입력해 주세요.\n");
+    }
+
+
+
 
 
 }

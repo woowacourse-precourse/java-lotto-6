@@ -26,6 +26,7 @@ public class UserInputService {
         return Integer.parseInt(input);
     }
 
+
     public boolean isNumber(String input){
         try {
             Integer.parseInt(input);
@@ -35,9 +36,11 @@ public class UserInputService {
         }
     }
 
+
     public boolean checkDevisedBy1000(String input){
         return Integer.parseInt(input) % 1000 == 0;
     }
+
 
     //차후 빠른 비교, 번호 중복 확인을 위해 HashSet<String>으로 반환
     public Set<Integer> winningNumbersInputRequest(){
@@ -53,9 +56,11 @@ public class UserInputService {
         return new HashSet<>(newNumbers);
     }
 
+
     public List<String> parsingInputNumbers(String input){
         return List.of(input.split(","));
     }
+
 
     public boolean consistOfNumberTest(List<String> input){
         for (String num : input) {
@@ -66,10 +71,12 @@ public class UserInputService {
         return true;
     }
 
+
     public boolean sizeIsSixTest(List<String> input){
         Set<String> stringSet = new HashSet<>(input);
         return (stringSet.size() == 6);
     }
+
 
     public boolean numberInOneToFourtyFIve(List<String> input){
         for (String number: input) {
@@ -81,6 +88,7 @@ public class UserInputService {
         return true;
     }
 
+
     public String bonusNumberInputRequest(Set<String> lottoNumbers){
         System.out.println(BONUS_NUMBER_INPUT_REQUEST);
         String bonusNumber = readLine();
@@ -89,8 +97,10 @@ public class UserInputService {
         return bonusNumber;
     }
 
+
     public boolean bonusNumberNotInLottoNumbers(Set<String> lottoNumbers, String bonusNumber){
         return lottoNumbers.contains(bonusNumber) == false;
     }
+
 
 }

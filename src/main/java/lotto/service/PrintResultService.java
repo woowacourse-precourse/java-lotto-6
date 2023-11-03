@@ -27,10 +27,9 @@ public class PrintResultService {
     public void printResult(
             List<HashSet<Integer>> userNumbers,
             HashSet<Integer> lottoNumbers,
-            Integer userLottoNumber,
             Integer lottoBonusNumber) {
         System.out.println(RESULTPRINTMESSAGE);
-        setLottoWinningCount(userNumbers, lottoNumbers, userLottoNumber, lottoBonusNumber);
+        setLottoWinningCount(userNumbers, lottoNumbers, lottoBonusNumber);
         printLottoWinningCountResult();
         printRateOfReturn(userNumbers);
     }
@@ -40,26 +39,28 @@ public class PrintResultService {
     public void setLottoWinningCount(
             List<HashSet<Integer>> userNumbers,
             HashSet<Integer> lottoNumbers,
-            Integer userLottoNumber,
             Integer lottoBonusNumber){
          for (HashSet<Integer> oneOfUserLottoNumbers: userNumbers) {
-            lottoCheckAndAppend(lottoNumbers, userLottoNumber, lottoBonusNumber, oneOfUserLottoNumbers);
+            lottoCheckAndAppend(lottoNumbers, lottoBonusNumber, oneOfUserLottoNumbers);
         }
     }
 
-    public void lottoCheckAndAppend(HashSet<Integer> lottoNumbers, Integer userLottoNumber, Integer lottoBonusNumber, HashSet<Integer> oneOfUserLottoNumbers) {
+
+    public void lottoCheckAndAppend(HashSet<Integer> lottoNumbers, Integer lottoBonusNumber, HashSet<Integer> oneOfUserLottoNumbers) {
+        Boolean bonusCheck = oneOfUserLottoNumbers.contains(lottoBonusNumber);
         oneOfUserLottoNumbers.retainAll(lottoNumbers);
         if (oneOfUserLottoNumbers.size() == 6)
             winningCount.put(FIRST_PLACE, winningCount.get(FIRST_PLACE) + 1);
-        if (oneOfUserLottoNumbers.size() == 5 && userLottoNumber == lottoBonusNumber)
+        if (oneOfUserLottoNumbers.size() == 5 && bonusCheck)
             winningCount.put(SECOND_PLACE, winningCount.get(SECOND_PLACE) + 1);
-        if (oneOfUserLottoNumbers.size() == 5 && userLottoNumber != lottoBonusNumber)
+        if (oneOfUserLottoNumbers.size() == 5 && !bonusCheck)
             winningCount.put(THIRD_PLACE, winningCount.get(THIRD_PLACE) + 1);
         if (oneOfUserLottoNumbers.size() == 4)
             winningCount.put(FOURTH_PLACE, winningCount.get(FOURTH_PLACE) + 1);
         if (oneOfUserLottoNumbers.size() == 3)
             winningCount.put(FIFTH_PLACE, winningCount.get(FIFTH_PLACE) + 1);
     }
+
 
     public void printLottoWinningCountResult() {
         for (Map.Entry<String, Integer> entry : winningCount.entrySet()) {
@@ -69,12 +70,14 @@ public class PrintResultService {
         }
     }
 
+
     public void printRateOfReturn(List<HashSet<Integer>> userNumbers){
         setTotalWinnings();
         int precision = 100; // 소수점 두 자리를 나타내는 100으로 설정
         double roundedValue = (double) Math.round(((double)totalWinnings / (userNumbers.size() * 10)) * precision) / precision;
         System.out.println(String.format(TOTAL_SCORE, roundedValue));
     }
+
 
     public void setTotalWinnings(){
         for (Map.Entry<String, Integer> entry : winningCount.entrySet()) {
@@ -84,12 +87,23 @@ public class PrintResultService {
         }
     }
 
+
     public void checkKeyAndMoneyAppend(String key, Integer value) {
         if (key == FIRST_PLACE) totalWinnings += 2_000_000_000 * value;
         if (key == SECOND_PLACE) totalWinnings += 30_000_000 * value;
         if (key == THIRD_PLACE) totalWinnings += 1_500_000 * value;
         if (key == FOURTH_PLACE) totalWinnings += 50_000 * value;
         if (key == FIFTH_PLACE) totalWinnings += 5_000 * value;
+    }
+
+
+    //테스트 코드 작성용
+    public Map<String, Integer> getWinningCount() {
+        return winningCount;
+    }
+
+    public Long getTotalWinning(){
+        return totalWinnings;
     }
 
 

@@ -10,7 +10,7 @@ public class LottoMaker {
     }
 
     public LottoContainer issue(int cash) {
-        int papers = cash / 1000;
+        int papers = cash / Constant.LOTTO_PRICE;
 
         LottoContainer lottoContainer = new LottoContainer();
 

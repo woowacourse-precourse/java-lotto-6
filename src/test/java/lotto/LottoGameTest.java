@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constant.BUY_UNIT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +13,7 @@ public class LottoGameTest {
     @ValueSource(longs = {1000,5000,0,100000,18000})
     void 로또_구매_개수(long buyCash){
         LottoGame lottoGame=new LottoGame();
-        long expected=buyCash/Constant.BUY_UNIT;
+        long expected=buyCash/BUY_UNIT;
 
         assertThat(lottoGame.getLottoAmount(buyCash)).isEqualTo(expected);
     }

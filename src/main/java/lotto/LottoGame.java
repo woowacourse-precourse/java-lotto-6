@@ -1,8 +1,10 @@
 package lotto;
 
+import static lotto.Constant.BUY_UNIT;
+
 public class LottoGame {
 
     public long getLottoAmount(long buyCash){
-        return buyCash/Constant.BUY_UNIT;
+        return buyCash/BUY_UNIT;
     }
 }

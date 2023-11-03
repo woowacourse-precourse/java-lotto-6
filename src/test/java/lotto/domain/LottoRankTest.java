@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -14,14 +15,27 @@ public class LottoRankTest {
 	@DisplayName("일치한 로또 번호 수와 보너스 번호 유뮤에 따른 로또 상금을 확인한다.")
 	@MethodSource("createGetLottoRankTestParameter")
 	@ParameterizedTest
-	void checkGetLottoRankMethodReturnValue(int matchedNumCount, boolean isBonusNumber, int expect) {
-		int lottoPrice = LottoRank.getLottoRank(matchedNumCount, isBonusNumber).getPrice();
-		
-		assertEquals(lottoPrice, expect);
+	void checkGetLottoRankMethodReturnValue(AnswerLotto answer, Lotto lotto, int rankPrice) {
+		int lottoPrice = LottoRank.getMatchedLottoRank(answer, lotto).getPrice();
+
+		assertEquals(lottoPrice, rankPrice);
 	}
 
 	static Stream<Arguments> createGetLottoRankTestParameter() {
-		return Stream.of(Arguments.of(2, false, 0), Arguments.of(3, false, 5000), Arguments.of(4, false, 50000),
-						Arguments.of(5, false, 1500000), Arguments.of(5, true, 30000000), Arguments.of(6, false, 2000000000));
+		return Stream.of(
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(8, 9, 10, 11, 12, 13)),
+						LottoRank.NOTHING.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 9, 10, 11, 12)),
+						LottoRank.NOTHING.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 3, 10, 11, 12)),
+						LottoRank.FIFTH.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 3, 4, 11, 12)),
+						LottoRank.FOURTH.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 3, 4, 5, 12)),
+						LottoRank.THIRD.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+						LottoRank.SECOND.getPrice()),
+				Arguments.of(new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7), new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+						LottoRank.FIRST.getPrice()));
 	}
 }

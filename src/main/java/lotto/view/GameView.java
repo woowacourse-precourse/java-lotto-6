@@ -20,6 +20,14 @@ public class GameView {
         return input;
     }
 
+    public void showLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            String formattedNumbers = lottoFormatter.format(lotto.getSortedNumbers());
+            System.out.println(formattedNumbers);
+        }
+    }
+
     public String getWinningNumbersInput() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = getInput();
@@ -27,15 +35,14 @@ public class GameView {
         return input;
     }
 
-    private String getInput() {
-        return Console.readLine();
+    public String getBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
+        String input = getInput();
+
+        return input;
     }
 
-    public void showLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            String formattedNumbers = lottoFormatter.format(lotto.getSortedNumbers());
-            System.out.println(formattedNumbers);
-        }
+    private String getInput() {
+        return Console.readLine();
     }
 }

@@ -1,9 +1,6 @@
 package lotto.handler;
 
-import lotto.exception.InvalidPurchaseAmountException;
-import lotto.exception.InvalidWinningNumberException;
-import lotto.exception.NullInputException;
-import lotto.exception.ParseException;
+import lotto.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,7 @@ public class InputHandler {
             validateNull(numberInput);
 
             int winningNumber = parseInteger(numberInput);
-            validateWinningNumber(winningNumber);
+            validateNumber(winningNumber);
 
             winningNumbers.add(winningNumber);
         }
@@ -39,8 +36,18 @@ public class InputHandler {
         return winningNumbers;
     }
 
-    private void validateNull(String lottoQuantity) {
-        if (lottoQuantity == null || lottoQuantity.isBlank()) {
+    public int handleBonusNumber(String bonusNumberInput, List<Integer> winningNumber) {
+        validateNull(bonusNumberInput);
+
+        int bonusNumber = parseInteger(bonusNumberInput);
+
+        validateBonusNumber(bonusNumber, winningNumber);
+
+        return bonusNumber;
+    }
+
+    private void validateNull(String input) {
+        if (input == null || input.isBlank()) {
             throw new NullInputException();
         }
     }
@@ -59,9 +66,17 @@ public class InputHandler {
         }
     }
 
-    private void validateWinningNumber(int winningNumber) {
-        if (winningNumber < 1 || winningNumber > 45) {
-            throw new InvalidWinningNumberException();
+    private void validateNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new InvalidNumberException();
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumber) {
+        validateNumber(bonusNumber);
+
+        if (winningNumber.contains(bonusNumber)) {
+            throw new InvalidBonusNumberException();
         }
     }
 }

@@ -47,6 +47,7 @@
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto
 - [x] 로또의 총 개수를 반환하기 - LottoDto
+- [x] 로또 결과와 총 상금을 전달하기 위한 DTO - LottoResultsDto
 
 # View
 - [ ] 로또 구입 금액 입력 - InputView

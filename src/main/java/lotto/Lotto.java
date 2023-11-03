@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 
+// 입력하는 당첨 번호 6개
 public class Lotto {
     private final List<Integer> numbers;
 

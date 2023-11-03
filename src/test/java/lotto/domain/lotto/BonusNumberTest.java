@@ -2,11 +2,9 @@ package lotto.domain.lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import lotto.exception.domain.bonusnumber.BonusNumberDuplicateException;
 import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
-import lotto.exception.domain.bonusnumber.BonusNumberRangeException;
-import org.junit.jupiter.api.Assertions;
+import lotto.exception.domain.lotto.LottoNumRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +19,7 @@ class BonusNumberTest {
     @ValueSource(strings = {"1", "4", "45"})
     @DisplayName("1~45 범위의 숫자를 입력했을 때 보너스 넘버가 정상적으로 생성된다.")
     void testValidBonusNumber(String inputNum) {
-        winningNumbers = WinningNumbers.create("1, 3, 5, 7, 8, 9");
+        winningNumbers = WinningNumbers.create("2, 3, 5, 7, 8, 9");
         BonusNumber bonusNumber = BonusNumber.create(inputNum, winningNumbers);
 
         assertEquals(Integer.parseInt(inputNum), bonusNumber.getNumber());
@@ -41,7 +39,7 @@ class BonusNumberTest {
     @DisplayName("숫자가 1~45 사이의 수가 아닌 경우 예외 발생")
     void testOutOfRange() {
         winningNumbers = WinningNumbers.create("1, 3, 5, 7, 8, 9");
-        assertThrows(BonusNumberRangeException.class, () -> {
+        assertThrows(LottoNumRangeException.class, () -> {
             BonusNumber.create("46", winningNumbers);
         });
     }

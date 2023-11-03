@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.exception.domain.bonusnumber.BonusNumberDuplicateException;
 import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
-import lotto.exception.domain.bonusnumber.BonusNumberRangeException;
+import lotto.exception.domain.lotto.LottoNumRangeException;
 
 public class BonusNumber {
     private static final Pattern bonusNumberRegex = Pattern.compile("\\d+");
@@ -43,7 +43,7 @@ public class BonusNumber {
         int bonusNum = parseBonusNum(bonusNumber);
 
         if (isInvalidRange(bonusNum)) {
-            throw new BonusNumberRangeException();
+            throw new LottoNumRangeException();
         }
     }
 

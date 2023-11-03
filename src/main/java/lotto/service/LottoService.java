@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.LottoTicket;
+import lotto.domain.WinningLottoTicket;
 import lotto.exception.BonusNumberExceptionMessage;
 import lotto.exception.PurchaseExceptionMessage;
 import lotto.exception.WinningNumberExceptionMessage;
@@ -91,6 +92,10 @@ public class LottoService {
 
     public LottoTicket getLottoTicket(int amount) {
         return lottoTicket.buy(amount);
+    }
+
+    public WinningLottoTicket makeWinningLottoTicket(List<Integer> winningNumber, int bonusNumber) {
+        return new WinningLottoTicket(winningNumber, bonusNumber);
     }
 
     private List<Integer> changeInputToString(String input) {

@@ -27,4 +27,9 @@ public class StandardIoAdapter implements IoAdapter {
     public void printLotto(List<Integer> lotto) {
         System.out.println(lotto);
     }
+
+    @Override
+    public void printNewLine() {
+        System.out.println();
+    }
 }

@@ -12,4 +12,6 @@ public interface IoAdapter {
     void printMessage(String message);
 
     void printLotto(List<Integer> lotto);
+
+    void printNewLine();
 }

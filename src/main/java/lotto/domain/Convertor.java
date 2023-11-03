@@ -9,7 +9,13 @@ import java.util.stream.Collectors;
 public class Convertor {
     private static final String DELIMITER = ",";
 
-    public List<Number> convertToNumbers(String input) {
+    public List<Integer> convertToIntegers(String input) {
+        return convertToNumbers(input).stream()
+                .map(Number::getNumber)
+                .collect(Collectors.toList());
+    }
+
+    private List<Number> convertToNumbers(String input) {
         List<Number> numbers = stream(separate(input))
                 .map(number -> new Number(number.trim()))
                 .collect(Collectors.toList());

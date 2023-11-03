@@ -19,7 +19,7 @@ public class LottoService {
     private final LottoTicket lottoTicket = new LottoTicket();
 
     public int displayPurchase() {
-        InputView.printPurchasePrompt();
+        InputView.promptPurchaseAmount();
 
         while (true) {
             try {
@@ -31,7 +31,7 @@ public class LottoService {
     }
 
     private int parseAndValidatePurchaseAmount() {
-        String purchaseAmountView = InputView.getPurchaseAmountView();
+        String purchaseAmountView = InputView.readPurchaseAmount();
         validateIsNumeric(purchaseAmountView);
 
         int price = Integer.parseInt(purchaseAmountView);
@@ -49,11 +49,11 @@ public class LottoService {
     }
 
     public List<Integer> displayWinningNumber() {
-        InputView.printWinningNumberPrompt();
+        InputView.promptWinningNumbers();
 
         while (true) {
             try {
-                String winningNumberView = InputView.getWinningNumberView();
+                String winningNumberView = InputView.readWinningNumbers();
                 return parseAndValidateWinningNumbers(winningNumberView);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -81,7 +81,7 @@ public class LottoService {
     }
 
     public int displayBonusNumber(List<Integer> winningNumbers) {
-        InputView.printBonusNumberPrompt();
+        InputView.promptBonusNumber();
 
         while (true) {
             try {
@@ -93,7 +93,7 @@ public class LottoService {
     }
 
     private int parseAndValidateBonusNumber(List<Integer> winningNumbers) {
-        String bonusNumberStr = InputView.getBonusNumber();
+        String bonusNumberStr = InputView.readBonusNumber();
         validateBonusNumberFormat(bonusNumberStr);
 
         int bonusNumber = Integer.parseInt(bonusNumberStr);

@@ -53,9 +53,10 @@ public class LottoController {
     }
 
     private Lotto readWinningNumbers() {
-        return new Lotto(Arrays.stream(inputView.readWinningNumbers().split(","))
-                .map(Integer::parseInt)
-                .toList());
+        List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
+                .map(integerConverter::convert)
+                .toList();
+        return new Lotto(numbers);
     }
 
     private Bonus readBonusNumber() {

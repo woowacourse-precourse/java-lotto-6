@@ -1,5 +1,7 @@
 package view;
 
+import static exception.InputException.*;
+
 import camp.nextstep.edu.missionutils.Console;
 
 import config.OutputMessage;
@@ -18,8 +20,12 @@ public class InputView {
 
     public void inputPayment() {
         System.out.println(OutputMessage.DEPOSIT.getMessage());
-
-//        gameController.lottoAdd(Console.readLine());
+        try {
+            gameController.lottoAdd(validatePayUnit(validateInteger(Console.readLine())));
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            inputPayment();
+        }
     }
 
     public void inputWinNumber() {

@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class InputValidator {
     private static final Integer MONEY_UNIT = 1000;
+    private static final Integer MINIMUM_MONEY_STANDARD = 0;
     private static final Integer MINIMUM_NUMBER = 1;
     private static final Integer MAXIMUM_NUMBER = 45;
 
@@ -20,7 +21,14 @@ public class InputValidator {
 
     public Boolean isThousandUnitValidator(Integer money){
         if(money % MONEY_UNIT != 0){
-            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 1,000원 단위여야 합니다.");
+        }
+        return true;
+    }
+
+    public Boolean isMinimumValidator(Integer money){
+        if(money <= MINIMUM_MONEY_STANDARD){
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 최소 0원 초과여야 합니다.");
         }
         return true;
     }

@@ -21,6 +21,7 @@ public class Application {
 
         int bonus = inputBonusNumber(correct);
 
+        printResult(list, correct, bonus, input);
     }
 
     private static int inputBonusNumber(List<Integer> correct) {
@@ -48,6 +49,7 @@ public class Application {
         for (int i = 0; i < buyCount; i++) {
             List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(randomList);
+            lotto.printLottoList(randomList);
             list.add(lotto);
         }
         return list;
@@ -73,5 +75,33 @@ public class Application {
         }
     }
 
+    private static void printResult(List<Lotto> list, List<Integer> correct, int bonus, int input) {
+        int[] check = new int[5];
+        for (int i = 0; i < list.size(); i++) {
+            int[] correctAndBonus = new int[2];
+            Lotto lotto = list.get(i);
+            for (int j = 0; j < lotto.getNumbers().size(); j++) {
+                if (correct.contains(lotto.getNumbers().get(j))) correctAndBonus[0]++;
+                if (correct.contains(bonus)) correctAndBonus[1]++;
+            }
+            if (correctAndBonus[0] == 3) check[0]++;
+            if (correctAndBonus[0] == 2 && correctAndBonus[1] == 1) check[0]++;
+            if (correctAndBonus[0] == 4) check[1]++;
+            if (correctAndBonus[0] == 3 && correctAndBonus[1] == 1) check[1]++;
+            if (correctAndBonus[0] == 5) check[2]++;
+            if (correctAndBonus[0] == 4 && correctAndBonus[1] == 1) check[2]++;
+            if (correctAndBonus[0] == 5 && correctAndBonus[1] == 1) check[3]++;
+            if (correctAndBonus[0] == 6) check[4]++;
+        }
 
+        System.out.println("3개 일치 (5,000원) - " + check[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + check[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + check[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + check[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + check[4] + "개");
+
+        double sum = check[0] * 5000 + check[1] * 50000 + check[2] * 1500000 + check[3] * 30000000 + check[4] * 2000000000;
+
+        System.out.println("총 수익률은 " + String.format("%.1f", sum / input * 100) + "%입니다.");
+    }
 }

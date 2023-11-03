@@ -15,11 +15,15 @@ class InputValidatorTest {
         @Test
         void Purchase_amount_is_a_number() {
             // given
-            String input = "1000";
+            String input1 = "1";
+            String input100 = "100";
+            String input1000 = "1000";
 
             // when
             // then
-            InputValidator.validatePurchaseAmount(input);
+            InputValidator.validatePurchaseAmount(input1);
+            InputValidator.validatePurchaseAmount(input100);
+            InputValidator.validatePurchaseAmount(input1000);
         }
 
         @DisplayName("구입 금액이 숫자가 아닐 경우 예외 발생")

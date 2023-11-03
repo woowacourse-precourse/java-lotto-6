@@ -21,11 +21,6 @@ public class LottoGameController {
     BonusNumber bonusNumber = new BonusNumber(InputVIew.inputBonusNumber());
         //System.out.println(LottoMatch.getHasBonus());
     int bonus = bonusNumber.getBonus();
-
-    //TODO : 패 비교 후 리스트 요소 분류 -> 3미만 n개, 3 n개,4 n개 ...
-    List<Integer> countWinnings = LottoMatch.countMatchingNumbers(RandomLottos.SetRandomLottos(ticketsAmount.getTickets()),lotto.getNumbers(),
-            bonusNumber.getBonus());
-        //System.out.println(countWinnings);
     public void start(){
         //TODO : 패 비교해서 일치개수 리스트 반환
         List<Integer> countWinnings = LottoMatch.countMatchingNumbers(randomLottos,winningNumbers,bonus);
@@ -34,10 +29,8 @@ public class LottoGameController {
         //TODO : 수익률 계산
         double profits = CalculateProfits.calculate(countWinnings,ticketsAmount.getTicketsPrice());
         System.out.println(profits);
-
-
     }
-   
+
 
 
 

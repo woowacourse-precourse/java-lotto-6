@@ -14,6 +14,7 @@ public class InputVIew {
         try {
             return validateNum(Console.readLine());
         } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return inputTicketsAmount();
         }
     }
@@ -47,7 +48,7 @@ public class InputVIew {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_INPUT_NUMBER);
         }
     }
 

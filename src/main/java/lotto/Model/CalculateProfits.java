@@ -14,7 +14,7 @@ public class CalculateProfits {
             profit += prizeCount * prize.getPrize();
         }
         double profitPercentage = (profit / investment) * 100;
-        Result.printResults(countWinnings);
+        //Result.printResults(countWinnings);
         System.out.println("총 수익률은 " + roundToTwoDecimalPlaces(profitPercentage) + "% 입니다.");
         return roundToTwoDecimalPlaces(profitPercentage);
     }

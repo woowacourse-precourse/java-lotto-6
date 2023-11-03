@@ -30,7 +30,7 @@ public class GameController {
     private int count;
     private int bonusNumber;
 
-    public void progress() {
+    public void run() {
         setCount();
         setUser();
         OutputView.printCountAndTickets(user, count);

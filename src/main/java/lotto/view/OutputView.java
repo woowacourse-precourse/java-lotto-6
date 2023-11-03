@@ -18,9 +18,10 @@ public class OutputView {
     private static final String LINE = "---";
     private static final String NTH_PRIZE_DETAIL = "%d개 일치 (%s원) - %d개";
     private static final String NTH_PRIZE_DETAIL_CONTAINING_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String RETURN_RATE = "총 수익률은 %s 입니다.";
+    private static final String RETURN_RATE = "총 수익률은 %s%%입니다.";
 
     public static void printCountAndTickets(User user, int count) {
+        System.out.println();
         printCount(count);
         printTickets(user, count);
     }
@@ -50,6 +51,7 @@ public class OutputView {
     }
 
     public static void printPrizeDetails(int[] nthPrizeNumber) {
+        System.out.println();
         System.out.println(PRIZE_DETAILS);
         System.out.println(LINE);
         for (int rank = LOWEST_PRIZE_RANK.number(); rank > 0; rank--) {

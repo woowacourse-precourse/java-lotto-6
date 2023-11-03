@@ -56,7 +56,7 @@ public class GameValidator {
     }
 
     private static boolean inRange(int bonusNumber) {
-        return !(bonusNumber >= LOTTO_MIN.number() && bonusNumber <= LOTTO_MAX.number());
+        return bonusNumber >= LOTTO_MIN.number() && bonusNumber <= LOTTO_MAX.number();
     }
 
     private static boolean unique(int bonusNumber, Lotto lotto) {

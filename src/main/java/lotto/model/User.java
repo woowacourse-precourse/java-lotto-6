@@ -1,10 +1,11 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.LottoNumberGenerator;
 
 public class User {
-    private List<Lotto> lottoTickets;
+    private final List<Lotto> lottoTickets = new ArrayList<>();
     private final int count;
 
     public User(int count) {
@@ -16,5 +17,10 @@ public class User {
         for (int i = 0; i < count; i++) {
             lottoTickets.add(new Lotto(LottoNumberGenerator.generate()));
         }
+    }
+
+    public List<Integer> getTicket(int index) {
+        Lotto lotto = lottoTickets.get(index);
+        return lotto.getNumbers();
     }
 }

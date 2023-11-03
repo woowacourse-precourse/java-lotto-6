@@ -2,15 +2,24 @@ package lotto.gameUtil;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.domain.Enum.Rank;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GameLogic {
     OutputView outputView;
+    private Map<Rank, Integer> ranks = new HashMap<>();
     public GameLogic(){
         outputView = new OutputView();
+        initRank();
+    }
+    private void initRank(){
+        ranks.put(Rank.FIRST, 0);
+        ranks.put(Rank.SECOND, 0);
+        ranks.put(Rank.THIRD, 0);
+        ranks.put(Rank.FORTH, 0);
+        ranks.put(Rank.FIFTH, 0);
     }
     public List<Lotto> lottoNumber(int amount){
         int count = amount / 1000;
@@ -18,15 +27,18 @@ public class GameLogic {
         List<Lotto> lottoList = new ArrayList<>();
 
         for(int i=0;i<count;i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort((o1, o2)->{
-                return o1-o2;
-            });
-            Lotto lotto = new Lotto(numbers);
+            List<Integer> lottoNumbers = makingLottoNumbers();
+            Lotto lotto = new Lotto(lottoNumbers);
+            lotto.sortNumber();
             lottoList.add(lotto);
             outputView.lottoNumberMessage(lotto.toString());
         }
         return lottoList;
+    }
+    public List<Integer> makingLottoNumbers(){
+        List<Integer> tmpLottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> lottoNumbers = new ArrayList<>(tmpLottoNumbers);
+        return lottoNumbers;
     }
     public Lotto winningNumber(String winningNumberStr){
         String[] winningNumberArr = winningNumberStr.split(",");
@@ -37,27 +49,61 @@ public class GameLogic {
         Lotto lotto = new Lotto(winningNumber);
         return lotto;
     }
-    public void lottoNumberCompare(Lotto buyingLotto, Lotto winningLotto, int bonusNumber){
+    public int matchCount(Lotto buyingLotto, Lotto winningLotto, int bonus){
         int[] buyingLottoNumber = buyingLotto.toIntegerArr();
-        int[] winningLottoNumber = winningLotto.toIntegerArr();
+        Set<Integer> winningLottoNumber = winningLotto.toSet();
 
-
+        int count = 0;
+        for(int i=0;i<6;i++){
+            if(winningLottoNumber.contains(buyingLottoNumber[i]) || buyingLottoNumber[i] == bonus){
+                count++;
+            }
+        }
+        return count;
     }
-//    public int matchNumber(int[] buyingLottoNumber, int[] winningLottoNumber, int bonus){
-//        int count = 0;
-//        for(int i=0;i<6;i++){
-//            if(buyingLottoNumber[i]==winningLottoNumber[i] || buyingLottoNumber[i]==bonus){
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
-//    public boolean isSecond(int[] buyingLottoNumber, int bonus){
-//        for(int number : buyingLottoNumber){
-//            if(bonus==number){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public boolean matchBonus(Lotto buyingLotto, int bonus){
+        Set<Integer> buyingLottoNumber = buyingLotto.toSet();
+        if(buyingLottoNumber.contains(bonus)){
+            return true;
+        }
+        return false;
+    }
+    public void matchLotto(int count, boolean isSecond){
+        if(count == 6 && !isSecond){
+            firstRank();
+        }
+        if(count == 6 && isSecond){
+            secondRank();
+        }
+        if(count ==5){
+            thirdRank();
+        }
+        if(count == 4){
+            forthRank();
+        }
+        if(count == 3){
+            fifthRank();
+        }
+    }
+    public void firstRank(){
+        ranks.put(Rank.FIRST, ranks.get(Rank.FIRST)+1);
+    }
+    public void secondRank(){
+        ranks.put(Rank.SECOND, ranks.get(Rank.SECOND)+1);
+    }
+    public void thirdRank(){
+        ranks.put(Rank.THIRD, ranks.get(Rank.THIRD)+1);
+    }
+    public void forthRank(){
+        ranks.put(Rank.FORTH, ranks.get(Rank.FORTH)+1);
+    }
+    public void fifthRank(){
+        ranks.put(Rank.FIFTH, ranks.get(Rank.FIFTH)+1);
+    }
+    public Map<Rank, Integer> getRanks(){
+        return ranks;
+    }
+    public Long getPrize(Rank rank){
+        return 0L;
+    }
 }

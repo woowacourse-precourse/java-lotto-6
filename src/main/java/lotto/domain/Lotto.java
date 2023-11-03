@@ -17,9 +17,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
     // TODO: 추가 기능 구현
-
     public List<Integer> getNumbers() {
         return numbers;
     }
@@ -27,4 +25,15 @@ public class Lotto {
     public static Lotto createLotto(){
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
+
+    public Integer countMatch(Lotto lotto){
+        return (int) numbers.stream()
+                .filter(l -> lotto.containMatch(l))
+                .count();
+    }
+
+    public boolean containMatch(int number){
+        return numbers.contains(number);
+    }
+
 }

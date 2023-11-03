@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.AmountLotto;
+import lotto.domain.LottoRanking;
 import lotto.domain.MyLottos;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
@@ -13,18 +14,37 @@ public class LottoController {
 
     private void startLottoGame(){
         AmountLotto amountLotto = new AmountLotto();
-        MyLottos myLottos = new MyLottos(amountLotto.calculateAmountLotto());
-        OutputView.printPurchaseLottoNumber(myLottos.getLottos().size(), myLottos);
-
+        MyLottos myLottos = new MyLottos();
         WinningLotto winningLotto = new WinningLotto();
+        LottoRanking lottoRanking = new LottoRanking();
 
-        initializeLottoGame(amountLotto,winningLotto);
+        settingLottoGame(myLottos,amountLotto,winningLotto);
+
+        matchLotto(amountLotto, myLottos, winningLotto, lottoRanking);
+        OutputView.winningResult(lottoRanking);
     }
 
-    private void initializeLottoGame(AmountLotto amountLotto, WinningLotto winningLotto) {
+
+    private void matchLotto(AmountLotto amountLotto, MyLottos myLottos, WinningLotto winningLotto, LottoRanking lottoRanking) {
+        for(int i = 0 ; i < myLottos.getLottos().size(); i++){
+            int matchCount = myLottos.getLottos().get(i).countMatch(winningLotto.getLotto());
+            boolean matchBouns = myLottos.getLottos().get(i).containMatch(winningLotto.getBonus());
+
+            lottoRanking.checkRanking(matchCount, matchBouns);
+
+        }
+    }
+
+    private void settingLottoGame(MyLottos myLottos ,AmountLotto amountLotto, WinningLotto winningLotto) {
         requestAmountLotto(amountLotto);
+        requestCreateMyLotto(myLottos, amountLotto);
         requestWinningLotto(winningLotto);
         requestWinningBonus(winningLotto);
+    }
+
+    private void requestCreateMyLotto(MyLottos myLottos,AmountLotto amountLotto) {
+        myLottos.responseCreateMyLottos(amountLotto.calculateAmountLotto());
+        OutputView.printPurchaseLottoNumber(myLottos.getLottos().size(), myLottos);
     }
 
     public void requestAmountLotto(AmountLotto amountLotto){

@@ -5,12 +5,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MyLottos {
-    public List<Lotto> lottos;
+    private List<Lotto> lottos;
 
-    public MyLottos(int lottoNumber) {
-        this.lottos = createMyLottos(lottoNumber);
+    public MyLottos() {
+
     }
 
+    public void responseCreateMyLottos(int lottoNumber){
+        this.lottos = createMyLottos(lottoNumber);
+    }
     public List<Lotto> getLottos() {
         return lottos;
     }
@@ -20,4 +23,6 @@ public class MyLottos {
                 .mapToObj(i -> Lotto.createLotto())
                 .collect(Collectors.toList());
     }
+
+
 }

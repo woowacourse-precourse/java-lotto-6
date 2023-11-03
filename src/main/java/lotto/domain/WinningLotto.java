@@ -14,7 +14,12 @@ public class WinningLotto {
     public WinningLotto() {
     }
 
-
+    public Lotto getLotto() {
+        return lotto;
+    }
+    public Integer getBonus(){
+        return bonus;
+    }
 
     public void convertWinningLotto(String lottoStr) {
         LottoValidator.winningLottoValidator(lottoStr);
@@ -32,4 +37,10 @@ public class WinningLotto {
         LottoValidator.inputWinningBonusValidator(lotto.getNumbers(), bonus);
         this.bonus=  Integer.parseInt(bonus);
     }
+
+
+
+
+
+
 }

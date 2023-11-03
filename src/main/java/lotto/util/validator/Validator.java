@@ -2,8 +2,6 @@ package lotto.util.validator;
 
 import java.util.regex.Pattern;
 
-import lotto.util.message.ErrorMessage;
-
 public class Validator {
 
 	public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
@@ -12,15 +10,21 @@ public class Validator {
 		throw new AssertionError();
 	}
 
-	public static void validateNumberFormat(String inputValue) {
+	public static void validateNumberFormat(String inputValue, String message) {
 		if (!NUMBER_PATTERN.matcher(inputValue).matches()) {
-			throw new IllegalArgumentException(ErrorMessage.INPUT_LETTER_ERROR.getMessage());
+			throw new IllegalArgumentException(message);
 		}
 	}
 
-	public static void validateIsEmpty(String inputValue) {
+	public static void validateIsEmpty(String inputValue, String message) {
 		if (isStringEmpty(inputValue)) {
-			throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
+			throw new IllegalArgumentException(message);
+		}
+	}
+	
+	public static void validateStrArrLength(String[] inputValue, int length, String message) {
+		if (inputValue.length != length) {
+			throw new IllegalArgumentException(message);
 		}
 	}
 

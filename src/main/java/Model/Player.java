@@ -10,15 +10,12 @@ public class Player {
 
     private final Money money;
     private final List<Lotto> lottoBundle = new ArrayList<>();
-    private final Winning winning;
-    private final Bonus bonus;
+    private Winning winning;
+    private Bonus bonus;
     private int winningMoney;
 
-    Player(String money, String winning, String bonus){
-        this.money = new Money(money);
-        this.winning = new Winning(winning);
-        this.bonus = new Bonus(bonus);
-        this.winningMoney = 0;
+    public Player(Money money){
+        this.money = money;
     }
 
     public void buyLotto(){
@@ -34,6 +31,12 @@ public class Player {
             LottoNumbers.add(lotto.getLotto());
         }
         return LottoNumbers;
+    }
+
+    public void announceWinning(Winning winning, Bonus bonus){
+        this.winning = winning;
+        this.bonus = bonus;
+        this.winningMoney = 0;
     }
 
     public void checkWinning(){

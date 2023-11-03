@@ -15,28 +15,57 @@ public class LottoGame {
     OutputView outputView = new OutputView();
 
     public void startGame(){
-        initGame();
-        progressGame();
-        finishGame();
+        initLotto();
+        progressLotto(initWinning(), initBonus());
+        finishLotto();
     }
 
-    private void initGame(){
-        outputView.printMoney();
-        Money money = inputView.getMoney();
+    private void initLotto(){
+        Money money = null;
+        do{
+            try{
+                outputView.printMoney();
+                money = inputView.getMoney();
+            } catch (IllegalArgumentException e){
+                outputView.printMessage(e.getMessage());
+            }
+        } while(money == null);
         player = new Player(money);
         player.buyLotto();
         outputView.printBuying(player.checkLotto());
     }
 
-    private void progressGame(){
-        outputView.printWinning();
-        Winning winning = inputView.getWinning();
-        outputView.printBonus();
-        Bonus bonus = inputView.getBonus();
+    private Winning initWinning(){
+        Winning winning = null;
+        do{
+            try{
+                outputView.printWinning();
+                winning = inputView.getWinning();
+            } catch (IllegalArgumentException e){
+                outputView.printMessage(e.getMessage());
+            }
+        } while(winning == null);
+        return winning;
+    }
+
+    private Bonus initBonus(){
+        Bonus bonus = null;
+        do{
+            try{
+                outputView.printBonus();
+                bonus = inputView.getBonus();
+            } catch (IllegalArgumentException e){
+                outputView.printMessage(e.getMessage());
+            }
+        } while(bonus == null);
+        return bonus;
+    }
+
+    private void progressLotto(Winning winning, Bonus bonus){
         player.announceWinning(winning, bonus);
     }
 
-    private void finishGame(){
+    private void finishLotto(){
         outputView.printStatistics(player.checkWinning(), player.calculateYield());
     }
 

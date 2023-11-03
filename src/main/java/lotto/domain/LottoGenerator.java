@@ -1,19 +1,21 @@
 package lotto.domain;
 
+import static lotto.constant.LottoInfo.LOTTO_SIZE;
+import static lotto.constant.LottoInfo.MAXIMUM_NUMBER;
+import static lotto.constant.LottoInfo.MINIMUM_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.util.RandomGenerator;
 
 public class LottoGenerator {
 
-    private static final int LOTTO_SIZE = 6;
-
     private List<Integer> lottoNumbers;
 
     public List<Integer> generateLottoNumbers() {
         lottoNumbers = new ArrayList<>();
 
-        while (lottoNumbers.size() != LOTTO_SIZE) {
+        while (lottoNumbers.size() != LOTTO_SIZE.getInfo()) {
             int randomNumber = RandomGenerator.generateNumber();
             if (!isDuplicateNumber(randomNumber) && isValidNumberRange(randomNumber)) {
                 lottoNumbers.add(randomNumber);
@@ -31,7 +33,7 @@ public class LottoGenerator {
     }
 
     private boolean isValidNumberRange(int randomNumber) {
-        if (1 > randomNumber || 45 < randomNumber) {
+        if (MINIMUM_NUMBER.getInfo() > randomNumber || MAXIMUM_NUMBER.getInfo() < randomNumber) {
             return false;
         }
         return true;

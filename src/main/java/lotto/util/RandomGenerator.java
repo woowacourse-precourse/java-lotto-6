@@ -1,14 +1,14 @@
 package lotto.util;
 
+import static lotto.constant.LottoInfo.MAXIMUM_NUMBER;
+import static lotto.constant.LottoInfo.MINIMUM_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomGenerator {
 
-    private static final int MINIMUM_NUMBER = 1;
-    private static final int MAXIMUM_NUMBER = 45;
-
     public static int generateNumber() {
-        return Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER);
+        return Randoms.pickNumberInRange(MINIMUM_NUMBER.getInfo(), MAXIMUM_NUMBER.getInfo());
     }
 
 }

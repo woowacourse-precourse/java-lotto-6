@@ -1,12 +1,12 @@
 package lotto.service;
 
+import static lotto.constant.LottoInfo.LOTTO_PRICE;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 
 public class PlayerService {
-
-    private static final long LOTTO_PRICE = 1000;
 
     private final LottoService lottoService = new LottoService();
 
@@ -23,7 +23,7 @@ public class PlayerService {
     }
 
     private long calculateQuantity() {
-        return player.getPrice() / LOTTO_PRICE;
+        return player.getPrice() / LOTTO_PRICE.getInfo();
     }
 
 }

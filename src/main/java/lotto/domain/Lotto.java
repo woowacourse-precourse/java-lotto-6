@@ -1,12 +1,15 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constant.ExceptionMessage.LOTTO_SIZE_ERROR;
+import static lotto.constant.ExceptionMessage.NUMBER_OUT_OF_RANGE;
+import static lotto.constant.LottoInfo.LOTTO_SIZE;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-
-    private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -18,8 +21,8 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
+        if (numbers.size() != LOTTO_SIZE.getInfo()) {
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
@@ -27,14 +30,14 @@ public class Lotto {
     private void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> nonDuplicatedNumbers = numbers.stream().collect(Collectors.toSet());
         if (nonDuplicatedNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되어 생성되었습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         numbers.stream().forEach(number -> {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
             }
         });
     }

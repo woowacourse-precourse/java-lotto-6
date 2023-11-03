@@ -1,5 +1,10 @@
 package lotto.view;
 
+import static lotto.constant.Message.BOUGHT_QUANTITY_MESSAGE;
+import static lotto.constant.Message.BUYING_PRICE_MESSAGE;
+import static lotto.constant.Message.INPUT_BONUS_NUMBER_MESSAGE;
+import static lotto.constant.Message.INPUT_NUMBER_MESSAGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -7,7 +12,7 @@ import lotto.domain.Lotto;
 public class View {
 
     public static void printStartMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(BUYING_PRICE_MESSAGE.getMessage());
     }
 
     public static String input() {
@@ -17,7 +22,7 @@ public class View {
     }
 
     public static void printPurchaseMessage(int quantity) {
-        System.out.println(quantity + "개를 구매했습니다.");
+        System.out.println(quantity + BOUGHT_QUANTITY_MESSAGE.getMessage());
     }
 
     public static void printPurchasedLotto(List<Lotto> purchasedLotto) {
@@ -28,12 +33,12 @@ public class View {
     }
 
     public static String printInputNumberMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_NUMBER_MESSAGE.getMessage());
         return input();
     }
 
     public static String printInputBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE.getMessage());
         return input();
     }
 

@@ -22,6 +22,14 @@ public class Lotto {
         return SupportedLotto.getLottoNumbersAsString(this);
     }
 
+    public int lottoMatchValue(Lotto winningLotto) {
+        List<Integer> winningNumbers = winningLotto.numbers;
+
+        return (int) numbers.stream()
+                .filter(number -> winningNumbers.contains(number))
+                .count();
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

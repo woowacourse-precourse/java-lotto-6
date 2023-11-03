@@ -14,4 +14,12 @@ public class StringUtilsTest {
         assertThatThrownBy(() -> StringUtils.stringToNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액을 입력받을 때 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void stringToNumber() {
+        String input = "d";
+        assertThatThrownBy(() -> StringUtils.stringToNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

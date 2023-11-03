@@ -7,8 +7,8 @@ import java.util.List;
 public class Prize {
     private String groupNumbers;
     private List<Integer> preLuckyNumber;
-    public Lotto luckyNumber;
-    public int bonusNumber;
+    public static Lotto luckyNumber;
+    public static int bonusNumber;
 
     void inputNumbers() {
         groupNumbers = Console.readLine();

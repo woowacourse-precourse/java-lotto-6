@@ -14,6 +14,8 @@ public class LottosTest {
         Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
         List<Lotto> lottoBundle = lottos.getLottos();
         assertThat(lottoBundle.size()).isEqualTo(1);
-        assertThat(lottoBundle.get(0).getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lottoBundle.get(0).getNumbers()).isEqualTo(
+                List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
+                        new LottoNumber(5), new LottoNumber(6)));
     }
 }

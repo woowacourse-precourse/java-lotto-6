@@ -30,7 +30,7 @@ public class PurchaseAmount {
         return purchaseAmount % MIN_PURCHASE_AMOUNT != NO_REMAINDER;
     }
 
-    public int getAvailablePurchase() {
+    public int getAvailablePurchaseCounts() {
         return this.purchaseAmount / MIN_PURCHASE_AMOUNT;
     }
 }

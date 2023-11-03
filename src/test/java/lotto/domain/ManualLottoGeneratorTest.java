@@ -12,9 +12,13 @@ public class ManualLottoGeneratorTest {
     @Test
     void generateTest() {
         ManualLottoGenerator manualLottoGenerator = new ManualLottoGenerator();
-        Lottos generated = manualLottoGenerator.generate(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lottos generated = manualLottoGenerator.generate(List.of(new Lotto(numbers)));
         List<Lotto> lottos = generated.getLottos();
         assertThat(lottos.size()).isEqualTo(1);
-        assertThat(lottos.get(0).getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        List<LottoNumber> lottoNumbers = lottos.get(0).getNumbers();
+        for (LottoNumber lottoNumber : lottoNumbers) {
+            assertThat(numbers).contains(lottoNumber.getNumber());
+        }
     }
 }

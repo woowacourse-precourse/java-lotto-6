@@ -12,7 +12,6 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos.stream()
-                .map(lotto -> new Lotto(lotto.getNumbers()))
                 .collect(Collectors.toUnmodifiableList());
     }
 }

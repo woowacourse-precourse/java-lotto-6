@@ -3,13 +3,15 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
 
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

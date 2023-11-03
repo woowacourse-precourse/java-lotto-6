@@ -27,10 +27,10 @@ public class LottoController {
 
     public void run() {
         init();
-        startLotteryGame();
+        startLottoGame();
     }
 
-    public void startLotteryGame() {
+    private void startLottoGame() {
         // 구입 금액 입력 받기
         int budget = getBudget();
 

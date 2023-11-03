@@ -27,15 +27,27 @@ class Lotto {
         return null;
     }
 
-
     private static void validate(List<Integer> numbers) {
+        checkNumbersSize(numbers);
+        checkNumbersDuplication(numbers);
+    }
+
+    private static void checkNumbersSize(List<Integer> numbers) {
         if (numbers.size() != MAX_LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
         }
+    }
 
-        if (numbers.stream().distinct().count() != MAX_LOTTO_NUMBERS_SIZE) {
+    private static void checkNumbersDuplication(List<Integer> numbers) {
+        if (calculateUniqueCount(numbers) != MAX_LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATION_MESSAGE);
         }
+    }
+
+    private static long calculateUniqueCount(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count();
     }
 
     // TODO: 추가 기능 구현

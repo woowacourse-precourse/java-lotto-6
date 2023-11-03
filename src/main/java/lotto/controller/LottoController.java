@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import lotto.Lotto;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -14,7 +17,8 @@ public class LottoController {
 
     private void buyLottoTicketProcess() {
         Long amount = lottoInputView.getLottoPurchaseAmountInput();
-        lottoService.purchaseLotto(amount);
+        List<Lotto> lottos = lottoService.purchaseLotto(amount);
+
     }
 
 }

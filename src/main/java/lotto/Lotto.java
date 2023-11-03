@@ -1,8 +1,12 @@
 package lotto;
 
+import lotto.View.View;
+
 import java.util.List;
 
 public class Lotto {
+
+    View view = new View();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

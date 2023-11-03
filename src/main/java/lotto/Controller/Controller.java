@@ -18,8 +18,8 @@ public class Controller {
 
         List listLotto = randLotto.getBuyLotto(count);
         view.myLotto(listLotto);
-        List correct = view.correctNum();
-        new Lotto(correct);
-        String bonus = view.bonusNum(correct);
+        List lotto = view.correctNum();
+        Lotto lo = new Lotto(lotto);
+        view.bonusNum(lotto);
     }
 }

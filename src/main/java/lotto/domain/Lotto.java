@@ -42,6 +42,13 @@ public class Lotto {
         });
     }
 
+    public boolean isContainNumber(int number) {
+        if (this.numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

@@ -30,7 +30,7 @@ public class BonusNumber {
             Integer.parseInt(bonusNumber);
         }
         catch (NumberFormatException ex){
-            ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }
     }
 

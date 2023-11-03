@@ -19,13 +19,13 @@
 - [ ] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
 - [ ] 수익률을 저장함 - RateOfReturn
 - ### Lotto
-- [ ] Lotto 를 상속받아 당첨번호와 보너스 번호를 저장 - WinLotto
+- [x] Lotto 를 상속받아 당첨번호와 보너스 번호를 저장 - WinLotto
 - [x] 보너스 번호를 저장 - BonusNumber
 - [x] 로또에 번호가 있는지 확인 - Lotto
 - [x] 로또끼리 비교해 서로 일치하는 숫자 개수 반환 - Lotto
 - [x] 로또에 보너스 번호가 있는지 확인 - BonusNumber
-- [ ] Lotto 와 비교해 일치하는 개수를 반환 - WinLotto
-- [ ] Lotto 에 보너스 번호가 있는지 확인 - WinLotto
+- [x] Lotto 와 비교해 일치하는 개수를 반환 - WinLotto
+- [x] Lotto 에 보너스 번호가 있는지 확인 - WinLotto
 - [ ] 비교 결과를 통해 당첨 등수 계산 - Lotto
 - [x] LottoTicket 에서 생성한 Lotto 를 저장 - Lotties
 - [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - Lotties

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -16,5 +16,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void createLotto(List<Integer> lottoNumber) {
+        Lotto lotto = new Lotto(lottoNumber);
+        LottoStore.getInstance().addLotto(lotto);
+    }
 }

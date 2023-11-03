@@ -26,4 +26,9 @@ public class ExceptionController {
         }
     }
 
+    public void bonusNumberException(String bonus_number){
+        if(!bonus_number.matches("[0-9]{1,2}")){
+            throw new IllegalArgumentException();
+        }
+    }
 }

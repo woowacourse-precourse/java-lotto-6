@@ -36,4 +36,7 @@ public class Number {
                 .anyMatch(Character::isLetter);
     }
 
+    public int getNumber() {
+        return number;
+    }
 }

@@ -119,6 +119,11 @@ public class StartLotto {
         Collections.sort(lottoNumbers);
     }
 
+    private void printPurchaseLottoAmount() {
+        int lottoAmount = this.purchasePrice / 1000;
+        System.out.println(lottoAmount + "개를 구매했습니다.");
+    }
+
     private void printLottoList() {
         int listLen = this.purchasePrice / 1000;
 

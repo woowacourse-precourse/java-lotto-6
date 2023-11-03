@@ -15,7 +15,11 @@ public class InvalidInput {
 
     public void outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
-        throw new IllegalArgumentException(message);
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(message);
+            }
+        }
     }
 
     public void notIntegerValueException(String number) {

@@ -11,29 +11,29 @@ import java.util.Map;
 
 public class LottoController {
 
-    private static final LottoService lottoService = new LottoService();
+    private final LottoService lottoService = new LottoService();
 
     public void start() {
-        int amount = lottoService.displayPurchase();
+        int purchaseAmount = lottoService.getPurchaseAmount();
 
-        LottoTickets lottoTickets = lottoService.purchaseLottoTicket(amount);
-        displayLottoTickets(amount, lottoTickets);
+        LottoTickets lottoTickets = lottoService.purchaseLottoTicket(purchaseAmount);
+        displayLottoTickets(purchaseAmount, lottoTickets);
 
-        List<Integer> winningNumbers = lottoService.displayWinningNumber();
+        List<Integer> winningNumbers = lottoService.getWinningNumbers();
 
-        int bonusNumber = lottoService.displayBonusNumber(winningNumbers);
+        int bonusNumber = lottoService.getBonusNumber(winningNumbers);
 
         WinningLottoTicket winningLottoTicket = lottoService.createWinningLottoTicket(winningNumbers, bonusNumber);
         Map<Rank, Integer> statistics = lottoService.calculateStatistics(lottoTickets, winningLottoTicket);
 
-        displayResult(statistics, amount);
+        displayResult(statistics, purchaseAmount);
     }
 
-    private static void displayLottoTickets(int amount, LottoTickets lottoTicket) {
-        OutputView.printPurchasedLottoTickets(amount, lottoTicket);
+    private static void displayLottoTickets(int purchaseAmount, LottoTickets lottoTicket) {
+        OutputView.printPurchasedLottoTickets(purchaseAmount, lottoTicket);
     }
 
-    private static void displayResult(Map<Rank, Integer> statistics, int amount) {
-        OutputView.printStatistics(statistics, amount);
+    private static void displayResult(Map<Rank, Integer> statistics, int purchaseAmount) {
+        OutputView.printStatistics(statistics, purchaseAmount);
     }
 }

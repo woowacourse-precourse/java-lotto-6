@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    public int displayPurchase() {
+    public int getPurchaseAmount() {
         InputView.promptPurchaseAmount();
 
         while (true) {
@@ -47,7 +47,7 @@ public class LottoService {
         PurchaseValidattionException.checkValidPurchaseAmount(price);
     }
 
-    public List<Integer> displayWinningNumber() {
+    public List<Integer> getWinningNumbers() {
         InputView.promptWinningNumbers();
 
         while (true) {
@@ -79,7 +79,7 @@ public class LottoService {
         WinningNumberValidationException.checkBoundaryOfWinningNumbers(winningNumbers);
     }
 
-    public int displayBonusNumber(List<Integer> winningNumbers) {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         InputView.promptBonusNumber();
 
         while (true) {

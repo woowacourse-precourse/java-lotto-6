@@ -10,12 +10,7 @@ public class RandomNumber {
     public static final int LOTTO_NUMBER_COUNT = 6;
 
     public static List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = new ArrayList<Integer>();
-        while (numbers.size() < LOTTO_NUMBER_COUNT) {
-            int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER_RANGE , MAX_NUMBER_RANGE);
-            if (numbers.contains(randomNumber)) continue;
-            numbers.add(randomNumber);
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         numbers.sort(Integer::compareTo);
         return numbers;
     }

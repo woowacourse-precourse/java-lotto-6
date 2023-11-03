@@ -1,7 +1,14 @@
 package lotto.domain;
 
+import lotto.domain.constant.RangeConstant;
+
 import java.util.Collections;
 import java.util.List;
+
+import static lotto.domain.constant.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
+import static lotto.domain.constant.RangeConstant.*;
+import static lotto.domain.constant.RangeConstant.END_NUM;
+import static lotto.domain.constant.RangeConstant.START_NUM;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,7 +35,7 @@ public class Lotto {
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE_NUM.getNumber()) {
             throw new IllegalArgumentException();
         }
     }
@@ -38,6 +45,12 @@ public class Lotto {
 
         if (numbers.size() != count) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    protected static void validateLottoRange(int number) {
+        if (number < START_NUM.getNumber() || number > END_NUM.getNumber()) {
+            throw new IllegalArgumentException(INVALID_RANGE_LOTTO_NUMBER.getErrorMessage());
         }
     }
 

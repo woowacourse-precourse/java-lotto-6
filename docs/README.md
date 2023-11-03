@@ -13,9 +13,9 @@
 
 ### Lotto.class
 
-* [ ] 로또 번호의 숫자 범위는 1~45까지이다. - validateNumberRange()
-* [ ] 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. - validate()
-* [ ] 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다 - printLotto()
+* [x] 로또 번호의 숫자 범위는 1~45까지이다. - validateNumberRange()
+* [x] 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. - validate()
+* [x] 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다 - printLotto()
 
 ### WinningLotto.class  
 
@@ -26,9 +26,7 @@
 ### Grader.class
 
 * [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 통계와 수익률을 계산한다. - compareLottoWinningLotto()
-
 * [ ] 당첨 내역을 출력한다. - printResult()
-
 * [ ] 수익률을 출력한다. 소수점 둘째 자리에서 반올림한다. - printEarningRate()
 
   

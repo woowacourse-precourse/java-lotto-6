@@ -38,8 +38,9 @@ public class Store {
     List<Lotto> lottos = new ArrayList<>();
     for(int i = 0; i < count; i++) {
       List<Integer> number = makeLottoNumber();
-      System.out.println(number);
-      lottos.add(new Lotto(number));
+      Lotto lotto = new Lotto(number);
+      lotto.printLotto();
+      lottos.add(lotto);
     }
     return lottos;
   }

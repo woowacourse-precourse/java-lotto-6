@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessages;
-import lotto.constant.NumberConstants;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,33 +11,6 @@ import static lotto.constant.NumberConstants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private int matchNumberCount = 0;
-    private boolean matchBonusCount;
-    private int prize;
-
-    public int getMatchNumberCount() {
-        return matchNumberCount;
-    }
-
-    public void setMatchNumberCount(int matchNumberCount) {
-        this.matchNumberCount = matchNumberCount;
-    }
-
-    public boolean isMatchBonusCount() {
-        return matchBonusCount;
-    }
-
-    public void setMatchBonusCount(boolean matchBonusCount) {
-        this.matchBonusCount = matchBonusCount;
-    }
-
-    public int getPrize() {
-        return prize;
-    }
-
-    public void setPrize(int prize) {
-        this.prize = prize;
-    }
 
     public Lotto(List<Integer> numbers) {
         validateNumberSize(numbers);
@@ -73,6 +45,12 @@ public class Lotto {
                     ErrorMessages.DUPLICATE_NUMBER.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
+    }
+
+    public int calculateMatchNumber(List<Integer> winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
     }
 
     public List<Integer> getNumbers() {

@@ -8,8 +8,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);;
         validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,5 +18,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static List<Integer> generateLotteryNumbers() {
+
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
 }

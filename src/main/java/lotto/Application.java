@@ -20,6 +20,7 @@ public class Application {
         List<Lotto> lottoList = gameData.getLottoList();
         for (int i = 0; i < lotteryCount; i++) {
             List<Integer> lotteryNumbers = Lotto.generateLotteryNumbers();
+            Lotto.sortLotteryNumbers(lotteryNumbers);
             lottoList.add(new Lotto(lotteryNumbers));
         }
 
@@ -67,6 +68,9 @@ public class Application {
             }
             if (matchingNumberCount.equals(3)) {
                 rankList.add(Rank.FIFTH);
+            }
+            if (matchingNumberCount < 3) {
+                rankList.add(Rank.DEFAULT);
             }
         }
 

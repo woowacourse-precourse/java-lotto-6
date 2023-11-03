@@ -23,10 +23,6 @@ public class Consumer {
         this.buyAmount = buyAmount;
     }
 
-    public int getBuyAmount() {
-        return buyAmount;
-    }
-
     private static void validate(int buyAmount) {
         buyAmountLessThanMinAmount(buyAmount);
         buyAmountGreaterThanMaxAmount(buyAmount);
@@ -51,8 +47,8 @@ public class Consumer {
         }
     }
 
-    public void buyLotto(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public int getBuyAmount() {
+        return buyAmount;
     }
 
     public List<Lotto> getLottos() {
@@ -63,7 +59,12 @@ public class Consumer {
         return buyAmount / AMOUNT;
     }
 
-    public void buyQuantityCheck() {
+    public void buyLotto(List<Lotto> lottos) {
+        this.lottos = lottos;
+        buyQuantityCheck();
+    }
+    
+    private void buyQuantityCheck() {
         int quantity = lottos.size();
         int availableQuantity = getBuyAvailableQuantity();
 

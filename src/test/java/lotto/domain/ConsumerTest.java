@@ -55,12 +55,12 @@ class ConsumerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 3000})
+    @ValueSource(ints = {10000, 2000, 3000})
     @DisplayName("구매자의 구매 금액이 정상적인 경우 구매 가능 수량이 다른 경우 예외 발생 확인")
     void buyAvailableQuantityException(int amount) {
         Consumer consumer = new Consumer(amount);
 
-        assertThatThrownBy(() -> consumer.buyQuantityCheck())
+        assertThatThrownBy(() -> consumer.buyLotto(Arrays.asList(new Lotto(List.of(1, 2, 3, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX_TEXT, "구매 가능 수량이 구매 수량과 일치하지 않습니다.");
     }

@@ -85,19 +85,32 @@ public class LottoService {
 
         while (true) {
             try {
-                String bonusNumberStr = InputView.getBonusNumber();
-                BonusNumberExceptionMessage.validateBonusNumberFormat(bonusNumberStr);
-
-                int bonusNumber = Integer.parseInt(bonusNumberStr);
-                BonusNumberExceptionMessage.validateBoundaryBonusNumber(bonusNumber);
-                BonusNumberExceptionMessage.validateBonusNumber(winningNumbers, bonusNumber);
-
-                return bonusNumber;
+                return parseAndValidateBonusNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
+    private int parseAndValidateBonusNumber(List<Integer> winningNumbers) {
+        String bonusNumberStr = InputView.getBonusNumber();
+        validateBonusNumberFormat(bonusNumberStr);
+
+        int bonusNumber = Integer.parseInt(bonusNumberStr);
+        validateBoundaryAndDuplicateBonusNumber(bonusNumber, winningNumbers);
+
+        return bonusNumber;
+    }
+
+    private void validateBonusNumberFormat(String input) {
+        BonusNumberExceptionMessage.validateBonusNumberFormat(input);
+    }
+
+    private void validateBoundaryAndDuplicateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        BonusNumberExceptionMessage.validateBoundaryBonusNumber(bonusNumber);
+        BonusNumberExceptionMessage.validateBonusNumber(winningNumbers, bonusNumber);
+    }
+
 
     public LottoTicket getLottoTicket(int amount) {
         return lottoTicket.buy(amount);

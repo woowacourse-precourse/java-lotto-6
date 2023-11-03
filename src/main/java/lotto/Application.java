@@ -81,5 +81,17 @@ public class Application {
 
         double beforeRate = sumPrize / purchase * 100;
         double Rate = Math.round(beforeRate * 10.0) / 10.0;
+
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        System.out.println("3개 일치 (5,000원) - " + goodLuck.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + goodLuck.get(1) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + goodLuck.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + goodLuck.get(3) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + goodLuck.get(4) + "개");
+        System.out.println("총 수익률은 " + Rate + "%입니다.");
+
     }
 }

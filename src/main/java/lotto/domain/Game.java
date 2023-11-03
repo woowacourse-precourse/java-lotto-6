@@ -15,7 +15,12 @@ public class Game {
         player.sortLottos();
     }
 
-    public void drawLotto() {
+    public void drawWinningLotto() {
+        winningLotto = new WinningLotto(inputWinningNumbers(), inputBonusNumber());
+    }
+
+    public void findResult() {
+
     }
 
     private int inputMoney() {

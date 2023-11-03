@@ -30,23 +30,20 @@ class LottoTest {
 
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(2, 3, 4, 5, 6, 7), 5),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(3, 4, 5, 6, 7, 8), 4),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(4, 5, 6, 7, 8, 9), 3),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(5, 6, 7, 8, 9, 10), 2),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(6, 7, 8, 9, 10, 11), 1)
+                Arguments.of("5개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(2, 3, 4, 5, 6, 7)), 5),
+                Arguments.of("6개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(3, 4, 5, 6, 7, 8)), 4),
+                Arguments.of("7개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(4, 5, 6, 7, 8, 9)), 3),
+                Arguments.of("8개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(5, 6, 7, 8, 9, 10)), 2),
+                Arguments.of("9개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 7, 8, 9, 10, 11)), 1)
         );
     }
 
     @DisplayName("정답 번호와 구입한 로또 번호의 동일한 숫자 개수를 반환한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0}")
     @MethodSource("parameters")
-    void countCorrectLottoNumbers(List<Integer> userNumbers, List<Integer> winningNumbers, int expectedCount) {
-        // given
-        Lotto userLotto = new Lotto(userNumbers);
-
+    void countCorrectLottoNumbers(String testName, Lotto answerLotto, Lotto userLotto, int expectedCount) {
         // when
-        int correctCount = userLotto.countCorrectLottoNumbers(winningNumbers);
+        int correctCount = userLotto.countCorrectLottoNumbers(answerLotto);
 
         // then
         assertThat(correctCount).isEqualTo(expectedCount);

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoGameManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,19 +14,25 @@ public class LottoGameController {
         this.lottoGameManager = lottoGameManager;
     }
 
-    public String getUserInputLottoCost() {
+    public Integer getLottoCost() {
         while (true) {
             try {
                 String userInputLottoCost = inputView.readLine();
-                lottoGameManager.validateLottoCost(userInputLottoCost);
-                return userInputLottoCost;
+                return lottoGameManager.parsingLottoCost(userInputLottoCost);
             } catch (IllegalArgumentException e) {
                 OutputView.writeLine(e.getMessage());
             }
         }
     }
 
-    public Integer getValidatedLottoCost() {
-        return lottoGameManager.parsingLottoCost(getUserInputLottoCost());
+    public Lotto getWiningLotto() {
+        while (true) {
+            try {
+                String userInputWinningNumbers = inputView.readLine();
+                return lottoGameManager.createWinningLotto(userInputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.writeLine(e.getMessage());
+            }
+        }
     }
 }

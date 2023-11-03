@@ -26,7 +26,7 @@
 - [ ] 보너스 번호를 입력한다.
     - [x] 숫자 이외의 값이 들어오면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [x] 빈 값이 들어오면 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] 보너스 번호 입력 시 1에서 45를 벗어나는 값을 입력 시 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시
+    - [x] 보너스 번호 입력 시 1에서 45를 벗어나는 값을 입력 시 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시
       받는다.
     - [ ] 당첨 번호와 중복된 번호가 입력될 시 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 

@@ -9,19 +9,32 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchase = Integer.parseInt(Console.readLine());
-        if (purchase % 1000 != 0) {
-            throw new IllegalArgumentException("[Error] 올바른 금액을 입력해주세요.");
-        }
-        System.out.println();
+        int purchase = 0;
 
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                if (!input.matches("\\d+")) {
+                    throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+                }
+                purchase = Integer.parseInt(input);
+                if (purchase % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.println();
         int LottoTicket = purchase / 1000;
         System.out.println(LottoTicket + "개를 구매했습니다.");
 
         List<List<Integer>> allLotto = new ArrayList<>();
         for (int i = 0; i < LottoTicket; i++) {
-            List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(oneLotto);
             System.out.print("[");
             for (int j = 0; j < oneLotto.size(); j++) {

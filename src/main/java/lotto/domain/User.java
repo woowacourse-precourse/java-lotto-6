@@ -9,7 +9,7 @@ public class User {
         this.payment = payment;
     }
 
-    public Lotties getLotties() {
+    public Lotties getLottiesImpl() {
         return lotties;
     }
 

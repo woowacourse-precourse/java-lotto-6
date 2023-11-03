@@ -18,11 +18,6 @@ public class GameUtility {
         int purchaseLottoAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
         return new User(generateLottoNumberRepeatNTimes(purchaseLottoAmount),payment);
     }
-    public static List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
-    }
 
     public static Lotties generateLottoNumberRepeatNTimes(int repeatNumber) {
         List<Lotto> lotties = new ArrayList<>();
@@ -31,5 +26,11 @@ public class GameUtility {
         }
 
         return new Lotties(lotties);
+    }
+
+    public static List<Integer> generateLottoNumber() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 }

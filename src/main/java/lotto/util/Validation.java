@@ -1,10 +1,8 @@
 package lotto.util;
 
-import static lotto.constant.LottoInformation.LOTTO_PRICE;
 import static lotto.constant.LottoInformation.MAX_NUMBER;
 import static lotto.constant.LottoInformation.MIN_NUMBER;
 import static lotto.constant.message.ErrorMessage.DUPLICATE_BONUS;
-import static lotto.constant.message.ErrorMessage.HAS_REMAINDER;
 import static lotto.constant.message.ErrorMessage.NOT_ONLY_DIGIT;
 
 import java.util.List;
@@ -22,11 +20,6 @@ public class Validation {
         }
     }
 
-    public void validateMultiplesOfPrice(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(HAS_REMAINDER);
-        }
-    }
 
     public void validateDuplicateBonus(List<Integer> winningNumber, int bonus) {
         if (winningNumber.contains(bonus)) {

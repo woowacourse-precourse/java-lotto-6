@@ -16,7 +16,7 @@
   - [] (예외)1~45의 범위를 벗어날 경우
 - [] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
 - [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
-  - [] 로또 번호는 오름차순으로 정렬한다.
+  - [x] 로또 번호는 오름차순으로 정렬한다.
 - [] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [] 당첨 내역을 출력한다. - OutputView | printLottoWinningResult()
 - [] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()

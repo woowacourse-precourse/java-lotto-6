@@ -8,7 +8,7 @@ public class WinningNumbers {
     public static List<Integer> numbers = new ArrayList<>();
 
     public void read() {
-        String[] numbers = seperateUserInput(userInput());
+        String[] numbers = separateUserInput(userInput());
         addWinningNumbers(numbers);
     }
 
@@ -16,17 +16,17 @@ public class WinningNumbers {
         return Console.readLine();
     }
 
-    public String[] seperateUserInput(String inputNumbers) {
+    public String[] separateUserInput(String inputNumbers) {
         return inputNumbers.split(",");
     }
 
-    public int SingleTypeConversion(String readSingleNumber) {
+    public int singleTypeConversion(String readSingleNumber) {
         return Integer.parseInt(readSingleNumber);
     }
 
     public void addWinningNumbers(String[] readNumbers) {
         while(numbers.size() < 6) { // 상수로 표현 가능.
-            numbers.add(SingleTypeConversion(readNumbers[numbers.size()]));
+            numbers.add(singleTypeConversion(readNumbers[numbers.size()]));
         }
     }
 }

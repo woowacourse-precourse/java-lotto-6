@@ -19,4 +19,9 @@ public class RandomNumberGeneratorTest {
     void 생성된_로또의_길이_테스트() {
         assertThat(randomNumbers).hasSize(6);
     }
+
+    @Test
+    void 생성된_로또번호_범위_테스트() {
+        assertThat(randomNumbers).allMatch(value -> value >= 1 && value <= 45);
+    }
 }

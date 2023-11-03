@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,15 +13,29 @@ import org.junit.jupiter.api.Test;
 public class CalculatorTest {
 
     Lotto winnerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-    Lotto userLotto = new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10));
-    List<Lotto> userLottos = new ArrayList<>(Arrays.asList(userLotto));
+    Lotto noRankLotto = new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10));
+    Lotto firstRankLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+    List<Lotto> userLottos = new ArrayList<>(Arrays.asList(noRankLotto, firstRankLotto));
+
+    int bonusNumber = 7;
+
+    Calculator calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
 
     @DisplayName("같은 숫자가 몇 개 있는지 확인하는 테스트")
     @Test
     void countMatchingNumberTest() {
-        Calculator calculator = new Calculator(winnerLotto, userLottos);
         int expected = 2;
         int actual = calculator.countMatchingNumber(winnerLotto, userLottos.get(0));
         assertEquals(expected, actual);
     }
+
+    @DisplayName("추첨 결과는 등수가 key, 개수가 value인 Map에 들어간다")
+    @Test
+    void calculateResultTest() {
+        Map<Rank, Integer> rankResult = calculator.getCalculateResult();
+        assertEquals(1, rankResult.getOrDefault(Rank.FIRST, 0));
+        assertEquals(0, rankResult.getOrDefault(Rank.SECOND, 0));
+        assertEquals(1, rankResult.getOrDefault(Rank.NO_RANK, 0));
+    }
+
 }

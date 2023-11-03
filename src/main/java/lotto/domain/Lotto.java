@@ -8,10 +8,19 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumberValidator.validateLottoNumberSize(numbers);
-        LottoNumberValidator.validateLottoNumberRange(numbers);
-        LottoNumberValidator.validateLottoNumberDuplication(numbers);
+        LottoNumberValidator.validate(numbers);
         this.numbers = numbers.stream().sorted().collect(Collectors.toList());;
+    }
+
+    public int getMatchCount(WinningNumber winningNumber) {
+        return (int) numbers.stream()
+                .filter(number -> winningNumber.isContains(number))
+                .count();
+    }
+
+    public boolean isMatchBonus(BonusNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(number -> bonusNumber.isEqual(number));
     }
 
     @Override

@@ -8,7 +8,7 @@ import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.PurchaseMessage.ASK_PURCHASE_PRICE;
 
 
-public class View {
+public class PurchaseView {
 
     public static int requestMoney() {
         printConstantMessage(ASK_PURCHASE_PRICE);

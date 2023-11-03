@@ -7,7 +7,7 @@ import static lotto.constant.ErrorMessage.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ViewTest {
+public class PurchaseViewTest {
 
 
     @DisplayName("문자열 입력시 예외 처리")

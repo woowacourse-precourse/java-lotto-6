@@ -18,7 +18,7 @@ public class OutputView {
     System.out.println(INPUT_BOUNSNUMBER_MESSAGE);
   }
 
-  public String printtLottoNumbers(List<Integer> lottoNumbers) {
+  public String printLottoNumbers(List<Integer> lottoNumbers) {
     String formattedNumbers = "[";
 
     for (int i = 0; i < lottoNumbers.size(); i++) {

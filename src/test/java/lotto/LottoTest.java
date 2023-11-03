@@ -55,4 +55,35 @@ class LottoTest {
                     .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
+
+    @Nested
+    @DisplayName("validateNumbersInLottoRange 메소드 test")
+    class ValidateNumbersInLottoRange {
+        @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위에 있으면 검증 통과")
+        @Test
+        void Numbers_in_range_lotto_range() {
+
+            // given
+            List<Integer> numbers = List.of(1, 20, 25, 30, 40, 45);
+
+            // when
+            // then
+            Lotto lotto = new Lotto(numbers);
+        }
+
+        @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위를 벗어나면 예외 발생")
+        @Test
+        void Numbers_out_of_range_lotto_range() {
+            // given
+            List<Integer> numbers1 = List.of(-1, -2, -3, 1, 2, 3);
+            List<Integer> numbers2 = List.of(43, 44, 45, 46, 47, 48);
+
+            // when
+            // then
+            assertThatThrownBy(() -> new Lotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(Lotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+            assertThatThrownBy(() -> new Lotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(Lotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+        }
+    }
 }

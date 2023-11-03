@@ -6,6 +6,7 @@ import lotto.utils.Utils;
 public class LottoNumbers {
     private final static String DELIMITER = ",";
     private final static String PATTERN_ONLY_INTEGERS = "\\d+";
+    private final int TOTAL_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
     public LottoNumbers(String numbers) {
@@ -28,6 +29,7 @@ public class LottoNumbers {
     private void validateLottoNumber(List<Integer> numbers) {
         validateDuplicated(numbers);
         validateNumbersRange(numbers);
+        validateTotalNumbers(numbers);
     }
 
     private void validateHasOnlyIntegers(List<String> numbers) {
@@ -58,6 +60,12 @@ public class LottoNumbers {
             throw new IllegalArgumentException(
                     ErrorMessage.INVALID_NUMBER_RANGE.getValue()
             );
+        }
+    }
+
+    private void validateTotalNumbers(List<Integer> numbers) {
+        if (numbers.size() != TOTAL_NUMBER_SIZE) {
+            throw new IllegalArgumentException();
         }
     }
 

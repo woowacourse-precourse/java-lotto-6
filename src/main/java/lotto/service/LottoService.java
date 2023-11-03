@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.LottoTicket;
+import lotto.exception.BonusNumberExceptionMessage;
 import lotto.exception.PurchaseExceptionMessage;
 import lotto.exception.WinningNumberExceptionMessage;
 import lotto.view.InputView;
@@ -57,6 +58,31 @@ public class LottoService {
                 WinningNumberExceptionMessage.validateBoundaryWinningNumber(winningNumbers);
 
                 return winningNumbers;  // 모든 검증이 통과되면 winningNumbers 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int displayBonusNumber(List<Integer> winningNumbers) {
+        InputView.printBonusNumberPrompt();
+
+        while (true) {
+            try {
+                String bonusNumberStr = InputView.getBonusNumber();
+
+                // 보너스 번호 형식 검증
+                BonusNumberExceptionMessage.validateBonusNumberFormat(bonusNumberStr);
+
+                int bonusNumber = Integer.parseInt(bonusNumberStr);
+
+                // 보너스 번호 범위 검증
+                BonusNumberExceptionMessage.validateBoundaryBonusNumber(bonusNumber);
+
+                // 보너스 번호 중복 검증
+                BonusNumberExceptionMessage.validateBonusNumber(winningNumbers, bonusNumber);
+
+                return bonusNumber;  // 모든 검증이 통과되면 bonusNumber 반환
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

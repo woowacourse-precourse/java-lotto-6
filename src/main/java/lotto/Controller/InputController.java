@@ -13,16 +13,16 @@ public class InputController {
         exceptionController = new ExceptionController();
     }
 
-    public int getMoney(){
+    public int inputMoney(){
         String temp = Console.readLine();
         try {
             exceptionController.moneyException(temp);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 구입 금액은 숫자이어야 힙니다.");
-            getMoney();
+            inputMoney();
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 구입 금액은 1000으로 나누어떨어져야 합니다.");
-            getMoney();
+            inputMoney();
         }
         int money = Integer.parseInt(Console.readLine());
         return money;
@@ -47,5 +47,9 @@ public class InputController {
         Lotto lotto = new Lotto(numbers);
 
         return lotto;
+    }
+
+    public void inputBonusNumber(){
+        String
     }
 }

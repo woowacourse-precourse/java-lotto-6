@@ -41,13 +41,20 @@ Lotto Game Program
     - getNumbers    // 로또의 번호들을 반환받는다.
     - validate      // 로또 발급 번호의 유효성 검사
     ```
+  
+    **UserLotto Class** // 사용자가 입력한 로또 번호 및 보너스 번호까지 저장하는 클래스
+    ```agsl
 
+    ```
 
 - ### *View*
     **PrintView Class** //프로그램 출력을 위한 클래스
     ```agsl
-    - printLottos       // 발행한 로또 수량 및 번호들을 출력한다.
-    - printResult       // 당첨 내역을 출력한다.
+    - inputMoneyPrint       // 구입금액 입력을 위한 출력 메시지
+    - generatedLottosPrint       // 발행한 로또 수량 및 번호들을 출력한다.
+    - inputNumbersPrint     // 사용자의 당첨번호 입력을 위한 출력메시지
+    - inputBonusNumberPrint     // 사용자의 보너스 번호입력을 위한 출력메시지
+    - resultPrint       // 당첨 내역을 출력한다.
     ```
 
 - ### *Controller*
@@ -55,6 +62,7 @@ Lotto Game Program
     ```agsl
     - inputMoney        // 사용자로부터 구입 금액을 입력받는다.
     - inputNumbers      // 사용자로부터 당첨번호를 입력받는다.
+    - inputBonusNumber      // 사용자로부터 당첨 보너스번호를 입력받는다.
     ```
     **ExceptionController Class** // 입력값에 대한 예외처리를 위한 클래스
     ```agsl

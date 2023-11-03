@@ -1,7 +1,7 @@
 package lotto;
 /*
     2023 11 03 주가해야할 요구사항:
-    JUnit 5와 AssertJ,enum,도메인 로직 단위테스트 구현
+    JUnit 5와 AssertJ,도메인 로직 단위테스트 구현
 */
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,23 @@ import lotto.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
-public class Application {
-    final static IllegalArgumentException numError = new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    final static IllegalArgumentException dupError = new IllegalArgumentException("[ERROR] 로또 번호는 중복할 수 없습니다.");
 
+public class Application {
     final static int[] prices = { 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0 };
+
+    enum ErrorType { 
+        NUMBERS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
+        DUP("[ERROR] 로또 번호는 중복할 수 없습니다."),
+        MONEY("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다.");
+        
+        final private String name; 
+        public String getName() { 
+            return name; 
+        } 
+        private ErrorType(String name){ 
+            this.name = name; 
+        } 
+    }
 
     // 랜덤 번호 6개 뽑기
     private static List<Integer> setRandomNumbers() {
@@ -34,7 +46,7 @@ public class Application {
 
     private static void isBoundary(int n){
         if (n > 45)
-            throw numError;
+            throw new IllegalArgumentException(ErrorType.NUMBERS.getName());
     }
 
     private static int myParseInt(String s){
@@ -42,7 +54,7 @@ public class Application {
         try {
             n = Integer.parseInt(s);
         } catch (Exception e) {
-            throw numError;
+            throw new IllegalArgumentException(ErrorType.NUMBERS.getName());
         }
         return n;
     }
@@ -64,7 +76,7 @@ public class Application {
         int bonus = myParseInt(Console.readLine());
         isBoundary(bonus);
         if (userNumbers.lottoContains(bonus))
-            throw dupError;
+            throw new IllegalArgumentException(ErrorType.DUP.getName());
         System.out.println();
         return bonus;
     }
@@ -86,7 +98,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int money = Integer.parseInt(Console.readLine());
         if (money % 1000 != 0)
-            throw new IllegalArgumentException("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ErrorType.MONEY.getName());
         System.out.println();
         return money;
     }

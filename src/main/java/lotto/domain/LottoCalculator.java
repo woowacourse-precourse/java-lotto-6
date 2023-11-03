@@ -51,6 +51,14 @@ public class LottoCalculator {
         return matchCount;
     }
 
+    public long calculateTotalPrize() {
+        return result.entrySet()
+                .stream()
+                .mapToLong(entry ->
+                        (long) entry.getKey().getMoney() * entry.getValue())
+                .sum();
+    }
+
     private boolean isContainBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }

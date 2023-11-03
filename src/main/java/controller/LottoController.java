@@ -28,6 +28,7 @@ public class LottoController {
         informLottos();
         generateAnswerNumber();
         informLottoResult();
+        inputView.close();
     }
 
     private void informLottoResult() {

@@ -15,6 +15,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public String makeLottoNumberString() {
+        return numbers
+                .stream().sorted()
+                .toList()
+                .toString();
+    }
+
     private void validate(List<Integer> numbers) {
         lottoNumberSizeValidate(numbers);
         LottoNumberDuplicateValidate(numbers);

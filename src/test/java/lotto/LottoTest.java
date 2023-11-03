@@ -1,7 +1,10 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -23,5 +26,31 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 당첨 번호를 비교하고 몇개 맞았는지 반환한다")
+    @Test
+    void calculateMatchCountTest() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        int matchCount = lotto.calculateMatchCount(numbers);
+
+        //then
+        assertEquals(6, matchCount);
+    }
+
+    @DisplayName("해당 숫자가 로또 번호에 들어있는지 검사")
+    @Test
+    void isContain() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int containNumber = 1;
+
+        //when
+        boolean contain = lotto.isContain(containNumber);
+
+        //then
+        assertTrue(contain);
+    }
 }

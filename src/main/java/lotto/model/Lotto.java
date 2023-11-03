@@ -30,4 +30,8 @@ public class Lotto {
         return Set.copyOf(numbers)
                 .size() != LOTTO_SIZE;
     }
+
+    public boolean isAnswerLotto() {
+        return false;
+    }
 }

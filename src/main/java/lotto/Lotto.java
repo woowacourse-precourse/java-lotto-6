@@ -78,6 +78,11 @@ public class Lotto {
         return count;
     }
 
+    //보너스번호와 일치여부
+    public static boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.numbers.contains(bonusNumber);
+    }
+
 
 
 

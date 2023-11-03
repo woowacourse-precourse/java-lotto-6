@@ -21,4 +21,8 @@ public class Lotto {
         Lotto lotto = new Lotto(lottoNumber);
         LottoStore.getInstance().addLotto(lotto);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

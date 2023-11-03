@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 public class Validation {
     public static void validatePayment(int payment) {

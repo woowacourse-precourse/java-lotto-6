@@ -18,4 +18,8 @@ public class OutputView {
         List<List<Integer>> numbers = lottos.getLottos().stream().map(Lotto::getNumbers).toList();
         numbers.forEach(number -> System.out.println(number));
     }
+
+    public static void printRequestWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

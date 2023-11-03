@@ -47,7 +47,7 @@ public class OutputViewTest {
     }
 
 
-    @DisplayName("생성된 로또 순차 출력")
+    @DisplayName("생성된 로또 순차 출력 테스트")
     @Test
     void printCreatedLottos_EqualMessage_Success() {
         ByteArrayOutputStream output = captureOutputValues();
@@ -60,6 +60,13 @@ public class OutputViewTest {
         assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]\n");
     }
 
+    @DisplayName("당첨 번호 입력 요청 출력 테스트")
+    @Test
+    void printRequestWinningNumber_EqualMessage_Success() {
+        ByteArrayOutputStream output = captureOutputValues();
+        OutputView.printRequestWinningNumber();
+        assertThat(output.toString()).isEqualTo("당첨 번호를 입력해 주세요.\n");
+    }
 
 
 }

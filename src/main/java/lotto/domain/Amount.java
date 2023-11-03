@@ -2,11 +2,9 @@ package lotto.domain;
 
 public class Amount {
 	private int amount;
-	private int availableQuantity;
 	
 	public Amount() {
-		amount=0;
-		availableQuantity=0;
+		this.amount=0;
 	}
 	
 	public void setAmount(int amount) {
@@ -14,6 +12,6 @@ public class Amount {
 	}
 	
 	public int getAvailableQuantity() {
-		return this.availableQuantity;
+		return amount/1000;
 	}
 }

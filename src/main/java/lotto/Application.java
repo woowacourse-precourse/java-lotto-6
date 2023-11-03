@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.factory.Factory;
+import lotto.factory.LottoFactory;
 
 public class Application {
     public static void main(String[] args) {
-        Factory lottoFactory = new Factory();
+        LottoFactory lottoFactory = new LottoFactory();
         lottoFactory.lottoController().run();
     }
 }

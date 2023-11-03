@@ -26,6 +26,7 @@ public class LottoController {
             lottos.checkRank(winning_number,lotto);
         }
         lottoView.printLottoRank(lottos);
+        lottoView.printRevenue(tryNumber,lottos);
     }
 
 //    public List<Lotto> makeLottoNumber(int tryNumber) {

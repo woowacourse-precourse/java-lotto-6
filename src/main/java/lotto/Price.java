@@ -6,7 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Price {
 
-    public static int inputPrice(int price) {
+    public static int inputPrice() {
+        int price = 0;
         while (true) {
             while (true) {
                 try {
@@ -19,5 +20,9 @@ public class Price {
             if (price % 1000 == 0) return price;
             System.out.println("[ERROR] 1000단위로 입력해 주세요.");
         }
+    }
+
+    public static int calculateAmount(int price) {
+        return price / 1000;
     }
 }

@@ -2,7 +2,7 @@
 
 ### 📃구현 기능 목록
 - 로또 생성
-  - 로또 구입 금액을 입력받는다.
+  - ✅ 로또 구입 금액을 입력받는다.
     - <span style="color:orange">[예외 사항]</span> 숫자가 아닌 경우 exception 발생시킨다.
     - <span style="color:orange">[예외 사항]</span> 음수인 경우 exception 발생시킨다.
     - <span style="color:orange">[예외 사항]</span> 1000원 단위가 아닌 경우 exception 발생시킨다.

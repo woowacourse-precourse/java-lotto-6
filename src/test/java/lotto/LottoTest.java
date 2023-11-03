@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import lotto.Model.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +26,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 오름차순으로 출력되는지 확인한다.")
+    @Test
+    void to_String() {
+        Lotto lotto = new Lotto(Arrays.asList(1,6,5,42,34,2));
+
+        String expectedResult = "[1, 2, 5, 6, 34, 42]";
+        Assertions.assertThat(lotto.toString()).isEqualTo(expectedResult);
+
+    }
 }

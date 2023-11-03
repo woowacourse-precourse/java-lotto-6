@@ -15,7 +15,7 @@ public class InputView {
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String COMMA = ",";
-    private static final String NUMBERS_FORMAT_REGEX = "([0-9]{1,2},?)+";
+    private static final String NUMBERS_FORMAT_REGEX = "([0-9]+,?)+";
     private static final String NUMBER_REGEX = "[0-9]+";
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;

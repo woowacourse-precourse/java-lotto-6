@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.exception.IllegalAmountException;
+import lotto.exception.IllegalOverValueException;
 import lotto.exception.IllegalNullTypeException;
 import lotto.exception.IllegalNumberTypeException;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +28,8 @@ class NumberGeneratorTest {
     private static final String NUMBERS_CONTAIN_TEXT = "1000S";
     private static final String NUMBERS_CONTAIN_SPACE = "10 00";
     private static final String NUMBERS_CONTAIN_SPECIAL_TEXT = "10#00";
+    private static final String BONUS_NUMBER = "7";
+    private static final String BONUS_NUMBER_OVER = "46";
 
     @DisplayName("범위가 1부터 45, 사이즈가 6인 리스트를 랜덤으로 반환한다.")
     @Test
@@ -87,6 +90,33 @@ class NumberGeneratorTest {
                 .isInstanceOf(IllegalNumberTypeException.class);
 
         assertThatThrownBy(()->numberGenerator.createAmountFromConsole(null))
+                .isInstanceOf(IllegalNullTypeException.class);
+    }
+    @DisplayName("보너스 번호를 반환한다")
+    @Test
+    void createBonusNumberFromConsole() {
+        Integer bonusNumber = numberGenerator.createBonusNumberFromConsole(BONUS_NUMBER);
+        assertThat(bonusNumber).isEqualTo(Integer.valueOf(BONUS_NUMBER));
+    }
+
+    @DisplayName("1-45 사이의 번호가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusNumberFromConsoleOverValueException() {
+        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(BONUS_NUMBER_OVER))
+                .isInstanceOf(IllegalOverValueException.class);
+    }
+
+    @DisplayName("문자, 공백, 특수문자, null 포함시 예외가 발생한다.")
+    @Test
+    void createBonusNumberFromConsoleException() {
+        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_TEXT))
+                .isInstanceOf(IllegalNumberTypeException.class);
+        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPACE))
+                .isInstanceOf(IllegalNumberTypeException.class);
+        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPECIAL_TEXT))
+                .isInstanceOf(IllegalNumberTypeException.class);
+
+        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
 }

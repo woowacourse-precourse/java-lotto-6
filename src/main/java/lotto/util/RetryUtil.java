@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.view.OutputView;
 
@@ -24,6 +25,18 @@ public final class RetryUtil {
         } catch (IllegalArgumentException e) {
             OUTPUT_VIEW.printExceptionMessage(e.getMessage());
             return retryOnFail(supplier);
+        }
+    }
+
+    /**
+     * 매개변수 T, 반환값 R
+     */
+    public static <T, R> R retryOnFail(Function<T, R> function, T input) {
+        try {
+            return function.apply(input);
+        } catch (IllegalArgumentException e) {
+            OUTPUT_VIEW.printExceptionMessage(e.getMessage());
+            return retryOnFail(function, input);
         }
     }
 }

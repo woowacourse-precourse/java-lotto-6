@@ -21,12 +21,6 @@ public final class Lotto {
         validateDuplicated(numbers);
     }
 
-    private List<LottoNumber> convert(List<Integer> numbers) {
-        return numbers.stream()
-                .map(LottoNumber::from)
-                .toList();
-    }
-
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_SIZE_EXCEPTION);
@@ -45,6 +39,12 @@ public final class Lotto {
                 .count() != LOTTO_SIZE;
     }
 
+    private List<LottoNumber> convert(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::from)
+                .toList();
+    }
+
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
     }
@@ -54,6 +54,10 @@ public final class Lotto {
                 LottoNumber.MAX_NUMBER,
                 LOTTO_SIZE);
         return new Lotto(uniqueNumbers);
+    }
+
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
     }
 
     public List<LottoNumber> getNumbers() {

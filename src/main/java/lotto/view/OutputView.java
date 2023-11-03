@@ -28,6 +28,7 @@ public class OutputView {
         int lottoGroupSize = lottoGroupDto.getSize();
         printSize(lottoGroupSize);
         printLottos(lottoGroupDto.getLottos());
+        printEmptyLine();
     }
 
     private void printSize(int lottoGroupSize) {
@@ -37,6 +38,10 @@ public class OutputView {
 
     private void printLottos(List<LottoDto> lottos) {
         lottos.forEach(this::printLotto);
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
     }
 
     private void printLotto(LottoDto lottoDto) {

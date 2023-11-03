@@ -10,7 +10,7 @@ public class InputView {
     public InputView() {
     }
 
-    public static int getPurchaseAmount() {
+    public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount =  Integer.parseInt(Console.readLine());
 
@@ -19,7 +19,7 @@ public class InputView {
         return amount;
     }
 
-    public static Lotto getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         System.out.println("당첨숫자를 입력해 주세요.");
         String[] userNumbers = Console.readLine().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
@@ -31,7 +31,7 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    public static int getBonusNumber() {
+    public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }

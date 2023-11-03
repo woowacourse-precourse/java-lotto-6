@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 class InputViewTest {
     String ERROR_HEAD_MESSAGE = ErrorHeadMessage.ERROR_HEAD_MESSAGE;
     private final InputStream originalSystemIn = System.in;
+    InputView inputView = new InputView();
 
     private void provideInput(String inputData) {
         System.setIn(new ByteArrayInputStream(inputData.getBytes()));
@@ -35,7 +36,7 @@ class InputViewTest {
     @DisplayName("구매금액 입력 확인")
     void 구매금액_입력_확인() {
         provideInput("3000\n");
-        int purchaseAmount = InputView.getPurchaseAmount();
+        int purchaseAmount = inputView.getPurchaseAmount();
         assertThat(purchaseAmount).isEqualTo(3000);
     }
 
@@ -43,7 +44,7 @@ class InputViewTest {
     @DisplayName("구매금액이 1000원 단위 아닐 경우 예외 확인")
     void 구매금액_단위_예외_확인() {
         provideInput("3500\n");
-        assertThatThrownBy(() ->  InputView.getPurchaseAmount())
+        assertThatThrownBy(() ->  inputView.getPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_HEAD_MESSAGE);
     }
@@ -52,7 +53,7 @@ class InputViewTest {
     @DisplayName("구매금액이 음수일 경우 예외 확인")
     void 구매금액_음수일_경우_예외_확인() {
         provideInput("-3500\n");
-        assertThatThrownBy(() ->  InputView.getPurchaseAmount())
+        assertThatThrownBy(() ->  inputView.getPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_HEAD_MESSAGE);
     }
@@ -61,7 +62,7 @@ class InputViewTest {
     @DisplayName("당첨번호 입력 확인")
     void 당첨번호_입력_확인() {
         provideInput("3,4,5,6,7,8\n");
-        Lotto winningNumbers = InputView.getWinningNumbers();
+        Lotto winningNumbers = inputView.getWinningNumbers();
         assertThat(winningNumbers.sortNumbers()).isEqualTo("3, 4, 5, 6, 7, 8");
     }
 
@@ -69,7 +70,7 @@ class InputViewTest {
     @DisplayName("보너스 번호 입력 확인")
     void 보너스_번호_입력_확인() {
         provideInput("3\n");
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = inputView.getBonusNumber();
         assertThat(bonusNumber).isEqualTo(3);
     }
 }

@@ -33,7 +33,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public static Lotto[] makeLottoNumbers(int size) {
         Lotto[] lottos = new Lotto[size];
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             sortNumbers(lottoNumbers);
             lottos[i] = new Lotto(lottoNumbers);
@@ -47,8 +47,33 @@ public class Lotto {
     }
 
     public static void printLottos(Lotto[] lottos) {
-        for(int i = 0; i < lottos.length; i++) {
+        for (int i = 0; i < lottos.length; i++) {
             System.out.println(lottos[i].numbers);
         }
     }
+
+    public static void compareTo(Lotto[] lottos, Lotto inputLotto, int bonusNumber) {
+        for (int i = 0; i < lottos.length; i++) {
+            int count = countMatched(lottos[i], inputLotto);
+            if (count == 5) {
+                boolean test = checkBonusNumber(lottos[i], bonusNumber);
+            }
+
+        }
+    }
+
+    public static int countMatched(Lotto lotto, Lotto inputLotto) {
+        int count = 0;
+        for (int i = 0; i < 6; i++) {
+            if (inputLotto.numbers.contains(lotto.numbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.numbers.contains(bonusNumber);
+    }
+
 }

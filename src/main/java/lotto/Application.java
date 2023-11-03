@@ -13,27 +13,24 @@ public class Application {
         Lotto[] lottos = Lotto.makeLottoNumbers(size);
         Lotto.printLottos(lottos);
 
-        List<Integer> num = inputNumbers();
-    }
-
-    public static List<Integer> inputNumbers(){
-        List<Integer> numbers = new ArrayList<>();
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        makeList(numbers, input);
+        Lotto lotto = makeLotto(input);
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        numbers.add(Integer.parseInt(Console.readLine()));
-
-        return numbers;
+        int bonusNumber = Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> makeList(List<Integer> numbers, String input) {
+
+    public static Lotto makeLotto(String input) {
+        List<Integer> numbers = new ArrayList<>();
         for(String n : input.split(",")) {
             numbers.add(Integer.parseInt(n));
         }
-        return numbers;
+        Lotto lotto = new Lotto(numbers);
+        return lotto;
     }
+
 
 
 

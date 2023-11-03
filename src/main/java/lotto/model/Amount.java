@@ -12,29 +12,29 @@ public class Amount {
         this.amount = amount;
     }
 
-    public static Amount create(String amount) {
-        return new Amount(amount);
+    public static Amount create(String amountStr) {
+        return new Amount(amountStr);
     }
 
     public int getAmount() {
         return this.amount;
     }
 
-    private void validateNull(String amount) {
-        if (amount == null) {
-            throw new IllegalArgumentException("[ERROR] 입력이 null일 수 없습니다.");
+    private void validateNull(String amountStr) {
+        if (amountStr == null) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 null입니다.");
         }
     }
 
-    private void validateEmpty(String amount) {
-        if (amount.isEmpty()) {
+    private void validateEmpty(String amountStr) {
+        if (amountStr.isEmpty() || amountStr.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
         }
     }
 
-    private int validateNotNumber(String amount) {
+    private int validateNotNumber(String amountStr) {
         try {
-            return Integer.parseInt(amount);
+            return Integer.parseInt(amountStr);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }

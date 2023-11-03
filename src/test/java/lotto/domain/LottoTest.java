@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -22,5 +23,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName("1보다 작은 숫자가 들어가면 예외가 발생한다.")
+    void createLottoWithValueSmallerThan1() throws Exception {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("45보다 큰 숫자가 들어가면 예외가 발생한다.")
+    void createLottoWithValueBiggerThan45() throws Exception {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("1과 45사이의 중복되지 않은 6개의 숫자가 들어가면 예외가 발생하지 않는다")
+    void createLottoWithNoException() throws Exception {
+        assertThatNoException().isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    }
 }

@@ -10,6 +10,42 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
 
+    @DisplayName("1이상 45이하의 수가 아닌 당첨 번호는 생성시 예외가 발생합니다.")
+    @Test
+    void createWinningNumberRangeException() {
+        // given
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 46);
+
+        // expected
+        assertThatThrownBy(() -> WinningLotto.of(numbersText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호가 중복되면 생성시 예외가 발생합니다.")
+    @Test
+    void createWinningNumberDuplicationException() {
+        // given
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 5);
+
+        // expected
+        assertThatThrownBy(() -> WinningLotto.of(numbersText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1이상 45이하의 중복되지 않는 당첨 번호를 생성합니다.")
+    @Test
+    void createWinningNumber() {
+        // given
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        WinningLotto winningLotto = WinningLotto.of(numbersText);
+        List<Integer> winningNumbers = winningLotto.getWinningNumbers();
+
+        // then
+        assertThat(winningNumbers.size()).isEqualTo(6);
+    }
+
     @DisplayName("1이상 45이하의 수가 아닌 보너스 번호는 생성시 예외가 발생합니다.")
     @Test
     void createBonusNumberRangeException() {

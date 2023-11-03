@@ -9,6 +9,7 @@ import lotto.dto.NumbersDto;
 import lotto.dto.WinningNumberDto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoService {
@@ -27,7 +28,18 @@ public class LottoService {
         return new WinningNumberDto(winningNumber);
     }
 
-    public
+    public WinningNumberDto postBonusNumber(WinningNumberDto winningNumberDto, int bonusNum) {
+        WinningNumber winningNumber = winningNumberDto.winningNumber();
+        HashSet<Integer> set = new HashSet<>(winningNumber.getNormalNumbers());
+        if (bonusNum < 1 || bonusNum > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1에서 45사이의 숫자여야 합니다");
+        }
+        if (!set.add(bonusNum)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        winningNumber.addBonusNumber(bonusNum);
+        return new WinningNumberDto(winningNumber);
+    }
 
     private List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);

@@ -39,14 +39,14 @@ class LottoServiceTest {
     @Test
     void postNormalNumTest() {
         // given
-        NumbersDto numbersDto = new NumbersDto(List.of(1,2,5,11,12,43));
+        NumbersDto numbersDto = new NumbersDto(List.of(1, 2, 5, 11, 12, 43));
 
         // when
         WinningNumberDto dto = lottoService.postNormalNumbers(numbersDto);
 
         // then
         WinningNumber winningNumber = dto.winningNumber();
-        assertThat(winningNumber.getNormalNumbers().containsAll(List.of(1,2,5,11,12,43)));
+        assertThat(winningNumber.getNormalNumbers().containsAll(List.of(1, 2, 5, 11, 12, 43)));
 
     }
 
@@ -54,10 +54,38 @@ class LottoServiceTest {
     @Test
     void postNormalBy5num() {
         // given
-        NumbersDto numbersDto = new NumbersDto(List.of(1,2,5,11,12));
+        NumbersDto numbersDto = new NumbersDto(List.of(1, 2, 5, 11, 12));
 
         // then
         assertThatThrownBy(() -> lottoService.postNormalNumbers(numbersDto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호와 중복되지 않는 보너스 숫자 추가")
+    @Test
+    void postBonusNumTest() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 5, 11, 12, 43));
+        WinningNumber winningNumber = new WinningNumber(lotto);
+        int bonusNum = 7;
+
+        // when
+        WinningNumberDto dto = lottoService.postBonusNumber(new WinningNumberDto(winningNumber), bonusNum);
+
+        // then
+        assertThat(dto.winningNumber().getBonusNumber()).isEqualTo(bonusNum);
+    }
+
+    @DisplayName("당첨 번호와 중복되는 보너스 번호를 입력한 경우")
+    @Test
+    void postSameBonusNumTest() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 5, 11, 12, 43));
+        WinningNumber winningNumber = new WinningNumber(lotto);
+        int bonusNum = 5;
+
+        // then
+        assertThatThrownBy(() -> lottoService.postBonusNumber(new WinningNumberDto(winningNumber), bonusNum))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

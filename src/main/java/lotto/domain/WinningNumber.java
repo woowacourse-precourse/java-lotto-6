@@ -19,7 +19,11 @@ public class WinningNumber {
     }
 
     public List<Integer> getNormalNumbers() {
-        return this.numbers.getNumbers();
+        return numbers.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
 }

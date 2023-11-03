@@ -1,9 +1,9 @@
 package lotto;
 
 public class Calculation {
-    public static String calculate(int purchasingPrice) {
+    public static String calculate(int price) {
         //(총 당첨금 / 구매금액) * 100
-        float rate = totalAwards() / purchasingPrice * 100;
+        float rate = totalAwards() / price * 100;
         return String.format("%.1f", rate);
     }
 

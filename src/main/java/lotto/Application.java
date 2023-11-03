@@ -22,7 +22,7 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         Lotto.compareTo(lottos, inputNumbers, bonusNumber);
-        Ranks.printResult();
+        Ranks.printResult(price);
     }
 
 

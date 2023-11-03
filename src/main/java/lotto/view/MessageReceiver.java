@@ -42,4 +42,9 @@ public class MessageReceiver {
 
         return winningLotto;
     }
+
+    public int receiveBonusNumber() {
+        String bonusNumberText = Console.readLine();
+        return Integer.parseInt(bonusNumberText);
+    }
 }

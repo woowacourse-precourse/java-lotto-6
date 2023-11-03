@@ -4,7 +4,6 @@ public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(String bonusNumberStr) {
-        validateNull(bonusNumberStr);
         validateEmpty(bonusNumberStr);
         int bonusNumber = validateNotNumber(bonusNumberStr);
         validateInvalidLottoNumberRange(bonusNumber);
@@ -21,12 +20,12 @@ public class BonusNumber {
 
     private void validateNull(String bonusNumberStr) {
         if (bonusNumberStr == null) {
-            throw new IllegalArgumentException("[ERROR] 입력이 null일 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력값이 null입니다.");
         }
     }
 
     private void validateEmpty(String bonusNumberStr) {
-        if (bonusNumberStr.isEmpty()) {
+        if (bonusNumberStr.isEmpty() || bonusNumberStr.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.");
         }
     }

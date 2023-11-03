@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,8 +9,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = sorted(numbers);
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -31,6 +33,14 @@ public class Lotto {
         if (noDuplicate != numbers.size()) {
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다");
         }
+    }
+
+    public int calculateMatchCount(List<Integer> matchNumbers) {
+        return (int) matchNumbers.stream().filter(numbers::contains).count();
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
     }
 
 

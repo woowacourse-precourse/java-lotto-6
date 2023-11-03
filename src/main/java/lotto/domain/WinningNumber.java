@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class WinningNumber {
@@ -12,8 +11,11 @@ public class WinningNumber {
 
     public WinningNumber(List<Integer> winningNumber) {
         validate(winningNumber);
-        Collections.sort(winningNumber);
-        this.winningNumber = winningNumber;
+        this.winningNumber = sorted(winningNumber);
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> winningNumber) {
@@ -23,7 +25,6 @@ public class WinningNumber {
     }
 
     private void validateSize(List<Integer> winningNumber) {
-        System.out.println(winningNumber.size());
         if (winningNumber.size() != WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException("당첨 번호는 6개만 가능합니다");
         }
@@ -59,5 +60,11 @@ public class WinningNumber {
         }
     }
 
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

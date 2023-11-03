@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +46,12 @@ class LottoTest {
         });
 
         assertEquals(validNumbers, numbersFromLotto, "로또 번호 목록이 예상과 일치해야 함");
+    }
+
+    @Test
+    @DisplayName("번호 목록 크기가 유효하지 않으면 예외 발생")
+    void givenInvalidSizeNumbers_whenLottoCreated_thenThrowsException() {
+        List<Integer> invalidSizeNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        assertThrows(LottoException.class, () -> new Lotto(invalidSizeNumbers));
     }
 }

@@ -17,13 +17,18 @@ public class MessageReceiver {
     }
 
     public int receiveBuyingPrice() {
-        boolean validInput = false;
+        boolean isValid = false;
         int buyingPrice = 0;
 
-        while (!validInput) {
-            validInput = viewValidator.validateBuyingPrice();
+        while (!isValid) {
+            String buyingPriceText = Console.readLine();
+            try {
+                buyingPrice = viewValidator.parseInt(buyingPriceText);
+                isValid = viewValidator.validateMod(buyingPrice);
+            } catch (IllegalArgumentException e) {
+                viewValidator.printExceptionMessage(e);
+            }
         }
-
         return buyingPrice;
     }
 

@@ -11,20 +11,7 @@ import static lotto.constant.NumberConstant.ZERO;
 
 public class ViewValidator {
 
-    public boolean validateBuyingPrice() {
-        try {
-            String buyingPriceText = Console.readLine();
-            int buyingPrice = parseInt(buyingPriceText);
-            validateMod(buyingPrice);
-        } catch (IllegalArgumentException e) {
-            printExceptionMessage(e);
-            return false;
-        }
-
-        return true;
-    }
-
-    private int parseInt(final String buyingPriceText) {
+    public int parseInt(final String buyingPriceText) {
         try {
             return Integer.parseInt(buyingPriceText);
         } catch (NumberFormatException e) {
@@ -45,13 +32,15 @@ public class ViewValidator {
         return true;
     }
 
-    private void validateMod(final int buyingPrice) {
+    public boolean validateMod(final int buyingPrice) {
         if (buyingPrice % BUYING_PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION);
         }
+
+        return true;
     }
 
-    private void printExceptionMessage(final IllegalArgumentException e) {
+    public void printExceptionMessage(final IllegalArgumentException e) {
         String exceptionMessage = e.getMessage();
         System.out.println(exceptionMessage);
     }

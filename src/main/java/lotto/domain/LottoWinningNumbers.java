@@ -10,14 +10,12 @@ import lotto.service.ValidateService;
 public class LottoWinningNumbers {
     private final InputService inputService = new InputService();
     private final ValidateService validateService = new ValidateService();
-    private List<Integer> winningNumbers;
-
 
     public List<Integer> inputWinningNumbers() {
         while (true) {
             try {
                 List<String> inputValues = Arrays.asList(inputService.inputValue().split(","));
-                winningNumbers = getWinningNumbers(inputValues);
+                List<Integer> winningNumbers = getWinningNumbers(inputValues);
                 validateService.validateInputWinningNumbersAll(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {

@@ -16,7 +16,7 @@ public class LottoNumberTest {
     @ParameterizedTest
     @DisplayName("로또 번호 생성 불가 테스트 - 범위 벗어남")
     @ValueSource(ints = {-45, -1, 0, 46, 99})
-    void createLottoNumberFailTest(int value) {
+    void createLottoNumberOutOfRangeFailTest(int value) {
         assertThrows(IllegalArgumentException.class, () -> new LottoNumber(value));
     }
 

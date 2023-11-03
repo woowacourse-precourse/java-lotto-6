@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.LottoMachine;
 import lotto.dto.BuyingResults;
 import lotto.exception.ExceptionResolver;
@@ -22,6 +24,7 @@ public class LottoGame {
 
     public void startGame() {
         ExceptionResolver.resolveProcess(this::buyLottos);
+        inputWinningNumbers();
     }
 
     private void buyLottos() {
@@ -30,9 +33,32 @@ public class LottoGame {
         printBuyingResults();
     }
 
+    private void inputWinningNumbers() {
+        ExceptionResolver.resolveProcess(this::inputLottoNumbers);
+        ExceptionResolver.resolveProcess(this::inputBonusNumber);
+    }
+
+    private void inputLottoNumbers() {
+        List<String> inputNumbers = inputView.inputLottoNumbers();
+        InputCommonValidator.validateMultiple(inputNumbers);
+        List<Integer> lottoNumbers = convertToNumbers(inputNumbers);
+        lottoMachine.addLottoNumbers(lottoNumbers);
+    }
+
+    private List<Integer> convertToNumbers(final List<String> inputNumbers) {
+        return inputNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+
+    private void inputBonusNumber() {
+
+    }
+
     private int inputBuyingPrice() {
         String inputPrice = inputView.inputBuyingPrice();
-        InputCommonValidator.validate(inputPrice);
+        InputCommonValidator.validateSingleInput(inputPrice);
         return Integer.parseInt(inputPrice);
     }
 

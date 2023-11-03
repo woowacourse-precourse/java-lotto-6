@@ -32,4 +32,9 @@ public class LottoMachine {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 로또 번호가 존재하지 않습니다."));
         return BuyingResults.createFrom(userLottos);
     }
+
+    public void addLottoNumbers(final List<Integer> numbers) {
+        Lotto winningNumber = Lotto.from(numbers);
+        lottosRepository.saveWinningNumber(winningNumber);
+    }
 }

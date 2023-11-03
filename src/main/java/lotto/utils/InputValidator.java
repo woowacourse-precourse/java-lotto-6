@@ -8,7 +8,7 @@ public class InputValidator {
 
     public static void validateIsNumber(String input) {
         if (!Pattern.matches(REGEXP_NUMBER, input)) {
-            throw new IllegalArgumentException("[Error] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
     }
 }

@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,9 +18,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+
+    // 로또 6개 번호 생성
+    public static Lotto generateLottoNumbers() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private void validate(List<Integer> numbers) {

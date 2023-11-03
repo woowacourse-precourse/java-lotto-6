@@ -10,17 +10,18 @@ public class Convertor {
     private static final String DELIMITER = ",";
 
     public List<Integer> convertToIntegers(String input) {
-        return convertToNumbers(input).stream()
+        List<Integer> numbers = convertToNumbers(input).stream()
                 .map(Number::getNumber)
                 .sorted()
                 .collect(Collectors.toList());
+        validateDuplicated(numbers);
+        return numbers;
     }
 
     private List<Number> convertToNumbers(String input) {
         List<Number> numbers = stream(separate(input))
                 .map(number -> new Number(number.trim()))
                 .collect(Collectors.toList());
-        validateDuplicated(numbers);
         return numbers;
     }
 
@@ -28,13 +29,13 @@ public class Convertor {
         return input.split(DELIMITER);
     }
 
-    private void validateDuplicated(List<Number> numbers) {
+    private void validateDuplicated(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
             throw new IllegalArgumentException(IS_DUPLICATED.getMessage());
         }
     }
 
-    private boolean isDuplicated(List<Number> number) {
+    private boolean isDuplicated(List<Integer> number) {
         long result = number.stream()
                 .distinct().count();
         return result != number.size();

@@ -33,6 +33,9 @@ public class Controller {
         validation.validateRange(winningNumbers);
         validation.validateDuplication(winningNumbers);
 
+        String bonusNumberInput = inputView.getBonusNumber();
+        int bonusNumber = utility.parseInt(bonusNumberInput);
+
 
     }
 }

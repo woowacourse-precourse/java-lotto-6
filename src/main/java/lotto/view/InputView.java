@@ -14,7 +14,7 @@ public class InputView {
         String winningNumbers = Console.readLine();
         return winningNumbers;
     }
-    
+
     public String getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();

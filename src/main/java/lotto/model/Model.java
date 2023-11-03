@@ -24,7 +24,10 @@ public class Model {
         return lottos;
     }
 
-    public void compareNumbers(Lotto lotto, List<Integer> winningNumbers) {
+    public void compareNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        int match = 0;
+
 
     }
 }

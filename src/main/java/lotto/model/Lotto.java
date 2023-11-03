@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
     // 메서드 이름이랑 내부 매직 넘버는 수정해도 되는 부분인가?
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -21,7 +25,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
         if (isLottoSizeEqualToSix(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION_MESSAGE);

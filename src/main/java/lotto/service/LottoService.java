@@ -54,19 +54,30 @@ public class LottoService {
         while (true) {
             try {
                 String winningNumberView = InputView.getWinningNumberView();
-                WinningNumberExceptionMessage.validateLottoNumberFormat(winningNumberView);
-
-                List<Integer> winningNumbers = changeInputToString(winningNumberView);
-                WinningNumberExceptionMessage.validateWinningNumberLength(winningNumbers);
-
-                WinningNumberExceptionMessage.validateDuplicateWinningNumber(winningNumbers);
-                WinningNumberExceptionMessage.validateBoundaryWinningNumber(winningNumbers);
-
-                return winningNumbers;  // 모든 검증이 통과되면 winningNumbers 반환
+                return parseAndValidateWinningNumbers(winningNumberView);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private List<Integer> parseAndValidateWinningNumbers(String winningNumberView) {
+        validateLottoNumberFormat(winningNumberView);
+
+        List<Integer> winningNumbers = changeInputToString(winningNumberView);
+        validateWinningNumber(winningNumbers);
+
+        return winningNumbers;
+    }
+
+    private void validateLottoNumberFormat(String input) {
+        WinningNumberExceptionMessage.validateLottoNumberFormat(input);
+    }
+
+    private void validateWinningNumber(List<Integer> winningNumbers) {
+        WinningNumberExceptionMessage.validateWinningNumberLength(winningNumbers);
+        WinningNumberExceptionMessage.validateDuplicateWinningNumber(winningNumbers);
+        WinningNumberExceptionMessage.validateBoundaryWinningNumber(winningNumbers);
     }
 
     public int displayBonusNumber(List<Integer> winningNumbers) {

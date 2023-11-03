@@ -10,16 +10,27 @@ public class Money {
 
     private void validate(String money) {
         if (isInvalidType(money)) {
-            throw new IllegalArgumentException("구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+        }
+        if (isInvalidUnit(money)) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 
-    private boolean isInvalidType(String money) {
+    private boolean isInvalidType(String target) {
         try {
-            Integer.parseInt(money);
+            Integer.parseInt(target);
             return false;
         } catch (NumberFormatException e) {
             return true;
         }
+    }
+
+    private boolean isInvalidUnit(String target) {
+        int money = Integer.parseInt(target);
+        if(money > 0 && money % 1000 == 0){
+            return false;
+        }
+        return true;
     }
 }

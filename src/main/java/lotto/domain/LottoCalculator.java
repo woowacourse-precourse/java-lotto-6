@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class LottoCalculator {
+    private final int SPECIAL_MATCH = 7;
     private final Lotto winningNumber;
     private final int bonusNumber;
 
@@ -14,6 +15,9 @@ public class LottoCalculator {
         for (Integer number : lotto.getNumbers()) {
             if (winningNumber.getNumbers().contains(number)) {
                 matchCount++;
+            }
+            if (matchCount == 5 && isContainBonusNumber(lotto)) {
+                return SPECIAL_MATCH;
             }
         }
         return matchCount;

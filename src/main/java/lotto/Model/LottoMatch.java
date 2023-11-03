@@ -5,15 +5,17 @@ import java.util.List;
 
 public class LottoMatch {
     private static boolean hasBonus;
-    public static List<Integer> countMatchingNumbers(List<List<Integer>> totalNumbers,List<Integer> winningNumbers, int bonus) {
+    public static List<Integer> countMatchingNumbers(List<List<Integer>> totalNumbers, List<Integer> winningNumbers, int bonus) {
         List<Integer> countWinnings = new ArrayList<>();
-        int count = 0;
+        int[] prizeCounts = new int[LottoPrize.values().length];
         for (List<Integer> numbers : totalNumbers) {
-            count += countMatchingNumbersInSingleLotto(numbers, winningNumbers, bonus);
-            countWinnings.add(count);
-            count=0;
+            int count = countMatchingNumbersInSingleLotto(numbers, winningNumbers, bonus);
+            LottoPrize prize = LottoPrize.checkLottoResult(count, hasBonus);
+            prizeCounts[prize.ordinal()]++;
         }
-        //System.out.println("일치 개수 리스트 = "+countWinnings);
+        for (int i = 0; i < prizeCounts.length; i++) {
+            countWinnings.add(prizeCounts[i]);
+        }
         return countWinnings;
     }
     public static boolean isHasbonus(List<Integer>lottoNumbers,int bonus){

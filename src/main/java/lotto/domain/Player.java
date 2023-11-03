@@ -19,7 +19,7 @@ public class Player {
         return "";
     }
 
-    public String lottoResult(List<Integer> winningNumbers, int bonusNumber) {
+    public String lottoResults(List<Integer> winningNumbers, int bonusNumber) {
         return "";
     }
 }

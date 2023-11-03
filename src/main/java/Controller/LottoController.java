@@ -11,6 +11,7 @@ import java.util.List;
 
 public class LottoController {
     List<Lotto> myLottoNumbers = new ArrayList<>();
+    Lotto winningLottoNumbers;
 
     public void buyMyLotto() {
         int input = InputView.getPurchaseAmount();
@@ -18,6 +19,11 @@ public class LottoController {
 
         publishMyLotto(purchaseAmount);
         OutputView.printMyLotto(myLottoNumbers);
+    }
+
+    public void assignLotto() {
+        String input = InputView.getLotto();
+        winningLottoNumbers = new Lotto(input);
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {
@@ -35,5 +41,9 @@ public class LottoController {
 
     public List<Lotto> getLottoNumbers() {
         return myLottoNumbers;
+    }
+
+    public Lotto getWinningLottoNumbers() {
+        return winningLottoNumbers;
     }
 }

@@ -3,18 +3,18 @@ package lotto.domain;
 public class Consumer {
 
     private final int amount;
-    private final int lottoCount;
+    private final int tickets;
 
-    public Consumer(int amount) {
+    public Consumer(int amount, int tickets) {
         this.amount = amount;
-        this.lottoCount = amount / 1000;
+        this.tickets = tickets;
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public int getLottoCount() {
-        return lottoCount;
+    public int getLottoTickets() {
+        return tickets;
     }
 }

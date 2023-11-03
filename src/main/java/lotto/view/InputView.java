@@ -1,26 +1,28 @@
 package lotto.view;
 
+import static lotto.constant.LottoNumber.ZERO;
+import static lotto.constant.message.ErrorMessage.NON_INTEGER_MONEY;
 import static lotto.constant.message.InputMessage.PURCHASE_PRICE;
-import static lotto.constant.ErrorMessage.NON_INTEGER;
-import static lotto.constant.message.InputMessage.WINNING_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-
-    public int requestPurchasePrice() {
+    public static int requestPurchasePrice() {
         System.out.println(PURCHASE_PRICE);
-        return readNumber();
+
+        int money = ZERO.getNumber();
+        try {
+            Integer.parseInt(readNumber());
+        } catch (NumberFormatException e) {
+            System.out.println(NON_INTEGER_MONEY);
+            requestPurchasePrice();
+        }
+
+        return money;
     }
 
-    private int readNumber() {
-        while (true) {
-            try {
-                return Integer.parseInt(Console.readLine());
-            } catch (NumberFormatException e) {
-                System.out.println(NON_INTEGER);
-            }
-        }
+    private static String readNumber() {
+        return Console.readLine();
     }
 
 }

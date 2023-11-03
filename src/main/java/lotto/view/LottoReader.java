@@ -2,18 +2,21 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.Money;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoReader {
 
-    public int inputMoney() {
+    public Money inputMoney() {
         while (true) {
             try {
-                return Integer.parseInt(Console.readLine());
+                return new Money(Integer.parseInt(Console.readLine()));
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 로또 구입 금액은 숫자여야 합니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -36,13 +39,19 @@ public class LottoReader {
 
     }
 
-    public int inputBonusNumbers() {
+    public int inputBonusNumbers(List<Integer> winningNumbers) {
         while (true) {
             try {
-                String inputBonusNumber = Console.readLine();
-                return Integer.parseInt(inputBonusNumber);
+
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시 입력해 주세요.");
+                }
+                return bonusNumber;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

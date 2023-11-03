@@ -37,9 +37,9 @@ public class LottoHandler {
         lottoManager.calculateLottos(lottos, winningLotto);
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
-        return reader.inputBonusNumbers();
+        return reader.inputBonusNumbers(winningNumbers);
     }
 
     private List<Integer> getWinningNumbers() {

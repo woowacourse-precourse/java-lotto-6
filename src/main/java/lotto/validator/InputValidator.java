@@ -11,9 +11,7 @@ public class InputValidator {
     public static final String WRONG_INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호는 숫자로 입력해주세요.";
 
     public static void validatePurchaseAmount(final String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (Exception e) {
+        if (!isMatchedNumberRegex(input)) {
             throw new IllegalArgumentException(WRONG_INPUT_PURCHASE_AMOUNT_MESSAGE);
         }
     }

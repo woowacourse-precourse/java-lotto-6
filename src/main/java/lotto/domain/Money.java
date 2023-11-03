@@ -4,6 +4,8 @@ import lotto.util.ErrorMessage;
 
 public record Money(int amount) {
 
+    private static final int MAX_PURCHASE_AMOUNT = 100000;
+
     public Money {
         validateAmountMultipleOfThousand(amount);
         validateMaximumAmount(amount);
@@ -22,7 +24,7 @@ public record Money(int amount) {
     }
 
     private void validateMaximumAmount(int amount) {
-        if (amount > 100000) {
+        if (amount > MAX_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_GREATER_THAN_MAXIMUM.getMessage());
         }
     }

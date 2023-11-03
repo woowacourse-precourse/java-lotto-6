@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.LottoExceptionMessage;
 
 public class Lotto {
@@ -14,6 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> target) {
         validateSize(target);
+        validateDuplicate(target);
     }
 
     private List<LottoNumber> create(List<Integer> numbers) {
@@ -26,6 +29,14 @@ public class Lotto {
     private void validateSize(List<Integer> target) {
         if (target.size() != REQUIRED_COUNT) {
             throw new IllegalArgumentException(LottoExceptionMessage.NOT_SATISFY_REQUIRED_COUNT.getError());
+        }
+    }
+
+    private void validateDuplicate(List<Integer> target) {
+        Set<Integer> uniqueNumbers = new HashSet<>(target);
+
+        if (uniqueNumbers.size() != target.size()) {
+            throw new IllegalArgumentException(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
         }
     }
 }

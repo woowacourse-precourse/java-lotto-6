@@ -18,12 +18,18 @@ public class LottoController {
     }
 
     public void run() {
-        LottoMoney money = inputView.getLottoMoney();
-        LottoBundle lottoBundle = lottoService.buyLottoBundle(money);
+        LottoBundle lottoBundle = buyLottoBundle();
         outputView.printLottoBundle(lottoBundle);
+
         AnswerLotto answerLotto = getAnswerLotto();
+
         LottoResult result = lottoService.calculateResult(lottoBundle, answerLotto);
         outputView.printLottoResult(result);
+    }
+
+    private LottoBundle buyLottoBundle() {
+        LottoMoney money = inputView.getLottoMoney();
+        return lottoService.buyLottoBundle(money);
     }
 
     private AnswerLotto getAnswerLotto() {

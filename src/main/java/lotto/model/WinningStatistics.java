@@ -40,7 +40,7 @@ public class WinningStatistics {
     }
 
     public void setRateOfReturn(int purchaseAmount) {
-        rateOfReturn = (double) totalReward / purchaseAmount;
+        rateOfReturn = (double) totalReward / purchaseAmount * 100;
     }
 
     private int calculateMatchCount(List<Integer> purchaseLotto, List<Integer> winningLotto) {

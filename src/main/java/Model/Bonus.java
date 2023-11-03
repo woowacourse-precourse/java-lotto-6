@@ -3,6 +3,8 @@ package Model;
 import Config.ErrorMessage;
 import Config.GameConfig;
 
+import java.util.List;
+
 public class Bonus {
 
     private final int bonus;
@@ -13,8 +15,8 @@ public class Bonus {
         this.bonus = bonus;
     }
 
-    public int getBonus(){
-        return bonus;
+    public boolean matchBonus(List<Integer> numbers){
+        return numbers.contains(bonus);
     }
 
     private int validateNumeric(String bonus){

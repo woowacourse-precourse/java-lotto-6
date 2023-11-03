@@ -19,8 +19,14 @@ public class Winning {
         this.winnings = winnings;
     }
 
-    public List<Integer> getWinnings(){
-        return winnings;
+    public String countMatch(List<Integer> numbers){
+        int count = 0;
+        for (int number : numbers){
+            if (winnings.contains(number)){
+                count += 1;
+            }
+        }
+        return Integer.toString(count);
     }
 
     private List<Integer> validateNumeric(String inputWinning){

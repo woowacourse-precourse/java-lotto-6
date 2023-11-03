@@ -25,7 +25,7 @@
 ## 당첨 번호 입력 기능
 - [x] `LottoInputView::getLottoWinningNumbers` 메서드
   - 로또 당첨 번호를 입력받는다.
-- [ ] `validateLottoNumbers` 메서드
+- [ ] `Lotto::validate` 메서드
   - 입력받은 로또 번호를 검증한다.
     - `,` 를 기준으로 입력값이 6개가 아니라면 `IllegalArgumentException` 발생
     - 각각의 값이 정수가 아니라면 `IllegalArgumentException` 발생
@@ -39,7 +39,7 @@
       - 정수를 인수로 받아 1~45 값인지 검사한다.
       - [x] `LottoUtil::isInRange` 메서드
         - 정수, 최소, 최대를 인수로 받아 입력된 정수가 범위에 있는지 검사한다.
-  - [ ] `isDuplicated` 메서드
+  - [x] `LottoUtil::hasDuplicatedNumbers` 메서드
     - 정수 리스트를 인수로 받아 중복된 값이 있는지 검사한다.
 
 ## 보너스 번호 입력 기능

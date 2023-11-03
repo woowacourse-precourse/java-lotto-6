@@ -19,4 +19,11 @@ public class LottoUtil {
     public static boolean isInRange(int check, int inclusiveMin, int inclusiveMax) {
         return inclusiveMin <= check && check <= inclusiveMax;
     }
+
+    public static boolean hasDuplicatedNumbers(List<Integer> numbers) {
+        List<Integer> distinct = numbers.stream()
+                .distinct()
+                .toList();
+        return distinct.size() != numbers.size();
+    }
 }

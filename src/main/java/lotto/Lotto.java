@@ -16,6 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (isLottoNumbers(numbers)) {
+            String message = String.format("로또 숫자의 범위는 %d~%d입니다.", LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+            throw new IllegalArgumentException(message);
+        }
     }
 
     // TODO: 추가 기능 구현

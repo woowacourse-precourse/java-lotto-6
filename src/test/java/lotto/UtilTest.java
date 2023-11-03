@@ -49,4 +49,18 @@ public class UtilTest {
     void isInRange_false_반환_테스트(int check, int inclusiveMin, int inclusiveMax) {
         assertFalse(LottoUtil.isInRange(check, inclusiveMin, inclusiveMax));
     }
+
+    @Test
+    void hasDuplicatedNumbers_true_반환_테스트() {
+        List<Integer> input = List.of(1, 2, 2, 3, 4, 5);
+
+        assertTrue(LottoUtil.hasDuplicatedNumbers(input));
+    }
+
+    @Test
+    void hasDuplicatedNumbers_false_반환_테스트() {
+        List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
+
+        assertFalse(LottoUtil.hasDuplicatedNumbers(input));
+    }
 }

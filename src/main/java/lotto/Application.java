@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.*;
 
 public class Application {
@@ -15,7 +17,9 @@ public class Application {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> inputNumbers = Lotto.readNumbers("", null);
-        System.out.println(inputNumbers);
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
     }
 
 

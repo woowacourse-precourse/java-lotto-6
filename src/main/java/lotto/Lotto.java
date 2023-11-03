@@ -19,8 +19,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public static void sortLottos(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+    }
+
     public static void printLottos(Lotto[] lottos) {
         for (Lotto lotto : lottos) {
+            sortLottos(lotto.numbers);
             System.out.println(lotto.numbers);
         }
     }

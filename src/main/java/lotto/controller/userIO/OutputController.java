@@ -6,7 +6,7 @@ import lotto.model.WinningStatistics;
 import lotto.view.OutputView;
 
 public class OutputController {
-    private OutputView outputView;
+    private final OutputView outputView;
 
     public OutputController(OutputView outputView) {
         this.outputView = outputView;

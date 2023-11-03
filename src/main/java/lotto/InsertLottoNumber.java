@@ -14,7 +14,6 @@ public class InsertLottoNumber {
         String[] lottoNumber = number.split(",");
         checkNumbeSize(lottoNumber);
         checkValidate(lottoNumber);
-        checkDuplicate(lottoNumber);
 
         lotto = Arrays.stream(lottoNumber)
                 .map(Integer::parseInt)
@@ -26,19 +25,6 @@ public class InsertLottoNumber {
             if (!validateNumber(count.charAt(0))) {
                 throw new IllegalArgumentException("[ERROR] 숫자를 다시 입력하세요.");
             }
-        }
-    }
-
-    private void checkDuplicate(String[] number) {
-        HashSet<Integer> duplicateNumber = new HashSet<>();
-
-        for (String count : number) {
-            int lottoNumber = Integer.parseInt(count);
-
-            if (duplicateNumber.contains(lottoNumber))
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 발생했습니다.");
-
-            duplicateNumber.add(lottoNumber);
         }
     }
 

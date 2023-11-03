@@ -31,12 +31,7 @@ public class LottoController {
         // 구입한 로또 수량 및 번호 출력
         System.out.println();
         System.out.println(cost/1000 + "개를 구매했습니다.");
-        List<List<Integer>> manyLotto = new ArrayList<>();
-        for (int i = 0; i < cost/1000; i++) {
-            List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(1, 45,6);
-            Collections.sort(oneLotto);
-            manyLotto.add(oneLotto);
-        }
+        List<List<Integer>> manyLotto = Lotto.getManyLotto(cost/1000);
         for (List<Integer> oneLotto : manyLotto) {
             System.out.print("[" + oneLotto.get(0));
             for (int i = 1; i < oneLotto.size(); i++) {
@@ -46,7 +41,7 @@ public class LottoController {
         }
 
         // 당첨 번호 입력
-        Lotto winningLotto = getValidWinningNum();
+        Lotto lotto = winningNum.getValidWinningNum(inputView);
 
         // 보너스 번호 입력
         String inputBonusNum = inputView.inputBonusNumber();
@@ -119,18 +114,5 @@ public class LottoController {
         System.out.println("총 수익률은 " + String.format("%.1f", returnRates) + "%입니다.");
         */
         Console.close();
-    }
-    public Lotto getValidWinningNum() {
-        Lotto result;
-        while (true) {
-            try {
-                result = winningNum.getLotto(inputView.inputWinnerNumbers());
-                break;
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                winningNum.clearList();
-            }
-        }
-        return result;
     }
 }

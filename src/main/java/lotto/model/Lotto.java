@@ -1,5 +1,8 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.Validation;
 
@@ -16,5 +19,16 @@ public class Lotto {
         Validation.validateDuplicatedNumber(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public static List<List<Integer>> getManyLotto(int count) {
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            result.add(getOneLotto());
+        }
+        return result;
+    }
+    private static List<Integer> getOneLotto() {
+        List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(1,45,6);
+        Collections.sort(oneLotto);
+        return oneLotto;
+    }
 }

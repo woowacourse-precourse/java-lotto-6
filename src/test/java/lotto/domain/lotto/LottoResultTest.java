@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Map;
 import lotto.domain.lottoresult.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,4 +29,16 @@ class LottoResultTest {
         assertThat(result_Fifth_2).isEqualTo(LottoResult.FIFTH);
     }
 
+    @DisplayName("로또 결과 저장소를 초기화 하기 알맞은 Map 을 반환한다.")
+    @Test
+    void checkLottoResultMakeCorrectInitialResultsRepository() {
+        Map<LottoResult, Integer> initialLottoResultsRepository = LottoResult.getInitialLottoResultsRepository();
+
+        assertThat(initialLottoResultsRepository.get(LottoResult.NONE)).isEqualTo(0);
+        assertThat(initialLottoResultsRepository.get(LottoResult.FIFTH)).isEqualTo(0);
+        assertThat(initialLottoResultsRepository.get(LottoResult.FOURTH)).isEqualTo(0);
+        assertThat(initialLottoResultsRepository.get(LottoResult.THIRD)).isEqualTo(0);
+        assertThat(initialLottoResultsRepository.get(LottoResult.SECOND)).isEqualTo(0);
+        assertThat(initialLottoResultsRepository.get(LottoResult.FIRST)).isEqualTo(0);
+    }
 }

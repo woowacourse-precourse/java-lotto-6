@@ -1,6 +1,8 @@
 package lotto.domain.lottoresult;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public enum LottoResult {
@@ -29,5 +31,13 @@ public enum LottoResult {
 
     private static Predicate<LottoResult> checkSameNumberOfSame(int numberOfSame) {
         return lottoResult -> lottoResult.numberOfSame == numberOfSame;
+    }
+
+    public static Map<LottoResult, Integer> getInitialLottoResultsRepository() {
+        Map<LottoResult, Integer> initialLottoResultsRepository = new HashMap<>();
+        for (LottoResult value : values()) {
+            initialLottoResultsRepository.put(value, 0);
+        }
+        return initialLottoResultsRepository;
     }
 }

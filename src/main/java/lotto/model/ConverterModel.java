@@ -1,17 +1,19 @@
 package lotto.model;
 
+import lotto.ErrorMessages;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class ConverterModel {
     private static final String DELIMITER = ",";
 
-    public Integer purchaseAmount(String purchaseAmount) throws IllegalArgumentException {
+    public Integer StringToInt(String purchaseAmount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(purchaseAmount);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.NOT_NUMBER.toString());
         }
     }
 

@@ -20,11 +20,11 @@ public class WinningNumber {
             throw new IllegalArgumentException();
         }
 
-        if(isDigit(winningNumbers)){
+        if(!isDigit(winningNumbers)){
             throw new IllegalArgumentException();
         }
 
-        if(isSixNumbers(winningNumbers)){
+        if(!isSixNumbers(winningNumbers)){
             throw new IllegalArgumentException();
         }
     }

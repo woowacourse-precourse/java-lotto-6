@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.LottoCount;
 import lotto.model.PurchaseMoney;
+import lotto.model.WinningNumber;
 import lotto.utils.GeneratedLottoNumber;
 import lotto.view.InputView;
 
@@ -16,7 +17,8 @@ public class GameController {
         PurchaseMoney purchaseMoney = new PurchaseMoney(inputPurchaseNumber()); // 구매 금액 입력
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
         generateLottos(lottoCount.getValue()); // 로또 번호 생성
-        inputWinningNumber(); // 당첨 번호 입력
+        WinningNumber winningNumber = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
+        System.out.println(winningNumber.getValue());
     }
 
     private static String inputPurchaseNumber(){

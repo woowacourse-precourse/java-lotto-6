@@ -42,7 +42,7 @@ public class LottoController {
     }
 
     private void initGameManager() {
-        int lottoCount = financeManager.calcuateLottoCount();
+        int lottoCount = financeManager.calculateLottoCount();
         gameManager = GameManager.createDefault(lottoCount);
     }
 }

@@ -35,7 +35,7 @@ public class FinanceManager {
             .allMatch(Character::isDigit);
     }
 
-    public int calcuateLottoCount() {
+    public int calculateLottoCount() {
         return purchaseAmount / LOTTO_PRICE;
     }
 }

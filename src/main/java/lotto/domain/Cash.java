@@ -34,6 +34,13 @@ public class Cash {
         return leftAmount >= UNIT;
     }
 
+    public Boolean spend() {
+        Boolean afford = isAfford();
+        if (afford) {
+            spendAmount += UNIT;
+        }
 
+        return afford;
+    }
 
 }

@@ -8,6 +8,15 @@ class LottoServiceTest {
 
     LottoService lottoService = new LottoService();
 
+    @DisplayName("구입 금액을 1000원으로 나누어 로또를 발행한다.")
+    @Test
+    void inputMoneyCalculateLottoTicket() {
+        String money = "8000";
+        int lottoTicket = lottoService.calculateLottoTicket(money);
+
+        Assertions.assertThat(lottoTicket).isEqualTo(8);
+    }
+
     @DisplayName("구입 금액이 숫자가 아닐 경우 예외가 발생한다.")
     @Test
     void inputMoneyTypeExceptionTest() {

@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Game implements Constraints {
 
@@ -84,7 +86,10 @@ public class Game implements Constraints {
         }
     }
 
-    Double calculateProfitability() {
-        return null;
+    double calculateProfitability(Map<ResultCode, Integer> map, Integer purchasePrice) {
+        double totalPrice = map.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().prize * entry.getValue())
+                .sum();
+        return Math.round(totalPrice / purchasePrice * 10000.0) / 100.0;
     }
 }

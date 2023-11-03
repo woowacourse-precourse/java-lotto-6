@@ -117,6 +117,6 @@ class GameTest {
     void calculateProfitability() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
         game.addLotto(lotto);
-        assertThat(game.calculateProfitability()).isEqualTo(0.625);
+        assertThat(game.calculateProfitability(game.calculate(), 8000)).isEqualTo(62.5);
     }
 }

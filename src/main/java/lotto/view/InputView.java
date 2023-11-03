@@ -1,21 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.InputViewConstant;
 
 public class InputView {
     public static void promptPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(InputViewConstant.PURCHASE_AMOUNT_PROMPT);
     }
 
     public static String readPurchaseAmount() {
         String input = Console.readLine();
         System.out.println();
-
         return input;
     }
 
     public static void promptWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputViewConstant.WINNING_NUMBERS_PROMPT);
     }
 
     public static String readWinningNumbers() {
@@ -25,7 +25,7 @@ public class InputView {
     }
 
     public static void promptBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(InputViewConstant.BONUS_NUMBER_PROMPT);
     }
 
     public static String readBonusNumber() {

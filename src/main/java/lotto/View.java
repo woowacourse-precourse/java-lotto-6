@@ -1,8 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Iterator;
+import java.util.List;
 
 public class View {
+
+    public static void showBundle(List<Lotto> bundle) {
+        System.out.println(bundle.size() + "개를 구매했습니다.");
+        for (Lotto lotto : bundle) {
+            System.out.println(lotto.toString());
+        }
+    }
 
     public static String askBonusNumber(Lotto lotto) {
         System.out.println("보너스 번호를 입력해 주세요.");

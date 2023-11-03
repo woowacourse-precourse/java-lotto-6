@@ -22,4 +22,18 @@ public class Lotto {
     public boolean contains(int number) {
         return this.numbers.contains(number);
     }
+
+    public String toString() {
+        StringBuilder string = new StringBuilder("[");
+        for (int index = 0; index < this.numbers.size(); index++) {
+            string.append(numbers.get(index));
+            if (index == this.numbers.size() - 1) {
+                break;
+            }
+            string.append(", ");
+        }
+        string.append("]");
+
+        return String.valueOf(string);
+    }
 }

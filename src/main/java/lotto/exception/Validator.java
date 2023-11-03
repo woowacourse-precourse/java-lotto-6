@@ -36,9 +36,15 @@ public final class Validator {
         }
     }
 
-    public static void validateBonusNumber(String bonusNumber) {
+    public static void validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
         if(!bonusNumber.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.");
+        }
+        if(Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45) {
+            throw new IllegalArgumentException("[ERROR] 1~45까지의 번호를 입력해주세요.");
+        }
+        if(winningNumbers.contains(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 불가능합니다.");
         }
     }
 }

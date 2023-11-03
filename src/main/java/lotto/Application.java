@@ -14,14 +14,18 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         GameShop lottoGameShop = new GameShop(new LottoGame(new RandomNumberImpl()));
+        try {
+            Consumer consumer = Consumer.purchaseLotto(lottoGameShop.purchase(InputView.readPurChaseLottoAmount()));
+            OutputView.printPurchasedLotto(consumer.getPurchasedLotto());
 
-        Consumer consumer = Consumer.purchaseLotto(lottoGameShop.purchase(InputView.readPurChaseLottoAmount()));
-        OutputView.printPurchasedLotto(consumer.getPurchasedLotto());
+            lottoGameShop.startLottoGame(InputView.readWinningLotto());
+            consumer.setPrizeResult(lottoGameShop.getResult(consumer.getPurchasedLotto()));
 
-        lottoGameShop.startLottoGame(InputView.readWinningNumber(), InputView.readBonusNumber());
-        consumer.setPrizeResult(lottoGameShop.getResult(consumer.getPurchasedLotto()));
+            OutputView.printLottoResults(consumer.getPrizeResult());
+            OutputView.printReturnRate(consumer.getReturnRate());
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+        }
 
-        OutputView.printLottoResults(consumer.getPrizeResult());
-        OutputView.printReturnRate(consumer.getReturnRate());
     }
 }

@@ -19,8 +19,8 @@ public class LottoGame {
         this.randomNumberProvider = randomNumberProvider;
     }
 
-    public void start(List<Integer> winningNumbers, int bonusNumber) {
-        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    public void start(WinningLotto inputLotto) {
+        winningLotto = inputLotto;
     }
 
     public List<Lotto> purchase(int purchaseNum) {

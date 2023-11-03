@@ -1,6 +1,7 @@
 package lotto.impl;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.type.Prize;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class GameShop {
         return lottoGame.getPrizeResults(consumerLottos);
     }
 
-    public void startLottoGame(List<Integer> winningNumbers, int bonusNumber) {
-        lottoGame.start(winningNumbers, bonusNumber);
+    public void startLottoGame(WinningLotto winningLotto) {
+        lottoGame.start(winningLotto);
     }
 }

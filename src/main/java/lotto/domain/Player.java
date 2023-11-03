@@ -35,27 +35,11 @@ public class Player {
         int bonusNumber = winningLotto.getBonusNumber();
 
         for (Lotto lotto : lottos) {
-            int count = findCount(lotto, winningNumbers);
-            boolean bonus = findBonus(lotto, bonusNumber);
+            int count = lotto.findCount(winningNumbers);
+            boolean bonus = lotto.contains(bonusNumber);
             Ranking ranking = rank(count, bonus);
             updateResults(ranking);
         }
-    }
-
-    private int findCount(Lotto lotto, List<Integer> winningNumbers) {
-        int count = 0;
-
-        for (Integer winningNumber : winningNumbers) {
-            if (lotto.contains(winningNumber)) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    private boolean findBonus(Lotto lotto, int bonusNumber) {
-        return lotto.contains(bonusNumber);
     }
 
     private Ranking rank(int count, boolean bonus) {
@@ -105,7 +89,7 @@ public class Player {
     }
 
     public String lottoResults() {
-        double prizeRate = (int) (1000. * totalPrize / money + 0.5) / 10.;
+        double prizeRate = (long) (1000. * totalPrize / money + 0.5) / 10.;
 
         StringBuilder result = new StringBuilder("당첨 통계").append(System.lineSeparator())
                 .append("---").append(System.lineSeparator())

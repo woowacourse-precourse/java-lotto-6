@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
+    private static final Integer MONEY_UNIT = 1000;
+    private static final Integer MINIMUM_NUMBER = 1;
+    private static final Integer MAXIMUM_NUMBER = 45;
+
     public Boolean isNumericValidator(String number){
         try {
             Integer parsedNumber = Integer.parseInt(number);
@@ -16,8 +20,12 @@ public class InputValidator {
         }
     }
 
+    public Boolean isThousandUnitValidator(Integer money){
+        return (money % MONEY_UNIT == 0);
+    }
+
     public Boolean isInRangeValidator(Integer number){
-        return (number >= 1 && number <= 45);
+        return (number >= MINIMUM_NUMBER && number <= MAXIMUM_NUMBER);
     }
 
     public Boolean isNotOverlapSixValidator(List<Integer> numbers){

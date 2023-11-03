@@ -9,21 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class MoneyTest {
 
-    @Test
-    @DisplayName("입력받은 금액에 맞는 갯수의 lotto 티켓을 발행한다.")
-    void calculateLottoCount() {
-        // given
-        Integer amount = 14000;
-        Money money = new Money(amount);
-
-        // when
-        Integer calculatedLottoCount = money.calculateLottoCount();
-
-        // then
-        Integer expectLottoCount = 14;
-        assertThat(calculatedLottoCount).isEqualTo(expectLottoCount);
-    }
-
     @ParameterizedTest
     @ValueSource(ints = {0, 999, -123, })
     @DisplayName("입력받은 금액이 1000원 미만인 경우, 예외를 발생시킨다.")

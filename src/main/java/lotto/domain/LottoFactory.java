@@ -7,7 +7,6 @@ import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,12 +51,12 @@ public class LottoFactory {
         return money % MONEY_UNIT.getValue() != 0;
     }
 
-    public Map<Rank, Long> calculateResult(final AnswerLotto answerLotto) {
-        return lottos.stream()
+    public Result calculateResult(final AnswerLotto answerLotto) {
+        return Result.of(lottos.stream()
                 .collect(Collectors.toMap(answerLotto::getRank,
                         value -> 1L,
                         Long::sum,
-                        getEnumMapSupplier()));
+                        getEnumMapSupplier())));
 
     }
 

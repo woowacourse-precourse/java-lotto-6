@@ -6,12 +6,12 @@ public class AnswerLotto {
     private final Lotto mainLotto;
     private final int bonusNumber;
 
-    private AnswerLotto(Lotto mainLotto, int bonusNumber) {
+    private AnswerLotto(final Lotto mainLotto, final int bonusNumber) {
         this.mainLotto = mainLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static AnswerLotto create(Lotto mainLotto, int bonusNumber) {
+    public static AnswerLotto create(final Lotto mainLotto, final int bonusNumber) {
         mainLotto.validateBonusNumber(bonusNumber);
 
         return new AnswerLotto(mainLotto, bonusNumber);

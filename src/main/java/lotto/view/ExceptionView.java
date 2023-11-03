@@ -4,5 +4,6 @@ public class ExceptionView {
 
     public void printException(String exceptionMessage) {
         System.out.println("[ERROR] " + exceptionMessage);
+        System.out.println();
     }
 }

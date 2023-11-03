@@ -8,6 +8,8 @@ import lotto.domain.Lotto;
 public class PurchasingService {
 
     private static final int LOTTO_PRICE = 1000;
+    private static final int NONE = 0;
+    private static final int ZERO = 0;
 
     private Buyer buyer;
     private int buyerPurchaseQuantity;
@@ -33,7 +35,7 @@ public class PurchasingService {
     }
 
     private void validatePurchaseUnits(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_PRICE != NONE) {
             throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원");
         }
     }
@@ -44,7 +46,7 @@ public class PurchasingService {
 
     private void issueLotto() {
         LottoService lottoService = new LottoService();
-        for (int i = 0; i < buyerPurchaseQuantity; i++) {
+        for (int i = ZERO; i < buyerPurchaseQuantity; i++) {
             buyerLotto.add(lottoService.createLotto());
         }
     }

@@ -16,7 +16,9 @@ public class GameController {
         PurchaseMoney purchaseMoney = new PurchaseMoney(inputPurchaseNumber()); // 구매 금액 입력
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
         generateLottos(lottoCount.getValue()); // 로또 번호 생성
-        System.out.println(lottos);
+        inputWonNumber(); // 당첨 번호 입력
+
+
     }
 
     private static String inputPurchaseNumber(){
@@ -28,5 +30,9 @@ public class GameController {
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(GeneratedLottoNumber.getRandomNumber());
         }
+    }
+
+    private static String inputWonNumber(){
+        return InputView.wonNumber();
     }
 }

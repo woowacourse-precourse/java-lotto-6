@@ -66,11 +66,9 @@ public enum LottoRank {
 	}
 
 	public static EnumMap<LottoRank, Integer> toEnumMap() {
-		return new EnumMap<LottoRank, Integer>(LottoRank.class) {
-			{
-				Arrays.stream(LottoRank.values()).forEach(value -> put(value, 0));
-			}
-		};
+	    EnumMap<LottoRank, Integer> enumMap = new EnumMap<>(LottoRank.class);
+	    Arrays.stream(LottoRank.values()).forEach(value -> enumMap.put(value, 0));
+	    return enumMap;
 	}
 
 	public int getPrice() {

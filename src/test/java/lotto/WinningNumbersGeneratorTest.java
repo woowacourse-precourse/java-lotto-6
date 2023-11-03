@@ -162,6 +162,9 @@ class WinningNumbersGeneratorTest {
         WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
 
         //when
+        String numbers = "1,2,6,7,43,21";
+        winningNumbersGenerator.generateWinningNumbers(numbers);
+
         String bonusNumberInput = "46";
         winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput);
         winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
@@ -179,6 +182,9 @@ class WinningNumbersGeneratorTest {
         WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
 
         //when
+        String numbers = "1,2,6,7,43,21";
+        winningNumbersGenerator.generateWinningNumbers(numbers);
+
         String bonusNumberInput = "0";
         winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput);
         winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
@@ -208,5 +214,23 @@ class WinningNumbersGeneratorTest {
         assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.");
+    }
+
+    @DisplayName("보너스 번호 생성 후 저장")
+    @Test
+    void generateBonusNumber() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String numbers = "1,2,6,7,43,21";
+        winningNumbersGenerator.generateWinningNumbers(numbers);
+
+        String bonusNumberInput = "45";
+        winningNumbersGenerator.generateBonusNumber(bonusNumberInput);
+        int expectedBonusNumber = Integer.parseInt(bonusNumberInput);
+
+        //then
+        assertThat(winningNumbersGenerator.getBonusNumber()).isEqualTo(expectedBonusNumber);
     }
 }

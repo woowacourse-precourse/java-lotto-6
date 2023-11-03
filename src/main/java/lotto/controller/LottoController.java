@@ -1,10 +1,7 @@
 package lotto.controller;
 
 
-import lotto.dto.LottosDto;
-import lotto.dto.NumbersDto;
-import lotto.dto.RanksDto;
-import lotto.dto.WinningNumberDto;
+import lotto.dto.*;
 import lotto.service.LottoService;
 
 import java.util.ArrayList;
@@ -18,7 +15,15 @@ public class LottoController {
     private final String regex = "[0-9]+";
     private final Pattern pattern = Pattern.compile(regex);
 
-
+    public LottosDto buyLotto(String input) throws Exception {
+        validateInt(input.trim());
+        int inputMoney = Integer.parseInt(input.trim());
+        if (inputMoney % 1000 != 0 || inputMoney == 0) {
+            throw new IllegalArgumentException("로또는 1000원 단위로만 구매할 수 있습니다.");
+        }
+        return lottoService.generateLottos(new LottoNumberDto(inputMoney / 1000));
+    }
+    
     public WinningNumberDto post1stNumber(String input) throws Exception {
         return lottoService.postNormalNumbers(convert2Dto(input));
     }

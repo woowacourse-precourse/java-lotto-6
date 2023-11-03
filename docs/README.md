@@ -97,8 +97,8 @@
 
 
 ## Controller
-- [ ] 입력받은 금액으로 FinanceManager를 초기화한다.
-- [ ] 로또의 개수를 이용해 GameManager를 초기화한다.
+- [X] 입력받은 금액으로 FinanceManager를 초기화한다.
+- [X] 로또의 개수를 이용해 GameManager를 초기화한다.
 - [ ] 당첨 번호를 입력받고 GameManager에게 전달한다.
 - [ ] 보너스 번호를 입력받고 GameManager에게 전달한다.
 - [ ] GameManager로부터 결과를 전달 받는다.

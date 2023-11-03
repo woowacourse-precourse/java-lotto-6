@@ -43,32 +43,17 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
-        try {
-            String bonusNumber = InputView.inputBonusNumber();
-            return BonusNumber.create(bonusNumber, winningNumbers);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getBonusNumber(winningNumbers);
-        }
+        return (BonusNumber) InputView.inputValue("bonusNumber",
+                inputBonusNum -> BonusNumber.create(inputBonusNum, winningNumbers));
     }
 
     private WinningNumbers getWinningNumbers() {
-        try {
-            String winningNumbers = InputView.inputWinningNumbers();
-            return WinningNumbers.create(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getWinningNumbers();
-        }
+        return (WinningNumbers) InputView.inputValue("winningNumbers",
+                WinningNumbers::create);
     }
 
     private PurchasePrice getPurchasePrice() {
-        try {
-            String money = InputView.inputPurchasePrice();
-            return PurchasePrice.create(money);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getPurchasePrice();
-        }
+        return (PurchasePrice) InputView.inputValue("purchasePrice",
+                PurchasePrice::create);
     }
 }

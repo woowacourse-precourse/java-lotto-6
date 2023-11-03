@@ -13,7 +13,7 @@ public class LottoController {
 
     private static final LottoService lottoService = new LottoService();
 
-    public void start(){
+    public void start() {
         // 구입금액 입력
         int amount = lottoService.displayPurchase();
 
@@ -34,11 +34,11 @@ public class LottoController {
         displayResult(statistics, amount);
     }
 
-    private static void displayLottoTickets(int amount, LottoTicket lottoTicket){
+    private static void displayLottoTickets(int amount, LottoTicket lottoTicket) {
         OutputView.printPurchasedLottoTickets(amount, lottoTicket);
     }
 
-    private static void displayResult(Map<Rank, Integer> statistics, int amount){
+    private static void displayResult(Map<Rank, Integer> statistics, int amount) {
         OutputView.printStatistics(statistics, amount);
     }
 }

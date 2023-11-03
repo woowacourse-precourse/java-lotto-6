@@ -16,19 +16,39 @@ public class LottoController {
         this.inputView = Objects.requireNonNull(inputView);
         this.outputView = Objects.requireNonNull(outputView);
     }
+
     public void run() {
-        String inputMoney = inputView.requestPurchaseMoney();
-        LottoTickets lottoTickets = LottoTickets.purchase(inputMoney);
+        LottoTickets lottoTickets = getLottoTickets();
+        printLottoTicketQuantity(lottoTickets);
+        printLottoNumbers(lottoTickets);
 
-        int lottoTicketQuantity = lottoTickets.getLottoTicketQuantity();
-        outputView.printDynamicMessage(NOTICE_PURCHASE_QUANTITY, lottoTicketQuantity);
+        WinningNumber winningNumber = getWinningNumber();
+        getBonusNumber(winningNumber);
+    }
 
+    private LottoTickets getLottoTickets() {
+        String input = inputView.requestPurchaseMoney();
+        return LottoTickets.purchase(input);
+    }
+
+    private WinningNumber getWinningNumber() {
+        String input = inputView.requestWinningNumber();
+        return WinningNumber.create(input);
+    }
+
+    private void getBonusNumber(WinningNumber winningNumber) {
+        String input = inputView.requestBonusNumber();
+        winningNumber.createBonusNumber(input);
+    }
+
+    private void printLottoTicketQuantity(LottoTickets lottoTickets) {
+        outputView.printDynamicMessage(
+                NOTICE_PURCHASE_QUANTITY,
+                lottoTickets.getLottoTicketQuantity()
+        );
+    }
+
+    private void printLottoNumbers(LottoTickets lottoTickets) {
         outputView.printIterableMessage(lottoTickets.getLottoNumbers());
-
-        String inputWinningNumber = inputView.requestWinningNumber();
-        WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
-
-        String inputBonusNumber = inputView.requestBonusNumber();
-        winningNumber.createBonusNumber(inputBonusNumber);
     }
 }

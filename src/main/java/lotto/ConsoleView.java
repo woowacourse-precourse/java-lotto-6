@@ -23,6 +23,18 @@ public class ConsoleView {
         }
     }
 
+    public static int getIntInput(){
+        String _input=getInput();
+        try{
+            int val=Integer.parseInt(_input);
+            validateInRange(val);
+            return val;
+        }catch (IllegalArgumentException e){
+            print("[ERROR] 1 이상 45 이하의 보너스 숫자를 입력해 주세요.");
+            return getIntInput();
+        }
+    }
+
     public static List<Integer> getListInput() {
         String _input = getInput();
         try {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static java.util.function.Predicate.isEqual;
+import static java.util.stream.Collectors.toList;
 import static lotto.view.constants.SeparatorConstant.LOTTO_NUMBERS_SEPARATOR;
 
 import java.util.List;
@@ -11,7 +12,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sorted(numbers);
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(toList());
     }
 
     private void validate(List<Integer> numbers) {

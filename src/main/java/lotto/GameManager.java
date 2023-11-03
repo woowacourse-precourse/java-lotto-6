@@ -22,7 +22,7 @@ public class GameManager {
         LottoGame lottoGame = getLottoGame();
         WinningLotto winningLotto = getWinningLotto();
         WinningResult winningResult = playGame(lottoGame, winningLotto);
-        endGame(winningResult);
+        endGame(winningResult, lottoGame);
     }
 
     private LottoGame getLottoGame() {
@@ -46,13 +46,12 @@ public class GameManager {
     }
 
     private WinningResult playGame(final LottoGame lottoGame, final WinningLotto winningLotto) {
-        WinningResult winningResult = lottoGame.calculateWinning(winningLotto);
-        double earningsRate = winningResult.calculateEarningsRate(lottoGame);
-        return winningResult;
+        return lottoGame.calculateWinning(winningLotto);
     }
 
-    private void endGame(final WinningResult winningResult) {
+    private void endGame(final WinningResult winningResult, final LottoGame lottoGame) {
         messagePrinter.printWinningStatisticsMessage();
         messagePrinter.printWinningStatisticsResult(winningResult);
+        messagePrinter.printEarningsRate(winningResult, lottoGame);
     }
 }

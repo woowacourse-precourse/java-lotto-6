@@ -46,4 +46,10 @@ public class MessagePrinter {
         System.out.println(SECOND_PRIZE_STATISTICS_MESSAGE + winningResult.getRank2() + QUANTITY_UNIT);
         System.out.println(FIRST_PRIZE_STATISTICS_MESSAGE + winningResult.getRank1() + QUANTITY_UNIT);
     }
+
+    public void printEarningsRate(final WinningResult winningResult, final LottoGame lottoGame) {
+        double earningsRate = winningResult.calculateEarningsRate(lottoGame);
+        String formattedString = String.format(EARNINGS_RATE_RESULT, earningsRate);
+        System.out.println(formattedString);
+    }
 }

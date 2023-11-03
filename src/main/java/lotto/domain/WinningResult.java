@@ -24,11 +24,11 @@ public class WinningResult {
         int buyingPrice = buyingAmount * BUYING_PRICE_UNIT;
         int totalPrize = calculateTotalPrize();
 
-        return (double) totalPrize / buyingPrice;
+        return (((double) totalPrize / buyingPrice) * 100);
     }
 
     private int calculateTotalPrize() {
-        int firstPrize = rank1 * FIFTH_PRIZE;
+        int firstPrize = rank1 * FIRST_PRIZE;
         int secondPrize = rank2 * SECOND_PRIZE;
         int thirdPrize = rank3 * THIRD_PRIZE;
         int fourthPrize = rank4 * FOURTH_PRIZE;

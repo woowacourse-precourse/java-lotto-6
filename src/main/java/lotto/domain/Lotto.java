@@ -18,14 +18,12 @@ public class Lotto {
         }
     }
 
-    public static Lotto generateRandomLottoNumbers() {
-        List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        randomLottoNumbers.sort(Comparator.naturalOrder());
-        return new Lotto(randomLottoNumbers);
-    }
-
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

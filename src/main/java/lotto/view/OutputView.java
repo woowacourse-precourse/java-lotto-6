@@ -13,7 +13,7 @@ public class OutputView {
     private static final String NONE_BONUS = "";
     private static final String RATE_OF_RETURN = "총 수익률은 %,.1f%%입니다.\n";
 
-    public void printLottoNumbers(final List<List<Integer>> lottoNumbers) {
+    public void printLottoNumbers(final List<String> lottoNumbers) {
         System.out.printf(LOTTO_BUY_FORMAT, lottoNumbers.size());
 
         lottoNumbers.forEach(System.out::println);

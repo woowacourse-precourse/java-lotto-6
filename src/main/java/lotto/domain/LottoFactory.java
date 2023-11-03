@@ -52,12 +52,6 @@ public class LottoFactory {
         return money % MONEY_UNIT.getValue() != 0;
     }
 
-    public List<List<Integer>> getLottoNumbers() {
-        return lottos.stream()
-                .map(Lotto::getNumbers)
-                .toList();
-    }
-
     public Map<Rank, Long> calculateResult(final AnswerLotto answerLotto) {
         return lottos.stream()
                 .collect(Collectors.toMap(answerLotto::getRank,
@@ -75,6 +69,12 @@ public class LottoFactory {
 
             return enumMap;
         };
+    }
+
+    public List<String> getLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .toList();
     }
 
 }

@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.DecimalFormat;
+
 public enum reward {
     first(2000000000),
     second(30000000),
@@ -14,7 +16,8 @@ public enum reward {
         this.money = money;
     }
 
-//    public int getMoney(){
-//        return money;
-//    }
+    public String formatMoney(){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(this.money);
+    }
 }

@@ -21,11 +21,11 @@ public class LottoGame {
     void StartGame(){
         System.out.println("구입금액을 입력해 주세요.");
         inputPurchase();
-        System.out.println(count+"개를 구입했습니다.");
+        System.out.println("\n"+count+"개를 구매했습니다.");
         printLottos();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         inputWinningNumber();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         inputBonusNumber();
         calculateReward();
         printReward();
@@ -108,22 +108,24 @@ public class LottoGame {
         }
     }
 
-    int calculateEarningRate(){
-        return ((reward.fifth.money*rewardList.get(0))
+    String calculateEarningRate(){
+        return String.format("%.1f",
+                (double)((reward.fifth.money*rewardList.get(0))
                 +(reward.fourth.money*rewardList.get(1))
                 +(reward.third.money*rewardList.get(3))
                 +(reward.second.money*rewardList.get(2))
-                +(reward.first.money*rewardList.get(4)))/purchase;
+                +(reward.first.money*rewardList.get(4)))
+                        /purchase*100);
     }
 
     void printReward(){
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 ("+reward.fifth.money+") - "+rewardList.get(0)+"개");
-        System.out.println("4개 일치 ("+reward.fourth.money+") - "+rewardList.get(1)+"개");
-        System.out.println("5개 일치 ("+reward.third.money+") - "+rewardList.get(3)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 ("+reward.second.money+") - "+rewardList.get(2)+"개");
-        System.out.println("6개 일치 ("+reward.first.money+") - "+rewardList.get(4)+"개");
+        System.out.println("3개 일치 ("+reward.fifth.formatMoney()+"원) - "+rewardList.get(0)+"개");
+        System.out.println("4개 일치 ("+reward.fourth.formatMoney()+"원) - "+rewardList.get(1)+"개");
+        System.out.println("5개 일치 ("+reward.third.formatMoney()+"원) - "+rewardList.get(3)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 ("+reward.second.formatMoney()+"원) - "+rewardList.get(2)+"개");
+        System.out.println("6개 일치 ("+reward.first.formatMoney()+"원) - "+rewardList.get(4)+"개");
         System.out.println("총 수익률은 "+calculateEarningRate()+"%입니다.");
     }
 

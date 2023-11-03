@@ -10,9 +10,9 @@ public enum LottoResult {
     FIVE_BONUS(5, true, 30000000),
     SIX(6, false, 2000000000);
 
-    private int count;
-    private boolean validBonus;
-    private int prize;
+    private final int count;
+    private final boolean validBonus;
+    private final int prize;
 
     LottoResult(int count, boolean validBonus, int prize) {
         this.count = count;

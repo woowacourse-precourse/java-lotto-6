@@ -5,7 +5,7 @@ import lotto.valid.WinNumberValid;
 
 public class WinNumber {
 
-    private List<Integer> lottoNums;
+    private final List<Integer> lottoNums;
 
     public WinNumber(String lottoNum) {
         List<Integer> lottoNums = WinNumberValid.validWinNumber(lottoNum);

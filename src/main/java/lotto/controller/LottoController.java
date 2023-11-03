@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import lotto.model.Investor;
+import lotto.model.Lotto;
 import lotto.model.Money;
+import lotto.model.Shop;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
+import java.util.List;
 
 public class LottoController {
 
@@ -20,5 +23,8 @@ public class LottoController {
         String moneyInput = inputView.readLine();
         Money investMoney = Money.from(moneyInput);
         Investor investor = Investor.createDefault(investMoney);
+        Shop lottoShop = Shop.createDefault();
+        List<Lotto> lottos = investor.buyLottosFromShop(lottoShop);
+        outputView.printBoughtLottoSize(lottos.size());
     }
 }

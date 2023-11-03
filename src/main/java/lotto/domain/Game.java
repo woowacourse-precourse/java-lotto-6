@@ -21,7 +21,7 @@ public class Game {
 
     public void findResult() {
         player.findResults(winningLotto);
-        player.findPrize();
+        player.findTotalPrize();
         System.out.println(player.lottoResults());
     }
 

@@ -1,23 +1,23 @@
 package lotto.domain;
 
+import lotto.enums.Ranking;
 import lotto.utils.RandomGenerator;
 
 import java.util.*;
 
 public class Player {
-    private final int FIRST = 2_000_000_000,
-            SECOND = 30_000_000,
-            THIRD = 1_500_000,
-            FORTH = 50_000,
-            FIFTH = 5_000;
-    private int money, prize;
+    private int money, totalPrize;
     private List<Lotto> lottos = new ArrayList<>();
-    private Map<Integer, Integer> results = new HashMap<>();
+    private Map<Ranking, Integer> results = new HashMap<>();
 
     public Player(int money) {
         this.money = money;
-        for (int i = 1; i < 6; i++) {
-            results.put(i, 0);
+        initResults();
+    }
+
+    private void initResults() {
+        for(Ranking ranking : Ranking.values()) {
+            results.put(ranking, 0);
         }
     }
 
@@ -36,8 +36,8 @@ public class Player {
         for (Lotto lotto : lottos) {
             int count = findCount(lotto, winningNumbers);
             boolean bonus = findBonus(lotto, bonusNumber);
-            int rank = findRank(count, bonus);
-            updateResults(rank);
+            Ranking ranking = rank(count, bonus);
+            updateResults(ranking);
         }
     }
 
@@ -57,73 +57,62 @@ public class Player {
         return lotto.contains(bonusNumber);
     }
 
-    private int findRank(int count, boolean bonus) {
+    private Ranking rank(int count, boolean bonus) {
         if (count == 6) {
-            return 1;
+            return Ranking.FIRST;
         }
         if (bonus && count == 5) {
-            return 2;
+            return Ranking.SECOND;
         }
         if (!bonus && count == 5) {
-            return 3;
+            return Ranking.THIRD;
         }
         if (count == 4) {
-            return 4;
+            return Ranking.FORTH;
         }
         if (count == 3) {
-            return 5;
+            return Ranking.FIFTH;
         }
-        return -1;
+        return Ranking.BLANK;
     }
 
-    private void updateResults(int rank) {
-        if (rank == -1) {
+    private void updateResults(Ranking ranking) {
+        if (ranking.equals(Ranking.BLANK)) {
             return;
         }
-        results.put(rank, results.get(rank) + 1);
+        results.put(ranking, results.get(ranking) + 1);
     }
 
-    public void findPrize() {
-        for (Integer rank : results.keySet()) {
-            if (rank == 1) {
-                prize += FIRST * results.get(rank);
-            }
-            if (rank == 2) {
-                prize += SECOND * results.get(rank);
-            }
-            if (rank == 3) {
-                prize += THIRD * results.get(rank);
-            }
-            if (rank == 4) {
-                prize += FORTH * results.get(rank);
-            }
-            if (rank == 5) {
-                prize += FIFTH * results.get(rank);
-            }
+    public void findTotalPrize() {
+        for (Ranking ranking : results.keySet()) {
+            totalPrize += ranking.getPrize() * results.get(ranking);
         }
     }
 
     public String issuedLottos() {
         StringBuilder result = new StringBuilder(String.valueOf(lottos.size())).append("개를 구매했습니다.\n");
+
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             Collections.sort(lottoNumbers);
             result.append(lottoNumbers).append('\n');
         }
+
         return result.toString();
     }
 
     public String lottoResults() {
-        double prizeRate = (int) ((double) prize / money * 1000. + 0.5) / 10.;
+        double prizeRate = (int) (1000. * totalPrize / money + 0.5) / 10.;
 
         StringBuilder result = new StringBuilder("당첨 통계\n")
                 .append("---\n")
-                .append("3개 일치 (5,000원) - ").append(results.get(5)).append("개\n")
-                .append("4개 일치 (50,000원) - ").append(results.get(4)).append("개\n")
-                .append("5개 일치 (1,500,000원) - ").append(results.get(3)).append("개\n")
-                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(2)).append("개\n")
-                .append("6개 일치 (2,000,000,000원) - ").append(results.get(1)).append("개\n")
+                .append("3개 일치 (5,000원) - ").append(results.get(Ranking.FIFTH)).append("개\n")
+                .append("4개 일치 (50,000원) - ").append(results.get(Ranking.FORTH)).append("개\n")
+                .append("5개 일치 (1,500,000원) - ").append(results.get(Ranking.THIRD)).append("개\n")
+                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(Ranking.SECOND)).append("개\n")
+                .append("6개 일치 (2,000,000,000원) - ").append(results.get(Ranking.FIRST)).append("개\n")
                 .append("총 수익률은 ").append(prizeRate).append("%입니다.");
+
         return result.toString();
     }
 }

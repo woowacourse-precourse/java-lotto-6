@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomGenerator {
-    static final int START = 1, END = 45, COUNT = 6;
+    private static final int START = 1, END = 45, COUNT = 6;
 
     private RandomGenerator() {
 

@@ -6,7 +6,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
+    private final WinningNumber winningNumber = new WinningNumber();
     private final LottoIssueController lottoIssueController = new LottoIssueController();
+    private final WinningNumberController winningNumberController = new WinningNumberController();
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
@@ -15,18 +17,37 @@ public class GameController {
         return inputView.getMoney();
     }
 
-    private Lottos purchaseLottos(int inputMoney) {
-        return lottoIssueController.createLottos(inputMoney);
-    }
-
     private void getPurchaseDetails(int inputMoney, Lottos lottos) {
         outputView.printPurchaseDetailsMessage(lottoIssueController.getLottoCount(inputMoney));
         outputView.printPurchasedLottos(lottos.getPurchaseDetails());
     }
 
-    public void play() {
+    public void purchaseLottos() {
         int inputMoney = getMoneyInput();
-        Lottos lottos = purchaseLottos(inputMoney);
+        Lottos lottos = lottoIssueController.createLottos(inputMoney);
         getPurchaseDetails(inputMoney, lottos);
+    }
+
+    private String getWinningNumbersInput() {
+        outputView.printInputWinningNumbersMessage();
+        return inputView.getWinningNumbersInput();
+    }
+
+    private String getBonusNumberInput() {
+        outputView.printInputBonusNumberMessage();
+        return inputView.getBonusNumberInput();
+    }
+
+    public void setWinningNumber() {
+        String inputNumbers = getWinningNumbersInput();
+        winningNumberController.setInputToWinningNumbers(winningNumber, inputNumbers);
+
+        String inputNumber = getBonusNumberInput();
+        winningNumberController.setInputToBonusNumber(winningNumber, inputNumber);
+    }
+
+    public void play() {
+        purchaseLottos();
+        setWinningNumber();
     }
 }

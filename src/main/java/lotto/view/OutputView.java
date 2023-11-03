@@ -22,17 +22,17 @@ public class OutputView {
     public void printResult(final ResultsDto resultsDto) {
         System.out.println(LOTTO_RESULT_HEADER);
 
-        final List<ResultDto> results = resultsDto.getResultsDto();
+        final List<ResultDto> results = resultsDto.resultsDto();
 
         results.forEach(result -> System.out.printf(LOTTO_RESULT_FORMAT,
-                result.getSameNumberCount(),
+                result.sameNumberCount(),
                 getBonus(result),
-                result.getReward(),
-                result.getCount()));
+                result.reward(),
+                result.count()));
     }
 
     private String getBonus(final ResultDto result) {
-        if (result.isHasBonus()) {
+        if (result.hasBonus()) {
             return HAS_BONUS;
         }
 

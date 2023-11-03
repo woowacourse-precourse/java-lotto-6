@@ -4,14 +4,7 @@ import java.util.List;
 import lotto.constant.Rank;
 import lotto.domain.Result;
 
-public class ResultsDto {
-
-    private final List<ResultDto> resultsDto;
-
-    private ResultsDto(List<ResultDto> resultsDto) {
-        this.resultsDto = resultsDto;
-    }
-
+public record ResultsDto(List<ResultDto> resultsDto) {
     public static ResultsDto of(final Result result) {
         return new ResultsDto(result.getRankCount()
                 .entrySet()
@@ -21,9 +14,4 @@ public class ResultsDto {
                 .sorted()
                 .toList());
     }
-
-    public List<ResultDto> getResultsDto() {
-        return resultsDto;
-    }
-
 }

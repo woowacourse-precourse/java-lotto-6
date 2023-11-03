@@ -14,20 +14,15 @@ public class LottoController {
     private static final LottoService lottoService = new LottoService();
 
     public void start() {
-        // 구입금액 입력
         int amount = lottoService.displayPurchase();
 
-        // 구매 항목 출력
         LottoTicket lottoTickets = lottoService.getLottoTicket(amount);
         displayLottoTickets(amount, lottoTickets);
 
-        // 당첨번호 입력
         List<Integer> winningNumbers = lottoService.displayWinningNumber();
 
-        // 보너스 번호 입력
         int bonusNumber = lottoService.displayBonusNumber(winningNumbers);
 
-        // 이기는 로또 티켓
         WinningLottoTicket winningLottoTicket = lottoService.makeWinningLottoTicket(winningNumbers, bonusNumber);
         Map<Rank, Integer> statistics = lottoService.getStatistics(lottoTickets, winningLottoTicket);
 

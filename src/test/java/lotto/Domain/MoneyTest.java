@@ -20,5 +20,12 @@ class MoneyTest {
         assertThrows(MoneyException.class, () -> Money.of(inputMoney2));
     }
 
+    @DisplayName("1000원 단위가 아닌 금액을 입력했을때 예외발생하는지 확인")
+    @Test
+    void createMoneyByNotDivisible() {
+        String inputMoney = "1001";
+
+        assertThrows(MoneyException.class, () -> Money.of(inputMoney));
+    }
 
 }

@@ -2,8 +2,12 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import lotto.util.message.ErrorMessage;
@@ -42,4 +46,28 @@ public class ValidatorTest {
 	void checkNomalOperation2(String str) {
 		Validator.validateIsEmpty(str, ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
 	}
+	
+	@DisplayName("length가 String배열의 길이와 값이 다르면 예외처리한다.")
+	@MethodSource("createCheckStrArrLengthMethodParameter")
+    @ParameterizedTest
+    void checkStrArrLength(String[] strArr, int wrongLength, int correctLength) {
+        assertThatThrownBy(() -> Validator.validateStrArrLength(strArr, wrongLength, "테스트메세지"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("테스트메세지");
+    }
+	
+	@DisplayName("length가 String배열의 길이와 같을 때 정상적으로 작동하는 지 확인한다.")
+	@MethodSource("createCheckStrArrLengthMethodParameter")
+    @ParameterizedTest
+    void checkNomalOperation3(String[] strArr, int wrongLength, int correctLength) {
+		Validator.validateStrArrLength(strArr, correctLength, "테스트메세지");
+    }
+	
+    static Stream<Arguments> createCheckStrArrLengthMethodParameter() {
+        return Stream.of(
+                Arguments.of(new String[] { "test1", "test2", "test3" }, 2, 3),
+                Arguments.of(new String[] { "value1", "value2" }, 1, 2),
+                Arguments.of(new String[] { "A", "B", "C", "D" }, 3, 4)
+        );
+    }
 }

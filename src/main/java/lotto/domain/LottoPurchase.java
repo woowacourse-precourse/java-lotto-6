@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.constant.LottoPrice;
 import lotto.service.InputService;
@@ -41,6 +42,7 @@ public class LottoPurchase {
 
     public Lotto generateLottoNumbers() {
         List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
+        Collections.sort(lottoNumbers);
         messageService.outputPurchaseNumbers(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

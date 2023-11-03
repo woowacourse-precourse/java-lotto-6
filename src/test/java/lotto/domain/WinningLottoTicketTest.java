@@ -99,4 +99,17 @@ class WinningLottoTicketTest {
 
         assertEquals(Rank.NONE, result);
     }
+
+    @Test
+    @DisplayName("당첨 번호 중 2개만 일치하는 경우 NONE 등수 반환")
+    void whenTwoNumbersMatch_thenReturnNoneRank() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> playerNumbers = Arrays.asList(1, 2, 7, 8, 9, 10);
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(winningNumbers, 11);
+        Lotto lotto = new Lotto(playerNumbers);
+
+        Rank result = winningLottoTicket.match(lotto);
+
+        assertEquals(Rank.NONE, result);
+    }
 }

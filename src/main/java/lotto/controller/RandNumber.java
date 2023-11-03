@@ -25,5 +25,14 @@ public class RandNumber {
         return true;
     }
 
+    public static List<Integer> reMakeBonusNumber(List<Integer> lottoNumbers, List<Integer> bonusNumber) {
+        if (!checkDuplicate(lottoNumbers, bonusNumber)) {
+            List<Integer> newBonusNumber = makeBonusNumber();
+            bonusNumber.set(0, newBonusNumber.get(0));
+            reMakeBonusNumber(lottoNumbers, bonusNumber);
+        }
+        return bonusNumber;
+    }
+
 
 }

@@ -5,7 +5,7 @@ public class LottoWithBonus {
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
-    private LottoWithBonus(final Lotto lotto, final LottoNumber bonusNumber) {
+    public LottoWithBonus(final Lotto lotto, final LottoNumber bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }

@@ -36,4 +36,11 @@ public class Number {
     public boolean isHit(int number) {
         return this.number == number;
     }
+
+    @Override
+    public String toString() {
+        return "Number{" +
+                "number=" + number +
+                '}';
+    }
 }

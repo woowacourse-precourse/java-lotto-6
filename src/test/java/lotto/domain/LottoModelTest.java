@@ -35,7 +35,11 @@ class LottoModelTest {
         );
     }
 
-
+    @ParameterizedTest
+    @CsvSource({"14.234,14.2","14.286,14.3"})
+    void computeRate_소숫점_둘째자리에서_반올림_확인(double test, String expect) {
+        assertThat(lottoModel.computeRate(test)).isEqualTo(expect);
+    }
 
 
 }

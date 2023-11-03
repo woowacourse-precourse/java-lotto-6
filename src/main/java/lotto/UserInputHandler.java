@@ -15,6 +15,7 @@ public class UserInputHandler {
     private static final String INPUT_USER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_USER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     static final int DIVISION_ROLE = 1000; // 나누어 떨어져야 하는 값 : 1,000원 단위
+    private String winningNumbers;
 
     // 1. 로또 구매 금액 입력
     public int inputUserLottoPurchase() {
@@ -50,7 +51,7 @@ public class UserInputHandler {
     // 2. 로또 당첨 번호 입력
     public List<Integer> inputUserWinningNumbers() {
         boolean restart = true;
-        String winningNumbers = null;
+
         while (restart) {
             try {
                 System.out.println(INPUT_USER_WINNING_NUMBERS_MESSAGE);
@@ -63,6 +64,7 @@ public class UserInputHandler {
         }
         return valueDelivery(winningNumbers);
     }
+
 
     public List<Integer> valueDelivery(String lottoPurchase) {
         List<Integer> lotto = new ArrayList<>();
@@ -81,7 +83,7 @@ public class UserInputHandler {
 
     private void validDuplicateNumbers(String[] numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        for (String s: numbers) {
+        for (String s : numbers) {
             int num = Integer.parseInt(s);
             if (uniqueNumbers.contains(num)) {
                 throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
@@ -124,20 +126,34 @@ public class UserInputHandler {
     }
 
     // 보너스 번호 입력
-    public void inputUserBonusNumber() {
+    public int inputUserBonusNumber() {
         boolean restart = true;
-
+        String bonusNumber = null;
         while (restart) {
             System.out.println(INPUT_USER_BONUS_NUMBER_MESSAGE);
-            String bonusNumber = Console.readLine();
+            bonusNumber = Console.readLine();
             try {
                 validateNumbers(bonusNumber);
                 isOverLengthNumber(Integer.parseInt(bonusNumber));
+                duplicateBonusNumber(Integer.parseInt(bonusNumber));
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
 
         }
+        return Integer.parseInt(bonusNumber);
     }
+
+    private void duplicateBonusNumber(int bonusNumber) {
+        String[] userInput = winningNumbers.split(",");
+        for (String s : userInput) {
+            int number = Integer.parseInt(s);
+            if (number == bonusNumber) {
+                throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
+            }
+        }
+    }
+
+
 }

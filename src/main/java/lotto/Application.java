@@ -32,7 +32,8 @@ public class Application {
         System.out.println(lottoList.size()+"개를 구매했습니다.");
         // 2-3. 발행한 로또 번호를 출력 (오름차순으로)
         for(Lotto lotto : lottoList){
-            printLottoInfo(lotto);
+            Collections.sort(lotto.lottoNumbers());
+            System.out.println(lotto.lottoNumbers());
         }
 
         // 3. 당험 번호 입력받기
@@ -135,12 +136,6 @@ public class Application {
     public static List<Integer> createRandomLottoNum(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
-    }
-
-    // 발행한 로또 수향 및 번호를 출력
-    public static void printLottoInfo(Lotto lotto){
-        Collections.sort(lotto.lottoNumbers());
-        System.out.println(lotto.lottoNumbers());
     }
 
     // 사용자 입력을 List<Integer>로 변환

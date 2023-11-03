@@ -67,6 +67,9 @@ public class InputHandler {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount < 0) {
+            throw new InvalidPurchaseAmountException();
+        }
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new InvalidPurchaseAmountException();
         }

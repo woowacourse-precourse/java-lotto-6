@@ -21,9 +21,9 @@ public class LottoService {
         return lottos;
     }
 
-    public void compareLotto(List<String> winningNumbers, Integer bonusNumber) {
+    public LottoResult compareLotto(List<String> winningNumbers, Integer bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = lottoRepository.findAll();
-        lottoResult.showLottoResult(winningNumbers, bonusNumber, lottos);
+        return lottoResult.showLottoResult(winningNumbers, bonusNumber, lottos);
     }
 }

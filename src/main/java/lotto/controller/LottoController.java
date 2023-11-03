@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.LottoResult;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
@@ -23,7 +24,8 @@ public class LottoController {
         List<String> winningNumbers = lottoInputView.getWinningNumbers();
         Integer bonusNumber = lottoInputView.getBonusNumber();
 
-        lottoService.compareLotto(winningNumbers, bonusNumber);
+        LottoResult lottoResult = lottoService.compareLotto(winningNumbers, bonusNumber);
+        lottoOutputView.presentLottoResult(lottoResult);
     }
 
     private void buyLottoTicketProcess() {

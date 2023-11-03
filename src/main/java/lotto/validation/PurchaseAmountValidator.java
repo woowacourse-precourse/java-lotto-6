@@ -10,8 +10,8 @@ public class PurchaseAmountValidator {
     private static final Integer LOTTO_PRICE = 1000;
 
     public void validatePurchaseAmount(String purchaseAmount) {
-        validateBlank(purchaseAmount);
         validateEmpty(purchaseAmount);
+        validateBlank(purchaseAmount);
         validateDivisibleByThousand(purchaseAmount);
     }
 

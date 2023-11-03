@@ -14,11 +14,11 @@ public class LottoResultChecker {
         this.sixLottoNumbers = sixLottoNumbers;
         this.bonusNumber = bonusNumber;
 
-        lottoResult.put("3개 일치 (5,000원) - %d개", 0);
-        lottoResult.put("4개 일치 (50,000원) - %d개", 0);
-        lottoResult.put("5개 일치 (1,500,000원) - %d개", 0);
-        lottoResult.put("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", 0);
-        lottoResult.put("6개 일치 (2,000,000,000원) - %d개", 0);
+        lottoResult.put(LottoMessage.THREE.message, 0);
+        lottoResult.put(LottoMessage.FOUR.message, 0);
+        lottoResult.put(LottoMessage.FIVE.message, 0);
+        lottoResult.put(LottoMessage.BONUS.message, 0);
+        lottoResult.put(LottoMessage.SIX.message, 0);
     }
 
     public void calculator() {
@@ -43,19 +43,19 @@ public class LottoResultChecker {
 
     private void rankCalculator(boolean isBonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.size() == 3) {
-            lottoResult.put("3개 일치 (5,000원) - %d개", lottoResult.get("3개 일치 (5,000원) - %d개") + 1);
+            lottoResult.put(LottoMessage.THREE.message, lottoResult.get(LottoMessage.THREE.message) + 1);
         }
         if (winningNumbers.size() == 4) {
-            lottoResult.put("4개 일치 (50,000원) - %d개", lottoResult.get("4개 일치 (50,000원) - %d개") + 1);
+            lottoResult.put(LottoMessage.FOUR.message, lottoResult.get(LottoMessage.FOUR.message) + 1);
         }
         if (winningNumbers.size() == 5 && !isBonusNumber) {
-            lottoResult.put("5개 일치 (1,500,000원) - %d개", lottoResult.get("5개 일치 (1,500,000원) - %d개") + 1);
+            lottoResult.put(LottoMessage.FIVE.message, lottoResult.get(LottoMessage.FIVE.message) + 1);
         }
         if (winningNumbers.size() == 5 && isBonusNumber) {
-            lottoResult.put("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", lottoResult.get("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개") + 1);
+            lottoResult.put(LottoMessage.BONUS.message, lottoResult.get(LottoMessage.BONUS.message) + 1);
         }
         if (winningNumbers.size() == 6) {
-            lottoResult.put("6개 일치 (2,000,000,000원) - %d개", lottoResult.get("6개 일치 (2,000,000,000원) - %d개") + 1);
+            lottoResult.put(LottoMessage.SIX.message, lottoResult.get(LottoMessage.SIX.message) + 1);
         }
     }
 }

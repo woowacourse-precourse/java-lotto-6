@@ -5,20 +5,20 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Prize {
-    private String groupNumbers;
-    private int bonusCounts;
-    private int luckyCounts;
-    private int totalProfit;
-    private int[] finalResult = new int[5];
-    private List<Integer> separatedLotto;
+    private static String groupNumbers;
+    private static int bonusCounts;
+    private static int luckyCounts;
+    private static int totalProfit;
+    private static final int[] finalResult = new int[5];
+    private static List<Integer> separatedLotto;
     public static List<Integer> luckyNumber;
     public static int bonusNumber;
 
-    void inputNumbers() {
+    static void inputNumbers() {
         groupNumbers = Console.readLine();
     }
 
-    void cutNumbers() {
+    static void cutNumbers() {
         String[] separatedNumbers = groupNumbers.split(",");
 
         for (int i = 0; i < separatedNumbers.length; i++) {
@@ -26,12 +26,12 @@ public class Prize {
         }
     }
 
-    void inputBonusNumber() {
+    static void inputBonusNumber() {
         String number = Console.readLine();
         bonusNumber = Integer.parseInt(number);
     }
 
-    void separateNumbers() {
+    static void separateNumbers() {
         for (int i = 0; i < Issue.lottoGroup.size(); i++) {
             separatedLotto = Issue.lottoGroup.get(i);
 
@@ -40,7 +40,7 @@ public class Prize {
         }
     }
 
-    void checkNumbers() {
+    static void checkNumbers() {
         for (int j = 0; j < separatedLotto.size(); j++) {
             if (separatedLotto.contains(luckyNumber.get(j))) {
                 luckyCounts += 1;
@@ -52,7 +52,7 @@ public class Prize {
         }
     }
 
-    void winPrize() {
+    static void winPrize() {
         if (luckyCounts == 6) {
             finalResult[0] += 1;
         }
@@ -74,7 +74,7 @@ public class Prize {
         }
     }
 
-    void printPrize() {
+    static void printPrize() {
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + finalResult[4] + "개");
         System.out.println("4개 일치 (50,000원) - " + finalResult[3] + "개");
@@ -83,7 +83,7 @@ public class Prize {
         System.out.println("6개 일치 (2,000,000,000원) - " + finalResult[0] + "개");
     }
 
-    void calculateProfit() {
+    static void calculateProfit() {
         if (finalResult[0] >= 1) {
             totalProfit = totalProfit + (finalResult[0] * 2_000_000_000);
         }
@@ -105,13 +105,13 @@ public class Prize {
         }
     }
 
-    void printProfitRate() {
+    static void printProfitRate() {
         double initialProfitRate = (double) totalProfit / Issue.initialCash;
         String profitRate = String.format("%.1f", initialProfitRate);
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
 
-    void playPrize() {
+    public static void playPrize() {
         inputNumbers();
         cutNumbers();
         inputBonusNumber();

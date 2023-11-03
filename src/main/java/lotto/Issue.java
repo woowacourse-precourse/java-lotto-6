@@ -6,20 +6,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Issue {
-    private int lottoQuantity;
+    private static int lottoQuantity;
     public static int initialCash;
     public static List<List<Integer>> lottoGroup;
 
-    void inputCash() {
+    static void inputCash() {
         initialCash = Integer.parseInt(Console.readLine());
         lottoQuantity = initialCash / 1000;
     }
 
-    private List<Integer> getNumbers() {
+    private static List<Integer> getNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    void makeSortedLotto() {
+    static void makeSortedLotto() {
         for (int i = 0; i < lottoQuantity; i++) {
             Lotto transfer = new Lotto(getNumbers());
 
@@ -29,13 +29,13 @@ public class Issue {
         }
     }
 
-    void printLotto() {
+    static void printLotto() {
         for (int i = 0; i < lottoGroup.size(); i++) {
             System.out.println(lottoGroup.get(i));
         }
     }
 
-    void playIssue() {
+    public static void playIssue() {
         inputCash();
         makeSortedLotto();
         printLotto();

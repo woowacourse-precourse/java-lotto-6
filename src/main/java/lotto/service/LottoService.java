@@ -116,7 +116,7 @@ public class LottoService {
         return lottoTicket.buy(amount);
     }
 
-    public WinningLottoTicket makeWinningLottoTicket(List<Integer> winningNumber, int bonusNumber) {
+    public WinningLottoTicket createWinningLottoTicket(List<Integer> winningNumber, int bonusNumber) {
         return new WinningLottoTicket(winningNumber, bonusNumber);
     }
 

@@ -23,7 +23,7 @@ public class LottoController {
 
         int bonusNumber = lottoService.displayBonusNumber(winningNumbers);
 
-        WinningLottoTicket winningLottoTicket = lottoService.makeWinningLottoTicket(winningNumbers, bonusNumber);
+        WinningLottoTicket winningLottoTicket = lottoService.createWinningLottoTicket(winningNumbers, bonusNumber);
         Map<Rank, Integer> statistics = lottoService.getStatistics(lottoTickets, winningLottoTicket);
 
         displayResult(statistics, amount);

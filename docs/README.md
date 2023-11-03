@@ -47,12 +47,12 @@
     - [x] 1 ~ 45 사이의 숫자를 6개 생성한다.
         - `Randoms.pickUniqueNumbersInRange(1, 45, 6);`사용
 
-- [ ] LottoMachine : 로또를 판매하는 기계
-    - [ ] LottoCreateModel을 필드로 가진다.
-    - [ ] makeLotto(int totalPrice) : 총 가격만큼 로또 생성
-        - [ ] 로또를 개수만큼 생성한다.
-        - [ ] 구입 금액이 1000 단위로 나누어떨어지지 않으면 예외 발생
-        - [ ] PurchasedLotto을 반환하도록 한다.
+- [x] LottoMachine : 로또를 판매하는 기계
+    - [x] LottoCreateModel을 필드로 가진다.
+    - [x] makeLotto(int totalPrice) : 총 가격만큼 로또 생성
+        - [x] 로또를 개수만큼 생성한다.
+        - [x] 구입 금액이 1000 단위로 나누어떨어지지 않으면 예외 발생
+        - [x] PurchasedLotto을 반환하도록 한다.
 
 - [ ] LottoResult : 로또 당첨 결과를 가지는 클래스
     - [ ] 팩토리 생성자를 통해 결과를 생성하게 한다.

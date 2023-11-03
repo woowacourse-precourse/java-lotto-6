@@ -1,5 +1,6 @@
 package lotto.view.input;
 
+import lotto.message.LottoBuyMessage;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;
@@ -7,10 +8,6 @@ import java.util.List;
 
 public class LottoBuyInputView extends Input{
 
-    private static final String PURCHASE_AMOUNT_PROMPT_MESSAGE = "구입할 Lotto 금액을 입력해 주세요.";
-    private static final String WINNING_NUMBERS_PROMPT_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_PROMPT_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String REGEX = ",";
 
     //util로 뺴지 않은 이유는 inputView만 사용하기 때문에 lifeCycle이 같아야 된다고 생각한다.
     private final InputValidator inputValidator;
@@ -32,7 +29,7 @@ public class LottoBuyInputView extends Input{
     }
 
     private void printRequestLottoPurchaseAmount() {
-        System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE);
+        System.out.println(LottoBuyMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE);
     }
 
     private void validateLottoAmount(int amount, int denomination) {
@@ -51,11 +48,11 @@ public class LottoBuyInputView extends Input{
     }
 
     private void printRequestWinningLottoNumbers() {
-        System.out.println(WINNING_NUMBERS_PROMPT_MESSAGE);
+        System.out.println(LottoBuyMessage.WINNING_NUMBERS_PROMPT_MESSAGE);
     }
 
     private List<Integer> getNumbers() {
-        return Arrays.stream(readLine().split(REGEX))
+        return Arrays.stream(readLine().split(LottoBuyMessage.REGEX.getMassage()))
                 .map(inputValidator::parseInt)
                 .toList();
     }
@@ -77,7 +74,7 @@ public class LottoBuyInputView extends Input{
     }
 
     private void printRequestBonusLottoNumber() {
-        System.out.println(BONUS_NUMBER_PROMPT_MESSAGE);
+        System.out.println(LottoBuyMessage.BONUS_NUMBER_PROMPT_MESSAGE);
     }
 
     private void validateBonusLottoNumber(int bonusNumber) {

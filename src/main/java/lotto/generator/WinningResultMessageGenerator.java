@@ -30,11 +30,11 @@ public class WinningResultMessageGenerator {
         return createResultMessage(winningResult, winningCounts);
     }
 
-    private static String createResultMessage(final WinningResults winningResult,
-                                                  final List<Integer> winningCounts) {
+    private static String createResultMessage(final WinningResults winningResults,
+                                              final List<Integer> winningCounts) {
         StringBuilder resultMessage = new StringBuilder();
         String winningCountMessage = createWinningCountMessage(winningCounts);
-        String prizePercentageMessage = createProfitRatioMessage(winningResult);
+        String prizePercentageMessage = createProfitRatioMessage(winningResults);
         resultMessage.append(winningCountMessage)
                 .append(prizePercentageMessage);
         return resultMessage.toString();

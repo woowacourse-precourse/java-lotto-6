@@ -5,7 +5,7 @@ import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
 import lotto.exception.BonusNumberException;
-import lotto.exception.PurchaseValidattionException;
+import lotto.exception.PurchaseValidationException;
 import lotto.exception.WinningNumberValidationException;
 import lotto.view.InputView;
 
@@ -40,11 +40,11 @@ public class LottoService {
     }
 
     private void validateIsNumeric(String input) {
-        PurchaseValidattionException.checkIsNumeric(input);
+        PurchaseValidationException.checkIsNumeric(input);
     }
 
     private void validatePurchaseAmount(int price) {
-        PurchaseValidattionException.checkValidPurchaseAmount(price);
+        PurchaseValidationException.checkValidPurchaseAmount(price);
     }
 
     public List<Integer> getWinningNumbers() {

@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private boolean isLottoSizeEqualToSix(List<Integer> numbers) {
-        return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_SIZE;
+        return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 
     private int countUniqueLottoNumbers(List<Integer> numbers) {

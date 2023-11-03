@@ -7,6 +7,6 @@ public class RandomNumberGenerator {
 
     public static List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(LottoConstants.START_NUMBER, LottoConstants.END_NUMBER,
-                LottoConstants.LOTTO_SIZE);
+                LottoConstants.LOTTO_NUMBER_SIZE);
     }
 }

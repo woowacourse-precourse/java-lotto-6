@@ -36,7 +36,7 @@ public class WinningNumbers {
     }
 
     private boolean isNotSameWinningNumbersSize(List<Integer> winningNumbers) {
-        return winningNumbers.size() != LottoConstants.LOTTO_SIZE;
+        return winningNumbers.size() != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 
     private void validateDuplicate(List<Integer> winningNumbers) {

@@ -21,5 +21,10 @@ class LottoPurchaseTest {
         assertThatThrownBy(() -> new LottoPurchase("5wqesad")).isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @DisplayName("양수가 아닌 수가 들어오면 예외가 발생한다.")
+    @Test
+    void createLottoPurchaseAmountByNegativeNumber() {
+        assertThatThrownBy(() -> new LottoPurchase("0")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class);
+    }
 }

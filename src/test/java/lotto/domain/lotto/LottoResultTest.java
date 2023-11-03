@@ -3,10 +3,12 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.lottoresult.LottoResult;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
 
+    @DisplayName("일치 결과에 따라 맞는 LottoResult 를 반환 한다")
     @Test
     void lottoResultTest_1() {
         LottoResult result_First = LottoResult.getResult(6, false);

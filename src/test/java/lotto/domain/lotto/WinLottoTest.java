@@ -34,6 +34,7 @@ public class WinLottoTest {
         assertThat(isContainBonusNumber_2).isFalse();
     }
 
+    @DisplayName("당첨 로또와 특정 등수에 맞는 로또를 비교했을 때 알맞은 LottoResult 를 반환한다.")
     @Test
     void getLottoResultTest() {
         Lotto secondPrizeLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));

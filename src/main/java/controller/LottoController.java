@@ -3,9 +3,11 @@ package controller;
 import java.util.List;
 import model.FinanceManager;
 import model.GameManager;
+import model.LottoTotalResult;
 import model.dto.LottoResponse;
 import model.dto.AnswerBonusNumber;
 import model.dto.AnswerLottoNumbers;
+import model.dto.LottoResult;
 import view.InputView;
 import view.OutputView;
 
@@ -25,6 +27,17 @@ public class LottoController {
         initGame();
         informLottos();
         generateAnswerNumber();
+        informLottoResult();
+    }
+
+    private void informLottoResult() {
+        LottoTotalResult totalResult = gameManager.calculateResult();
+        informWinningResult(totalResult);
+    }
+
+    private void informWinningResult(final LottoTotalResult totalResult) {
+        List<LottoResult> results = totalResult.toDto();
+        outputView.informWinningStatistics(results);
     }
 
     private void generateAnswerNumber() {

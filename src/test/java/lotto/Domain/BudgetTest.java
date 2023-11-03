@@ -21,4 +21,13 @@ public class BudgetTest {
         }
     }
 
+    @Test
+    @DisplayName("금액을 통해 로또 번호 개수 구하기 테스트")
+    public void calculateLottoCount() {
+        String budgetAmount = "19000";
+        Budget budget = new Budget(budgetAmount);
+        int lottoCount = 19;
+
+        assertThat(budget.calculateLottoCount()).isEqualTo(lottoCount);
+    }
 }

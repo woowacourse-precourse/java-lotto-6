@@ -9,4 +9,5 @@ public interface OutputView {
     void printBoughtLottoSize(final int size);
     void printEachLottoNumbers(final List<LottoResponse> lottoResponses);
     void askGoalNumbers();
+    void askBonusNumber();
 }

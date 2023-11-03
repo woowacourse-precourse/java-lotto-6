@@ -31,6 +31,8 @@ public class LottoController {
         outputView.printEachLottoNumbers(lottoResponses);
         outputView.askGoalNumbers();
         String goalNumbersInput = inputView.readLine();
+        outputView.askBonusNumber();
+        String bonusNumberInput = inputView.readLine();
     }
 
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {

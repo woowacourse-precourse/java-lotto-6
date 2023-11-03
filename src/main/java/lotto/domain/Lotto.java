@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,5 +19,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private List<Integer> sort(List<Integer> unSortNumbers) {
+        List<Integer> lottoNumbers = new ArrayList<>(unSortNumbers);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
+    }
 }

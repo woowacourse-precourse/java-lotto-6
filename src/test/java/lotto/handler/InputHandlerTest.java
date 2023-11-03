@@ -1,12 +1,11 @@
 package lotto.handler;
 
-import lotto.exception.InvalidPurchaseAmountException;
-import lotto.exception.InvalidWinningNumberException;
-import lotto.exception.NullInputException;
-import lotto.exception.ParseException;
+import lotto.exception.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -71,6 +70,41 @@ class InputHandlerTest {
     @Test
     void handleInvalidWinningNumbersTest() {
         assertThatThrownBy(() -> inputHandler.handleWinningNumbers("-1,-2,-3,-4,-5,-6"))
-                .isInstanceOf(InvalidWinningNumberException.class);
+                .isInstanceOf(InvalidNumberException.class);
+    }
+
+    @DisplayName("보너스 번호 검증 성공 테스트")
+    @Test
+    void handleBonusNumberSuccessTest() {
+        assertThat(inputHandler.handleBonusNumber("10", List.of(1, 2, 3, 4, 5, 6)))
+                .isEqualTo(10);
+    }
+
+    @DisplayName("보너스 번호 입력값이 공백일때 예외 발생")
+    @Test
+    void handleBlankBonusNumberTest() {
+        assertThatThrownBy(() -> inputHandler.handleBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(NullInputException.class);
+    }
+
+    @DisplayName("보너스 번호 입력값이 숫자가 아닐때 예외 발생")
+    @Test
+    void handleStringBonusNumberTest() {
+        assertThatThrownBy(() -> inputHandler.handleBonusNumber("hi", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(ParseException.class);
+    }
+
+    @DisplayName("보너스 번호 입력값이 유효한값이 아닐때 예외 발생")
+    @Test
+    void handleInvalidBonusNumberTest() {
+        assertThatThrownBy(() -> inputHandler.handleBonusNumber("50", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(InvalidNumberException.class);
+    }
+
+    @DisplayName("보너스 번호 입력값이 당첨번호에 포함될때 예외 발생")
+    @Test
+    void handleBonusNumberInWinningNumberTest() {
+        assertThatThrownBy(() -> inputHandler.handleBonusNumber("1", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(InvalidBonusNumberException.class);
     }
 }

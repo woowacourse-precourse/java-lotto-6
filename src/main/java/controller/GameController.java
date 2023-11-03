@@ -4,6 +4,8 @@ import service.LottoService;
 
 import view.GameView;
 
+import java.util.List;
+
 public class GameController {
 
     private final LottoService lottoService;
@@ -14,15 +16,16 @@ public class GameController {
         this.gameView = gameView;
     }
 
-    public void lottoAdd(String pay) {
-        // TODO: 인자로 받은 금액 예외 처리 후 로또 구매
+    public void lottoAdd(int pay) {
+        // TODO: 인자로 받은 금액 로또 구매
+
     }
 
-    public void winningLottoAdd(String numbers) {
-        // TODO: 인자로 받은 번호 예외 처리 후 당첨 번호 생성
+    public void winningLottoAdd(List<Integer> numbers) {
+        // TODO: 인자로 받은 번호 당첨 번호 생성
     }
 
-    public void BonusLottoAdd(String number) {
-        // TODO: 인자로 받은 번호 예외 처리 후 보너스 번호 생성
+    public void BonusLottoAdd(int number) {
+        // TODO: 인자로 받은 번호 보너스 번호 생성
     }
 }

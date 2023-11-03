@@ -10,7 +10,7 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public String getPurchasedLottos() {
+    public String getPurchaseDetails() {
         StringBuilder purchasedLottos = new StringBuilder();
 
         for (Lotto lotto : lottos) {

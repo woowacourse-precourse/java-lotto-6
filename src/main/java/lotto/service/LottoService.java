@@ -33,6 +33,7 @@ public class LottoService {
         for (Lotto lotto : purchasedLotto) {
             int count = countLottoByWinningNumbers(lotto, originalWinningNumbers);
             boolean isExistBonusNumber = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+
             Prize prize = getPrize(count, isExistBonusNumber);
             if (prize != null) {
                 rewardCount.put(prize, rewardCount.get(prize) + 1);
@@ -40,16 +41,17 @@ public class LottoService {
         }
         return rewardCount;
     }
-    public double getRewardRatio(int purchaseAmount, Map<Prize, Integer> lotteryResult){
+
+    public double getRewardRatio(int purchaseAmount, Map<Prize, Integer> lotteryResult) {
         double totalReward = 0;
         for (Prize prize : lotteryResult.keySet()) {
             totalReward += (lotteryResult.get(prize) * prize.getReward());
         }
-        double rewardRatio = ((totalReward  * 100) / (double) purchaseAmount);
+        double rewardRatio = ((totalReward * 100) / (double) purchaseAmount);
         return Utils.roundNumberBySecondDecimalPlace(rewardRatio);
     }
 
-    public Map<Prize,Integer> initializeRewardCount(){
+    public Map<Prize, Integer> initializeRewardCount() {
         Map<Prize, Integer> rewardCount = new LinkedHashMap<>();
         rewardCount.put(Prize.FIFTH_REWARD, 0);
         rewardCount.put(Prize.FOURTH_REWARD, 0);
@@ -79,10 +81,7 @@ public class LottoService {
             return Prize.FIRST_REWARD;
         }
         if (count == 5) {
-            if (isExistBonusNumber) {
-                return Prize.SECOND_REWARD;
-            }
-            return Prize.THIRD_REWARD;
+            return compareSecondAndThird(isExistBonusNumber);
         }
         if (count == 4) {
             return Prize.FOURTH_REWARD;
@@ -91,5 +90,12 @@ public class LottoService {
             return Prize.FIFTH_REWARD;
         }
         return null;
+    }
+
+    public Prize compareSecondAndThird(boolean isExistBonusNumber) {
+        if (isExistBonusNumber) {
+            return Prize.SECOND_REWARD;
+        }
+        return Prize.THIRD_REWARD;
     }
 }

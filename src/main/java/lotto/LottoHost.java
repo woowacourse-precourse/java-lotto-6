@@ -7,6 +7,17 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoHost {
+	static Lotto winningNumberLotto;
+	static int bonusNumber;
+
+	LottoHost() {
+
+	}
+
+	LottoHost(Lotto winningNumberLotto, int bonusNumber) {
+		this.winningNumberLotto = winningNumberLotto;
+		this.bonusNumber = bonusNumber;
+	}
 
 	List<Integer> makeRandomLottoNumber() {
 		List<Integer> randomNumberList = new ArrayList<>();

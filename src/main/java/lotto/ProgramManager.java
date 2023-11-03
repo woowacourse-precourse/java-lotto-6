@@ -18,9 +18,9 @@ public class ProgramManager {
 		List<Lotto> lottoList = showBuyLotto(price);
 		Customer customer = new Customer(price, lottoList);
 
-		getLottoNumber();
-		getBonusNumber();
-		LottoHost lottoHost = new LottoHost();
+		Lotto winningNumberLotto = getLottoNumber();
+		int bonusNumber = getBonusNumber();
+		LottoHost lottoHost = new LottoHost(winningNumberLotto, bonusNumber);
 		showResult();
 	}
 
@@ -47,12 +47,22 @@ public class ProgramManager {
 		return lottoList;
 	}
 
-	void getLottoNumber() {
+	Lotto getLottoNumber() {
+		String number = inputView.getLottoNumber();
+		String[] numberArray = number.split(",");
+		List<Integer> numberList = new ArrayList<>();
+		for(String num : numberArray) {
+			numberList.add(Integer.parseInt(num));
+		}
 
+		Lotto lotto = new Lotto(numberList);
+
+		return lotto;
 	}
 
-	void getBonusNumber() {
-
+	int getBonusNumber() {
+		int bonusNumber = inputView.getBonusNumber();
+		return bonusNumber;
 	}
 
 	void showResult() {

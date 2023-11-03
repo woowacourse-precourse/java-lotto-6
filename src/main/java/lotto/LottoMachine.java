@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
+
     private final Money money;
     private Lottos lottos;
 
@@ -26,7 +27,8 @@ public class LottoMachine {
         int reps = money.getMoney() / 1000;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < reps; i++) {
-            List<Integer> numbers =Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_SIZE);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END,
+                    LOTTO_SIZE);
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }

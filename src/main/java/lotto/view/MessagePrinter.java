@@ -2,10 +2,12 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
+import lotto.domain.WinningResult;
 
 import java.util.List;
 
 import static lotto.constant.MessageConstant.*;
+import static lotto.constant.SymbolConstant.QUANTITY_UNIT;
 
 public class MessagePrinter {
 
@@ -35,5 +37,13 @@ public class MessagePrinter {
 
     public void printWinningStatisticsMessage() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
+    }
+
+    public void printWinningStatisticsResult(final WinningResult winningResult) {
+        System.out.println(FIFTH_PRIZE_STATISTICS_MESSAGE + winningResult.getRank5() + QUANTITY_UNIT);
+        System.out.println(FOURTH_PRIZE_STATISTICS_MESSAGE + winningResult.getRank4() + QUANTITY_UNIT);
+        System.out.println(THIRD_PRIZE_STATISTICS_MESSAGE + winningResult.getRank3() + QUANTITY_UNIT);
+        System.out.println(SECOND_PRIZE_STATISTICS_MESSAGE + winningResult.getRank2() + QUANTITY_UNIT);
+        System.out.println(FIRST_PRIZE_STATISTICS_MESSAGE + winningResult.getRank1() + QUANTITY_UNIT);
     }
 }

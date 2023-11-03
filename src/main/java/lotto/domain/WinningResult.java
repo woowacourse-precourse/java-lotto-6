@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.NumberConstant;
 
 import static lotto.constant.NumberConstant.*;
 
@@ -66,5 +65,26 @@ public class WinningResult {
         if (correctAmount == 3) {
             rank5++;
         }
+    }
+
+    // getter
+    public int getRank1() {
+        return rank1;
+    }
+
+    public int getRank2() {
+        return rank2;
+    }
+
+    public int getRank3() {
+        return rank3;
+    }
+
+    public int getRank4() {
+        return rank4;
+    }
+
+    public int getRank5() {
+        return rank5;
     }
 }

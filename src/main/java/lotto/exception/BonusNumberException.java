@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.constant.ExceptionConstant;
+
 import java.util.List;
 
 public class BonusNumberException extends IllegalArgumentException {
@@ -9,20 +11,20 @@ public class BonusNumberException extends IllegalArgumentException {
     }
 
     public static void ensureValidFormat(String inputBonusNumber) {
-        if (!inputBonusNumber.matches("^([1-9]|[1-3]\\d|4[0-5])$")) {
-            throw new BonusNumberException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        if (!inputBonusNumber.matches(ExceptionConstant.BONUS_NUMBER_PATTERN)) {
+            throw new BonusNumberException(ExceptionConstant.BONUS_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
     public static void ensureNotDuplicatedWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new BonusNumberException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new BonusNumberException(ExceptionConstant.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 
     public static void ensureWithinValidRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new BonusNumberException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 가능합니다.");
+        if (bonusNumber < ExceptionConstant.MIN_LOTTO_NUMBER || bonusNumber > ExceptionConstant.MAX_LOTTO_NUMBER) {
+            throw new BonusNumberException(ExceptionConstant.BONUS_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 }

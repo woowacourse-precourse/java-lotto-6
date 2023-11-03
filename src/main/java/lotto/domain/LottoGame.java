@@ -38,7 +38,9 @@ public class LottoGame {
             boolean bonusNumContained = isBonusNumContained(lottoNums, bonusNum);
 
             LottoResult lottoResult = LottoResult.findByCountAndValidBonus(count, bonusNumContained);
-            lottoMap.put(lottoResult, lottoMap.get(lottoResult) + 1);
+            if (lottoResult != null) {
+                lottoMap.put(lottoResult, lottoMap.get(lottoResult) + 1);
+            }
         }
     }
 

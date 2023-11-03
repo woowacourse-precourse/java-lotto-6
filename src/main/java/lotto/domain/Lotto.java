@@ -64,6 +64,12 @@ public class Lotto {
                 .toList();
     }
 
+    public int countWinningNumber(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

@@ -9,6 +9,7 @@ import lotto.view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -25,7 +26,8 @@ public class LottoController {
         LottoTickets lottoTickets = makeLottoTickets(money);
         output.showLottoTickets(lottoTickets);
 
-        makeWinningCondition();
+        WinningCondition winningCondition = makeWinningCondition();
+        Map<Lotto, Integer> winningResult = winningCondition.findWinningResult(lottoTickets);
     }
 
     private WinningCondition makeWinningCondition() {

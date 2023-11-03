@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Map;
+
 public class WinningCondition {
 
     private final Lotto winningLotto;
@@ -8,5 +10,9 @@ public class WinningCondition {
     public WinningCondition(Lotto winningLotto, int bonus) {
         this.winningLotto = winningLotto;
         this.bonus = bonus;
+    }
+
+    public Map<Lotto, Integer> findWinningResult(LottoTickets lottoTickets) {
+        return lottoTickets.findWinningResult(winningLotto);
     }
 }

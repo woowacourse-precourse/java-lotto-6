@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoTickets {
 
@@ -8,6 +10,14 @@ public class LottoTickets {
 
     public LottoTickets(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public Map<Lotto, Integer> findWinningResult(Lotto winningLotto) {
+        return lottos.stream()
+                .collect(Collectors.toMap(
+                        lotto -> lotto,
+                        lotto -> lotto.countWinningNumber(winningLotto)
+                ));
     }
 
     public int getSize() {

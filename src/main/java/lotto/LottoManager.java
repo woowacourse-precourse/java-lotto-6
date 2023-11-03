@@ -107,10 +107,12 @@ public class LottoManager {
     }
 
     private void validateIsIntegerType(List<String> stringNumbers) {
-        try {
-            Integer.parseInt(String.join("", stringNumbers));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        for (String value : stringNumbers) {
+            try {
+                Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

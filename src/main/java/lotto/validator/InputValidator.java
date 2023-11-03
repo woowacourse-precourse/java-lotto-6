@@ -1,9 +1,9 @@
 package lotto.validator;
 
 import java.util.List;
-import lotto.Exception.InputErrorMessage;
 import lotto.Pattern;
 import lotto.Utils;
+import lotto.exception.InputErrorMessage;
 
 public class InputValidator {
     private final static int PRICE = 1000;
@@ -11,6 +11,26 @@ public class InputValidator {
     private final static int MAX_LOTTO_NUMBER = 45;
 
     public void validateMoney(int money) {
+        int remainder = Utils.getRemainder(money, PRICE);
+
+        if (remainder != 0) {
+            throw new IllegalArgumentException(
+                    InputErrorMessage.INVALID_UNIT.getValue()
+            );
+        }
+    }
+
+    public void validateHasOnlyInteger(String input) {
+        boolean isValidCondition = input.matches(Pattern.ONLY_INTEGERS.getValue());
+
+        if (!isValidCondition) {
+            throw new IllegalArgumentException(
+                    InputErrorMessage.NOT_INTEGER.getValue()
+            );
+        }
+    }
+
+    public void validateMoneyUnit(int money) {
         int remainder = Utils.getRemainder(money, PRICE);
 
         if (remainder != 0) {
@@ -40,11 +60,12 @@ public class InputValidator {
         }
     }
 
-    public void validateHasOnlyIntegers(List<String> strings) {
-        boolean isValid = strings.stream()
+
+    public void validateHasOnlyIntegers(List<String> inputStrings) {
+        boolean isValidCondition = inputStrings.stream()
                 .allMatch(string -> string.matches(Pattern.ONLY_INTEGERS.getValue()));
 
-        if (!isValid) {
+        if (!isValidCondition) {
             throw new IllegalArgumentException(
                     InputErrorMessage.INVALID_LOTTO_NUMBERS.getValue()
             );

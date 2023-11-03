@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.util.InputVaildate;
 import lotto.view.inputView;
 public class LottoController {
+    InputVaildate inputVaildate = new InputVaildate();
     public void run() {
         //로또 구매
         buyLotto();
@@ -15,8 +17,9 @@ public class LottoController {
     }
     public void buyLotto() {
         //구매 금액 입력
-        String moneyForBuyLotto = inputView.getREQUEST_MONEY();
-        System.out.println(moneyForBuyLotto);
+        int moneyForBuyLotto = Integer.parseInt(inputView.getREQUEST_MONEY());
+        InputVaildate.moneyVaildate(moneyForBuyLotto);
+
         //수량으로 변환
 
         //수량만큼 로또 발행

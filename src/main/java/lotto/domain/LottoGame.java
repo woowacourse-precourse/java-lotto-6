@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class LottoGame {
 
-    private List<Lotto> lottos = new ArrayList<>();
-    private Map<LottoResult, Integer> lottoMap = new LinkedHashMap<>();
+    private final List<Lotto> lottos = new ArrayList<>();
+    private final Map<LottoResult, Integer> lottoMap = new LinkedHashMap<>();
 
     public LottoGame(int lottoMoney) {
         buildLottos(lottoMoney);

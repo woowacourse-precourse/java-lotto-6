@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +55,20 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("구매 로또 번호 출력 테스트")
+    void printPurchaseLottoNumbersTest(){
+        // given
+        List<Integer> testIntegerSets = new ArrayList<>(Arrays.asList(3, 5, 7, 11, 16, 22));
+
+        // when
+        DataOutput dataOutputSets = new DataOutput();
+        dataOutputSets.printPurchaseLottoNumbers(testIntegerSets);
+
+        // then
+        assertThat(output().contains("[3, 5, 7, 11, 16, 22]"));
     }
 
     @Override

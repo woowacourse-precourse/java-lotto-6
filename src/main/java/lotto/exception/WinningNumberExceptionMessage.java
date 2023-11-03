@@ -15,4 +15,10 @@ public class WinningNumberExceptionMessage extends IllegalArgumentException{
             throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 '1,2,3,4,5,6'과 같은 형식으로 입력해야 합니다.");
         }
     }
+
+    public static void validateWinningNumberLength(List<Integer> winningNumber) {
+        if (winningNumber.size() != 6) {
+            throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
 }

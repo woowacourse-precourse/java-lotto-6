@@ -43,6 +43,15 @@ class InputViewTest extends NsTest {
     @Test
     @DisplayName("보너스 번호 테스트")
     void bonusNumber() {
+        assertSimpleTest(()->{
+            runException("5000","1,2,3,4,5,6","abc","1","70");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    ErrorMessage.NUM_ERROR.getMessage(),
+                    ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage(),
+                    ErrorMessage.BONUS_RANGE_ERROR.getMessage()
+            );
+        });
     }
 
     @Override

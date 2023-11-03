@@ -17,17 +17,17 @@ class ValidatorTest {
         String input3 = "1000"; //정상 입력
         String input4 ="1500"; //1000원으로 나누어 떨어지지 않는 입력
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
+        assertThrows(IllegalArgumentException.class, ()->{
            Validator.moneyValidate(input1);
         });
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.moneyValidate(input2);
         });
 
         Validator.moneyValidate(input3);
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.moneyValidate(input4);
         });
     }
@@ -40,19 +40,19 @@ class ValidatorTest {
         String[] input4 = {"1", "2", "3", "4", "5", "600"}; //범위 초과
         String[] input5 = {"1", "2", "3", "4", "5", "6"}; //정상 입력
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.winningValidate(input1);
         });
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.winningValidate(input2);
         });
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.winningValidate(input3);
         });
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(IllegalArgumentException.class,()->{
             Validator.winningValidate(input4);
         });
 
@@ -61,24 +61,13 @@ class ValidatorTest {
 
     @Test
     void bonusValidate() {
-        ArrayList<Integer> winningNum = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        String input1 = "abc"; //정수 이외 입력
-        String input2 = "300"; //범위 초과
-        String input3 = "6"; //중복 입력
-        String input4 = "45"; //정상 입력
+        String input1 = "abc";
+        String input2 = "45";
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
-            Validator.bonusValidate(input1, winningNum);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validator.bonusValidate(input1);
         });
 
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
-            Validator.bonusValidate(input2,winningNum);
-        });
-
-        Assertions.assertThrows(IllegalArgumentException.class,()->{
-            Validator.bonusValidate(input3,winningNum);
-        });
-
-        Validator.bonusValidate(input4, winningNum);
+        Validator.bonusValidate(input2);
     }
 }

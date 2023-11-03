@@ -115,6 +115,16 @@ public class Application {
                 lottoResult.set(4, lottoResult.get(4) + 1);
             }
         }
+        List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
+        int sum = 0;
+        String rateInvestment;
+
+        // 8. 수익률 계산 로직
+        for (int i = 0; i < lottoResult.size(); i++) {
+            sum += lottoResult.get(i) * prizeMoney.get(i);
+        }
+
+        rateInvestment = String.format(".1f", (sum / 1000.0) * 100);
 
 
     }

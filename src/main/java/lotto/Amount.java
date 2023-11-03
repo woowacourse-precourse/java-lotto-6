@@ -29,16 +29,16 @@ public class Amount {
     }
 
     int validateAmount(String input) {
-        int amount = isNum(input);
+        isNum(input);
+        int amount = stringToInt(input);
         return amount;
     }
 
-    int isNum(String input) {
+    void isNum(String input) {
         String regex = "^[0-9]+$";
         if (!input.matches(regex)) {
             throw new IllegalArgumentException("[ERROR] 금액 값은 숫자여야 합니다.");
         }
-        return stringToInt(input);
     }
 
     int stringToInt(String str) {

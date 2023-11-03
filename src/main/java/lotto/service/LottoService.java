@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.Lotto;
 import lotto.LottoPublisher;
+import lotto.LottoResult;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class LottoService {
         return lottos;
     }
 
-    public void compareLotto() {
-
+    public void compareLotto(List<String> winningNumbers, Integer bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.showLottoResult(winningNumbers, bonusNumber, lottos);
     }
 }

@@ -19,7 +19,12 @@ public class Profit {
         rankMoney = List.of(0,FIRST_PLACE_MONEY, SECOND_PLACE_MONEY, THIRD_PLACE_MONEY, FOURTH_PLACE_MONEY, FIFTH_PLACE_MONEY);
     }
 
-    public int getTotalWinningMoney(){
+    public float getTotalEarningRate(int purchaseMoney){
+        setTotalWinningMoney();
+        return (float) totalProfitMoney/purchaseMoney*100;
+    }
+
+    private int setTotalWinningMoney(){
 
         for (int i = 0; i < rank.length; i++) {
             if(rank[i] > 0){
@@ -28,9 +33,5 @@ public class Profit {
         }
 
         return totalProfitMoney;
-    }
-
-    public float getTotalPercent(int purchaseMoney){
-        return (float) totalProfitMoney/purchaseMoney*100;
     }
 }

@@ -10,6 +10,7 @@ public class OutputView {
     private static final String DIVIDED_LINE = "---";
     private static final String MATCH_NUMBERS = "%s개 일치 (%s원) - %d개\n";
     private static final String MATCH_FIVE_NUMBERS_BONUS_NUMBERS = "%s개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
 
     private static final String FIFTH_PLACE_MONEY = "5,000";
     private static final String FOURTH_PLACE_MONEY = "50,000";
@@ -50,5 +51,9 @@ public class OutputView {
         System.out.printf(MATCH_NUMBERS, THIRD_PLACE_MATCH_NUMBERS, THIRD_PLACE_MONEY, ranks[RANK_THREE]);
         System.out.printf(MATCH_FIVE_NUMBERS_BONUS_NUMBERS, SECOND_PLACE_MATCH_NUMBERS, SECOND_PLACE_MONEY, ranks[RANK_TWO]);
         System.out.printf(MATCH_NUMBERS, FIRST_PLACE_MATCH_NUMBERS, FIRST_PLACE_MONEY, ranks[RANK_ONE]);
+    }
+
+    public static void earningRate(float earningRate){
+        System.out.printf(EARNING_RATE, earningRate);
     }
 }

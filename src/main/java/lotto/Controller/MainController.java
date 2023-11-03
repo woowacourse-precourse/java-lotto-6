@@ -63,7 +63,7 @@ public class MainController {
 
         for(int i = 0; i < rank_cnt.length; i++){
             if(rank_cnt[i] > 0)
-                price += winner_price[i];
+                price += winner_price[i] * rank_cnt[i];
         }
 
         result = (float)price / money * 100;

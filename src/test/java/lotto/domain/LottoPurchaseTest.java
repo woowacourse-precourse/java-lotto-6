@@ -13,8 +13,8 @@ class LottoPurchaseTest {
     @BeforeEach
     @Test
     void createLottoPurchase() {
-        lottoPurchase = new LottoPurchase(5);
-        lottoPurchase = new LottoPurchase("5");
+        lottoPurchase = new LottoPurchase(1000);
+        lottoPurchase = new LottoPurchase("1000");
     }
     @DisplayName("숫자형이 아닌 문자가 들어오면 예외가 발생한다.")
     @Test
@@ -29,14 +29,14 @@ class LottoPurchaseTest {
         assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
     }
 
-    @DisplayName("1000원 단위가 아닌 수가 들어오면 예외가 발생한다.")
+    @DisplayName("1,000원 단위가 아닌 수가 들어오면 예외가 발생한다.")
     @Test
-    void createLottoPurchaseAmountBy() {
+    void createLottoPurchaseAmountByNonThousandAmount() {
         assertThatThrownBy(() -> new LottoPurchase("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
     }
 
     @Test
     void getAmount() {
-        assertThat(lottoPurchase.getAmount()).isEqualTo(5);
+        assertThat(lottoPurchase.getAmount()).isEqualTo(1000);
     }
 }

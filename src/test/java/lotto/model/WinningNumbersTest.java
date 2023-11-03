@@ -1,8 +1,15 @@
 package lotto.model;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningNumbersTest {
 
@@ -65,5 +72,46 @@ class WinningNumbersTest {
         // then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoNumbersAndMatchingNumber")
+    public void 로또와_일치하는_숫자_개수_테스트(Lotto lotto, int matchingNumber) {
+        // given
+        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        // then
+        Assertions.assertThat(winningNumbers.countMatchingNumber(lotto)).isEqualTo(matchingNumber);
+    }
+
+    static Stream<Arguments> lottoNumbersAndMatchingNumber() {
+        return Stream.of(
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 4, 7, 8)), 4),
+                Arguments.arguments(new Lotto(List.of(1, 2, 3, 7, 8, 9)), 3),
+                Arguments.arguments(new Lotto(List.of(1, 2, 7, 8, 9, 10)), 2),
+                Arguments.arguments(new Lotto(List.of(1, 7, 8, 9, 10, 11)), 1)
+        );
+    }
+
+    @Test
+    public void 보너스_번호_일치하는_경우() {
+        // given
+        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        // then
+        assertTrue(winningNumbers.isEqualToBonus(lotto));
+    }
+
+    @Test
+    public void 보너스_번호_일치하지_않는_경우() {
+        // given
+        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // then
+        assertFalse(winningNumbers.isEqualToBonus(lotto));
     }
 }

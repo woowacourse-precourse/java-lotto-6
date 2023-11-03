@@ -6,36 +6,49 @@ import java.util.List;
 
 public class LottoManager {
 
-    private final int price;
+    private int price;
 
-    public LottoManager(String input) {
-        int price = numberFormatValidate(input);
-        unitValidate(price);
+    public void start() {
+        boolean validateFlag = false;
 
-        this.price = price;
+        while (!validateFlag) {
+            try {
+                priceInput();
+                validateFlag = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int getPrice() {
         return price;
     }
 
-    public static LottoManager priceInput() {
+    public void setPrice(String input) {
+        int price = numberFormatValidate(input);
+        unitValidate(price);
+
+        this.price = price;
+    }
+
+    public void priceInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
 
-        return new LottoManager(input);
+        setPrice(input);
     }
 
     private int numberFormatValidate(String input) {
-        int price;
+        int number;
 
         try {
-            price = Integer.parseInt(input);
+            number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[error] 숫자를 입력해주십시오.");
         }
 
-        return price;
+        return number;
     }
 
     private void unitValidate (int price) {

@@ -21,25 +21,7 @@ public class WinningNumbers {
     }
 
     public Rank findRank(Lotto lotto) {
-        int matchingNumber = countMatchingNumber(lotto);
-        boolean bonusMatch = isEqualToBonus(lotto);
-
-        if (Rank.isEqualsToFirstRankMatchingNumber(matchingNumber)) {
-            return Rank.FIRST;
-        }
-        if (Rank.isEqualsToSecondRankMatchingNumber(matchingNumber) && Rank.isSameBonus(bonusMatch)) {
-            return Rank.SECOND;
-        }
-        if (Rank.isEqualsToThirdRankMatchingNumber(matchingNumber) && !Rank.isSameBonus(bonusMatch)) {
-            return Rank.THIRD;
-        }
-        if (Rank.isEqualsToFourthRankMatchingNumber(matchingNumber)) {
-            return Rank.FOURTH;
-        }
-        if (Rank.isEqualsToFifthRankMatchingNumber(matchingNumber)) {
-            return Rank.FIFTH;
-        }
-        return Rank.NONE;
+        return Rank.find(countMatchingNumber(lotto), isEqualToBonus(lotto));
     }
 
     private int countMatchingNumber(Lotto lotto) {

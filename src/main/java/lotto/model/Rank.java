@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     NONE(0),
@@ -22,27 +24,22 @@ public enum Rank {
         this.bonusMatch = bonusMatch;
     }
 
-    public static boolean isEqualsToFirstRankMatchingNumber(int matchingNumber) {
-        return matchingNumber == FIRST.matchingNumber;
+    public static Rank find(int matchingNumber, boolean bonusMatch) {
+        if (isEqualsToSecondRankMatchingNumber(matchingNumber, bonusMatch)) {
+            return SECOND;
+        }
+        return Arrays.stream(Rank.values())
+                .filter(rank -> isSameMatchingNumber(rank.matchingNumber, matchingNumber))
+                .filter(rank -> rank != SECOND)
+                .findAny()
+                .orElse(NONE);
     }
 
-    public static boolean isEqualsToSecondRankMatchingNumber(int matchingNumber) {
-        return matchingNumber == SECOND.matchingNumber;
+    private static boolean isEqualsToSecondRankMatchingNumber(int matchingNumber, boolean bonusMatch) {
+        return matchingNumber == SECOND.matchingNumber && bonusMatch == SECOND.bonusMatch;
     }
 
-    public static boolean isEqualsToThirdRankMatchingNumber(int matchingNumber) {
-        return matchingNumber == THIRD.matchingNumber;
-    }
-
-    public static boolean isEqualsToFourthRankMatchingNumber(int matchingNumber) {
-        return matchingNumber == FOURTH.matchingNumber;
-    }
-
-    public static boolean isEqualsToFifthRankMatchingNumber(int matchingNumber) {
-        return matchingNumber == FIFTH.matchingNumber;
-    }
-
-    public static boolean isSameBonus(boolean bonusMatch) {
-        return bonusMatch == SECOND.bonusMatch;
+    private static boolean isSameMatchingNumber(int matchingNumberOfRank, int matchingNumber) {
+        return matchingNumberOfRank == matchingNumber;
     }
 }

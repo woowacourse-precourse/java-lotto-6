@@ -2,7 +2,7 @@ package lotto.view;
 
 public class OutputView {
 
-    private static final String purchaseNumberFormat = "%d개를 구매했습니다.";
+    private static final String purchaseNumberFormat = "%d개를 구매했습니다.\n";
     private static final String winningStatistics = "당첨 통계";
     private static final String line = "---";
     private static final String winningStatisticsFormat = "%d개 일치 ";

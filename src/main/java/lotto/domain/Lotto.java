@@ -18,8 +18,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Lotto generateLottoNumbers() {
+    public static Lotto generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Integer::compareTo);
         return new Lotto(numbers);
+    }
+
+    public String toString() {
+        return numbers.toString();
     }
 }

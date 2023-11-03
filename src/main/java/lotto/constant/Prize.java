@@ -17,6 +17,15 @@ public enum Prize {
         this.money = money;
     }
 
+    public Prize getByMatch(int match) {
+        for (Prize prize : values()) {
+            if (prize.match == match) {
+                return prize;
+            }
+        }
+        return null;
+    }
+
     public int getMatch() {
         return match;
     }

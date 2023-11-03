@@ -22,11 +22,10 @@ public class InvalidInput {
         }
     }
 
-    public void outOfRangeException(String[] inputNumbers) {
-        for (String number : inputNumbers) {
-            if (parseInt(number) < MIN_NUMBER || parseInt(number) > MAX_NUMBER) {
-                throw new IllegalArgumentException(ERROR + "로또 번호의 숫자 범위는 1~45 까지이다.");
-            }
+    public void outOfRangeException(int inputNumber) {
+        if (inputNumber < MIN_NUMBER || inputNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR + "로또 번호의 숫자 범위는 1~45 까지이다.");
+
         }
     }
 }

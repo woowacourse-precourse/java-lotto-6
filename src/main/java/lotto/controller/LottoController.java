@@ -33,4 +33,14 @@ public class LottoController {
             }
         }
     }
+
+    private List<Integer> generateWinningLotto() {
+        while (true) {
+            try {
+                return InputView.readWinnerLottoNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

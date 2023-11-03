@@ -1,16 +1,15 @@
 package lotto.handler;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.*;
 import lotto.manager.LottoManager;
-import lotto.domain.LottoResult;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
 import lotto.view.LottoGuideMessage;
 import lotto.view.LottoReader;
 import lotto.view.LottoViewResolver;
 import lotto.view.LottoWriter;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -48,21 +47,35 @@ public class LottoHandler {
         LottoDto.Result result = LottoDto.Result.from(lottoResult);
         writer.write(lottoViewResolver.parseLottoResult(result));
 
-        writer.write(lottoViewResolver.parseProfit(lottoResult.calculateProfit(money.getMoney())));
+        double profit = lottoResult.calculateProfit(money.getMoney());
+        writer.write(lottoViewResolver.parseProfit(profit));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
-        return reader.inputBonusNumbers(winningNumbers);
+        return reader.input(() -> {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시 입력해 주세요.");
+            }
+            return bonusNumber;
+        });
     }
 
     private List<Integer> getWinningNumbers() {
         writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
-        return reader.inputWinningNumbers();
+        return reader.input(() -> {
+            String inputWinningNumbers = Console.readLine();
+            String[] split = inputWinningNumbers.split(",");
+            if (split.length != Lotto.LOTTO_NUMBER_SIZE) {
+                throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개만 입력이 가능합니다. 다시 입력해 주세요.");
+            }
+            return Arrays.stream(split).map(Integer::parseInt).toList();
+        });
     }
 
     private Money getMoney() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return reader.inputMoney();
+        return reader.input(() -> new Money(Integer.parseInt(Console.readLine())));
     }
 }

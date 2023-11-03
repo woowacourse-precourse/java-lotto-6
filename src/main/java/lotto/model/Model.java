@@ -1,10 +1,11 @@
 package lotto.model;
 
 import lotto.Lotto;
+import lotto.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.utility.Utility;
+
 import lotto.model.Result;
 
 public class Model {

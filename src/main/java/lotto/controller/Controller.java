@@ -1,12 +1,13 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.model.Model;
 import lotto.model.Result;
-import lotto.view.InputView;
 import lotto.utility.Utility;
 import lotto.validation.Validation;
-import lotto.model.Model;
+import lotto.view.InputView;
 import lotto.view.OutputView;
+
 import java.util.List;
 
 public class Controller {

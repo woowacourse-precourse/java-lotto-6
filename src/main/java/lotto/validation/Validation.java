@@ -1,8 +1,8 @@
 package lotto.validation;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 public class Validation {
     public void validateUnit(int payment) {

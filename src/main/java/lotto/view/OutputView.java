@@ -1,8 +1,9 @@
 package lotto.view;
 
-import java.util.List;
 import lotto.Lotto;
+
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class OutputView {
     public void printAllLottoNumbers(List<Lotto> lottos) {
@@ -27,7 +28,7 @@ public class OutputView {
 
     public void printReturnRate(double returnRate) {
         returnRate *= 100;
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
         String formattedReturnRate = decimalFormat.format(returnRate);
         System.out.println("총 수익률은 " + formattedReturnRate + "%입니다.");
     }

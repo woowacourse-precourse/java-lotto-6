@@ -10,7 +10,7 @@ public class Number {
 
 
     public Number(String number) {
-
+        validateType(number);
         this.number = Integer.parseInt(number);
         validateNumberRange(this.number);
     }

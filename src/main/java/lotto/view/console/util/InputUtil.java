@@ -3,6 +3,7 @@ package lotto.view.console.util;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.AppException;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
 
@@ -42,5 +43,27 @@ public class InputUtil {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public static <T> T retryOnException(InputFunction<T> inputFunction, boolean lineBreak) {
+        while (true) {
+            try {
+                return inputFunction.handleInput();
+            } catch (AppException e) {
+                System.out.println(e.getMessage());
+                if (lineBreak) {
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public static <T> T retryOnException(InputFunction<T> inputFunction) {
+        return retryOnException(inputFunction, false);
+    }
+
+    @FunctionalInterface
+    public interface InputFunction<T> {
+        T handleInput() throws AppException;
     }
 }

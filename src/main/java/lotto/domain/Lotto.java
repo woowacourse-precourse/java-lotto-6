@@ -37,7 +37,7 @@ public class Lotto {
         }
     }
 
-    private static boolean isDuplicateNumber(final List<Integer> numbers) {
+    private boolean isDuplicateNumber(final List<Integer> numbers) {
         return numbers.size() != Set.copyOf(numbers).size();
     }
 
@@ -53,12 +53,12 @@ public class Lotto {
         }
     }
 
-    private static boolean isWrongRange(final List<Integer> numbers) {
+    private boolean isWrongRange(final List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(Lotto::isWrongRange);
+                .anyMatch(this::isWrongRange);
     }
 
-    private static boolean isWrongRange(final Integer number) {
+    private boolean isWrongRange(final Integer number) {
         return number < LottoConstant.MIN_NUMBER.getValue() ||
                 number > LottoConstant.MAX_NUMBER.getValue();
     }
@@ -82,7 +82,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(int bonusNumber) {
+    public boolean contains(final int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

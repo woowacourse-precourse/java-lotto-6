@@ -60,7 +60,7 @@ public class LottoFactory {
 
     }
 
-    private static Supplier<EnumMap<Rank, Long>> getEnumMapSupplier() {
+    private Supplier<EnumMap<Rank, Long>> getEnumMapSupplier() {
         return () -> {
             EnumMap<Rank, Long> enumMap = new EnumMap<>(Rank.class);
             EnumSet.allOf(Rank.class)

@@ -30,7 +30,7 @@ public class LottoController {
         final Result result = lottoFactory.calculateResult(answerLotto);
 
         outputView.printResult(ResultsDto.of(result));
-        outputView.printRateOfReturn(result.calculateRate());
+        outputView.printRateOfReturn(result.calculateRateToReturn());
 
         Console.close();
     }

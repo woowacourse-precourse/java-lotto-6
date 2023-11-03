@@ -5,7 +5,7 @@ import java.util.List;
 
 import static lotto.Error.Domain.*;
 
-public class Lotto {
+public final class Lotto {
     private static final int LOTTO_LENGTH = 6;
     private static final int MIN_LOTTO_NUMBER_SIZE = 1;
     private static final int MAX_LOTTO_NUMBER_SIZE = 45;

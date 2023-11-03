@@ -19,10 +19,15 @@ public class ValidateService {
         validatePrice(purchasePrice);
         validateCheckDivisibility(purchasePrice);
     }
-    public void validateInputWinningNumbersAll(List<Integer> winningNumbers){
+
+    public void validateInputWinningNumbersAll(List<Integer> winningNumbers) {
         validateInputLottoRange(winningNumbers);
         validateDuplicateWinningNumber(winningNumbers);
         validateWinningNumbersCount(winningNumbers);
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        validateBonusNumberRange(bonusNumber);
     }
 
     private void validatePrice(int purchasePrice) {
@@ -32,7 +37,7 @@ public class ValidateService {
     }
 
     private void validateCheckDivisibility(int purchasePrice) {
-        if(purchasePrice % LottoPrice.LOTTO_PRICE.getNumber() != 0){
+        if (purchasePrice % LottoPrice.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
         }
     }
@@ -44,14 +49,22 @@ public class ValidateService {
             }
         }
     }
-    private void validateDuplicateWinningNumber(List<Integer> numbers){
-        if(numbers.size() != numbers.stream().distinct().count()){
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < LottoNumber.START_NUMBER.getNumber() || bonusNumber > LottoNumber.END_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
+        }
+
+    }
+
+    private void validateDuplicateWinningNumber(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private void validateWinningNumbersCount(List<Integer> numbers){
-        if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()){
+    private void validateWinningNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
         }
     }

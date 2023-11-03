@@ -7,6 +7,10 @@ public class EarningRate {
         this.rate = calcRate(numOfTickets, earnedMoney);
     }
 
+    public double getRate() {
+        return rate;
+    }
+
     private double calcRate(double numOfTickets, double earnedMoney) {
         return earnedMoney / (numOfTickets * 1000) * 100;
     }

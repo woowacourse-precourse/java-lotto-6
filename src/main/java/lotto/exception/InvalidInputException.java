@@ -1,5 +1,5 @@
 package lotto.exception;
-public class InvalidInput {
+public class InvalidInputException {
 
     public void duplicateNumberException() {
         String message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();

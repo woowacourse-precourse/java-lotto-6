@@ -89,6 +89,10 @@ public class LottoService {
         }
     }
 
+    public LottoTicket getLottoTicket(int amount) {
+        return lottoTicket.buy(amount);
+    }
+
     private List<Integer> changeInputToString(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)  // 공백 제거

@@ -15,4 +15,12 @@ class PurchaseValidationExceptionTest {
                 PurchaseValidationException.checkIsNumeric(nonNumericInput));
     }
 
+    @Test
+    @DisplayName("숫자 입력에 대해 예외가 발생하지 않음")
+    void whenInputIsNumeric_thenDoesNotThrowException() {
+        String numericInput = "12345";
+        assertDoesNotThrow(() ->
+                PurchaseValidationException.checkIsNumeric(numericInput));
+    }
+
 }

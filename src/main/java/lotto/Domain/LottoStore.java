@@ -2,6 +2,7 @@ package lotto.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Validator.InputValidator;
@@ -16,6 +17,7 @@ public class LottoStore {
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             lotto.add(new Lotto(numbers));
         }
         return lotto;

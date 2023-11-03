@@ -21,7 +21,7 @@ public class Lotto {
         String result = numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
-        return "[ " + result + " ]";
+        return "[" + result + "]";
     }
     // TODO: 추가 기능 구현
 }

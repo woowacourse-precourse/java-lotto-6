@@ -3,7 +3,7 @@ package lotto;
 import java.util.*;
 
 public class LottoResultChecker {
-    Map<String, Integer> lottoResult = new LinkedHashMap<>();
+    Map<LottoMessage, Integer> lottoResult = new LinkedHashMap<>();
 
     private final List<Lotto> lottos;
     private final List<String> sixLottoNumbers;
@@ -14,11 +14,11 @@ public class LottoResultChecker {
         this.sixLottoNumbers = sixLottoNumbers;
         this.bonusNumber = bonusNumber;
 
-        lottoResult.put(LottoMessage.THREE.message, 0);
-        lottoResult.put(LottoMessage.FOUR.message, 0);
-        lottoResult.put(LottoMessage.FIVE.message, 0);
-        lottoResult.put(LottoMessage.BONUS.message, 0);
-        lottoResult.put(LottoMessage.SIX.message, 0);
+        lottoResult.put(LottoMessage.THREE, 0);
+        lottoResult.put(LottoMessage.FOUR, 0);
+        lottoResult.put(LottoMessage.FIVE, 0);
+        lottoResult.put(LottoMessage.BONUS, 0);
+        lottoResult.put(LottoMessage.SIX, 0);
     }
 
     public void calculator() {
@@ -43,19 +43,19 @@ public class LottoResultChecker {
 
     private void rankCalculator(boolean isBonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.size() == 3) {
-            lottoResult.put(LottoMessage.THREE.message, lottoResult.get(LottoMessage.THREE.message) + 1);
+            lottoResult.put(LottoMessage.THREE, lottoResult.get(LottoMessage.THREE) + 1);
         }
         if (winningNumbers.size() == 4) {
-            lottoResult.put(LottoMessage.FOUR.message, lottoResult.get(LottoMessage.FOUR.message) + 1);
+            lottoResult.put(LottoMessage.FOUR, lottoResult.get(LottoMessage.FOUR) + 1);
         }
         if (winningNumbers.size() == 5 && !isBonusNumber) {
-            lottoResult.put(LottoMessage.FIVE.message, lottoResult.get(LottoMessage.FIVE.message) + 1);
+            lottoResult.put(LottoMessage.FIVE, lottoResult.get(LottoMessage.FIVE) + 1);
         }
         if (winningNumbers.size() == 5 && isBonusNumber) {
-            lottoResult.put(LottoMessage.BONUS.message, lottoResult.get(LottoMessage.BONUS.message) + 1);
+            lottoResult.put(LottoMessage.BONUS, lottoResult.get(LottoMessage.BONUS) + 1);
         }
         if (winningNumbers.size() == 6) {
-            lottoResult.put(LottoMessage.SIX.message, lottoResult.get(LottoMessage.SIX.message) + 1);
+            lottoResult.put(LottoMessage.SIX, lottoResult.get(LottoMessage.SIX) + 1);
         }
     }
 }

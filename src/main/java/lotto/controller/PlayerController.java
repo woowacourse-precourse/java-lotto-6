@@ -21,7 +21,7 @@ public class PlayerController {
 
     private void validateIsNumeric(String input) {
         for (char ch : input.toCharArray()) {
-            if (Character.isDigit(ch)) {
+            if (!Character.isDigit(ch)) {
                 throw new IllegalArgumentException(NON_NUMERIC_ERROR.getMessage());
             }
         }

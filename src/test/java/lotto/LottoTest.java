@@ -61,4 +61,11 @@ class LottoTest {
         List<Integer> duplicateNumbers = Arrays.asList(1, 2, 3, 3, 4, 5);
         assertThrows(LottoException.class, () -> new Lotto(duplicateNumbers));
     }
+
+    @Test
+    @DisplayName("번호 목록에 범위를 벗어난 숫자가 있으면 예외 발생")
+    void givenNumbersOutsideRange_whenLottoCreated_thenThrowsException() {
+        List<Integer> numbersOutsideRange = Arrays.asList(0, 2, 3, 4, 5, 6);
+        assertThrows(LottoException.class, () -> new Lotto(numbersOutsideRange));
+    }
 }

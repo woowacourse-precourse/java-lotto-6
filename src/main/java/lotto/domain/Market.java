@@ -12,7 +12,7 @@ public class Market {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public Lottos buyLotto(int userMoney) {
+    public Lottos buyLottos(int userMoney) {
         validate(userMoney);
         int lottoCount = userMoney / LOTTO_PRICE;
 

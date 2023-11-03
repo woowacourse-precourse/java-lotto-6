@@ -17,14 +17,10 @@ public class Calculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public int countMatchingNumber(Lotto winnerLotto, Lotto userLotto) {
-        return winnerLotto.countMatchingNumber(userLotto);
-    }
-
     public Map<Rank, Integer> getCalculateResult() {
         Map<Rank, Integer> calculateResult = new HashMap<>();
         for (Lotto userLotto : userLottos) {
-            Rank rank = Rank.decideRank(countMatchingNumber(winnerLotto, userLotto), userLotto.contains(bonusNumber));
+            Rank rank = Rank.decideRank(winnerLotto.countMatchingNumber(userLotto), userLotto.contains(bonusNumber));
             calculateResult.put(rank, calculateResult.getOrDefault(rank, 0) + 1);
         }
         return calculateResult;

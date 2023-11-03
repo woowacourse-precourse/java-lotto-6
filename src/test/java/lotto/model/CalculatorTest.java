@@ -20,15 +20,7 @@ public class CalculatorTest {
     int bonusNumber = 7;
 
     Calculator calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
-
-    @DisplayName("같은 숫자가 몇 개 있는지 확인하는 테스트")
-    @Test
-    void countMatchingNumberTest() {
-        int expected = 2;
-        int actual = calculator.countMatchingNumber(winnerLotto, userLottos.get(0));
-        assertEquals(expected, actual);
-    }
-
+    
     @DisplayName("추첨 결과는 등수가 key, 개수가 value인 Map에 들어간다")
     @Test
     void calculateResultTest() {

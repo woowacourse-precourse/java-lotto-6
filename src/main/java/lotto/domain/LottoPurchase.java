@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enums.ErrorMessages;
+
 public class LottoPurchase {
     private final int amount;
 
@@ -22,16 +24,16 @@ public class LottoPurchase {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException nfe) {
-            throw new IllegalArgumentException("[ERROR] 숫자형이 아닌 문자를 입력하였습니다.");
+            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
         }
     }
 
     private void validateAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양수인 값만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
         }
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위의 수를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
         }
     }
 }

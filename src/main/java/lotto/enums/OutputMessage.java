@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum OutputMessages {
+public enum OutputMessage {
     OUTPUT_COUNT_OF_LOTTO("개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계\n---"),
     MATCHES_3_FORMAT("3개 일치 (5,000원) - %d개"),
@@ -11,7 +11,7 @@ public enum OutputMessages {
 
     private final String message;
 
-    OutputMessages(String message) {
+    OutputMessage(String message) {
         this.message = message;
     }
 

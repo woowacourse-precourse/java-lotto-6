@@ -64,5 +64,9 @@ public class Paper {
         return winMoney;
     }
 
+    public void printNumbers(){
+        System.out.println(numbers);
+    }
+
 
 }

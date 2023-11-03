@@ -12,6 +12,8 @@ public class LottoMachine {
     }
 
     private List<Integer> createLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers); // 오름차순 정렬
+        return numbers;
     }
 }

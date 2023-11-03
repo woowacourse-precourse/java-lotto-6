@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.Constant;
+import lotto.util.LottoMachine;
 
 import java.util.ArrayList;
 import java.util.List;

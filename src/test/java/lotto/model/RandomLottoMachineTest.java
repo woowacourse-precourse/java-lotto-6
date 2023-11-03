@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.Constant;
+import lotto.util.RandomLottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

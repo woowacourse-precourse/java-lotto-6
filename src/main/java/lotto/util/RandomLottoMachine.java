@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Constant;
+import lotto.util.LottoMachine;
 
 import java.util.Collections;
 import java.util.List;

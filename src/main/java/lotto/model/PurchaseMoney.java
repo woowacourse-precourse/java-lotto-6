@@ -11,6 +11,11 @@ public class PurchaseMoney {
     }
 
     private void validate(String money){
+
+        if(isEmpty(money)){
+            throw new IllegalArgumentException();
+        }
+
         if(!isDigit(money)){
             throw new IllegalArgumentException();
         }
@@ -18,6 +23,10 @@ public class PurchaseMoney {
         if(!isDividedByOneThousand(money)){
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isEmpty(String money){
+        return money.isBlank() || money == null;
     }
 
     private boolean isDigit(String money){

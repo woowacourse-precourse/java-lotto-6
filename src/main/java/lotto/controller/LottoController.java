@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.WinningChecker;
 import lotto.io.Constants;
 import lotto.io.Input;
 import lotto.io.Output;
@@ -32,6 +33,7 @@ public class LottoController {
         output.printInputBonusNumberMessage();
         int bonusNumber = input.getBonusNumber();
 
-
+        WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
+        List<Integer> winningLottoCounts = winningChecker.countWinningLottos();
     }
 }

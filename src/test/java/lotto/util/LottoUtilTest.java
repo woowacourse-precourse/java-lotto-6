@@ -25,4 +25,28 @@ public class LottoUtilTest {
         List<Integer> expected = LottoUtil.convert(inputNumbers);
         assertEquals(expected, actual);
     }
+
+    @DisplayName("상금을 세자리마다 콤마 찍어서 변환하는 기능 테스트")
+    @Test
+    void insertCommaToPrize() {
+        long number = 100000000;
+        String numberWithComma = LottoUtil.convertPrizeToDisplayFormat(number);
+        assertEquals("100,000,000", numberWithComma);
+    }
+
+    @DisplayName("수익률을 세자리마다 콤마 찍어서 변환하는 기능 테스트")
+    @Test
+    void insertCommaToRate() {
+        float rate = 1050.5f;
+        String rateWithComma = LottoUtil.convertReturnRateToDisplayFormat(rate);
+        assertEquals("1,050.5", rateWithComma);
+    }
+
+    @DisplayName("수익률을 세자리마다 콤마 찍어서 변환하는 기능 테스트")
+    @Test
+    void insertCommaToRate2() {
+        float rate = 62.5f;
+        String rateWithComma = LottoUtil.convertReturnRateToDisplayFormat(rate);
+        assertEquals("62.5", rateWithComma);
+    }
 }

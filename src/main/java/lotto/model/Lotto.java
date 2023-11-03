@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
+    public static Lotto of(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
     // TODO: 추가 기능 구현
 }

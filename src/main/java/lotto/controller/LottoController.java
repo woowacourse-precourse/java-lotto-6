@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.application.LottoService;
+import lotto.application.LottoStatistics;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 import lotto.utils.ParserUtil;
@@ -32,22 +33,27 @@ public class LottoController {
         validateWinningNumbers(winningNumbersInput);
         // 사용자로부터 보너스 번호를 입력받고
         int bonusNumberInput = ParserUtil.parseLottoNumber(inputView.inputBonusNumber());
-        validateBonusNumber(winningNumbersInput,bonusNumberInput);
+        validateBonusNumber(winningNumbersInput, bonusNumberInput);
         // 당첨 번호 처리하고
         lottoService.processWinningNumbers(winningNumbersInput, bonusNumberInput);
-        // 결과 출력
+        outputView.printPrizeResults(lottoService.getPrizeCount());
+        // 통계 출력
+        LottoStatistics statistics = new LottoStatistics(lottoService.getLottoResult(), purchaseAmountInput);
+        outputView.printEarningsRate(statistics.calculateEarningsRate());
         Console.close();
     }
-    //젓번째 입력 검증 메소드
+
     private void validatePurchaseAmountInput(int input) {
-        ValidationUtil.validateNonNegative(input); // 음수인지
-        ValidationUtil.validateThousandUnit(input); // 숫자인지 검사
+        ValidationUtil.validateNonNegative(input);
+        ValidationUtil.validateThousandUnit(input);
     }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         ValidationUtil.validateCorrectNumbersCount(winningNumbers);
         ValidationUtil.validateNoDuplicates(winningNumbers);
         ValidationUtil.validateNumberRange(winningNumbers);
     }
+
     private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         ValidationUtil.validateBonusNumber(bonusNumber);
         ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);

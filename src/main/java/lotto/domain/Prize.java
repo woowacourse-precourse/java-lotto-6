@@ -5,6 +5,7 @@ public enum Prize {
     THREE_MATCH(3, 5_000, false),
     FOUR_MATCH(4, 50_000, false),
     FIVE_MATCH(5, 1_500_000, false),
+
     FIVE_WITH_BONUS(5, 30_000_000, true),
     SIX_MATCH(6, 2_000_000_000, false);
 
@@ -31,11 +32,18 @@ public enum Prize {
     }
 
     public static Prize valueOf(int matchCount, boolean hasBonus) {
+        if (matchCount == 5 && hasBonus) {
+            return FIVE_WITH_BONUS;
+        }
         for (Prize prize : Prize.values()) {
-            if (prize.getMatchCount() == matchCount && (hasBonus == prize.isBonusMatch())) {
+            if (prize.getMatchCount() == matchCount && !prize.isBonusMatch()) {
                 return prize;
             }
         }
         return NONE;
+    }
+
+    public long calculateTotalPrize(int count) {
+        return (long) this.prizeMoney * count;
     }
 }

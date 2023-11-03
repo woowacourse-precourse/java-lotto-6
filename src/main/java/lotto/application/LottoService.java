@@ -5,10 +5,12 @@ import static lotto.contents.ContentNumbers.ZERO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
+import lotto.domain.Prize;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoDto;
 import lotto.dto.WinningNumbersDto;
@@ -37,9 +39,11 @@ public class LottoService {
     }
 
     public void processWinningNumbers(List<Integer> winningNumbersInput, int bonusNumber) {
-        // 당첨 번호 객체 생성
-        this.winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
         // 당첨 결과 계산
+        this.winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
+        this.lottoResult = new LottoResult();
+        lottoResult.calculateResults(getLottoDtos(), winningNumbers.toDto());
+        //계산완료
     }
 
     public List<LottoDto> getLottoDtos() {
@@ -50,5 +54,13 @@ public class LottoService {
 
     public WinningNumbersDto getWinningNumbersDto() {
         return winningNumbers.toDto();
+    }
+
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
+
+    public Map<Prize, Integer> getPrizeCount() {
+        return lottoResult.getPrizeCount();
     }
 }

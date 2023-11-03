@@ -104,5 +104,7 @@ public class LottoResultTest {
         // then
         assertEquals(1, lottoResult.getPrizeCount().get(Prize.NONE));
     }
+
+
 }
 

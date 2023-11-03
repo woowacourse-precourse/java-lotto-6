@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.contents.ContentNumbers.ZERO;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +13,12 @@ public class LottoResult {
 
     public LottoResult() {
         prizeCount = new EnumMap<>(Prize.class);
+        initializePrizeCount();
+    }
+
+    private void initializePrizeCount() {
         for (Prize prize : Prize.values()) {
-            prizeCount.put(prize, 0);
+            prizeCount.put(prize, ZERO.getNumber());
         }
     }
 
@@ -29,8 +35,7 @@ public class LottoResult {
         return Prize.valueOf(matchCount, hasBonus);
     }
 
-    //
-    public void recordPrize(Prize prize) {
+    private void recordPrize(Prize prize) {
         prizeCount.merge(prize, 1, Integer::sum);
     }
 
@@ -40,9 +45,27 @@ public class LottoResult {
                 .count();
     }
 
+    public String formatPrizeResults() {
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (Prize prize : Prize.values()) {
+            if (prize != Prize.NONE) {
+                int count = prizeCount.getOrDefault(prize, 0);
+                resultBuilder.append(String.format("%d개 일치 (%s원) - %d개\n",
+                        prize.getMatchCount(),
+                        formatPrizeMoney(prize.getPrizeMoney()),
+                        count));
+            }
+        }
+
+        return resultBuilder.toString();
+    }
+
+    private String formatPrizeMoney(int prizeMoney) {
+        return String.format("%,d", prizeMoney); // 숫자를 3자리마다 쉼표를 찍어서 포맷팅
+    }
+
     public Map<Prize, Integer> getPrizeCount() {
         return prizeCount;
     }
-
-    // 추가적으로 당첨 통계를 출력하는 메소드 등을 구현할 수 있습니다.
 }

@@ -1,10 +1,20 @@
 package lotto.ui;
 
 
+import static lotto.contents.ContentNumbers.ZERO;
+import static lotto.contents.ContentStrings.OUTPUT_DASH;
 import static lotto.contents.ContentStrings.OUTPUT_PURCHASED_LOTTO;
+import static lotto.contents.ContentStrings.OUTPUT_RATE_PREFIX;
+import static lotto.contents.ContentStrings.OUTPUT_RATE_SUFFIX;
 import static lotto.contents.ContentStrings.OUTPUT_SPACE;
+import static lotto.contents.ContentStrings.OUTPUT_WINNING_STATISTICS;
+import static lotto.contents.ContentNumbers.PERCENTAGE;
+import static lotto.contents.ContentStrings.PERCENTAGE_FORMAT;
 
 import java.util.List;
+import java.util.Map;
+import lotto.contents.ContentResults;
+import lotto.domain.Prize;
 import lotto.dto.LottoDto;
 
 public class OutputView {
@@ -20,5 +30,23 @@ public class OutputView {
                 .sorted()
                 .toList();
         System.out.println(sortedNumbers);
+    }
+
+    public static void printPrizeResults(Map<Prize, Integer> prizeCount) {
+        System.out.println(OUTPUT_WINNING_STATISTICS.getValue());
+        System.out.println(OUTPUT_DASH.getValue());
+
+        for (Prize prize : Prize.values()) {
+            if (prize != Prize.NONE) {
+                int count = prizeCount.getOrDefault(prize, ZERO.getNumber());
+                System.out.println(ContentResults.valueOf(prize.name()).getResultMessage(count));
+            }
+        }
+    }
+
+    public static void printEarningsRate(double earningsRate) {
+        System.out.println(OUTPUT_RATE_PREFIX.getValue() +
+                String.format(PERCENTAGE_FORMAT.getValue(), earningsRate * PERCENTAGE.getNumber()) +
+                OUTPUT_RATE_SUFFIX.getValue());
     }
 }

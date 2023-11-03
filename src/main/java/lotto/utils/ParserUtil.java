@@ -4,7 +4,6 @@ import static lotto.contents.ContentStrings.SPLIT_COMMA;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ParserUtil {
 

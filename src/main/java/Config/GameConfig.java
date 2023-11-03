@@ -12,6 +12,7 @@ public class GameConfig {
     public final static String PRINTING_PREFIX = "[";
     public final static String PRINTING_SUFFIX = "]";
     public final static int ROUND_DIGIT = 1;
+    public final static int MIN_MATCH = 3;
     public enum WINNING{
         FIRST(2_000_000_000, 1, "6", "6개 일치"),
         SECOND(30_000_000, 2, "5+1", "5개 일치, 보너스 볼 일치"),

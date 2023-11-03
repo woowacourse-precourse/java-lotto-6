@@ -3,7 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
@@ -16,8 +15,14 @@ public class LottoMachine {
 
     public static Lotto buyLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_LENGTH);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+        List<Integer> sortedNumber = sort(numbers);
+        return new Lotto(sortedNumber);
+    }
+
+    private static List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
 }

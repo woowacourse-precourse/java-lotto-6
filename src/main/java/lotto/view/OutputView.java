@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoResult;
 import lotto.util.StringFormatter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class OutputView {
 
     private static final String BUY_LOTTO_MESSAGE = "%s개를 구매했습니다.%n";
+    private static final String RESULT_MESSAGE = "당첨 통계\n---";
 
     private final StringFormatter formatter;
 
@@ -23,5 +25,11 @@ public class OutputView {
             String lottoLine = formatter.makeLottoLine(lotto);
             System.out.println(lottoLine);
         }
+    }
+
+    public void printLottoResult(LottoResult result) {
+        String resultLine = formatter.makeResultLines(result);
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(resultLine);
     }
 }

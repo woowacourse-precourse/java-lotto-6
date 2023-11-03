@@ -23,6 +23,7 @@ public class LottoController {
         outputView.printLottoBundle(lottoBundle);
         AnswerLotto answerLotto = getAnswerLotto();
         LottoResult result = lottoService.calculateResult(lottoBundle, answerLotto);
+        outputView.printLottoResult(result);
     }
 
     private AnswerLotto getAnswerLotto() {

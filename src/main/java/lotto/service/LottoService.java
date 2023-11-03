@@ -46,6 +46,6 @@ public class LottoService {
             double count = result.get(ranking);
             sumPrize += ranking.multiplePrize(count);
         }
-        return sumPrize / (amount * MONEY_UNIT);
+        return sumPrize / (amount * MONEY_UNIT) * 100;
     }
 }

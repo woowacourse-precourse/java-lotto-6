@@ -12,8 +12,11 @@ public class LottoResult {
         this.yield = yield;
     }
 
-    public Map<Ranking, Integer> getRankinInfo() {
-        return rankinInfo;
+    public int getRankingCount(Ranking ranking) {
+        return rankinInfo.getOrDefault(ranking, 0);
     }
 
+    public double getYield() {
+        return yield;
+    }
 }

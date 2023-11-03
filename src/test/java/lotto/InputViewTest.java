@@ -18,7 +18,7 @@ public class InputViewTest{
 
     @Test
     void 범위_외의_당첨_번호_입력_테스트() {
-        command("46,1,2,3,4,5");
+        command("46,1,2,3,4,5", "0,1,2,3,4,5");
         assertThatThrownBy(() -> view.inputWinningNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -34,6 +34,22 @@ public class InputViewTest{
     void 숫자가_아닌_당첨_번호_입력_테스트() {
         command("1,2,3,4,5,e");
         assertThatThrownBy(() -> view.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 숫자가_아닌_보너스_번호_입력_테스트() {
+        command("test");
+        assertThatThrownBy(() -> view.inputBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 범위_외의_보너스_번호_입력_테스트() {
+        command("46", "0");
+        assertThatThrownBy(() -> view.inputBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> view.inputBonusNumber())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

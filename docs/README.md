@@ -83,7 +83,7 @@
 ## 프로그래밍 요구 사항  
 - [ ] JDK17
 - [ ] 시작점: Application의 main()
-- [ ] build.gradle 수정불가
+- [ ] build.gradle 수정 불가
 - [ ] JAVA 코드 컨벤션 가이드 준수
 - [ ] System.exit(0) 호출 금지
 - [ ] ApplicationTest 통과

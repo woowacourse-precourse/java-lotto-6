@@ -4,8 +4,10 @@ import lotto.Validator.Validator;
 import lotto.View.InputView;
 
 public class LottoGame {
+    private static final int LOTTO_PRICE = 1000;
+
     public void start() {
-        System.out.println(parsePurchaseAmount());
+        System.out.println(calculateTicketQuantity(parsePurchaseAmount()));
     }
 
     public int parsePurchaseAmount() {
@@ -18,5 +20,10 @@ public class LottoGame {
                 e.printStackTrace();
             }
         }
+    }
+
+    private int calculateTicketQuantity(int purchaseAmount) {
+        Validator.validateDivisibleBy1000(purchaseAmount);
+        return purchaseAmount / LOTTO_PRICE;
     }
 }

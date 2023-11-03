@@ -1,7 +1,6 @@
 package lotto.utility;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Prize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +36,7 @@ public class Utility {
         return numbers;
     }
 
-    public long getProfit(int[][] totalResult) {
-        long sum = 0;
-        Prize prize = new Prize();
-        int[][] prizes = prize.getPrize();
 
-        for(int i = 3; i <= 6 ; i++) {
-            sum += (long)totalResult[i][0] * (long)prizes[i][0];
-        }
-        sum += (long)totalResult[5][1] * (long)prizes[5][1];
-
-        return sum;
-    }
 
 //    public double getRate(int payment, int result) {
 //

@@ -59,4 +59,9 @@ public class Model {
             totalResult[match][0]++;
         }
    }
+
+    public long getProfit(int[][] totalResult) {
+        long sum = 5000L * totalResult[3][0] + 50000L * totalResult[4][0] + 1500000L * totalResult[5][0] + 30000000L * totalResult[5][1] + 2000000000L * totalResult[6][0];
+        return sum;
+    }
 }

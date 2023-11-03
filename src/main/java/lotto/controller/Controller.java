@@ -48,7 +48,7 @@ public class Controller {
 
         outputView.printTotalResult(totalResult);
 
-        long totalPrize = utility.getProfit(totalResult);
+        long totalPrize = model.getProfit(totalResult);
         System.out.println(totalPrize);
     }
 }

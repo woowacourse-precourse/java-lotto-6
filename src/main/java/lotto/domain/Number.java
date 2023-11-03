@@ -15,16 +15,6 @@ public class Number {
         validateNumberRange(this.number);
     }
 
-    private void validateNumberRange(int number) {
-        if (isOutOfNumberRange(number)) {
-            throw new IllegalArgumentException(BE_OUT_OF_RANGE.getMessage());
-        }
-    }
-
-    private boolean isOutOfNumberRange(int number) {
-        return number < MIN_NUMBER || number > MAX_NUMBER;
-    }
-
     private void validateType(String number) {
         if (hasLetter(number)) {
             throw new IllegalArgumentException(HAS_LETTER.getMessage());
@@ -34,6 +24,16 @@ public class Number {
     private boolean hasLetter(String number) {
         return number.chars()
                 .anyMatch(Character::isLetter);
+    }
+
+    private void validateNumberRange(int number) {
+        if (isOutOfNumberRange(number)) {
+            throw new IllegalArgumentException(BE_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private boolean isOutOfNumberRange(int number) {
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
     public int getNumber() {

@@ -1,9 +1,14 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    public Lotto() {
+        this.numbers = createRandomNumbers();
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,9 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> createRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 }

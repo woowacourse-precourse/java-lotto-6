@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class InsertLottoNumber {
     private final List<Integer> lotto;
-    private int lottoNumber;
     private static final char LOTTO_NUMBER_MIN = '1';
     private static final char LOTTO_NUMBER_MAX = '9';
 

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.type.Prize;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,8 @@ public class OutputView {
     }
 
     public static void printReturnRate(double returnRate) {
-        System.out.println("총 수익률은 " + returnRate * 100 + "%입니다.");
+        DecimalFormat decFormat = new DecimalFormat("###,###");
+        String returnPercent = String.format("%.1f", returnRate * 100);
+        System.out.println("총 수익률은 " + decFormat.format(returnPercent) + "%입니다.");
     }
 }

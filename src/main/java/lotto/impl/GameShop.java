@@ -17,8 +17,12 @@ public class GameShop {
         return lottoGame.purchase(amount);
     }
 
-    public List<Prize> getResult(List<Lotto> consumerLottos) {
+    public List<Prize> getResults(List<Lotto> consumerLottos) {
         return lottoGame.getPrizeResults(consumerLottos);
+    }
+
+    public Prize getResult(Lotto consumerLotto) {
+        return lottoGame.getPrizeResult(consumerLotto);
     }
 
     public void startLottoGame(WinningLotto winningLotto) {

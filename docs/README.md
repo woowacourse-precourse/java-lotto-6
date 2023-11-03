@@ -33,15 +33,20 @@
  * _RandomNumberProvider 를 구현하는 LottoNumberProvider_
  * List<Integer> getRandomNumber
 
+## 로또 매니저
+* _로또 게임을 생성자로 받는 LottoShop 클래스_
+
+## 로또 게임
+* _전반적인 로또 진행에 관한 클래스_
 
 ## 로또 구매자
  - 로또 구매자는 자신의 번호를 가지고 있는다 List<Lotto>
+    * 오름차순으로 로또 번호를 설정
+ - 로또 구매자는 로또 매니저를 통해 결과값을 알 수 있다.
 
 ## 로또 진행
    - _게임을 진행하는 interface Game_
-   * _Game 을 구현하는 1~45 까지의 로또 게임을 진행하는 oneTo45LottoGame_
    * start()
-   * init() 게임에 필요한 로또 번호 생성
 
 
 ## 출력

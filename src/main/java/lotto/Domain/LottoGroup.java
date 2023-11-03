@@ -1,18 +1,18 @@
 package lotto.Domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class LottoGroup {
 
-    private final Set<Lotto> lottoGroup;
+    private final List<Lotto> lottoGroup;
     private static final Integer LOTTO_PRICE = 1000;
 
     private LottoGroup(Money money) {
-        this.lottoGroup = new HashSet<>();
+        this.lottoGroup = new LinkedList<>();
         Integer lottoCount = findLottoCount(money);
         for (int i = 0; i < lottoCount; i++) {
             this.lottoGroup.add(Lotto.from(generateLottoNumbers()));
@@ -29,5 +29,13 @@ public class LottoGroup {
 
     private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private Integer findLottoNumbersSize() {
+        return lottoGroup.size();
+    }
+
+    private Lotto findLottoByIndex(Integer index) {
+        return lottoGroup.get(index);
     }
 }

@@ -38,6 +38,6 @@ public class CalculatorTest {
 
         calculator.calculatePrizeDescribe(lottoNumber, prizeNumber, bonusNumber);
 
-        assertThat(calculator.calculateEarningRate(money)).isEqualTo("500%");
+        assertThat(calculator.calculateEarningRate(money)).isEqualTo("500.0%");
     }
 }

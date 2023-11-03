@@ -23,4 +23,5 @@ public class Constants {
     public static final int MATCHED_FIVE = 5;
     public static final int MATCHED_FOUR = 4;
     public static final int MATCHED_THREE = 3;
+    public static final int PERCENTAGE = 100;
 }

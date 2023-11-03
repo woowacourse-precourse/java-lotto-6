@@ -12,4 +12,8 @@ public enum Rank {
     Rank(Integer winningPrize) {
         this.winningPrize = winningPrize;
     }
+
+    public int getPrize() {
+        return winningPrize;
+    }
 }

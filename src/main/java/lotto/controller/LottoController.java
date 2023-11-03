@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.ProfitCalculator;
+import lotto.domain.Rank;
 import lotto.domain.WinningChecker;
 import lotto.io.Constants;
 import lotto.io.Input;
@@ -35,5 +37,8 @@ public class LottoController {
 
         WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
         List<Integer> winningLottoCounts = winningChecker.countWinningLottos();
+        ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
+        double profit = profitCalculator.getLottoProfit(money);
+
     }
 }

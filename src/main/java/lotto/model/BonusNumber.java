@@ -4,6 +4,7 @@ public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(String bonusNumberStr) {
+        validateNull(bonusNumberStr);
         validateEmpty(bonusNumberStr);
         int bonusNumber = validateNotNumber(bonusNumberStr);
         validateInvalidLottoNumberRange(bonusNumber);

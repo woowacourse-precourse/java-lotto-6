@@ -5,9 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Collections;
 
+
+
 public class Paper {
-    private List<Integer> numbers;
+
+    public List<Integer> numbers;
     private int correspondNumber;
+    private int winMoney;
     public void pickLottoNumber(){
         this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
@@ -31,8 +35,34 @@ public class Paper {
         correspondNumber=cnt;
     }
 
+    public void checkWinMoney(){
+        if(correspondNumber==3) {
+            winMoney=5000;
+            return;
+        }
+        if(correspondNumber==4) {
+            winMoney=50000;
+            return;
+        }
+        if(correspondNumber==5) {
+            winMoney=1500000;
+            return;
+        }
+        if(correspondNumber==6) {
+            winMoney=20000000;
+            return;
+        }
+        if(correspondNumber==7) {
+            winMoney=30000000;
+        }
+    }
+
     public int getCorrespondNum(){
         return correspondNumber;
     }
+    public int getWinMoney(){
+        return winMoney;
+    }
+
 
 }

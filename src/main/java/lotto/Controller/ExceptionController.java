@@ -13,8 +13,8 @@ public class ExceptionController {
         }
     }
 
-    // 로또번호는 6개 이어야 하고 각 로또번호는 1 ~ 45범위의 번호이어야 한다.(IllegalStateException)
-    // 로또번호는 숫자이어야 한다.(IllegalArgumentException)
+    // 로또번호는 6개 이어야 한다.(IllegalStateException)
+    // 로또번호는 숫자이어야 하고 각 로또번호는 1 ~ 45범위의 번호이어야 한다.(IllegalArgumentException)
     public void numbersException(String[] inputNumbers){
         if(inputNumbers.length != 6) {
             throw new IllegalStateException();
@@ -22,6 +22,8 @@ public class ExceptionController {
         else {
             for (String s : inputNumbers) {
                 if (!s.matches("\\d+")) {
+                    throw new IllegalArgumentException();
+                }else if(!(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= 45)){
                     throw new IllegalArgumentException();
                 }
             }

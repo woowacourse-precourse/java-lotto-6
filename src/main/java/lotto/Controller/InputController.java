@@ -38,7 +38,7 @@ public class InputController {
             System.out.println("[ERROR] 당첨번호는 6개이어야 합니다.");
             inputNumbers();
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 당첨번호는 숫자이어야 합니다.");
+            System.out.println("[ERROR] 당첨번호는 1과 45사이의 숫자 이어야 합니다.");
             inputNumbers();
         }
         for(String s : input)

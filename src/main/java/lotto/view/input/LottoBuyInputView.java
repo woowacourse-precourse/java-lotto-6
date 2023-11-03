@@ -67,4 +67,21 @@ public class LottoBuyInputView extends Input{
         inputValidator.validateSortedAscending(numbers);
     }
 
+    public int requestBonusLottoNumber() {
+        printRequestBonusLottoNumber();
+
+        int bonusNumber = inputValidator.parseInt(readLine());
+        validateBonusLottoNumber(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private void printRequestBonusLottoNumber() {
+        System.out.println(BONUS_NUMBER_PROMPT_MESSAGE);
+    }
+
+    private void validateBonusLottoNumber(int bonusNumber) {
+        inputValidator.validateLottoNumberRange(bonusNumber);
+    }
+
 }

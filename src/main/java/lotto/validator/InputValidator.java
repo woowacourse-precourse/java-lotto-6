@@ -11,9 +11,13 @@ public class InputValidator {
     private static final int LOTTO_LIMIT_VALUE = 6;
 
     public void validateLottoAmount(int amount) {
-        if (amount <= 0) {
+        if (isPositiveNumber(amount)) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
         }
+    }
+
+    private boolean isPositiveNumber(int number) {
+        return number <= 0;
     }
 
     public void validateMultipleOfDenomination(int amount, int denomination) {
@@ -47,6 +51,12 @@ public class InputValidator {
             if (isLottoNumberRange(number)) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
             }
+        }
+    }
+
+    public void validateLottoNumberRange(int number) {
+        if (isPositiveNumber(number)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 

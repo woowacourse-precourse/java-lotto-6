@@ -26,10 +26,10 @@ class LottoServiceTest {
 
         // when
         LottosDto lottosDto = lottoService.generateLottos(dto);
-        ArrayList<Lotto> lottos = lottosDto.lottos();
+        Lotto[] lottos = lottosDto.lottos();
 
         // then
-        assertThat(lottos.size()).isEqualTo(numberOfLottos);
+        assertThat(lottos.length).isEqualTo(numberOfLottos);
     }
 
     @DisplayName("6개의 일반 당첨 번호 등록 메소드 확인")
@@ -90,10 +90,10 @@ class LottoServiceTest {
     @Test
     void judgeRanksTest() {
         // given
-        ArrayList<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 43))); // 1st
-        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 45))); // 3rd
-        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 15))); // 2nd
+        Lotto[] lottos = new Lotto[3];
+        lottos[0] = new Lotto(List.of(1, 2, 5, 11, 12, 43)); // 1st
+        lottos[1] = new Lotto(List.of(1, 2, 5, 11, 12, 45)); // 3rd
+        lottos[2] = new Lotto(List.of(1, 2, 5, 11, 12, 15)); // 2nd
 
         LottosDto lottosDto = new LottosDto(lottos);
 

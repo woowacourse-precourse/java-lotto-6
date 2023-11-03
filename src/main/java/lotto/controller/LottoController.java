@@ -18,9 +18,23 @@ public class LottoController {
     }
 
     private int getQuantity() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.inputAmount());
-        amount = Integer.parseInt(purchaseAmount.getAmount());
+        String quantity = getQuantityInput();
+        amount = Integer.parseInt(quantity);
         return amount / 1000;
+    }
+
+    private String getQuantityInput() {
+        return checkValidationQuantity(InputView.inputAmount());
+    }
+
+    private String checkValidationQuantity(String input) {
+        try {
+            PurchaseAmount purchaseAmount = new PurchaseAmount(input);
+            return purchaseAmount.getAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return getQuantityInput();
+        }
     }
 
     private List<Lotto> purchaseLotto(int quantity) {

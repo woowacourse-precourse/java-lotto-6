@@ -1,5 +1,8 @@
 package view;
 
+import java.util.List;
+import model.dto.LottoResponse;
+
 public class OutputView {
 
     public void askPurchaseAmount() {
@@ -8,7 +11,14 @@ public class OutputView {
 
     public void informLottoCount(final int count) {
         System.out.println();
-        System.out.printf("%d개를 구매했습니다.", count);
-        System.out.println();
+        System.out.printf("%d개를 구매했습니다.\n", count);
+    }
+
+    public void noticeGeneratedLottos(final List<LottoResponse> lottoResponses) {
+        lottoResponses.stream()
+            .map(LottoResponse::getJoinedNumbers)
+            .forEach(numbers -> {
+                System.out.printf("[%s]\n", numbers);
+            });
     }
 }

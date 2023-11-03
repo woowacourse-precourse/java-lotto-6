@@ -1,13 +1,13 @@
 package domain;
 
-import exception.outOfLottoNumberRangeException;
+import exception.OutOfLottoNumberRangeException;
 
 public record LottoNumber(int lottoNumberValue) {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     public LottoNumber {
         if (isNotInLottoNumberRange(lottoNumberValue)) {
-            throw new outOfLottoNumberRangeException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+            throw new OutOfLottoNumberRangeException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }
     }
 

@@ -2,6 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static lotto.ErrorMessage.*;
 
 public class UserInputHandler {
@@ -9,22 +14,23 @@ public class UserInputHandler {
     private static final String INPUT_USER_LOTTO_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_USER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_USER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final int DIVISION_ROLE = 1000; // 나누어 떨어져야 하는 값 : 1,000원 단위
+    static final int DIVISION_ROLE = 1000; // 나누어 떨어져야 하는 값 : 1,000원 단위
 
     // 로또 구매 금액 입력
-    public void inputUserLottoPurchase() {
+    public int inputUserLottoPurchase() {
         boolean restart = true;
-
+        String lottoPurchase = null;
         while (restart) {
             try {
                 System.out.println(INPUT_USER_LOTTO_PURCHASE_MESSAGE);
-                String lottoPurchase = Console.readLine();
+                lottoPurchase = Console.readLine();
                 validUserLottoPurchase(lottoPurchase);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return Integer.parseInt(lottoPurchase);
     }
 
     // 1000원단위, 1000원 미만, 숫자 이외의 값 확인
@@ -54,6 +60,9 @@ public class UserInputHandler {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+        return delivery(winningNumbers);
+    }
 
         }
     }
@@ -61,6 +70,22 @@ public class UserInputHandler {
     private void validateUserWinningNumbers(String winningNumbers) {
         String[] numbers = winningNumbers.split(",");
         validateNumbers(numbers);
+        validateLength(numbers);
+        validDuplicateNumbers(numbers);
+    }
+
+    private void validDuplicateNumbers(String[] numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (String s: numbers) {
+            int num = Integer.parseInt(s);
+            if (uniqueNumbers.contains(num)) {
+                throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
+            }
+            uniqueNumbers.add(num);
+        }
+    }
+
+    private void validateLength(String[] numbers) {
         if (numbers.length != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_COUNT_ERROR.getMessage());
         }

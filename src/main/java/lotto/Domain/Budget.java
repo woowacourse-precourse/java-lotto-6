@@ -12,4 +12,7 @@ public class Budget {
         budgetAmount = Integer.parseInt(budget);
     }
 
+    public int calculateLottoCount() {
+        return budgetAmount / LOTTO_PRICE;
+    }
 }

@@ -18,16 +18,16 @@ class LottoProcessTest {
         Assertions.assertNotNull(lottoProcess);
     }
 
-    @DisplayName("로또 구매 확인")
+    @DisplayName("로또 구매매금액에 맞는 갯수인지 확인")
     @Test
-    void 로또_구매_확인() {
+    void 로또_구매금액에_맞는_갯수인지_확인() {
         int money = 3000;
         assertThat(lottoProcess.purchaseLotto(money).size()).isEqualTo(money / LOTTO_PRICE.getNumber());
     }
 
     @DisplayName("구매 단위가 1000원이 아닌 경우 예외 확인")
     @Test
-    void 구매_단위_예외_확인() {
+    void 구매_단위_1000원_아닌_경우_예외_확인() {
         int money = 3500;
         assertThatThrownBy(() -> lottoProcess.purchaseLotto(money))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(LottoTest.ERROR_HEAD_MESSAGE);

@@ -62,7 +62,7 @@ class WinningLottoTest {
 
     @DisplayName("로또 미당첨 확인 - 2개만 일치")
     @Test
-    void 로또_미당첨_확인1() {
+    void 로또_미당첨_확인_2개_일치() {
         Lotto userLotto = new Lotto(List.of(1, 2, 8, 9, 10, 11));
         Prize prize = winningLottoTest.calculatePrize(userLotto);
         assertThat(prize).isNull();
@@ -70,7 +70,7 @@ class WinningLottoTest {
 
     @DisplayName("로또 미당첨 확인 - 1개만 일치")
     @Test
-    void 로또_미당첨_확인2() {
+    void 로또_미당첨_확인_1개_일치() {
         Lotto userLotto = new Lotto(List.of(1, 12, 8, 9, 10, 11));
         Prize prize = winningLottoTest.calculatePrize(userLotto);
         assertThat(prize).isNull();
@@ -78,7 +78,7 @@ class WinningLottoTest {
 
     @DisplayName("로또 미당첨 확인 - 0개 일치")
     @Test
-    void 로또_미당첨_확인3() {
+    void 로또_미당첨_확인_0개_일치() {
         Lotto userLotto = new Lotto(List.of(13, 12, 8, 9, 10, 11));
         Prize prize = winningLottoTest.calculatePrize(userLotto);
         assertThat(prize).isNull();

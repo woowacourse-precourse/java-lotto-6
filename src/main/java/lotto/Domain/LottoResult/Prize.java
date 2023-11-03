@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Domain.LottoResult;
 
 public enum Prize {
     FIRST_PRIZE(0, 2000000000),

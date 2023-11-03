@@ -5,8 +5,8 @@
 ## 기능명세서
 
 - [x] 로또 구입 금액을 입력 받는다. - InputView | inputLottoPurchaseAmount()
-  - [] (예외)로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외처리를 한다.
-- [] 입력한 금액에 대한 로또의 개수를 계산한다. - LottoStore | calculateAmountOfLotto()
+  - [x] (예외)로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외처리를 한다. - InputValidator | checkDivisibleBy1000()
+  - [x] (예외)로또 구입 금액 입력값이 숫자인가? - InputValidator | isNumeric()
 - [x] 로또를 발행한다.(개수만큼) - LottoStore | generateLottoNumbers()
 - [] 당첨번호를 입력받는다. - InputView | inputWinningNumbers()
   - [] 번호는 쉼표(,)를 기준으로 구분한다.
@@ -15,8 +15,7 @@
   - [] (예외)숫자가 아닐경우
   - [] (예외)1~45의 범위를 벗어날 경우
 - [] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
-- [] 발행한 로또 수량을 출력한다. - OutputView | printQuantityOfLotto()
-- [] 발행한 로또 번호를 출력한다. - OutputView | printLottoNumbers()
+- [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
   - [] 로또 번호는 오름차순으로 정렬한다.
 - [] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [] 당첨 내역을 출력한다. - OutputView | printLottoWinningResult()

@@ -29,16 +29,13 @@ public class Lottos {
         return lottos.size();
     }
 
-    @Override
-    public String toString() {
-        return "Lottos{" +
-                "lottos=" + lottos +
-                '}';
-    }
-
     public List<LottoRanking> calculateRanking(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::calculateRanking)
                 .toList();
+    }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
     }
 }

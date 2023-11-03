@@ -49,6 +49,6 @@ class InputUtilTest {
         assertThatThrownBy(() ->
                 InputUtil.validateEmptyLine(input))
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessage(BLANK_LINE);
+                .hasMessage(BLANK_LINE.getMessage());
     }
 }

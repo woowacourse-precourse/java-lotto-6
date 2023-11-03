@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 
 public class InputUtil {
-    public static String getUserInput() throws NoSuchElementException {
+    public static String getUserInput() {
         while (true) {
             String input = Console.readLine();
             try {
@@ -20,7 +20,7 @@ public class InputUtil {
 
     public static void validateEmptyLine(String input) {
         if (input.trim().isEmpty()) {
-            throw new NoSuchElementException(BLANK_LINE);
+            throw new NoSuchElementException(BLANK_LINE.getMessage());
         }
     }
 }

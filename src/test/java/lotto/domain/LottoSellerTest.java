@@ -21,7 +21,7 @@ class LottoSellerTest {
         assertThatThrownBy(() ->
                 seller.checkRemainder(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HAS_REMAINDER);
+                .hasMessage(HAS_REMAINDER.getMessage());
     }
 
     @DisplayName("필요한 개수만큼 올바른 로또를 발행하는지 검수")

@@ -16,7 +16,7 @@ public class Customer {
 
     private void validateOnlyDigit(String input) {
         if (!input.chars().allMatch(Character::isDigit) || input.equals("0")) {
-            throw new IllegalArgumentException(NOT_MONEY);
+            throw new IllegalArgumentException(NOT_MONEY.getMessage());
         }
     }
 

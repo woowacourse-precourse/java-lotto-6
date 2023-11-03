@@ -27,7 +27,7 @@ public class WinningNumbers {
                 .allMatch((number) -> pattern.matcher(number).matches());
 
         if (!result) {
-            throw new IllegalArgumentException(NOT_ONLY_DIGIT);
+            throw new IllegalArgumentException(NOT_ONLY_DIGIT.getMessage());
         }
         return Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
     }
@@ -42,13 +42,13 @@ public class WinningNumbers {
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (!validRange(bonusNumber)) {
-            throw new IllegalArgumentException(INVALID_NUMBER_RANGE);
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
     private int convertToBonusNumber(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(NOT_ONLY_DIGIT);
+            throw new IllegalArgumentException(NOT_ONLY_DIGIT.getMessage());
         }
         return Integer.parseInt(input);
     }
@@ -59,7 +59,7 @@ public class WinningNumbers {
 
     private void validateDuplicateBonus(Lotto winningNumber, int bonusNumber) {
         if (winningNumber.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATE_BONUS);
+            throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
     }
 

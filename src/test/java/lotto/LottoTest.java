@@ -29,7 +29,7 @@ class LottoTest {
     void createOverRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 66, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NUMBER_RANGE);
+                .hasMessage(INVALID_NUMBER_RANGE.getMessage());
     }
 
 }

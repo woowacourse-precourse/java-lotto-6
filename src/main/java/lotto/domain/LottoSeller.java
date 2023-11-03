@@ -35,7 +35,7 @@ public class LottoSeller {
 
     private void validateMultiplesOfPrice(int money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(HAS_REMAINDER);
+            throw new IllegalArgumentException(HAS_REMAINDER.getMessage());
         }
     }
 

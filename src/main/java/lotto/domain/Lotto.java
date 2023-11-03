@@ -28,13 +28,13 @@ public class Lotto {
         boolean result = numbers.stream().allMatch(this::isValidRange);
 
         if (!result) {
-            throw new IllegalArgumentException(INVALID_NUMBER_RANGE);
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != NUMBER_COUNT) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER);
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 

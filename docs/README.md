@@ -6,10 +6,10 @@
 
 - [X]  **[출력]** `구입금액을 입력해 주세요.` 문구를 출력한다.
 - [X]  **[입력]** 사용자로부터 구입금액을 입력받는다.
-    - [ ] **[예외]** 공백으로만 이루어져 있으면`illegalArgumentException`예외 발생
-    - [ ] **[예외]** 빈 문자열이면 `illegalArgumentException`예외 발생
-    - [ ] **[예외]** 구입 금액은 1000원 단위가 아니라면 `illegalArgumentException`예외 발생
-    - [ ] **[예외]** 숫자가 아니라면 `illegalArgumentException`예외 발생
+    - [X] **[예외]** 공백으로만 이루어져 있으면`illegalArgumentException`예외 발생
+    - [X] **[예외]** 빈 문자열이면 `illegalArgumentException`예외 발생
+    - [X] **[예외]** 구입 금액은 1000원 단위가 아니라면 `illegalArgumentException`예외 발생
+    - [X] **[예외]** 숫자가 아니라면 `illegalArgumentException`예외 발생
     - [ ] **[출력]** 예외가 발생하면 예외 문구 출력
         - [ ] **[조건]** 문구 앞에는 `ERROR`라는 문구를 붙여야함
 

@@ -29,7 +29,7 @@ public class LottoGameTest {
     void determineWinningLotto() {
         List<Integer> inputNumbers = List.of(1, 2, 3, 4, 5, 6);
         LottoGame lottoGame = new LottoGame(new ManualLottoGenerator());
-        assertThatCode(() -> lottoGame.determineWinningLotto(inputNumbers))
+        assertThatCode(() -> lottoGame.determineWinningNumbers(inputNumbers))
                 .doesNotThrowAnyException();
     }
 
@@ -37,7 +37,7 @@ public class LottoGameTest {
     @Test
     void determineBonusNumberSuccessTest() {
         LottoGame lottoGame = new LottoGame(new ManualLottoGenerator());
-        lottoGame.determineWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoGame.determineWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         assertThatCode(() -> lottoGame.determineBonusNumber(7))
                 .doesNotThrowAnyException();
     }
@@ -46,7 +46,7 @@ public class LottoGameTest {
     @Test
     void determineBonusNumberFailTest() {
         LottoGame lottoGame = new LottoGame(new ManualLottoGenerator());
-        lottoGame.determineWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoGame.determineWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         assertThatCode(() -> lottoGame.determineBonusNumber(1))
                 .isInstanceOf(IllegalArgumentException.class);
     }

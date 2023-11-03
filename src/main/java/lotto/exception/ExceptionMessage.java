@@ -7,7 +7,7 @@ public enum ExceptionMessage {
     INVALID_LOTTO_INPUT("숫자와 콤마 구분자 이외의 문자는 허용하지 않습니다. 입력한 값 : %s"),
     INVALID_PURCHASE_AMOUNT("구입금액은 숫자만 입력 가능합니다. 입력값 : %s"),
     PURCHASE_AMOUNT_HAS_REMAINDER("구입금액은 1,000원 단위만 가능합니다. 입력값 : %d"),
-    BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS("당첨 번호와 보너스 번호는 중복될 수 없습니다. 입력한 당첨 번호 : %s"),
+    BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS("당첨 번호와 보너스 번호는 중복될 수 없습니다. 입력한 당첨 번호 : %s, 입력한 보너스 번호 : %s"),
     ;
 
     private final String message;

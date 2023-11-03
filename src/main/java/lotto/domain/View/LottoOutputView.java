@@ -18,8 +18,7 @@ public class LottoOutputView {
     }
 
     public void printWinnings(Map<String, Integer> winnings, int cash) {
-        System.out.println();
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         int totalPrize = 0;

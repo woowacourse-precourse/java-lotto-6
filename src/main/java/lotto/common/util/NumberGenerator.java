@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.common.util;
 
 public interface NumberGenerator<T> {
 

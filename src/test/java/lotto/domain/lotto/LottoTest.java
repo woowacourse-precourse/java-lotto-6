@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,5 +23,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 티켓 1장을 발행한 후 출력한다.")
+    @Test
+    void produceLottoTicketTest() {
+        // Given
+        List<Integer> testTicket = Lotto.produceLottoTicket();
+
+        // When & Then
+        System.out.println(testTicket.toString());
+    }
+
+    @DisplayName("주어진 quantity만큼 로또 티켓을 발행한 후 출력한다. quantity에 대한 유효성 검증은 Purchase에서 이루어진다.")
+    @Test
+    void gatherLottoTicketsTest() {
+        // Given
+        int testQuantity = 5;
+
+        // When & Then
+        List<Lotto> testList = Lotto.gatherLottoTickets(testQuantity);
+    }
 }

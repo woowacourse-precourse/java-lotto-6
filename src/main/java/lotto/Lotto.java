@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkBoundOf(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +18,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    
+    // 1부터 45이하인 숫자인지 검사하는 메소드
+    private void checkBoundOf(List<Integer> numbers) {
+    	for (int number : numbers) {
+    		if (number < 1 || number > 45) {
+    			throw new IllegalStateException();
+    		}
+    	}
+    }
 }

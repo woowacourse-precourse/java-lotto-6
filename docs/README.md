@@ -33,7 +33,7 @@
     - 중복된 번호가 있다면 `IllegalArgumentException` 발생
   - [x] `LottoUtil:isIntegers` 메서드
     - 문자열 리스트를 인수로 받아 정수인지 검사한다.
-  - [ ] `Lotto::isLottoNumbers` 메서드
+  - [x] `Lotto::isLottoNumbers` 메서드
     - 정수 리스트를 인수로 받아 1~45 값인지 검사한다.
     - [x] `Lotto::isLottoNumber` 메서드
       - 정수를 인수로 받아 1~45 값인지 검사한다.

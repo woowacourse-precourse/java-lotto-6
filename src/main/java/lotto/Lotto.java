@@ -19,6 +19,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private boolean isLottoNumbers(List<Integer> numbers) {
+        return numbers.stream().allMatch(this::isLottoNumber);
+    }
+
     private boolean isLottoNumber(int number) {
         return LottoUtil.isInRange(number, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
     }

@@ -16,7 +16,10 @@ public class Calculator {
     public void setWinner(List<Integer> winner){
         this.winner=winner;
     }
-    public void setBonus(int bonus){
+    public void setBonus(int bonus) throws IllegalArgumentException{
+        if(winner.contains(bonus)){
+            throw new IllegalArgumentException();
+        }
         bonusNum=bonus;
     }
 

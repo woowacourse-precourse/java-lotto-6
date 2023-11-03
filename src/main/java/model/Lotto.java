@@ -72,4 +72,11 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return numbers;
     }
+
+    public long compareLotto(final Lotto lotto) {
+        return lotto.getNumbers()
+            .stream()
+            .filter(this::isContainNumber)
+            .count();
+    }
 }

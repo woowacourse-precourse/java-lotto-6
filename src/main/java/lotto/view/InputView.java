@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class InputView {
 
     private static final String purchaseAmountInput = "구입금액을 입력해 주세요.";
@@ -8,16 +10,16 @@ public class InputView {
 
     public String inputPurchaseAmount() {
         System.out.println(purchaseAmountInput);
-        return System.console().readLine();
+        return readLine();
     }
 
     public String inputWinningNumber() {
         System.out.println(winningNumberInput);
-        return System.console().readLine();
+        return readLine();
     }
 
     public String inputBonusNumber() {
         System.out.println(bonusNumberInput);
-        return System.console().readLine();
+        return readLine();
     }
 }

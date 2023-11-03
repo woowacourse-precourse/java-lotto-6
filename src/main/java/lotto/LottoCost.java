@@ -11,6 +11,12 @@ public class LottoCost {
             getLottoCost();
         }
 
+        int costValue = Integer.parseInt(cost);
+
+        if (!isMultipleOfThousand(costValue)) {
+            getLottoCost();
+        }
+
         return Integer.parseInt(cost);
     }
 
@@ -26,5 +32,19 @@ public class LottoCost {
         }
 
         return hasOnlyNum;
+    }
+
+    public boolean isMultipleOfThousand(int costValue) {
+        boolean isRemainderZero = (costValue % 1000 == 0);
+
+        if (!isRemainderZero) {
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessages.ERROR_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+            }
+        }
+
+        return isRemainderZero;
     }
 }

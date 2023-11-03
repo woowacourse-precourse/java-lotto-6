@@ -1,13 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.purchase.Purchase;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         Purchase purchase = new Purchase();
+        int quantity = purchase.makePurchase();
 
-        purchase.makePurchase();
+        List<Lotto> lottoTicketList = Lotto.gatherLottoTickets(quantity);
 
         System.out.println("당첨 번호를 입력해 주세요");
         String chosenNumber = Console.readLine();

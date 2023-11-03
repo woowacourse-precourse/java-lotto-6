@@ -25,6 +25,10 @@ public class Money {
         return new Money(inputMoney);
     }
 
+    public Integer getMoney() {
+        return money;
+    }
+
     private void isValidRange(Integer money) {
         if (money < 1000 || money > 100000) {
             throw new MoneyException(RANGE_ERROR_MESSAGE.getMessage(money));
@@ -36,4 +40,5 @@ public class Money {
             throw new MoneyException(DIVISIBILITY_ERROR_MESSAGE.getMessage(money));
         }
     }
+
 }

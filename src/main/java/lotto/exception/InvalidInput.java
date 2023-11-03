@@ -28,7 +28,7 @@ public class InvalidInput {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(message);
+            throw new NumberFormatException(message);
         }
     }
 

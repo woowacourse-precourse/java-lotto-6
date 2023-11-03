@@ -39,4 +39,17 @@ class InvalidInputTest {
 
     }
 
+    @DisplayName("숫자가 정수가 아닌 경우 예외가 발생한다.")
+    @Test
+    void notIntegerValueException(){
+        //given
+        InvalidInput invalidInput = new InvalidInput();
+        String number = "a";
+
+        //when //then
+        assertThatThrownBy(() -> invalidInput.notIntegerValueException(number))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage("[ERROR] 로또 번호는 정수여야 합니다.");
+    }
+
 }

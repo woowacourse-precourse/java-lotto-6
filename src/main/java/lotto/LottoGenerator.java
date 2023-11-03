@@ -4,7 +4,7 @@ import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class LotteryNumberGenerator {
+public class LottoGenerator {
 
 
     private static List<Integer> generateLotteryNumber() {

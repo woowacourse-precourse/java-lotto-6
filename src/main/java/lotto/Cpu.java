@@ -5,21 +5,26 @@ import java.util.List;
 
 public class Cpu {
     private List<Lotto> sixLottoNumbers;
-    int bonusNumber;
+    private List<Integer> bonusNumbers;
+    private int tickets;
 
     public Cpu(int money) {
         validTickets(money);
-        int tickets = money / IntConstants.UNIT_BILL.getValue();
-        sixLottoNumbers = setSixLottoNumbers(tickets);
-        bonusNumber = setBonusNumber();
+        this.tickets = money / IntConstants.UNIT_BILL.getValue();
+        this.sixLottoNumbers = setSixLottoNumbers(tickets);
+        this.bonusNumbers = setBonusNumber(tickets);
     }
 
     public List<Lotto> getSixLottoNumbers() {
         return sixLottoNumbers;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public List<Integer> getBonusNumbers() {
+        return bonusNumbers;
+    }
+
+    public int getTickets() {
+        return tickets;
     }
 
     private List<Lotto> setSixLottoNumbers(int tickets) {
@@ -30,8 +35,12 @@ public class Cpu {
         return lottos;
     }
 
-    private int setBonusNumber() {
-        return LottoGenerator.bonusNumber();
+    private List<Integer> setBonusNumber(int tickets) {
+        List<Integer> bonus = new ArrayList<>();
+        for (int i = 0; i < tickets; i++) {
+            bonus.add(LottoGenerator.bonusNumber());
+        }
+        return bonus;
     }
 
     private void validTickets(int money) {

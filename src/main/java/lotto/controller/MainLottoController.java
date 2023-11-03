@@ -12,10 +12,6 @@ public class MainLottoController {
     }
 
     public Money inPutMoney(){
-        try{
-            return new Money(input.getPurchaseAmount());
-        }catch (IllegalArgumentException e){
-            System.out.println("잘못되었음");
-        }   return inPutMoney();
+        return new Money(input.getPurchaseAmount());
     }
 }

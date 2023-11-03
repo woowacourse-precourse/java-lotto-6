@@ -9,7 +9,12 @@ public class Input {
     private final String MESSAGE_ONLY_NUMBER = "공백이 없는 숫자만 입력 가능합니다.";
 
     public int getPurchaseAmount(){
-        return Integer.parseInt(Console.readLine());
+        try{
+            return Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e){
+            System.out.println(MESSAGE_ONLY_NUMBER);
+            return getPurchaseAmount();
+        }
     }
 
 

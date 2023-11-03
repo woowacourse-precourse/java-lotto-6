@@ -27,4 +27,8 @@ public class Controller {
             lottoTickets.add(lotto);
         }
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

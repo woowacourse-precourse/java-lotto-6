@@ -16,6 +16,6 @@ public record LottoMoney(int value) {
     }
 
     public int createBuyingCount() {
-        return value % MoneyCondition.MONEY_UNIT.value();
+        return value / MoneyCondition.MONEY_UNIT.value();
     }
 }

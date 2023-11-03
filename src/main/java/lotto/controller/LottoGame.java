@@ -5,6 +5,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
+
+    private LottoGame() {}
+
     public static void run() {
         int purchaseAmount = getPurchaseAmountAndValidate();
     }
@@ -23,5 +26,6 @@ public class LottoGame {
 
         return (Integer.parseInt(purchaseAmount));
     }
+
 }
 

@@ -6,6 +6,7 @@ import static lotto.constants.ValidatorConstants.*;
 
 public class Validator {
 
+    private Validator() {}
 
     public static void validatePurchaseAmount(String input) {
         isPrimeNumber(input);

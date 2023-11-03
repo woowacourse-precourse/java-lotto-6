@@ -16,4 +16,12 @@ public class DrawnNumbers {
             throw new IllegalArgumentException(DUPLICATES_FOUND);
         }
     }
+
+    public int countMatches(Lotto lotto) {
+        return lotto.countMatches(winningNumbers);
+    }
+
+    public boolean isBonusNumberIn(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
 }

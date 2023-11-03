@@ -47,7 +47,7 @@ public class Lotto {
 
     private void validateDuplicateLotto(List<Integer> numbers) {
         if (isDuplicateLotto(numbers)) {
-            throw new IllegalArgumentException("로또 번호가 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되었습니다.");
         }
     }
 

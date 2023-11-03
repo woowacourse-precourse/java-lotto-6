@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 public class Validator {
 
     public static void validateInt(String str){
-        if(str.contains(".")){
-            throw new IllegalArgumentException("정수가 아닙니다.");
+        try{
+            Integer.parseInt(str);
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("정수로 이루어진 문자가 아닙니다.");
         }
     }
 

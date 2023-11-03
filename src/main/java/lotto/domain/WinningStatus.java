@@ -1,23 +1,35 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.function.BiPredicate;
+
 public enum WinningStatus {
 
-    FAIL(0, 0),
-    THREE_MATCH(3, 5_000),
-    FOUR_MATCH(4, 50_000),
-    FIVE_MATCH(5, 1_500_000),
-    FIVE_MATCH_WITH_BONUS(5, 30_000_000),
-    ALL_MATCH(6, 2_000_000_000);
+    FAIL(0, 0, (matchCount, withBonusNumber) -> matchCount < 3),
+    THREE_MATCH(3, 5_000, (matchCount, withBonusNumber) -> matchCount == 3),
+    FOUR_MATCH(4, 50_000, (matchCount, withBonusNumber) -> matchCount == 4),
+    FIVE_MATCH(5, 1_500_000, (matchCount, withBonusNumber) -> matchCount == 5 && !withBonusNumber),
+    FIVE_MATCH_WITH_BONUS(5, 30_000_000, (matchCount, withBonusNumber) -> matchCount == 5 && withBonusNumber),
+    ALL_MATCH(6, 2_000_000_000, (matchCount, withBonusNumber) -> matchCount == 6);
 
-    private final int matchCount;
+    private final long matchCount;
     private final int prize;
+    private final BiPredicate<Long, Boolean> checker;
 
-    WinningStatus(int matchCount, int prize) {
+    WinningStatus(long matchCount, int prize, BiPredicate<Long, Boolean> checker) {
         this.matchCount = matchCount;
         this.prize = prize;
+        this.checker = checker;
     }
 
-    public int getMatchCount() {
+    public static WinningStatus getWinningStatus(long matchCount, boolean withBonusNum) {
+        return Arrays.stream(WinningStatus.values())
+                .filter(status -> status.checker.test(matchCount, withBonusNum))
+                .findAny()
+                .orElse(FAIL);
+    }
+
+    public long getMatchCount() {
         return matchCount;
     }
 

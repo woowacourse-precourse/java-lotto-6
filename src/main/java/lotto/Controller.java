@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.service.GameService;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
 
@@ -15,6 +17,9 @@ public class Controller {
     }
 
     private void inputBuyPrice(){
+        OutputView.inputBuyPriceMessage();
+        String input = InputView.input();
+        gameService.inputBuyPrice(input);
     }
 
     private void printIssuedLotto(){

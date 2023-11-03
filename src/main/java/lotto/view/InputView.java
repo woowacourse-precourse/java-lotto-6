@@ -5,10 +5,6 @@ import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 
 public class InputView {
-    private static final int LOTTO_UNIT = 1000;
-    private static final int MIN_PURCHASE_LOTTO = 1000;
-    private static final int MAX_PURCHASE_LOTTO = 2147483000;
-
     private static final InputView instance = new InputView();
 
     public static InputView getInstance() {
@@ -29,13 +25,16 @@ public class InputView {
     }
 
     private void validatePurchaseLottoRange(int purchase) {
-        if (purchase < MIN_PURCHASE_LOTTO || purchase > MAX_PURCHASE_LOTTO) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_PURCHASE_RANGE.getMessage());
+        if (purchase < Range.MIN_PURCHASE_LOTTO.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_PURCHASE_MIN_RANGE.getMessage());
+        }
+        if (purchase > Range.MAX_PURCHASE_LOTTO.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_PURCHASE_MAX_RANGE.getMessage());
         }
     }
 
     private void validatePurchaseLottoUnit(int purchase) {
-        if (purchase % LOTTO_UNIT != 0) {
+        if (purchase % Range.LOTTO_UNIT.value != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_PURCHASE_UNIT.getMessage());
         }
     }
@@ -47,6 +46,18 @@ public class InputView {
 
         Message(String message) {
             this.message = message;
+        }
+    }
+
+    private enum Range {
+        LOTTO_UNIT(1000),
+        MIN_PURCHASE_LOTTO(1000),
+        MAX_PURCHASE_LOTTO(2147483000);
+
+        private final int value;
+
+        Range(int value) {
+            this.value = value;
         }
     }
 }

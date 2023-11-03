@@ -36,6 +36,18 @@
 - countWithWinNumber : 3,4,5,6개 일치하는 것 세서 winnerQuantity<종류, 갯수>로 저장하기 
 - countWithBonusNumber : 5개와 보너스 1개 일치하는 것 세서 winnerQuantity<종류, 갯수>로 저장하기
 
+- calculateProfit : 당첨금 전부 더해서 초기 투자금으로 나누기, 소수점 둘째자리 수에서 반올림
+- calculateSumEach : 등수가 들어있는 prizes, 당첨금이 들어있는 counts를 순회하며 
+  (해당 등수의 당첨 갯수 x 해당 등수) 당첨금을 반환한다.
+- sumAllPrize : 로또 결과가 들어있는 winnerQuantity<맞힌 숫자 갯수, 해당 등수의 로또 갯수>의 entrySet을 순회하며 당첨금을 합산한다.
+  
+
+### Statistic
+로또 게임 통계를 위한 enum클래스
+- sameNumberCount : 당첨 번호와 로또 번호를 비교했을 때 같았던 숫자 갯수
+  보너스 번호가 있는 2등은 7로 표기
+- prize : 각 등수 별 당첨액
+
 ### Lotto
 - Lotto(List<Integer>) : 
   정수형 리스트를 받아 검증한 뒤 numbers에 저장한다.

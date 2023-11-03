@@ -20,7 +20,15 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return numbers;
+    }
+
+    public int[] toArr() {
+        int[] arr = new int[numbers.size()];
+        for (int i = 0; i < numbers.size(); i++) {
+            arr[i] = numbers.get(i);
+        }
+        return arr;
     }
 
     private void uniqueValidate(List<Integer> numbers) {

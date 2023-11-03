@@ -3,17 +3,13 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
-import lotto.dto.LottoNumberDto;
-import lotto.dto.LottosDto;
-import lotto.dto.NumbersDto;
-import lotto.dto.WinningNumberDto;
+import lotto.dto.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class LottoService {
-
     public LottosDto generateLottos(LottoNumberDto dto) {
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < dto.numberOfLottos(); i++) {
@@ -43,5 +39,44 @@ public class LottoService {
 
     private List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public RanksDto judgeRanks(WinningNumberDto winningNumberDto, LottosDto lottosDto) {
+        List<Integer> normalNumbers = winningNumberDto.winningNumber().getNormalNumbers();
+        int bonusNumber = winningNumberDto.winningNumber().getBonusNumber();
+        int[] ranks = new int[5];
+
+        for (Lotto lotto : lottosDto.toArr()) {
+            int rank = rankOfLotto(lotto.toArr(), normalNumbers, bonusNumber);
+            if (rank < 5) {
+                ranks[rank]++;
+            }
+        }
+        return new RanksDto(ranks);
+    }
+
+    private int rankOfLotto(int[] checkNum, List<Integer> normalNum, int bonusNum) {
+        boolean isBonus = false;
+        int normalMatchNum = 0;
+
+        for (int i : checkNum) {
+            if (normalNum.contains(i)) {
+                normalMatchNum++;
+            }
+            if (i == bonusNum) {
+                isBonus = true;
+            }
+        }
+        return calRank(normalMatchNum, isBonus);
+    }
+
+    private int calRank(int normalMatchNum, boolean isBonus) {
+        if (normalMatchNum == 6) {
+            return 0;
+        }
+        if ((normalMatchNum == 5) && isBonus) {
+            return 1;
+        }
+        return 7 - normalMatchNum;
     }
 }

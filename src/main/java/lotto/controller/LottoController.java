@@ -1,7 +1,9 @@
 package lotto.controller;
 
 
+import lotto.dto.LottosDto;
 import lotto.dto.NumbersDto;
+import lotto.dto.RanksDto;
 import lotto.dto.WinningNumberDto;
 import lotto.service.LottoService;
 
@@ -25,6 +27,10 @@ public class LottoController {
         validateInt(input);
         int bonusNum = Integer.parseInt(input);
         return lottoService.postBonusNumber(dto, bonusNum);
+    }
+
+    public RanksDto calRanks(WinningNumberDto winningNumberDto, LottosDto lottosDto) {
+        return lottoService.judgeRanks(winningNumberDto, lottosDto);
     }
 
     private NumbersDto convert2Dto(String str) {

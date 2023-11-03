@@ -2,10 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
-import lotto.dto.LottoNumberDto;
-import lotto.dto.LottosDto;
-import lotto.dto.NumbersDto;
-import lotto.dto.WinningNumberDto;
+import lotto.dto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -87,5 +84,34 @@ class LottoServiceTest {
         // then
         assertThatThrownBy(() -> lottoService.postBonusNumber(new WinningNumberDto(winningNumber), bonusNum))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("등수 계산 테스트")
+    @Test
+    void judgeRanksTest() {
+        // given
+        ArrayList<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 43))); // 1st
+        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 45))); // 3rd
+        lottos.add(new Lotto(List.of(1, 2, 5, 11, 12, 15))); // 2nd
+
+        LottosDto lottosDto = new LottosDto(lottos);
+
+        Lotto winning = new Lotto(List.of(1, 2, 5, 11, 12, 43));
+        int bonusNum = 15;
+        WinningNumber winningNumber = new WinningNumber(winning);
+        winningNumber.addBonusNumber(bonusNum);
+        WinningNumberDto winningNumberDto = new WinningNumberDto(winningNumber);
+
+        // when
+        RanksDto dto = lottoService.judgeRanks(winningNumberDto, lottosDto);
+
+        // then
+        int[] ranks = dto.ranks();
+        assertThat(ranks[0]).isEqualTo(1);
+        assertThat(ranks[1]).isEqualTo(1);
+        assertThat(ranks[2]).isEqualTo(1);
+        assertThat(ranks[3]).isEqualTo(0);
+        assertThat(ranks[4]).isEqualTo(0);
     }
 }

@@ -3,12 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Issue {
     private static int lottoQuantity;
     public static int initialCash;
-    public static List<List<Integer>> lottoGroup;
+    public static List<List<Integer>> lottoGroup = new ArrayList<>();
 
     static void inputCash() {
         initialCash = Integer.parseInt(Console.readLine());

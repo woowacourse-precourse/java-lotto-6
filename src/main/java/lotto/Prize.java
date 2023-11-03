@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Prize {
@@ -10,8 +11,8 @@ public class Prize {
     private static int luckyCounts;
     private static int totalProfit;
     private static final int[] finalResult = new int[5];
-    private static List<Integer> separatedLotto;
-    public static List<Integer> luckyNumber;
+    private static List<Integer> separatedLotto = new ArrayList<Integer>();
+    public static List<Integer> luckyNumber = new ArrayList<Integer>();
     public static int bonusNumber;
 
     static void inputNumbers() {

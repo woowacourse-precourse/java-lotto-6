@@ -67,7 +67,7 @@ public class Validator {
     }
 
     private static void checkNegative(int number) {
-        if (number <= 0) {
+        if (number < 0) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
         }
     }

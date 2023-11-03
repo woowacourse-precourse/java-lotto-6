@@ -3,7 +3,9 @@ package lotto.Domain.LottoResult;
 import static lotto.Domain.LottoResult.Prize.*;
 import static lotto.Domain.LottoResult.Rank.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
@@ -25,5 +27,9 @@ public class LottoResult {
 
     public Prize findPrizeByRank(Integer rank) {
         return lottoResult.get(rank);
+    }
+
+    public List<Prize> findAllPrize() {
+        return new ArrayList<>(lottoResult.values());
     }
 }

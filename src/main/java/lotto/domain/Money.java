@@ -4,8 +4,8 @@ import lotto.util.ErrorMessage;
 
 public record Money(int amount) {
 
-    private static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int MAX_PURCHASE_AMOUNT = 100000;
+    private static final int MIN_PURCHASE_AMOUNT = 1_000;
+    private static final int MAX_PURCHASE_AMOUNT = 100_000;
 
     public Money {
         validateAmountMultipleOfThousand(amount);
@@ -38,7 +38,7 @@ public record Money(int amount) {
     }
 
     private void validateAmountMultipleOfThousand(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % 1_000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }

@@ -33,7 +33,7 @@ public class Money {
 
     private void validateMultiple(int money){
         if (money % GameConfig.MONEY_UNIT != 0){
-            throw new IllegalArgumentException(ErrorMessage.NON_MULTIPLE.getErrorMessage());
+            throw new IllegalArgumentException(String.format(ErrorMessage.NON_MULTIPLE.getErrorMessage(), GameConfig.MONEY_UNIT));
         }
     }
 

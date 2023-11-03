@@ -14,9 +14,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
     }
 
-    public void createLotto(List<Integer> lottoNumber) {
+    public static void createLotto(List<Integer> lottoNumber) {
         Lotto lotto = new Lotto(lottoNumber);
         LottoStore.getInstance().addLotto(lotto);
     }

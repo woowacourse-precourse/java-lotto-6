@@ -15,9 +15,9 @@ public class LottoPublisher {
         long lottoNumber = calculateLottoAmount(purchaseAmount);
 
         ArrayList<Lotto> lottoList = new ArrayList<>();
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
         for (int i = 0; i < lottoNumber; i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(randomNumbers);
             lottoList.add(lotto);
         }
@@ -26,7 +26,7 @@ public class LottoPublisher {
     }
 
     private long calculateLottoAmount(Long purchaseAmount) {
-        return purchaseAmount / 10;
+        return purchaseAmount / 1000;
     }
 
 }

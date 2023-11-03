@@ -32,10 +32,10 @@ class LottoMachineTest {
             , Lotto otherLotto
             , LottoPrize reuslt
     ) {
-        LottoMachine instance = LottoMachine.getInstance();
-        instance.setWinLotto(new WinLotto(new Lotto(winLottoNumber), bonusNumber));
 
-        Assertions.assertThat(instance.lottoWinningResult(otherLotto)).isEqualTo(reuslt);
+        lottoMachine.setWinLotto(new WinLotto(new Lotto(winLottoNumber), bonusNumber));
+
+        Assertions.assertThat(lottoMachine.lottoWinningResult(otherLotto)).isEqualTo(reuslt);
     }
 
     static Stream<Arguments> initWitLottoData() {

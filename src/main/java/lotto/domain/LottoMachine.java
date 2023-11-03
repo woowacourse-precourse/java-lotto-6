@@ -51,9 +51,7 @@ public class LottoMachine {
     private List<Integer> createLottoNumber() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        lottoSort(lottoNumber);
-
-        return lottoNumber;
+        return lottoSort(lottoNumber);
     }
 
     /**
@@ -61,8 +59,12 @@ public class LottoMachine {
      *
      * @param lottoNumber
      */
-    private void lottoSort(List<Integer> lottoNumber) {
-        Collections.sort(lottoNumber);
+    private List<Integer> lottoSort(List<Integer> lottoNumber) {
+        List<Integer> sortedLottoNumber = new ArrayList<>(lottoNumber);
+
+        Collections.sort(sortedLottoNumber); // 오름차순 정렬
+        
+        return sortedLottoNumber;
     }
 
     /**

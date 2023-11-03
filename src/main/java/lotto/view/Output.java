@@ -13,6 +13,11 @@ public class Output {
 
     public void showLottoTickets(LottoTickets lottoTickets) {
         showBuyCount(lottoTickets);
+        showLottoNumbers(lottoTickets);
+    }
+
+    private void showLottoNumbers(LottoTickets lottoTickets) {
+        lottoTickets.getLottos().forEach(System.out::println);
     }
 
     private void showBuyCount(LottoTickets lottoTickets) {

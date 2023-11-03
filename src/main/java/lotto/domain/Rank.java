@@ -23,14 +23,16 @@ public enum Rank {
     }
 
     public static Rank valueOf(int countOfMatch, boolean matchBonus) {
-        if (countOfMatch == 5 && matchBonus) {
+        if (countOfMatch == SECOND.countOfMatch && matchBonus) {
             return SECOND;
         }
+
         for (Rank rank : values()) {
-            if (rank.countOfMatch == countOfMatch && rank.matchBonus == matchBonus) {
+            if (rank.countOfMatch == countOfMatch && !rank.matchBonus) {
                 return rank;
             }
         }
+
         return NONE;
     }
 

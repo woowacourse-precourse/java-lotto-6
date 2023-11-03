@@ -1,10 +1,14 @@
-package lotto.domain;
+package lotto;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+import lotto.domain.AnswerLotto;
+import lotto.domain.LottoRank;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.util.message.WinningStatisticsMessage;
 
 public class LotteryStatistician {

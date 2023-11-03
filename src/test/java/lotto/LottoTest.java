@@ -40,4 +40,18 @@ class LottoTest {
         assertThat(lottoNumbers.size()).isEqualTo(6);
         assertThat(lottoNumbers.get(2)).isEqualTo(3);
     }
+
+    @DisplayName("로또를 로또저장소에 저장한 후 발행 내역을 출력한다.")
+    @Test
+    void createLottoAndLottoStoreHistory() {
+        Lotto.createLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto.createLotto(List.of(1, 2, 3, 20, 23, 27));
+
+        String lottoHistory = LottoStore.getInstance().getLottoHistory();
+        assertThat(lottoHistory).isEqualTo(
+                "[1, 2, 3, 4, 5, 6]\n"+
+                "[1, 2, 3, 20, 23, 27]\n"
+        );
+
+    }
 }

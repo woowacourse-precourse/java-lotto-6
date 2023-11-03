@@ -46,5 +46,28 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
+        List<Integer> goodLuck = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        for (int i = 0; i < LottoTicket; i++) {
+            int sameNumberCount = 0;
+            for (int number : jackPot) {
+                if (allLotto.get(i).contains(number)) {
+                    sameNumberCount++;
+                }
+            }
+
+            if (sameNumberCount == 3)
+                goodLuck.set(0, goodLuck.get(0) + 1);
+            if (sameNumberCount == 4)
+                goodLuck.set(1, goodLuck.get(1) + 1);
+            if (sameNumberCount == 5) {
+                if (!allLotto.get(i).contains(bonusNumber)) {
+                    goodLuck.set(2, goodLuck.get(2) + 1);
+                } else
+                    goodLuck.set(3, goodLuck.get(3) + 1);
+            }
+            if (sameNumberCount == 6)
+                goodLuck.set(4, goodLuck.get(4) + 1);
+        }
+
     }
 }

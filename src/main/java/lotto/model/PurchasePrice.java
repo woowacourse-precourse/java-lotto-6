@@ -8,7 +8,7 @@ public class PurchasePrice {
     public PurchasePrice(String PIECE_OF_LOTTO){
         isUnder1000(PIECE_OF_LOTTO);
         isNotDivisibleBy1000(PIECE_OF_LOTTO);
-        this.PIECE_OF_LOTTO = Integer.parseInt(PIECE_OF_LOTTO);
+        this.PIECE_OF_LOTTO = Integer.parseInt(PIECE_OF_LOTTO) / 1000;
     }
 
     public int getCountPieceOfLotto(){

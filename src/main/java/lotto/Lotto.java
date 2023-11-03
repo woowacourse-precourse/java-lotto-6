@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
 
     public Lotto() {
         this.numbers = createRandomNumbers();
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
     public Lotto(List<Integer> numbers) {

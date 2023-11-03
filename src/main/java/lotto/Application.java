@@ -25,10 +25,26 @@ public class Application {
 
     public static List<Integer> convertStringToInt (List<String> original) {
         List<Integer> convert = new ArrayList<Integer>();
-        for (String num: original){
-            convert.add(Integer.parseInt(num));
+        for (String previous: original){
+            int num = Integer.parseInt(previous);
+            validateNumber(num);
+            convert.add(num);
         }
         return convert;
+    }
+
+    public static void validateNumber(int num){
+        if (num > 45 || num < 1) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static List<Lotto> generateLotto(int quantity){
+        List<Lotto> allLotto = new ArrayList<>();
+        for (int i = 0; i < quantity; i++){
+            allLotto.add(new Lotto());
+        }
+        return allLotto;
     }
 
     public static void main(String[] args) {
@@ -38,5 +54,6 @@ public class Application {
         Lotto winningLotto = inputWinningNumbers();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
+        List<Lotto> allLotto = generateLotto(amount/1000);
     }
 }

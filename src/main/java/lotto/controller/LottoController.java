@@ -1,9 +1,21 @@
 package lotto.controller;
 
-import lotto.view.LottoInput;
+import lotto.domain.Seller;
+import lotto.view.DepositInput;
 import lotto.view.LottoOutPut;
 
 public class LottoController {
-    public static void lotto() {
+    public void lotto() {
+        LottoOutPut.depositMessage();
+
+        Seller seller = seller();
+        System.out.println(seller.getLottoTickets());
     }
+
+    private Seller seller() {
+        int deposit = DepositInput.deposit();
+        return new Seller(deposit);
+    }
+
+
 }

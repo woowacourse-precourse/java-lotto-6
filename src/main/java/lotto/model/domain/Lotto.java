@@ -2,9 +2,8 @@ package lotto.model.domain;
 
 import java.util.List;
 
-import static lotto.constants.Error.DUPLICATE_INVALID;
-import static lotto.constants.Error.SIZE_INVALID;
-import static lotto.constants.Rule.LOTTO_SIZE;
+import static lotto.constants.Error.*;
+import static lotto.constants.Rule.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,8 +18,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateRange(numbers);
         validateSize(numbers);
         validateDuplicate(numbers);
+    }
+
+    private static void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> !isValidNumber(number))) {
+            throw new IllegalArgumentException(RANGE_INVALID.getMessage());
+        }
+    }
+
+    private static boolean isValidNumber(int number) {
+        return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
     }
 
     private void validateSize(List<Integer> numbers) {

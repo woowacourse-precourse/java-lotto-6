@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import lotto.model.domain.Lotto;
 import lotto.model.domain.Player;
-import lotto.model.dto.LottoResponseDto;
-import lotto.model.dto.PlayerRequestDto;
+import lotto.model.domain.Prize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,13 +11,13 @@ public class LottoController {
     public void run() {
         Player player = getPlayer();
         showPlayerLotto(player);
-        System.out.print(InputView.getLottoPrize());
+        Prize prize = getPrize();
+        System.out.print(prize);
     }
 
     private Player getPlayer() {
         try {
-            PlayerRequestDto playerRequestDto = InputView.getLottoMoney();
-            return playerRequestDto.toPlayer();
+            return Player.from(InputView.getLottoMoney());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPlayer();
@@ -26,6 +26,15 @@ public class LottoController {
 
     private void showPlayerLotto(Player player) {
         OutputView.printPlayerAmount(player.getAmount());
-        player.getLotto().forEach(lotto -> OutputView.printPlayerLotto(new LottoResponseDto(lotto.getNumbers())));
+        player.getLotto().forEach(lotto -> OutputView.printPlayerLotto(lotto.toString()));
+    }
+
+    private Prize getPrize() {
+        try {
+            return Prize.of(new Lotto(InputView.getLottoPrize()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPrize();
+        }
     }
 }

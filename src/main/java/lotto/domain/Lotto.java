@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constants.ExceptionMessage.IS_INSUFFICIENT;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INSUFFICIENT.getMessage());
         }
     }
 

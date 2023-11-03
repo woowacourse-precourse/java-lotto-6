@@ -18,21 +18,22 @@ public class LottoController {
     public void run() {
         int money = receiveMoney();
         List<Integer> winningNumbers = receiveWinningNumbers();
+        int bonusNumber = receiveBonusNumber();
     }
 
     private int receiveMoney() {
+        outputView.printInputMoneyMessage();
         try {
-            outputView.printInputMoneyMessage();
             return inputView.inputMoney();
         } catch (InputException e) {
             System.out.println(e.getMessage());
-            return receiveMoney(); // 재귀구
+            return receiveMoney(); // 재귀
         }
     }
 
     private List<Integer> receiveWinningNumbers() {
+        outputView.printInputWinningNumbersMessage();
         try {
-            outputView.printInputWinningNumbersMessage();
             return parseWinningNumbers(inputView.inputWinningNumber());
         } catch (InputException e) {
             System.out.println(e.getMessage());
@@ -41,8 +42,22 @@ public class LottoController {
     }
 
     private List<Integer> parseWinningNumbers(String numbers) {
-        return Arrays.stream(numbers.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try {
+            return Arrays.stream(numbers.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new InputException();
+        }
+    }
+
+    private int receiveBonusNumber() {
+        outputView.printInputBonusNumberMessage();
+        try {
+            return inputView.inputBonusNumber();
+        } catch (InputException e) {
+            System.out.println(e.getMessage());
+            return receiveBonusNumber(); // 재귀
+        }
     }
 }

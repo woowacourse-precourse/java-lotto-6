@@ -16,4 +16,8 @@ public class InputView {
     public String inputWinningNumber() {
         return inputUtil.readString();
     }
+
+    public int inputBonusNumber() {
+        return inputUtil.readNaturalNumber();
+    }
 }

@@ -4,6 +4,7 @@ import lotto.validation.LottoErrorMessage;
 import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicatedValidate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

@@ -8,22 +8,32 @@ import org.junit.jupiter.api.Test;
 class ValidationTest {
 
     @Test
-    void lottoNumber() {
+    void isValidLength() {
         // given
         String case1 = "1,2,3,4,5,6";
-        String case2 = "";
+        String case2 = "1";
+        String case3 = "";
+        String case4 = ",";
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            Validation.lottoNumber(case1);
+            Validation.isValidLength(case1, 6);
         });
         Throwable result2 = catchThrowable(() -> {
-            Validation.lottoNumber(case2);
+            Validation.isValidLength(case2, 6);
+        });
+        Throwable result3 = catchThrowable(() -> {
+            Validation.isValidLength(case3, 1);
+        });
+        Throwable result4 = catchThrowable(() -> {
+            Validation.isValidLength(case4, 1);
         });
 
         // then
         assertThat(result1).as("case1").doesNotThrowAnyException();
-        assertThat(result2).as("case2").isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).as("case2").doesNotThrowAnyException();
+        assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
+        assertThat(result4).as("case4").isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

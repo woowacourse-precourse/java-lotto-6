@@ -3,29 +3,55 @@ package lotto;
 public class Validation {
 
     /**
+     * 보너스 번호가 올바른지 확인하는 함수
+     *
+     * @param input : 보너스 번호
+     * @param lotto : 당첨 번호
+     */
+    public static void bonusNumber(String input, Lotto lotto) {
+        isNumeric(input); // 숫자 검사
+        isValidLength(input, Config.NUMBER_LENGTH); // 번호 개수 검사
+        int bonusNumber = Integer.parseInt(input);
+        isInRange(bonusNumber); // 번호 검사
+        if (lotto.contains(bonusNumber)) { // 중복 검사
+            throw new IllegalArgumentException("[ERROR]: 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    /**
      * 올바른 로또 번호인지 검사하는 함수
      *
      * @param input : 검사할 로또 번호 문자열
      */
     public static void winningNumber(String input) {
         isNumeric(input); // 숫자 검사
-        lottoNumber(input); // 번호 개수 검사
+        isValidLength(input, Config.LOTTO_LENGTH); // 번호 개수 검사
         for (String string : input.split(",")) {
             int number = Integer.parseInt(string);
-            Validation.isInRange(number); // 번호 검사
+            isInRange(number); // 번호 검사
         }
     }
 
     /**
-     * 문자열의 숫자가 로또의 개수만큼 있는지 검사하는 함수
+     * 문자열이 올바른 숫자인지 검사하는 함수
+     *
+     * @param input : 올바른 단위의 숫자인지 검사할 문자열
+     */
+    public static void price(String input) {
+        isNumeric(input); // 숫자 검사
+        isValidLength(input, Config.NUMBER_LENGTH);
+        isValidUnit(Integer.parseInt(input)); // 단위 검사
+    }
+
+    /**
+     * 문자열의 숫자가 원하는 개수만큼 있는지 검사하는 함수
      *
      * @param input : 검사할 로또 문자열
      */
-    public static void lottoNumber(String input) {
+    public static void isValidLength(String input, int length) {
         String[] split = input.split(",", -1);
-        int lottoLength = Config.LOTTO_LENGTH;
-        if (split.length != lottoLength) {
-            throw new IllegalArgumentException("[ERROR]: " + lottoLength + " 개의 번호를 입력해주세요.");
+        if (split.length != length) {
+            throw new IllegalArgumentException("[ERROR]: " + length + " 개의 번호를 입력해주세요.");
         }
     }
 
@@ -55,16 +81,6 @@ public class Validation {
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR]: 숫자를 입력해야 합니다.");
         }
-    }
-
-    /**
-     * 문자열이 올바른 숫자인지 검사하는 함수
-     *
-     * @param input : 올바른 단위의 숫자인지 검사할 문자열
-     */
-    public static void price(String input) {
-        isNumeric(input); // 숫자 검사
-        isValidUnit(Integer.parseInt(input)); // 단위 검사
     }
 
     /**

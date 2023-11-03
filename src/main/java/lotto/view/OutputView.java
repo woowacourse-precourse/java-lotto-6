@@ -1,6 +1,8 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
+import static lotto.util.OutputFormat.addCommaAtIntegers;
+import static lotto.util.OutputFormat.roundAtTwo;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -20,7 +22,7 @@ public class OutputView {
     public static void printLottoResult(Map<LottoResult, Integer> lottoMap) {
         System.out.println("당첨 통계\n"
                 + "---");
-        DecimalFormat formatter = new DecimalFormat("###,###");
+
         for (LottoResult lottoResult : lottoMap.keySet()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(lottoResult.getCount());
@@ -29,7 +31,7 @@ public class OutputView {
                 stringBuilder.append(", 보너스 볼 일치");
             }
             stringBuilder.append(" (");
-            stringBuilder.append(formatter.format(lottoResult.getPrize()));
+            stringBuilder.append(addCommaAtIntegers(lottoResult.getPrize()));
             stringBuilder.append("원) - ");
             stringBuilder.append(lottoMap.get(lottoResult));
             stringBuilder.append("개");
@@ -38,8 +40,7 @@ public class OutputView {
     }
 
     public static void printPrizePercentage(double prizePercentage) {
-        String format = String.format("%.1f", prizePercentage);
-        System.out.println("총 수익률은 " + prizePercentage + " %입니다.");
+        System.out.println("총 수익률은 " + roundAtTwo(prizePercentage) + "%입니다.");
     }
 
 }

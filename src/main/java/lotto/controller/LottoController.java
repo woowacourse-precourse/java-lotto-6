@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.converter.Converter;
+import lotto.converter.StringToInteger;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
@@ -21,6 +23,8 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Converter<String, Integer> integerConverter = new StringToInteger(); //TODO: 이게 최선인가
+
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -55,12 +59,12 @@ public class LottoController {
     }
 
     private Bonus readBonusNumber() {
-        Integer number = Integer.parseInt(inputView.readBonusNumber());
+        Integer number = integerConverter.convert(inputView.readBonusNumber());
         return new Bonus(number);
     }
 
     private PurchaseAmount readPurchaseAmount() {
-        Integer number = Integer.parseInt(inputView.readPurchaseAmount());
+        Integer number = integerConverter.convert(inputView.readPurchaseAmount());
         return PurchaseAmount.of(number);
     }
 

@@ -22,7 +22,12 @@ public class Player {
     }
 
     public String issuedLottos() {
-        return "";
+        StringBuilder result = new StringBuilder(lottos.size()).append("개를 구매했습니다.\n");
+        for (Lotto lotto : lottos) {
+            // TODO : lotto 번호 오름차순 정렬
+            result.append(lotto.toString()).append('\n');
+        }
+        return result.toString();
     }
 
     public String lottoResults(List<Integer> winningNumbers, int bonusNumber) {

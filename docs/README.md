@@ -55,17 +55,19 @@
     - [x] FIRST,SECOND,THIRD,FOURTH,FIFTH,NONE 6개로 구성
 
 
-- [ ] NumberGenerator : 로또 번호를 생성하는 인터페이스
-    - [ ] generate()를 가진다.
+- [x] LottoCreateModel : 로또 번호를 생성하는 방식에 관한 인터페이스
+    - [x] generate()를 가진다.
+        - [x] 반환은 Lotto로 한다.
+- [ ] AutoLottoCreateModel : 로또 번호 자동 생성 방식 (LottoCreateModel 구현체)
+    - [ ] 1 ~ 45 사이의 숫자를 6개 생성한다.
+        - `Randoms.pickUniqueNumbersInRange(1, 45, 6);`사용
 
-- [ ] LottoMachine : 로또를 생성해주는 기계
+- [ ] LottoMachine : 로또를 판매하는 기계
+    - [ ] LottoCreateModel을 필드로 가진다.
     - [ ] makeLotto(int totalPrice) : 총 가격만큼 로또 생성
         - [ ] 로또를 개수만큼 생성한다.
-        - [ ] NumberGenerator를 구현하도록 한다.
-            - [ ] 1 ~ 45 사이의 숫자를 6개 생성한다.
-                - `Randoms.pickUniqueNumbersInRange(1, 45, 6);`사용
         - [ ] 구입 금액이 1000 단위로 나누어떨어지지 않으면 예외 발생
-
+        - [ ] PurchasedLotto을 반환하도록 한다.
 
 - [ ] LottoResult : 로또 당첨 결과를 가지는 클래스
     - [ ] 팩토리 생성자를 통해 결과를 생성하게 한다.

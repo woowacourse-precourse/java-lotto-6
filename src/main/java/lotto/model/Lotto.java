@@ -26,14 +26,5 @@ public class Lotto {
         }
     }
 
-    public List<List<Integer>> createLottos(int calculateLottoCount) {
-        List<List<Integer>> lottos = new ArrayList<>();
-        for (int i = 0; i < calculateLottoCount; i++) {
-            List<Integer> lotto = createRandomLottoNumber();
-            lottos.add(lotto);
-        }
-        return lottos;
-    }
-
     // TODO: 추가 기능 구현
 }

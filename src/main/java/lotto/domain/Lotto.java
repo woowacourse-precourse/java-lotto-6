@@ -10,10 +10,9 @@ public class Lotto {
 	public static final int MIN_NUMBER = 1;
 	public static final int MAX_NUMBER = 45;
 	public static final int LOTTO_SIZE = 6;
-
-	protected static final String PREFIX = "[";
-	protected static final String SUFFIX = "]";
-	protected static final String DELIMITER = ", ";
+	public static final String PREFIX = "[";
+	public static final String SUFFIX = "]";
+	public static final String DELIMITER = ", ";
 
 	private final List<Integer> numbers;
 

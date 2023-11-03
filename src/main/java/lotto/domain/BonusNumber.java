@@ -2,13 +2,10 @@ package lotto.domain;
 
 import lotto.util.Validator;
 
-public class BonusNumber {
+public record BonusNumber(int value) {
 
-    private final int value;
-
-    public BonusNumber(int value) {
+    public BonusNumber {
         Validator.validateBonusNumber(value);
-        this.value = value;
     }
 
     public boolean isIn(Lotto answerNumber) {

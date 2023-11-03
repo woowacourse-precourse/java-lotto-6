@@ -22,6 +22,7 @@ public class LottoController {
         LottoBundle lottoBundle = lottoService.buyLottoBundle(money);
         outputView.printLottoBundle(lottoBundle);
         AnswerLotto answerLotto = getAnswerLotto();
+        LottoResult result = lottoService.calculateResult(lottoBundle, answerLotto);
     }
 
     private AnswerLotto getAnswerLotto() {

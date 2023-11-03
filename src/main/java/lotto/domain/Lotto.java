@@ -9,11 +9,16 @@ public final class Lotto {
     static final int LOTTO_LENGTH = 6;
     static final int MIN_LOTTO_NUMBER_SIZE = 1;
     static final int MAX_LOTTO_NUMBER_SIZE = 45;
+
     private final List<Integer> numbers;
 
     Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

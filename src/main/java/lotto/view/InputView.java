@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
+import lotto.util.Validator;
 import lotto.util.converter.ConverterHolder;
 
 public class InputView {
@@ -34,14 +35,16 @@ public class InputView {
         }
     }
 
-    public BonusNumber getBonusNumber() {
+    public BonusNumber getBonusNumber(Lotto answerNumber) {
         System.out.println(BONUS_NUMBER_INPUT);
         String input = Console.readLine();
         try {
-            return ConverterHolder.convert(input, BonusNumber.class);
+            BonusNumber bonusNumber = ConverterHolder.convert(input, BonusNumber.class);
+            Validator.checkAlreadyContains(answerNumber, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(answerNumber);
         }
     }
 

@@ -26,7 +26,7 @@ public class LottoController {
 
     private AnswerLotto getAnswerLotto() {
         Lotto answerLotto = inputView.getAnswerLotto();
-        BonusNumber bonusNumber = inputView.getBonusNumber();
+        BonusNumber bonusNumber = inputView.getBonusNumber(answerLotto);
         return new AnswerLotto(answerLotto, bonusNumber);
     }
 

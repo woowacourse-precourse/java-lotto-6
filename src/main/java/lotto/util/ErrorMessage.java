@@ -9,6 +9,7 @@ public enum ErrorMessage {
     LOTTO_DUPLICATE_ERROR("중복된 숫자는 불가능 합니다."),
     NEGATIVE_NUMBER_ERROR("자연수만 입력 가능합니다."),
     NUMBER_RANGE_ERROR("1이상 45이하의 숫자만 가능합니다."),
+    ALREADY_CONTAINS_ERROR("당첨 번호에 이미 포함된 번호 입니다."),
     SPLIT_REGEX_ERROR("쉼표(,)로만 구분 가능합니다.");
 
 

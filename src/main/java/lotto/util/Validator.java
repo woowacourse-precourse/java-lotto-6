@@ -1,5 +1,8 @@
 package lotto.util;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +42,13 @@ public class Validator {
     public static void validateNumbers(List<Integer> target) {
         checkSize(target);
         checkDuplicate(target);
+        for (int number : target) {
+            checkNegative(number);
+            checkRange(number);
+        }
+    }
+
+    public static void validateBonusNumber(int target) {
         checkNegative(target);
         checkRange(target);
     }
@@ -56,25 +66,27 @@ public class Validator {
         }
     }
 
-    private static void checkNegative(List<Integer> target) {
-        for (int number : target) {
-            if (number <= 0) {
-                throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
-            }
+    private static void checkNegative(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private static void checkRange(List<Integer> target) {
-        for (int number : target) {
-            if (number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER) {
-                throw new IllegalArgumentException();
-            }
+    private static void checkRange(int number) {
+        if (number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     public static void checkComma(String target) {
         if (!target.matches(NOT_SPECIAL_REGEX)) {
             throw new IllegalArgumentException(SPLIT_REGEX_ERROR.getMessage());
+        }
+    }
+
+    public static void checkAlreadyContains(Lotto answerNumber, BonusNumber bonusNumber) {
+        if (bonusNumber.isIn(answerNumber)) {
+            throw new IllegalArgumentException(ALREADY_CONTAINS_ERROR.getMessage());
         }
     }
 }

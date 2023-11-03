@@ -1,7 +1,6 @@
 package lotto.model;
 
-import lotto.view.ErrorOutputView;
-import lotto.view.InputView;
+import lotto.constant.ErrorMessage;
 
 public class PurchaseAmount {
 
@@ -10,10 +9,9 @@ public class PurchaseAmount {
         return 0; //임시
     }
 
-    private static void empty(String input){
+    public static void empty(String input){
         if(input.length() == 0){
-            ErrorOutputView.emptyPurchaseAmountMessage();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_PURCHASE_AMOUNT);
         }
     }
 

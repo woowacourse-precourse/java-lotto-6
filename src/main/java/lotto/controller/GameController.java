@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.model.LottoCount;
 import lotto.model.PurchaseMoney;

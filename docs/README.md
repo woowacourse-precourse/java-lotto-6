@@ -7,8 +7,15 @@
 
 ### Purchase
 * makePurchase: 구입 과정에 대한 UI를 담당한다.
-* purchaseLotto: 유효하지 않은 구입금액에 대해 입력을 반복한다.
+* repeatPurchasing: 유효하지 않은 구입금액에 대해 입력을 반복한다.
 * validatePrice: 구입금액의 유효성을 검증한다.
+
+### Lotto
+* Lotto: final로 선언된 변수를 초기화하는 생성자이다.
+* validate: 로또 1장의 유효성을 검증한다.
+* produceLottoTicket: 1부터 45까지의 수 중 서로 다른 6개의 수를 뽑아 오름차순으로 로또 1장을 만들어 반환한다.
+* showLottoTicket: 생성된 로또 1장을 출력한다.
+* gatherLottoTickets: List를 생성하여 주어진 quantity만큼 로또를 생성해 집어 넣은 후 반환한다.
 
 ## 요구 사항 체크리스트
 ### 기능 요구 사항

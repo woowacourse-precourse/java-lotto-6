@@ -8,4 +8,5 @@ public final class PatternConstant {
     public static final Pattern TRUE_PATTERN = Pattern.compile("true");
     public static final Pattern FALSE_PATTERN = Pattern.compile("false");
     public static final Pattern NAME_PATTERN = Pattern.compile("[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
+    public static final Pattern HAS_COMMAS_WITHOUT_SURROUNDING_VALUES_PATTERNS = Pattern.compile("^,|,$|[^,],,[^,]");
 }

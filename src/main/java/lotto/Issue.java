@@ -19,7 +19,7 @@ public class Issue {
     }
 
     void makeSortedLotto() {
-        for (int i = 0; i == lottoQuantity; i++) {
+        for (int i = 0; i < lottoQuantity; i++) {
             Lotto transfer = new Lotto(getNumbers());
 
             transfer.sort();

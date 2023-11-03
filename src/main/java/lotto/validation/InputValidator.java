@@ -16,14 +16,15 @@ public class InputValidator {
 
     public static void validatePurchasePrice(String input) {
         validateNull(input);
-        validateZero(input);
         validateIsNumber(input);
+        validateZero(input);
+        validateIsStartZero(input);
         validateDivisibleByThousand(input);
     }
 
     public static void validateWinningNumber(String input) {
         validateNull(input);
-        validateIsNumber(input);
+        validateIsNumberSeparatedByComma(input);
         validateSeparator(input);
     }
 
@@ -38,6 +39,12 @@ public class InputValidator {
         }
     }
 
+    private static void validateIsNumber(String input) {
+        if (NOT_NUMBER.matcher(input).matches()) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
+        }
+    }
+
     private static void validateZero(String input) {
         int price = Convertor.convertStringToInt(input);
         if (price == ZERO) {
@@ -45,9 +52,9 @@ public class InputValidator {
         }
     }
 
-    private static void validateIsNumber(String input) {
-        if (NOT_NUMBER.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
+    private static void validateIsStartZero(String input) {
+        if (input.startsWith("0")) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_START_ZERO.getMessage());
         }
     }
 

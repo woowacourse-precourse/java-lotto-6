@@ -3,6 +3,7 @@ package lotto.enums;
 public enum ErrorMessage {
     NOT_NULL("아무런 값을 입력하지 않았습니다."),
     NOT_ZERO("구입가격은 0을 입력할 수 없습니다."),
+    NOT_START_ZERO("구입가격을 0으로 시작할 수 없습니다."),
     NOT_DIVIDE("1000원 단위의 수를 입력해야 합니다."),
     ONLY_NUMBER("숫자만 입력할 수 있습니다."),
     NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),

@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.IllegalAmountException;
+import lotto.exception.IllegalOverValueException;
 import lotto.exception.IllegalNullTypeException;
 import lotto.exception.IllegalNumberTypeException;
 
@@ -33,12 +34,23 @@ public class NumberGenerator {
         return numbers;
     }
 
+    public Integer createBonusNumberFromConsole(String unprocessedNumbers) {
+        commonValidate(unprocessedNumbers);
+        Integer bonusNumber = Integer.valueOf(unprocessedNumbers);
+        validateIsSingleNumber(bonusNumber);
+        return bonusNumber;
+    }
+
     public Integer createAmountFromConsole(String unprocessedAmount) {
-        this.validateIsNull(unprocessedAmount);
-        this.validateNumberType(unprocessedAmount);
+        commonValidate(unprocessedAmount);
         Integer amount = Integer.valueOf(unprocessedAmount);
         this.validateMinimumAmount(amount);
         return amount;
+    }
+
+    private void commonValidate(String unprocessedNumbers) {
+        this.validateIsNull(unprocessedNumbers);
+        this.validateNumberType(unprocessedNumbers);
     }
 
     private void validateNumberType(String unprocessedNumbers) {
@@ -59,4 +71,12 @@ public class NumberGenerator {
             throw new IllegalNullTypeException();
         }
     }
+
+    private void validateIsSingleNumber(Integer bonusNumber) {
+        if (bonusNumber < START_VALUE.getValue() || bonusNumber > END_VALUE.getValue()) {
+            throw new IllegalOverValueException();
+        }
+    }
+
+
 }

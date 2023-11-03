@@ -17,4 +17,10 @@ public class InputView {
     public static void printWinningNumberPrompt() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+
+    public static String getWinningNumberView() {
+        String input = Console.readLine();
+        System.out.println();
+        return input;
+    }
 }

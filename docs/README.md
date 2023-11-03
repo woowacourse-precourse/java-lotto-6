@@ -1,38 +1,39 @@
 constants
 * ConstantValues
-  - startLottoNum = 1
-  - endLottoNum = 45
-  - lottoLength = 6
-  - lottoCost = 1000
-  - fivePrize = 5000
-  - fourPrize = 50000
-  - threePrize = 1500000
-  - twoPrize = 30000000
-  - onePrize = 2000000000
+  - START_LOTTO_NUMBER = 1
+  - END_LOTTO_NUMBER = 45
+  - LOTTO_LENGTH = 6
+  - LOTTO_COST = 1000
+  - FIVE_PRIZE = 5000
+  - FOUR_PRIZE = 50000
+  - THREE_PRIZE = 1500000
+  - TWO_PRIZE = 30000000
+  - ONE_PRIZE = 2000000000
 * InputMessages
-  - startBuyMessage = "구입금액을 입력해 주세요."
-  - getWinNumberMessage = "당첨 번호를 입력해 주세요."
-  - getBonusNumberMessage = "보너스 번호를 입력해 주세요."
+  - START_BUY_MESSAGE = "구입금액을 입력해 주세요."
+  - GET_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요."
+  - GET_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
 * ResponseMessages
-  - endBuyMessage(): n + "개를 구매했습니다."
-  - winStatsMessage = "당첨 통계"
-  - lineMessage = "---"
-  - winFive(): "3개 일치 (5,000원) - " + n + "개"
-  - winFour(): "4개 일치 (50,000원) - " + n + "개"
-  - winThree(): "5개 일치 (1,500,000원) - " + n + "개"
-  - winTwo(): "5개 일치, 보너스 볼 일치" (30,000,000원) - " + n + "개"
-  - winOne(): "6개 일치 (2,000,000,000원) - " + n + "개"
-  - printEarningRate(): "총 수익률은 " + f + "%입니다." <- 소수 둘째 자리에서 반올림
+  - END_BUY_MESSAGE = "개를 구매했습니다."
+  - WIN_STATS_MESSAGE = "당첨 통계"
+  - LINE_MESSAGE = "---"
+  - WIN_MESSAGE_5 = "3개 일치 (5,000원) - "
+  - WIN_MESSAGE_4 = "4개 일치 (50,000원) - "
+  - WIN_MESSAGE_3 = "5개 일치 (1,500,000원) - "
+  - WIN_MESSAGE_2 = "5개 일치, 보너스 볼 일치" (30,000,000원) - "
+  - WIN_MESSAGE_1 = "6개 일치 (2,000,000,000원) - "
+  - PROFIT_MESSAGE = "총 수익률은 "
 * ErrorMessages
-  - errorHead = "[ERROR] "
-  - buyEmptyError = "구입 금액을 입력해야 합니다.
-  - buyCharError = "구입 금액은 쉼표(,) 없이 숫자로 입력해야 합니다."
-  - buyConditionError = "구입 금액은 1,000원 단위로 입력해야 합니다."
-  - lottoEmptyError = "당첨 번호를 입력해야 합니다."
-  - lottoCharError = "당첨 번호는 쉼표(,)를 기준으로 숫자로 입력해야 합니다."
-  - lottoRangeError = "로또 번호는 1부터 45 사이의 숫자여야 합니다."
-  - lottoLengthError = "당첨 번호는 6개를 입력해야 합니다."
-  - bonusEmptyError = "보너스 번호를 입력해야 합니다."
+  - ERROR_HEADER = "[ERROR] "
+  - BUY_EMPTY_ERROR = "구입 금액을 입력해야 합니다.
+  - BUY_CHAR_ERROR = "구입 금액은 쉼표(,) 없이 숫자로 입력해야 합니다."
+  - BUY_MINUS_ERROR = "구입 금액은 음수가 될 수 없습니다."
+  - BUY_CONDITION_ERROR = "구입 금액은 1,000원 단위로 입력해야 합니다."
+  - LOTTO_EMPTY_ERROR = "당첨 번호를 입력해야 합니다."
+  - LOTTO_CHAR_ERROR = "당첨 번호는 쉼표(,)를 기준으로 숫자로 입력해야 합니다."
+  - LOTTO_RANGE_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다."
+  - LOTTO_LENGTH_ERROR = "당첨 번호는 6개를 입력해야 합니다."
+  - BONUS_EMPTY_ERROR = "보너스 번호를 입력해야 합니다."
 
 
 UIView

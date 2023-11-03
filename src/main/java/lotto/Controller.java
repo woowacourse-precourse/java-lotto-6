@@ -1,6 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+
+import java.util.List;
 
 public class Controller {
     public int getLottoCount(int userMoney) {
@@ -9,5 +12,9 @@ public class Controller {
         }
 
         return userMoney / Lotto.PRICE;
+    }
+
+    public List<Integer> getRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

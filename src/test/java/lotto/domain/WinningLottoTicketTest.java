@@ -47,4 +47,17 @@ class WinningLottoTicketTest {
 
         assertEquals(Rank.THIRD, result);
     }
+
+    @Test
+    @DisplayName("당첨 번호와 하나도 일치하지 않는 경우 NONE 등수 반환")
+    void whenNoNumbersMatch_thenReturnNoneRank() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> playerNumbers = Arrays.asList(7, 8, 9, 10, 11, 12);
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(winningNumbers, 13);
+        Lotto lotto = new Lotto(playerNumbers);
+
+        Rank result = winningLottoTicket.match(lotto);
+
+        assertEquals(Rank.NONE, result);
+    }
 }

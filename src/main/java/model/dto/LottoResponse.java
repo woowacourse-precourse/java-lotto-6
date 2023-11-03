@@ -5,15 +5,9 @@ import model.Lotto;
 import model.LottoNumber;
 import model.LottoWithBonus;
 
-public class LottoResponse {
+public record LottoResponse(List<String> lottoResponse) {
 
     private static final String DELIMITER = ", ";
-
-    private final List<String> lottoResponse;
-
-    private LottoResponse(final List<String> lotto) {
-        this.lottoResponse = lotto;
-    }
 
     public static LottoResponse from(final LottoWithBonus lottoWithBonus) {
         Lotto lotto = lottoWithBonus.getLotto();

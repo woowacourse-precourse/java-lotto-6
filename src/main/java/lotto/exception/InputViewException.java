@@ -5,7 +5,7 @@ import static lotto.model.MagicVariable.LOTTO_PRICE;
 
 
 public class InputViewException extends IllegalArgumentException {
-    public InputViewException(String lottoPriceTypeErrorMessage) {
+    private InputViewException(String lottoPriceTypeErrorMessage) {
         super(lottoPriceTypeErrorMessage);
     }
 

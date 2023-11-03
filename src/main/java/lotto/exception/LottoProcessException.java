@@ -4,7 +4,7 @@ import static lotto.model.MagicVariable.LOTTO_PRICE;
 import static lotto.model.MagicVariable.NONE_PURCHASE_PRICE;
 
 public class LottoProcessException extends IllegalArgumentException {
-    public LottoProcessException(String message) {
+    private LottoProcessException(String message) {
         super(message);
     }
 

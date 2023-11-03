@@ -7,7 +7,7 @@ import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
 
 
 public class LottoException extends IllegalArgumentException {
-    public LottoException(String message) {
+    private LottoException(String message) {
         super(message);
     }
 

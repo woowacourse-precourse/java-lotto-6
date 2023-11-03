@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static lotto.Error.Domain.BONUS_NUMBER_ALREADY_EXIST;
 import static lotto.Error.Domain.WRONG_LOTTO_NUMBER_RANGE;
 
@@ -9,8 +12,26 @@ public final class WinningLotto {
 
     public WinningLotto(Lotto answerLotto, int bonus) {
         this.answerLotto = answerLotto;
+
         validate(bonus);
         this.bonus = bonus;
+    }
+
+    public boolean isSameWithBonus(Lotto target) {
+        return target.getNumbers()
+                .stream()
+                .anyMatch(e -> e.equals(bonus));
+    }
+
+    public int countSameLottoNumber(Lotto target) {
+        return getIntersectionSize(target);
+    }
+
+    private int getIntersectionSize(Lotto target) {
+        Set<Integer> answer = new HashSet<>(answerLotto.getNumbers());
+
+        answer.retainAll(target.getNumbers());
+        return answer.size();
     }
 
     private void validate(int bonus) {

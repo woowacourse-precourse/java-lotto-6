@@ -21,17 +21,17 @@
 
 - [x] PurchasedLotto : 구입한 로또들을 모아두는 일급 컬렉션
     - [x] `List<Lotto>`를 필드로 가진다.
-        - [x] Lotto가 비어있다면 예외를 발생시킨다.
-    - [x] List<Lotto>를 반환활때 unmodified 만든다.
+    - [x] `Lotto`가 비어있다면 예외를 발생시킨다.
+        - [x] List<Lotto>를 반환활때 unmodified 만든다.
 
 
-- [ ] WinningLotto : 당첨 번호를 가진다.
+- [x] WinningLotto : 당첨 번호를 가진다.
     - [x] `Lotto`를 생성자 주입 받는다.
     - [x] 보너스 번호를 가진다.
         - [x] 로또 번호 중 하나와 중복되면 예외가 발생
         - [x] 1 ~ 45 사이의 숫자가 아니라면 예외가 발생
-    - [ ] 매개변수로 받은 Lotto와 일치하는 개수를 반환한다.
-    - [ ] 매개변수로 받은 Lotto와 보너스 번호가 일치하는지 반환한다.
+    - [x] 매개변수로 받은 Lotto와 일치하는 개수를 반환한다.
+    - [x] 매개변수로 받은 Lotto와 보너스 번호가 일치하는지 반환한다.
 
 
 - [x] LottoRankInfo : 로또 일치 개수에 따른 보상 금액을 정의한 enum

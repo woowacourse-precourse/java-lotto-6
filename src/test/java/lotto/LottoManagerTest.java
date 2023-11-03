@@ -149,4 +149,20 @@ class LottoManagerTest {
 
         assertThat(copiedWinningHash.get(4)).isEqualTo(2);
     }
+
+    @Test
+    void 총수익률확인() {
+        LottoBuyer buyer = new LottoBuyer();
+        LottoManager manager = new LottoManager(buyer);
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 11, 12, 14));
+        buyer.buyLotto("8000");
+        List<String> winningNumbers = List.of("1", "2", "3", "4", "8", "9");
+        manager.setWinningNumbers(winningNumbers);
+        buyer.addMyLottos(lotto1);
+
+        manager.setWinningResult();
+        manager.announceResult();
+
+        assertThat(manager.getTotalRateOfRevenue()).isEqualTo(62.5f);
+    }
 }

@@ -17,6 +17,7 @@ public class LottoCalculator {
     }
 
     public void makePrizeResult(List<Lotto> lottoTickets) {
+        initResult();
         for (Lotto oneTicket : lottoTickets) {
             int matchCount = countMatchNumbers(oneTicket);
             Prize prize = Prize.getByMatch(matchCount);
@@ -28,6 +29,14 @@ public class LottoCalculator {
                 result.put(Prize.SECOND, result.get(Prize.SECOND) + 1);
             }
         }
+    }
+
+    public void initResult() {
+        result.put(Prize.FIRST, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.FIFTH, 0);
     }
 
     public int countMatchNumbers(Lotto lotto) {

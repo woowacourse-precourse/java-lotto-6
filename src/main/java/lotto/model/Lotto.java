@@ -6,6 +6,7 @@ import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
 import java.util.List;
+import lotto.record.LottoNumberRecord;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +14,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public LottoNumberRecord toRecord() {
+        return new LottoNumberRecord(numbers);
     }
 
     public String makeLottoNumberString() {

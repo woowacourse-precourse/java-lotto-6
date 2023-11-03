@@ -39,9 +39,9 @@ public class Lotto {
         }
     }
 
-    public Integer count(Lotto winningLotto) {
+    public Integer count(Lotto lotto) {
         return (int) IntStream.range(0, 6)
-                .filter(i -> winningLotto.contains(numbers.get(i)))
+                .filter(i -> lotto.contains(numbers.get(i)))
                 .count();
     }
 

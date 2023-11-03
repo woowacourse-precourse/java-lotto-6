@@ -64,9 +64,9 @@ class LottoTest {
     @ParameterizedTest(name = "{displayName} : {0}, 기대값: {1}")
     @MethodSource("bonusNumberMatchParametersProvide")
     void checkBonusNumberMatch(List<Integer> bought, boolean expected) {
-        Integer bonusNumber = 7;
+        Bonus bonusNumber = new Bonus(7);
         Lotto boughtLotto = new Lotto(bought);
-        assertThat(boughtLotto.contains(bonusNumber)).isEqualTo(expected);
+        assertThat(bonusNumber.hasBonusNumber(boughtLotto)).isEqualTo(expected);
     }
 
     static Stream<Arguments> bonusNumberMatchParametersProvide() {
@@ -75,6 +75,4 @@ class LottoTest {
                 Arguments.of(List.of(10, 2, 3, 45, 5, 7), true)
         );
     }
-
-
 }

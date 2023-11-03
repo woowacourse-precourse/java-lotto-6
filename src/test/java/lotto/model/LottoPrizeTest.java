@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoPrizeTest {
 
     private static final Lotto winningLotto = new Lotto(List.of(3, 14, 15, 9, 2, 6));
-    private static final int bonusNumber = 5;
+    private static final Bonus bonusNumber = new Bonus(5);
 
     @DisplayName("당첨 번호와 구입한 로또 및 보너스 일치 판별")
     @ParameterizedTest
     @MethodSource("parametersProvider")
     void checkPrize(Lotto bought, LottoPrize expected) {
-        LottoPrize prize = LottoPrize.from(bought.count(winningLotto), bought.contains(bonusNumber));
+        LottoPrize prize = LottoPrize.from(winningLotto.count(bought), bonusNumber.hasBonusNumber(bought));
 
         assertThat(prize).isEqualTo(expected);
     }

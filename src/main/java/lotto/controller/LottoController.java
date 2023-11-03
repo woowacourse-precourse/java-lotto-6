@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.Result;
@@ -32,10 +33,10 @@ public class LottoController {
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
         Lotto winningNumbers = readWinningNumbers();
-        Integer bonusNumber = readBonusNumber();
+        Bonus bonusNumber = readBonusNumber();
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto lotto : boughtLotto) {
-            lottoPrizes.add(LottoPrize.from(lotto.count(winningNumbers), lotto.contains(bonusNumber)));
+            lottoPrizes.add(LottoPrize.from(winningNumbers.count(lotto), bonusNumber.hasBonusNumber(lotto)));
         }
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);
@@ -50,8 +51,9 @@ public class LottoController {
                 .toList());
     }
 
-    private Integer readBonusNumber() {
-        return Integer.parseInt(inputView.readBonusNumber());
+    private Bonus readBonusNumber() {
+        Integer number = Integer.parseInt(inputView.readBonusNumber());
+        return new Bonus(number);
     }
 
     private Integer buyLottoTicket(Integer amount) {

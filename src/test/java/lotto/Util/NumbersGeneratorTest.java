@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
-import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -12,13 +11,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RandomNumberTest {
+public class NumbersGeneratorTest {
 
     List<Integer> numbers;
 
     @BeforeEach
     public void generateRandomNumbers() {
-        numbers = RandomNumber.generateRandomNumbers();
+        numbers = NumbersGenerator.generateRandomNumbers();
     }
 
     @Test
@@ -58,7 +57,7 @@ public class RandomNumberTest {
 
     private boolean checkNumberRange(List<Integer> numbers) {
         return numbers.stream()
-            .allMatch(number -> number >= RandomNumber.MIN_NUMBER_RANGE
-                && number <= RandomNumber.MAX_NUMBER_RANGE);
+            .allMatch(number -> number >= NumbersGenerator.MIN_NUMBER_RANGE
+                && number <= NumbersGenerator.MAX_NUMBER_RANGE);
     }
 }

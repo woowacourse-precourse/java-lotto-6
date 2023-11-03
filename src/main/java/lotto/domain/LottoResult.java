@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public record LottoResult(Map<LottoPrizes, Integer> result) {
-    private static final String STATISTICS = "당첨 통계";
-    private static final String THREE_DASHES = "---";
     private static final String LEFT_PARENTHESIS = "(";
     private static final String RIGHT_PARENTHESIS = ")";
     private static final String SPACE = " ";
@@ -22,21 +20,26 @@ public record LottoResult(Map<LottoPrizes, Integer> result) {
     }
 
     private String displayPrizes(LottoPrizes lottoPrizes) {
-        StringBuilder message = new StringBuilder();
-        return message.append(lottoPrizes.getTerm())
-                .append(SPACE)
-                .append(LEFT_PARENTHESIS)
-                .append(lottoPrizes.getParsedWinningAmount())
-                .append(RIGHT_PARENTHESIS)
-                .append(DASH_WITH_SPACE)
-                .append(result.get(lottoPrizes))
-                .append(COUNT_TO_KOREAN)
-                .toString();
+        final int winCount = result.get(lottoPrizes);
+        return lottoPrizes.getTerm()
+                + SPACE
+                + LEFT_PARENTHESIS
+                + lottoPrizes.getParsedWinningAmount()
+                + RIGHT_PARENTHESIS
+                + DASH_WITH_SPACE
+                + winCount
+                + COUNT_TO_KOREAN;
     }
 
-    public int getTotalRevenue() {
+    public long getTotalRevenue() {
         return Arrays.stream(LottoPrizes.values())
-                .mapToInt(prize -> prize.getWinningAmount() * result.get(prize))
+                .mapToLong(this::getRevenue)
                 .sum();
+    }
+
+    private long getRevenue(LottoPrizes lottoPrizes) {
+        final long winCount = result.get(lottoPrizes);
+        final long winAmount = lottoPrizes.getWinningAmount();
+        return winCount * winAmount;
     }
 }

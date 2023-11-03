@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printEarningRate(int purchaseAmount, int revenue) {
+    public void printEarningRate(int purchaseAmount, long revenue) {
         double earningRate = ((double) revenue / purchaseAmount) * HUNDREAD;
         System.out.printf(EARNING_RATE_MESSAGE + NEW_LINE, earningRate);
     }

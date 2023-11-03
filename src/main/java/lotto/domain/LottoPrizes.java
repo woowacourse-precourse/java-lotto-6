@@ -15,9 +15,9 @@ public enum LottoPrizes {
     private static final String WON = "원";
     private static final String DECIMAL_FORMAT = "###,###";
     private final String term;
-    private final int winningAmount;
+    private final long winningAmount;
 
-    LottoPrizes(String term, int winningAmount) {
+    LottoPrizes(String term, long winningAmount) {
         this.term = term;
         this.winningAmount = winningAmount;
     }
@@ -26,7 +26,7 @@ public enum LottoPrizes {
         return term;
     }
 
-    public int getWinningAmount() {
+    public long getWinningAmount() {
         return winningAmount;
     }
 

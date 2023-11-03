@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumber;
 
@@ -14,13 +15,11 @@ public class InputView {
 
     public WinningNumber inputLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        return new WinningNumber(Integer.parseInt(winningNumbers));
+        return new WinningNumber(Console.readLine());
     }
 
-    public WinningNumber inputLottoBonusNumbers() {
+    public BonusNumber inputLottoBonusNumbers() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        return new WinningNumber(Integer.parseInt(winningNumbers));
+        return new BonusNumber(Console.readLine());
     }
 }

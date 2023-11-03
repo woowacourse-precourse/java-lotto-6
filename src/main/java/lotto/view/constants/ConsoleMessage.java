@@ -16,8 +16,9 @@ public enum ConsoleMessage {
 
     // error
     PURCHASE_AMOUNT_ERROR("[ERROR] 1000원 단위의 금액을 입력해 주세요."),
-    WINNING_NUMBERS_ERROR("[ERROR] 1~45 사이의 숫자를 공백 없이 %s로 구분하여 입력해 주세요."),
-    BONUS_NUMBER_ERROR("[ERROR] 1~45 사이의 숫자를 입력해 주세요.");
+    WINNING_NUMBERS_ERROR("[ERROR] 1~45 사이의 숫자 6개를 공백 없이 %s로 구분하여 입력해 주세요."),
+    BONUS_NUMBER_ERROR("[ERROR] 1~45 사이의 숫자를 입력해 주세요."),
+    DUPLICATE_NUMBER_ERROR("[ERROR] 중복된 숫자가 있습니다.");
 
     private final String message;
 

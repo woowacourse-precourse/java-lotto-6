@@ -9,15 +9,15 @@ public class InputView {
         System.out.println(message);
     }
 
-    public static void moneyMessage() {
+    public void moneyMessage() {
         showMessage(MONEY_MESSAGE);
     }
 
-    public static void numbersMessage() {
+    public void numbersMessage() {
         showMessage(NUMBERS_MESSAGE);
     }
 
-    public static void bonusNumberMessage() {
+    public void bonusNumberMessage() {
         showMessage(BONUS_NUMBER_MESSAGE);
     }
 }

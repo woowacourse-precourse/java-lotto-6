@@ -2,6 +2,8 @@ package lotto.config;
 
 import lotto.adapter.IoAdapter;
 import lotto.adapter.impl.StandardIoAdapter;
+import lotto.game.Game;
+import lotto.game.impl.LottoGame;
 import lotto.service.LottoProduceService;
 import lotto.service.SortService;
 import lotto.service.ValidateService;
@@ -22,7 +24,12 @@ public class AppConfig {
     public SortService sortService() {
         return new SortServiceImpl();
     }
+
     public LottoProduceService lottoProduceService() {
         return new LottoProduceServiceImpl(sortService(), ioAdapter());
+    }
+
+    public Game game() {
+        return new LottoGame(sortService(), ioAdapter(), lottoProduceService(), validateService());
     }
 }

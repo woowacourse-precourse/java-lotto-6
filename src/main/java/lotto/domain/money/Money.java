@@ -36,6 +36,13 @@ public final class Money {
     }
 
     /**
+     * 소지금이 0인 Money를 생성합니다.
+     */
+    public static Money zero() {
+        return new Money(0);
+    }
+
+    /**
      * 입력된 `amount`를 검증하며, 음수일 경우 예외가 발생합니다.
      */
     private static void validateMoneyAmount(final int amount) {
@@ -44,17 +51,20 @@ public final class Money {
         }
     }
 
-    public void spend(final Money money) {
-        spend(money.amount);
-    }
 
-    public void spend(final int amount) {
-        final int remainedAmount = this.amount - amount;
+    /**
+     * 현재 가진 소지금에서 amount 만큼을 제합니다.
+     */
+    public void spend(final Money other) {
+        final int remainedAmount = this.amount - other.amount;
         validateMoneyAmount(remainedAmount);
         this.amount = remainedAmount;
     }
 
-    public boolean isLessThan(final int amount) {
-        return this.amount < amount;
+    /**
+     * 금액 대소여부 비교
+     */
+    public boolean isLessThan(final Money other) {
+        return this.amount < other.amount;
     }
 }

@@ -6,7 +6,12 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public enum LottoResult {
-    FIRST(6,2000000000), SECOND(5, 30000000), THIRD(5,1500000), FOURTH(4,50000), FIFTH(3,5000), NONE(0,0);
+    NONE(0,0),
+    FIFTH(3,5000),
+    FOURTH(4,50000),
+    THIRD(5,1500000),
+    SECOND(5, 30000000),
+    FIRST(6,2000000000);
 
     private final int numberOfSame;
     private final long prizeMoney;
@@ -45,5 +50,17 @@ public enum LottoResult {
 
     public long getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public int getNumberOfSame() {
+        return numberOfSame;
+    }
+
+    public boolean isNone() {
+        return this == NONE;
+    }
+
+    public boolean isSecond() {
+        return this == SECOND;
     }
 }

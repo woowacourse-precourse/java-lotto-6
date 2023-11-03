@@ -9,6 +9,7 @@ import static lotto.constant.DisplayMessages.*;
 public class OutputView {
 
     public static void purchaseCount(int count) {
+        System.out.println();
         System.out.println(PURCHASE_QUANTITY
                 .format(String.valueOf(count)));
     }

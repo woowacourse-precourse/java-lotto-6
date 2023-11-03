@@ -35,9 +35,14 @@ public class InputValidator {
         }
     }
 
+    public static boolean isInRange(List<Integer> winningNumbers) {
+        return winningNumbers.stream().allMatch(n -> n >= LOTTO_NUMBER_MIN_RANGE.getValue()
+                && n <= LOTTO_NUMBER_MAX_RANGE.getValue());
+    }
+
     public static boolean isCalculate(int amount) {
 
-        if (amount % LOTTO_PRICE.getValue() == 0) {
+        if (amount != 0 && amount % LOTTO_PRICE.getValue() == 0) {
             return true;
         }
         System.out.println(ErrorMessages.PREFIX.getMessage()

@@ -37,16 +37,17 @@ public class LottoMachine {
 
     private static List<Integer> pickLottoNumber() {
 
-        List<Integer> numbers = new ArrayList<>();
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE.getValue(),
+                LOTTO_NUMBER_MAX_RANGE.getValue(),
+                WINNING_NUMBER_TOTAL.getValue());
+    }
 
-        while (numbers.size() != WINNING_NUMBER_TOTAL.getValue()) {
-            int randomNumber = Randoms.pickNumberInRange(LOTTO_NUMBER_MIN_RANGE.getValue(),
-                    LOTTO_NUMBER_MAX_RANGE.getValue());
-
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
+    public List<Lotto> buyLotto(int totalLotto) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < totalLotto; i++) {
+            Lotto newLotto = createLotto();
+            lottoList.add(newLotto);
         }
-        return numbers;
+        return lottoList;
     }
 }

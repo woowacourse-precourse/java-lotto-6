@@ -33,7 +33,9 @@ public class WinningChecker {
     }
 
     private List<Integer> lottoNumberForCompare(String lotto) {
-        return Arrays.stream(lotto.substring(Constants.BRACKET_REMOVAL_INDEX, lotto.length() - Constants.BRACKET_REMOVAL_INDEX).split(","))
+        return Arrays.stream(
+                lotto.substring(Constants.BRACKET_REMOVAL_INDEX, lotto.length() - Constants.BRACKET_REMOVAL_INDEX)
+                        .split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

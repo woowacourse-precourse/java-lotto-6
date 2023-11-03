@@ -1,12 +1,15 @@
 package lotto.lotto;
 
+import static lotto.enums.LottoNumberEnum.END_VALUE;
+import static lotto.enums.LottoNumberEnum.START_VALUE;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.IllegalDuplicateException;
-import lotto.exception.IllegalRangeException;
-import lotto.exception.IllegalSizeException;
+import lotto.exception.IllegalLottoRangeException;
+import lotto.exception.IllegalLottoSizeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,14 +27,14 @@ public class Lotto {
 
     private static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalSizeException();
+            throw new IllegalLottoSizeException();
         }
     }
 
     private static void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalRangeException();
+            if (number < START_VALUE.getValue() || number > END_VALUE.getValue()) {
+                throw new IllegalLottoRangeException();
             }
         }
     }

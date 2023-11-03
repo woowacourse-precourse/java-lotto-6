@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.utils.Constants.*;
+
 public class LottoStore {
     private static final int LOTTO_PRICE = 1000;
     private static final int VALID_REMAINING_AMOUNT = 0;
@@ -39,7 +41,7 @@ public class LottoStore {
     }
 
     private static Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
         return new Lotto(numbers);
     }
 }

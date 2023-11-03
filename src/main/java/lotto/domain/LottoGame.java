@@ -54,6 +54,18 @@ public class LottoGame {
         return count;
     }
 
+    public double calculatePrizePercentage(int money) {
+        return calculatePrize() * 100 / money;
+    }
+
+    private double calculatePrize() {
+        double prize = 0;
+        for (LottoResult lottoResult : lottoMap.keySet()) {
+            prize += lottoResult.getPrize() * lottoMap.get(lottoResult);
+        }
+        return prize;
+    }
+
     private boolean isBonusNumContained(List<Integer> lottoNums, int bonusNum) {
         return lottoNums.contains(bonusNum);
     }

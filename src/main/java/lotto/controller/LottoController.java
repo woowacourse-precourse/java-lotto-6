@@ -1,17 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import lotto.model.BonusNum;
 import lotto.model.BuyingCost;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
-import lotto.util.Validation;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -19,19 +13,20 @@ public class LottoController {
     private final InputView inputView;
     private final BuyingCost buyingCost;
     private final WinningNumbers winningNum;
+    private final BonusNum bonusNum;
 
     public LottoController() {
         this.inputView = new InputView();
         this.buyingCost = new BuyingCost();
         this.winningNum = new WinningNumbers();
+        this.bonusNum = new BonusNum();
     }
     public void run() {
-        // 구입 금액 입력
-        int cost = buyingCost.getValidCost(inputView);
+        int cost = getValidBuyingCost(inputView);
         // 구입한 로또 수량 및 번호 출력
+        List<List<Integer>> manyLotto = Lotto.getManyLotto(cost/1000);
         System.out.println();
         System.out.println(cost/1000 + "개를 구매했습니다.");
-        List<List<Integer>> manyLotto = Lotto.getManyLotto(cost/1000);
         for (List<Integer> oneLotto : manyLotto) {
             System.out.print("[" + oneLotto.get(0));
             for (int i = 1; i < oneLotto.size(); i++) {
@@ -39,15 +34,8 @@ public class LottoController {
             }
             System.out.println("]");
         }
-
-        // 당첨 번호 입력
-        Lotto lotto = winningNum.getValidWinningNum(inputView);
-
-        // 보너스 번호 입력
-        String inputBonusNum = inputView.inputBonusNumber();
-        // 유효성 검사 필요
-        int bonusNum = Integer.parseInt(inputBonusNum);
-        // 유효성 검사 필요
+        Lotto winning = getValidWinningNum(inputView);
+        getValidBonusNum(inputView, winning);
 
         /*
         // 각 로또마다 당첨번호와 일치하는 숫자 개수, 보너스 숫자와의 일치 여부 구하기
@@ -114,5 +102,42 @@ public class LottoController {
         System.out.println("총 수익률은 " + String.format("%.1f", returnRates) + "%입니다.");
         */
         Console.close();
+    }
+
+    public int getValidBuyingCost(InputView inputView) {
+        int validCost = 0;
+        while (true) {
+            try {
+                validCost = buyingCost.getCost(inputView.inputPurchaseCost());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return validCost;
+    }
+    public Lotto getValidWinningNum(InputView inputView) {
+        Lotto result;
+        while (true) {
+            try {
+                result = winningNum.getLotto(inputView.inputWinnerNumbers());
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                winningNum.clearList();
+            }
+        }
+        return result;
+    }
+    public void getValidBonusNum(InputView inputview, Lotto lotto) {
+        while (true) {
+            try {
+                int validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber());
+                lotto.setBonusNum(validBonusNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

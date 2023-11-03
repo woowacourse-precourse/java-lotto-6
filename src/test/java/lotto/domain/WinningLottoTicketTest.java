@@ -60,4 +60,17 @@ class WinningLottoTicketTest {
 
         assertEquals(Rank.NONE, result);
     }
+
+    @Test
+    @DisplayName("당첨 번호 중 4개가 일치하는 경우 FOURTH 등수 반환")
+    void whenFourNumbersMatch_thenReturnFourthRank() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> playerNumbers = Arrays.asList(1, 2, 3, 4, 7, 8);
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(winningNumbers, 9);
+        Lotto lotto = new Lotto(playerNumbers);
+
+        Rank result = winningLottoTicket.match(lotto);
+
+        assertEquals(Rank.FOURTH, result);
+    }
 }

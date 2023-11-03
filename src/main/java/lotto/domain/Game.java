@@ -2,7 +2,9 @@ package lotto.domain;
 
 import lotto.utils.Reader;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
     private Player player;
@@ -17,12 +19,19 @@ public class Game {
     }
 
     private int inputMoney() {
-        String input = Reader.readLine();
+        String input = Reader.readLine().strip();
         return Integer.parseInt(input);
     }
 
     private List<Integer> inputWinningNumbers() {
-        return null;
+        String input = Reader.readLine();
+
+        List<Integer> winningNumbers = Arrays.stream(input.split(",", -1))
+                .map(String::strip)
+                .map(Integer::parseInt)
+                .toList();
+
+        return winningNumbers;
     }
 
     private int inputBonusNumber() {

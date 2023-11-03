@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
+        numbers = sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -21,8 +21,10 @@ public class Lotto {
         return Collections.unmodifiableCollection(numbers);
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

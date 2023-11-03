@@ -8,6 +8,7 @@ public class Prize {
     private String groupNumbers;
     private int bonusCounts;
     private int luckyCounts;
+    private int[] finalResult = new int[5];
     private List<Integer> separatedLotto;
     public static List<Integer> luckyNumber;
     public static int bonusNumber;
@@ -34,6 +35,7 @@ public class Prize {
             separatedLotto = Issue.lottoGroup.get(i);
 
             checkNumbers();
+            winPrize();
         }
     }
 
@@ -46,6 +48,28 @@ public class Prize {
             if (separatedLotto.contains((bonusNumber))) {
                 bonusCounts += 1;
             }
+        }
+    }
+
+    void winPrize() {
+        if (luckyCounts == 6) {
+            finalResult[0] += 1;
+        }
+
+        else if (luckyCounts == 5 && bonusCounts == 1) {
+            finalResult[1] += 1;
+        }
+
+        else if (luckyCounts == 5 && bonusCounts == 0) {
+            finalResult[2] += 1;
+        }
+
+        else if (luckyCounts == 4) {
+            finalResult[3] += 1;
+        }
+
+        else if (luckyCounts == 3) {
+            finalResult[4] += 1;
         }
     }
 }

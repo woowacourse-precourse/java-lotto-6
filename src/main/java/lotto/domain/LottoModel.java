@@ -45,7 +45,9 @@ public class LottoModel {
     }
 
 
-
+    public String computeRate(double winningRate) {
+        return String.format("%.1f", winningRate);
+    }
 
 
 }

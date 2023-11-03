@@ -4,6 +4,17 @@ import java.util.List;
 
 public class BonusNumber {
 
+    private final int bonusNumber;
+
+    private BonusNumber(List<Integer> answerNumber, int bonusNumber) {
+        validateBonusNumber(answerNumber, bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    public static BonusNumber of(List<Integer> answerNumber, int bonusNumber) {
+        return new BonusNumber(answerNumber, bonusNumber);
+    }
+
     public void validateBonusNumber(List<Integer> answerNumber, int bonusNumber) {
         validateBonusNumberSize(bonusNumber);
         validateDuplicateBonusNumber(answerNumber, bonusNumber);

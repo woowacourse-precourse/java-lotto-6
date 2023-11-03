@@ -91,12 +91,14 @@ public class Player {
     }
 
     public String issuedLottos() {
-        StringBuilder result = new StringBuilder(String.valueOf(lottos.size())).append("개를 구매했습니다.\n");
+        StringBuilder result = new StringBuilder(String.valueOf(lottos.size()))
+                .append("개를 구매했습니다.")
+                .append(System.lineSeparator());
 
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             Collections.sort(lottoNumbers);
-            result.append(lottoNumbers).append('\n');
+            result.append(lottoNumbers).append(System.lineSeparator());
         }
 
         return result.toString();
@@ -105,13 +107,13 @@ public class Player {
     public String lottoResults() {
         double prizeRate = (int) (1000. * totalPrize / money + 0.5) / 10.;
 
-        StringBuilder result = new StringBuilder("당첨 통계\n")
-                .append("---\n")
-                .append("3개 일치 (5,000원) - ").append(results.get(Ranking.FIFTH)).append("개\n")
-                .append("4개 일치 (50,000원) - ").append(results.get(Ranking.FORTH)).append("개\n")
-                .append("5개 일치 (1,500,000원) - ").append(results.get(Ranking.THIRD)).append("개\n")
-                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(Ranking.SECOND)).append("개\n")
-                .append("6개 일치 (2,000,000,000원) - ").append(results.get(Ranking.FIRST)).append("개\n")
+        StringBuilder result = new StringBuilder("당첨 통계").append(System.lineSeparator())
+                .append("---").append(System.lineSeparator())
+                .append("3개 일치 (5,000원) - ").append(results.get(Ranking.FIFTH)).append("개").append(System.lineSeparator())
+                .append("4개 일치 (50,000원) - ").append(results.get(Ranking.FORTH)).append("개").append(System.lineSeparator())
+                .append("5개 일치 (1,500,000원) - ").append(results.get(Ranking.THIRD)).append("개").append(System.lineSeparator())
+                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(Ranking.SECOND)).append("개").append(System.lineSeparator())
+                .append("6개 일치 (2,000,000,000원) - ").append(results.get(Ranking.FIRST)).append("개").append(System.lineSeparator())
                 .append("총 수익률은 ").append(prizeRate).append("%입니다.");
 
         return result.toString();

@@ -13,6 +13,8 @@ public class Game {
     public void joinPlayer() {
         Logs.inputMoney();
         player = new Player(inputMoney());
+        Logs.newLine();
+
         player.issueLotto();
         Logs.print(player.issuedLottos());
     }
@@ -20,8 +22,12 @@ public class Game {
     public void drawWinningLotto() {
         Logs.inputWinningNumbers();
         List<Integer> winningNumbers = inputWinningNumbers();
+        Logs.newLine();
+
         Logs.inputBonusNumber();
         int bonusNumber = inputBonusNumber();
+        Logs.newLine();
+
         winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 

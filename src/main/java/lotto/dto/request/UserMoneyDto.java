@@ -1,6 +1,6 @@
 package lotto.dto.request;
 
-public final class UserMoneyDto {
+public class UserMoneyDto {
     private final int money;
 
     public UserMoneyDto(int money) {

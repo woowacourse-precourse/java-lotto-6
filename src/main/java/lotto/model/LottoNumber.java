@@ -29,6 +29,10 @@ public final class LottoNumber {
         return new LottoNumber(number);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -52,4 +52,7 @@ public final class Lotto {
         return new Lotto(uniqueNumbers);
     }
 
+    public List<LottoNumber> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
 }

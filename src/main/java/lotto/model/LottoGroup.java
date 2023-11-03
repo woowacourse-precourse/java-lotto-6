@@ -21,5 +21,8 @@ public final class LottoGroup {
                 .limit(lottoCount.getCount())
                 .toList();
     }
-    
+
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
+    }
 }

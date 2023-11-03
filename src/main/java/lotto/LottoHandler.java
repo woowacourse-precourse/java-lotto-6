@@ -1,68 +1,55 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.LottoDto;
+import lotto.view.LottoGuideMessage;
+import lotto.view.LottoReader;
+import lotto.view.LottoViewResolver;
+import lotto.view.LottoWriter;
 
-import java.util.Arrays;
 import java.util.List;
+
 
 public class LottoHandler {
 
     private final LottoManager lottoManager;
+    private final LottoReader reader;
+    private final LottoWriter writer;
+    private final LottoViewResolver lottoViewResolver;
 
-    public LottoHandler(LottoManager lottoManager) {
+    public LottoHandler(LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewResolver lottoViewResolver) {
         this.lottoManager = lottoManager;
+        this.reader = reader;
+        this.writer = writer;
+        this.lottoViewResolver = lottoViewResolver;
     }
 
     void run() {
-        System.out.println("구입금액을 입력해 주세요.");
+        Lottos lottos = getLottos();
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
 
-        Lottos lottos = lottoManager.createLottos(inputMoney());
-        WinningLotto winningLotto = lottoManager.createWinningLotto(inputWinningNumbers(), inputBonusNumbers());
+        LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        System.out.println(lottos);
+        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
 
+        writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
+        writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
 
         lottoManager.calculateLottos(lottos, winningLotto);
     }
 
-    private List<Integer> inputWinningNumbers() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String inputWinningNumbers = Console.readLine();
-                String[] split = inputWinningNumbers.split(",");
-                if (split.length != Lotto.LOTTO_NUMBER_SIZE) {
-                    throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개만 입력이 가능합니다.");
-                }
-                return Arrays.stream(split).map(Integer::parseInt).toList();
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨 번호는 숫자만 입력할 수 있습니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
+    private int getBonusNumber() {
+        writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
+        return reader.inputBonusNumbers();
     }
 
-    private int inputBonusNumbers() {
-        while (true) {
-            try {
-                System.out.println("보녀스 번호를 입력해 주세요.");
-                String inputBonusNumber = Console.readLine();
-                return Integer.parseInt(inputBonusNumber);
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");
-            }
-        }
+    private List<Integer> getWinningNumbers() {
+        writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
+        return reader.inputWinningNumbers();
     }
 
-    private int inputMoney() {
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
-            throw e;
-        }
+    private Lottos getLottos() {
+        writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
+        return lottoManager.createLottos(reader.inputMoney());
     }
 }

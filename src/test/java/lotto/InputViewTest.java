@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import camp.nextstep.edu.missionutils.Console;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
@@ -28,7 +29,7 @@ public class InputViewTest {
     }
 
 
-    @DisplayName("로또 구매 금액의 입력이 공백이 입력되면 예외가 발생한다.")
+    @DisplayName("로또 구매 금액의 입력에 공백이 입력되면 예외가 발생한다.")
     @Test
     void readBuyAmount_Space_ExceptionThrow() {
         setInputValues("\n");
@@ -49,6 +50,30 @@ public class InputViewTest {
     void readBuyAmount_NotDivided_ExecptionThrow(String input) {
         setInputValues(input);
         assertThatThrownBy(() -> InputView.readBuyAmount()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 공백이 입력되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = "\n")
+    void readWinningNumber_Space_ExceptionThrow(String input) {
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호 입력에 문자가 아닌 값이 입력되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"hello", "jun", "kiki"})
+    void readWinningNumber_NotInteger_ExceptionThrow(String input) {
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호가 6자리가 아닐 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3","1,2,3,4,5,6,8,9","1,2","1" })
+    void readWinningNumber_IsNotSixNumber_ExceptionThrow(String input) {
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
 

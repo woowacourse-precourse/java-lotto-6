@@ -90,17 +90,13 @@ public class LottoViewTest {
     @DisplayName("정수가 아닌경우 에러발생")
     @Test
     void 문자열_에러처리() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            List<String> parseNumber = Arrays.asList("1", "2", "3", "a", "4", "5");
-            for (String num : parseNumber) {
-                Integer.parseInt(num);
-                throw new IllegalArgumentException(INPUT_STRING.getMessage());
+        String input = "1,2,3,4,a,6";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            for (String part : input.split(",")) {
+                Integer.parseInt(part);
             }
         });
-
-        assertThat(exception.getMessage()).
-                isEqualTo("[ERROR] 숫자가 아닌 문자열을 입력했습니다");
     }
-
 
 }

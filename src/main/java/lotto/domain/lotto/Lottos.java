@@ -6,7 +6,7 @@ public record Lottos(List<Lotto> lottos) {
 
     public List<LottoReward> createCompareResults(final Lotto winningLotto, final int bonusNumber) {
         return lottos.stream()
-                .map(userLotto -> LottoReward.findCompareResult(userLotto, winningLotto, bonusNumber))
+                .map(userLotto -> LottoReward.getCompareResult(userLotto, winningLotto, bonusNumber))
                 .toList();
     }
 }

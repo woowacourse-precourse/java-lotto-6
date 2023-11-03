@@ -21,8 +21,9 @@ public enum LottoReward {
         this.reward = reward;
     }
 
-    public static LottoReward findCompareResult(final Lotto userLotto, final Lotto winningLotto, final int bonusNumber) {
-        int winningCount = userLotto.findWinningCount(winningLotto);
+    public static LottoReward getCompareResult(final Lotto userLotto, final Lotto winningLotto,
+                                               final int bonusNumber) {
+        int winningCount = userLotto.calculateWinningCount(winningLotto);
         if (winningCount == SECOND_WINNER.winningCount) {
             return compareLottoWithBonus(userLotto, bonusNumber);
         }

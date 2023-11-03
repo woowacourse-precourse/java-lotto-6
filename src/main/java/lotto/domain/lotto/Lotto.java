@@ -1,7 +1,6 @@
 package lotto.domain.lotto;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -67,7 +66,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int findWinningCount(final Lotto compareLotto) {
+    public int calculateWinningCount(final Lotto compareLotto) {
         return (int) numbers.stream()
                 .filter(compareLotto::contains)
                 .count();

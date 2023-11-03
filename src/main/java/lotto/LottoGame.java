@@ -69,7 +69,7 @@ public class LottoGame {
     private List<Integer> convertToNumbers(final List<String> inputNumbers) {
         return inputNumbers.stream()
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private void printBuyingResults() {

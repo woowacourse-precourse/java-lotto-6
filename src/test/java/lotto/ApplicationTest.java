@@ -54,6 +54,47 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_숫자가_아닌_당첨_번호() {
+        assertSimpleTest(() -> {
+            runException("1000", "2j,4");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_6개가_아닌_당첨_번호_1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_6개가_아닌_당첨_번호_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_1미만의_당첨_번호_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_45초과의_당첨_번호_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -6,6 +6,9 @@ import java.text.DecimalFormat;
 
 public class OutputView {
     public void printAllLottoNumbers(List<Lotto> lottos) {
+        int numberOfLottos = lottos.size();
+        System.out.println("\n" + numberOfLottos + "개를 구매했습니다.");
+
         for(Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
             System.out.println(numbers);
@@ -13,7 +16,7 @@ public class OutputView {
     }
 
     public void printTotalResult(int[][] totalResult) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + totalResult[3][0] + "개");
         System.out.println("4개 일치 (50,000원) - " + totalResult[4][0] + "개");
@@ -26,6 +29,6 @@ public class OutputView {
         returnRate *= 100;
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         String formattedReturnRate = decimalFormat.format(returnRate);
-        System.out.println("총 수익률은 " + formattedReturnRate + "% 입니다.");
+        System.out.println("총 수익률은 " + formattedReturnRate + "%입니다.");
     }
 }

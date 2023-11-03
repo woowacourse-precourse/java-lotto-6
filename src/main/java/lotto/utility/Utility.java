@@ -11,7 +11,8 @@ public class Utility {
             int number = Integer.parseInt(input);
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다");
+            System.out.println("[ERROR] 입력값이 정수가 아닙니다\n");
+            throw new IllegalArgumentException("[ERROR] 입력값이 정수가 아닙니다");
         }
     }
 

@@ -3,6 +3,7 @@ package lotto.exception;
 import java.util.List;
 
 import lotto.constant.ExceptionConstant;
+import lotto.constant.LottoConstant;
 
 public class WinningNumberValidationException extends IllegalArgumentException {
 
@@ -17,19 +18,19 @@ public class WinningNumberValidationException extends IllegalArgumentException {
     }
 
     public static void checkWinningNumberLength(List<Integer> winningNumber) {
-        if (winningNumber.size() != ExceptionConstant.LOTTO_NUMBER_COUNT) {
+        if (winningNumber.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
             throw new WinningNumberValidationException(ExceptionConstant.LENGTH_ERROR_MESSAGE);
         }
     }
 
     public static void checkDuplicateWinningNumbers(List<Integer> winningNumber) {
-        if (winningNumber.stream().distinct().count() != ExceptionConstant.LOTTO_NUMBER_COUNT) {
+        if (winningNumber.stream().distinct().count() != LottoConstant.LOTTO_NUMBER_COUNT) {
             throw new WinningNumberValidationException(ExceptionConstant.DUPLICATE_ERROR_MESSAGE);
         }
     }
 
     public static void checkBoundaryOfWinningNumbers(List<Integer> winningNumber) {
-        if (winningNumber.stream().anyMatch(number -> number < ExceptionConstant.MIN_LOTTO_NUMBER || number > ExceptionConstant.MAX_LOTTO_NUMBER)) {
+        if (winningNumber.stream().anyMatch(number -> number < LottoConstant.MIN_LOTTO_NUMBER || number > LottoConstant.MAX_LOTTO_NUMBER)) {
             throw new WinningNumberValidationException(ExceptionConstant.BOUNDARY_ERROR_MESSAGE);
         }
     }

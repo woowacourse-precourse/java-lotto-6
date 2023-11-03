@@ -1,6 +1,7 @@
 package lotto.exception;
 
 import lotto.constant.ExceptionConstant;
+import lotto.constant.LottoConstant;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BonusNumberException extends IllegalArgumentException {
     }
 
     public static void ensureWithinValidRange(int bonusNumber) {
-        if (bonusNumber < ExceptionConstant.MIN_LOTTO_NUMBER || bonusNumber > ExceptionConstant.MAX_LOTTO_NUMBER) {
+        if (bonusNumber < LottoConstant.MIN_LOTTO_NUMBER || bonusNumber > LottoConstant.MAX_LOTTO_NUMBER) {
             throw new BonusNumberException(ExceptionConstant.BONUS_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }

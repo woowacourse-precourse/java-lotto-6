@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.domain.Customer;
+import lotto.domain.LottoCalculator;
 import lotto.domain.LottoSeller;
+import lotto.domain.WinningNumbers;
 import lotto.util.InputUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,6 +12,7 @@ public class LottoController {
     Customer customer = new Customer();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
+    WinningNumbers winningNumbers = new WinningNumbers();
 
     public void purchaseLotto() {
         try {
@@ -24,5 +27,24 @@ public class LottoController {
             System.out.println(e.getMessage());
             purchaseLotto();
         }
+    }
+
+    public void generateWinningNumbers() {
+        try {
+            inputView.requestWinningNumberMessage();
+            winningNumbers.makeWinningNumber(InputUtil.getUserInput());
+            inputView.requestBonusNumberMessage();
+            winningNumbers.makeBonusNumber(InputUtil.getUserInput());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateWinningNumbers();
+        }
+    }
+
+    public void revealLottoResults() {
+        outputView.printResultMessage();
+        LottoCalculator calculator = new LottoCalculator(winningNumbers);
+        calculator.makePrizeResult(customer.getLotteryTicket());
+        outputView.printPrizeResult(calculator.getResult());
     }
 }

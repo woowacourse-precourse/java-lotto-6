@@ -12,6 +12,7 @@ public class Convertor {
     public List<Integer> convertToIntegers(String input) {
         return convertToNumbers(input).stream()
                 .map(Number::getNumber)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

@@ -1,10 +1,16 @@
 package lotto.domain;
 
+import lotto.service.LottoService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lottos {
     int numberOfLottos;
-
+    List<Lotto> lottos = new ArrayList<>();
     public Lottos(String purchaseAmount) {
         numberOfLottos = validatePurchaseAmount(purchaseAmount);
+        initEachLotto();
     }
 
     private int validatePurchaseAmount(String purchaseAmount) {
@@ -26,5 +32,11 @@ public class Lottos {
             throw new IllegalArgumentException();
         }
         return purchaseResult % 1000;
+    }
+
+    private void initEachLotto() {
+        for(int i = 0; i < numberOfLottos; i++) {
+            lottos.add(new Lotto(LottoService.generateRandomLottoNumber()));
+        }
     }
 }

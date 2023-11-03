@@ -10,7 +10,7 @@ import lotto.utils.LottoUtil;
 
 public class Lotto {
     private final List<Integer> numbers;
-    public static int price = 1000;
+    public final static int PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.LottoConstant;
 import lotto.exception.BonusNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,5 +35,17 @@ class BonusNumberServiceTest {
         // 당첨 번호와 중복되는 보너스 번호
         assertThrows(BonusNumberException.class,
                 () -> BonusNumberException.ensureNotDuplicatedWithWinningNumbers(winningNumbers, 1));
+    }
+
+    @Test
+    @DisplayName("보너스 번호 범위 검증")
+    void testEnsureWithinValidRange() {
+        // 유효 범위 내의 보너스 번호
+        assertDoesNotThrow(() ->
+                BonusNumberException.ensureWithinValidRange(LottoConstant.MIN_LOTTO_NUMBER));
+
+        // 유효 범위를 벗어난 보너스 번호
+        assertThrows(BonusNumberException.class,
+                () -> BonusNumberException.ensureWithinValidRange(LottoConstant.MAX_LOTTO_NUMBER + 1));
     }
 }

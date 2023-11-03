@@ -3,15 +3,15 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoResult {
-    private List<Integer> correctNumbers;
+    private Integer correctNumbers;
     private Boolean isCorrectBonusNumber;
 
-    public LottoResult(List<Integer> correctNumbers, Boolean isCorrectBonusNumber) {
+    public LottoResult(Integer correctNumbers, Boolean isCorrectBonusNumber) {
         this.correctNumbers = correctNumbers;
         this.isCorrectBonusNumber = isCorrectBonusNumber;
     }
 
-    public List<Integer> getCorrectNumbers() {
+    public Integer getCorrectNumbers() {
         return correctNumbers;
     }
 

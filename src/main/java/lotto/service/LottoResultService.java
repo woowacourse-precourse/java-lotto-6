@@ -1,21 +1,25 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoResultService {
-    public LottoResult countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
-        List<Integer> correctNumbers =  purchasedLotto.getLottos().stream()
-                .map(winningLotto::countNumbers)
-                .collect(Collectors.toList());
+    public List<LottoResult> countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
+        List<LottoResult> lottoResults = new ArrayList<>();
 
-        Boolean isCorrectBonusNumber = purchasedLotto.getLottos().stream()
-                .anyMatch(winningLotto::isCorrectBonusNumber);
+        for (Lotto lotto : purchasedLotto.getLottos()) {
+            Integer correctNumbers = winningLotto.countNumbers(lotto);
 
-        return new LottoResult(correctNumbers, isCorrectBonusNumber);
+            Boolean isCorrectBonusNumber = winningLotto.isCorrectBonusNumber(lotto);
+
+            lottoResults.add(new LottoResult(correctNumbers, isCorrectBonusNumber));
+        }
+
+        return lottoResults;
     }
 }

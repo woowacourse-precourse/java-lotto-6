@@ -31,7 +31,14 @@ public class Amount {
     int validateAmount(String input) {
         isNum(input);
         int amount = stringToInt(input);
+        isDividedUp(amount);
         return amount;
+    }
+
+    void isDividedUp(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 금액 값은 1,000원 단위로 입력해주세요.");
+        }
     }
 
     void isNum(String input) {

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,15 @@ public class LottoCalculator {
         this.bonusNumber = winningNumbers.getBonusNumber();
     }
 
+    public void initResult() {
+        result.put(Prize.FIRST, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.FIFTH, 0);
+        result.put(Prize.NONE, 0);
+    }
+
     public void makePrizeResult(List<Lotto> lottoTickets) {
         initResult();
         for (Lotto oneTicket : lottoTickets) {
@@ -25,19 +35,7 @@ public class LottoCalculator {
             if (prize != Prize.NONE) {
                 result.put(prize, result.get(prize) + 1);
             }
-            if (matchCount == SPECIAL_MATCH) {
-                result.put(Prize.SECOND, result.get(Prize.SECOND) + 1);
-            }
         }
-    }
-
-    public void initResult() {
-        result.put(Prize.FIRST, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.FOURTH, 0);
-        result.put(Prize.FIFTH, 0);
-        result.put(Prize.NONE, 0);
     }
 
     public int countMatchNumbers(Lotto lotto) {
@@ -55,5 +53,9 @@ public class LottoCalculator {
 
     private boolean isContainBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public Map<Prize, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

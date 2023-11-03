@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
+    public static final String LOTTO_PRINT_FORMAT = "[%d, %d, %d, %d, %d, %d]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,4 +18,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    @Override
+    public String toString(){
+        return String.format(LOTTO_PRINT_FORMAT, this.numbers.toArray());
+    }
 }

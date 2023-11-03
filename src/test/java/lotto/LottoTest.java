@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,4 +26,16 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    public void toStringTest() throws Exception{
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        Assertions.assertThat(lotto.toString())
+                .isEqualTo("[1, 2, 3, 4, 5, 6]");
+        //given
+
+        //when
+
+        //then
+    }
 }

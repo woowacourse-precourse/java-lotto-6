@@ -7,7 +7,7 @@ public enum LottoPrize {
     FIRST(1, Money.from(2_000_000_000), 6, false),
     SECOND(2, Money.from(30_000_000), 5, true),
     THIRD(3, Money.from(1_500_000), 5, false),
-    FOURTH(4, Money.from(50_000), 3, false),
+    FOURTH(4, Money.from(50_000), 4, false),
     FIFTH(5, Money.from(5_000), 3, false),
     NONE(0, Money.zero(), 0, false);
 
@@ -33,8 +33,11 @@ public enum LottoPrize {
             final int matchedCount,
             final boolean hasBonusNumber
     ) {
+        if (hasBonusNumber && matchedCount == SECOND.matchedCount) {
+            return SECOND;
+        }
         return lottoPrizes.stream()
-                .filter(lottoPrize -> lottoPrize.hasBonusNumber == hasBonusNumber)
+                .filter(lottoPrize -> !lottoPrize.hasBonusNumber)
                 .filter(lottoPrize -> lottoPrize.matchedCount == matchedCount)
                 .findFirst()
                 .orElse(LottoPrize.NONE);

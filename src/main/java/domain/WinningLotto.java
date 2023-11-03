@@ -18,8 +18,16 @@ public class WinningLotto {
         this.lotto = new Lotto(winningNumbers);
     }
 
+    WinningLotto(List<Integer> numbers) {
+        lotto = new Lotto(numbers);
+    }
+
     int size() {
         return lotto.getNumbers().size();
+    }
+
+    public boolean contains(int number) {
+        return lotto.contains(number);
     }
 
     List<Integer> getNumbers() {

@@ -37,8 +37,8 @@ class LottoTest {
         //then
         assertEquals(1, lotto1st.rank(winningLotto, 9));
         assertEquals(2, lotto2nd.rank(winningLotto, 9));
-        assertEquals(3, lotto4st.rank(winningLotto, 10));
-        assertEquals(4, lotto5st.rank(winningLotto, 9));
-        assertEquals(5, lotto3rd.rank(winningLotto, 9));
+        assertEquals(3, lotto3rd.rank(winningLotto, 10));
+        assertEquals(4, lotto4st.rank(winningLotto, 9));
+        assertEquals(5, lotto5st.rank(winningLotto, 9));
     }
 }

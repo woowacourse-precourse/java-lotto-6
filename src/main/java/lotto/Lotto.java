@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +16,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (hasDuplicates(numbers)){
+            throw new IllegalArgumentException();
+        }
+
+        if (isNumbersOutOfRange(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasDuplicates(List<Integer> numbers){
+        Set<Integer> numbersSet = new HashSet<>(numbers);
+        return numbersSet.size() != numbers.size();
+    }
+
+    private boolean isNumbersOutOfRange(List<Integer> numbers){
+        return numbers.stream().anyMatch(number -> number < 1 || number > 45);
+    }
 }

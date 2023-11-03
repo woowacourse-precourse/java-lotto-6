@@ -19,4 +19,8 @@ public class GameShop {
     public List<Prize> getResult(List<Lotto> consumerLottos) {
         return lottoGame.getPrizeResults(consumerLottos);
     }
+
+    public void startLottoGame(List<Integer> winningNumbers, int bonusNumber) {
+        lottoGame.start(winningNumbers, bonusNumber);
+    }
 }

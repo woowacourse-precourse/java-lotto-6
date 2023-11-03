@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Consumer;
+import lotto.impl.GameShop;
 import lotto.impl.LottoGame;
 import lotto.impl.RandomNumberImpl;
 import lotto.type.Prize;
@@ -12,18 +13,15 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameShop lottoGameShop = new GameShop(new LottoGame(new RandomNumberImpl()));
 
-        LottoGame lottoGame = new LottoGame(new RandomNumberImpl());
-
-        Consumer consumer = new Consumer(lottoGame.purchase(InputView.readPurChaseLottoAmount()));
+        Consumer consumer = new Consumer(lottoGameShop.purchase(InputView.readPurChaseLottoAmount()));
         OutputView.printPurchasedLotto(consumer.getPurchasedLotto());
 
-        lottoGame.start(InputView.readWinningNumber(), InputView.readBonusNumber());
-        List<Prize> prizeList  = lottoGame.getResult(consumer.getPurchasedLotto());
-        OutputView.printLottoResults(prizeList);
-        System.out.println("총 수익률은 " + consumer.getReturnRate(prizeList) * 100 + "%입니다.");
+        lottoGameShop.startLottoGame(InputView.readWinningNumber(), InputView.readBonusNumber());
+        consumer.setPrizeResult(lottoGameShop.getResult(consumer.getPurchasedLotto()));
 
-
+        OutputView.printLottoResults(consumer.getPrizeResult());
+        OutputView.printReturnRate(consumer.getReturnRate());
     }
 }

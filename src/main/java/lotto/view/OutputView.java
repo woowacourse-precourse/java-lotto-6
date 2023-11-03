@@ -23,20 +23,20 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResults(String result) {
+    public void printStatistics(String statistics) {
         System.out.println(STATUS);
         System.out.println(THREE_DASH);
-        System.out.println(result);
+        System.out.println(statistics);
     }
 
     public void printEarningRate(int purchaseAmount, BigDecimal revenue) {
-        // (revenue / purchaseAmount) * 100을 소수점 둘째자리에서 반올림한 결과와 같음
+        // (revenue / purchaseAmount) * 100을 소수점 둘째 자리에서 반올림한 결과와 같음
         BigDecimal earningRate = revenue
                 .multiply(new BigDecimal(HUNDREAD))
                 .divide(new BigDecimal(purchaseAmount)
                         , FIRST_DIGIT
                         , RoundingMode.HALF_UP);
-        
+
         System.out.printf(EARNING_RATE_MESSAGE + NEW_LINE, earningRate);
     }
 }

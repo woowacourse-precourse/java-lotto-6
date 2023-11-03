@@ -93,7 +93,7 @@ public class LottoController {
     }
 
     private void printLottoResultStatistics(LottoResult lottoResult, int purchaseAmount) {
-        outputView.printResults(lottoResult.getStatistics());
+        outputView.printStatistics(lottoResult.getStatistics());
         outputView.printEarningRate(purchaseAmount, lottoResult.getTotalRevenue());
     }
 }

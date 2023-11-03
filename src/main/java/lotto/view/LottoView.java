@@ -48,6 +48,8 @@ public class LottoView {
     }
 
     public void printLottoRank(Lottos lottos){
+        System.out.println("당첨통계");
+        System.out.println("---");
         System.out.print("3개 일치 (5,000원) - ");
         System.out.print(Collections.frequency(lottos.getWinningCounts(),5));
         System.out.print("개");

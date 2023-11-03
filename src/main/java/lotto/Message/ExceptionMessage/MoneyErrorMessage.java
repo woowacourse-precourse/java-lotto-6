@@ -12,7 +12,7 @@ public enum MoneyErrorMessage {
         this.message = PrefixMessage.ERROR_MESSAGE.getMessage() + message;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessage(Integer money){
+        return String.format(message, money);
     }
 }

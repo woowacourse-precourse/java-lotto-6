@@ -1,7 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.BuyingLottoController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BuyingLottoController buyingController = new BuyingLottoController();
+        Console.close();
     }
 }

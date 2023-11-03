@@ -5,19 +5,15 @@ import lotto.domain.Amount;
 import lotto.domain.BuyerLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoShop;
-import lotto.domain.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    public void run() {
-        LottoShop lottoShop = setting();
-        createBuyerLotto(lottoShop);
-    }
+    private final LottoShop lottoShop;
 
-    private LottoShop setting() {
-        return new LottoShop(new RandomNumberGenerator());
+    public LottoController(LottoShop lottoShop) {
+        this.lottoShop = lottoShop;
     }
 
     private BuyerLotto createBuyerLotto(LottoShop lottoShop) {
@@ -28,7 +24,13 @@ public class LottoController {
     }
 
     private Amount generateAmount() {
-        int amount = InputView.readPurchaseAmount();
-        return new Amount(amount);
+        while (true) {
+            try {
+                int amount = InputView.readPurchaseAmount();
+                return new Amount(amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

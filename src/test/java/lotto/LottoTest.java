@@ -24,6 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 1~45가 아닌 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoNotBetween1And45() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 46, 23, 31, 14, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호 문자열 콤마를 기준으로 분리")
     @Test
     void splitLottoStringByComma() {
@@ -34,12 +41,5 @@ class LottoTest {
         ));
 
         assertThat(actualLotto).isEqualTo(expectedLotto);
-    }
-
-    @DisplayName("로또 번호에 1~45가 아닌 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoNotBetween1And45() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 46, 23, 31, 14, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 }

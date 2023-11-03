@@ -17,16 +17,26 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validate6numbers(numbers);
+        validate1to45(numbers);
+        validateNotEqual(numbers);
+    }
+
+    private void validate6numbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
 
+    private void validate1to45(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException();
             }
         }
+    }
 
+    private void validateNotEqual(List<Integer> numbers) {
         Set<Integer> numbersNotSame = new HashSet<>();
         for (int number : numbers) {
             if (!numbersNotSame.add(number)) {

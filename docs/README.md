@@ -46,7 +46,7 @@ Lotto Game Program
 - ### *View*
     **PrintView Class** //프로그램 출력을 위한 클래스
     ```agsl
-    - printLottos       // 발행한 로도 수량 및 번호들을 출력한다.
+    - printLottos       // 발행한 로또 수량 및 번호들을 출력한다.
     - printResult       // 당첨 내역을 출력한다.
     ```
 

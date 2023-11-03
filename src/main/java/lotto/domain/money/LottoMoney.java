@@ -10,12 +10,12 @@ public record LottoMoney(int value) {
     }
 
     private static void validate(final int value) {
-        if (MoneyCondition.isInvalidValue(value)) {
+        if (LottoMoneyCondition.isInvalidValue(value)) {
             throw new IllegalArgumentException(INVALID_MONEY_VALUE);
         }
     }
 
     public int createBuyingCount() {
-        return value / MoneyCondition.MONEY_UNIT.value();
+        return value / LottoMoneyCondition.MONEY_UNIT.value();
     }
 }

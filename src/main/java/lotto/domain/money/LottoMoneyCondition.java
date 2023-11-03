@@ -1,6 +1,6 @@
 package lotto.domain.money;
 
-public enum MoneyCondition {
+public enum LottoMoneyCondition {
 
     MONEY_UNIT(1_000),
     MIN_MONEY(1_000),
@@ -8,7 +8,7 @@ public enum MoneyCondition {
 
     private final int value;
 
-    MoneyCondition(final int value) {
+    LottoMoneyCondition(final int value) {
         this.value = value;
     }
 

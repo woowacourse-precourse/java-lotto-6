@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
@@ -17,4 +18,7 @@ public class Customer {
         lottoChecker.insertLottos(this.lottoPapers);
     }
 
+    public List<Lotto> showLottoPapers() {
+        return new ArrayList<>(this.lottoPapers);
+    }
 }

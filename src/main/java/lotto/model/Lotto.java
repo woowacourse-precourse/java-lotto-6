@@ -18,7 +18,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void sortDesc() {
+    public void sortAscending() {
         Collections.sort(this.numbers);
     }
 

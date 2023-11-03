@@ -34,7 +34,7 @@ class LottoTest {
         Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
 
         //when
-        lotto.sortDesc();
+        lotto.sortAscending();
 
         //then
         assertThat(lotto.getNumbers()).usingRecursiveComparison().isEqualTo(List.of(1, 4, 5, 7, 11, 36));

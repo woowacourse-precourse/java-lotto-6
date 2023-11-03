@@ -20,21 +20,21 @@ public class ProgramManager {
 		getLottoNumber();
 		getBonusNumber();
 		LottoHost lottoHost = new LottoHost();
-
 		showResult();
 	}
 
 	int getPrice() {
-		return 0;
+		return inputView.getPrice();
 	}
 
 	void showAmount(int price) {
-
+		outputView.showAmount(price/1000);
 	}
 
 
 
 	List<Lotto> showBuyLotto() {
+
 		return null;
 	}
 

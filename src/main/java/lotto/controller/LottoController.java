@@ -40,17 +40,26 @@ public class LottoController {
     }
 
     private WinningLotto inputWinningNumbersAndBonusNumber() {
-        outputView.printInputWinningNumbers();
-        String stringWinningNumbers = inputView.inputWinningNumbers();
-        //입력값 검증
-        List<Integer> winningNumbers = convertStringToIntegerList(stringWinningNumbers);
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
 
+        return lottoService.createWinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private int inputBonusNumber() {
         outputView.printInputBonusNumber();
         String stringBonusNumber = inputView.inputBonusNumbers();
         //입력값 검증
         int bonusNumber = Integer.parseInt(stringBonusNumber);
+        return bonusNumber;
+    }
 
-        return lottoService.createWinningLotto(winningNumbers, bonusNumber);
+    private List<Integer> inputWinningNumbers() {
+        outputView.printInputWinningNumbers();
+        String stringWinningNumbers = inputView.inputWinningNumbers();
+        //입력값 검증
+        List<Integer> winningNumbers = convertStringToIntegerList(stringWinningNumbers);
+        return winningNumbers;
     }
 
     private Map<Rank, Integer> printWinningStatistics(Player player, WinningLotto winningLotto) {

@@ -1,6 +1,6 @@
-package controller;
+package lotto.controller;
 
-import view.Input;
+import lotto.view.Input;
 
 public class LottoController {
     public void start() {

@@ -33,13 +33,13 @@ class WinLottoTest {
 
     @ParameterizedTest
     @DisplayName("당첨 번호 정상적인 경우 저장 처리 테스트")
-    @MethodSource("initWitLottoData")
+    @MethodSource("initWinLottoData")
     void winLottoCreateSaveTest(List<Integer> winLottoNumber, int bonusNumber) {
         // new Lotto 생성 시 로또 범위 1 ~ 45 / 로또 번호 중복 / 로또 갯수 검증
         Assertions.assertThatNoException().isThrownBy(() -> new WinLotto(new Lotto(winLottoNumber), bonusNumber));
     }
 
-    static Stream<Arguments> initWitLottoData() {
+    static Stream<Arguments> initWinLottoData() {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 3, 4, 5, 45), 44),
                 Arguments.of(List.of(2, 18, 3, 4, 5, 6), 23),

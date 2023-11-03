@@ -31,6 +31,9 @@ public class TicketMaster {
                 result++;
             }
         }
+        if (thisLotto.contains(bonusNum)){
+            result++;
+        }
         return result;
     }
 

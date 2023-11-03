@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -7,12 +7,12 @@ import java.util.List;
 
 public class InputView {
 
-    public String inputPurchaseAmount() {
+    public static String inputPurchaseAmount() {
         String amount = Console.readLine();
         return amount;
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         List<String> winningNumbersStr = List.of(Console.readLine().split(","));
         if (String.join("", winningNumbersStr).isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 비었습니다.");
@@ -29,7 +29,7 @@ public class InputView {
         }
     }
 
-    public String inputBonusNumber() {
+    public static String inputBonusNumber() {
         String bonusNumber = Console.readLine();
         return bonusNumber;
     }

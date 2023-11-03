@@ -4,12 +4,14 @@ public class Cash {
 
     private static final Integer UNIT = 1000;
     private static final Integer ZERO = 0;
-    private final Integer amount;
+    private final Integer totalAmount;
+    private Integer spendAmount;
 
-    public Cash(final Integer amount) {
-        validateAvailableAmount(amount);
-        validateAvailableCash(amount);
-        this.amount = amount;
+    public Cash(final Integer totalAmount) {
+        validateAvailableAmount(totalAmount);
+        validateAvailableCash(totalAmount);
+        this.totalAmount = totalAmount;
+        this.spendAmount = ZERO;
     }
 
     private void validateAvailableAmount(Integer amount) {
@@ -25,6 +27,13 @@ public class Cash {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지는 금액을 입력하셔야 합니다.");
         }
     }
+
+
+    public Boolean isAfford() {
+        int leftAmount = totalAmount - spendAmount;
+        return leftAmount >= UNIT;
+    }
+
 
 
 }

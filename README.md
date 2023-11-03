@@ -227,3 +227,30 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 기능 목록 단위
+
+- Model
+  - 로또 번호와 입력한 당첨번호를 비교한다.
+  - 수익률 계산
+- Controller
+  - 당첨 번호를 쉼표로 구분해서 반환
+  - 로또 구입 금액만큼 로또를 발행한다.
+  - 입력 번호와 당첨 번호의 일치 갯수 반환
+  - 수익률 반환
+- View
+  - InputView
+    - 로또 구입 금액을 입력 받는다.
+    - 당첨 번호를 입력 받는다.
+    - 보너스 번호를 입력 받는다.
+  - OutputView
+    - 발행한 로또의 수량을 출력한다.
+    - 발행한 로또의 번호를 출력한다.(오름차순)
+    - 당첨 내역 출력
+    - 수익률(소숫점 둘째 자리에서 반올림) 출력
+- Utils
+  - RandomNum
+    - 1 ~ 45개의 번호를 중복 없이 6개를 뽑는다.
+  - 예외사항(IllegalStateException)
+    - 1000으로 나누어 떨어지지 않는 경우
+    - 사용자가 잘못된 값을 입력하는 경우

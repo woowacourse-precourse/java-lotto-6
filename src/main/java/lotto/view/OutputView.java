@@ -13,5 +13,8 @@ public class OutputView {
     public static void printBuyLottoCount(int count) {
         System.out.println();
         System.out.println(count + Message.PRINT_USER_BUY_LOTTO_COUNT.getMessage());
+        System.out.println();
     }
+
+
 }

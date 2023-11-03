@@ -40,13 +40,25 @@ public class Validation {
         }
     }
 
+    public static void validateBonusNum(int input) {
+        validateNumberRange(input);
+    }
     public static void validateNumberRange(int input) {
         if (input < 1 || input > 45) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_NUMBER+input));
         }
     }
-
-    public static void validateDuplicatedNumber(List<Integer> numbers) {
+    public static void validateDuplicatedBonusNum(int input, List<Integer> numbers) {
+        if (numbers.contains(input)) {
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT, DUPLICATED_NUMBER));
+        }
+    }
+    public static void validateSixLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_SIX_NUMBERS));
+        }
+    }
+    public static void validateDuplicatedSixNumber(List<Integer> numbers) {
         Set<Integer> temp = new HashSet<>(numbers);
         if (temp.size() != numbers.size()) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, DUPLICATED_NUMBER));
@@ -72,12 +84,6 @@ public class Validation {
     private static void validateContinuousComma(String input) {
         if (input.contains(",,")) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
-        }
-    }
-
-    public static void validateSixLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_SIX_NUMBERS));
         }
     }
 }

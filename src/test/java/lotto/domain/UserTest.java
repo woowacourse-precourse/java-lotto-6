@@ -20,9 +20,9 @@ public class UserTest {
         assertThat(user.getQuantity()).isEqualTo(50);
     }
     @Test
-    void create_구매_금액이_20_억이_넘는_경우() {
+    void create_구매_금액이_10만원_이_넘는_경우() {
         //given
-        long inputValue = 20000000000L;
+        long inputValue = 100001L;
         //when
         assertThatThrownBy(() -> new CreateUserDto(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)

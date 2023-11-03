@@ -14,7 +14,7 @@ public class OutputView {
     public void lottoQuantityAndNumber(List<Lotto> publishedLotto) {
         System.out.println(publishedLotto.size()+PURCHASE_LOTTO_OUTPUT);
         for (Lotto lotto : publishedLotto) {
-            List<Integer> sortedNumbers = lotto.getSortedNumbers();
+            List<Integer> sortedNumbers = lotto.getNumbers();
             StringBuilder stringBuilder = new StringBuilder("[");
             for (Integer number : sortedNumbers) {
                 stringBuilder.append(number);

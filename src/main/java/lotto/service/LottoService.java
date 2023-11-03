@@ -2,15 +2,12 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.domain.User;
 import lotto.domain.WinningNumbers;
 import lotto.global.Utils;
 
@@ -29,15 +26,13 @@ public class LottoService {
         return new WinningNumbers(originalWinningNumbers, bonusNumber);
     }
 
-    public Map<Prize, Integer> getLotteryResult(User user, WinningNumbers winningNumbers) {
+    public Map<Prize, Integer> getRewardCount(List<Lotto> purchasedLotto, WinningNumbers winningNumbers) {
         Set<Integer> originalWinningNumbers = winningNumbers.getOriginalWinningNumbers();
         Map<Prize, Integer> rewardCount = initializeRewardCount();
-        for (Lotto lotto : user.getLotto()) {
+
+        for (Lotto lotto : purchasedLotto) {
             int count = countLottoByWinningNumbers(lotto, originalWinningNumbers);
-            boolean isExistBonusNumber = false;
-            if (count == 5) {
-                isExistBonusNumber = lotto.getSortedNumbers().contains(winningNumbers.getBonusNumber());
-            }
+            boolean isExistBonusNumber = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
             Prize prize = getPrize(count, isExistBonusNumber);
             if (prize != null) {
                 rewardCount.put(prize, rewardCount.get(prize) + 1);
@@ -65,7 +60,7 @@ public class LottoService {
     }
 
     public int countLottoByWinningNumbers(Lotto lotto, Set<Integer> winningNumbers) {
-        List<Integer> userPickNumbers = lotto.getSortedNumbers();
+        List<Integer> userPickNumbers = lotto.getNumbers();
         int count = 0;
         for (Integer userPickNumber : userPickNumbers) {
             if (checkNumber(winningNumbers, userPickNumber)) {

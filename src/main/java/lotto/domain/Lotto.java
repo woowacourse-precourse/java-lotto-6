@@ -9,7 +9,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,11 +20,8 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getSortedNumbers() {
-        List<Integer> sortedNumber = numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
-        return sortedNumber;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
     // TODO: 추가 기능 구현
 }

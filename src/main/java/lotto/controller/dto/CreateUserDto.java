@@ -34,7 +34,7 @@ public class CreateUserDto {
         if(purchaseAmount == 0){
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
-        if(purchaseAmount > 2000000000){
+        if(purchaseAmount > 100000){
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_MAXIMUM_PURCHASE_AMOUNT.getMessage());
         }
         if(purchaseAmount % 1000 != 0){

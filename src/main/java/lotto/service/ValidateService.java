@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface ValidateService {
 
-    void checkCorrectMoneyInput(String input);
+    void checkCorrectMoney(String input);
 
-    List<Integer> checkCorrectWinnerNumbersInput(String input);
+    List<Integer> checkCorrectWinnerNumbers(String input);
+
+    Integer checkIncludeChar(String input);
 }

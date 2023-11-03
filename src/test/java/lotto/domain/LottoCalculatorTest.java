@@ -41,11 +41,11 @@ class LottoCalculatorTest {
         //given
         numbers.makeWinningNumber("4,12,39,43,1,17");
         numbers.makeBonusNumber("3");
-        Lotto firstLotto = new Lotto(List.of(3, 4, 12, 17, 39, 43)); // 2등
-        Lotto secondLotto = new Lotto(List.of(1, 4, 12, 17, 43, 45)); // 3등
+        Lotto secondLotto = new Lotto(List.of(3, 4, 12, 17, 39, 43)); // 2등
+        Lotto thirdLotto = new Lotto(List.of(1, 4, 12, 17, 43, 45)); // 3등
         LottoCalculator calculator = new LottoCalculator(numbers);
         //when
-        calculator.makePrizeResult(List.of(firstLotto, secondLotto));
+        calculator.makePrizeResult(List.of(secondLotto, thirdLotto));
         Map<Prize, Integer> result = calculator.getResult();
         //then
         assertEquals(1, result.get(Prize.SECOND));
@@ -54,5 +54,22 @@ class LottoCalculatorTest {
         assertNotEquals(1, result.get(Prize.FOURTH));
         assertNotEquals(1, result.get(Prize.FIFTH));
         assertNotEquals(1, result.get(Prize.NONE));
+    }
+
+    @DisplayName("1등, 2등, 4등 당첨 시 총 상금 확인")
+    @Test
+    void calculateTotalPrize() {
+        //given
+        numbers.makeWinningNumber("4,12,39,43,1,17");
+        numbers.makeBonusNumber("3");
+        Lotto firstLotto = new Lotto(List.of(1, 4, 12, 17, 39, 43)); // 1등
+        Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 17, 18, 45)); // 4등
+        Lotto secondLotto = new Lotto(List.of(3, 4, 12, 17, 39, 43)); // 2등
+        LottoCalculator calculator = new LottoCalculator(numbers);
+        //when
+        calculator.makePrizeResult(List.of(firstLotto, secondLotto, fourthLotto));
+        long totalPrize = calculator.calculateTotalPrize();
+
+        assertThat(totalPrize).isEqualTo(2030050000);
     }
 }

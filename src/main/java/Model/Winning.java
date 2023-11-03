@@ -3,9 +3,7 @@ package Model;
 import Config.ErrorMessage;
 import Config.GameConfig;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Winning {
 
@@ -15,6 +13,7 @@ public class Winning {
         List<Integer> winnings = validateNumeric(inputWinning);
         validateSize(winnings);
         validateRange(winnings);
+        validateDuplicate(winnings);
         winnings.sort(Comparator.naturalOrder());
         this.winnings = winnings;
     }
@@ -54,6 +53,13 @@ public class Winning {
             if (winning < GameConfig.MIN_LOTTO || winning > GameConfig.MAX_LOTTO){
                 throw new IllegalArgumentException(String.format(ErrorMessage.NOT_IN_RANGE.getErrorMessage(), GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO));
             }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> winnings){
+        Set<Integer> duplicationTester = new HashSet<>(winnings);
+        if (duplicationTester.size() != winnings.size()){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorMessage());
         }
     }
 

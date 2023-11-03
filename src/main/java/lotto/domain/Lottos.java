@@ -31,7 +31,7 @@ public class Lottos {
         if(purchaseResult % 1000 != 0) {
             throw new IllegalArgumentException();
         }
-        return purchaseResult % 1000;
+        return purchaseResult / 1000;
     }
 
     private void initEachLotto() {

@@ -13,4 +13,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

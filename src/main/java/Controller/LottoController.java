@@ -1,13 +1,36 @@
 package Controller;
 
+import Model.Lotto;
 import Model.PurchaseAmount;
+import camp.nextstep.edu.missionutils.Randoms;
 import view.InputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoController {
-    private PurchaseAmount purchaseAmount;
+    List<Lotto> lottoNumbers = new ArrayList<>();
 
     public void buyMyLotto() {
-        int inputPurchaseAmount = InputView.getPurchaseAmount();
-        purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
+        int input = InputView.getPurchaseAmount();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(input);
+        publishMyLotto(purchaseAmount);
+    }
+
+    public void publishMyLotto(PurchaseAmount purchaseAmount) {
+        List<Integer> numbers;
+        int lottoAmount = (purchaseAmount.getPurchaseAmount()) / 1000;
+        for (int i = 1; i <= lottoAmount; i++) {
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoNumbers.add(new Lotto(numbers));
+        }
+    }
+
+
+
+
+
+    public List<Lotto> getLottoNumbers() {
+        return lottoNumbers;
     }
 }

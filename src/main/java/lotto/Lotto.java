@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
+
 import java.util.List;
 import lotto.utils.LottoUtil;
 
@@ -16,7 +18,16 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         numbers.forEach(LottoUtil::validateLottoNum);
+        validateDuplication(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        boolean[] visited = new boolean[46];
+        numbers.forEach((num) -> {
+            if (visited[num]) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_IS_DUPLICATED.getMessage());
+            }
+            visited[num] = true;
+        });
+    }
 }

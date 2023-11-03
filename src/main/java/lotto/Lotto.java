@@ -20,8 +20,13 @@ public class Lotto {
         if (!(isDuplicate(numbers))) {
             throw new IllegalArgumentException();
         }
+
+        if (!(isBetweenTwoNumbers(numbers, 1, 45))) {
+            throw new IllegalArgumentException();
+        }
     }
 
+    // TODO: 추가 기능 구현
     private boolean isDuplicate(List<Integer> numbers) {
         List<Integer> distinctNumbers = new ArrayList<>();
 
@@ -34,5 +39,13 @@ public class Lotto {
         return distinctNumbers.size() == numbers.size();
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isBetweenTwoNumbers(List<Integer> numbers, int start, int end) {
+        for (Integer number: numbers) {
+            if (!((start <= number) && (start <= end))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

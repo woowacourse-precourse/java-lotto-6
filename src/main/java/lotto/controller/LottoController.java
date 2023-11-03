@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningCondition;
+import lotto.domain.WinningRank;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -27,7 +28,7 @@ public class LottoController {
         output.showLottoTickets(lottoTickets);
 
         WinningCondition winningCondition = makeWinningCondition();
-        Map<Lotto, Integer> winningResult = winningCondition.findWinningResult(lottoTickets);
+        Map<Lotto, WinningRank> winningResult = winningCondition.findWinningResult(lottoTickets);
     }
 
     private WinningCondition makeWinningCondition() {

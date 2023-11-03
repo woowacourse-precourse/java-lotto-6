@@ -64,7 +64,11 @@ public class Lotto {
                 .toList();
     }
 
-    public int countWinningNumber(Lotto winningLotto) {
+    public WinningRank findWinningRank(Lotto winningLotto) {
+        return WinningRank.find(countWinningNumber(winningLotto));
+    }
+
+    private int countWinningNumber(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
                 .count();

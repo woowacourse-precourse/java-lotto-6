@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoOwner;
 import lotto.domain.LottoTicket;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -7,6 +8,7 @@ import lotto.view.OutputView;
 public class LottoGameController {
     public void play() {
         LottoTicket lottoTicket = purchaseLotto();
+        LottoOwner lottoOwner = new LottoOwner(lottoTicket);
     }
 
     private LottoTicket purchaseLotto() {

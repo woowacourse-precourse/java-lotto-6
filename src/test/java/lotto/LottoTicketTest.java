@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LottoTicketTest {
     @Test
     void 구입한_로또수만큼_로또를_생성하는_기능_테스트() {
-        LottoTicket lottoTicket = new LottoTicket("3");
+        LottoTicket lottoTicket = new LottoTicket("3000");
         List<Lotto> lottos = lottoTicket.generateLottos();
         assertThat(lottos.size()).isEqualTo(3);
     }

@@ -50,29 +50,24 @@ public class LottoHandler {
 
     private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
-        return reader.input(() -> {
+        return reader.continuousInput(() -> {
             int bonusNumber = Integer.parseInt(Console.readLine());
-            if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException(LottoErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getMessage());
-            }
+            LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
             return bonusNumber;
         });
     }
 
     private List<Integer> getWinningNumbers() {
         writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
-        return reader.input(() -> {
+        return reader.continuousInput(() -> {
             String inputWinningNumbers = Console.readLine();
-            String[] split = inputWinningNumbers.split(",");
-            if (split.length != Lotto.LOTTO_NUMBER_SIZE) {
-                throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_SIZE.getMessage());
-            }
-            return Arrays.stream(split).map(Integer::parseInt).toList();
+            LottoReaderValidator.validateWinningNumbers(inputWinningNumbers);
+            return Arrays.stream(inputWinningNumbers.split(",")).map(Integer::parseInt).toList();
         });
     }
 
     private Money getMoney() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return reader.input(() -> new Money(Integer.parseInt(Console.readLine())));
+        return reader.continuousInput(() -> new Money(Integer.parseInt(Console.readLine())));
     }
 }

@@ -1,7 +1,7 @@
 package lotto.view;
 
 public class LottoReader {
-    public <T> T input(ReadLogic<T> readLogic) {
+    public <T> T continuousInput(ReadLogic<T> readLogic) {
         while (true) {
             try {
                 return readLogic.execute();

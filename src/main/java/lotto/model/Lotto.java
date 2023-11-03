@@ -24,8 +24,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public boolean isContainsNumbersWithSize(final List<Integer> numbers, final int size) {
-        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+    public boolean isContainsNumbersWithSize(final List<Integer> goalNumbers, final int size) {
+        List<Integer> lottoNumbers = new ArrayList<>(goalNumbers);
         lottoNumbers.retainAll(numbers);
 
         return lottoNumbers.size() == size;

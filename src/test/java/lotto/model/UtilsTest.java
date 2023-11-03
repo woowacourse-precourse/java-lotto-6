@@ -14,4 +14,14 @@ class UtilsTest {
         Assertions.assertThatThrownBy(() -> Utils.convertStringToInt(inputString))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 숫자로_구성된_문자열_리스트에_문자가_있으면_예외가_발생한다() {
+        // given
+        final String numericString = "a,1,2,3,4,5";
+
+        // then
+        Assertions.assertThatThrownBy(() -> Utils.convertStringToIntegerList(numericString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.PurchaseAmount;
 import lotto.model.Result;
+import lotto.model.WinningLotto;
 import lotto.service.Calculator;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoIssuer;
@@ -33,11 +34,12 @@ public class LottoController {
         LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator); //TODO: 아예 issuer에 purchaseAmount 넘겨줘보기
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
-        Lotto winningNumbers = readWinningNumbers();
+        Lotto lotto = readWinningNumbers();
         Bonus bonusNumber = readBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         List<LottoPrize> lottoPrizes = new ArrayList<>();
-        for (Lotto lotto : boughtLotto) {
-            lottoPrizes.add(LottoPrize.from(winningNumbers.count(lotto), bonusNumber.hasBonusNumber(lotto)));
+        for (Lotto bought : boughtLotto) {
+            lottoPrizes.add(winningLotto.from(bought));
         }
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);

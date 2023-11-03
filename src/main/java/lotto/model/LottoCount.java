@@ -25,6 +25,10 @@ public final class LottoCount {
         return new LottoCount(purchaseLottoCount);
     }
 
+    public int getCount() {
+        return count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

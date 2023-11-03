@@ -19,7 +19,7 @@ class InputValidatorTest {
         int number = 1200;
         int denomination = 1000;
         // when // then
-        assertThatThrownBy(() -> inputValidator.checkIsMultipleOfDenomination(number, denomination))
+        assertThatThrownBy(() -> inputValidator.validateMultipleOfDenomination(number, denomination))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
     }
@@ -29,7 +29,7 @@ class InputValidatorTest {
     @ValueSource(ints = {0, -1000, -1500})
     public void checkIsValidLottoAmount(int number) {
         // when // then
-        assertThatThrownBy(() -> inputValidator.checkIsValidLottoAmount(number))
+        assertThatThrownBy(() -> inputValidator.validateLottoAmount(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
     }

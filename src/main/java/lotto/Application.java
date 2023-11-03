@@ -37,6 +37,9 @@ public class Application {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 List<String> userInputs = Arrays.asList(computer.getInput().split(","));
+
+
+                computer.checkSize(userInputs);
                 lottoNumbers = new ArrayList<>();
 
                 for (String userInput : userInputs) {

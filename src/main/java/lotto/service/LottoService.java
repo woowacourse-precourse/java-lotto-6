@@ -1,6 +1,9 @@
 package lotto.service;
 
+import java.util.List;
+
 import lotto.calculator.LottoCalculator;
+import lotto.domain.AnswerLotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.generator.LottosGenerator;
@@ -18,4 +21,10 @@ public class LottoService {
 	public void setMoney(Money money) {
 		GENERATOR.setMoney(money);
 	}
+
+	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber) {
+		return new AnswerLotto(numbers, bonusNumber);
+	}
+
+	
 }

@@ -12,10 +12,18 @@ public class LottoController {
         LottoGame lottoGame = new LottoGame(money);
         OutputView.printLottos(money, lottoGame.getLottos());
 
+        inputWinNumbers(lottoGame);
+
+        printResults(money, lottoGame);
+    }
+
+    private void inputWinNumbers(LottoGame lottoGame) {
         WinNumber winNums = new WinNumber(InputController.inputWinNums());
         BonusNumber bonusNum = new BonusNumber(winNums, InputController.inputBonusNum(winNums));
         lottoGame.addValueLottoMap(winNums.getLottoNums(), bonusNum.getBonusNumber());
+    }
 
+    private void printResults(int money, LottoGame lottoGame) {
         OutputView.printLottoResult(lottoGame.getLottoMap());
         OutputView.printPrizePercentage(lottoGame.calculatePrizePercentage(money));
     }

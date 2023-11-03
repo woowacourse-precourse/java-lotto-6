@@ -40,4 +40,21 @@ public class Model {
         Result result = new Result(match, isBonus);
         return result;
    }
+
+   public void updateResult(int[][] totalResult, Result result) {
+        int match = result.getMatch();
+        boolean isBonus = result.isBonus();
+
+        if(match == 5 && isBonus == false) {
+            totalResult[5][0]++;
+            return;
+        }
+
+        if(match == 5 && isBonus == true) {
+            totalResult[5][1]++;
+            return;
+        }
+
+        totalResult[match][0]++;
+   }
 }

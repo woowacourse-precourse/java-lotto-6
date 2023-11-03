@@ -8,6 +8,7 @@ public class Prize {
     private String groupNumbers;
     private int bonusCounts;
     private int luckyCounts;
+    private int totalProfit;
     private int[] finalResult = new int[5];
     private List<Integer> separatedLotto;
     public static List<Integer> luckyNumber;
@@ -80,5 +81,27 @@ public class Prize {
         System.out.println("5개 일치 (1,500,000원) - " + finalResult[2] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + finalResult[1] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + finalResult[0] + "개");
+    }
+
+    void calculateProfit() {
+        if (finalResult[0] >= 1) {
+            totalProfit = totalProfit + (finalResult[0] * 2_000_000_000);
+        }
+
+        if (finalResult[1] >= 1) {
+            totalProfit = totalProfit + (finalResult[1] * 30_000_000);
+        }
+
+        if (finalResult[2] >= 1) {
+            totalProfit = totalProfit + (finalResult[2] * 1_500_000);
+        }
+
+        if (finalResult[3] >= 1) {
+            totalProfit = totalProfit + (finalResult[3] * 50_000);
+        }
+
+        if (finalResult[4] >= 1) {
+            totalProfit = totalProfit + (finalResult[4] * 5_000);
+        }
     }
 }

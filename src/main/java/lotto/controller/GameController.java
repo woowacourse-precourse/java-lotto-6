@@ -19,8 +19,14 @@ public class GameController {
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
+        GameInit();
+    }
+
+    public void GameInit(){
         moneyConvertLotto();
         showChances();
+        setLottoGenerator();
+        showGeneratedLotto();
     }
 
     public void moneyConvertLotto() {
@@ -38,4 +44,11 @@ public class GameController {
         outputView.printChances(moneyConverter.getChance());
     }
 
+    public void setLottoGenerator(){
+        lottoGenerator = new LottoGenerator(moneyConverter.getChance());
+    }
+
+    public void showGeneratedLotto(){
+        outputView.printLotto(lottoGenerator.getMyLotto());
+    }
 }

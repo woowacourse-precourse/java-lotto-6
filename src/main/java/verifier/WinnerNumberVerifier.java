@@ -1,11 +1,15 @@
 package verifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WinnerNumberVerifier implements Verifier {
     @Override
     public void check(String input) {
         checkNumberCount(input);
         checkEachNumeric(input);
         checkEachRange(input);
+        checkDistinct(input);
     }
 
     private void checkEachNumeric(String input) {
@@ -33,6 +37,18 @@ public class WinnerNumberVerifier implements Verifier {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("로또번호는 1~45사이의 숫자이어야 합니다.");
             }
+        }
+    }
+
+    private void checkDistinct(String input){
+        List<Integer> winnerNumbers = new ArrayList<>();
+        String[] numbers = input.split(",");
+        for(String number : numbers){
+            int numberInt = Integer.parseInt(number);
+            if (winnerNumbers.contains(numberInt)) {
+                throw new IllegalArgumentException("중복된 로또 번호입니다.");
+            }
+            winnerNumbers.add(numberInt);
         }
     }
 

@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,7 +25,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static Lotto createWinningNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Const.winningRangeStartNumber, Const.winningRangeEndNumber, Const.LottoCount);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Const.winningRangeStartNumber, Const.winningRangeEndNumber, Const.LottoCount);
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
         Collections.sort(lottoNumbers);
 
         return new Lotto(lottoNumbers);

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameData {
@@ -7,6 +8,7 @@ public class GameData {
     private Integer LotteriesNumber;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
+    private List<Lotto> lottoList;
 
     public Integer getLotteriesNumber() {
         return LotteriesNumber;
@@ -30,5 +32,13 @@ public class GameData {
 
     public void setBonusNumber(Integer bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
+
+    public void generateLottoList() {
+        this.lottoList = new ArrayList<>();
     }
 }

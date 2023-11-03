@@ -7,7 +7,6 @@ import static lotto.Message.ExceptionMessage.MoneyErrorMessage.*;
 import static lotto.Util.Util.ConvertStringToInteger;
 
 import lotto.Exception.MoneyException;
-import lotto.Message.ExceptionMessage.MoneyErrorMessage;
 
 public class Money {
 

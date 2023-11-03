@@ -19,30 +19,32 @@ public class PriceInputHandler {
 
     private static final int ZERO = 0;
     private static final int MIN_PRICE_UNIT = 1000;
-    private static final int PURCHASE_LIMIT = 100000;
+    private static final int PURCHASE_MIN = 1000;
+    private static final int PURCHASE_MAX = 100000;
 
-    public void validatePrice(String input) {
+    public int validate(String input) {
         try {
             int price = convertInteger(input);
-            validateRange(price, ZERO, PURCHASE_LIMIT);
+            validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
             validateUnit(price);
-        } catch (NumberFormatException e) {
+            return price;
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 지불할 금액을 다시 입력해주세요.");
             String newInput = Console.readLine();
-            validatePrice(newInput);
+            return validate(newInput);
         }
     }
-    private int convertInteger(String input) throws NumberFormatException{
+    private int convertInteger(String input) throws IllegalArgumentException{
         return Integer.parseInt(input);
     }
-    private void validateRange(int target, int start, int end) throws NumberFormatException{
+    private void validateRange(int target, int start, int end) throws IllegalArgumentException{
         if(target < start || target > end) {
-            throw new NumberFormatException();
+            throw new IllegalArgumentException();
         }
     }
-    private void validateUnit (int price) throws NumberFormatException{
+    private void validateUnit (int price) throws IllegalArgumentException{
         if ((price % MIN_PRICE_UNIT) != ZERO) {
-            throw new NumberFormatException();
+            throw new IllegalArgumentException();
         }
     }
 }

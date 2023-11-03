@@ -73,4 +73,17 @@ class WinningLottoTicketTest {
 
         assertEquals(Rank.FOURTH, result);
     }
+
+    @Test
+    @DisplayName("당첨 번호 중 3개가 일치하는 경우 FIFTH 등수 반환")
+    void whenThreeNumbersMatch_thenReturnFifthRank() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> playerNumbers = Arrays.asList(1, 2, 3, 7, 8, 9);
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(winningNumbers, 10);
+        Lotto lotto = new Lotto(playerNumbers);
+
+        Rank result = winningLottoTicket.match(lotto);
+
+        assertEquals(Rank.FIFTH, result);
+    }
 }

@@ -12,7 +12,7 @@ public class PurchaseAmountInputView {
     }
 
     public Long validateCheck() {
-        Long amount = null;
+        Long amount;
         while (true) {
             try {
                 String value = Console.readLine();

@@ -10,7 +10,7 @@ public class Property {
     private final int property;
 
     public Property(int property) {
-        PropertyValidator.validate();
+        PropertyValidator.validate(property);
         this.property = property;
     }
 

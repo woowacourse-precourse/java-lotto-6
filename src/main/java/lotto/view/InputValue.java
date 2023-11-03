@@ -8,11 +8,28 @@ public class InputValue {
 
         String input = readLine();
 
-        // 숫자인지 확인
+        emptyValueCheck(input);
 
-        // 1000원으로 나눠떨이지는 확인
+        int price = numberCheck(input);
 
-        return 0;
+        priceUnitCheck(price);
+
+        return price;
+    }
+
+    private static void emptyValueCheck(String input) {
+        if (input.length() == 0) throw new IllegalArgumentException();
+    }
+
+    private static int numberCheck(String input) {
+
+        if (!input.matches("\\d*")) throw new IllegalArgumentException();
+
+        return Integer.parseInt(input);
+    }
+
+    private static void priceUnitCheck(int price) {
+        if (price % 1000 != 0) throw new IllegalArgumentException();
     }
 
 }

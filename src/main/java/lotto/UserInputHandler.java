@@ -11,9 +11,6 @@ import static lotto.ErrorMessage.*;
 
 public class UserInputHandler {
 
-    private static final String INPUT_USER_LOTTO_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String INPUT_USER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_USER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     static final int DIVISION_ROLE = 1000; // 나누어 떨어져야 하는 값 : 1,000원 단위
     private String winningNumbers;
 
@@ -23,7 +20,7 @@ public class UserInputHandler {
         String lottoPurchase = null;
         while (restart) {
             try {
-                System.out.println(INPUT_USER_LOTTO_PURCHASE_MESSAGE);
+                System.out.println(LottoMessages.INPUT_USER_LOTTO_PURCHASE.getMessage());
                 lottoPurchase = Console.readLine();
                 validUserLottoPurchase(lottoPurchase);
                 restart = false;
@@ -54,7 +51,7 @@ public class UserInputHandler {
 
         while (restart) {
             try {
-                System.out.println(INPUT_USER_WINNING_NUMBERS_MESSAGE);
+                System.out.println(LottoMessages.INPUT_USER_WINNING_NUMBERS.getMessage());
                 winningNumbers = Console.readLine();
                 validateUserWinningNumbers(winningNumbers);
                 restart = false;
@@ -130,7 +127,7 @@ public class UserInputHandler {
         boolean restart = true;
         String bonusNumber = null;
         while (restart) {
-            System.out.println(INPUT_USER_BONUS_NUMBER_MESSAGE);
+            System.out.println(LottoMessages.INPUT_USER_BONUS_NUMBER_MESSAGE.getMessage());
             bonusNumber = Console.readLine();
             try {
                 validateNumbers(bonusNumber);

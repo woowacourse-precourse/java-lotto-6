@@ -17,7 +17,7 @@ public class WinningStatistics {
     // 로또 구입할 금액 입력
     public void purchaseLottoTickets(int totalAmount) {
         int ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
-        System.out.println(ticket + "개를 구매했습니다.");
+        System.out.printf(LottoMessages.COMPLETE_MESSAGE_LOTTO_COST.getMessage(), ticket);
 
         for (int i = 0; i < ticket; i++) {
             purchaseLottoPrint();
@@ -26,9 +26,6 @@ public class WinningStatistics {
 
     // 구매한 갯수 만큼 출력
     public void purchaseLottoPrint() {
-//        List<Integer> uniqueNumbers = Lotto.generateLottoNumbers();
-        //        Lotto lotto = new Lotto(uniqueNumbers);
-//        List<Integer> numbers = lotto.getNumbers(); // 이 번호를 넘겨서 계산해야한다.
         Lotto lotto = Lotto.generateLottoNumbers();
         List<Integer> numbers = lotto.getNumbers();
 
@@ -56,7 +53,11 @@ public class WinningStatistics {
                 count++;
             }
         }
+        matchingNumberSet(lotto, bonusNumber, count);
+    }
 
+    // 3개 일치하는 경우부터 확인
+    private void matchingNumberSet(Lotto lotto, int bonusNumber, int count) {
         if (count >= 3) {
             int currentValue = matchingNumber.get(count);
             matchingNumber.set(count, currentValue + 1);
@@ -66,7 +67,6 @@ public class WinningStatistics {
             int currentValue = matchingNumber.get(count);
             matchingNumber.set(0, currentValue + 1);
         }
-
     }
 
 

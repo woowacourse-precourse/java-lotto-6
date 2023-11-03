@@ -35,6 +35,7 @@ public class User {
             try {
                 List<String> sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
                 validateSixLottoNumbers(sixLottoNumbers);
+                validateNoDuplicateNumbers(sixLottoNumbers);
                 return sixLottoNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,6 +50,16 @@ public class User {
             }
         }
         return sixLottoNumbers;
+    }
+
+    private void validateNoDuplicateNumbers(List<String> sixLottoNumbers){
+        List<String> uniqueNumbers = new ArrayList<>();
+        for (String lottoNumber : sixLottoNumbers) {
+            if (uniqueNumbers.contains(lottoNumber)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 번호가 입력되었습니다.");
+            }
+            uniqueNumbers.add(lottoNumber);
+        }
     }
 }
 

@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.function.BiPredicate;
+import java.util.stream.IntStream;
 
 public enum LottoRank {
 	NOTHING(0, 0, false, (matchedNumCount, isBonusNumber) -> matchedNumCount < 3),
@@ -14,7 +16,7 @@ public enum LottoRank {
 	private final int price;
 	private final int matchedNumCount;
 	private final boolean isBonusNumber;
-	private final BiPredicate<Integer, Boolean> matcher;
+	private final BiPredicate<Integer,	 Boolean> matcher;
 
 	LottoRank(int price, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> matcher) {
 		this.price = price;
@@ -23,12 +25,49 @@ public enum LottoRank {
 		this.matcher = matcher;
 	}
 
-	public static LottoRank getLottoRank(final int matchedNumCount, final boolean isBonusNumber) {
+	public static LottoRank getMatchedLottoRank(final AnswerLotto answerLotto, final Lotto lotto) {
+		int winningNumberCount = getWinningNumberCount(answerLotto, lotto);
+		
+		boolean isBonusNumber = checkSameAsBonusNumber(answerLotto, lotto);
+		
+		return LottoRank.getLottoRank(winningNumberCount, isBonusNumber);
+	}
+	
+	protected static LottoRank getLottoRank(final int matchedNumCount, final boolean isBonusNumber) {
 		return Arrays.stream(LottoRank.values())
-				.filter(lottoRank -> lottoRank.matcher.test(matchedNumCount, isBonusNumber)).findAny().orElse(NOTHING);
+						.filter(lottoRank -> lottoRank.matcher.test(matchedNumCount, isBonusNumber))
+						.findAny()
+						.orElse(NOTHING);
+	}
+	
+
+	private static int getWinningNumberCount(final AnswerLotto answerLotto, final Lotto lotto) {
+		return (int) IntStream.range(0, lotto.getSize()).filter(index -> answerLotto.isContain(lotto.getNumber(index)))
+				.count();
 	}
 
+	private static boolean checkSameAsBonusNumber(final AnswerLotto answerLotto, final Lotto lotto) {
+		return IntStream.range(0, lotto.getSize())
+				.anyMatch(index -> answerLotto.getBonusNumber() == lotto.getNumber(index));
+	}
+	
+	
+	public static EnumMap<LottoRank, Integer> toEnumMap() {
+        return new EnumMap<LottoRank, Integer>(LottoRank.class) {{
+            Arrays.stream(LottoRank.values())
+            		.forEach(value -> put(value, 0));
+        }};
+    }
+	
 	public int getPrice() {
 		return price;
+	}
+	
+	public int getMatchedNumCount() {
+		return matchedNumCount;
+	}
+	
+	public boolean getisBonusNumber() {
+		return isBonusNumber;
 	}
 }

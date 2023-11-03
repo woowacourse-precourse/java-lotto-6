@@ -1,15 +1,29 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.constant.InputMessage;
 import lotto.constant.OutputMessage;
 
 public class MessageService {
-    public void inputPurchasePrice(){
+    public void inputPurchasePrice() {
         System.out.println(InputMessage.INPUT_PURCHASE_PRICE.getMessage());
     }
 
-    public void outputPurchaseAmount(int purchaseAmount){
+    public void outputPurchaseAmount(int purchaseAmount) {
         System.out.println();
         System.out.println(purchaseAmount + OutputMessage.OUTPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
+
+    public void outputPurchaseNumbers(List<Integer> numbers) {
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            stringBuilder.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+        stringBuilder.append("]");
+        System.out.println(stringBuilder);
+    }
+
 }

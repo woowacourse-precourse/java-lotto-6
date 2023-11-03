@@ -1,21 +1,25 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoPrice;
 import lotto.service.InputService;
+import lotto.service.LottoService;
+import lotto.service.MessageService;
 import lotto.service.ValidateService;
 
 public class LottoPurchase {
     private final InputService inputService = new InputService();
+    private final MessageService messageService = new MessageService();
     private final ValidateService validateService = new ValidateService();
-    private int purchaseAmount;
-    private int purchasePrice;
-    private List<Integer> lottoNumbers;
+    private final LottoService lottoService = new LottoService();
+
+    List<Lotto> purchaseLotto = new ArrayList<>();
 
     public int getPurchasePrice() {
         while (true) {
             try {
-                purchasePrice = validateService.validateNumber(inputService.inputValue());
+                int purchasePrice = validateService.validateNumber(inputService.inputValue());
                 validateService.validateAll(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
@@ -26,5 +30,22 @@ public class LottoPurchase {
 
     public int getPurchaseAmount() {
         return getPurchasePrice() / LottoPrice.LOTTO_PRICE.getNumber();
+    }
+
+    public List<Lotto> purchaseLottoNumbers(int purchaseAmount){
+        for(int i = 0; i < purchaseAmount; i++){
+            purchaseLotto.add(generateLottoNumbers());
+        }
+        return purchaseLotto;
+    }
+
+    public Lotto generateLottoNumbers() {
+        List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
+        messageService.outputPurchaseNumbers(lottoNumbers);
+        return new Lotto(lottoNumbers);
+    }
+
+    public List<Lotto> getPurchaseLotto() {
+        return purchaseLotto;
     }
 }

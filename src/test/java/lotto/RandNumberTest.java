@@ -4,10 +4,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.RandNumber.makeBonusNumber;
-import static lotto.controller.RandNumber.makeRandNumber;
+import static lotto.controller.RandNumber.*;
 
 public class RandNumberTest {
     @DisplayName("랜덤 넘버 6개 뽑기")
@@ -22,6 +22,30 @@ public class RandNumberTest {
     void createRandomBonusNumberTest() {
         List<Integer> bonusNumber = makeBonusNumber();
         Assertions.assertThat(bonusNumber.size()).isEqualTo(1);
+    }
+
+    @DisplayName("랜덤 넘버와 보너스 넘버가 중복되는지 확인")
+    @Test
+    void checkDuplicateTest() {
+        List<Integer> lottoNumber = new ArrayList<>();
+        lottoNumber.add(1);
+        lottoNumber.add(2);
+
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(1);
+        Assertions.assertThat(checkDuplicate(lottoNumber, bonusNumber)).isEqualTo(false);
+    }
+
+    @DisplayName("랜덤 넘버와 보너스 넘버가 중복되는지 확인")
+    @Test
+    void checkNotDuplicateTest() {
+        List<Integer> lottoNumber = new ArrayList<>();
+        lottoNumber.add(1);
+        lottoNumber.add(2);
+
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(3);
+        Assertions.assertThat(checkDuplicate(lottoNumber, bonusNumber)).isEqualTo(true);
     }
 
 }

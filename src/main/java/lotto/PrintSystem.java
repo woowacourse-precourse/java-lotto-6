@@ -18,15 +18,23 @@ public class PrintSystem {
     private static final String COUNT_UNIT = "개";
     private static final String PERCENT_UNIT = "%";
 
-    public void printAskPaymentAccount(){
+    public void printAskPaymentAccountMessage(){
         System.out.println(INPUT_PAYMENT_ACCOUNT_MESSAGE);
     }
 
-    public void printNumOfLotto(int numOfLotto){
+    public void printAskWinningNumbersMessage(){
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+    }
+
+    public void printAskBonusNumberMessage(){
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+    }
+
+    public void printResultNumOfLotto(int numOfLotto){
         System.out.println(numOfLotto + COUNT_UNIT + PRINT_RESULT_TOTAL_NUM_OF_LOTTO);
     }
 
-    public void printGeneratedLottos(List<Lotto> lottos){
+    public void printResultGeneratedLottos(List<Lotto> lottos){
         for(Lotto lotto:lottos){
             System.out.println(lotto.getNumbers().toString());
         }

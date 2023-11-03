@@ -6,8 +6,6 @@ import lotto.domain.WinningResult;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
 
-import static lotto.constant.NumberConstant.BUYING_PRICE_UNIT;
-
 public class GameManager {
 
     private final MessagePrinter messagePrinter;

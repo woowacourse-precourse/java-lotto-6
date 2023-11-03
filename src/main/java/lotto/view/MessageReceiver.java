@@ -17,33 +17,33 @@ public class MessageReceiver {
     }
 
     public int receiveBuyingPrice() {
-        boolean isValid = false;
-        int buyingPrice = 0;
-
-        while (!isValid) {
+        do {
             String buyingPriceText = Console.readLine();
             try {
-                buyingPrice = viewValidator.parseInt(buyingPriceText);
-                isValid = viewValidator.validateMod(buyingPrice);
+                int buyingPrice = viewValidator.parseInt(buyingPriceText);
+                viewValidator.validateMod(buyingPrice);
+                return buyingPrice;
+
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);
             }
-        }
-        return buyingPrice;
+        } while (true);
     }
 
+
     public WinningLotto receiveWinningNumbers() {
-        boolean validInput = false;
-        WinningLotto winningLotto = null;
+        do {
+            String inputText = Console.readLine();
+            List<String> winningNumbersText = Arrays.asList(inputText.split(COMMA));
+            try {
+                viewValidator.validateWinningNumberSize(winningNumbersText);
+                List<Integer> winningNumbers = viewValidator.validateWinningNumberFormat(winningNumbersText);
+                return WinningLotto.of(winningNumbers);
 
-        while (!validInput) {
-            String winningNumbersText = Console.readLine();
-            List<String> winningNumbers = Arrays.asList(winningNumbersText.split(COMMA));
-            validInput = viewValidator.validateWinningNumbers(winningNumbers);
-            winningLotto = WinningLotto.of(winningNumbers);
-        }
-
-        return winningLotto;
+            } catch (IllegalArgumentException e) {
+                viewValidator.printExceptionMessage(e);
+            }
+        } while (true);
     }
 
     public int receiveBonusNumber() {

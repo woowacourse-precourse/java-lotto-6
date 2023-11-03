@@ -17,13 +17,8 @@ public class WinningLotto {
         this.winningNumbers = winningNumbers;
     }
 
-    public static WinningLotto of(final List<String> numbersText) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String text : numbersText) {
-            int winningNumber = Integer.parseInt(text);
-            numbers.add(winningNumber);
-        }
-        return new WinningLotto(numbers);
+    public static WinningLotto of(final List<Integer> winningNumbers) {
+        return new WinningLotto(winningNumbers);
     }
 
     public void createBonusNumber(final int bonusNumber) {

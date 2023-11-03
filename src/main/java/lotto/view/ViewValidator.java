@@ -1,43 +1,42 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.ExceptionConstant.*;
 import static lotto.constant.ExceptionConstant.BUYING_PRICE_INPUT_EXCEPTION;
-import static lotto.constant.NumberConstant.BUYING_PRICE_UNIT;
-import static lotto.constant.NumberConstant.ZERO;
+import static lotto.constant.NumberConstant.*;
 
 public class ViewValidator {
 
-    public int parseInt(final String buyingPriceText) {
+    public int parseInt(final String inputText) {
         try {
-            return Integer.parseInt(buyingPriceText);
+            return Integer.parseInt(inputText);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BUYING_PRICE_NUMBER_FORMAT_EXCEPTION);
         }
     }
 
-    public boolean validateWinningNumbers(final List<String> winningNumbersText) {
-        try {
-            for (String text : winningNumbersText) {
-                int winningNumber = Integer.parseInt(text);
-            }
-        } catch (NumberFormatException e) {
-            printExceptionMessage(e);
-            return false;
+    public void validateWinningNumberSize(final List<String> winningNumbersText) {
+        if (winningNumbersText.size() != WINNING_NUMBER_SIZE) {
+            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_EXCEPTION);
         }
-
-        return true;
     }
 
-    public boolean validateMod(final int buyingPrice) {
+    public List<Integer> validateWinningNumberFormat(final List<String> winningNumbersText) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String text : winningNumbersText) {
+            int winningNumber = parseInt(text);
+            winningNumbers.add(winningNumber);
+        }
+
+        return winningNumbers;
+    }
+
+    public void validateMod(final int buyingPrice) {
         if (buyingPrice % BUYING_PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION);
         }
-
-        return true;
     }
 
     public void printExceptionMessage(final IllegalArgumentException e) {

@@ -15,7 +15,7 @@ class WinningLottoTest {
     @Test
     void createBonusNumberRangeException() {
         // given
-        List<String> numbersText = List.of("1", "2", "3", "4", "5", "6");
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 6);
         WinningLotto winningLotto = WinningLotto.of(numbersText);
 
         // expected
@@ -30,7 +30,7 @@ class WinningLottoTest {
     @Test
     void createBonusNumberDuplicationException() {
         // given
-        List<String> numbersText = List.of("1", "2", "3", "4", "5", "6");
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 6);
         WinningLotto winningLotto = WinningLotto.of(numbersText);
 
         // expected
@@ -42,7 +42,7 @@ class WinningLottoTest {
     @Test
     void createBonusNumber() {
         // given
-        List<String> numbersText = List.of("1", "2", "3", "4", "5", "6");
+        List<Integer> numbersText = List.of(1, 2, 3, 4, 5, 6);
         WinningLotto winningLotto = WinningLotto.of(numbersText);
 
         // when

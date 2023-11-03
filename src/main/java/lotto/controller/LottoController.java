@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoBundle;
-import lotto.domain.LottoMoney;
+import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,6 +21,13 @@ public class LottoController {
         LottoMoney money = inputView.getLottoMoney();
         LottoBundle lottoBundle = lottoService.buyLottoBundle(money);
         outputView.printLottoBundle(lottoBundle);
+        AnswerLotto answerLotto = getAnswerLotto();
+    }
+
+    private AnswerLotto getAnswerLotto() {
+        Lotto answerLotto = inputView.getAnswerLotto();
+        BonusNumber bonusNumber = inputView.getBonusNumber();
+        return new AnswerLotto(answerLotto, bonusNumber);
     }
 
 }

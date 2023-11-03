@@ -5,11 +5,13 @@ import java.util.Set;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
-    private final List<Integer> numbers;
+    private final List<LottoNo> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNo::new)
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

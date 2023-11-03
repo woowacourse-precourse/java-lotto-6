@@ -11,7 +11,7 @@ class InputPatternTest {
 
     @Test
     @DisplayName("숫자 검증 정규식 장수에 숫자를 입력 안 하면 true를 반환한다.")
-    void When_Input_Not_Numeric_Then_True() {
+    void When_InputNotNumeric_Then_True() {
         //given
         String givenNumeric = "pobi";
 
@@ -24,7 +24,7 @@ class InputPatternTest {
 
     @Test
     @DisplayName("숫자 검증 정규식 장수에 숫자를 입력 하면 false를 반환한다.")
-    void When_Input_Numeric_Then_False() {
+    void When_InputNumericThen_False() {
         //given
         String givenNumeric = "123";
 

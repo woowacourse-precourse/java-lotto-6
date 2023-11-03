@@ -17,7 +17,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"박준수", "pobi", "!@#"})
     @DisplayName("숫자로 입력을 하지 않으면 에러가 발생한다.")
-    void When_Input_Not_Numeric_Then_Error(String number) {
+    void When_InputNotNumeric_Then_Error(String number) {
         assertThatThrownBy(() -> inputValidator.validateNumeric(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(error);

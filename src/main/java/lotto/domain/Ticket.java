@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class Ticket {
 
-    private static final int price = 1000;
+    private static final int PRICE = 1000;
     private int count;
 
     public int getCount() {
@@ -10,9 +12,12 @@ public class Ticket {
     }
 
     public void setCount(int moneyInput) {
-        if (moneyInput % price == 0) {
-            this.count = moneyInput / this.price;
-        } else {
+        validate(moneyInput);
+        this.count = moneyInput / PRICE;
+    }
+
+    private void validate(int moneyInput) {
+        if (moneyInput % PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }

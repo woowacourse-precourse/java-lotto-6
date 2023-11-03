@@ -11,8 +11,13 @@ public class InputView {
 
     public static Price inputPriceForLotto() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        return new Price(input);
+        try {
+            String input = Console.readLine();
+            return new Price(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPriceForLotto();
+        }
     }
 
 //        try {

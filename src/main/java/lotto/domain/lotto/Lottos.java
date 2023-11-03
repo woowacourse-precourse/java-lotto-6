@@ -4,9 +4,9 @@ import java.util.List;
 
 public record Lottos(List<Lotto> lottos) {
 
-    public List<LottoReward> createCompareResults(final Lotto winningLotto, final int bonusNumber) {
+    public List<LottoRewardCondition> createCompareResults(final Lotto winningLotto, final int bonusNumber) {
         return lottos.stream()
-                .map(userLotto -> LottoReward.getCompareResult(userLotto, winningLotto, bonusNumber))
+                .map(userLotto -> LottoRewardCondition.getCompareResult(userLotto, winningLotto, bonusNumber))
                 .toList();
     }
 }

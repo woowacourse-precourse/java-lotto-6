@@ -33,11 +33,22 @@ public class LottoController {
     }
 
     public void start() {
-        money = new Money(InputView.money());
+        getLottoMoney();
         int ticketCount = OutputView.LottoTicketCount(money.getMoney());
         makeLottoLists(ticketCount);
-        getWinningNumbers();
+        getWinningNumbersAndBonusNumber();
         result();
+    }
+
+    private void getLottoMoney() {
+        while (true) {
+            try {
+                money = new Money(InputView.money());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void makeLottoLists(int ticketCount) {
@@ -50,9 +61,31 @@ public class LottoController {
         lottos = new Lottos(lottoList);
     }
 
+    private void getWinningNumbersAndBonusNumber() {
+        getWinningNumbers();
+        getBonusNumber();
+    }
+
     private void getWinningNumbers() {
-        winningNumbers = InputView.winningNumbers();
-        bonusNumber = new BonusNumber(winningNumbers, InputView.bonusNumber());
+        while (true) {
+            try {
+                winningNumbers = InputView.winningNumbers();
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void getBonusNumber() {
+        while (true) {
+            try {
+                bonusNumber = new BonusNumber(winningNumbers, InputView.bonusNumber());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void result() {

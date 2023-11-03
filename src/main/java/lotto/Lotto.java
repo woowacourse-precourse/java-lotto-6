@@ -34,7 +34,7 @@ public class Lotto {
         int matchingCount = getMatchingCounts(winningNumbers);
         boolean matchingBonus = getMatchingBonus(bonus);
 
-        return findRank(matchingCount, matchingBonus);
+        return Rank.getRank(matchingCount, matchingBonus);
     }
 
     private int getMatchingCounts(List<Integer> winningNumbers) {
@@ -50,27 +50,5 @@ public class Lotto {
 
     private boolean getMatchingBonus(int bonus) {
         return numbers.contains(bonus);
-    }
-
-    private Rank findRank(int matchingCount, boolean matchingBonus) {
-        if (matchingBonus && matchingCount == 5) {
-            return Rank.SECOND;
-        }
-
-        if (matchingCount < 3) {
-            return Rank.NONE;
-        }
-        switch (matchingCount) {
-            case 3:
-                return Rank.FIFTH;
-            case 4:
-                return Rank.FOURTH;
-            case 5:
-                return Rank.THIRD;
-            case 6:
-                return Rank.FIRST;
-            default:
-                throw new IllegalArgumentException("Invalid matchingCount and matchingBonus combination.");
-        }
     }
 }

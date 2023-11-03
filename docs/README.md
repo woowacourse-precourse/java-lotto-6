@@ -66,6 +66,7 @@
 - Lotto : 로또의 6개 숫자를 가지는 일급컬렉션
 - Money : 금액의 값 객체
 - YieldRate : 수익률 값 객체
+- LottoNumberRule : 로또 번호 규칙에 대한 상수
 
 ### Util
 

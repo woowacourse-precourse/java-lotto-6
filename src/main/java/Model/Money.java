@@ -7,7 +7,7 @@ public class Money {
 
     private final int money;
 
-    Money(String inputMoney){
+    public Money(String inputMoney){
         int money = validateNumeric(inputMoney);
         validateMultiple(money);
         validateZero(money);

@@ -7,7 +7,7 @@ public class Numbers {
         return null;
     }
 
-    public String putCommaInNumber() {
+    public String putCommaInNumber(long price) {
         return null;
     }
 

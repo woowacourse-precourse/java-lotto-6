@@ -23,5 +23,21 @@ public class GeneratorTest {
         assertThat(numbers.size()).isEqualTo(6);
     }
 
+    @DisplayName("로또 번호 6자리 중복 테스트")
+    @Test
+    void createNumbers_IsDuplicated_Fail(){
+        //given
+        Generator generator = new Generator();
+        List<Integer> numbers = generator.createNumbers();
+        //when
+
+        //then
+        assertThat(numbers.size()).isEqualTo(6);
+        assertThat(numbers).doesNotHaveDuplicates();
+    }
+
+
+
+
 
 }

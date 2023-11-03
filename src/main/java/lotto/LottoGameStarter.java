@@ -1,2 +1,8 @@
-package lotto;public class LottoGameStarter {
+package lotto;
+
+public class LottoGameStarter {
+    public void gameStart() {
+
+
+    }
 }

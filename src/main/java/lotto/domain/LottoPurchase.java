@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class LottoPurchase {
-    private final Integer amount;
+    private final int amount;
 
     public LottoPurchase(int amount) {
         validateAmount(amount);
@@ -12,6 +12,10 @@ public class LottoPurchase {
         int parsedAmount = stringToInt(amount);
         validateAmount(parsedAmount);
         this.amount = parsedAmount;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     private int stringToInt(String amount) {

@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    private final LottoTickets lottoTicket = new LottoTickets();
 
     public int displayPurchase() {
         InputView.promptPurchaseAmount();
@@ -113,7 +112,7 @@ public class LottoService {
 
 
     public LottoTickets purchaseLottoTicket(int amount) {
-        return lottoTicket.buy(amount);
+        return LottoTickets.buy(amount);
     }
 
     public WinningLottoTicket createWinningLottoTicket(List<Integer> winningNumber, int bonusNumber) {

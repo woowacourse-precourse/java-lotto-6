@@ -12,8 +12,14 @@ class MoneyTest {
     @ParameterizedTest
     void getIndivisibleMoney(String money) {
         Assertions.assertThatThrownBy(() -> new Money(money))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @DisplayName("정수로 금액을 입력하지 않으면 예외가 발생")
+    @ValueSource(strings = {"ab", "10.5", "0.8"})
+    @ParameterizedTest
+    void getNotIntegerMoney(String money) {
+        Assertions.assertThatThrownBy(() -> new Money(money))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }

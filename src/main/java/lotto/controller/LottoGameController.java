@@ -8,7 +8,14 @@ import lotto.view.OutputView;
 public class LottoGameController {
     public void play() {
         LottoTicket lottoTicket = purchaseLotto();
+        LottoOwner lottoOwner = generateLotto(lottoTicket);
+
+    }
+
+    private LottoOwner generateLotto(LottoTicket lottoTicket) {
         LottoOwner lottoOwner = new LottoOwner(lottoTicket);
+        OutputView.printLottoNumbers(lottoOwner.getLottoNumbers());
+        return lottoOwner;
     }
 
     private LottoTicket purchaseLotto() {

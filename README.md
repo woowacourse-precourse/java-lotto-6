@@ -34,6 +34,34 @@ BUILD SUCCESSFUL in 0s
 
 ---
 
+## 기능 목록
+
+- [ ] 로또 구입 금액 입력받기 - UserInputStore#lottoPurchaseInput()
+   - [ ] 1000원 단위로 입력 받는다 (1000원당 1장)
+- [ ] 1 ~ 45까지의 6개의 서로 다른 임의의 숫자를 추출(구매) - Store#takeRandomNumbers()
+   - [ ] 몇장인지 갯수 세기 - Store#countLottoPaper
+   - [ ] 오름차순으로 정렬
+- [ ] 당첨번호 입력(로또 번호 6개 입력) - Lotto#lotteryNumbers()
+   - [ ] 제공된 Lotto 클래스를 활용하여 구현
+   - [ ] 번호는 쉼표(,)를 기준으로 구분
+- [ ] 보너스 번호 입력 - Lotto#lottoBonusNumber()
+   - [ ] 보너스 숫자 1개 뽑기
+- [ ] 당첨내역 판별 - Winning#dicisionOfWinningDetails()
+   - [ ] 1등 ~ 5등 까지 등수 선별
+- [ ] 당첨 내역 출력 - Winning#PrintWinningDetails()
+   - [ ] 6개 번호 일치 : 1등
+   - [ ] 5개 번호 + 보너스 번호 일치 : 2등
+   - [ ] 5개 번호 일치 : 3등
+   - [ ] 4개 번호 일치 : 4등
+   - [ ] 3개 번호 일치 : 5등
+- [ ] 총 수익률 Money#totalReturnRate
+   -[ ] 총 수익률은 소수점 둘째 자리에서 반올림
+- [ ] 에러 상황 Error#
+   - [ ] 에러문구는 [ERROR] 로 시작
+   - [ ] 1000원으로 나누어 떨어지지 않는 경우 예외 처리 Error#notDivisible
+
+---
+
 ## 🚀 기능 요구 사항
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.

@@ -2,14 +2,14 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
 
     private List<Lotto> lottos = new ArrayList<>();
-    private Map<LottoResult, Integer> lottoMap = new HashMap<>();
+    private Map<LottoResult, Integer> lottoMap = new LinkedHashMap<>();
 
     public LottoGame(int lottoMoney) {
         buildLottos(lottoMoney);

@@ -12,25 +12,28 @@ public class LottoNumberValidator {
     private LottoNumberValidator() {
     }
 
-    public static void validateLottoNumberSize(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplication(numbers);
+    }
+
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE.getMessage());
         }
     }
 
-    public static void validateLottoNumberRange(List<Integer> numbers) {
-        numbers.stream()
-                .forEach(number -> {
-                    if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
-                        throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
-                    }
-                });
+    private static void validateRange(List<Integer> numbers) {
+        numbers.stream().forEach(number -> {
+            if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
+            }
+        });
     }
 
-    public static void validateLottoNumberDuplication(List<Integer> numbers) {
-        int deDuplicatedCount = numbers.stream()
-                .collect(Collectors.toSet())
-                .size();
+    private static void validateDuplication(List<Integer> numbers) {
+        int deDuplicatedCount = numbers.stream().collect(Collectors.toSet()).size();
         if (numbers.size() != deDuplicatedCount) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATION.getMessage());
         }

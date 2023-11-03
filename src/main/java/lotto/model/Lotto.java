@@ -41,4 +41,12 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public boolean findNumber(int number){
+        int result = numbers.indexOf(number);
+        if(result == -1){
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -13,6 +13,6 @@ public class LottoGame {
         messageService.outputPurchaseAmount(purchaseAmount);
         lottoPurchase.purchaseLottoNumbers(purchaseAmount);
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
-
+        messageService.outputResultMessage();
     }
 }

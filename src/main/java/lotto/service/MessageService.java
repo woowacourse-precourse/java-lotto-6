@@ -35,4 +35,8 @@ public class MessageService {
         System.out.println();
         System.out.println(InputMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
+    public void outputResultMessage(){
+        System.out.println();
+        System.out.println(OutputMessage.RESULT_MESSAGE.getMessage());
+    }
 }

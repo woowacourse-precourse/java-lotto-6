@@ -11,6 +11,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.User;
 import lotto.domain.WinningNumbers;
+import lotto.global.Utils;
 
 public class LottoService {
     public List<Lotto> publish(int quantity) {
@@ -43,6 +44,15 @@ public class LottoService {
         }
         return rewardCount;
     }
+    public double getRewardRatio(int purchaseAmount, Map<Prize, Integer> lotteryResult){
+        int totalReward = 0;
+        for (Prize prize : lotteryResult.keySet()) {
+            totalReward += (lotteryResult.get(prize) * prize.getReward());
+        }
+        double rewardRatio = (totalReward / purchaseAmount);
+        return Utils.roundNumberBySecondDecimalPlace(rewardRatio);
+    }
+
     public Map<Prize,Integer> initializeRewardCount(){
         Map<Prize, Integer> rewardCount = new HashMap<>();
         rewardCount.put(Prize.FIRST_REWARD, 0);

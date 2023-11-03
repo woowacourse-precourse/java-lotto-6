@@ -30,7 +30,7 @@ public class LottoController {
         WinningNumbers winningNumbers = getWinningNumbers();
         Map<Prize, Integer> lotteryResult = lottoService.getLotteryResult(user, winningNumbers);
         outputView.winningRecord(lotteryResult);
-
+        double rewardRatio = lottoService.getRewardRatio(user.getPurchaseAmount(), lotteryResult);
 
     }
     private CreateUserDto checkUser(){

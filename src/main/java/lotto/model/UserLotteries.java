@@ -9,4 +9,8 @@ public class UserLotteries {
     public UserLotteries(List<Lotto> lotteries) {
         Lotteries = lotteries;
     }
+
+    public int lotteriesCount() {
+        return Lotteries.size();
+    }
 }

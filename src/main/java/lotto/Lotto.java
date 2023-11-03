@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -19,7 +20,15 @@ public class Lotto {
     @Override
     public String toString() {
         // 출력 형식 구현
-        return null;
+        List<String> convertList = new ArrayList<>();
+        for(Integer i : numbers) {
+            convertList.add(i.toString());
+        }
+
+        String output = "[";
+        output += String.join(", ", convertList);
+        output += "]";
+        return output;
     }
 
     // TODO: 추가 기능 구현

@@ -24,6 +24,10 @@ public class Lotto {
         }
     }
 
+    public boolean LottoContainsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private List<Integer> sortedNumbers(List<Integer> numbers) {
         List<Integer> sortedLotto = new ArrayList<>(numbers);
         Collections.sort(sortedLotto);

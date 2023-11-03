@@ -21,4 +21,8 @@ public class BonusNumber {
     private boolean isBonusNumberOverRange(int number) {
         return number < MIN_BONUS_NUMBER_RANGE || number > MAX_BONUS_NUMBER_RANGE;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

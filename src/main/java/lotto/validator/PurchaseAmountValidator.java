@@ -7,11 +7,18 @@ public class PurchaseAmountValidator {
 
     private void validate(int inputAmount) {
         validateNaturalNumber(inputAmount);
+        validateDivisibleByPrice(inputAmount);
     }
 
     private void validateNaturalNumber(int inputAmount) {
         if (inputAmount <= 0) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+        }
+    }
+
+    private void validateDivisibleByPrice(int inputAmount) {
+        if (inputAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INDIVISIBLE_AMOUNT.getMessage());
         }
     }
 

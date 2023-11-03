@@ -28,4 +28,16 @@ public class CalculatorTest {
 
         assertThat(calculator.getSecondPrize()).isEqualTo(1);
     }
+
+    @Test
+    void 수익률_테스트() {
+        Lotto lottoNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> prizeNumber = List.of(1, 2, 3, 7, 8, 9);
+        int bonusNumber = 10;
+        int money = 1000;
+
+        calculator.calculatePrizeDescribe(lottoNumber, prizeNumber, bonusNumber);
+
+        assertThat(calculator.calculateEarningRate(money)).isEqualTo("500%");
+    }
 }

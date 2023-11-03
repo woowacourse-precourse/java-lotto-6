@@ -13,5 +13,9 @@ public class WinningLotto {
         return new Lotto(InputHandler.readWinnerNumber());
     }
 
+    public boolean contains(int number){
+        return winningLotto.contains(number);
+    }
+
 
 }

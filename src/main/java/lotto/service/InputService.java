@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +13,13 @@ public class InputService {
         String input = readLine();
 
         validateNumberType(input);
-        validateExpense(input);
+        validateExpenseValue(input);
         
         return Long.parseLong(input);
     }
 
     // 리팩토링 필요
-    private static void validateExpense(String input) {
+    private static void validateExpenseValue(String input) {
         for (int i = 1; i < 4; i++)
             if (input.charAt(input.length() - i) != '0')
                 throw new IllegalArgumentException();
@@ -42,5 +44,17 @@ public class InputService {
         }
 
         return winNumbers;
+    }
+
+
+    public static int readBonusNumber() {
+        String input = readLine();
+
+        validateNumberType(input);
+
+        int bonusNumber = Integer.parseInt(input);
+        Lotto.validateNumberInRange(List.of(bonusNumber));
+
+        return bonusNumber;
     }
 }

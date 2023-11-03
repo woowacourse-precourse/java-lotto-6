@@ -60,9 +60,9 @@ class ConsumerTest {
     void buyAvailableQuantityException(int amount) {
         Consumer consumer = new Consumer(amount);
 
-        assertThatThrownBy(() -> consumer.buyLotto(Arrays.asList(new Lotto(List.of(1, 2, 3, 4, 5, 6)))))
+        assertThatThrownBy(() -> consumer.receiveLottoes(Arrays.asList(new Lotto(List.of(1, 2, 3, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "구매 가능 수량이 구매 수량과 일치하지 않습니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, "구매 요청 수량이 구매 수량과 일치하지 않습니다.");
     }
 
     @ParameterizedTest
@@ -70,9 +70,9 @@ class ConsumerTest {
     @DisplayName("구매자 로또 정보 저장하기")
     void buyLottosSaveTest(List<Lotto> lottos) {
         Consumer consumer = new Consumer(AMOUNT);
-        consumer.buyLotto(lottos);
+        consumer.receiveLottoes(lottos);
 
-        List<Lotto> findLottos = consumer.getLottos();
+        List<Lotto> findLottos = consumer.getLottoes();
         assertThat(findLottos).isEqualTo(lottos);
         assertThat(findLottos.size()).isEqualTo(consumer.getBuyAmount() / AMOUNT);
     }
@@ -82,9 +82,9 @@ class ConsumerTest {
     @DisplayName("구매자 로또 정보 변경 시 예외 발생 상황 테스트")
     void getLottosAndModifiedTest(List<Lotto> lottos) {
         Consumer consumer = new Consumer(AMOUNT);
-        consumer.buyLotto(lottos);
+        consumer.receiveLottoes(lottos);
 
-        List<Lotto> findLottos = consumer.getLottos();
+        List<Lotto> findLottos = consumer.getLottoes();
 
         assertThatThrownBy(() -> findLottos.set(0, new Lotto(List.of(45, 44, 43, 42, 41, 40))))
                 .isInstanceOf(UnsupportedOperationException.class);

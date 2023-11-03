@@ -12,6 +12,7 @@ import lotto.dto.AmountRequestDto;
 import lotto.dto.BonusRequestDto;
 import lotto.dto.LottoResultResponseDto;
 import lotto.dto.WinLottoRequestDto;
+import lotto.exception.ConsumerException;
 import lotto.exception.InputException;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
@@ -56,14 +57,15 @@ public class LottoStoreController {
 
             // 구매 금액 입력
             AmountRequestDto amountRequestDto = new AmountRequestDto(InputView.amountInput());
+            int purchaseAmount = amountRequestDto.amountStringToInteger();
 
             // 구매 금액 저장
-            consumer = new Consumer(amountRequestDto.amountStringToInteger());
+            consumer = new Consumer(purchaseAmount);
 
             // 줄 바꿈
             OutputView.newLineOutput();
 
-        } catch (IllegalArgumentException e) {
+        } catch (InputException | ConsumerException e) {
             // 예외 출력
             OutputView.errorMessageOutput(e.getMessage());
 
@@ -76,14 +78,15 @@ public class LottoStoreController {
      * 로또 구매
      */
     private void buyerLottoPurchase() {
-        // 요청 한 갯수만큼의 로또 생성
-        List<Lotto> createLottos = lottoMachine.createLottos(consumer.getBuyAvailableQuantity());
+        // 요청 한 갯수 만큼의 로또 생성
+        int quantity = consumer.getBuyAvailableQuantity();
+        List<Lotto> createLottoes = lottoMachine.createLottoes(quantity);
 
         // 생성된 로또 출력
-        createLottosPrint(createLottos);
+        createLottoesPrint(createLottoes, quantity);
 
         // 구입 로또 저장 및 구입 로또 수량 확인
-        consumer.buyLotto(createLottos);
+        consumer.receiveLottoes(createLottoes);
 
         // 줄 바꿈
         OutputView.newLineOutput();
@@ -92,14 +95,14 @@ public class LottoStoreController {
     /**
      * 로또 정보 출력
      *
-     * @param lottos
+     * @param lottoes
      */
-    private void createLottosPrint(List<Lotto> lottos) {
+    private void createLottoesPrint(List<Lotto> lottoes, int quantity) {
         // 구입 로또 수량 출력
-        OutputView.lottoBuyQuantityOutput(consumer.getBuyAvailableQuantity());
+        OutputView.lottoBuyQuantityOutput(quantity);
 
         // 구입 로또 출력
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoes) {
             OutputView.lottoNumberOutput(lotto.toString());
         }
     }
@@ -114,9 +117,10 @@ public class LottoStoreController {
 
             // 당첨 번호 입력
             WinLottoRequestDto winLottoRequestDto = new WinLottoRequestDto(InputView.winLottoNumberInput());
+            List<Integer> lottoNumber = winLottoRequestDto.lottoStringToList();
 
             // 당첨 번호 로또 생성
-            Lotto lotto = new Lotto(winLottoRequestDto.lottoStringToList());
+            Lotto lotto = new Lotto(lottoNumber);
 
             // 줄 바꿈
             OutputView.newLineOutput();
@@ -145,15 +149,17 @@ public class LottoStoreController {
 
             // 보너스 번호 입력
             BonusRequestDto bonusRequestDto = new BonusRequestDto(InputView.bonusNumberInput());
+            int bonusNumber = bonusRequestDto.bonusStringToInteger();
 
             // 당첨 로또 등록
-            WinLotto winLotto = new WinLotto(lotto, bonusRequestDto.bonusStringToInteger());
+            WinLotto winLotto = new WinLotto(lotto, bonusNumber);
 
             lottoMachine.setWinLotto(winLotto);
+
             // 줄 바꿈
             OutputView.newLineOutput();
 
-        } catch (IllegalArgumentException e) {
+        } catch (InputException | LottoException e) {
             // 예외 출력
             OutputView.errorMessageOutput(e.getMessage());
 
@@ -167,8 +173,8 @@ public class LottoStoreController {
      */
     private void lottoWinningResults() {
         List<LottoPrize> lottoPrizes = new ArrayList<>();
-        List<Lotto> lottos = consumer.getLottos();
-        for (Lotto lotto : lottos) {
+        List<Lotto> lottoes = consumer.getLottoes();
+        for (Lotto lotto : lottoes) {
             lottoPrizes.add(lottoMachine.lottoWinningResult(lotto));
         }
 
@@ -184,8 +190,12 @@ public class LottoStoreController {
                 lottoResult.getLottoWinningCounts()
                 , lottoResult.getProfitRate()
         );
-        OutputView.lottoResultOutput(lottoResultResponseDto.prizeResults(),
-                lottoResultResponseDto.toStringProfitRate());
+
+        // 당첨 결과 출력
+        OutputView.lottoResultOutput(
+                lottoResultResponseDto.prizeResults(),
+                lottoResultResponseDto.toStringProfitRate()
+        );
     }
 
 }

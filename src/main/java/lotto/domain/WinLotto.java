@@ -39,7 +39,7 @@ public class WinLotto {
 
         // 2등 케이스 확인
         if (rank == 5 && otherLotto.isContainsNumber(bonus)) {
-            rank = -1;
+            return LottoPrize.SECOND_PRIZE;
         }
 
         return LottoPrize.getResultByMatchedNumbers(rank);

@@ -15,7 +15,7 @@ public class Consumer {
     private static final int AMOUNT = 1000;
     private static final int MAX_AMOUNT = 100000;
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottoes = new ArrayList<>();
     private final int buyAmount;
 
     public Consumer(int buyAmount) {
@@ -66,8 +66,8 @@ public class Consumer {
         return buyAmount;
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<Lotto> getLottoes() {
+        return Collections.unmodifiableList(lottoes);
     }
 
     /**
@@ -82,10 +82,10 @@ public class Consumer {
     /**
      * 로또 구매
      *
-     * @param lottos
+     * @param lottoes
      */
-    public void buyLotto(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public void receiveLottoes(List<Lotto> lottoes) {
+        this.lottoes = lottoes;
         buyQuantityCheck();
     }
 
@@ -93,7 +93,7 @@ public class Consumer {
      * 구입 로또 갯수 확인
      */
     private void buyQuantityCheck() {
-        int quantity = lottos.size();
+        int quantity = lottoes.size();
         int availableQuantity = getBuyAvailableQuantity();
 
         if (quantity != availableQuantity) {

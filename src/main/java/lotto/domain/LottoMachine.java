@@ -33,14 +33,14 @@ public class LottoMachine {
      * @param quantity
      * @return
      */
-    public List<Lotto> createLottos(int quantity) {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<Lotto> createLottoes(int quantity) {
+        List<Lotto> lottoes = new ArrayList<>();
         while (quantity > 0) {
-            lottos.add(new Lotto(createLottoNumber()));
+            lottoes.add(new Lotto(createLottoNumber()));
             quantity--;
         }
 
-        return lottos;
+        return lottoes;
     }
 
     /**
@@ -63,7 +63,7 @@ public class LottoMachine {
         List<Integer> sortedLottoNumber = new ArrayList<>(lottoNumber);
 
         Collections.sort(sortedLottoNumber); // 오름차순 정렬
-        
+
         return sortedLottoNumber;
     }
 

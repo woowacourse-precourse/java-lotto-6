@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.view.ViewValidator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,32 @@ class ViewValidatorTest {
 
         // expected
         assertThatThrownBy(() -> viewValidator.validateWinningNumberSize(winningNumbersText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호 6개가 모두 숫자형으로 변환할 수 있는지 확인한다.")
+    @Test
+    void validateWinningNumberFormat() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        List<String> winningNumbersText = List.of("1", "2", "3", "4", "5", "6");
+
+        // when
+        List<Integer> winningNumbers = viewValidator.validateWinningNumberFormat(winningNumbersText);
+
+        // then
+        assertThat(winningNumbers.size()).isEqualTo(6);
+    }
+
+    @DisplayName("당첨 번호 6개 중에 숫자로 변환할 수 없는 문자열이 존재하면 예외가 발생한다.")
+    @Test
+    void validateWinningNumberFormatFail() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        List<String> winningNumbersText = List.of("1", "2", "3", "4", "5", "fail");
+
+        // expected
+        assertThatThrownBy(() -> viewValidator.validateWinningNumberFormat(winningNumbersText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

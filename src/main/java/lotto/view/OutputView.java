@@ -40,4 +40,8 @@ public class OutputView {
 	public void printTotalReturn(double totalReturn) {
 		PRINTER.printLine(WinningStatisticsMessage.TOTAL_RETURN.getForMatMessage(totalReturn));
 	}
+	
+	public void printErrorMessage(Exception exception) {
+		System.out.println(exception.getMessage());
+	}
 }

@@ -45,7 +45,7 @@ public class LottoGame {
 
 				return money;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				outputView.printErrorMessage(e);
 			}
 		}
 	}
@@ -71,7 +71,7 @@ public class LottoGame {
 				numbers = inputView.inputAnswerLottoNumbers();
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				outputView.printErrorMessage(e);
 			}
 		}
 
@@ -82,7 +82,7 @@ public class LottoGame {
 				bonusNumber = inputView.inputBonusNumber();
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				outputView.printErrorMessage(e);
 			}
 		}
 

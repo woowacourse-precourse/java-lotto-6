@@ -16,6 +16,6 @@ public class LottoNumberGenerator implements Generator<List<Integer>> {
 
 		Collections.sort(sortedNumbers);
 
-		return numbers;
+		return sortedNumbers;
 	}
 }

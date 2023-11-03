@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 import java.util.List;
 import java.util.stream.IntStream;

@@ -8,8 +8,8 @@ public class BonusNumber {
 
     private final int value;
 
-    public BonusNumber(final String number){
-        validate(number.replace(" ",""));
+    public BonusNumber(final String number, WinningNumber lotto){
+        validate(number.replace(" ",""),lotto);
         value = Integer.parseInt(number);
     }
 
@@ -17,7 +17,7 @@ public class BonusNumber {
         return value;
     }
 
-    private void validate(String number){
+    private void validate(String number, WinningNumber lotto){
         if(isEmpty(number)){
             throw new IllegalArgumentException();
         }
@@ -31,6 +31,10 @@ public class BonusNumber {
         }
 
         if(!isBetweenOneAndFortyFive(number)){
+            throw new IllegalArgumentException();
+        }
+
+        if(isDuplicatedWinningLottoNumber(lotto,number)){
             throw new IllegalArgumentException();
         }
     }
@@ -49,5 +53,9 @@ public class BonusNumber {
 
     private boolean isBetweenOneAndFortyFive(String number){
         return Integer.parseInt(number) >= MIN_INCLUSIVE && Integer.parseInt(number) <= MAX_INCLUSIVE;
+    }
+
+    private boolean isDuplicatedWinningLottoNumber(WinningNumber winningLotto, String number){
+        return winningLotto.getValue().contains(Integer.parseInt(number));
     }
 }

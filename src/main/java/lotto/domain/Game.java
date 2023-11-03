@@ -4,7 +4,6 @@ import lotto.utils.Reader;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Game {
     private Player player;
@@ -35,6 +34,7 @@ public class Game {
     }
 
     private int inputBonusNumber() {
-        return 0;
+        String input = Reader.readLine().strip();
+        return Integer.parseInt(input);
     }
 }

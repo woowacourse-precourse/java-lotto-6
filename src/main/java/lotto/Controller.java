@@ -24,6 +24,8 @@ public class Controller {
             List<Integer> lottosRandomNumbers = randomNumbersLotto.makeRandomNumLottos();
             outputRandomLottoNumber.add(lottosRandomNumbers);
         }
+        outputView.outputLottosNumbers(outputRandomLottoNumber);
+
     }
 
 }

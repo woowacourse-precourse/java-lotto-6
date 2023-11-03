@@ -9,7 +9,7 @@ public class outputView {
     }
 
     public void outputLottosNumbers(List<List<Integer>> outputRandomLottoNumber) {
-        for(List<Integer> row : outputRandomLottoNumber){
+        for (List<Integer> row : outputRandomLottoNumber) {
             System.out.print("[");
             randomLottosNumbers(row);
             System.out.print("]");
@@ -20,8 +20,8 @@ public class outputView {
     public void randomLottosNumbers(List<Integer> row) {
         for (int i = 0; i < row.size(); i++) {
             System.out.print(row.get(i));
-            if(i < row.size() -1){
-                System.out.println(",");
+            if (i < row.size() - 1) {
+                System.out.println(", ");
             }
         }
     }

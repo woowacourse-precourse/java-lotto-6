@@ -26,4 +26,9 @@ public class Lotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_SIZE);
         return new Lotto(numbers);
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 }

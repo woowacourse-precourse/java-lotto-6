@@ -7,6 +7,7 @@ public class InputView {
         String input = Console.readLine();
         validateSpaceBuyAmount(input);
         validateNotIntegerBuyAmount(input);
+        validateNotDividedBuyAmount(input);
     }
 
 
@@ -21,6 +22,12 @@ public class InputView {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+        }
+    }
+
+    public static void validateNotDividedBuyAmount(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위가 아닌 값이 입력되었습니다.");
         }
     }
 

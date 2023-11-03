@@ -82,4 +82,8 @@ public class LottoStore {
     public long getChargedMoney() {
         return this.chargedMoney;
     }
+
+    public List<Lotto> showLottoPapers() {
+        return this.lottoPapers;
+    }
 }

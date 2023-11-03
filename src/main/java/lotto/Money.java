@@ -1,6 +1,12 @@
 package lotto;
 
 public class Money {
+    private static final int NO_REMAINDER = 0;
+    private static final int MINIMUM_VALID_MONEY = 0;
+    private static final int UNIT_OF_MONEY = 1000;
+    private static final String INVALID_TYPE_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자여야 합니다.";
+    private static final String INVALID_UNIT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
+
     private final int money;
 
     public Money(String money) {
@@ -10,10 +16,10 @@ public class Money {
 
     private void validate(String money) {
         if (isInvalidType(money)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_TYPE_ERROR_MESSAGE);
         }
         if (isInvalidUnit(money)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(INVALID_UNIT_ERROR_MESSAGE);
         }
     }
 
@@ -28,7 +34,7 @@ public class Money {
 
     private boolean isInvalidUnit(String target) {
         int money = Integer.parseInt(target);
-        if(money > 0 && money % 1000 == 0){
+        if (money > MINIMUM_VALID_MONEY && money % UNIT_OF_MONEY == NO_REMAINDER) {
             return false;
         }
         return true;

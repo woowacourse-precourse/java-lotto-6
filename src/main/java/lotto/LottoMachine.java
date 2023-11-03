@@ -10,11 +10,11 @@ public class LottoMachine {
 
     public List<Lotto> buy(int money) throws IllegalArgumentException {
         validateMoney(money);
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < money / PRICE; i++) {
-            lottos.add(getRandomLotto());
+            tickets.add(getRandomLotto());
         }
-        return lottos;
+        return tickets;
     }
 
     private void validateMoney(int cash) {

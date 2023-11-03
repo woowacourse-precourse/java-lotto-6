@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -14,7 +15,8 @@ public class LottoController {
     }
 
     public void start() {
-        List<Lotto> lottos = buyLotto();
+        List<Lotto> tickets = buyLotto();
+        showTickets(tickets);
     }
 
     private List<Lotto> buyLotto() {
@@ -25,5 +27,13 @@ public class LottoController {
             outputView.printErrorMessage(exception.getMessage());
             return buyLotto();
         }
+    }
+
+    private void showTickets(List<Lotto> tickets) {
+        List<String> numbers = new ArrayList<>();
+        for (Lotto lotto : tickets) {
+            numbers.add(lotto.toString());
+        }
+        outputView.printGeneratedLotto(numbers);
     }
 }

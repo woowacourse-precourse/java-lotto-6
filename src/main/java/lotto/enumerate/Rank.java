@@ -8,7 +8,7 @@ public enum Rank {
     THIRD_PLACE(value -> (long) (value * 1500000)),
     FOURTH_PLACE(value -> (long) (value * 50000)),
     FIFTH_PLACE(value -> (long) (value * 5000));
-    private Function<Integer, Long> expression;
+    private final Function<Integer, Long> expression;
 
     Rank(Function<Integer, Long> expression) {
         this.expression = expression;

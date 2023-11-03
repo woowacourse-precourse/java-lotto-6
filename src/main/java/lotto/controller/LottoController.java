@@ -1,7 +1,15 @@
 package lotto.controller;
 
-public class LottoController {
-    public void startProgram() {
+import lotto.domain.Lottos;
+import lotto.view.InputView;
 
+public class LottoController {
+    InputView inputView = new InputView();
+    public void startProgram() {
+        Lottos lottos = initLottos();
+    }
+
+    private Lottos initLottos() {
+        return new Lottos(inputView.inputPurchaseAmount());
     }
 }

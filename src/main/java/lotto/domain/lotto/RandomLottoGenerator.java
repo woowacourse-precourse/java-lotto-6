@@ -1,12 +1,13 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.lotto.boxed.LottoNumber;
 import lotto.numbers.SizedNumbersGenerator;
 
 /**
  * 임의의 6자리 번호를 가진 로또를 생성해주는 객체
  */
-public final class RandomLottoGenerator {
+public final class RandomLottoGenerator implements LottoGenerator {
     /**
      * 6자리 List<Integer> 생성기
      */
@@ -23,6 +24,9 @@ public final class RandomLottoGenerator {
         this.sizedNumbersGenerator = numbersGenerator;
     }
 
+    /**
+     * 랜덤 번호를 가진 로또 1장을 생성합니다.
+     */
     public Lotto generate() {
         final List<Integer> numbers = this.sizedNumbersGenerator.generate();
         return new Lotto(numbers);

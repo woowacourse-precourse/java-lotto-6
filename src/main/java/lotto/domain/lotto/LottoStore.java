@@ -12,14 +12,14 @@ public final class LottoStore {
     /**
      * 로또 장당 가격
      */
-    private static final int LOTTO_PRICE = 1_000;
+    private static final Money LOTTO_PRICE = Money.from(1_000);
 
     /**
      * 판매하기 위한 랜덤 로또 생성기 현재는 자동 발행 방식만 사용
      */
-    private final RandomLottoGenerator lottoGenerator;
+    private final LottoGenerator lottoGenerator;
 
-    public LottoStore(final RandomLottoGenerator lottoGenerator) {
+    public LottoStore(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.UserMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoGroupDto;
@@ -29,6 +30,8 @@ public class LottoGameController {
         printLottoGroup(lottoGroup);
 
         Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
+
+        BonusNumberDto bonusNumberDto = RetryUtil.retryOnFail(inputView::readBonusNumber);
 
     }
 

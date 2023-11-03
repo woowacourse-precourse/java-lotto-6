@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.UserMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.util.BlankValidator;
@@ -13,6 +14,7 @@ public class InputView {
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자(정수)형태의 문자열만 숫자로 변환할 수 있습니다.";
     private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_NUMBER_DELIMITER = ",";
 
     private InputView() {
@@ -70,6 +72,20 @@ public class InputView {
         return Stream.of(input.split(delimiter))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public BonusNumberDto readBonusNumber() {
+        println(BONUS_NUMBER_INPUT_MESSAGE);
+        String rawBonusNumber = Console.readLine();
+        printEmptyLine();
+        validateBonusNumber(rawBonusNumber);
+        int bonusNumber = convertToInt(rawBonusNumber);
+        return new BonusNumberDto(bonusNumber);
+    }
+
+    private void validateBonusNumber(String rawBonusNumber) {
+        BlankValidator.validate(rawBonusNumber);
+        DigitsOnlyValidator.validate(rawBonusNumber);
     }
 
     private static class LazyHolder {

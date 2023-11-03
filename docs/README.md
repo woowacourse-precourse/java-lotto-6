@@ -4,10 +4,10 @@
 
 ## 기능명세서
 
-- [] 로또 구입 금액을 입력 받는다. - InputView | inputLottoPurchaseAmount()
+- [x] 로또 구입 금액을 입력 받는다. - InputView | inputLottoPurchaseAmount()
   - [] (예외)로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외처리를 한다.
 - [] 입력한 금액에 대한 로또의 개수를 계산한다. - LottoStore | calculateAmountOfLotto()
-- [] 로또를 발행한다.(개수만큼) - LottoStore | generateLottoNumbers()
+- [x] 로또를 발행한다.(개수만큼) - LottoStore | generateLottoNumbers()
 - [] 당첨번호를 입력받는다. - InputView | inputWinningNumbers()
   - [] 번호는 쉼표(,)를 기준으로 구분한다.
   - [] (예외)쉼표가 5개가 아닐경우
@@ -29,8 +29,7 @@
   - 로또
 
 - 로또 가게 (LottoStore)
-  - 로또 구매 금액을 입력받는다.
-  - 로또를 발행한다.
+  - [x] 로또를 발행한다.
 
 - 로또 시스템 (LottoSystem)
   - 로또 당첨 번호를 입력받는다.
@@ -38,7 +37,7 @@
   - 당첨 번호와 발행된 번호를 비교한다.
 
 - 손님 (Customer)
-  - 로또를 구매한다.
+  - [x] 로또를 구매한다.
   - 내 수익률을 계산한다.
   - 내 수익률을 출력한다.
 

@@ -14,23 +14,24 @@ public class LottoPick {
 
     public LottoPick(int attempt) {
         validate(attempt);
-        this.attempt = attempt/1000;
+        this.attempt = attempt / 1000;
         numbers = new List[this.attempt];
     }
 
     // 랜덤 6자리 숫자 배열 후 오름차순 정리
     public void makeLottoPick() {
-        for(int i = 0; i < attempt; i++) {
+        for (int i = 0; i < attempt; i++) {
             numbers[i] = randomCreate();
-        }
-        for(int i = 0; i < attempt; i++){
             numbers[i].sort(Comparator.naturalOrder());
         }
     }
 
     // 로또 값 출력.
-    public void outputLottoPick(){
-        System.out.println(Arrays.toString(numbers));
+    public void outputLottoPick() {
+        System.out.println("\n" + attempt + "개를 구매했습니다.");
+        for (int i = 0; i < attempt; i++) {
+            System.out.println(numbers[i]);
+        }
     }
 
     // 금액 입증 확인.
@@ -40,7 +41,7 @@ public class LottoPick {
         }
     }
 
-    // 랜덤 숫자 생성.
+    // 랜덤 숫자 생성 (1~45 6개).
     private List<Integer> randomCreate() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }

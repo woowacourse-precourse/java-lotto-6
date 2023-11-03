@@ -10,12 +10,13 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        LottoPick lottoPick = new LottoPick(getMoney());
+        lottoPick.makeLottoPick();
+        lottoPick.outputLottoPick();
+
         Lotto lotto = new Lotto(winningNumber());
         lotto.outputLottoNumber();
-
-//        LottoPick lottoPick = new LottoPick(getMoney());
-//        lottoPick.makeLottoPick();
-//        lottoPick.outputLottoPick();
+        lotto.bonusNumber(bonusNumber());
     }
 
     // 금액 받기.
@@ -34,5 +35,11 @@ public class Application {
             winningNumber.add(Integer.parseInt(s));
         }
         return winningNumber;
+    }
+
+    //보너스 번호 받기.
+    private static int bonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 }

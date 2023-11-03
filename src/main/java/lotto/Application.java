@@ -16,15 +16,27 @@ public class Application {
 
         List<Lotto> list = createLottosLikeBuyCount();
 
+
+        List<Integer> correct = inputLottoAnswer();
+
     }
 
+    private static List<Integer> inputLottoAnswer() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> correct = new ArrayList<>();
+        String s = Console.readLine();
+        String[] split = s.split(",");
+        for (int i = 0; i < split.length; i++) {
+            correct.add(Integer.parseInt(split[i]));
+        }
+        return correct;
+    }
 
     private static List<Lotto> createLottosLikeBuyCount() {
         List<Lotto> list = new ArrayList<>();
         for (int i = 0; i < buyCount; i++) {
             List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(randomList);
-            lotto.printLottoList(randomList);
             list.add(lotto);
         }
         return list;
@@ -49,6 +61,5 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
-
 
 }

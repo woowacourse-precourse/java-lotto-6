@@ -9,7 +9,6 @@ import lotto.ui.Computer;
 
 public class Application {
 
-
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -31,16 +30,15 @@ public class Application {
         }
 
         // 5. 당첨 번호 입력
-        List<Integer> lottoNumbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
         boolean isRunning = true;
         while (isRunning) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 List<String> userInputs = Arrays.asList(computer.getInput().split(","));
 
-
                 computer.checkSize(userInputs);
-                lottoNumbers = new ArrayList<>();
+                winningNumbers = new ArrayList<>();
 
                 for (String userInput : userInputs) {
                     computer.checkNumber(userInput);
@@ -49,10 +47,10 @@ public class Application {
                     Integer lottoNumber = Integer.parseInt(userInput);
                     computer.checkRange(lottoNumber);
 
-                    lottoNumbers.add(Integer.parseInt(userInput));
+                    winningNumbers.add(Integer.parseInt(userInput));
                 }
-                System.out.println(lottoNumbers);
-                computer.checkDuplication(lottoNumbers);
+                System.out.println(winningNumbers);
+                computer.checkDuplication(winningNumbers);
 
                 isRunning = false;
 
@@ -73,10 +71,9 @@ public class Application {
 
                 Integer bonusNumber = Integer.parseInt(userInput);
                 computer.checkRange(bonusNumber);
-                computer.isIncluding(lottoNumbers,bonusNumber);
+                computer.isIncluding(winningNumbers, bonusNumber);
 
-                lottoNumbers.add(Integer.parseInt(userInput));
-
+                winningNumbers.add(Integer.parseInt(userInput));
 
                 isRunning = false;
 
@@ -84,6 +81,10 @@ public class Application {
                 System.out.println(ex.getMessage());
             }
         }
+
+        // 7. 당첨 내역 계산 로직
+
+
 
 
     }

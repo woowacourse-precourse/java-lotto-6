@@ -12,7 +12,7 @@ public record PurchasedLotto(List<Lotto> lotto) {
 
     private void validate(List<Lotto> lotto) {
         if (lotto.isEmpty()) {
-            throw new IllegalArgumentException(ZERO_PURCHASED_LOTTO.getMessage());
+            throw new IllegalArgumentException(ZERO_PURCHASED_LOTTO.getText());
         }
     }
 

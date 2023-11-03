@@ -14,7 +14,7 @@ class PurchasedLottoTest {
         Assertions.assertThatThrownBy(()
                         -> new PurchasedLotto(List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(Error.Domain.ZERO_PURCHASED_LOTTO.getMessage());
+                .hasMessageContaining(Error.Domain.ZERO_PURCHASED_LOTTO.getText());
     }
 
     @Test

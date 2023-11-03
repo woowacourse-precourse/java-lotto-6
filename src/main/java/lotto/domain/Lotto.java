@@ -1,7 +1,14 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessages;
+import lotto.constant.NumberConstants;
+
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.constant.NumberConstants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -35,8 +42,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateNumberSize(numbers);
-//        validateDuplicateNumber(numbers);
-//        validateNumberRange(numbers)
+        validateDuplicateNumber(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -46,9 +53,26 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    public void printLottoNumbers() {
-        System.out.println(numbers.toString());
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != WINNING_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
+                    ErrorMessages.DUPLICATE_NUMBER.getMessage() +
+                    ErrorMessages.SUFFIX.getMessage());
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        long count = numbers.stream()
+                .filter(num -> num > NUMBER_RANGE_MIN && num < NUMBER_RANGE_MAX)
+                .count();
+
+        if (count != WINNING_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
+                    ErrorMessages.DUPLICATE_NUMBER.getMessage() +
+                    ErrorMessages.SUFFIX.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {

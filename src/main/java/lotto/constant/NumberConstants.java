@@ -1,30 +1,20 @@
 package lotto.constant;
 
-public enum NumberConstants {
-    LOTTO_PRICE(1000),
-    WINNING_NUMBER_TOTAL(6),
-    BONUS_NUMBER_TOTAL(1),
-    LOTTO_NUMBER_MIN_RANGE(1),
-    LOTTO_NUMBER_MAX_RANGE(45),
-    FIRST_PRIZE_MATCH_COUNT(6),
-    SECOND_PRIZE_MATCH_COUNT(5),
-    THIRD_PRIZE_MATCH_COUNT(5),
-    FOURTH_PRIZE_MATCH_COUNT(4),
-    FIFTH_PRIZE_MATCH_COUNT(3),
-    FIRST_PRIZE_MONEY(2000000000),
-    SECOND_PRIZE_MONEY(30000000),
-    THIRD_PRIZE_MONEY(1500000),
-    FORTH_PRIZE_MONEY(50000),
-    FIFTH_PRIZE_MONEY(5000),
-    ;
+public class NumberConstants {
+    public static int LOTTO_PRICE = 1000;
+    public static int WINNING_NUMBER = 6;
+    public static int BONUS_NUMBER = 1;
+    public static int NUMBER_RANGE_MIN = 1;
+    public static int NUMBER_RANGE_MAX = 45;
+    public static int FIRST_PRIZE = 6;
+    public static int SECOND_PRIZE = 5;
+    public static int THIRD_PRIZE = 5;
+    public static int FOURTH_PRIZE = 4;
+    public static int FIFTH_PRIZE = 3;
+    public static int FIRST_PRIZE_MONEY = 200000000;
+    public static int SECOND_PRIZE_MONEY = 30000000;
+    public static int THIRD_PRIZE_MONEY = 1500000;
+    public static int FORTH_PRIZE_MONEY = 50000;
+    public static int FIFTH_PRIZE_MONEY = 5000;
 
-    private final Integer number;
-
-    NumberConstants(Integer number) {
-        this.number = number;
-    }
-
-    public Integer getValue() {
-        return this.number;
-    }
 }

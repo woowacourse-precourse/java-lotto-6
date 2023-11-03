@@ -26,7 +26,7 @@ public class LottoControllerTest {
 
     @DisplayName("로또 리스트 발행 시 크기 확인")
     @Test
-    void testPublishMyLottoSize() {
+    void testMyLottoSize() {
         int expectedLottoAmount = testPurchaseAmount / 1000;
         List<Lotto> lottoNumbers = lottoController.getLottoNumbers();
 

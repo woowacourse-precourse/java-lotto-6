@@ -39,6 +39,10 @@ public class LottoService {
 		return calculator.calculateSum(lottRankCounter);
 	}
 
+	public double calculateTotalReturn(int money, int priceSum) {
+		return calculator.calculateTotalReturn(money, priceSum);
+	}
+
 	private EnumMap<LottoRank, Integer> countLottoRank(Lottos lottos, AnswerLotto answerLotto) {
 		EnumMap<LottoRank, Integer> lottRankCounter = LottoRank.toEnumMap();
 

@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,4 +22,9 @@ public class Lotto {
     private int validateSize(List<Integer> numbers) {
         return (int) numbers.stream().distinct().count();
     }
+
+    public Stream<Integer> streamNumbers(){
+        return numbers.stream();
+    }
+
 }

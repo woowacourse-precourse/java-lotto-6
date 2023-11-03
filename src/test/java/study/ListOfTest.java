@@ -17,19 +17,13 @@ public class ListOfTest {
     void ListOf() {
         List<Integer> list = List.of(1, 3, 5, 7, 11, 15);
 
-        assertThatThrownBy(()->
+        assertThatThrownBy(() ->
                 list.add(20)).isInstanceOf(UnsupportedOperationException.class);
 
-        assertThatThrownBy(()->
-                list.set(0,20)).isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() ->
+                list.set(0, 20)).isInstanceOf(UnsupportedOperationException.class);
 
         Integer num = list.get(0) + 3;
         assertThat(num).isNotEqualTo(list.get(0));
-    }
-
-    void ListOf2(){
-        List<Integer> integers = Randoms.pickUniqueNumbersInRange(0, 45,6);
-
-
     }
 }

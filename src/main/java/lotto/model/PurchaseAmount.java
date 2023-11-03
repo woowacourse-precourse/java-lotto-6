@@ -31,4 +31,10 @@ public class PurchaseAmount {
         }
     }
 
+    public static void under1000(int purchaseAmount){
+        if(purchaseAmount < 1000){
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNDER_1000);
+        }
+    }
+
 }

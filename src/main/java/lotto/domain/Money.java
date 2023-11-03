@@ -14,7 +14,7 @@ public class Money {
         }
     }
 
-    public int getLotto() {
+    public int getLottoQuantity() {
         return money / 1000;
     }
 }

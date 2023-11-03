@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.LottoInformation.MAX_NUMBER;
 import static lotto.constant.LottoInformation.MIN_NUMBER;
@@ -33,7 +33,7 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER);
         }
     }

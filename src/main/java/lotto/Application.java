@@ -11,7 +11,12 @@ public class Application {
         int price = Price.inputPrice();
         int amount = Price.calculateAmount(price);
         System.out.println(amount + "개를 구매했습니다.");
+
+        Lotto[] lottos = Create.createLottos(amount);
+        Lotto.printLottos(lottos);
     }
+
+
 
 
 

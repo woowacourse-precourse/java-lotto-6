@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public static void printLottos(Lotto[] lottos) {
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto.numbers);
+        }
+    }
 }

@@ -4,10 +4,12 @@ import lotto.util.ErrorMessage;
 
 public record Money(int amount) {
 
+    private static final int MIN_PURCHASE_AMOUNT = 1000;
     private static final int MAX_PURCHASE_AMOUNT = 100000;
 
     public Money {
         validateAmountMultipleOfThousand(amount);
+        validateMinimumAmount(amount);
         validateMaximumAmount(amount);
     }
 
@@ -20,6 +22,12 @@ public record Money(int amount) {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private void validateMinimumAmount(int amount) {
+        if (amount < MIN_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_LESS_THAN_MINIMUM.getMessage());
         }
     }
 

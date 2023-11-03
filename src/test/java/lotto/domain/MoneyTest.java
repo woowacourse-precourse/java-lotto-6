@@ -36,6 +36,15 @@ class MoneyTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("최소 구입 금액인 1000원 미만 입력시 예외가 발생한다.")
+    @Test
+    void throwsExceptionForAmountBelowMinimum() {
+        String inputAmount = "-1000";
+
+        assertThatThrownBy(() -> new Money(inputAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
     @DisplayName("최대 구입 금액인 10만원 초과 입력시 예외가 발생한다.")
     @Test
     void throwsExceptionForAmountAboveMaximum() {

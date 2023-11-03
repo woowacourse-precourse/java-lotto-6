@@ -20,6 +20,10 @@ public class LottosRepository {
         return Optional.ofNullable((Lotto) stores.get(LottoType.WINNING_LOTTO));
     }
 
+    public Optional<Integer> findBonusNumber() {
+        return Optional.ofNullable((Integer) stores.get(LottoType.BONUS_NUMBER));
+    }
+
     public void saveWinningNumber(final Lotto winningNumber) {
         stores.put(LottoType.WINNING_LOTTO, winningNumber);
     }

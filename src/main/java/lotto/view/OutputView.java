@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.dto.WinningResults;
+
 public class OutputView {
 
     public static final String BUYING_COUNT_FORMAT = "%d개를 구매했습니다.";
@@ -9,5 +11,13 @@ public class OutputView {
         System.out.printf(BUYING_COUNT_FORMAT, buyingCount);
         System.out.println();
         System.out.println(resultMessage);
+    }
+
+    public void printWinningResult(final String message) {
+        System.out.print("""
+                당첨 통계
+                ---
+                 """);
+        System.out.println(message);
     }
 }

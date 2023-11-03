@@ -12,6 +12,7 @@ public record BuyingResult(List<Integer> singleResult) {
 
     public String createSingleResultMessage() {
         return singleResult.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }

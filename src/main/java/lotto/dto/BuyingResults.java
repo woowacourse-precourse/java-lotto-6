@@ -8,7 +8,7 @@ public record BuyingResults(List<BuyingResult> buyingResults) {
 
     public static BuyingResults createFrom(final Lottos userLottos) {
         return new BuyingResults(
-                userLottos.lotts()
+                userLottos.lottos()
                         .stream()
                         .map(BuyingResult::createFrom)
                         .toList()

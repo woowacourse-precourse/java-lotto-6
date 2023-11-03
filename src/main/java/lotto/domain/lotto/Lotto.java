@@ -20,7 +20,6 @@ public class Lotto {
 
     public static Lotto from(final List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 
@@ -64,14 +63,20 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public boolean contains(final int number) {
+        return numbers.contains(number);
+    }
+
+    public int findWinningCount(final Lotto compareLotto) {
+        return (int) numbers.stream()
+                .filter(compareLotto::contains)
+                .count();
+    }
+
     @Override
     public String toString() {
         return "Lotto{" +
                 "numbers=" + numbers +
                 '}';
-    }
-
-    public boolean contains(final int number) {
-        return numbers.contains(number);
     }
 }

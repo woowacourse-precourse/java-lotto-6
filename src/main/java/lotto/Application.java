@@ -12,7 +12,6 @@ public class Application {
                 new OutputView(),
                 new LottoMachine(new LottosRepository())
         );
-
         lottoGame.startGame();
     }
 }

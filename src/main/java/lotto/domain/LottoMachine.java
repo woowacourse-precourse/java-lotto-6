@@ -5,16 +5,19 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCondition;
+import lotto.domain.lotto.LottoReward;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.LottosRepository;
 import lotto.domain.money.LottoMoney;
 import lotto.dto.BuyingResults;
+import lotto.dto.WinningResults;
 
 public class LottoMachine {
 
     private static final String NOT_FOUND_LOTTO = "[ERROR] 로또 번호가 존재하지 않습니다.";
     private static final String DUPLICATES_BONUS_NUMBER = "[ERROR] 당첨 번호와 중복된 보너스 번호를 입력할 수 없습니다.";
     private static final String OUT_OF_RANGE_NUMBER = "[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.";
+    public static final String NOT_FOUNT_BONUS_NUMBER = "[ERROR] 보너스 숫자를 찾을 수 없습니다.";
 
     private final LottosRepository lottosRepository;
 
@@ -73,5 +76,18 @@ public class LottoMachine {
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATES_BONUS_NUMBER);
         }
+    }
+
+    public WinningResults createWinningResult() {
+        Lottos userLottos = findUserLottosObject();
+        Lotto winningLotto = findWinningLottoObject();
+        int bonusNumber = findBonusNumber();
+        List<LottoReward> compareResults = userLottos.createCompareResults(winningLotto, bonusNumber);
+        return WinningResults.from(compareResults);
+    }
+
+    private int findBonusNumber() {
+        return lottosRepository.findBonusNumber()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUNT_BONUS_NUMBER));
     }
 }

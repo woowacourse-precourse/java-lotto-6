@@ -8,7 +8,7 @@ public class InputValue {
 
     public static int getPurchasePrice() {
 
-        String input = readLine();
+        String input = removeInputSpaces();
 
         emptyValueCheck(input);
 
@@ -17,6 +17,10 @@ public class InputValue {
         priceUnitCheck(price);
 
         return price;
+    }
+
+    private static String removeInputSpaces() {
+        return readLine().replaceAll(" ", "");
     }
 
     private static void emptyValueCheck(String input) {

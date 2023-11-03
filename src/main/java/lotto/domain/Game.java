@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Game {
     private Player player;
-    private Lotto winningLotto;
+    private WinningLotto winningLotto;
 
     public void joinPlayer() {
         player = new Player(inputMoney());
@@ -20,7 +20,8 @@ public class Game {
     }
 
     public void findResult() {
-
+        player.findResults(winningLotto);
+        player.findPrize();
     }
 
     private int inputMoney() {

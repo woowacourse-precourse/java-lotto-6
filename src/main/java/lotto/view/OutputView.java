@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.dto.LottoResponse;
+import lotto.dto.IssuedLottoResponse;
 
 public class OutputView {
     private static final String LOTTO_RESULT_TITLE = "\n당첨 통계";
@@ -19,7 +19,7 @@ public class OutputView {
     private static final String OPEN_SQUARE_BRACKETS = "[";
     private static final String CLOSE_SQUARE_BRACKETS = "[";
 
-    public static void printIssuedLottoCountAndNumbers(List<LottoResponse> lottoResponses) {
+    public static void printIssuedLottoCountAndNumbers(List<IssuedLottoResponse> lottoResponses) {
         printIssuedLottoCount(lottoResponses.size());
         lottoResponses.forEach(OutputView::printIssuedLotto);
     }
@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println(lottoCount + LOTTO_PURCHASED_MESSAGE);
     }
 
-    private static void printIssuedLotto(LottoResponse lottoResponse) {
+    private static void printIssuedLotto(IssuedLottoResponse lottoResponse) {
         System.out.println(OPEN_SQUARE_BRACKETS);
         lottoResponse.getLottoNumbers().forEach(System.out::println);
         System.out.println(CLOSE_SQUARE_BRACKETS);

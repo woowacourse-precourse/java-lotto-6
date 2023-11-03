@@ -11,7 +11,11 @@ public enum CommonValidationErrorMessage {
         this.message = PrefixMessage.ERROR_MESSAGE.getMessage() + message;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessage(Integer value) {
+        return String.format(this.message, value);
+    }
+
+    public String getMessage(String value) {
+        return String.format(this.message, value);
     }
 }

@@ -10,6 +10,11 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String requestWinningNumbers() {
+        printMessage(ASK_LOTTO_RESULT);
+        return Console.readLine();
+    }
+
     private static void printMessage(InputViewConstant inputViewConstant) {
         System.out.println(inputViewConstant.getMessage());
     }

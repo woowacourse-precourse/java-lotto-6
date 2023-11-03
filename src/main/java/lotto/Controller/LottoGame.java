@@ -24,6 +24,12 @@ public class LottoGame {
                 int lottoQuantity = calculateLottoQuantity(Parser.parsePurchaseAmount(userInput));
                 OutputView.printPurchaseLottoAmount(lottoQuantity);
                 List<Lotto> lottos = makeLottos(lottoQuantity);
+                System.out.println();
+                String input = InputView.requestWinningNumbers();
+                Validator.validateLastComma(input);
+                List<Integer> winningNumbers = Parser.parseWinningNumbers(input);
+                Validator.valiateDuplicateNums(winningNumbers);
+                Validator.validateSize(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();

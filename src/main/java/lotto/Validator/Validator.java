@@ -34,5 +34,17 @@ public class Validator {
                 valiateEqualNums(numbers.get(i), numbers.get(j));
             }
         }
-    } 
+    }
+
+    public static void validateLastComma(String input) {
+        if (input.charAt(input.length() - 1) == ',') {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

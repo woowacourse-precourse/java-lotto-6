@@ -1,17 +1,13 @@
 package lotto;
 
-import lotto.domain.Validate;
-import lotto.view.InputView;
+import lotto.controller.LottoController;
 
 public class Application {
+    static LottoController lottoController = new LottoController();
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        Validate validate = new Validate();
-        InputView inputView = new InputView();
+        final long INPUT_PRICE = lottoController.inputBuyLottoPrice();
 
-        String inputPrice = inputView.inputMessageHowMuchPrice();
-        final long PRICE = validate.validateInputPrice(inputPrice);
-
-        System.out.println(PRICE);
     }
 }

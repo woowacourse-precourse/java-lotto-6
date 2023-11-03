@@ -19,8 +19,11 @@ public class Application {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
-    }
 
+        Lotto.compareTo(lottos, lotto, bonusNumber);
+
+        printResult();
+    }
 
     public static Lotto makeLotto(String input) {
         List<Integer> numbers = new ArrayList<>();
@@ -31,7 +34,14 @@ public class Application {
         return lotto;
     }
 
-
+    public static void printResult() {
+        System.out.println("당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + Ranks.FIFTH.amount + "개");
+        System.out.println("4개 일치 (50,000원) - " + Ranks.FOURTH.amount + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + Ranks.THIRD.amount + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Ranks.SECOND.amount + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + Ranks.FIRST.amount + "개");
+    }
 
 
 }

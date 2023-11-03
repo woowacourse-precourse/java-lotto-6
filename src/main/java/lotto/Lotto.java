@@ -31,6 +31,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    //구매개수만큼 로또 생성
     public static Lotto[] makeLottoNumbers(int size) {
         Lotto[] lottos = new Lotto[size];
         for (int i = 0; i < size; i++) {
@@ -41,11 +42,13 @@ public class Lotto {
         return lottos;
     }
 
+    //정렬
     public static List<Integer> sortNumbers(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
 
+    //로또내역들 출력
     public static void printLottos(Lotto[] lottos) {
         for (int i = 0; i < lottos.length; i++) {
             System.out.println(lottos[i].numbers);
@@ -53,15 +56,28 @@ public class Lotto {
     }
 
     public static void compareTo(Lotto[] lottos, Lotto inputLotto, int bonusNumber) {
-        for (int i = 0; i < lottos.length; i++) {
-            int count = countMatched(lottos[i], inputLotto);
-            if (count == 5) {
-                boolean test = checkBonusNumber(lottos[i], bonusNumber);
+        for(Lotto lotto : lottos) {
+            int count = countMatched(lotto, inputLotto);
+            if(count == 6) {
+                Ranks.FIRST.amount++;
             }
-
+            else if(count == 5) {
+                if(checkBonusNumber(lotto, bonusNumber)) {
+                    Ranks.SECOND.amount++;
+                    return;
+                }
+                Ranks.THIRD.amount++;
+            }
+            else if(count == 4) {
+                Ranks.FOURTH.amount++;
+            }
+            else if(count == 3) {
+                Ranks.FIFTH.amount++;
+            }
         }
     }
 
+    //각 로또별 맞은 개수 계산
     public static int countMatched(Lotto lotto, Lotto inputLotto) {
         int count = 0;
         for (int i = 0; i < 6; i++) {
@@ -72,6 +88,7 @@ public class Lotto {
         return count;
     }
 
+    //보너스번호와 일치여부
     public static boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.numbers.contains(bonusNumber);
     }

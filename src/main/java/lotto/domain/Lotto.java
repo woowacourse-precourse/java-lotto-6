@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.LottoException;
+
 import java.util.Collections;
 import java.util.List;
 

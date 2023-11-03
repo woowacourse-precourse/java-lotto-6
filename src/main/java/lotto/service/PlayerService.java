@@ -8,12 +8,12 @@ public class PlayerService {
 
     private static final long LOTTO_PRICE = 1000;
 
-    private Player player;
-
     private final LottoService lottoService = new LottoService();
 
-    public List<Lotto> purchaseLotto(long inputPrice) {
-        player = new Player(inputPrice);
+    private Player player;
+
+    public List<Lotto> purchaseLotto(long buyingPrice) {
+        player = new Player(buyingPrice);
         long quantity = calculateQuantity();
         for (long i = 0; i < quantity; i++) {
             player.addLottoInPurchasedLotto(lottoService.generateLotto());

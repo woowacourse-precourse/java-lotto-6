@@ -11,6 +11,7 @@ public class LottoController {
     public void run() {
         Player player = getPlayer();
         showPlayerLotto(player);
+        System.out.print(InputView.getLottoPrize());
     }
 
     private Player getPlayer() {

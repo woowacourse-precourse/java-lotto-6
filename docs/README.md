@@ -85,10 +85,18 @@
 - [ ] 모든 테스트가 성공하는지 확인
   - [ ] `./gradlew clean test`가 정상 통과하는지 확인
   - [ ] `ApplicationTest`가 정상 통과하는지 확인
+  - [ ] 도메인 로직에 단위 테스트를 구현했는지 확인
 - [ ] 자바 17버전으로 정상 작동되는지 확인
 - [ ] 프로그램 실행의 시작점이 Application의 main()인지 확인
 - [ ] indent depth가 3이 넘지 않는지 확인
 - [ ] 3항 연산자를 쓰지 않았는지 확인 
 - [ ] 함수의 길이가 15라인을 넘어가지 않도록 확인
-- [ ] else 예약어를 쓰지 않도록 확인
+- [ ] else 예약어를 쓰지 않았는지 확인
+  - [ ] switch/case를 쓰지 않았는지 확인
 - [ ] Java Enum을 적용했는지 확인
+- [ ] `Randoms` 및 `Console` API를 사용했는지 확인
+  - [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms` 사용했는지 확인
+  - [ ] 입력은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 사용했는지 확인
+- [ ] 로또 클래스 확인
+  - [ ] 로또 클래스의 numbers의 접근 제어자가 private인지 확인
+  - [ ] 로또 클래스의 인스턴스 변수를 추가했는지 확인(추가하는 것을 허용하지 않음)

@@ -15,7 +15,7 @@ public class WinningLotto {
 
     public void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
         if (winningLottoTicket.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
         }
     }
 

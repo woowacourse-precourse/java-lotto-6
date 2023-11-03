@@ -12,7 +12,7 @@ public class LottoUtil {
         return true;
     }
 
-    public static boolean isInteger(List<String> input) {
+    public static boolean isIntegers(List<String> input) {
         return input.stream().allMatch(LottoUtil::isInteger);
     }
 }

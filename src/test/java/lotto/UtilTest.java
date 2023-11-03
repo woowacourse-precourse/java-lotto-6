@@ -27,13 +27,13 @@ public class UtilTest {
     void isInteger_리스트_성공_테스트() {
         List<String> input = Arrays.asList("1", "2", "-3");
 
-        assertTrue(LottoUtil.isInteger(input));
+        assertTrue(LottoUtil.isIntegers(input));
     }
 
     @Test
-    void isInteger_리스트_실패_테스트() {
+    void isIntegers_리스트_실패_테스트() {
         List<String> input = Arrays.asList("test", "3.3232");
 
-        assertFalse(LottoUtil.isInteger(input));
+        assertFalse(LottoUtil.isIntegers(input));
     }
 }

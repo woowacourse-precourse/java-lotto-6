@@ -5,14 +5,14 @@ public class PriceValidator {
 
     public PriceValidator(String inputPrice) {
         this.inputPrice = toInt(inputPrice);
-        validate(this.inputPrice);
+        validateInputPrice(this.inputPrice);
     }
 
     public int getInputPrice() {
         return inputPrice;
     }
 
-    private void validate(int inputPrice) throws IllegalArgumentException {
+    private void validateInputPrice(int inputPrice) throws IllegalArgumentException {
         isNotDivideWithOneThousands(inputPrice);
         isNotCorrectMoneyRange(inputPrice);
     }

@@ -10,7 +10,7 @@ public class StandardIoAdapter implements IoAdapter {
 
     @Override
     public String inputStream() {
-        return Console.readLine();
+        return Console.readLine().strip();
     }
 
     @Override

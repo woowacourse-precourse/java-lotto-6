@@ -20,5 +20,10 @@ public class LottoRepository {
         lottos.forEach(this::save);
     }
 
+    public List<Lotto> findAll() {
+        return lottoDatabase.values()
+                .stream()
+                .toList();
+    }
 
 }

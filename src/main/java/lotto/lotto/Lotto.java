@@ -32,4 +32,9 @@ public class Lotto {
     private boolean isDuplicated(List<Integer> numbers) {
         return numbers.stream().distinct().toList().size() != numbers.size();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

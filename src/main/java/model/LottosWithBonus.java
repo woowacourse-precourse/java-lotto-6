@@ -22,6 +22,12 @@ public class LottosWithBonus {
         return new LottosWithBonus(lottos);
     }
 
+    public List<LottoCompareResult> compareAnswerLotto(LottoWithBonus answerLotto) {
+        return lottos.stream()
+            .map(lotto -> lotto.compareAnswer(answerLotto))
+            .toList();
+    }
+
     public List<LottoWithBonus> getLottos() {
         return lottos;
     }

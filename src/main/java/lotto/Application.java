@@ -23,6 +23,10 @@ public class Application {
                 continue;
             }
         }
-
+        for(int i=0;i<money/1000;i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lottoTicket = new Lotto(numbers);
+            System.out.println(lottoTicket);
+        }
     }
 }

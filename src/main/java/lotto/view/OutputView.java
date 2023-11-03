@@ -21,12 +21,13 @@ public class OutputView {
                 + "---");
 
         for (LottoResult lottoResult : lottoMap.keySet()) {
-            StringBuilder stringBuilder = new StringBuilder(lottoResult.getCount());
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(lottoResult.getCount());
             stringBuilder.append("개 일치");
-            stringBuilder.append(" (");
             if (lottoResult.isValidBonus()) {
                 stringBuilder.append(", 보너스 볼 일치");
             }
+            stringBuilder.append(" (");
             stringBuilder.append(lottoResult.getPrize());
             stringBuilder.append("원) - ");
             stringBuilder.append(lottoMap.get(lottoResult));

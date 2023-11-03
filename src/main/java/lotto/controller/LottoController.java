@@ -1,12 +1,10 @@
 package lotto.controller;
 
-import static lotto.controller.InputController.inputController;
-
 import lotto.dto.InputDto;
-import lotto.model.repository.service.LottoService;
+import lotto.model.service.LottoService;
 
 public class LottoController {
-    private static LottoService service;
+    private final LottoService service;
 
     public LottoController() {
         this.service = new LottoService();
@@ -15,8 +13,9 @@ public class LottoController {
     public void run() {
         InputDto inputDto = new InputDto();
 
-        inputController(inputDto);
+        InputController.InputLottoPurchaseAmount(inputDto);
 
+        service.createLottos(inputDto);
         MainController();
 
         OutputController();

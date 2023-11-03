@@ -46,6 +46,18 @@ public class Application {
             }
         }
         Lotto winningLotto = new Lotto(winningNumbers);
+        
+        // 4. 보너스 번호 입력받기
+        int bonusNumber = 0;
+        while(true){
+            try{
+                System.out.println("당첨 번호를 입력해 주세요.");
+                bonusNumber = inputBonusNumber();
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
 
     }
 
@@ -131,6 +143,24 @@ public class Application {
             if(number < 1 || number > 45){
                 validate = false;
             }
+        }
+        return validate;
+    }
+
+    // 4-1. 보너스 번호를 입력받음
+    public static int inputBonusNumber(){
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if(!validateBonusNumber(bonusNumber)){
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNumber;
+    }
+
+    // 4-2. 번호의 범위가 1~45가 아닐 경우 예외 발생
+    public static boolean validateBonusNumber(int bonusNumber){
+        boolean validate = true;
+        if(bonusNumber < 1 || bonusNumber > 45){
+            validate = false;
         }
         return validate;
     }

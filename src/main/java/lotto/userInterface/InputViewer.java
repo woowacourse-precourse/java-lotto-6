@@ -15,4 +15,9 @@ public class InputViewer {
         OutputViewer.printRequestWinningNumberMessage();
         return Console.readLine();
     }
+
+    public static String requestBonusNumberInput() {
+        OutputViewer.printRequestBonusNumberMessage();
+        return Console.readLine();
+    }
 }

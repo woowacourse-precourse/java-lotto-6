@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class CustomerTest {
-    @DisplayName("숫자를 입력하지 않으면 예외가 발생한다.")
+    @DisplayName("글자를 입력하거나 터무니 없는 값을 입력하면 예외가 발생한다.")
     @Test
     void createCustomerByNotNumber() {
-        assertThatThrownBy(() -> new Customer("테스트!"))
+        assertThatThrownBy(() -> new Customer("테스트"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 1000원부터 100,000까지의 금액을 입력해주세요.");
     }
 
     @DisplayName("로또 구매 금액이 100,000원을 넘어선 안 된다.")

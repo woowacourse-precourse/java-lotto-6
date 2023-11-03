@@ -7,14 +7,18 @@ public class InputMoneyException {
     }
 
     public static void validate(String money) {
-        NotNumberValidate(money);
+        notNumberValidate(money);
     }
 
-    private static void NotNumberValidate(String money) {
+    private static void notNumberValidate(String money) {
         try {
             Integer.parseInt(money);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR.getMessage() + INPUT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ERROR.getMessage() + MONEY_RANGE.getMessage());
         }
+    }
+
+    private static void moneyMaxOverValidate(String money) {
+
     }
 }

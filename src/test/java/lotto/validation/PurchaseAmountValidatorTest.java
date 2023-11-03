@@ -63,12 +63,25 @@ class PurchaseAmountValidatorTest {
 
     @DisplayName("입력 값이 1000원 단위의 숫자면 예외를 발생시키지 않는다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1000", "2000", "15000", "0"})
+    @ValueSource(strings = {"1000", "2000", "15000"})
     void NumberThrowIllegalArgumentException(String purchaseAmount) {
         //given
         PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
 
         //when, then
         assertDoesNotThrow(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount));
+    }
+
+    @DisplayName("입력 값이 0이하면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1000", "-2000", "-3300"})
+    void ZeroOrLessNumberThrowException(String purchaseAmount) {
+        //given
+        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
+
+        //when, then
+        assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("0 이하의 수는 입력할 수 없습니다.");
     }
 }

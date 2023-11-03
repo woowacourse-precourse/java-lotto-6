@@ -1,6 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumber;
+import lotto.util.Convertor;
 import lotto.validation.InputValidator;
 
 public class InputView {
@@ -8,36 +11,36 @@ public class InputView {
     private InputView() {
     }
 
-    public static String inputPurchasePrice() {
-        String purchasePrice = Console.readLine();
+    public static int inputPurchasePrice() {
+        String input = Console.readLine();
         try {
-            InputValidator.validatePurchasePrice(purchasePrice);
+            InputValidator.validatePurchasePrice(input);
+            return Convertor.convertStringToInt(input);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return inputPurchasePrice();
         }
-        return purchasePrice;
     }
 
-    public static String inputWinningNumbers() {
-        String winningNumbers = Console.readLine();
+    public static WinningNumber inputWinningNumbers() {
+        String input = Console.readLine();
         try {
-            InputValidator.validateWinningNumber(winningNumbers);
+            InputValidator.validateWinningNumber(input);
+            return WinningNumber.from(input);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return inputWinningNumbers();
         }
-        return winningNumbers;
     }
 
-    public static String inputBonusNumber() {
-        String bonusNumber = Console.readLine();
+    public static BonusNumber inputBonusNumber() {
+        String input = Console.readLine();
         try {
-            InputValidator.validateBonusNumber(bonusNumber);
+            InputValidator.validateBonusNumber(input);
+            return BonusNumber.from(input);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return inputBonusNumber();
         }
-        return bonusNumber;
     }
 }

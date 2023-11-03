@@ -26,8 +26,8 @@ class LottoCalculatorTest {
         numbers.makeWinningNumber("4,12,39,43,1,17");
         numbers.makeBonusNumber("3");
         LottoCalculator calculator = new LottoCalculator(numbers);
-        Lotto lotto = new Lotto(List.of(3, 4, 12, 39, 43, 45));
+        Lotto lotto = new Lotto(List.of(3, 4, 12, 17, 39, 43));
 
-        assertThat(calculator.countMatchNumbers(lotto)).isEqualTo(5);
+        assertThat(calculator.countMatchNumbers(lotto)).isEqualTo(7);
     }
 }

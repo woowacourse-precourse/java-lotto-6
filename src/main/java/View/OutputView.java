@@ -51,4 +51,8 @@ public class OutputView {
         }
         System.out.println(String.format(TOTAL_YIELD_PREFIX, yield).concat(TOTAL_YIELD_SUFFIX));
     }
+
+    public void printMessage(String message){
+        System.out.println(message);
+    }
 }

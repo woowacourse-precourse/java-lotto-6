@@ -20,8 +20,7 @@ public class InputValidator {
         return (number >= 1 && number <= 45);
     }
 
-    // 유효성 검사 : 중복 숫자 검사
-    private Boolean isNotOverlapValidator(List<Integer> numbers){
+    public Boolean isNotOverlapSixValidator(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer number : numbers){
             if(!uniqueNumbers.add(number)){
@@ -29,5 +28,9 @@ public class InputValidator {
             }
         }
         return true;
+    }
+
+    public Boolean isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber){
+        return !numbers.contains(bonusNumber);
     }
 }

@@ -15,6 +15,16 @@ public class Lotto {
         if (numbers.size() != SIZE) {
             throw new IllegalArgumentException();
         }
+        if (duplicated(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean duplicated(List<Integer> numbers) {
+        long distinctSize = numbers.stream().
+                distinct().
+                count();
+        return numbers.size() != distinctSize;
     }
 
     // TODO: 추가 기능 구현

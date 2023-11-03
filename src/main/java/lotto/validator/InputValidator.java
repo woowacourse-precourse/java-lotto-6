@@ -32,21 +32,26 @@ public class InputValidator {
         return number;
     }
 
-    public void checkForDuplicateLottoNumbers(List<Integer> numbers) {
+    public void checkForDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> checkNumbers = new HashSet<>();
 
         for (int number : numbers) {
-            validateLottoNumberRange(number);
             if(!checkNumbers.add(number)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
     }
 
-    private void validateLottoNumberRange(int number) {
-        if (number < START_LOTTO_NUMBER && number > END_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    public void validateLottoNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (isLottoNumberRange(number)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
         }
+    }
+
+    private boolean isLottoNumberRange(int number) {
+        return number < START_LOTTO_NUMBER || number > END_LOTTO_NUMBER;
     }
 
     public void validateLottoSize(List<Integer> lotto) {

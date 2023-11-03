@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidatorTest {
@@ -43,6 +45,50 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.parseInt(notNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_AMOUNT_FORMAT.getMessage());
+    }
+
+    @Test
+    @DisplayName("번호가 중복되면 예외가 발생한다.")
+    public void checkForDuplicateNumbers() {
+        // given
+        List<Integer> numbers = List.of(1, 3, 3, 4, 5, 6);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.checkForDuplicateNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+    }
+
+    @Test
+    @DisplayName("번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
+    public void validateLottoNumberRange() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 46, 5, 6);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validateLottoNumberRange(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호의 개수가 6이 아니면 예외가 발생한다.")
+    public void validateLottoSize() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validateLottoSize(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 오름차순으로 정렬되어 있지 않으면 예외가 발생한다.")
+    public void validateSortedAscending() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 4, 3, 5, 6);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validateSortedAscending(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
     }
 
 }

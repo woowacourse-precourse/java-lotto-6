@@ -61,8 +61,9 @@ public class LottoBuyInputView extends Input{
     }
 
     private void validateWiningLottoNumbers(List<Integer> numbers) {
-        inputValidator.checkForDuplicateLottoNumbers(numbers);
+        inputValidator.checkForDuplicateNumbers(numbers);
         inputValidator.validateLottoSize(numbers);
+        inputValidator.validateLottoNumberRange(numbers);
         inputValidator.validateSortedAscending(numbers);
     }
 

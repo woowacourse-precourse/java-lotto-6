@@ -1,13 +1,10 @@
 package lotto.validation;
 
-import lotto.domain.WinningNum;
 import lotto.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Validator {
     private static Integer PRICE=1000;
+    private static Integer MINIMUM = 1;
     private static Integer MAXIMUM = 45;
 
     public static void moneyValidate(String input) {
@@ -71,7 +68,7 @@ public class Validator {
         for (String num : winningNum) {
             Integer number = Integer.parseInt(num);
 
-            if(number>MAXIMUM){
+            if(number>MAXIMUM || number<MINIMUM){
                 OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }

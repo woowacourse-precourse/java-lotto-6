@@ -1,7 +1,15 @@
 package lotto.constant;
 
 public enum UIConstant {
-    ERROR_TAG("[ERROR]");
+    ERROR_TAG("[ERROR]"),
+
+    OPENING_BRACKET("["),
+
+    CLOSING_BRACKET("]"),
+    NUMBER_SEPARATOR(","),
+    BLANK(" "),
+    NEW_LINE("\n");
+
     
     private final String ui;
 
@@ -9,7 +17,8 @@ public enum UIConstant {
         this.ui = ui;
     }
 
-    public String getUI() {
-        return ui;
+    @Override
+    public String toString() {
+        return this.ui;
     }
 }

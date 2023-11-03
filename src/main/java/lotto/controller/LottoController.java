@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoTicket;
 import lotto.model.LottoTicketMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,6 +18,9 @@ public class LottoController {
     public void run() {
         outputView.printPurchaseAmountMessage();
         int purchasePrice = getPurchasePrice();
+
+        LottoTicket lottoTicket = getLottoTicket(purchasePrice);
+        printLottoNumbers(lottoTicket);
     }
 
     public int getPurchasePrice() {
@@ -27,5 +31,15 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    public LottoTicket getLottoTicket(int purchasePrice) {
+        LottoTicketMachine lottoTicketMachine = new LottoTicketMachine();
+        return lottoTicketMachine.getLottoTicket(purchasePrice);
+    }
+
+    public void printLottoNumbers(LottoTicket lottoTicket) {
+        outputView.printLottoCount(lottoTicket.getLottoCount());
+        outputView.printLottoTicketNumbers(lottoTicket.getLottoNumbers());
     }
 }

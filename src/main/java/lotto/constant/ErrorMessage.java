@@ -10,6 +10,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return UIConstant.ERROR_TAG.getUI() + " " + message;
+        return UIConstant.ERROR_TAG + " " + message;
     }
 }

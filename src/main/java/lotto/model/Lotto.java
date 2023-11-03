@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.constant.UIConstant.*;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_NUMBERS_SIZE = 6;
@@ -20,5 +23,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        String result = this.numbers.stream().map(String::valueOf).collect(Collectors.joining("" + NUMBER_SEPARATOR + BLANK));
+        return OPENING_BRACKET + result + CLOSING_BRACKET + NEW_LINE;
+    }
 }

@@ -11,7 +11,7 @@ public class LottoTicketMachine {
     public LottoTicket getLottoTicket(int price) {
         int lottoCount = getLottoCount(price);
         List<Lotto> lotto = getLotto(lottoCount);
-        return LottoTicket.of(lotto, price);
+        return LottoTicket.of(lotto, lotto.size(), price);
     }
 
     private int getLottoCount(int price) {

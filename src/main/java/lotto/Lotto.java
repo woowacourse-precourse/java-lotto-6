@@ -8,7 +8,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.forEach(LottoUtil::validateLottoNum);
         this.numbers = numbers;
     }
 
@@ -16,6 +15,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        numbers.forEach(LottoUtil::validateLottoNum);
     }
 
     // TODO: 추가 기능 구현

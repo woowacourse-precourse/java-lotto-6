@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.LottoValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class LottoTickets {
             Lotto lotto = new Lotto(lottoNum);
             lottoTickets.add(lotto);
         }
+
+        LottoValidator.ticketSizeValidate(lottoTickets, ticket);
 
         return lottoTickets;
     }

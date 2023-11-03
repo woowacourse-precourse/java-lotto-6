@@ -20,8 +20,8 @@ public class Lotto {
         validateInRangeEachNumber(numbers);
     }
 
-    // TODO: 테스트 코드 추가
-    public String getLottoNumber() {
+    @Override
+    public String toString() {
         return numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));

@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.constant.message.OutputMessage.BONUS_RESULT;
 import static lotto.constant.message.OutputMessage.PRIZE_RESULT;
+import static lotto.constant.message.OutputMessage.PROFIT_RATE;
 import static lotto.constant.message.OutputMessage.PURCHASE_COUNT_RESULT;
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
@@ -40,5 +41,10 @@ public class OutputView {
             }
             System.out.println(message);
         }
+    }
+
+    public void printProfitRate(String profitRate) {
+        String message = String.format(PROFIT_RATE, profitRate);
+        System.out.println(message);
     }
 }

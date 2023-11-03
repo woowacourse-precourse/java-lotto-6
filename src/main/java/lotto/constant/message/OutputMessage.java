@@ -5,5 +5,5 @@ public final class OutputMessage {
     public static final String RESULT_MESSAGE = "\n당첨 통계\n---";
     public static final String PRIZE_RESULT = "%d개 일치 (%s원) - %d개";
     public static final String BONUS_RESULT = "5개 일치, 보너스 볼 일치 (%s원) - %d개";
-    public static final String PROFIT_RATE = "총 수익률은 %f입니다.";
+    public static final String PROFIT_RATE = "총 수익률은 %s입니다.";
 }

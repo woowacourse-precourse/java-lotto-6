@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoStore;
 import lotto.utility.RandomNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,8 +25,8 @@ public class GameController {
         for (int i = 0; i < count; i++) {
             Lotto.createLotto(randomNumber.makeLottoNumber());
         }
+        outputView.printLottoHistory(LottoStore.getInstance().getLottoHistory());
     }
-
 
 
     private void init() {

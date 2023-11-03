@@ -1,9 +1,7 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.domain.Buyer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

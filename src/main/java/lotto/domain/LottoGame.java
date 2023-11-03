@@ -15,7 +15,7 @@ public final class LottoGame {
 
     public static LottoGame createLottoGame(final int buyingAmount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < buyingAmount; i++) {
             Lotto lotto = Lotto.createLotto();
             lottos.add(lotto);
         }

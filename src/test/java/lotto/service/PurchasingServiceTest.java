@@ -14,7 +14,7 @@ class PurchasingServiceTest {
     void createBuyerUnderAmount() {
         assertThatThrownBy(() -> purchasingService.purchaseLotto("999"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또를 한 장 이상 구매해야 합니다. (로또 1장 1,000원");
+                .hasMessageContaining("[ERROR] 로또를 한 장 이상 구매해야 합니다. (로또 1장 1,000원)");
     }
 
     @DisplayName("로또 구매 금액의 단위가 1,000원이 아니면 예외가 발생한다.")
@@ -22,6 +22,6 @@ class PurchasingServiceTest {
     void createBuyerWrongUnit() {
         assertThatThrownBy(() -> purchasingService.purchaseLotto("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원");
+                .hasMessageContaining("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원)");
     }
 }

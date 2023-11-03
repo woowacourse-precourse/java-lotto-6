@@ -41,13 +41,13 @@ public class PurchasingService {
 
     private void validateMinPurchase(int amount) {
         if (amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또를 한 장 이상 구매해야 합니다. (로또 1장 1,000원");
+            throw new IllegalArgumentException("[ERROR] 로또를 한 장 이상 구매해야 합니다. (로또 1장 1,000원)");
         }
     }
 
     private void validatePurchaseUnits(int amount) {
         if (amount % LOTTO_PRICE != NONE) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원");
+            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원)");
         }
     }
 

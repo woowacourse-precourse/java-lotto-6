@@ -11,4 +11,9 @@ public class InputValidator {
             return false;
         }
     }
+
+    public Boolean isInRangeValidator(Integer number){
+        return (number >= 1 && number <= 45);
+    }
+
 }

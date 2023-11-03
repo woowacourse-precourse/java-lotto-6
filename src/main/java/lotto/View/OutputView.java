@@ -12,9 +12,9 @@ public class OutputView {
         System.out.println(randomLotto.getCount() + "개를 구매했습니다.");
     }
 
-//    public static void printRandomLotto(Lotto lotto) {
-//        System.out.println(lotto.toString());
-//    }
+    public static void printRandomLottoNumbers(Lotto lotto) {
+        System.out.println(lotto.toString());
+    }
 }
 
 

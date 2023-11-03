@@ -22,7 +22,7 @@ public class GeneralExceptionHandlerTest {
     @DisplayName("입력한 글자가 숫자가 아닐경우 예외처리를 발생한다.")
     @Test
     void checkNumberTest() {
-        String inputStr = "";
+        String inputStr = "1000J";
         assertThatThrownBy(() -> checkNumber(inputStr))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMBER_ERROR_MESSAGE);

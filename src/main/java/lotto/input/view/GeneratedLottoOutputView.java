@@ -6,7 +6,7 @@ import lotto.Lotto;
 public class GeneratedLottoOutputView {
     private final List<Lotto> lottos;
 
-    private final Integer lottoNumber
+    private final Integer lottoNumber;
 
 
     public GeneratedLottoOutputView(List<Lotto> lottos) {

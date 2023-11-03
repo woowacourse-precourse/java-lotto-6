@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final Integer LENGTH=6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -18,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LENGTH) {
             OutputView.errorMessage(LottoErrorMessage.INCORRECT_LOTTO.getMessage());
             throw new IllegalArgumentException();
         }

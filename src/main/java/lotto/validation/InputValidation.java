@@ -1,6 +1,13 @@
 package lotto.validation;
 
 public class InputValidation {
+    public int validatePurchaseAmount(String input) {
+        int purchaseAmount = Integer.parseInt(input);
+        validatePurchaseAmountIsPositive(purchaseAmount);
+        validatePurchaseAmountUnit(purchaseAmount);
+
+        return purchaseAmount;
+    }
 
     public void validatePurchaseAmountUnit(int purchaseAmount) {
         if (purchaseAmount == 0 || purchaseAmount % 1000 != 0) {

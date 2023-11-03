@@ -13,6 +13,6 @@ public class WinningCondition {
     }
 
     public Map<Lotto, WinningRank> findWinningResult(LottoTickets lottoTickets) {
-        return lottoTickets.findWinningResult(winningLotto);
+        return lottoTickets.findWinningResult(winningLotto, bonus);
     }
 }

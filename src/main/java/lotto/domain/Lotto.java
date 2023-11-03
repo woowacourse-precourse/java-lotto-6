@@ -64,8 +64,10 @@ public class Lotto {
                 .toList();
     }
 
-    public WinningRank findWinningRank(Lotto winningLotto) {
-        return WinningRank.find(countWinningNumber(winningLotto));
+    public WinningRank findWinningRank(Lotto winningLotto, int bonus) {
+        //TODO: 실제 보너스 매치 유무를 구하기
+        boolean isBonusMatch = true;
+        return WinningRank.find(countWinningNumber(winningLotto), isBonusMatch);
     }
 
     private int countWinningNumber(Lotto winningLotto) {

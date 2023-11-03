@@ -1,6 +1,9 @@
 package lotto.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoNumber;
 import lotto.constant.LottoPrice;
 
 public class ValidateService {
@@ -12,9 +15,13 @@ public class ValidateService {
         }
     }
 
-    public void validateAll(int purchasePrice) {
+    public void validatePurchasePriceAll(int purchasePrice) {
         validatePrice(purchasePrice);
         validateCheckDivisibility(purchasePrice);
+    }
+    public void validateInputWinningNumbersAll(List<Integer> winningNumbers){
+        validateInputLottoRange(winningNumbers);
+        validateDuplicateWinningNumber(winningNumbers);
     }
 
     private void validatePrice(int purchasePrice) {
@@ -29,5 +36,17 @@ public class ValidateService {
         }
     }
 
+    private void validateInputLottoRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoNumber.START_NUMBER.getNumber() || number > LottoNumber.END_NUMBER.getNumber()) {
+                throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
+            }
+        }
+    }
+    private void validateDuplicateWinningNumber(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
+        }
+    }
 
 }

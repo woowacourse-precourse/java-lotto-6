@@ -22,12 +22,12 @@ public class LottoWinningNumbers {
         for(String value: inputValues){
             try {
                 int number = Integer.parseInt(value.trim());
-                validateService.validateInputWinningNumbersAll(number);
                 winningNumbers.add(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
             }
         }
+        validateService.validateInputWinningNumbersAll(winningNumbers);
         return winningNumbers;
     }
 }

@@ -8,10 +8,14 @@ public class Lotto {
     private final Integer MAX_NUMBER = 45;
     private final Integer MIN_NUMBER = 1;
     private final List<Integer> numbers;
+    private final Integer bonusNumber;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers, Integer bonusNumber) {
         validate(numbers);
         this.numbers = numbers;
+
+        validBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> numbers) {
@@ -35,5 +39,29 @@ public class Lotto {
 
     private boolean isNumbersOutOfRange(List<Integer> numbers){
         return numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
+    }
+
+    private void validBonusNumber(Integer bonusNumber){
+       if (bonusNumber == null){
+           throw new IllegalArgumentException();
+       }
+
+        if (hasDuplicates(bonusNumber)){
+            throw new IllegalArgumentException();
+        }
+
+        if (isNumbersOutOfRange(bonusNumber)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean hasDuplicates(Integer bonusNumber){
+        Set<Integer> numbersSet = new HashSet<>(this.numbers);
+        numbersSet.add(bonusNumber);
+        return numbersSet.size() != this.numbers.size() + 1;
+    }
+
+    private boolean isNumbersOutOfRange(Integer bonusNumber){
+        return bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER;
     }
 }

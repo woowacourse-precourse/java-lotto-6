@@ -22,6 +22,10 @@ public class Application {
             lottos.add(computer.calculateLottoNumber());
         }
 
+        // 4. 로또 번호 출력
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
 
     }
 }

@@ -34,4 +34,12 @@ public class Lotto {
                 count();
         return numbers.size() != distinctSize;
     }
+
+    public RANK rank(Lotto winningLotto, int bonus) {
+        int matches = (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+        boolean bonusMatched = numbers.contains(bonus);
+        return RANK.from(matches, bonusMatched);
+    }
 }

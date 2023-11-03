@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
 
@@ -37,5 +38,14 @@ class LottoTest {
 
         // when & then
         Assertions.assertTrue(lotto.isContainNumber(new LottoNumber(number)));
+    }
+
+    @Test
+    void 로또를_비교하는_메서드_동작_확인() {
+        // given
+        Lotto lotto1=new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2=new Lotto(List.of(1, 2, 3, 8, 11, 13));
+        // when & then
+        assertEquals(3,lotto1.compareLotto(lotto2));
     }
 }

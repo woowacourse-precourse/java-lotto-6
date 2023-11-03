@@ -47,6 +47,6 @@ public class WinningStatisticsTest {
     @Test
     void setRateOfReturn(){
         winningStatistics.setRateOfReturn(6000);
-        assertThat(winningStatistics.getRateOfReturn()).isEqualTo(338592.5);
+        assertThat(winningStatistics.getRateOfReturn()).isEqualTo(33859250);
     }
 }

@@ -4,8 +4,18 @@ import java.util.List;
 
 public class OutputView {
 
+    // 구입 금액 입력
     private static final String ENTER_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+
+    // 구매 확정 메시지
     private static final String BUY_MESSAGE = "개를 구매했습니다.";
+
+    // 당첨 번호 입력 메시지
+    private static final String ENTER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    // 보너스 번호 입력 메시지
+    private static final String ENTER_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+    // 당첨 통계 메시지
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DIVISION_MESSAGE = "---";
     private static final String AGREEMENT_THREE_NUMBERS_MESSAGE = "3개 일치 (5,000원) - ";
@@ -14,6 +24,8 @@ public class OutputView {
     private static final String AGREEMENT_FIVE_NUMBERS_AND_BONUS_NUMBER_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String AGREEMENT_SIX_NUMBERS_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     private static final String COUNT_MESSAGE = "개";
+
+    // 총 수익률 메시지
     private static final String TOTAL_RETURN_FIRST_MESSAGE = "총 수익률은 ";
     private static final String TOTAL_RETURN_LAST_MESSAGE = "입니다.";
 
@@ -29,6 +41,14 @@ public class OutputView {
         for (Integer lotto : lottoes) {
             System.out.println(lotto.toString());
         }
+    }
+
+    public static void enterWinningNumbersMessage() {
+        System.out.println(ENTER_WINNING_NUMBERS_MESSAGE);
+    }
+
+    public static void enterBonusNumberMessage() {
+        System.out.println(ENTER_BONUS_NUMBERS_MESSAGE);
     }
 
     public static void winningStaticsMessage(List<Integer> agreementCounts) {

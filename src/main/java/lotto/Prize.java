@@ -8,6 +8,7 @@ public class Prize {
     private String groupNumbers;
     private List<Integer> preLuckyNumber;
     public Lotto luckyNumber;
+    public int bonusNumber;
 
     void inputNumbers() {
         groupNumbers = Console.readLine();
@@ -21,5 +22,10 @@ public class Prize {
         }
 
         luckyNumber = new Lotto(preLuckyNumber);
+    }
+
+    void inputBonusNumber() {
+        String number = Console.readLine();
+        bonusNumber = Integer.parseInt(number);
     }
 }

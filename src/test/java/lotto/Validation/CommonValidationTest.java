@@ -55,7 +55,27 @@ class CommonValidationTest {
 
     @Test
     @DisplayName("공백이 있을때 예외가 발생하는지 확인하는 테스트")
-    void isBlank() {
+    void isBlank1() {
+        //given
+        String value = " ";
+
+        //when
+        assertThatThrownBy(() -> commonValidation.isBlank(value))
+                .isInstanceOf(CommonValidationException.class)
+                .hasMessageContaining(BLANK_VALUE_ERROR_MESSAGE.getMessage(value));
+    }
+
+    @Test
+    @DisplayName("공백이 없을때 정상 동작하는지에 대한 테스트")
+    void isBlank2() {
+        //given
+        String value = "1";
+
+        //when
+        commonValidation.isBlank(value);
+
+        //then
+        assertThat(true).isTrue();
     }
 
     @Test

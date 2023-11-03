@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Error.Domain.ZERO_PURCHASED_LOTTO;
+import static lotto.Error.Domain.EMPTY_LOTTO;
 
 public record PurchasedLotto(List<Lotto> lotto) {
     public PurchasedLotto {
@@ -12,7 +12,7 @@ public record PurchasedLotto(List<Lotto> lotto) {
 
     private void validate(List<Lotto> lotto) {
         if (lotto.isEmpty()) {
-            throw new IllegalArgumentException(ZERO_PURCHASED_LOTTO.getText());
+            throw new IllegalArgumentException(EMPTY_LOTTO.getText());
         }
     }
 

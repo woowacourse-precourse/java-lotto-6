@@ -29,14 +29,14 @@ public final class Lotto {
 
     private void validateCorrectLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_LENGTH.getText());
+            throw new IllegalArgumentException(WRONG_LOTTO_SIZE.getText());
         }
     }
 
     private void validateLottoNumber(List<Integer> numbers) {
         boolean isMatch = numbers.stream().allMatch(e -> MIN_LOTTO_NUMBER_SIZE <= e && e <= MAX_LOTTO_NUMBER_SIZE);
         if (!isMatch) {
-            throw new IllegalArgumentException(WRONG_LOTTO_SIZE.getText());
+            throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_RANGE.getText());
         }
     }
 
@@ -44,7 +44,7 @@ public final class Lotto {
         int distinctSize = new HashSet<>(numbers).size();
 
         if (distinctSize != numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getText());
+            throw new IllegalArgumentException(SAME_LOTTO_NUMBER.getText());
         }
     }
 }

@@ -16,7 +16,7 @@ class LottoMachineTest {
         assertThatThrownBy(()
                 -> lottoMachine.generateForPrice(3500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(Error.Domain.WRONG_PURCHASED_PRICE.getText().formatted(1000));
+                .hasMessageContaining(Error.Domain.WRONG_PRICE.getText().formatted(1000));
     }
 
     @Test

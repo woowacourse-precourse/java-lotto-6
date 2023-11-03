@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.Error.Domain.WRONG_PURCHASED_PRICE;
+import static lotto.Error.Domain.WRONG_PRICE;
 
 public final class LottoMachine {
     private static final int PRICE_PER_LOTTO = 1000;
@@ -33,7 +33,7 @@ public final class LottoMachine {
     private void validate(int price) {
         if (price % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(
-                    WRONG_PURCHASED_PRICE.getText().formatted(PRICE_PER_LOTTO));
+                    WRONG_PRICE.getText().formatted(PRICE_PER_LOTTO));
         }
     }
 }

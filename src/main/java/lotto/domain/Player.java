@@ -120,6 +120,16 @@ public class Player {
     }
 
     public String lottoResults() {
-        return "";
+        double prizeRate = (int) (prize / money * 10. + 0.5) / 10.;
+
+        StringBuilder result = new StringBuilder("당첨 통계\n")
+                .append("---\n")
+                .append("3개 일치 (5,000원) - ").append(results.get(5)).append("개\n")
+                .append("4개 일치 (50,000원 - ").append(results.get(4)).append("개\n")
+                .append("5개 일치 (1,500,000원) - ").append(results.get(3)).append("개\n")
+                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(2)).append("개\n")
+                .append("6개 일치 (2,000,000,000원) - ").append(results.get(1)).append("개\n")
+                .append("총 수익률은 ").append(prizeRate).append("%입니다.");
+        return result.toString();
     }
 }

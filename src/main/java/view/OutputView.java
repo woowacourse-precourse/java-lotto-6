@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import model.dto.LottoResponse;
+import model.dto.LottoResult;
 
 public class OutputView {
 
@@ -29,5 +30,18 @@ public class OutputView {
 
     public void askBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void informWinningStatistics(final List<LottoResult> results) {
+        StringBuilder sb = new StringBuilder();
+        results.forEach(result -> {
+            sb.append(result.equalCount()).append("개 일치");
+            if (result.hasBonusBall()) {
+                sb.append(", 보너스 볼 일치");
+            }
+            sb.append(String.format(" (%d원) - %d개\n", result.reward(), result.count())
+                .replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","));
+        });
+        System.out.print(sb);
     }
 }

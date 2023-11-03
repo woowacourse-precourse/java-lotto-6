@@ -24,4 +24,10 @@ public class ConsoleOutputView implements OutputView {
             System.out.println("[" + String.join(LOTTO_DELIMITER, response.numbers()) + "]");
         }
     }
+
+    @Override
+    public void askGoalNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

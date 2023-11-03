@@ -8,4 +8,5 @@ public interface OutputView {
     void askInvestMoney();
     void printBoughtLottoSize(final int size);
     void printEachLottoNumbers(final List<LottoResponse> lottoResponses);
+    void askGoalNumbers();
 }

@@ -29,6 +29,7 @@ public class LottoController {
         outputView.printBoughtLottoSize(lottos.size());
         List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
         outputView.printEachLottoNumbers(lottoResponses);
+        outputView.askGoalNumbers();
     }
 
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {

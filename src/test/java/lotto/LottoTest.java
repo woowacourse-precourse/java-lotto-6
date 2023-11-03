@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,5 +23,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByNumberNotInCorrectRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 50, 40, 60, 97, 100)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
+    }
 }

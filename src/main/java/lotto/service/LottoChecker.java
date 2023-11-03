@@ -4,23 +4,24 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import lotto.lotto.Lotto;
 import lotto.lotto.LottoBuyer;
 import lotto.lotto.win.WinResult;
 
 public class LottoChecker {
-    private static final int USELESS_BONUS = 0;
-    LottoBuyer lottoBuyer;
-    List<Integer> target;
-    int bonus;
+    private static final int BONUS_IS_USELESS = 0;
+    private LottoBuyer lottoBuyer;
+    private List<Integer> target;
+    private final int bonus;
 
-    public LottoChecker(LottoBuyer lottoBuyer) {
+    public LottoChecker(LottoBuyer lottoBuyer, List<Integer> target, int bonus) {
         this.lottoBuyer = lottoBuyer;
+        this.target = target;
+        this.bonus = bonus;
     }
 
-    public Map<Optional<WinResult>, Integer> checkAllLotto() {
-        Map<Optional<WinResult>, Integer> map = new HashMap<Optional<WinResult>, Integer>();
+    public Map<WinResult, Integer> checkAllLotto() {
+        Map<WinResult, Integer> map = new HashMap<WinResult, Integer>();
 
         for (int i = 0; i < lottoBuyer.size(); i++) {
             Lotto lotto = lottoBuyer.getLotto(i);
@@ -28,17 +29,18 @@ public class LottoChecker {
             int matchedCount = matchWithTarget(lotto);
             int bonusCount = matchWithBonus(lotto, matchedCount);
 
-            Optional<WinResult> result = getResult(matchedCount, bonusCount);
+            WinResult result = getResult(matchedCount, bonusCount);
             Integer savedNumber = map.getOrDefault(result, 0);
             map.put(result, ++savedNumber);
         }
         return map;
     }
-    private Optional<WinResult> getResult (int matchedCount, int bonusCount) {
+    private WinResult getResult (int matchedCount, int bonusCount) {
         return Arrays.stream(WinResult.values())
                 .filter(winResult -> winResult.matchedCount == matchedCount)
                 .filter(winResult -> winResult.bonusCount == bonusCount)
-                .findAny();
+                .findAny()
+                .orElse(WinResult.FAIL);
     }
 
     private int matchWithTarget(Lotto lotto) {
@@ -53,6 +55,6 @@ public class LottoChecker {
                     .filter(num -> bonus == num)
                     .count();
         }
-        return USELESS_BONUS;
+        return BONUS_IS_USELESS;
     }
 }

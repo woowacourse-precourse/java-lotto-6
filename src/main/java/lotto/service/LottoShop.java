@@ -1,8 +1,12 @@
-package lotto.lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.lotto.Lotto;
+import lotto.lotto.LottoBuyer;
+import lotto.lotto.LottoNumberGenerator;
+import lotto.lotto.NumberGenerator;
 
 public class LottoShop {
     private int lottoCount;
@@ -21,6 +25,4 @@ public class LottoShop {
 
         return new LottoBuyer(lottos);
     }
-
-
 }

@@ -24,4 +24,8 @@ public class OutputView {
     public void printTotalReturn(Double totalReturn) {
         System.out.printf("총 수익률은 %s%%입니다.", String.format("%.1f", totalReturn * 100));
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

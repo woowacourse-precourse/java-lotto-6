@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.message.ErrorMessage;
+
 public class WinningLotto {
 
     private final Lotto lotto;
@@ -13,7 +15,7 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, Bonus bonus) {
         if (bonus.hasBonusNumber(lotto)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getMessage());
         }
     }
 

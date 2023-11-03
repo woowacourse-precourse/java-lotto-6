@@ -39,8 +39,7 @@ public class LottoController {
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
         Lotto lotto = readWinningNumbers();
-        Bonus bonusNumber = readBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        WinningLotto winningLotto = getWinningLotto(lotto);
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto bought : boughtLotto) {
             lottoPrizes.add(winningLotto.from(bought));
@@ -52,21 +51,46 @@ public class LottoController {
         outputView.printTotalReturn(totalReturn);
     }
 
+    private WinningLotto getWinningLotto(Lotto lotto) {
+        Bonus bonusNumber = readBonusNumber();
+        try {
+            return new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return null;
+        }
+    }
+
     private Lotto readWinningNumbers() {
-        List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
-                .map(integerConverter::convert)
-                .toList();
-        return new Lotto(numbers);
+        try {
+            List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
+                    .map(integerConverter::convert)
+                    .toList();
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return null;
+        }
     }
 
     private Bonus readBonusNumber() {
-        Integer number = integerConverter.convert(inputView.readBonusNumber());
-        return new Bonus(number);
+        try {
+            Integer number = integerConverter.convert(inputView.readBonusNumber());
+            return new Bonus(number);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return null;
+        }
     }
 
     private PurchaseAmount readPurchaseAmount() {
-        Integer number = integerConverter.convert(inputView.readPurchaseAmount());
-        return PurchaseAmount.of(number);
+        try {
+            Integer number = integerConverter.convert(inputView.readPurchaseAmount());
+            return PurchaseAmount.of(number);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return null;
+        }
     }
 
     private Integer exchangeLottoTicket(PurchaseAmount purchaseAmount) {

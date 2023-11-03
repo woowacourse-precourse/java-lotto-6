@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.message.ErrorMessage;
+
 public class PurchaseAmount {
 
     private final Integer amount;
@@ -20,13 +22,13 @@ public class PurchaseAmount {
 
     private void validateRange(Integer amount) {
         if (amount < 1000 || amount > 100000) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_RANGE.getMessage());
         }
     }
 
     private void validateUnit(Integer amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 

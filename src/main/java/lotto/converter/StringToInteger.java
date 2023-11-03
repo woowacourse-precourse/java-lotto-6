@@ -1,5 +1,7 @@
 package lotto.converter;
 
+import lotto.message.ErrorMessage;
+
 import java.util.regex.Pattern;
 
 public class StringToInteger implements Converter<String, Integer> {
@@ -19,7 +21,7 @@ public class StringToInteger implements Converter<String, Integer> {
 
     private void validateType(String source) {
         if (source == null || !NUMERIC_PATTERN.matcher(source).matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE.getMessage());
         }
     }
 
@@ -27,7 +29,7 @@ public class StringToInteger implements Converter<String, Integer> {
         try {
             Integer.parseInt(source);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE.getMessage(), e);
         }
     }
 }

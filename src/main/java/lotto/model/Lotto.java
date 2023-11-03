@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.message.ErrorMessage;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -22,20 +24,20 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (Set.copyOf(numbers).size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         boolean isInvalidRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
         if (isInvalidRange) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 

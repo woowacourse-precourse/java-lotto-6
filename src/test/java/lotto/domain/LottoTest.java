@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -68,7 +69,7 @@ class LottoTest {
 
     @DisplayName("다른 로또와 중복 숫자를 카운트 할 수 있다.")
     @ParameterizedTest
-    @MethodSource("parametersProvider")
+    @MethodSource("inputLottoProvider")
     void countSameNumber(List<Integer> input, int answer) {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -81,7 +82,7 @@ class LottoTest {
         assertThat(count).isEqualTo(answer);
     }
 
-    static Stream<Arguments> parametersProvider() {
+    static Stream<Arguments> inputLottoProvider() {
         return Stream.of(
                 arguments(List.of(7, 8, 9, 10, 11, 12), 0),
                 arguments(List.of(1, 7, 8, 9, 10, 11), 1),

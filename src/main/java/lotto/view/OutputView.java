@@ -2,6 +2,7 @@ package lotto.view;
 
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoTicket;
 
 import java.util.List;
 import java.util.stream.Collectors;

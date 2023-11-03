@@ -52,7 +52,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("입력 값 숫자와 , 로 이루 어진 값이 아닌 경우 예외 처리")
-    @ValueSource(strings = {"1,23,12,ㅂ", "1.231,23,1", "ㅁㄴ", " ", ""})
+    @ValueSource(strings = {"1,23,12,ㅂ", "1.231,23,1", "ㅁㄴ", " ", "", " 12,2,3,5,6,7"})
     void NumberAndCommaExceptionTest(String inputValue) {
         assertThatThrownBy(() -> InputValidator.lottoFormatCheck(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -61,7 +61,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("입력 값 숫자와 , 로 이루 어진 값의 경우 정상 처리")
-    @ValueSource(strings = {"1", "1,2", "12,3"})
+    @ValueSource(strings = {"1,2,3,4,5,6", "6,7,8,9,10,11", "12,13,14,15,16,17"})
     void NumberAndCommaTest(String inputValue) {
         assertThatNoException().isThrownBy(() -> InputValidator.lottoFormatCheck(inputValue));
     }

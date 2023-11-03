@@ -8,8 +8,8 @@ import static lotto.constants.ErrorConstants.ERROR_NULL_INPUT;
 import lotto.exception.InputException;
 
 public class InputValidator {
-
-    private static final String LOTTO_NUMBER_REGEX = "^[0-9,]+$";
+    
+    private static final String LOTTO_NUMBER_REGEX = "^(?:[1-9]|[1-3][0-9]|4[0-5])(,(?:[1-9]|[1-3][0-9]|4[0-5])){5}$";
 
     public static void nullCheck(String inputValue) {
         if (inputValue == null) {

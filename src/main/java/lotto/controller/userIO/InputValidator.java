@@ -1,12 +1,13 @@
-package lotto.model;
+package lotto.controller.userIO;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstants;
+import lotto.model.Lotto;
 import lotto.utils.Parser;
 
-public class Validator {
+public class InputValidator {
     // 구입 금액 입력 검증
     public void validateBudgetInput(String userInput) {
         validateInteger(userInput);

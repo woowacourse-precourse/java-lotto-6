@@ -2,10 +2,12 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.userIO.InputController;
+import lotto.controller.userIO.InputValidator;
+import lotto.controller.userIO.OutputController;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoRandomGenerator;
-import lotto.model.Validator;
 import lotto.model.WinningLotto;
 import lotto.model.WinningStatistics;
 import lotto.utils.Parser;
@@ -19,7 +21,7 @@ public class LottoController {
     public void init() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        Validator inputValidator = new Validator();
+        InputValidator inputValidator = new InputValidator();
 
         inputController = new InputController(inputView, inputValidator);
         outputController = new OutputController(outputView);

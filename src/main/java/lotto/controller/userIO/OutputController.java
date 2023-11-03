@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.userIO;
 
 import java.util.List;
 import lotto.model.Lotto;

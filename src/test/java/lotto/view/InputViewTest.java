@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import java.util.List;
 import lotto.ErrorHeadMessage;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.AfterEach;
@@ -37,8 +35,8 @@ class InputViewTest {
     @DisplayName("구매금액 입력 확인")
     void 구매금액_입력_확인() {
         provideInput("3000\n");
-        int result = InputView.getPurchaseAmount();
-        assertThat(result).isEqualTo(3000);
+        int purchaseAmount = InputView.getPurchaseAmount();
+        assertThat(purchaseAmount).isEqualTo(3000);
     }
 
     @Test
@@ -63,8 +61,8 @@ class InputViewTest {
     @DisplayName("당첨번호 입력 확인")
     void 당첨번호_입력_확인() {
         provideInput("3,4,5,6,7,8\n");
-        Lotto result = InputView.getWinningNumbers();
-        assertThat(result.sortNumbers()).isEqualTo("3, 4, 5, 6, 7, 8");
+        Lotto winningNumbers = InputView.getWinningNumbers();
+        assertThat(winningNumbers.sortNumbers()).isEqualTo("3, 4, 5, 6, 7, 8");
     }
 
     @Test

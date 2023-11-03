@@ -12,4 +12,8 @@ public class Player {
     public void setLottoCount() {
         this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
     }
+
+    public int getLottoCount() {
+        return lottoCount.getLottoCount();
+    }
 }

@@ -13,6 +13,7 @@ public class LottoGameService {
         Prints.print_input_amount_message();
         player.setLottoAmount(getLottoAmount());
         player.setLottoCount();
+        Prints.print_lottoCount(player.getLottoCount());
     }
 
     private LottoAmount getLottoAmount() {

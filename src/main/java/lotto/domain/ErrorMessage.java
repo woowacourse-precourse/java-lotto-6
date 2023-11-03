@@ -1,6 +1,6 @@
-package lotto.exception;
+package lotto.domain;
 
-public enum InputErrorMessage {
+public enum ErrorMessage {
     INVALID_DELIMITER("[ERROR] 번호는 ',' 로 구분되어야 합니다."),
     INVALID_LOTTO_NUMBERS("[ERROR] 로또 번호는 숫자만 입력 가능합니다."),
     INVALID_NUMBER_RANGE("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다."),
@@ -13,7 +13,7 @@ public enum InputErrorMessage {
 
     private final String value;
 
-    InputErrorMessage(String value) {
+    ErrorMessage(String value) {
         this.value = value;
     }
 

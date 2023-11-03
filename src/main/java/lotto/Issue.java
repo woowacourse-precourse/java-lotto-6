@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Issue {
     private int lottoQuantity;
-    private List<Lotto> lottoGroup;
+    public List<Lotto> lottoGroup;
 
     void inputCash() {
         int cash = Integer.parseInt(Console.readLine());

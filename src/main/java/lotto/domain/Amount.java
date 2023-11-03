@@ -29,4 +29,8 @@ public class Amount {
             throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_AMOUNT);
         }
     }
+
+    public int getLottoCount() {
+        return money / LottoConstant.LOTTO_AMOUNT;
+    }
 }

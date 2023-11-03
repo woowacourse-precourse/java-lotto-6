@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import lotto.utils.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -44,5 +45,19 @@ class AmountTest {
         assertThatThrownBy(() -> new Amount(money))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.INVALID_AMOUNT_RANGE);
+    }
+
+    @Test
+    @DisplayName("로또 수량 계산 성공")
+    public void calculateLottoCount() {
+        // given
+        String money = "8000";
+        Amount amount = new Amount(money);
+
+        // when
+        int lottoCount = amount.getLottoCount();
+
+        // then
+        assertThat(lottoCount).isEqualTo(8);
     }
 }

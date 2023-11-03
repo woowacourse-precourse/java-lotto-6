@@ -12,7 +12,7 @@
   - 금액입력 안내 메시지를 출력한다.
 
 ## 로또 구입 금액 입력 기능
-- [ ] `LottoInputView::getBuyingPrice` 메서드
+- [x] `LottoInputView::getBuyingPrice` 메서드
   - 로또 구입 금액을 입력받는다.
 - [ ] `validateBuyingPrice` 메서드
   - 입력받은 로또 금액을 검증한다.

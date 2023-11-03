@@ -62,6 +62,6 @@ class LottoTest {
         long count = lottoNumbers.stream().distinct().count();
 
         //then
-        Assertions.assertThat(count).isEqualTo(6);
+        Assertions.assertThat(count).isEqualTo(lottoNumbers.size());
     }
 }

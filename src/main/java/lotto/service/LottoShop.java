@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.lotto.Lotto;
@@ -9,16 +8,15 @@ import lotto.lotto.LottoNumberGenerator;
 import lotto.lotto.NumberGenerator;
 
 public class LottoShop {
-    private int lottoCount;
-
-    public LottoShop(int lottoCount) {
-        this.lottoCount = lottoCount;
+    private int sellCount;
+    public LottoShop(int sellCount) {
+        this.sellCount = sellCount;
     }
 
     public LottoBuyer sell() {
         NumberGenerator numberGenerator = new LottoNumberGenerator();
 
-        List<Lotto> lottos = IntStream.range(0, lottoCount)
+        List<Lotto> lottos = IntStream.range(0, sellCount)
                 .mapToObj(i -> numberGenerator.generate())
                 .map(Lotto::new)
                 .toList();

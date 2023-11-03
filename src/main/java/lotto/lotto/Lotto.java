@@ -23,7 +23,7 @@ public class Lotto {
         return (int) numbers.stream().distinct().count();
     }
 
-    public Stream<Integer> streamNumbers(){
+    public Stream<Integer> streamNumbers() {
         return numbers.stream();
     }
 

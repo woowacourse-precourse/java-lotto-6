@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.Convertor;
@@ -11,9 +10,7 @@ public class WinningNumber {
     private final List<Integer> numbers;
 
     private WinningNumber(List<Integer> numbers) {
-        LottoNumberValidator.validateLottoNumberSize(numbers);
-        LottoNumberValidator.validateLottoNumberRange(numbers);
-        LottoNumberValidator.validateLottoNumberDuplication(numbers);
+        LottoNumberValidator.validate(numbers);
         this.numbers = numbers;
     }
 
@@ -24,7 +21,7 @@ public class WinningNumber {
         return new WinningNumber(winningNumbers);
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public boolean isContains(int number) {
+        return numbers.contains(number);
     }
 }

@@ -26,7 +26,7 @@ public class Money {
     }
 
     private static void isNumeric(final String amount) {
-        if (!NUMBER_PATTERN.matcher(amount).matches()) {
+        if (!NUMBER_PATTERN.matcher(trim(amount)).matches()) {
             throw new IllegalArgumentException(ONLY_NUMBER_ALLOWED_MESSAGE);
         }
     }

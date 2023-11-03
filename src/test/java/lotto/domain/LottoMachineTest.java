@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constants.LottoRank;
+import lotto.constants.LottoPrize;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,7 +30,7 @@ class LottoMachineTest {
             List<Integer> winLottoNumber
             , int bonusNumber
             , Lotto otherLotto
-            , LottoRank reuslt
+            , LottoPrize reuslt
     ) {
         LottoMachine instance = LottoMachine.getInstance();
         instance.setWinLotto(new WinLotto(new Lotto(winLottoNumber), bonusNumber));
@@ -43,15 +43,15 @@ class LottoMachineTest {
                 Arguments.of(List.of(1, 2, 3, 4, 5, 45)
                         , 44
                         , new Lotto(List.of(1, 2, 3, 4, 5, 45))
-                        , LottoRank.FIRST_PRIZE),
+                        , LottoPrize.FIRST_PRIZE),
                 Arguments.of(List.of(2, 18, 3, 4, 5, 6)
                         , 23
                         , new Lotto(List.of(2, 18, 3, 4, 5, 23))
-                        , LottoRank.SECOND_PRIZE),
+                        , LottoPrize.SECOND_PRIZE),
                 Arguments.of(List.of(15, 2, 23, 43, 5, 6)
                         , 19
                         , new Lotto(List.of(3, 4, 7, 8, 9, 10))
-                        , LottoRank.NO_PRIZE)
+                        , LottoPrize.NO_PRIZE)
         );
     }
 }

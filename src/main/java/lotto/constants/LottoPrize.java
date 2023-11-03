@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum LottoRank {
+public enum LottoPrize {
     FIRST_PRIZE(6),
     SECOND_PRIZE(-1),
     THIRD_PRIZE(5),
@@ -9,7 +9,7 @@ public enum LottoRank {
 
     private int matchedNumbers;
 
-    LottoRank(int matchedNumbers) {
+    LottoPrize(int matchedNumbers) {
         this.matchedNumbers = matchedNumbers;
     }
 
@@ -17,8 +17,8 @@ public enum LottoRank {
         return matchedNumbers;
     }
 
-    public static LottoRank getResultByMatchedNumbers(int matchedNumbers) {
-        for (LottoRank result : values()) {
+    public static LottoPrize getResultByMatchedNumbers(int matchedNumbers) {
+        for (LottoPrize result : values()) {
             if (result.matchedNumbers == matchedNumbers) {
                 return result;
             }

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.constants.LottoRank;
+import lotto.constants.LottoPrize;
 
 public class LottoMachine {
     private static LottoMachine instance;
@@ -71,7 +71,7 @@ public class LottoMachine {
      * @param otherLotto
      * @return int
      */
-    public LottoRank lottoWinningResult(Lotto otherLotto) {
+    public LottoPrize lottoWinningResult(Lotto otherLotto) {
         return winLotto.lottoComparison(otherLotto);
     }
 }

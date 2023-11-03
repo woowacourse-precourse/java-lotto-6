@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.LottoPrize;
 import lotto.domain.Consumer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
 import lotto.domain.WinLotto;
 import lotto.dto.AmountRequestDto;
 import lotto.dto.BonusRequestDto;
@@ -34,6 +37,13 @@ public class LottoStoreController {
         enterWinningNumber();
 
         // ======================= 로또 당첨 비교 기능 start =======================
+        List<LottoPrize> lottoRanks = new ArrayList<>();
+        List<Lotto> lottos = consumer.getLottos();
+        for (Lotto lotto : lottos) {
+            lottoRanks.add(lottoMachine.lottoWinningResult(lotto));
+        }
+        LottoResult lottoResult = new LottoResult(lottoRanks, consumer.getBuyAmount());
+        lottoResult.getLottoWinningResults();
         // ======================= 로또 당첨 비교 기능 end =======================
 
         // ======================= 수익률 출력 기능 start =======================

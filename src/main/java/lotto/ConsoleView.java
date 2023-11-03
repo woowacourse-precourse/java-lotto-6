@@ -36,7 +36,8 @@ public class ConsoleView {
         }
         return getListInput();
     }
-    private static List<Integer> toIntegerList(String _input) throws NumberFormatException, IllegalArgumentException{
+
+    private static List<Integer> toIntegerList(String _input) throws NumberFormatException, IllegalArgumentException {
         List<Integer> parsedOutput = new ArrayList<>();
         for (String s : _input.split(",")) {
             int number = Integer.parseInt(s);

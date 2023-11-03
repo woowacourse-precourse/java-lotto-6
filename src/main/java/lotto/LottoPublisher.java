@@ -25,6 +25,7 @@ public class LottoPublisher {
         return new Lotto(numbers);
     }
 
+
     public List<Lotto> sell(long money) throws IllegalArgumentException {
         validateMoney(money);
         List<Lotto> lottos = new ArrayList<>();

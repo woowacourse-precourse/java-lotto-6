@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.NumberConstant;
 
 public class PurchaseAmount {
 
@@ -8,6 +9,8 @@ public class PurchaseAmount {
         empty(input);
         int purchaseAmount = notNumber(input);
         negativeNumber(purchaseAmount);
+        under1000(purchaseAmount);
+        not1000Unit(purchaseAmount);
         return purchaseAmount;
     }
 
@@ -32,8 +35,14 @@ public class PurchaseAmount {
     }
 
     public static void under1000(int purchaseAmount){
-        if(purchaseAmount < 1000){
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNDER_1000);
+        if(purchaseAmount < NumberConstant.LOTTO_ONE_PRICE){
+            throw new IllegalArgumentException(ErrorMessage.UNDER_1000_PURCHASE_AMOUNT);
+        }
+    }
+
+    public static void not1000Unit(int purchaseAmount){
+        if(purchaseAmount % NumberConstant.LOTTO_ONE_PRICE != 0){
+            throw new IllegalArgumentException(ErrorMessage.NOT_1000_UNIT_PURCHASE_AMOUNT);
         }
     }
 

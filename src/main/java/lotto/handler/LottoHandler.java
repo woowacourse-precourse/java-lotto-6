@@ -50,7 +50,7 @@ public class LottoHandler {
 
     private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
-        return reader.continuousInput(() -> {
+        return reader.read(() -> {
             int bonusNumber = Integer.parseInt(Console.readLine());
             LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
             return bonusNumber;
@@ -59,7 +59,7 @@ public class LottoHandler {
 
     private List<Integer> getWinningNumbers() {
         writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
-        return reader.continuousInput(() -> {
+        return reader.read(() -> {
             String inputWinningNumbers = Console.readLine();
             LottoReaderValidator.validateWinningNumbers(inputWinningNumbers);
             return Arrays.stream(inputWinningNumbers.split(",")).map(Integer::parseInt).toList();
@@ -68,6 +68,6 @@ public class LottoHandler {
 
     private Money getMoney() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return reader.continuousInput(() -> new Money(Integer.parseInt(Console.readLine())));
+        return reader.read(() -> new Money(Integer.parseInt(Console.readLine())));
     }
 }

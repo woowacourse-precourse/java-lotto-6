@@ -23,4 +23,8 @@ public class InputView {
         System.out.println();
         return input;
     }
+
+    public static void printBonusNumberPrompt() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

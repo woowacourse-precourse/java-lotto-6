@@ -24,7 +24,7 @@
 - [ ] Lotto 를 서로 비교해 일치하는 개수를 반환 - Lotto
 - [ ] Lotto 에 보너스 번호가 있는지 확인 - Lotto
 - [ ] 비교 결과를 통해 당첨 등수 계산 - Lotto
-- [ ] Ticket 으로 Lotto 를 만들어 저장 - Lotties
+- [ ] Ticket 에서 생성한 Lotto 를 저장 - Lotties
 - [ ] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - Lotties
 - [ ] 로또 당첨 결과를 통해 당첨 내역 계산 - LottoPrizeMoney
 - [ ] 로또 당첨 결과를 통해 총 상금 계산 - LottoPrizeMoney
@@ -32,7 +32,7 @@
 
 - ### Service
 - [ ] Player 가 로또를 구매해 저장함 - LottoService
-- [ ] Player 와 Lottos 를 통해 수익률 계산 - LottoService
+- [ ] Player 와 Lotties 를 통해 수익률 계산 - LottoService
 - ### DTO
 - [ ] 로또 번호를 전달하기 위한 DTO - LottoDto
 

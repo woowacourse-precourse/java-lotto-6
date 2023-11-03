@@ -1,6 +1,7 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.assertj.core.api.Assertions;
@@ -51,6 +52,25 @@ public class StringTest {
                 .endsWith("2");
         assertThat(result).isEqualTo("1,2");
         assertEquals("1,2", result);
+    }
+
+    @Test
+    @DisplayName("String.charAt(): 특정 위치 문자 가져오기")
+    void givenABC_whenCharAt_thenReturnCorrectValue() {
+        String abc = "abc";
+
+        char firstCharacter = abc.charAt(0);
+        char secondCharacter = abc.charAt(1);
+        char thirdCharacter = abc.charAt(2);
+
+        assertEquals('a', firstCharacter);
+        assertEquals('b', secondCharacter);
+        assertEquals('c', thirdCharacter);
+        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    abc.charAt(3);
+                }).withMessageContaining("String index out of range", "3")
+                .withNoCause();
     }
 
 }

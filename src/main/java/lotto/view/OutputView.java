@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.view.constants.ConstantMessage;
 
 public class OutputView {
-    OutputView() {
+    private OutputView() {
     }
 
     public static void printMessage(String message) {

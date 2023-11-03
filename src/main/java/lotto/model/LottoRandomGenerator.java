@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstants;
 
@@ -12,5 +13,13 @@ public class LottoRandomGenerator implements LottoGenerator {
                 LottoConstants.LOTTO_NUMBER_MAX,
                 LottoConstants.THE_SIZE_OF_ONE_LOTTO);
         return new Lotto(numbers);
+    }
+
+    public List<Lotto> generateLottoTickets(int quantity) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < quantity; i++) {
+            lottoTickets.add(generate());
+        }
+        return lottoTickets;
     }
 }

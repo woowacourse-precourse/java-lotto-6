@@ -2,7 +2,11 @@ package lotto.controller.userIO;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import lotto.utils.Parser;
 import lotto.view.InputView;
 
 public class InputController {
@@ -14,7 +18,11 @@ public class InputController {
         this.inputView = inputView;
     }
 
-    public String scanBudget() {
+    public int getBudget() {
+        return Integer.parseInt(scanBudget());
+    }
+
+    private String scanBudget() {
         while (true) {
             try {
                 System.out.println(inputView.enterBudgetMessage());
@@ -27,7 +35,21 @@ public class InputController {
         }
     }
 
-    public String scanWinningLottoTicket() {
+    public WinningLotto getWinningLottoTicket() {
+        String userInput = scanWinningLottoTicket();
+
+        List<Integer> lotto = new ArrayList<>();
+        Parser.parseWithComma(userInput)
+                .forEach(number -> lotto.add(Integer.parseInt(number)));
+        Lotto winningLottoTicket = new Lotto(lotto);
+
+        int bonusNumber = Integer.parseInt(
+                scanBonusNumber(winningLottoTicket)
+        );
+        return new WinningLotto(winningLottoTicket, bonusNumber);
+    }
+
+    private String scanWinningLottoTicket() {
         while (true) {
             try {
                 System.out.println(inputView.enterWinningLottoTicket());
@@ -40,7 +62,7 @@ public class InputController {
         }
     }
 
-    public String scanBonusNumber(Lotto winningLottoTicket) {
+    private String scanBonusNumber(Lotto winningLottoTicket) {
         while (true) {
             try {
                 System.out.println(inputView.enterBonusNumber());

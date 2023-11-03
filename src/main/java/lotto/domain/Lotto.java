@@ -15,9 +15,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoException.validateSize(numbers);
-        LottoException.validateDistinct(numbers);
-        LottoException.validateRange(numbers);
+        LottoException.ensureValidSize(numbers);
+        LottoException.ensureDistinctNumbers(numbers);
+        LottoException.ensureNumbersWithinRange(numbers);
     }
 
     public List<Integer> getNumbers() {

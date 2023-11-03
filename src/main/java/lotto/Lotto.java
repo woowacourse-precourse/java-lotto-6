@@ -15,6 +15,15 @@ public class Lotto {
 		if (numbers.size() != 6) {
 			throw new IllegalArgumentException();
 		}
+		this.isDuplicateNumber(numbers);
+	}
+
+	private void isDuplicateNumber(List<Integer> numbers) {
+		HashSet<Integer> removeDuplicateNumber = new HashSet<>();
+		removeDuplicateNumber.addAll(numbers);
+		if (numbers.size() != removeDuplicateNumber.size()) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public List<Integer> getNumbers() {

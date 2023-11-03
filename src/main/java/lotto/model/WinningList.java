@@ -27,7 +27,9 @@ public class WinningList {
 
     public ProfitRate calculateProfitRate(AmountRecord amountRecord) {
         long sum = winningList.entrySet().stream().mapToLong(this::calculateProfit).sum();
-        return new ProfitRate((double) (sum / amountRecord.amount()));
+        double originalRate = ((double) sum / amountRecord.amount());
+        double roundedRate = Math.round(originalRate);
+        return new ProfitRate(originalRate, roundedRate);
     }
 
     private long calculateProfit(Entry<Rank, Integer> rankIntegerEntry) {

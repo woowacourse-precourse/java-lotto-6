@@ -9,6 +9,7 @@ public class LottoCheckResult {
 
     public LottoCheckResult() {
         result = new EnumMap<>(WinningStatus.class);
+        initResult();
     }
 
     public Map<WinningStatus, Integer> getResult() {
@@ -16,6 +17,12 @@ public class LottoCheckResult {
     }
 
     public void updateResult(WinningStatus winningStatus) {
-        result.put(winningStatus, result.getOrDefault(winningStatus, 0) + 1);
+        result.put(winningStatus, result.get(winningStatus) + 1);
+    }
+
+    private void initResult() {
+        for (WinningStatus status : WinningStatus.values()) {
+            result.put(status, 0);
+        }
     }
 }

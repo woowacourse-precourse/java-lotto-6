@@ -13,4 +13,14 @@ public class Lottos {
     public static Lottos of(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
+
+    public int getCount() {
+        return this.lottos.size();
+    }
+
+    public List<List<Integer>> getHistory() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }

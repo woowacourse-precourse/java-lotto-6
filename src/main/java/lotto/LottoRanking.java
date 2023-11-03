@@ -8,9 +8,7 @@ public enum LottoRanking {
     THIRD(1_500_000, 5),
     FOURTH(50_000, 4),
     FIFTH(5_000, 3),
-    NO_LUCK(0, 2),
-    ;
-
+    NO_LUCK(0, 2);
 
     private final int prize;
     private final int correctNumberCount;

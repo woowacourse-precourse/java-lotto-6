@@ -15,7 +15,7 @@ public class Input {
         System.out.println(INPUT_MONEY_GUIDE);
         String money = Console.readLine();
         validateBlank(money);
-        validateNumeric(money);
+        validateMoneyNumeric(money);
         return Integer.parseInt(money);
     }
 
@@ -27,14 +27,14 @@ public class Input {
                 .collect(Collectors.toList());
     }
 
-    private static void validateBlank(String money) {
-        if (money.isBlank()) {
+    private static void validateBlank(String input) {
+        if (input.isBlank()) {
             throw new IllegalArgumentException("공백은 입력할 수 없습니다.");
         }
     }
 
-    private static void validateNumeric(String money) {
-        if (!money.matches("^[0-9]+$")) {
+    private static void validateMoneyNumeric(String input) {
+        if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }

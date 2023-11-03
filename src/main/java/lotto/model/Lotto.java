@@ -1,5 +1,7 @@
-package lotto;
+package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> createRank() {
+        return new ArrayList<>(6);
     }
 
     private void validate(List<Integer> numbers) {

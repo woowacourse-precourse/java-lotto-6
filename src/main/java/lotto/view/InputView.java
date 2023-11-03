@@ -17,6 +17,11 @@ public class InputView {
         return Console.readLine();
     }
 
+    /**
+     * 구매 금액 입력
+     *
+     * @return String
+     */
     public static String amountInput() {
         String amount = input();
         
@@ -26,6 +31,11 @@ public class InputView {
         return amount;
     }
 
+    /**
+     * 로또 당첨 번호 입력
+     *
+     * @return String
+     */
     public static String winLottoNumberInput() {
         String winLottoNumber = input();
 
@@ -35,6 +45,11 @@ public class InputView {
         return winLottoNumber;
     }
 
+    /**
+     * 보너스 당첨 번호 입력
+     *
+     * @return String
+     */
     public static String bonusNumberInput() {
         String bonus = input();
 
@@ -45,7 +60,11 @@ public class InputView {
         return bonus;
     }
 
-
+    /**
+     * NULL, 빈값, 공백 검증
+     *
+     * @param inputValue
+     */
     private static void validateNullAndBlankCheck(String inputValue) {
         nullCheck(inputValue);
         blankCheck(inputValue);

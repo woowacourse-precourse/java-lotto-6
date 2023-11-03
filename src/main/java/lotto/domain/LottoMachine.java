@@ -22,6 +22,12 @@ public class LottoMachine {
         return instance;
     }
 
+    /**
+     * 입력 갯수 만큼 로또 번호 생성
+     *
+     * @param quantity
+     * @return
+     */
     public List<Lotto> createLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         while (quantity > 0) {
@@ -32,6 +38,11 @@ public class LottoMachine {
         return lottos;
     }
 
+    /**
+     * 자동 로또 번호 생성
+     *
+     * @return
+     */
     private List<Integer> createLottoNumber() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
@@ -40,6 +51,11 @@ public class LottoMachine {
         return lottoNumber;
     }
 
+    /**
+     * 로또 번호 오름 차순 정렬
+     *
+     * @param lottoNumber
+     */
     private void lottoSort(List<Integer> lottoNumber) {
         Collections.sort(lottoNumber);
     }

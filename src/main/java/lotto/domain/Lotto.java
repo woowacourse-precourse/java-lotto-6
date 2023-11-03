@@ -22,12 +22,22 @@ public class Lotto {
         NumberRangeCheck(numbers);
     }
 
+    /**
+     * 로또 번호 갯수 확인
+     *
+     * @param numbers
+     */
     private void NumberSizeCheck(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw LottoException.of(ERROR_LOTTO_NUMBER_SIZE);
         }
     }
 
+    /**
+     * 로또 번호 중복 확인
+     *
+     * @param numbers
+     */
     private void DuplicateNumberCheck(List<Integer> numbers) {
         long count = numbers
                 .stream()
@@ -39,6 +49,11 @@ public class Lotto {
         }
     }
 
+    /**
+     * 로또 번호 범위 확인
+     *
+     * @param numbers
+     */
     private void NumberRangeCheck(List<Integer> numbers) {
         boolean overRangeResult = numbers.stream().anyMatch(num -> num <= 0 || num > 45);
         if (overRangeResult) {
@@ -46,12 +61,18 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
+    /**
+     * 로또 번호에 입력 값 존재 여부 확인
+     *
+     * @param number
+     * @return
+     */
     public boolean isContainsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

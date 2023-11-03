@@ -14,7 +14,7 @@ public class InputViewTest {
     void isAmountDivisible(String strings) {
         InputView inputView = new InputView();
 
-        Assertions.assertThatCode(() -> inputView.askPrice(strings))
+        Assertions.assertThatCode(() -> inputView.validateInteger(strings))
                 .doesNotThrowAnyException();
     }
 }

@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class WinningNumbersGeneratorTest {
-    private final int LOTTO_NUM_COUNT = 6;
 
     @DisplayName("당첨 번호 \',\'으로 나누기")
     @Test
@@ -39,7 +38,7 @@ class WinningNumbersGeneratorTest {
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateInputDividedByDelimiter())
+        assertThatThrownBy(winningNumbersGenerator::validateInputDividedByDelimiter)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 6개의 번호가 필요합니다.");
     }
@@ -55,7 +54,7 @@ class WinningNumbersGeneratorTest {
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateInputDividedByDelimiter())
+        assertThatThrownBy(winningNumbersGenerator::validateInputDividedByDelimiter)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 6개의 번호가 필요합니다.");
     }
@@ -71,7 +70,7 @@ class WinningNumbersGeneratorTest {
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateInputDividedByDelimiter())
+        assertThatThrownBy(winningNumbersGenerator::validateInputDividedByDelimiter)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 번호가 있습니다.");
     }
@@ -87,7 +86,7 @@ class WinningNumbersGeneratorTest {
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput())
+        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 숫자여야 합니다.");
     }
@@ -101,8 +100,9 @@ class WinningNumbersGeneratorTest {
         //when
         String winningNumbersInput = "46";
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
+
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput())
+        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
     }
@@ -116,8 +116,9 @@ class WinningNumbersGeneratorTest {
         //when
         String winningNumbersInput = "0";
         winningNumbersGenerator.dividedInputByDelimiter(winningNumbersInput);
+
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput())
+        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
     }
@@ -137,5 +138,75 @@ class WinningNumbersGeneratorTest {
         List<Integer> winningNumbers = winningNumbersGenerator.getWinningNumbers();
         assertThat(winningNumbers.size()).isEqualTo(6);
         assertThat(winningNumbers).containsAnyElementsOf(expectedWinningNumbers);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닐 경우 예외 처리")
+    @Test
+    void bonusNumberNotDigit() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String bonusNumberInput = "1a";
+
+        //then
+        assertThatThrownBy(() -> winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 범위를 초과할 경우 예외 처리")
+    @Test
+    void bonusNumberOverRange() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String bonusNumberInput = "46";
+        winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput);
+        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
+
+        //then
+        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 범위 미달일 경우 예외 처리")
+    @Test
+    void bonusNumberLessRange() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String bonusNumberInput = "0";
+        winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput);
+        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
+
+        //then
+        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호에 존재할 경우 예외 처리")
+    @Test
+    void winningNumbersContainBonusNumber() {
+        //given
+        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+
+        //when
+        String winningNumbersInput = "1,2,6,7,43,21";
+        winningNumbersGenerator.generateWinningNumbers(winningNumbersInput);
+
+        String bonusNumberInput = "43";
+
+        winningNumbersGenerator.validateBonusNumberInput(bonusNumberInput);
+        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
+
+        //then
+        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.");
     }
 }

@@ -41,8 +41,8 @@
         - [x]  보너스 번호의 중복 검사
 - [ ]  스코어 보드
     - [ ]  등수에 따른 금액 매핑
-- [ ]  랜덤 번호 생성자
-    - [ ]  1~45 사이 랜덤 번호 6개 생성 (`Randoms.pickUniqueNumbersInRange` 사용)
+- [x]  랜덤 번호 생성자
+    - [x]  1~45 사이 랜덤 번호 6개 생성 (`Randoms.pickUniqueNumbersInRange` 사용)
 - [ ]  판단자
     - [ ]  번호 일치에 따른 등수 구분
 

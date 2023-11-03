@@ -12,6 +12,10 @@ public class Input {
         return read();
     }
 
+    public String readBonusNumber() {
+        return read();
+    }
+
     private String read() {
         return Console.readLine();
     }

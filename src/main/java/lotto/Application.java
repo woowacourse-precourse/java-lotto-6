@@ -124,7 +124,7 @@ public class Application {
             sum += lottoResult.get(i) * prizeMoney.get(i);
         }
 
-        rateInvestment = (sum / 1000.0) * 100;
+        rateInvestment = ((double) sum / (user.lottoCount * 1000)) * 100;
 
         // 9. 당첨 결과 출력
         System.out.println("당첨 통계");

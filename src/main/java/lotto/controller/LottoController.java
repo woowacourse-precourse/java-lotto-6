@@ -12,7 +12,7 @@ public class LottoController {
         Player player = getPlayer();
         showPlayerLotto(player);
         Prize prize = getPrize();
-        System.out.print(prize);
+        InputView.getLottoBonus();
     }
 
     private Player getPlayer() {

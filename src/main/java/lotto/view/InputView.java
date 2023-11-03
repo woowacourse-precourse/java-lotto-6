@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 
 import static lotto.constants.Error.NON_DELIMITER;
 import static lotto.constants.Error.NUMERIC_INVALID;
-import static lotto.constants.Phrase.INPUT_LOTTO_MONEY;
-import static lotto.constants.Phrase.INPUT_LOTTO_PRIZE;
+import static lotto.constants.Phrase.*;
 
 public class InputView {
     public static int getLottoMoney() {
@@ -20,6 +19,11 @@ public class InputView {
     public static List<Integer> getLottoPrize() {
         System.out.println(INPUT_LOTTO_PRIZE.getPhrase());
         return parseNumbersInteger();
+    }
+
+    public static int getLottoBonus() {
+        System.out.println(INPUT_LOTTO_BONUS.getPhrase());
+        return parseNumberInteger();
     }
 
     private static int parseNumberInteger() {

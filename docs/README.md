@@ -35,7 +35,7 @@
     - 문자열 리스트를 인수로 받아 정수인지 검사한다.
   - [ ] `Lotto::isLottoNumbers` 메서드
     - 정수 리스트를 인수로 받아 1~45 값인지 검사한다.
-    - [ ] `Lotto::isLottoNumber` 메서드
+    - [x] `Lotto::isLottoNumber` 메서드
       - 정수를 인수로 받아 1~45 값인지 검사한다.
       - [x] `LottoUtil::isInRange` 메서드
         - 정수, 최소, 최대를 인수로 받아 입력된 정수가 범위에 있는지 검사한다.

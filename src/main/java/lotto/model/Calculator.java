@@ -37,7 +37,7 @@ public class Calculator {
             sumOfPrize += result.getOrDefault(rank, 0) * rank.getPrize();
             purchaseAmount += result.getOrDefault(rank, 0);
         }
-        return (float) sumOfPrize / purchaseAmount / LOTTO_PRICE / 100;
+        return (float) sumOfPrize / purchaseAmount / LOTTO_PRICE * 100;
     }
 
 }

@@ -42,8 +42,7 @@ public class CalculatorTest {
     @Test
     void calculateRateOfReturn() {
         Map<Rank, Integer> rankResult = calculator.getCalculateResult();
-
-        assertEquals(100000, calculator.calculateRateOfReturn(rankResult));
+        assertEquals(100000000, calculator.calculateRateOfReturn(rankResult));
     }
 
 }

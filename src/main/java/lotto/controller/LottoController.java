@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Money;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -15,5 +16,7 @@ public class LottoController {
 
     public void run() {
         outputView.askInvestMoney();
+        String moneyInput = inputView.readLine();
+        Money investMoney = Money.from(moneyInput);
     }
 }

@@ -5,6 +5,7 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utility.Utility;
+import lotto.model.Result;
 
 public class Model {
     public static final int LOTTO_PRICE = 1000;
@@ -24,10 +25,16 @@ public class Model {
         return lottos;
     }
 
-    public void compareNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public int compareNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         int match = 0;
 
+        for(int number : lottoNumbers) {
+            if(winningNumbers.contains(number)) {
+                match++;
+            }
+        }
 
-    }
+        return match;
+   }
 }

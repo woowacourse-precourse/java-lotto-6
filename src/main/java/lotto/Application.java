@@ -8,12 +8,18 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.util.Validation;
+import lotto.view.InputView;
 
 public class Application {
+    private final InputView inputView = new InputView();
+    private final Validation validation = new Validation();
+
     public static void main(String[] args) {
         // 구입 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
         String inputCost = Console.readLine();
+        // 유효성 검사
         int buyCost = Integer.parseInt(inputCost);
         int count = buyCost / 1000;
 
@@ -38,9 +44,11 @@ public class Application {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinningNumber = Console.readLine();
+        // 1차 유효성 검사 진행 후
         List<Integer> winningNum = new ArrayList<>();
         for (String token : inputWinningNumber.split(",")) {
             int oneNum = Integer.parseInt(token);
+            // 2차 유효성 검사 진행 후
             winningNum.add(oneNum);
         }
 
@@ -48,7 +56,9 @@ public class Application {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNum = Console.readLine();
+        // 유효성 검사 필요
         int bonusNum = Integer.parseInt(inputBonusNum);
+        // 유효성 검사 필요
 
         // 각 로또마다 당첨번호와 일치하는 숫자 개수, 보너스 숫자와의 일치 여부 구하기
         List<Integer> matchedNumber = new ArrayList<>();

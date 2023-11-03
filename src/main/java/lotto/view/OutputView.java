@@ -12,7 +12,7 @@ public class OutputView {
     System.out.println(INPUT_WINNINGNUMBER_MESSAGE);
   }
 
-  public static void printInputBallsNumberMessage() {
+  public static void printInputBonusNumberMessage() {
     System.out.println(INPUT_BOUNSNUMBER_MESSAGE);
   }
 }

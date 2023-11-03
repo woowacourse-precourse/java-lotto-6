@@ -27,4 +27,17 @@ public final class InputVerifier {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_DIVISIBLE_NUMBER.getMessage());
         }
     }
+
+    public static void validateNumbersCount(String[] input, int count) {
+        if (input.length != count) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_MATCHED_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    public static void validateAllNumbersInRange(String[] input, int minInclusive, int maxInclusive) {
+        for (String number : input) {
+            validateIsNumber(number);
+            validateIsNumberInRange(number, minInclusive, maxInclusive);
+        }
+    }
 }

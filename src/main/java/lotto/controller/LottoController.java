@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.LottoTicketMachine;
 import lotto.view.InputView;
@@ -16,11 +18,14 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printPurchaseAmountMessage();
+        outputView.printRequestPurchaseAmountMessage();
         int purchasePrice = getPurchasePrice();
 
         LottoTicket lottoTicket = getLottoTicket(purchasePrice);
         printLottoNumbers(lottoTicket);
+
+        outputView.printRequestWinningNumberMessage();
+        Lotto winningLotto = getWinningLotto();
     }
 
     public int getPurchasePrice() {
@@ -41,5 +46,17 @@ public class LottoController {
     public void printLottoNumbers(LottoTicket lottoTicket) {
         outputView.printLottoCount(lottoTicket.getLottoCount());
         outputView.printLottoTicketNumbers(lottoTicket.getLottoNumbers());
+    }
+
+    public Lotto getWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputView.getNumbersSplitByComma(Lotto.LOTTO_NUMBER_MIN,
+                        Lotto.LOTTO_NUMBER_MAX, Lotto.LOTTO_NUMBERS_SIZE);
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

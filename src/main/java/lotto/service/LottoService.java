@@ -13,6 +13,7 @@ public class LottoService {
 
     private final List<Lotto> userLottos = new ArrayList<>();
     private List<Integer> winningNumbers = new ArrayList<>();
+    private int bonusNumber = 0;
 
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = 0; i < purchaseQuantity; i++) {
@@ -29,5 +30,9 @@ public class LottoService {
                 .mapToInt(Integer::valueOf)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public void initBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

@@ -1,50 +1,54 @@
 # MVC 패턴으로 제작한 로또 게임
 
 ## Controller
-사용자 입력 > Service로 전달
+    [ ] 구매 금액 사용자 입력
 
-전달 받은 정답 View로 전달
+    [ ] 랜덤 생성 Lotto 전달
+
+    [ ] 당첨 번호 사용자 입력
+
+    [ ] 보너스 번호 사용자 입력
+    
+    [ ] 당첨 통계 View로 전달
 
 
 ## Service
-Controller에서 전달받은 데이터를 split 후 Repository에 전달
+    [ ] 금액을 전달받아 랜덤값 Lotto 생성
 
-ㄴ int 값이 아니면 error
+        ㄴ [ ] int 값이 아니면 error
+    
+    [ ] 정답 개수 갱신
+    
+    [ ] 수익률 게산
 
-정답 개수 체크 및 갱신
+### 정답 번호
+    [ ] 생성자로 정답 지정
 
-ㄴ 전체 정답 배열 Controller 전달
-
-수익률 게산
-
-### 검증
-범위 내의 값인지 확인
-
-중복 값인지 확인
+    [ ] 정답과 같은 개수를 반환 
 
 ## View
-구입 금액 입력 안내 출력
-
-구매한 내역 출력
-
-당첨 번호 입력 안내 출력
-
-보너스 번호 입력 안내 출력
-
-전달 받은 내역으로 > 당첨 통계 출력
+    [ ] 구입 금액 입력 안내 출력
+    
+    [ ] 구매한 내역 출력
+    
+    [ ] 당첨 번호 입력 안내 출력
+    
+    [ ] 보너스 번호 입력 안내 출력
+    
+    [ ] 당첨 통계 출력
 
 
 ## Repository
-Lotto, 일치개수 Map store
+    [ ] Lotto, Match Map store
 
-Service에서 가공된 데이터 전달받은 걸로 store save
-
-findAll
-
-update
+    [ ] Service에서 가공된 데이터 전달받은 걸로 store save
+    
+    [ ] 전체 조회 findAll
+    
+    [ ] 갱신 update
 
 
 ## Domain
-Lotto
+    [ ] Lotto
 
-일치개수(Enum)
+    [ ] Match (일치 개수 Enum)

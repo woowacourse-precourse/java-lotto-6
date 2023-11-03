@@ -1,17 +1,26 @@
 package lotto.controller;
 
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
     public static void run() {
-
+        getPurchaseAmountAndValidate();
     }
 
     private static int getPurchaseAmountAndValidate() {
-        OutputView.printInputPurchaseAmount();
-        String PurchaseAmount = InputView.receiveUserInput();
+        String purchaseAmount = null;
 
-        return (Integer.parseInt(PurchaseAmount));
+        try {
+            OutputView.printInputPurchaseAmount();
+            purchaseAmount = InputView.receiveUserInput();
+            Validator.validatePurchaseAmount(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            getPurchaseAmountAndValidate();
+        }
+
+        return (Integer.parseInt(purchaseAmount));
     }
 }
+

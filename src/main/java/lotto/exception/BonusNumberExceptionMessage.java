@@ -13,4 +13,10 @@ public class BonusNumberExceptionMessage extends IllegalArgumentException{
             throw new BonusNumberExceptionMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
     }
+
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new BonusNumberExceptionMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
 }

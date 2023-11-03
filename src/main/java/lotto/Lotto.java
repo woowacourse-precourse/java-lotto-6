@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.constants.LottoConstants.LOTTO_END;
+import static lotto.constants.LottoConstants.LOTTO_SIZE;
+import static lotto.constants.LottoConstants.LOTTO_START;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -8,9 +12,6 @@ import lotto.exception.ExceptionManager;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_START = 1;
-    private static final int LOTTO_END = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -35,10 +36,9 @@ public class Lotto {
     }
 
     private void checkLottoNumRange(List<Integer> numbers) {
-        numbers.stream()
-                .filter(number -> number < LOTTO_START || number > LOTTO_END)
-                .findAny()
-                .ifPresent(number -> ExceptionManager.throwIllegalArgumentExceptionWithMsg("로또의 숫자는 " + LOTTO_START + "~" + LOTTO_END + "까지 가능합니다."));
+        numbers.stream().filter(number -> number < LOTTO_START || number > LOTTO_END).findAny()
+                .ifPresent(number -> ExceptionManager.throwIllegalArgumentExceptionWithMsg(
+                        "로또의 숫자는 " + LOTTO_START + "~" + LOTTO_END + "까지 가능합니다."));
     }
 
     private void checkDuplicate(List<Integer> numbers) {

@@ -60,7 +60,7 @@ public class WinningNumbersGenerator {
 
     public void generateBonusNumber(final String bonusNumberInput) {
         this.validateBonusNumberInput(bonusNumberInput);
-        this.saveWinningNumbers();
+        this.saveBonusNumber(bonusNumberInput);
         this.validateBonusNumber();
     }
 
@@ -85,5 +85,9 @@ public class WinningNumbersGenerator {
 
     public List<Integer> getWinningNumbers() {
         return this.winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
     }
 }

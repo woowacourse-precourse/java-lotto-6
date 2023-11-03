@@ -1,5 +1,9 @@
 package lotto.exceptionhandler;
 
+import java.util.function.Supplier;
+
 public interface ExceptionHandler {
-    void handlingException(Runnable runnable);
+    void run(Runnable runnable);
+
+    <T> T getResult(Supplier<T> supplier);
 }

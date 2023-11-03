@@ -4,22 +4,19 @@ import lotto.validation.LottoErrorMessage;
 import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final Integer LENGTH=6;
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicatedValidate(numbers);
-        Collections.sort(numbers);
+
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LENGTH) {
+        if (numbers.size() != 6) {
             OutputView.errorMessage(LottoErrorMessage.INCORRECT_LOTTO.getMessage());
             throw new IllegalArgumentException();
         }
@@ -28,6 +25,10 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void duplicatedValidate(List<Integer> numbers) {
         LottoValidator.DuplicatedNum(numbers);
+    }
+
+    public Boolean hasNumber(Integer num) {
+        return numbers.contains(num);
     }
 
     @Override

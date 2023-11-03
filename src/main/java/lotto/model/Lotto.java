@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
 
 }

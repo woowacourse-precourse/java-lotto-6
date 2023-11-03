@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RandomNumberGeneratorTest {
+class RandomNumberGeneratorTest {
     RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     List<Integer> randomNumbers;
 
@@ -23,5 +23,10 @@ public class RandomNumberGeneratorTest {
     @Test
     void 생성된_로또번호_범위_테스트() {
         assertThat(randomNumbers).allMatch(value -> value >= 1 && value <= 45);
+    }
+
+    @Test
+    void 생성된_로또번호_중복_확인_테스트() {
+        assertThat(randomNumbers).doesNotHaveDuplicates();
     }
 }

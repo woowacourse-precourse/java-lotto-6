@@ -11,8 +11,7 @@ public class Customer {
     private List<Lotto> purchasedLottos;
     private int lottoQuantity;
 
-    public List<Lotto> buyLotto(LottoStore lottoStore) {
-        String lottoPurchaseAmount = InputView.inputLottoPurchaseAmount();
+    public List<Lotto> buyLotto(LottoStore lottoStore, String lottoPurchaseAmount) {
         this.purchasedLottos = lottoStore.generateLotto(lottoPurchaseAmount);
         this.lottoQuantity = Integer.parseInt(lottoPurchaseAmount) / 1000;
         return this.purchasedLottos;

@@ -30,5 +30,8 @@ public class LottoPurchase {
         if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 양수인 값만 입력해주세요.");
         }
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위의 수를 입력해주세요.");
+        }
     }
 }

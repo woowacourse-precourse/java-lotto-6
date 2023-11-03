@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class LottoRepository {
 
-    private static Long lottoId;
+    private static Long lottoId = 0L;
     private static final Map<Long, Lotto> lottoDatabase = new HashMap<>();
 
     public void save(Lotto lotto) {

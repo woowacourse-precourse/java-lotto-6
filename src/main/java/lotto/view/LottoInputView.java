@@ -21,6 +21,7 @@ public class LottoInputView {
     }
 
     public List<String> getWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String userInput = Console.readLine();
         return Arrays.stream(userInput.split(","))
@@ -28,6 +29,7 @@ public class LottoInputView {
     }
 
     public Integer getBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String userInput = Console.readLine();
         return Integer.parseInt(userInput);

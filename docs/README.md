@@ -10,7 +10,7 @@
     - [X] **[예외]** 빈 문자열이면 `illegalArgumentException`예외 발생
     - [X] **[예외]** 구입 금액은 1000원 단위가 아니라면 `illegalArgumentException`예외 발생
     - [X] **[예외]** 숫자가 아니라면 `illegalArgumentException`예외 발생
-    - [ ] **[예외]** 금액이 0원 이하면 `illegalArgumentException`예외 발생
+    - [X] **[예외]** 금액이 0원 이하면 `illegalArgumentException`예외 발생
     - [ ] **[출력]** 예외가 발생하면 예외 문구 출력
         - [ ] **[조건]** 문구 앞에는 `ERROR`라는 문구를 붙여야함
 

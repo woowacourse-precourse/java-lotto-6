@@ -6,12 +6,14 @@ public class PurchaseAmountValidator {
     private static final String EMPTY_NOT_ALLOWED = "빈 문자열을 입력할 수 없습니다.";
     private static final String DIVISIBLE_BY_THOUSAND_ALLOWED = "1000원 단위만 입력할 수 있습니다.";
     private static final String ONLY_NUMBER_ALLOWED = "숫자만 입력할 수 있습니다.";
+    private static final String ZERO_OR_LESS_NOT_ALLOWED = "0 이하의 수는 입력할 수 없습니다.";
 
     private static final Integer LOTTO_PRICE = 1000;
 
     public void validatePurchaseAmount(String purchaseAmount) {
         validateEmpty(purchaseAmount);
         validateBlank(purchaseAmount);
+        validateOverZero(purchaseAmount);
         validateDivisibleByThousand(purchaseAmount);
     }
 
@@ -31,6 +33,14 @@ public class PurchaseAmountValidator {
         Integer validatedIntegerPurchaseAmount = validateInteger(purchaseAmount);
         if ((validatedIntegerPurchaseAmount % LOTTO_PRICE) != 0) {
             throw new IllegalArgumentException(DIVISIBLE_BY_THOUSAND_ALLOWED);
+        }
+    }
+
+
+    private void validateOverZero(String purchaseAmount) {
+        Integer validatedIntegerPurchaseAmount = validateInteger(purchaseAmount);
+        if (validatedIntegerPurchaseAmount <= 0) {
+            throw new IllegalArgumentException(ZERO_OR_LESS_NOT_ALLOWED);
         }
     }
 

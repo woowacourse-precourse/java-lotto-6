@@ -3,6 +3,7 @@ package lotto;
 import static lotto.message.ErrorMessage.LOTTO_IS_NOT_6DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -32,5 +33,12 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 50, 40, 60, 97, 100)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
+    }
+
+    @DisplayName("로또 번호를 정렬하여 보여준다.")
+    @Test
+    void createLottoBySortedNumbers() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString())
+                .isEqualTo(new Lotto(List.of(6, 5, 4, 3, 2, 1)).toString());
     }
 }

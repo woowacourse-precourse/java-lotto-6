@@ -26,6 +26,8 @@ public class LottoController {
 
         output.showWinningNumbersInputMessage();
         String winningNumbers = input.readWinningNumbers();
+
+        output.showBonusNumberInputMessage();
     }
 
     private LottoTickets makeLottoTickets(int money) {

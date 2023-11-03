@@ -10,11 +10,12 @@ public class Game {
     private Lotto winningLotto;
 
     public void joinPlayer() {
-
+        player = new Player(inputMoney());
+        player.issueLotto();
+        player.sortLottos();
     }
 
     public void drawLotto() {
-
     }
 
     private int inputMoney() {

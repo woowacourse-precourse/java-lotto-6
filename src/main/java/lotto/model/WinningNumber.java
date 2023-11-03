@@ -7,27 +7,27 @@ import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 import java.util.List;
 
 public class WinningNumber extends Lotto {
-    private final int bonus;
+    private final int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonus) {
+    public WinningNumber(List<Integer> numbers, int bonusNumber) {
         super(numbers);
-        validateBonusNumber(numbers, bonus);
-        this.bonus = bonus;
+        validateBonusNumber(numbers, bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(List<Integer> numbers, int bonus) {
-        bonusNumberWinningNumberDuplicateValidate(numbers, bonus);
-        bonusNumberUnderOverValidate(bonus);
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        bonusNumberWinningNumberDuplicateValidate(numbers, bonusNumber);
+        bonusNumberUnderOverValidate(bonusNumber);
     }
 
-    private void bonusNumberUnderOverValidate(int bonus) {
-        if (bonus < 1 || bonus > 45) {
+    private void bonusNumberUnderOverValidate(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }
 
-    private void bonusNumberWinningNumberDuplicateValidate(List<Integer> numbers, int bonus) {
-        if (numbers.stream().anyMatch(number -> number == bonus)) {
+    private void bonusNumberWinningNumberDuplicateValidate(List<Integer> numbers, int bonusNumber) {
+        if (numbers.stream().anyMatch(number -> number == bonusNumber)) {
             exceptionCodeThrow(LOTTO_NUMBER_BONUS_DUPLICATE);
         }
     }

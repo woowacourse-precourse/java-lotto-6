@@ -38,4 +38,12 @@ public class CalculatorTest {
         assertEquals(1, rankResult.getOrDefault(Rank.NO_RANK, 0));
     }
 
+    @DisplayName("수익률을 계산하는 메서드 테스트")
+    @Test
+    void calculateRateOfReturn() {
+        Map<Rank, Integer> rankResult = calculator.getCalculateResult();
+
+        assertEquals(100000, calculator.calculateRateOfReturn(rankResult));
+    }
+
 }

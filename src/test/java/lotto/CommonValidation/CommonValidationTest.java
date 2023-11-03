@@ -2,12 +2,11 @@ package lotto.CommonValidation;
 
 import static lotto.CommonValidation.CommonValidation.isBlank;
 import static lotto.CommonValidation.CommonValidation.isInteger;
-import static lotto.CommonValidation.CommonValidation.isValidNumberRange;
+import static lotto.CommonValidation.CommonValidation.isValueBetween1And45;
 import static lotto.Message.ExceptionMessage.CommonValidationErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.Exception.CommonValidationException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,11 +20,11 @@ class CommonValidationTest {
         Integer value2 = 46;
 
         //when, then
-        assertThatThrownBy(() -> isValidNumberRange(value1))
+        assertThatThrownBy(() -> isValueBetween1And45(value1))
                 .isInstanceOf(CommonValidationException.class)
                 .hasMessageContaining(RANGE_ERROR_MESSAGE.getMessage(value1));
 
-        assertThatThrownBy(() -> isValidNumberRange(value2))
+        assertThatThrownBy(() -> isValueBetween1And45(value2))
                 .isInstanceOf(CommonValidationException.class)
                 .hasMessageContaining(RANGE_ERROR_MESSAGE.getMessage(value2));
     }
@@ -39,8 +38,8 @@ class CommonValidationTest {
         Integer value2 = 45;
 
         //when
-        isValidNumberRange(value1);
-        isValidNumberRange(value2);
+        isValueBetween1And45(value1);
+        isValueBetween1And45(value2);
 
         //then
         assertThat(true).isTrue();

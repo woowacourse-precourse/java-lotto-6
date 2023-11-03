@@ -20,7 +20,7 @@ public class LottoController {
     private void inputWinNumbers(LottoGame lottoGame) {
         WinNumber winNums = new WinNumber(InputController.inputWinNums());
         BonusNumber bonusNum = new BonusNumber(winNums, InputController.inputBonusNum(winNums));
-        lottoGame.addValueLottoMap(winNums.getLottoNums(), bonusNum.getBonusNumber());
+        lottoGame.addValueLottoMap(winNums, bonusNum);
     }
 
     private void printResults(int money, LottoGame lottoGame) {

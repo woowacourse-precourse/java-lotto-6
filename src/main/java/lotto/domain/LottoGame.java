@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.LottoResult.findByCountAndValidBonus;
+import static lotto.domain.LottoResult.values;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -26,21 +29,27 @@ public class LottoGame {
     }
 
     private void buildLottoMap() {
-        for (LottoResult lottoResult : LottoResult.values()) {
+        for (LottoResult lottoResult : values()) {
             lottoMap.put(lottoResult, 0);
         }
     }
 
-    public void addValueLottoMap(List<Integer> winNums, int bonusNum) {
+    public void addValueLottoMap(WinNumber winNumber, BonusNumber bonusNumber) {
+        List<Integer> winNums = winNumber.getLottoNums();
+        int bonusNum = bonusNumber.getBonusNumber();
+
         for (Lotto lotto : lottos) {
             List<Integer> lottoNums = lotto.getNumbers();
             int count = calculateCounts(lottoNums, winNums);
             boolean bonusNumContained = isBonusNumContained(lottoNums, bonusNum);
+            validLottoResultAndPutValue(count, bonusNumContained);
+        }
+    }
 
-            LottoResult lottoResult = LottoResult.findByCountAndValidBonus(count, bonusNumContained);
-            if (lottoResult != null) {
-                lottoMap.put(lottoResult, lottoMap.get(lottoResult) + 1);
-            }
+    private void validLottoResultAndPutValue(int count, boolean bonusNumContained) {
+        LottoResult lottoResult = findByCountAndValidBonus(count, bonusNumContained);
+        if (lottoResult != null) {
+            lottoMap.put(lottoResult, lottoMap.get(lottoResult) + 1);
         }
     }
 

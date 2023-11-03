@@ -9,7 +9,7 @@ public class LottoService {
     private final LottoMachine lottoMachine;
 
     public LottoService(final LottoMachine lottoMachine) {
-        this.lottoMachine = new LottoMachine();
+        this.lottoMachine = lottoMachine;
     }
 
     public List<Lotto> purchase(int money) {

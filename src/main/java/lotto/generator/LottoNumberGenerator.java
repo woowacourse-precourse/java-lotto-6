@@ -1,5 +1,6 @@
 package lotto.generator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +12,8 @@ public class LottoNumberGenerator implements Generator<List<Integer>> {
 	@Override
 	public List<Integer> generate() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.LOTTO_SIZE);
-		Collections.sort(numbers);
+		List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
 		return numbers;
 	}
 }

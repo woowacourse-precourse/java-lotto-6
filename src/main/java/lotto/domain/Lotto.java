@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,12 +20,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public void sort() {
-        Collections.sort(numbers);
-    }
-
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return new ArrayList<>(numbers);
     }
 
     public boolean contains(int number) {

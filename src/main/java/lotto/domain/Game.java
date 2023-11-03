@@ -12,7 +12,6 @@ public class Game {
     public void joinPlayer() {
         player = new Player(inputMoney());
         player.issueLotto();
-        player.sortLottos();
         System.out.println(player.issuedLottos());
     }
 

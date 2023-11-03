@@ -29,12 +29,6 @@ public class Player {
         }
     }
 
-    public void sortLottos() {
-        for (Lotto lotto : lottos) {
-            lotto.sort();
-        }
-    }
-
     public void findResults(WinningLotto winningLotto) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
@@ -112,19 +106,20 @@ public class Player {
     public String issuedLottos() {
         StringBuilder result = new StringBuilder(String.valueOf(lottos.size())).append("개를 구매했습니다.\n");
         for (Lotto lotto : lottos) {
-            result.append(lotto.toString()).append('\n');
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            Collections.sort(lottoNumbers);
+            result.append(lottoNumbers).append('\n');
         }
         return result.toString();
     }
 
     public String lottoResults() {
-        double prizeRate = (int) (prize / money * 10. + 0.5) / 10.;
-        System.out.println(prize);
+        double prizeRate = (int) ((double) prize / money * 1000. + 0.5) / 10.;
 
         StringBuilder result = new StringBuilder("당첨 통계\n")
                 .append("---\n")
                 .append("3개 일치 (5,000원) - ").append(results.get(5)).append("개\n")
-                .append("4개 일치 (50,000원 - ").append(results.get(4)).append("개\n")
+                .append("4개 일치 (50,000원) - ").append(results.get(4)).append("개\n")
                 .append("5개 일치 (1,500,000원) - ").append(results.get(3)).append("개\n")
                 .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(results.get(2)).append("개\n")
                 .append("6개 일치 (2,000,000,000원) - ").append(results.get(1)).append("개\n")

@@ -2,16 +2,13 @@ package lotto.model;
 
 import lotto.util.Constants;
 import lotto.util.ErrorMessage;
+
 import java.util.regex.Pattern;
 
-public class LottoGameData {
-    private int chance;
+public class MoneyConverter {
+    private final int chance;
 
-    public int getChance() {
-        return chance;
-    }
-
-    public void setChance(String input) {
+    public MoneyConverter(String input) {
         patternCheck(input, Constants.MONEY_PATTERN, ErrorMessage.MONEY_ERROR);
         this.chance=convertMoneyToChances(input);
     }
@@ -24,5 +21,9 @@ public class LottoGameData {
 
     public int convertMoneyToChances(String input){
         return Integer.parseInt(input) / Constants.MONEY_UNIT;
+    }
+
+    public int getChance() {
+        return chance;
     }
 }

@@ -6,37 +6,37 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGameMoneyDataTest {
-    LottoGameData lottoGameData = new LottoGameData();
+    MoneyConverter moneyConverter;
     @Test
     void invalidPatternCheck1() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setChance("1001");
+            moneyConverter = new MoneyConverter("1001");
         });
     }
     @Test
     void invalidPatternCheck2() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setChance("100");
+            moneyConverter = new MoneyConverter("100");
         });
     }
     @Test
     void invalidPatternCheck3() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setChance("0000");
+            moneyConverter = new MoneyConverter("0000");
         });
     }
     @Test
     void invalidPatternCheck4() {
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoGameData.setChance("a00b");
+            moneyConverter = new MoneyConverter("a00b");
         });
     }
     @Test
     void validPatternCheck() {
-        LottoGameData lottoGameData = new LottoGameData();
-        lottoGameData.setChance("1000");
-        assertEquals(1000, lottoGameData.getChance());
+        moneyConverter = new MoneyConverter("1000");
+        assertEquals(1, moneyConverter.getChance());
     }
+
     @Test
     public void setMoneyLoopTest() {
         Status status = Status.FAIL;
@@ -44,11 +44,9 @@ class LottoGameMoneyDataTest {
 
         while (status == Status.FAIL) {
             try {
-                lottoGameData.setChance("test");
+                moneyConverter = new MoneyConverter("fail");
                 status = Status.SUCCESS;
-            }catch (IllegalArgumentException ignored){
-
-            }
+            }catch (IllegalArgumentException ignored){ }
             finally {
                 attempt++;
             }

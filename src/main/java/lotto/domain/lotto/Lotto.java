@@ -45,10 +45,6 @@ public class Lotto {
         return sortedLotto;
     }
 
-    public String lottoNumbersAsString() {
-        return SupportedLotto.getLottoNumbersAsString(this);
-    }
-
     public int lottoMatchValue(Lotto winningLotto) {
         final List<Integer> winningNumbers = winningLotto.numbers;
 

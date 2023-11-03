@@ -10,12 +10,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<String> allLottoNumbersAsString() {
-        return lottos.stream()
-                .map(Lotto::lottoNumbersAsString)
-                .toList();
-    }
-
     public int size() {
         return lottos.size();
     }

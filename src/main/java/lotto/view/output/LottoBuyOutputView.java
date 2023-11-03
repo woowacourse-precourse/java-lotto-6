@@ -1,5 +1,6 @@
 package lotto.view.output;
 
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
 import java.util.List;
@@ -13,9 +14,15 @@ public class LottoBuyOutputView {
     }
 
     public void printAllLottoNumbers(Lottos lottos) {
-        List<String> allLottoNumbers = lottos.allLottoNumbersAsString();
+
+        List<String> allLottoNumbers = allLottoNumbersAsString(lottos.getLottos());
         allLottoNumbers.stream()
                 .forEach(this::printLottoNumbers);
+    }
+    private List<String> allLottoNumbersAsString(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(LottoNumberPresentation::getLottoNumbersAsString)
+                .toList();
     }
 
     private void printLottoNumbers(String lottoNumbers) {

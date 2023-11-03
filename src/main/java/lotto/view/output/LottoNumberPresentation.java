@@ -1,17 +1,19 @@
-package lotto.domain.lotto;
+package lotto.view.output;
+
+import lotto.domain.lotto.Lotto;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.*;
 
-public enum SupportedLotto {
+public enum LottoNumberPresentation {
     DELIMITER(", "),
     PREFIX("["),
     SUFFIX("]");
 
     private String joinConstants;
 
-    SupportedLotto(String joinConstants) {
+    LottoNumberPresentation(String joinConstants) {
         this.joinConstants = joinConstants;
     }
 

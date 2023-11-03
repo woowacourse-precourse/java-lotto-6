@@ -1,6 +1,10 @@
 package lotto.model;
 
-import static lotto.constant.UIConstant.*;
+import static lotto.constant.UIConstant.BLANK;
+import static lotto.constant.UIConstant.CLOSING_BRACKET;
+import static lotto.constant.UIConstant.NEW_LINE;
+import static lotto.constant.UIConstant.NUMBER_SEPARATOR;
+import static lotto.constant.UIConstant.OPENING_BRACKET;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +29,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        String result = this.numbers.stream().map(String::valueOf).collect(Collectors.joining("" + NUMBER_SEPARATOR + BLANK));
+        List<Integer> sortedNumbers = this.getSortedNumbers();
+        String result = sortedNumbers.stream().map(String::valueOf).collect(Collectors.joining("" + NUMBER_SEPARATOR + BLANK));
         return OPENING_BRACKET + result + CLOSING_BRACKET + NEW_LINE;
+    }
+
+    private List<Integer> getSortedNumbers() {
+        return numbers.stream().sorted().toList();
     }
 }

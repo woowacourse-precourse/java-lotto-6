@@ -21,7 +21,6 @@ public class Player {
     }
 
     public double calculateRateOfRevenue() {
-        double result = (double) totalWinningAccount / (double) paymentAccount * PERCENT;
-        return Math.round(result * 10) / 10.0;
+        return (double) totalWinningAccount / (double) paymentAccount * PERCENT;
     }
 }

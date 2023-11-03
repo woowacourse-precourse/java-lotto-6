@@ -5,12 +5,8 @@ import java.util.List;
 
 public class Player {
 
-    private final long price;
+    private long price;
     private final List<Lotto> purchasedLotto = new ArrayList<>();
-
-    public Player(long price) {
-        this.price = price;
-    }
 
     public void addLottoInPurchasedLotto(Lotto lotto) {
         this.purchasedLotto.add(lotto);
@@ -22,6 +18,10 @@ public class Player {
 
     public List<Lotto> getPurchasedLotto() {
         return purchasedLotto;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
 }

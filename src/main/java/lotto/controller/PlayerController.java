@@ -10,7 +10,11 @@ import lotto.service.PlayerService;
 
 public class PlayerController {
 
-    private final PlayerService playerService = new PlayerService();
+    private final PlayerService playerService;
+
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     public List<Lotto> purchaseLotto(String input) {
         validateIsNumeric(input);

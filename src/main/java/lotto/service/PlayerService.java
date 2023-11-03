@@ -2,18 +2,24 @@ package lotto.service;
 
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 
 public class PlayerService {
 
-    private final LottoService lottoService = new LottoService();
+    private final LottoService lottoService;
 
-    private Player player;
+    private final Player player;
+
+    public PlayerService(LottoService lottoService, Player player) {
+        this.lottoService = lottoService;
+        this.player = player;
+    }
 
     public List<Lotto> purchaseLotto(long buyingPrice) {
-        player = new Player(buyingPrice);
+        player.setPrice(buyingPrice);
         long quantity = calculateQuantity();
         for (long i = 0; i < quantity; i++) {
             player.addLottoInPurchasedLotto(lottoService.generateLotto());
@@ -36,6 +42,11 @@ public class PlayerService {
                 lottoResult[3]++;
                 continue;
             }
+
+            if (sameCount == 0) {
+                continue;
+            }
+
             lottoResult[7 - sameCount]++;
         }
 

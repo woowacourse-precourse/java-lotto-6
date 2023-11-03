@@ -27,6 +27,7 @@
 - [ ] 로또 번호는 랜덤으로 생성하며, `camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange()`를 활용한다.
 - [ ] 1회차당 6개의 번호를 생성하며, 중복은 없어야한다.
 - [ ] 각 번호는 1이상 45이하의 범위를 갖는다.
+- [ ] 로또 한 회차 내의 번호는 오름차순 정렬한다.
 
 4. 당첨 번호를 입력 받는다.
 

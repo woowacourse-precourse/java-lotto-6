@@ -20,6 +20,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateNumberInRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -33,6 +34,12 @@ public class Lotto {
         for (Integer n : numbers)
             if (!uniqueNumbers.add(n))
                 throw new IllegalArgumentException();
+    }
+
+    private void validateNumberInRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(n -> n < LOTTO_NUMBER_START | n > LOTTO_NUMBER_END))
+            throw new IllegalArgumentException();
     }
 
 

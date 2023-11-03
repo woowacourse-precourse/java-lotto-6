@@ -17,6 +17,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -31,6 +32,12 @@ public class Lotto {
         }
     }
 
+    private void validateRange(List<Integer> numbers) {
+        boolean isInvalidRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
+        if (isInvalidRange) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     public Integer count(Lotto winningLotto) {
         return (int) IntStream.range(0, 6)

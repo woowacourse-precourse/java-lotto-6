@@ -23,9 +23,23 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 숫자가 1 부터 45 사이의 수가 아니면 예외가 발생한다.")
+    @ParameterizedTest(name = "{displayName}, value={0}")
+    @MethodSource("outOfRangeParametersProvider")
+    void createLottoByOutOfRange(List<Integer> value) {
+        assertThatThrownBy(() -> new Lotto(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> outOfRangeParametersProvider() {
+        return Stream.of(
+                Arguments.of(List.of(0, 1, 2, 3, 4, 5)),
+                Arguments.of(List.of(41, 42, 43, 44, 45, 46))
+        );
     }
 
     @DisplayName("구매한 로또 번호와 당첨 로또 번호 중 일치하는 번호의 갯수 반환")

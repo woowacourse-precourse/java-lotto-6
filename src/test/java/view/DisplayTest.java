@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 
 public class DisplayTest {
 
-
     @DisplayName("구매금액이 1000원 미만일경우 예외처리를 발생한다.")
     @Test
     void validateMinimumPurchaseAmountTest() {
-        Display display = new Display(999);
 
-        assertThatThrownBy(() -> display.validateMinimumPurchaseAmount(display.getLottoPurchaseAmount()))
+        assertThatThrownBy(() -> new Display(999))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE);
     }

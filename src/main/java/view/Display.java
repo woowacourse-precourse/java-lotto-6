@@ -13,12 +13,13 @@ public class Display {
         setLottoPurchaseAmount();
     }
 
-    public int getLottoPurchaseAmount() {
-        return lottoPurchaseAmount;
+    public Display(int lottoPurchaseAmount) {
+        validateMinimumPurchaseAmount(lottoPurchaseAmount);
+        this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    public Display(int lottoPurchaseAmount) {
-        this.lottoPurchaseAmount = lottoPurchaseAmount;
+    public int getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
     }
 
     private void setLottoPurchaseAmount() {
@@ -28,7 +29,7 @@ public class Display {
         this.lottoPurchaseAmount = userPurchaseAmount;
     }
 
-    public void validateMinimumPurchaseAmount(int userPurchaseAmount) {
+    private void validateMinimumPurchaseAmount(int userPurchaseAmount) {
         if (userPurchaseAmount < 1000) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE);
         }

@@ -10,13 +10,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
     public static void printPurchasedLottoTickets(int amount, LottoTicket lottoTicket) {
-        System.out.printf("%d개를 구매했습니다.\n", amount / 1000);
-        lottoTicket.getLottoTickets().forEach(lotto -> System.out.println(formatLotto(lotto)));
+        int ticketCount = amount / 1000;
+        System.out.printf("%d개를 구매했습니다.\n", ticketCount);
+        printLottoNumbers(lottoTicket);
+    }
+
+    private static void printLottoNumbers(LottoTicket lottoTicket) {
+        lottoTicket.getLottoTickets().forEach(lotto -> System.out.println(formatLottoNumbers(lotto)));
         System.out.println();
     }
 
-    private static String formatLotto(Lotto lotto) {
+    private static String formatLottoNumbers(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         return numbers.stream()
                 .sorted()

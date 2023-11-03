@@ -37,9 +37,9 @@
 - [x] 로또 결과를 저장하기 위한 저장소 - LottoResultsRepository
 - [x] 로또 결과 저장소의 초기화를 위한 Map 제공 - LottoResult
 - [x] 로또 결과를 받아 추가 - LottoResultRepository
-- [ ] 로또 당첨 결과를 통해 당첨 내역 DTO 로 변환 - LottoResultRepository
+- [x] 로또 당첨 결과를 통해 당첨 내역 DTO 로 변환 - LottoResultRepository
 - [x] 로또 당첨 결과를 통해 총 상금 업데이트 - LottoPrizeMoney
-- [ ] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 계산하기 - LottoResultRepository
+- [x] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 업데이트하기 - LottoResultRepository
 
 - ### Service
 - [ ] Player 가 로또를 구매해 저장함 - LottoService

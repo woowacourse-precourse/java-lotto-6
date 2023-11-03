@@ -11,9 +11,12 @@ import java.util.stream.Collectors;
 
 public class LottoManager {
     final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.\n";
+    final String INPUT_BONUS_NUMBERS = "보너스 번호를 입력해 주세요.\n";
     final int REQUIRED_NUMBER_COUNT = 6;
+    final int REQUIRED_BONUS_NUMBER_COUNT = 1;
     LottoBuyer lottoBuyer;
     List<Integer> winningNumbers;
+    private int bonusNumber;
 
 
     public LottoManager(LottoBuyer buyer) {
@@ -24,6 +27,15 @@ public class LottoManager {
         lottoBuyer.inputPurchaseAmount();
         publishLotto();
         inputWinningNumbers();
+        inputBonusNumber();
+    }
+
+    public void inputBonusNumber() {
+        System.out.print(INPUT_BONUS_NUMBERS);
+        String inputNumber = Console.readLine();
+        List<String> numberToStream = Arrays.stream(inputNumber.split(",")).toList();
+
+        setBonusNumber(numberToStream);
     }
 
     public List<Integer> createLottoNumber() {
@@ -55,6 +67,36 @@ public class LottoManager {
         validateWinningNumbers(numbers);
 
         winningNumbers = numbers.stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    public void setBonusNumber(List<String> number) {
+        validateBonusNumber(number);
+
+        bonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(List<String> number) {
+        validateIsIntegerType(number);
+        validateIsCorrectRange(number);
+        validateBonusNumberSize(number);
+        validateBonusOverlapWinning(number);
+    }
+
+    private void validateBonusOverlapWinning(List<String> number) {
+        int comparingBonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
+        if (winningNumbers.contains(comparingBonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumberSize(List<String> number) {
+        if (number.size() != REQUIRED_BONUS_NUMBER_COUNT) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateWinningNumbers(List<String> stringNumbers) {

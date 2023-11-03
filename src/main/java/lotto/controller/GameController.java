@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoCount;
+import lotto.model.Profit;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningDetails;
 import lotto.model.WinningNumber;
@@ -33,6 +34,10 @@ public class GameController {
 
         WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
         OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
+
+        Profit profit = new Profit(winningDetails.getRank());
+        System.out.println(profit.getTotalWinningMoney());
+        System.out.println(profit.getTotalPercent(purchaseMoney.getValue()));
     }
 
     private static String inputPurchaseMoney(){

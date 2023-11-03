@@ -1,6 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.message.ExceptionMessage;
 
 public class InputView {
@@ -17,8 +20,15 @@ public class InputView {
         }
     }
 
-    public static String readLottoNumbers() {
+    public static List<Integer> readLottoNumbers() {
         System.out.println(READ_WINNER_NUMBERS_MESSAGE);
-        return Console.readLine();
+        String inputLottoNumbers = Console.readLine();
+        try {
+            return Arrays.stream(inputLottoNumbers.trim().split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_NUMBER.getMessage());
+        }
     }
 }

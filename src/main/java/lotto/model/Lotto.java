@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(List<Integer> numbers) {
+        if(numbers.size() != numbers.stream().distinct().count())
+            throw new IllegalArgumentException();
+    }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

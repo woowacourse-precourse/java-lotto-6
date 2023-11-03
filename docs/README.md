@@ -3,7 +3,8 @@
 ## 기능 목록
 
 1. ~~로또 구입 금액 입력 - view - InputView - purchasingAmount~~
-2. 1000원 단위로 몇 장인지 확인 + 1000원 단위 아니면 오류 발생 - Model - Purchase - validate
+2. 1000원 단위 아니면 오류 발생 - Model - Purchase - validate
+3. 로또 구입 개수 확인 - Model - Purchase - pieces
 3. 1 ~ 45 숫자 중 중복 없는 6개의 숫자를 HashSet에 넣기 - Modle - Random - generateNum
 4. HashSet 보여주기 - View - outputView - purchasingNum
 5. 당첨번호 입력 - View - inputView - winNum

@@ -16,5 +16,10 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int countCorrectLottoNumbers(List<Integer> answerLotto) {
+        return (int) numbers.stream()
+                .filter(answerLotto::contains)
+                .count();
+    }
+
 }

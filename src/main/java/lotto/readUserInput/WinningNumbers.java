@@ -1,10 +1,11 @@
 package lotto.readUserInput;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    public static List<Integer> numbers;
+    public static List<Integer> numbers = new ArrayList<>();
 
     public void read() {
         String[] numbers = seperateUserInput(userInput());

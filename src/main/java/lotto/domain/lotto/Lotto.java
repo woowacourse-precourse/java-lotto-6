@@ -16,10 +16,11 @@ public final class Lotto implements LottoTicket {
     private final List<LottoNumber> numbers;
 
     /**
-     * @apiNote Lotto 생성 시, <h3 color="#bf0f4d">numbers의 요소는 반드시 6개여야 합니다.</h3>
+     * @apiNote Lotto 생성 시, <h3 color="#bf0f4d">numbers의 요소는 반드시 1~45 범위에 속하는 6개의 숫자여야 합니다.</h3>
      */
     public Lotto(final List<Integer> numbers) {
-        LottoValidator.validateLotto(numbers);
+        LottoValidator.validateLottoLength(numbers);
+        LottoValidator.validateDuplication(numbers);
         this.numbers = intoLottoNumbers(numbers);
     }
 

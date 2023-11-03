@@ -16,4 +16,13 @@ public class LottoUtilTest {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertEquals(expected, actual);
     }
+
+    @DisplayName("입력값을 리스트로 변환하는 기능 테스트")
+    @Test
+    void covertTest() {
+        String inputNumbers = "1, 4,10, 2,6,3";
+        List<Integer> actual = Arrays.asList(1, 4, 10, 2, 6, 3);
+        List<Integer> expected = LottoUtil.convert(inputNumbers);
+        assertEquals(expected, actual);
+    }
 }

@@ -9,4 +9,9 @@ public class ExceptionConstant {
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
+
+    public static final String NUMERIC_PATTERN = "\\d+";
+    public static final String PURCHASE_NUMERIC_ERROR_MESSAGE = "[ERROR] 구입금액이 유효하지 않습니다.";
+    public static final int LOTTO_TICKET_PRICE_UNIT = 1000;
+    public static final String PURCHASE_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1,000단위이어야 합니다.";
 }

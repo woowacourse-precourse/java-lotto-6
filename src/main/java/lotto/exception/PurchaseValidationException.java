@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.constant.ExceptionConstant;
+
 public class PurchaseValidationException extends IllegalArgumentException {
 
     public PurchaseValidationException(String message) {
@@ -7,14 +9,14 @@ public class PurchaseValidationException extends IllegalArgumentException {
     }
 
     public static void checkIsNumeric(String inputAmount) {
-        if (!inputAmount.matches("\\d+")) {
-            throw new PurchaseValidationException("[ERROR] 구입금액이 유효하지 않습니다.");
+        if (!inputAmount.matches(ExceptionConstant.NUMERIC_PATTERN)) {
+            throw new PurchaseValidationException(ExceptionConstant.PURCHASE_NUMERIC_ERROR_MESSAGE);
         }
     }
 
     public static void checkValidPurchaseAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new PurchaseValidationException("[ERROR] 구입금액은 1,000단위이어야 합니다.");
+        if (amount % ExceptionConstant.LOTTO_TICKET_PRICE_UNIT != 0) {
+            throw new PurchaseValidationException(ExceptionConstant.PURCHASE_AMOUNT_ERROR_MESSAGE);
         }
     }
 }

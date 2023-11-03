@@ -1,8 +1,9 @@
 package domain;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -12,6 +13,12 @@ public class Lotto {
         validateNumbersSize(numbers);
         validateDuplicate(numbers);
         this.lottoNumbers = convertLottoNumbers(numbers);
+    }
+
+    public static Lotto randomPick() {
+        List<Integer> numbers = pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER,
+                LOTTO_SIZE);
+        return new Lotto(numbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

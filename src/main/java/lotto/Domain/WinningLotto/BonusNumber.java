@@ -7,14 +7,14 @@ import static lotto.Util.Util.ConvertStringToInteger;
 
 public class BonusNumber {
 
-    Integer bonusNumber;
+    Integer number;
 
-    private BonusNumber(String bonusNumber) {
-        this.bonusNumber = generateBonusNumber(bonusNumber);
+    private BonusNumber(String number) {
+        this.number = generateBonusNumber(number);
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber;
+    public Integer getNumber() {
+        return number;
     }
 
     public static BonusNumber of(String bonusNumber) {

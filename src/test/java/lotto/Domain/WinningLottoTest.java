@@ -22,7 +22,7 @@ class WinningLottoTest {
 
         // then
         assertEquals(List.of(1,2,3,4,5,6), winningLotto.getLotto().getNumbers());
-        assertEquals(7, winningLotto.getBonusNumber().getBonusNumber());
+        assertEquals(7, winningLotto.getBonusNumber().getNumber());
     }
 
     @DisplayName("WinningLotto 객체 생성 테스트 - 보너스 번호가 당첨 번호에 포함되는 경우")

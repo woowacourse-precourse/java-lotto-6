@@ -54,7 +54,7 @@ public class WinningLotto {
     }
 
     private void isBonusNumberInWinningNumbers(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        if (winningNumbers.contains(bonusNumber.getBonusNumber()))
+        if (winningNumbers.contains(bonusNumber.getNumber()))
             throw new LottoException(LOTTO_DUPLICATE_WITH_BONUS_NUMBER_ERROR_MESSAGE.getMessage());
     }
 }

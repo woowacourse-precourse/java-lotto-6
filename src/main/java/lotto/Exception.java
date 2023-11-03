@@ -12,6 +12,14 @@ public class Exception {
         }
     }
     // 1~45 사이 인지
+    boolean checkInputInRange(String input){
+        int change = Integer.valueOf(input);
+        if(change<1 || change>45){
+            System.out.println("[ERROR] 로또 번호의 숫자는 1에서 45까지입니다.");
+            return false;
+        }
+        return true;
+    }
     // 1000 단위인지
     // 6개인지
     // 중복이 없는지

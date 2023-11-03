@@ -67,7 +67,7 @@ public class LottoGame {
         List<Integer> splitNumber = new ArrayList<>();
         for(int i=0;i<6;i++){
             String here = input.split(",")[i];
-            if(!exception.checkInputIsNumber(here)){
+            if(!exception.checkInputIsNumber(here) || !exception.checkInputInRange(here)) {
                 inputWinningNumber();
             }
             splitNumber.add(Integer.valueOf(here));
@@ -77,7 +77,7 @@ public class LottoGame {
 
     void inputBonusNumber(){
         String input = readLine();
-        if(!exception.checkInputIsNumber(input)){
+        if(!exception.checkInputIsNumber(input) || !exception.checkInputInRange(input)){
             inputBonusNumber();
         }
         bonusNumber = Integer.valueOf(input);

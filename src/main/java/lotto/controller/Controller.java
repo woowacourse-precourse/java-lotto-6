@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoFactory;
+import lotto.domain.Lotties;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,16 +21,10 @@ public class Controller {
         OutputView.printBuyLottoCount(lottoCnt);
     }
 
-    public void part2(){
-        List<Lotto> lottoies = new ArrayList<>();
-        for (int i = 0; i < lottoCnt; i++) {
-            Lotto lotto = LottoFactory.generateLotto();
-            lottoies.add(lotto);
-        }
 
-        for (Lotto lottos : lottoies) {
-            System.out.println(lottos);
-        }
+    public void part2(){
+        Lotties lotties = Lotties.generateLottos(lottoCnt);
+        OutputView.pritntLottos(lotties.getLotties());
     }
 
     public void part3(){
@@ -41,6 +32,10 @@ public class Controller {
         InputView.userInput();
         OutputView.printEnterBounsNumber();
         InputView.userInput();
+    }
+
+    public void part4(){
+        
     }
 
 

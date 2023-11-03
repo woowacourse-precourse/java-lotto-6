@@ -18,6 +18,7 @@ public class OutputView {
     private static final String DIVISION_LINE = "---";
     private static final String LEFT_PARENTHESIS = "(";
     private static final String RIGHT_PARENTHESIS = ")";
+    private static final String WON = "원";
     private static final String BLANK = " ";
     private static final String DASH = "-";
     private static final String COUNT = "개";
@@ -57,13 +58,13 @@ public class OutputView {
             String prizeMoney = thousandFormat.format(rank.getPrizeMoney());
             int matchNumbers = winningStatistics.get(rank);
             System.out.println(rank.getExplanation() + BLANK
-                    + LEFT_PARENTHESIS + prizeMoney + RIGHT_PARENTHESIS
+                    + LEFT_PARENTHESIS + prizeMoney + WON + RIGHT_PARENTHESIS
                     + BLANK + DASH + BLANK + matchNumbers + COUNT);
         }
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
         String formattedRateOfReturn = decimalFormat.format(rateOfReturn);
 
         System.out.println(TOTAL_RATE_OF_RETURN +

@@ -45,4 +45,19 @@ public class LottoService {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 
+    public int calculateTotalPrizeMoney(Map<Rank, Integer> winningStatistics) {
+        int totalPrizeMoney = 0;
+        for (Rank rank : winningStatistics.keySet()) {
+            Integer winningNumber = winningStatistics.get(rank);
+            totalPrizeMoney += rank.getPrizeMoney() * winningNumber;
+        }
+        return totalPrizeMoney;
+    }
+
+    public double calculateReturnOfRatio(Player player, Map<Rank, Integer> winningStatistics) {
+        int totalPrizeMoney = calculateTotalPrizeMoney(winningStatistics);
+        return player.calculateRateOfReturn(totalPrizeMoney);
+    }
+
+
 }

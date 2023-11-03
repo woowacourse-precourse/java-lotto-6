@@ -24,7 +24,7 @@ public class LottoController {
         Player player = inputPurchaseAmount();
         printLottoAmountAndLottoNumbers(player);
         WinningLotto winningLotto = inputWinningNumbersAndBonusNumber();
-        printWinningStatistics(player, winningLotto);
+        printResult(player, winningLotto);
     }
 
     private Player inputPurchaseAmount() {
@@ -53,9 +53,20 @@ public class LottoController {
         return lottoService.createWinningLotto(winningNumbers, bonusNumber);
     }
 
-    private void printWinningStatistics(Player player, WinningLotto winningLotto) {
+    private Map<Rank, Integer> printWinningStatistics(Player player, WinningLotto winningLotto) {
         Map<Rank, Integer> winningStatistics = lottoService.makeWinningStatistics(player, winningLotto);
         outputView.printWinningStatistics(winningStatistics);
+        return winningStatistics;
+    }
+
+    private void printReturnOfRatio(Player player, Map<Rank, Integer> winningStatistics) {
+        double returnOfRatio = lottoService.calculateReturnOfRatio(player, winningStatistics);
+        outputView.printRateOfReturn(returnOfRatio);
+    }
+
+    private void printResult(Player player, WinningLotto winningLotto) {
+        Map<Rank, Integer> winningStatistics = printWinningStatistics(player, winningLotto);
+        printReturnOfRatio(player, winningStatistics);
     }
 
     private List<Integer> convertStringToIntegerList(String stringWinningNumbers) {

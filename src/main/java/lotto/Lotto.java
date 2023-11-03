@@ -39,7 +39,7 @@ public class Lotto {
     }
 
     private boolean isValidRange(int number) {
-        return number >= MIN_NUMBER && number < MAX_NUMBER;
+        return number >= MIN_NUMBER && number <= MAX_NUMBER;
     }
 
     public List<Integer> getNumbers() {

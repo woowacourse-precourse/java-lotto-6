@@ -92,11 +92,13 @@ public class UI {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.get(1)+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+result.get(0)+"개");
 
-        //profitOutput();
+        profitOutput();
     }
 
-    public void profitOutput(double profit){ // 62.5
+    public void profitOutput(){
+        double profit=member.getProfit();
         String totalProfit="총 수익률은 "+profit+"%입니다.";
+
         System.out.print(totalProfit);
     }
 

@@ -43,6 +43,18 @@ public class Member {
         return this.prize;
     }
 
+    public double getProfit(){
+        double totalPrice=0;
+
+        for(int i=0;i<this.prize.size();i++){
+            totalPrice+=this.prize.get(i).getWinningPrize();
+        }
+
+        double profit=Math.round((totalPrice / this.price) * 100.0 * 10.0) / 10.0;
+
+        return profit;
+    }
+
     public List<Lotto> getMemberLotto(){
         return memberLotto;
     }

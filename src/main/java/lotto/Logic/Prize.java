@@ -29,6 +29,9 @@ public enum Prize {
     public int getCount(){
         return this.count;
     }
+    public int getWinningPrize(){
+        return this.winningPrize;
+    }
 
     public Prize prizeDetermine(List<Integer> correctBonus){
 

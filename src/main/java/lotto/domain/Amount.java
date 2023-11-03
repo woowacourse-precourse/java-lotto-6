@@ -20,13 +20,13 @@ public class Amount {
 
     private void validateIsDividedLottoPrice(int amount) {
         if (amount % dd != 0) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_DIVIDED_LOTTO_PRICE.message());
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_NOT_DIVIDED_LOTTO_PRICE.message());
         }
     }
 
     private void validateIsPositive(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_POSITIVE.message());
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_IS_NOT_POSITIVE.message());
         }
     }
 

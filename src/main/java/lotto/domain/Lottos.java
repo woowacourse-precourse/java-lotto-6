@@ -17,7 +17,7 @@ public class Lottos {
 
     private void validateIsEmpty(List<Lotto> lottos) {
         if (lottos.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTOS_IS_NOT_EMPTY.message());
+            throw new IllegalArgumentException(ErrorMessage.LOTTOS_IS_EMPTY.message());
         }
     }
 

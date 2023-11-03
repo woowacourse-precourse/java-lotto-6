@@ -35,7 +35,7 @@ public class OutputViewTest {
     @DisplayName("로또 당첨 번호 출력")
     void 로또_당첨_번호_출력() {
         String winningNumbers = "1, 2, 3, 4, 5, 6";
-        outputView.responseWinningNumbers(winningNumbers);
+        outputView.responseUserNumbersSet(winningNumbers);
         Assertions.assertThat(outContent.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n");
     }
 

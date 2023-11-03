@@ -17,8 +17,8 @@ public class OutputView {
         display(OutputMessage.RESPONSE_PURCHASE_COUNT, count);
     }
 
-    public void responseWinningNumbers(String result) {
-        display(OutputMessage.RESPONSE_WINNING_NUMBERS, result);
+    public void responseUserNumbersSet(String result) {
+        display(OutputMessage.RESPONSE_USER_NUMBERS_SET, result);
     }
 
     public void responseWinningStatisticsHeader() {

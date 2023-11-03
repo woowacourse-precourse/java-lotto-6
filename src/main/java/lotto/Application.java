@@ -17,7 +17,7 @@ public class Application {
             Purchase purchase = new Purchase(purchasingAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            purchasingAmount =inputView.purchasingAmount();
+            purchaseCount();
         }
     }
 

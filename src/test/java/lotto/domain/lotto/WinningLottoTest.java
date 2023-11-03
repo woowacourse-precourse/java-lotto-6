@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-import lotto.domain.lotto.boxed.LottoNumber;
 import lotto.domain.lotto.exception.DuplicateLottoNumberException;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
 import lotto.domain.lotto.exception.InvalidLottoNumberException;
@@ -136,19 +135,50 @@ final class WinningLottoTest {
         assertThat(lotto).isNotNull();
     }
 
-    @DisplayName("특정 숫자가 로또에 포함 되었는지 확인")
+    @DisplayName("당첨 번호와 일치하는 로또 번호 및 보너스 번호 개수에 따라 다른 LottoPrize 반환")
     @Test
-    void contains_withNumber_shouldCreateInstance() {
+    void draw_byMatchingCountAndBonusNumber_shouldReturnAppropriateLottoPrize() {
         // given
-        final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        final List<Integer> numbers1 = List.of(1, 2, 3, 4, 5, 6);
+        final List<Integer> numbers2 = List.of(1, 2, 3, 4, 5, 7);
+        final List<Integer> numbers3 = List.of(1, 2, 3, 4, 5, 10);
+        final List<Integer> numbers4 = List.of(1, 2, 3, 4, 10, 11);
+        final List<Integer> numbers5 = List.of(1, 2, 3, 10, 11, 12);
+        final List<Integer> numbers6 = List.of(1, 2, 10, 11, 12, 13);
+        final List<Integer> numbers7 = List.of(1, 10, 11, 12, 13, 14);
+        final List<Integer> numbers8 = List.of(10, 11, 12, 13, 14, 15);
+        final int bonusNumber = 7;
+
+        final Lotto lotto1 = new Lotto(numbers1);
+        final Lotto lotto2 = new Lotto(numbers2);
+        final Lotto lotto3 = new Lotto(numbers3);
+        final Lotto lotto4 = new Lotto(numbers4);
+        final Lotto lotto5 = new Lotto(numbers5);
+        final Lotto lotto6 = new Lotto(numbers6);
+        final Lotto lotto7 = new Lotto(numbers7);
+        final Lotto lotto8 = new Lotto(numbers8);
+        final WinningLotto winningLotto = new WinningLotto(numbers1, bonusNumber);
 
         // when
-        final Lotto lotto = new Lotto(numbers);
+        final LottoPrize lottoPrize1 = winningLotto.draw(lotto1);
+        final LottoPrize lottoPrize2 = winningLotto.draw(lotto2);
+        final LottoPrize lottoPrize3 = winningLotto.draw(lotto3);
+        final LottoPrize lottoPrize4 = winningLotto.draw(lotto4);
+        final LottoPrize lottoPrize5 = winningLotto.draw(lotto5);
+        final LottoPrize lottoPrize6 = winningLotto.draw(lotto6);
+        final LottoPrize lottoPrize7 = winningLotto.draw(lotto7);
+        final LottoPrize lottoPrize8 = winningLotto.draw(lotto8);
 
         // then
-        assertThat(lotto).isNotNull();
-        for (int n : numbers) {
-            assertThat(lotto.contains(new LottoNumber(n)));
-        }
+        assertThat(lottoPrize1).isEqualTo(LottoPrize.FIRST);
+        assertThat(lottoPrize2).isEqualTo(LottoPrize.SECOND);
+        assertThat(lottoPrize3).isEqualTo(LottoPrize.THIRD);
+        assertThat(lottoPrize4).isEqualTo(LottoPrize.FOURTH);
+        assertThat(lottoPrize5).isEqualTo(LottoPrize.FIFTH);
+        assertThat(lottoPrize6).isEqualTo(LottoPrize.NONE);
+        assertThat(lottoPrize7).isEqualTo(LottoPrize.NONE);
+        assertThat(lottoPrize8).isEqualTo(LottoPrize.NONE);
     }
+
+   
 }

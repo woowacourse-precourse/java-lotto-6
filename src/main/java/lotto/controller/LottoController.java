@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
+import lotto.service.LottoService;
 import lotto.view.OutputView;
 
 import java.util.List;

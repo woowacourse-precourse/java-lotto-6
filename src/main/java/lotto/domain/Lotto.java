@@ -32,6 +32,8 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        numbers.stream()
+                .forEach(number -> validateLottoRange(number));
     }
 
     private static void validateSize(List<Integer> numbers) {

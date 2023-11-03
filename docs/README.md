@@ -85,7 +85,7 @@
 
 - domain: 각종 도메인이 있는 패키지
     - Lotto: Lotto 6자리를 검증을 하는 도메인 -> 유저 입력과 컴퓨터 생성 모두 사용이 된다.
-    - WinningLotto: 유저가 입력한 Lotto + bonus 번호를 가지고 있는 객체.
+    - WinningLotto: 유저가 입력한 Lotto + bonus 번호를 가지고 있는 당첨 로또 객체.
     - LottoResult: 로또의 결과를 반환하는 객체.
     - LottoPrize: 로또 상금에 대한 정보를 가지고 있는 객체. 맞춘 숫자의 개수와 보너스 번호를 맞췄는지 넣으면 등수와 상금을 가지고 있는 Enum 객체를 반환.
     - Generator: interface(NumberGenerator)와 구현 객체(ComputerGenerator)가 있다. 숫자를 생성하며, service에서 Mock 객체를 통한 테스트를 위해
@@ -103,14 +103,15 @@
 ### domain
 
 - [x] Lotto
-    - [x] 유효성 검사를 한다.(중복 검사, 입력한 사이즈 검사)
+    - [x] 유효성 검사를 한다.(중복 검사, 입력한 사이즈 검사, 범위 검사)
     - [x] 해당 번호가 포함 되어 있는지 반환한다.
     - [x] 로또끼리 몇 개의 숫자가 맞는지 개수를 반환한다.
 
-- [ ] WinningLotto
-    - [ ] 사용자 입력을 Lotto와 Bonus 숫자로 나누어 상태로 가진다.
-    - [ ] 유효성 검사를 한다.(범위 검사, 보너스 번호 검사)
-    - [ ] 보너스 숫자가 맞았는지 유무를 반환한다.
+- [x] WinningLotto
+    - [x] 사용자 입력을 Lotto와 Bonus 숫자로 나누어 상태로 가진다.
+    - [x] 유효성 검사를 한다.(보너스 번호 범위 검사, parse 범위 검사)
+    - [x] 보너스 숫자가 맞았는지 유무를 반환한다.
+    - [x] 발급 받은 로또 번호가 WinningLotto와 몇 개가 맞았는지 반환한다.
 
 - [ ] LottoPrize
     - [ ] 상금과 숫자를 상수로 정리한다.

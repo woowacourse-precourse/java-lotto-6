@@ -13,6 +13,7 @@ public class BuyLotto {
 		System.out.println("구입 금액을 입력해주세요.");
 		String userInput = readLine().trim();
 		this.isValidInput(userInput);
+
 	}
 
 	public void isValidInput(String input) { // 사용자가 입력한 값이 숫자가 맞는지 예외처리
@@ -23,13 +24,15 @@ public class BuyLotto {
 		} catch (NumberFormatException e) {
 			System.err.println("[ERROR] 금액은 숫자만 입력이 가능합니다.");
 			this.getMoney();
+		} catch (IllegalArgumentException e) {
+			this.getMoney();
 		}
 	}
 
 	private void isValidMoney(int input) { // 사용자가 입력한 값이 1000으로 나누어 떨어지는지 예외처리
 		if (input % 1000 != 0) {
 			System.err.println("[ERROR] 금액은 천원으로 나누어 떨어져야합니다.");
-			this.getMoney();
+			throw new IllegalArgumentException();
 		}
 		this.setCount(input);
 	}

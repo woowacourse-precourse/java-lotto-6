@@ -23,7 +23,7 @@ public class Lottos {
     }
 
     private void validateThousand(String time) {
-        if (time.length() < 3) {
+        if (time.length() <= 3) {
             throw new IllegalArgumentException("[ERROR] 입력된 숫자가 1,000보다 작습니다.");
         }
 

@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,19 +20,19 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-
-    // 중복
     private void validateDuplicatedNumber(List<Integer> numbers){
-        if(numbers.equals(List.of(1,2,3,4,5,5))){
+        Set<Integer> numberSet = new HashSet<>();
+        numberSet.addAll(numbers);
+        if(numbers.size() != numberSet.size()){
             throw new IllegalArgumentException();
         }
     }
 
-    // 범위
     private void validateOverRangeNumber(List<Integer> numbers){
-        if(numbers.equals(List.of(0,1,2,3,4,5))){
-            throw new IllegalArgumentException();
+        for(int number : numbers){
+            if(number > 45 || number < 1){
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

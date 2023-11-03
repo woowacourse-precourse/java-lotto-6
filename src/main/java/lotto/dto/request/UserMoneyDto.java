@@ -6,4 +6,8 @@ public final class UserMoneyDto {
     public UserMoneyDto(int money) {
         this.money = money;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

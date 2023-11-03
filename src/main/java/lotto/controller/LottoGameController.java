@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.request.UserMoneyDto;
+import lotto.model.UserMoney;
 import lotto.util.RetryUtil;
 import lotto.view.InputView;
 
@@ -12,11 +13,12 @@ public class LottoGameController {
     }
 
     public void run() {
-        createUserMoney();
+        UserMoney userMoney = RetryUtil.retryOnFail(this::createUserMoney);
 
     }
 
-    private void createUserMoney() {
+    private UserMoney createUserMoney() {
         UserMoneyDto userMoneyDto = RetryUtil.retryOnFail(inputView::readUserMoney);
+        return UserMoney.from(userMoneyDto.getMoney());
     }
 }

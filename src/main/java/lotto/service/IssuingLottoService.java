@@ -1,5 +1,7 @@
 package lotto.service;
 
+
+import lotto.model.LottoTickets;
 import lotto.model.PurchaseAmount;
 
 public class IssuingLottoService {
@@ -19,5 +21,9 @@ public class IssuingLottoService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력이 가능합니다.");
         }
+    }
+
+    public LottoTickets issueAutoLotto(PurchaseAmount purchaseAmount) {
+        return new LottoTickets(purchaseAmount);
     }
 }

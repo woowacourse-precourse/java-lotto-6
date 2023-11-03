@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.console.ConsoleInput;
 import lotto.console.ConsoleOutput;
+import lotto.model.LottoTickets;
 import lotto.model.PurchaseAmount;
 import lotto.service.IssuingLottoService;
 
@@ -13,10 +14,17 @@ public class LottoController {
     }
 
     public void run() {
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
+
+        LottoTickets lottoTickets = issueLotto(purchaseAmount);
 
     }
 
-    private PurchaseAmount createPurchaseAmount() {
+    private LottoTickets issueLotto(PurchaseAmount purchaseAmount) {
+        return issuingLottoService.issueAutoLotto(purchaseAmount);
+    }
+
+    private PurchaseAmount readPurchaseAmount() {
         while (true) {
             try {
                 return issuingLottoService.createPurchaseAmount(ConsoleInput.readPurchaseAmount());

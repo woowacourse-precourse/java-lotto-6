@@ -13,8 +13,16 @@ public class InputViewTest {
     @DisplayName("로또 구입 금액은 정수만 입력받을 수 있다.")
     void isAmountDivisible(String strings) {
         InputView inputView = new InputView();
-
         Assertions.assertThatCode(() -> inputView.validateInteger(strings))
                 .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1.0", "-", "ㄱ", "가나3", "3피자", ","})
+    @DisplayName("로또 구입 금액 입력은 정수 외의 값은 예외가 발생한다.")
+    void isAmountDivisible1(String strings) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -19,8 +19,9 @@ public class Application {
     enum ErrorType { 
         NUMBERS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
         DUP("[ERROR] 로또 번호는 중복할 수 없습니다."),
-        MONEY("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다.");
-        
+        MONEY("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다."),
+        NOTINTEGER("[ERROR] 정수를 입력해 주세요.");
+
         final private String name; 
         public String getName() { 
             return name; 
@@ -54,7 +55,7 @@ public class Application {
         try {
             n = Integer.parseInt(s);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorType.NUMBERS.getName());
+            throw new IllegalArgumentException(ErrorType.NOTINTEGER.getName());
         }
         return n;
     }
@@ -96,7 +97,7 @@ public class Application {
 
     private static int setMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
+        int money = myParseInt(Console.readLine());
         if (money % 1000 != 0)
             throw new IllegalArgumentException(ErrorType.MONEY.getName());
         System.out.println();

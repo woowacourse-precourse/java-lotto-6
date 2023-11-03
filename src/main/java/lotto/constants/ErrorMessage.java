@@ -13,4 +13,9 @@ public enum ErrorMessage {
     public String getMessage() {
         return ERROR_TAG.message + message;
     }
+
+    @Override
+    public String toString() {
+        return message;
+    }
 }

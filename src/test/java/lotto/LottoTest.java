@@ -24,13 +24,4 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @Test
-    void isLottoNumber_true_테스트() {
-
-    }
-
-    @Test
-    void isLottoNumber_false_테스트() {
-
-    }
 }

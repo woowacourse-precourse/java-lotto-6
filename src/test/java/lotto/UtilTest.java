@@ -2,6 +2,7 @@ package lotto;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
@@ -24,16 +25,28 @@ public class UtilTest {
     }
 
     @Test
-    void isInteger_리스트_성공_테스트() {
+    void isIntegers_true_반환_테스트() {
         List<String> input = Arrays.asList("1", "2", "-3");
 
         assertTrue(LottoUtil.isIntegers(input));
     }
 
     @Test
-    void isIntegers_리스트_실패_테스트() {
+    void isIntegers_false_반환_테스트() {
         List<String> input = Arrays.asList("test", "3.3232");
 
         assertFalse(LottoUtil.isIntegers(input));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,1,10", "10,1,10", "1,1,1"})
+    void isInRange_true_반환_테스트(int check, int inclusiveMin, int inclusiveMax) {
+        assertTrue(LottoUtil.isInRange(check, inclusiveMin, inclusiveMax));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0,1,10", "11,1,10"})
+    void isInRange_false_반환_테스트(int check, int inclusiveMin, int inclusiveMax) {
+        assertFalse(LottoUtil.isInRange(check, inclusiveMin, inclusiveMax));
     }
 }

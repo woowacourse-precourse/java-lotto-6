@@ -15,4 +15,8 @@ public class LottoUtil {
     public static boolean isIntegers(List<String> input) {
         return input.stream().allMatch(LottoUtil::isInteger);
     }
+
+    public static boolean isInRange(int check, int inclusiveMin, int inclusiveMax) {
+        return inclusiveMin <= check && check <= inclusiveMax;
+    }
 }

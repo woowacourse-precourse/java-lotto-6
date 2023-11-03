@@ -58,8 +58,8 @@
 - [x] LottoCreateModel : 로또 번호를 생성하는 방식에 관한 인터페이스
     - [x] generate()를 가진다.
         - [x] 반환은 Lotto로 한다.
-- [ ] AutoLottoCreateModel : 로또 번호 자동 생성 방식 (LottoCreateModel 구현체)
-    - [ ] 1 ~ 45 사이의 숫자를 6개 생성한다.
+- [x] AutoLottoCreateModel : 로또 번호 자동 생성 방식 (LottoCreateModel 구현체)
+    - [x] 1 ~ 45 사이의 숫자를 6개 생성한다.
         - `Randoms.pickUniqueNumbersInRange(1, 45, 6);`사용
 
 - [ ] LottoMachine : 로또를 판매하는 기계

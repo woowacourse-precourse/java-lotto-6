@@ -35,7 +35,7 @@
 - [X] 로또 구입 금액 입력: InputView.*getPurchaseAmount*
 - [X] 구입 금액이 1000으로 나누어 떨어지는지 확인: PurchaseAmount.*validate*
 - [X] 로또 번호 발행: LottoController.*publishMyLotto*
-- [] 발행한 로또 수량 및 번호 출력: OutputView.*printMyLotto*
+- [X] 발행한 로또 수량 및 번호 출력: OutputView.*printMyLotto*
 - [] 당첨 번호 입력: InputView.*getLotto*
 - [] 당첨 번호가 6개인지 확인: Lotto.*validate*
 - [] 당첨 번호가 1~45 사이의 숫자인지 확인: Lotto.*validate*

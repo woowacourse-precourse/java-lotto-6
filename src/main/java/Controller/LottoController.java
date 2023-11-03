@@ -4,6 +4,7 @@ import Model.Lotto;
 import Model.PurchaseAmount;
 import camp.nextstep.edu.missionutils.Randoms;
 import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,9 @@ public class LottoController {
     public void buyMyLotto() {
         int input = InputView.getPurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(input);
+
         publishMyLotto(purchaseAmount);
+        OutputView.printMyLotto(lottoNumbers);
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {

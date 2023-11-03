@@ -16,5 +16,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int getSize() {
+        return numbers.size();
+    }
+
+    public int getItem(int idx) {
+        return numbers.get(idx);
+    }
 }

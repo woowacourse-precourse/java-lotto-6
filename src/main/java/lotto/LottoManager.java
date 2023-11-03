@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,10 +18,23 @@ public class LottoManager {
     LottoBuyer lottoBuyer;
     List<Integer> winningNumbers;
     private int bonusNumber;
+    private Hashtable<Integer, Integer> winningCountHash;
+    final int SECOND_GRADE_KEY = 6;
+    final int FIRST_MATCH_COUNT = 6;
+    final int SECOND_MATCH_COUNT = 5;
+    final int FIRST_GRADE_KEY = 7;
+    final int MINIMUM_CORRECT_COUNT = 3;
+
+
 
 
     public LottoManager(LottoBuyer buyer) {
         lottoBuyer = buyer;
+        winningCountHash = new Hashtable<Integer, Integer>();
+
+        for (int i = 3; i <= 7; i++) {
+            winningCountHash.put(i, 0);
+        }
     }
 
     public void lottoSellingStart() {
@@ -75,10 +89,32 @@ public class LottoManager {
         bonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
     }
 
+    public void setWinningResult() {
+        for (Lotto lotto : lottoBuyer.getMyLotts()) {
+            int matchedCount = lotto.getWinningCount(winningNumbers);
+
+            if(matchedCount >= MINIMUM_CORRECT_COUNT) {
+                winningCountHash.put(matchedCount, winningCountHash.get(matchedCount) + 1);
+            }
+
+            if (lotto.getNumbers().contains(getBonusNumber()) && (matchedCount == SECOND_MATCH_COUNT)) {
+                winningCountHash.put(SECOND_GRADE_KEY, winningCountHash.get(matchedCount) + 1);
+                continue;
+            }
+
+            if (matchedCount == FIRST_MATCH_COUNT) {
+                winningCountHash.put(FIRST_GRADE_KEY, winningCountHash.get(matchedCount) + 1);
+            }
+        }
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }
 
+    public Hashtable<Integer, Integer> getWinningCountHash () {
+        return winningCountHash;
+    }
     private void validateBonusNumber(List<String> number) {
         validateIsIntegerType(number);
         validateIsCorrectRange(number);

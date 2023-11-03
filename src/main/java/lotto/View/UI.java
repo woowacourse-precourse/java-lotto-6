@@ -54,7 +54,7 @@ public class UI {
     }
     public void numberInput(){
         String number=camp.nextstep.edu.missionutils.Console.readLine();
-        winningNumber.setNumberValid(number);
+        winningNumber.splitValid(number);
     }
     public void bonusComment(){
         System.out.println("보너스 번호를 입력해 주세요.");

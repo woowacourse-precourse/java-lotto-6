@@ -41,13 +41,17 @@ public class GameLogic {
         return lottoNumbers;
     }
     public Lotto winningNumber(String winningNumber){
-        String[] splitWinningNumber = winningNumber.split(",");
+       String[] splitWinningNumber = splitNumber(winningNumber);
         List<Integer> winningNumbers = new ArrayList<>();
         for(String str : splitWinningNumber){
             winningNumbers.add(Integer.parseInt(str));
         }
         Lotto lotto = new Lotto(winningNumbers);
         return lotto;
+    }
+    public String[] splitNumber(String number){
+        String[] splitNumber = number.split(",");
+        return splitNumber;
     }
     public int matchCount(Lotto buyingLotto, Lotto winningLotto, int bonus){
         int[] buyingLottoNumber = buyingLotto.toIntegerArr();

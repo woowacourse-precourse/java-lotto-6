@@ -11,7 +11,7 @@ public final class Lotto {
     static final int MAX_LOTTO_NUMBER_SIZE = 45;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }

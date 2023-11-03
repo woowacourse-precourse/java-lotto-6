@@ -44,11 +44,10 @@ public class Application {
                 winningNumbers = inputWinningNumbers();
                 break;
             }catch (IllegalArgumentException e){
-                System.out.println("[ERROR] "+e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
-        Lotto winningLotto = new Lotto(winningNumbers);
-        
+
         // 4. 보너스 번호 입력받기
         int bonusNumber = 0;
         while(true){
@@ -120,15 +119,9 @@ public class Application {
         String[] inputNumbers = Console.readLine().split(",");
         List<Integer> winningNumbers = parseInputNumbers(inputNumbers); // 사용자 입력을 List<Integer>로 변환
 
-        // 3-3, 3-4, 3-5. 당첨 번호 유효성 검사
-        if(!validateSize(winningNumbers)){
-            throw new IllegalArgumentException("로또 번호의 개수는 6개여야 합니다.");
-        }
-        if(!validateDuplicates(winningNumbers)){
-            throw new IllegalArgumentException("로또 번호는 중복된 숫자가 없어야 합니다.");
-        }
+        // 3-5. 당첨 번호 유효성 검사
         if(!validateNumberRange(winningNumbers)){
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         return winningNumbers;
     }
@@ -146,28 +139,6 @@ public class Application {
             numbers.add(Integer.parseInt(inputNumbers[i]));
         }
         return numbers;
-    }
-
-    // 3-3. 로또 번호의 개수가 6개가 넘어가면 예외 발생
-    public static boolean validateSize(List<Integer> inputNumbers){
-        boolean validate = true;
-        if(inputNumbers.size() != 6){
-            validate = false;
-        }
-        return validate;
-    }
-
-    // 3-4. 로또 번호에 중복된 숫자가 있으면 예외 발생
-    public static boolean validateDuplicates(List<Integer> inputNumbers){
-        boolean validate = true;
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for(int number : inputNumbers){
-            if(uniqueNumbers.contains(number)){
-                validate = false;
-            }
-            uniqueNumbers.add(number);
-        }
-        return validate;
     }
 
     // 3-5. 번호의 범위가 1~45가 아닐 경우 예외 발생

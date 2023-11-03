@@ -14,7 +14,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         String userAmount = Console.readLine();
         InputViewException.checkLottoPriceTypeException(userAmount);
-        int amount =  Integer.parseInt(userAmount);
+        int amount = Integer.parseInt(userAmount);
         InputViewException.checkLottoPriceException(userAmount);
         return amount;
     }

@@ -50,14 +50,7 @@ class OutputViewTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         int purchaseAmount = 1000;
         outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
-        String expectedOutput = "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - 1개\n" +
-                "4개 일치 (50,000원) - 0개\n" +
-                "5개 일치 (1,500,000원) - 0개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
-                "6개 일치 (2,000,000,000원) - 0개\n" +
-                "총 수익률은 500.0%입니다.\n";
+        String expectedOutput = "\n당첨 통계\n" + "---\n" + "3개 일치 (5,000원) - 1개\n" + "4개 일치 (50,000원) - 0개\n" + "5개 일치 (1,500,000원) - 0개\n" + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" + "6개 일치 (2,000,000,000원) - 0개\n" + "총 수익률은 500.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 
@@ -69,14 +62,7 @@ class OutputViewTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         int purchaseAmount = 1000;
         outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
-        String expectedOutput = "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - 0개\n" +
-                "4개 일치 (50,000원) - 1개\n" +
-                "5개 일치 (1,500,000원) - 0개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
-                "6개 일치 (2,000,000,000원) - 0개\n" +
-                "총 수익률은 5000.0%입니다.\n";
+        String expectedOutput = "\n당첨 통계\n" + "---\n" + "3개 일치 (5,000원) - 0개\n" + "4개 일치 (50,000원) - 1개\n" + "5개 일치 (1,500,000원) - 0개\n" + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" + "6개 일치 (2,000,000,000원) - 0개\n" + "총 수익률은 5000.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 
@@ -88,14 +74,7 @@ class OutputViewTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         int purchaseAmount = 1000;
         outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
-        String expectedOutput = "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - 0개\n" +
-                "4개 일치 (50,000원) - 0개\n" +
-                "5개 일치 (1,500,000원) - 1개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
-                "6개 일치 (2,000,000,000원) - 0개\n" +
-                "총 수익률은 150000.0%입니다.\n";
+        String expectedOutput = "\n당첨 통계\n" + "---\n" + "3개 일치 (5,000원) - 0개\n" + "4개 일치 (50,000원) - 0개\n" + "5개 일치 (1,500,000원) - 1개\n" + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" + "6개 일치 (2,000,000,000원) - 0개\n" + "총 수익률은 150000.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 
@@ -107,14 +86,7 @@ class OutputViewTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         int purchaseAmount = 1000;
         outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
-        String expectedOutput = "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - 0개\n" +
-                "4개 일치 (50,000원) - 0개\n" +
-                "5개 일치 (1,500,000원) - 0개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n" +
-                "6개 일치 (2,000,000,000원) - 0개\n" +
-                "총 수익률은 3000000.0%입니다.\n";
+        String expectedOutput = "\n당첨 통계\n" + "---\n" + "3개 일치 (5,000원) - 0개\n" + "4개 일치 (50,000원) - 0개\n" + "5개 일치 (1,500,000원) - 0개\n" + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n" + "6개 일치 (2,000,000,000원) - 0개\n" + "총 수익률은 3000000.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 
@@ -126,14 +98,7 @@ class OutputViewTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         int purchaseAmount = 1000;
         outputView.showPrizeResult(lottos, winningLotto, purchaseAmount);
-        String expectedOutput = "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - 0개\n" +
-                "4개 일치 (50,000원) - 0개\n" +
-                "5개 일치 (1,500,000원) - 0개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
-                "6개 일치 (2,000,000,000원) - 1개\n" +
-                "총 수익률은 200000000.0%입니다.\n";
+        String expectedOutput = "\n당첨 통계\n" + "---\n" + "3개 일치 (5,000원) - 0개\n" + "4개 일치 (50,000원) - 0개\n" + "5개 일치 (1,500,000원) - 0개\n" + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" + "6개 일치 (2,000,000,000원) - 1개\n" + "총 수익률은 200000000.0%입니다.\n";
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expectedOutput);
     }
 }

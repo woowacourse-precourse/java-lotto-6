@@ -7,6 +7,8 @@ import lotto.model.Prize;
 import lotto.model.WinningLotto;
 
 public class OutputView {
+    int totalPrize = 0;
+
     public void showPurchasedLottos(List<Lotto> lottos) {
         System.out.printf("%d개를 구매했습니다.\n", lottos.size());
 
@@ -20,10 +22,8 @@ public class OutputView {
         System.out.println("---");
 
         int[] matchCounts = new int[Prize.values().length];
-        int totalPrize = 0;
 
         totalPrize = getTotalPrize(lottos, winningLotto, matchCounts, totalPrize);
-
         finalResult(matchCounts);
 
         double profitRate = (totalPrize / (double) purchaseAmount) * 100;

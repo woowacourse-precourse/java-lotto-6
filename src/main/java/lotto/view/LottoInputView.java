@@ -12,13 +12,19 @@ public class LottoInputView {
     }
 
     public Long getLottoPurchaseAmountInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
-
-        // TODO : 예외 처리 [ERROR]
-
-        return Long.parseLong(purchaseAmount);
+        Long purchaseAmount = null;
+        while (purchaseAmount == null) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                String input = Console.readLine();
+                purchaseAmount = Long.parseLong(input);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해주세요.");
+            }
+        }
+        return purchaseAmount;
     }
+
 
     public List<String> getWinningNumbers() {
         System.out.println();

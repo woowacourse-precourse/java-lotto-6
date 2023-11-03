@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,10 +16,21 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (isDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isDuplicateNumber(List<Integer> numbers) {
+        List<Integer> removedDuplicateNumbers = numbers.stream()
+                .distinct()
+                .toList();
+
+        return numbers.size() != removedDuplicateNumbers.size();
     }
 
     // TODO: 추가 기능 구현
-
 
     public List<Integer> getNumbers() {
         return numbers;

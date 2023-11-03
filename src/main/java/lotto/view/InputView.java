@@ -44,6 +44,7 @@ public class InputView {
         System.out.println(WINNING_NUMBER_MESSAGE);
         String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
+        System.out.println();
         return winningNumber;
     }
 
@@ -71,6 +72,7 @@ public class InputView {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         validateLottoNumber(bonusNumber);
+        System.out.println();
         return Integer.parseInt(bonusNumber);
     }
 

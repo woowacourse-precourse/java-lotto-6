@@ -13,8 +13,10 @@ public class OutputView {
     }
 
     public void printUserLottos(int lottosCount, String lottos) {
+        System.out.println();
         System.out.printf(PURCHASE_MESSAGE + NEW_LINE, lottosCount);
         System.out.println(lottos);
+        System.out.println();
     }
 
     public void printResults(String result) {

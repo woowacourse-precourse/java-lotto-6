@@ -9,6 +9,7 @@ public class Application {
 		// TODO: 프로그램 구현
 		int price;
 		int lottoCount;
+		Lotto winLotto;
 		// 로또 구입 금액을 입력받는 기능
 		while (true) {
 			System.out.println("구입금액을 입력해 주세요.");
@@ -44,7 +45,7 @@ public class Application {
 				String inputWinNumbers = Console.readLine();
 				List<String> winNumbers = splitComma(inputWinNumbers);
 				List<Integer> newWinNumbers = convertToInt(winNumbers);
-				Lotto winLotto = new Lotto(newWinNumbers);
+				winLotto = new Lotto(newWinNumbers);
 				break;
 			} catch (NumberFormatException e) {
 				System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -55,6 +56,23 @@ public class Application {
 			}
 			
 		}
+		System.out.println();
+		
+		//보너스 번호를 입력받는 기능
+		while(true) {
+			
+			try {
+				System.out.println("보너스 번호를 입력해 주세요.");
+				int bonusNumber = Integer.parseInt(Console.readLine());
+				checkBonusNumber(bonusNumber);
+				break;
+			} catch	(NumberFormatException e) {
+				System.out.println("[ERROR] 숫자를 입력해 주세요.");
+			} catch (IllegalArgumentException e) {
+				System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+			}
+		}
+		
 	}
 
 	// 1000원으로 나누어 떨어지는지 확인하는 메소드
@@ -94,5 +112,13 @@ public class Application {
 			winNumbers.add(Integer.parseInt(number));
 		}
 		return winNumbers;
+	}
+	
+	//보너스 번호 유효성 검사 메소드
+	private static void checkBonusNumber(int bonusNumber) {
+		
+		if(bonusNumber < 1 || bonusNumber > 45) {
+			throw new IllegalArgumentException();
+		}
 	}
 }

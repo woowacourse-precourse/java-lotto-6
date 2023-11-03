@@ -18,6 +18,10 @@ public class UserLotto {
         }
     }
 
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+
     public void printNumbers(){
         Iterator<Integer> it = numbers.iterator();
         while(it.hasNext()){

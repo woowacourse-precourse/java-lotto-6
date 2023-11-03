@@ -6,7 +6,7 @@ public class PrintResultService {
     private static final String RESULTPRINTMESSAGE = "당첨 통계\n---";
     private static final String FIFTH_PLACE = "3개 일치 (5,000원) - %d개";
     private static final String FOURTH_PLACE = "4개 일치 (50,000원) - %d개";
-    private static final String THIRD_PLACE =" 5개 일치 (1,500,000원) - %d개";
+    private static final String THIRD_PLACE = "5개 일치 (1,500,000원) - %d개";
     private static final String SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String FIRST_PLACE = "6개 일치 (2,000,000,000원) - %d개";
     private static final String TOTAL_SCORE = "총 수익률은 %.1f%%입니다.";

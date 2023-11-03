@@ -53,12 +53,32 @@ public class UserInputServiceTest extends NsTest {
     }
 
 
+    @DisplayName("유효한 숫자 입력할때까지 오류 반환")
+    @Test
+    void 유효한_숫자_입력_테스트() {
+        assertSimpleTest(() -> {
+            run("1001","a","1000");
+            Integer money = userInputService.validMoneyInputRequest();
+            assertThat(money).isEqualTo(1000);
+        });
+    }
+
     @DisplayName("빈 문자 파싱 가능 테스트")
     @Test
     void 빈_문자_테스트() {
         userInputService.parsingInputNumbers("");
     }
 
+    @DisplayName("유효한 당첨 로또번호 입력할때까지 오류 반환")
+    @Test
+    void 유효한_당첨번호_입력_테스트() {
+        assertSimpleTest(() -> {
+            run("1,2","1,1,1,1,1,1","1,2,3,4,5,6");
+            HashSet<Integer> winningNumbers = userInputService.validWinningNumbersInputRequest();
+            assertThat(winningNumbers.size()).isEqualTo(6);
+            assertThat(winningNumbers.contains(6)).isEqualTo(true);
+        });
+    }
 
     @DisplayName("당첨숫자가 숫자로만 이루어지지 않으면 false 반환")
     @Test
@@ -120,7 +140,7 @@ public class UserInputServiceTest extends NsTest {
     @Test
     void 보너스_숫자_겹침_테스트() {
         assertThat(userInputService
-                .bonusNumberNotInLottoNumbers(new HashSet<>(LOTTO_NUMBERS),"1"))
+                .bonusNumberNotInLottoNumbers(new HashSet<>(List.of(1,2,3,4,5,6)),1))
                 .isEqualTo(false);
     }
 

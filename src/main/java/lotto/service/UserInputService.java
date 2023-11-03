@@ -12,17 +12,33 @@ public class UserInputService {
     private static final String WINNING_NUMBERS_INPUT_REQUEST = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_REQUEST = "보너스 번호를 입력해 주세요.";
 
-    private static final String MONEY_INPUT_REQUEST_ERROR_MESSAGE = "1000으로 나누어 떨어지는 정수로 재입력 해주세요";
+    private static final String MONEY_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 1000으로 나누어 떨어지는 정수로 재입력 해주세요";
 
-    private static final String WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "6가지 로또 번호를 똑바로 입력해 주세요";
+    private static final String WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 6가지 로또 번호를 똑바로 입력해 주세요";
 
-    private static final String BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "중복되지 않는 정확한 숫자를 입력해 주세요";
+    private static final String BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 중복되지 않는 정확한 숫자를 입력해 주세요";
 
+
+    public Integer validMoneyInputRequest(){
+        Integer money;
+        while (true) {
+            try {
+                money = moneyInputRequest();
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return money;
+    }
 
     public Integer moneyInputRequest(){
         System.out.println(MONEY_INPUT_REQUEST);
         String input = readLine();
-        if (!isNumber(input) || !checkDevisedBy1000(input)) throw new IllegalArgumentException(MONEY_INPUT_REQUEST_ERROR_MESSAGE);
+        if (!isNumber(input) || !checkDevisedBy1000(input)) {
+            throw new IllegalArgumentException(MONEY_INPUT_REQUEST_ERROR_MESSAGE);
+        }
         return Integer.parseInt(input);
     }
 
@@ -42,13 +58,27 @@ public class UserInputService {
     }
 
 
+    public HashSet<Integer> validWinningNumbersInputRequest(){
+        HashSet<Integer> validWinningNumbers;
+        while (true) {
+            try {
+                validWinningNumbers = winningNumbersInputRequest();
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return validWinningNumbers;
+    }
+
+
     //차후 빠른 비교, 번호 중복 확인을 위해 HashSet<String>으로 반환
-    public Set<Integer> winningNumbersInputRequest(){
+    public HashSet<Integer> winningNumbersInputRequest(){
         System.out.println(WINNING_NUMBERS_INPUT_REQUEST);
         List<String> numbers = parsingInputNumbers(readLine());
-
-        if(consistOfNumberTest(numbers) == false &&
-                sizeIsSixTest(numbers) == false &&
+        if (consistOfNumberTest(numbers) == false ||
+                sizeIsSixTest(numbers) == false ||
                 numberInOneToFourtyFIve(numbers) == false)
             throw new IllegalArgumentException(WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE);
 
@@ -81,7 +111,7 @@ public class UserInputService {
     public boolean numberInOneToFourtyFIve(List<String> input){
         for (String number: input) {
             int numberToInt = Integer.parseInt(number);
-            if (1 <= numberToInt && numberToInt <= 45){
+            if (1 > numberToInt || numberToInt > 45){
                 return false;
             }
         }
@@ -89,16 +119,32 @@ public class UserInputService {
     }
 
 
-    public String bonusNumberInputRequest(Set<String> lottoNumbers){
-        System.out.println(BONUS_NUMBER_INPUT_REQUEST);
-        String bonusNumber = readLine();
-        if(isNumber(bonusNumber) == false && bonusNumberNotInLottoNumbers(lottoNumbers, bonusNumber) == false)
-            throw new IllegalArgumentException(BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE);
+    public Integer validBonusNumberInputRequest(Set<Integer> lottoNumbers){
+        Integer bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = bonusNumberInputRequest(lottoNumbers);
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bonusNumber;
     }
 
+    public Integer bonusNumberInputRequest(Set<Integer> lottoNumbers){
+        System.out.println(BONUS_NUMBER_INPUT_REQUEST);
+        String bonusNumber = readLine();
+        if( isNumber(bonusNumber) == false ||
+                bonusNumberNotInLottoNumbers(lottoNumbers, Integer.parseInt(bonusNumber)) == false ||
+                numberInOneToFourtyFIve(List.of(bonusNumber)) == false)
+            throw new IllegalArgumentException(BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE);
+        return Integer.parseInt(bonusNumber);
+    }
 
-    public boolean bonusNumberNotInLottoNumbers(Set<String> lottoNumbers, String bonusNumber){
+
+    public boolean bonusNumberNotInLottoNumbers(Set<Integer> lottoNumbers, Integer bonusNumber){
         return lottoNumbers.contains(bonusNumber) == false;
     }
 

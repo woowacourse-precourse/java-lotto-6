@@ -1,8 +1,8 @@
 package lotto;
 
 import constant.Rank;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import validator.LottoValidator;
 
 public class Lotto {
@@ -26,8 +26,10 @@ public class Lotto {
     }
 
     public void printNumbers() {
-        Collections.sort(numbers);
-        System.out.println(numbers);
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println(sortedNumbers);
     }
 
     public Rank getRank(List<Integer> winningNumbers, int bonus) {

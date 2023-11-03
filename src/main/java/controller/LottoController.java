@@ -59,6 +59,7 @@ public class LottoController {
             lottoList.get(i).printNumbers();
         }
         lottos = new Lottos(lottoList);
+        System.out.println();
     }
 
     private void getWinningNumbersAndBonusNumber() {

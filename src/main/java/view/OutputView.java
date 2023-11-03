@@ -17,9 +17,8 @@ public class OutputView {
     }
 
     public static void resultStart() {
-        System.out.println("당첨 통계\n"
-                + "---");
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 
     public static void printStatistics(HashMap<Rank, Integer> rankCountsMap) {

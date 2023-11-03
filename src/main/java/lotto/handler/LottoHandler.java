@@ -4,10 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.manager.LottoManager;
 import lotto.dto.LottoDto;
-import lotto.view.LottoGuideMessage;
-import lotto.view.LottoReader;
-import lotto.view.LottoViewResolver;
-import lotto.view.LottoWriter;
+import lotto.view.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +53,7 @@ public class LottoHandler {
         return reader.input(() -> {
             int bonusNumber = Integer.parseInt(Console.readLine());
             if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException(LottoErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getMessage());
             }
             return bonusNumber;
         });
@@ -68,7 +65,7 @@ public class LottoHandler {
             String inputWinningNumbers = Console.readLine();
             String[] split = inputWinningNumbers.split(",");
             if (split.length != Lotto.LOTTO_NUMBER_SIZE) {
-                throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개만 입력이 가능합니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_SIZE.getMessage());
             }
             return Arrays.stream(split).map(Integer::parseInt).toList();
         });

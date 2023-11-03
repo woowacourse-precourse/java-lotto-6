@@ -24,7 +24,7 @@ public class StringFormatter {
     }
 
     private String makeLine(Lotto lotto) {
-        List<String> temp = lotto.getNumbers().stream()
+        List<String> temp = lotto.numbers().stream()
                 .map(String::valueOf)
                 .toList();
         return String.join(DELIMITER, temp);
@@ -33,10 +33,10 @@ public class StringFormatter {
     public String makeResultLines(LottoResult result) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(FIFTH_FORMAT, result.getRankingCount(Ranking.FIFTH))).append(NEXT_LINE);
-        sb .append(String.format(FOURTH_FORMAT, result.getRankingCount(Ranking.FOURTH))).append(NEXT_LINE);
+        sb.append(String.format(FOURTH_FORMAT, result.getRankingCount(Ranking.FOURTH))).append(NEXT_LINE);
         sb.append(String.format(THIRD_FORMAT, result.getRankingCount(Ranking.THIRD))).append(NEXT_LINE);
         sb.append(String.format(SECOND_FORMAT, result.getRankingCount(Ranking.SECOND))).append(NEXT_LINE);
-        sb .append(String.format(FIRST_FORMAT, result.getRankingCount(Ranking.FIRST))).append(NEXT_LINE);
+        sb.append(String.format(FIRST_FORMAT, result.getRankingCount(Ranking.FIRST))).append(NEXT_LINE);
         sb.append(String.format(YIELD_FORMAT, result.getYield()));
         return sb.toString();
     }

@@ -33,7 +33,7 @@ public class LottoService {
     }
 
     private int countMatchNumber(Lotto lotto, AnswerLotto answerLotto) {
-        return answerLotto.getMatchCount(lotto.getNumbers());
+        return answerLotto.getMatchCount(lotto.numbers());
     }
 
     private boolean checkBonus(Lotto lotto, AnswerLotto answerLotto) {

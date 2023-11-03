@@ -12,7 +12,6 @@ public enum ErrorMessage {
     ALREADY_CONTAINS_ERROR("당첨 번호에 이미 포함된 번호 입니다."),
     SPLIT_REGEX_ERROR("쉼표(,)로만 구분 가능합니다.");
 
-
     private static final String ERROR_FORMAT = "[ERROR] %s";
 
     private final String message;

@@ -4,16 +4,9 @@ import lotto.util.Validator;
 
 import java.util.List;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         Validator.validateNumbers(numbers);
-        this.numbers = numbers;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     public boolean contains(int value) {

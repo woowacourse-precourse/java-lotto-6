@@ -14,8 +14,8 @@ public class AnswerLotto {
 
     public int getMatchCount(List<Integer> lotto) {
         int count = 0;
-        for (Integer i : lotto) {
-            if(winnginLotto.contains(i)) {
+        for (Integer number : lotto) {
+            if(winnginLotto.contains(number)) {
                 count++;
             }
         }

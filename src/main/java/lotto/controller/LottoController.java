@@ -5,6 +5,7 @@ import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,5 +34,10 @@ public class LottoController {
         Lottos lottos = new Lottos(lottoMachine.createAllLotto(count));
         outputView.printLottos(count, lottos.toResponseDto());
         return lottos.getLottos();
+    }
+
+    private void getWinningNumber() {
+        String winningNumber = inputView.getWinningNumber();
+        WinningLotto winningLotto = new WinningLotto(winningNumber);
     }
 }

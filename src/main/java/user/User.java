@@ -34,6 +34,7 @@ public class User {
         while (true) {
             try {
                 List<String> sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
+                validateInputSizeSix(sixLottoNumbers);
                 validateCommaSeparatedInput(sixLottoNumbers);
                 validateSixLottoNumbers(sixLottoNumbers);
                 validateNoDuplicateNumbers(sixLottoNumbers);
@@ -68,6 +69,12 @@ public class User {
             if (!lottoNumber.matches("[0-9]+")){
                 throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 공백없이 입력해야합니다.");
             }
+        }
+    }
+
+    private void validateInputSizeSix(List<String> sixLottoNumbers){
+        if (sixLottoNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호 6개를 입력해주세요.");
         }
     }
 }

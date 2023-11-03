@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RandomNumbers {
     private static final int RANDOM_MIN_VALUE = 1;
@@ -9,8 +10,13 @@ public class RandomNumbers {
     private static final int RANDOM_NUMBERS_SIZE = 6;
 
     public List<Integer> generateRandomNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(RANDOM_MIN_VALUE,
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANDOM_MIN_VALUE,
                 RANDOM_MAX_VALUE, RANDOM_NUMBERS_SIZE);
+        List<Integer> lottoNumbers = sortRandomNumbers(numbers);
         return lottoNumbers;
+    }
+
+    private List<Integer> sortRandomNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

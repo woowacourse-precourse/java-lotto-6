@@ -36,7 +36,7 @@
 
 ## 클래스 분류
 1. view - InputView, OutputView  
-2. domain - Winning(checkLotto), Lotto(generateLotto), Lottos, Amount  
+2. domain - Winning(checkLotto), Lotto, Lottos, Amount  
 3. controller - Controller 
 4. utilities - Parse
 5. factory - LottoFactory 
@@ -50,14 +50,14 @@
 Controller
 - 1. 구입 금액 입력 - InputAmount()  
        - 입력 메시지 - OutputView  
-       - 1000 단위 숫자 입력 받기 - inputView  
-       - 1000원 단위인지, 숫자인지 검증 - InputValidation
+       - 1000 단위 숫자 입력 받기 - InputView  
+       - 1000원 단위인지, 숫자인지 검증 - amountValidation
        - 구입 금액 Amount 도메인에 저장 - Amount
           
 - 2. 발행 로또 번호 출력 - outputLottoTicket()
-       - 구입 금액 1000으로 나눠서 발행 개수 구하기 - Amount calculateLottoCount
+       - 구입 금액 1000으로 나눠서 발행 개수 구하기 - Amount (getAvailableQuantity())
        - 발행 개수 출력 - OutputView
-       - 발행 개수만큼 for문 돌면서 중복되지 않는 랜덤 넘버 6개 발행 - Lotto generateLotto
+       - 발행 개수만큼 for문 돌면서 중복되지 않는 랜덤 넘버 6개 발행 - Lottos generateLotto
        - 발행 로또 저장 - Lotto
        - 발행 로또를 티켓 리스트에 저장 - Lottos
        - 발행 로또들 출력 - OutputView

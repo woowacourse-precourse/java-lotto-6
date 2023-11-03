@@ -28,6 +28,7 @@ public class GameScreen {
         //printBonusResult();
 
         //printTotalPrizes();
+        this.game.calculateProfitRate();
     }
     private void initialize(){
         while(true) {
@@ -178,7 +179,7 @@ public class GameScreen {
 //        System.out.println(result);
 //    }
     //only for test
-//    private void printTotalPrizes(){
-//        System.out.println(this.game.sumAllPrize());
-//    }
+    private void printTotalPrizes(){
+        System.out.println(this.game.sumAllPrize());
+    }
 }

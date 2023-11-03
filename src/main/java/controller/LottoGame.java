@@ -48,12 +48,13 @@ public class LottoGame {
     private void createLottos() throws IllegalArgumentException {
         List<Integer> numbers;
         validateLottoQuantity();
+        int index = this.lottoQuantity;
         while(true){
-            if(this.lottoQuantity == 0)
+            if(index == 0)
                 break;
             numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
             lottos.add(new Lotto(numbers));
-            this.lottoQuantity--;
+            index--;
         }
     }
     public List<Lotto> getLottos() throws IllegalArgumentException {
@@ -174,12 +175,14 @@ public class LottoGame {
 //                .append("개");
 //        return printer.toString();
 //    }
-    //todo: big Integer 계산 안나옴 void sum_all_lotto_prizes(){ 해결하기
+    //todo: sameNumbercount count 이런 모호한 이름 더 좋은 것으로 바꿔보기
     private BigInteger calculateSumEach(int sameNumberCount, String quantity){
         ArrayList<String> prizes = Statistic.getPrizeList();
         ArrayList<Integer> counts = Statistic.getSameNumberCountList();
 
+        //각 등수별 당첨 횟수
         BigInteger amount = new BigInteger("0");
+        //각 등수별 당첨금
         BigInteger prize;
 
         for(int index = 0; index < prizes.size(); index++){
@@ -201,7 +204,9 @@ public class LottoGame {
 
         for(Map.Entry<Integer, Integer> lotto : wonLottos){
             if(lotto.getValue() != 0){
+                //등수 종류
                 int sameNumberCount = lotto.getKey();
+                //각 등수별 당첨 횟수
                 String quantity = String.valueOf(lotto.getValue());
                 result = result.add(calculateSumEach(sameNumberCount, quantity));
             }
@@ -209,5 +214,48 @@ public class LottoGame {
         return result;
     }
 
+    public BigInteger calculateProfitRate(){
+        BigInteger result = sumAllPrize();
+        System.out.println("합산액 "+result);
+        BigInteger cost
+                = new BigInteger(String.valueOf(this.lottoQuantity * 1000));
+        System.out.println("구입 금액 "+cost);
+        String profitRate;
+        //두번째 자리에서 반올림하는 것이므로
+        //100 00을 곱해주고
+        //뒤의 2자리와 앞의 나머지로 문자열을 자른다.
+        //뒤의 2자리를 int로 바꿔주고 1의 자리에서 반올림한 뒤
+        //문자열로 변환하고 앞의 한자리만 자르고 나머지는 버린다.
+        //아까의 앞의 나머지 뒤에 .을 붙이고 뒤에 방금의 앞의 한자리를 붙인다.
+        if(result.toString().equals("0"))
+            return new BigInteger("0");
+        result = (result.multiply(new BigInteger("10000")).divide(cost));
+        System.out.println("당첨 합산액 / 초기금 = "+ result);
+        profitRate = roundProfitRateInSecondPlace(result);
+        System.out.println("총 수익률은 "+ profitRate+"%입니다.");
+        return result;
+    }
+
+    public String roundProfitRateInSecondPlace(BigInteger result){
+        String profitRate = result.toString();
+        int length = profitRate.length();
+
+        String front = profitRate.substring(0, length-2);
+        System.out.println("front "+front);
+        String back = profitRate.substring(length-2, length);
+        System.out.println("back "+back);
+
+        double backNumber = Double.parseDouble(back);
+        System.out.println("1 current backNumber "+backNumber);
+        backNumber = backNumber/10.00;
+        System.out.println("2 current backNumber "+backNumber);
+        backNumber = Math.round(backNumber);
+        System.out.println("3 current backNumber "+backNumber);
+        back = String.valueOf(backNumber);
+        back = back.substring(0,1);
+
+        System.out.println("back "+back);
+        return front+"."+back;
+    }
 }
 

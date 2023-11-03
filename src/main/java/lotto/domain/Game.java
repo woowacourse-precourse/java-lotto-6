@@ -16,6 +16,14 @@ public class Game implements Constraints {
         lottos = new ArrayList<>();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public void setWinningNumbers(List<Integer> winningNumbers) {
         validateNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
@@ -39,7 +47,7 @@ public class Game implements Constraints {
         lottos.add(lotto);
     }
 
-    Map<ResultCode, Integer> calculate() {
+    public Map<ResultCode, Integer> calculate() {
         Map<ResultCode, Integer> result = new HashMap<>();
         for (Lotto lotto : lottos) {
             long matchCount = countMatches(lotto);
@@ -75,10 +83,13 @@ public class Game implements Constraints {
         }
     }
 
-    double calculateProfitability(Map<ResultCode, Integer> map, Integer purchasePrice) {
-        double totalPrice = map.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().prize * entry.getValue())
-                .sum();
+    public double calculateProfitability(Map<ResultCode, Integer> map, Integer purchasePrice) {
+        double totalPrice = 0;
+        if (!map.isEmpty()) {
+            totalPrice = map.entrySet().stream()
+                    .mapToInt(entry -> entry.getKey().prize * entry.getValue())
+                    .sum();
+        }
         return Math.round(totalPrice / purchasePrice * 10000.0) / 100.0;
     }
 }

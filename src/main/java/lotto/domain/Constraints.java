@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface Constraints {
+
     Integer NUMBER_LENGTH = 6;
     Integer MAX = 45;
     Integer MIN = 0;

@@ -32,9 +32,8 @@ public class LottoViewTest {
     @ParameterizedTest
     @ValueSource(doubles = {100.05,100.06,100.07,100.08,100.09})
     @DisplayName("소숫점 둘째자리에서 4이하면 버린다.")
-    void 수익률_출력형식_테스트2() {
+    void 수익률_출력형식_테스트2(double value) {
         //given
-        double value = 100.05;
         String string = lottoView.printRate(value);
 
         assertThat(string).isEqualTo("100.1%");

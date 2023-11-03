@@ -13,6 +13,7 @@ class Lotto {
     private static final int MAX_LOTTO_NUMBERS_SIZE = 6;
     private static final String INVALID_LOTTO_NUMBERS_SIZE_MESSAGE =
             "로또 번호의 개수는 최대 " + MAX_LOTTO_NUMBERS_SIZE + "개입니다.";
+    private static final String LOTTO_NUMBERS_DUPLICATION_MESSAGE = "로또 번호에 중복된 숫자를 포함할 수 없습니다.";
 
     private final List<LottoNumber> numbers;
 
@@ -30,6 +31,10 @@ class Lotto {
     private static void validate(List<Integer> numbers) {
         if (numbers.size() != MAX_LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
+        }
+
+        if (numbers.stream().distinct().count() != MAX_LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATION_MESSAGE);
         }
     }
 

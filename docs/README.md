@@ -68,3 +68,9 @@
     - View를 입력, 검증, 출력 세 개로 나눌 수 있지 않을까
     - 예외처리가 겹치는 게 많다. 메서드로 만들어서 필요에 따라 추가할 수 있지 않을까
     - inputBonusNumber에서 winningNumbers를 계속 넣어주는 것보다 편한 방법이 있지 않을까?
+  
+## Utility
+- [x] Constant : 모든 클래스에 공통적으로 사용되는 상수 정의
+  - LOTTO_START_NUMBER : 시작 숫자 (1)
+  - LOTTO_END_NUMBER : 마지막 숫자 (45)
+  - LOTTO_PICK_NUMBER : 선택 숫자 (6)

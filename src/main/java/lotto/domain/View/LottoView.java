@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Model.Lotto;
 import lotto.domain.Model.LottoContainer;
 import lotto.domain.Model.Prize;
+import lotto.domain.Utility.Constant;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -71,16 +72,22 @@ public class LottoView {
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6자리를 입력해 주세요.");
+        if (winningNumbers.size() != Constant.LOTTO_PICK_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] " + Constant.LOTTO_PICK_NUMBER + "자리를 입력해 주세요.");
         }
 
         Map<Integer, Integer> sameNumberCheck = new HashMap<>();
 
         for (int num :
                 winningNumbers) {
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 숫자를 1 ~ 45중에서 선택해야 합니다.");
+            if (num < Constant.LOTTO_START_NUMBER || num > Constant.LOTTO_END_NUMBER) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 당첨 숫자를 "
+                        + Constant.LOTTO_START_NUMBER
+                        + " ~ "
+                        + Constant.LOTTO_END_NUMBER
+                        + "중에서 선택해야 합니다."
+                );
             } else if (sameNumberCheck.containsKey(num)) {
                 throw new IllegalArgumentException("[ERROR] 동일한 숫자를 입력했습니다.");
             }
@@ -106,8 +113,14 @@ public class LottoView {
     }
 
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자를 1 ~ 45중에서 선택해야 합니다.");
+        if (bonusNumber < Constant.LOTTO_START_NUMBER || bonusNumber > Constant.LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 보너스 숫자를 "
+                            + Constant.LOTTO_START_NUMBER
+                            + " ~ "
+                            + Constant.LOTTO_END_NUMBER
+                            + "중에서 선택해야 합니다."
+            );
         } else if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 숫자와 겹칩니다.");
         }

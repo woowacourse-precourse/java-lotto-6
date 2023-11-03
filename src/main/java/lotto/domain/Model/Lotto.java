@@ -1,5 +1,7 @@
 package lotto.domain.Model;
 
+import lotto.domain.Utility.Constant;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,8 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호가 6개가 아닙니다.");
+        if (numbers.size() != Constant.LOTTO_PICK_NUMBER) {
+            throw new IllegalArgumentException("로또 번호가 " + Constant.LOTTO_PICK_NUMBER + "개가 아닙니다.");
         }
     }
 

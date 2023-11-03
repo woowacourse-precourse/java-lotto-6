@@ -1,17 +1,13 @@
 package lotto.domain.Model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Utility.Constant;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoMaker {
-
-    private final int START_NUMBER = 1;
-    private final int END_NUMBER = 45;
-    private final int PICK_NUMBER = 6;
-
     public LottoMaker() {
     }
 
@@ -28,7 +24,12 @@ public class LottoMaker {
     }
 
     public Lotto issueLottoPaper() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, PICK_NUMBER);
+        List<Integer> numbers
+                = Randoms.pickUniqueNumbersInRange(
+                Constant.LOTTO_START_NUMBER,
+                Constant.LOTTO_END_NUMBER,
+                Constant.LOTTO_PICK_NUMBER
+        );
         numbers.sort(Integer::compareTo);
 
         return new Lotto(numbers);

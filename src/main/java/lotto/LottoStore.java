@@ -47,7 +47,7 @@ public class LottoStore {
 
     public void sellLottos(final Customer customer) {
         this.calculateLottoAmount();
-        generateAllLottos();
+        this.generateAllLottos();
         customer.getLotto(this.lottoPapers);
     }
 

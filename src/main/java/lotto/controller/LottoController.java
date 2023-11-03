@@ -23,6 +23,8 @@ public class LottoController {
 
         LottoTickets lottoTickets = makeLottoTickets(money);
         output.showLottoTickets(lottoTickets);
+
+        output.showWinningNumbersInputMessage();
     }
 
     private LottoTickets makeLottoTickets(int money) {

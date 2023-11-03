@@ -43,9 +43,8 @@
     - [x] 6개 이상의 값이 나오면 예외 처리
 
 - [ ] 당첨 내역 (WinningList)
-  - [ ] Lotto의 List와 WinningNumber를 입력 받아 당첨 여부 계산.
-  - [ ] 당첨 내역 Valid
-  - [ ] 수익률 계산 및 ProfitRate 리턴
+  - [x] Lotto의 List와 WinningNumber를 입력 받아 당첨 여부 계산.
+  - [x] 수익률 계산 및 ProfitRate 리턴
 
 - [ ] 수익률 (ProfitRate)
   - [ ] 수익률 Valid

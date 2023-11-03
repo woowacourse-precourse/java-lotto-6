@@ -18,6 +18,7 @@ public class LottoController {
 
         LottoTickets lottoTickets = issueLotto(purchaseAmount);
 
+        ConsoleOutput.printLottoTickets(issuingLottoService.getLottoTicketsDto(lottoTickets));
     }
 
     private LottoTickets issueLotto(PurchaseAmount purchaseAmount) {

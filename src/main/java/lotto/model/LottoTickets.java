@@ -19,4 +19,12 @@ public class LottoTickets {
     private int calQuantity(PurchaseAmount purchaseAmount) {
         return purchaseAmount.getPurchaseAmount() / 1000;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

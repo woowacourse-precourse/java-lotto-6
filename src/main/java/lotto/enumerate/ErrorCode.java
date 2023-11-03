@@ -8,6 +8,13 @@ public enum ErrorCode {
     AMOUNT_UNIT_IS_NOT_1000_WON("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다."),
     AMOUNT_IS_UNDER_THOUSAND_WON("[ERROR] 로또 구입 금액은 음수이거나 0이 될 수 없습니다.");
 
+    private String message;
+
+    public String getMessage() {
+        return this.message;
+    }
+
     ErrorCode(String message) {
+        this.message = message;
     }
 }

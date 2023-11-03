@@ -5,7 +5,7 @@ import lotto.enumerate.ErrorCode;
 public class ExceptionCodeThrow {
     public static void exceptionCodeThrow(ErrorCode errorCode) {
         String message;
-        message = String.valueOf(errorCode);
+        message = errorCode.getMessage();
         throw new IllegalArgumentException(message);
     }
 }

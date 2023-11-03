@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.utils.Logs;
 import lotto.utils.Reader;
 
 import java.util.Arrays;
@@ -10,29 +11,32 @@ public class Game {
     private WinningLotto winningLotto;
 
     public void joinPlayer() {
+        Logs.inputMoney();
         player = new Player(inputMoney());
         player.issueLotto();
-        System.out.println(player.issuedLottos());
+        Logs.print(player.issuedLottos());
     }
 
     public void drawWinningLotto() {
-        winningLotto = new WinningLotto(inputWinningNumbers(), inputBonusNumber());
+        Logs.inputWinningNumbers();
+        List<Integer> winningNumbers = inputWinningNumbers();
+        Logs.inputBonusNumber();
+        int bonusNumber = inputBonusNumber();
+        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
     public void findResult() {
         player.findResults(winningLotto);
         player.findTotalPrize();
-        System.out.println(player.lottoResults());
+        Logs.print(player.lottoResults());
     }
 
     private int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
         String input = Reader.readLine().strip();
         return Integer.parseInt(input);
     }
 
     private List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Reader.readLine();
 
         List<Integer> winningNumbers = Arrays.stream(input.split(",", -1))
@@ -44,7 +48,6 @@ public class Game {
     }
 
     private int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Reader.readLine().strip();
         return Integer.parseInt(input);
     }

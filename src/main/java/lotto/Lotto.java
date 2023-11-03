@@ -3,6 +3,7 @@ package lotto;
 import static lotto.message.ErrorMessage.LOTTO_IS_NOT_6DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.utils.LottoUtil;
 
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {

@@ -6,11 +6,19 @@ import java.util.List;
 
 public class RandomLotto {
 
-//    private List<Lotto> lottos;
-//
-//    public RandomLotto() {
-//        lottos = new ArrayList<>();
-//    }
+    private int count;
+
+    public RandomLotto(Price price) {
+        count = price.divideWithOneThousands();
+    }
+
+    public int count() {
+        return count;
+    }
+
+    public int minusCount() {
+        return count--;
+    }
 
     public Lotto generateRandomLottos() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));

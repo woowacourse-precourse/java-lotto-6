@@ -75,12 +75,12 @@
 
 ## ❗ **Exception**
 
-### **BonusNumberExceptionMessage**
+### **BonusNumberException**
 
 - **보너스 번호 예외 처리**
   - 여러 케이스에 대한 예외 처리를 진행한다.
 
-### **PurchaseExceptionMessage**
+### **PurchaseValidationException**
 
 - **구매 관련 예외 처리**
   - 여러 케이스에 대한 예외 처리를 진행한다.
@@ -90,7 +90,7 @@
 - **로또 번호 예외 처리**
   - 여러 케이스에 대한 예외 처리를 진행한다.
 
-### **WinningNumberExceptionMessage**
+### **WinningNumberValidationException**
 
 - **당첨 번호 예외 처리**
   - 여러 케이스에 대한 예외 처리를 진행한다.

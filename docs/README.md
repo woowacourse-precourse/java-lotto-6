@@ -17,6 +17,18 @@
 * showLottoTicket: 생성된 로또 1장을 출력한다.
 * gatherLottoTickets: List를 생성하여 주어진 quantity만큼 로또를 생성해 집어 넣은 후 반환한다.
 
+### UserPick
+* pickNumbers: 유저의 번호 입력 UI를 담당한다.
+* pickLottoNumbers: 유효하지 않은 당첨 번호에 대해 입력을 반복한다.
+* pickBonusNumbers: 유효하지 않은 보너스 번호에 대해 입력을 반복한다.
+* parseLottoNumbers: 입력한 당첨 번호를 파싱한다.
+* parseBonusNumber: 입력한 보너스 번호를 파싱한다.
+
+### Validator
+* validateSeparatedLottoNumbers: 분리된 당첨 번호의 유효성을 검증한다.
+* validateBonusNumber: 보너스 번호의 유효성을 검증한다.
+* validateRange: 인자로 들어온 수의 범위 유효성을 검증한다.
+
 ## 요구 사항 체크리스트
 ### 기능 요구 사항
 <ul>

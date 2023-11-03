@@ -1,7 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.userpick.UserPick;
 import lotto.domain.purchase.Purchase;
 
 import java.util.List;
@@ -10,15 +10,11 @@ public class Application {
     public static void main(String[] args) {
         Purchase purchase = new Purchase();
         int quantity = purchase.makePurchase();
+        UserPick userPick = new UserPick();
 
         List<Lotto> lottoTicketList = Lotto.gatherLottoTickets(quantity);
 
-        System.out.println("당첨 번호를 입력해 주세요");
-        String chosenNumber = Console.readLine();
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        System.out.println();
+        userPick.pickNumbers();
 
         System.out.println("당첨 통계");
         System.out.println("---");

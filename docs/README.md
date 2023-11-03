@@ -18,3 +18,4 @@
 
 ## Repository
 - 로또를 저장한다 [LottoRepository]
+  - 로또 리스트를 저장한다 [saveAll()]

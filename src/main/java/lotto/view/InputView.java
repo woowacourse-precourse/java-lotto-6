@@ -22,6 +22,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = readLine();
+        InputValidator.validateWinningNumbers(input);
 
         return Arrays.stream(input.split(", "))
                 .map(Integer::parseInt)

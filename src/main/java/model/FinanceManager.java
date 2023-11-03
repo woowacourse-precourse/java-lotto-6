@@ -10,7 +10,7 @@ public class FinanceManager {
         this.purchaseAmount = amount;
     }
 
-    public static FinanceManager createDefault(final String inputPurchase) {
+    public static FinanceManager from(final String inputPurchase) {
         return new FinanceManager(Integer.parseInt(inputPurchase));
     }
 

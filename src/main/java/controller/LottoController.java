@@ -42,7 +42,7 @@ public class LottoController {
             inputPurchase = inputView.read();
         }
 
-        financeManager = FinanceManager.createDefault(inputPurchase);
+        financeManager = FinanceManager.from(inputPurchase);
     }
 
     private void initGameManager() {

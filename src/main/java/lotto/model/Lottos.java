@@ -18,6 +18,10 @@ public class Lottos {
     public List<Lotto> getLottos(){
         return this.lottos;
     }
+
+    public List<Integer> getWinningCounts(){
+        return this.winningCounts;
+    }
     private List<Lotto> createLottos(int tryNumber) {
         List<Lotto> Lottos = new ArrayList<>();
         for (int i = 0; i < tryNumber; i++) {

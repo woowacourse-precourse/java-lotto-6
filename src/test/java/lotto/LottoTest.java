@@ -1,10 +1,12 @@
 package lotto;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +25,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호를 오름차순으로 정렬하여 가져온다.")
+    @Test
+    void 로또번호_오름차순(){
+        //given
+        List<Integer> lottoNumbers=new ArrayList<>(List.of(6,4,1,3,5,2));
+
+        //when
+        Lotto lotto=new Lotto(lottoNumbers);
+
+        //then
+        assertThat(lotto.getSortingNumbers()).containsExactly(1,2,3,4,5,6);
+    }
 }

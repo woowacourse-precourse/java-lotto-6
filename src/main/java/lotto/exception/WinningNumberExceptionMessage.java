@@ -27,4 +27,10 @@ public class WinningNumberExceptionMessage extends IllegalArgumentException{
             throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
+
+    public static void validateBoundaryWinningNumber(List<Integer> winningNumber) {
+        if (winningNumber.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new WinningNumberExceptionMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+        }
+    }
 }

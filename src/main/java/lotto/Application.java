@@ -8,13 +8,14 @@ import java.util.*;
 public class Application {
 
     private static String purchasingAmount;
+    private static int purchasingPieces;
 
     private static final InputView inputView = new InputView();
 
     public static void purchaseCount() {
         purchasingAmount =inputView.purchasingAmount();
         try {
-            Purchase purchase = new Purchase(purchasingAmount);
+            purchasingPieces = new Purchase(purchasingAmount).pieces();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             purchaseCount();
@@ -23,5 +24,6 @@ public class Application {
 
     public static void main(String[] args) {
         purchaseCount();
+        System.out.println(purchasingPieces);
     }
 }

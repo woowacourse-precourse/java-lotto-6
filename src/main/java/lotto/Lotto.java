@@ -1,11 +1,13 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
-
+import static lotto.Input.*;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
-    public static List<List<Integer>> numbers_list = new ArrayList<>();
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +17,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void dup_check(List<Integer> numbers){
+        Set<Integer> dup = new LinkedHashSet<>();
+        for(int i : numbers){
+            dup.add(i);
+        }
+        if(dup.size() != 6){
             throw new IllegalArgumentException();
         }
     }

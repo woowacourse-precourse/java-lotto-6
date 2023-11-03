@@ -1,5 +1,6 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.List;
 import static lotto.Lotto.*;
 
 public class Input {
+    public static List<List<Integer>> numbers_list = new ArrayList<>();
     public static int lotto_count = 0;
     public static List<Integer> winner = new ArrayList<>();
     public static int bonus_num = 0;
@@ -34,18 +36,35 @@ public class Input {
                 String input = Console.readLine();
                 String[] tmp = input.split(",");
                 for(String s : tmp){
-                    if(s.matches("[+]?\\d*(\\.\\d+)?") == false || s.equals("")){// 예외 1 : 숫자가 아닌 문자나 공백이 들어갔을 경우
-                        throw new IllegalArgumentException();
-                    }
-                    if(Integer.parseInt(s)<1||45<Integer.parseInt(s)){// 예외 2: 1~45의 숫자가 아닐 경우
+                    // 예외 1 : 숫자가 아닌 문자나 공백이 들어갔을 경우, 예외 2, 1보다 작거나 45보다 클 경우
+                    if(s.matches("[+]?\\d*(\\.\\d+)?") == false || s.equals("") || Integer.parseInt(s)<1||45<Integer.parseInt(s)){
                         throw new IllegalArgumentException();
                     }
                     winner.add(Integer.parseInt(s));
                 }
                 Lotto l1 = new Lotto(winner);
+                dup_check(winner);
     }
 
     public static void input_bonus(){
-
+        bonus_num = 0;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        bonus_validate(input);
     }
+
+    public static void bonus_validate(String input){
+        if(input.matches("[+]?\\d*(\\.\\d+)?") == false){ // 숫자가 아닌 경우
+            throw new IllegalArgumentException();
+        }
+        bonus_num = Integer.parseInt(input);
+        if(bonus_num<1||45<bonus_num){// 1~45의 숫자가 아닌 경우
+            throw new IllegalArgumentException();
+        }
+        if(winner.contains(bonus_num)){//당첨 숫자와 중복되었을 경우
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

@@ -28,4 +28,8 @@ public class Lotto {
 
         return uniqueSize!=LOTTO_SIZE;
     }
+
+    public List<Integer> getSortingNumbers(){
+        return numbers.stream().sorted().toList();
+    }
 }

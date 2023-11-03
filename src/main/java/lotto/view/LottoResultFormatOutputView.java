@@ -7,6 +7,9 @@ import lotto.domain.lottoresult.LottoCheckResult;
 import lotto.domain.lottoresult.LottoResultStatus;
 
 public class LottoResultFormatOutputView {
+    private static final String SECOND_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String RESULT_FORMAT = "%d개 일치 (%s원) - %d개\n";
+
     public static void printLottoResultFormat(LottoCheckResult lottoCheckResult) {
         Map<LottoResultStatus, Integer> result = lottoCheckResult.getResult();
 
@@ -17,9 +20,9 @@ public class LottoResultFormatOutputView {
             long matchCount = resultStatus.getMatchCount();
 
             if (isSecond(resultStatus)) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", matchCount, prize, resultCount);
-            }else if (isOverFifth(resultStatus)) {
-                System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount, prize, resultCount);
+                System.out.printf(SECOND_RESULT_FORMAT, matchCount, prize, resultCount);
+            } else if (isOverFifth(resultStatus)) {
+                System.out.printf(RESULT_FORMAT, matchCount, prize, resultCount);
             }
         }
     }

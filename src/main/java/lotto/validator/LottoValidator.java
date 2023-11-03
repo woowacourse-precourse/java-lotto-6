@@ -6,9 +6,12 @@ import lotto.exception.domain.lotto.LottoNumRangeException;
 import lotto.exception.domain.lotto.LottoSizeException;
 
 public class LottoValidator {
+    private static final int LOTTO_NUM_SIZE = 6;
+    private static final int LOTTO_NUM_MIN = 1;
+    private static final int LOTTO_NUM_MAX = 45;
 
     public static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUM_SIZE) {
             throw new LottoSizeException();
         }
     }
@@ -18,7 +21,7 @@ public class LottoValidator {
                 .distinct()
                 .count();
 
-        if (uniqueLottoNumSize != 6) {
+        if (uniqueLottoNumSize != LOTTO_NUM_SIZE) {
             throw new LottoDuplicateNumException();
         }
     }
@@ -41,6 +44,6 @@ public class LottoValidator {
     }
 
     private static boolean isValidRange(Integer num) {
-        return num >= 1 && num <= 45;
+        return num >= LOTTO_NUM_MIN && num <= LOTTO_NUM_MAX;
     }
 }

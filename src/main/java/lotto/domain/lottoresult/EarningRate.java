@@ -1,6 +1,8 @@
 package lotto.domain.lottoresult;
 
 public class EarningRate {
+    private static final int LOTTO_PRICE = 1_000;
+
     private final double rate;
 
     public EarningRate(double numOfTickets, double earnedMoney) {
@@ -12,6 +14,6 @@ public class EarningRate {
     }
 
     private double calcRate(double numOfTickets, double earnedMoney) {
-        return earnedMoney / (numOfTickets * 1000) * 100;
+        return earnedMoney / (numOfTickets * LOTTO_PRICE) * 100;
     }
 }

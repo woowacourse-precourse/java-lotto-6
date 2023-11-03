@@ -12,7 +12,8 @@ import lotto.domain.lotto.WinningNumbers;
 
 public class LottoChecker {
 
-    public LottoCheckResult checkLottoTickets(LottoTickets lottoTickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoCheckResult checkLottoTickets(LottoTickets lottoTickets, WinningNumbers winningNumbers,
+                                              BonusNumber bonusNumber) {
         Collection<Lotto> tickets = lottoTickets.getLottoTickets();
         LottoCheckResult result = new LottoCheckResult();
 
@@ -33,9 +34,10 @@ public class LottoChecker {
         for (Map.Entry<LottoResultStatus, Integer> entry : result.entrySet()) {
             LottoResultStatus status = entry.getKey();
             Integer tickets = entry.getValue();
+            int prize = status.getPrize();
 
             numOfTickets += tickets;
-            earnedMoney += status.getPrize() * tickets;
+            earnedMoney += prize * tickets;
         }
 
         return new EarningRate(numOfTickets, earnedMoney);

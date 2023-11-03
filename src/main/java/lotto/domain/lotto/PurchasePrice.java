@@ -8,6 +8,7 @@ import lotto.exception.domain.purchaseprice.PurchasePriceLowAmountException;
 
 public class PurchasePrice {
     private static final Pattern priceRegex = Pattern.compile("^[0-9]+(,*\\d)*$");
+    private static final int LOTTO_PRICE = 1_000;
 
     private final int price;
 
@@ -46,13 +47,13 @@ public class PurchasePrice {
     }
 
     private void validateNotBelowOptimalPrice(int numberOfPrice) {
-        if (numberOfPrice < 1000) {
+        if (numberOfPrice < LOTTO_PRICE) {
             throw new PurchasePriceLowAmountException();
         }
     }
 
     private void validateDivisibleByProperAmount(int numberOfPrice) {
-        if (numberOfPrice % 1000 != 0) {
+        if (numberOfPrice % LOTTO_PRICE != 0) {
             throw new PurchasePriceDivisibleException();
         }
     }

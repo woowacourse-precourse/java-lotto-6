@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 
 public class BonusNumberValidator {
@@ -9,9 +11,15 @@ public class BonusNumberValidator {
     private BonusNumberValidator() {
     }
 
-    public static void validateLottoNumberRange(int number) {
+    public static void validateRange(int number) {
         if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
+        }
+    }
+
+    public static void validateExistAt(BonusNumber bonusNumber, WinningNumber winningNumber) {
+        if (bonusNumber.isExistAt(winningNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.EXIST_IN_WINNING_NUMBER.getMessage());
         }
     }
 }

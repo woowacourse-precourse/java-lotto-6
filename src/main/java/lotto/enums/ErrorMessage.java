@@ -10,7 +10,8 @@ public enum ErrorMessage {
     ONLY_COMMA("쉼표로 구분하여 입력해야 합니다."),
     LOTTO_NUMBER_SIZE("로또 번호는 6개의 번호로 이뤄져야 합니다."),
     BONUS_NUMBER_SIZE("보너스 번호는 1개의 번호로 이뤄줘야 합니다."),
-    NUMBER_DUPLICATION("중복된 번호를 입력할 수 없습니다.");
+    NUMBER_DUPLICATION("중복된 번호를 입력할 수 없습니다."),
+    EXIST_IN_WINNING_NUMBER("이미 당첨번호에 존재하는 번호 입니다.");
 
     private final String message;
 

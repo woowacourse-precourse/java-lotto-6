@@ -12,6 +12,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> createRandomLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
     public List<Integer> createRank() {
         return new ArrayList<>(6);
     }

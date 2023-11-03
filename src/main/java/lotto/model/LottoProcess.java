@@ -11,12 +11,6 @@ import java.util.List;
 import lotto.exception.LottoProcessException;
 
 public class LottoProcess {
-    private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(NUMBERS_MIN_RANGE.getNumber(),
-        NUMBERS_MAX_RANGE.getNumber(), NUMBERS_SIZE.getNumber());
-        return new Lotto(randomNumbers);
-    }
-
     public List<Lotto> purchaseLotto(int money) {
         LottoProcessException.checkPurchaseMoney(money);
         int numberOfLotto = money / LOTTO_PRICE.getNumber();
@@ -25,5 +19,11 @@ public class LottoProcess {
             lotto.add(generateRandomLotto());
         }
         return lotto;
+    }
+
+    private Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(NUMBERS_MIN_RANGE.getNumber(),
+        NUMBERS_MAX_RANGE.getNumber(), NUMBERS_SIZE.getNumber());
+        return new Lotto(randomNumbers);
     }
 }

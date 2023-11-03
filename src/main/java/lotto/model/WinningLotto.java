@@ -9,6 +9,12 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Prize calculatePrize(Lotto userLotto) {
+        int matchCount = userLotto.countMatchNumbers(winningLotto);
+        boolean bonusMatch = userLotto.hasBonusNumber(bonusNumber);
+        return determinePrize(matchCount, bonusMatch);
+    }
+
     private Prize determinePrize(int matchCount, boolean bonusMatch) {
         for (Prize prize : Prize.values()){
             if (prize.getMatchCount() == matchCount && prize.isBonusMatch() == bonusMatch) {
@@ -17,10 +23,4 @@ public class WinningLotto {
         }
         return null;
     }
-
-    public Prize calculatePrize(Lotto userLotto) {
-        int matchCount = userLotto.countMatchNumbers(winningLotto);
-        boolean bonusMatch = userLotto.hasBonusNumber(bonusNumber);
-        return determinePrize(matchCount, bonusMatch);
-    }
- }
+}

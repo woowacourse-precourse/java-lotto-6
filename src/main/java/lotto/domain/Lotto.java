@@ -49,6 +49,20 @@ public class Lotto {
         return numbers.size() != new HashSet<>(numbers).size();
     }
 
+    public int countNumberOfMatches(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::hasNumber)
+                .count();
+    }
+
+    private boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return bonusNumber.isIncludedIn(numbers);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

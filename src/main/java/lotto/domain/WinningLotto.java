@@ -22,6 +22,13 @@ public class WinningLotto {
         }
     }
 
+    public LottoRanking compare(Lotto userLotto) {
+        int numberOfMatches = lotto.countNumberOfMatches(userLotto);
+        boolean hasBonusNumber = userLotto.hasBonusNumber(bonusNumbers);
+
+        return LottoRanking.of(numberOfMatches, hasBonusNumber);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

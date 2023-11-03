@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import static lotto.utils.Constants.*;
@@ -23,6 +24,10 @@ public class BonusNumber {
 
     private static boolean isOutOfRange(int bonusNumber) {
         return bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER;
+    }
+
+    public boolean isIncludedIn(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 
     @Override

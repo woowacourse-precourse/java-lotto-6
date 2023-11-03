@@ -22,7 +22,7 @@ public class LottoCalculator {
             int matchCount = countMatchNumbers(oneTicket);
             Prize prize = Prize.getByMatch(matchCount);
 
-            if (prize != null) {
+            if (prize != Prize.NONE) {
                 result.put(prize, result.get(prize) + 1);
             }
             if (matchCount == SPECIAL_MATCH) {
@@ -37,6 +37,7 @@ public class LottoCalculator {
         result.put(Prize.THIRD, 0);
         result.put(Prize.FOURTH, 0);
         result.put(Prize.FIFTH, 0);
+        result.put(Prize.NONE, 0);
     }
 
     public int countMatchNumbers(Lotto lotto) {

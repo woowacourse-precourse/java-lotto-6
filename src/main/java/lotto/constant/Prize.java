@@ -5,7 +5,8 @@ public enum Prize {
     SECOND(5, "30,000,000", 30000000),
     THIRD(5, "1,500,000", 1500000),
     FOURTH(4, "50,000", 50000),
-    FIFTH(3, "5,000", 5000);
+    FIFTH(3, "5,000", 5000),
+    NONE(0, "0", 0);
 
     private final int match;
     private final String panel;
@@ -17,13 +18,13 @@ public enum Prize {
         this.money = money;
     }
 
-    public Prize getByMatch(int match) {
+    public static Prize getByMatch(int match) {
         for (Prize prize : values()) {
             if (prize.match == match) {
                 return prize;
             }
         }
-        return null;
+        return Prize.NONE;
     }
 
     public int getMatch() {

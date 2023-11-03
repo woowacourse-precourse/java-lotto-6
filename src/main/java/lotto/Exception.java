@@ -21,6 +21,13 @@ public class Exception {
         return true;
     }
     // 1000 단위인지
+    boolean checkValidPurchase(int purchase){
+        if(purchase%1000!=0){
+            System.out.println("[ERROR] 구입 금액이 1,000원 단위가 아닙니다.");
+            return false;
+        }
+        return true;
+    }
     // 6개인지
     // 중복이 없는지
     // 보너스와 숫자간 중복이 없는지

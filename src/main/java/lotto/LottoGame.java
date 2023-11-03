@@ -42,8 +42,7 @@ public class LottoGame {
             inputPurchase();
         }
         purchase = Integer.valueOf(input);
-        if(purchase%1000!=0){
-            System.out.println("[ERROR] 투입 금액은 1,000원 단위여야합니다.");
+        if(!exception.checkValidPurchase(purchase)){
             inputPurchase();
         }
     }

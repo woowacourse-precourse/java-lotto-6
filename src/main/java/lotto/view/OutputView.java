@@ -10,6 +10,10 @@ public class OutputView {
         System.out.println(count + PURCHASE);
     }
 
+    public void printLottoHistory(String history) {
+        System.out.print(history);
+    }
+
     public void printWinningStatistics(String lottoResult) {
         System.out.println(WINNING_STATISTICS + lottoResult);
     }

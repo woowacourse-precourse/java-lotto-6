@@ -2,8 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static lotto.utils.Constants.*;
 
@@ -31,17 +31,16 @@ public class LottoStore {
     }
 
     private static List<Lotto> createLottos(int size) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            lottos.add(createLotto());
-        }
-
-        return lottos;
+        return Stream.generate(LottoStore::createLotto)
+                .limit(size)
+                .toList();
     }
 
     private static Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
-        return new Lotto(numbers);
+        return new Lotto(pickUniqueNumbers());
+    }
+
+    private static List<Integer> pickUniqueNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
     }
 }

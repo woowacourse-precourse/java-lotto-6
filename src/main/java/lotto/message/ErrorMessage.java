@@ -15,7 +15,7 @@ public enum ErrorMessage {
     BONUS_OUT_OF_RANGE("보너스 번호는 1부터 45 사이의 숫자만 입력 가능합니다."),
     BONUS_DUPLICATE("당첨 번호에 없는 번호를 입력 부탁드립니다.");
 
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;

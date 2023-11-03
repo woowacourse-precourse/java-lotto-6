@@ -1,4 +1,4 @@
-package constants;
+package lotto.constants;
 
 public enum InputMessages {
 

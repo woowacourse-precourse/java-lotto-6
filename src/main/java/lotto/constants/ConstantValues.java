@@ -1,4 +1,4 @@
-package constants;
+package lotto.constants;
 
 public enum ConstantValues {
     START_LOTTO_NUMBER(1),

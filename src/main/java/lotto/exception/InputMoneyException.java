@@ -8,6 +8,7 @@ public class InputMoneyException {
 
     public static void validate(String money) {
         notNumberValidate(money);
+        moneyRangeValidate(money);
     }
 
     private static void notNumberValidate(String money) {
@@ -18,7 +19,11 @@ public class InputMoneyException {
         }
     }
 
-    private static void moneyMaxOverValidate(String money) {
+    private static void moneyRangeValidate(String money) {
+        int result = Integer.parseInt(money);
 
+        if (result < 1000 || result > 100_000) {
+            throw new IllegalArgumentException(ERROR.getMessage() + MONEY_RANGE.getMessage());
+        }
     }
 }

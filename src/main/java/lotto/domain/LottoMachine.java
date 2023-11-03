@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCondition;
-import lotto.domain.lotto.LottoReward;
+import lotto.domain.lotto.LottoRewardCondition;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.LottosRepository;
 import lotto.domain.money.LottoMoney;
@@ -27,10 +27,7 @@ public class LottoMachine {
 
     public void buyLottos(final Supplier<List<Integer>> randomLottoSupplier, final int price) {
         LottoMoney lottoMoney = LottoMoney.from(price);
-        List<Lotto> lottos = Stream.generate(randomLottoSupplier)
-                .limit(lottoMoney.createBuyingCount())
-                .map(Lotto::from)
-                .toList();
+        List<Lotto> lottos = createLottos(randomLottoSupplier, lottoMoney);
         Lottos userLotto = new Lottos(lottos);
         lottosRepository.saveUserLottos(userLotto);
     }
@@ -48,6 +45,23 @@ public class LottoMachine {
     public void addBonusNumber(final int bonusNumber) {
         validateBonusNumber(bonusNumber);
         lottosRepository.saveBonusNumber(bonusNumber);
+    }
+
+    public WinningResults createWinningResult() {
+        Lottos userLottos = findUserLottosObject();
+        Lotto winningLotto = findWinningLottoObject();
+        int bonusNumber = findBonusNumber();
+
+        List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto, bonusNumber);
+        return WinningResults.from(compareResults);
+    }
+
+    private List<Lotto> createLottos(final Supplier<List<Integer>> randomLottoSupplier,
+                                            final LottoMoney lottoMoney) {
+        return Stream.generate(randomLottoSupplier)
+                .limit(lottoMoney.createBuyingCount())
+                .map(Lotto::from)
+                .toList();
     }
 
     private Lottos findUserLottosObject() {
@@ -76,14 +90,6 @@ public class LottoMachine {
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATES_BONUS_NUMBER);
         }
-    }
-
-    public WinningResults createWinningResult() {
-        Lottos userLottos = findUserLottosObject();
-        Lotto winningLotto = findWinningLottoObject();
-        int bonusNumber = findBonusNumber();
-        List<LottoReward> compareResults = userLottos.createCompareResults(winningLotto, bonusNumber);
-        return WinningResults.from(compareResults);
     }
 
     private int findBonusNumber() {

@@ -18,6 +18,6 @@ public class WinningLotto extends Lotto {
         boolean isCorrectBonusNumber = lotto.numbers.contains(bonusNumber);
 
 
-        return LottoRanking.findBy(correctCount, isCorrectBonusNumber);
+        return LottoRanking.findByCondition(correctCount, isCorrectBonusNumber);
     }
 }

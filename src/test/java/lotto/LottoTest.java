@@ -54,4 +54,11 @@ class LottoTest {
         List<Integer> invalidSizeNumbers = Arrays.asList(1, 2, 3, 4, 5);
         assertThrows(LottoException.class, () -> new Lotto(invalidSizeNumbers));
     }
+
+    @Test
+    @DisplayName("번호 목록에 중복된 숫자가 있으면 예외 발생")
+    void givenDuplicateNumbers_whenLottoCreated_thenThrowsException() {
+        List<Integer> duplicateNumbers = Arrays.asList(1, 2, 3, 3, 4, 5);
+        assertThrows(LottoException.class, () -> new Lotto(duplicateNumbers));
+    }
 }

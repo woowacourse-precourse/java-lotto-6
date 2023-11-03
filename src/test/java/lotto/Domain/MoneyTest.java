@@ -44,4 +44,18 @@ class MoneyTest {
 
         assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
     }
+
+    @DisplayName("정상수행시나리오")
+    @Test
+    void createMoneyBySize() {
+        //given
+        String inputMoney = "1000";
+
+        //when
+        Money money = Money.of(inputMoney);
+
+        //then
+        assertThat(money).isNotNull();
+    }
+
 }

@@ -1,6 +1,8 @@
 package lotto.domain.lotto;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import lotto.domain.lottoresult.LottoResult;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
@@ -15,13 +17,13 @@ class LottoResultTest {
         LottoResult result_Fifth_1 = LottoResult.getResult(3, true);
         LottoResult result_Fifth_2 = LottoResult.getResult(3, false);
 
-        Assertions.assertThat(result_First).isEqualTo(LottoResult.FIRST);
-        Assertions.assertThat(result_Second).isEqualTo(LottoResult.SECOND);
-        Assertions.assertThat(result_Third).isEqualTo(LottoResult.THIRD);
-        Assertions.assertThat(result_Fourth_1).isEqualTo(LottoResult.FOURTH);
-        Assertions.assertThat(result_Fourth_2).isEqualTo(LottoResult.FOURTH);
-        Assertions.assertThat(result_Fifth_1).isEqualTo(LottoResult.FIFTH);
-        Assertions.assertThat(result_Fifth_2).isEqualTo(LottoResult.FIFTH);
+        assertThat(result_First).isEqualTo(LottoResult.FIRST);
+        assertThat(result_Second).isEqualTo(LottoResult.SECOND);
+        assertThat(result_Third).isEqualTo(LottoResult.THIRD);
+        assertThat(result_Fourth_1).isEqualTo(LottoResult.FOURTH);
+        assertThat(result_Fourth_2).isEqualTo(LottoResult.FOURTH);
+        assertThat(result_Fifth_1).isEqualTo(LottoResult.FIFTH);
+        assertThat(result_Fifth_2).isEqualTo(LottoResult.FIFTH);
     }
 
 }

@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.lottoresult;
 
 import java.util.Arrays;
 import java.util.function.Predicate;

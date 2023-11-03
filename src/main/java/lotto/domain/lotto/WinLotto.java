@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.lottoresult.LottoResult;
 
 public class WinLotto extends Lotto {
     private final BonusNumber bonusNumber;

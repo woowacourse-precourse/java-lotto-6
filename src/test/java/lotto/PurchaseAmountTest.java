@@ -38,4 +38,11 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 1,000단위가 아닌 경우 예외가 발생한다.")
+    @Test
+    void PurchaseAmountIsNot1000Unit(){
+        assertThatThrownBy(() -> PurchaseAmount.not1000Unit(4200))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

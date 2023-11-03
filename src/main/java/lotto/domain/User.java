@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.validation.AmountCheckValidator.*;
+import static lotto.validation.NumberCheckValidator.*;
+
 public class User {
     private int count;
     private List<Integer> winningNumbers = new ArrayList<>();
@@ -17,12 +20,8 @@ public class User {
 
     public int inputAmount() {
         int amount = Integer.parseInt(Console.readLine());
-
-        if (AmountCheckValidator.validateAmount(amount)) {
-            injectCount(amount);
-            return count;
-        }
-        throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해 주세요");
+        retryAmount(amount);
+        return count;
     }
 
     private void injectCount(int amount) {
@@ -30,33 +29,42 @@ public class User {
     }
 
     public List<Integer> inputWinningNumbers() {
-        Arrays.stream(Console.readLine().split(",")).toList().forEach(s -> winningNumbers.add(Integer.valueOf(s)));
+        Arrays.stream(Console.readLine().split(",")).toList()
+                .forEach(s -> winningNumbers.add(Integer.valueOf(s)));
 
-        retry();
-
+        retryWinningNumber();
         return winningNumbers;
     }
 
     public int inputBonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
-
-        retry(bonusNumber);
-
+        retryBonusNumber(bonusNumber);
         return bonusNumber;
     }
 
-    private void retry() {
+    private void retryAmount(int amount) {
         try {
-            NumberCheckValidator.validateWinningNumber(winningNumbers);
+            validateAmount(amount);
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            inputAmount();
+        }
+    }
+
+    private void retryWinningNumber() {
+        try {
+            validateWinningNumber(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             inputWinningNumbers();
         }
     }
 
-    private void retry(int bonusNumber) {
+    private void retryBonusNumber(int bonusNumber) {
         try {
-            NumberCheckValidator.validateBonusNumber(winningNumbers, bonusNumber);
+            validateBonusNumber(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             inputBonusNumber();
         }
     }

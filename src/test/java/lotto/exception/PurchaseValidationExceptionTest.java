@@ -30,4 +30,12 @@ class PurchaseValidationExceptionTest {
         assertThrows(PurchaseValidationException.class, () ->
                 PurchaseValidationException.checkValidPurchaseAmount(invalidAmount));
     }
+
+    @Test
+    @DisplayName("구매 금액이 로또 티켓 가격 단위의 배수일 때 예외가 발생하지 않음")
+    void whenAmountIsMultipleOfTicketPrice_thenDoesNotThrowException() {
+        int validAmount = 2000; // 가정: LOTTO_TICKET_PRICE_UNIT가 1000이라고 할 때
+        assertDoesNotThrow(() ->
+                PurchaseValidationException.checkValidPurchaseAmount(validAmount));
+    }
 }

@@ -8,7 +8,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public String inputMoney() {
-        System.out.println(INPUT_PERCHASE_PROMPT.getMessage());
+        System.out.println(INPUT_PURCHASE_PROMPT.getMessage());
         return Console.readLine();
     }
 

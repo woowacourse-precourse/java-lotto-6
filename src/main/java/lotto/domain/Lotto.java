@@ -24,7 +24,11 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private void duplicatedValidate(List<Integer> numbers) {
-        OutputView.errorMessage(LottoErrorMessage.DUPLICATED_NUM.getMessage());
         LottoValidator.DuplicatedNum(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

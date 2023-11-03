@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoTickets;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 
@@ -17,9 +18,10 @@ public class LottoController {
     public void run() {
         Integer money = inputView.inputMoney();
         lottoTickets.buyLotto(money);
+        OutputView.buyComplete(money);
+        OutputView.printLotto(lottoTickets);
 
         ArrayList<Integer> winningNumber = inputView.winningNumber();
-
 
         Integer bonusNumber = inputView.bonusNumber(winningNumber);
     }

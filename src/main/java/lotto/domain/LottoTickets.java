@@ -28,4 +28,14 @@ public class LottoTickets {
 
         return lottoTickets;
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (Lotto lottoTicket : lottoTickets) {
+            result += lottoTicket.toString()+'\n';
+        }
+
+        return result;
+    }
 }

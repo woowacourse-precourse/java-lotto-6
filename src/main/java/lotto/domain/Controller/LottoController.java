@@ -4,7 +4,8 @@ import lotto.domain.Model.Lotto;
 import lotto.domain.Model.LottoContainer;
 import lotto.domain.Model.LottoMaker;
 import lotto.domain.Model.Prize;
-import lotto.domain.View.LottoView;
+import lotto.domain.View.LottoInputView;
+import lotto.domain.View.LottoOutputView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,24 +13,26 @@ import java.util.Map;
 
 public class LottoController {
 
-    private final LottoView lottoView;
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
     private final LottoMaker lottoMaker;
     private LottoContainer lottoContainer;
     private int cash;
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoController(LottoView lottoView, LottoMaker lottoMaker) {
-        this.lottoView = lottoView;
+    public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView, LottoMaker lottoMaker) {
+        this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
         this.lottoMaker = lottoMaker;
     }
 
     public void run() {
-        this.cash = lottoView.inputCash(); // 금액 입력
+        this.cash = lottoInputView.inputCash(); // 금액 입력
         this.lottoContainer = lottoMaker.issue(cash);
-        lottoView.printPickedLotto(lottoContainer); // 로또 출력
-        this.winningNumbers = lottoView.inputWinningNumbers(); // 당첨 번호 입력
-        this.bonusNumber = lottoView.inputBonusNumber(winningNumbers); // 보너스 번호 입력
+        lottoOutputView.printPickedLotto(lottoContainer); // 로또 출력
+        this.winningNumbers = lottoInputView.inputWinningNumbers(); // 당첨 번호 입력
+        this.bonusNumber = lottoInputView.inputBonusNumber(winningNumbers); // 보너스 번호 입력
         result(); // 최종 결과 계산 및 출력
     }
 
@@ -50,7 +53,7 @@ public class LottoController {
             }
         }
 
-        lottoView.printWinnings(winnings, this.cash);
+        lottoOutputView.printWinnings(winnings, this.cash);
     }
 
     private int countMatch(List<Integer> numbers, List<Integer> winningNumbers) {

@@ -1,16 +1,12 @@
 package lotto.domain.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Model.Lotto;
-import lotto.domain.Model.LottoContainer;
-import lotto.domain.Model.Prize;
 import lotto.domain.Utility.Constant;
 
-import java.text.NumberFormat;
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
 
-public class LottoView {
+public class LottoInputView {
 
     public int inputCash() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -33,15 +29,6 @@ public class LottoView {
             throw new IllegalArgumentException("[ERROR] 0보다 작은 값을 입력했습니다.");
         } else if (cash % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해 주세요.");
-        }
-    }
-
-    public void printPickedLotto(LottoContainer lottoContainer) {
-        System.out.println();
-        System.out.println(lottoContainer.getLottos().size() + "개를 구매했습니다.");
-        for (Lotto lotto :
-                lottoContainer.getLottos()) {
-            System.out.println(lotto.getNumbers());
         }
     }
 
@@ -124,23 +111,5 @@ public class LottoView {
         } else if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 숫자와 겹칩니다.");
         }
-    }
-
-    public void printWinnings(Map<String, Integer> winnings, int cash) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        int totalPrize = 0;
-        for (Prize prize : Prize.values()) {
-            Integer count = winnings.getOrDefault(prize.getRank(), 0);
-            totalPrize += prize.getPrize() * count;
-            NumberFormat numberFormat = NumberFormat.getNumberInstance();
-            String formattedNumber = numberFormat.format(prize.getPrize());
-            System.out.println(prize.getRank() + " (" + formattedNumber + "원) - " + count + "개");
-        }
-
-        double revenueRate = ((double) totalPrize / cash) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenueRate);
     }
 }

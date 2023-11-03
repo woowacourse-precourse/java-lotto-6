@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoContainer {
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public void add(Lotto lotto) {
         this.lottos.add(lotto);

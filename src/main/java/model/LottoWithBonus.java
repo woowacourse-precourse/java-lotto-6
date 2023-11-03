@@ -16,7 +16,20 @@ public class LottoWithBonus {
         return new LottoWithBonus(lotto, uniqueNumber);
     }
 
+    public LottoCompareResult compareAnswer(LottoWithBonus answerLotto) {
+        long equalCount = lotto.compareLotto(answerLotto.getLotto());
+        return new LottoCompareResult(equalCount, hasSameBonusNumber(answerLotto));
+    }
+
+    public boolean hasSameBonusNumber(LottoWithBonus lotto) {
+        return bonusNumber.equals(lotto.getBonusNumber());
+    }
+
     public Lotto getLotto() {
         return lotto;
+    }
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

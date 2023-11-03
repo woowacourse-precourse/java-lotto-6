@@ -8,15 +8,15 @@
   - [x] (예외)로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외처리를 한다. - InputValidator | checkDivisibleBy1000()
   - [x] (예외)로또 구입 금액 입력값이 숫자인가? - InputValidator | isNumeric()
 - [x] 로또를 발행한다.(개수만큼) - LottoStore | generateLottoNumbers()
-- [] 당첨번호를 입력받는다. - InputView | inputWinningNumbers()
+- [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
+  - [x] 로또 번호는 오름차순으로 정렬한다.
+- [x] 당첨번호를 입력받는다. - InputView | inputWinningNumber()
   - [] 번호는 쉼표(,)를 기준으로 구분한다.
   - [] (예외)쉼표가 5개가 아닐경우
   - [] (예외)숫자 6개를 입력받지 못했을 경우 - Lotto | validate()
   - [] (예외)숫자가 아닐경우
   - [] (예외)1~45의 범위를 벗어날 경우
-- [] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
-- [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
-  - [x] 로또 번호는 오름차순으로 정렬한다.
+- [x] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
 - [] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [] 당첨 내역을 출력한다. - OutputView | printLottoWinningResult()
 - [] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
@@ -31,9 +31,9 @@
   - [x] 로또를 발행한다.
 
 - 로또 시스템 (LottoSystem)
-  - 로또 당첨 번호를 입력받는다.
-  - 로또 보너스 번호를 입력받는다.
-  - 당첨 번호와 발행된 번호를 비교한다.
+  - 로또 당첨 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
+  - 로또 보너스 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
+  - 당첨 번호와 발행된 번호를 비교한다. compareWinningNumber()
 
 - 손님 (Customer)
   - [x] 로또를 구매한다.

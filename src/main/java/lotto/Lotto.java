@@ -11,14 +11,14 @@ public class Lotto {
     private static final String INVALID_NUMBER_RANGE = "로또 숫자 범위에 맞도록 입력해주세요.";
     private static final int DEFAULT_PRICE = 1000;
 
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public static int countBy(int money) {
+    public static int payableCount(int money) {
         if (money % DEFAULT_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 로또 금액으로 나누어 떨어지는 금액만 입력 가능합니다");
         }

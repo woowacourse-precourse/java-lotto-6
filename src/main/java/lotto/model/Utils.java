@@ -15,14 +15,14 @@ public final class Utils {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException(INVALID_PURCHASE_AMOUNT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_EXCEPTION_MESSAGE);
         }
     }
 
 
     public static List<Integer> convertStringToIntegerList(String string) {
         return splitWinningNumbers(string).stream()
-                .map(String -> convertStringToInt(string))
+                .map(inputNumber -> convertStringToInt(inputNumber))
                 .toList();
     }
 

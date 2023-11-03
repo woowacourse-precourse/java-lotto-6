@@ -1,13 +1,14 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
 
     private final static Integer MIN_NUMBER = 1;
 
     private final static Integer MAX_NUMBER = 45;
+
+    private final static String NUMBER_STRING_DELIMITER = ", ";
 
     private final List<Integer> numbers;
 
@@ -36,11 +37,20 @@ public class Lotto {
         }
     }
 
-    public long calculateSameCount(final WinnerNumbers winnerNumbers) {
+    public Prize getPrize(final WinnerNumbers winnerNumbers) {
+        return Prize.of(calculateSameCount(winnerNumbers), calculateSameBonusCount(winnerNumbers));
+    }
+
+    private long calculateSameCount(final WinnerNumbers winnerNumbers) {
         return numbers.stream().filter(winnerNumbers::containNumber).count();
     }
 
-    public long calculateSameBonusCount(final WinnerNumbers winnerNumbers) {
+    private long calculateSameBonusCount(final WinnerNumbers winnerNumbers) {
         return numbers.stream().filter(winnerNumbers::containBonusNumber).count();
+    }
+
+    public String getNumberString() {
+        final List<String> numberStrings = numbers.stream().map(String::valueOf).toList();
+        return String.join(NUMBER_STRING_DELIMITER, numberStrings);
     }
 }

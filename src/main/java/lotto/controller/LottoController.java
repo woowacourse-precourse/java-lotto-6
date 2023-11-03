@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningCondition;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -24,12 +25,17 @@ public class LottoController {
         LottoTickets lottoTickets = makeLottoTickets(money);
         output.showLottoTickets(lottoTickets);
 
+        makeWinningCondition();
+    }
+
+    private WinningCondition makeWinningCondition() {
         output.showWinningNumbersInputMessage();
         Lotto winningLotto = makeWinningLotto(input.readWinningNumbers());
 
         output.showBonusNumberInputMessage();
-        String bonusNumber = input.readBonusNumber();
+        int bonus = toInt(input.readBonusNumber());
 
+        return new WinningCondition(winningLotto, bonus);
     }
 
     private Lotto makeWinningLotto(String winningNumbers) {

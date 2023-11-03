@@ -23,4 +23,8 @@ public class Model {
 
         return lottos;
     }
+
+    public void compareNumbers(Lotto lotto, List<Integer> winningNumbers) {
+
+    }
 }

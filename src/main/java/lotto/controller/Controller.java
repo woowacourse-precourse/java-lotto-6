@@ -17,16 +17,22 @@ public class Controller {
         OutputView outputView = new OutputView();
 
         String paymentInput = inputView.getPayment();
+
         int payment = utility.parseInt(paymentInput);
         validation.validateUnit(payment);
 
         List<Lotto> lottos = model.buyLotto(payment);
+
         outputView.printAllLottoNumbers(lottos);
 
         String winningInput = inputView.getWinningNumbers();
+
         String[] splitResult = utility.splitInput(winningInput);
         List<Integer> winningNumbers = utility.getIntList(splitResult);
+        validation.validateSize(winningNumbers);
+        validation.validateRange(winningNumbers);
+        validation.validateDuplication(winningNumbers);
 
-        System.out.println(winningNumbers);
+
     }
 }

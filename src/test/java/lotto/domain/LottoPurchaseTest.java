@@ -28,4 +28,9 @@ class LottoPurchaseTest {
         assertThatThrownBy(() -> new LottoPurchase("0")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
         assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorEnum.ERROR_PREFIX.getValue());
     }
+
+    @Test
+    void getAmount() {
+        assertThat(lottoPurchase.getAmount()).isEqualTo(5);
+    }
 }

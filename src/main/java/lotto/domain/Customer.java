@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,5 +19,14 @@ public class Customer {
         if (coin%1000!=0) {
             throw new IllegalArgumentException("구입금액은 1000단위만 허용합니다.");
         }
+    }
+    public int getWallet() {
+        return this.wallet;
+    }
+    public List<Lotto> getCustomerLotto() {
+        return this.customerLotto;
+    }
+    public void setCustomerLotto(List<Lotto> newLotto) {
+        this.customerLotto = newLotto;
     }
 }

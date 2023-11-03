@@ -3,6 +3,13 @@ package lotto.util;
 import java.util.regex.Pattern;
 
 public class Validator {
+    public static int isValidPurchaseAmount(String input) {
+        isEmpty(input);
+        isNumeric(input);
+        isThousandUnit(input);
+        return Integer.parseInt(input);
+    }
+
     public static void isEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_VALUE);

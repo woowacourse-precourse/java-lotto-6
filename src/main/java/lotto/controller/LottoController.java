@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Lotto;
 import lotto.model.LottoPrize;
+import lotto.model.Result;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoIssuer;
 import lotto.service.NumberGenerator;
@@ -31,11 +32,12 @@ public class LottoController {
         outputView.printBoughtLotto(boughtLotto);
         Lotto winningNumbers = readWinningNumbers();
         Integer bonusNumber = readBonusNumber();
-        List<LottoPrize> result = new ArrayList<>();
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto lotto : boughtLotto) {
-            result.add(LottoPrize.from(lotto.count(winningNumbers), lotto.contains(bonusNumber)));
+            lottoPrizes.add(LottoPrize.from(lotto.count(winningNumbers), lotto.contains(bonusNumber)));
         }
-        System.out.println("result = " + result);
+        Result result = Result.from(lottoPrizes);
+        outputView.printWinningStatistics(result);
     }
 
     private Lotto readWinningNumbers() {

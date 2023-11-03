@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Lotto;
+import lotto.model.Result;
 
 import java.util.List;
 
@@ -12,5 +13,11 @@ public class OutputView {
         for (Lotto lotto : boughtLotto) {
             System.out.println(lotto.toString());
         }
+    }
+
+    public void printWinningStatistics(Result result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        result.print();
     }
 }

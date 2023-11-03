@@ -12,11 +12,13 @@ public enum LottoPrize {
     private final Integer match;
     private final Boolean isSameBonus;
     private final Integer prize;
+    private final String message;
 
     LottoPrize(Integer match, Boolean isSameBonus, Integer prize, String message) {
         this.match = match;
         this.isSameBonus = isSameBonus;
         this.prize = prize;
+        this.message = message;
     }
 
     public static LottoPrize from(Integer match, Boolean isSameBonus) {
@@ -33,5 +35,9 @@ public enum LottoPrize {
 
     public Integer getPrize() {
         return prize;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

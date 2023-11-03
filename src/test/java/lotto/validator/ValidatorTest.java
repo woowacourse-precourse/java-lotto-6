@@ -15,7 +15,7 @@ public class ValidatorTest {
 	@ValueSource(strings = { "#12", "0s12", ",.!" })
 	@ParameterizedTest
 	void checkNumberFormat(String str) {
-		assertThatThrownBy(() -> Validator.validateNumberFormat(str))
+		assertThatThrownBy(() -> Validator.validateNumberFormat(str, ErrorMessage.INPUT_LETTER_ERROR.getMessage()))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.INPUT_LETTER_ERROR.getMessage());
 	}
@@ -24,14 +24,14 @@ public class ValidatorTest {
 	@ValueSource(strings = { "123", "456" })
 	@ParameterizedTest
 	void checkNomalOperation1(String str) {
-		Validator.validateNumberFormat(str);
+		Validator.validateNumberFormat(str, ErrorMessage.INPUT_LETTER_ERROR.getMessage());
 	}
 
 	@DisplayName("값이 비어있을 때 예외처리한다.")
 	@ValueSource(strings = { "", " ", "     " })
 	@ParameterizedTest
 	void checkisEmpty(String str) {
-		assertThatThrownBy(() -> Validator.validateIsEmpty(str))
+		assertThatThrownBy(() -> Validator.validateIsEmpty(str, ErrorMessage.INPUT_EMPTY_ERROR.getMessage()))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
 	}
@@ -40,6 +40,6 @@ public class ValidatorTest {
 	@ValueSource(strings = { "123", "456", "a" })
 	@ParameterizedTest
 	void checkNomalOperation2(String str) {
-		Validator.validateIsEmpty(str);
+		Validator.validateIsEmpty(str, ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
 	}
 }

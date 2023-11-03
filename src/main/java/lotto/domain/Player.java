@@ -85,11 +85,29 @@ public class Player {
         }
         if (results.containsKey(rank)) {
             results.put(rank, results.get(rank) + 1);
-            return;
         }
         if (!results.containsKey(rank)) {
             results.put(rank, 1);
-            return;
+        }
+    }
+
+    public void findPrize() {
+        for (Integer rank : results.keySet()) {
+            if (rank == 1) {
+                prize += FIRST;
+            }
+            if (rank == 2) {
+                prize += SECOND;
+            }
+            if (rank == 3) {
+                prize += THIRD;
+            }
+            if (rank == 4) {
+                prize += FORTH;
+            }
+            if (rank == 5) {
+                prize += FIFTH;
+            }
         }
     }
 

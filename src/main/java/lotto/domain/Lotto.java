@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.StringJoiner;
 
+import static java.util.stream.Collectors.*;
 import static lotto.exception.LottoNumberException.*;
 
 public class Lotto {
@@ -19,14 +19,8 @@ public class Lotto {
     }
 
     public String getLottoNumbersText() {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
-        String[] numbersText = numbers.stream()
+        return numbers.stream()
                 .map(String::valueOf)
-                .toArray(String[]::new);
-
-        for (String text : numbersText) {
-            joiner.add(text);
-        }
-        return joiner.toString();
+                .collect(joining(", ", "[", "]"));
     }
 }

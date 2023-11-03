@@ -2,15 +2,14 @@ package lotto.view;
 
 public enum ExceptionMessages {
 
-    ERROR_INPUT_AMOUNT("구입 금액은 숫자여야 합니다."),
-    ERROR_INPUT_WINNING_LOTTO_NUMBER("당첨 번호는 숫자여야 합니다."),
-    ERROR_INPUT_BONUS_NUMBER("보너스 번호는 숫자여야 합니다."),
-    ERROR_INPUT_BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨 번호와 중복되지 않아야 합니다."),
-    ERROR_INPUT_LOTTO_NUMBER_DUPLICATE("당첨 번호는 중복되지 않아야 합니다."),
-    ERROR_INPUT_LOTTO_NUMBER_RANGE("당첨 번호는 1 ~ 45 사이의 숫자여야 합니다."),
-    ERROR_INPUT_BONUS_NUMBER_RANGE("보너스 번호는 1 ~ 45 사이의 숫자여야 합니다."),
-    ERROR_INPUT_LOTTO_NUMBER_COUNT("당첨 번호는 6개여야 합니다."),
-    ERROR_INPUT_BONUS_NUMBER_COUNT("보너스 번호는 1개여야 합니다.");
+    STRING_TO_INTEGER("입력 값은 숫자로만 이루어져 있어야 합니다"),
+    DUPLICATION_LIST("입력 값들은 서로 중복되지 않아야 합니다."),
+    INPUT_LENGTH_WINNING_NUMBER("입력 값의 개수는 6개 여야 합니다."),
+    INPUT_LENGTH_BONUS_NUMBER("입력 값의 개수는 1개 여야 합니다."),
+    ERROR_INPUT_BONUS_NUMBER_RANGE("입력 값은 1,000의 배수여야 합니다."),
+    EXCEED("입력 값은 100,000 이하의 값이어야 합니다."),
+    NUMBER_IN_RANGE("입력 값의 범위는 1부터 45 사이의 숫자여야 합니다."),
+    DUPLICATED_NUMBER_IN_LIST("입력 값은 앞서 입력한 값들과 중복되지 않아야 합니다.");
 
     private static final String ERROR_TAG = "[ERROR] ";
     private final String exceptionMessage;

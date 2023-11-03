@@ -2,6 +2,12 @@ package lotto.validation;
 
 public class AmountValidator {
 
+    public static void validateAmount(String amountStr) {
+        int amount = parseToInt(amountStr);
+        validateMinimumAmount(amount);
+        validateThousandUnit(amount);
+    }
+
     private static int parseToInt(String amount) {
         try {
             return Integer.parseInt(amount);
@@ -10,9 +16,9 @@ public class AmountValidator {
         }
     }
 
-    private static void validatePositive(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 0보다 커야 합니다.");
+    private static void validateMinimumAmount(int amount) {
+        if (amount <= 1000) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 최소 1000원 입니다.");
         }
     }
 

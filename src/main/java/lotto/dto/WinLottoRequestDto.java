@@ -10,9 +10,9 @@ public record WinLottoRequestDto(String lottoNumber) {
         List<Integer> lotto = new ArrayList<>();
         lotto = Arrays
                 .stream(lottoNumber.split(","))
-                .map(num -> Integer.parseInt(num))
+                .map(Integer::parseInt)
                 .toList();
-        
+
         return lotto;
     }
 }

@@ -2,8 +2,8 @@ package lotto.domain;
 
 public class Number implements Comparable<Number> {
 
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
+    static final int MIN_VALUE = 1;
+    static final int MAX_VALUE = 45;
 
     private final int value;
 

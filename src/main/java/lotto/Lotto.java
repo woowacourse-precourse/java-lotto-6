@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 public class Lotto {
@@ -14,10 +15,22 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateLength(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (Set.copyOf(numbers).size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     public Integer count(Lotto winningLotto) {
         return (int) IntStream.range(0, 6)
@@ -34,5 +47,4 @@ public class Lotto {
         return numbers.toString();
     }
 
-    // TODO: 추가 기능 구현
 }

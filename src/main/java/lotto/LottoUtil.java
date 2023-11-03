@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoUtil {
     public static boolean isInteger(String input) {
         try {
@@ -8,5 +10,9 @@ public class LottoUtil {
             return false;
         }
         return true;
+    }
+
+    public static boolean isInteger(List<String> input) {
+        return input.stream().allMatch(LottoUtil::isInteger);
     }
 }

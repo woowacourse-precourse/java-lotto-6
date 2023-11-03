@@ -31,7 +31,7 @@
     - 각각의 값이 정수가 아니라면 `IllegalArgumentException` 발생
     - 각각의 값의 범위가 1~45가 아니라면 `IllegalArgumentException` 발생
     - 중복된 번호가 있다면 `IllegalArgumentException` 발생
-  - [ ] `isInteger` 메서드
+  - [x] `LottoUtil:isInteger` 메서드
     - 문자열 리스트를 인수로 받아 정수인지 검사한다.
   - [ ] `isLottoNumbers` 메서드
     - 정수 리스트를 인수로 받아 1~45 값인지 검사한다.

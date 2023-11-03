@@ -16,10 +16,23 @@ import lotto.view.OutputView;
 public class GameController {
 
     private static List<Lotto> lottos;
+    private static PurchaseMoney purchaseMoney;
+    private static WinningNumber winningNumbers;
+    private static BonusNumber bonusNumber;
+    private static WinningDetails winningDetails;
+    private static Profit profit;
 
     public static void start(){
 
-        PurchaseMoney purchaseMoney = new PurchaseMoney(inputPurchaseMoney()); // 구매 금액 입력
+        purchaseLotto();
+        setWinningNumbers();
+        setBonusNumbers();
+        checkWinningDetails();
+        calculateProfit();
+    }
+
+    private static void purchaseLotto(){
+        purchaseMoney = new PurchaseMoney(inputPurchaseMoney()); // 구매 금액 입력
         System.out.println();
 
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
@@ -27,18 +40,26 @@ public class GameController {
         generateLottos(lottoCount.getValue()); // 로또 번호 생성
         outputLottos();
         System.out.println();
+    }
 
-        WinningNumber winningNumbers = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
-        System.out.println();
-
-        BonusNumber bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
-        System.out.println();
-
-        WinningDetails winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
-        OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
-
-        Profit profit = new Profit(winningDetails.getRank());
+    private static void calculateProfit(){
+        profit = new Profit(winningDetails.getRank());
         OutputView.earningRate(profit.getTotalEarningRate(purchaseMoney.getValue()));
+    }
+
+    private static void setWinningNumbers(){
+        winningNumbers = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
+        System.out.println();
+    }
+
+    private static void setBonusNumbers(){
+        bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
+        System.out.println();
+    }
+
+    private static void checkWinningDetails(){
+        winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
+        OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
     }
 
     private static String inputPurchaseMoney(){

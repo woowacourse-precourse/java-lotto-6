@@ -21,7 +21,7 @@ public class LottoPublisher {
     }
 
     private Lotto publish() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         numbers.sort(Comparator.comparingInt(o -> o));
         return new Lotto(numbers);
     }

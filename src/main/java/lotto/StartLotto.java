@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
@@ -11,11 +12,19 @@ public class StartLotto {
     private int purchasePrice;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private HashMap<String, Integer> priceHistory;
 
     public StartLotto() {
         this.purchasePrice = 0;
         this.bonusNumber = 0;
         this.winningNumbers = new ArrayList<Integer>();
+        this.priceHistory = new HashMap<>() {{
+            put("Fifth", 0);
+            put("Forth", 0);
+            put("Third", 0);
+            put("Second", 0);
+            put("First", 0);
+        }};
     }
 
     private int changeStringToInteger(String inputString) {
@@ -141,5 +150,80 @@ public class StartLotto {
         }
 
         System.out.print(oneLotto.getNumbers().get(5) + ']');
+    }
+
+    private void printPriceHistory() {
+        fillPriceHistoryMap();
+        System.out.println("3개 일치 (5,000원) - " + this.priceHistory.get("Fifth") + "개");
+        System.out.println("4개 일치 (50,000원) - " + this.priceHistory.get("Forth") + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + this.priceHistory.get("Third") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.priceHistory.get("Second") + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + this.priceHistory.get("First") + "개");
+    }
+
+    private void fillPriceHistoryMap() {
+        for(Lotto lotto: this.lottoList) {
+            int sameNumberCount = countSameNumber(lotto);
+            boolean lottoHasBonusNumber = false;
+
+            if(sameNumberCount == 5) {
+                lottoHasBonusNumber = checkLottoHasBonusNumber(lotto);
+            }
+            fillPriceHistory(sameNumberCount, lottoHasBonusNumber);
+        }
+    }
+
+    private int countSameNumber(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        int count = 0;
+
+        for(int number: numbers) {
+            if(checkNumberInWinningNumbers(number)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private boolean checkNumberInWinningNumbers(int number) {
+        for(int winningNumber: this.winningNumbers) {
+            if(number == winningNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean checkLottoHasBonusNumber(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        for(int number: numbers) {
+            if(number == this.bonusNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void fillPriceHistory(int count, boolean hasBonusNumber) {
+        if(count == 3) {
+            this.priceHistory.put("Fifth", this.priceHistory.get("Fifth") + 1);
+        }
+        if(count == 4) {
+            this.priceHistory.put("Forth", this.priceHistory.get("Forth") + 1);
+        }
+        if(count == 5) {
+            if(!hasBonusNumber) {
+                this.priceHistory.put("Third", this.priceHistory.get("Third") + 1);
+                return;
+            }
+            this.priceHistory.put("Second", this.priceHistory.get("Second") + 1);
+        }
+        if(count == 6) {
+            this.priceHistory.put("First", this.priceHistory.get("First") + 1);
+        }
     }
 }

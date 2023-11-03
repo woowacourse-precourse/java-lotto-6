@@ -15,7 +15,7 @@ public class WinningNumber {
         value = makeValue(winningNumbers);
     }
 
-    private void validate(String winningNumbers){
+    private void validate(final String winningNumbers){
         if(isEmpty(winningNumbers)){
             throw new IllegalArgumentException();
         }
@@ -41,11 +41,11 @@ public class WinningNumber {
         return winningNumbers.isBlank() || winningNumbers == null;
     }
 
-    private boolean isDigit(String winningNumbers){
+    private boolean isDigit(final String winningNumbers){
         return Arrays.stream(winningNumbers.split(",")).allMatch(number -> Character.isDigit(number.charAt(0)));
     }
 
-    private boolean isSixNumbers(String winningNumbers){
+    private boolean isSixNumbers(final String winningNumbers){
         return winningNumbers.split(",").length == WINNING_NUMBER_COUNT;
     }
 }

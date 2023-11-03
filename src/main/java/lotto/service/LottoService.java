@@ -5,8 +5,8 @@ import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.WinningLottoTicket;
 import lotto.exception.BonusNumberExceptionMessage;
-import lotto.exception.PurchaseValidator;
-import lotto.exception.WinningNumberValidator;
+import lotto.exception.PurchaseValidattionException;
+import lotto.exception.WinningNumberValidationException;
 import lotto.view.InputView;
 
 import java.util.Arrays;
@@ -41,11 +41,11 @@ public class LottoService {
     }
 
     private void validateIsNumeric(String input) {
-        PurchaseValidator.checkIsNumeric(input);
+        PurchaseValidattionException.checkIsNumeric(input);
     }
 
     private void validatePurchaseAmount(int price) {
-        PurchaseValidator.checkValidPurchaseAmount(price);
+        PurchaseValidattionException.checkValidPurchaseAmount(price);
     }
 
     public List<Integer> displayWinningNumber() {
@@ -71,13 +71,13 @@ public class LottoService {
     }
 
     private void validateLottoNumberFormat(String input) {
-        WinningNumberValidator.checkLottoNumberFormat(input);
+        WinningNumberValidationException.checkLottoNumberFormat(input);
     }
 
     private void validateWinningNumber(List<Integer> winningNumbers) {
-        WinningNumberValidator.checkWinningNumberLength(winningNumbers);
-        WinningNumberValidator.checkDuplicateWinningNumbers(winningNumbers);
-        WinningNumberValidator.checkBoundaryOfWinningNumbers(winningNumbers);
+        WinningNumberValidationException.checkWinningNumberLength(winningNumbers);
+        WinningNumberValidationException.checkDuplicateWinningNumbers(winningNumbers);
+        WinningNumberValidationException.checkBoundaryOfWinningNumbers(winningNumbers);
     }
 
     public int displayBonusNumber(List<Integer> winningNumbers) {

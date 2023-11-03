@@ -10,6 +10,10 @@ public class Application {
 
         lottoManager.printLottos(user);
         Lotto lotto = lottoManager.createUserNumbers();
-        System.out.println(lotto.getNumbers());
+
+        user.setUserLotto(lotto);
+
+        lottoManager.bonusNumberInput(user);
+        System.out.println(user.getBonusNumber());
     }
 }

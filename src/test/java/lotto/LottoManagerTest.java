@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -76,5 +78,15 @@ class LottoManagerTest {
         String[] wrongNumbers = {"1", "1", "2", "3", "4", "5"};
 
         assertThatThrownBy(() -> manager.createLotto(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호와 당첨 번호가 중복되면 예외가 발생한다.")
+    @Test
+    void duplicateWithLotto() {
+        LottoManager manager = new LottoManager();
+        User user = new User(1000);
+        user.setUserLotto(Lotto.createUserNumbers(List.of(1, 2, 3, 4, 5, 6)));
+
+        assertThatThrownBy(() -> manager.createBonusNumber("1", user)).isInstanceOf(IllegalArgumentException.class);
     }
 }

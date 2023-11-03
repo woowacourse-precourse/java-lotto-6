@@ -7,7 +7,8 @@ public class User {
 
     private final int lottoCount;
     private final List<Lotto> lottos;
-    private Lotto userNumbers;
+    private Lotto userLotto;
+    private int bonusNumber;
 
     public User(int price) {
         this.lottoCount = price / Const.priceUnit;
@@ -26,7 +27,19 @@ public class User {
         return lottos;
     }
 
-    public void setUserNumbers(Lotto lotto) {
-        this.userNumbers = lotto;
+    public void setUserLotto(Lotto lotto) {
+        this.userLotto = lotto;
+    }
+
+    public Lotto getUserLotto() {
+        return userLotto;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

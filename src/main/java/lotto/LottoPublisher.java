@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LottoPublisher {
-    private static final int TICKET_PRICE=1000;
     private static LottoPublisher instance;
 
     private LottoPublisher() {
@@ -30,14 +29,14 @@ public class LottoPublisher {
     public List<Lotto> sell(long money) throws IllegalArgumentException {
         validateMoney(money);
         List<Lotto> lottos = new ArrayList<>();
-        for (long i = 0; i < money; i += TICKET_PRICE) {
+        for (long i = 0; i < money; i += Constants.TICKET.getPrice()) {
             lottos.add(publish());
         }
         return lottos;
     }
 
     private void validateMoney(long money) throws IllegalArgumentException {
-        if (money % TICKET_PRICE != 0 || money < 0) {
+        if (money % Constants.TICKET.getPrice() != 0 || money < 0) {
             throw new IllegalArgumentException();
         }
     }

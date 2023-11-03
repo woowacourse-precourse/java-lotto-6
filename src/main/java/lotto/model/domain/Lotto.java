@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -30,9 +34,9 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
     }
-    
+
     @Override
     public String toString() {
-        return "로또 번호 " + numbers;
+        return numbers.toString();
     }
 }

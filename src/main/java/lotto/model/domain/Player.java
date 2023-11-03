@@ -28,6 +28,14 @@ public class Player {
         return new Player(money, amount, lotto);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public List<Lotto> getLotto() {
+        return lotto;
+    }
+
     private static void validate(int money) {
         validateMinimumMoney(money);
         validateDivideMoney(money);
@@ -44,15 +52,15 @@ public class Player {
             throw new IllegalArgumentException(DIVIDE_INVALID.getMessage());
         }
     }
-    
-    private static int calculateAmount(int money) {
-        return money / MIN_MONEY.getValue();
-    }
 
     private static List<Lotto> purchaseLotto(int amount) {
         return IntStream.range(0, amount)
                 .mapToObj(i -> new Lotto(LottoGenerator.generateLotto()))
                 .collect(Collectors.toList());
+    }
+
+    private static int calculateAmount(int money) {
+        return money / MIN_MONEY.getValue();
     }
 
     @Override
@@ -61,16 +69,10 @@ public class Player {
         sb.append("Player\n");
         sb.append("구입금액: ").append(money).append("\n");
         sb.append("구입한 로또 수량: ").append(amount).append("\n");
-
-        if (lotto != null && !lotto.isEmpty()) {
-            sb.append("구입한 로또:\n");
-            for (int i = 0; i < lotto.size(); i++) {
-                sb.append("로또 ").append(i + 1).append(": ").append(lotto.get(i)).append("\n");
-            }
-        } else {
-            sb.append("로또를 구입하지 않았습니다.\n");
+        sb.append("구입한 로또:\n");
+        for (int i = 0; i < lotto.size(); i++) {
+            sb.append("로또 ").append(i + 1).append(": ").append(lotto.get(i)).append("\n");
         }
-
         return sb.toString();
     }
 }

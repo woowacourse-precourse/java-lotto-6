@@ -1,13 +1,16 @@
 package lotto.controller;
 
 import lotto.model.domain.Player;
+import lotto.model.dto.LottoResponseDto;
 import lotto.model.dto.PlayerRequestDto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     public void run() {
-        System.out.println(getPlayer());
+        Player player = getPlayer();
+        showPlayerLotto(player);
     }
 
     private Player getPlayer() {
@@ -18,5 +21,10 @@ public class LottoController {
             System.out.println(e.getMessage());
             return getPlayer();
         }
+    }
+
+    private void showPlayerLotto(Player player) {
+        OutputView.printPlayerAmount(player.getAmount());
+        player.getLotto().forEach(lotto -> OutputView.printPlayerLotto(new LottoResponseDto(lotto.getNumbers())));
     }
 }

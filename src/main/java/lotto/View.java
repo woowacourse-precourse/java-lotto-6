@@ -17,7 +17,7 @@ public class View {
                 Validation.bonusNumber(input, lotto);
                 break;
             } catch (Exception e) {
-                System.out.println("[ERROR]: 당첨 번호와 중복되지 않는 1 ~ 45 범위의 번호를 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
         return input;
@@ -36,7 +36,7 @@ public class View {
                 Validation.winningNumber(input);
                 break;
             } catch (Exception e) {
-                System.out.println("[ERROR]: 6자리 당첨 번호를 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
         return input;
@@ -55,7 +55,7 @@ public class View {
                 Validation.price(input);
                 break;
             } catch (Exception e) {
-                System.out.println("[ERROR]: " + unit + " 단위의 숫자를 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
         return input;

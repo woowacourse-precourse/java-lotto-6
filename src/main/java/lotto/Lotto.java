@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicate(numbers);
+        rangeCheck(numbers);
 
         this.numbers = numbers;
     }
@@ -24,6 +25,14 @@ public class Lotto {
         Set<Integer> num = new HashSet<>(numbers);
         if (num.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+        }
+    }
+
+    private void rangeCheck(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45내의 정수입니다.");
+            }
         }
     }
 }

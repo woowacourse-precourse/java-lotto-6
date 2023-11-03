@@ -37,9 +37,9 @@ class LottoTest {
 
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                arguments("음수가 존재하는 경우", List.of(-1,2,3,4,5,6)),
-                arguments("0이 존재하는 경우", List.of(0,1,2,3,4,5)),
-                arguments("45를 초과하는 수가 존재하는 경우", List.of(1,2,3,4,5,46))
+                arguments("음수가 존재하는 경우", List.of(-1, 2, 3, 4, 5, 6)),
+                arguments("0이 존재하는 경우", List.of(0, 1, 2, 3, 4, 5)),
+                arguments("45를 초과하는 수가 존재하는 경우", List.of(1, 2, 3, 4, 5, 46))
         );
     }
 }

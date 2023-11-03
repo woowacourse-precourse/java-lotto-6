@@ -10,6 +10,7 @@ public class LottoMaker {
     public LottoMaker() {
         this(new LottoNumberMaker());
     }
+
     public LottoMaker(LottoNumberMaker lottoNumberMaker) {
         this.lottoNumberMaker = lottoNumberMaker;
     }

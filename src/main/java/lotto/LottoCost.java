@@ -1,26 +1,30 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+public class LottoCost {
+    String cost = "";
 
-public class Input {
-    public String buyLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public int getLottoCost() {
+        Input input = new Input();
+        cost = input.buyLotto();
 
-        return Console.readLine();
-    }
-
-    public boolean isCostToNumber(String cost) {
-        boolean flag = false;
-
-        try{
-            Integer.parseInt(cost);
-        } catch (NumberFormatException e) {
-            flag = true;
-            throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
-        } finally {
-            buyLotto();
+        if (!isNumber(cost)) {
+            getLottoCost();
         }
 
-        return flag;
+        return Integer.parseInt(cost);
+    }
+
+    public boolean isNumber(String cost) {
+        boolean hasOnlyNum = !cost.isEmpty() && cost.chars().allMatch(Character::isDigit);
+
+        if (!hasOnlyNum) {
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
+            }
+        }
+
+        return hasOnlyNum;
     }
 }

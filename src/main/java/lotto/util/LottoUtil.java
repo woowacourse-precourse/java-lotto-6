@@ -31,7 +31,7 @@ public class LottoUtil {
             if (rank.equals(Rank.NO_RANK)) {
                 continue;
             }
-            sb.append(String.format("%d 개 일치 (%s원) - %d개\n", rank.getMatchingCount(),
+            sb.append(String.format("%d개 일치 (%s원) - %d개\n", rank.getMatchingCount(),
                     LottoUtil.convertPrizeToDisplayFormat(rank.getPrize()),
                     result.getOrDefault(rank, 0)));
         }

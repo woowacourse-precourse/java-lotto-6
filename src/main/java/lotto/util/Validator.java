@@ -2,9 +2,14 @@ package lotto.util;
 
 import static lotto.Constant.BUY_UNIT;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
-public class Validator {
+public enum Validator {
+    INSTANCE;
+    private static final int NUMBER_LOW_BOUND=1;
+    private static final int NUMBER_HIGH_BOUND=45;
+
     private static final Pattern NUMBER=Pattern.compile("[0-9]+");
     private static final String ERROR_MESSAGE_HEADER="[ERROR] ";
     private static final String NOT_INTEGER_MESSAGE="숫자가 아닌 값이 입력되었습니다.";
@@ -26,5 +31,15 @@ public class Validator {
 
     private boolean isNotDividedByUnit(long buyCash){
         return buyCash%BUY_UNIT!=0;
+    }
+
+    public void validateOutOfRange(List<Integer> numbers){
+        List<Integer> outOfRangeNumbers=numbers.stream()
+                .filter((number)->number<NUMBER_LOW_BOUND || number>NUMBER_HIGH_BOUND)
+                .toList();
+
+        if (!outOfRangeNumbers.isEmpty()){
+            throw new IllegalArgumentException();
+        }
     }
 }

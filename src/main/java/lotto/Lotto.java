@@ -1,11 +1,10 @@
 package lotto;
 
 import java.util.List;
+import lotto.util.Validator;
 
 public class Lotto {
     private static final int LOTTO_SIZE=6;
-    private static final int NUMBER_LOW_BOUND=1;
-    private static final int NUMBER_HIGH_BOUND=45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,10 +20,8 @@ public class Lotto {
         if (isDuplicated(numbers)){
             throw new IllegalArgumentException();
         }
-
-        if (isOutOfRange(numbers)){
-            throw new IllegalArgumentException();
-        }
+        Validator validator=Validator.INSTANCE;
+        validator.validateOutOfRange(numbers);
     }
 
     private boolean isDuplicated(List<Integer> numbers){
@@ -35,14 +32,6 @@ public class Lotto {
 
     public List<Integer> getSortingNumbers(){
         return numbers.stream().sorted().toList();
-    }
-
-    private boolean isOutOfRange(List<Integer> numbers){
-        List<Integer> outOfRangeNumbers=numbers.stream()
-                .filter((number)->number<NUMBER_LOW_BOUND || number>NUMBER_HIGH_BOUND)
-                .toList();
-
-        return !outOfRangeNumbers.isEmpty();
     }
 
     public boolean isContains(int number){

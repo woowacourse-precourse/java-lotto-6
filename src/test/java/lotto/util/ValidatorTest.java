@@ -12,7 +12,7 @@ public class ValidatorTest {
 
     @BeforeAll
     static void 테스트_초기설정(){
-        validator=new Validator();
+        validator=Validator.INSTANCE;
     }
 
     @DisplayName("인자값이 숫자로만 이루어져 있는지 검증하는 기능")

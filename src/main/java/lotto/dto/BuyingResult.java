@@ -6,6 +6,10 @@ import lotto.domain.lotto.Lotto;
 
 public record BuyingResult(List<Integer> singleResult) {
 
+    private static final String DELIMITER = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
+
     public static BuyingResult createFrom(final Lotto lotto) {
         return new BuyingResult(lotto.getNumbers());
     }
@@ -14,6 +18,6 @@ public record BuyingResult(List<Integer> singleResult) {
         return singleResult.stream()
                 .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
     }
 }

@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
+        validateDistinct(numbers);
         this.numbers = numbers;
     }
 
@@ -16,6 +17,16 @@ public class Lotto {
         int validNumbersCount = LottoConfig.NUMBERS_COUNT.getValue();
         if (numbersCount != validNumbersCount) {
             throw new IllegalArgumentException(LottoExceptionMessages.INVALID_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    private void validateDistinct(List<Integer> numbers) {
+        int numbersCount = numbers.size();
+        int distinctCount = (int) numbers.stream()
+                .distinct()
+                .count();
+        if (numbersCount != distinctCount) {
+            throw new IllegalArgumentException(LottoExceptionMessages.DUPLICATED_NUMBERS_COUNT.getMessage());
         }
     }
 

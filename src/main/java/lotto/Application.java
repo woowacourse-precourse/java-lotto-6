@@ -27,6 +27,7 @@ public class Application {
             }
         }
 
+        numbers_list_count();
 
 
     }

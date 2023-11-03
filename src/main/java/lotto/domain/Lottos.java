@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.service.LottoService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -38,5 +39,17 @@ public class Lottos {
         for(int i = 0; i < numberOfLottos; i++) {
             lottos.add(new Lotto(LottoService.generateRandomLottoNumber()));
         }
+    }
+
+    public int getNumberOfLottos() {
+        return numberOfLottos;
+    }
+
+    public List<List<Integer>> getAllLottoNumbers() {
+        List<List<Integer>> allLottoNumbers = new ArrayList<>();
+        for(Lotto lotto : lottos) {
+            allLottoNumbers.add(lotto.getNumbers());
+        }
+        return Collections.unmodifiableList(allLottoNumbers);
     }
 }

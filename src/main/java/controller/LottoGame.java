@@ -2,18 +2,12 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import utility.Statistic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigInteger;
+import java.util.*;
 
 public class LottoGame {
-    private final static int FIFTH_PLACE = 3;
-    private final static int FORTH_PLACE = 4;
-    private final static int THIRD_PLACE = 5;
-    private final static int SECOND_PLACE = 7;
-    private final static int FIRST_PLACE = 6;
 
     private int lottoQuantity;
     private List<Lotto> lottos;
@@ -89,11 +83,11 @@ public class LottoGame {
     private Map<Integer, Integer> winnerQuantity;
 
     private void initWinnerQuantity(){
-        this.winnerQuantity.put(FIRST_PLACE, 0);
-        this.winnerQuantity.put(SECOND_PLACE, 0);
-        this.winnerQuantity.put(THIRD_PLACE, 0);
-        this.winnerQuantity.put(FORTH_PLACE, 0);
-        this.winnerQuantity.put(FIFTH_PLACE, 0);
+        this.winnerQuantity.put(Statistic.FIRST.getSameNumberCount(), 0);
+        this.winnerQuantity.put(Statistic.SECOND.getSameNumberCount(), 0);
+        this.winnerQuantity.put(Statistic.THIRD.getSameNumberCount(), 0);
+        this.winnerQuantity.put(Statistic.FORTH.getSameNumberCount(), 0);
+        this.winnerQuantity.put(Statistic.FIFTH.getSameNumberCount(), 0);
     }
     private void countWithWinNumber(Lotto lotto){
         int winNumberCount = 0;
@@ -116,7 +110,7 @@ public class LottoGame {
         if(currentLotto.contains(this.bonusNumber))
             bonusFlag = true;
         if(bonusFlag && winNumberCount == 5) {
-            this.winnerQuantity.put(SECOND_PLACE,
+            this.winnerQuantity.put(Statistic.SECOND.getSameNumberCount(),
                     winnerQuantity.getOrDefault(winNumberCount, 0) + 1);
         }
     }
@@ -135,48 +129,85 @@ public class LottoGame {
         findWinnersWithBonusNumber();
         StringBuilder printer = new StringBuilder();
         printer.append("3개 일치 (5,000원) - ")
-                .append(winnerQuantity.get(FIFTH_PLACE))
+                .append(winnerQuantity.get(Statistic.FIFTH.getSameNumberCount()))
                 .append("개\n")
                 .append("4개 일치 (50,000원) - ")
-                .append(winnerQuantity.get(FORTH_PLACE))
+                .append(winnerQuantity.get(Statistic.FORTH.getSameNumberCount()))
                 .append("개\n")
                 .append("5개 일치 (1,500,000원) - ")
-                .append(winnerQuantity.get(THIRD_PLACE))
+                .append(winnerQuantity.get(Statistic.THIRD.getSameNumberCount()))
                 .append("개\n")
                 .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(winnerQuantity.get(SECOND_PLACE))
+                .append(winnerQuantity.get(Statistic.SECOND.getSameNumberCount()))
                 .append("개\n")
                 .append("6개 일치 (2,000,000,000원) - ")
-                .append(winnerQuantity.get(FIRST_PLACE))
+                .append(winnerQuantity.get(Statistic.FIRST.getSameNumberCount()))
                 .append("개");
         return printer.toString();
     }
-    public String getWinLottoResult(){
-        findWinnersWithWinNumber();
-        findWinnersWithBonusNumber();
-        StringBuilder printer = new StringBuilder();
-        printer.append("3개 일치 (5,000원) - ")
-                .append(winnerQuantity.get(FIFTH_PLACE))
-                .append("개\n")
-                .append("4개 일치 (50,000원) - ")
-                .append(winnerQuantity.get(FORTH_PLACE))
-                .append("개\n")
-                .append("5개 일치 (1,500,000원) - ")
-                .append(winnerQuantity.get(THIRD_PLACE))
-                .append("개\n")
-                .append("6개 일치 (2,000,000,000원) - ")
-                .append(winnerQuantity.get(FIRST_PLACE))
-                .append("개");
-        return printer.toString();
+//    //only for test
+//    public String getWinLottoResult(){
+//        findWinnersWithWinNumber();
+//        findWinnersWithBonusNumber();
+//        StringBuilder printer = new StringBuilder();
+//        printer.append("3개 일치 (5,000원) - ")
+//                .append(winnerQuantity.get(FIFTH_PLACE))
+//                .append("개\n")
+//                .append("4개 일치 (50,000원) - ")
+//                .append(winnerQuantity.get(FORTH_PLACE))
+//                .append("개\n")
+//                .append("5개 일치 (1,500,000원) - ")
+//                .append(winnerQuantity.get(THIRD_PLACE))
+//                .append("개\n")
+//                .append("6개 일치 (2,000,000,000원) - ")
+//                .append(winnerQuantity.get(FIRST_PLACE))
+//                .append("개");
+//        return printer.toString();
+//    }
+//    //only for test
+//    public String getBonusLottoResult(){
+//        findWinnersWithWinNumber();
+//        findWinnersWithBonusNumber();
+//        StringBuilder printer = new StringBuilder();
+//        printer.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
+//                .append(winnerQuantity.get(SECOND_PLACE))
+//                .append("개");
+//        return printer.toString();
+//    }
+    //todo: big Integer 계산 안나옴 void sum_all_lotto_prizes(){ 해결하기
+    private BigInteger calculateSumEach(int sameNumberCount, String quantity){
+        ArrayList<String> prizes = Statistic.getPrizeList();
+        ArrayList<Integer> counts = Statistic.getSameNumberCountList();
+
+        BigInteger amount = new BigInteger("0");
+        BigInteger prize;
+
+        for(int index = 0; index < prizes.size(); index++){
+            if(sameNumberCount == counts.get(index)){
+                amount = new BigInteger(quantity);
+                //System.out.println("current amount is "+amount);
+                prize = new BigInteger(prizes.get(index));
+                //System.out.println("current prize is "+ prize);
+                amount = amount.multiply(prize);
+            }
+        }
+        //System.out.println("return amount is "+amount);
+        return amount;
     }
-    public String getBonusLottoResult(){
-        findWinnersWithWinNumber();
-        findWinnersWithBonusNumber();
-        StringBuilder printer = new StringBuilder();
-        printer.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(winnerQuantity.get(SECOND_PLACE))
-                .append("개");
-        return printer.toString();
+
+    public BigInteger sumAllPrize(){
+        BigInteger result = new BigInteger("0");
+        Set<Map.Entry<Integer, Integer>> wonLottos = this.winnerQuantity.entrySet();
+
+        for(Map.Entry<Integer, Integer> lotto : wonLottos){
+            if(lotto.getValue() != 0){
+                int sameNumberCount = lotto.getKey();
+                String quantity = String.valueOf(lotto.getValue());
+                result = result.add(calculateSumEach(sameNumberCount, quantity));
+            }
+        }
+        return result;
     }
+
 }
 

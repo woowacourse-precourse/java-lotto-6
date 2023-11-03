@@ -27,6 +27,7 @@ public class GameScreen {
         //printWinResult();
         //printBonusResult();
 
+        //printTotalPrizes();
     }
     private void initialize(){
         while(true) {
@@ -166,15 +167,18 @@ public class GameScreen {
         String result = this.game.getLottoResult();
         System.out.println(result);
     }
+//    //only for test
+//    private void printWinResult(){
+//        String result = this.game.getWinLottoResult();
+//        System.out.println(result);
+//    }
+//    //only for test
+//    private void printBonusResult(){
+//        String result = this.game.getBonusLottoResult();
+//        System.out.println(result);
+//    }
     //only for test
-    private void printWinResult(){
-        String result = this.game.getWinLottoResult();
-        System.out.println(result);
-    }
-    //only for test
-    private void printBonusResult(){
-        String result = this.game.getBonusLottoResult();
-        System.out.println(result);
-    }
-
+//    private void printTotalPrizes(){
+//        System.out.println(this.game.sumAllPrize());
+//    }
 }

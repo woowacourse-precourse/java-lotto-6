@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Price {
 
-    public static int inputPrice() {
+    public static int readPrice() {
         int price = 0;
         while (true) {
             while (true) {

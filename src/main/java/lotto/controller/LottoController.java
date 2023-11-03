@@ -43,4 +43,14 @@ public class LottoController {
             }
         }
     }
+
+    private int generateBonusNumber() {
+        while (true) {
+            try {
+                return InputView.readBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

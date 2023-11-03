@@ -46,23 +46,18 @@ public class OutputViewTest {
         assertThat(output.toString()).isEqualTo("\n" + count + "개를 구매했습니다.\n");
     }
 
-    @DisplayName("생성된 로또 갯수 테스트")
-    @Test
-    void printCreatedLottos_EqualLottoCount_Success() {
-        Game game = new Game();
-        Lottos lottos = game.createLottos(6);
-        assertThat(lottos.getLottos().size()).isEqualTo(6);
-    }
 
-    @DisplayName("생성된 로또 번호 갯수 테스트")
+    @DisplayName("생성된 로또 순차 출력")
     @Test
-    void printCreatedLottos_EquaLottoNumberCount_ExceptionThrow() {
-        Game game = new Game();
-        Lottos lottos = game.createLottos(3);
-        List<Lotto> lottoList = lottos.getLottos();
-        for (Lotto lotto : lottoList) {
-            assertThat(lotto.getNumbers().size()).isEqualTo(6);
-        }
+    void printCreatedLottos_EqualMessage_Success() {
+        ByteArrayOutputStream output = captureOutputValues();
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lottos lottos = new Lottos(lottoList);
+        OutputView.printCreatedLottos(lottos);
+        assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]\n");
     }
 
 

@@ -14,4 +14,5 @@ public class Lottos {
         return this.lottos;
     }
 
+
 }

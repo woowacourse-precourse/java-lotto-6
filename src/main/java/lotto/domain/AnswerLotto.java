@@ -15,4 +15,8 @@ public class AnswerLotto {
     public static AnswerLotto of(List<Integer> answerNumbers, int bonusNumber) {
         return new AnswerLotto(answerNumbers, bonusNumber);
     }
+
+    public Lotto getAnswerNumbers() {
+        return answerNumbers;
+    }
 }

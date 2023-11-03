@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import static lotto.utils.Constants.*;
 
@@ -46,5 +47,18 @@ public class Lotto {
 
     private boolean hasDuplicatedNumber(List<Integer> numbers) {
         return numbers.size() != new HashSet<>(numbers).size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 }

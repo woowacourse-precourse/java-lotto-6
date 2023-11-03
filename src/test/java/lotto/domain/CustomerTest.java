@@ -37,4 +37,14 @@ class CustomerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
+
+    @DisplayName("로또 구매 금액에 따라 구입 가능한 로또 숫자를 반환한다.")
+    @Test
+    void possibleBuyLottoByCashInHand() {
+        Customer customer = new Customer("10000");
+
+        int result = customer.calculateLottoNum();
+
+        assertThat(result).isEqualTo(10);
+    }
 }

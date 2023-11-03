@@ -3,15 +3,14 @@ package lotto.domain.lotto;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
+import lotto.exception.domain.lotto.LottoDuplicateNumException;
+import lotto.exception.domain.lotto.LottoNumRangeException;
+import lotto.exception.domain.lotto.LottoSizeException;
 import lotto.exception.domain.winningnumber.WinningNumberFormatException;
-import lotto.exception.domain.winningnumber.WinningNumberRangeException;
-import lotto.exception.domain.winningnumber.WinningNumberSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("당첨 번호 검증 테스트")
 class WinningNumbersTest {
@@ -57,7 +56,7 @@ class WinningNumbersTest {
     @MethodSource("invalidSizeValueProvider")
     @DisplayName("입력 숫자가 6개가 아닐 경우")
     void testInvalidSize(String invalidSizeValue) {
-        assertThrows(WinningNumberSizeException.class, () -> {
+        assertThrows(LottoSizeException.class, () -> {
             WinningNumbers.create(invalidSizeValue);
         });
     }
@@ -74,7 +73,7 @@ class WinningNumbersTest {
     @MethodSource("invalidRangeValueProvider")
     @DisplayName("6개 숫자 중 1~45 범위에 포함되지 않은 수가 있다면 예외 발생")
     void testOutOfRange(String invalidRangeInput) {
-        assertThrows(WinningNumberRangeException.class, () -> {
+        assertThrows(LottoNumRangeException.class, () -> {
             WinningNumbers.create(invalidRangeInput);
         });
     }
@@ -85,5 +84,13 @@ class WinningNumbersTest {
                 "0,20,30,40,42,44",
                 "99,80,777,342,123,333"
         );
+    }
+
+    @Test
+    @DisplayName("6개 숫자 중 중복된 숫자가 있으면 예외 발생")
+    void testDuplicateNum() {
+        assertThrows(LottoDuplicateNumException.class, () -> {
+            WinningNumbers.create("1,1,2,3,4,5");
+        });
     }
 }

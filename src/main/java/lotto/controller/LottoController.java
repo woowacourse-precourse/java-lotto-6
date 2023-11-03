@@ -25,7 +25,7 @@ public class LottoController {
     public void start() {
         LottoTickets lottoTickets = buyLottoTickets();
         WinningNumbers winningNumbers = getWinningNumbers();
-        BonusNumber bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
 
         showLottoResult(lottoTickets, winningNumbers, bonusNumber);
     }
@@ -46,13 +46,13 @@ public class LottoController {
         outputView.printResult(result, rate);
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         try {
             String bonusNumber = inputView.inputBonusNumber();
-            return BonusNumber.create(bonusNumber);
+            return BonusNumber.create(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 

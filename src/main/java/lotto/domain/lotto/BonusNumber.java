@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.exception.domain.bonusnumber.BonusNumberDuplicateException;
 import lotto.exception.domain.bonusnumber.BonusNumberFormatException;
 import lotto.exception.domain.bonusnumber.BonusNumberRangeException;
 
@@ -10,22 +11,23 @@ public class BonusNumber {
 
     private final int number;
 
-    public static BonusNumber create(String bonusNumber) {
-        return new BonusNumber(bonusNumber);
+    public static BonusNumber create(String bonusNumber, WinningNumbers winningNumbers) {
+        return new BonusNumber(bonusNumber, winningNumbers);
     }
 
     public int getNumber() {
         return number;
     }
 
-    private BonusNumber(String bonusNumber) {
-        validate(bonusNumber);
+    private BonusNumber(String bonusNumber, WinningNumbers winningNumbers) {
+        validate(bonusNumber, winningNumbers);
         this.number = parseBonusNum(bonusNumber);
     }
 
-    private void validate(String bonusNumber) {
+    private void validate(String bonusNumber, WinningNumbers winningNumbers) {
         validateFormat(bonusNumber);
         validateRange(bonusNumber);
+        validateDuplicateNumber(bonusNumber, winningNumbers);
     }
 
     private void validateFormat(String bonusNumber) {
@@ -43,6 +45,16 @@ public class BonusNumber {
         if (isInvalidRange(bonusNum)) {
             throw new BonusNumberRangeException();
         }
+    }
+
+    private void validateDuplicateNumber(String bonusNumber, WinningNumbers winningNumbers) {
+        if (isContained(bonusNumber, winningNumbers)) {
+            throw new BonusNumberDuplicateException();
+        }
+    }
+
+    private static boolean isContained(String bonusNumber, WinningNumbers winningNumbers) {
+        return winningNumbers.getNumbers().contains(Integer.parseInt(bonusNumber));
     }
 
     private int parseBonusNum(String bonusNumber) {

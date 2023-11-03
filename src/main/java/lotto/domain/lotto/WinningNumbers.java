@@ -6,9 +6,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.exception.domain.lotto.LottoDuplicateNumException;
+import lotto.exception.domain.lotto.LottoNumRangeException;
+import lotto.exception.domain.lotto.LottoSizeException;
 import lotto.exception.domain.winningnumber.WinningNumberFormatException;
-import lotto.exception.domain.winningnumber.WinningNumberRangeException;
-import lotto.exception.domain.winningnumber.WinningNumberSizeException;
 
 public class WinningNumbers {
     private static final Pattern winningNumbersRegex = Pattern.compile("\\d+(,*\\s*\\d*)*");
@@ -34,6 +35,7 @@ public class WinningNumbers {
         List<Integer> winningNumbers = parseWinningNumbers(winningNumber);
         validateSize(winningNumbers);
         validateRangeOfNumber(winningNumbers);
+        validateDuplicateNumber(winningNumbers);
     }
 
     private void validateFormat(String winningNumber) {
@@ -47,19 +49,29 @@ public class WinningNumbers {
 
     private void validateSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new WinningNumberSizeException();
+            throw new LottoSizeException();
         }
     }
 
     private void validateRangeOfNumber(List<Integer> winningNumbers) {
         if (hasInvalidRangeNumber(winningNumbers)) {
-            throw new WinningNumberRangeException();
+            throw new LottoNumRangeException();
         }
     }
 
     private static boolean hasInvalidRangeNumber(List<Integer> winningNumbers) {
         return !winningNumbers.stream()
                 .allMatch(num -> isValidRange(num));
+    }
+
+    private void validateDuplicateNumber(List<Integer> winningNumbers) {
+        long uniqueNumCount = winningNumbers.stream()
+                .distinct()
+                .count();
+
+        if (uniqueNumCount != 6) {
+            throw new LottoDuplicateNumException();
+        }
     }
 
     private static boolean isValidRange(Integer num) {

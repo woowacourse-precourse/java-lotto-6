@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.Result;
+import lotto.service.Calculator;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoIssuer;
 import lotto.service.NumberGenerator;
@@ -38,6 +39,9 @@ public class LottoController {
         }
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);
+        Calculator calculator = new Calculator();
+        Double totalReturn = calculator.calculatePrize(lottoPrizes);
+        outputView.printTotalReturn(totalReturn);
     }
 
     private Lotto readWinningNumbers() {

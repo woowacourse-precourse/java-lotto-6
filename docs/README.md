@@ -26,7 +26,7 @@
 - [x] 로또에 보너스 번호가 있는지 확인 - BonusNumber
 - [x] Lotto 와 비교해 일치하는 개수를 반환 - WinLotto
 - [x] Lotto 에 보너스 번호가 있는지 확인 - WinLotto
-- [ ] 비교 결과를 통해 당첨 등수 계산 - Lotto
+- [x] 비교 결과를 통해 당첨 등수 계산 - WinLotto
 - [x] LottoTicket 에서 생성한 Lotto 를 저장 - Lotties
 - [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - Lotties
 - [ ] 로또 당첨 결과를 통해 당첨 내역 계산 - LottoPrizeMoney

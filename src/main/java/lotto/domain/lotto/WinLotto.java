@@ -10,11 +10,17 @@ public class WinLotto extends Lotto {
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
-    public int compareWithLottoNumber(Lotto lotto) {
+    public LottoResult getLottoResult(Lotto lotto) {
+        int numberOfSame = compareLottoNumber(lotto);
+        boolean matchWithBonusNumber = compareWithBonusNumber(lotto);
+        return LottoResult.getResult(numberOfSame, matchWithBonusNumber);
+    }
+
+    int compareWithLottoNumber(Lotto lotto) {
         return compareLottoNumber(lotto);
     }
 
-    public boolean compareWithBonusNumber(Lotto lotto) {
+    boolean compareWithBonusNumber(Lotto lotto) {
         return bonusNumber.checkLottoContainBonusNumber(lotto);
     }
 }

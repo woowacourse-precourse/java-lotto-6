@@ -7,16 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinLottoTest {
-    private final Lotto lottoContainOneToSix = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    private final WinLotto winLotto = new WinLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
     @DisplayName("WinLotto 와 Lotto 를 비교해 같은 숫자 개수를 반환한다.")
     @Test
     void winLottoTest_1() {
-        WinLotto threeSameWinLotto = new WinLotto(List.of(1, 2, 3, 7, 8, 9), 10);
-        WinLotto sixSameWinLotto = new WinLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        Lotto threeSameWinLotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto sixSameWinLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        int numberOfSame_1 = threeSameWinLotto.compareWithLottoNumber(lottoContainOneToSix);
-        int numberOfSame_2 = sixSameWinLotto.compareWithLottoNumber(lottoContainOneToSix);
+        int numberOfSame_1 = winLotto.compareWithLottoNumber(threeSameWinLotto);
+        int numberOfSame_2 = winLotto.compareWithLottoNumber(sixSameWinLotto);
         assertThat(numberOfSame_1).isEqualTo(3);
         assertThat(numberOfSame_2).isEqualTo(6);
     }
@@ -24,12 +24,23 @@ public class WinLottoTest {
     @DisplayName("WinLotto 와 Lotto 를 비교해 보너스 숫자의 일치 여부를 반환한다.")
     @Test
     void winLottoTest_2() {
-        WinLotto bonusSameWinLotto = new WinLotto(List.of(1, 2, 3, 7, 8, 9), 6);
-        WinLotto bonusNotSameWinLotto = new WinLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        Lotto bonusSameWinLotto = new Lotto(List.of(7, 2, 3, 1, 8, 9));
+        Lotto bonusNotSameWinLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        boolean isContainBonusNumber_1 = bonusSameWinLotto.compareWithBonusNumber(lottoContainOneToSix);
-        boolean isContainBonusNumber_2 = bonusNotSameWinLotto.compareWithBonusNumber(lottoContainOneToSix);
+        boolean isContainBonusNumber_1 = winLotto.compareWithBonusNumber(bonusSameWinLotto);
+        boolean isContainBonusNumber_2 = winLotto.compareWithBonusNumber(bonusNotSameWinLotto);
         assertThat(isContainBonusNumber_1).isTrue();
         assertThat(isContainBonusNumber_2).isFalse();
+    }
+
+    @Test
+    void getLottoResultTest() {
+        Lotto secondPrizeLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto thirdPrizeLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto nonePrizeLotto = new Lotto(List.of(1, 2, 7, 8, 9, 10));
+
+        assertThat(winLotto.getLottoResult(secondPrizeLotto)).isEqualTo(LottoResult.SECOND);
+        assertThat(winLotto.getLottoResult(thirdPrizeLotto)).isEqualTo(LottoResult.THIRD);
+        assertThat(winLotto.getLottoResult(nonePrizeLotto)).isEqualTo(LottoResult.NONE);
     }
 }

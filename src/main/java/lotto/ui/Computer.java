@@ -2,7 +2,10 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.Lotto;
 
 public class Computer {
@@ -48,10 +51,17 @@ public class Computer {
     }
 
     public void checkRange(Integer userInput) {
+
         if ((userInput < 1) || (userInput > 45)) {
             throw new IllegalArgumentException("[ERROR] 1~45 범위의 숫자를 입력 하세요.");
         }
 
+    }
+
+    public void checkDuplication(List<Integer> userInput){
+        if(userInput.size() != new HashSet<>(userInput).size()){
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
+        }
     }
 
 

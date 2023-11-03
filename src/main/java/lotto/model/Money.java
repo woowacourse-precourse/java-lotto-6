@@ -12,6 +12,10 @@ public class Money {
         this.money = money;
     }
 
+    public int getTicket() {
+        return money / THOUSAND;
+    }
+
     private void validateZeroMoney(int money) {
         if (money == ZERO) {
             throw new IllegalArgumentException("0원은 입력할 수 없습니다.");

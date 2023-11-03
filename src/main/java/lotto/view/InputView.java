@@ -39,6 +39,7 @@ public class InputView {
                             .map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
             System.out.println(NON_INTEGER_WINNING_NUMBER);
+            requestWinningNumber();
         }
 
         return winningNumbers;

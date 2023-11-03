@@ -37,9 +37,9 @@
   - 결과 생성
     - 일치하는 숫자의 개수를 확인해 결과 정보를 반환
 
-### Context
+### Controller
 
-#### `class LottoService`
+#### `class LottoController`
 **전체 로또 게임을 총괄하는 객체**
 
 ### Util
@@ -63,6 +63,14 @@
   - 결과 출력
   - 예외 출력
     - 에러 문구는 "[ERROR]"로 시작해야 한다.
+
+### ETC
+#### `interface ExceptionHandler`
+**예외 발생시 처리 방법을 구현할 객체**
+
+#### `class RetryExceptionHandler`
+**예외 발생시 다시 로직을 시도하는 `ExceptionHandler`**
+
 ## 참고
 
 입력을 받은 후, 사용자 편의를 위해 공백 처리

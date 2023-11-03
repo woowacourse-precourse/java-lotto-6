@@ -73,7 +73,7 @@ class LottoCalculatorTest {
         assertThat(totalPrize).isEqualTo(2030050000);
     }
 
-    @DisplayName("3000원을 넣고 4등 당첨 시 수익률 반환 테스트")
+    @DisplayName("4000원을 넣고 4등 당첨 시 수익률 반환 테스트")
     @Test
     public void calculateProfitRate() {
         //given
@@ -82,9 +82,31 @@ class LottoCalculatorTest {
         Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 17, 18, 45)); // 4등
         LottoCalculator calculator = new LottoCalculator(numbers);
         calculator.makePrizeResult(List.of(fourthLotto));
+        int money = 4000;
         //when
-        String profitRate = calculator.calculateProfitRate(4000);
+        String profitRateFromCalculator = calculator.calculateProfitRate(money);
+        // 수익률 계산 공식 (상금 - 사용한 돈) / 사용한 돈 * 100
+        double profitRateFromFormula = (double) (50000 - money) / money * 100;
+        double rounded = Math.round(profitRateFromFormula * 10.0) / 10.0;
         //then
-        assertThat(profitRate).isEqualTo("1150.0%");
+        assertThat(profitRateFromCalculator).isEqualTo(rounded + "%");
+    }
+
+    @DisplayName("46000원을 넣고 5등 당첨 시 수익률 반환 테스트")
+    @Test
+    public void calculateLossPercentage() {
+        //given
+        numbers.makeWinningNumber("4,12,39,43,1,17");
+        numbers.makeBonusNumber("3");
+        Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 18, 22, 45)); // 5등
+        LottoCalculator calculator = new LottoCalculator(numbers);
+        calculator.makePrizeResult(List.of(fourthLotto));
+        int money = 46000;
+        //when
+        String profitRateFromCalculator = calculator.calculateProfitRate(money);
+        double profitRateFromFormula = (double) (5000 - money) / money * 100;
+        double rounded = Math.round(profitRateFromFormula * 10.0) / 10.0;
+        //then
+        assertThat(profitRateFromCalculator).isEqualTo(rounded + "%");
     }
 }

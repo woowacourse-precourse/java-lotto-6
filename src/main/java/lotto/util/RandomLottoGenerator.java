@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class RandomLottoGenerator implements LottoGenerator{
+
     @Override
     public Lotto generate() {
         List<Integer> lottoNumbers =

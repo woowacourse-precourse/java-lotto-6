@@ -6,32 +6,38 @@ import java.util.List;
 import lotto.constants.ErrorMessage;
 
 public class Validate {
+    private final int CURRENCY_UNIT = 1000;
+    private final int MAX_NUMBER = 45;
+    private final int MIN_NUMBER = 1;
+    private final int MAKE_ERROR_NUMBER = -1;
+    private final int SIZE_OF_NUMBERS = 6;
+    private final String SEPARATOR = ",";
     // InputPrice
     public long validateInputPrice(String input) {
         long result;
         try {
             result = Long.parseLong(input);
             if (!canDivide(result)) {
-                return 0;
+                return MAKE_ERROR_NUMBER;
             }
         } catch (NumberFormatException e) {
             errorNotNumber();
-            return 0;
+            return MAKE_ERROR_NUMBER;
         } catch (IllegalArgumentException e) {
             System.out.print(ErrorMessage.ERROR_MESSAGE);
             System.out.println(ErrorMessage.CAN_NOT_DIVIDE);
-            return 0;
+            return MAKE_ERROR_NUMBER;
         }
 
         return result;
     }
 
     private boolean canDivide(long input) {
-        if (input % 1000 != 0 || input == 0) {
+        if (input % CURRENCY_UNIT != 0 || input == 0) {
             throw new IllegalArgumentException();
         }
 
-        if (input % 1000 == 0) {
+        if (input % CURRENCY_UNIT == 0) {
             return true;
         }
 
@@ -46,15 +52,15 @@ public class Validate {
             checkDuplicateNumber(result, inputNumbers);
         } catch (NumberFormatException e) {
             errorNotNumber();
-            result.add(-1);
+            result.add(MAKE_ERROR_NUMBER);
         } catch (IllegalArgumentException e) {
             System.out.print(ErrorMessage.ERROR_MESSAGE);
             System.out.println(e);
-            result.add(-1);
+            result.add(MAKE_ERROR_NUMBER);
         } catch (NullPointerException e) {
             System.out.print(ErrorMessage.ERROR_MESSAGE);
             System.out.println(ErrorMessage.CHECK_NUMBER_OF_INPUT);
-            result.add(-1);
+            result.add(MAKE_ERROR_NUMBER);
         }
 
         return result;
@@ -72,9 +78,9 @@ public class Validate {
 
     private List<String> getStrings(String input) {
         List<String> inputNumbers = new ArrayList<>();
-        if (input.contains(",")) {
+        if (input.contains(SEPARATOR)) {
             inputNumbers = Arrays
-                    .stream(input.split(","))
+                    .stream(input.split(SEPARATOR))
                     .map(String::trim)
                     .toList();
         }
@@ -89,20 +95,20 @@ public class Validate {
     private int checkRangeOfNumber(int number) {
         int result = number;
 
-        if (number >= 1 && number <= 45) {
+        if (number >= MIN_NUMBER && number <= MAX_NUMBER) {
             return result;
         }
 
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_CORRECT_RANGE_OF_NUMBER.toString());
         }
 
-        return -1;
+        return MAKE_ERROR_NUMBER;
     }
 
     private boolean checkInputListSize(List<?> list) {
         int result = list.size();
-        if (result == 6) {
+        if (result == SIZE_OF_NUMBERS) {
             return true;
         }
         return false;

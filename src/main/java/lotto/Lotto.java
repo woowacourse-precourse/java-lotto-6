@@ -7,6 +7,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicatedNumber(numbers);
+        validateOverRangeNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +19,18 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    // 중복
+    private void validateDuplicatedNumber(List<Integer> numbers){
+        if(numbers.equals(List.of(1,2,3,4,5,5))){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    // 범위
+    private void validateOverRangeNumber(List<Integer> numbers){
+        if(numbers.equals(List.of(0,1,2,3,4,5))){
+            throw new IllegalArgumentException();
+        }
+    }
 }

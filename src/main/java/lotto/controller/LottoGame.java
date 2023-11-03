@@ -17,6 +17,7 @@ public class LottoGame {
             purchaseAmount = InputView.receiveUserInput();
             Validator.validatePurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             getPurchaseAmountAndValidate();
         }
 

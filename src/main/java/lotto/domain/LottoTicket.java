@@ -18,7 +18,7 @@ public class LottoTicket {
         if (input.matches("\\d*")) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
+        throw new IllegalArgumentException("숫자를 입력하세요.");
     }
 
     private void validateIsDivided(String input) {
@@ -26,6 +26,6 @@ public class LottoTicket {
         if (paid % TICKET_PRICE == 0) {
             return;
         }
-        throw new IllegalArgumentException(String.format("[ERROR] 잔돈이 남습니다. %d 원 단위로 입력해주세요. ", TICKET_PRICE));
+        throw new IllegalArgumentException(String.format("잔돈이 남습니다. %d 원 단위로 입력해주세요. ", TICKET_PRICE));
     }
 }

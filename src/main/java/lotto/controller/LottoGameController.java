@@ -6,8 +6,22 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
     public void play() {
-        OutputView.printPurchasePriceInputText();
-        LottoTicket lottoTicket = new LottoTicket(InputView.getUserInput());
-        OutputView.printTicketNumber(lottoTicket.getTicketNumber());
+        LottoTicket lottoTicket = purchaseLotto();
     }
+
+    private LottoTicket purchaseLotto() {
+        LottoTicket lottoTicket;
+        while (true) {
+            try {
+                OutputView.printPurchasePriceInputText();
+                lottoTicket = new LottoTicket(InputView.getUserInput());
+                OutputView.printTicketNumber(lottoTicket.getTicketNumber());
+                return lottoTicket;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+
 }

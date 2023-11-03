@@ -43,4 +43,5 @@ public class InputViewValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY_MESSGAE.getMessage());
     }
+
 }

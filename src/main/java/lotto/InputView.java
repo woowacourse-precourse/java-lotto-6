@@ -31,6 +31,7 @@ public class InputView {
         String input = Console.readLine();
         validateLottoNumber(input);
         ArrayList<String> inputList = new ArrayList<>(Arrays.asList(input.split(",")));
+        validateNumber(inputList);
         return inputList.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -44,6 +45,12 @@ public class InputView {
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
+    }
+
+    private void validateNumber(ArrayList<String> inputList) {
+        for (String s : inputList) {
+            inputValidator.checkInputDigit(s);
+        }
     }
 
     private void validateMoney(String input) {

@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +13,24 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        checkLottoNumbersCount(numbers);
+        isDuplicated(numbers);
+    }
+
+    private void checkLottoNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE_MESSAGE.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void isDuplicated(List<Integer> numbers) {
+        int originalSize = numbers.size();
+        Set<Integer> set = new HashSet<>(numbers);
+
+        if (originalSize != set.size()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NUMBER_MESSAGE.getMessage());
+        }
+    }
+
+
 }

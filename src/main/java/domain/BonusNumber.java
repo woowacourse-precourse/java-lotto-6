@@ -1,6 +1,5 @@
 package domain;
 
-import lotto.Lotto;
 import validator.BonusNumberValidator;
 
 public class BonusNumber {

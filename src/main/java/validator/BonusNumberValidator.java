@@ -5,7 +5,7 @@ import static constant.ExceptionMessage.ERROR_MESSAGE;
 import static constant.ExceptionMessage.NUMERIC_REQUIRED;
 import static constant.ExceptionMessage.OUT_OF_RANGE_NUMBER;
 
-import lotto.Lotto;
+import domain.Lotto;
 
 public class BonusNumberValidator {
     private BonusNumberValidator() {

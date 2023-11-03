@@ -1,10 +1,10 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import domain.Lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
 
 public class InputView {
     private InputView() {

@@ -3,13 +3,13 @@ package controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.Rank;
 import domain.BonusNumber;
+import domain.Lotto;
 import domain.Lottos;
 import domain.Money;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
-import lotto.Lotto;
 import view.InputView;
 import view.OutputView;
 

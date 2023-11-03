@@ -10,6 +10,7 @@ import lotto.lotto.LottoBuyer;
 import lotto.lotto.win.WinResult;
 
 public class LottoChecker {
+    private static final int USELESS_BONUS = 0;
     LottoBuyer lottoBuyer;
     List<Integer> target;
     int bonus;
@@ -18,7 +19,7 @@ public class LottoChecker {
         this.lottoBuyer = lottoBuyer;
     }
 
-    private Map<Optional<WinResult>, Integer> checkAllLotto() {
+    public Map<Optional<WinResult>, Integer> checkAllLotto() {
         Map<Optional<WinResult>, Integer> map = new HashMap<Optional<WinResult>, Integer>();
 
         for (int i = 0; i < lottoBuyer.size(); i++) {
@@ -29,7 +30,7 @@ public class LottoChecker {
 
             Optional<WinResult> result = getResult(matchedCount, bonusCount);
             Integer savedNumber = map.getOrDefault(result, 0);
-            map.put(result, savedNumber++);
+            map.put(result, ++savedNumber);
         }
         return map;
     }
@@ -47,11 +48,11 @@ public class LottoChecker {
     }
 
     private int matchWithBonus(Lotto lotto, int matchedCount) {
-        if(matchedCount == 5) {
+        if(matchedCount == WinResult.THIRD.matchedCount) {
             return (int) lotto.streamNumbers()
                     .filter(num -> bonus == num)
                     .count();
         }
-        return 0;
+        return USELESS_BONUS;
     }
 }

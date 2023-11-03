@@ -67,5 +67,18 @@ public class Lotto {
         return inputNumbers;
     }
 
+    //각 로또별 맞은 개수 계산
+    public static int countMatched(Lotto lotto, List<Integer> inputNumbers) {
+        int count = 0;
+        for (int i = 0; i < 6; i++) {
+            if (inputNumbers.contains(lotto.numbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+
 
 }

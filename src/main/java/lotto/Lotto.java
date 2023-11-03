@@ -44,4 +44,8 @@ public class Lotto {
 
         return !outOfRangeNumbers.isEmpty();
     }
+
+    public boolean isContains(int number){
+        return numbers.contains(number);
+    }
 }

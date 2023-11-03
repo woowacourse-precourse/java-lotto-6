@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.function.BiPredicate;
-import java.util.stream.IntStream;
 
 public enum LottoRank {
 	NOTHING(0, 0, false, (matchedNumCount, isBonusNumber) -> matchedNumCount < 3),
@@ -25,30 +24,44 @@ public enum LottoRank {
 		this.matcher = matcher;
 	}
 
-	public static LottoRank getMatchedLottoRank(final AnswerLotto answerLotto, final Lotto lotto) {
-		int winningNumberCount = getWinningNumberCount(answerLotto, lotto);
+	public static LottoRank getMatchedLottoRank(AnswerLotto answerLotto, Lotto lotto) {
+		int matchedNumberCount = countmatchedNumber(answerLotto, lotto);
 
-		boolean isBonusNumber = checkSameAsBonusNumber(answerLotto, lotto);
+		boolean isBonusNumber = checkNumberSameAsBonusNumber(answerLotto, lotto);
 
-		return LottoRank.getMatchedLottoRank(winningNumberCount, isBonusNumber);
+		return LottoRank.getMatchedLottoRank(matchedNumberCount, isBonusNumber);
 	}
 
-	private static LottoRank getMatchedLottoRank(final int matchedNumCount, final boolean isBonusNumber) {
+	private static LottoRank getMatchedLottoRank(int matchedNumberCount, boolean isBonusNumber) {
 		return Arrays.stream(LottoRank.values())
-						.filter(lottoRank -> lottoRank.matcher.test(matchedNumCount, isBonusNumber))
+						.filter(lottoRank -> lottoRank.matcher.test(matchedNumberCount, isBonusNumber))
 						.findAny()
 						.orElse(NOTHING);
 	}
 
-	private static int getWinningNumberCount(final AnswerLotto answerLotto, final Lotto lotto) {
-		return (int) IntStream.range(0, lotto.getSize())
-						.filter(index -> answerLotto.isContain(lotto.getNumber(index)))
-						.count();
+	private static int countmatchedNumber(AnswerLotto answerLotto, Lotto lotto) {
+		int matchedNumberCount = 0;
+
+		for (int index = 0; index < lotto.getSize(); index++) {
+			if (answerLotto.isContain(lotto.getNumber(index))) {
+				matchedNumberCount++;
+			}
+		}
+		
+		return matchedNumberCount;
 	}
 
-	private static boolean checkSameAsBonusNumber(final AnswerLotto answerLotto, final Lotto lotto) {
-		return IntStream.range(0, lotto.getSize())
-						.anyMatch(index -> answerLotto.getBonusNumber() == lotto.getNumber(index));
+	private static boolean checkNumberSameAsBonusNumber(AnswerLotto answerLotto, Lotto lotto) {
+		boolean isBonusNumber = false;
+
+		for (int index = 0; index < lotto.getSize(); index++) {
+			if (answerLotto.getBonusNumber() == lotto.getNumber(index)) {
+				isBonusNumber = true;
+				break;
+			}
+		}
+		
+		return isBonusNumber;
 	}
 
 	public static EnumMap<LottoRank, Integer> toEnumMap() {

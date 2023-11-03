@@ -9,12 +9,15 @@ public class WinningNumbers {
     private static final String DUPLICATE_WINNING_NUMBERS_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호는 서로 다른 숫자로 입력해야 합니다.";
 
     private final List<Integer> winningNumbers;
+    private final int bonus;
 
-    public WinningNumbers(List<Integer> winningNumbers) {
+    public WinningNumbers(List<Integer> winningNumbers, int bonus) {
         validateNumberInRange(winningNumbers);
         validateWinningNumbersCount(winningNumbers);
         validateDuplicate(winningNumbers);
+        validateForDuplicateWinningNumbersAndBonus(winningNumbers, bonus);
         this.winningNumbers = winningNumbers;
+        this.bonus = bonus;
     }
 
     private void validateNumberInRange(List<Integer> winningNumbers) {
@@ -49,5 +52,11 @@ public class WinningNumbers {
         return winningNumbers.stream()
                 .distinct()
                 .toList();
+    }
+
+    private void validateForDuplicateWinningNumbersAndBonus(List<Integer> winningNumbers, int bonus) {
+        if (winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안 됩니다,");
+        }
     }
 }

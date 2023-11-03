@@ -38,7 +38,7 @@ public class LottoResult {
         this.rateOfReturn += (matchFive * 1500000);
         this.rateOfReturn += (matchFiveAndBonus * 30000000);
         this.rateOfReturn += (matchSix * 2000000000);
-        this.rateOfReturn = this.rateOfReturn / userInputMoney;
+        this.rateOfReturn = this.rateOfReturn / userInputMoney * 100;
     }
 
     private void saveResult(List<Integer> result) {

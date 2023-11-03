@@ -17,6 +17,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -51,5 +55,16 @@ public class Lotto {
 
     private static Lotto generateRandomLotto() {
         return new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE));
+    }
+
+    public static MatchResult match(Lotto randomLotto, Lotto winLotto) {
+        List<Integer> randomNumbers = randomLotto.getNumbers();
+        List<Integer> winNumbers = winLotto.getNumbers();
+
+        int matchCount = (int) randomNumbers.stream()
+                .filter(winNumbers::contains)
+                .count();
+
+        return MatchResult.fromCount(matchCount);
     }
 }

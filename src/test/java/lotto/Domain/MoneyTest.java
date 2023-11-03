@@ -36,4 +36,12 @@ class MoneyTest {
 
         assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
     }
+
+    @DisplayName("정수 이외의 값이 들어 왔을때 예외발생하는지 확인")
+    @Test
+    void createMoneyByNotInteger() {
+        String inputMoney = "1.000";
+
+        assertThrows(CommonValidationException.class, () -> Money.of(inputMoney));
+    }
 }

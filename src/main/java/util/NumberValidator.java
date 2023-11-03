@@ -14,6 +14,10 @@ public class NumberValidator {
         if (!isWithinIntRange(number)) {
             throw new IllegalArgumentException(NumberErrorMessage.OUT_OF_INT_RANGE.getMessage());
         }
+
+        if (isZero(number)) {
+            throw new IllegalArgumentException(NumberErrorMessage.INVALID_ZERO.getMessage());
+        }
     }
 
     private static boolean isNumeric(String number) {
@@ -29,6 +33,15 @@ public class NumberValidator {
         int maxValue = Integer.MAX_VALUE;
 
         if (Integer.parseInt(number) <= maxValue) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isZero(String number) {
+        int numericValue = Integer.parseInt(number);
+
+        if (numericValue == 0) {
             return true;
         }
         return false;

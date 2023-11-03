@@ -1,8 +1,12 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoMatch;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final StringBuilder stringBuilder = new StringBuilder();
@@ -11,11 +15,11 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void displayLottoCount(int lottoCount) {
+    public static void displayLottoCount(final int lottoCount) {
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
-    public static void displayLottoNumbers(List<Lotto> lottoList) {
+    public static void displayLottoNumbers(final List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             stringBuilder.append(lotto.getNumbers()).append("\n");
         }
@@ -35,17 +39,42 @@ public class OutputView {
         stringBuilder.append("\n").append("당첨 통계").append("\n").append("---").append("\n");
     }
 
-    public static void displayWinningStatistics(int[] lottoResultCount) {
-        stringBuilder.append("3개 일치 (5,000원) - ").append(lottoResultCount[0]).append("개").append("\n");
-        stringBuilder.append("4개 일치 (50,000원) - ").append(lottoResultCount[1]).append("개").append("\n");
-        stringBuilder.append("5개 일치 (1,500,000원) - ").append(lottoResultCount[2]).append("개").append("\n");
-        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(lottoResultCount[3]).append("개").append("\n");
-        stringBuilder.append("6개 일치 (2,000,000,000원) - ").append(lottoResultCount[4]).append("개").append("\n");
+    public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
+        Map<LottoMatch, Integer> lottoMatchMap = new HashMap<>();
+        DecimalFormat df = new DecimalFormat("###,###");
+
+        for (LottoMatch lottoMatch : lottoResultCount) {
+            if (lottoMatchMap.containsKey(lottoMatch)) {
+                lottoMatchMap.put(lottoMatch, lottoMatchMap.get(lottoMatch) + 1);
+            }
+            if (!lottoMatchMap.containsKey(lottoMatch)) {
+                lottoMatchMap.put(lottoMatch, 1);
+            }
+        }
+
+        for (LottoMatch lottoMatch : LottoMatch.values()) {
+            if (lottoMatch.equals(LottoMatch.NOTHING)) {
+                continue;
+            }
+            stringBuilder.append(lottoMatch.getMatching()).append("개 일치");
+            if (lottoMatch.equals(LottoMatch.FIVE_AND_BONUS)) {
+                stringBuilder.append(", 보너스 볼 일치");
+            }
+            stringBuilder.append(" (").append(df.format(lottoMatch.getAmount())).append("원) - ")
+                    .append(getMatchCount(lottoMatchMap.get(lottoMatch))).append("개").append("\n");
+        }
     }
 
-    public static void displayYield(double yield) {
+    public static void displayYield(final double yield) {
         stringBuilder.append("총 수익률은 ").append(String.format("%.1f", yield)).append("%").append("입니다.");
         System.out.println(stringBuilder);
         stringBuilder.setLength(0);
+    }
+
+    private static int getMatchCount(Integer matching) {
+        if (matching == null) {
+            return 0;
+        }
+        return matching;
     }
 }

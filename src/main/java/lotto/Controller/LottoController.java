@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Amount;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,10 +12,10 @@ public class LottoController {
     public void run() {
         OutputView.displayPurchaseGuide();
 
-        final Amount lottoCount = inputLottoAmount();
-        OutputView.displayLottoCount(lottoCount.getAmount());
+        final Amount amount = inputLottoAmount();
+        OutputView.displayLottoCount(amount.getAmount() / 1000);
 
-        final List<Lotto> lottoList = buyLotto(lottoCount.getAmount());
+        final List<Lotto> lottoList = buyLotto(amount.getAmount() / 1000);
         OutputView.displayLottoNumbers(lottoList);
 
         OutputView.displayWinningNumberGuide();
@@ -27,13 +24,13 @@ public class LottoController {
         OutputView.displayBonusNumberGuide();
         final BonusNumber bonusNumber = inputBonusNumber();
 
-        final int[] lottoResultCount = compareWinningNumbers(lottoCount.getAmount(), lottoList, winningLotto, bonusNumber);
+        final List<LottoMatch> lottoResultCount = compareWinningNumbers(amount.getAmount() / 1000, lottoList, winningLotto, bonusNumber);
         final int winningAmount = calculateWinnings(lottoResultCount);
 
         OutputView.displayWinningStatisticsGuide();
         OutputView.displayWinningStatistics(lottoResultCount);
 
-        double yield = calculateYield(winningAmount, lottoCount.getAmount());
+        double yield = calculateYield(winningAmount, Double.valueOf(amount.getAmount()));
         OutputView.displayYield(yield);
     }
 
@@ -88,8 +85,8 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private int[] compareWinningNumbers(int lottoCount, List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        int[] lottoResultCount = new int[5];
+    private List<LottoMatch> compareWinningNumbers(int lottoCount, List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        List<LottoMatch> lottoMatches = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = lottoList.get(i).getNumbers();
@@ -99,42 +96,22 @@ public class LottoController {
                     count++;
                 }
             }
-            if (count == 6) {
-                lottoResultCount[4]++;
-                continue;
-            }
-            if (count == 5 && lottoNumbers.contains(bonusNumber.getBonusNumber())) {
-                lottoResultCount[3]++;
-                continue;
-            }
-            if (count == 5) {
-                lottoResultCount[2]++;
-                continue;
-            }
-            if (count == 4) {
-                lottoResultCount[1]++;
-                continue;
-            }
-            if (count == 3) {
-                lottoResultCount[0]++;
-            }
+            lottoMatches.add(LottoMatch.collect(count, lottoNumbers.contains(bonusNumber.getBonusNumber())));
         }
-        return lottoResultCount;
+        return lottoMatches;
     }
 
-    private int calculateWinnings(int[] lottoResultCount) {
+    private int calculateWinnings(List<LottoMatch> lottoResultCount) {
         int winningAmount = 0;
 
-        winningAmount += lottoResultCount[0] * 5000;
-        winningAmount += lottoResultCount[1] * 50000;
-        winningAmount += lottoResultCount[2] * 1500000;
-        winningAmount += lottoResultCount[3] * 30000000;
-        winningAmount += lottoResultCount[4] * 2000000000;
+        for (LottoMatch lottoMatch : lottoResultCount) {
+            winningAmount += lottoMatch.getAmount();
+        }
 
         return winningAmount;
     }
 
-    private Double calculateYield(int winningAmount, int lottoCount) {
-        return winningAmount / (lottoCount * 1000.0) * 100;
+    private Double calculateYield(int winningAmount, Double amount) {
+        return winningAmount / amount * 100;
     }
 }

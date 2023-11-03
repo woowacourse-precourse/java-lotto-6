@@ -9,12 +9,12 @@ import lotto.input.Validator.InputValidate;
 public class PurchaseAmountInputView {
     private final InputValidate inputValidate = new InputValidate();
 
-    public Long userAmountInput() {
+    public Integer userAmountInput() {
         System.out.println(PURCHASEAMOUNTINPUT);
         return validateCheck();
     }
 
-    public Long validateCheck() {
+    public Integer validateCheck() {
         Long amount;
         while (true) {
             try {
@@ -25,7 +25,11 @@ public class PurchaseAmountInputView {
                 System.out.println(PURCHASEAMOUNTINPUT_ERROR);
             }
         }
-        return amount;
+        return getCount(amount);
+    }
+
+    private int getCount(Long amount) {
+        return amount.intValue() / 1000;
     }
 
 

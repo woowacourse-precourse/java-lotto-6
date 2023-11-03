@@ -28,6 +28,10 @@ public class Winning {
         return Integer.toString(count);
     }
 
+    public boolean isContain(int bonus){
+        return winnings.contains(bonus);
+    }
+
     private List<Integer> validateNumeric(String inputWinning){
         List<String> tempWinnings = List.of(inputWinning.split(GameConfig.SEPARATOR));
         List<Integer> winnings = new ArrayList<>();

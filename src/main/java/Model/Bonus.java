@@ -9,9 +9,10 @@ public class Bonus {
 
     private final int bonus;
 
-    public Bonus(String inputBonus){
+    public Bonus(String inputBonus, Winning winning){
         int bonus = validateNumeric(inputBonus);
         validateRange(bonus);
+        validateDuplicateWinning(winning, bonus);
         this.bonus = bonus;
     }
 
@@ -30,6 +31,12 @@ public class Bonus {
     private void validateRange(int bonus) {
         if (bonus < GameConfig.MIN_LOTTO || bonus > GameConfig.MAX_LOTTO) {
             throw new IllegalArgumentException(String.format(ErrorMessage.NOT_IN_RANGE.getErrorMessage(), GameConfig.MIN_LOTTO, GameConfig.MAX_LOTTO));
+        }
+    }
+
+    private void validateDuplicateWinning(Winning winning, int bonus){
+        if (winning.isContain(bonus)){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS.getErrorMessage());
         }
     }
 }

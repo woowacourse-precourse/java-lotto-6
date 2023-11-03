@@ -15,7 +15,7 @@ public class InputView {
         return new Winning(Console.readLine());
     }
 
-    public Bonus getBonus(){
-        return new Bonus(Console.readLine());
+    public Bonus getBonus(Winning winning){
+        return new Bonus(Console.readLine(), winning);
     }
 }

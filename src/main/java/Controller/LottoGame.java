@@ -16,7 +16,7 @@ public class LottoGame {
 
     public void startGame(){
         initLotto();
-        progressLotto(initWinning(), initBonus());
+        progressLotto();
         finishLotto();
     }
 
@@ -35,6 +35,12 @@ public class LottoGame {
         outputView.printBuying(player.checkLotto());
     }
 
+    private void progressLotto(){
+        Winning winning = initWinning();
+        Bonus bonus = initBonus(winning);
+        player.announceWinning(winning, bonus);
+    }
+
     private Winning initWinning(){
         Winning winning = null;
         do{
@@ -48,12 +54,12 @@ public class LottoGame {
         return winning;
     }
 
-    private Bonus initBonus(){
+    private Bonus initBonus(Winning winning){
         Bonus bonus = null;
         do{
             try{
                 outputView.printBonus();
-                bonus = inputView.getBonus();
+                bonus = inputView.getBonus(winning);
             } catch (IllegalArgumentException e){
                 outputView.printMessage(e.getMessage());
             }
@@ -61,9 +67,7 @@ public class LottoGame {
         return bonus;
     }
 
-    private void progressLotto(Winning winning, Bonus bonus){
-        player.announceWinning(winning, bonus);
-    }
+
 
     private void finishLotto(){
         outputView.printStatistics(player.checkWinning(), player.calculateYield());

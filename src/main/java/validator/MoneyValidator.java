@@ -1,5 +1,6 @@
 package validator;
 
+import static constant.ConstantNumber.LOTTO_PRICE;
 import static constant.ExceptionMessage.ERROR_MESSAGE;
 import static constant.ExceptionMessage.NON_INTEGER_AMOUNT;
 import static constant.ExceptionMessage.NON_MULTIPLE_OF_1000;
@@ -30,7 +31,7 @@ public class MoneyValidator {
 
     public static void isThousandUnit(String money) {
         long integerMoney = Long.parseLong(money);
-        if (integerMoney % 1000 != 0) {
+        if (integerMoney % LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + NON_MULTIPLE_OF_1000.getMessage()
             );

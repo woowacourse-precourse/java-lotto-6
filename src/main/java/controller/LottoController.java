@@ -1,5 +1,9 @@
 package controller;
 
+import static constant.ConstantNumber.LOTTO_SIZE;
+import static constant.ConstantNumber.MAX_NUMBER;
+import static constant.ConstantNumber.MIN_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.Rank;
 import domain.BonusNumber;
@@ -63,7 +67,7 @@ public class LottoController {
     }
 
     private List<Integer> chooseRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), LOTTO_SIZE.getNumber());
     }
 
     private void getWinningNumbersAndBonusNumber() {

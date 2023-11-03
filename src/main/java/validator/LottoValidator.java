@@ -1,5 +1,8 @@
 package validator;
 
+import static constant.ConstantNumber.LOTTO_SIZE;
+import static constant.ConstantNumber.MAX_NUMBER;
+import static constant.ConstantNumber.MIN_NUMBER;
 import static constant.ExceptionMessage.DUPLICATE_NUMBER;
 import static constant.ExceptionMessage.ERROR_MESSAGE;
 import static constant.ExceptionMessage.INVALID_INPUT_SIZE;
@@ -14,7 +17,7 @@ public class LottoValidator {
     }
 
     public static void sizeValidate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + INVALID_INPUT_SIZE.getMessage()
             );
@@ -35,7 +38,7 @@ public class LottoValidator {
 
     public static void matchRangeValidate(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
                 throw new IllegalArgumentException(
                         ERROR_MESSAGE.getMessage() + OUT_OF_RANGE_NUMBER.getMessage()
                 );

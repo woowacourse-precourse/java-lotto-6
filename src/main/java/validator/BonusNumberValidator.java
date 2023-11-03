@@ -1,5 +1,7 @@
 package validator;
 
+import static constant.ConstantNumber.MAX_NUMBER;
+import static constant.ConstantNumber.MIN_NUMBER;
 import static constant.ExceptionMessage.DUPLICATE_NUMBER;
 import static constant.ExceptionMessage.ERROR_MESSAGE;
 import static constant.ExceptionMessage.NUMERIC_REQUIRED;
@@ -23,7 +25,7 @@ public class BonusNumberValidator {
 
     public static void inRange(String bonusNumber) {
         int integerBonusNumber = Integer.parseInt(bonusNumber);
-        if (integerBonusNumber < 1 || integerBonusNumber > 45) {
+        if (integerBonusNumber < MIN_NUMBER.getNumber() || integerBonusNumber > MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + OUT_OF_RANGE_NUMBER.getMessage()
             );

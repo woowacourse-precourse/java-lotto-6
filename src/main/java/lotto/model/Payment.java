@@ -2,6 +2,9 @@ package lotto.model;
 
 import lotto.constants.ExceptionMessages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Payment {
     private static final int MINIMUM_PAYMENT_AMOUNT = 1000;
     private static final int ZERO_REMAINDER = 0;
@@ -33,5 +36,13 @@ public class Payment {
 
     private int calculateLottoAmount(int paymentAmount) {
         return paymentAmount / MINIMUM_PAYMENT_AMOUNT;
+    }
+
+    public List<Integer> providePaymentStatus() {
+        List<Integer> paymentStatus = new ArrayList<>();
+        paymentStatus.add(paymentAmount);
+        paymentStatus.add(lottoAmount);
+
+        return paymentStatus;
     }
 }

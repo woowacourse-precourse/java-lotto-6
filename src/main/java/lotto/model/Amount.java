@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.enumerate.ErrorCode.AMOUNT_IS_UNDER_ZERO_WON;
+import static lotto.enumerate.ErrorCode.AMOUNT_IS_UNDER_THOUSAND_WON;
 import static lotto.enumerate.ErrorCode.AMOUNT_UNIT_IS_NOT_1000_WON;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
@@ -36,11 +36,19 @@ public class Amount {
     }
 
     private void validAmount(int amount) {
+        unitThousandWonValid(amount);
+        amountUnderThousandWonValid(amount);
+    }
+
+    private static void amountUnderThousandWonValid(int amount) {
+        if (amount <= 0) {
+            exceptionCodeThrow(AMOUNT_IS_UNDER_THOUSAND_WON);
+        }
+    }
+
+    private static void unitThousandWonValid(int amount) {
         if (amount % 1000 != 0) {
             exceptionCodeThrow(AMOUNT_UNIT_IS_NOT_1000_WON);
-        }
-        if (amount <= 0) {
-            exceptionCodeThrow(AMOUNT_IS_UNDER_ZERO_WON);
         }
     }
 }

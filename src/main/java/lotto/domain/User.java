@@ -8,4 +8,12 @@ public class User {
         this.lotties = lotties;
         this.payment = payment;
     }
+
+    public Lotties getLotties() {
+        return lotties;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
 }

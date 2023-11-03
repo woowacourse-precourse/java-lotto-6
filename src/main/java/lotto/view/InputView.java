@@ -4,13 +4,16 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.model.Utils;
 
-public class InputView {
+public final class InputView {
 
-    public int inputPurchaseAmount() {
+    private InputView() {
+    }
+
+    public static int inputPurchaseAmount() {
         return Utils.convertStringToInt(Console.readLine());
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         return Utils.convertStringToIntegerList(Console.readLine());
     }
 }

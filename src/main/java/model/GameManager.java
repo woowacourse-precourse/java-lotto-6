@@ -2,11 +2,13 @@ package model;
 
 import java.util.List;
 import model.dto.LottoResponse;
+import model.dto.AnswerBonusNumber;
+import model.dto.AnswerLottoNumbers;
 
 public class GameManager {
 
     private final LottosWithBonus lottos;
-    private LottosWithBonus answerLotto;
+    private LottoWithBonus answerLotto;
 
     private GameManager(final LottosWithBonus lottos) {
         this.lottos = lottos;
@@ -21,5 +23,11 @@ public class GameManager {
             .stream()
             .map(LottoResponse::from)
             .toList();
+    }
+
+    public void generateAnswerLotto(final AnswerLottoNumbers answerNumbers,
+        final AnswerBonusNumber answerBonusNumber) {
+        answerLotto = new LottoWithBonus(answerNumbers.toLotto(),
+            answerBonusNumber.toLottoNumber());
     }
 }

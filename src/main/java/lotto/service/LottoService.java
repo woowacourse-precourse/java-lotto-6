@@ -64,7 +64,7 @@ public class LottoService {
     private List<Integer> parseAndValidateWinningNumbers(String winningNumberView) {
         validateLottoNumberFormat(winningNumberView);
 
-        List<Integer> winningNumbers = changeInputToString(winningNumberView);
+        List<Integer> winningNumbers = convertInputToNumbers(winningNumberView);
         validateWinningNumber(winningNumbers);
 
         return winningNumbers;
@@ -143,7 +143,7 @@ public class LottoService {
         statistics.put(rank, statistics.get(rank) + 1);
     }
 
-    private List<Integer> changeInputToString(String input) {
+    private List<Integer> convertInputToNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)

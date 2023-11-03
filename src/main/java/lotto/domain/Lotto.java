@@ -48,4 +48,9 @@ public class Lotto {
         }
         return lottos;
     }
+
+    public String toSortedString() {
+        Collections.sort(numbers);
+        return numbers.toString();
+    }
 }

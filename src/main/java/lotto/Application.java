@@ -12,13 +12,12 @@ public class Application {
     public static void main(String[] args) {
         Tickets tickets = getValidTickets();
 
-        List<Lotto> lottos = new ArrayList<>();
-        lottos = Lotto.createLottos(tickets.getNumberOfTickets());
-        // 로또 출력
+        List<Lotto> lottos = Lotto.createLottos(tickets.getNumberOfTickets());
+        View.printLottos(lottos);
 
         Winning winning = getValidWinning();
-        Bonus bonus = getValidBonus(winning);
 
+        Bonus bonus = getValidBonus(winning);
         // 로또 당첨 확인
         // 당첨 결과와 수익률 출력
     }

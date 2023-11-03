@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class User {
+
+    List<String> sixLottoNumbers;
+
     public User() {
     }
 
@@ -33,11 +36,11 @@ public class User {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             try {
-                List<String> sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
-                validateInputSizeSix(sixLottoNumbers);
-                validateCommaSeparatedInput(sixLottoNumbers);
-                validateSixLottoNumbers(sixLottoNumbers);
-                validateNoDuplicateNumbers(sixLottoNumbers);
+                sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
+                validateInputSizeSix();
+                validateCommaSeparatedInput();
+                validateSixLottoNumbers();
+                validateNoDuplicateNumbers();
                 return sixLottoNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -45,13 +48,13 @@ public class User {
         }
     }
 
-    private void validateInputSizeSix(List<String> sixLottoNumbers) {
+    private void validateInputSizeSix() {
         if (sixLottoNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호 6개를 입력해주세요.");
         }
     }
 
-    private void validateCommaSeparatedInput(List<String> sixLottoNumbers) {
+    private void validateCommaSeparatedInput() {
         for (String lottoNumber : sixLottoNumbers) {
             if (!lottoNumber.matches("^\\d+$")) {
                 throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 공백없이 입력해야합니다. (ex) 1,8,24,47,35,6");
@@ -59,7 +62,7 @@ public class User {
         }
     }
 
-    private void validateSixLottoNumbers(List<String> sixLottoNumbers) {
+    private void validateSixLottoNumbers() {
         for (String lottoNumber : sixLottoNumbers) {
             if (1 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -70,7 +73,7 @@ public class User {
         }
     }
 
-    private void validateNoDuplicateNumbers(List<String> sixLottoNumbers) {
+    private void validateNoDuplicateNumbers() {
         List<String> uniqueNumbers = new ArrayList<>();
         for (String lottoNumber : sixLottoNumbers) {
             if (uniqueNumbers.contains(lottoNumber)) {
@@ -102,6 +105,9 @@ public class User {
         }
         if (1 > Integer.parseInt(bonusNumber) || Integer.parseInt(bonusNumber) > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (sixLottoNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 입력한 6개의 로또 당첨 번호와 중복됩니다. 다시 입력해주세요.");
         }
     }
 }

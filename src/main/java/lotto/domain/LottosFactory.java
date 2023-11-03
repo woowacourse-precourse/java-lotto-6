@@ -27,7 +27,7 @@ public class LottosFactory {
     }
 
     private void validateTenThousandMultiple(int money) {
-        if (money % TEN_THOUSAND != 0) {
+        if (money == 0 || money % TEN_THOUSAND != 0) {
             throw new IllegalArgumentException("구입 금액은 1000의 배수여야 합니다");
         }
     }

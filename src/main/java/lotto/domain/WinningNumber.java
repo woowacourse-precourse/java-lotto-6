@@ -6,11 +6,10 @@ public class WinningNumber {
     private static final int WINNING_NUMBER_SIZE = 6;
 
     private final List<Integer> winningNumber;
-
     private int bonusNumber;
 
     public WinningNumber(List<Integer> winningNumber) {
-        validate(winningNumber);
+        validateWinningNumber(winningNumber);
         this.winningNumber = sorted(winningNumber);
     }
 
@@ -18,7 +17,7 @@ public class WinningNumber {
         return numbers.stream().sorted().toList();
     }
 
-    private void validate(List<Integer> winningNumber) {
+    private void validateWinningNumber(List<Integer> winningNumber) {
         validateSize(winningNumber);
         validateDuplicate(winningNumber);
         winningNumber.forEach(this::validateRange);

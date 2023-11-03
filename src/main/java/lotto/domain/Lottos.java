@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class Lottos {
-    private final int TEN_THOUSAND = 1000;
+    private static final int TEN_THOUSAND = 1000;
 
     private final List<Lotto> lottos;
 

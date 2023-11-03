@@ -29,7 +29,7 @@ public class InputView {
 
     private void validateNullInput(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("null x");
         }
     }
 

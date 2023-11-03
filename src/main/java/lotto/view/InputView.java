@@ -17,4 +17,10 @@ public class InputView {
         String winningNumbers = Console.readLine();
         return new WinningNumber(Integer.parseInt(winningNumbers));
     }
+
+    public WinningNumber inputLottoBonusNumbers() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String winningNumbers = Console.readLine();
+        return new WinningNumber(Integer.parseInt(winningNumbers));
+    }
 }

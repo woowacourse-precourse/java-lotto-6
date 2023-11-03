@@ -26,10 +26,10 @@ public class GameView {
 
     public void showLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            String formattedNumbers = lottoFormatter.format(lotto.getSortedNumbers());
-            System.out.println(formattedNumbers);
-        }
+
+        String formattedLottos = lottoFormatter.format(lottos);
+
+        System.out.println(formattedLottos);
     }
 
     public String getWinningNumbersInput() {
@@ -47,8 +47,8 @@ public class GameView {
     }
 
     public void showWinningStatistics(WinningStatistics winningStatistics) {
-        String statistics = winningStatisticsFormatter.format(winningStatistics);
-        System.out.println(statistics);
+        String formattedStatistics = winningStatisticsFormatter.format(winningStatistics);
+        System.out.println(formattedStatistics);
     }
 
     private String getInput() {

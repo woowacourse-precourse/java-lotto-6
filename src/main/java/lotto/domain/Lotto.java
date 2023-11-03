@@ -22,6 +22,11 @@ public class Lotto {
         if (numbers.size() != temp.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_EXISTS);
         }
+        for (Integer number : numbers) {
+            if (!(number >= 1 && number <= 45)) {
+                throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
+            }
+        }
     }
 
     // TODO: 추가 기능 구현

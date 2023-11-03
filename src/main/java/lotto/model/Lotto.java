@@ -45,6 +45,10 @@ public final class Lotto {
                 .count() != LOTTO_SIZE;
     }
 
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
     public static Lotto create(NumberGenerator numberGenerator) {
         List<Integer> uniqueNumbers = numberGenerator.generateUniqueNumbers(LottoNumber.MIN_NUMBER,
                 LottoNumber.MAX_NUMBER,

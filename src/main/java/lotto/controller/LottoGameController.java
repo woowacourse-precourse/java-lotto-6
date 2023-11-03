@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.dto.request.UserMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.LottoGroup;
 import lotto.model.NumberGenerator;
@@ -27,7 +28,7 @@ public class LottoGameController {
         LottoGroup lottoGroup = LottoGroup.create(lottoCount, numberGenerator);
         printLottoGroup(lottoGroup);
 
-        WinningNumbersDto winningNumbersDto = RetryUtil.retryOnFail(inputView::readWinningNumbers);
+        Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
 
     }
 
@@ -39,6 +40,11 @@ public class LottoGameController {
     private void printLottoGroup(LottoGroup lottoGroup) {
         LottoGroupDto lottoGroupDto = LottoGroupDto.from(lottoGroup);
         outputView.printLottoGroup(lottoGroupDto);
+    }
+
+    private Lotto createWinningLotto() {
+        WinningNumbersDto winningNumbersDto = RetryUtil.retryOnFail(inputView::readWinningNumbers);
+        return Lotto.from(winningNumbersDto.getWinningNumbers());
     }
 
     private UserMoney createUserMoney() {

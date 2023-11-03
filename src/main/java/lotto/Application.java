@@ -104,7 +104,8 @@ public class Application {
         return money;
     }
 
-    private static List<Lotto> setUser(int n) {
+    private static List<Lotto> setUser(int money) {
+        int n = money/1000;
         System.out.println(String.format("%d개를 구매했습니다.", n));
         List<Lotto> user = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -128,8 +129,7 @@ public class Application {
         for (int i = 0; i < user.size(); i++) {
             int idx = judge(winNumber, user.get(i), bonus);
             res[idx]++;
-        }
-        printres(res);
+        }        
         return res;
     }
 
@@ -144,10 +144,12 @@ public class Application {
 
     public static void main(String[] args) {
         int m = setMoney();
-        List<Lotto> user = setUser(m / 1000);
+        List<Lotto> user = setUser(m);
         Lotto winNumber = new Lotto(setNumbers());
         int bonus = setBonus(winNumber);
+        int[] res = resultList(user, winNumber, bonus);
 
-        calulateReturnRate(resultList(user, winNumber, bonus), m);
+        printres(res);
+        calulateReturnRate(res, m);
     }
 }

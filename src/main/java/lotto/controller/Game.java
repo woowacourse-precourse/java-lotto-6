@@ -2,7 +2,9 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Convertor;
 import lotto.domain.Lotto;
+import lotto.domain.Number;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +15,8 @@ public class Game {
         int purchaseQuantity = InputView.askPurchaseAmount() / THOUSAND_UNIT;
         List<Lotto> lottos = issueLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
-
+        Lotto winnerNumbers = createWinnerNumbers();
+        int bonusNumber = createBonusNumber();
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {
@@ -23,5 +26,14 @@ public class Game {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private Lotto createWinnerNumbers() {
+        Convertor convertor = new Convertor();
+        return new Lotto(convertor.convertToNumbers(InputView.askWinnerNumbers()));
+    }
+
+    private int createBonusNumber() {
+        return new Number(InputView.askBonusNumber()).getNumber();
     }
 }

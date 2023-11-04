@@ -8,6 +8,8 @@ import static lotto.LottoRule.MAXIMUM;
 import static lotto.LottoRule.MINIMUM;
 import static lotto.LottoRule.SIZE;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -45,9 +47,15 @@ public class Lotto {
     }
 
     private void validateSort(List<Integer> numbers) {
-        if (!numbers.stream().allMatch(number -> number <= numbers.get(numbers.indexOf(number) + 1))) {
+        if (isNotSorted(numbers)) {
             throw new IllegalArgumentException(NOT_SORT.getMessage());
         }
+    }
+
+    private boolean isNotSorted(List<Integer> numbers) {
+        List<Integer> sortedNumber = new ArrayList<>(numbers);
+        Collections.sort(sortedNumber);
+        return !numbers.equals(sortedNumber);
     }
 
     public List<Integer> getNumbers() {

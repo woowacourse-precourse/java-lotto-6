@@ -24,7 +24,7 @@ public class LottoIssueController {
 
     private int getValidCount() {
         int validMoney = 0;
-        while (validMoney != 0) {
+        while (validMoney == 0) {
             try {
                 int inputMoney = input.inputMoney();
                 validMoney = validateMoney(inputMoney);
@@ -35,7 +35,7 @@ public class LottoIssueController {
         return validMoney / UNIT_PRICE;
     }
 
-    private int validateMoney(int validMoney) {
+    private int validateMoney(final int validMoney) {
         if (validMoney < 0)
             throw new IllegalArgumentException();
 
@@ -45,7 +45,7 @@ public class LottoIssueController {
         return validMoney;
     }
 
-    private boolean isNotRemainedMoney(int validMoney) {
+    private boolean isNotRemainedMoney(final int validMoney) {
         return validMoney % UNIT_PRICE != 0;
     }
 }

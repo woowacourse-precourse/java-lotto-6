@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -45,6 +45,10 @@ public class Lotto {
     private boolean hasOutOfRangeNumber(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
 /*

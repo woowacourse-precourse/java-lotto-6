@@ -9,12 +9,16 @@ public class WinningLotto {
     public static final Integer LOTTO_UPPER_LIMIT = 45;
     public static final String NUMBERS_EXCEPTION_MSG = "[ERROR] 당첨 번호가 정수가 아닙니다.";
     public static final String BONUS_EXCEPTION_MSG = "[ERROR] 보너스 번호가 이상합니노 ㅋㅋ.";
-    private Lotto winningLotto;
-    private Integer bonusNumber;
+    public Lotto winningLotto;
+    public Integer bonusNumber;
 
     public WinningLotto(String numbers, String bonus) {
         winningLotto = new Lotto(sliceNumbers(numbers));
         bonusNumber = getValidBonusNumber(bonus);
+    }
+
+    public boolean isEqualToBonusNumber(int number) {
+        return bonusNumber == number;
     }
 
     private List<Integer> sliceNumbers(String numbers) {

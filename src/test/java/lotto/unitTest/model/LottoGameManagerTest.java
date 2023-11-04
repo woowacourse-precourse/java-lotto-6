@@ -1,7 +1,9 @@
 package lotto.unitTest.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.common.config.LottoGameRule;
 import lotto.model.Lotto;
 import lotto.model.LottoGameManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +44,16 @@ class LottoGameManagerTest {
         void 천원으로_나누어_떨어지지_않으면_예외를_발생시킨다(String inputLottoCost) {
             assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @ValueSource(strings = {"1000", "1000000"})
+        @ParameterizedTest
+        void 정상적인_값이면_발행할_로또_개수를_반환한다(String inputLottoCost) {
+            int lottoAmount = Integer.parseInt(inputLottoCost) / LottoGameRule.LOTTO_COST_UNIT.constant();
+
+            int calculatedLottoAmount = lottoGameManager.calculateLottoAmount(inputLottoCost);
+
+            assertThat(calculatedLottoAmount).isEqualTo(lottoAmount);
         }
     }
 

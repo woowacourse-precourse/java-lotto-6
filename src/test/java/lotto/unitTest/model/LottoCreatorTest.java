@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoMakerTest {
+class LottoCreatorTest {
 
     @Test
     void LottoMaker는_입력없이_랜덤로또를_생성한다() {

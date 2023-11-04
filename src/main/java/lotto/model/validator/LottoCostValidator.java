@@ -5,8 +5,8 @@ import lotto.common.exception.ErrorMessage;
 
 public class LottoCostValidator extends InputValidator {
     public static void validateLottoCostUnit(int lottoCost) {
-        if (!(overMinLottoCost(lottoCost) && isLottoCostUnit(lottoCost))) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_THOUNSAND_UNIT_INPUT.message());
+        if (!(overMinLottoCost(lottoCost) && isZeroRemainder(lottoCost))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COST_UNIT.message());
         }
     }
 
@@ -14,7 +14,7 @@ public class LottoCostValidator extends InputValidator {
         return lottoCost >= LottoGameRule.LOTTO_COST_UNIT.constant();
     }
 
-    private static boolean isLottoCostUnit(int lottoCost) {
-        return (lottoCost / LottoGameRule.LOTTO_COST_UNIT.constant()) == 0;
+    private static boolean isZeroRemainder(int lottoCost) {
+        return (lottoCost % LottoGameRule.LOTTO_COST_UNIT.constant()) == 0;
     }
 }

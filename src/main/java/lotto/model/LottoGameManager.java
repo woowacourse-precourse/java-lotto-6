@@ -49,11 +49,8 @@ public class LottoGameManager {
         return new LottoRanking(lotto, userInputBonusNumber);
     }
 
-    public List<Lotto> createLottoBucket(int lottoAmount) {
-        return null;
+    public LottoBucket createLottoBucket(int lottoAmount) {
+        return new LottoBucket(lottoAmount);
     }
 
-    public void saveLottoBucket() {
-
-    }
 }

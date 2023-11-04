@@ -13,11 +13,14 @@ import java.util.List;
 public class LottoController {
     private final Parser parser = new Parser();
     private final Validate validate = new Validate();
+    private final LottoService lottoService = new LottoService();
     private final int LOTTO_PRICE = 1000;
     public void run(){
-
+        start(makeLottos(), makeLottoSystem());
     }
-
+    private void start(Lottos lottos, LottoSystem lottoSystem){
+        lottoService.revealLottery(lottos, lottoSystem);
+    }
     private Lottos makeLottos(){
         return new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));
     }

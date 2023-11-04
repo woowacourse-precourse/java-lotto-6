@@ -51,3 +51,16 @@ IDE에서 실행
       1. 1~45 사이의 숫자
       2. 1개
       3. 중복 값 없음
+
+---
+## 프로젝트 구조
+
+```bash
+├── domain
+│   ├── Lotto.java
+│   └──  LottoVendingMachine.java
+│
+├── constants
+    └──  LottoConstants
+``` 
+

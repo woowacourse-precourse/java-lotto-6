@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.contants.LottoConstants;
+import lotto.constants.LottoConstants;
 
 import java.util.HashSet;
 import java.util.List;
@@ -46,4 +46,7 @@ public class Lotto {
                         || number > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue());
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

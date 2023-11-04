@@ -76,4 +76,12 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    static void range1to45Check(String raw) {
+        for (String number : raw.split(",")) {
+            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

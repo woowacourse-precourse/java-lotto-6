@@ -6,17 +6,14 @@ import view.constant.ConstantMessage;
 
 public class LottoView {
     // InputView
-    public static String printAskInputMoney(){
+    public static void printAskInputMoney(){
         printlnConstantMessage(ConstantMessage.ASK_MONEY);
-        return Console.readLine();
     }
-    public static String printAskInputWinningNumber(){
+    public static void printAskInputWinningNumber(){
         printlnConstantMessage(ConstantMessage.ASK_WINNING_NUMBER);
-        return Console.readLine();
     }
-    public static String printAskInputBonusNumber(){
+    public static void printAskInputBonusNumber(){
         printlnConstantMessage(ConstantMessage.ASK_BONUS_NUMBER);
-        return Console.readLine();
     }
 
     // OutputView

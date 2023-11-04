@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     private void print() {
-        System.out.println(cache);
+        System.out.print(cache);
     }
 
 }

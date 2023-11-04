@@ -19,11 +19,28 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("중복된 숫자는");
     }
 
+    @ParameterizedTest(name = "입력 값 : {0}")
+    @MethodSource("generateOutOfRangeWinningNumber")
+    @DisplayName("범위를 벗어나는 당첨 번호가 입력되면 예외가 발생한다.")
+    void 범위_밖_당첨번호_예외_테스트(List<Integer> winningNumber) {
+        //when, then
+        Assertions.assertThatThrownBy(() -> new WinningNumber(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("1 ~ 45");
+    }
+
     static Stream<Arguments> generateWinningNumber() {
         return Stream.of(
                 Arguments.of(List.of(1, 1, 2, 3, 4, 5)),
                 Arguments.of(List.of(1, 2, 2, 3, 4, 5)),
                 Arguments.of(List.of(1, 3, 3, 3, 4, 5))
+        );
+    }
+
+    static Stream<Arguments> generateOutOfRangeWinningNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 46, 47, 49, 51)),
+                Arguments.of(List.of(1, 2, 122, 133, 124, 55)),
+                Arguments.of(List.of(1, 3, 53, 73, 84, 95))
         );
     }
 }

@@ -14,5 +14,24 @@ public class LottoGame {
     return matchedNumbers;
   }
 
+  public int matchingBonusNumber(List<Integer> ticket, int bonusNumber, int matchedNumbers) {
+    if (matchedNumbers == 6) {
+      return -1;
+    }
+
+    if (ticket.contains(bonusNumber)) {
+      return matchedNumbers + 1;
+    }
+
+    return matchedNumbers;
+  }
+
+  public void checkWinningStatus(List<List<Integer>> lottos, List<Integer> numbers) {
+    List<Integer> rank = Lotto.createRank();
+    for (List<Integer> lotto : lottos) {
+      int matchedNumbers = countMatchingNumbers(lotto, numbers);
+
+    }
+  }
 
 }

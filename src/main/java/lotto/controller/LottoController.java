@@ -20,9 +20,9 @@ public class LottoController {
         Member member = generateLottoMember(money);
         OutputView.purchaseResult(member);
 
-        List<Integer> winningNumbers = InputView.getWinningNumberInput();
+        Lotto winnerLotto = new Lotto(InputView.getWinningNumberInput());
         int bonusNumber = InputView.getBonusNumberInput();
-        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        WinningNumber winningNumber = new WinningNumber(winnerLotto, bonusNumber);
 
         // TODO: 멤버의 구매 로또 리스트를 넘겨받아 추첨하는 로직 추가
 

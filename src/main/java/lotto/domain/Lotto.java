@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.InvalidBallException;
+import lotto.exception.InvalidLottoNumbersException;
 import lotto.utils.LottoWinningStrategy;
 
 import java.util.*;
@@ -18,11 +20,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Set<Integer> uniqueBalls = new HashSet<>(numbers);
         if (uniqueBalls.size() != DEFAULT_LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoNumbersException();
         }
         for (Integer ball : uniqueBalls) {
             if (ball < MIN_RANGE || ball > MAX_RANGE) {
-                throw new IllegalArgumentException();
+                throw new InvalidBallException();
             }
         }
     }

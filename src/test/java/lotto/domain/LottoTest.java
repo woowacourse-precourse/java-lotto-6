@@ -28,7 +28,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    static Stream<Arguments> parameters() {
+    static Stream<Arguments> countParameters() {
         return Stream.of(
                 Arguments.of("5개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(2, 3, 4, 5, 6, 7)), 5),
                 Arguments.of("6개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(3, 4, 5, 6, 7, 8)), 4),
@@ -38,14 +38,29 @@ class LottoTest {
         );
     }
 
+    static Stream<Arguments> bonusParameters() {
+        return Stream.of(
+                Arguments.of("보너스 번호를 포함할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6, true),
+                Arguments.of("보너스 번호를 포함하지 않을 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7, false)
+        );
+    }
+
     @DisplayName("정답 번호와 구입한 로또 번호의 동일한 숫자 개수를 반환한다.")
     @ParameterizedTest(name = "{0}")
-    @MethodSource("parameters")
+    @MethodSource("countParameters")
     void countCorrectLottoNumbers(String testName, Lotto answerLotto, Lotto userLotto, int expectedCount) {
         // when
         int correctCount = userLotto.countCorrectLottoNumbers(answerLotto);
 
         // then
         assertThat(correctCount).isEqualTo(expectedCount);
+    }
+
+
+    @DisplayName("구입한 로또가 보너스 번호를 가지고 있는지 확인한다.")
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("bonusParameters")
+    void containsBonusNumber(String testName, Lotto lotto, int bonusNumber, boolean result) {
+        assertThat(lotto.containsBonusNumber(bonusNumber)).isEqualTo(result);
     }
 }

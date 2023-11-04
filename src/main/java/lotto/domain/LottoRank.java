@@ -9,12 +9,12 @@ import java.text.DecimalFormat;
 import lotto.constant.ResultMessage;
 
 public enum LottoRank {
-    NO_PRIZE(0, false, 0, NULL),
     FIFTH(3, false, 5_000L, STAT),
     FOURTH(4, false, 50_000L, STAT),
     THIRD(5, false, 1_500_000L, STAT),
     SECOND(5, true, 30_000_000L, BONUS),
-    FIRST(6, false, 2_000_000_000L, STAT);
+    FIRST(6, false, 2_000_000_000L, STAT),
+    NO_PRIZE(0, false, 0, NULL);
 
     private final int count;
     private final boolean bonus;
@@ -38,6 +38,10 @@ public enum LottoRank {
 
     public String getMessage() {
         return this.message;
+    }
+
+    public long getPrize() {
+        return this.prize;
     }
 
     private String makeRankNoticeBase(ResultMessage message) {

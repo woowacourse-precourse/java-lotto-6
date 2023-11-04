@@ -19,6 +19,10 @@ public class LottoResult {
         return rank;
     }
 
+    public long getLottoPrize() {
+        return rank.getPrize();
+    }
+
     private LottoRank getLottoRank(Integer matchCount, boolean bonusNumberMatch) {
         return LottoRank.findLottoRank(matchCount, bonusNumberMatch);
     }

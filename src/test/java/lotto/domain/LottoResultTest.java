@@ -13,4 +13,11 @@ public class LottoResultTest {
         assertThat(LottoResult.create(5, true).getRank())
                 .isEqualTo(SECOND);
     }
+
+    @DisplayName("[Success] 당첨 금액을 올바르게 리턴한다.")
+    @Test
+    void returnExactPrize() {
+        assertThat(LottoResult.create(5, true).getLottoPrize())
+                .isEqualTo(SECOND.getPrize());
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.view.constant.Message.NOTICE_TOTAL_PROFIT;
 import static lotto.view.constant.Message.NOTICE_PURCHASE_QUANTITY;
 
 import java.util.Objects;
@@ -26,7 +27,9 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
 
-        printLottoResult(lottoTickets, winningNumber);
+        LottoResults results = winningNumber.compareWithLottos(lottoTickets);
+        printLottoResult(results);
+        printTotalProfit(results);
     }
 
     private LottoTickets getLottoTickets() {
@@ -55,8 +58,11 @@ public class LottoController {
         outputView.printIterableMessage(lottoTickets.getLottoNumbers());
     }
 
-    private void printLottoResult(LottoTickets lottoTickets, WinningNumber winningNumber) {
-        LottoResults results = winningNumber.compareWithLottos(lottoTickets);
+    private void printLottoResult(LottoResults results) {
         outputView.printResult(results.toString());
+    }
+
+    private void printTotalProfit(LottoResults results) {
+        outputView.printDynamicMessage(NOTICE_TOTAL_PROFIT, results.getTotalProfit());
     }
 }

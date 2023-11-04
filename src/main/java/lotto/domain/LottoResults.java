@@ -24,6 +24,12 @@ public class LottoResults {
         return String.join("\n", result);
     }
 
+    // TODO: 하드 코딩 값 상수화하기
+    public double getTotalProfit() {
+        int investment = lottoResults.size() * 1_000;
+        return (double) getSumOfPrize() / investment * 100;
+    }
+
     private String joinResults(LottoRank rank) {
         EnumMap<LottoRank, Integer> rankCount = getRankCount();
         String suffix = String.format(STAT_SUFFIX.getMessage(),rankCount.getOrDefault(rank, 0));
@@ -42,5 +48,12 @@ public class LottoResults {
                 .map(LottoResult::getRank)
                 .forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1));
         return rankCount;
+    }
+
+    private long getSumOfPrize() {
+        return lottoResults.stream()
+                .map(LottoResult::getLottoPrize)
+                .mapToLong(Long::longValue)
+                .sum();
     }
 }

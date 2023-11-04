@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.ErrorMessage.*;
+import static lotto.LottoInputMessages.*;
 
 public class UserInputHandler {
 
@@ -20,7 +21,7 @@ public class UserInputHandler {
         String lottoPurchase = null;
         while (restart) {
             try {
-                System.out.println(LottoMessages.INPUT_USER_LOTTO_PURCHASE.getMessage());
+                System.out.println(INPUT_USER_LOTTO_PURCHASE.getMessage());
                 lottoPurchase = Console.readLine();
                 validUserLottoPurchase(lottoPurchase);
                 restart = false;
@@ -51,7 +52,7 @@ public class UserInputHandler {
 
         while (restart) {
             try {
-                System.out.println(LottoMessages.INPUT_USER_WINNING_NUMBERS.getMessage());
+                System.out.println(INPUT_USER_WINNING_NUMBERS.getMessage());
                 winningNumbers = Console.readLine();
                 validateUserWinningNumbers(winningNumbers);
                 restart = false;
@@ -127,7 +128,7 @@ public class UserInputHandler {
         boolean restart = true;
         String bonusNumber = null;
         while (restart) {
-            System.out.println(LottoMessages.INPUT_USER_BONUS_NUMBER_MESSAGE.getMessage());
+            System.out.println(INPUT_USER_BONUS_NUMBER_MESSAGE.getMessage());
             bonusNumber = Console.readLine();
             try {
                 validateNumbers(bonusNumber);

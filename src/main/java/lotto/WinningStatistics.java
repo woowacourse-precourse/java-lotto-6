@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.LottoInputMessages.COMPLETE_MESSAGE_LOTTO_COST;
 import static lotto.UserInputHandler.DIVISION_ROLE;
 
 public class WinningStatistics {
@@ -17,7 +18,7 @@ public class WinningStatistics {
     // 로또 구입할 금액 입력
     public void purchaseLottoTickets(long totalAmount) {
         long ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
-        System.out.printf(LottoMessages.COMPLETE_MESSAGE_LOTTO_COST.getMessage(), ticket);
+        System.out.printf(COMPLETE_MESSAGE_LOTTO_COST.getMessage(), ticket);
 
         for (int i = 0; i < ticket; i++) {
             purchaseLottoPrint();

@@ -1,11 +1,6 @@
 package lotto;
 
-public enum LottoMessages {
-    INPUT_USER_LOTTO_PURCHASE("구입금액을 입력해 주세요."),
-    INPUT_USER_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    INPUT_USER_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
-    COMPLETE_MESSAGE_LOTTO_COST("%d개를 구매했습니다.\n"),
-
+public enum LottoResultMessages {
     RESULT_MESSAGE_HEADER("당첨 통계"),
     RESULT_MESSAGE_SEPARATOR("---"),
     RESULT_MESSAGE_3_MATCH("3개 일치 (5,000원) - %d개\n"),
@@ -17,7 +12,7 @@ public enum LottoMessages {
 
     private final String message;
 
-    LottoMessages(String message) {
+    LottoResultMessages(String message) {
         this.message = message;
     }
 

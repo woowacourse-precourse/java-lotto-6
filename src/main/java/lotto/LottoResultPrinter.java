@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
-import static lotto.LottoMessages.*;
+import static lotto.LottoResultMessages.*;
 
 public class LottoResultPrinter {
     public void printResult(List<Integer> matchingNumber, long userCost) {

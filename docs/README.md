@@ -129,6 +129,9 @@
     - [x] 사용자가 입력한 금액으로 몇 장의 로또를 발급할 수 있는지 반환한다.
     - [x] 수익률을 계산한다.
 
+- [x] NumberGenerator
+  - [x] ComputerNumberGenerator 컴퓨터가 1, 45 범위의 숫자 6개를 생성한다.
+
 
 ### service
 

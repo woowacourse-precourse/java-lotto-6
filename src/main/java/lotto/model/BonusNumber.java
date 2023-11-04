@@ -1,12 +1,14 @@
 package lotto.model;
 
+import java.util.List;
 import lotto.constant.ValidateMessage;
 
 public class BonusNumber {
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
+    public BonusNumber(WinnerNumber winnerNumber, int bonusNumber) {
         isBetween1And45(bonusNumber);
+        isDuplicate(winnerNumber.getWinnerNumbers(), bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -16,13 +18,14 @@ public class BonusNumber {
         }
     }
 
-//    private void isDuplicate(List<Integer> winnerNumbers) {
-//
-//        if (count != winnerNumbers.size()) {
-//            ValidateMessage.BONUS_NUMBER_IS_DUPLICATE.throwException();
-//        }
-//    }
-    
+    private void isDuplicate(List<Integer> winnerNumbers, int bonusNumber) {
+        for (Integer winnerNumber : winnerNumbers) {
+            if (winnerNumber == bonusNumber) {
+                ValidateMessage.BONUS_NUMBER_IS_DUPLICATE.throwException();
+            }
+        }
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

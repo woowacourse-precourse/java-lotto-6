@@ -22,7 +22,7 @@ public class InputNumberService {
 
         // 보너스 번호 입력
         outputView.printBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+        BonusNumber bonusNumber = new BonusNumber(winnerNumber, inputView.inputBonusNumber());
 
         return new WinnerAndBonusNumber(winnerNumber, bonusNumber);
     }

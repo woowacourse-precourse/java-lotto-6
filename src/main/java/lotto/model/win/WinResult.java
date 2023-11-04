@@ -1,11 +1,11 @@
 package lotto.model.win;
 
 public enum WinResult {
-    FIRST(6, 0, 1, 2000000000),
-    SECOND(5, 1, 2, 30000000),
-    THIRD(5, 0, 3, 1500000),
-    FORTH(4, 0, 4, 50000),
     FIFTH(3, 0, 5, 5000),
+    FORTH(4, 0, 4, 50000),
+    THIRD(5, 0, 3, 1500000),
+    SECOND(5, 1, 2, 30000000),
+    FIRST(6, 0, 1, 2000000000),
     FAIL(-1,-1,6,0);
 
     public int matchedCount;

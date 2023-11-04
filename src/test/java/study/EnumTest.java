@@ -2,6 +2,7 @@ package study;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
@@ -48,4 +49,6 @@ public class EnumTest {
             System.out.println("s = " + s);
         }
     }
+
+
 }

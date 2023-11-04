@@ -10,12 +10,10 @@ import lotto.model.Lotto;
 
 public class TargetNumberHandler {
     private static final String INPUT_DELIMITER = ",";
-    private static final int TARGET_NUMBER_SIZE = 6;
-    private static final int BONUS_NUMBER_SIZE = 1;
 
     public static List<Integer> validateTargetNumber(String input){
         try {
-            String[] split = input.split(INPUT_DELIMITER, TARGET_NUMBER_SIZE);
+            String[] split = input.split(INPUT_DELIMITER, AppConfig.LOTTO_SIZE);
 
             List<Integer> target = Arrays.stream(split)
                     .map(String::trim)
@@ -31,14 +29,6 @@ public class TargetNumberHandler {
             String newInput = Console.readLine();
             return validateTargetNumber(newInput);
         }
-    }
-    private static IntStream convertIntStream(String[] split) {
-        return  Arrays.stream(split)
-                .map(String::trim)
-                .mapToInt(Integer::parseInt)
-                .filter(num -> AppConfig.LOTTO_NUMBER_MIN_RANGE <= num)
-                .filter(num -> num <= AppConfig.LOTTO_NUMBER_MAX_RANGE)
-                .distinct();
     }
 
     public static int validateBonusNumber(String input, List<Integer> target){

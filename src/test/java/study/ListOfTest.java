@@ -26,4 +26,21 @@ public class ListOfTest {
         Integer num = list.get(0) + 3;
         assertThat(num).isNotEqualTo(list.get(0));
     }
+    @Test
+    void List출력테스트(){
+        System.out.println(List.of(1,2,3));
+        System.out.println(IntStream.range(1,4));
+        System.out.println(IntStream.range(1,4).boxed().toList());
+    }
+
+
+    @Test
+    public void List출력테스트2() {
+        List<Integer> list1 = List.of(1, 2, 3, 4, 5);
+        List<Integer> list2 = List.of(3, 4, 5, 6, 7);
+        List<List<Integer>> lists = List.of(list1, list2);
+
+        System.out.println(lists);
+        lists.forEach(System.out::println);
+    }
 }

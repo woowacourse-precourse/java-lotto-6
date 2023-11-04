@@ -7,7 +7,7 @@ public class Calculator {
 
     public double calculateRateOfReturn(Map<WinResult, Integer> result, int pay){
         long sum = getSum(result);
-        return ((double) sum/pay - 1) * 100;
+        return ((double) sum/pay) * 100;
     }
 
     private long getSum(Map<WinResult, Integer> result){

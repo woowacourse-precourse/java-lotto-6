@@ -1,11 +1,12 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.config.AppConfig;
 
 public class LottoBuyer {
 
-    List<Lotto> lottoTickets;
+    private List<Lotto> lottoTickets;
 
     public LottoBuyer(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
@@ -21,5 +22,10 @@ public class LottoBuyer {
 
     public int payment() {
         return size() * AppConfig.LOTTO_PRICE;
+    }
+
+    public Stream<Stream<Integer>> streamOfStream() {
+        return lottoTickets.stream()
+                .map(Lotto::stream);
     }
 }

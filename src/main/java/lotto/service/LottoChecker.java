@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -21,7 +22,10 @@ public class LottoChecker {
     }
 
     public Map<WinResult, Integer> checkAllLotto() {
-        Map<WinResult, Integer> map = new HashMap<WinResult, Integer>();
+        Map<WinResult, Integer> map = new LinkedHashMap<>();
+        Arrays.stream(WinResult.values())
+                .filter(winResult -> !winResult.equals(WinResult.FAIL))
+                .forEach(winResult -> map.put(winResult,0));
 
         for (int i = 0; i < lottoBuyer.size(); i++) {
             Lotto lotto = lottoBuyer.getLotto(i);
@@ -30,6 +34,9 @@ public class LottoChecker {
             int bonusCount = matchWithBonus(lotto, matchedCount);
 
             WinResult result = getResult(matchedCount, bonusCount);
+            if(result.equals(WinResult.FAIL)) {
+                continue;
+            }
             Integer savedNumber = map.getOrDefault(result, 0);
             map.put(result, ++savedNumber);
         }
@@ -44,14 +51,14 @@ public class LottoChecker {
     }
 
     private int matchWithTarget(Lotto lotto) {
-        return (int) lotto.streamNumbers()
+        return (int) lotto.stream()
                 .filter(num -> target.contains(num))
                 .count();
     }
 
     private int matchWithBonus(Lotto lotto, int matchedCount) {
         if(matchedCount == WinResult.THIRD.matchedCount) {
-            return (int) lotto.streamNumbers()
+            return (int) lotto.stream()
                     .filter(num -> bonus == num)
                     .count();
         }

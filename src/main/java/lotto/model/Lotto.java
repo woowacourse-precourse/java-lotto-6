@@ -6,7 +6,6 @@ import lotto.config.AppConfig;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validate(distinct(numbers));
@@ -15,13 +14,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != AppConfig.LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     // TODO: 추가 기능 구현
-    public Stream<Integer> streamNumbers() {
+    public Stream<Integer> stream() {
         return numbers.stream();
     }
 

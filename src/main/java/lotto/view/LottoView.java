@@ -1,9 +1,41 @@
 package lotto.view;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.model.LottoBuyer;
+import lotto.model.win.WinResult;
+
 public class LottoView {
 
+    public void printLotto(LottoBuyer buyer) {
+        int amount = buyer.size();
+        String printMessage = String.format("%d개를 구매했습니다.", amount);
+        System.out.println(printMessage);
 
+        buyer.streamOfStream().map(stream -> stream.sorted().toList())
+                .forEach(System.out::println);
+    }
+
+    public void printResult(Map<WinResult, Integer> checkResult, double rateOfReturn) {
+        printLottoResult(checkResult);
+        System.out.println(printRate(rateOfReturn));
+    }
+
+    private void printLottoResult(Map<WinResult, Integer> checkResult) {
+        checkResult.forEach((winResult, integer) -> {
+            StringBuilder builder = new StringBuilder();
+            builder.append(winResult.matchedCount).append("개 일치 ");
+            if (winResult.equals(WinResult.SECOND)) {
+                builder.deleteCharAt(builder.length()-1);
+                builder.append(", 보너스 볼 일치 ");
+            }
+            String reward = String.format("%,d원", winResult.reward);
+            builder.append("(").append(reward).append(")");
+            builder.append(" - ").append(integer).append("개");
+            System.out.println(builder.toString());
+        });
+    }
     public String printRate(double rate){
-        return String.format("%,.1f%%",rate);
+        return String.format("총 수익률은 %,.1f%%입니다.",rate);
     }
 }

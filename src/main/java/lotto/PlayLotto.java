@@ -7,7 +7,7 @@ import lotto.WinningStatics.NumberOfMatches;
 public class PlayLotto {
     private static List<Lotto> Lottos = new ArrayList<>();
     private static List<Integer> winninglotto = new ArrayList<>();
-    private static int[] MachCount = new int[5];
+    private static int[] MatchCount = new int[5];
     public void start(){
         int Chance = LottoIssue();
         Lottos = makeLottoNum(Chance);
@@ -43,9 +43,6 @@ public class PlayLotto {
         PrintOutput printOutput = new PrintOutput();
         printOutput.printResult();
         WinningStatics winningStatics = new WinningStatics();
-        MachCount = winningStatics.HowMatch(Lottos,winninglotto,BonusNum);
-        for(int i = 0;i<5;i++){
-            System.out.println(MachCount[i]);
-        }
+        MatchCount = winningStatics.HowMatch(Lottos,winninglotto,BonusNum);
     }
 }

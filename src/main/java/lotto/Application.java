@@ -71,18 +71,23 @@ public class Application {
         return res;
     }
 
-    public static List<List<Integer>> setUser(int ticketNum){
-        List<List<Integer>> res = new ArrayList<>();
+    public static List<Lotto> setUser(int ticketNum){
+        List<Lotto> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
-            res.add(setRandomNumbers());
+            res.add(new Lotto(setRandomNumbers()));
         }
         return res;
     }
 
+    public static void showUser(List<List<Integer>> user) {
+        for (List<Integer> list : user) {
+            System.out.println(list);
+        }
+    }
 
     public static void main(String[] args) {
         int money = -1;
-        List<List<Integer>> user;
+        List<Lotto> user;
         while(money == -1) money = setMoney(Console.readLine());
         user = setUser(money/1000);
     }

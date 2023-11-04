@@ -14,9 +14,7 @@ public class LottoController {
         OutputView.displayPurchaseGuide();
 
         final Amount amount = inputLottoAmount();
-        OutputView.displayLottoCount(amount.getAmount() / 1000);
-
-        final List<Lotto> lottoList = buyLotto(amount.getAmount() / 1000);
+        final List<Lotto> lottoList = buyLotto(LottoGameManager.calculateLottoCount(amount));
         OutputView.displayLottoNumbers(lottoList);
 
         OutputView.displayWinningNumberGuide();
@@ -25,13 +23,12 @@ public class LottoController {
         OutputView.displayBonusNumberGuide();
         final BonusNumber bonusNumber = inputBonusNumber();
 
-        final List<LottoMatch> lottoResultCount = compareWinningNumbers(lottoList, winningLotto, bonusNumber);
-        final int winningAmount = calculateWinnings(lottoResultCount);
+        final List<LottoMatch> matchedResults = calculateMatches(lottoList, winningLotto, bonusNumber);
 
         OutputView.displayWinningStatisticsGuide();
-        OutputView.displayWinningStatistics(lottoResultCount);
+        OutputView.displayWinningStatistics(matchedResults);
 
-        double yield = calculateYield(winningAmount, Double.valueOf(amount.getAmount()));
+        double yield = calculateYield(calculateWinnings(matchedResults), Double.valueOf(amount.getAmount()));
         OutputView.displayYield(yield);
     }
 
@@ -51,6 +48,7 @@ public class LottoController {
     }
 
     private List<Lotto> buyLotto(int lottoCount) {
+        OutputView.displayLottoCount(lottoCount);
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .collect(Collectors.toList());
@@ -82,7 +80,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private List<LottoMatch> compareWinningNumbers(List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
+    private List<LottoMatch> calculateMatches(List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
         return lottoList.stream()
                 .map(Lotto::getNumbers)
                 .map(lottoNumbers -> {

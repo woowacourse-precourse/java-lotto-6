@@ -1,32 +1,26 @@
 package lotto.domain;
 
+import lotto.constants.GameNumberConstants;
+import lotto.validator.LottoNumberValidator;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static lotto.constants.GameNumberConstants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbersSize(numbers);
-        validateDuplication(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    private void validate(List<Integer> numbers) {
+        LottoNumberValidator.validateNumbers(numbers);
     }
 
-    private void validateDuplication(List<Integer> numbers) {
-        List<Integer> deduplicatedNumbers = numbers.stream()
-                                                .distinct()
-                                                .collect(Collectors.toList());
-        if (deduplicatedNumbers.size() == numbers.size()) {
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
+
 
     public List<Integer> getNumbers() {
         return numbers;

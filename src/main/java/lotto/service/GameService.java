@@ -95,4 +95,38 @@ public class GameService {
         return lotto_num.size();
     }
 
+
+    /**
+     * 수익률 계산 기능
+     */
+    public int getLottoPrizePrice(WinLottoResult winLottoResult) {
+        int lottoPrizePrice = 0;
+        for (WinLottoResult cur : winLottoResult.values()) {
+            if (cur.getName().equals("three")) {
+                lottoPrizePrice += (5000) * cur.getCount();
+            }
+            if (cur.getName().equals("four")) {
+                lottoPrizePrice += (50000) * cur.getCount();
+            }
+            if (cur.getName().equals("five")) {
+                lottoPrizePrice += (1500000) * cur.getCount();
+            }
+            if (cur.getName().equals("five_bonus")) {
+                lottoPrizePrice += (30000000) * cur.getCount();
+            }
+            if (cur.getName().equals("six")) {
+                lottoPrizePrice += (2000000000) * cur.getCount();
+            }
+        }
+        return lottoPrizePrice;
+    }
+
+    public double getPercentPrize(int inPrice, int outPrice) {
+        double inVal = inPrice + 0.0;
+        double outVal = outPrice + 0.0;
+
+        double result = outVal / inVal * 100;
+        result = Math.round(result * 100) / 100.0; //소수점 둘째 자리에서 반올림하고,
+        return result;
+    }
 }

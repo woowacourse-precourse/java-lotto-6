@@ -38,6 +38,7 @@ public class OutputView {
      * 결과 출력
      */
     public void printResultLottoPrize(WinLottoResult winLottoResult) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -59,4 +60,13 @@ public class OutputView {
             }
         }
     }
+
+    /**
+     * 백분위 수익률 출력
+     */
+    public void printPrizePercentResult(double out) {
+        System.out.print("총 수익률은 " + out + "%" + "입니다.");
+    }
+
+
 }

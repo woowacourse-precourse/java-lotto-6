@@ -6,17 +6,17 @@ import java.util.List;
 public enum LottoNumberRule {
     BASIC(1, 45, 6);
 
-    private final int maxLottoNumber;
     private final int minLottoNumber;
+    private final int maxLottoNumber;
     private final int lottoNumberSize;
 
     public final String ERROR_MESSAGE_EXCEED_SIZE;
     public final String ERROR_MESSAGE_OUT_OF_RANGE;
     public final String ERROR_MESSAGE_DUPLICATED;
 
-    LottoNumberRule(int maxLottoNumber, int minLottoNumber, int lottoNumberSize) {
-        this.maxLottoNumber = maxLottoNumber;
+    LottoNumberRule(int minLottoNumber, int maxLottoNumber, int lottoNumberSize) {
         this.minLottoNumber = minLottoNumber;
+        this.maxLottoNumber = maxLottoNumber;
         this.lottoNumberSize = lottoNumberSize;
 
         this.ERROR_MESSAGE_EXCEED_SIZE = "로또 번호는 6자리입니다.";

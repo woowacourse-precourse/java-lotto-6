@@ -12,12 +12,13 @@ public class LottoController {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
 
     public void runMachine(){
-        buyLotto();
+        Lottos userLottos = buyLotto();
     }
 
-    private void buyLotto(){
+    private Lottos buyLotto(){
         Budget budget = Budget.from(InputView.getBudgetInput());
         Lottos userMultipleLottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
         OutputView.printUserLottos(userMultipleLottos, budget);
+        return userMultipleLottos;
     }
 }

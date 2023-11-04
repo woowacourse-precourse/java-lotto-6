@@ -1,4 +1,4 @@
-package lotto.view.output;
+package lotto.view;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-public abstract class OutputTestSupport {
+public abstract class DisplayTestSupport {
     private PrintStream standardOut;
     private OutputStream captor;
 

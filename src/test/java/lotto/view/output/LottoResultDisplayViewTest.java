@@ -1,5 +1,6 @@
 package lotto.view.output;
 
+import lotto.view.DisplayTestSupport;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.Lottos;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LottoResultOutputViewTest extends OutputTestSupport{
+class LottoResultDisplayViewTest extends DisplayTestSupport {
 
     private LottoResultOutputView lottoResultOutputView = new LottoResultOutputView();
 

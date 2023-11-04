@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -16,9 +19,34 @@ class LottoNumberInputViewTest {
 
     private LottoNumberInputView lottoNumberInputView = new LottoNumberInputView();
 
+    private OutputStream captor;
+
     @AfterEach
     void tearDown(){
         Console.close();
+    }
+
+    private void init() {
+        captor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(captor));
+    }
+
+    private String output() {
+        return captor.toString();
+    }
+
+    @Test
+    @DisplayName("당첨 로또를 물어보는 메시지를 출력할 수 있다.")
+    public void displayRequestWinningLotto() {
+        // given
+        init();
+        String input = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        String result = "당첨 번호를 입력해 주세요.\n\n";
+        // when
+        lottoNumberInputView.requestWinningLotto();
+        // then
+        assertThat(result).isEqualTo(output());
     }
 
     @Test
@@ -57,6 +85,21 @@ class LottoNumberInputViewTest {
         assertThatThrownBy(()->lottoNumberInputView.requestWinningLotto())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호를 물어보는 메시지를 출력할 수 있다.")
+    public void displayRequestBonusLottoNumber() {
+        // given
+        init();
+        String input = "45";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        String result = "보너스 번호를 입력해 주세요.\n\n";
+        // when
+        lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+        // then
+        assertThat(result).isEqualTo(output());
     }
 
     @Test

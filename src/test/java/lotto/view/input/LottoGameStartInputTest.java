@@ -9,6 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -16,9 +19,34 @@ class LottoGameStartInputTest {
 
     private final LottoGameStartInput lottoGameStartInput = new LottoGameStartInput();
 
+    private OutputStream captor;
+
     @AfterEach
     void tearDown(){
         Console.close();
+    }
+
+    private void init() {
+        captor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(captor));
+    }
+
+    private String output() {
+        return captor.toString();
+    }
+
+    @Test
+    @DisplayName("사용자에게 금액을 물어보는 메시지가 출력된다.")
+    public void displayRequestLottoPurchaseAmount() {
+        // given
+        init();
+        String input = "8000";
+        String result = "구입할 Lotto 금액을 입력해 주세요.\n\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // when
+        lottoGameStartInput.requestLottoPurchaseAmount();
+        // then
+        assertThat(result).isEqualTo(output());
     }
 
     @Test
@@ -56,4 +84,5 @@ class LottoGameStartInputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
     }
+
 }

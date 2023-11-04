@@ -1,5 +1,6 @@
 package lotto.view.output;
 
+import lotto.view.DisplayTestSupport;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LottoBuyOutputViewTest extends OutputTestSupport{
+class LottoBuyDisplayViewTest extends DisplayTestSupport {
 
     private LottoBuyOutputView lottoBuyOutputView = new LottoBuyOutputView();
 

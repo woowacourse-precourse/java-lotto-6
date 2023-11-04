@@ -10,30 +10,30 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumberSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumberSize(List<Integer> numbers) {
         Validation.validateSixLottoNumbers(numbers);
         Validation.validateDuplicatedSixNumber(numbers);
+    }
+    public void validateBonusNumDuplicated(int bonusNum) {
+        Validation.validateDuplicatedBonusNum(bonusNum, numbers);
     }
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            result.add(getOneLotto());
+            result.add(getSingleLotto());
         }
         return result;
     }
-    private static List<Integer> getOneLotto() {
+    private static List<Integer> getSingleLotto() {
         List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
         Collections.sort(oneLotto);
         return oneLotto;
     }
-    public void validateDuplicatedBonusNum(int bonusNum) {
-        Validation.validateDuplicatedBonusNum(bonusNum, numbers);
-    }
-    public int getSameNumberCount(List<Integer> oneLotto) {
+    public int countSameNumber(List<Integer> oneLotto) {
         int matched = 0;
         for (Integer num : oneLotto) {
             if (numbers.contains(num)) {

@@ -5,7 +5,7 @@ import lotto.controller.LottoController;
 public class Application {
 
     public static void main(String[] args) {
-        LottoController lottery = new LottoController();
-        lottery.run();
+        LottoController lottoShop = new LottoController();
+        lottoShop.run();
     }
 }

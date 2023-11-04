@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.util.Validation;
-import lotto.view.InputView;
 
 public class BonusNum {
     private int bonusNum;
@@ -17,7 +16,7 @@ public class BonusNum {
     public int validate(String input, Lotto lotto) {
         int validNum = Validation.validateInteger(input);
         Validation.validateBonusNum(validNum);
-        lotto.validateDuplicatedBonusNum(validNum);
+        lotto.validateBonusNumDuplicated(validNum);
         return validNum;
     }
 }

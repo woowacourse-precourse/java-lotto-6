@@ -19,7 +19,7 @@ public class WinningNumber {
         return Integer.parseInt(input);
     }
     private void validateIsNumber(String input) {
-        if (input.matches("\\d")) return;
+        if (input.matches("\\d*")) return;
         throw new IllegalArgumentException("당첨 번호는 숫자를 입력해주세요.");
     }
 

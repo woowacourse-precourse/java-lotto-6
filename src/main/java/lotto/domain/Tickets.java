@@ -15,17 +15,20 @@ public class Tickets {
         }
     }
 
+    public int getTicketsCount() {
+        return lottos.size();
+    }
+
+    public String getTicketOfIndex(int index) {
+        Lotto lotto = lottos.get(index);
+        return lotto.toString();
+    }
+
 
     private List<Integer> generateRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
         return numbers;
-    }
-
-
-    // testcode
-    public int getTicketsCount() {
-        return lottos.size();
     }
 
 }

@@ -27,6 +27,10 @@ public class NumberValidator {
         }
     }
 
+    public static void validateBonusNumber(String bonusNumber) {
+
+    }
+
     private static boolean isNumeric(String number) {
         try {
             Integer.parseInt(number);

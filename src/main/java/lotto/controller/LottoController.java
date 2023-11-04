@@ -25,6 +25,6 @@ public class LottoController {
     }
 
     private WinningLotto drawLotto(){
-        // TODO: 당첨 로또 및 보너스 번호 생성
+
     }
 }

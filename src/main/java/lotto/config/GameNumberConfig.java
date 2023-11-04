@@ -4,8 +4,8 @@ public enum GameNumberConfig {
     LOTTO_RANGE_MIN(1),
     LOTTO_RANGE_MAX(45),
     LOTTO_PRICE(1000),
-    LOTTO_NUMBERS(6),
-    BONUS_NUMBERS(1);
+    LOTTO_NUMBER_COUNT(6),
+    BONUS_NUMBER_COUNT(1);
 
     private final int number;
 

@@ -44,13 +44,12 @@ public class LottoController {
     }
 
     public Lotto issueLotto() {
-        Lotto lotto = null;
         try {
-            lotto = new Lotto(SixNumberGenerator.getRandomSixNumbers());
+            Lotto lotto = new Lotto(SixNumberGenerator.getRandomSixNumbers());
 
             return lotto;
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
 
             return this.issueLotto();
         }

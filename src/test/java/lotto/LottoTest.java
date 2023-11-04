@@ -23,5 +23,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 숫자 범위는 1~45까지이다.")
+    @Test
+    void createLottoNumberOneToFortyFive() {
+
+    }
 }

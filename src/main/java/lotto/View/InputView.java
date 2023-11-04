@@ -51,16 +51,5 @@ public class InputView {
         return lottoNumbers;
     }
 
-    public static int inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String input = Console.readLine();
 
-        BonusNumberValidator.validateIsNumeric(input);
-        int bonusNumber = Integer.parseInt(input);
-
-        BonusNumberValidator.validateIsNumberInRange(bonusNumber);
-
-        return Integer.parseInt(input);
-
-    }
 }

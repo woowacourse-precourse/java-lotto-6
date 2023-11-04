@@ -1,10 +1,11 @@
 package lotto.Model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.Validator.LottoNumberValidator;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 /*- 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
         - `numbers`의 접근 제어자인 private을 변경할 수 없다.
@@ -27,5 +28,13 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+    public static List<Integer> generateLottoNumbers(int numberOfNumbersToGenerate) {
+        List<Integer> generatedNumbers = new ArrayList<>();
+        for (int i = 0; i < numberOfNumbersToGenerate; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            generatedNumbers.addAll(numbers);
+        }
+        return generatedNumbers;
+    }
 
 }

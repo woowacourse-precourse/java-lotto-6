@@ -18,6 +18,10 @@ public class Controller {
         List<String> list = lotto.getTickets();
 
         output.displayBoughtTickets(list);
+
+        String prizing = input.getPrizingNumbers();
+        String bonus = input.getBonusNumbers();
+
     }
 
 }

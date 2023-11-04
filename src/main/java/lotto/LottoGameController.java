@@ -1,9 +1,6 @@
 package lotto;
 
-import lotto.domain.GenerateLotteries;
-import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
-import lotto.domain.UserInput;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,6 +11,7 @@ public class LottoGameController {
     private GenerateLotteries generateLotteries;
     private PurchasePrice purchasePrice;
     private Lotto lotto;
+    private BonusLotto bonusLotto;
 
     public void startGame() {
         String price = inputView.requestPurchasePrice();
@@ -24,5 +22,8 @@ public class LottoGameController {
 
         String numbers = inputView.requestWinningNumbers();
         lotto = new Lotto(userInput.convertToIntegerListIfValid(numbers));
+
+        String bonusNumber = inputView.requestBonusNumber();
+        bonusLotto = new BonusLotto(userInput.convertToIntegerIfValid(bonusNumber), lotto);
     }
 }

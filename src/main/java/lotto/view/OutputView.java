@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.util.ErrorCode;
+import lotto.util.Message;
 
 public class OutputView {
     private static final OutputView instance = new OutputView();
-    private static final String errorMessage = "[ERROR] %s";
+    private static final String errorMessageHeader = "[ERROR] %s\n";
 
     private OutputView() {
     }
@@ -13,7 +13,11 @@ public class OutputView {
         return instance;
     }
 
-    public void printError(ErrorCode errorCode) {
-        System.out.printf(errorMessage, errorCode.getMessage());
+    public void printMessage(Message message, Object... args) {
+        System.out.printf(message.getMessage() + "\n", args);
+    }
+
+    public void printError(String errorMessage) {
+        System.out.printf(errorMessageHeader, errorMessage);
     }
 }

@@ -20,8 +20,12 @@ public enum WinningStatus {
         this.matchCount = matchCount;
     }
 
-    public int matchCount() {
+    private int matchCount() {
         return this.matchCount;
+    }
+
+    public int getPrice() {
+        return this.prize;
     }
 
     private static final Map<Integer, WinningStatus> BY_MATCHCOUNT =

@@ -84,7 +84,7 @@
 
 ****✔️ 로또 번호 발행 기능****
 
-- [ ]  1~45 사이의 값을 가지는 로또 번호 6개 랜덤 생성
+- [x]  1~45 사이의 값을 가지는 로또 번호 6개 랜덤 생성
     - `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
 - [ ]  중복 불가능
 - [ ]  오름차순 정렬

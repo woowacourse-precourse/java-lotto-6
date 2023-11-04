@@ -8,7 +8,7 @@ public class LottoNumber {
     private final int winningLottoNumber;
 
     public LottoNumber(int winningLottoNumber) {
-        validateWinningNumberRange(winningLottoNumber);
+        Validation.validateWinningNumberRange(winningLottoNumber);
         this.winningLottoNumber = winningLottoNumber;
     }
 
@@ -22,11 +22,5 @@ public class LottoNumber {
 
     public static int getLottoNumberMaxRange() {
         return LOTTO_NUMBER_MAX_RANGE;
-    }
-
-    private void validateWinningNumberRange(int number) {
-        if (number < LOTTO_NUMBER_MIN_RANGE || number > LOTTO_NUMBER_MAX_RANGE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
     }
 }

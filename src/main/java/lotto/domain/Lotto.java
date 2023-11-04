@@ -19,7 +19,7 @@ public class Lotto {
         validateDuplicationInNumbers(numbers);
     }
 
-    private static void validateNumbersSize(final List<Integer> numbers) {
+    private void validateNumbersSize(final List<Integer> numbers) {
         if (numbers.size() != NUMBERS_LENGTH) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }

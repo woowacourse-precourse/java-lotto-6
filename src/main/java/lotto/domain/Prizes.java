@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Prizes {
-
     private final Map<Prize, Integer> prizes;
 
     public Prizes(List<Prize> prizeDummy) {

@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static lotto.domain.constant.NumberConstant.TEST_TICKET_NUM;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -33,5 +32,13 @@ class LottoTest {
         assertThat(randomLottos.size()).isEqualTo(ticketNum);
     }
 
+    @DisplayName("발행 로또에 대해 정답 로또와 비교하여 MatchResult를 반환한다")
+    @Test
+    void createMatchResultFromLottos() {
+        Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
+        MatchResult matchResult = Lotto.match(randomLotto, winLotto);
+        assertThat(matchResult).isEqualTo(MatchResult.FIVE);
+    }
 }

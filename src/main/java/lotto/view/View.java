@@ -79,5 +79,4 @@ public class View {
             throw new IllegalArgumentException(BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE.getMessage());
         }
     }
-
 }

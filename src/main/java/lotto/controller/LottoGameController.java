@@ -27,6 +27,7 @@ public class LottoGameController {
         showPlayerLottoNumber(player);
 
         LottoGame lottoGame = initLottoGame(player);
+
         showResult(ticketQuantity, lottoGame);
     }
 
@@ -56,7 +57,7 @@ public class LottoGameController {
     private void showPlayerLottoNumber(Player player) {
         view.showPlayerNumbers(LottoDto.toDto(player.getLotteries()));
     }
-    
+
     private void showResult(TicketQuantity ticketQuantity, LottoGame lottoGame) {
         Map<LottoRank, Integer> result = lottoGame.calculateScore();
         view.showStatistics(result);

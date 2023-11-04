@@ -41,7 +41,7 @@ public class LottoGame {
         List<Integer> playerNumbers = playerLottery.getNumbers();
         LottoRank rank = determineRank(countMatchedNumber(winningNumbers, playerNumbers),
                 containBonusNumber(bonusNumber, playerNumbers));
-
+        
         playerRank.put(rank, playerRank.getOrDefault(rank, 0) + 1);
     }
 
@@ -60,7 +60,7 @@ public class LottoGame {
 
     private boolean containBonusNumber(BonusNumber bonusNumber, List<Integer> playerNumbers) {
         Integer number = bonusNumber.number();
-        
+
         if (playerNumbers.contains(number)) {
             return true;
         }

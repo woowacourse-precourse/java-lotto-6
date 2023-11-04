@@ -15,6 +15,7 @@ public class Application {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 lottoBought = Integer.parseInt(Console.readLine());
+                System.out.println();
 
                 // 예외 처리
                 int lottoBought1000 = lottoBought % 1000;
@@ -40,8 +41,27 @@ public class Application {
                 .collect(Collectors.toList());
 
         System.out.println(allLottoList);
+        System.out.println();
 
         // TODO: 당첨 번호 입력 받기
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String userNum = Console.readLine();
+                System.out.println();
+
+                String[] userNumListStr = userNum.split(",");
+
+                int[] userNumListInt = new int[userNumListStr.length];
+                for (int i = 0; i < userNumListStr.length; i++) {
+                    userNumListInt[i] = Integer.parseInt(userNumListStr[i]);
+                }
+
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
 
         // TODO: 보너스 번호 입력 받기
 

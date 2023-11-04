@@ -27,12 +27,12 @@ public class GameManager {
         return Integer.parseInt(input);
     }
 
-    public int getPaymentForLottoByRead() {
+    public int getPaymentForLottoByRead(Consumer consumer) {
         int lottoAmount = 0;
         while (true) {
             if (lottoAmount > 0) break;
             try {
-                lottoAmount = getPaymentForLottoByRead(readLine());
+                lottoAmount = consumer.payForLotto(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -40,23 +40,6 @@ public class GameManager {
         return lottoAmount;
     }
 
-    protected int getPaymentForLottoByRead(String readLine) {
-
-        try {
-            int price = Integer.parseInt(readLine);
-            assertPaymentForLotto(price);
-            int numberOfLotto = price / 1000;
-            return numberOfLotto;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 입력해주세요.");
-        }
-    }
-
-    private void assertPaymentForLotto(int price) {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천원 단위로 입력해주세요.");
-        }
-    }
 
     public void printWinning(List<Lotto> lottos) {
         Map<Integer, List<Lotto>> lottoByWinningCount = new HashMap<>();
@@ -66,7 +49,7 @@ public class GameManager {
                 lottoByWinningCount.put(lotto.getWinningCount(), new ArrayList<>());
                 lottoByWinningCount.get(lotto.getWinningCount()).add(lotto);
             }
-            if (lotto.getWinningCountWithBonusNumber()) {
+            if (lotto.isWinningCountWithBonusNumber()) {
                 winningWithBonusCount += 1;
             }
         }
@@ -78,4 +61,11 @@ public class GameManager {
         System.out.println("6개 일치 (2,000,000,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(6)).stream().count()  + "개");
     }
 
+    public double getProfitRate(List<Lotto> lottos, int payment) {
+        int winningMoney = 0;
+        for (Lotto lotto : lottos) {
+            winningMoney += lotto.getWinningMoney();
+        }
+        return (double) winningMoney / payment;
+    }
 }

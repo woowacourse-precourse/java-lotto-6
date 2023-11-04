@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.CanNotConvertToNumberException;
 import lotto.exception.ExistDuplicatedNumberException;
@@ -11,20 +10,18 @@ public class WinningNumber {
 
     private static final String COMMA = ",";
     private static final int LOTTO_NUMBER_COUNT = 6;
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    private WinningNumber(final List<Integer> numbers) {
-        validateSixNumbers(numbers);
-        validateDuplicates(numbers);
+    private WinningNumber(final List<LottoNumber> numbers) {
         this.numbers = numbers;
     }
 
     public static WinningNumber createWith(final String number) {
         List<String> numbers = splitWithComma(number);
         validateConvertibleToNumber(numbers);
-        List<Integer> convertedNumbers = convertToNumbers(numbers);
-        validateSixNumbers(convertedNumbers);
-        validateDuplicates(convertedNumbers);
+        validateSixNumbers(numbers);
+        validateDuplicates(numbers);
+        List<LottoNumber> convertedNumbers = convertToLottoNumbers(numbers);
         return new WinningNumber(convertedNumbers);
     }
 
@@ -47,29 +44,29 @@ public class WinningNumber {
                 .allMatch(Character::isDigit);
     }
 
-    private static List<Integer> convertToNumbers(final List<String> numbers) {
+    private static List<LottoNumber> convertToLottoNumbers(final List<String> numbers) {
         return numbers.stream()
-                .map(Integer::parseInt)
+                .map(LottoNumber::createWith)
                 .toList();
     }
 
-    private static void validateSixNumbers(final List<Integer> numbers) {
+    private static void validateSixNumbers(final List<String> numbers) {
         if (!hasSixNumbers(numbers)) {
-            throw new InvalidLottoNumberException(numbers);
+            throw new InvalidLottoNumberException(numbers.toString());
         }
     }
 
-    private static boolean hasSixNumbers(final List<Integer> numbers) {
+    private static boolean hasSixNumbers(final List<String> numbers) {
         return numbers.size() == LOTTO_NUMBER_COUNT;
     }
 
-    private static void validateDuplicates(final List<Integer> numbers) {
+    private static void validateDuplicates(final List<String> numbers) {
         if (hasDuplicates(numbers)) {
-            throw new ExistDuplicatedNumberException(numbers);
+            throw new ExistDuplicatedNumberException(numbers.toString());
         }
     }
 
-    private static boolean hasDuplicates(final List<Integer> numbers) {
+    private static boolean hasDuplicates(final List<String> numbers) {
         int distinctCount = (int) numbers.stream()
                 .distinct()
                 .count();
@@ -77,6 +74,8 @@ public class WinningNumber {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
     }
 }

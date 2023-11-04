@@ -16,7 +16,7 @@ public class WinningNumbers {
 
     private void validateDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
         if (hasDuplicate(winningNumber, bonusNumber)) {
-            throw new ExistDuplicatedNumberException(winningNumber, bonusNumber);
+            throw new ExistDuplicatedNumberException(winningNumber.toString(), bonusNumber);
         }
     }
 

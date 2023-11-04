@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.ExistDuplicatedNumberException;
 import lotto.exception.InvalidLottoNumberException;
@@ -14,9 +13,9 @@ public class Lotto {
     private static final int SIX = 6;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    private Lotto(final List<Integer> numbers) {
+    private Lotto(final List<LottoNumber> numbers) {
         this.numbers = numbers;
     }
 
@@ -24,12 +23,19 @@ public class Lotto {
         List<Integer> numbers = numbersGenerator.generate();
         validateSixNumbers(numbers);
         validateDuplicateNumbers(numbers);
-        return new Lotto(numbers);
+        List<LottoNumber> lottoNumbers = convertToLottoNumbers(numbers);
+        return new Lotto(lottoNumbers);
+    }
+
+    private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(number -> LottoNumber.createWith(number.toString()))
+                .toList();
     }
 
     private static void validateSixNumbers(final List<Integer> numbers) {
         if (!hasSixNumbers(numbers)) {
-            throw new InvalidLottoNumberException(numbers);
+            throw new InvalidLottoNumberException(numbers.toString());
         }
     }
 
@@ -39,7 +45,7 @@ public class Lotto {
 
     private static void validateDuplicateNumbers(final List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new ExistDuplicatedNumberException(numbers);
+            throw new ExistDuplicatedNumberException(numbers.toString());
         }
     }
 
@@ -77,6 +83,8 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
     }
 }

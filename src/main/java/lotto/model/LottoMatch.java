@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum LottoMatch {
     THREE(3, false, 5000),
     FOUR(4, false, 50000),
@@ -27,11 +29,9 @@ public enum LottoMatch {
     }
 
     public static LottoMatch collect(int matching, boolean bonusMatching) {
-        for (LottoMatch lottoMatch : LottoMatch.values()) {
-            if (lottoMatch.matching == matching && lottoMatch.bonusMatching == bonusMatching) {
-                return lottoMatch;
-            }
-        }
-        return NOTHING;
+        return Arrays.stream(LottoMatch.values())
+                .filter(lottoMatch -> lottoMatch.matching == matching && lottoMatch.bonusMatching == bonusMatching)
+                .findFirst()
+                .orElse(LottoMatch.NOTHING);
     }
 }

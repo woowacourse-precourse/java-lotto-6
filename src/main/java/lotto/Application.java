@@ -12,6 +12,8 @@ public class Application {
         String purchasePrice = InputView.purchasePrice();
         LottoController lottoController = new LottoController();
         List<Lotto> lottery = lottoController.buyLottery(purchasePrice);
-        
+
+        String winningNumber = InputView.winningNumber();
+        String bonusNumber = InputView.bonusNumber();
     }
 }

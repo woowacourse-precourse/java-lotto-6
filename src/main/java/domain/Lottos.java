@@ -20,6 +20,9 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
+    public List<Integer> getLotto(int i){
+        return lottos.get(i).getNumbers();
+    }
 
     public int getLottosSize() { return lottos.size();}
 }

@@ -24,7 +24,7 @@ public class LottoView {
     }
     public static void printLottoList(Lottos lottos){
         for(int i=0; i<lottos.getLottos().size(); i++){
-            System.out.println(lottos.getLottos().get(i).getNumbers());
+            System.out.println(lottos.getLotto(i));
         }
         printNewLine();
     }

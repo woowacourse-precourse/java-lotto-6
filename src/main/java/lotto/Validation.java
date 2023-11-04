@@ -58,4 +58,16 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    static void commaCheck(String raw) {
+        if (!raw.contains(",")) {
+            throw new IllegalArgumentException();
+        }
+        if (raw.contains(",,")) {
+            throw new IllegalArgumentException();
+        }
+        if (raw.startsWith(",") || raw.endsWith(",")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

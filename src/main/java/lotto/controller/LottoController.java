@@ -5,6 +5,7 @@ import lotto.model.Client;
 import lotto.model.Lotto;
 import lotto.model.LottoResultChecker;
 import lotto.model.LottoStore;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningNumbersValidator;
 import lotto.view.View;
@@ -14,10 +15,12 @@ public class LottoController {
     LottoStore lottoStore = new LottoStore();
     PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
     WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
+    BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
 
     public void run() {
         Client client = purchaseLotto(payAmount());
         LottoResultChecker lottoResultChecker = new LottoResultChecker(createWinningNumbers());
+        createBonusNumber(lottoResultChecker);
     }
 
     private int payAmount() {
@@ -52,6 +55,19 @@ public class LottoController {
                 String winningNumbers = view.inputValue();
                 winningNumbersValidator.validate(winningNumbers);
                 return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                view.printExceptionMessage(e);
+            }
+        }
+    }
+
+    private void createBonusNumber(LottoResultChecker lottoResultChecker) {
+        view.printBonusNumberInputMessage();
+        while(true) {
+            try {
+                String bonusNumber = view.inputValue();
+                lottoResultChecker.setBonusNumber(bonusNumber);
+                break;
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
             }

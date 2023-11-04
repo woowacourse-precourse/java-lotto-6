@@ -27,12 +27,15 @@ public class InputUI {
 
 
     public void purchase() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String tempCost = Console.readLine();
-            cost = checkValidPurchase(tempCost);
-        } catch (IllegalArgumentException e) {
-            throw e;
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String tempCost = Console.readLine();
+                cost = checkValidPurchase(tempCost);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -40,7 +43,7 @@ public class InputUI {
     public int checkValidPurchase(String tempCost) {
         try {
             int cost = Integer.parseInt(tempCost);
-            if (cost < 0) {
+            if (cost <= 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 0원 이상이여야 합니다.");
             }
             if (cost % 1000 != 0) {

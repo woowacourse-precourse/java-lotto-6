@@ -7,10 +7,19 @@ public class NumberConstant {
     public static final int LOTTO_NUMBER_END = 45;
     public static final int LOTTO_PRICE = 1000;
 
+    // PRIZE MONEY
+    public static final long NONE_PRIZE_MONEY = 0;
+    public static final long THREE_PRIZE_MONEY = 5_000;
+    public static final long FOUR_PRIZE_MONEY = 50_000;
+    public static final long FIVE_PRIZE_MONEY = 1_500_000;
+    public static final long BONUS_PRIZE_MONEY = 30_000_000;
+    public static final long SIX_PRIZE_MONEY = 2_000_000_000;
+
     // MatchResult
     public static final int MIN_WIN_COUNT = 3;
     public static final int MAX_WIN_COUNT = 6;
     public static final int COUNT_IDX_OFFSET = 2;
+    public static final int BONUS_MATCH_COUNT = 5;
 
     // SERVICE
     public static final int MATCHRESULT_INITIAL_NUM = 0;

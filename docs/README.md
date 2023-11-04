@@ -92,8 +92,9 @@
   - [x] 당첨 번호 추첨, 보너스 번호를 뽑는다.
   - [x] ~~당첨 번호 추첨을 뽑는다. LottoHost#pickWinNum~~
   - [x] ~~보너스 번호를 뽑는다. LottoHost#pickBonusNum~~
-  - [ ] 중복되는 당첨 번호가 있는지 확인한다. Lotto#checkDuplicateWinNum
-  - [ ] 중복되는 보너스 번호가 있는지 확인한다. Lotto#checkDulicateBonusNum
+  - [x] 중복되는 번호가 있는지 확인한다.
+  - [x] ~~중복되는 당첨 번호가 있는지 확인한다. Lotto#checkDuplicateWinNum~~
+  - [x] ~~중복되는 보너스 번호가 있는지 확인한다. Lotto#checkDulicateBonusNum~~
   
 - [x] 보너스 번호 클래스 BonusLottoNum
   - [x] 보너스 번호가 같은지 확인한다. BonusNum#isSame

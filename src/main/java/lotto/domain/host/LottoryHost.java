@@ -12,20 +12,21 @@ public class LottoryHost {
     }
 
     /**
-     * 중복되는 당첨 번호가 있는지 확인한다.
+     * 중복되는 번호가 있는지 확인한다.
      *
      * @return
      */
-    public Boolean checkDuplicateWinNum(String num) {
-        return false;
-    }
+    public Boolean checkDuplicateWinNum(String targetNum) {
+        Boolean isSame = false;
+        Integer target = Integer.valueOf(targetNum);
 
-    /**
-     * 중복되는 보너스 번호가 있는지 확인한다.
-     *
-     * @return
-     */
-    public Boolean checkDulicateBonusNum(String num) {
+        for (int indexOfSpecial = 0; indexOfSpecial < 7; indexOfSpecial++) {
+            isSame = lottoNumResults.isSame(target, indexOfSpecial);
+            if (isSame) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

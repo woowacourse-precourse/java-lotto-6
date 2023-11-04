@@ -13,7 +13,7 @@ public class Input {
         return Console.readLine();
     }
 
-    // 자료형 조작
+    // 자료형 조작, 클래스 변경?, 위치 변경 필요함
     public static List<Integer> parseNumbers(List<String> userInputs) {
         List<Integer> inputNumber = new ArrayList<>();
 

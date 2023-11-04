@@ -45,7 +45,7 @@ public class LottoGenerator {
 
         while (isRunning) {
             try {
-                winningLotto = new Lotto(Computer.parseInput(Computer.splitInput(userInput)));
+                winningLotto = new Lotto(Input.parseNumbers(Input.split(userInput)));
                 isRunning = false;
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);

@@ -1,14 +1,11 @@
 package lotto.model;
 
+import static lotto.enums.Prize.*;
+
 import java.util.List;
 
 public class Profit {
 
-    private static final int FIFTH_PLACE_MONEY = 5_000;
-    private static final int FOURTH_PLACE_MONEY = 50_000;
-    private static final int THIRD_PLACE_MONEY = 1_500_000;
-    private static final int SECOND_PLACE_MONEY = 30_000_000;
-    private static final int FIRST_PLACE_MONEY = 2_000_000_000;
 
     private final int[] rank;
     private final List<Integer> rankMoney;
@@ -16,7 +13,8 @@ public class Profit {
 
     public Profit(int[] rank){
         this.rank = rank;
-        rankMoney = List.of(0,FIRST_PLACE_MONEY, SECOND_PLACE_MONEY, THIRD_PLACE_MONEY, FOURTH_PLACE_MONEY, FIFTH_PLACE_MONEY);
+        rankMoney = List.of(0, FIRST_RANK.getMoney(), SECOND_RANK.getMoney(), THIRD_RANK.getMoney(),
+                FOURTH_RANK.getMoney(), FIFTH_RANK.getMoney());
     }
 
     public float getTotalEarningRate(int purchaseMoney){

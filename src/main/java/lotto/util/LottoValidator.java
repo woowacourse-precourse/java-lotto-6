@@ -11,13 +11,13 @@ public class LottoValidator {
         validateLottoNumbersOutOfRange(lottoNumbers);
     }
 
-    private static void validateLottoNumbersOutOfRange(List<Integer> lottoNumbers) {
+    public static void validateLottoNumbersOutOfRange(List<Integer> lottoNumbers) {
         for (Integer lottoNumber : lottoNumbers) {
             validateLottoNumberOutOfRange(lottoNumber);
         }
     }
 
-    private static void validateLottoNumberOutOfRange(Integer lottoNumber) {
+    public static void validateLottoNumberOutOfRange(Integer lottoNumber) {
         if (lottoNumber < START_INCLUSIVE || lottoNumber > END_INCLUSIVE) {
             throw new IllegalArgumentException();
         }

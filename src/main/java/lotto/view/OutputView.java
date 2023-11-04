@@ -8,17 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String PurchaseLottosCountPrintFormat = "%d개를 구매했습니다.\n";
-    private static final String WinningStatisticsPrintMessage = "당첨 통계\n---";
-    private static final String WinningResultPrintFormat = "%d개 일치 (%s원) - %d개\n";
-    private static final String RateOfReturnPrintFormat = "총 수익률은 %.1f%%입니다.\n";
+    private static final String bonusNumberMatch = ", 보너스 볼 일치 ";
+    private static final String purchaseLottosCountPrintFormat = "%d개를 구매했습니다.\n";
+    private static final String winningStatisticsPrintMessage = "당첨 통계\n---";
+    private static final String winningResultPrintFormat = "%d개 일치%s(%s원) - %d개\n";
+    private static final String rateOfReturnPrintFormat = "총 수익률은 %.1f%%입니다.\n";
 
     public void showEmptyLine(){
         System.out.println();
     }
 
     public void showPurchaseLottos(int purchaseLottosCount, List<Lotto> purchaseLottos) {
-        System.out.printf(PurchaseLottosCountPrintFormat, purchaseLottosCount);
+        System.out.printf(purchaseLottosCountPrintFormat, purchaseLottosCount);
         for (Lotto purchaseLotto : purchaseLottos) {
             System.out.println(purchaseLotto.getNumbers());
         }
@@ -31,19 +32,23 @@ public class OutputView {
     }
 
     private void showWinningStatisticsMessage() {
-        System.out.println(WinningStatisticsPrintMessage);
+        System.out.println(winningStatisticsPrintMessage);
     }
 
     private void showResult(Map<WinningPrize, Integer> winningResult) {
         for (Map.Entry<WinningPrize, Integer> entry : winningResult.entrySet()) {
             WinningPrize winningPrize = entry.getKey();
             int count = entry.getValue();
+            String bonusFormat = " ";
+            if(winningPrize== WinningPrize.SECOND_PRIZE){
+                bonusFormat = bonusNumberMatch;
+            }
             String reward = NumberFormat.getInstance().format(winningPrize.getReward());
-            System.out.printf(WinningResultPrintFormat, winningPrize.getMatchCount(), reward, count);
+            System.out.printf(winningResultPrintFormat, winningPrize.getMatchCount(), bonusFormat, reward, count);
         }
     }
 
     private void showRateOfReturn(double rateOfReturn) {
-        System.out.printf(RateOfReturnPrintFormat, rateOfReturn);
+        System.out.printf(rateOfReturnPrintFormat, rateOfReturn);
     }
 }

@@ -3,7 +3,10 @@ package lotto.controller;
 import static lotto.constant.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.constant.ExceptionMessage.LOTTO_SIZE_ERROR;
 import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
+import static lotto.constant.ExceptionMessage.NUMBER_OUT_OF_RANGE;
 import static lotto.constant.LottoInfo.LOTTO_SIZE;
+import static lotto.constant.LottoInfo.MAXIMUM_NUMBER;
+import static lotto.constant.LottoInfo.MINIMUM_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +47,16 @@ public class LottoController {
         if (nonDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+
+        validateNumberRange(numbers);
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        numbers.stream().forEach(number -> {
+            if (number < MINIMUM_NUMBER.getInfo() || number > MAXIMUM_NUMBER.getInfo()) {
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        });
     }
 
 }

@@ -1,8 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Input.Input;
-import lotto.validator.Validator;
+import Input.LottoInput;
+import validator.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -58,79 +58,93 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
     @Test
-    void 로또가_몇_개_맞았는지_확인(){
-        LottoService lottoService=new LottoService();
-        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
-        Lotto lotto2=new Lotto(List.of(7,8,9,3,10,1));
-        int result=lottoService.compare(lotto1,lotto2);
+    void 로또가_몇_개_맞았는지_확인() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 3, 10, 1));
+        int result = lottoService.compare(lotto1, lotto2);
         assertThat(result).isEqualTo(2);
     }
+
     @Test
-    void 보너스_숫자가_맞는지_확인1(){
-        LottoService lottoService=new LottoService();
-        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
-        boolean check=lottoService.compareBonusNumber(lotto1,3);
+    void 보너스_숫자가_맞는지_확인1() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        boolean check = lottoService.compareBonusNumber(lotto1, 3);
         assertThat(check).isEqualTo(true);
     }
 
     @Test
-    void 보너스_숫자가_맞는지_확인2(){
-        LottoService lottoService=new LottoService();
-        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
-        boolean check=lottoService.compareBonusNumber(lotto1,7);
+    void 보너스_숫자가_맞는지_확인2() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        boolean check = lottoService.compareBonusNumber(lotto1, 7);
         assertThat(check).isEqualTo(false);
     }
 
     @Test
-    void 로또_숫자_입력(){
+    void 로또_숫자_입력() {
         String lotto = "1,2,3,4,5,6";
         System.setIn(new ByteArrayInputStream(lotto.getBytes()));
-        List<Integer> result=Input.makeAnswerNumber();
-        assertThat(result).isEqualTo(List.of(1,2,3,4,5,6));
+        List<Integer> result = LottoInput.makeAnswerNumber();
+        assertThat(result).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test
-    void 보너스_숫자_입력(){
-        String bonus="7";
+    void 보너스_숫자_입력() {
+        String bonus = "7";
         System.setIn(new ByteArrayInputStream(bonus.getBytes()));
-        int num=Input.makeBonusNumber();
+        int num = LottoInput.makeBonusNumber();
         assertThat(num).isEqualTo(7);
     }
 
     @Test
-    void 로또_입력_예외1(){
+    void 로또_입력_예외1() {
         assertThrows(IllegalArgumentException.class,
-                ()->Validator.checkAnswerNumber(new String[]{"1","2","3","4","5","46"}));
+                () -> Validator.checkAnswerNumber(new String[]{"1", "2", "3", "4", "5", "46"}));
     }
 
     @Test
-    void 로또_입력_예외2(){
+    void 로또_입력_예외2() {
         assertThrows(IllegalArgumentException.class,
-                ()->Validator.checkAnswerNumber(new String[]{"1","2","A","4","5","44"}));
+                () -> Validator.checkAnswerNumber(new String[]{"1", "2", "A", "4", "5", "44"}));
     }
+
     @Test
-    void 로또_입력_예외3(){
+    void 로또_입력_예외3() {
         assertThrows(IllegalArgumentException.class,
-                ()->Validator.checkAnswerNumber(new String[]{"1","2","3","4","5"}));
+                () -> Validator.checkAnswerNumber(new String[]{"1", "2", "3", "4", "5"}));
     }
 
     @Test
-    void 로또_중복_입력(){
+    void 로또_중복_입력() {
         assertThrows(IllegalArgumentException.class,
-                ()->Validator.checkDuplication(List.of(1,2,3,4,5,2)));
+                () -> Validator.checkDuplication(List.of(1, 2, 3, 4, 5, 2)));
 
     }
 
     @Test
-    void 금액_입력_예외1(){
-        assertThrows(IllegalArgumentException.class,()->Validator.checkPrice("15002"));
+    void 금액_입력_예외1() {
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkPrice("15002"));
     }
 
     @Test
-    void 금액_입력_예외2(){
-        assertThrows(IllegalArgumentException.class,()->Validator.checkPrice("15a"));
+    void 금액_입력_예외2() {
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkPrice("15a"));
     }
+
+    @Test
+    void 보너스_입력_예외1() {
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("15a"));
+    }
+
+    @Test
+    void 보너스_입력_예외2() {
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("-1"));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import lotto.utils.ExceptionMessage;
 
 public class WinningLotto {
@@ -7,7 +8,7 @@ public class WinningLotto {
     private final Lotto lotto;
     private final Bonus bonus;
 
-    public WinningLotto(Lotto lotto, Bonus bonus) {
+    public WinningLotto(final Lotto lotto, final Bonus bonus) {
         validate(lotto, bonus);
         this.lotto = lotto;
         this.bonus = bonus;
@@ -22,6 +23,31 @@ public class WinningLotto {
             throw new IllegalArgumentException(
                 ExceptionMessage.INVALID_BONUS_DUPLICATION.getMessage());
         }
+    }
+
+    public MatchCount match(Lotto userLotto) {
+        int matchedCount = getMatchedCount(userLotto);
+        if (hasBonusMatch(userLotto, matchedCount)) {
+            return MatchCount.FIVE_AND_BONUS_MATCH;
+        }
+        return findMatchCountByMatchedNumber(matchedCount);
+    }
+
+    private int getMatchedCount(Lotto userLotto) {
+        return (int) lotto.getNumbers().stream()
+            .filter(userLotto::contains)
+            .count();
+    }
+
+    private boolean hasBonusMatch(Lotto userLotto, int matchedCount) {
+        return matchedCount == 5 && userLotto.contains(bonus.bonusNumber());
+    }
+
+    private MatchCount findMatchCountByMatchedNumber(int matchedCount) {
+        return Arrays.stream(MatchCount.values())
+            .filter(matchCount -> matchCount.getMatchCount() == matchedCount)
+            .findFirst()
+            .orElseThrow(IllegalStateException::new);
     }
 
 }

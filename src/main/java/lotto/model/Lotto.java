@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.utils.Constants;
@@ -56,4 +57,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

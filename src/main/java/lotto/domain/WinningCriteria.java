@@ -1,21 +1,19 @@
 package lotto.domain;
 
 public enum WinningCriteria {
-    FIRST(6, 2_000_000_000, false),
-    SECOND(5, 30_000_000, true),
-    THIRD(5, 1_500_000, false),
-    FOURTH(4, 50_000, false),
-    FIFTH(3, 5_000, false),
-    MISS(0, 0, false);
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
+    MISS(0, 0);
 
     private final int matchCount;
     private final int prize;
-    private final boolean matchBonus;
 
-    WinningCriteria(int matchCount, int prize, boolean matchBonus) {
+    WinningCriteria(int matchCount, int prize) {
         this.matchCount = matchCount;
         this.prize = prize;
-        this.matchBonus = matchBonus;
     }
 
     public int getMatchCount() {
@@ -26,13 +24,13 @@ public enum WinningCriteria {
         return prize;
     }
 
-    public boolean getMatchBonus() {
-        return matchBonus;
-    }
-
     public static WinningCriteria getWinningType(int matchCount, boolean matchBonus) {
         for (WinningCriteria type : WinningCriteria.values()) {
-            if (type.getMatchCount() == matchCount && type.getMatchBonus() == matchBonus) {
+            if (matchCount == 5 && matchBonus) {
+                return SECOND;
+            } else if (matchCount == 5 && !matchBonus) {
+                return THIRD;
+            } else if (type.getMatchCount() == matchCount) {
                 return type;
             }
         }

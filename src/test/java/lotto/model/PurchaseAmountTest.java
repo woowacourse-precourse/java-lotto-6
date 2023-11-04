@@ -16,7 +16,7 @@ public class PurchaseAmountTest {
     public void 입력값이_유효하지_않은_경우(String input) {
         //when + then
         assertThatThrownBy(() -> {
-            PurchaseAmount.create(input);
+            PurchaseAmount.validate(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
     }
@@ -26,7 +26,7 @@ public class PurchaseAmountTest {
     @ValueSource(strings = {"1000", "2000", "12000"})
     public void 입력값이_유효한_경우(String input) {
         //when
-        PurchaseAmount purchaseAmount = PurchaseAmount.create(input);
+        PurchaseAmount purchaseAmount = PurchaseAmount.validate(input);
 
         //then
         assertThat(purchaseAmount.getPurchaseAmount()).isEqualTo(Integer.parseInt(input));

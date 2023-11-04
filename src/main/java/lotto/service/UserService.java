@@ -6,6 +6,6 @@ public class UserService {
     private PurchaseAmount purchaseAmount;
 
     public void purchaseLottos(String purchaseAmountInput) {
-        purchaseAmount = PurchaseAmount.create(purchaseAmountInput);
+        purchaseAmount = PurchaseAmount.validate(purchaseAmountInput);
     }
 }

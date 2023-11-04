@@ -8,10 +8,12 @@ public class PurchaseAmount {
 
     private PurchaseAmount(String input) {
         Integer parsedInput = toInteger(input);
-        checkIfPositive(parsedInput);
+        checkPositive(parsedInput);
+        checkThousandMultiple(parsedInput);
+        purchaseAmount = parsedInput;
     }
 
-    public static PurchaseAmount create(String input) {
+    public static PurchaseAmount validate(String input) {
         return new PurchaseAmount(input);
     }
 
@@ -23,8 +25,14 @@ public class PurchaseAmount {
         }
     }
 
-    private void checkIfPositive(Integer parsedInput) {
+    private void checkPositive(Integer parsedInput) {
         if (parsedInput <= 0) {
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
+        }
+    }
+
+    private void checkThousandMultiple(Integer parsedInput) {
+        if (parsedInput % 1000 != 0) {
             throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
         }
     }

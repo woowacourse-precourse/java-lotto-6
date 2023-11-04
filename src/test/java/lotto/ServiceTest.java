@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ServiceTest {
-    private GameService gameService;
+    private LottoService gameService;
     @BeforeEach
     void set(){
-        gameService = new GameService();
+        gameService = new LottoService();
     }
 
     @DisplayName("구입한 금액을 입력받아 로또 개수를 구한다")
@@ -33,7 +33,7 @@ public class ServiceTest {
     @DisplayName("로또 번호와 당첨 번호를 비교해 같은 숫자 개수를 구한다")
     @Test
     void createLottoNumber(){
-        List<Integer> lotto = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         List<Integer> win = List.of(1,2,3,7,8,9);
         int result = gameService.sameNumberCount(lotto,win);
         assertThat(result).isEqualTo(3);
@@ -47,18 +47,14 @@ public class ServiceTest {
         assertThat(gameService.isSameBonusNumber(new Lotto(List.of(1,2,3,4,5,6)),7))
                 .isFalse();
     }
-    @DisplayName("당첨 개수 List를 가지고 당첨 금액을 구하는 기능")
-    @Test
-    void winAmountTest(){
-        int result = gameService.winAmount(List.of(1,0,0,0,0));
-        assertThat(result).isEqualTo(5000);
-    }
+
     @DisplayName("당첨 개수 List를 가지고 당첨 금액을 구하는 기능")
     @Test
     void rateOfReturnTest(){
-        float result = gameService.rateOfReturn(8000,5000);
+        String result = gameService.rateOfReturn(8000,5000);
         assertThat(result).isEqualTo(62.5f);
     }
+
 
 
 

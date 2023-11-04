@@ -37,7 +37,7 @@ public class GameService {
     }
 
     public void inputBonusNumber(String input){
-        bonusNumber = new BonusNumber(input);
+        bonusNumber = new BonusNumber(input, winningNumbers);
     }
 
 }

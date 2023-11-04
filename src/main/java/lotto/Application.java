@@ -7,6 +7,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -79,7 +80,7 @@ public class Application {
             Collections.sort(winningNumber);
             return winningNumber;
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자만 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
         }
     }
 
@@ -89,6 +90,14 @@ public class Application {
         return inputBonusNumber;
     }
 
+    public int inputBonusNumberValidation(String inputBonusNumber){
+        try {
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            return bonusNumber;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+        }
+    }
 
 
 

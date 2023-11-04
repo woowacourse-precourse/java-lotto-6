@@ -21,15 +21,15 @@ public class LottoControllerTest {
         lottoController = new LottoController(
                 7,
                 List.of(
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11)),
-                        new Lotto(Arrays.asList(1, 2, 7, 8, 9, 10)),
-                        new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)),
-                        new Lotto(Arrays.asList(1, 2, 3, 4, 7, 8)),
-                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)),
-                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),
-                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))
+                        new Lotto(List.of(1, 7, 8, 9, 10, 11)),
+                        new Lotto(List.of(1, 2, 7, 8, 9, 10)),
+                        new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                        new Lotto(List.of(1, 2, 3, 4, 7, 8)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6))
                 ),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 new BonusNumber(7)
         );
     }

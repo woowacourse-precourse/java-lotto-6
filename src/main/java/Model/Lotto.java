@@ -7,7 +7,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -61,6 +60,12 @@ public class Lotto {
 
     public int getItem(int idx) {
         return numbers.get(idx);
+    }
+
+    public List<Integer> getSortedLotto() {
+        List<Integer> sortLotto = new ArrayList<>(numbers);
+        Collections.sort(sortLotto);
+        return sortLotto;
     }
 
     @Override

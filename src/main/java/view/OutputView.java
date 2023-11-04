@@ -2,6 +2,7 @@ package view;
 
 import Model.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -15,10 +16,12 @@ public class OutputView {
     }
 
     public static void printNumbers(Lotto lotto) {
-        int length = lotto.getSize();
+        List<Integer> sortedLotto = lotto.getSortedLotto();
+        int length = sortedLotto.size();
+
         System.out.print("[");
         for (int i = 0; i < length; i++) {
-            System.out.print(lotto.getItem(i));
+            System.out.print(sortedLotto.get(i));
             if (i != length - 1) {
                 System.out.print(", ");
             }

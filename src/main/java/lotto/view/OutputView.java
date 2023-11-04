@@ -9,8 +9,8 @@ public class OutputView {
     private static final String COUNT_OF_USER_LOTTOS_MESSAGE = "%d개를 구매했습니다.";
 
     public static void printUserLottos(Lottos lottos, Budget budget) {
-        printLottoNumbers(lottos);
         printCountOfUserLottos(budget);
+        printLottoNumbers(lottos);
     }
 
     private static void printLottoNumbers(Lottos lottos){

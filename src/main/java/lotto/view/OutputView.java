@@ -5,7 +5,11 @@ import lotto.enums.OutputMessage;
 
 import java.util.List;
 
-public class OutputView {
+public final class OutputView {
+
+    private OutputView() {
+    }
+
     public static void showCountOfLotto(int countOfLotto) {
         String format = OutputMessage.OUTPUT_COUNT_OF_LOTTO_FORMAT.getMessage();
 

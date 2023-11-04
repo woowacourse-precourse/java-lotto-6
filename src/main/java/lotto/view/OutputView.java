@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.dto.AmountDto;
 import lotto.dto.EarningDto;
-
 import static lotto.system.SystemMessage.INPUT_AMOUNT_MESSAGE;
 import static lotto.system.SystemMessage.OUTPUT_QUANTITY_MESSAGE;
 import static lotto.system.SystemMessage.NEWLINE;

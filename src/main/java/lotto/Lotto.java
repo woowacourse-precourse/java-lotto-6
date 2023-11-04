@@ -19,4 +19,18 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int matchCount(int[] winningNumbers) {
+        int count = 0;
+        for (int winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean matchBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

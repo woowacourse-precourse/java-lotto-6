@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,7 +15,11 @@ public class Application {
         printLottoNumbers(lottos);
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        int[] winningNumbers = receiveWinningNumbers(Console.readLine());
+        //int[] winningNumbers = receiveWinningNumbers(Console.readLine());
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        //int bonusNumber = Integer.parseInt(Console.readLine());
+
+        //HashMap<LottoRank, Integer> matchCountByRank = getMatchCountByRank(lottos, winningNumbers, bonusNumber);
     }
 
     public static int getLottoPurchasePrice() {

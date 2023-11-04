@@ -10,15 +10,38 @@ public class InputView {
     private static final String REQUEST_BONUS_NUM = "보너스 번호를 입력해 주세요.";
     public static PayDTO readPayment(){
         System.out.println(REQEUST_PAYMENT);
-        String pay = Console.readLine();
-        return PayDTO.from(pay);
+        while(true){
+            try {
+                String pay = Console.readLine();
+                return PayDTO.from(pay);
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static WinningNumDTO readWinningNums() {
         System.out.println(REQUEST_WINNING_NUMS);
-        String win = Console.readLine();
+        String win;
+        while(true) {
+            try {
+                win = Console.readLine();
+                WinningNumDTO.validateWinningNums(win);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println(REQUEST_BONUS_NUM);
-        String bonus = Console.readLine();
-        return WinningNumDTO.of(win, bonus);
+        while(true) {
+            try {
+                String bonus = Console.readLine();
+                return WinningNumDTO.of(win, bonus);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
  }

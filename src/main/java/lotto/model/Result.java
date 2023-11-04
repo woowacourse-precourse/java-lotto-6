@@ -17,7 +17,9 @@ public class Result {
         for (Ranking ranking : rankings) {
             profit += ranking.getProfit();
         }
-        return profit / payment;
+        System.out.println("profit : " + profit);
+        System.out.println("payment : " + payment);
+        return (profit / payment)*100;
     }
 
     public String getNumOfRanks() {

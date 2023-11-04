@@ -27,7 +27,7 @@ public class LottoService {
     }
 
     private static Lotto createLotto() {
-        List<Integer> numbers = pickRandomNumbers();
+        List<Integer> numbers = new ArrayList<>(pickRandomNumbers());
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

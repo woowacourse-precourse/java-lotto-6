@@ -19,21 +19,21 @@ public class WinningNumDTO {
     private static final int TOTAL_NUM = 6;
     private static final int MIN_NUM = 1;
     private static final int MAX_NUM = 45;
-    private final List<Integer> winningNums;
-    private final int bonus;
+    private List<Integer> winningNums;
+    private int bonus;
     private WinningNumDTO(List<Integer> winningNums, int bonus) {
         this.winningNums = winningNums;
         this.bonus = bonus;
     }
 
     public static WinningNumDTO of(String winText, String bonusText) {
-        List<Integer> winningNums = validateWinningNums(winText);
+        List<Integer> winningNums = split(winText);
         int bonusNum = validateBonus(bonusText);
         checkOverlappingWithWinningNums(winningNums, bonusNum);
         return new WinningNumDTO(winningNums, bonusNum);
     }
 
-    private static int validateBonus(String bonus) {
+    public static int validateBonus(String bonus) {
         checkNull(bonus);
         int bonusNum = toInteger(bonus);
         checkRange(bonusNum);
@@ -46,12 +46,11 @@ public class WinningNumDTO {
         }
     }
 
-    private static List<Integer> validateWinningNums(String winNums) {
+    public static void validateWinningNums(String winNums) {
         checkNull(winNums);
         List<Integer> numbers = split(winNums);
         checkTotalNum(numbers);
         numbers.forEach(num -> checkRange(num));
-        return numbers;
     }
 
     private static void checkRange(int num) {

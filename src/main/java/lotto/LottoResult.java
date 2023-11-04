@@ -6,6 +6,7 @@ import java.util.List;
 public class LottoResult {
 
     private final LottoComparator comparator = new LottoComparator();
+    private List<WinningLotto> winningLottos = new ArrayList<>();
 
     private Integer matchesThree;
     private Integer matchesFour;
@@ -24,13 +25,14 @@ public class LottoResult {
     }
 
     public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
-        List<WinningLotto> winningLottos = lottos.stream()
+        this.winningLottos = lottos.stream()
                 .map(lotto -> comparator.compareLotto(winningNumbers, bonus, lotto))
                 .toList();
 
-        long sumOfPrice = winningLottos.stream()
+        long sumOfPrice = this.winningLottos.stream()
                 .mapToLong(WinningLotto::getPrice)
                 .sum();
+
 
         return this;
     }

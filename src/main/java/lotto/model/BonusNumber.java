@@ -1,11 +1,12 @@
 package lotto.model;
 
-import static lotto.util.Constant.START_INCLUSIVE;
-import static lotto.util.Constant.END_INCLUSIVE;
-
 import lotto.exception.InvalidNumberException;
 
 public class BonusNumber {
+
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+
 
     private final int number;
 
@@ -21,7 +22,7 @@ public class BonusNumber {
     }
 
     private boolean isValidNumber(final int number) {
-        return START_INCLUSIVE.getValue() <= number && number <= END_INCLUSIVE.getValue();
+        return START_INCLUSIVE <= number && number <= END_INCLUSIVE;
     }
 
     public int getNumber() {

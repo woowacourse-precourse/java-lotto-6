@@ -5,10 +5,6 @@ import static lotto.model.LottoPrize.SECOND_PRIZE;
 import static lotto.model.LottoPrize.THIRD_PRIZE;
 import static lotto.model.LottoPrize.FOURTH_PRIZE;
 import static lotto.model.LottoPrize.FIFTH_PRIZE;
-import static lotto.util.Constant.THREE;
-import static lotto.util.Constant.FOUR;
-import static lotto.util.Constant.FIVE;
-import static lotto.util.Constant.SIX;
 import static lotto.util.Converter.formatNumberWithComma;
 
 import java.util.ArrayList;
@@ -25,17 +21,17 @@ public class ConsoleOutputView implements OutputView {
     private static final String BONUS_NUMBER_REQUEST_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String FIRST_PRIZE_MESSAGE =
-            SIX.getValue() + "개 일치, 보너스 볼 일치 " + "(" + formatNumberWithComma(FIRST_PRIZE.getPrize()) + "원" + ")"
+            "개 일치, 보너스 볼 일치 " + "(" + formatNumberWithComma(FIRST_PRIZE.getPrize()) + "원" + ")"
                     + HYPHEN;
     private static final String SECOND_PRIZE_MESSAGE =
-            FIVE.getValue() + "개 일치, 보너스 볼 일치 " + "(" + formatNumberWithComma(SECOND_PRIZE.getPrize()) + "원" + ")"
+            "개 일치, 보너스 볼 일치 " + "(" + formatNumberWithComma(SECOND_PRIZE.getPrize()) + "원" + ")"
                     + HYPHEN;
     private static final String THIRD_PRIZE_MESSAGE =
-            FIVE.getValue() + "개 일치 " + "(" + formatNumberWithComma(THIRD_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
+            "개 일치 " + "(" + formatNumberWithComma(THIRD_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
     private static final String FOURTH_PRIZE_MESSAGE =
-            FOUR.getValue() + "개 일치 " + "(" + formatNumberWithComma(FOURTH_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
+            "개 일치 " + "(" + formatNumberWithComma(FOURTH_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
     private static final String FIFTH_PRIZE_MESSAGE =
-            THREE.getValue() + "개 일치 " + "(" + formatNumberWithComma(FIFTH_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
+            "개 일치 " + "(" + formatNumberWithComma(FIFTH_PRIZE.getPrize()) + "원" + ")" + HYPHEN;
     private static final String COUNT = "개";
 
     @Override

@@ -1,16 +1,16 @@
 package lotto.model;
 
 import static lotto.model.LottoPrize.*;
-import static lotto.util.Constant.LOTTO_PRICE;
-import static lotto.util.Constant.ZERO;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import lotto.util.NumbersGenerator;
 
 public class Lottos {
+
+    private static final int ZERO = 0;
+    private static final int LOTTO_PRICE = 1_000;
 
     private final List<Lotto> lottos;
 
@@ -19,12 +19,12 @@ public class Lottos {
     }
 
     public static Lottos createWith(final long money, final NumbersGenerator numbersGenerator) {
-        long lottoTicketCount = money / LOTTO_PRICE.getValue();
+        long lottoTicketCount = money / LOTTO_PRICE;
         return new Lottos(createLottos(lottoTicketCount, numbersGenerator));
     }
 
     private static List<Lotto> createLottos(final long lottoTicketCount, final NumbersGenerator numbersGenerator) {
-        return LongStream.range(ZERO.getValue(), lottoTicketCount)
+        return LongStream.range(ZERO, lottoTicketCount)
                 .mapToObj(lotto -> Lotto.createWith(numbersGenerator))
                 .toList();
     }

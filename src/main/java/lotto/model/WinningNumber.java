@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static lotto.util.Constant.LOTTO_NUMBER_COUNT;
-
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.ExistDuplicatedNumberException;
@@ -9,6 +7,7 @@ import lotto.exception.InvalidLottoNumberException;
 
 public class WinningNumber {
 
+    private static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public WinningNumber(final List<Integer> numbers) {
@@ -24,7 +23,7 @@ public class WinningNumber {
     }
 
     private boolean hasSixNumbers(final List<Integer> numbers) {
-        return numbers.size() == LOTTO_NUMBER_COUNT.getValue();
+        return numbers.size() == LOTTO_NUMBER_COUNT;
     }
 
     private void validateDuplicateNumbers(final List<Integer> numbers) {

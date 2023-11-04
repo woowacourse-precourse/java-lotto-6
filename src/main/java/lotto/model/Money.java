@@ -1,12 +1,11 @@
 package lotto.model;
 
-import static lotto.util.Constant.LOTTO_PRICE;
-import static lotto.util.Constant.ZERO;
-
 import lotto.exception.InvalidMoneyException;
 
 public class Money {
 
+    private static final int LOTTO_PRICE = 1_000;
+    private static final int ZERO = 0;
     private final long money;
 
     public Money(final long money) {
@@ -22,7 +21,7 @@ public class Money {
     }
 
     private boolean isOverThousand(final long money) {
-        return money >= LOTTO_PRICE.getValue();
+        return money >= LOTTO_PRICE;
     }
 
     private void validateDivideByThousand(final long money) {
@@ -32,7 +31,7 @@ public class Money {
     }
 
     private boolean canDivideByThousand(final long money) {
-        return money % LOTTO_PRICE.getValue() == ZERO.getValue();
+        return money % LOTTO_PRICE == ZERO;
     }
 
     public long getMoney() {

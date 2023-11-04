@@ -12,7 +12,6 @@ import lotto.domain.money.LottoMoney;
 import lotto.dto.BuyingResults;
 import lotto.dto.WinningResults;
 import lotto.validator.domain.exception.DomainExceptionMessage;
-import lotto.validator.domain.exception.DomainIllegalArgumentException;
 
 // todo 기능 분리 시도
 public class LottoMachine {
@@ -57,11 +56,11 @@ public class LottoMachine {
 
     private Lottos findUserLottosObject() {
         return lottosRepository.findUserLottos()
-                .orElseThrow(() -> new DomainIllegalArgumentException(DomainExceptionMessage.NOT_FOUND_LOTTO));
+                .orElseThrow(DomainExceptionMessage.NOT_FOUND_LOTTO::create);
     }
 
     private WinningLotto findWinningLottoObject() {
         return lottosRepository.findWinningLotto()
-                .orElseThrow(() -> new DomainIllegalArgumentException(DomainExceptionMessage.NOT_FOUND_LOTTO));
+                .orElseThrow(DomainExceptionMessage.NOT_FOUND_LOTTO::create);
     }
 }

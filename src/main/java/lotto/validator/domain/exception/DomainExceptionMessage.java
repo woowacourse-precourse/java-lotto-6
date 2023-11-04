@@ -15,7 +15,7 @@ public enum DomainExceptionMessage {
         this.value = value;
     }
 
-    public String value() {
-        return value;
+    public DomainIllegalArgumentException create() {
+        return new DomainIllegalArgumentException(value);
     }
 }

@@ -10,7 +10,7 @@ public enum InputExceptionMessage {
         this.value = value;
     }
 
-    public String value() {
-        return value;
+    public InputIllegalArgumentException create() {
+        return new InputIllegalArgumentException(value);
     }
 }

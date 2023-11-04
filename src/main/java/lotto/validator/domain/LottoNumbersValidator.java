@@ -3,7 +3,6 @@ package lotto.validator.domain;
 import java.util.List;
 import lotto.domain.lotto.LottoCondition;
 import lotto.validator.domain.exception.DomainExceptionMessage;
-import lotto.validator.domain.exception.DomainIllegalArgumentException;
 
 public class LottoNumbersValidator {
 
@@ -18,7 +17,7 @@ public class LottoNumbersValidator {
 
     private static void validateRange(final List<Integer> numbers) {
         if (isOutOfRange(numbers)) {
-            throw new DomainIllegalArgumentException(DomainExceptionMessage.OUT_OF_RANGE_NUMBER);
+            throw DomainExceptionMessage.OUT_OF_RANGE_NUMBER.create();
         }
     }
 
@@ -29,13 +28,13 @@ public class LottoNumbersValidator {
 
     private static void validateLength(final List<Integer> numbers) {
         if (LottoCondition.isInvalidLength(numbers.size())) {
-            throw new DomainIllegalArgumentException(DomainExceptionMessage.INVALID_LOTTO_LENGTH);
+            throw DomainExceptionMessage.INVALID_LOTTO_LENGTH.create();
         }
     }
 
     private static void validateDuplicates(final List<Integer> numbers) {
         if (isDuplicate(numbers)) {
-            throw new DomainIllegalArgumentException(DomainExceptionMessage.DUPLICATES_LOTTO_NUMBERS);
+            throw DomainExceptionMessage.DUPLICATES_LOTTO_NUMBERS.create();
         }
     }
 

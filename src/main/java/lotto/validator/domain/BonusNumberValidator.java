@@ -3,7 +3,6 @@ package lotto.validator.domain;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCondition;
 import lotto.validator.domain.exception.DomainExceptionMessage;
-import lotto.validator.domain.exception.DomainIllegalArgumentException;
 
 public class BonusNumberValidator {
 
@@ -14,13 +13,13 @@ public class BonusNumberValidator {
 
     private static void validateRange(final int bonusNumber) {
         if (LottoCondition.isNotInRange(bonusNumber)) {
-            throw new DomainIllegalArgumentException(DomainExceptionMessage.OUT_OF_RANGE_NUMBER);
+            throw DomainExceptionMessage.OUT_OF_RANGE_NUMBER.create();
         }
     }
 
     private static void validateDuplicates(final Lotto lotto, final int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
-            throw new DomainIllegalArgumentException(DomainExceptionMessage.DUPLICATES_BONUS_NUMBER);
+            throw DomainExceptionMessage.DUPLICATES_BONUS_NUMBER.create();
         }
     }
 }

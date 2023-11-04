@@ -2,7 +2,6 @@ package lotto.validator.input;
 
 import java.util.List;
 import lotto.validator.input.exception.InputExceptionMessage;
-import lotto.validator.input.exception.InputIllegalArgumentException;
 
 public class InputCommonValidator {
 
@@ -21,7 +20,7 @@ public class InputCommonValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InputIllegalArgumentException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
+            throw InputExceptionMessage.INVALID_NUMBER_FORMAT.create();
         }
     }
 }

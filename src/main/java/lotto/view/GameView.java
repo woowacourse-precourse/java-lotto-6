@@ -4,16 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
-import lotto.utils.LottoFormatter;
 
 import java.util.List;
 
 public class GameView {
-    private final LottoFormatter lottoFormatter;
 
-    public GameView(LottoFormatter lottoFormatter) {
-        this.lottoFormatter = lottoFormatter;
-    }
 
     public String getPurchaseAmountInput() {
         System.out.println("구입 금액을 입력해 주세요.");
@@ -25,9 +20,10 @@ public class GameView {
     public void showLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
-        String formattedLottos = lottoFormatter.format(lottos);
+        for (Lotto lotto : lottos) {
 
-        System.out.println(formattedLottos);
+            System.out.println(lotto.getSortedNumbers());
+        }
     }
 
     public String getWinningNumbersInput() {

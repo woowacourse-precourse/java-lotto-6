@@ -25,7 +25,7 @@ public class LottoController {
         List<List<Integer>> manyLotto = Lotto.getManyLotto(cost/1000);
         outputView.printQuantityAndAllNumbers(cost/1000, manyLotto);
         Lotto winning = getValidWinningNum(inputView);
-        getValidBonusNum(inputView, winning);
+        int bonusNum = getValidBonusNum(inputView, winning);
 
         /*
         // 각 로또마다 당첨번호와 일치하는 숫자 개수, 보너스 숫자와의 일치 여부 구하기
@@ -121,16 +121,18 @@ public class LottoController {
         }
         return result;
     }
-    public void getValidBonusNum(InputView inputview, Lotto lotto) {
+    public int getValidBonusNum(InputView inputview, Lotto lotto) {
         BonusNum bonusNum = new BonusNum();
+        int validBonusNum;
         while (true) {
             try {
-                int validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber());
+                validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber());
                 lotto.setBonusNum(validBonusNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return validBonusNum;
     }
 }

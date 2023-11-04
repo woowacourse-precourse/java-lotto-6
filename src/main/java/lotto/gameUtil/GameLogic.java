@@ -40,10 +40,9 @@ public class GameLogic {
         List<Integer> lottoNumbers = new ArrayList<>(tmpLottoNumbers);
         return lottoNumbers;
     }
-    public Lotto winningNumber(String winningNumber){
-       String[] splitWinningNumber = splitNumber(winningNumber);
+    public Lotto winningNumber(String[] winningNumber){
         List<Integer> winningNumbers = new ArrayList<>();
-        for(String str : splitWinningNumber){
+        for(String str : winningNumber){
             winningNumbers.add(Integer.parseInt(str));
         }
         Lotto lotto = new Lotto(winningNumbers);

@@ -2,11 +2,12 @@ package lotto.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 class WinningLottoTest {
     @Test
     void createWinningLotto() {
-        WinningLotto winningLotto = new WinningLotto();
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), "7");
+        winningLotto = new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), 7);
     }
 }

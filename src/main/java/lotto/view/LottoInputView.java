@@ -28,12 +28,25 @@ public class LottoInputView {
     }
 
 
-    public List<String> getWinningNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String userInput = Console.readLine();
-        return Arrays.stream(userInput.split(","))
-                .toList();
+    public List<Integer> getWinningNumbers() {
+        while (true) {
+            System.out.println();
+            System.out.println(LOTTO_WINNING_NUMBER.getMessage());
+
+            try {
+                String userInput = Console.readLine();
+                return Arrays.stream(userInput.split(","))
+                        .map(this::convertToInt)
+                        .toList();
+            } catch (NumberFormatException e) {
+                System.out.println(INPUT_NUMBER_IS_NOT_DIGIT.getMessage());
+            }
+        }
+
+    }
+
+    private int convertToInt(String value) {
+        return Integer.parseInt(value.trim());
     }
 
     public Integer getBonusNumber() {

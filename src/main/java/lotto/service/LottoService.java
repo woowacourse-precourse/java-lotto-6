@@ -22,7 +22,7 @@ public class LottoService {
         return lottos;
     }
 
-    public LottoResult compareLotto(List<String> winningNumbers, Integer bonusNumber) {
+    public LottoResult compareLotto(List<Integer> winningNumbers, Integer bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = lottoRepository.findAll();
         return lottoResult.showLottoResult(winningNumbers, bonusNumber, lottos);

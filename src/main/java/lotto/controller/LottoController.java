@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     private void compareLotto() {
-        List<String> winningNumbers = lottoInputView.getWinningNumbers();
+        List<Integer> winningNumbers = lottoInputView.getWinningNumbers();
         Integer bonusNumber = lottoInputView.getBonusNumber();
 
         LottoResult lottoResult = lottoService.compareLotto(winningNumbers, bonusNumber);

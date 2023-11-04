@@ -22,7 +22,7 @@ public class LottoResult {
         this.rateOfReturn = 0.0F;
     }
 
-    public LottoResult showLottoResult(List<String> winningNumbers, Integer bonus, List<Lotto> lottos) {
+    public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> result = comparator.compareLotto(winningNumbers, bonus, lotto);
             saveResult(result);

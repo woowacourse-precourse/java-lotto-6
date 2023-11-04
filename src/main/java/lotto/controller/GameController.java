@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Cash;
+import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
 import lotto.domain.Prizes;
 import lotto.view.InputView;
@@ -13,6 +14,7 @@ public class GameController {
     private Cash cash;
     private Lottos lottos;
     private Prizes prizes;
+    private LottoMachine lottoMachine;
 
     public GameController(
             InputView inputView,
@@ -33,6 +35,7 @@ public class GameController {
         cash = inputView.InputCash();
         System.out.println();
     }
+
 
 
 

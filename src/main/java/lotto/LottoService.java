@@ -8,12 +8,6 @@ import static lotto.LottoController.bonus;
 import static lotto.LottoController.winResult;
 
 public class LottoService {
-    static final String THREE_CORRECT = "3개 일치 (5,000원)";
-    static final String FOUR_CORRECT = "4개 일치 (50,000원)";
-    static final String FIVE_CORRECT_NOT_BONUS = "5개 일치 (1,500,000원)";
-    static final String FIVE_CORRECT_MATCH_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원)";
-    static final String SIX_CORRECT = "6개 일치 (2,000,000,000원)";
-
 
     public int countingLottoByAmount(int amount){
         if(amount % 1000 != 0){
@@ -54,26 +48,26 @@ public class LottoService {
         int count = sameNumberCount(lotto, winNumbers);
         int winAmount = 0;
         if (count == 3) {
-            winResult.put(THREE_CORRECT, winResult.get(THREE_CORRECT) + 1);
-            winAmount += 5000;
+            winResult.put(Prize.THREE_CORRECT, winResult.get(Prize.THREE_CORRECT) + 1);
+            winAmount += Prize.THREE_CORRECT.getMoney();
         }
         if (count == 4) {
-            winResult.put(FOUR_CORRECT, winResult.get(FOUR_CORRECT) + 1);
-            winAmount += 50000;
+            winResult.put(Prize.FOUR_CORRECT, winResult.get(Prize.FOUR_CORRECT) + 1);
+            winAmount += Prize.FOUR_CORRECT.getMoney();
         }
         if (count == 5) {
             if (isSameBonusNumber(lotto, bonus)) {
-                winResult.put(FIVE_CORRECT_MATCH_BONUS, winResult.get(FIVE_CORRECT_MATCH_BONUS) + 1);
-                winAmount += 30000000;
+                winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS, winResult.get(Prize.FIVE_CORRECT_MATCH_BONUS) + 1);
+                winAmount += Prize.FIVE_CORRECT_MATCH_BONUS.getMoney();
             }
             if (!isSameBonusNumber(lotto, bonus)) {
-                winResult.put(FIVE_CORRECT_NOT_BONUS, winResult.get(FIVE_CORRECT_NOT_BONUS) + 1);
-                winAmount += 1500000;
+                winResult.put(Prize.FIVE_CORRECT_NOT_BONUS, winResult.get(Prize.FIVE_CORRECT_NOT_BONUS) + 1);
+                winAmount += Prize.FIVE_CORRECT_NOT_BONUS.getMoney();
             }
         }
         if (count == 6) {
-            winResult.put(SIX_CORRECT, winResult.get(SIX_CORRECT) + 1);
-            winAmount += 2000000000;
+            winResult.put(Prize.SIX_CORRECT, winResult.get(Prize.SIX_CORRECT) + 1);
+            winAmount += Prize.SIX_CORRECT.getMoney();
         }
         return winAmount;
     }

@@ -18,7 +18,7 @@ public class LottoController {
      */
     static List<Integer> winNumbers;
     static int bonus;
-    static Map<String, Integer> winResult;
+    static Map<Prize, Integer> winResult;
 
 
     public void LottoGamePlay() {
@@ -41,6 +41,7 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             winAmount += lottoService.insertResult(lotto, winNumbers);
         }
+
         outputView.LottoGameResult(winResult);
         outputView.totalRating(lottoService.rateOfReturn(Integer.parseInt(lottoAmount),winAmount));
 
@@ -81,12 +82,12 @@ public class LottoController {
     }
 
     private void ResultInit() {
-        winResult = new TreeMap<>();
-        winResult.put(THREE_CORRECT,0);
-        winResult.put(FOUR_CORRECT,0);
-        winResult.put(FIVE_CORRECT_NOT_BONUS,0);
-        winResult.put(FIVE_CORRECT_MATCH_BONUS,0);
-        winResult.put(SIX_CORRECT,0);
+        winResult = new HashMap<>();
+        winResult.put(Prize.THREE_CORRECT,0);
+        winResult.put(Prize.FOUR_CORRECT,0);
+        winResult.put(Prize.FIVE_CORRECT_NOT_BONUS,0);
+        winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS,0);
+        winResult.put(Prize.SIX_CORRECT,0);
     }
 
 }

@@ -14,10 +14,10 @@ public class OutputView {
         System.out.println(lotto.getNumbers().toString());
     }
 
-    public void LottoGameResult(Map<String, Integer> winResult) {
+    public void LottoGameResult(Map<Prize, Integer> winResult) {
         System.out.println("당첨 통계\n---");
-        for (String key : winResult.keySet()) {
-            System.out.println(key + " - " + winResult.get(key) + "개");
+        for (Prize key : winResult.keySet()) {
+            System.out.println(key.getTag() + " - " + winResult.get(key) + "개");
         }
     }
 

@@ -1,10 +1,8 @@
 package lotto.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.controller.dto.CreateUserDto;
-import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.User;
 import lotto.domain.WinningNumbers;

@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.controller.dto.CreateUserDto;
-import lotto.global.ErrorMessage;
 
 public class User {
     // 최대 가능 구매 금액 10만원 까지 설정.

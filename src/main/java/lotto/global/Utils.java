@@ -18,5 +18,4 @@ public class Utils {
     public static double roundNumberBySecondDecimalPlace(double rewardRatio) {
         return Double.parseDouble(String.format(SECOND_DECIMAL_PLACE_FORMAT, rewardRatio));
     }
-
 }

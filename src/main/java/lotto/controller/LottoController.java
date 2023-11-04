@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.dto.InputDto;
 import lotto.model.service.LottoService;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService service;
@@ -13,19 +14,8 @@ public class LottoController {
     public void run() {
         InputDto inputDto = new InputDto();
 
-        InputController.InputLottoPurchaseAmount(inputDto);
-
+        InputController.inputLottoPurchaseAmount(inputDto);
         service.createLottos(inputDto);
-        MainController();
-
-        OutputController();
+        OutputView.outputAllLottoNumbers(service.getLottos());
     }
-
-    private void MainController() {
-    }
-
-    private void OutputController() {
-    }
-
-
 }

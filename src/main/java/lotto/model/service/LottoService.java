@@ -2,7 +2,7 @@ package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.InputDto;
-import lotto.dto.LottoDto;
+import lotto.model.domain.Lottos;
 import lotto.model.repository.LottoRepository;
 
 public class LottoService {
@@ -18,7 +18,7 @@ public class LottoService {
         int lottoCount = getLottoCount(inputDto.getLottoPurchaseAmount());
 
         while (lottoCount > 0) {
-            lottoRepository.save(new LottoDto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottoRepository.save(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoCount--;
         }
     }
@@ -26,4 +26,14 @@ public class LottoService {
     private static int getLottoCount(int lottoPurchaseAmount) {
         return lottoPurchaseAmount / LOTTO_PRICE;
     }
+
+    public Lottos getLottos() {
+        return lottoRepository.findLottos();
+    }
+
+    /*
+    public void createLottoGame() {
+        lottoRepository.createGame();
+    }
+    */
 }

@@ -49,12 +49,12 @@
 
 # 프로젝트 구조
 
-### Domain
+### domain
 - Lotto
   - 로또 숫자를 저장하는 기능
 - LottoMarket
   - 로또를 조건에 맞게 생성하는 기능
-- WinLotto
+- WinningLotto
   - 당첨 로또 번호를 저장 하는 기능
 - BonusLottoNumber
   - 보너스 로또 번호를 저장하는 기능   

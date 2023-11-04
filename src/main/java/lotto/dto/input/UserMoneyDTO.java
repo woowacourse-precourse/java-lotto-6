@@ -1,6 +1,7 @@
-package lotto;
+package lotto.dto.input;
 
 import java.util.regex.Pattern;
+import lotto.domain.UserMoney;
 import lotto.exception.ExceptionMessage;
 import lotto.util.Parser;
 

@@ -1,13 +1,18 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
+class LottoTest extends NsTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -23,5 +28,40 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 개수가 6개 미만이면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 숫자가 1 ~ 45 범위를 만족하지 않으면 예외가 발생한다.")
+    @Test
+    void createLottoByOutOfRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호 입력 시 구분자로 쉼표(,)를 사용하지 않을 시 예외가 발생한다.")
+    @Test
+    void InputLottoByNotSeparatorComma() {
+        assertSimpleTest(() -> {
+            runException("1000", "1.2.3.4.5.6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 번호에 숫자가 아닌 다른 문자열을 입력하면 예외가 발생한다.")
+    @Test
+    void InputLottoByNotNumber() {
+        assertSimpleTest(() -> {
+            runException("1000", "#");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
+    }
 }

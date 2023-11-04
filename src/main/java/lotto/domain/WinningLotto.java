@@ -17,13 +17,20 @@ public final class WinningLotto {
         this.bonus = bonus;
     }
 
-    public boolean isSameWithBonus(Lotto target) {
+    public LottoRankInfo getLottoRank(Lotto target) {
+        int hitCount = countSameLottoNumber(target);
+        boolean isHitBonus = isSameWithBonus(target);
+
+        return LottoRankInfo.createLottoRank(hitCount, isHitBonus);
+    }
+
+    private boolean isSameWithBonus(Lotto target) {
         return target.getNumbers()
                 .stream()
                 .anyMatch(e -> e.equals(bonus));
     }
 
-    public int countSameLottoNumber(Lotto target) {
+    private int countSameLottoNumber(Lotto target) {
         return getIntersectionSize(target);
     }
 

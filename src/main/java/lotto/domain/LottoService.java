@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static lotto.domain.constant.ErrorConst.PRICE_LESS_THAN_THOUSAND;
 import static lotto.domain.constant.ErrorConst.PRICE_NOT_DIVIDED_BY_THOUSAND;
+import static lotto.domain.constant.LottoConst.PRICE;
 import static lotto.domain.constant.Rank.FIFTH;
 import static lotto.domain.constant.Rank.FIRST;
 import static lotto.domain.constant.Rank.FORTH;
@@ -29,7 +30,7 @@ public class LottoService {
 
     public void buyLottos(int price) {
         validate(price);
-        int count = price / 1000;
+        int count = price / PRICE;
         for (int i = 0; i < count; i++) {
             buyOneLotto();
         }
@@ -87,13 +88,13 @@ public class LottoService {
     }
 
     private static void validateMultipleOfThousand(int price) {
-        if (price % 1000 != 0) {
+        if (price % PRICE != 0) {
             throw new IllegalArgumentException(PRICE_NOT_DIVIDED_BY_THOUSAND);
         }
     }
 
     private static void validateMoreThanThousand(int price) {
-        if (price < 1000) {
+        if (price < PRICE) {
             throw new IllegalArgumentException(PRICE_LESS_THAN_THOUSAND);
         }
     }

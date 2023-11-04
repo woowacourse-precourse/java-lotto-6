@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-import static lotto.domain.constant.LottoNumberConst.LOWEST_NUMBER;
-import static lotto.domain.constant.LottoNumberConst.HIGHEST_NUMBER;
-import static lotto.domain.constant.LottoNumberConst.COUNT;
+import static lotto.domain.constant.LottoConst.LOWEST_NUMBER;
+import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;
+import static lotto.domain.constant.LottoConst.COUNT;
 
 public class NumberGenerator {
 

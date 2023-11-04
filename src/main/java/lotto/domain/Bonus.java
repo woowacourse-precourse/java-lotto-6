@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
-import static lotto.domain.constant.LottoNumberConst.HIGHEST_NUMBER;
-import static lotto.domain.constant.LottoNumberConst.LOWEST_NUMBER;
+import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;
+import static lotto.domain.constant.LottoConst.LOWEST_NUMBER;
 
 public class Bonus {
 

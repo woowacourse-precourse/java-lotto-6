@@ -5,9 +5,9 @@ import java.util.List;
 import static lotto.domain.constant.ErrorConst.LOTTO_HAS_DUPLICATE;
 import static lotto.domain.constant.ErrorConst.LOTTO_MORE_THAN_COUNT;
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
-import static lotto.domain.constant.LottoNumberConst.COUNT;
-import static lotto.domain.constant.LottoNumberConst.HIGHEST_NUMBER;
-import static lotto.domain.constant.LottoNumberConst.LOWEST_NUMBER;
+import static lotto.domain.constant.LottoConst.COUNT;
+import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;
+import static lotto.domain.constant.LottoConst.LOWEST_NUMBER;
 
 public class Lotto {
     private final List<Integer> numbers;

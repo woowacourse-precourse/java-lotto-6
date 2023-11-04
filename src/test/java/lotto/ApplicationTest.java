@@ -85,9 +85,16 @@ class ApplicationTest extends NsTest {
     void 로또_숫자_입력(){
         String lotto = "1,2,3,4,5,6";
         System.setIn(new ByteArrayInputStream(lotto.getBytes()));
-        Input input=new Input();
-        List<Integer> result=input.makeAnswerNumber();
+        List<Integer> result=Input.makeAnswerNumber();
         assertThat(result).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
+    @Test
+    void 보너스_숫자_입력(){
+        String bonus="7";
+        System.setIn(new ByteArrayInputStream(bonus.getBytes()));
+        int num=Input.makeBonusNumber();
+        assertThat(num).isEqualTo(7);
     }
     @Override
     public void runMain() {

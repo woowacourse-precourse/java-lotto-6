@@ -6,8 +6,8 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Input {
-    public List<Integer> makeAnswerNumber() {
-        String ans = readLine();
+    public static List<Integer> makeAnswerNumber() {
+        String ans = readLine(); //예외 필요
         List<Integer> answer = new ArrayList<>();
         String[] split = ans.split(",");
         for (int i = 0; i < split.length; i++) {
@@ -15,6 +15,14 @@ public class Input {
         }
         return answer;
     }
-
+    public static int makeBonusNumber(){
+        int bonus;
+        try{
+            bonus=Integer.parseInt(readLine());
+        }catch(Exception e){
+            throw new IllegalArgumentException();
+        }
+        return bonus;
+    }
 
 }

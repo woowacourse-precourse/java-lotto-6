@@ -19,4 +19,9 @@ public class GameView {
             System.out.printf(value.getMessage(),winCountArr[value.getCount()]);
         }
     }
+
+    public void printRate(Double rate) {
+        System.out.printf(OutputMessage.RATE.getMessage(),rate);
+    }
+
 }

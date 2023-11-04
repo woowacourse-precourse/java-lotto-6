@@ -26,8 +26,6 @@ public class GameController {
         lottoService.addWinningLotto(winningLotto);
     }
 
-    public void BonusLottoAdd(int number) {
-        // TODO: 인자로 받은 번호 보너스 번호 생성
     public void bonusLottoAdd(int number) throws IllegalArgumentException{
         lottoService.addBonusNumber(number);
         winList();
@@ -36,5 +34,10 @@ public class GameController {
     private void winList() {
         int[] winLottoArr = lottoService.findWinResult();
         gameView.printResult(winLottoArr);
+        rateDetails(winLottoArr);
+    }
+
+    private void rateDetails(int[] winLottoArr) {
+        gameView.printRate(lottoService.findRate(winLottoArr));
     }
 }

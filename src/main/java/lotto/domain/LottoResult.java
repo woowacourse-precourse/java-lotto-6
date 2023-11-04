@@ -45,7 +45,11 @@ public class LottoResult {
     }
 
     public double calculateRateOfReturn(int amount) {
-        int totalPrize = calculateTotalPrize();
-        return (totalPrize / amount) * 100;
+        double totalPrize = calculateTotalPrize();
+        return convertTwoDecimalPlaces((totalPrize / amount) * 100);
+    }
+
+    private double convertTwoDecimalPlaces(double rate) {
+        return Double.parseDouble(String.format("%.1f", rate));
     }
 }

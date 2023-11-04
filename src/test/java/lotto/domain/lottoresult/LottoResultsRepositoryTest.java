@@ -1,8 +1,9 @@
 package lotto.domain.lottoresult;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import lotto.domain.dto.LottoResultsDto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,6 @@ class LottoResultsRepositoryTest {
         //when
         LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //then
-        Assertions.assertThat(lottoResultsDto.getTotalLottoPrizeMoney()).isEqualTo(1550000);
+        assertThat(lottoResultsDto.getTotalLottoPrizeMoney()).isEqualTo(1550000);
     }
-
 }

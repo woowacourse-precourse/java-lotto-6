@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoCreator {
     private final List<Lotto> lottos = new ArrayList<>();

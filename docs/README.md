@@ -131,3 +131,5 @@ Todo
 - **LottoService**
   - public void 로또_구매_테스트()
     - 구입 금액만큼 로또가 생성되는지 검사한다.
+  - public void 로또_출력()
+    - 생성된 로또가 출력되는지 검사한다.

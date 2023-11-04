@@ -10,9 +10,16 @@ public class LottoController {
     LottoService lottoService = new LottoService();
     List<Lotto> lottos = new ArrayList<>();
     String lottoAmount;
-    List<Integer> winNumbers;
-    int bonus;
-    Map<String, Integer> winResult;
+    /*
+    ***** static 변수 *****
+    winNumbers  :  당첨 번호
+    bonus       :  보너스 번호
+    winResult   :  당첨 결과를 담은 객체
+     */
+    static List<Integer> winNumbers;
+    static int bonus;
+    static Map<String, Integer> winResult;
+
 
     public void LottoGamePlay() {
         int count = lottoPurchase();
@@ -29,37 +36,10 @@ public class LottoController {
     }
 
     private void LottoResult() {
-        winResult = new HashMap<>();
-        winResult.put(THREE_CORRECT,0);
-        winResult.put(FOUR_CORRECT,0);
-        winResult.put(FIVE_CORRECT_MATCH_BONUS,0);
-        winResult.put(FIVE_CORRECT_NOT_BONUS,0);
-        winResult.put(SIX_CORRECT,0);
         int winAmount = 0;
+        ResultInit();
         for (Lotto lotto : lottos) {
-            int count = lottoService.sameNumberCount(lotto, winNumbers);
-            if (count == 3) {
-                winResult.put(THREE_CORRECT, winResult.get(THREE_CORRECT) + 1);
-                winAmount += 5000;
-            }
-            if (count == 4) {
-                winResult.put(FOUR_CORRECT, winResult.get(FOUR_CORRECT) + 1);
-                winAmount += 50000;
-            }
-            if (count == 5) {
-                if (lottoService.isSameBonusNumber(lotto, bonus)) {
-                    winResult.put(FIVE_CORRECT_MATCH_BONUS, winResult.get(FIVE_CORRECT_MATCH_BONUS) + 1);
-                    winAmount += 30000000;
-                }
-                if (!lottoService.isSameBonusNumber(lotto, bonus)) {
-                    winResult.put(FIVE_CORRECT_NOT_BONUS, winResult.get(FIVE_CORRECT_NOT_BONUS) + 1);
-                    winAmount += 1500000;
-                }
-            }
-            if (count == 6) {
-                winResult.put(SIX_CORRECT, winResult.get(SIX_CORRECT) + 1);
-                winAmount += 2000000000;
-            }
+            winAmount += lottoService.insertResult(lotto, winNumbers);
         }
         outputView.LottoGameResult(winResult);
         outputView.totalRating(lottoService.rateOfReturn(Integer.parseInt(lottoAmount),winAmount));
@@ -98,6 +78,15 @@ public class LottoController {
         int count = lottoService.countingLottoByAmount(Integer.parseInt(lottoAmount));
         outputView.purchaseLottoCount(count);
         return count;
+    }
+
+    private void ResultInit() {
+        winResult = new TreeMap<>();
+        winResult.put(THREE_CORRECT,0);
+        winResult.put(FOUR_CORRECT,0);
+        winResult.put(FIVE_CORRECT_NOT_BONUS,0);
+        winResult.put(FIVE_CORRECT_MATCH_BONUS,0);
+        winResult.put(SIX_CORRECT,0);
     }
 
 }

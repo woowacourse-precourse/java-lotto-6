@@ -16,8 +16,8 @@ public class OutputView {
 
     public void LottoGameResult(Map<String, Integer> winResult) {
         System.out.println("당첨 통계\n---");
-        for (String result : winResult.keySet()) {
-            System.out.println(result + " - " + winResult.get(result) + "개");
+        for (String key : winResult.keySet()) {
+            System.out.println(key + " - " + winResult.get(key) + "개");
         }
     }
 

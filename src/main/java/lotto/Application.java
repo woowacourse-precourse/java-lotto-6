@@ -1,17 +1,13 @@
 package lotto;
 
 import lotto.controller.GameController;
-import lotto.handler.InputHandler;
-import lotto.service.LottoService;
-import lotto.utils.DefaultLottoWinningStrategy;
-import lotto.utils.RandomNumberGenerator;
-import lotto.view.GameView;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        GameConfig gameConfig = new GameConfig();
+        GameController gameController = gameConfig.gameController();
 
-        GameController gameController = new GameController(new GameView(), new InputHandler(), new LottoService(new DefaultLottoWinningStrategy(), new RandomNumberGenerator()));
         gameController.startGame();
     }
 }

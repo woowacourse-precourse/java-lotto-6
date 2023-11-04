@@ -14,4 +14,8 @@ public class OutputView {
     public void printBonusNumberGuideMessage() {
         System.out.println(GuideMessage.BONUS_NUMBER_GUIDE_MESSAGE.getText());
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

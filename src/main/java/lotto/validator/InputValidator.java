@@ -13,6 +13,13 @@ public class InputValidator {
 
     // 에러 체크를 사용하는 로직에서는 IllegalArgumentException이 감지되면 해당 로직을 다시 실행하도록 설계 필요
 
+    public void validateLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            System.out.println(ERROR_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void validateLottoDuplication(List<Integer> numbers) {
         List<Integer> collect = numbers.stream().filter(number -> Collections.frequency(numbers, number) != 1)
                 .collect(Collectors.toList());

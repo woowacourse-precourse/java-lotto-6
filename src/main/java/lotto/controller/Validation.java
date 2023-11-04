@@ -15,11 +15,11 @@ public class Validation {
     }
 
     public void validateWinningNumbers(List<Integer> winningNumbers) {
-        validateRange(winningNumbers);
-        validateDuplication(winningNumbers);
+        validateWinningNumbersRange(winningNumbers);
+        validatewinningNumbersDuplication(winningNumbers);
     }
 
-    public void validateRange(List<Integer> winningNumbers) {
+    public void validateWinningNumbersRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (winningNumber < 1 || 45 < winningNumber) {
                 throw new IllegalArgumentException(ErrorMessages
@@ -29,7 +29,7 @@ public class Validation {
         }
     }
 
-    public void validateDuplication(List<Integer> winningNumbers) {
+    public void validatewinningNumbersDuplication(List<Integer> winningNumbers) {
         Set<Integer> checkDuplicates = new HashSet<>(winningNumbers);
 
         if (checkDuplicates.size() != winningNumbers.size()) {

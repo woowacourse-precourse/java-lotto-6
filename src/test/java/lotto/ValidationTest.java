@@ -22,7 +22,7 @@ public class ValidationTest {
     void createWinningNumbersOverRange() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
 
-        assertThatThrownBy(() -> new Validation().validateRange(winningNumbers))
+        assertThatThrownBy(() -> new Validation().validateWinningNumbersRange(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -31,7 +31,7 @@ public class ValidationTest {
     void createDuplicatedWinningNumbers() {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,1);
 
-        assertThatThrownBy(() -> new Validation().validateDuplication(winningNumbers))
+        assertThatThrownBy(() -> new Validation().validatewinningNumbersDuplication(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

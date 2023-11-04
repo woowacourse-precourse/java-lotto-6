@@ -15,14 +15,18 @@ public class WinningLotto {
         this.lotto = splitStringToLotto(numbers);
     }
 
+    private void validate(String numbers) {
+        if (!NUMERIC_PATTERN.matcher(numbers).matches()) {
+            throw new IllegalArgumentException(NOT_NUMBERS_MESSAGE);
+        }
+    }
+
     private Lotto splitStringToLotto(String numbers) {
         return StringSplitParser.splitStringToNumbers(numbers).stream().map(Integer::valueOf)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Lotto::new));
     }
 
-    private void validate(String numbers) {
-        if (!NUMERIC_PATTERN.matcher(numbers).matches()) {
-            throw new IllegalArgumentException(NOT_NUMBERS_MESSAGE);
-        }
+    public Integer getMatchNumberCount(Lotto lotto) {
+        return this.lotto.findMatchCount(lotto);
     }
 }

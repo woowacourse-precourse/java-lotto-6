@@ -44,6 +44,10 @@ public class Lotto {
         }
     }
 
+    public Integer findMatchCount(Lotto lotto) {
+        return lotto.numbers.stream().filter(numbers::contains).toList().size();
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

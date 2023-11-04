@@ -26,7 +26,12 @@ public class LottoController {
         Writer.printModelsInList(lottos.getLottosDTO());
     }
 
-    //TODO 3. 로또 6자리 입력
+    public void getAnswer(){
+        retryHandler.run(()-> {
+            Writer.printGuide(PrintConst.GUIDE_LOTTO_NUMBERS);
+
+        });
+    }
 
     //TODO 4. 보너스 번호 입력
 

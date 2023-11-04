@@ -6,13 +6,14 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoAnswer;
 
 public class AnswerGenerator extends LottoGenerator{
-    static LottoAnswer lottoAnswer;
-    final List<Integer> list;
-    final Integer bonusNumber;
+    private static LottoAnswer lottoAnswer;
+    private final List<Integer> list;
+    private final Integer bonusNumber;
 
     public AnswerGenerator(List<Integer> list, Integer bonusNumber) {
         this.list = list;
         this.bonusNumber = bonusNumber;
+        lottoAnswer = new LottoAnswer(list, bonusNumber);
     }
 
     @Override

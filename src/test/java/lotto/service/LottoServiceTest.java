@@ -19,9 +19,9 @@ class LottoServiceTest {
     @Test
     void buyLotto() {
         int lottoAmount = randomUtils.RandomNumber() * Value.LOTTO_TICKET_PRICE;
-        List<Lotto> userLottos = lottoService.createUserLottos(lottoAmount);
+        lottoService.createUserLottos(lottoAmount);
 
-        assertEquals(userLottos.size(), lottoAmount/Value.LOTTO_TICKET_PRICE);
+        assertEquals(lottoService.getUserLottoCount(), lottoAmount/Value.LOTTO_TICKET_PRICE);
     }
 
 }

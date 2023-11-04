@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.ErrorMessage;
 import lotto.constants.Message;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
@@ -21,6 +22,37 @@ public class Controller {
     public void run() {
         createUserLottos();
         showUserLottos();
+        createWinningLotto();
+    }
+
+    private void createWinningLotto() {
+        Lotto winningLotto = inputWinningLotto();
+        lottoService.setWinningLotto(winningLotto);
+    }
+
+    private Lotto inputWinningLotto() {
+        System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
+
+        while (true) {
+            String inputWinningNumbers = Console.readLine();
+            Lotto winningLotto = winningLottoValidationProcess(inputWinningNumbers);
+
+            if (winningLotto != null) {
+                return winningLotto;
+            }
+        }
+    }
+
+    public Lotto winningLottoValidationProcess(String inputWinningNumbers) {
+        try {
+            Lotto winningLotto = parseUtils.parseStringToLotto(inputWinningNumbers);
+            validationService.winningLottoNumberValidation(winningLotto);
+
+            return winningLotto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
+        }
+        return null;
     }
 
     private void showUserLottos() {
@@ -31,15 +63,16 @@ public class Controller {
         for (Lotto lotto : userLottos) {
             System.out.println(lotto.toString());
         }
+        System.out.println();
     }
 
     public void createUserLottos() {
-        int lottoAmount = getAmount();
+        int lottoAmount = inputAmount();
         lottoService.createUserLottos(lottoAmount);
     }
 
 
-    public int getAmount() {
+    public int inputAmount() {
         System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
 
         while (true) {

@@ -19,6 +19,12 @@ public class LottoService {
 
     List<Lotto> userLottos = new ArrayList<>();
 
+    Lotto winningLotto;
+
+    public void setWinningLotto(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
+    }
+
     public int getUserLottoCount() {
         return userLottos.size();
     }

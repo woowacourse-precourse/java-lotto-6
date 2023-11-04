@@ -28,13 +28,8 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     private boolean duplicationCheck(List<Integer> numbers){
-        HashSet<Integer> checkNumber = new HashSet<>();
-        for(int check : numbers){
-            if(!checkNumber.add(check)){
-                return true;
-            }
-        }
-        return false;
+        HashSet<Integer> checkNumber = new HashSet<>(numbers);
+        return checkNumber.size() != numbers.size();
     }
 
     private boolean rangeCheck(List<Integer> numbers){

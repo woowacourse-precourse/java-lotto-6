@@ -11,13 +11,21 @@ public class LottoWinningChecker {
     private final LottoNumber bonusNumber;
 
     LottoWinningChecker(List<Integer> lottoWinningNumber, Integer bonusNumber) {
+        validate(lottoWinningNumber);
         this.lottoResult = lottoWinningNumber.stream()
                 .map(LottoNumber::new)
                 .toList();
 
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
-    private int matchCount(Lotto lotto){
+
+    private void validate(List<Integer> lottoWinningNumber) {
+        if (lottoWinningNumber.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 갯수는 6개 입니다.");
+        }
+    }
+
+    private int matchCount(Lotto lotto) {
         int matchCount = 0;
         for (LottoNumber lottoNumber : lottoResult) {
             if (lotto.containLottoNumber(lottoNumber)) {
@@ -26,12 +34,14 @@ public class LottoWinningChecker {
         }
         return matchCount;
     }
-    private LottoResult matchBonusNumber(Lotto lotto){
-        if( lotto.containLottoNumber(bonusNumber) ){
+
+    private LottoResult matchBonusNumber(Lotto lotto) {
+        if (lotto.containLottoNumber(bonusNumber)) {
             return LottoResult.SECOND_PRIZE;
         }
         return LottoResult.THIRD_PRIZE;
     }
+
     public LottoResult check(Lotto lotto) {
         int matchCount = matchCount(lotto);
         if (matchCount < FIFTH_PRIZE_MATCHING_COUNT) {

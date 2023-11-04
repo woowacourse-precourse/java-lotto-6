@@ -1,7 +1,7 @@
 package lotto.io;
 
 import lotto.constants.ProgressMessage;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoResultFormatter;
 
 public class OutputView {
 
@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(ProgressMessage.INPUT_LOTTO_PURCHASE_PRICE_MESSAGE);
     }
 
-    public void printLottoResult(LottoResultDto lottoResultDto) {
+    public void printLottoResult(LottoResultFormatter lottoResultDto) {
         System.out.println(lottoResultDto.toResultLottoMessage());
     }
 }

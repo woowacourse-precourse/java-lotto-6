@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.Lottos;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoResultFormatter;
 
 public class LottoService {
 
@@ -16,8 +16,8 @@ public class LottoService {
         lottos.saveLottos(lottoPurchasePrice);
     }
 
-    public LottoResultDto getLottos() {
-        return new LottoResultDto(lottos.getLottoValues());
+    public LottoResultFormatter getLottos() {
+        return new LottoResultFormatter(lottos.getLottoValues());
     }
 
 

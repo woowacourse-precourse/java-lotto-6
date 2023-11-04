@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoResultFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,15 +10,15 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("로또 결과 Dto에 대해")
-class LottoResultDtoTest {
+@DisplayName("로또 결과 형식 객체에 대해")
+class LottoResultFormatterTest {
 
     @ParameterizedTest
     @MethodSource("lottosResources")
     @DisplayName("로또 결과에 따라 출력 형태를 얻는다.")
     void Given_CreateLottoResultDto_When_toResultLottoMessage_Then_EqualType(List<Numbers> values) {
         //given
-        LottoResultDto lottoResultDto = new LottoResultDto(values);
+        LottoResultFormatter lottoResultDto = new LottoResultFormatter(values);
 
         //when
         String resultLottoMessage = lottoResultDto.toResultLottoMessage();

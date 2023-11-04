@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

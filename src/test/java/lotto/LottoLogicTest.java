@@ -25,7 +25,7 @@ public class LottoLogicTest {
     @Test
     @DisplayName("보너스 로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
     void BonusNumberIsNotInCorrectRange() {
-        assertThatThrownBy(() -> new LottoNumbersInfo(List.of(), 0, new Lotto(List.of(1, 2, 3, 4, 5, 6))))
+        assertThatThrownBy(() -> new LottoNumbersInfo(List.of(), 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
     }

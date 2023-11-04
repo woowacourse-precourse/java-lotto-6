@@ -13,7 +13,7 @@ public class BonusNumber {
     }
 
     private void validate(Integer number) {
-        if(number <= MINIMUM_VALUE || number >= MAXIMUM_VALUE) {
+        if(number < MINIMUM_VALUE || number > MAXIMUM_VALUE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }

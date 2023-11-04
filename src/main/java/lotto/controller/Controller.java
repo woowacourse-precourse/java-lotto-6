@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.util.Converter.convertStringToInt;
-
 import java.util.List;
 import lotto.controller.dto.PurchasedLottoResponse;
 import lotto.model.BonusNumber;
@@ -9,7 +7,6 @@ import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumbers;
-import lotto.util.Converter;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -41,7 +38,7 @@ public class Controller {
 
     private Money getMoney() {
         String money = inputView.readLine();
-        return new Money(convertStringToInt(money));
+        return Money.createWith(money);
     }
 
     private Lottos getLottos(final long money) {
@@ -57,13 +54,13 @@ public class Controller {
     private WinningNumber getWinningNumber() {
         outputView.printWinningNumberRequestMessage();
         String winningNumber = inputView.readLine();
-        return new WinningNumber(Converter.splitWithCommaAndConvertToIntegerList(winningNumber));
+        return WinningNumber.createWith(winningNumber);
     }
 
     private BonusNumber getBonusNumber() {
         outputView.printBonusNumberRequestMessage();
         String bonusNumber = inputView.readLine();
-        return new BonusNumber(convertStringToInt(bonusNumber));
+        return BonusNumber.createWith(bonusNumber);
     }
 
 

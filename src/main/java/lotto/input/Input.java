@@ -1,5 +1,7 @@
 package lotto.input;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.generator.InputGenerator;
 import lotto.validate.Validate;
 
@@ -21,5 +23,19 @@ public class Input {
         int money = Integer.parseInt(input);
 
         return money;
+    }
+
+    public List<Integer> inputWinningNumber() {
+        List<Integer> winningNumber = new ArrayList<>();
+        for(String number: inputGenerator.readLine().split(",", -1)) {
+
+            // 1 ~ 45 사이의 숫자인지 검증
+            
+            // 리스트에 중복된 값이 있는지 검증
+
+            winningNumber.add(Integer.parseInt(number));
+        }
+
+        return winningNumber;
     }
 }

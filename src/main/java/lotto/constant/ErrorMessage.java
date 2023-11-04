@@ -6,7 +6,8 @@ public enum ErrorMessage {
     ERROR_NOT_FIRST_ZERO("[ERROR] 첫 숫자는 0이 될 수 없습니다."),
     ERROR_NOT_UNIT("[ERROR] 입력값이 1000원 단위가 아닙니다."),
     ERROR_OVER_MAX("[ERROR] 로또 최대 구매 금액을 초과했습니다."),
-    ERROR_LOTTO_SIZE("[ERROR] 로또 사이즈는 6 이하일 수 없습니다.");
+    ERROR_LOTTO_SIZE("[ERROR] 로또 사이즈는 6 이하일 수 없습니다."),
+    ERROR_LOTTO_DUPLICATE("[ERROR] 로또 번호는 중복일 수 없습니다.");
 
     private final String text;
 

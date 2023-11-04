@@ -1,14 +1,14 @@
 # 로또 
 
 ## 기능 목록
-- [ ] 숫자 범위가 1~45까지인 로또 번호를 생성한다. - LottoCreator#createLottoRandomNumber()
+- [ ] 숫자 범위가 1~45까지인 로또 번호를 생성한다. - Lotto#createLottoRandomNumber()
 - [ ] 총 지불 금액을 1,000원으로 나눈 몫을 구한다. - LottoSalesman#lottoCount
   - [ ] 1,000원으로 나누어 떨어지지 않는 경우 예외처리 한다. - LottoSalesman#getMoneyException()
-- [ ] 1개의 로또를 발행한다. - LottoCreator#oneLottoCreate()
+- [ ] 1개의 로또를 발행한다. - Lotto#oneLottoCreate()
   - [ ] 1개의 로또는 천원이다.
   - [ ] 1개의 로또에는 6개의 로또 번호가 들어간다.
     - [ ] 당첨 번호는 숫자 6개와 보너스 번호 1개를 생성한다.
-    - [ ] 모든 번호는 중복되지 않아야한다. - LottoCreator#DupulicationCheck()
+    - [ ] 모든 번호는 중복되지 않아야한다. - Lotto#DupulicationCheck()
 - 사용자 로또 번호와 당첨 번호를 비교한다. - Referee#compare()
   - [ ] 발행한 로또 수량 및 번호를 출력한다. - ResultLotto
     - [ ] 로또 번호는 오름차순으로 정렬하여 보여준다. -> 처음 로또에 로또 번호를 넣을 때 정렬하면 좋을 것 같다.

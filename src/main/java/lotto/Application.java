@@ -14,7 +14,7 @@ public class Application {
         return inputPurchaseAmount;
     }
 
-    public  int inputPurchaseAmountValidation(String inputPurchaseAmount){
+    public int inputPurchaseAmountValidation(String inputPurchaseAmount){
         try {
             int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
             return purchaseAmount;
@@ -22,4 +22,13 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000 ");
         }
     }
+
+    public int lottoQuantity(int lottoPurchaseAmount){
+        int lottoQuantity = lottoPurchaseAmount % 1000;
+        if(lottoQuantity != 0){
+            throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
+        }
+        return lottoQuantity;
+    }
+
 }

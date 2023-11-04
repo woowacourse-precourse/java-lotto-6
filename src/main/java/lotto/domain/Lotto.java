@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -11,9 +12,12 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        sortAscending(numbers);
-        this.numbers = Collections.unmodifiableList(numbers);
+        List<Integer> numbersCopy = new ArrayList<>(numbers);
+        //numbers가 수정 불가능할 경우를 처리하기 위해 배열을 복사하여 사용
+
+        validate(numbersCopy);
+        sortAscending(numbersCopy);
+        this.numbers = Collections.unmodifiableList(numbersCopy);
     }
 
     private void sortAscending(List<Integer> numbers) {

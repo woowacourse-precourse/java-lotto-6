@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constants.Messages;
 import lotto.constants.Values;
 
@@ -38,6 +39,15 @@ public class Lotto {
 
     private boolean isOutsideRange(int number) {
         return number < Values.LOTTO_MIN_NUMBER || number > Values.LOTTO_MAX_NUMBER;
+    }
+
+    @Override
+    public String toString() {
+        String lottoNumbers = numbers.stream()
+                .sorted()
+                .map(Object::toString)
+                .collect(Collectors.joining(Values.LOTTO_NUMBER_SEPARATOR));
+        return String.format(Messages.LOTTO_NUMBERS_MESSAGE, lottoNumbers);
     }
 
     public List<Integer> getNumbers() {

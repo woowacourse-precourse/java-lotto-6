@@ -13,4 +13,13 @@ public class Application {
         String inputPurchaseAmount = Console.readLine();
         return inputPurchaseAmount;
     }
+
+    public  int inputPurchaseAmountValidation(String inputPurchaseAmount){
+        try {
+            int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+            return purchaseAmount;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000 ");
+        }
+    }
 }

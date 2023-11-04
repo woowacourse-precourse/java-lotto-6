@@ -47,7 +47,8 @@ public class LottoCompanyService {
     }
 
     private PrizeResult evaluateLottosWithBonus() {
-        List<Lotto> secondPrizeLottos = lottoCompany.calculateLottosWithSizeIncludeBonus(lottos, SECOND_PRIZE_MATCH.getValue());
+        int bonusMatchSize = SECOND_PRIZE_MATCH.getValue();
+        List<Lotto> secondPrizeLottos = lottoCompany.calculateLottosWithSizeIncludeBonus(lottos, bonusMatchSize);
         Prize secondPrize = Prize.SECOND;
 
         return PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());

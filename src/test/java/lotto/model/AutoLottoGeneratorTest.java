@@ -1,2 +1,33 @@
-package lotto.model;public class RandomLottoGeneratorTest {
+package lotto.model;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+
+public class AutoLottoGeneratorTest {
+    final static int TEST_NUMBER = 5;
+    AutoLottoGenerator autoLottoGenerator;
+
+    @BeforeEach
+    void setGenerator() {
+        autoLottoGenerator = AutoLottoGenerator.getInstance();
+    }
+
+    @DisplayName("자동 로또 발행기는 하나의 로또를 발행해야 한다.")
+    @Test
+    void createLottoByAutoLottoGenerator() {
+        //when, then
+        assertThat(autoLottoGenerator.generate()).isInstanceOf(Lotto.class);
+    }
+
+    @DisplayName("자동 로또 발행기는 유효한 로또를 발행해야 한다.")
+    @RepeatedTest(TEST_NUMBER)
+    void createValidLottoByAutoLottoGenerator() {
+        //when, then
+        assertDoesNotThrow(() -> autoLottoGenerator.generate());
+    }
 }

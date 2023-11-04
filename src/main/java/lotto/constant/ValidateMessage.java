@@ -4,6 +4,7 @@ public enum ValidateMessage {
     PURCHASE_PRICE_CANNOT_BE_NULL_OR_EMPTY("구입 금액은 null 값이거나 빈 값 일 수 없습니다."),
     PURCHASE_PRICE_IS_NOT_INTEGER("구입 금액은 정수 값으로 입력해주세요."),
     PURCHASE_PRICE_IS_NOT_DIVIDED_1000("구입 금액은 1,000원 단위로 입력해주세요."),
+    PURCHASE_PRICE_CAN_NOT_BE_0("구입 금액은 0원 이상으로 입력해주세요."),
 
     WINNER_NUMBER_CANNOT_BE_NULL_OR_EMPTY("당첨 숫자는 null 값이거나 빈 값 일 수 없습니다."),
     WINNER_NUMBER_VALIDATE_ERROR_INPUT("잘못된 입력 방법입니다. 올바른 입력 예시 : 1,2,3,4,5,6"),

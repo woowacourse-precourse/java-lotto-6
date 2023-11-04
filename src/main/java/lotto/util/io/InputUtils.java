@@ -25,6 +25,12 @@ public class InputUtils {
         return numbers.stream().map(Integer::parseInt).collect(toList());
     }
 
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        String number = Console.readLine();
+        validateInputBonusNumber(number, winningNumbers);
+        return Integer.parseInt(number);
+    }
+
     private static void validateInputMoney(String money) {
         if (isNull(money)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
@@ -48,6 +54,21 @@ public class InputUtils {
         }
         if (hasDuplicates(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.");
+        }
+    }
+
+    private static void validateInputBonusNumber(String number, List<Integer> winningNumbers) {
+        if (isNull(number)) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+        }
+        if (!isNumeric(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+        }
+        if (!isNumberInRange(Integer.parseInt(number))) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(Integer.parseInt(number))) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 숫자여야 합니다.");
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchasePrice;
 
@@ -18,5 +19,10 @@ public class InputMapper {
                 .map(Integer::parseInt)
                 .toList();
         return new Lotto(wingingNumbers);
+    }
+
+    public BonusNumber toBonusNumber(String bonusNumber, Lotto lotto) {
+        Integer bonus = Integer.parseInt(bonusNumber);
+        return new BonusNumber(bonus, lotto);
     }
 }

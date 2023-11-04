@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.constant.LottoConstant;
+import lotto.constant.OutputMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +24,12 @@ public class Lottoes {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(start, end, count);
             elements.add(new Lotto(numbers));
         }
+    }
+
+    public String getLottoesNumber() {
+        StringBuilder stringBuilder = new StringBuilder();
+        elements.forEach(element -> stringBuilder.append(element.getNumbers())
+                .append(OutputMessage.NEW_LINE.getMessage()));
+        return stringBuilder.toString();
     }
 }

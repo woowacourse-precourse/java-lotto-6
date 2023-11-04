@@ -38,6 +38,7 @@ public class LottoGameController {
                 outputView.printTicketQuantityMessage(ticketQuantity.quantity());
                 return ticketQuantity;
             } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
             }
         }
     }
@@ -50,6 +51,7 @@ public class LottoGameController {
                 List<Integer> numbers = Converter.convertToLottoNumbers(winningNumbers);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
             }
         }
     }
@@ -62,6 +64,7 @@ public class LottoGameController {
                 validateBonusNumberContainsWinningNumber(numbers, bonusNumber);
                 return new BonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
             }
         }
     }

@@ -19,5 +19,9 @@ public class OutputView {
     public void printRequestInputBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
-    
+
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
 }

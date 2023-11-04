@@ -20,6 +20,7 @@ public class LottoMoney {
     }
 
     public void setNumbers() {
+        System.out.println();
         for (int i = 0; i < count; i++) {
             numbers.add(getRandomLotto());
         }

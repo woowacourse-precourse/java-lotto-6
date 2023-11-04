@@ -32,14 +32,14 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("lotto.validator.LottoNumberArgumentProvider#provideCorrectInput")
+    @MethodSource("lotto.validator.LottoNumberArgumentsProvider#provideCorrectInput")
     @DisplayName("로또 번호 검증")
     void 로또_번호_검증(String input) {
         validator.validateLottoNumber(input);
     }
 
     @ParameterizedTest
-    @MethodSource("lotto.validator.LottoNumberArgumentProvider#provideExceptionInput")
+    @MethodSource("lotto.validator.LottoNumberArgumentsProvider#provideExceptionInput")
     @DisplayName("구입 금액 검증 예외")
     void 로또_번호_검증_예외(String input) {
         assertThatThrownBy(() -> validator.validateLottoNumber(input))
@@ -47,14 +47,14 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("lotto.validator.BonusNumberArgumentProvider#provideCorrectInput")
+    @MethodSource("lotto.validator.BonusNumberArgumentsProvider#provideCorrectInput")
     @DisplayName("보너스 번호 검증")
     void 보너스_번호_검증(Lotto lotto, String input) {
         validator.validateBonusNumber(lotto, input);
     }
 
     @ParameterizedTest
-    @MethodSource("lotto.validator.BonusNumberArgumentProvider#provideExceptionInput")
+    @MethodSource("lotto.validator.BonusNumberArgumentsProvider#provideExceptionInput")
     @DisplayName("보너스 번호 검증 예외")
     void 보너스_번호_검증_예외(Lotto lotto, String input) {
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, input))

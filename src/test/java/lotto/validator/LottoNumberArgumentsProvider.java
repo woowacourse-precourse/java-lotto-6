@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.Arguments;
 
-public class LottoNumberArgumentProvider {
+public class LottoNumberArgumentsProvider {
 
     static Stream<Arguments> provideCorrectInput() {
         return Stream.of(

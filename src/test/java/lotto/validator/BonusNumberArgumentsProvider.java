@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 import lotto.lotto.Lotto;
 import org.junit.jupiter.params.provider.Arguments;
 
-public class BonusNumberArgumentProvider {
+public class BonusNumberArgumentsProvider {
 
     static Stream<Arguments> provideCorrectInput() {
         return Stream.of(

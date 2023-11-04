@@ -11,4 +11,8 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다.\n", money.getTicket());
     }
 
+    public static void printLottos(Lottos lottos) {
+        lottos.getLottos().forEach(System.out::println);
+        System.out.println();
+    }
 }

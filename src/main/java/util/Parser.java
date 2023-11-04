@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public class Parser {
     public List<Integer> parseWinningNumber(String input){
-        return parseIntegerList(parseSplitByComma(input));
+        return parseStringToIntegerList(parseSplitByComma(input));
     }
     public List<String> parseSplitByComma(String input){
         return new ArrayList<>(Arrays.asList(input.split(",")));
     }
-    public List<Integer> parseIntegerList(List<String> input){
+    public List<Integer> parseStringToIntegerList(List<String> input){
         return input.stream()
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());

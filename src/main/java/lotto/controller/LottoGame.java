@@ -76,7 +76,7 @@ public class LottoGame {
         try {
             OutputView.printInputBonusNumber();
             bonusNumberString = InputView.receiveUserInput();
-            Validator.isPrimeNumber(bonusNumberString);
+            LottoNumberValidator.validateBonusNumber(bonusNumberString);
             bonusNumber = Integer.parseInt(bonusNumberString);
             LottoNumberValidator.validateDuplication(bonusNumber,winningNumber);
         } catch (IllegalArgumentException e) {

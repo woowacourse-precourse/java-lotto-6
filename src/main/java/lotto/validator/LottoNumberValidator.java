@@ -15,6 +15,11 @@ public class LottoNumberValidator {
                 .forEach((number) -> validateNumberRange(number));
     }
 
+    public static void validateBonusNumber(String bonusNumber) {
+        Validator.isPrimeNumber(bonusNumber);
+        validateNumberRange(Integer.parseInt(bonusNumber));
+    }
+
 
 
     public static void validateNumbersSize(List<Integer> numbers) {

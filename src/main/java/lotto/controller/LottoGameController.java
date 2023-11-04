@@ -24,10 +24,9 @@ public class LottoGameController {
     }
 
     public void run() {
-        final LottoSeller seller = new LottoSeller(AutoLottoGenerator.getInstance());
-        final LottoBuyer buyer = new LottoBuyer();
+        final LottoSeller seller = lottoGameService.generateSeller();
+        final LottoBuyer buyer = lottoGameService.generateBuyer();
         int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
-        outputView.printCountOfLotto(countOfLotto);
-        Lottos lottos = seller.sell(countOfLotto);
+        lottoGameService.printLottoNumbersOnSell(seller, countOfLotto);
     }
 }

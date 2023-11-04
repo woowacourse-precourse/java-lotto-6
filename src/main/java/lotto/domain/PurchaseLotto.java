@@ -1,12 +1,10 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
+
 import static lotto.constant.ErrorMessage.*;
 
 public class PurchaseLotto {
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
-    private static final int PURCHASE_AMOUNT_MAX = 100000;
-    private static final int NUMBER_ZERO = 0;
-
     public static int getLottoCount(String amount) {
         validator(amount);
         int amountNum = Integer.parseInt(amount);
@@ -39,21 +37,21 @@ public class PurchaseLotto {
 
     private static void validateFirstNumber(String amount) {
         int firstNumber = amount.charAt(0) - '0';
-        if(firstNumber == NUMBER_ZERO){
+        if(firstNumber == LottoConfig.NUMBER_ZERO){
             throw new IllegalArgumentException(ERROR_NOT_FIRST_ZERO.toString());
         }
     }
 
     private static void validateMultipleOf1000(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum % PURCHASE_AMOUNT_UNIT != NUMBER_ZERO){
+        if(amountNum % LottoConfig.PURCHASE_AMOUNT_UNIT != LottoConfig.NUMBER_ZERO){
             throw new IllegalArgumentException(ERROR_NOT_UNIT.toString());
         }
     }
 
     private static void validateMaxPurchase(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum > PURCHASE_AMOUNT_MAX){
+        if(amountNum > LottoConfig.PURCHASE_AMOUNT_MAX){
             throw new IllegalArgumentException(ERROR_OVER_MAX.toString());
         }
     }

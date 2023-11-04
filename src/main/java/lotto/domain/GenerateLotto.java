@@ -1,18 +1,15 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.LottoConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GenerateLotto {
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
-    private static final int COUNT = 6;
-
     private static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_RANGE, LottoConfig.MAX_RANGE, LottoConfig.LOTTO_SIZE);
     }
 
     private static List<Integer> sorted(List<Integer> numbers) {

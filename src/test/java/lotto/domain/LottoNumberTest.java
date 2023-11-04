@@ -4,7 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import lotto.view.ErrorMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -59,5 +63,20 @@ class LottoNumberTest {
         LottoNumber lottoNumber1 = LottoNumber.from(5);
         LottoNumber lottoNumber2 = LottoNumber.from(7);
         assertThat(lottoNumber1).isNotEqualTo(lottoNumber2);
+    }
+
+    @DisplayName("로또 번호를 오름차순으로 정렬할 수 있다")
+    @Test
+    void testComparable() {
+        LottoNumber lottoNumber1 = LottoNumber.from(11);
+        LottoNumber lottoNumber2 = LottoNumber.from(7);
+        LottoNumber lottoNumber3 = LottoNumber.from(8);
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(lottoNumber1);
+        lottoNumbers.add(lottoNumber2);
+        lottoNumbers.add(lottoNumber3);
+
+        Collections.sort(lottoNumbers);
+        Assertions.assertThat(lottoNumbers).containsExactly(lottoNumber2, lottoNumber3, lottoNumber1);
     }
 }

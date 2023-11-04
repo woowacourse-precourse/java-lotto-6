@@ -7,6 +7,7 @@ public class InvalidInput {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int ALLOW_DUPLICATE_NUMBER_COUNT = 1;
+    private static final int LOTTO_SIZE = 6;
 
     private static String message;
 
@@ -29,6 +30,13 @@ public class InvalidInput {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(message);
+        }
+    }
+
+    public void sizeExceededException(List<Integer> numbers) {
+        message = ExceptionMessage.EXCEEDED_LOTTO_SIZE.getMessage();
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException();
         }
     }
 

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -39,8 +40,29 @@ public class Lotto {
         }
     }
 
+    public boolean has(LottoNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(bonusNumber));
+    }
+
     public List<LottoNumber> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Lotto lotto)) {
+            return false;
+        }
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 }
 /*

@@ -13,13 +13,13 @@ public class Customer {
 
     private List<Lotto> lottos;
     private int payment;
-    private int price;
+    private int prize;
     private int numberOfLottos;
 
     public Customer(int payment) {
         this.lottos = new ArrayList<>();
         this.payment = payment;
-        this.price = 0;
+        this.prize = 0;
         this.numberOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
     }
 

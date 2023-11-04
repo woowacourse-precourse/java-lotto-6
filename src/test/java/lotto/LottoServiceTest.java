@@ -56,4 +56,24 @@ class LottoServiceTest {
                         () -> lottoService.validateBuyMoney(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액에 공백이 포함된 경우 예외가 발생한다.")
+    @Test
+    void inputMoneyBlankExceptionTest() {
+        String money = "80 00";
+
+        Assertions.assertThatThrownBy(
+                        () -> lottoService.validateBuyMoney(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 1 ~ 45 범위의 숫자가 아닐경우 예외가 발생한다.")
+    @Test
+    void inputWinningNumberRangeExceptionTest() {
+        String winningNumber = "46";
+
+        Assertions.assertThatThrownBy(
+                        () -> lottoService.validateInputPlayerNumber(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

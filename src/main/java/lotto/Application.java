@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -29,6 +33,16 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
         }
         return lottoQuantity;
+    }
+
+    public List<Lotto> createLottos(int lottoQuantity){
+        List<Lotto> lottos= new ArrayList<>();
+        for(int quantity = 1; quantity <= lottoQuantity ; quantity++){
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(lottoNumbers);
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 
 }

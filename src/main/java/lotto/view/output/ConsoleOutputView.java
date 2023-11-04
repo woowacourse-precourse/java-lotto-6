@@ -1,6 +1,7 @@
 package lotto.view.output;
 
 import lotto.model.dto.LottoResponse;
+import lotto.model.dto.PrizeResult;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
@@ -46,8 +47,14 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printEachPrize(final String condition, final int prize, final int count) {
-        System.out.println(condition + " (" + String.format("%,d", prize) + "원)" + " - " + count + "개");
+    public void printEachPrize(final List<PrizeResult> results) {
+        for (PrizeResult result : results) {
+            System.out.println(makePrizeAnswer(result));
+        }
+    }
+
+    private String makePrizeAnswer(final PrizeResult result) {
+        return result.condition() + " (" + String.format("%,d", result.prize()) + "원)" + " - " + result.size() + "개";
     }
 
     @Override

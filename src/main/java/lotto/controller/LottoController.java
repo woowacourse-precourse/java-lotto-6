@@ -30,8 +30,8 @@ public class LottoController {
         LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
         List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
         addPrizeMoney(investorService, prizeResults);
-
-        printPrizeResults(prizeResults);
+        
+        outputView.printEachPrize(prizeResults);
         outputView.printProfitRate(investorService.calculateProfitRate());
     }
 
@@ -70,12 +70,6 @@ public class LottoController {
         return lottos.stream()
                 .map(lotto -> LottoResponse.from(lotto.getNumbers()))
                 .toList();
-    }
-
-    private void printPrizeResults(final List<PrizeResult> results) {
-        for (PrizeResult result : results) {
-            outputView.printEachPrize(result.condition(), result.prize(), result.size());
-        }
     }
 
     private void addPrizeMoney(final InvestorService investorService, final List<PrizeResult> results) {

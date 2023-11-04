@@ -1,6 +1,7 @@
 package lotto.view.output;
 
 import lotto.model.dto.LottoResponse;
+import lotto.model.dto.PrizeResult;
 import java.util.List;
 
 public interface OutputView {
@@ -11,6 +12,6 @@ public interface OutputView {
     void askGoalNumbers();
     void askBonusNumber();
     void alertResult();
-    void printEachPrize(final String condition, final int prize, final int count);
+    void printEachPrize(final List<PrizeResult> results);
     void printProfitRate(final double rate);
 }

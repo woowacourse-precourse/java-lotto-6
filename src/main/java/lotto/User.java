@@ -46,4 +46,14 @@ class User {
         }
         return lottoPapers;
     }
+
+    public int countSingleLottoMatchNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+        int count = 0;
+        for(int lottoNum : lottoNumbers){
+            if(winningNumbers.contains(lottoNum)){
+                count++;
+            }
+        }
+        return count;
+    }
 }

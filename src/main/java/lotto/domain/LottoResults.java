@@ -5,7 +5,8 @@ public enum LottoResults {
     SECOND(5, 30_000_000L),
     THIRD(5, 1_500_000L),
     FOURTH(4, 50_000L),
-    FIFTH(3, 5_000L);
+    FIFTH(3, 5_000L),
+    FAIL(0, 0L);
 
     private int correctCount;
     private long winningAmount;
@@ -13,6 +14,20 @@ public enum LottoResults {
     LottoResults(int correctCount, long winningAmount) {
         this.correctCount = correctCount;
         this.winningAmount = winningAmount;
+    }
+
+    public static LottoResults getLottoResult(int correctCount, boolean hasBonus) {
+        if (correctCount == 5 && hasBonus) {
+            return LottoResults.SECOND;
+        }
+
+        for (LottoResults lottoResults : LottoResults.values()) {
+            if (lottoResults.correctCount == correctCount) {
+                return lottoResults;
+            }
+        }
+
+        return LottoResults.FAIL;
     }
 
     public int getCorrectCount() {

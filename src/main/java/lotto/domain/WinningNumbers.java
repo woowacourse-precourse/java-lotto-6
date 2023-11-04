@@ -14,6 +14,12 @@ public class WinningNumbers {
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
+    public LottoResults calculateLottoResult(Lotto lotto) {
+        int correctCount = winningNumber.calculateCorrectNumberCount(lotto);
+        boolean hasBonus = bonusNumber.hasBonus(lotto);
+        return LottoResults.getLottoResult(correctCount, hasBonus);
+    }
+
     private void validateDuplicate(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(NO_DUPLICATE_WINNING_NUMBER_ERROR_MESSAGE);

@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import view.InputView;
 import view.OutputView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,17 +22,29 @@ public class LottoController {
     private double rateOfReturn = 0.0;
 
     public void buyMyLotto() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.getPurchaseAmount());
-        lottoAmount = (purchaseAmount.get()) / 1000;
-        publishMyLotto(purchaseAmount);
+        PurchaseAmount purchaseAmount;
+        boolean validInput = false;
 
-        OutputView.printMyLotto(myLottoNumbers);
+        while(!validInput) {
+            try {
+                int input = InputView.getPurchaseAmount();
+                purchaseAmount = new PurchaseAmount(input);
+
+                lottoAmount = (purchaseAmount.get()) / 1000;
+                publishMyLotto(purchaseAmount);
+
+                OutputView.printMyLotto(myLottoNumbers);
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void assignLotto() {
-        winningLottoNumbers = new Lotto(InputView.getLotto());
-        winningBonusNumber = new BonusNumber(InputView.getBonusNumber());
-        winningBonusNumber.validateAlreadyExist(winningLottoNumbers);
+        assignLottoNumbers();
+        assignBonusNumber();
     }
 
     public void calculateGameResult() {
@@ -42,6 +55,39 @@ public class LottoController {
     public void printGameResult() {
         OutputView.printWinningDetails(matchingCounts);
         OutputView.printRateOfReturn(rateOfReturn);
+    }
+
+    public void assignLottoNumbers() {
+        List<Integer> inputLotto;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                inputLotto = InputView.getLotto();
+                winningLottoNumbers = new Lotto(inputLotto);
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void assignBonusNumber() {
+        int inputBonusNumber;
+        boolean validInput = false;
+
+        while (!validInput) {
+            inputBonusNumber = InputView.getBonusNumber();
+            try {
+                winningBonusNumber = new BonusNumber(inputBonusNumber);
+                winningBonusNumber.validateAlreadyExist(winningLottoNumbers);
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {

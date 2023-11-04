@@ -9,41 +9,23 @@ import java.util.List;
 public class InputView {
 
     public static int getPurchaseAmount() {
+        System.out.println("\n구입금액을 입력해 주세요.");
         int input = 0;
-        boolean validInput = false;
 
-        while (!validInput) {
-            System.out.println("구입금액을 입력해 주세요.");
-
-            try {
-                input = Integer.parseInt(Console.readLine());
-                validInput = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
+        try {
+            input = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
 
         return input;
     }
 
     public static List<Integer> getLotto() {
-        String input;
-        List<Integer> lotto = new ArrayList<>();
-        boolean validInput = false;
+        System.out.println("\n당첨 번호를 입력해 주세요.");
 
-        while (!validInput) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-            input = Console.readLine();
-
-            try {
-                lotto = changeStringToLotto(input);
-                validInput = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-
-        return lotto;
+        String input = Console.readLine();
+        return changeStringToLotto(input);
     }
 
     public static List<Integer> changeStringToLotto(String input) {
@@ -56,25 +38,20 @@ public class InputView {
                 int number = Integer.parseInt(inputNumber);
                 inputNumbers.add(number);
             } catch (NumberFormatException e) {
-                throw e;
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
             }
         }
         return inputNumbers;
     }
 
     public static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         int input = 0;
-        boolean validInput = false;
 
-        while (!validInput) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-
-            try {
-                input = Integer.parseInt(Console.readLine());
-                validInput = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
+        try {
+            input = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
 
         return input;

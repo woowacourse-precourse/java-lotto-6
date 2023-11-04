@@ -25,9 +25,9 @@ public class LottoController {
         InvestorService investorService = initInvestorService();
         List<Lotto> lottos = investorService.buyLottos();
         outputView.printBoughtLottoSize(lottos.size());
-        
-        List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
-        outputView.printEachLottoNumbers(lottoResponses);
+
+        printLottoValues(lottos);
+
         outputView.askGoalNumbers();
         String goalNumbersInput = inputView.readLine();
         outputView.askBonusNumber();
@@ -67,5 +67,10 @@ public class LottoController {
         return lottos.stream()
                 .map(lotto -> LottoResponse.from(lotto.getNumbers()))
                 .toList();
+    }
+
+    private void printLottoValues(final List<Lotto> lottos) {
+        List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
+        outputView.printEachLottoNumbers(lottoResponses);
     }
 }

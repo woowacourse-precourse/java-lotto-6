@@ -20,5 +20,6 @@ public class LottoService {
                 System.out.println("로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
             }
         }
+        int lottoCount = tryNum / LOTTO_PRICE;
     }
 }

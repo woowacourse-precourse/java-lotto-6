@@ -35,6 +35,13 @@ public class InputValidator {
         checkLottoNumberIsDuplicated(input);
     }
 
+    public static void checkBonusNumber(List<Integer> lotto, String bonusNumber) {
+        checkIsBlank(bonusNumber);
+        checkIsNumber(bonusNumber);
+        checkRange(bonusNumber);
+        checkBonusNumberInLotto(lotto, Integer.parseInt(bonusNumber));
+    }
+
     private static void checkIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + NUMBER);
@@ -53,14 +60,14 @@ public class InputValidator {
         }
     }
 
-    public static void checkRange(String input) {
+    private static void checkRange(String input) {
         int number = Integer.parseInt(input);
         if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(ERROR + INVALID_RANGE);
         }
     }
 
-    public static void checkBonusNumberInLotto(List<Integer> lotto, int bonusNumber) {
+    private static void checkBonusNumberInLotto(List<Integer> lotto, int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR + INVALID_BONUS_NUMBER);
         }

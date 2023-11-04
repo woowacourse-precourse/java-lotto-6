@@ -1,13 +1,12 @@
 package lotto.domain;
 
 import static lotto.config.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
-import static lotto.config.LottoConfig.MAX_LOTTO_NUMBER;
-import static lotto.config.LottoConfig.MIN_LOTTO_NUMBER;
 
 import java.util.List;
+import lotto.util.NumberUtil;
 
 public class Lotto {
 
@@ -28,7 +27,7 @@ public class Lotto {
 		}
 
 		if (!checkNumberRange(numbers)) {
-			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
 		}
 
 		if (!checkDuplication(numbers)) {
@@ -42,7 +41,7 @@ public class Lotto {
 
 	private boolean checkNumberRange(List<Integer> numbers) {
 		for (int number : numbers) {
-			if (number < MIN_LOTTO_NUMBER.getValue() || number > MAX_LOTTO_NUMBER.getValue()) {
+			if (!NumberUtil.isLottoNumberRange(number)) {
 				return false;
 			}
 		}

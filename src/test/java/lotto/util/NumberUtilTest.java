@@ -6,21 +6,38 @@ import org.junit.jupiter.api.Test;
 
 class NumberUtilTest {
 
-
 	@Test
 	void isNumeric_true() {
-		String test = "1000";
+		String money = "1000";
 
-		boolean result = NumberUtil.isNumeric(test);
+		boolean result = NumberUtil.isNumeric(money);
 
 		assertThat(result).isTrue();
 	}
 
 	@Test
 	void isNumeric_false() {
-		String test = "천원";
+		String money = "천원";
 
-		boolean result = NumberUtil.isNumeric(test);
+		boolean result = NumberUtil.isNumeric(money);
+
+		assertThat(result).isFalse();
+	}
+
+	@Test
+	void isLottoNumberRange_true() {
+		int number = 45;
+
+		boolean result = NumberUtil.isLottoNumberRange(number);
+
+		assertThat(result).isTrue();
+	}
+
+	@Test
+	void isLottoNumberRange_false() {
+		int number = 55;
+
+		boolean result = NumberUtil.isLottoNumberRange(number);
 
 		assertThat(result).isFalse();
 	}

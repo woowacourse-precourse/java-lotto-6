@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.config.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +43,7 @@ class LottoTest {
 
 		exception = assertThrows(IllegalArgumentException.class, () -> lotto = new Lotto(numbers));
 
-		assertEquals(exception.getMessage(), INVALID_LOTTO_NUMBER_RANGE.getMessage());
+		assertEquals(exception.getMessage(), INVALID_LOTTO_NUMBER.getMessage());
 	}
 
 	@Test

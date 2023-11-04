@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -55,5 +52,29 @@ public class LottoService {
         if (winningNumber.getWinningNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    public static List<Integer> compare(List<Integer> lotto, List<Integer> winningNumbers, int bonusNumber){
+        List<Integer> result = new ArrayList<>();
+        int match = 0;
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            if (lotto.contains(winningNumbers.get(i))){
+                match++;
+            }
+        }
+        result.add(match);
+        result.add(0);
+        if (lotto.contains(bonusNumber)){
+            result.set(1, 1);
+        }
+        return result;
+    }
+
+    public static HashMap<Integer, List<Integer>> calculateCompareResult(int count, HashMap<Integer, Lotto> lotties, List<Integer> winningNumbers, int bonusNumber) {
+        HashMap<Integer, List<Integer>> result = new HashMap<>();
+        for (int i = 0; i < count; i++) {
+            result.put(i, compare(lotties.get(i).getLotto(), winningNumbers, bonusNumber));
+        }
+        return result;
     }
 }

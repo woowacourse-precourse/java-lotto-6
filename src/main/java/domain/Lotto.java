@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         isLottoContainDuplicateNumber(numbers);
-        sortNumberByAscendingOrder();
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

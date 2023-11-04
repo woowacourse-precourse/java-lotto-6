@@ -1,7 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.Prize.FIFTH;
 import static lotto.constants.Prize.SECOND;
-import static lotto.constants.Prize.THIRD;
 import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -52,7 +52,7 @@ public class LottoCompanyTest {
         int expectedMatchLottos = 2;
 
         // when
-        List<Lotto> matchedLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, THIRD.getMatch());
+        List<Lotto> matchedLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, FIFTH.getMatch());
 
         // then
         assertThat(matchedLottos.size()).isEqualTo(expectedMatchLottos);

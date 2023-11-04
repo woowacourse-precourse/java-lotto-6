@@ -1,6 +1,9 @@
 package lotto.service;
 
+import static java.lang.String.format;
+import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSetting.*;
+
 
 public class LottoService {
     public void purchase(String purchaseAmountInput) {
@@ -17,14 +20,17 @@ public class LottoService {
         try {
             return Integer.parseInt(purchaseAmountInput);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_NUMERIC.getMessage());
         }
     }
 
     private Integer validateDivisible(Integer purchaseAmount) {
         if (purchaseAmount % DIVISOR.getValue() != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    format(NOT_DIVISIBLE.getMessage(), DIVISOR.getValue())
+            );
         }
+
         return purchaseAmount / DIVISOR.getValue();
     }
 }

@@ -3,7 +3,7 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 
-public class Mainview implements HowManyRequester, NumberRequster, BonusNumberRequester, LottoResultPrinter{
+public class Mainview implements LotoInputRequester,LottoResultPrinter{
 
     private final static String[] MONEY_OF_WINNING = {"5,000원", "50,000원", "1,500,000원",
             "30,000,000원", "2,000,000,000원"};

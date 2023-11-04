@@ -4,66 +4,37 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 import lotto.Lotto;
 import model.LottoGenerator;
-import view.BonusNumberRequester;
-import view.HowManyRequester;
-import view.Mainview;
-import view.NumberRequster;
+import view.LotoInputRequester;
 
 class InputHelperController {
 
-    public <T> Integer checkAndRetryMoneyInput(Callable<T> inputMethod, HowManyRequester requester) {
+    private InputMan inputMan;
+    private LotoInputRequester requester;
+
+    public InputHelperController(InputMan inputMan, LotoInputRequester requester) {
+        this.inputMan = inputMan;
+        this.requester = requester;
+    }
+
+    public <T> Integer checkAndRetryMoneyInput() {
         requester.requestHowMany();
-        while (true) {
-            try {
-                return (Integer) inputMethod.call();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (NoSuchElementException e) {
-                throw e;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return ExceptionHandler.handleException(inputMan::receiveMoney);
     }
 
-    private <T> Integer[] checkAndRetryNumbersInput(Callable<T> inputMethod, NumberRequster requester) {
+    private <T> Integer[] checkAndRetryNumbersInput() {
         requester.requestNumbers();
-        while (true) {
-            try {
-                return (Integer[]) inputMethod.call();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (NoSuchElementException e) {
-                throw e;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return ExceptionHandler.handleException(inputMan::receiveNumbers);
     }
 
-    public <T> Lotto proceedtoMakingLotto(Callable<T> inputMethod, NumberRequster requster) {
-        Integer[] userNumbers = checkAndRetryNumbersInput(inputMethod, requster);
-        while (true) {
-            try {
-                return LottoGenerator.generateLotto(userNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                userNumbers = checkAndRetryNumbersInput(inputMethod, requster);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public Lotto proceedtoMakingLotto() {
+        return ExceptionHandler.handleException(() -> {
+            Integer[] userNumbers = checkAndRetryNumbersInput();
+            return LottoGenerator.generateLotto(userNumbers);
+        });
     }
 
-    public <T> int checkAndRetryBonusNumberInput(InputMan inputMan, Lotto userLotto,
-                                                 BonusNumberRequester requster) {
-        requster.requestBonusNumber();
-        while (true) {
-            try {
-                return inputMan.receiveBonusNumber(userLotto);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public int checkAndRetryBonusNumberInput(Lotto userLotto) {
+        requester.requestBonusNumber();
+        return ExceptionHandler.handleException(() -> inputMan.receiveBonusNumber(userLotto));
     }
 }

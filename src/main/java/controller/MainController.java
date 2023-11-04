@@ -17,8 +17,8 @@ public class MainController {
 
     public MainController() {
         this.mainview = new Mainview();
-        this.inputHelperController = new InputHelperController();
         this.inputMan = new InputMan(new ValidationMan());
+        this.inputHelperController = new InputHelperController(inputMan,mainview);
         this.resultHelperController = new ResultHelperController(mainview);
     }
 
@@ -27,10 +27,10 @@ public class MainController {
     }
 
     private void leadGame() {
-        int money = inputHelperController.checkAndRetryMoneyInput(inputMan::receiveMoney, mainview);
+        int money = inputHelperController.checkAndRetryMoneyInput();
         MainModel mainModel = new MainModel(LottoGenerator.generateLotto(money / STANDARD_MONEY));
-        Lotto userLotto = inputHelperController.proceedtoMakingLotto(inputMan::receiveNumbers,mainview);
-        int bonusNumber = inputHelperController.checkAndRetryBonusNumberInput(inputMan, userLotto, mainview);
+        Lotto userLotto = inputHelperController.proceedtoMakingLotto();
+        int bonusNumber = inputHelperController.checkAndRetryBonusNumberInput(userLotto);
         resultHelperController.processLottoGame(new ProcessLottoGameParameters
                 (new ProfitCalculator(), mainModel, userLotto, bonusNumber, money));
     }

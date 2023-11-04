@@ -23,4 +23,8 @@ public class Config {
     public static LottoNumResults lottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
         return new LottoNumResults(strOfPickWinNum, strOfPickBonusNum);
     }
+
+    public static LottoEnvelop lottoEnvelop() {
+        return new LottoEnvelop();
+    }
 }

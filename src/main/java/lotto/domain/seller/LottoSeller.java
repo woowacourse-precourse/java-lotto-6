@@ -11,6 +11,10 @@ public class LottoSeller {
     private static final Integer PRICE_LOTTO = 1000;
     private LottoEnvelop lottoEnvelop;
 
+    public LottoSeller() {
+        this.lottoEnvelop = Config.lottoEnvelop();
+    }
+
     /**
      * 사용자에게 로또 봉투판다.
      *

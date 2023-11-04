@@ -12,27 +12,12 @@ public class RandNumber {
         return lottoNumbers;
     }
 
-    public static List<Integer> makeBonusNumber() {
-        List<Integer> bonusNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1);
-        return bonusNumber;
-    }
-
-    public static boolean checkDuplicate(List<Integer> lottoNumbers, List<Integer> bonusNumber) {
-        Set<Integer> lottoNumbersWithNoDuplicate = new HashSet<>(lottoNumbers);
-        if (lottoNumbersWithNoDuplicate.contains(bonusNumber.get(0))) {
-            return false;
+    public static List<Integer> checkDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() == numbers.size()) {
+            return numbers;
         }
-        return true;
+        return checkDuplicate(makeRandNumber());
     }
-
-    public static List<Integer> reMakeBonusNumber(List<Integer> lottoNumbers, List<Integer> bonusNumber) {
-        if (!checkDuplicate(lottoNumbers, bonusNumber)) {
-            List<Integer> newBonusNumber = makeBonusNumber();
-            bonusNumber.set(0, newBonusNumber.get(0));
-            reMakeBonusNumber(lottoNumbers, bonusNumber);
-        }
-        return bonusNumber;
-    }
-
 
 }

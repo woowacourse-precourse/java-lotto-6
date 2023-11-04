@@ -1,6 +1,7 @@
 package lotto.exceptionhandler;
 
 import java.util.function.Supplier;
+import lotto.ui.Writer;
 
 public class RetryExceptionHandler implements ExceptionHandler {
 
@@ -11,7 +12,7 @@ public class RetryExceptionHandler implements ExceptionHandler {
                 runnable.run();
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printException(e);
             } finally {
                 System.out.println();
             }
@@ -24,10 +25,14 @@ public class RetryExceptionHandler implements ExceptionHandler {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printException(e);
             } finally {
                 System.out.println();
             }
         }
+    }
+
+    private void printException(IllegalArgumentException e){
+        Writer.printException(e);
     }
 }

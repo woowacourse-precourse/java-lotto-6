@@ -25,9 +25,16 @@ public class LottoController {
     }
 
     public void inputBonusNumber(String input) {
+        validateInputIsNull(input);
         String[] splitInput = input.split(SPLIT_REGEX);
         validateBonusNumberSize(splitInput);
         validateNumberRange(validateIsNumeric(splitInput));
+    }
+
+    private static void validateInputIsNull(String input) {
+        if (input.length() == 0) {
+            throw new IllegalArgumentException(BONUS_NUMBER_QUANTITY_ERROR.getMessage());
+        }
     }
 
     private static void validateBonusNumberSize(String[] splitInput) {

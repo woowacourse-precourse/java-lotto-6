@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +17,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isInteger() {
+        return true;
+    }
+
+    private void checkInteger() {
+
+    }
+
+    private boolean isInRange() {
+        return true;
+    }
+
+    private void checkRange() {
+
+    }
+
+    private boolean isDuplicateWinningNumbers(){
+        return true;
+    }
 }

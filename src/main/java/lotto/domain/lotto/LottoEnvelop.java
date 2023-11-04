@@ -16,7 +16,7 @@ public class LottoEnvelop {
         lottoEnvelops.add(lotto);
     }
 
-    public LottoEnvelop get() {
-        return (LottoEnvelop) lottoEnvelops;
+    public Integer size() {
+        return lottoEnvelops.size();
     }
 }

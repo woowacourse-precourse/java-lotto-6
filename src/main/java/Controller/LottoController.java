@@ -13,13 +13,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
-    private PurchaseAmount purchaseAmount;
-    private Integer lottoAmount = 0;
+    private Integer lottoAmount;
     private List<Lotto> myLottoNumbers;
     private Lotto winningLottoNumbers;
     private BonusNumber winningBonusNumber;
     private List<Integer> matchingCounts;
-    private double rateOfReturn = 0.0;
+    private double rateOfReturn;
 
     public void playLottoGame() {
         buyMyLotto();
@@ -30,7 +29,7 @@ public class LottoController {
 
     public void buyMyLotto() {
         assignPurchaseAmount();
-        publishMyLotto(purchaseAmount);
+        publishMyLotto();
         OutputView.printMyLotto(myLottoNumbers);
     }
 
@@ -50,13 +49,12 @@ public class LottoController {
     }
 
     public void assignPurchaseAmount() {
-        int inputPurchaseAmount;
         boolean validInput = false;
 
         while(!validInput) {
             try {
-                inputPurchaseAmount = InputView.getPurchaseAmount();
-                purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
+                int inputPurchaseAmount = InputView.getPurchaseAmount();
+                PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
                 lottoAmount = (purchaseAmount.get()) / 1000;
 
                 validInput = true;
@@ -67,12 +65,11 @@ public class LottoController {
     }
 
     public void assignLottoNumbers() {
-        List<Integer> inputLotto;
         boolean validInput = false;
 
         while (!validInput) {
             try {
-                inputLotto = InputView.getLotto();
+                List<Integer> inputLotto = InputView.getLotto();
                 winningLottoNumbers = new Lotto(inputLotto);
 
                 validInput = true;
@@ -83,12 +80,11 @@ public class LottoController {
     }
 
     public void assignBonusNumber() {
-        int inputBonusNumber;
         boolean validInput = false;
 
         while (!validInput) {
             try {
-                inputBonusNumber = InputView.getBonusNumber();
+                int inputBonusNumber = InputView.getBonusNumber();
                 winningBonusNumber = new BonusNumber(inputBonusNumber);
                 winningBonusNumber.validateAlreadyExist(winningLottoNumbers);
 
@@ -99,7 +95,7 @@ public class LottoController {
         }
     }
 
-    public void publishMyLotto(PurchaseAmount purchaseAmount) {
+    public void publishMyLotto() {
         myLottoNumbers = new ArrayList<>();
         List<Integer> numbers;
         for (int i = 1; i <= lottoAmount; i++) {
@@ -156,9 +152,5 @@ public class LottoController {
 
     public List<Lotto> getLottoNumbers() {
         return myLottoNumbers;
-    }
-
-    public Lotto getWinningLottoNumbers() {
-        return winningLottoNumbers;
     }
 }

@@ -18,10 +18,6 @@ public class Lotto {
         Validation.validateSixLottoNumbers(numbers);
         Validation.validateDuplicatedSixNumber(numbers);
     }
-    public void setBonusNum(int bonusNum) {
-        Validation.validateDuplicatedBonusNum(bonusNum, numbers);
-        numbers.add(bonusNum);
-    }
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -33,5 +29,17 @@ public class Lotto {
         List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(oneLotto);
         return oneLotto;
+    }
+    public void validateDuplicatedBonusNum(int bonusNum) {
+        Validation.validateDuplicatedBonusNum(bonusNum, numbers);
+    }
+    public int getSameNumberCount(List<Integer> oneLotto) {
+        int matched = 0;
+        for (Integer num : oneLotto) {
+            if (numbers.contains(num)) {
+                matched++;
+            }
+        }
+        return matched;
     }
 }

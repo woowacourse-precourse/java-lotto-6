@@ -4,18 +4,18 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public enum LottoRanks {
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
-    FOURTH(4, false, 50000),
+    NONE(0, false, 0),
     FIFTH(3, false, 5000),
-    NONE(0, false, 0);
+    FOURTH(4, false, 50000),
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false, 2000000000);
 
     private final int sameNumber;
     private final boolean sameBonus;
     private final int winnings;
 
-    private LottoRanks(int sameNumber, boolean sameBonus, int winnings) {
+    LottoRanks(int sameNumber, boolean sameBonus, int winnings) {
         this.sameNumber = sameNumber;
         this.sameBonus = sameBonus;
         this.winnings = winnings;
@@ -31,7 +31,7 @@ public enum LottoRanks {
         return winnings;
     }
 
-    public static LottoRanks findLottoRanks(int sameNumber, boolean isSameBonus) {
+    public static LottoRanks findKey(int sameNumber, boolean isSameBonus) {
         for (LottoRanks lottoRanks : LottoRanks.values()) {
             if (lottoRanks.getSameNumber() == sameNumber
                     && lottoRanks.isSameBonus() == isSameBonus) {
@@ -40,7 +40,7 @@ public enum LottoRanks {
         }
         return NONE;
     }
-    public Map<LottoRanks, Integer> getEnumMap() {
+    public static Map<LottoRanks, Integer> getEnumMap() {
         Map<LottoRanks, Integer> enumMap = new EnumMap<>(LottoRanks.class);
         for (LottoRanks lottoRanks : LottoRanks.values()) {
             enumMap.put(lottoRanks, 0);

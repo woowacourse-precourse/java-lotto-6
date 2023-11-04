@@ -15,7 +15,7 @@ public class PriceTest {
 
         Assertions.assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+                .hasMessage("[ERROR] 공백이나 쉼표같은 특수기호 없이 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
     }
 
     @DisplayName("Price가 20억~int형 타입 사이일 때 테스트")
@@ -35,7 +35,7 @@ public class PriceTest {
 
         Assertions.assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+                .hasMessage("[ERROR] 공백이나 쉼표같은 특수기호 없이 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
     }
 
     @DisplayName("Price가 1000원 단위로 떨어지지 않을 때")

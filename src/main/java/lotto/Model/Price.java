@@ -30,7 +30,8 @@ public class Price {
             }
             return priceInput;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+            throw new IllegalArgumentException("[ERROR] 공백이나 쉼표같은 특수기호 없이 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+
         }
     }
 

@@ -258,4 +258,29 @@ class ApplicationTest extends NsTest {
         inputWinningNumber = in.next();
         return inputWinningNumber;
     }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자인지 검증한다.")
+    void inputBonusNumberValidation_정상케이스() {
+        assertThatCode(() -> inputBonusNumberValidation("7"))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 아닌지 검증한다.")
+    void inputBonusNumberValidation_예외케이스() {
+        assertThatThrownBy(() -> inputBonusNumberValidation("칠"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+    }
+
+    @DisplayName("보너스 번호가 숫자인지 검증하는 메서드")
+    private int inputBonusNumberValidation(String inputBonusNumber){
+        try {
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            return bonusNumber;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+        }
+    }
 }

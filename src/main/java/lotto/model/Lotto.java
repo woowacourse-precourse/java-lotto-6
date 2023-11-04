@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.exception.ExceptionMessage.INVALID_DUPLICATE_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_LENGTH_RANDOM_NUMBER;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +14,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -35,6 +38,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return new ArrayList<>(numbers);
     }
 }

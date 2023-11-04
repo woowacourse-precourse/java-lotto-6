@@ -1,5 +1,7 @@
 package lotto.configuration;
 
+import component.Composer;
+import io.input.ConsoleWriter;
 import lotto.controller.LottoController;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.lotto.LottoStore;
@@ -19,7 +21,10 @@ public final class Configuration {
     public static LottoController createLottoController() {
 
         final InputView inputView = new InputView();
-        final OutputView outputView = new OutputView();
+        final OutputView outputView = new OutputView(
+                new ConsoleWriter(),
+                new Composer()
+        );
         final LottoGenerator lottoGenerator = new RandomLottoGenerator();
         final LottoStore lottoStore = new LottoStore(lottoGenerator);
         final LottoRepository lottoRepository = new LottoRepository();

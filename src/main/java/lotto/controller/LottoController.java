@@ -19,19 +19,22 @@ public class LottoController {
     }
 
     public void run() {
+        Integer purchaseCount = initPurchaseAmount();
+        lottoService.purchase(purchaseCount);
+    }
+
+    private Integer initPurchaseAmount() {
         while (true) {
             try {
-                String purchaseAmount = initPurchaseAmount();
-                lottoService.purchase(purchaseAmount);
-                break;
+                String purchaseAmountInput = requestPurchaseAmount();
+                return lottoService.validatePurchaseAmount(purchaseAmountInput);
             } catch (IllegalArgumentException exception) {
                 outputView.output(exception.getMessage());
             }
         }
-
     }
 
-    private String initPurchaseAmount() {
+    private String requestPurchaseAmount() {
         outputView.output(PURCHASE_AMOUNT.getMessage());
         return inputView.requestPurchaseAmount();
     }

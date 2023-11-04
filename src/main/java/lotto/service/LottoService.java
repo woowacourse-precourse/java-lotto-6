@@ -6,14 +6,15 @@ import static lotto.constant.LottoSetting.*;
 
 
 public class LottoService {
-    public void purchase(String purchaseAmountInput) {
-        Integer purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
+    public void purchase(Integer purchaseCount) {
+        // TODO: purchaseCount만큼 로또 발행
+
     }
 
-    private Integer validatePurchaseAmount(String purchaseAmountInput) {
+    public Integer validatePurchaseAmount(String purchaseAmountInput) {
         Integer purchaseAmount = validateNumeric(purchaseAmountInput);
-        purchaseAmount = validateDivisible(purchaseAmount);
-        return purchaseAmount;
+        Integer purchaseCount = validateDivisible(purchaseAmount);
+        return purchaseCount;
     }
 
     private Integer validateNumeric(String purchaseAmountInput) {

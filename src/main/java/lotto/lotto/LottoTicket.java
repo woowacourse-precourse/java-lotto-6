@@ -11,8 +11,8 @@ import lotto.exception.IllegalDuplicateException;
 import lotto.exception.IllegalLottoRangeException;
 import lotto.exception.IllegalLottoSizeException;
 
-public record Lotto(List<Integer> numbers) {
-    public Lotto {
+public record LottoTicket(List<Integer> numbers) {
+    public LottoTicket {
         validate(numbers);
     }
 

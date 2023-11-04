@@ -3,34 +3,34 @@ package lotto.calculator;
 import static lotto.enums.AmountEnum.MIN_VALUE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.lotto.BonusNumber;
 import lotto.lotto.LottoTicket;
-import lotto.lotto.WinnerLottoTicket;
+import lotto.lotto.LottoTicketResult;
+import lotto.lotto.ScratchedLottoTicket;
 import lotto.lotto.WinningNumbers;
 
 public class Calculator {
-
+    private static final Integer FIVE_MATCH = 5;
     public Integer convertAmountToQuantity(Integer amount){
         return amount / MIN_VALUE.getAmount();
     }
 
-    public WinnerLottoTicket calculateWinner(WinningNumbers winningNumbers, BonusNumber bonusNumber, LottoTicket lottoTicket){
-        List<Integer> totalWinningNumbers = new ArrayList<>(winningNumbers.winningNumbers());
-        totalWinningNumbers.add(bonusNumber.number());
+    public ScratchedLottoTicket calculateWinner(WinningNumbers winningNumbers, BonusNumber bonusNumber, LottoTicket lottoTicket){
+        List<Integer> findWinningNumbers = winningNumbers.winningNumbers();
         List<Integer> findLottoNumbers = lottoTicket.numbers();
-        Integer winningPoint = findLottoNumbers.stream().filter(totalWinningNumbers::contains).toList().size();
-        return new WinnerLottoTicket(lottoTicket,winningPoint);
+        int winningPoint = (int)findLottoNumbers.stream().filter(findWinningNumbers::contains).count();
+        boolean bonusStatus = findLottoNumbers.contains(bonusNumber.number()) && winningPoint == FIVE_MATCH;
+        return new ScratchedLottoTicket(lottoTicket,winningPoint,bonusStatus);
     }
 
-    public  List<WinnerLottoTicket> sortWinner(WinningNumbers winningNumbers, BonusNumber bonusNumber, List<LottoTicket> lottoTickets){
-        List<WinnerLottoTicket> winnerLottoTickets = new ArrayList<>();
+    public LottoTicketResult calculateResult(WinningNumbers winningNumbers, BonusNumber bonusNumber, List<LottoTicket> lottoTickets){
+        List<ScratchedLottoTicket> scratchedLottoTickets = new ArrayList<>();
         for (LottoTicket lottoTicket : lottoTickets) {
-            WinnerLottoTicket winnerLottoTicket = this.calculateWinner(winningNumbers, bonusNumber,lottoTicket);
-            winnerLottoTickets.add(winnerLottoTicket);
+            ScratchedLottoTicket scratchedLottoTicket = this.calculateWinner(winningNumbers, bonusNumber,lottoTicket);
+            scratchedLottoTickets.add(scratchedLottoTicket);
         }
-        return winnerLottoTickets;
+        return new LottoTicketResult(scratchedLottoTickets);
     }
 
 }

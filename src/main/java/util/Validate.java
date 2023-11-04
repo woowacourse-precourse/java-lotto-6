@@ -1,7 +1,5 @@
 package util;
 
-import domain.WinningLotto;
-
 public class Validate {
     private final Parser parser = new Parser();
     private static final String NOT_IN_RANGE_ERROR= "[ERROR]번호는 1~45 이내에 있어야 합니다.";

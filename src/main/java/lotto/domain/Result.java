@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.config.ConstNum;
+import lotto.config.LottoRank;
+
 import java.util.ArrayList;
 
 public class Result {
@@ -21,11 +24,11 @@ public class Result {
 
     private Long getProfit() {
         Long profit = 0L;
-        profit += (long)ConstNum.FIRST_PRIZE.getNum() * getCount(1);
-        profit += (long)ConstNum.SECOND_PRIZE.getNum() * getCount(2);
-        profit += (long)ConstNum.THIRD_PRIZE.getNum() * getCount(3);
-        profit += (long)ConstNum.FOURTH_PRIZE.getNum() * getCount(4);
-        profit += (long)ConstNum.FIFTH_PRIZE.getNum() * getCount(5);
+        profit += (long) ConstNum.FIRST_PRIZE.getNum() * getCount(LottoRank.FIRST.getNum());
+        profit += (long)ConstNum.SECOND_PRIZE.getNum() * getCount(LottoRank.SECOND.getNum());
+        profit += (long)ConstNum.THIRD_PRIZE.getNum() * getCount(LottoRank.THIRD.getNum());
+        profit += (long)ConstNum.FOURTH_PRIZE.getNum() * getCount(LottoRank.FOURTH.getNum());
+        profit += (long)ConstNum.FIFTH_PRIZE.getNum() * getCount(LottoRank.FIFTH.getNum());
 
         return profit;
     }

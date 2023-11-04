@@ -7,22 +7,21 @@ import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
 import lotto.service.InvestorService;
 import lotto.service.LottoCompanyService;
-import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 import java.util.List;
 
 public class LottoController {
 
-    private final InputView inputView;
     private final OutputView outputView;
+    private final FactoryController factoryController;
 
-    public LottoController(final InputView inputView, final OutputView outputView) {
-        this.inputView = inputView;
+    public LottoController(final OutputView outputView, final FactoryController factoryController) {
         this.outputView = outputView;
+        this.factoryController = factoryController;
     }
 
     public void run() {
-        InvestorService investorService = initInvestorService();
+        InvestorService investorService = factoryController.createInvestorService();
         List<Lotto> lottos = investorService.buyLottos();
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
@@ -37,29 +36,10 @@ public class LottoController {
     }
 
     private LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
-        GoalNumbers goalNumbers = initGoalNumbers();
-        BonusNumber bonusNumber = initBonusNumber();
+        GoalNumbers goalNumbers = factoryController.createGoalNumbers();
+        BonusNumber bonusNumber = factoryController.createBonusNumber();
 
         return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
-    }
-
-    private GoalNumbers initGoalNumbers() {
-        outputView.askGoalNumbers();
-        String goalNumbersInput = inputView.readLine();
-        return GoalNumbers.from(goalNumbersInput);
-    }
-
-    private BonusNumber initBonusNumber() {
-        outputView.askBonusNumber();
-        String bonusNumberInput = inputView.readLine();
-        return BonusNumber.from(bonusNumberInput);
-    }
-
-    private InvestorService initInvestorService() {
-        outputView.askInvestMoney();
-        String investorInput = inputView.readLine();
-
-        return InvestorService.createDefault(investorInput);
     }
 
     private void printLottoValues(final List<Lotto> lottos) {

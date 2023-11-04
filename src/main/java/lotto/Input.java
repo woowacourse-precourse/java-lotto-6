@@ -15,6 +15,6 @@ public class Input {
     public String winningNumbers() {
         System.out.println(REQUEST_WINNING_NUMBER);
 
-        return  Console.readLine();
+        return Console.readLine();
     }
 }

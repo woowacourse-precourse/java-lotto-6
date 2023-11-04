@@ -61,4 +61,16 @@ class CustomerTest {
 
         assertThat(lottos.size()).isEqualTo(10);
     }
+
+    @DisplayName("보유한 로또 번호들을 출력 요구 사항에 맞춘 문자열로 바꾸어 리스트로 반환한다.")
+    @Test
+    void getLottoTextsByList() {
+        Customer customer = new Customer("10000");
+
+        customer.buyNewLotto();
+
+        List<String> texts = customer.getLottoTexts();
+
+        assertThat(texts.size()).isEqualTo(10);
+    }
 }

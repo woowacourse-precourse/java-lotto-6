@@ -43,7 +43,7 @@ class LottoControllerTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "1 2 3 4 5 60", "1 2 3 4 5 46" })
-    @DisplayName(value = "중복된 숫자가 존재할 경우 예외가 발생하는지 확인")
+    @DisplayName(value = "입력된 숫자가 1부터 45사이의 숫자가 아닐 경우 예외가 발생하는지 확인")
     void inputNumbersByOutOfRangeNumber(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> lottoController.inputNumbers(input))

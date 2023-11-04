@@ -7,7 +7,9 @@ import java.util.List;
 public class UI {
     public String inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return readLine();
+        String line = readLine();
+        System.out.println();
+        return line;
     }
 
     public void printPurchases(List<Lotto> lottos) {
@@ -15,6 +17,7 @@ public class UI {
         for (Lotto lotto : lottos) {
             printLotto(lotto);
         }
+        System.out.println();
     }
 
     private void printLotto(Lotto lotto) {

@@ -21,9 +21,13 @@ public class Money {
     }
 
     private static void checkPositiveMoney(int value) {
-        if (value <= NON_POSITIVE_STANDARD) {
+        if (isNonPositive(value)) {
             throw new IllegalArgumentException(NON_POSITIVE_MONEY_MESSAGE);
         }
+    }
+
+    private static boolean isNonPositive(int value) {
+        return value <= NON_POSITIVE_STANDARD;
     }
 
     public int divide(Money target) {

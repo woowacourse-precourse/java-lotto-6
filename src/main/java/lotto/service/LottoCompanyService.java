@@ -4,6 +4,8 @@ import static lotto.model.LottoConstant.FIFTH_PRIZE_MATCH;
 import static lotto.model.LottoConstant.FIRST_PRIZE_MATCH;
 import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
 
+import lotto.model.BonusNumber;
+import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.LottoCompany;
 import lotto.model.Prize;
@@ -22,7 +24,8 @@ public class LottoCompanyService {
         this.lottos = lottos;
     }
 
-    public static LottoCompanyService of(final LottoCompany lottoCompany, final List<Lotto> lottos) {
+    public static LottoCompanyService of(final GoalNumbers goalNumbers, final BonusNumber bonusNumber, final List<Lotto> lottos) {
+        LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
         return new LottoCompanyService(lottoCompany, lottos);
     }
 

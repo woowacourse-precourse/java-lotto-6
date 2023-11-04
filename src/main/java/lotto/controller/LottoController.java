@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
-import lotto.model.LottoCompany;
 import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
 import lotto.service.InvestorService;
@@ -39,9 +38,8 @@ public class LottoController {
     private LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
         GoalNumbers goalNumbers = initGoalNumbers();
         BonusNumber bonusNumber = initBonusNumber();
-        LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
 
-        return LottoCompanyService.of(lottoCompany, lottos);
+        return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
     }
 
     private GoalNumbers initGoalNumbers() {

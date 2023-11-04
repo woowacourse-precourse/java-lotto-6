@@ -1,10 +1,12 @@
 package lotto.game;
 
-import lotto.domain.Store;
+import lotto.global.Store;
 import lotto.ui.Input;
+import lotto.ui.Output;
 
 public class Game {
     public void run() {
-        int purchasePrice = Input.getPurchasePrice();
+        int count = Store.convertPriceToCount(Input.getPurchasePrice());
+        Output.printPurchaseCount(count);
     }
 }

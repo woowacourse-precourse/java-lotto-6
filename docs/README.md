@@ -102,6 +102,12 @@
 
 - [ ] "," 기호
 
+## validation
+
+### InputValidator
+
+- [x] 입력이 숫자인지 확인한다.
+
 ## view
 
 ### InputView

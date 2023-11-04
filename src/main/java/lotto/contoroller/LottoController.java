@@ -6,11 +6,14 @@ import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoNumberGenerator;
 import lotto.utility.ListTypeChanger;
+import lotto.utility.LottoErrorMessage;
 import lotto.utility.NumberTypeChanger;
 import lotto.view.InputValue;
 import lotto.view.OutputMessage;
 
 public class LottoController {
+    private List<Integer> winningNumbers;
+
 
     public void startLotto() {
         int purchaseAmount = getInputPurchase();
@@ -20,6 +23,7 @@ public class LottoController {
         // 요기까지
         List<Integer> winningNumbers = getInputLotto();
         int bonusNumber = getInputBonus();
+        validateDuplicate(winningNumbers, bonusNumber);
     }
 
     // 구입 금액 입력
@@ -68,11 +72,21 @@ public class LottoController {
                 String input = InputValue.inputBonusNumber();
                 int bonusNumber = NumberTypeChanger.changeNumberType(input);
                 Bonus bonus = new Bonus(bonusNumber);
-                System.out.println();
                 return bonus.getNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
+    // 당첨 번호 입력값들이랑 중복되지 않았는지
+    private int validateDuplicate(List<Integer> numbers, int number) {
+        while (numbers.contains(number)) {
+            System.out.println(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
+            int input = getInputBonus(); // 재입력 받음
+            number = input;
+        }
+        return number;
+    }
+
 }

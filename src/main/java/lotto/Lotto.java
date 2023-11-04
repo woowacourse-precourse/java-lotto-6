@@ -24,6 +24,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicateNumber(numbers);
+        validateNumberRange(numbers);
     }
 
 
@@ -37,6 +38,17 @@ public class Lotto {
         Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
         if (notDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        numbers.forEach(this::isCorrectRange);
+    }
+
+    private void isCorrectRange(int number) {
+        if (!(LottoConstant.START_NUMBER.getValue() <= number && number <= LottoConstant.END_NUMBER.getValue())) {
+            ExceptionMessage exceptionMessage = ExceptionMessage.INCORRECT_RANGE;
+            throw new IllegalArgumentException(exceptionMessage.getMessage());
         }
     }
 

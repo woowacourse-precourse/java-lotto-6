@@ -2,14 +2,13 @@ package lotto.domain.num;
 
 import lotto.utill.Utii;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * 당첨 번호와 보너스 번호들의 모임 클래스
  */
 public class LottoNumResults {
+    private static final Integer BONUS_INDEX_NUM = 6;
+    private static final Integer START_PICK_NUM_INDEX = 0;
+    private static final Integer END_PICK_NUM_INDEX = 5;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
     private Boolean isSame;
@@ -21,7 +20,7 @@ public class LottoNumResults {
     }
 
     public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
-        isSame = isSamePickNum(targetNum, indexOfSpecial);
+        isSame = isSameWinNums(targetNum, indexOfSpecial);
         isSame = isSameBonusNum(targetNum, indexOfSpecial);
 
         return null;
@@ -33,9 +32,8 @@ public class LottoNumResults {
      * @param targetNum 확인하기 위한 번호
      * @return
      */
-    public Boolean isSamePickNum(Integer targetNum, Integer indexOfSpecial) {
-
-        if (indexOfSpecial >= 0 && indexOfSpecial <= 5) {
+    public Boolean isSameWinNums(Integer targetNum, Integer indexOfSpecial) {
+        if (isContainScope(indexOfSpecial)) {
             return winLottoNums.isSame(targetNum, indexOfSpecial);
         }
 
@@ -49,10 +47,17 @@ public class LottoNumResults {
      * @return
      */
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
-        if (Utii.isSameInt(indexOfSpecial, 6)) {
+        if (Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM)) {
             return bonusLottoNum.isSame(targetNum);
         }
-        
+
         return false;
     }
+
+    private boolean isContainScope(Integer indexOfSpecial) {
+        return indexOfSpecial >= START_PICK_NUM_INDEX
+                && indexOfSpecial <= END_PICK_NUM_INDEX;
+    }
+
+
 }

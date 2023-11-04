@@ -31,4 +31,12 @@ public class WinningLotto { // 싱글톤 패턴으로 관리
         }
     }
 
+    public int countWinNumber(Lotto lotto) { // TODO: 상수 처리 필요
+        int count = this.numbers.compareLotto(lotto);
+        if(count == 5 && lotto.containsNumber(bonusNumber)) {
+            count += 2;
+        }
+        return count;
+    }
+
 }

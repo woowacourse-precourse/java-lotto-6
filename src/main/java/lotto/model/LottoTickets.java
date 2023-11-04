@@ -11,7 +11,7 @@ public class LottoTickets {
 
     private final List<LottoTicket> tickets;
 
-    public LottoTickets(List<LottoTicket> tickets) {
+    private LottoTickets(List<LottoTicket> tickets) {
         this.tickets = tickets;
     }
 

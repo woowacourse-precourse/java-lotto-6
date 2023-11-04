@@ -26,8 +26,7 @@ public class LottoGame {
 
     private Price createPrice() {
         try {
-            Price price = new Price(InputView.inputPriceForLotto());
-            return price;
+            return new Price(InputView.inputPriceForLotto());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createPrice();

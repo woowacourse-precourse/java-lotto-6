@@ -1,11 +1,10 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningLotto {
-
-    // TODO: 입력받은 로또 번호와 컴퓨터가 랜덤으로 생성한 로또 번호가 일치하는 match() 메서드 구현
-    // TODO: 입력받은 로또 당첨 번호와 입력받은 로또 보너스 번호가 중복되는지 예외 검증 메서드 구현
 
     private final Lotto lotto;
     private final LottoNumber bonusLottoNumber;
@@ -22,6 +21,19 @@ public class WinningLotto {
 
     public LottoNumber getBonusLottoNumber() {
         return bonusLottoNumber;
+    }
+
+    public LottoResult compareWithWinningNumbers(List<Integer> lottoNumbers) {
+
+        Set<Integer> lottoNumbersSet = new HashSet<>(lottoNumbers);
+
+        long matchCount = lottoNumbers.stream()
+                .filter(lottoNumbersSet::contains)
+                .count();
+
+        boolean matchBonus = lottoNumbersSet.contains(bonusLottoNumber);
+
+        return LottoResult.findResult((int) matchCount, matchBonus);
     }
 
     private void validateWinningAndBonusNumberDuplication(List<Integer> lottoNumbers, int bonusNumber) {

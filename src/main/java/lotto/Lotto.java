@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    // TODO 인스턴스 변수를 추가할 수 없다
     public static final Integer LOTTO_PRICE = 1_000;
 
     public static List<Lotto> createLottos(int count) {
@@ -15,7 +16,7 @@ public class Lotto {
             List<Integer> numbers = NumberGenerator.generateNumbers();
             lottos.add(new Lotto(numbers));
         }
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 
     public Lotto(List<Integer> numbers) {

@@ -39,7 +39,7 @@ public class WinningStatistics {
     }
 
     private String getMessage(WinningCriteria winningCriteria) {
-        DecimalFormat decimalFormat = new DecimalFormat(Values.DECIMAL_FORMAT_PATTERN);
+        DecimalFormat decimalFormat = new DecimalFormat(Values.AMOUNT_DECIMAL_FORMAT);
         String formattedPrizeAmount = decimalFormat.format(winningCriteria.getPrizeAmount());
         String winningFormat = Messages.WINNING_MESSAGE;
         if (winningCriteria == WinningCriteria.SECOND) {

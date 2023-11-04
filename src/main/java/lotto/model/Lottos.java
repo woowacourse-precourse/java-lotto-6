@@ -8,4 +8,8 @@ public class Lottos {
     public Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public int size() {
+        return lottos.size();
+    }
 }

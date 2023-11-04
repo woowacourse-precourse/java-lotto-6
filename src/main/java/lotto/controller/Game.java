@@ -1,10 +1,19 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
 import lotto.model.Validator;
 import lotto.view.Message;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Game {
     private final Integer LOTTO_PRICE = 1000;
+    private final Integer START = 1;
+    private final Integer END = 45;
+    private final Integer NUMBER_COUNT = 6;
 
     private final Message message;
     private final Validator validator;
@@ -16,6 +25,7 @@ public class Game {
 
     public void start() {
         Integer lottoCount = buyLotto();
+        List<Lotto> lottos = generateLottos(lottoCount);
     }
 
     private Integer buyLotto() {
@@ -30,5 +40,39 @@ public class Game {
 
     private Integer countLotto(String cost) {
         return (Integer.parseInt(cost) / LOTTO_PRICE);
+    }
+
+    private List<Lotto> generateLottos(Integer lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(oneLotto());
+        }
+        showLottos(lottos);
+        return lottos;
+    }
+
+    private Lotto oneLotto() {
+        return new Lotto(pickNumbers());
+    }
+
+    private List<Integer> pickNumbers() {
+        List<Integer> numbers;
+
+        numbers = Randoms.pickUniqueNumbersInRange(START, END, NUMBER_COUNT);
+        Collections.sort(numbers);
+        return numbers;
+    }
+
+    private void showLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            showOneLotto(lotto);
+        }
+    }
+
+    private void showOneLotto(Lotto lotto) {
+        String[] lottoNumbers = lotto.stringLotto();
+
+        message.printLotto(lottoNumbers);
     }
 }

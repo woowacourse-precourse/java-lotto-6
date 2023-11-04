@@ -12,5 +12,6 @@ public class Application {
         int money = user.inputAmountOfMoney();
         int lottoCount = global.getLottoCount(money);
         global.getIssuedLottoList(lottoCount);
+        global.printIssuedLottoCountAndList();
     }
 }

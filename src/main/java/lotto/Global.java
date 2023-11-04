@@ -30,4 +30,13 @@ public class Global {
     private List<Integer> getRandomNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public void printIssuedLottoCountAndList() {
+        int lottoCount = issuedLottoList.size();
+        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+
+        for (Lotto lotto : issuedLottoList) {
+            lotto.printLottoNumbers();
+        }
+    }
 }

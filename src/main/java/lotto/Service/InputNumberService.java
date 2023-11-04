@@ -17,13 +17,32 @@ public class InputNumberService {
 
     public WinnerAndBonusNumber input() {
         // 당첨 번호 입력
-        outputView.printWinnerNumber();
-        WinnerNumber winnerNumber = new WinnerNumber(inputView.inputWinnerNumber());
-
+        WinnerNumber winnerNumber = inputWinnerNumber();
         // 보너스 번호 입력
-        outputView.printBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(winnerNumber, inputView.inputBonusNumber());
+        BonusNumber bonusNumber = inputBonusNumber(winnerNumber);
 
         return new WinnerAndBonusNumber(winnerNumber, bonusNumber);
+    }
+
+    private WinnerNumber inputWinnerNumber() {
+        while (true) {
+            try {
+                outputView.printWinnerNumber();
+                return new WinnerNumber(inputView.inputWinnerNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber inputBonusNumber(WinnerNumber winnerNumber) {
+        while (true) {
+            try {
+                outputView.printBonusNumber();
+                return new BonusNumber(winnerNumber, inputView.inputBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

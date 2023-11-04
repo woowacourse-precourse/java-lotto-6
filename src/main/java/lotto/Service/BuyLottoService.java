@@ -20,9 +20,13 @@ public class BuyLottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < purchasePrice.getCount(); i++) {
-            Lotto lotto = new Lotto(createLottoNumbers());
-            outputView.printLottoNumber(lotto);
-            lottos.add(lotto);
+            try {
+                Lotto lotto = new Lotto(createLottoNumbers());
+                outputView.printLottoNumber(lotto);
+                lottos.add(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         outputView.printLottoCount(lottos.size());
         return new LottoResults(lottos);

@@ -17,7 +17,7 @@ public class Parser {
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
     }
-    public int parseNumberOfMoney(String input){
+    public int parseInteger(String input){
         return Integer.parseInt(input);
     }
 }

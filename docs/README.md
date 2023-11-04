@@ -8,7 +8,7 @@
     - [x] 공백을 포함하면 예외 처리한다. - `InputView.validateContainWhiteSpace`
     - [x] 숫자가 아니면 예외 처리한다. - `InputView.validateStringToInt`
     - [x] 입력 금액이 1천원 이상, 100만원 이하면 예외 처리한다. - `InputView.validatePurchaseAmountRange`
-    - [ ] 입력 금액이 1,000으로 나누어 떨어지지 않으면 예외 처리한다.
+    - [x] 입력 금액이 1,000으로 나누어 떨어지지 않으면 예외 처리한다. - `InputView.validateThousandMultiple`
       <br><br>
 - [ ] 입력 금액 / 1,000만큼의 로또를 생성한다.
 - [ ] 로또 하나당 중복되지 않는 1~45까지의 숫자6개를 생성하고 오름차순 정렬한다.

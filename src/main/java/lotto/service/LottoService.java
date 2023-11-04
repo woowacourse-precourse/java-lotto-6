@@ -1,13 +1,21 @@
 package lotto.service;
 
+import lotto.model.LottoTicket;
 import lotto.model.PurchaseAmount;
+import lotto.util.RandomNumberGenerator;
 
 public class LottoService {
-    private static final String NON_NUMERIC_INPUT_MESSAGE = "[ERROR] 숫자를 입력해주세요";
     private PurchaseAmount purchaseAmount;
+    private LottoTicket lottoTicket;
 
     public void initPurchaseAmount(String inputMoney) {
         this.purchaseAmount = new PurchaseAmount(inputMoney);
+    }
+    
+    public void purchaseLotto() {
+        for (int i = 0; i < purchaseAmount.getMaxLottoCountForBudget(); i++) {
+            lottoTicket.addLotto(RandomNumberGenerator.createUniqueNumbers());
+        }
     }
 
 }

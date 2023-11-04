@@ -100,4 +100,12 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void inputBonusNumberExceptionCheck(String raw, Lotto winnerTicket) {
+        emptyCheck(raw);
+        nanCheck(raw);
+        naturalNumberCheck(raw);
+        range1to45Check(raw);
+        bonusNumberDuplicationCheck(raw, winnerTicket);
+    }
 }

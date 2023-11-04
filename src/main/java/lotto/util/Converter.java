@@ -1,11 +1,16 @@
 package lotto.util;
 
+import static lotto.constant.ErrorMessage.CHARACTER_INPUT_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.vo.PurchaseAmount;
 import lotto.vo.TicketQuantity;
 
 public class Converter {
+
+    private static final String DELIMITER = ",";
 
     private Converter() {
     }
@@ -17,7 +22,21 @@ public class Converter {
         return new TicketQuantity(quantity);
     }
 
+    public static List<Integer> convertToLottoNumbers(final String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(DELIMITER))
+                .map(number -> getLottoNumber(number.trim()))
+                .toList();
+    }
+
     private static Integer getTicketCount(final PurchaseAmount purchaseAmount) {
         return Integer.valueOf(purchaseAmount.amount()) / ONE_LOTTO_PRICE.getValue();
+    }
+
+    private static Integer getLottoNumber(final String number) {
+        try {
+            return Integer.valueOf(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(CHARACTER_INPUT_ERROR_MESSAGE.getMessage());
+        }
     }
 }

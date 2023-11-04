@@ -24,7 +24,8 @@ public class LottoCompanyService {
         this.lottos = lottos;
     }
 
-    public static LottoCompanyService of(final GoalNumbers goalNumbers, final BonusNumber bonusNumber, final List<Lotto> lottos) {
+    public static LottoCompanyService of(final GoalNumbers goalNumbers,
+                                         final BonusNumber bonusNumber, final List<Lotto> lottos) {
         LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
         return new LottoCompanyService(lottoCompany, lottos);
     }

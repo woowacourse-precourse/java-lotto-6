@@ -19,7 +19,7 @@ public class StateController {
 
     public void run() {
         enterMoney();
-//        purchaseLotto(this.money);
+        purchaseLotto(this.money);
     }
 
     private void enterMoney() {
@@ -33,7 +33,19 @@ public class StateController {
         }
     }
 
+    private void purchaseLotto(int money) {
+        List<Lotto> lotto = IntStream
+                .range(0, calculateMoney(money))
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .toList();
 
+        Lottos lottos = new Lottos(lotto);
+
+        List<Lotto> lottos1 = lottos.getLottos();
+        for (Lotto lotto1 : lottos1) {
+            OutputView.printLotto(lotto1.getNumbers());
+        }
+    }
 
     private int calculateMoney(int money) {
         return money/LOTTO_PRICE;

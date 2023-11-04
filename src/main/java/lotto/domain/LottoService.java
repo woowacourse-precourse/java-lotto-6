@@ -60,22 +60,11 @@ public class LottoService {
         }
     }
 
-    //TODO: 이것도 15줄 넘는데 어떻게 줄이면 좋을지 생각.
     private Rank getCorrectRank(CorrectResult correctResult) {
-        if (correctResult.sameThree()) {
-            return FIFTH;
-        }
-        if (correctResult.sameFour()) {
-            return FORTH;
-        }
-        if (correctResult.sameFiveNotBonus()) {
-            return THIRD;
-        }
-        if (correctResult.sameFiveBonus()) {
-            return SECOND;
-        }
-        if (correctResult.sameSix()) {
-            return FIRST;
+        for (Rank rank : Rank.values()) {
+            if (correctResult.compare(rank)) {
+                return rank;
+            }
         }
         return null;
     }

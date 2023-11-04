@@ -1,5 +1,6 @@
 package lotto.service;
 
+
 public class PrintUtil {
 
     public void printPurchaseAmountInput() {
@@ -9,6 +10,9 @@ public class PrintUtil {
     public void printNumberOfLotto(int number) {
         System.out.println();
         System.out.println(number + "개를 구매했습니다.");
+    }
+    public void printLottoNumbers(StringBuilder output) {
+        System.out.println(output);
     }
 
     public void printWinnerNumbersInput() {

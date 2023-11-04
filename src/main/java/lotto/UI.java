@@ -43,5 +43,10 @@ public class UI {
         return numbers;
     }
 
-
+    public Integer inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String line = readLine();
+        System.out.println();
+        return Integer.parseInt(line);
+    }
 }

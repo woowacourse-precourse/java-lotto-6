@@ -1,9 +1,17 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.NumberConstant;
+
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    public Lotto(){
+        numbers = Randoms.pickUniqueNumbersInRange(NumberConstant.LOTTO_NUMBER_MIN,
+                NumberConstant.LOTTO_NUMBER_MAX, NumberConstant.LOTTO_NUMBER_COUNT);
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +24,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getSortedNumbers(){
+        return numbers.stream().sorted().toList();
+    }
 }

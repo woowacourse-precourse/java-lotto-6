@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.constant.NumberConstant;
-import lotto.model.IssuedLotto;
+import lotto.model.Lotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -37,13 +37,25 @@ public class Controller {
 
     private void printIssuedLotto(int issuedLottoCount){
         OutputView.printIssuedLottoMessage(issuedLottoCount);
-        List<IssuedLotto> issuedLotto = gameService.createIssuedLotto();
-        for(IssuedLotto lotto : issuedLotto){
+        List<Lotto> issuedLotto = gameService.createIssuedLotto();
+        for(Lotto lotto : issuedLotto){
             OutputView.printIssuedLotto(lotto.getSortedNumbers());
         }
     }
 
     private void inputWinningNumbers(){
+        OutputView.inputWinningNumbersMessage();
+        tryInputWinningNumbers();
+    }
+
+    private void tryInputWinningNumbers(){
+        try{
+            String input = InputView.input();
+            gameService.inputWinningNumbers(input);
+        } catch(IllegalArgumentException e){
+            OutputView.errorMessage(e.getMessage());
+            tryInputWinningNumbers();
+        }
     }
 
     private void inputBonusNumber(){

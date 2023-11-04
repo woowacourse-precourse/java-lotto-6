@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.GameConstant;
@@ -17,6 +18,8 @@ public class GameController {
     public void play() {
         int payment = getPayment();
         buy(payment/GameConstant.PAYMENT_UNIT);
+        inputView.getNumbers();
+
     }
 
     private int getPayment() {

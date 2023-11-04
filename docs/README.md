@@ -32,6 +32,7 @@
 - [x] LottoTicket 에서 생성한 Lotto 를 저장 - LottoBundle
 - [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - LottoBundle
 - [x] Lotto 를 필요 형식으로 출력하기 위해 toString 오버라이딩 - Lotto
+- [x] Lotto 와 WinLotto 를 비교해 결과 리스트를 만들어 반환 - LottoBundle
 - ### LottoResult
 - [x] 로또 당첨 결과를 저장하는 Enum - LottoResult
 - [x] 로또 일치에 따라 당첨 결과를 반환 - LottoResult

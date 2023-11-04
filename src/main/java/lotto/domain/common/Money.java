@@ -9,29 +9,29 @@ public class Money {
     private static final String UNKNOWN_MONEY_MESSAGE = "알 수 없는 돈과 해당 연산을 수행할 수 없습니다.";
     public static final String CURRENCY = "원";
 
-    private final int value;
+    private final double value;
 
-    private Money(int value) {
+    private Money(double value) {
         this.value = value;
     }
 
-    public static Money from(int value) {
+    public static Money from(double value) {
         checkPositiveMoney(value);
 
         return new Money(value);
     }
 
-    private static void checkPositiveMoney(int value) {
+    private static void checkPositiveMoney(double value) {
         if (isNonPositive(value)) {
             throw new IllegalArgumentException(NON_POSITIVE_MONEY_MESSAGE);
         }
     }
 
-    private static boolean isNonPositive(int value) {
+    private static boolean isNonPositive(double value) {
         return value <= NON_POSITIVE_STANDARD;
     }
 
-    public int divide(Money target) {
+    public double divide(Money target) {
         checkMoneyNonNull(target);
 
         return this.value / target.value;
@@ -49,7 +49,7 @@ public class Money {
         }
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -58,7 +58,7 @@ public class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return value == money.value;
+        return Double.compare(money.value, value) == 0;
     }
 
     @Override

@@ -30,7 +30,7 @@ class MoneyTest {
     void divide() {
         Money money = Money.from(10000);
 
-        int result = money.divide(Money.from(1000));
+        double result = money.divide(Money.from(1000));
 
         assertThat(result).isEqualTo(10);
     }

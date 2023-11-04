@@ -46,13 +46,32 @@ public class Lotto {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void contains(int bonusNumber) {
-        this.numbers.stream()
-                .map(LottoNumber::getNumber)
-                .filter(number -> number == bonusNumber)
-                .findAny()
-                .orElseThrow(() -> new LottoGameException(
-                        String.format(BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS.getMessage(), this.numbers,
-                                bonusNumber)));
+    public boolean contains(LottoNumber bonusNumber) {
+        return this.numbers.stream()
+                .anyMatch(bonusNumber::equals);
+    }
+
+    public void hasSameNumber(int inputBonusNumber) {
+        LottoNumber bonusNumber = new LottoNumber(inputBonusNumber);
+        if (this.numbers.contains(bonusNumber)) {
+            throw new LottoGameException(
+                    String.format(BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS.getMessage(),
+                            this.numbers.stream()
+                                    .map(LottoNumber::getNumber)
+                                    .toList(),
+                            inputBonusNumber));
+        }
+    }
+
+    public RankPrize determineRank(Lotto winningNumbers, LottoNumber bonusNumber) {
+        int matchCounts = this.matchCounts(winningNumbers);
+        boolean isBonusMatched = this.contains(bonusNumber);
+        return RankPrize.determineRankPrize(matchCounts, isBonusMatched);
+    }
+
+    private int matchCounts(Lotto lotto) {
+        return (int) this.numbers.stream()
+                .filter(lotto::contains)
+                .count();
     }
 }

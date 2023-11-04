@@ -1,14 +1,14 @@
 package lotto.domain;
 
+import static lotto.domain.NumberConstant.MINIMUM_LOTTO_PRICE;
+import static lotto.domain.NumberConstant.NO_REMAINDER;
+import static lotto.domain.NumberConstant.ZERO_AMOUNT;
 import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_HAS_REMAINDER;
 
 import lotto.exception.LottoGameException;
 
 public class PurchaseAmount {
 
-    public static final int MIN_PURCHASE_AMOUNT = 1000;
-    public static final int ZERO_AMOUNT = 0;
-    public static final int NO_REMAINDER = 0;
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchaseAmount) {
@@ -23,14 +23,14 @@ public class PurchaseAmount {
     }
 
     private static boolean isZeroAmount(int purchaseAmount) {
-        return purchaseAmount == ZERO_AMOUNT;
+        return purchaseAmount == ZERO_AMOUNT.getValue();
     }
 
     private boolean hasRemainder(int purchaseAmount) {
-        return purchaseAmount % MIN_PURCHASE_AMOUNT != NO_REMAINDER;
+        return purchaseAmount % MINIMUM_LOTTO_PRICE.getValue() != NO_REMAINDER.getValue();
     }
 
     public int getAvailablePurchaseCounts() {
-        return this.purchaseAmount / MIN_PURCHASE_AMOUNT;
+        return this.purchaseAmount / MINIMUM_LOTTO_PRICE.getValue();
     }
 }

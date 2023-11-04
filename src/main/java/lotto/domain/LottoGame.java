@@ -13,7 +13,7 @@ public class LottoGame {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public void purchaseUserLottos(int availableCounts) {
+    public void purchaseLottoNumbersOf(int availableCounts) {
         this.purchasedLottos = lottoGenerator.generate(availableCounts);
     }
 
@@ -22,7 +22,11 @@ public class LottoGame {
     }
 
     public void determineBonusNumber(int inputBonusNumber) {
-        this.winningNumbers.contains(inputBonusNumber);
+        winningNumbers.hasSameNumber(inputBonusNumber);
         this.bonusNumber = new LottoNumber(inputBonusNumber);
+    }
+
+    public RankResult calculateRank() {
+        return this.purchasedLottos.determineRank(this.winningNumbers, this.bonusNumber);
     }
 }

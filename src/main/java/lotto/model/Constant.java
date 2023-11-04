@@ -2,6 +2,7 @@ package lotto.model;
 
 public class Constant {
     /* constants for reward price */
+    public static final int[] REWARD = {5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000};
     public static final int FIRST_REWARD = 2_000_000_000;
     public static final int SECOND_REWARD = 30_000_000;
     public static final int THIRD_REWARD = 1_500_000;

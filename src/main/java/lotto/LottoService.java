@@ -104,4 +104,32 @@ public class LottoService {
         }
         return finalResult;
     }
+
+    public static Rank matchRank(int number) {
+        if (number == 1) {
+            return Rank.FIRST;
+        }
+        if (number == 2) {
+            return Rank.SECOND;
+        }
+        if (number == 3) {
+            return Rank.THIRD;
+        }
+        if (number == 4) {
+            return Rank.FOURTH;
+        }
+        if (number == 5) {
+            return Rank.FIFTH;
+        }
+        return Rank.OUT_OF_RANK;
+    }
+
+    public static int calculateTotalReward(HashMap<Integer, Integer> finalResult){
+        int totalReward = 0;
+
+        for (int i = 1; i < 6; i++) {
+            totalReward += matchRank(i).getReward() * finalResult.get(i);
+        }
+        return totalReward;
+    }
 }

@@ -19,4 +19,8 @@ public enum Rank {
         this.isBonus = isBonus;
         this.reward = reward;
     }
+
+    public int getReward() {
+        return reward;
+    }
 }

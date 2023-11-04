@@ -18,8 +18,13 @@ public class LottoController {
     }
 
     public void run() {
+        purchaseLottos();
+    }
+
+    private void purchaseLottos() {
         outputView.printLottoPurchasePriceMessage();
         LottoPurchasePrice lottoPurchasePrice = inputManager.inputLottoPurchasePrice();
         lottoService.saveLottos(lottoPurchasePrice);
+        outputView.printLottoResult(lottoService.getLottos());
     }
 }

@@ -8,6 +8,8 @@ public class WinLotto {
     private List<Integer> numbers;
     private int bonusNumber;
     private final int NUMBERSIZE = 6;
+    private final int MAXRANGE = 45;
+    private final int MINRANGE = 1;
 
     public WinLotto(String winNums, String bonusNumber) {
 
@@ -32,7 +34,7 @@ public class WinLotto {
 
         validateSize(checkNums);
         validateNum(checkNums);
-        //validateRange(checkNums);
+        validateRange(checkNums);
         //validateDuplicate(checkNums);
     }
 
@@ -55,6 +57,19 @@ public class WinLotto {
         } catch (NumberFormatException e) {
 
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRange(String[] checkNums) {
+
+        for (String str : checkNums) {
+
+            int num = Integer.parseInt(str);
+
+            if (num < MINRANGE || num > MAXRANGE) {
+
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

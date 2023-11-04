@@ -40,7 +40,9 @@ public class LottoController {
         Map<LottoCount, Integer> lottoResult =
                 service.compareLottoToWinningAndBonus(createdLottos, winningNumbers, bonusNumber);
         outputView.outputWinningResult(lottoResult);
+
+        int inputPrice = inputView.getInputPrice();
+        long totalWinningPrice = service.getTotalWinningPrice(lottoResult);
+        outputView.outputWinningRate(totalWinningPrice, inputPrice);
     }
-
-
 }

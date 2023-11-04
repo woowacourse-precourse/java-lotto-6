@@ -15,10 +15,9 @@ public class MainLottoController {
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
         UserLotto userLotto = makeUserLotto();
+
         System.out.println(userLotto.getMainLottoNumber());
         System.out.println(userLotto.getBonusNumber());
-        /////// UserLotto userlotto = new UserLotto(Lotto,int)
-        //아니면 그냥 UserLotto를 밚롼
 
         //로또 입력받기
         //결과 출력

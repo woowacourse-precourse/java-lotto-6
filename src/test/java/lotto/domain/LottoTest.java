@@ -36,6 +36,16 @@ class LottoTest {
                 .hasMessage("알 수 없는 숫자로 로또 번호를 생성할 수 없습니다.");
     }
 
+    @DisplayName("알 수 없는 로또와 일치되는 번호의 갯수를 조회할 수 없다.")
+    @Test
+    void checkLottoNonNull() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> lotto.matchWith(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("알 수 없는 로또와 매치할 수 없습니다.");
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어갈 수 없다.")
     @Test
     void checkNumbersSize() {

@@ -45,9 +45,11 @@ public class Lotto {
         return sortedLotto;
     }
 
-    public int calculateLottoMatch(final Lotto winningLotto) {
+    public LottoRank determineLottoRank(Lotto winningLotto, int bonus) {
         final List<Integer> winningNumbers = winningLotto.numbers;
-        return getMatchCount(winningNumbers);
+        int matchCount = getMatchCount(winningNumbers);
+
+        return LottoRank.getRank(matchCount, isContainsBonus(bonus));
     }
 
     private int getMatchCount(List<Integer> winningNumbers) {

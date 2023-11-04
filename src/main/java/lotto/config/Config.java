@@ -12,8 +12,8 @@ public class Config {
         return new Lotto(RanNumbers.createLottoNumbers());
     }
 
-    public static WinLottoNums winLottoNums(String strOfPickWinNum) {
-        return new WinLottoNums(strOfPickWinNum);
+    public static LottoEnvelop lottoEnvelop() {
+        return new LottoEnvelop();
     }
 
     public static BonusLottoNum bonusLottoNum(String strOfPickBonusNum) {
@@ -24,7 +24,7 @@ public class Config {
         return new LottoNumResults(strOfPickWinNum, strOfPickBonusNum);
     }
 
-    public static LottoEnvelop lottoEnvelop() {
-        return new LottoEnvelop();
+    public static WinLottoNums winLottoNums(String strOfPickWinNum) {
+        return new WinLottoNums(strOfPickWinNum);
     }
 }

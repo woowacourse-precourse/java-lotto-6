@@ -3,6 +3,9 @@ package lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class GameManagerTest {
@@ -13,22 +16,20 @@ public class GameManagerTest {
     void setUp(){
         gameManager = new GameManager();
     }
-
     @Test
-    void 입력받은_금액이_천원으로_나누어_떨어지지_않는_경우_예외_발생(){
+    void 일반번호_3개를_맞춘_경우_금액을_탈수있다(){
         // Arrange
-        String payment = "1200";
-        // Action, Action
-        assertThatThrownBy(() -> gameManager.getPaymentForLottoByRead(payment))
-                .isInstanceOf(IllegalArgumentException.class);
+        List<Integer> myNumber = List.of(1, 2, 3, 4, 5, 10);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 6, 7);
+        int bonusNumber = 5;
+
+        // Action
+        Lotto lotto = new Lotto(myNumber);
+        lotto.setWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+        Double profit = gameManager.getProfitRate(List.of(lotto), 1000);
+
+        // Assert
+        assertThat(profit).isEqualTo(5);
     }
 
-    @Test
-    void 입력받은_금액이_숫자로_이뤄지지않은경우_예외발생(){
-        // Arrange
-        String payment = "100f";
-        // Action, Action
-        assertThatThrownBy(() -> gameManager.getPaymentForLottoByRead(payment))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

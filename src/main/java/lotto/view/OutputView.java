@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.constant.OutputMessage;
 import lotto.domain.LottoCounter;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottoes;
 
 public class OutputView {
@@ -28,6 +29,9 @@ public class OutputView {
         System.out.println(OutputMessage.READ_BONUS_NUMBER.getMessage());
     }
 
+    public void printResult(LottoResult result) {
+        System.out.println(result.getResultScreen());
+    }
     public void printNewLine() {
         System.out.println();
     }

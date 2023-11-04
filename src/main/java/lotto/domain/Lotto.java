@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoEnum;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -21,7 +23,7 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_MESSAGE.getMessage());
         }
         if (numbers.stream().anyMatch(number -> number < LottoEnum.MIN_LOTTO_NUMBER.getValue()
-                        || number > LottoEnum.MAX_LOTTO_NUMBER.getValue())) {
+                || number > LottoEnum.MAX_LOTTO_NUMBER.getValue())) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
         }
     }

@@ -7,6 +7,7 @@ import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
@@ -17,7 +18,7 @@ public class Lotto {
         validate(numbers);
         validateLottoNumberRange(numbers);
         validateDuplicatedLottoNumber(numbers);
-        this.numbers = numbers;
+        this.numbers = sortAscendingOrder(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -49,5 +50,11 @@ public class Lotto {
         Set<Integer> noneDuplicatedNumbers = new HashSet<>(numbers);
         if (noneDuplicatedNumbers.size() != numbers.size())
             DUPLICATED_LOTTO_NUMBER.throwException();
+    }
+
+    private List<Integer> sortAscendingOrder(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

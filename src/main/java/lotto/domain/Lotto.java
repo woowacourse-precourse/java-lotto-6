@@ -43,20 +43,14 @@ public class Lotto {
         }
     }
 
-    public LottoResult compareWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
-        Integer countOfSameNumbers = compareWithWinnerNumbers(winnerNumbers);
-        Boolean checkBonus = compareWithBonusNumber(bonusNumber);
-        return new LottoResult(countOfSameNumbers, checkBonus);
-    }
 
-
-    private Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
+    public Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
         return Math.toIntExact(numbers.stream()
                 .filter(number -> winnerNumbers.contains(number))
                 .count());
     }
 
-    private Boolean compareWithBonusNumber(Integer bonusNumber) {
+    public Boolean compareWithBonusNumber(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

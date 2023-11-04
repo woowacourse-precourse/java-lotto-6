@@ -21,6 +21,11 @@ public enum Prize {
         this.reward = reward;
     }
 
-
+    public Prize of(Integer countOfSameNumbers, Boolean checkBonus) {
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.countOfSameNumbers == countOfSameNumbers && prize.checkBonus == checkBonus)
+                .findFirst()
+                .orElse(LAST_PLACE);
+    }
 
 }

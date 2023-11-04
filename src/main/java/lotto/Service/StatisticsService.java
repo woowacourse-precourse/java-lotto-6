@@ -26,9 +26,11 @@ public class StatisticsService {
 
         outputView.printWinningStatistics();
         outputView.printMatchingCount(matchingCount);
-        outputView.printEarningPercent(earningMoney, purchasePrice);
+
+        String formattedPercent = printEarningPercent(earningMoney, purchasePrice);
+        outputView.printEarningPercent(formattedPercent);
     }
-    
+
     private void updateMatchingCount(List<Statistics> result, Map<Statistics, Integer> matchingCount) {
         for (Statistics statistics : result) {
             Statistics matchCount = new Statistics(statistics.getMatchCount(), statistics.isMatchBonus());
@@ -47,5 +49,21 @@ public class StatisticsService {
             earningMoney += prizeMoney.getBonusPrizeMoney(matchCount.getMatchCount(), statistics.isMatchBonus());
         }
         return earningMoney;
+    }
+
+    private String printEarningPercent(int earningMoney, int purchasePrice) {
+        double earningPercent = calculateEarningPercent(earningMoney, purchasePrice);
+        String formattedPercent = String.format("%.2f", earningPercent);
+
+        // 소수점 둘째 자리가 0인 경우, 소수점 첫째 자리까지만 출력
+        if (formattedPercent.endsWith("0")) {
+            formattedPercent = formattedPercent.substring(0, formattedPercent.length() - 1);
+        }
+
+        return formattedPercent;
+    }
+
+    private double calculateEarningPercent(int earningMoney, int purchasePrice) {
+        return Math.round((double) earningMoney / purchasePrice * 100 * 100) / 100.0;
     }
 }

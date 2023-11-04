@@ -28,12 +28,10 @@ public class Calculator {
 
     public float calculateRateOfReturn(Map<Rank, Integer> result) {
         long sumOfPrize = 0;
-        int purchaseAmount = 0;
         for (Rank rank : Rank.values()) {
             sumOfPrize += result.getOrDefault(rank, 0) * rank.getPrize();
-            purchaseAmount += result.getOrDefault(rank, 0);
         }
-        return (float) sumOfPrize / purchaseAmount / LOTTO_PRICE * 100;
+        return (float) sumOfPrize / userLottos.size() / LOTTO_PRICE * 100;
     }
 
 }

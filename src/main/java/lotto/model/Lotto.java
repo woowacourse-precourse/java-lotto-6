@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     public static final int PRICE = 1000;
@@ -17,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateInRange(numbers);
+        validateUnique(numbers);
     }
 
     private static void validateSize(List<Integer> numbers) {
@@ -26,8 +29,8 @@ public class Lotto {
     }
 
     private void validateInRange(List<Integer> numbers) {
-        numbers.forEach(number ->{
-            if(isOutRange(number)){
+        numbers.forEach(number -> {
+            if (isOutRange(number)) {
                 throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 값이어야 합니다.");
             }
         });
@@ -35,6 +38,14 @@ public class Lotto {
 
     private boolean isOutRange(Integer number) {
         return number < LOTTO_LOWER_INCLUSIVE || number > LOTTO_UPPER_INCLUSIVE;
+    }
+
+    private void validateUnique(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
+        }
     }
 
 

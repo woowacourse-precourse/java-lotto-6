@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Winning {
     private final List<Integer> numbers;
@@ -13,6 +15,7 @@ public class Winning {
         checkNumberLength(numbers);
         checkNumberRange(numbers);
         checkBonusRange(bonus);
+        checkDuplicate(numbers, bonus);
         this.numbers = numbers;
         this.bonus = bonus;
     }
@@ -35,6 +38,13 @@ public class Winning {
 
     private void checkRange(int num) {
         if ((num < start) || (num > end)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkDuplicate(List<Integer> numbers, int bonus) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.contains(bonus)) {
             throw new IllegalArgumentException();
         }
     }

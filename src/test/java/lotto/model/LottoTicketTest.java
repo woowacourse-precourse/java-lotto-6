@@ -3,6 +3,8 @@ package lotto.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -24,5 +26,14 @@ public class LottoTicketTest {
         int matchCount = lottoTicket.getMatchCountWithWinningNumbers(winningNumbers);
 
         assertThat(matchCount).isEqualTo(3);
+    }
+
+    @DisplayName("로또를 보너스 번호와 비교하여 일치 여부를 확인한다.")
+    @ParameterizedTest(name = "[테스트 케이스 {index}] 보너스 번호 = {0}, 일치 여부 결과 = {1} ")
+    @CsvSource({"3,true", "8,false"})
+    public void isMatchWithBonusNumber(int bonusNumber, boolean expected) {
+        boolean match = lottoTicket.isMatchWithBonusNumber(bonusNumber);
+
+        assertThat(match).isEqualTo(expected);
     }
 }

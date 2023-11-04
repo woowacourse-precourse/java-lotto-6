@@ -1,0 +1,105 @@
+## 기능 요구 사항
+- 로또 번호의 숫자 범위는 1~45까지
+- 로또 발행시 중복없는 6개의 숫자 뽑는다
+- 당첨 번호 추첨시 중복없는 6개의 숫자와 1개의 보너스 번호를 뽑는다
+- 1~5등까지 당첨된다.
+    - 1등: 6개 번호 일치 / 2,000,000,000원
+    - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
+    - 3등: 5개 번호 일치 / 1,500,000원
+    - 4등: 4개 번호 일치 / 50,000원
+    - 5등: 3개 번호 일치 / 5,000원
+- 로또 구입 금액 입력시 해당 금액 만큼 로또 발행한다
+    - 로또 1장 가격은 1,000원
+- 당첨 번호와 보너스 번호를 입력받는다
+- 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력한 후 종료한다
+- 잘못된 입력시 IllegalArgumentException를 발생시킨다
+    - "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - 에러 메시지는 IllegalArgumentException 뿐만 아니라 다른 Exception들을 사용한다
+
+## 프로그래밍 요구 사항
+- 로또 구입 금액 입력
+    - 1,000원 단위로 입력 받는다
+        - 1,000으로 떨어지지 않을 경우 IllegalArgumentException
+- 당첨 번호 입력
+    - ',' 기준으로 구분
+    - 번호는 1~45 사이에 있다
+        - 1~45사이에 없을 경우 IllegalArgumentException
+    - 번호는 숫자여야 한다
+        - 숫자가 아닐 경우 IllegalArgumentException
+    - 번호는 6개여야한다
+        - 6개가 아닐시 IllegalArgumentException
+- 보너스 번호를 입력받는다
+    - 1~45사이의 하나의 번호
+        - 하나가 아닐시 IllegalArgumentException
+    - 번호는 숫자여야한다
+        - 숫자가 아닐 경우 IllegalArgumentException
+- 발행한 로또 수량 및 번호 출력
+    - 오름차 순으로 정렬하여 보여준다
+    - 구매한 수량을 출력한다
+- 당첨 내역을 출력한다
+- 수익률을 출력한다
+    - 소수점 둘째 자리에서 반올림한다
+    - ex) 100.0%, 51.5%, 1,000,000.0%
+- 예외 문구
+    - 예외 상황시 에러 문구를 출력해야한다
+    - "[EEROR]" 로 시작해야한다
+        - ex) [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
+
+## 구현 기능 목록
+
+- [ ] Model
+  - [ ] Lotto
+      - [ ] Lotto 번호 검증
+          - [ ] 길이 검증
+          - [ ] 숫자 중복 검증
+  - [ ] LottoTickets
+      - [ ] Lotto 객체들 저장
+      - [ ] Lotto 오름차순 정렬
+  - [ ] LottoFactory
+      - [ ] Lotto 객체 생성 로직
+  - [ ] LottoNumberGenerator
+      - [ ] 번호 생성 로직
+  - [ ] LottoMachine
+      - [ ] 구매 금액 검증
+      - [ ] Lotto 티켓 구매, LottoFactory를 사용하여 객체 생성
+      - [ ] LottoTickets에 Lotto 추가
+  - [ ] LottoResult
+      - [ ] LottoTickets와 WinningLotto를 사용하여 통계 계산
+      - [ ] 총 수익률 계산
+  - [ ] WinningLotto
+      - [ ] WinningLotto는 Lotto를 상속
+      - [ ] WinningLotto 생성
+      - [ ] 보너스 번호
+          - [ ] 보너스 번호 길이 검증
+          - [ ] 보너스 번호 범위 검증
+          - [ ] 당첨 번호와 보너스 번호 겹치는지 검증
+- [ ] View
+    - [ ] 로또 구매 수량 출력
+    - [ ] 생성된 로또 번호 출력
+    - [ ] 당첨 내역 통계 출력
+    - [ ] 총 수익률 출력
+    - [ ] 예외 사항 출력
+    - [ ] 구입 금액 입출력
+    - [ ] 당첨 번호 입출력
+    - [ ] 보너스 번호 입출력
+- [ ] Controller
+    -[ ] LottoGameController
+        - [ ] LottoTickets 생성
+        - [ ] WinningLotto 생성
+        - [ ] WinningLotto, LottoTickets 사용하여 Result 계산
+- [ ] 에러 메세지 Enum
+- [ ] Application
+    - [ ] LottoGameController 호출
+
+### 우테코 요구사항
+- Java Enum 사용
+- 도메일 로직에 단위 테스트 구현
+    - UI 로직 제외(System.out, System.in, Scanner)
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현
+- 매서드 길이는 15라인을 안 넘어 가도록
+- else 예약어 사용 X
+- camp.nextstep.edu.missionutils 사용
+- 제공 Lotto 클래스 활용해 구현
+    - private number 변경 불가
+    - Lotto 에 인스턴스 변수 추가 불가
+    - Lotto 의 패키지 변경 가능

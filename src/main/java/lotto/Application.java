@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.domain.LottoDraw;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoDraw lotto = new LottoDraw();
+        lotto.lottoDraw();
     }
 }

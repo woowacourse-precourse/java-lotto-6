@@ -15,4 +15,8 @@ public class LottoOutput {
     public String getLottoNumbersMessage(List<Integer> lottoNumbers) {
         return lottoNumbers.toString();
     }
+
+    public String getErrorMessage(String message) {
+        return message;
+    }
 }

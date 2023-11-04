@@ -57,4 +57,11 @@ public class LottoOutputTest {
 
         assertEquals(expectedOutput, outputForThreeTickets);
     }
+
+    @Test
+    void 에러_메시지를_정확히_반환하는지_테스트() {
+        LottoOutput output = new LottoOutput();
+        String expectedMessage = "에러가 발생했습니다.";
+        assertEquals(expectedMessage, output.getErrorMessage(expectedMessage));
+    }
 }

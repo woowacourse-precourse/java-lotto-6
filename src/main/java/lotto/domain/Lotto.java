@@ -1,14 +1,12 @@
 package lotto.domain;
 
 import static lotto.util.Validator.validateDuplicate;
-import static lotto.util.Validator.validateNonNumericNumbers;
 import static lotto.util.Validator.validateRangeOfNumbers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
+    private static final String SIZE_ERROR_MESSAGE = "[ERROR] 6개 번호를 입력해주세요.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,36 +16,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto(String number) {
-        this.numbers = transformInputNumber(number);
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
         }
-    }
-
-    private List<String> convertStringToList(String input) {
-        List<String> numbers = new ArrayList<>(Arrays.asList(input.split(",")));
-        return numbers;
-    }
-
-    private List<Integer> convertStringToInt(List<String> input) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String num : input) {
-            numbers.add(Integer.parseInt(num));
-        }
-        return numbers;
-    }
-
-    private List<Integer> transformInputNumber(String input) {
-        List<String> numbers = convertStringToList(input);
-        validateNonNumericNumbers(numbers);
-        return convertStringToInt(numbers);
     }
 }

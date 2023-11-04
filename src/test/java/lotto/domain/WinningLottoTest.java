@@ -54,4 +54,25 @@ class WinningLottoTest {
                 arguments(new Lotto(List.of(1, 2, 13, 14, 15, 16)), LottoRanking.NOTHING)
         );
     }
+
+    @Test
+    @DisplayName("사용자가 구매한 총 로또와 당첨 번호를 비교하여 전체 당첨 내역을 알 수 있다.")
+    void compare() {
+        List<Lotto> userLottos = getLotto();
+        LottoResult result = winningLotto.compare(userLottos);
+
+        assertThat(result.getResult()).containsExactly(
+                entry(LottoRanking.FIRST, 1),
+                entry(LottoRanking.FIFTH, 1),
+                entry(LottoRanking.NOTHING, 1)
+        );
+    }
+
+    private List<Lotto> getLotto() {
+        return List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 14, 15, 16)),
+                new Lotto(List.of(1, 12, 13, 14, 15, 16))
+        );
+    }
 }

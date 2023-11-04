@@ -4,6 +4,7 @@ import static lotto.model.LottoPrize.*;
 import static lotto.util.Constant.LOTTO_PRICE;
 import static lotto.util.Constant.ZERO;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.NumbersGenerator;
@@ -66,9 +67,7 @@ public class Lottos {
                 calculateWinningPrize(FIFTH_PRIZE, countFifthPrizeWinners(winningNumbers));
     }
 
-    public List<List<Integer>> getLottos() {
-        return lottos.stream()
-                .map(Lotto::getNumbers)
-                .toList();
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

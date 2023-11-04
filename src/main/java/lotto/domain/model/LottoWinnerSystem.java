@@ -31,4 +31,11 @@ public class LottoWinnerSystem {
             throw new IllegalArgumentException("[ERROR] 숫자를 6개를 입력해 주세요.");
         }
     }
+
+    private static void isDistinct(List<Integer> numbers) {
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
+        }
+    }
 }

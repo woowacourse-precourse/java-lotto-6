@@ -18,18 +18,20 @@
 ***
 ### 클래스별 역할 목록
 
-|    패키지     |         클래스          |             역할              |
-|:----------:|:--------------------:|:---------------------------:|
-|   domain   |        Lotto         |  보너스 번호를 포함한 7개의 로또 번호 저장   |
-|  service   |    MoneyToTicket     |     구매 금액에 따른 로또 수량 제공      |
-|            | LottoNumberGenerate  |        갯수별 로또 번호 제공         |
-|            |   LottoWinConfirm    |     당첨 결과 등수별 분류 결과 제공      |
-|            |   ReturnCalculator   |      수익률 분석 및 통계 결과 제공      |
-|    util    | RandomNumberGenerate | 1~45 사이의 중복 되지 않는 6개의 숫자 생성 |
-|            |    InputVaildate     |        입력 값의 유효성 검증         | 
-| controller |   LottoController    |          전체 과정 제어           |
-|    view    |      InputView       |          입력 메시지 제공          |
-|            |      OutputView      |          출력 메시지 제공          |
+|    패키지     |         클래스          |              역할               |
+|:----------:|:--------------------:|:-----------------------------:|
+|   domain   |      LottoBuyer      | 구매 금액, 총 구매 개수, 당첨 금액 저장 및 제공 |
+|            |     LottoTicket      |     로또 번호, 추첨 결과 저장 및 제공      |
+|            |     LottoWinning     |      당첨 번호, 등수, 당첨 금액 제공      |
+|  service   |    MoneyToTicket     |       금액에 따른 총 구매 개수 제공       |
+|            | LottoNumberGenerate  |           로또 번호 제공            |
+|            |   LottoWinConfirm    |           당첨 결과 제공            |
+|            |   ReturnCalculator   |           수익률 분석 제공           |
+|    util    | RandomNumberGenerate |  1~45 사이의 중복 되지 않는 6개의 숫자 생성  |
+|            |    InputVaildate     |         입력 값의 유효성 검증          | 
+| controller |   LottoController    |           전체 과정 제어            |
+|    view    |      InputView       |           입력 메시지 제공           |
+|            |      OutputView      |           출력 메시지 제공           |
 
 ***
 ### 기능별 구현 목록

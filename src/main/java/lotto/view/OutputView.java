@@ -8,4 +8,8 @@ public class OutputView {
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
+
+    public static void printNumOfTickets(int numOfTickets) {
+        System.out.println("\n" + numOfTickets + "개를 구매했습니다.");
+    }
 }

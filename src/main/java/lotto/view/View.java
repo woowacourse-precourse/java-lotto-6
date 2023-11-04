@@ -10,4 +10,8 @@ public class View {
     public String inputValue() {
         return Console.readLine();
     }
+
+    public void printExceptionMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

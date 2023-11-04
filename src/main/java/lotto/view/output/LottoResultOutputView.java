@@ -31,8 +31,7 @@ public class LottoResultOutputView {
         long totalAmount = lottoRanks.stream()
                 .mapToLong(lottoRank -> lottoRank.calculate(lottoRankCountMap.get(lottoRank)))
                 .sum();
-
-        System.out.printf(TOTAL_PROFIT_FORMAT, (totalAmount / amount) * PERCENTAGE);
+        System.out.printf(TOTAL_PROFIT_FORMAT, ((double)totalAmount / amount) * PERCENTAGE);
     }
 
 }

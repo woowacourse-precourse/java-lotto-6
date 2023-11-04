@@ -7,43 +7,20 @@ import lotto.validator.InputValidator;
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoBuyInputView extends Input{
+public class LottoNumberInputView extends Input{
 
-
-    //util로 뺴지 않은 이유는 inputView만 사용하기 때문에 lifeCycle이 같아야 된다고 생각한다.
     private final InputValidator inputValidator;
-    private final int denomination;
 
-    public LottoBuyInputView(int denomination) {
-        //LottoController에서 InputView가 InputValidator를 의존하는지 알 필요가 없다고 생각한다.
+    public LottoNumberInputView() {
         this.inputValidator = new InputValidator();
-        this.denomination = denomination;
     }
 
-    public int requestLottoPurchaseAmount() {
-        printRequestLottoPurchaseAmount();
-
-        int amount = inputValidator.parseInt(readLine());
-        validateLottoAmount(amount, denomination);
-
-        return amount;
-    }
-
-    private void printRequestLottoPurchaseAmount() {
-        System.out.println(LottoBuyMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE.getMassage());
-    }
-
-    private void validateLottoAmount(int amount, int denomination) {
-        inputValidator.validateLottoAmount(amount);
-        inputValidator.validateMultipleOfDenomination(amount, denomination);
-    }
-
-    //사이즈랑 정렬되서 들어왔는지 확인하기
     public List<Integer> requestWinningLottoNumbers() {
         printRequestWinningLottoNumbers();
 
         List<Integer> numbers = getNumbers();
         validateWiningLottoNumbers(numbers);
+        System.out.println();
 
         return numbers;
     }
@@ -68,6 +45,7 @@ public class LottoBuyInputView extends Input{
 
         int bonusNumber = inputValidator.parseInt(readLine());
         validateBonusLottoNumber(bonusNumber, winningLotto);
+        System.out.println();
 
         return bonusNumber;
     }

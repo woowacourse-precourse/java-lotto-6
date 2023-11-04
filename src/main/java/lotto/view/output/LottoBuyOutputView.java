@@ -18,6 +18,7 @@ public class LottoBuyOutputView {
         List<String> allLottoNumbers = allLottoNumbersAsString(lottos.getLottos());
         allLottoNumbers.stream()
                 .forEach(this::printLottoNumbers);
+        System.out.println();
     }
     private List<String> allLottoNumbersAsString(List<Lotto> lottos) {
         return lottos.stream()

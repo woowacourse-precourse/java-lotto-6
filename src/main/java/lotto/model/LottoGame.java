@@ -15,4 +15,7 @@ public class LottoGame {
         this.bonusNumber = bonusNumber;
     }
 
+    public static LottoGame createGame(final Player player, final Lotto lotto, final BonusNumber bonusNumber) {
+        return new LottoGame(player, lotto, bonusNumber);
+    }
 }

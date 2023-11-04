@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.domain;
 
 import java.util.List;
 
@@ -43,6 +43,14 @@ public class Lotto {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
+    }
+
+    public int countNumbers(Lotto prize) {
+        return (int) numbers.stream().filter(prize::containNumber).count();
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
     }
 
     @Override

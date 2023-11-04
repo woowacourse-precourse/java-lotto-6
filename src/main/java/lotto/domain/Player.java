@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.domain;
 
 import lotto.utils.LottoGenerator;
 
@@ -26,6 +26,10 @@ public class Player {
         int amount = calculateAmount(money);
         List<Lotto> lotto = purchaseLotto(amount);
         return new Player(money, amount, lotto);
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public int getAmount() {

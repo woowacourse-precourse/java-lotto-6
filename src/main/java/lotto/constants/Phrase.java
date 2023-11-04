@@ -16,7 +16,11 @@ public enum Phrase {
         return phrase;
     }
 
-    public String formatPhrase(int value) {
-        return String.format(phrase, value);
+    public String formatAmount(int amount) {
+        return String.format(phrase, amount);
+    }
+
+    public String formatRate(String rate) {
+        return String.format(phrase, rate);
     }
 }

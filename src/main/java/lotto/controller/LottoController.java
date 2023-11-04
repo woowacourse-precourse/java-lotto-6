@@ -1,18 +1,18 @@
 package lotto.controller;
 
-import lotto.model.domain.Lotto;
-import lotto.model.domain.Player;
-import lotto.model.domain.Prize;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    public LottoController() {
+    }
 
     public void run() {
         Player player = getPlayer();
         showPlayerLotto(player);
         Prize prize = getPrize(getPrizeLotto());
-        System.out.println(prize);
+        showLottoResult(player, prize);
     }
 
     private Player getPlayer() {
@@ -46,5 +46,17 @@ public class LottoController {
             System.out.println(e.getMessage());
             return getPrizeLotto();
         }
+    }
+
+    private void showLottoResult(Player player, Prize prize) {
+        Result result = Result.of(player.getLotto(), prize);
+        for (Rank rank : Rank.values()) {
+            if (!rank.equals(Rank.NONE)) {
+                int count = result.getResultCount(rank);
+                System.out.println(rank.formatMessage(count));
+            }
+        }
+        double rate = (result.calculateResult() / player.getMoney()) * 100;
+        System.out.println(String.format("%.1f", rate));
     }
 }

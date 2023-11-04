@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,5 +36,27 @@ class LottoTest {
     void createLottoByOverRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 70)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 몇 개 일치하는지 테스트한다.")
+    @Test
+    void countMatchNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto prize = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        int matchNumbers = lotto.countNumbers(prize);
+
+        assertThat(matchNumbers).isEqualTo(6);
+    }
+
+    @DisplayName("로또 보너스 번호가 일치하는지 테스트한다.")
+    @Test
+    void countMatchNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 3;
+
+        boolean matchBonus = lotto.containNumber(bonus);
+
+        assertThat(matchBonus).isTrue();
     }
 }

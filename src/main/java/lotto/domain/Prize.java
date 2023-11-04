@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.domain;
 
 import static lotto.constants.Error.DUPLICATE_INVALID;
 import static lotto.constants.Error.RANGE_INVALID;
@@ -17,6 +17,14 @@ public class Prize {
 
     public static Prize of(Lotto lotto, int bonus) {
         return new Prize(lotto, bonus);
+    }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonus() {
+        return bonus;
     }
 
     private static void validate(Lotto lotto, int bonus) {

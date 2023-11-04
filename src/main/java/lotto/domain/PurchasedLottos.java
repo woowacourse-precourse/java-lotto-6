@@ -45,9 +45,9 @@ public class PurchasedLottos {
         String purchaseMessage = String.format(Messages.PURCHASE_MESSAGE, lottos.size());
         String lottosString = lottos.stream()
                 .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining());
 
-        return purchaseMessage + "\n" + lottosString;
+        return purchaseMessage + lottosString;
     }
 
     public List<Lotto> getLottos() {

@@ -52,11 +52,11 @@ public class WinningStatistics {
 
     @Override
     public String toString() {
-        String statistics = Messages.WINNING_STATISTICS + "\n" + Messages.SEPARATOR_LINE + "\n";
+        String statistics = Messages.WINNING_STATISTICS + Messages.SEPARATOR_LINE;
         String result = Arrays.stream(WinningCriteria.values())
                 .filter(criteria -> criteria != WinningCriteria.LOSE)
                 .map(this::getMessage)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining());
         return statistics + result;
     }
 }

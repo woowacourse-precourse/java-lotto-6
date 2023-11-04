@@ -19,4 +19,9 @@ public class LottoService {
         userLottoVO.setPay(pay);
         return countLotto(pay);
     }
+
+    public String addLotto(int count) {
+        userLottoVO.setLottoList(makeLottoList(count));
+        return userLottoVO.toString();
+    }
 }

@@ -22,17 +22,6 @@ public class WinningLotto {
         }
     }
 
-    public LottoResult compare(List<Lotto> userLottos) {
-        LottoResult lottoResult = new LottoResult();
-
-        for (Lotto userLotto : userLottos) {
-            LottoRanking ranking = compare(userLotto);
-            lottoResult.record(ranking);
-        }
-
-        return lottoResult;
-    }
-
     public LottoRanking compare(Lotto userLotto) {
         int numberOfMatches = lotto.countNumberOfMatches(userLotto);
         boolean hasBonusNumber = userLotto.hasBonusNumber(bonusNumbers);

@@ -70,4 +70,10 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    static void split6Check(String raw) {
+        if (raw.split(",").length != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

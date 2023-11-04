@@ -1,6 +1,11 @@
 package lotto.view;
 
 import static lotto.consts.LottoConst.LOTTO_PRICE;
+import static lotto.consts.ViewConst.OUTPUT_BUY_LOTTO;
+import static lotto.consts.ViewConst.OUTPUT_LOTTO_BENEFIT_PERCENTAGE;
+import static lotto.consts.ViewConst.OUTPUT_LOTTO_RESULT;
+import static lotto.consts.ViewConst.OUTPUT_LOTTO_RESULT_BONUS;
+import static lotto.consts.ViewConst.OUTPUT_RESULT_LOTTOS;
 import static lotto.util.OutputFormat.addCommaAtIntegers;
 import static lotto.util.OutputFormat.roundAtTwo;
 
@@ -13,7 +18,7 @@ public class OutputView {
 
     public static void printLottos(int money, List<Lotto> lottos) {
         int lottoQuantity = money / LOTTO_PRICE;
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        System.out.printf(OUTPUT_BUY_LOTTO, lottoQuantity);
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
@@ -21,21 +26,22 @@ public class OutputView {
     }
 
     public static void printLottoResult(Map<LottoResult, Integer> lottoMap) {
-        System.out.println("당첨 통계\n"
-                + "---");
+        System.out.println(OUTPUT_RESULT_LOTTOS);
 
         for (LottoResult lottoResult : lottoMap.keySet()) {
-            String result = lottoResult.getCount() + "개 일치";
             if (lottoResult.isValidBonus()) {
-                result += ", 보너스 볼 일치";
+                System.out.printf(OUTPUT_LOTTO_RESULT_BONUS, lottoResult.getCount(),
+                        addCommaAtIntegers(lottoResult.getPrize()),
+                        lottoMap.get(lottoResult));
+                continue;
             }
-            result += " (" + addCommaAtIntegers(lottoResult.getPrize()) + "원) - " + lottoMap.get(lottoResult) + "개";
-            System.out.println(result);
+            System.out.printf(OUTPUT_LOTTO_RESULT, lottoResult.getCount(), addCommaAtIntegers(lottoResult.getPrize()),
+                    lottoMap.get(lottoResult));
         }
     }
 
     public static void printPrizePercentage(double prizePercentage) {
-        System.out.println("총 수익률은 " + roundAtTwo(prizePercentage) + "%입니다.");
+        System.out.printf(OUTPUT_LOTTO_BENEFIT_PERCENTAGE, roundAtTwo(prizePercentage));
     }
 
 }

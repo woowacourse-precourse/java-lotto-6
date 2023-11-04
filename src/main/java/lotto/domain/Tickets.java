@@ -15,14 +15,15 @@ public class Tickets {
     private int ticketCount;
     private List<List<Integer>> tickets = new ArrayList<>();
 
-    public static Tickets from(final int wallet) {
+    public static Tickets from(final String wallet) {
         return new Tickets(wallet);
     }
 
-    private Tickets(int wallet) {
+    private Tickets(String wallet) {
+        int money = Integer.parseInt(wallet);
+        this.wallet = money;
         validate();
-        this.wallet = wallet;
-        this.ticketCount = wallet / LottoConstant.PRICE_PER_TICKET;
+        this.ticketCount = money / LottoConstant.PRICE_PER_TICKET;
     }
 
     public List<List<Integer>> getTickets() {

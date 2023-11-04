@@ -21,8 +21,17 @@ public class ApplicationContext {
     }
 
     private void lottoProcess() {
+        inputProcess();
+        lottoDrawer.compareWinning();
+        outputProcess();
+    }
+
+    private static void inputProcess() {
         lottoBuyer.gernerateTicket();
-        lottoDrawer.drawNumber();
+        lottoDrawer.inputLotto();
+    }
+
+    private static void outputProcess() {
         lottoBuyer.verifyWinRecord();
         lottoBuyer.verifyReturns();
     }

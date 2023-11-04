@@ -9,7 +9,7 @@ public class LottoBuyer {
     private LottoController lottoController = ApplicationContext.getController();
 
     public void gernerateTicket(){
-        int wallet = Integer.parseInt(readLine());
+        String wallet = readLine();
         lottoController.gernerateTicket(wallet);
     }
 

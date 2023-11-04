@@ -8,9 +8,13 @@ import lotto.controller.LottoController;
 public class LottoDrawer {
     private LottoController lottoController = ApplicationContext.getController();
 
-    public void drawNumber(){
-        int winNumbers = Integer.parseInt(readLine());
-        int bonusNumber = Integer.parseInt(readLine());
-        lottoController.drawNumber();
+    public void inputLotto(){
+        String winNumber = readLine();
+        String bonusNumber = readLine();
+        lottoController.inputLotto(winNumber, bonusNumber);
+    }
+
+    public void compareWinning(){
+        lottoController.compareWinning();
     }
 }

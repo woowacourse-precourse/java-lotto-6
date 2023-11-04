@@ -22,11 +22,11 @@ public class Lotto {
         }
     }
 
-    private static boolean isSixLength(List<Integer> numbers) {
+    private boolean isSixLength(List<Integer> numbers) {
         return numbers.size() != 6;
     }
 
-    public boolean isDuplicates(List<Integer> numbers) {
+    private boolean isDuplicates(List<Integer> numbers) {
         return numbers.size() > numbers.stream().distinct().count();
     }
 

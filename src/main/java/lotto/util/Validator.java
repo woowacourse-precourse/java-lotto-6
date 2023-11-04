@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.domain.Lotto;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
@@ -46,6 +47,12 @@ public class Validator {
 
     public static void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateDuplicateLotto(int number, Lotto lotto) {
+        if (lotto.getNumbers().contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }

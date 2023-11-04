@@ -14,7 +14,7 @@ public class GameService {
 
     private final LottoService lottoService = new LottoService();
 
-    private final User user = new User();
+    private User user;
     private final HashMap<Rank, Integer> lottoResult = new HashMap<>();
 
     private HashMap<Rank, Integer> userResult = getLottoResult();
@@ -53,7 +53,7 @@ public class GameService {
         return round;
     }
 
-    private void initLottoResult() {
+    public void initLottoResult() {
         lottoResult.put(Rank.FIRST, 0);
         lottoResult.put(Rank.SECOND, 0);
         lottoResult.put(Rank.THIRD, 0);

@@ -5,6 +5,12 @@ public class PurchaseLotto {
     private static final int PURCHASE_AMOUNT_MAX = 100000;
     private static final int NUMBER_ZERO = 0;
 
+    public static int getLottoCount(String amount) {
+        validator(amount);
+        int amountNum = Integer.parseInt(amount);
+        return amountNum / 1000;
+    }
+
     public static void validator(String amount){
         validateSpace(amount);
         validateNumber(amount);

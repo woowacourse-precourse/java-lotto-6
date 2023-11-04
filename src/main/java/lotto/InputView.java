@@ -9,6 +9,10 @@ public class InputView {
     }
 
     public int inputPurchaseAmount(String inputStr) {
+        if (!inputStr.matches("^\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 구성됩니다.");
+        }
+
         int purchaseAmount = Integer.parseInt(inputStr);
 
         if (purchaseAmount < 1000) {

@@ -6,38 +6,22 @@ import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.constants.InputMessage;
 import lotto.model.Lotto;
+import lotto.model.Validation;
 
 public class InputView {
     public static int getUserPurchaseAmount() {
         int purchaseAmount;
-
         while (true) {
             try {
                 System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
                 String input = Console.readLine();
-
-                if (!input.matches("[1-9]\\d*")) {
-                    if (input.matches("[-]\\d+")) {
-                        throw new IllegalArgumentException(ErrorMessage.INVALID_NEGATIVE_PURCHASE.getMessage());
-                    }
-                    if (input.matches("0+")) {
-                        throw new IllegalArgumentException(ErrorMessage.INVALID_ZERO_PURCHASE.getMessage());
-                    }
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
-                }
-
-                purchaseAmount = Integer.parseInt(input);
-
-                if (purchaseAmount % 1000 != 0) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
-                }
-
+                Validation.validatePurchaseAmount(input);
+                purchaseAmount = Validation.validatePurchaseAmoutDivisible(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
         return purchaseAmount;
     }
 
@@ -72,21 +56,8 @@ public class InputView {
             try {
                 System.out.println(InputMessage.BONUS_NUMBER.getMessage());
                 String input = Console.readLine();
-
-                try {
-                    bonusNumber = Integer.parseInt(input);
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
-                }
-
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
-                }
-
-                if (lottoNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_DUPLICATE.getMessage());
-                }
-
+                Validation.validateBonusNumber(input, lottoNumbers);
+                bonusNumber = Integer.parseInt(input);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

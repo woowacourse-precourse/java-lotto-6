@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 import model.dto.LottoResponse;
-import model.dto.AnswerBonusNumber;
-import model.dto.AnswerLottoNumbers;
 
 public class GameManager {
 
@@ -14,25 +12,25 @@ public class GameManager {
         this.lottos = lottos;
     }
 
-    public static GameManager createDefault(final int lottoCount) {
+    public static GameManager from(final int lottoCount) {
         return new GameManager(LottosWithBonus.createAsManyAsCount(lottoCount));
     }
 
-    public List<LottoResponse> getGeneratedLottos() {
+    public List<LottoResponse> generateLottos() {
         return lottos.getLottos()
             .stream()
             .map(LottoResponse::from)
             .toList();
     }
 
-    public void generateAnswerLotto(final AnswerLottoNumbers answerNumbers,
-        final AnswerBonusNumber answerBonusNumber) {
-        answerLotto = new LottoWithBonus(answerNumbers.toLotto(),
-            answerBonusNumber.toLottoNumber());
+    public void generateAnswerLotto(final List<Integer> answerNumbers,
+        final int answerBonusNumber) {
+        answerLotto = new LottoWithBonus(new Lotto(answerNumbers),
+            new LottoNumber(answerBonusNumber));
     }
 
-    public LottoTotalResult calculateResult () {
-        List<LottoCompareResult> results=lottos.compareAnswerLotto(answerLotto);
+    public LottoTotalResult calculateResult() {
+        List<LottoCompareResult> results = lottos.compareAnswerLotto(answerLotto);
         LottoTotalResult totalResult = LottoTotalResult.createDefault();
 
         results.forEach(totalResult::reflectCompareResult);

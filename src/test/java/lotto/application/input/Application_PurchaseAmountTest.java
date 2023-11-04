@@ -37,7 +37,7 @@ public class Application_PurchaseAmountTest extends MyApplicationTest {
     @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringSourceCannotConvertToLong")
-    void 로또_구입금액이_정수가_아닐_시_IllegalArgumentException을_발생시킨다(String invalidInput) {
+    void 로또_구입금액이_long_타입_정수가_아닐_시_IllegalArgumentException을_발생시킨다(String invalidInput) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     runWithInvalidPurchaseAmount(invalidInput);
@@ -46,7 +46,7 @@ public class Application_PurchaseAmountTest extends MyApplicationTest {
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 에러메시지 내용을 출력한다")
     @MethodSource("getStringSourceCannotConvertToLong")
-    void 로또_구입금액이_정수가_아닐_시_에러_메시지_내용을_출력한다(String invalidInput) {
+    void 로또_구입금액이_long_타입_정수가_아닐_시_에러_메시지_내용을_출력한다(String invalidInput) {
         runWithInvalidPurchaseAmount(invalidInput);
 
         assertThatPrintErrorMessageWith(PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT);
@@ -54,7 +54,7 @@ public class Application_PurchaseAmountTest extends MyApplicationTest {
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 어플리케이션이 예외 발생 후 종료되지 않는다")
     @MethodSource("getStringSourceCannotConvertToLong")
-    void 로또_구입금액이_정수가_아닐_시_예외_발생_후_종료되지_않는다(String invalidInput) {
+    void 로또_구입금액이_long_타입_정수가_아닐_시_예외_발생_후_종료되지_않는다(String invalidInput) {
         runWithInvalidPurchaseAmount(invalidInput);
 
         assertThatApplicationNotExists();

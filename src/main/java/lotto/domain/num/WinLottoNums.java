@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class WinLottoNums {
     private static final String COMMA_REGEX = ",";
-    List<Integer> winLottoNums;
+    private List<Integer> winLottoNums;
 
     public WinLottoNums(String numLine) {
         String[] numArr = makeArrFromStrLine(numLine);
@@ -34,11 +34,12 @@ public class WinLottoNums {
      *
      * @return
      */
-    public Boolean isSame(Integer num) {
-        for (Integer winLottoNum : winLottoNums) {
-            if (Utii.isSameInt(num, winLottoNum)) {
-                return true;
-            }
+    public Boolean isSame(Integer num, Integer indexOfSpecial) {
+        int valueOfIndexSpecial = winLottoNums.get(indexOfSpecial);
+        boolean isSame = Utii.isSameInt(num, valueOfIndexSpecial);
+
+        if (isSame) {
+            return true;
         }
         return false;
     }

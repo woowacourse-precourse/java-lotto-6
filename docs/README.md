@@ -47,3 +47,7 @@
 ### LottoGenerater 
 
 - 로또 발급 해주는 클래스 
+
+### LottoResult
+
+- 당첨 통계 양식 나타내는 Enum 배열 

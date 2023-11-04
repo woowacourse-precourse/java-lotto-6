@@ -11,7 +11,7 @@ public class OutputUtils {
     private static final String RESULTS_ANNOUNCEMENT_MESSAGE = "당첨 통계";
     private static final String SEPARATING_LINE = "---";
     private static final String WINNING_DETAIL = "%s (%s원) - %d개";
-    private static final String WINNING_RATE_OF_RETURN_MESSAGE = "총 수익률은 %f%입니다.";
+    private static final String WINNING_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f입니다.";
 
     public static void printPurchaseAmountInputMessage() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -23,6 +23,7 @@ public class OutputUtils {
 
     public static void printPurchaseLottos(List<Lotto> lottos) {
         lottos.stream().forEach(lotto -> System.out.println(lotto.toString()));
+        System.out.println();
     }
 
     public static void printWinningNumbersInputMessage() {

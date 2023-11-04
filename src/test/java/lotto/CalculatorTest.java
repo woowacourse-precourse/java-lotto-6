@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,4 +18,24 @@ class CalculatorTest {
         Assertions.assertThat(Calculator.checkWinning(lotto, lottoDrawResult)).isEqualTo(Grade.SECOND);
     }
 
+    @Test
+    @DisplayName("수익률을 계산하는 기능")
+    void calculateReturnRate() {
+        List<Lotto> lottos = new ArrayList<Lotto>();
+        Lotto lotto1 = new Lotto(List.of(4, 5, 6, 7, 8, 9));
+        Lotto lotto2 = new Lotto(List.of(14, 15, 16, 17, 18, 19));
+        Lotto lotto3 = new Lotto(List.of(24, 25, 26, 27, 28, 29));
+
+        lottos.add(lotto1);
+        lottos.add(lotto2);
+        lottos.add(lotto3);
+
+        Lotto drawLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonus = 7;
+        LottoDrawResult lottoDrawResult = new LottoDrawResult(drawLotto, bonus);
+
+        Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
+        Assertions.assertThat(returnRate).isGreaterThan(1.66);
+        Assertions.assertThat(returnRate).isLessThan(1.68);
+    }
 }

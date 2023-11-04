@@ -60,7 +60,43 @@ public class Calculator {
         if (sameNumbersNumber == Lotto.size - 3) {
             return FIFTH;
         }
-        
+
         return NONE;
+    }
+
+    static public Double returnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        Integer purchaseCnt = lottos.size();
+        Integer purchaseMoney = purchaseCnt * Lotto.price;
+        Integer winningMoney = 0;
+
+        for (int i = 0; i < purchaseCnt; i++) {
+            Grade grade = checkWinning(lottos.get(i), lottoDrawResult);
+            winningMoney += obtainMoneyByGrade(grade);
+        }
+
+        return Double.valueOf(winningMoney) / purchaseMoney;
+    }
+
+    static private Integer obtainMoneyByGrade(Grade grade) {
+        if (grade == FIRST) {
+            return 2_000_000_000;
+        }
+        if (grade == SECOND) {
+            return 30_000_000;
+        }
+        if (grade == THIRD) {
+            return 1_500_000;
+        }
+        return getThirdAfterPrice(grade);
+    }
+
+    private static int getThirdAfterPrice(Grade grade) {
+        if (grade == FOURTH) {
+            return 50_000;
+        }
+        if (grade == FIFTH) {
+            return 5_000;
+        }
+        return 0;
     }
 }

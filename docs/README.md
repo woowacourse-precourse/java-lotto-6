@@ -27,3 +27,24 @@
   - [ ] 정확한 format을 설정
 - [ ] 당첨금의 총액을 구해 구매금액으로 나눔
 - [ ] %형식에 맞게 포멧을 설정해 수익률 출력
+
+
+# 초기 구조 구상 
+
+### MVC 패턴에 맞춘 코드 구성 준비
+
+- lotto
+  - controller
+    - Controller.java
+  - model
+    - Lotto.java
+    - LottoResult.java
+    - LottoTicket.java
+  - repository
+    - LottoRepository.java
+  - service
+    - LottoService.java
+  - view
+    - InputView.java
+    - OutputView.java
+  - Application.java

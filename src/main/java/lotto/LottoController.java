@@ -8,6 +8,8 @@ import java.util.List;
 public class LottoController {
     static final int MONEY_UNIT = 1000;
     static final int LOTTERY_COST = 1000;
+    static final int MIN_LOTTERY_NUM = 1;
+    static final int MAX_LOTTERY_NUM = 45;
 
     LotteryService lotteryService = new LotteryService();
     public void run(){
@@ -69,7 +71,7 @@ public class LottoController {
 
         int bonusNumber = Integer.parseInt(Console.readLine());
 
-        if(bonusNumber < 1 || bonusNumber > 45){
+        if(bonusNumber < MIN_LOTTERY_NUM || bonusNumber > MAX_LOTTERY_NUM){
             throw new IllegalArgumentException();
         }
 

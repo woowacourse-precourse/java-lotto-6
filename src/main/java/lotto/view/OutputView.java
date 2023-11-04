@@ -1,35 +1,18 @@
 package lotto.view;
 
+import static lotto.enums.Prize.*;
+
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.WinningDetails;
 
 public class OutputView {
-    private static final String PURCHASE_LOTTO = "%s개를 구매했습니다.\n";
+    private static final String PURCHASE_LOTTO = "%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS = "당첨 통게";
     private static final String DIVIDED_LINE = "---";
-    private static final String MATCH_NUMBERS = "%s개 일치 (%s원) - %d개\n";
-    private static final String MATCH_FIVE_NUMBERS_BONUS_NUMBERS = "%s개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String MATCH_NUMBERS = "%d개 일치 (%s원) - %d개\n";
+    private static final String MATCH_FIVE_NUMBERS_BONUS_NUMBERS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
-
-    private static final String FIFTH_PLACE_MONEY = "5,000";
-    private static final String FOURTH_PLACE_MONEY = "50,000";
-    private static final String THIRD_PLACE_MONEY = "1,500,000";
-    private static final String SECOND_PLACE_MONEY = "30,000,000";
-    private static final String FIRST_PLACE_MONEY = "2,000,000,000";
-
-    private static final String FIFTH_PLACE_MATCH_NUMBERS = "3";
-    private static final String FOURTH_PLACE_MATCH_NUMBERS = "4";
-    private static final String THIRD_PLACE_MATCH_NUMBERS = "5";
-    private static final String SECOND_PLACE_MATCH_NUMBERS = "5";
-    private static final String FIRST_PLACE_MATCH_NUMBERS = "6";
-
-    private static final int RANK_FIVE = 5;
-    private static final int RANK_FOUR = 4;
-    private static final int RANK_THREE = 3;
-    private static final int RANK_TWO = 2;
-    private static final int RANK_ONE = 1;
-
 
     public static void purchaseLotto(int lottoCount){
         System.out.printf(PURCHASE_LOTTO,lottoCount);
@@ -46,11 +29,11 @@ public class OutputView {
 
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDED_LINE);
-        System.out.printf(MATCH_NUMBERS, FIFTH_PLACE_MATCH_NUMBERS, FIFTH_PLACE_MONEY, ranks[RANK_FIVE]);
-        System.out.printf(MATCH_NUMBERS, FOURTH_PLACE_MATCH_NUMBERS, FOURTH_PLACE_MONEY, ranks[RANK_FOUR]);
-        System.out.printf(MATCH_NUMBERS, THIRD_PLACE_MATCH_NUMBERS, THIRD_PLACE_MONEY, ranks[RANK_THREE]);
-        System.out.printf(MATCH_FIVE_NUMBERS_BONUS_NUMBERS, SECOND_PLACE_MATCH_NUMBERS, SECOND_PLACE_MONEY, ranks[RANK_TWO]);
-        System.out.printf(MATCH_NUMBERS, FIRST_PLACE_MATCH_NUMBERS, FIRST_PLACE_MONEY, ranks[RANK_ONE]);
+        System.out.printf(MATCH_NUMBERS, FIFTH_RANK.getMatchNumbers(), FIFTH_RANK.getMoneyToString(), ranks[FIFTH_RANK.getRank()]);
+        System.out.printf(MATCH_NUMBERS, FOURTH_RANK.getMatchNumbers(), FOURTH_RANK.getMoneyToString(), ranks[FOURTH_RANK.getRank()]);
+        System.out.printf(MATCH_NUMBERS, THIRD_RANK.getMatchNumbers(), THIRD_RANK.getMoneyToString(), ranks[THIRD_RANK.getRank()]);
+        System.out.printf(MATCH_FIVE_NUMBERS_BONUS_NUMBERS, SECOND_RANK.getMatchNumbers(), SECOND_RANK.getMoneyToString(), ranks[SECOND_RANK.getRank()]);
+        System.out.printf(MATCH_NUMBERS, FIRST_RANK.getMatchNumbers(), FIRST_RANK.getMoneyToString(), ranks[FIRST_RANK.getRank()]);
     }
 
     public static void earningRate(float earningRate){

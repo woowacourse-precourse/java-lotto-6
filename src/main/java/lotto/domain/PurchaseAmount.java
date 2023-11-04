@@ -12,7 +12,6 @@ public class PurchaseAmount {
     public static PurchaseAmount from(int purchaseAmount) {
         validatePositive(purchaseAmount);
         validateMultipleOfLottoPrice(purchaseAmount);
-
         return new PurchaseAmount(purchaseAmount);
     }
 

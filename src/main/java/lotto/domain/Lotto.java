@@ -1,20 +1,31 @@
 package lotto.domain;
 
-import java.util.List;
+import static lotto.ErrorMessage.LOTTO_LENGTH_ERROR;
 
-public class Lotto {
-    private final List<Integer> numbers;
+import java.util.List;
+import java.util.Set;
+
+public final class Lotto {
+    private static final int LOTTO_LENGTH = 6;
+
+    private final Set<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .map(LottoNumber::valueOf)
+                .toList();
+
+        validate(lottoNumbers);
+        this.numbers = Set.copyOf(lottoNumbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validate(List<LottoNumber> numbers) {
+        validateLength(numbers);
+    }
+
+    private void validateLength(List<LottoNumber> numbers) {
+        if (numbers.size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(String.format(LOTTO_LENGTH_ERROR.getMessage(), LOTTO_LENGTH));
         }
     }
-
-    // TODO: 추가 기능 구현
 }

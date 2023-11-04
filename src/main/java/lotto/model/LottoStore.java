@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.lottogenerator.LottoGenerator;
+import lotto.util.LottoGameException;
 
 public class LottoStore {
     private static final int LOTTO_PRICE = 1000;
@@ -29,7 +30,7 @@ public class LottoStore {
 
     private void checkMoneyRange(int money) {
         if(money > PURCHASE_MAX){
-            throw new IllegalArgumentException("인당 구매할 수 있는 최대 금액은 100,000원 입니다.");
+            throw LottoGameException.OVER_PURCHASE_LIMIT.makeException();
         }
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model.domain;
 
 import java.util.List;
+import lotto.util.LottoGameException;
 
 public class LottoAnswer extends Lotto {
     private Integer bonusNumber;
@@ -13,7 +14,7 @@ public class LottoAnswer extends Lotto {
 
     private void validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw LottoGameException.DUPLICATED_BONUS_NUMBER.makeException();
         }
     }
 }

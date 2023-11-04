@@ -1,6 +1,12 @@
 package lotto.view;
 
+import lotto.dto.LottoDto;
+
+import java.util.List;
+
 public class ConsoleOutputView implements OutputView {
+
+    private static String USER_LOTTO_MESSAGE = "개를 구매했습니다.";
 
     private ConsoleOutputView() {
     }
@@ -14,7 +20,9 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void print() {
-
+    public void printUserLotto(List<LottoDto> lottoDtos) {
+        print(lottoDtos.size() + USER_LOTTO_MESSAGE);
+        lottoDtos.stream()
+                .forEach(lottoDto -> print(lottoDto.getNumbers()));
     }
 }

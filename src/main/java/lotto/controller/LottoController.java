@@ -2,9 +2,12 @@ package lotto.controller;
 
 import lotto.domain.AnswerLotto;
 import lotto.domain.UserLotto;
+import lotto.dto.LottoDto;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -22,11 +25,20 @@ public class LottoController {
 
     public void startLotto() {
         buyLottos();
+        announceUserLotto();
     }
+
 
     private void buyLottos() {
         String input = inputView.getPurchasePrice();
         int purchasePrice = inputValidator.validateNumber(input);
         userLotto = new UserLotto(purchasePrice);
+    }
+
+    private void announceUserLotto() {
+        List<LottoDto> lottoDtos = userLotto.getLottos().stream()
+                .map(lotto -> new LottoDto(lotto.getNumbers()))
+                .toList();
+        outputView.printUserLotto(lottoDtos);
     }
 }

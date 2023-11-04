@@ -29,4 +29,8 @@ public class UserLotto {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

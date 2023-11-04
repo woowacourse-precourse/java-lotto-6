@@ -1,6 +1,7 @@
 package lotto.domain.constants;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public enum LottoPrizeRule {
     FIRST_PRIZE(1, 6, false, 2000000000),
@@ -58,8 +59,13 @@ public enum LottoPrizeRule {
         return place;
     }
 
-    private boolean hasSameRule(int matchCount, boolean hasBonusNumber) {
-        return (this.matchedNumbersCount == matchCount) && (this.hasBonusNumber == hasBonusNumber);
+    private boolean hasSameRule(int matchedNumbersCount, boolean hasBonusNumber) {
+        boolean countCondition = this.matchedNumbersCount == matchedNumbersCount;
+
+        if (this.hasBonusNumber) {
+            return countCondition && hasBonusNumber;
+        }
+        return countCondition;
     }
 
     private boolean isSamePlace(int place) {

@@ -25,8 +25,8 @@ public class LottoController {
         return new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));
     }
     private LottoSystem makeLottoSystem(){
-        int bonusNumber = parser.parseInteger(getBonusNumberByUserInput());
         List<Integer> winningNumber = parser.parseWinningNumber(getWinningNumberByUserInput());
+        int bonusNumber = parser.parseInteger(getBonusNumberByUserInput());
         return new LottoSystem(winningNumber, bonusNumber);
     }
     private String getTotalMoneyByUserInput(){

@@ -40,7 +40,7 @@
 - [x] 랜덤 숫자를 생성하는 기능
 - [ ] 하나의 로또 번호를 발행하는 기능
   - [ ] 발행한 각 로또 번호가 1~45의 숫자가 아니면 `IllegalArgumentException` 예외처리 
-  - [ ] 발행한 로또 번호가 6자리 숫자가 아니면 `IllegalArgumentException` 예외처리
+  - [x] 발행한 로또 번호가 6자리 숫자가 아니면 `IllegalArgumentException` 예외처리
   - [ ] 발행한 로또 번호가 중복이 있다면 `IllegalStateException` 예외처리
 - [ ] 로또 내 숫자를 오름차순으로 정렬하는 기능
 - [ ] 로또 여러 개를 발행하는 기능

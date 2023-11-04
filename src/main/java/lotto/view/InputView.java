@@ -20,4 +20,10 @@ public class InputView {
         String input = Console.readLine();
         return Arrays.stream(input.split(DELIMITER)).map(Integer::parseInt).toList();
     }
+
+    public static int readBonusNumber() {
+        System.out.println(ViewConstraints.INPUT_BONUS_NUMBER.getMessage());
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
 }

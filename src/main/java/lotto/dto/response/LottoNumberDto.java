@@ -10,7 +10,8 @@ public class LottoNumberDto {
     }
 
     public static LottoNumberDto from(LottoNumber number) {
-        return new LottoNumberDto(number.getNumber());
+        int lottoNumber = number.getNumber();
+        return new LottoNumberDto(lottoNumber);
     }
 
     public int getNumber() {

@@ -5,15 +5,14 @@ import java.util.List;
 
 public final class Lotto {
     private static final String DUPLICATED_LOTTO_NUMBER_EXCEPTION = "로또에 중복된 숫자가 있습니다.";
-    private static final String LOTTO_SIZE_EXCEPTION = "로또는 6개의 숫자로 이루어져야 합니다.";
+    private static final String LOTTO_SIZE_EXCEPTION = "로또는 %d개의 숫자로 이루어져야 합니다.";
     private static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        List<Integer> protectedNumbers = new ArrayList<>(numbers);
-        validate(protectedNumbers);
-        this.numbers = convert(protectedNumbers);
+        validate(numbers);
+        this.numbers = toLottoNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,7 +22,8 @@ public final class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(LOTTO_SIZE_EXCEPTION);
+            String exceptionMessage = String.format(LOTTO_SIZE_EXCEPTION, LOTTO_SIZE);
+            throw new IllegalArgumentException(exceptionMessage);
         }
     }
 
@@ -39,7 +39,7 @@ public final class Lotto {
                 .count() != LOTTO_SIZE;
     }
 
-    private List<LottoNumber> convert(List<Integer> numbers) {
+    private List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::from)
                 .toList();

@@ -34,8 +34,7 @@ public class OutputView {
     }
 
     public void printLottoGroup(LottoGroupDto lottoGroupDto) {
-        int lottoGroupSize = lottoGroupDto.getSize();
-        printSize(lottoGroupSize);
+        printSize(lottoGroupDto.getSize());
         printLottos(lottoGroupDto.getLottos());
         printEmptyLine();
     }
@@ -50,9 +49,9 @@ public class OutputView {
     }
 
     private void printLotto(LottoDto lottoDto) {
-        List<Integer> numbers = lottoDto.getNumbers();
-        String formattedLottoNumbers = numbers.toString();
-        println(formattedLottoNumbers);
+        List<Integer> numbers = lottoDto.getSortedNumbers();
+        String formattedSortedLottoNumbers = numbers.toString();
+        println(formattedSortedLottoNumbers);
     }
 
     private void printEmptyLine() {

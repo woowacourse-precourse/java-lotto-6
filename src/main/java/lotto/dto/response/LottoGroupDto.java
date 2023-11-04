@@ -14,11 +14,12 @@ public class LottoGroupDto {
     }
 
     public static LottoGroupDto from(LottoGroup lottoGroup) {
-        List<Lotto> lottos = lottoGroup.getLottos();
-        List<LottoDto> lottoDtos = lottos.stream()
+        List<Lotto> purchasedLottos = lottoGroup.getPurchasedLottos();
+        List<LottoDto> lottoDtos = purchasedLottos.stream()
                 .map(LottoDto::from)
                 .toList();
-        return new LottoGroupDto(lottos.size(), lottoDtos);
+
+        return new LottoGroupDto(purchasedLottos.size(), lottoDtos);
     }
 
     public int getSize() {

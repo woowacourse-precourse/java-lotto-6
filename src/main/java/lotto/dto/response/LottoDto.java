@@ -12,14 +12,15 @@ public class LottoDto {
     }
 
     public static LottoDto from(Lotto lotto) {
-        List<LottoNumber> numbers = lotto.getNumbers();
-        List<LottoNumberDto> lottoNumberDtos = numbers.stream()
+        List<LottoNumber> lottoNumbers = lotto.getNumbers();
+        List<LottoNumberDto> lottoNumberDtos = lottoNumbers.stream()
                 .map(LottoNumberDto::from)
                 .toList();
+
         return new LottoDto(lottoNumberDtos);
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> getSortedNumbers() {
         return lottoNumbers.stream()
                 .map(LottoNumberDto::getNumber)
                 .sorted()

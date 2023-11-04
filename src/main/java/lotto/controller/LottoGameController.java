@@ -32,8 +32,7 @@ public class LottoGameController {
 
     public void run() {
         InvestMoney investMoney = RetryUtil.retryOnFail(this::createInvestMoney);
-        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investMoney);
-        LottoGroup lottoGroup = LottoGroup.create(lottoCount, numberGenerator);
+        LottoGroup lottoGroup = RetryUtil.retryOnFail(this::createLottoGroup, investMoney);
         printLottoGroup(lottoGroup);
 
         Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
@@ -47,12 +46,17 @@ public class LottoGameController {
 
     }
 
-    private void printTotalPrize(TotalPrize totalPrize) {
-        outputView.printTotalPrize(totalPrize);
+    private LottoGroup createLottoGroup(InvestMoney investMoney) {
+        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investMoney);
+        return LottoGroup.create(lottoCount, numberGenerator);
     }
 
     private PurchasableLottoCount createLottoCount(InvestMoney investMoney) {
         return investMoney.calculatePurchasableLottoCount(LottoPrice.STANDARD_PRICE);
+    }
+
+    private void printTotalPrize(TotalPrize totalPrize) {
+        outputView.printTotalPrize(totalPrize);
     }
 
     private InvestMoney createInvestMoney() {

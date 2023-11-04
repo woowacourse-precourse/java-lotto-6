@@ -8,33 +8,33 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class LottoGroup {
-    private final List<Lotto> lottos;
+    private final List<Lotto> purchasedLottos;
 
-    private LottoGroup(List<Lotto> lottos) {
-        this.lottos = new ArrayList<>(lottos);
+    private LottoGroup(List<Lotto> purchasedLottos) {
+        this.purchasedLottos = new ArrayList<>(purchasedLottos);
     }
 
     public static LottoGroup create(PurchasableLottoCount purchasableLottoCount, NumberGenerator numberGenerator) {
-        List<Lotto> lottos = createLottos(purchasableLottoCount, numberGenerator);
-        return new LottoGroup(lottos);
+        List<Lotto> generatedLottos = generateLottos(purchasableLottoCount, numberGenerator);
+        return new LottoGroup(generatedLottos);
     }
 
-    private static List<Lotto> createLottos(PurchasableLottoCount purchasableLottoCount,
-                                            NumberGenerator numberGenerator) {
+    private static List<Lotto> generateLottos(PurchasableLottoCount purchasableLottoCount,
+                                              NumberGenerator numberGenerator) {
         return Stream.generate(() -> Lotto.create(numberGenerator))
                 .limit(purchasableLottoCount.getCount())
                 .toList();
     }
 
     public TotalPrize calculateTotalPrize(WinningTicket winningTicket) {
-        Map<LottoPrize, Long> totalPrize = lottos.stream()
+        Map<LottoPrize, Long> totalPrize = purchasedLottos.stream()
                 .map(lotto -> lotto.calculatePrize(winningTicket))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         return TotalPrize.from(totalPrize);
     }
 
-    public List<Lotto> getLottos() {
-        return new ArrayList<>(lottos);
+    public List<Lotto> getPurchasedLottos() {
+        return new ArrayList<>(purchasedLottos);
     }
 }

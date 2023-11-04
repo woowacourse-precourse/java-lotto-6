@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.NumbersGenerator;

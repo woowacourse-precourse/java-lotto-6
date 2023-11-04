@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.message.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_6_LENGTH_OF_LOTTO.toString());
         }
     }
 

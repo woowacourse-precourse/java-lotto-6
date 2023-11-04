@@ -44,9 +44,7 @@ public class WinningNumberInputTest {
     @DisplayName("당첨 번호 입력 테스트 : 1~45 사이 숫자 입력")
     void isDuplicateValidateTest() {
         List<Integer> winningNumbers = new ArrayList<>();
-        Assertions.assertDoesNotThrow(() -> {
-            validator.isDuplicateValidate(1, winningNumbers);
-        });
+        Assertions.assertDoesNotThrow(() -> validator.isDuplicateValidate(1, winningNumbers));
         Assertions.assertThrows(IllegalArgumentException.class, () -> validator.isDuplicateValidate(1, winningNumbers));
     }
 

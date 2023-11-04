@@ -34,11 +34,12 @@ class LottoValidationTest {
     @Test
     void checkDuplicateLottoNumberTest() {
         int[] numbers = {5, 9, 10, 14, 17, 17};
+        int bonusNumber = 12;
         for (int i = 0; i < numbers.length; i++) {
             lottoNumber.add(numbers[i]);
         }
 
-        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber);
+        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber, bonusNumber);
 
         assertEquals(notDuplicate, false);
     }

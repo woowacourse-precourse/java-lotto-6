@@ -12,9 +12,15 @@ public class LottoValidation {
         return true;
     }
 
-    public boolean checkDuplicateLottoNumber(List<Integer> lottoNumber) {
+    public boolean checkDuplicateLottoNumber(List<Integer> lottoNumber, int bonusNumber) {
         if (lottoNumber.size() != lottoNumber.stream().distinct().count()) {
             return false;
+        }
+
+        for (int i = 0 ; i< lottoNumber.size(); i++) {
+            if (bonusNumber == lottoNumber.get(i)) {
+                return false;
+            }
         }
 
         return true;

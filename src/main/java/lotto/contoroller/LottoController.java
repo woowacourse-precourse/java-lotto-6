@@ -15,9 +15,9 @@ public class LottoController {
         int purchaseAmount = getInputPurchase();
         // 여기는 purchaseAmount를 인자로 하는 메소드 만들어버리기
         System.out.printf("%n%d%s%n", purchaseAmount / 1000, OutputMessage.PURCHASE.getMessage());
-        generateAndPrintLottoNumbers(purchaseAmount);
+        generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
         // 요기까지
-        getInputLotto();
+        List<Integer> winningNumbers = getInputLotto();
     }
 
     // 구입 금액 입력

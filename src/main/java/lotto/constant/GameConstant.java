@@ -5,4 +5,5 @@ public class GameConstant {
     public static final int NUMBER_MIN = 1;
     public static final int NUMBER_MAX = 45;
     public static final int NUMBER_SIZE = 6;
+    public static final int TOTAL_NUMBER_SIZE = 7;
 }

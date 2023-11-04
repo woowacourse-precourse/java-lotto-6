@@ -54,14 +54,14 @@ public class LottoService {
     }
 
     public double calculateReturn() {
-        AtomicLong profit = new AtomicLong(0L);
-        long consumption = lottoStorage.size() * 1000;
+        AtomicLong profit = new AtomicLong(0l);
+        long consumption = (long) lottoStorage.size() * PRICE;
 
         winningDetails.forEach(((rank, count) -> {
             profit.addAndGet((long) rank.getReward() * count);
         }));
 
-        return profit.doubleValue() / consumption;
+        return (profit.doubleValue() / consumption) * 100;
     }
 
     private void buyOneLotto() {

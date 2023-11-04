@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -24,5 +25,19 @@ class LottoTicketsTest {
         for (int number : randomNum) {
             assertTrue(number >= 1 && number <= 45);
         }
+    }
+
+    @Test
+    @DisplayName("로또를 구매한 뒤 생성된 로또의 갯수가 맞는지 검증한다.")
+    void buyLotto_getSize() {
+        /**
+         * given : 로또 구매 갯수 3이 주어진다.
+         * when : 로또를 3장 구매한다.
+         * then : 생성된 로또의 갯수가 3인지 검증한다.
+         */
+        int lotto = 3;
+        LottoTickets lottoTickets = new LottoTickets(lotto);
+
+        assertEquals(lotto, lottoTickets.getTickets().size());
     }
 }

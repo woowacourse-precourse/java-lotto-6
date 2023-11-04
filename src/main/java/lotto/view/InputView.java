@@ -9,12 +9,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static String inputPurchasePrice() {
+    public static int inputPurchasePrice() {
         String inputPurchasePrice;
         do {
             OutputView.printMessage(INPUT_PURCHASE_PRICE_MESSAGE.getMessage());
             inputPurchasePrice = Console.readLine();
         } while (!PurchasePriceValidator.validatePurchasePrice(inputPurchasePrice));
-        return inputPurchasePrice;
+        return Integer.parseInt(inputPurchasePrice);
     }
 }

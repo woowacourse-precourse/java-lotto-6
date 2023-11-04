@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.domain.Lotto;
+
 public class OutputView {
     private OutputView() {
     }
@@ -10,5 +13,9 @@ public class OutputView {
 
     public static void printNewLine() {
         System.out.println();
+    }
+
+    public static void printNumbers(List<Integer> numbers) {
+        System.out.println(numbers);
     }
 }

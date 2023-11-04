@@ -1,6 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import lotto.model.Lotto;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_PROMPT = "구입금액을 입력해 주세요.";
@@ -24,6 +28,15 @@ public class InputView {
         }
     }
 
+    public Lotto readWinningNumbers(){
+        System.out.println(WINNING_NUMBERS_INPUT_PROMPT);
+        String input = Console.readLine();
+        List<Integer> winningNumbers = Stream.of(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+        return new Lotto(winningNumbers);
+    }
 
 
 }

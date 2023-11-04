@@ -31,4 +31,8 @@ public class PurchaseNumber {
         }
         return false;
     }
+
+    public List<Lotto> createLottoTickets() {
+        return new ArrayList<>(number);
+    }
 }

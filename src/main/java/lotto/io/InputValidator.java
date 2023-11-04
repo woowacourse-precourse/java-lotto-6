@@ -16,4 +16,11 @@ public class InputValidator {
     private boolean isNumeric(String input) {
         return !NUMERIC_PATTERN.matcher(input).matches();
     }
+
+    public void validateNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_NULL.toValue());
+        }
+    }
+
 }

@@ -3,14 +3,18 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import lotto.constant.ExceptionMessage;
 
 public class Lotto {
+
+    private static final Pattern LOTTO_REGEX_PATTERN = Pattern.compile("^(?:[1-9]|[1-3][0-9]|4[0-5])$");
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateLottoLength(numbers);
         validateDuplicateNumbers(numbers);
+        validateLottoRegex(numbers);
         this.numbers = numbers;
     }
 
@@ -34,6 +38,14 @@ public class Lotto {
         Set<Integer> values = new HashSet<>(numbers);
         return values.size() < numbers.size();
     }
+    private void validateLottoRegex(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (!LOTTO_REGEX_PATTERN.matcher(number.toString()).matches()) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
 
     public List<Integer> getNumbers() {
         return numbers;

@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.Amount;
+import lotto.domain.WinningLotto;
 
 public class InputManager {
 
@@ -15,5 +16,10 @@ public class InputManager {
     public Amount readPurchaseAmount() {
         final String input = inputView.readPurchaseAmount();
         return inputMapper.toAmount(input);
+    }
+
+    public WinningLotto readWinningLotto() {
+        final String input = inputView.readWinningLottoNumber();
+        return new WinningLotto(inputMapper.toWinningLotto(input));
     }
 }

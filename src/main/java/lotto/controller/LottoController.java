@@ -28,5 +28,15 @@ public class LottoController {
         final Lottos lottos = lottoService.saveLottos(ticket);
         outputView.printNumberOfLottos(lottos);
         outputView.printWinningLottoRequset();
+        while (true) {
+            try {
+                inputManager.readWinningLotto();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.constant.ExceptionMessage;
 import lotto.constant.ProcessMessage;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
@@ -26,5 +27,9 @@ public class OutputView {
 
     public void printWinningLottoRequset() {
         System.out.println(ProcessMessage.WINNING_LOTTO_REQUEST.toValue());
+    }
+
+    public void printExceptionMessage(IllegalArgumentException e) {
+        System.out.println(ExceptionMessage.ERROR + e.getMessage());
     }
 }

@@ -1,12 +1,24 @@
 package lotto;
 
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
+    public List<Integer> createRandomNumber(){
+        Randoms.pickNumberInRange(1, 45);
+        Set<Integer> lottoNumbers = new HashSet<>();
+        while (lottoNumbers.size() < 6) {
+            lottoNumbers.add(Randoms.pickNumberInRange(1, 45));
+        }
+        return lottoNumbers.stream().toList();
+    }
 
     public List<Integer> getCorrectLottoNumberByRead(){
         String input = readLine();
@@ -21,7 +33,7 @@ public class GameManager {
     public int getPaymentForLottoByRead() {
         int lottoAmount = 0;
         while (true) {
-            if (lottoAmount >= 1000) break;
+            if (lottoAmount > 0) break;
             try {
                 lottoAmount = getPaymentForLottoByRead(readLine());
             } catch (IllegalArgumentException e) {
@@ -48,4 +60,5 @@ public class GameManager {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천원 단위로 입력해주세요.");
         }
     }
+
 }

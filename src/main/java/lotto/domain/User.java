@@ -1,35 +1,33 @@
 package lotto.domain;
 
-import lotto.Validator;
+import java.util.List;
 
 public class User {
-    private Integer money;
+
     public Integer lottoCount;
-    private boolean isPurchasing = true;
+    public List<Lotto> lottos;
+    Money money;
+
+
+    public void payMoney() {
+        money = new Money(Computer.getInput());
+    }
 
     public void purchaseLotto() {
+        boolean isPurchasing = true;
         while (isPurchasing) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                Computer computer = new Computer();
-                String userInput = computer.getInput();
 
-                Validator.checkNumber(userInput);
-
-                money = Integer.parseInt(userInput);
-
-                Validator.checkPositiveNumber(money);
-                Validator.checkZero(userInput);
-
-                Validator.checkRemainder(money);
-
-                lottoCount = Seller.calculateLottoCount(money);
+                payMoney();
+                lottoCount = money.countThousand();
 
                 isPurchasing = false;
 
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                System.out.println(ex.getMessage());   // 분리?
             }
         }
     }
+
+
 }

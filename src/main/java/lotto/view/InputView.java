@@ -8,4 +8,8 @@ public class InputView {
         return Console.readLine();
     }
 
+    public String inputWinningNumbers() {
+        return Console.readLine();
+    }
+
 }

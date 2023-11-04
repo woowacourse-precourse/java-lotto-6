@@ -18,6 +18,23 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
+    }
+
+    public int getMatchCountWith(List<Integer> numbers) {
+        int matchCount = 0;
+        for (Integer number : numbers) {
+            if (numbers.contains(number)) {
+                matchCount += 1;
+            }
+        }
+        return matchCount;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
@@ -34,12 +51,5 @@ public class Lotto {
             }
             visited[num] = true;
         });
-    }
-
-    @Override
-    public String toString() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers.toString();
     }
 }

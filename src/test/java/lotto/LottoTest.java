@@ -1,13 +1,29 @@
 package lotto;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.api.function.Executable;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
+
+    private Lotto lotto;
+    private Validation validation;
+
+    @BeforeEach
+    void setUp() {
+         validation = new Validation();
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -24,4 +40,18 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+
+    @Test
+    void testValidateDivided() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        int n = 12345;
+        Method method = validation.getClass().getDeclaredMethod("privateValidateDivided", int.class);
+        method.setAccessible(true);
+        try{
+            method.invoke(validation, 12345);
+        }catch(InvocationTargetException e){
+            Assertions.assertEquals(IllegalArgumentException.class, e.getTargetException().getClass());
+        }
+
+    }
 }

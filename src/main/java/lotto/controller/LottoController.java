@@ -19,8 +19,16 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = initPurchaseAmount();
-        lottoService.purchase(purchaseAmount);
+        while (true) {
+            try {
+                String purchaseAmount = initPurchaseAmount();
+                lottoService.purchase(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException exception) {
+                outputView.output(exception.getMessage());
+            }
+        }
+
     }
 
     private String initPurchaseAmount() {

@@ -1,10 +1,15 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Prizes;
+import lotto.domain.*;
 
-public class outputView {
+import java.text.DecimalFormat;
+
+public class OutputView {
+
+    private final DecimalFormat formatter;
+    public OutputView() {
+        formatter = new DecimalFormat("###,###");
+    }
 
     public void printPurchasedLottos(Lottos lottos) {
         System.out.printf("%d개를 구매했습니다.", lottos.getCount());
@@ -14,8 +19,7 @@ public class outputView {
         System.out.println();
     }
 
-    public void printStaticResult(Prizes prizes) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-    }
+
+
+
 }

@@ -43,4 +43,8 @@ public class Cash {
         return afford;
     }
 
+    public Integer getSeed() {
+        return totalAmount;
+    }
+
 }

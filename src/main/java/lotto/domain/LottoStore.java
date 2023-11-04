@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoStore {
@@ -17,6 +18,13 @@ public class LottoStore {
 
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
+    }
+
+    public List<Integer> setWinningLotto(String number) {
+        List<String> tempLotto = Arrays.asList(number.split(","));
+        tempLotto.stream().forEach(tempNumber -> winningLotto.add(Integer.parseInt(tempNumber)));
+
+        return winningLotto;
     }
 
     public List<Lotto> getLotto() {

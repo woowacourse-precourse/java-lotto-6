@@ -15,9 +15,10 @@ public class InputView {
     private final String INPUT_WINNING = "당첨 번호를 입력해 주세요.";
     private final String INPUT_BONUS = "보너스 번호를 입력해 주세요.";
 
+    private String inputPrice;
+
     public int getLottoCount() {
         System.out.println(INPUT_PRICE);
-        String inputPrice = null;
         int lottoCount = 0;
         Casher casher = new Casher();
         while (true) {
@@ -31,6 +32,10 @@ public class InputView {
             }
         }
         return lottoCount;
+    }
+
+    public int getInputPrice() {
+        return Integer.parseInt(inputPrice);
     }
 
     public List<Integer> getWinningNumbers() {

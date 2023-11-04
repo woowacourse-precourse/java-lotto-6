@@ -31,7 +31,7 @@ public class Lotto {
 		List<String> numberTextList = Arrays.asList(lottoNumberText.split(",", -1));
 		List<Integer> numberList = new ArrayList<>();
 		for(String numberText : numberTextList) {
-			int number = Integer.valueOf(numberText);
+			int number = Integer.valueOf(numberText.trim());
 			numberList.add(number);
 		}
 		return numberList;

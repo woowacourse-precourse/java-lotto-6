@@ -38,8 +38,8 @@ public class InputException {
     	}
 	}
 
-	public static void checkNull(String lottoNumberText) {
-		if(lottoNumberText.isBlank()) {
+	public static void checkNull(String numberText) {
+		if(numberText == null) {
 			throw new IllegalArgumentException(Error.NULL_VALUE.getMessage());
 		}
 	}

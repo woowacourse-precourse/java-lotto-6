@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import model.BonusNumber;
 import model.BuyLotto;
 import model.BuyLottoNumber;
 import model.Lotto;
@@ -26,8 +27,8 @@ public class LottoController {
 	}
 	
 	private static void choiceNumber() {
-		inputLottoNumber(InputView.getNumberListText());
-		inputBonusNumber(InputView.getBonusNumberText());
+		Lotto lotto = inputLottoNumber(InputView.getNumberListText());
+		BonusNumber bonus = inputBonusNumber(InputView.getBonusNumberText());
 	}
 	
 	public static Lotto inputLottoNumber(String lottoNumberText) {
@@ -44,7 +45,20 @@ public class LottoController {
 		}
 	}
 	
-	private static void inputBonusNumber(String bonusNumberText) {
-		
+	private static BonusNumber inputBonusNumber(String bonusNumberText) {
+		while(true) {
+			try {
+				BonusNumber.validateBonusNumber(bonusNumberText);
+				int bonusNumber = BonusNumber.changeToNumber(bonusNumberText);
+				BonusNumber bonus = new BonusNumber(bonusNumber);
+				
+				return bonus;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e);
+				System.out.println();
+				
+				return inputBonusNumber(InputView.getBonusNumberText());
+			}
+		}
 	}
 }

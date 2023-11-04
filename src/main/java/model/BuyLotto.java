@@ -29,11 +29,12 @@ public class BuyLotto {
 	}
 
 	private static int changeBuyAmount(String amountText) {
+		amountText = amountText.trim();
 		amountText = validateBuyAmount(amountText);
 		return Integer.valueOf(amountText);
 	}
 	
-	private static String validateBuyAmount(String amountText) {
+	public static String validateBuyAmount(String amountText) {
 		while (true) {
 	        try {
 	            InputException.checkNull(amountText);
@@ -48,7 +49,7 @@ public class BuyLotto {
 	    }
 	}
 
-	private int checkRightAmount(int amount) {
+	public int checkRightAmount(int amount) {
 		try {
 			InputException.checkRightAmount(amount, LOTTO_PRICE);
 		} catch (Exception e) {

@@ -155,7 +155,7 @@ flowchart TD
 
 -[x] docs: flowchart 그리기
 
--[ ] feat: 로또 구입 금액을 입력받는다. (한장당 1000원)
+-[x] feat: 로또 구입 금액을 입력받는다. (한장당 1000원)
     - [ ] feat: 한장당 1부터 45까지 서로 다른 6개의 임의의 수를 생성한다.
     - [ ] feat: 1000원으로 나누어 떨어지지 않는경우 `IllegalArgumentException`를 발생시킨다.
     - [ ] feat: 로또 번호는 오름차순으로 정렬한다.

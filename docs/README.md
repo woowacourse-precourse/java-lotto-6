@@ -52,9 +52,9 @@
       - [X] Lotto 번호 검증
           - [X] 길이 검증
           - [X] 숫자 중복 검증
+          - [ ] Lotto 오름차순 정렬
   - [ ] LottoTickets
       - [ ] Lotto 객체들 저장
-      - [ ] Lotto 오름차순 정렬
   - [X] LottoFactory
       - [X] Lotto 객체 생성 로직
   - [X] LottoNumberGenerator

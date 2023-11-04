@@ -23,7 +23,7 @@
 
 ### model package
 - validation class
-  + [ ] 구입 금액에 따라 로또 갯수를 구하는 기능
+  + [0] 지불 금액에 따라 받을 로또 갯수를 구하는 기능
   + [ ] 당첨 통계 값을 구하는 기능
   + [ ] 총 수익률을 구하는 기능
 - transform class

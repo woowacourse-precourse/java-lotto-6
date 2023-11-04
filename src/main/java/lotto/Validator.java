@@ -9,4 +9,12 @@ public class Validator {
         }
     }
 
+    void isInRange(int input) {
+        if (input >= 1 & input <= 45) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
+
 }

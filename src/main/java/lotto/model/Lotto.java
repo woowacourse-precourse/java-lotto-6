@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.LottoRule.MAXIMUM_NUMBER;
+import static lotto.model.LottoRule.MINIMUM_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,10 +11,6 @@ import lotto.exception.LottoNumberSizeException;
 import lotto.exception.LottoNumericRangeException;
 
 public class Lotto {
-
-    public static final int LOTTO_PRICE = 1000;
-    public static final int MINIMUM_NUMBER = 1;
-    public static final int MAXIMUM_NUMBER = 45;
 
     private final List<Integer> numbers;
 

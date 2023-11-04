@@ -1,13 +1,11 @@
 package lotto.model;
 
-import lotto.model.Lotto;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import lotto.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -27,7 +25,7 @@ class LottoTest {
     @DisplayName("로또 번호가 최저 숫자보다 낮으면 예외가 발생한다.")
     @Test
     void createLottoByLowNumber() {
-        int lowNum = Lotto.MINIMUM_NUMBER - 1;
+        int lowNum = LottoRule.MINIMUM_NUMBER - 1;
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, lowNum, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -37,7 +35,7 @@ class LottoTest {
     @DisplayName("로또 번호가 최대 숫자보다 크면 예외가 발생한다.")
     @Test
     void createLottoByHighNumber() {
-        int highNum = Lotto.MAXIMUM_NUMBER + 1;
+        int highNum = LottoRule.MAXIMUM_NUMBER + 1;
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, highNum, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)

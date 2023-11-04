@@ -1,11 +1,10 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.model.Lotto.MAXIMUM_NUMBER;
-import static lotto.model.Lotto.MINIMUM_NUMBER;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoRule;
 
 /**
  * 테스트에 필요한 유틸리티 기능
@@ -20,7 +19,7 @@ public class TestUtil {
     public static final String ERROR_PREFACE = "[ERROR] ";
 
     public static final List<Integer> lottoNumberGenerator() {
-        return pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, 6);
+        return pickUniqueNumbersInRange(LottoRule.MINIMUM_NUMBER, LottoRule.MAXIMUM_NUMBER, 6);
     }
 
     public static final Lotto createLotto() {

@@ -22,6 +22,13 @@ public class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 0원일 경우 예외가 발생한다.")
+    @Test
+    void createMoneyByZero() {
+        assertThatThrownBy(() -> new Money("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("유효한 구입 금액일 시 정상적으로 구입 금액이 생성된다.")
     @Test
     void createValidMoney() {

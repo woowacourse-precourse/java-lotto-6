@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Lotto;
+import domain.Lottos;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,6 +61,17 @@ class LottoTest {
     @Test
     void createValidLotto() {
         assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("유효한 로또일 시 정상적으로 로또가 생성된다.")
+    @Test
+    void createValidLottos() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
+        
+        assertThatCode(() -> new Lottos(lottos))
                 .doesNotThrowAnyException();
     }
 }

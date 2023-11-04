@@ -13,12 +13,20 @@ public class LottoGame {
     LottoMachine lottoMachine = new LottoMachine();
 
     public void doLottoGame() {
-
         Money money = getMoney();
         List<Lotto> lottoBundle = lottoMachine.buyLotto(money);
 
         printIssuedLotto(lottoBundle);
 
+        WinLotto winLotto = getWinLotto();
+
+
+    }
+
+    private WinLotto getWinLotto() {
+        List<Integer> winLottoNumbers = inputView.getWinLottoNumbers();
+        Integer winLottoBonus = inputView.getWinLottoBonus();
+        return new WinLotto(winLottoNumbers, winLottoBonus);
     }
 
     private void printIssuedLotto(List<Lotto> lottoBundle) {

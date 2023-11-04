@@ -10,9 +10,30 @@ import java.util.List;
 
 public class InputView {
 
-    public Money getMoney() {
+    public static final String delimiter = ",";
+
+    public Integer getMoney() {
         String input = getInput();
-        return new Money(validateNumber(input));
+        return validateNumber(input);
+    }
+
+    public List<Integer> getWinLottoNumbers() {
+        List<Integer> winLottoNumbers = new ArrayList<>();
+
+        String input = getInput();
+        List<String> numbers = split(input);
+
+        for (String splitValues : numbers) {
+            Integer number = validateNumber(splitValues);
+            winLottoNumbers.add(number);
+        }
+
+        return winLottoNumbers;
+    }
+
+    public Integer getWinLottoBonus() {
+        String input = getInput();
+        return validateNumber(input);
     }
 
     private Integer validateNumber(String input) {
@@ -22,6 +43,10 @@ public class InputView {
         }
 
         return Integer.parseInt(input);
+    }
+
+    private List<String> split(String input) {
+        return Arrays.stream(input.split(delimiter)).toList();
     }
 
     private boolean isNumber(String input) {

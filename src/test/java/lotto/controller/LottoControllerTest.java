@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -59,10 +60,14 @@ class LottoControllerTest extends NsTest {
 
     @DisplayName("로또를 구입하고, 로또를 반환받는다.")
     @Test
-    void buyLottoSuccess() {
-        // TODO: 개발 완료 후 진행
-    }
+    void buyLottoSuccess() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        final int count = 5;
+        run(String.valueOf(count * 1000));
+        Method method = getAccessibleMethod("buyLotto");
+        method.invoke(lottoController);
 
+        assertThat(output()).contains(count + "개");
+    }
 
     private Method getAccessibleMethod(String methodName, Class<?>... parameterTypes)
             throws NoSuchMethodException {

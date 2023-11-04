@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.exception.ErrorMessage.*;
 import static lotto.exception.InputNumberException.*;
 import static lotto.exception.LottoNumberException.*;
 
@@ -20,11 +21,12 @@ public class WinningLotto {
         inputValidate(bonus);
         Integer number = Integer.parseInt(bonus.get(0));
         numberDuplicateValidate(number);
+        numbers.add(number);
     }
 
     private void numberDuplicateValidate(Integer number) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR.getMessage() + BONUS_DUPLICATE.getMessage());
         }
     }
 }

@@ -1,8 +1,6 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
-import static lotto.input.constant.Constant.LOTTO_NUMBER_SIZE;
-
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,14 +27,7 @@ public class LottoGenerator {
     }
 
     public List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() != LOTTO_NUMBER_SIZE) {
-            int number = pickNumberInRange(1, 45);
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
-        }
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
 

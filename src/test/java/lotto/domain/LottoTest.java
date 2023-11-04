@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import lotto.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;

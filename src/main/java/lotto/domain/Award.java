@@ -7,8 +7,9 @@ public enum Award {
     THREE(5_000),
     FOUR(50_000),
     FIVE(1_500_000),
-    FIVE_BONUS(30_000_000),
-    SIX(2_000_000_000);
+    SIX(2_000_000_000),
+
+    FIVE_BONUS(30_000_000);
 
     private final int reward;
 
@@ -18,6 +19,10 @@ public enum Award {
 
     public int getReward(){
         return this.reward;
+    }
+
+    public static Award getByOrdinal(int ordinal){
+        return Award.values()[ordinal];
     }
 
 }

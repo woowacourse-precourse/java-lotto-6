@@ -11,6 +11,7 @@ public class Constant {
     public static final String NUMBER_SCOPE_ERROR = "[ERROR] 1~45 사이의 숫자를 입력해야 합니다.";
 
     public static final String NOT_NUMBER_ERROR = "[ERROR] 숫자를 입력해야 합니다";
+    public static final String WINNING_NUMBER_SIZE_ERROER = "[ERROR] 6 개의 숫자를 , 으로 구분지어 입력하셔야 합니다.";
 
     public static final String BOUNS_NUMBER_INPUPT_MESSAGE = "보너스 번호를 입력해 주세요.";
 

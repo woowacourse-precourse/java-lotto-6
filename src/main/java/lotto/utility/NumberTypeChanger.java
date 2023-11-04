@@ -1,6 +1,6 @@
 package lotto.utility;
 
-public class ChangeNumberType {
+public class NumberTypeChanger {
     private static final String MATCH_NUMBER = "\\d+";
 
     public static int changeNumberType(String input) {

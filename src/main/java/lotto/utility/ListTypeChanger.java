@@ -3,7 +3,7 @@ package lotto.utility;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChangeListType {
+public class ListTypeChanger {
     public static List<Integer> changeListType(String input) {
         String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();

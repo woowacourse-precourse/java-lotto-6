@@ -5,8 +5,8 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoNumberGenerator;
-import lotto.utility.ChangeListType;
-import lotto.utility.ChangeNumberType;
+import lotto.utility.ListTypeChanger;
+import lotto.utility.NumberTypeChanger;
 import lotto.view.InputValue;
 import lotto.view.OutputMessage;
 
@@ -27,7 +27,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = InputValue.inputPurchase();
-                int purchaseAmount = ChangeNumberType.changeNumberType(input);
+                int purchaseAmount = NumberTypeChanger.changeNumberType(input);
                 Purchase purchase = new Purchase(purchaseAmount);
                 return purchase.getAmount();
             } catch (IllegalArgumentException e) {
@@ -51,7 +51,7 @@ public class LottoController {
         while(true) {
             try {
                 String input = InputValue.inputWinningNumbers();
-                List<Integer> winningNumbers = ChangeListType.changeListType(input);
+                List<Integer> winningNumbers = ListTypeChanger.changeListType(input);
                 Lotto lotto = new Lotto(winningNumbers);
                 System.out.println();
                 return lotto.getNumbers();
@@ -66,7 +66,7 @@ public class LottoController {
         while(true) {
             try {
                 String input = InputValue.inputBonusNumber();
-                int bonusNumber = ChangeNumberType.changeNumberType(input);
+                int bonusNumber = NumberTypeChanger.changeNumberType(input);
                 Bonus bonus = new Bonus(bonusNumber);
                 System.out.println();
                 return bonus.getNumber();

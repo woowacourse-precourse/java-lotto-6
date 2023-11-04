@@ -34,6 +34,7 @@ public class Input {
         System.out.println(INPUT_BONUS_NUMBER_GUIDE);
         String bonusNumber = Console.readLine();
         validateBlank(bonusNumber);
+        validateNumeric(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 

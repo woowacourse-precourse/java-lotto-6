@@ -11,10 +11,12 @@ public class Lotto {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
     private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String DUPLICATION_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 중복없이 6개의 번호들로 구성되어야 합니다.";
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateRange(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -27,6 +29,12 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers){
+        if(numbers.stream().distinct().count() != numbers.size()){
+            throw new IllegalArgumentException(DUPLICATION_EXCEPTION_MESSAGE);
         }
     }
 

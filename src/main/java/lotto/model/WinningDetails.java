@@ -5,16 +5,14 @@ import java.util.List;
 public class WinningDetails {
     private final List<Lotto> lottos;
     private final List<Integer> winningNumbers;
-    private final int purchaseMoney;
     private final int bonusNumber;
 
     private int[] rank;
     private boolean bonusMatch;
 
-    public WinningDetails(List<Lotto> lottos, List<Integer> winningNumbers, int purchaseMoney, int bonusNumber) {
+    public WinningDetails(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
-        this.purchaseMoney = purchaseMoney;
         this.bonusNumber = bonusNumber;
         rank = new int[6];
 

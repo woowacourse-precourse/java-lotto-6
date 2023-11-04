@@ -24,7 +24,7 @@
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 
-## 🚀 기능 목록
+## 🚀 구현할 기능 목록
 
 ### ✔ View
 - 여러 사용자 입력 안내 메시지 출력

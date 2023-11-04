@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -63,5 +64,18 @@ public class LottoBuyerTest {
     void testPurchaseAmountValidRange(int purchaseAmount) {
         //when, then
         assertDoesNotThrow(() -> buyer.pay(purchaseAmount));
+    }
+
+    @DisplayName("구매한 금액 만큼 로또 개수를 반환해야 한다.")
+    @Test
+    void testLottoCountByPurchaseAmount() {
+        //given
+        int purchaseAmount = 4000;
+
+        //when
+        buyer.pay(purchaseAmount);
+
+        //then
+        assertThat(buyer.getLottoCount()).isEqualTo(4);
     }
 }

@@ -106,4 +106,12 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.isValidWinningNumbers(input))
                 .doesNotThrowAnyException();
     }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호를 입력 유효성 성공 테스트")
+    @ValueSource(strings = {"1", "7"})
+    void validInputsTest3(String input) {
+        Assertions.assertThatCode(() -> Validator.isValidBonusNumber(input))
+                .doesNotThrowAnyException();
+    }
 }

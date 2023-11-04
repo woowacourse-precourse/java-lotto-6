@@ -18,10 +18,14 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    Customer customer = new Customer();
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
-    WinningNumbers winningNumbers = new WinningNumbers();
+    private final Customer customer;
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final WinningNumbers winningNumbers = new WinningNumbers();
+
+    public LottoController(Customer customer) {
+        this.customer = customer;
+    }
 
     public void purchaseLotto() {
         handleUserInput(() -> {
@@ -63,11 +67,13 @@ public class LottoController {
     }
 
     private void handleUserInput(Runnable action) {
-        try {
-            action.run();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            handleUserInput(action);
+        while (true) {
+            try {
+                action.run();
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

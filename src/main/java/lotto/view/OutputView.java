@@ -11,8 +11,12 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String PURCHASE_LOTTO_NUMBER_MESSAGE  ="%d개를 구매했습니다";
     private static final String COMMA = ", ";
-    private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LOTTO_YIELD_MESSAGE = "총 수익률은 ";
+
+
+    public static void printExceptionMessage(String message){
+        System.out.println(message);
+    }
 
     public static void printPurchaseLottoNumber(int number, MyLottos myLottos){
         System.out.println(String.format(PURCHASE_LOTTO_NUMBER_MESSAGE,number));
@@ -51,4 +55,5 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return decimalFormat.format(number);
     }
+
 }

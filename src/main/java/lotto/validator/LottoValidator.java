@@ -17,10 +17,11 @@ public class LottoValidator {
     private static final String BONUS_INPUT_DUPLICATION_LOTTO_EXCEPTION_MESSAGE = "[ERROR] 입력한 로또 번호와 보너스 번호는 겹칠 수 없습니다.";
 
 
-    public static boolean amountInputValidator(String amount){
-        return inputOnlyNumberValidator(amount) &&
-                inputAmountRangeValidator(amount) &&
-                inputAmountEmptyValidator(amount);
+    public static String amountInputValidator(String amount){
+        if( inputOnlyNumberValidator(amount) && inputAmountRangeValidator(amount) && inputAmountEmptyValidator(amount)){
+            return amount;
+        }
+        return null;
     }
 
     private static boolean inputAmountEmptyValidator(String amount){
@@ -37,10 +38,12 @@ public class LottoValidator {
         return true;
     }
 
-    public static boolean winningLottoValidator(String line){
+    public static String winningLottoValidator(String line){
         List<Integer> lotto = InputLottoOnlyNumberValidator(line);
-        return inputLottoRangeValidator(lotto) && inputLottoDuplicationNumberValidator(lotto) && inputLottoSizeValidator(lotto);
-
+        if(inputLottoRangeValidator(lotto) && inputLottoDuplicationNumberValidator(lotto) && inputLottoSizeValidator(lotto)){
+            return line;
+        }
+        return null;
     }
 
     private static boolean inputLottoRangeValidator(List<Integer> lotto){
@@ -74,8 +77,11 @@ public class LottoValidator {
             throw new IllegalArgumentException(LOTTO_INPUT_ONLY_NUMBER_EXCEPTION_MESSAGE);
         }
     }
-    public static boolean inputWinningBonusValidator(List<Integer> lotto, String line){
-        return inputOnlyNumberValidator(line) && lottoNumberRangeValidator(Integer.parseInt(line)) &&inputWinningBonusDuplicationLottoValidator(lotto, Integer.parseInt(line));
+    public static String inputWinningBonusValidator(String line){
+        if(inputOnlyNumberValidator(line) && lottoNumberRangeValidator(Integer.parseInt(line))){
+            return line;
+        }
+        return null;
     }
 
     private static boolean inputOnlyNumberValidator(String line){

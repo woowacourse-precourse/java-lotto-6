@@ -9,10 +9,7 @@ class AmountLottoTest {
 
     @Test
     void 구입금액_로또_갯수_반환_테스트() {
-        AmountLotto amountLotto = new AmountLotto();
-
-        amountLotto.responseAmountLotto("5000");
-
+        AmountLotto amountLotto = new AmountLotto("5000");
         assertThat(amountLotto.calculateAmountLotto()).isEqualTo(5);
     }
 

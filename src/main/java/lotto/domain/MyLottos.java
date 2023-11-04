@@ -23,6 +23,4 @@ public class MyLottos {
                 .mapToObj(i -> Lotto.createLotto())
                 .collect(Collectors.toList());
     }
-
-
 }

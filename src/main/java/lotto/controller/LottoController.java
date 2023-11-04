@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.AmountLotto;
-import lotto.domain.RankingLotto;
-import lotto.domain.MyLottos;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
+import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,9 +13,9 @@ public class LottoController {
     }
 
     private void startLottoGame(){
-        AmountLotto amountLotto = new AmountLotto();
+        AmountLotto amountLotto =new AmountLotto(requestAmountLotto());
         MyLottos myLottos = new MyLottos();
-        WinningLotto winningLotto = new WinningLotto();
+        WinningLotto winningLotto = new WinningLotto(requestWinningLotto(), requestWinningBonus());
         settingLottoGame(myLottos,amountLotto,winningLotto);
         HashMap<RankingLotto, Integer> lottoRank = RankingLotto.makeHashMapLottoRanking();
         int money = 0;
@@ -35,10 +33,7 @@ public class LottoController {
     }
 
     private void settingLottoGame(MyLottos myLottos ,AmountLotto amountLotto, WinningLotto winningLotto) {
-        requestAmountLotto(amountLotto);
         requestCreateMyLotto(myLottos, amountLotto);
-        requestWinningLotto(winningLotto);
-        requestWinningBonus(winningLotto);
     }
 
     private void requestCreateMyLotto(MyLottos myLottos,AmountLotto amountLotto) {
@@ -46,37 +41,32 @@ public class LottoController {
         OutputView.printPurchaseLottoNumber(myLottos.getLottos().size(), myLottos);
     }
 
-    public void requestAmountLotto(AmountLotto amountLotto){
+    public String requestAmountLotto(){
         try{
-            amountLotto.responseAmountLotto(InputView.lottoPurchaseAmountInput());
+            return LottoValidator.amountInputValidator(InputView.lottoPurchaseAmountInput());
         }
         catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            requestAmountLotto(amountLotto);
+            OutputView.printExceptionMessage(e.getMessage());
+            return requestAmountLotto();
+        }
+    }
+    public String requestWinningLotto(){
+        try{
+            return LottoValidator.winningLottoValidator(InputView.winningLottoInput());
+        }
+        catch (IllegalArgumentException e){
+            OutputView.printExceptionMessage(e.getMessage());
+            return requestWinningLotto();
         }
     }
 
-    public void requestWinningLotto(WinningLotto winningLotto){
+    public String requestWinningBonus(){
         try{
-            winningLotto.convertWinningLotto(InputView.winningLottoInput());
+            return LottoValidator.inputWinningBonusValidator(InputView.bonusLottoInput());
         }
         catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            requestWinningLotto(winningLotto);
+            OutputView.printExceptionMessage(e.getMessage());
+            return requestWinningBonus();
         }
     }
-
-    public void requestWinningBonus(WinningLotto winningLotto){
-        try{
-            winningLotto.convertWinningBonus(InputView.bonusLottoInput());
-        }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            requestWinningBonus(winningLotto);
-        }
-    }
-
-
-
-
 }

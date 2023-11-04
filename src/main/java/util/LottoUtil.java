@@ -38,4 +38,14 @@ public class LottoUtil {
         }
         return winCountArr;
     }
+
+    public static Double calculateRate(int[] winCountArr, int pay) { // TODO: 상수 처리 필요
+        double sum = 0d;
+        for(CountMessage count : CountMessage.values()) {
+            sum += count.getPrice() * winCountArr[count.getCount()];
+        }
+        return sum / pay * 100;
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.utils.Validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -77,5 +78,47 @@ class ValidationTest {
     void 숫자_배수_검증_실패() {
         // 예외가 발생해야 하는 경우
         assertThrows(IllegalArgumentException.class, () -> Validation.validateNumberMultipleOf(1234, 1000));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 범위 검증")
+    void 숫자_리스트_범위_검증() {
+        // 정상적인 경우, 예외가 발생하지 않아야 함
+        assertDoesNotThrow(() -> Validation.validateListNumberInRange(List.of(1, 45, 3, 4, 22, 36), 1, 45));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 범위 검증 실패")
+    void 숫자_리스트_범위_검증_실패() {
+        // 예외가 발생해야 하는 경우
+        assertThrows(IllegalArgumentException.class, () -> Validation.validateListNumberInRange(List.of(1, 45, 3, 4, 22, 46), 1, 45));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 중복 검증")
+    void 숫자_리스트_중복_검증() {
+        // 정상적인 경우, 예외가 발생하지 않아야 함
+        assertDoesNotThrow(() -> Validation.validateListNumberNotDuplicated(List.of(1, 45, 3, 4, 22, 36)));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 중복 검증 실패")
+    void 숫자_리스트_중복_검증_실패() {
+        // 예외가 발생해야 하는 경우
+        assertThrows(IllegalArgumentException.class, () -> Validation.validateListNumberNotDuplicated(List.of(1, 45, 3, 4, 22, 45)));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 개수 검증")
+    void 숫자_리스트_개수_검증() {
+        // 정상적인 경우, 예외가 발생하지 않아야 함
+        assertDoesNotThrow(() -> Validation.validateListNumberCount(List.of(1, 45, 3, 4, 22, 36), 6));
+    }
+
+    @Test
+    @DisplayName("숫자 리스트 개수 검증 실패")
+    void 숫자_리스트_개수_검증_실패() {
+        // 예외가 발생해야 하는 경우
+        assertThrows(IllegalArgumentException.class, () -> Validation.validateListNumberCount(List.of(1, 45, 3, 4, 36), 6));
     }
 }

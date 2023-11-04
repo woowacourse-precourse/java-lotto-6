@@ -25,4 +25,10 @@ public class LottoWinnerSystem {
         List<Integer> numbers = Stream.of(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         return numbers;
     }
+
+    private static void isValidLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 6개를 입력해 주세요.");
+        }
+    }
 }

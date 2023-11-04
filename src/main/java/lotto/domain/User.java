@@ -27,6 +27,10 @@ public class User {
         return lottos;
     }
 
+    public Integer getMoney(){
+        return this.money;
+    }
+
     private void validateValue(Integer money){
         validateDivide(money);
         validateZero(money);

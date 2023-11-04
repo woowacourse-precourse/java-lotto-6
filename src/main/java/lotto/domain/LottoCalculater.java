@@ -27,6 +27,20 @@ public class LottoCalculater {
         }
     }
 
+    public double calculateRate() {
+        return ((double) getAllMoney() / user.getMoney())*100;
+    }
+
+    private long getAllMoney() {
+        int result = 0;
+
+        for (LottoResult lottoResult1 : LottoResult.values()) {
+            result += this.getLottoResultCount(lottoResult1) * lottoResult1.getMoney();
+        }
+
+        return result;
+    }
+
     private void updateLottoResultCount(LottoResult result) {
         lottoResult.put(result, this.lottoResult.get(result) + 1);
     }

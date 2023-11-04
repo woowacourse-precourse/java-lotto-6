@@ -24,6 +24,13 @@ public class CustomerTest {
     }
 
     @Test
+    void validateWalletIsDivisibleTest() {
+
+        assertThatThrownBy(() -> new Customer("5001"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void buyLottosTest() {
 
         assertEquals(5, customer.getLottos().size());

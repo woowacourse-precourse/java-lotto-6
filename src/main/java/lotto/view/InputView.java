@@ -12,17 +12,17 @@ public class InputView {
         System.out.println(message);
     }
 
-    public int inputAmount() {
+    public static int inputAmount() {
         showMessage(GET_MONEY_MESSAGE);
         return Utils.convertStringToInteger(Console.readLine());
     }
 
-    public String inputWinningNumbers() {
+    public static String inputWinningNumbers() {
         showMessage(GET_NUMBERS_MESSAGE);
         return Console.readLine();
     }
 
-    public int bonusNumberMessage() {
+    public static int inputBonusNumber() {
         showMessage(GET_BONUS_NUMBER_MESSAGE);
         return Utils.convertStringToInteger(Console.readLine());
     }

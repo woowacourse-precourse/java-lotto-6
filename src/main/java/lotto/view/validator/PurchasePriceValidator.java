@@ -1,4 +1,4 @@
-package lotto.controller.validator;
+package lotto.view.validator;
 
 import static lotto.config.GameNumberConfig.LOTTO_PRICE;
 import static lotto.exception.ErrorMessage.VALIDATE_PURCHASE_PRICE_DIVIDE;

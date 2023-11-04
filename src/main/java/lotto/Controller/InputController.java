@@ -52,8 +52,8 @@ public class InputController {
         for(String s : input)
             numbers.add(Integer.parseInt(s));
 
-        numbers.add(inputBonusNumber());
         UserLotto lotto = new UserLotto(numbers);
+        lotto.addBonusNumber(inputBonusNumber());
 
         return lotto;
     }

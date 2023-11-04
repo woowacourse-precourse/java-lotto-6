@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.common.config.UserRule;
 import lotto.model.Lotto;
-import lotto.model.LottoMaker;
+import lotto.model.LottoCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,7 +17,7 @@ class LottoMakerTest {
 
     @Test
     void LottoMaker는_입력없이_랜덤로또를_생성한다() {
-        Lotto autoLotto = LottoMaker.makeAutoLotto();
+        Lotto autoLotto = LottoCreator.createAutoLotto();
 
         assertThat(autoLotto).isInstanceOf(Lotto.class);
     }
@@ -29,7 +29,7 @@ class LottoMakerTest {
                 .map(Integer::parseInt)
                 .toList();
 
-        Lotto manualLotto = LottoMaker.makeManualLotto(numbers);
+        Lotto manualLotto = LottoCreator.createManualLotto(numbers);
 
         numbers.forEach(
                 number -> assertTrue(manualLotto.contains(number), String.format("생성된 로또가 %d를 포함하지 않습니다.", number))
@@ -43,7 +43,7 @@ class LottoMakerTest {
                 .map(Integer::parseInt)
                 .toList();
 
-        assertThatThrownBy(() -> LottoMaker.makeManualLotto(numbers))
+        assertThatThrownBy(() -> LottoCreator.createManualLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,7 +54,7 @@ class LottoMakerTest {
                 .map(Integer::parseInt)
                 .toList();
 
-        assertThatThrownBy(() -> LottoMaker.makeManualLotto(numbers))
+        assertThatThrownBy(() -> LottoCreator.createManualLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -4,13 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.common.config.LottoGameRule;
 
-public class LottoMaker {
+public class LottoCreator {
 
-    public static Lotto makeAutoLotto() {
+    public static Lotto createAutoLotto() {
         return new Lotto(pickRandomNumbers());
     }
 
-    public static Lotto makeManualLotto(List<Integer> numbers) {
+    public static Lotto createManualLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 

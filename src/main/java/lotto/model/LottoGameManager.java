@@ -42,7 +42,7 @@ public class LottoGameManager {
     }
 
     public Lotto createWinningLotto(String userInputWinningNumbers) {
-        return LottoMaker.makeManualLotto(parsingWinningNumbers(userInputWinningNumbers));
+        return LottoCreator.createManualLotto(parsingWinningNumbers(userInputWinningNumbers));
     }
 
     public LottoRanking createWinningLottoAddBonusNumber(Lotto lotto, String userInputBonusNumber) {
@@ -52,6 +52,7 @@ public class LottoGameManager {
     public List<Lotto> createLottoBucket(int lottoAmount) {
         return null;
     }
+
     public void saveLottoBucket() {
 
     }

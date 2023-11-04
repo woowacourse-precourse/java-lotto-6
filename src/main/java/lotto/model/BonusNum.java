@@ -10,13 +10,14 @@ public class BonusNum {
         this.bonusNum = 0;
     }
 
-    public Integer getBonusNum(String input) {
-        bonusNum = validate(input);
+    public Integer getBonusNum(String input, Lotto lotto) {
+        bonusNum = validate(input, lotto);
         return bonusNum;
     }
-    public int validate(String input) {
+    public int validate(String input, Lotto lotto) {
         int validNum = Validation.validateInteger(input);
         Validation.validateBonusNum(validNum);
+        lotto.validateDuplicatedBonusNum(validNum);
         return validNum;
     }
 }

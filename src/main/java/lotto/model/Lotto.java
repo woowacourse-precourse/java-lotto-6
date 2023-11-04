@@ -26,7 +26,7 @@ public class Lotto {
         return result;
     }
     private static List<Integer> getOneLotto() {
-        List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
         Collections.sort(oneLotto);
         return oneLotto;
     }

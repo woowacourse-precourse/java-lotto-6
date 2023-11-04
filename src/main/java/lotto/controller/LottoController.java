@@ -41,8 +41,6 @@ public class LottoController {
                 matchedBonusNum.set(i, true);
             }
         }
-
-        // 발행한 로또 중 당첨된 로또의 개수를 등수별로 구하기
         Map<LottoRanks, Integer> winnerCount = LottoRanks.getEnumMap();
         for (int i = 0; i < manyLotto.size(); i++) {
             int sameNumCount = matchedNumber.get(i);
@@ -52,13 +50,7 @@ public class LottoController {
         }
 
         // 당첨 통계 산출 결과 출력하기
-        System.out.println("\n당첨 통계\n---");
-        DecimalFormat prize = new DecimalFormat("###,###");
-        for (LottoRanks key : winnerCount.keySet()) {
-            if (key == LottoRanks.NONE)
-                continue;
-            System.out.println(key.getWinnings() + "원 - " + winnerCount.get(key) + "개");
-        }
+        outputView.printWinningResult(winnerCount);
 
         // 수익률 산출 및 출력하기
         long totalPrize = 0;
@@ -102,8 +94,7 @@ public class LottoController {
         int validBonusNum;
         while (true) {
             try {
-                validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber());
-                lotto.validateDuplicatedBonusNum(validBonusNum);
+                validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber(), lotto);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

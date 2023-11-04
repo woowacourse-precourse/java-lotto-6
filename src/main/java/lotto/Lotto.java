@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     private void duplicatedValidate(List<Integer> numbers) {
-        HashSet compareValues = new HashSet<>(numbers);
+        HashSet<Integer> compareValues = new HashSet<>(numbers);
         if (compareValues.size() != 6) {
             throw new IllegalArgumentException();
         }

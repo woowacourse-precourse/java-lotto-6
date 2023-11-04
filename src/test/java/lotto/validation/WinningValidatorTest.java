@@ -19,4 +19,14 @@ public class WinningValidatorTest {
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.WINNING_IS_NOT_CORRECTLY_RANGE.toString());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7","1,2,3,4,5"})
+    void 당첨_번호_입력_값_개수_초과_또는_미만_검증_로직_테스트(String winningNumbers){
+        assertThatThrownBy(()->{
+                WinningValidator.winnersCountIsOverOrUnder(winningNumbers);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorProperty.WINNING_COUNT_IS_OVER_OR_UNDER.toString());
+    }
 }

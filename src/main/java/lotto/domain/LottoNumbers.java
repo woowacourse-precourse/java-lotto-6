@@ -12,6 +12,18 @@ public class LottoNumbers {
 
     private StringBuilder sb = new StringBuilder();
 
+    LottoNumberValidation lottoNumberValidation = new LottoNumberValidation();
+
+    public boolean isDuplicateLottoNumbers(List<Integer> lottoNumbers) {
+        try {
+            lottoNumberValidation.validateDuplicateLottoNumbers(lottoNumbers);
+            synthesizeLottoNumbers(lottoNumbers);
+            return false;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return true;
+        }
+    }
     public void synthesizeLottoNumbers(List<Integer> lottoNumbers) {
         sb.append("[");
         for (int i = 0; i < 6; i++) {

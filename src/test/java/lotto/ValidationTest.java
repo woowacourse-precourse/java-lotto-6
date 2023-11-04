@@ -64,4 +64,18 @@ class ValidationTest {
         // 예외가 발생해야 하는 경우
         assertThrows(IllegalArgumentException.class, () -> Validation.validateNumberInRange(11, 1, 10));
     }
+
+    @Test
+    @DisplayName("숫자 배수 검증")
+    void 숫자_배수_검증() {
+        // 정상적인 경우, 예외가 발생하지 않아야 함
+        assertDoesNotThrow(() -> Validation.validateNumberMultipleOf(10000, 1000));
+    }
+
+    @Test
+    @DisplayName("숫자 배수 검증 실패")
+    void 숫자_배수_검증_실패() {
+        // 예외가 발생해야 하는 경우
+        assertThrows(IllegalArgumentException.class, () -> Validation.validateNumberMultipleOf(1234, 1000));
+    }
 }

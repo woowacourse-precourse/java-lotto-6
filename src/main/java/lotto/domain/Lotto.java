@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.consts.LottoConst.LOTTO_SIZE;
 import static lotto.valid.WinNumberValid.validLottoNums;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
         validLottoNums(numbers);

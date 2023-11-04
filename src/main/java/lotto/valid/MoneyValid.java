@@ -1,5 +1,7 @@
 package lotto.valid;
 
+import static lotto.consts.LottoConst.LOTTO_PRICE;
+
 public class MoneyValid {
 
     public static int validMoney(String input) {
@@ -18,13 +20,13 @@ public class MoneyValid {
     }
 
     private static void validDividing(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 돈은 1000원으로 나누어 떨어져야 합니다.");
         }
     }
 
     private static void validMinMoney(int money) {
-        if (money < 1000) {
+        if (money < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 돈은 최소 1000원 이상이여야 합니다.");
         }
     }

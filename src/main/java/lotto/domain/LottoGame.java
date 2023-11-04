@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
+import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
+import static lotto.consts.LottoConst.LOTTO_PRICE;
+import static lotto.consts.LottoConst.LOTTO_SIZE;
 import static lotto.domain.LottoResult.findByCountAndValidBonus;
 import static lotto.domain.LottoResult.values;
 
@@ -20,9 +24,9 @@ public class LottoGame {
     }
 
     private void buildLottos(int lottoMoney) {
-        int lottoCount = lottoMoney / 1000;
+        int lottoCount = lottoMoney / LOTTO_PRICE;
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
             List<Integer> sortedLottoNums = lottoNums.stream().sorted().toList();
             lottos.add(new Lotto(sortedLottoNums));
         }

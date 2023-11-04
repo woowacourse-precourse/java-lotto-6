@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.consts.LottoConst.LOTTO_PRICE;
 import static lotto.util.OutputFormat.addCommaAtIntegers;
 import static lotto.util.OutputFormat.roundAtTwo;
 
@@ -11,7 +12,7 @@ import lotto.domain.LottoResult;
 public class OutputView {
 
     public static void printLottos(int money, List<Lotto> lottos) {
-        int lottoQuantity = money / 1000;
+        int lottoQuantity = money / LOTTO_PRICE;
         System.out.println(lottoQuantity + "개를 구매했습니다.");
 
         for (Lotto lotto : lottos) {

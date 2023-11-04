@@ -1,5 +1,9 @@
 package lotto.valid;
 
+import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
+import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
+import static lotto.consts.LottoConst.LOTTO_SIZE;
+
 import java.util.List;
 import lotto.util.ConvertStr;
 
@@ -29,19 +33,19 @@ public class WinNumberValid {
     }
 
     private static void validWinNumberSize(List<Integer> intNums) {
-        if (intNums.size() != 6) {
+        if (intNums.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
         }
     }
 
     private static void validWinNumberDistinctSize(List<Integer> intNums) {
-        if (intNums.stream().distinct().count() != 6) {
+        if (intNums.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 6개 입력해야 합니다.");
         }
     }
 
     private static void validWinNumberValue(List<Integer> intNums) {
-        if (!intNums.stream().allMatch(num -> num >= 1 && num <= 45)) {
+        if (!intNums.stream().allMatch(num -> num >= LOTTO_MIN_NUMBER && num <= LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 모든 숫자는 1과 45 사이여야 합니다.");
         }
     }

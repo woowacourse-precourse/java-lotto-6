@@ -1,5 +1,8 @@
 package lotto.valid;
 
+import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
+import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
+
 import java.util.List;
 import lotto.domain.WinNumber;
 
@@ -22,7 +25,7 @@ public class BonusNumberValid {
     }
 
     private static void validNumValue(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.");
         }
     }

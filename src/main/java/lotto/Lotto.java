@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    static final String ERROR = "[ERROR] ";
+    static final String NOT_A_SIX_NUMBER_ERROR = "로또 숫자는 6개여야 합니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR + NOT_A_SIX_NUMBER_ERROR);
         }
     }
 

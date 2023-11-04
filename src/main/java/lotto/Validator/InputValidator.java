@@ -1,20 +1,58 @@
 package lotto.Validator;
 
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InputValidator {
     public static final String ERROR = "[ERROR] ";
     public static final String CAN_NOT_DIVIDE_BY_1000 = "로또 구입 금액은 1000으로 나누어 떨어져야 합니다.";
-    public static final String NOT_A_NUMBER = "로또 구입 금액은 숫자로 입력하셔야합니다.";
-
+    public static final String NOT_A_NUMBER = "숫자로 입력하셔야합니다.";
+    public static final String NOT_A_SIX_NUMBER = "당첨 번호 6자리를 입력해주셔야 합니다.";
+    public static final String NOT_A_VALID_RANGE_NUMBER = " 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String NOT_A_VALID_DELIMITER = "구분자는 콤마(,)로 이루어져야 합니다.";
     public static void checkDivisibleBy1000(String input) {
         if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException(ERROR + CAN_NOT_DIVIDE_BY_1000);
         }
     }
 
-    public static boolean isNumeric(String str) {
-        if (!str.matches("\\d+")) {
-            throw new IllegalArgumentException(ERROR + NOT_A_NUMBER);
+    public static boolean isNumber(String input) {
+        if (input.contains(",")) {
+            input = input.replace(",", "");
+            System.out.println(input);
+        }
+        for (char c : input.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new IllegalArgumentException(ERROR + NOT_A_NUMBER);
+            }
         }
         return true;
+    }
+
+    public static void checkSixNumber(String input) {
+        String[] parts = input.split(",");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException(ERROR + NOT_A_SIX_NUMBER);
+        }
+    }
+
+    public static boolean isValidRangeNumber(String input) {
+        List<String> numbers = List.of(input.split(","));
+        for (String number : numbers) {
+            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException(ERROR + NOT_A_VALID_RANGE_NUMBER);
+            }
+        }
+        return true;
+    }
+
+    public static void checkCommaDelimiter(String input) {
+        Pattern pattern = Pattern.compile("^[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+$");
+        Matcher matcher = pattern.matcher(input);
+
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(ERROR + NOT_A_VALID_DELIMITER);
+        }
     }
 }

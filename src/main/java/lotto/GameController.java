@@ -24,6 +24,7 @@ public class GameController {
         int amount = setAmount();
         ticketCount = amount / TICKET_PRICE;
         setLottoTicket();
+        outputView.displayLottoTicket(OutputMessage.DISPLAY_TICKET_COUNT, ticketCount, lottoTicket);
     }
 
     private int setAmount() {

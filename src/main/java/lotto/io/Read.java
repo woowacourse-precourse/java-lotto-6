@@ -1,5 +1,10 @@
 package lotto.io;
 
-public class Money {
-    int money=
+import camp.nextstep.edu.missionutils.Console;
+
+public class Read {
+        public static String reader(){
+            String value = Console.readLine();
+            return value;
+        }
 }

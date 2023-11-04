@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.domain.LottoPrize.FIRST_PLACE;
 import static lotto.domain.LottoPrize.SECOND_PLACE;
 import static lotto.domain.LottoPrize.THIRD_PLACE;
@@ -10,7 +11,18 @@ import static lotto.domain.LottoPrize.NO_PLACE;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_LENGTH = 6;
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 45;
+
     private final List<Integer> numbers;
+
+    public Lotto() {
+        List<Integer> numbers =
+                pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, LOTTO_LENGTH);
+        validate(numbers);
+        this.numbers = numbers;
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -18,7 +30,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

@@ -17,7 +17,8 @@ class ConvertorTest {
     @ValueSource(strings = "1,3,18,45,27,15")
     void convertToIntegersSuccess(String input) {
         setUp();
-        List<Integer> numbers = convertor.convertToIntegers(input);
+        List<Integer> numbers = convertor.convertToNumbers(input);
+        Lotto lotto = new Lotto(numbers);
         assertThat(numbers).contains(1, 3, 18, 45, 27, 15);
         assertThat(numbers).containsExactly(1, 3, 15, 18, 27, 45);
     }
@@ -27,7 +28,10 @@ class ConvertorTest {
     @ValueSource(strings = {"1,3,18,45,27,46", "1,3,18,45,27,27", "$,3,18,45,27,15", "1,3,18,45,27, "})
     void convertToIntegersFail(String input) {
         setUp();
-        assertThatThrownBy(() -> convertor.convertToIntegers(input))
+        assertThatThrownBy(() -> {
+            List<Integer> numbers = convertor.convertToNumbers(input);
+            Lotto lotto = new Lotto(numbers);
+        })
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

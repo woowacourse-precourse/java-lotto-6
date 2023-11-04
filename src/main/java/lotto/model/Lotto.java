@@ -1,14 +1,12 @@
 package lotto.model;
 
-import static lotto.model.LottoRule.MAXIMUM_NUMBER;
-import static lotto.model.LottoRule.MINIMUM_NUMBER;
+import static lotto.model.LottoRule.validateRange;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberSizeException;
-import lotto.exception.LottoNumericRangeException;
 
 public class Lotto {
 
@@ -47,16 +45,14 @@ public class Lotto {
     }
 
     /**
-     * 1 ~ 45까지의 숫자를 가지는지 검증한다.
+     * 숫자들이 1 ~ 45까지의 범위를 가지는지 검증한다.
      *
      * @param numbers
      */
     private void validateNumericRange(List<Integer> numbers) {
         for (int num :
                 numbers) {
-            if (num < MINIMUM_NUMBER || num > MAXIMUM_NUMBER) {
-                throw new LottoNumericRangeException();
-            }
+            validateRange(num);
         }
     }
 

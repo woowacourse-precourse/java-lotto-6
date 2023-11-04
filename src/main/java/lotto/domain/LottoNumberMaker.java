@@ -21,6 +21,7 @@ public class LottoNumberMaker {
     public List<Integer> createByInput(String input) {
         return Arrays.stream(input.split(COMMA))
                 .map(Integer::parseInt)
+                .sorted()
                 .toList();
     }
 }

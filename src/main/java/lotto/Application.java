@@ -16,6 +16,9 @@ public class Application {
 
         ArrayList<Lotto> lottos = makeLottery(money);
         printLottoNumbers(lottos);
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        int[] winningNumbers = receiveWinningNumbers(Console.readLine());
     }
 
     public static int getLottoPurchasePrice() {
@@ -42,6 +45,13 @@ public class Application {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    public static int[] receiveWinningNumbers(String str) {
+        int[] winningNumbers = Arrays.stream(str.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        return winningNumbers;
     }
 
     public static void printLottoNumbers(ArrayList<Lotto> lottos) {

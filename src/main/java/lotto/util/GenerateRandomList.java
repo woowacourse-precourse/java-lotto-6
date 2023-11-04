@@ -15,11 +15,6 @@ public class GenerateRandomList {
 
     public static List<Integer> createRandomList() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_SIZE);
-        asendingSortList(numbers);
-        return numbers;
-    }
-
-    private static List<Integer> asendingSortList(List<Integer> numbers) {
         Collections.sort(numbers);
         return numbers;
     }

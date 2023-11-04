@@ -6,6 +6,7 @@ import java.util.List;
 public class WinningLotto {
 
     private final List<Integer> numbers;
+    private Bonus bonusNumber;
 
     public WinningLotto(String numbers) {
         this.numbers = parseInput(numbers);
@@ -21,7 +22,16 @@ public class WinningLotto {
         return parsedList;
     }
 
+    public void addBonus(Bonus bonus) {
+        this.bonusNumber = bonus;
+    }
+
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
+    }
+
 }

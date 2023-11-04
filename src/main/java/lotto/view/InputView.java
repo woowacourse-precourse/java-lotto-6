@@ -16,9 +16,15 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
-                return Integer.parseInt(Console.readLine());
+                int amount = Integer.parseInt(Console.readLine());
+                if (amount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+                }
+                return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

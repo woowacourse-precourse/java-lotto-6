@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Model.InputModel;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
@@ -15,7 +16,14 @@ public class LottoController {
     int payment, countOfLotto, bonusNumber;
     double total;
 
-    InputManger inputManger = new InputManger();
+    InputManger inputManger;
+    InputModel  inputModel;
+
+    public LottoController(InputManger inputManger, InputModel inputModel) {
+        this.inputManger = inputManger;
+        this.inputModel = inputModel;
+    }
+
     public void run() {
         initializeCorrectLottoNumberMap();
         System.out.println("구입금액을 입력해 주세요.");
@@ -60,19 +68,19 @@ public class LottoController {
             }
         }
         if (count == 6) {
-            correctLottoNumber.put("6개 일치 (2,000,000,000원)", correctLottoNumber.getOrDefault("6개 일치 (2,000,000,000원)", 0) + 1);
+            correctLottoNumber.put("6개 일치 (2,000,000,000원)", correctLottoNumber.get("6개 일치 (2,000,000,000원)") + 1);
             return 2000000000;
         } else if (count == 5 && checkLottoNumber.contains(bonusNumber)) {
-            correctLottoNumber.put("5개 일치, 보너스 볼 일치 (30,000,000원)", correctLottoNumber.getOrDefault("5개 일치, 보너스 볼 일치 (30,000,000원)", 0) + 1);
+            correctLottoNumber.put("5개 일치, 보너스 볼 일치 (30,000,000원)", correctLottoNumber.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
             return 30000000;
         } else if (count == 5) {
-            correctLottoNumber.put("5개 일치 (1,500,000원)", correctLottoNumber.getOrDefault("5개 일치 (1,500,000원)", 0) + 1);
+            correctLottoNumber.put("5개 일치 (1,500,000원)", correctLottoNumber.get("5개 일치 (1,500,000원)") + 1);
             return 1500000;
         } else if (count == 4) {
-            correctLottoNumber.put("4개 일치 (50,000원)", correctLottoNumber.getOrDefault("4개 일치 (50,000원)", 0) + 1);
+            correctLottoNumber.put("4개 일치 (50,000원)", correctLottoNumber.get("4개 일치 (50,000원)") + 1);
             return 50000;
         } else if (count == 3) {
-            correctLottoNumber.put("3개 일치 (5,000원)", correctLottoNumber.getOrDefault("3개 일치 (5,000원)", 0) + 1);
+            correctLottoNumber.put("3개 일치 (5,000원)", correctLottoNumber.get("3개 일치 (5,000원)") + 1);
             return 5000;
         }
         return 0;

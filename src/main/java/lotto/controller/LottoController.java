@@ -1,23 +1,21 @@
 package lotto.controller;
 
+import static lotto.view.View.requestMoney;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
-import lotto.view.View;
+import lotto.model.Money;
 public class LottoController {
     public void run(){
+        Money money = new Money(requestMoney());
+        Customer customer = new Customer(money);
         LottoNumber lottoNumber = new LottoNumber();
-        Lotto lotto = new Lotto(lottoNumber.getLottoNumbers());
-        int budget = View.requestMoney();
-        if (budget % 1000 != 0){
-            throw new IllegalArgumentException();
-        }
-        int purchasedLotto = budget / 1000;
-        System.out.println(purchasedLotto+"개를 구매했습니다.");
 
+        System.out.println(customer.getLottoCount()+"개를 구매했습니다.");
         System.out.println("당첨번호를 입력해 주세요");
         String winningNumber = Console.readLine();
         List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))

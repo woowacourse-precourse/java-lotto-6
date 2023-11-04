@@ -1,18 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.Lotto;
-import domain.Money;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.util.CommonInputValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class InputView {
-    private static final Integer INTEGER_VALUE_ERROR_CODE = -1;
     private static final Money MONEY_ERROR_CODE = null;
+    private static final Lotto SIX_NUMBERS_ERROR_CODE = null;
+    private static final Integer BONUS_NUMBER_ERROR_CODE = -1;
 
     public Money inputMoney(){
         String input = Console.readLine();
@@ -36,7 +36,6 @@ public class InputView {
                 CommonInputValidator.isInRangeValidator(number);
                 numbers.add(number);
             }
-            CommonInputValidator.isNotOverlapSixValidator(numbers);
             return new Lotto(numbers);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

@@ -1,11 +1,22 @@
 package lotto.command.validator;
 
 public class PurchaseAmountValidator implements Validator {
-
     @Override
     public void validate(String input) {
         validateIsNumber(input);
+        validateIsDivide(Integer.parseInt(input));
     }
+
+    private void validateIsDivide(int number) {
+        if(isNotDivide(number)) {
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+        }
+    }
+
+    private boolean isNotDivide(int number) {
+        return number % 1000 != 0;
+    }
+
 
     private void validateIsNumber(String input) {
         if(isNotNumeric(input)) {

@@ -3,6 +3,7 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,9 +31,27 @@ public class InputView {
     }
 
     public List<Integer> inputPrizeNumber(String inputStr) {
+        if (!inputStr.matches("^\\d+(,\\d+)*$")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 구성되고 쉼표(,)로 구분됩니다.");
+        }
+
         List<Integer> prizeNumber = Arrays.stream(inputStr.split(","))
-                .map(Integer::parseInt)
+                .map(s -> {
+                    int num = Integer.parseInt(s);
+                    if (num > 45) {
+                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 45 이하의 숫자로 구성됩니다.");
+                    }
+                    return num;
+                })
                 .collect(Collectors.toList());
+
+        if (prizeNumber.size() != new HashSet<>(prizeNumber).size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
+        }
+
+        if (prizeNumber.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 구성됩니다.");
+        }
 
         return prizeNumber;
     }

@@ -15,6 +15,14 @@ public class InputValidator {
         return preprocessedInput;
     }
 
+    public int convertInputToPaymentAmount(String preprocessedInput) {
+        return castStringToInt(preprocessedInput);
+    }
+
+    private int castStringToInt(String preprocessedInput) {
+        return Integer.parseInt(preprocessedInput);
+    }
+
     private boolean isNull(String userInput) {
         return userInput == null;
     }

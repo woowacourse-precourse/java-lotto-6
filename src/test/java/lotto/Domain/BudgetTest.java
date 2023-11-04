@@ -36,10 +36,10 @@ public class BudgetTest {
     @Test
     @DisplayName("수익률 계산 테스트")
     public void calculateReturnRateTest() {
-        Budget budget = new Budget("8000");
+        Budget budget = new Budget("9000");
         Map<Rank,Integer> rankCount = new HashMap<>();
         rankCount.put(Rank.FIFTH,1);
-        double expectedReturnRate = 62.5;
+        double expectedReturnRate = 55.6;
 
         assertThat(budget.calculateReturnRate(rankCount)).isEqualTo(expectedReturnRate);
     }

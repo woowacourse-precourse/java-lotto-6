@@ -6,11 +6,16 @@ import lotto.View.InputView;
 
 public class LottoGame {
 
-    private static int countLottoQuantity() {
+    public static int countLottoQuantity() {
 
         int purchaseAmount = InputView.inputLottoPurchaseAmount() / 1000;
 
         return purchaseAmount;
+    }
+
+    public static void LottoGameRun()
+    {
+
     }
 
 }

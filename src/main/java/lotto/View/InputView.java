@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import lotto.Validator.BonusNumberValidator;
 import lotto.Validator.LottoPurchaseAmountValidator;
-import lotto.Validator.LottoNumberValidator;
 
 public class InputView {
 
@@ -51,5 +50,16 @@ public class InputView {
         return lottoNumbers;
     }
 
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        String input = Console.readLine();
 
+        BonusNumberValidator.validateIsNumeric(input);
+        int bonusNumber = Integer.parseInt(input);
+
+        BonusNumberValidator.validateIsNumberInRange(bonusNumber);
+
+        return Integer.parseInt(input);
+
+    }
 }

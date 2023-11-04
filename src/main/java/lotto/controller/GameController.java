@@ -22,6 +22,7 @@ public class GameController {
         lottoAnalyzer.addWinningNumbers(InputView.inputWinningNumbers());
         addBonusNumber(lottoAnalyzer);
         lottoAnalyzer.analyzeLotto();
+        OutputView.printFinalResult(lottoAnalyzer.getWinningStatistics());
     }
 
     private static void addBonusNumber(LottoAnalyzer lottoAnalyzer) {

@@ -1,10 +1,11 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.constants.InputMessage;
+import lotto.model.Lotto;
 
 public class InputView {
     public static int getUserPurchaseAmount() {
@@ -57,7 +58,7 @@ public class InputView {
                     }
                 }
                 Lotto lotto = new Lotto(lottoNumbers);
-                return lottoNumbers;
+                return lotto.getNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

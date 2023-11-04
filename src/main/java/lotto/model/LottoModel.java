@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.OutputMessage;
+import lotto.view.OutputView;
 
 public class LottoModel {
     private List<List<Integer>> lottoTickets;
@@ -30,12 +30,11 @@ public class LottoModel {
             if (sameNumberCount == 4) {
                 lucky.set(1, lucky.get(1) + 1);
             }
-            if (sameNumberCount == 5) {
-                if (!lottoTickets.get(i).contains(bonusNumber)) {
-                    lucky.set(2, lucky.get(2) + 1);
-                } else {
-                    lucky.set(3, lucky.get(3) + 1);
-                }
+            if (sameNumberCount == 5 && !lottoTickets.get(i).contains(bonusNumber)) {
+                lucky.set(2, lucky.get(2) + 1);
+            }
+            if (sameNumberCount == 5 && lottoTickets.get(i).contains(bonusNumber)) {
+                lucky.set(3, lucky.get(3) + 1);
             }
             if (sameNumberCount == 6) {
                 lucky.set(4, lucky.get(4) + 1);
@@ -47,15 +46,7 @@ public class LottoModel {
         double sumPrize = calculateSumPrize();
         double beforeRate = sumPrize / purchaseAmount * 100;
         double rate = Math.round(beforeRate * 10.0) / 10.0;
-
-        System.out.println();
-        System.out.println(OutputMessage.LOTTO_STATISTICS.getMessage());
-        System.out.println(OutputMessage.LINE_SEPARATOR.getMessage());
-
-        for (int i = 0; i < lucky.size(); i++) {
-            System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), lucky.get(i)));
-        }
-        System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
+        OutputView.displayStatistics(lucky, rate);
     }
 
     private int countSameNumbers(List<Integer> userNumbers, List<Integer> ticketNumbers) {

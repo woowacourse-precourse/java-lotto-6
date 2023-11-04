@@ -1,15 +1,18 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.LottoModel;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     public static void start() {
         int purchaseAmount = InputView.getUserPurchaseAmount();
         int lottoTicketCount = purchaseAmount / 1000;
-        LottoView.printLottoTicketCount(lottoTicketCount);
+        OutputView.printLottoTicketCount(lottoTicketCount);
 
         List<List<Integer>> lottoTickets = generateLottoTickets(lottoTicketCount);
         System.out.println();
@@ -18,6 +21,7 @@ public class LottoController {
 
         LottoModel model = new LottoModel(lottoTickets, lottoNumbers, bonusNumber, purchaseAmount);
         model.calculatePrize();
+        System.out.println();
         model.displayStatistics();
     }
 

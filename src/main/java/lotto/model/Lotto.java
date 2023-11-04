@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +13,10 @@ public class Lotto {
         validateRange(numbers);
         validateDuplication(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validateCount(List<Integer> numbers) {

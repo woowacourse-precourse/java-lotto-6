@@ -40,7 +40,35 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
 
+        validateLottoPrice(input);
         return Integer.parseInt(input);
+    }
+
+    static void validateLottoPrice(String input) throws IllegalArgumentException {
+        //1) 숫자 입력 아니면 예외
+        for (char num : input.toCharArray()) {
+            if (!Character.isDigit(num)) {
+                throw new IllegalArgumentException("[ERROR] 구매 금액에는 숫자만 입력해야 합니다. ");
+            }
+        }
+
+        //2) 숫자 범위 어긋난 경우 예외
+        int input_number = Integer.parseInt(input);
+        if (input_number < 1000 || input_number <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액의 범위는 1000원 이상이어야 합니다.");
+        }
+
+        //3) 1000원 단위로 나누어 떨어지지 않아도 예외
+        if (input_number % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR} 구매 금액은 1000원 단위로 작성되어야 합니다.");
+        }
+
+        //4) 불필요한 띄어쓰기, 공백 포함 시 예외
+        for (char num : input.toCharArray()) {
+            if (num == ' ') {
+                throw new IllegalArgumentException("[ERROR] 구매 금액에 공백이 포함되면 안됩니다.");
+            }
+        }
     }
 
 }

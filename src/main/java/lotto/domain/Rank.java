@@ -16,4 +16,11 @@ public enum Rank {
         this.winningAmount = winningAmount;
     }
 
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public Long getWinningAmount() {
+        return winningAmount;
+    }
 }

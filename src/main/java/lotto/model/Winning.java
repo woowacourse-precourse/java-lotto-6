@@ -6,13 +6,13 @@ import java.util.Set;
 import lotto.utils.Code;
 import lotto.utils.Message;
 
-public class Winning {
+public class Winning extends Lotto{
     private final List<Integer> numbers;
     private final int bonusNumber;
 
     public Winning(List<Integer> numbers, int bonusNumber) {
-        validateNumberCount(numbers);
-        validateDuplicatedNumber(numbers);
+        super(numbers);
+
         numbers.forEach(number -> validateNumberInRange(number, Code.WINNING.getCode()));
         this.numbers = numbers;
 
@@ -21,22 +21,9 @@ public class Winning {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(Message.LACK_NUMBER_COUNT.getMessage());
-        }
-    }
-
     private void validateNumberInRange(int number, String code) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(code + Message.NUMBER_NOT_INRANGE.getMessage());
-        }
-    }
-
-    private void validateDuplicatedNumber(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException(Message.NOT_DUPLICATED.getMessage());
         }
     }
 

@@ -6,9 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static lotto.Error.Domain.BONUS_NUMBER_ALREADY_EXIST;
@@ -44,42 +42,116 @@ class WinningLottoTest {
     }
 
     @ParameterizedTest()
-    @MethodSource("lottoParameter")
-    @DisplayName("로또 번호와 개수가 일치해야한다.")
-    void 로또_번호_일치_정상(List<Integer> parameter) {
+    @MethodSource("firstRankParameter")
+    @DisplayName("로또 등급이 FIRST가 나오면 성공한다.")
+    void 로또_등급_FIRST_일치(List<Integer> parameter) {
         // given
         Lotto target = new Lotto(parameter);
         WinningLotto winningLotto = new WinningLotto(answerLotto, 7);
         //when
-        int count = winningLotto.countSameLottoNumber(target);
-        Set<Integer> set = new HashSet<>(parameter);
-        set.retainAll(answerLotto.getNumbers());
+        LottoRankInfo rank = winningLotto.getLottoRank(target);
         //then
-        assertThat(set).hasSize(count);
+        assertThat(rank).isEqualTo(LottoRankInfo.FIRST);
     }
 
     @ParameterizedTest()
-    @MethodSource("lottoParameter")
-    @DisplayName("parameter로 주어진 Lotto와 보너스 번호가 일치하면 true, 아니면 false")
-    void 보너스_번호_일치_정상(List<Integer> parameter) {
+    @MethodSource("secondRankParameter")
+    @DisplayName("로또 등급이 SECOND 나오면 성공한다.")
+    void 로또_등급_SECOND_일치(List<Integer> parameter) {
         // given
         Lotto target = new Lotto(parameter);
         WinningLotto winningLotto = new WinningLotto(answerLotto, 7);
         //when
-        boolean expected = parameter.stream().anyMatch(e -> e.equals(7));
+        LottoRankInfo rank = winningLotto.getLottoRank(target);
         //then
-        assertThat(winningLotto.isSameWithBonus(target)).isEqualTo(expected);
+        assertThat(rank).isEqualTo(LottoRankInfo.SECOND);
     }
 
-    private static Stream<Arguments> lottoParameter() {
+    @ParameterizedTest()
+    @MethodSource("thirdRankParameter")
+    @DisplayName("로또 등급이 THIRD 나오면 성공한다.")
+    void 로또_등급_THIRD_일치(List<Integer> parameter) {
+        // given
+        Lotto target = new Lotto(parameter);
+        WinningLotto winningLotto = new WinningLotto(answerLotto, 7);
+        //when
+        LottoRankInfo rank = winningLotto.getLottoRank(target);
+        //then
+        assertThat(rank).isEqualTo(LottoRankInfo.THIRD);
+    }
+
+    @ParameterizedTest()
+    @MethodSource("fourthRankParameter")
+    @DisplayName("로또 등급이 FOURTH 나오면 성공한다.")
+    void 로또_등급_FOURTH_일치(List<Integer> parameter) {
+        // given
+        Lotto target = new Lotto(parameter);
+        WinningLotto winningLotto = new WinningLotto(answerLotto, 7);
+        //when
+        LottoRankInfo rank = winningLotto.getLottoRank(target);
+        //then
+        assertThat(rank).isEqualTo(LottoRankInfo.FOURTH);
+    }
+
+    @ParameterizedTest()
+    @MethodSource("noneRankParameter")
+    @DisplayName("로또 등급이 NONE 나오면 성공한다.")
+    void 로또_등급_NONE_일치(List<Integer> parameter) {
+        // given
+        Lotto target = new Lotto(parameter);
+        WinningLotto winningLotto = new WinningLotto(answerLotto, 7);
+        //when
+        LottoRankInfo rank = winningLotto.getLottoRank(target);
+        //then
+        assertThat(rank).isEqualTo(LottoRankInfo.NONE);
+    }
+
+    private static Stream<Arguments> firstRankParameter() {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6)),
-                Arguments.of(List.of(4, 5, 6, 7, 8, 9)),
-                Arguments.of(List.of(10, 11, 12, 13, 14, 16)),
-                Arguments.of(List.of(1, 2, 4, 45, 5, 6)),
-                Arguments.of(List.of(4, 6, 31, 1, 41, 20)),
-                Arguments.of(List.of(6, 7, 4, 3, 2, 1)),
-                Arguments.of(List.of(9, 3, 7, 10, 19, 34))
+                Arguments.of(List.of(2, 3, 4, 5, 6, 1)),
+                Arguments.of(List.of(2, 1, 5, 4, 6, 3))
+        );
+    }
+
+    private static Stream<Arguments> secondRankParameter() {
+        return Stream.of(
+                Arguments.of(List.of(7, 2, 3, 4, 5, 6)),
+                Arguments.of(List.of(2, 3, 7, 5, 6, 1)),
+                Arguments.of(List.of(2, 1, 5, 4, 7, 3))
+        );
+    }
+
+    private static Stream<Arguments> thirdRankParameter() {
+        return Stream.of(
+                Arguments.of(List.of(45, 2, 3, 4, 5, 6)),
+                Arguments.of(List.of(2, 3, 9, 5, 6, 1)),
+                Arguments.of(List.of(2, 1, 5, 4, 42, 3))
+        );
+    }
+
+    private static Stream<Arguments> fourthRankParameter() {
+        return Stream.of(
+                Arguments.of(List.of(7, 45, 3, 4, 5, 6)),
+                Arguments.of(List.of(2, 3, 45, 8, 6, 1)),
+                Arguments.of(List.of(2, 1, 5, 41, 7, 3))
+        );
+    }
+
+    private static Stream<Arguments> fifthRankParameter() {
+        return Stream.of(
+                Arguments.of(List.of(7, 45, 8, 4, 5, 6)),
+                Arguments.of(List.of(2, 7, 45, 8, 6, 1)),
+                Arguments.of(List.of(2, 8, 5, 41, 7, 3))
+        );
+    }
+
+    private static Stream<Arguments> noneRankParameter() {
+        return Stream.of(
+                Arguments.of(List.of(7, 45, 8, 10, 5, 6)),
+                Arguments.of(List.of(11, 7, 45, 8, 6, 9)),
+                Arguments.of(List.of(32, 8, 24, 41, 10, 23)),
+                Arguments.of(List.of(1, 8, 24, 41, 10, 23))
         );
     }
 }

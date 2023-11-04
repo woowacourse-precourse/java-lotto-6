@@ -55,6 +55,8 @@
 
 - [x] 최대 구입 금액
     - [x] 변수명 : MAX_PURCHASE_AMOUNT
+- [x] 로또 한 장의 가격
+    - [x] 변수명 : LOTTO_PRICE
 - [x] 당첨 번호의 개수
     - [x] 변수명 : WINNING_NUMBERS_COUNT
 - [x] 보너스 볼의 개수

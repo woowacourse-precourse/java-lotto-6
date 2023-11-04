@@ -3,7 +3,8 @@ package lotto.domain.constants;
 import java.util.Objects;
 
 public enum LottoConstraint {
-    LOTTO_PICK_COUNT(6);
+    LOTTO_PICK_COUNT(6),
+    UNIT_PRICE(1_000);
 
     private final int value;
 
@@ -21,5 +22,9 @@ public enum LottoConstraint {
 
     public boolean isEqual(int compare) {
         return Objects.equals(compare, value);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

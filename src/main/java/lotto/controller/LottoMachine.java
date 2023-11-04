@@ -6,23 +6,27 @@ import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import static lotto.view.constants.PrintMessage.PRINT_GAME_START;
+import static lotto.parser.LottoService.calculatePurchaseTicketCount;
+import static lotto.view.constants.PrintMessage.PRINT_REQUEST_PURCHASE_PAYMENT;
 
 public class LottoMachine {
-    public static void init() {
-        OutputView.printMessage(PRINT_GAME_START);
-        int payment = readPayment();
-        Lottos lottoTickets = Lottos.publishTickets(payment);
+    public Lottos purchase() {
+        OutputView.printMessage(PRINT_REQUEST_PURCHASE_PAYMENT);
+        final int payment = readValidPayment();
+        final int purchaseTicketCount = calculatePurchaseTicketCount(payment);
+
+        return Lottos.create(purchaseTicketCount);
     }
 
-    private static int readPayment() {
+    private static int readValidPayment() {
         try {
-            int purchasePrice = InputView.readPayment();
-            Validator.validateUnitPrice(purchasePrice);
+            int payment = InputView.readPayment();
+            Validator.validateUnitPrice(payment);
 
-            return purchasePrice;
+            return payment;
         } catch (LottoException exception) {
-            return readPayment();
+            OutputView.println(exception.getMessage());
+            return readValidPayment();
         }
     }
 }

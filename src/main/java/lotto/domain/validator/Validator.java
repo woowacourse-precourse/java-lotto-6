@@ -1,5 +1,6 @@
 package lotto.domain.validator;
 
+import lotto.domain.constants.LottoConstraint;
 import lotto.exception.LottoException;
 
 import java.util.Objects;
@@ -7,8 +8,6 @@ import java.util.Objects;
 import static lotto.exception.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE;
 
 public class Validator {
-    private static final int UNIT_PRICE = 1_000;
-
     private Validator() {
     }
 
@@ -19,6 +18,6 @@ public class Validator {
     }
 
     private static boolean isNotDivisibleByUnitPrice(final int purchasePrice) {
-        return !Objects.equals(purchasePrice % UNIT_PRICE, 0);
+        return !Objects.equals(purchasePrice % LottoConstraint.UNIT_PRICE.getValue(), 0);
     }
 }

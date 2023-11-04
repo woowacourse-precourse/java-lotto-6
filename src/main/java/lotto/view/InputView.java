@@ -10,12 +10,8 @@ public class InputView {
     }
 
     public static int readPayment() {
-        try {
-            final String input = Console.readLine();
-            return convertStringToInt(input);
-        } catch (LottoException exception) {
-            return readPayment();
-        }
+        final String input = Console.readLine();
+        return convertStringToInt(input);
     }
 
     private static Integer convertStringToInt(String input) {

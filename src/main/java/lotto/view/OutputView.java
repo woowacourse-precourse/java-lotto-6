@@ -1,9 +1,15 @@
 package lotto.view;
 
+import lotto.exception.ErrorMessage;
 import lotto.view.constants.PrintMessage;
 
-public class OutputView{
-    private OutputView() {
+public class OutputView {
+    public static void printMessage(final PrintMessage message) {
+        println(message.getMessage());
+    }
+
+    public static void printError(final ErrorMessage message) {
+        println(message.getMessage());
     }
 
     public static void print(final Object data) {
@@ -16,9 +22,5 @@ public class OutputView{
 
     public static void printNewLine() {
         System.out.println();
-    }
-
-    public static void printMessage(final PrintMessage message) {
-        println(message.getMessage());
     }
 }

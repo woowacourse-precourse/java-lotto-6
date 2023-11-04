@@ -10,14 +10,24 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int price = Integer.parseInt(Console.readLine());
         lottoGame.validatePurchaseAmount(price);
-        lottoGame.generateLottoNumbers();
+        System.out.println();
 
+        lottoGame.generateLottoNumbers();
+        System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
         lottoWin.setLottoWinNumbers();
+        System.out.println();
+
 
         System.out.println("보너스 번호를 입력해 주세요.");
         lottoWin.setWinBonusnumber();
+        System.out.println();
+
+
+        lottoGame.printLottoWin(lottoWin);
+        System.out.println();
+
 
     }
 }

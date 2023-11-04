@@ -43,4 +43,48 @@ public class LottoGame {
         }
     }
 
+    public void printLottoWin(LottoWin lottoWin) {
+        int match3 = 0;
+        int match4 = 0;
+        int match5 = 0;
+        int match5WithBonus = 0;
+        int match6 = 0;
+    
+        for (List<Integer> numbers : this.lottogame) {
+            int matchingNumbers = countMatchingNumbers(numbers, lottoWin.getWinNumbers());
+            boolean hasBonusNumber = numbers.contains(lottoWin.getBonusNumber());
+    
+            if (matchingNumbers == 3) {
+                match3++;
+            } else if (matchingNumbers == 4) {
+                match4++;
+            } else if (matchingNumbers == 5 && hasBonusNumber) {
+                match5WithBonus++;
+            } else if (matchingNumbers == 5) {
+                match5++;
+            } else if (matchingNumbers == 6) {
+                match6++;
+            }
+        }
+    
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + match3 + "개");
+        System.out.println("4개 일치 (50,000원) - " + match4 + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + match5 + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + match5WithBonus + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + match6 + "개");
+    }
+    
+    private int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winNumbers) {
+        int count = 0;
+        for (int number : userNumbers) {
+            if (winNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+
 }

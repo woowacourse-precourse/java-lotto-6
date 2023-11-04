@@ -8,7 +8,7 @@ import lotto.utils.LottoUtil;
 public class LottoLogic {
     private final BigDecimal purchaseAmount;
     private final int bonusNumber;
-    private final BigDecimal numberOfLottoPurchased;
+    public final BigDecimal numberOfLottoPurchased;
 
 
     public LottoLogic(BigDecimal purchaseAmount, BigDecimal lottoPrice, int bonusNumber) {

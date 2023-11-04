@@ -12,11 +12,27 @@ public class LottoWinningChecker {
 
     LottoWinningChecker(List<Integer> lottoWinningNumber, Integer bonusNumber) {
         validate(lottoWinningNumber);
+        validateDuplicate(lottoWinningNumber);
+        validateDuplicateBonusNumber(lottoWinningNumber, bonusNumber);
         this.lottoResult = lottoWinningNumber.stream()
                 .map(LottoNumber::new)
                 .toList();
 
         this.bonusNumber = new LottoNumber(bonusNumber);
+    }
+    private void validateDuplicateBonusNumber(List<Integer> lottoWinningNumber, Integer bonusNumber){
+        if( lottoWinningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        int distinctSize = (int) numbers.stream()
+                .distinct()
+                .count();
+        if (numbers.size() != distinctSize) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 하실 수 없습니다.");
+        }
     }
 
     private void validate(List<Integer> lottoWinningNumber) {

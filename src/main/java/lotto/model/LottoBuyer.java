@@ -22,7 +22,7 @@ public class LottoBuyer {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public int getLottoCount() {
+    public int getCountOfLotto() {
         return purchaseAmount / PURCHASE_AMOUNT_UNIT;
     }
 

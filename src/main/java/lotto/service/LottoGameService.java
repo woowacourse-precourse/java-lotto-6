@@ -1,7 +1,6 @@
 package lotto.service;
 
-import static lotto.utils.InputException.NOT_DIGIT_FORM;
-
+import lotto.model.LottoBuyer;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
@@ -14,13 +13,23 @@ public class LottoGameService {
         this.outputView = outputView;
     }
 
-    public int readPurchaseAmountFromBuyer() {
+    public int calculateLottoCountOnBuy(final LottoBuyer buyer) {
         outputView.requestPurchaseAmount();
         try {
-            return inputView.readPurchaseAmount();
+            int purchaseAmount = readPurchaseAmount();
+            buyer.pay(purchaseAmount);
+            return buyer.getCountOfLotto();
         } catch (IllegalArgumentException e) {
-            System.out.println(NOT_DIGIT_FORM.getMessage());
-            return readPurchaseAmountFromBuyer();
+            handleIllegalArgumentException(e);
+            return calculateLottoCountOnBuy(buyer);
         }
+    }
+
+    private int readPurchaseAmount() {
+        return inputView.readPurchaseAmount();
+    }
+
+    private void handleIllegalArgumentException(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
     }
 }

@@ -1,2 +1,4 @@
-package lotto.model;public class LottoSeller {
+package lotto.model;
+
+public class LottoSeller {
 }

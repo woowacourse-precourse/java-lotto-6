@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import static lotto.utils.InputException.NOT_DIGIT_FORM;
-
+import lotto.model.LottoBuyer;
+import lotto.model.LottoSeller;
 import lotto.service.LottoGameService;
-import lotto.utils.InputException;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
@@ -23,6 +22,8 @@ public class LottoGameController {
     }
 
     public void run() {
-        int purchaseAmount = lottoGameService.readPurchaseAmountFromBuyer();
+        final LottoSeller seller = new LottoSeller();
+        final LottoBuyer buyer = new LottoBuyer();
+        int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
     }
 }

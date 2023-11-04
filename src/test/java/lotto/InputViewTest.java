@@ -52,4 +52,13 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(() -> inputView.validateNegativeInteger(ints))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0})
+    @DisplayName("0 입력값은 예외가 발생한다.")
+    void validateZero_zero_exceptionThrown(int ints) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateZero(ints))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

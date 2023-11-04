@@ -26,7 +26,7 @@ public class Purchase {
 
     // 구입 금액 1000원 단위인지 검증
     private void validateThousandUnit(int number) {
-        if (number <= 0 && number % 1000 != 0) {
+        if (number % 1000 != 0) {
             throw new IllegalArgumentException("단위 외 에러");
         }
     }

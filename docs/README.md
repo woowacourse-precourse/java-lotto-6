@@ -92,6 +92,7 @@
 - LottoPrizeDetails : 당첨 내역과 당첨 금액을 담는 값 객체
 - Lotto : 로또의 6개 숫자를 가지는 일급컬렉션
 - Money : 금액의 값 객체
+- BonusNumber : 로또 보너스 번호의 값 객체
 - YieldRate : 수익률 값 객체
 - LottoNumberRule : 로또 번호 규칙에 대한 상수
 

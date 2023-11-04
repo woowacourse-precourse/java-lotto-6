@@ -5,6 +5,7 @@ import lotto.io.InputManager;
 import lotto.io.InputMapper;
 import lotto.io.InputValidator;
 import lotto.io.InputView;
+import lotto.io.OutputFommatter;
 import lotto.io.OutputView;
 
 public class ComponentFactory {
@@ -14,7 +15,11 @@ public class ComponentFactory {
     }
 
     private OutputView outputView() {
-        return new OutputView();
+        return new OutputView(outputFommatter());
+    }
+
+    private OutputFommatter outputFommatter() {
+        return new OutputFommatter();
     }
 
     private InputManager inputManager() {

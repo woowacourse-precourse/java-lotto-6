@@ -22,4 +22,8 @@ public class Amount {
     private boolean isDivideByThousand(Integer value) {
         return value % THOUSAND != ZERO;
     }
+
+    public Integer toValue() {
+        return value;
+    }
 }

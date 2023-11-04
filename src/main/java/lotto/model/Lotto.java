@@ -47,4 +47,8 @@ public class Lotto {
             .collect(Collectors.toList());
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 }

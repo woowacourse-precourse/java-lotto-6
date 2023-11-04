@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 
 public class Bonus {
@@ -21,6 +21,10 @@ public class Bonus {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
 }

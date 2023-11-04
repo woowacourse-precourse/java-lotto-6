@@ -1,10 +1,11 @@
 package lotto.exception;
 
+import lotto.contant.ErrorMessageConstants;
+
 import static lotto.contant.LottoConstants.LOTTO_PRICE;
 import static lotto.contant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
 public class MarketException extends RuntimeException {
-    public static final String ERROR = "[ERROR] ";
     public enum ErrorMessage {
         VALID_MONEY("로또 금액은" + LOTTO_PRICE.getValue() + " 원 입니다."),
         NOT_DIVISIBLE("거스름돈이 존재하지 않습니다. 로또 한 장 금액은 " + LOTTO_PRICE.getValue() + " 원 입니다."),
@@ -22,6 +23,6 @@ public class MarketException extends RuntimeException {
     }
 
     public MarketException(String message) {
-        super(ERROR + message);
+        super(ErrorMessageConstants.ERROR_PREFIX.getMessage() + message);
     }
 }

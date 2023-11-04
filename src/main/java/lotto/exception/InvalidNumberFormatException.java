@@ -1,9 +1,21 @@
 package lotto.exception;
 
-public class InvalidNumberFormatException extends NumberFormatException {
-    private static final String ERROR = "[ERROR] ";
+import lotto.contant.ErrorMessageConstants;
 
+public class InvalidNumberFormatException extends NumberFormatException {
+    public enum ErrorMessage {
+        NUMBER("숫자를 입력해 주세요.");
+        private final String message;
+
+        ErrorMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
     public InvalidNumberFormatException(String message) {
-        super(ERROR + message);
+        super(ErrorMessageConstants.ERROR_PREFIX.getMessage() + message);
     }
 }

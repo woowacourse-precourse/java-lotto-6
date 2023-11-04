@@ -89,6 +89,18 @@ class InputViewTest extends IOTest{
         );
     }
 
+    @DisplayName("당첨 번호 입력시 1~45 이외의 값 입력시 예외 발생")
+    @ParameterizedTest()
+    @ValueSource(strings = {"1,2,3,4,5,100", "0,2,17,41,5,16", "1,2,33,4,42,49"})
+    void createWinnerNumbersByNumberOverRangeInputExceptionTest(String inputWrongWinnerNumbers) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(inputWrongWinnerNumbers);
+                    inputView.inputWinnerNumbers();
+                }
+        );
+    }
+
     @DisplayName("보너스 번호 생성 성공 테스트")
     @ParameterizedTest()
     @ValueSource(strings = {"11", "21", "23", "41", "15"})
@@ -104,6 +116,19 @@ class InputViewTest extends IOTest{
     @ParameterizedTest()
     @ValueSource(strings = {"1z", "hi", "ㅋㅋ", "호호호", "15%"})
     void createWinnerBonusNumberByNotNumberInputSuccessTest(String inputWrongBonusNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(inputWrongBonusNumber);
+                    inputView.inputBonusNumber();
+                }
+        );
+
+    }
+
+    @DisplayName("1~45 이외의 값 입력시 예외 발생")
+    @ParameterizedTest()
+    @ValueSource(strings = {"0", "46", "99", "-1", "100"})
+    void createWinnerBonusNumberByNumberOverRangeInputSuccessTest(String inputWrongBonusNumber) {
         assertThrows(IllegalArgumentException.class,
                 () -> {
                     systemIn(inputWrongBonusNumber);

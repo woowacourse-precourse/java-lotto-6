@@ -1,7 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.*;
 
 public class LottoResult {
 
@@ -29,10 +32,12 @@ public class LottoResult {
                 .map(lotto -> comparator.compareLotto(winningNumbers, bonus, lotto))
                 .toList();
 
-        long sumOfPrice = this.winningLottos.stream()
+        float averageOfPrice = (float) this.winningLottos.stream()
                 .mapToLong(WinningLotto::getPrice)
-                .sum();
+                .average()
+                .getAsDouble();
 
+        this.rateOfReturn = averageOfPrice / 10;
 
         return this;
     }
@@ -73,7 +78,12 @@ public class LottoResult {
                         "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
                         "6개 일치 (2,000,000,000원) - %d개\n" +
                         "총 수익률은 %.1f%%입니다.",
-                this.matchesThree, this.matchesFour, this.matchFive, this.matchFiveAndBonus, this.matchSix, this.rateOfReturn
+                frequency(this.winningLottos, WinningLotto.FIFTH_PLACE),
+                frequency(this.winningLottos, WinningLotto.FOURTH_PLACE),
+                frequency(this.winningLottos, WinningLotto.THIRD_PLACE),
+                frequency(this.winningLottos, WinningLotto.SECOND_PLACE),
+                frequency(this.winningLottos, WinningLotto.FIRST_PLACE),
+                this.rateOfReturn
         );
     }
 

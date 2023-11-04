@@ -31,7 +31,11 @@ public class AnswerLotto extends Lotto {
 					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getForMatMessage(MIN_NUMBER, MAX_NUMBER));
 		}
 	}
-
+	
+	public int getAnswerLottoNumbersSize(){
+		return this.getSize();
+	}
+	
 	public int getBonusNumber() {
 		return bonusNumber.bonusNumber();
 	}

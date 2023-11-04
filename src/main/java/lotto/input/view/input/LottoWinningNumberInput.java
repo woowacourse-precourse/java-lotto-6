@@ -1,43 +1,53 @@
 package lotto.input.view.input;
 
 import static lotto.input.constant.Constant.BOUNS_NUMBER_INPUPT_MESSAGE;
-import static lotto.input.constant.Constant.DUPLICATE_ERROR;
-import static lotto.input.constant.Constant.LOTTO_NUMBER_SIZE;
-import static lotto.input.constant.Constant.NOT_NUMBER_ERROR;
-import static lotto.input.constant.Constant.NUMBER_SCOPE_ERROR;
 import static lotto.input.constant.Constant.WINNING_NUMBER_INPUT_MESSAGE;
-import static lotto.input.constant.Constant.WINNING_NUMBER_SIZE_ERROER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.input.Validator.WinningNumberInputValidate;
 
 public class LottoWinningNumberInput {
     List<Integer> winningNumbers = new ArrayList<>();
+    private final WinningNumberInputValidate validator = new WinningNumberInputValidate();
 
     public LottoWinningNumberInput() {
     }
 
-    public List<Integer> createWinningNumber() {
+    public List<Integer> createWinningNumbers() {
+        winningNumberInput();
+        bounsNumberInput();
+        return winningNumbers;
+    }
+
+    public void winningNumberInput() {
         while (true) {
             try {
                 System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
                 List<String> values = splitInput(Console.readLine());
                 winningNumbersValidateCheck(values);
+                break;
+            } catch (IllegalArgumentException e) {
+                winningNumbers.clear();
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void bounsNumberInput() {
+        while (true) {
+            try {
                 System.out.println(BOUNS_NUMBER_INPUPT_MESSAGE);
                 String value = Console.readLine();
-                bounsValidate(value);
-                System.out.println("winningNumbers = " + winningNumbers);
+                bounsValidateCheck(value);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            } finally {
-                winningNumbers.clear();
             }
         }
-        return winningNumbers;
     }
 
     public List<String> splitInput(String input) {
@@ -45,60 +55,24 @@ public class LottoWinningNumberInput {
     }
 
     public void winningNumbersValidateCheck(List<String> values) {
-        valueSizeValidate(values);
+        validator.valueSizeValidate(values);
         for (String value : values) {
-            extracted(value);
+            integratedValidateCheck(value);
         }
         Collections.sort(winningNumbers);
     }
 
-    public void valueSizeValidate(List<String> values) {
-        if (values.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_ERROER);
-        }
+
+    private void bounsValidateCheck(String value) {
+        integratedValidateCheck(value);
     }
 
-//    private void winningValidate(String value) {
-//        try {
-//            extracted(value);
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("[ERROR] : 1~45 사이의 중복 되지 않는 숫자 6개를 입력해야 합니다.");
-//        }
-//    }
-
-    private void bounsValidate(String value) {
-        extracted(value);
-    }
-
-    private void extracted(String value) {
+    private void integratedValidateCheck(String value) {
         int number;
-        number = isNumberValidate(value);
-        scopeValidate(number);
-        isDuplicateValidate(number);
+        number = validator.isNumberValidate(value);
+        validator.scopeValidate(number);
+        validator.isDuplicateValidate(number, winningNumbers);
     }
 
-    public Integer isNumberValidate(String value) {
-        int number;
-        try {
-            number = Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
-        }
-        return number;
-    }
-
-    public void scopeValidate(Integer value) {
-        if (value > 45 || value < 1) {
-            throw new IllegalArgumentException(NUMBER_SCOPE_ERROR);
-        }
-    }
-
-    public void isDuplicateValidate(Integer value) {
-        if (winningNumbers.contains(value)) {
-            winningNumbers.clear();
-            throw new IllegalArgumentException(DUPLICATE_ERROR);
-        }
-        winningNumbers.add(value);
-    }
 
 }

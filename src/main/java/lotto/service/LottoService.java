@@ -1,5 +1,9 @@
 package lotto.service;
 
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +12,11 @@ import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 
-public class LottoService {
+/*
+ *   로또 게임의 비즈니스 기능을 담당
+ * */
 
-    public PurchasePrice createPurchasePrice(String input) {
-        try {
-            return PurchasePrice.from(input);
-        } catch (IllegalArgumentException e) {
-            return createPurchasePrice(input);
-        }
-    }
+public class LottoService {
 
     public Player createPlayer(PurchasePrice purchasePrice) {
         //로또 생성
@@ -32,7 +32,6 @@ public class LottoService {
         int purchaseCount = purchasePrice.calculatePurchaseCount();
         for (int i = 0; i < purchaseCount; i++) {
             Lotto lotto = createLotto();
-            lotto.show();
             lottos.add(lotto);
         }
         return Lottos.from(lottos);
@@ -40,7 +39,8 @@ public class LottoService {
     }
 
     private Lotto createLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                LOTTO_NUMBER_COUNT);
         return new Lotto(lottoNumbers);
     }
 }

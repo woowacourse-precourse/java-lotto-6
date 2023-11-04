@@ -2,26 +2,21 @@ package lotto.domain;
 
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
-import lotto.validator.InputValidator;
+import lotto.validator.PurchasePriceValidator;
 
 public class PurchasePrice {
 
     private final int price;
 
-    private PurchasePrice(String input) {
-        validate(input);
-        price = Integer.parseInt(input);
+    private PurchasePrice(int value) {
+        PurchasePriceValidator.divisibleUnit(value);
+        price = value;
     }
 
-    public static PurchasePrice from(String input) {
-        return new PurchasePrice(input);
+    public static PurchasePrice from(int value) {
+        return new PurchasePrice(value);
     }
 
-    private void validate(String input) {
-        InputValidator.onlyNumber(input);
-        InputValidator.inRange(input);
-        InputValidator.divisibleUnit(Integer.parseInt(input));
-    }
 
     public int getPrice() {
         return price;

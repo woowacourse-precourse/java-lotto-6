@@ -14,4 +14,12 @@ public class Player {
     public static Player of(PurchasePrice purchasePrice, Lottos lottos) {
         return new Player(purchasePrice, lottos);
     }
+
+    public PurchasePrice getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public Lottos getLottos() {
+        return lottos;
+    }
 }

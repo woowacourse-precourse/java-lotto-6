@@ -22,6 +22,19 @@ class PaymentTest {
     }
 
     @Test
+    @DisplayName("구입 금액 예외 처리: 1,000원 단위가 아닌 경우")
+    void givenNotThousandUnit_whenCreatePayment_thenThrowException() {
+        // given
+        String amount = "10100";
+
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Payment(amount))
+                .withMessageStartingWith("[ERROR]")
+                .withMessageContaining("구입 금액은 1,000원 단위 입니다.");
+    }
+
+    @Test
     @DisplayName("구입 금액 생성 성공")
     void givenThousand_whenCreatePayment_thenNoException() {
         // given

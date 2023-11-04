@@ -1,21 +1,29 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LotteryService {
     private int totalLottoAmount;
     private int bonusNumber;
-    List<Lotto> buyLottoSet = new ArrayList<Lotto>();
-    List<Integer> winningNumber = new ArrayList<Integer>();
-    Validation validator = new Validation();
-    DataInput inputSets = new DataInput();
-    DataOutput outputSets = new DataOutput();
+    List<Lotto> buyLottoSet;
+    List<Integer> winningNumber;
+    Validation validator;
+    DataInput inputSets;
+    DataOutput outputSets;
+    Prize prize;
 
     public LotteryService(){
         this.totalLottoAmount = 0;
         this.bonusNumber = -1;
+        buyLottoSet = new ArrayList<Lotto>();
+        winningNumber = new ArrayList<Integer>();
+        validator = new Validation();
+        inputSets = new DataInput();
+        outputSets = new DataOutput();
+        prize = new Prize();
     }
 
     public void purchaseLotto(){
@@ -35,6 +43,7 @@ public class LotteryService {
     public void makeRandomLottoNumbers(){
         for(int i = 0; i < this.totalLottoAmount; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             Lotto newLotto = new Lotto(numbers);
             buyLottoSet.add(newLotto);
             outputSets.printPurchaseLottoNumbers(numbers);
@@ -49,5 +58,39 @@ public class LotteryService {
     public void makeBonusNumber(){
         outputSets.printProgressMessage(Progress.BONUS);
         this.bonusNumber = inputSets.userInputBonusNumber();
+    }
+
+    public void checkEveryLottoMatch(){
+        for(int i = 0; i < this.totalLottoAmount; i++){
+            checkEachLottoMatch(buyLottoSet.get(i));
+        }
+    }
+
+    public void checkEachLottoMatch(Lotto toCheckLotto){
+        int winningCount = checkPrizeNumberMatch(toCheckLotto);
+        prize.addPrize(winningCount);
+
+        if(winningCount == 5){
+            checkBonusNumberMatch(toCheckLotto);
+        }
+    }
+
+    public int checkPrizeNumberMatch(Lotto toCheckLotto){
+        int winningCount = 0;
+        List<Integer> toCheckLottoNumbers = toCheckLotto.getNumbers();
+
+        for(int i = 0; i < 6; i++){
+            if(toCheckLottoNumbers.get(i) == winningNumber.get(i)){
+                winningCount++;
+            }
+        }
+
+        return winningCount;
+    }
+
+    public void checkBonusNumberMatch(Lotto toCheckLotto){
+        if(toCheckLotto.getNumbers().contains(this.bonusNumber)) {
+            prize.addPrize(2);
+        }
     }
 }

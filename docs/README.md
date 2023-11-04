@@ -53,7 +53,7 @@
 ## LottoController
 
 내 로또 구매: buyMyLotto
-* getPurchaseAmount
+* assignPurchaseAmount
 * publishMyLotto
 * printMyLotto
 

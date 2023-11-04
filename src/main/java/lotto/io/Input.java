@@ -51,6 +51,7 @@ public class Input {
     private void validateWinningNumbers(List<Integer> userInput) {
         validateNumbersSizeSix(userInput);
         validateNumberRange(userInput);
+        validateDuplicatedNumber(userInput);
     }
 
     private void validateNumbersSizeSix(List<Integer> userInput) {
@@ -62,6 +63,12 @@ public class Input {
     private void validateNumberRange(List<Integer> userInput) {
         if (userInput.stream().anyMatch(num -> num < 1 || num > 45)) {
             throw new IllegalArgumentException("[ERROR] 각 번호는 1 이상 45 이하로 입력해 주세요.");
+        }
+    }
+
+    private void validateDuplicatedNumber(List<Integer> userInput) {
+        if (userInput.size() != userInput.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 6자리 숫자를 입력해 주세요.");
         }
     }
 

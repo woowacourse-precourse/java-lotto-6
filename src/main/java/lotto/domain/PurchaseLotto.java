@@ -14,6 +14,7 @@ public class PurchaseLotto {
     public static void validator(String amount){
         validateSpace(amount);
         validateNumber(amount);
+        validateFirstNumber(amount);
         validateMultipleOf1000(amount);
         validateMaxPurchase(amount);
     }
@@ -32,6 +33,13 @@ public class PurchaseLotto {
 
     private static boolean isNumeric(String str) {
         return str.matches("\\d+");
+    }
+
+    private static void validateFirstNumber(String amount) {
+        int firstNumber = amount.charAt(0) - '0';
+        if(firstNumber == NUMBER_ZERO){
+            throw new IllegalArgumentException("[ERROR] 첫 숫자는 0이 될 수 없습니다.");
+        }
     }
 
     private static void validateMultipleOf1000(String amount) {

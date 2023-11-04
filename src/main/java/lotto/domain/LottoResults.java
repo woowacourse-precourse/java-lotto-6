@@ -14,4 +14,12 @@ public enum LottoResults {
         this.correctCount = correctCount;
         this.winningAmount = winningAmount;
     }
+
+    public int getCorrectCount() {
+        return this.correctCount;
+    }
+
+    public long getWinningAmount() {
+        return this.winningAmount;
+    }
 }

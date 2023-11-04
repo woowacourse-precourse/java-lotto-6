@@ -5,18 +5,17 @@ import java.util.Objects;
 public class Money {
 
     private static final String INVALID_INPUT_MESSAGE = "음수의 숫자를 받을 수 없습니다.";
+    private static final int ZERO_VALUE = 0;
     private final long value;
 
     public Money(long value) {
-        if(value < 0) {
-            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
-        }
+        validate(value);
         this.value = value;
     }
 
     public boolean isDivisible(long divisor) {
-        if(this.value == 0) return false;
-        return this.value % divisor == 0;
+        if(isZero()) return false;
+        return this.value % divisor == ZERO_VALUE;
     }
 
     @Override
@@ -30,5 +29,15 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    private void validate(long value) {
+        if(value < ZERO_VALUE) {
+            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+        }
+    }
+
+    private boolean isZero() {
+        return this.value == ZERO_VALUE;
     }
 }

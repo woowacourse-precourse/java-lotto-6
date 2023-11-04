@@ -11,7 +11,7 @@ public class OutputView {
     private static final String PurchaseLottosCountPrintFormat = "%d개를 구매했습니다.\n";
     private static final String WinningStatisticsPrintMessage = "당첨 통계\n---";
     private static final String WinningResultPrintFormat = "%d개 일치 (%s원) - %d개\n";
-    private static final String RateOfReturnPrintFormat = "총 수익률은 %.2f%%입니다.\n";
+    private static final String RateOfReturnPrintFormat = "총 수익률은 %.1f%%입니다.\n";
 
     public void showEmptyLine(){
         System.out.println();

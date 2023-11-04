@@ -54,5 +54,27 @@ public final class Validator {
             throw new IllegalArgumentException(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS.getMessage());
         }
     }
-    
+
+    public static String[] hasCommasWithoutSurroundingValues(String valuesSeparatedByCommas) {
+        Matcher matcher = PatternConstant.HAS_COMMAS_WITHOUT_SURROUNDING_VALUES_PATTERNS.matcher(valuesSeparatedByCommas);
+
+        if (matcher.find()) throw new IllegalArgumentException("쉼표(,) 전후에 아무런 값이 없는 경우가 있습니다.");
+
+        return valuesSeparatedByCommas.split(RegularConstant.DELIMITER);
+    }
+
+    public static void validateCountOfValues(String[] splittedValues) {
+        if(splittedValues.length != 6){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+        }
+    }
+
+    public static int validateNumberInRange(int num) {
+        if(num > 45 || num < 1){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+        }
+
+        return num;
+    }
+
 }

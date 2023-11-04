@@ -9,9 +9,6 @@ public class InsertLottoNumber {
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
 
-    private static final String ERROR_NUMBER_MESSAGE = "[ERROR] 숫자를 다시 입력하세요.";
-    private static final String ERROR_NUMBER_SIZE_MESSAGE = "[ERROR] 1부터 45 사이의 숫자를 입력하세요.";
-
     public InsertLottoNumber(String number) {
         String[] lottoNumber = number.split(",");
         checkNumber(lottoNumber);
@@ -25,7 +22,7 @@ public class InsertLottoNumber {
     private void checkValidate(String[] number) {
         for (String count : number) {
             if (!validateNumber(count)) {
-                throw new IllegalArgumentException(ERROR_NUMBER_SIZE_MESSAGE);
+                throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_SIZE_MESSAGE);
             }
         }
     }
@@ -35,7 +32,7 @@ public class InsertLottoNumber {
             boolean isTrue = count.chars().allMatch(Character::isDigit);
 
             if (!isTrue)
-                throw new IllegalArgumentException(ERROR_NUMBER_MESSAGE);
+                throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER);
         }
     }
 

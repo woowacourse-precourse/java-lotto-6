@@ -6,4 +6,8 @@ public class Payment {
     public Payment(int amount) {
         this.amount = amount;
     }
+
+    public int calculatePurchaseLottoCount() {
+        return 0;
+    }
 }

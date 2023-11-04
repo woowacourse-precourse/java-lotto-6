@@ -8,4 +8,8 @@ public class WinningLotto {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
+
+    public LottoRank calculateRank(Lotto lotto) {
+        return LottoRank.OUT_RANK;
+    }
 }

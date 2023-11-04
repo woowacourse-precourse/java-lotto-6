@@ -9,14 +9,14 @@ public class LottoFactory {
     private final List<Lotto> lottoTickets;
 
     public LottoFactory(long ticketAcounts) {
-        this.lottoTickets = generateLottos(ticketAcounts);
+        this.lottoTickets = generate(ticketAcounts);
     }
 
-    public List<Lotto> getLottoTickets() {
+    public List<Lotto> getTickets() {
         return lottoTickets;
     }
 
-    private List<Lotto> generateLottos(long ticketAcounts) {
+    private List<Lotto> generate(long ticketAcounts) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < ticketAcounts; i++) {
             lottoTickets.add(makeLotto());

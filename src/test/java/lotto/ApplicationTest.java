@@ -1,9 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Scanner;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -57,5 +59,19 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+
+    @Test
+    void inputPurchaseAmount() {
+        String inputPurchaseAmount = inputPurchaseAmount("10000");
+        assertThat(inputPurchaseAmount).isEqualTo("10000");
+    }
+
+    private String inputPurchaseAmount(String input){
+        System.out.println("구입금액을 입력해 주세요.");
+        Scanner in = new Scanner(input);
+        input = in.next();
+        return input;
     }
 }

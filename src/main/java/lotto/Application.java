@@ -2,16 +2,18 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         LottoManager lottoManager = new LottoManager();
 
         final int price = readPrice();
 
         User user = new User(price);
 
-        lottoManager.printLottos(user);
+        printLottos(user);
+
         Lotto lotto = lottoManager.createUserNumbers();
 
         user.setUserLotto(lotto);
@@ -41,6 +43,15 @@ public class Application {
             if (!errorFlag) {
                 return price;
             }
+        }
+    }
+
+    private static void printLottos(User user) {
+        System.out.println(user.getLottoCount() + "개를 구매했습니다.");
+        List<Lotto> lottos = user.getLottos();
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 }

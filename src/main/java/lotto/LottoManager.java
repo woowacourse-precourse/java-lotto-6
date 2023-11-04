@@ -32,15 +32,6 @@ public class LottoManager {
         }
     }
 
-    public void printLottos(User user) {
-        System.out.println(user.getLottoCount() + "개를 구매했습니다.");
-        List<Lotto> lottos = user.getLottos();
-
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
-    }
-
     public Lotto createUserNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] splitNumbers = Console.readLine().replaceAll(" ", "").split(",");

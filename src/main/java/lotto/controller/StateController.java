@@ -17,8 +17,8 @@ public class StateController {
 
     private static final int LOTTO_PRICE = 1000;
 
-    private List<Integer> answerLotto;
     private Lottos lottos;
+    private Lotto answerLotto;
     private int money;
 
 
@@ -41,18 +41,28 @@ public class StateController {
 
     private void purchaseLotto() {
         lottos = new Lottos(IntStream
-                .range(0, lottos.getLottoCount())
+                .range(0, calculateLottoCount(money))
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList());
-        OutputView.printLottoCount(lottos.getLottoCount());
+        OutputView.printLottoCount(calculateLottoCount(money));
         lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
     }
 
     private void enterAnswer() {
-        this.answerLotto = Stream
+        List<Integer> answerLotto = Stream
                 .of(InputView.readAnswer().split(","))
                 .map(Integer::parseInt)
                 .toList();
+        try {
+            this.answerLotto = new Lotto(answerLotto);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            enterAnswer();
+        }
+    }
+
+    private int calculateLottoCount(int money) {
+        return money/LOTTO_PRICE;
     }
 
     private void validateMoney(int money) {

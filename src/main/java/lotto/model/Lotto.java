@@ -4,6 +4,8 @@ import static lotto.utils.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
 import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +21,11 @@ public class Lotto {
         validateLottoNumberRange(numbers);
         validateDuplicatedLottoNumber(numbers);
         this.numbers = sortAscendingOrder(numbers);
+    }
+
+    public List<Integer> getLotto() {
+        List<Integer> unmodifiableLotto = Collections.unmodifiableList(numbers);
+        return new ArrayList<>(unmodifiableLotto);
     }
 
     private void validate(List<Integer> numbers) {
@@ -48,8 +55,9 @@ public class Lotto {
 
     private void validateDuplicatedLottoNumber(List<Integer> numbers) {
         Set<Integer> noneDuplicatedNumbers = new HashSet<>(numbers);
-        if (noneDuplicatedNumbers.size() != numbers.size())
+        if (noneDuplicatedNumbers.size() != numbers.size()) {
             DUPLICATED_LOTTO_NUMBER.throwException();
+        }
     }
 
     private List<Integer> sortAscendingOrder(List<Integer> numbers) {

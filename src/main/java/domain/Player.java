@@ -1,7 +1,16 @@
 package domain;
 
 public class Player {
-    private final LottoTickets lottoTickets = new LottoTickets();
+    private final LottoTickets lottoTickets;
+
+    public Player() {
+        lottoTickets = new LottoTickets();
+    }
+
+    Player(LottoTickets lottoTickets) {
+        this.lottoTickets = lottoTickets;
+    }
+
     public void buyLottoTickets(int money) {
         int ticketCount = calculateTicketCount(money);
         lottoTickets.add(ticketCount);

@@ -9,17 +9,29 @@ public class Amount {
         this.amount = amount;
     }
 
-    private void validateAmount(int money) {
-        int remainder = getRemainder(money);
+    public int getAmount() {
+        return this.amount;
+    }
 
-        if (remainder != 0) {
+    private void validateAmount(int amount) {
+        validateMinAmount(amount);
+        validateUnit(amount);
+    }
+
+    private void validateMinAmount(int amount) {
+        if (amount < PRICE) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.MIN_AMOUNT.getValue()
+            );
+        }
+    }
+
+    private void validateUnit(int amount) {
+        if (amount % PRICE != 0) {
             throw new IllegalArgumentException(
                     ErrorMessage.INVALID_UNIT.getValue()
             );
         }
     }
-
-    private int getRemainder(int amount) {
-        return amount % PRICE;
-    }
 }
+

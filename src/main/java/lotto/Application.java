@@ -1,27 +1,15 @@
 package lotto;
 
-import static lotto.StringResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_INTEGER_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_INTEGER_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_PURCHASE_AMOUNT;
-
-import camp.nextstep.edu.missionutils.Console;
+import static lotto.StringResourceProvider.INPUT_BONUS_NUMBER_TEXT;
+import static lotto.StringResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
+import static lotto.StringResourceProvider.OUTPUT_LOTTERY_RESULT;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println(INPUT_PURCHASE_AMOUNT_TEXT);
-
-        try{
-            int purchaseAmount = Integer.parseInt(Console.readLine());
-            if(purchaseAmount < 0){
-                throw new UserInvalidInputException(PURCHASE_AMOUNT_CANNOT_CONVERT_TO_INTEGER_TEXT);
-            }
-            if(purchaseAmount % 1000 != 0 || purchaseAmount == 0){
-                throw new UserInvalidInputException(PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_INTEGER_TEXT);
-            }
-        }
-        catch (NumberFormatException e){
-            throw new UserInvalidInputException(PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_PURCHASE_AMOUNT, e);
-        }
+        InputInterface in = new InputInterface();
+        long purchasedAmount = in.getPurchasedAmount();
+        System.out.println(INPUT_WINNING_NUMBERS_TEXT);
+        System.out.println(INPUT_BONUS_NUMBER_TEXT);
+        System.out.println(OUTPUT_LOTTERY_RESULT);
     }
 }

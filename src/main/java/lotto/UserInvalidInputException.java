@@ -2,16 +2,22 @@ package lotto;
 
 import static lotto.StringResourceProvider.ERROR_MESSAGE_TAG;
 
-public class UserInvalidInputException extends IllegalArgumentException{
-    UserInvalidInputException(String message){
+public class UserInvalidInputException extends IllegalArgumentException {
+
+    private String invalidInput;
+
+    UserInvalidInputException(String message, String invalidInput) {
         super(message);
+        this.invalidInput = invalidInput;
     }
-    UserInvalidInputException(String message, Throwable cause){
+
+    UserInvalidInputException(String message, String invalidInput, Throwable cause) {
         super(message, cause);
+        this.invalidInput = invalidInput;
     }
 
     @Override
     public String getMessage() {
-        return String.format("%s %s",ERROR_MESSAGE_TAG,  super.getMessage());
+        return String.format("%s %s : %s ", ERROR_MESSAGE_TAG, super.getMessage(), invalidInput);
     }
 }

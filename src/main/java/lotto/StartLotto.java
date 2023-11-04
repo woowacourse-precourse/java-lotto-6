@@ -16,6 +16,7 @@ public class StartLotto {
     private HashMap<String, Integer> priceHistory;
 
     public StartLotto() {
+        this.lottoList = new ArrayList<Lotto>();
         this.purchasePrice = 0;
         this.bonusNumber = 0;
         this.winningNumbers = new ArrayList<Integer>();
@@ -28,6 +29,9 @@ public class StartLotto {
         }};
     }
 
+    /*
+     * String을 int로 변환한다. 이때, String이 Number Format이 아니면 Exception을 throw한다.
+     */
     private int changeStringToInteger(String inputString) {
         try {
             return Integer.parseInt(inputString);
@@ -36,6 +40,9 @@ public class StartLotto {
         }
     }
 
+    /*
+     * String List를 Integer List로 변환한다. 이때, 숫자가 1~45 사이인지 확인하고 중복된 숫자가 있는지 확인한다.
+     */
     private List<Integer> changeStringToInteger(String[] inputString) {
         List<Integer> retVal = new ArrayList<Integer>();
 
@@ -63,11 +70,11 @@ public class StartLotto {
         }
     }
 
-    private void printMessageForInputPurchasePrice() {
+    public void printMessageForInputPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    private void inputPurchasePrice() {
+    public void inputPurchasePrice() {
         String purchasePrice = Console.readLine();
 
         int purchaseNumber = changeStringToInteger(purchasePrice);
@@ -81,11 +88,11 @@ public class StartLotto {
         }
     }
 
-    private void printMessageForInputWinningNumbers() {
+    public void printMessageForInputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    private void inputWinningNumbers() {
+    public void inputWinningNumbers() {
         String winningNumbers = Console.readLine();
 
         String[] splitWinningNumbers = splitInputString(winningNumbers);
@@ -97,11 +104,11 @@ public class StartLotto {
         return winningNumbers.split(",", 0);
     }
 
-    private void printMessageForInputBonusNumber() {
+    public void printMessageForInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요");
     }
 
-    private void inputBonusNumber() {
+    public void inputBonusNumber() {
         String bonusNumberString = Console.readLine();
 
         int bonusNumber = changeStringToInteger(bonusNumberString);
@@ -110,7 +117,7 @@ public class StartLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void generateLottoList() {
+    public void generateLottoList() {
         int listLen = this.purchasePrice / 1000;
 
         for (int i = 0; i < listLen; i++) {
@@ -126,15 +133,16 @@ public class StartLotto {
     }
 
     private void sortLottoNumber(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
+        List<Integer> modifiedList = new ArrayList<Integer>(lottoNumbers);  //lottoNumbers가 unmodified일 경우 modified로 변환
+        Collections.sort(modifiedList);
     }
 
-    private void printPurchaseLottoAmount() {
+    public void printPurchaseLottoAmount() {
         int lottoAmount = this.purchasePrice / 1000;
         System.out.println(lottoAmount + "개를 구매했습니다.");
     }
 
-    private void printLottoList() {
+    public void printLottoList() {
         int listLen = this.purchasePrice / 1000;
 
         for (int i = 0; i < listLen; i++) {
@@ -144,17 +152,18 @@ public class StartLotto {
     }
 
     private void printOneLotto(Lotto oneLotto) {
-        System.out.print('[');
+        System.out.print("[");
 
         for (int i = 0; i < 5; i++) {
             System.out.print(oneLotto.getNumbers().get(i) + ", ");
         }
 
-        System.out.print(oneLotto.getNumbers().get(5) + ']');
+        System.out.println(oneLotto.getNumbers().get(5) + "]");
     }
 
-    private void printPriceHistory() {
-        fillPriceHistoryMap();
+    public void printPriceHistory() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + this.priceHistory.get("Fifth") + "개");
         System.out.println("4개 일치 (50,000원) - " + this.priceHistory.get("Forth") + "개");
         System.out.println("5개 일치 (1,500,000원) - " + this.priceHistory.get("Third") + "개");
@@ -162,7 +171,7 @@ public class StartLotto {
         System.out.println("6개 일치 (2,000,000,000원) - " + this.priceHistory.get("First") + "개");
     }
 
-    private void fillPriceHistoryMap() {
+    public void fillPriceHistoryMap() {
         for (Lotto lotto : this.lottoList) {
             int sameNumberCount = countSameNumber(lotto);
             boolean lottoHasBonusNumber = false;
@@ -227,11 +236,11 @@ public class StartLotto {
         }
     }
 
-    private void printTotalEarningRate(double totalEarningRate) {
+    public void printTotalEarningRate(double totalEarningRate) {
         System.out.println("총 수익률은 " + totalEarningRate + "%입니다.");
     }
 
-    private double calcEarningRate() {
+    public double calcEarningRate() {
         double priceSum = 0.0;
         for (String price : new String[]{"Fifth", "Forth", "Third", "Second", "First"}) {
             priceSum += calcPrice(price);

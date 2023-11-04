@@ -8,9 +8,11 @@ public class Amount {
     private static final int LOTTO_AMOUNT = 1000;
 
 
-    public void calculateTotalLottoCount(int purchaseAmount) {
+    public int calculateTotalLottoCount(int purchaseAmount) {
         validateRange(purchaseAmount);
         validateDivision(purchaseAmount);
+
+        return purchaseAmount / LOTTO_AMOUNT;
     }
 
     private void validateRange(int purchaseAmount) throws IllegalArgumentException {

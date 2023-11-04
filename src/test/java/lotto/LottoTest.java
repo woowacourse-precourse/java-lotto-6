@@ -8,7 +8,7 @@ import java.util.List;
 
 import static lotto.utils.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
-import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
+import static lotto.utils.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -44,7 +44,7 @@ class LottoTest {
         //when, then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MORE_THEN_MAXIMUM_LOTTO_NUMBER.getMessage());
+                .hasMessage(MORE_THAN_MAXIMUM_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")

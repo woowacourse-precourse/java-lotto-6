@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.utils.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
-import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
+import static lotto.utils.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +48,7 @@ public class Lotto {
 
     private void validateIsMoreThanMaximumLottoNumber(int number) {
         if (number > MAXIMUM_LOTTO_NUMBER) {
-            MORE_THEN_MAXIMUM_LOTTO_NUMBER.throwException();
+            MORE_THAN_MAXIMUM_LOTTO_NUMBER.throwException();
         }
     }
 

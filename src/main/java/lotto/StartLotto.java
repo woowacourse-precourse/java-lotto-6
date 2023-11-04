@@ -74,7 +74,23 @@ public class StartLotto {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void inputPurchasePrice() {
+    public void inputPurchasePriceForClient() {
+        boolean errorOccurred;
+        do {
+            try {
+                inputPurchasePrice();
+                errorOccurred = false;
+            } catch (NumberFormatException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            }
+        } while (errorOccurred);
+    }
+
+    private void inputPurchasePrice() {
         String purchasePrice = Console.readLine();
 
         int purchaseNumber = changeStringToInteger(purchasePrice);
@@ -92,7 +108,23 @@ public class StartLotto {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void inputWinningNumbers() {
+    public void inputWinningNumbersForClient() {
+        boolean errorOccurred;
+        do {
+            try {
+                inputWinningNumbers();
+                errorOccurred = false;
+            } catch (NumberFormatException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            }
+        } while (errorOccurred);
+    }
+
+    private void inputWinningNumbers() {
         String winningNumbers = Console.readLine();
 
         String[] splitWinningNumbers = splitInputString(winningNumbers);
@@ -108,7 +140,23 @@ public class StartLotto {
         System.out.println("보너스 번호를 입력해 주세요");
     }
 
-    public void inputBonusNumber() {
+    public void inputBonusNumberForClient() {
+        boolean errorOccurred;
+        do {
+            try {
+                inputBonusNumber();
+                errorOccurred = false;
+            } catch (NumberFormatException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+                errorOccurred = true;
+            }
+        } while (errorOccurred);
+    }
+
+    private void inputBonusNumber() {
         String bonusNumberString = Console.readLine();
 
         int bonusNumber = changeStringToInteger(bonusNumberString);
@@ -120,9 +168,13 @@ public class StartLotto {
     public void generateLottoList() {
         int listLen = this.purchasePrice / 1000;
 
-        for (int i = 0; i < listLen; i++) {
-            Lotto oneLotto = generateLotto();
-            this.lottoList.add(oneLotto);
+        try {
+            for (int i = 0; i < listLen; i++) {
+                Lotto oneLotto = generateLotto();
+                this.lottoList.add(oneLotto);
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("로또 번호는 6개의 숫자입니다.");
         }
     }
 
@@ -270,7 +322,7 @@ public class StartLotto {
         return Math.round(value * 100.0) / 100.0;
     }
 
-    public void printErrorMessage(Exception e) {
+    private void printErrorMessage(Exception e) {
         System.out.println("[ERROR] " + e.getMessage());
     }
 }

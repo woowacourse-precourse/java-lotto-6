@@ -18,6 +18,8 @@ public class LottoController {
         Money money = requestMoney();
         int count = lottoService.calculateCount(money.getMoney());
         HashMap<Integer, Lotto> lotties = lottoService.makeLotto(count);
+        outputView.printAmountOfLotto(count);
+        outputView.printLotto(lotties);
     }
 
     public Money requestMoney(){

@@ -19,7 +19,10 @@ public class LottoGenerator {
     }
 
     public static Lotto generateLottoNumbers(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_TO_PICK);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_TO_PICK)
+                        .stream()
+                        .sorted()
+                        .toList();
         return new Lotto(numbers);
     }
 }

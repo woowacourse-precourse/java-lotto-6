@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
 import javax.print.attribute.IntegerSyntax;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +14,15 @@ public class Print {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void printLotteries(List<List<Integer>> lotteries) {
-        for (List<Integer> lotto : lotteries) {
+    public static void printLottery(List<Lotto> lottery) {
+        for (Lotto lotto : lottery) {
             printLottoNumber(lotto);
         }
     }
 
-    public static void printLottoNumber(List<Integer> lotto) {
+    public static void printLottoNumber(Lotto lotto) {
         List<String> tmpLotto = new ArrayList<>();
-        for (int lottoNumber : lotto) {
+        for (int lottoNumber : lotto.getLotto()) {
             tmpLotto.add(String.valueOf(lottoNumber));
         }
         String allNumber = "[";

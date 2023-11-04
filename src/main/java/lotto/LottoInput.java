@@ -2,13 +2,26 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
+import net.bytebuddy.description.annotation.AnnotationValue.ForEnumerationDescription.WithUnknownConstant;
 
 public class LottoInput {
+    private static final List<Integer> WinningNumbers = new ArrayList<>();
     public int getLottoPrice(){
         PrintInput printInput = new PrintInput();
         printInput.printLottoMoney();
         String s = Console.readLine();
         System.out.println();
         return Integer.parseInt(s);
+    }
+
+    public List<Integer> getWinningNum(){
+        String[] tempS;
+        String s = Console.readLine();
+        tempS = s.split((","));
+        for (String temp : tempS) {
+        }
+        return WinningNumbers;
     }
 }

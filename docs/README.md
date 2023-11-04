@@ -57,18 +57,42 @@
     ``` 
     
 * 우테코 측 요구사항
-  * 인덴트 3이상 불가
-  * 3항 연산자 불가
+  * 인덴트 3이상 압수
+  * 3항 연산자 압수
   * 함수 최대한 작게
   * 메서드 길이는 15줄 미만
     * 하나의 일만 하도록 구현
-  * else 를 쓰지 마라 (switch/case도 금지)
+  * else 압수 (switch/case도 압수)
   * Enum을 사용하라(후훗 이미 사용하고 있었다굿~)
   * 도메인 로직에 단위 테스트를 작성하라
   * 예외는 [ERROR] + 예외 이렇게 출력하게 해라
   * 예외는 IllegalArgumentException, IllegalStatementException 두가지로 
   * Lotto 클래스 활용해서 구현해야 한다.
     * 이때 필드 추가는 불가능 함
+
+
+---
+
+IllegalArgument vs IllegalStatement
+
+IllegalArgument : 적절하지 않거나 유효하지 않은 데이터를 받을 때 발생, 양수를 받아야 하는데 음수를 받는 경우 -> input error
+
+IllegalStatement : 유효하지 않은 시간대에 메서드가 불려올 때 사용된다.불가변한 수가 변경되려고 하거나 객체가 잘못된 상태에 있을 때 메소드를 실행시키려고 했을 때 발생된다. -> coding error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

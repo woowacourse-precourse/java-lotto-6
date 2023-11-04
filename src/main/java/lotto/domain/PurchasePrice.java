@@ -10,6 +10,10 @@ public class PurchasePrice {
         this.purchasePrice = parsingStringToInt(purchasePrice);
     }
 
+    public int getPurchaseCount() {
+        return purchasePrice / 1000;
+    }
+
     private void isPurchasePriceValid(String price) {
         ValidationException validation = new ValidationException();
 

@@ -5,10 +5,14 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    Lotto(List<Integer> numbers) {
         verifyNumbersSize(numbers);
         verifyNoDuplication(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private void verifyNumbersSize(List<Integer> numbers) {
@@ -16,7 +20,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    
+
     private void verifyNoDuplication(List<Integer> numbers) {
         int uniqueCount = (int) numbers.stream().distinct().count();
         if (uniqueCount != numbers.size()) {

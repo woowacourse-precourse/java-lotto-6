@@ -11,5 +11,6 @@ public class LottoCompareSite {
     public void access() {
         outputView.printInputWinningNumbersMessage();
         WinningNumber winningNumber = inputView.readWinningNumber();
+        outputView.printInputBonusNumberMessage();
     }
 }

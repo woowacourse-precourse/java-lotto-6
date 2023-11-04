@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StringToIntegerTest {
@@ -26,5 +27,13 @@ class StringToIntegerTest {
         StringToInteger converter = new StringToInteger();
         assertThatThrownBy(() -> converter.convert(value))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("String을 Integer로 변환한다.")
+    @ParameterizedTest(name = "{displayName}: {0}")
+    @ValueSource(strings = {"30", "123", "4949", "01", "0001", "0034"})
+    void createConverter(String value) {
+        StringToInteger converter = new StringToInteger();
+        assertThat(converter.convert(value)).isEqualTo(Integer.valueOf(value));
     }
 }

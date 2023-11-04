@@ -30,7 +30,7 @@ class LottoTest {
     void createLottoByUnderRangeNumber() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
-                .withMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+                .withMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE_LOW.getMessage());
     }
 
     @DisplayName("로또 번호가 45초과인 경우 예외가 발생한다.")
@@ -38,7 +38,7 @@ class LottoTest {
     void createLottoByUpperRangeNumber() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
-                .withMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+                .withMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE_HIGH.getMessage());
     }
 
 }

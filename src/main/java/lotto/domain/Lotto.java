@@ -39,8 +39,11 @@ public class Lotto {
 
     private void checkValidRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+            if (number < MIN_NUMBER) {
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_LOW.getMessage());
+            }
+            if (number > MAX_NUMBER) {
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_HIGH.getMessage());
             }
         }
     }

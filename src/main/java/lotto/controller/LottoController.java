@@ -4,22 +4,35 @@ import static lotto.view.View.requestMoney;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Customer;
+import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Money;
 public class LottoController {
+    public void check(){
+        throw new IllegalArgumentException();
+    }
     public void run(){
         Money money = new Money(requestMoney());
         Customer customer = new Customer(money);
         LottoNumber lottoNumber = new LottoNumber();
 
         System.out.println(customer.getLottoCount()+"개를 구매했습니다.");
+        customer.purchaseLotto();
+        customer.getLottos()
+                .forEach(lotto -> System.out.println(lotto.getNumbers()));
         System.out.println("당첨번호를 입력해 주세요");
+
 
         String winningNumber = Console.readLine();
         lottoNumber.createWinningNumber(winningNumber);
+        Lotto winningLotto = new Lotto(lottoNumber.getLottoNumbers());
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
+
+        winningLotto.getNumbers().stream()
+                .filter(s -> s == bonusNumber)
+                .forEach(s -> check()); //  validate 클래스로 분리된 메소드에 접근할것
 
         System.out.println("당첨 통계");
         System.out.println("---");

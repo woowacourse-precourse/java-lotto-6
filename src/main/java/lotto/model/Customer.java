@@ -22,4 +22,5 @@ public class Customer {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
 }

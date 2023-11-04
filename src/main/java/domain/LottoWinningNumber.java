@@ -18,6 +18,6 @@ public class LottoWinningNumber {
         String winningNumber = inputUtil.userInput();
 
 //        String[] winningEachNumber = winningNumber.split(",\\s*");
-
+        return this;
     }
 }

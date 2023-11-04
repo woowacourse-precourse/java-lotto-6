@@ -1,5 +1,9 @@
 package util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ValidationUtil {
     public int validPurchaseLottoAmount(String lottoPurchaseAmount){
         validPurchaseIntegerLottoAmount(lottoPurchaseAmount);
@@ -21,11 +25,32 @@ public class ValidationUtil {
     public String[] validWinningNumber(String input){
         String[] validEachWinningNumber = input.split(",");
         validCountWinningNumber(validEachWinningNumber);
+        validDuplicateWinningNumber(validEachWinningNumber);
+        validRangeWinningNumber(validEachWinningNumber);
+        return validEachWinningNumber;
     }
 
     public void validCountWinningNumber(String[] array){
         if(array == null || array.length != 6){
             throw new IllegalArgumentException();
         }
+    }
+    public void validDuplicateWinningNumber(String[] array){
+        List<Integer> numbers = Arrays.stream(array)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        if(numbers.stream().distinct().count() != numbers.size()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validRangeWinningNumber(String[] array){
+        if(!Arrays.stream(array).mapToInt(Integer::parseInt).noneMatch(this::isValidRangeWinningNumber)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public boolean isValidRangeWinningNumber(int number){
+        return number < 1 || number > 45;
     }
 }

@@ -10,4 +10,9 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
+
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
+    }
 }

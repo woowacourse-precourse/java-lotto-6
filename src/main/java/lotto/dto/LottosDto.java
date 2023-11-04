@@ -5,11 +5,11 @@ import lotto.model.Lotto;
 
 public class LottosDto {
 
-    private final Integer numberOfPurchase;
+    private final Integer countOfPurchase;
     private final List<LottoDto> lottoDtos;
 
     private LottosDto(List<Lotto> lottos) {
-        numberOfPurchase = lottos.size();
+        countOfPurchase = lottos.size();
         lottoDtos = lottos.stream().map(LottoDto::create)
                 .toList();
     }
@@ -18,8 +18,8 @@ public class LottosDto {
         return new LottosDto(lottos);
     }
 
-    public Integer getNumberOfPurchase() {
-        return numberOfPurchase;
+    public Integer getCountOfPurchase() {
+        return countOfPurchase;
     }
 
     public List<LottoDto> getLottoDtos() {

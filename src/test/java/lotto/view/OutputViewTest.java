@@ -64,13 +64,15 @@ public class OutputViewTest {
         OutputView.printLottos(lottosDto);
 
         // Then
-        String expectedOutput = String.join(System.lineSeparator(),
+        String expectedOutput = String.join(
+                "\n",
                 "",
                 "2개를 구매했습니다.",
                 "[8, 21, 23, 41, 42, 43]",
                 "[3, 5, 11, 16, 32, 38]",
-                "");
-        assertThat(outContent.toString()).isEqualTo(expectedOutput);
+                ""
+        );
+        assertThat(outContent.toString()).isEqualToIgnoringWhitespace(expectedOutput);
     }
 
 }

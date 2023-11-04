@@ -39,4 +39,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 번호가 중복되었습니다.");
         }
     }
+
+    public static void validateBonusNumberNoDuplicate(List<Integer> lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
+        }
+    }
 }

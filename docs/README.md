@@ -12,7 +12,7 @@
   - [x] 6개의 숫자가 아니면 예외 처리한다. InputValidator#validateLottoLength
   - [x] 숫자에 중복이 있으면 예외 처리한다. InputValidator#validateNoDuplicates
 - [ ] 보너스 번호를 입력받는다.
-  - [ ] 당첨 번호와 중복된 숫자가 있으면 예외 처리한다.
+  - [x] 당첨 번호와 중복된 숫자가 있으면 예외 처리한다.
 - [x] 범위 1-45까지의 숫자를 중복되지 않게 6개 뽑아 로또를 발행한다. LottoNumberGenerator#generateLottoNumber
 - [x] 입력 받은 값만큼 로또를 만들어 발행한다. LottoNumberGenerator#generateLottoNumbers
 - [ ] 1등부터 5등까지의 금액을 나타낸다.

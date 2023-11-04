@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constant.LottoSetting.*;
+
 public class LottoService {
     public void purchase(String purchaseAmountInput) {
         Integer purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
@@ -20,9 +22,9 @@ public class LottoService {
     }
 
     private Integer validateDivisible(Integer purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % DIVISOR.getValue() != 0) {
             throw new IllegalArgumentException();
         }
-        return purchaseAmount / 1000;
+        return purchaseAmount / DIVISOR.getValue();
     }
 }

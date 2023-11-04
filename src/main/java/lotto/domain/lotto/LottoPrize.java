@@ -7,12 +7,12 @@ import lotto.domain.money.Money;
  * WinningLotto와 Lotto를 비교하여 일치하는 번호 및 보너스 번호를 계산하여 로또 등 수를 나타낼 때 사용되는 클래스입니다.
  */
 public enum LottoPrize {
-    FIRST(1, Money.from(2_000_000_000), 6, false),
-    SECOND(2, Money.from(30_000_000), 5, true),
-    THIRD(3, Money.from(1_500_000), 5, false),
-    FOURTH(4, Money.from(50_000), 4, false),
-    FIFTH(5, Money.from(5_000), 3, false),
-    NONE(0, Money.zero(), 0, false);
+    FIRST(Money.from(2_000_000_000), 6, false),
+    SECOND(Money.from(30_000_000), 5, true),
+    THIRD(Money.from(1_500_000), 5, false),
+    FOURTH(Money.from(50_000), 4, false),
+    FIFTH(Money.from(5_000), 3, false),
+    NONE(Money.zero(), 0, false);
 
     /**
      * 모든 enum constant를 List로 보관
@@ -20,14 +20,9 @@ public enum LottoPrize {
     private static final List<LottoPrize> lottoPrizes = List.of(values());
 
     /**
-     * 로또 등수
-     */
-    private final int place;
-
-    /**
      * 등수별 당첨 가격
      */
-    private final Money price;
+    private final Money prize;
 
     /**
      * 일치하는 로또 번호 수
@@ -40,13 +35,11 @@ public enum LottoPrize {
     private final boolean hasBonusNumber;
 
     LottoPrize(
-            final int place,
-            final Money price,
+            final Money prize,
             final int matchedCount,
             final boolean hasBonusNumber
     ) {
-        this.place = place;
-        this.price = price;
+        this.prize = prize;
         this.matchedCount = matchedCount;
         this.hasBonusNumber = hasBonusNumber;
     }
@@ -73,6 +66,6 @@ public enum LottoPrize {
      * 각 등수별 당첨 금액을 불변 Money 객체로 반환
      */
     public Money getPrize() {
-        return price;
+        return prize;
     }
 }

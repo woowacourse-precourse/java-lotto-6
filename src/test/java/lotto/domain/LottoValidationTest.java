@@ -38,9 +38,7 @@ class LottoValidationTest {
             lottoNumber.add(numbers[i]);
         }
 
-        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber);
-
-        assertEquals(notDuplicate, false);
+        assertThat(lottoValidation.checkDuplicateLottoNumber(lottoNumber)).isFalse();
     }
 
     @DisplayName("보너스 번호 1 ~45 사이의 값인지 테스트")

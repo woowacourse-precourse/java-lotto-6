@@ -53,15 +53,16 @@ public final class InvestMoney {
         return PurchasableLottoCount.from(lottoCount);
     }
 
-    public double calculateProfitPercentage(TotalWinningMoney winningMoney) {
-        BigDecimal divided = winningMoney.divide(money);
-        BigDecimal value = BigDecimal.valueOf(PERCENT_MULTIPLIER);
-        return divided.multiply(value)
-                .doubleValue();
+    public double calculateTotalProfitRate(TotalWinningMoney totalWinningMoney) {
+        BigDecimal dividedMoney = totalWinningMoney.divide(money);
+        BigDecimal percentMultiplier = BigDecimal.valueOf(PERCENT_MULTIPLIER);
+
+        BigDecimal totalProfitRate = multiply(dividedMoney, percentMultiplier);
+        return totalProfitRate.doubleValue();
     }
 
-    public int calculateLottoPurchaseCount(int lottoPrice) {
-        return money / lottoPrice;
+    private BigDecimal multiply(BigDecimal dividedMoney, BigDecimal percentMultiplier) {
+        return dividedMoney.multiply(percentMultiplier);
     }
 
     @Override

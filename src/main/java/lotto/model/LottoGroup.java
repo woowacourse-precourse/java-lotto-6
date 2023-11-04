@@ -26,7 +26,7 @@ public final class LottoGroup {
                 .toList();
     }
 
-    public TotalPrize summarizeTotalPrize(WinningCombination winningCombination) {
+    public TotalPrize calculateTotalPrizes(WinningCombination winningCombination) {
         Map<LottoPrize, Long> prizeSummary = purchasedLottos.stream()
                 .map(purchasedLotto -> purchasedLotto.determineLottoPrize(winningCombination))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));

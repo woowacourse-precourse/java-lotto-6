@@ -4,6 +4,7 @@ import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.InvestMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.dto.response.TotalProfitRateDto;
 import lotto.model.InvestMoney;
 import lotto.model.Lotto;
 import lotto.model.LottoGroup;
@@ -13,7 +14,7 @@ import lotto.model.LottoPrice;
 import lotto.model.NumberGenerator;
 import lotto.model.PurchasableLottoCount;
 import lotto.model.TotalPrize;
-import lotto.model.TotalProfit;
+import lotto.model.TotalProfitRate;
 import lotto.model.WinningCombination;
 import lotto.util.RetryUtil;
 import lotto.view.InputView;
@@ -36,12 +37,20 @@ public class LottoGameController {
         LottoGroup lottoGroup = RetryUtil.retryOnFail(this::createLottoGroup, investMoney);
         printLottoGroup(lottoGroup);
 
-        LottoMachine lottoMachine = createLottoMachine(lottoGroup);
-        TotalPrize totalPrize = lottoMachine.generatePrizeReport();
+        TotalPrize totalPrize = calculateTotalPrizes(lottoGroup);
         printTotalPrize(totalPrize);
+        printTotalProfitRate(totalPrize, investMoney);
+    }
 
-        TotalProfit totalProfit = totalPrize.calculateTotalProfit(investMoney);
-        outputView.printTotalProfit(totalProfit);
+    private void printTotalProfitRate(TotalPrize totalPrize, InvestMoney investMoney) {
+        TotalProfitRate totalProfitRate = totalPrize.calculateTotalProfitRate(investMoney);
+        TotalProfitRateDto totalProfitRateDto = TotalProfitRateDto.from(totalProfitRate);
+        outputView.printTotalProfit(totalProfitRateDto);
+    }
+
+    private TotalPrize calculateTotalPrizes(LottoGroup lottoGroup) {
+        LottoMachine lottoMachine = createLottoMachine(lottoGroup);
+        return lottoMachine.calculateTotalPrizes();
     }
 
     private LottoMachine createLottoMachine(LottoGroup lottoGroup) {

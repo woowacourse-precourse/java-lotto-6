@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public final class TotalPrize {
+    private static final long ZERO_COUNT_OF_MATCH = 0L;
     private final Map<LottoPrize, Long> prizeSummary;
 
     private TotalPrize(Map<LottoPrize, Long> prizeSummary) {
@@ -14,23 +15,27 @@ public final class TotalPrize {
         return new TotalPrize(prizeSummary);
     }
 
-    public TotalProfit calculateTotalProfit(InvestMoney investMoney) {
+    public TotalProfitRate calculateTotalProfitRate(InvestMoney investMoney) {
         long totalWinningMoney = calculateTotalWinningMoney();
         TotalWinningMoney winningMoney = TotalWinningMoney.from(totalWinningMoney);
-        double totalProfit = investMoney.calculateProfitPercentage(winningMoney);
+        double totalProfitRate = investMoney.calculateTotalProfitRate(winningMoney);
 
-        return TotalProfit.from(totalProfit);
+        return TotalProfitRate.from(totalProfitRate);
     }
 
     private long calculateTotalWinningMoney() {
         return prizeSummary.entrySet()
                 .stream()
-                .mapToLong(entry -> entry.getKey().calculateWinningMoney(entry.getValue()))
+                .mapToLong(entry -> {
+                    LottoPrize lottoPrize = entry.getKey();
+                    Long prizeCount = entry.getValue();
+                    return lottoPrize.calculatePrizeAmount(prizeCount);
+                })
                 .sum();
     }
 
     public long countMatchesForPrize(LottoPrize lottoPrize) {
-        return prizeSummary.getOrDefault(lottoPrize, 0L);
+        return prizeSummary.getOrDefault(lottoPrize, ZERO_COUNT_OF_MATCH);
     }
 
 }

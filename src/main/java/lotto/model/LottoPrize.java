@@ -10,6 +10,7 @@ public enum LottoPrize {
     SECOND_PRIZE(5, 30_000_000, true),
     FIRST_PRIZE(6, 2_000_000_000);
 
+    public static final int ZERO_AMOUNT = 0;
     private final int requiredMatchingNumbers;
     private final int prizeMoney;
     private final boolean requiresBonusNumber;
@@ -42,11 +43,11 @@ public enum LottoPrize {
                 .orElse(NOTHING);
     }
 
-    public long calculateWinningMoney(Long value) {
-        if (value == null) {
-            return 0;
+    public long calculatePrizeAmount(Long prizeCount) {
+        if (prizeCount == null) {
+            return ZERO_AMOUNT;
         }
-        return prizeMoney * value;
+        return prizeMoney * prizeCount;
     }
 
     public boolean isSecondPrize() {
@@ -63,10 +64,6 @@ public enum LottoPrize {
 
     public int getPrizeMoney() {
         return prizeMoney;
-    }
-
-    public boolean isRequiresBonusNumber() {
-        return requiresBonusNumber;
     }
 
 }

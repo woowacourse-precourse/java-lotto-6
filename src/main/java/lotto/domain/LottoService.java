@@ -29,7 +29,7 @@ public class LottoService {
             FORTH, 0,
             FIFTH, 0);
 
-    public void buyLottos(long price) {
+    public void buyLotteries(long price) {
         validate(price);
         long count = price / PRICE;
         for (long i = 0; i < count; i++) {

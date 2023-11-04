@@ -7,6 +7,7 @@ import lotto.validator.BasicValidator;
 
 public class InputView {
 
+    private static final String COMMA = ",";
     private final BasicValidator<String> moneyInputValidator;
     private final BasicValidator<String> bonusNumberInputValidator;
     private final BasicValidator<String> winningNumbersInputValidator;
@@ -30,7 +31,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         String input = Console.readLine();
         winningNumbersInputValidator.validate(input);
-        return Stream.of(input.split(","))
+        return Stream.of(input.split(COMMA))
                 .map(Integer::parseInt)
                 .toList();
     }

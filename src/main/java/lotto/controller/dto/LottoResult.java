@@ -2,7 +2,7 @@ package lotto.controller.dto;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.Number;
+import lotto.model.Number;
 
 public class LottoResult {
 

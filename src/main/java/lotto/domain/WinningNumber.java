@@ -28,7 +28,7 @@ public class WinningNumber {
 
     private void hasCorrectRange(List<Integer> winningNumber) {
         if (winningNumber.stream()
-                .anyMatch(num -> num < NUMBER_RANGE_MIN && num > NUMBER_RANGE_MAX)) {
+                .anyMatch(num -> num < NUMBER_RANGE_MIN || num > NUMBER_RANGE_MAX)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.INVALID_RANGE.format(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX) +
                     ErrorMessages.SUFFIX.getMessage());

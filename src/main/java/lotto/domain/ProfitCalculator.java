@@ -2,15 +2,16 @@ package lotto.domain;
 
 import lotto.constant.NumberConstants;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static lotto.constant.NumberConstants.*;
 
 public class ProfitCalculator {
-    private int totalSum;
 
+    private final Map<LottoRank, Integer> lottoResult = new EnumMap<>(LottoRank.class);
+
+    public ProfitCalculator() {
+    }
 
     public void calculate(List<Integer> prize) {
         List<Integer> price = new ArrayList<>(Arrays.asList(FIFTH_PRIZE_MONEY.getValue(),

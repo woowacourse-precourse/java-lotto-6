@@ -1,53 +1,39 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.NumberConstants;
 import lotto.validation.InputValidator;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.constant.NumberConstants.*;
 
 public class LottoMachine {
 
-    public int purchaseLotto() {
+    private final List<Lotto> lottoPapers = new ArrayList<>();
 
-        while (true) {
-            String input = InputView.PurchaseAmount();
-            if (InputValidator.isNumeric(input)) {
-                return Integer.parseInt(input);
-            }
-        }
+    public LottoMachine(int amount) {
+        createLotto(amount);
     }
 
-    public int calculateAmount(int amount) {
-
-        if (InputValidator.isCalculate(amount)) {
-            return amount / LOTTO_PRICE.getValue();
+    public void createLotto(int amount) {
+        for (int i = 0; i < amount; i++) {
+            List<Integer> randomSixNumbers = pickLottoNumber();
+            Collections.sort(randomSixNumbers);
+            lottoPapers.add(new Lotto(randomSixNumbers));
         }
-        return -1;
-    }
-
-    public Lotto createLotto() {
-
-        List<Integer> randomSixNumbers = pickLottoNumber();
-        return new Lotto(randomSixNumbers);
     }
 
     private static List<Integer> pickLottoNumber() {
-
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE.getValue(),
-                LOTTO_NUMBER_MAX_RANGE.getValue(),
-                WINNING_NUMBER_TOTAL.getValue());
+        return Randoms.pickUniqueNumbersInRange(NUMBER_RANGE_MIN,
+                NUMBER_RANGE_MAX,
+                WINNING_NUMBER);
     }
 
-    public List<Lotto> buyLotto(int totalLotto) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < totalLotto; i++) {
-            Lotto newLotto = createLotto();
-            lottoList.add(newLotto);
-        }
-        return lottoList;
+    public List<Lotto> getLottoPapers() {
+        return lottoPapers;
     }
 }

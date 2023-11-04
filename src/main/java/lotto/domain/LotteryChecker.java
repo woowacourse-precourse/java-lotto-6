@@ -5,60 +5,30 @@ import lotto.constant.NumberConstants;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.domain.LottoRank.NO_RANK;
 
 public class LotteryChecker {
 
+    private final LottoMachine lottoMachine;
 
-
-    private static void countSameNumber(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNum) {
-        for (Lotto lotto : lottoList) {
-            int count = (int) lotto.getNumbers().stream().filter(winningNumbers::contains).count();
-            hasBonusNum(lotto, bonusNum);
-            lotto.setMatchNumberCount(count);
-//            System.out.println("로또 번호 : " + lotto.getNumbers().toString());
-//            System.out.println("당첨 번호 : " + winningNumbers.toString());
-//            System.out.printf("당첨 번호와 일치하는 숫자 개수 = %d", count);
-//            System.out.println();
-        }
+    public LotteryChecker(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
     }
 
-    private static void hasBonusNum(Lotto lotto, int bonusNum) {
-        if (lotto.getNumbers().contains(bonusNum)) {
-            lotto.setMatchBonusCount(true);
-        }
+    public LottoRank calculateRank(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        List<Lotto> lottoPapers = lottoMachine.getLottoPapers();
+        List<LottoRank> ranks = lottoPapers.stream()
+                .map(lotto -> calculateMatchCount(lotto, winningNumber, bonusNumber))
+                .toList();
     }
 
-    public List<Integer> prizeCalculate(List<Lotto> lottoList) {
-        List<Integer> tong = new ArrayList<>();
-        int first = 0;
-        int second = 0;
-        int third = 0;
-        int forth = 0;
-        int fifth = 0;
-        for (Lotto lotto : lottoList) {
-            if (lotto.getPrize() == 1) {
-                first++;
-            }
-            if (lotto.getPrize() == 2) {
-                second++;
-            }
-            if (lotto.getPrize() == 3) {
-                third++;
-            }
-            if (lotto.getPrize() == 4) {
-                forth++;
-            }
-            if (lotto.getPrize() == 5) {
-                fifth++;
-            }
-        }
-        tong.add(first);
-        tong.add(second);
-        tong.add(third);
-        tong.add(forth);
-        tong.add(fifth);
-        return tong;
+    public LottoRank calculateMatchCount(Lotto lotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
+        List<Integer> winNum = winningNumber.getWinningNumber();
+        int matchCount = lotto.calculateMatchNumber(winNum);
+        return LottoRank.checkRank(matchCount,
+                lotto.getNumbers()
+                        .contains(bonusNumber.getBonusNumber()));
     }
 }

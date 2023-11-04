@@ -42,7 +42,7 @@
     - [x] 로또가 6자리가 아니라면 IllegalArgumentException을 발생시킨다.
 - LottoAmount: 로또 구매 금액을 추상화한 클래스
   - 유효성 검증
-    - [ ] 로또 금액이 1000원으로 나누어 떨어지지 않는다면, IllegalArgumentException을 발생시킨다.
+    - [x] 로또 금액이 1000원으로 나누어 떨어지지 않는다면, IllegalArgumentException을 발생시킨다.
 - LottoTickets: 구매한 로또들을 추상화한 클래스
   - [ ] 구매 횟수를 받아 로또를 생성한다.
   - [ ] 무작휘 번호를 생성하고 오름차순하여 반환한다.

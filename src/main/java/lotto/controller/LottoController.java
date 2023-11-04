@@ -1,9 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
+import lotto.domain.Lottos;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -15,6 +16,6 @@ public class LottoController {
 
     private void buyLotto(){
         Budget budget = Budget.from(InputView.getBudgetInput());
-        List<Lotto> lottos = lottoGenerator.generateMultipleLottoByBudget(budget);
+        Lottos lottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
     }
 }

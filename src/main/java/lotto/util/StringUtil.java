@@ -1,5 +1,8 @@
 package lotto.util;
 
+import static lotto.exception.ExceptionMessage.BLANK_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NO_INTEGER_EXCEPTION;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +13,7 @@ public class StringUtil {
             validateBlank(value);
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력해 주세요");
+            throw new IllegalArgumentException(NO_INTEGER_EXCEPTION.getMessage());
         }
     }
 
@@ -28,7 +31,7 @@ public class StringUtil {
 
     private static void validateBlank(String blank) {
         if (blank.isBlank()) {
-            throw new IllegalArgumentException("빈 값은 허용하지 않습니다");
+            throw new IllegalArgumentException(BLANK_EXCEPTION.getMessage());
         }
     }
 }

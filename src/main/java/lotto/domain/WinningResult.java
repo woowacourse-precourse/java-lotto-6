@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class WinningResult {
     private static final int PERCENTAGE = 100;
+    private static final int INIT_NUMBER = 0;
 
     private final Map<Rank, Integer> winningResult;
 
@@ -28,11 +29,12 @@ public class WinningResult {
     }
 
     public float calculateRate(Lottos lottos) {
-        int totalPrize = 0;
+        int totalPrize = INIT_NUMBER;
         for (Rank rank : winningResult.keySet()) {
             if (rank == Rank.BLANK) {
                 continue;
             }
+
             totalPrize += winningResult.get(rank) * rank.getPrize();
         }
 

@@ -1,14 +1,18 @@
-package lotto.domain;
+package lotto.domain.factory;
+
+import static lotto.exception.ExceptionMessage.MONEY_TEN_THOUSAND_UNIT_EXCEPTION;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 public class LottosFactory {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
     private static final int LOTTO_SIZE = 6;
-    private final int TEN_THOUSAND = 1000;
+    private static final int TEN_THOUSAND = 1000;
 
     public Lottos createLottos(int money) {
         List<Lotto> lottos = new ArrayList<>();
@@ -16,19 +20,23 @@ public class LottosFactory {
         int amount = toAmount(money);
 
         for (int i = 0; i < amount; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE)));
+            lottos.add(createLotto());
         }
 
         return new Lottos(lottos);
     }
 
-    public int toAmount(int money) {
+    private void validateTenThousandMultiple(int money) {
+        if (money == 0 || money % TEN_THOUSAND != 0) {
+            throw new IllegalArgumentException(MONEY_TEN_THOUSAND_UNIT_EXCEPTION.getMessage());
+        }
+    }
+
+    private int toAmount(int money) {
         return money / TEN_THOUSAND;
     }
 
-    private void validateTenThousandMultiple(int money) {
-        if (money == 0 || money % TEN_THOUSAND != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000의 배수여야 합니다");
-        }
+    private Lotto createLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE));
     }
 }

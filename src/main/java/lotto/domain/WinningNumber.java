@@ -1,9 +1,16 @@
 package lotto.domain;
 
+import static lotto.exception.ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_RANGE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.WINNING_NUMBER_DUPLICATE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.WINNING_NUMBER_SIZE_EXCEPTION;
+
 import java.util.List;
 
 public class WinningNumber {
     private static final int WINNING_NUMBER_SIZE = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
 
     private final List<Integer> winningNumber;
     private int bonusNumber;
@@ -25,7 +32,7 @@ public class WinningNumber {
 
     private void validateSize(List<Integer> winningNumber) {
         if (winningNumber.size() != WINNING_NUMBER_SIZE) {
-            throw new IllegalArgumentException("당첨 번호는 6개만 가능합니다");
+            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
 
@@ -33,13 +40,13 @@ public class WinningNumber {
         int noDuplicate = numbers.stream().distinct().toList().size();
 
         if (noDuplicate != numbers.size()) {
-            throw new IllegalArgumentException("당첨번호는 중복될 수 없습니다");
+            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
     private void validateRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("1~45 사이의 숫자만 가능합니다");
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }
 
@@ -55,7 +62,7 @@ public class WinningNumber {
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호에 이미 있는 수 입니다");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 

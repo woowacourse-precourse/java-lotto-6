@@ -5,32 +5,25 @@ import java.util.List;
 import lotto.util.StringUtil;
 
 public class InputView {
+    public static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    public static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public int inputAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public int inputMoney() {
+        System.out.println(INPUT_MONEY_MESSAGE);
         String amount = Console.readLine();
-        validateNullInput(amount);
         return StringUtil.parseInt(amount);
     }
 
     public List<Integer> inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         String winningNumber = Console.readLine();
-        validateNullInput(winningNumber);
         return StringUtil.parseComma(winningNumber);
     }
 
     public int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
-        validateNullInput(bonusNumber);
         return StringUtil.parseInt(bonusNumber);
     }
-
-    private void validateNullInput(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("null x");
-        }
-    }
-
 }

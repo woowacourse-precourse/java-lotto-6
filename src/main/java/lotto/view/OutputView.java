@@ -10,19 +10,19 @@ public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
     private static final String LOTTO_WINNING_STATICS_MESSAGE = "당첨 통계";
     private static final String LINE_SEPARATE = "---";
-    private static final String COUNT_MESSAGE = "%d개 일치";
-    private static final String PRIZE_MESSAGE = " (%s원) ";
-    private static final String BONUS_MESSAGE = ", 보너스 볼 일치";
-    private static final String WINNING_COUNT_MESSAGE = "- %d개";
+    private static final String WINNING_STATICS_MESSAGE = "%d개 일치 (%s원) - %d개";
+    private static final String SECOND_WINNING_STATICS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final DecimalFormat integerDecFormat = new DecimalFormat("###,###");
     private static final DecimalFormat floatDecFormat = new DecimalFormat("###,###.0");
 
     public static void printLottos(Lottos lottos) {
         System.out.println(lottos.getLottos().size() + LOTTO_AMOUNT_MESSAGE);
+
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.toString());
         }
+
         System.out.println();
     }
 
@@ -30,24 +30,33 @@ public class OutputView {
         System.out.println(LOTTO_WINNING_STATICS_MESSAGE);
         System.out.println(LINE_SEPARATE);
         for (Rank rank : Rank.values()) {
-            System.out.println(createWinningStaticsString(rank, winningResult));
+            System.out.println(formatWinningStaticsMessage(rank, winningResult));
         }
     }
 
-    private static String createWinningStaticsString(Rank rank, WinningResult winningResult) {
+    private static String formatWinningStaticsMessage(Rank rank, WinningResult winningResult) {
         if (rank == Rank.SECOND) {
-            return String.format(COUNT_MESSAGE, rank.getMatchCount()) + BONUS_MESSAGE
-                    + String.format(PRIZE_MESSAGE, integerDecFormat.format(rank.getPrize()))
-                    + String.format(WINNING_COUNT_MESSAGE, winningResult.getWinningCount(rank));
+            return String.format(SECOND_WINNING_STATICS_MESSAGE, rank.getMatchCount()
+                    , toIntegerFormat(rank.getPrize()), winningResult.getWinningCount(rank));
         }
 
-        return String.format(COUNT_MESSAGE, rank.getMatchCount())
-                + String.format(PRIZE_MESSAGE, integerDecFormat.format(rank.getPrize()))
-                + String.format(WINNING_COUNT_MESSAGE, winningResult.getWinningCount(rank));
+        return String.format(WINNING_STATICS_MESSAGE, rank.getMatchCount()
+                , toIntegerFormat(rank.getPrize()), winningResult.getWinningCount(rank));
+    }
+
+    private static String toIntegerFormat(int prize) {
+        return integerDecFormat.format(prize);
     }
 
     public static void printRate(float rate) {
-        String s = String.format(RATE_MESSAGE, floatDecFormat.format(rate));
-        System.out.println(s);
+        System.out.println(formatRate(rate));
+    }
+
+    private static String formatRate(float rate) {
+        return String.format(RATE_MESSAGE, toFloatFormat(rate));
+    }
+
+    private static String toFloatFormat(float rate) {
+        return floatDecFormat.format(rate);
     }
 }

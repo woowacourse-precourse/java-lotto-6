@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
-import lotto.domain.LottosFactory;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningResult;
+import lotto.domain.factory.LottosFactory;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,7 +27,7 @@ public class LottoController {
         LottosFactory lottosFactory = new LottosFactory();
         while (true) {
             try {
-                Lottos lottos = lottosFactory.createLottos(inputView.inputAmount());
+                Lottos lottos = lottosFactory.createLottos(inputView.inputMoney());
                 OutputView.printLottos(lottos);
                 return lottos;
             } catch (IllegalArgumentException e) {

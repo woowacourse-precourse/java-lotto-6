@@ -47,6 +47,8 @@
   - 문자열 리스트를 인수로 받아 각 요소가 정수인지 검사한다.
 
 ## 보너스 번호 입력 기능
+- [x] `LottoOutputView::printBonusInputRequest` 메서드
+  - 보너스 번호 입력 요청 메시지를 출력한다.
 - [x] `LottoInputView::getBonusNumber`
   - 보너스 번호를 입력받는다.
 - [x] `Application::validateBonusNumber` 메서드

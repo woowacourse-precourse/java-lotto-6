@@ -54,6 +54,12 @@ public class LottoOutputViewTest {
     }
 
     @Test
+    void printBonusInputRequest_테스트() {
+        outputView.printBonusInputRequest();
+        assertEquals("보너스 번호를 입력해 주세요.", capture.toString().trim());
+    }
+
+    @Test
     void printLottoResult_테스트() {
         outputView.printLottoResult(5, 4, 3, 2, 1);
         assertThat(capture.toString()).contains(

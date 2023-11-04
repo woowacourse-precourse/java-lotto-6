@@ -28,6 +28,10 @@ public class LottoOutputView {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    public void printBonusInputRequest() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public void printLottoResult(
             int matchingThree,
             int matchingFour,

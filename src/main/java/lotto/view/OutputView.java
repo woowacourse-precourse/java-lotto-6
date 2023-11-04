@@ -7,9 +7,11 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final StringBuilder stringBuilder = new StringBuilder();
+    private static final String AMOUNT_FORMAT = "###,###";
 
     public static void displayPurchaseGuide() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -20,9 +22,9 @@ public class OutputView {
     }
 
     public static void displayLottoNumbers(final List<Lotto> lottoList) {
-        for (Lotto lotto : lottoList) {
-            stringBuilder.append(lotto.getNumbers()).append("\n");
-        }
+        stringBuilder.append(lottoList.stream()
+                .map(lotto -> lotto.getNumbers() + "\n")
+                .collect(Collectors.joining()));
         System.out.println(stringBuilder);
         stringBuilder.setLength(0);
     }
@@ -41,7 +43,7 @@ public class OutputView {
 
     public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
         Map<LottoMatch, Integer> lottoMatchMap = new HashMap<>();
-        DecimalFormat df = new DecimalFormat("###,###");
+        DecimalFormat df = new DecimalFormat(AMOUNT_FORMAT);
 
         for (LottoMatch lottoMatch : lottoResultCount) {
             if (lottoMatchMap.containsKey(lottoMatch)) {

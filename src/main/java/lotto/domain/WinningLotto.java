@@ -12,4 +12,6 @@ public class WinningLotto {
     public void updateBonusNumber(Integer value) {
         this.bonusNumber = new BonusNumber(value);
     }
+
+    // lotto와 bonusNumber에 중복된 값이  있는지 확인
 }

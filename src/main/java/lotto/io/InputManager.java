@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.WinningLotto;
 
 public class InputManager {
@@ -21,5 +22,10 @@ public class InputManager {
     public WinningLotto readWinningLotto() {
         final String input = inputView.readWinningLottoNumber();
         return new WinningLotto(inputMapper.toWinningLotto(input));
+    }
+
+    public BonusNumber readBonusNumber() {
+        final String input = inputView.readBonusNumber();
+        return inputMapper.toBonusNumber(input);
     }
 }

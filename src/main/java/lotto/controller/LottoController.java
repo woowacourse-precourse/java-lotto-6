@@ -36,6 +36,11 @@ public class LottoController {
                 outputView.printExceptionMessage(e);
             }
         }
+        while (true) {
+            try {
+
+            }
+        }
     }
 
 

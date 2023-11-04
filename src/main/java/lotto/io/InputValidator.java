@@ -22,5 +22,4 @@ public class InputValidator {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_NULL.toValue());
         }
     }
-
 }

@@ -3,6 +3,7 @@ package lotto.io;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 
 public class InputMapper {
@@ -19,5 +20,9 @@ public class InputMapper {
                 .map(Integer::parseInt)
                 .toList();
         return new Lotto(numbers);
+    }
+
+    public BonusNumber toBonusNumber(final String input) {
+        return new BonusNumber(Integer.parseInt(input));
     }
 }

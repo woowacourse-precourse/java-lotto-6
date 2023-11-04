@@ -12,6 +12,7 @@ public class InputView {
 
     public String readPurchaseAmount() {
         final String input = Console.readLine();
+        inputValidator.validateNull(input);
         inputValidator.validateNumeric(input);
         return input;
     }
@@ -19,6 +20,13 @@ public class InputView {
     public String readWinningLottoNumber() {
         final String input = Console.readLine();
         inputValidator.validateNull(input);
+        return input;
+    }
+
+    public String readBonusNumber() {
+        final String input = Console.readLine();
+        inputValidator.validateNull(input);
+        inputValidator.validateNumeric(input);
         return input;
     }
 }

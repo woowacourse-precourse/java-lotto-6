@@ -5,8 +5,11 @@ import java.util.List;
 public class Lotto {
 
     private static final int NUMBERS_LENGTH = 6;
+    private static final int MAX_NUMBER = 45;
+    private static final int MIN_NUMBER = 1;
     private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String DUPLICATION_ERROR_MESSAGE = "[ERROR] 로또 번호에 중복된 숫자가 존재할 수 없습니다.";
+    private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 숫자만 가능합니다.";
 
     private final List<Integer> numbers;
 
@@ -18,6 +21,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateDuplicationInNumbers(numbers);
+        validateNumberRange(numbers);
     }
 
     private void validateNumbersSize(final List<Integer> numbers) {
@@ -36,6 +40,17 @@ public class Lotto {
         return NUMBERS_LENGTH != numbers.stream()
                 .distinct()
                 .count();
+    }
+
+    private void validateNumberRange(final List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(this::hasOutOfRangeNumber)) {
+            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+        }
+    }
+
+    private boolean hasOutOfRangeNumber(final int number) {
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
 }

@@ -3,6 +3,8 @@ package lotto.view;
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.util.Converter;
@@ -59,6 +61,18 @@ public class View {
         }
     }
 
+    public void showPlayerNumbers(final List<LottoDto> playerLotteries) {
+        outputView.printPlayerNumbers(playerLotteries);
+    }
+
+    public void showStatistics(final Map<LottoRank, Integer> result) {
+        outputView.printStatistics(result);
+    }
+
+    public void showRateOfProfit(final Map<LottoRank, Integer> result, final TicketQuantity ticketQuantity) {
+        outputView.printRateOfProfit(result, ticketQuantity);
+    }
+
     private void validateBonusNumberContainsWinningNumber(final List<Integer> winningNumbers,
                                                           final Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
@@ -66,7 +80,4 @@ public class View {
         }
     }
 
-    public void printPlayerNumbers(final List<LottoDto> playerLotteries) {
-        outputView.printPlayerNumbers(playerLotteries);
-    }
 }

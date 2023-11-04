@@ -59,9 +59,9 @@
 - [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
 
 # View
-- [ ] 로또 구입 금액 입력 - InputView
-- [ ] 당첨번호 입력 - InputView
-- [ ] 보너스 번호 입력 - InputView 
+- [x] 로또 구입 금액 입력 - InputView
+- [x] 당첨번호 입력 - InputView
+- [x] 보너스 번호 입력 - InputView 
 - [x] 로또 출력 - OutputView
 - [x] 당첨 내역 출력 - OutputView
 - [x] 수익률 출력 - OutputView

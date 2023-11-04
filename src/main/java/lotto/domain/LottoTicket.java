@@ -15,9 +15,11 @@ public class LottoTicket {
     private final List<Lotto> lottoTicket;
 
     public LottoTicket(int numberOfPurchase) {
-        this.lottoTicket = IntStream.range(ZERO, numberOfPurchase)
+        List<Lotto> lottoTicket = IntStream.range(ZERO, numberOfPurchase)
                 .mapToObj(i -> new Lotto(pickLottoNumber()))
-                .collect(toList());
+                .toList();
+
+        this.lottoTicket = List.copyOf(lottoTicket);
     }
 
     private List<Integer> pickLottoNumber() {
@@ -25,5 +27,14 @@ public class LottoTicket {
                 .stream()
                 .sorted()
                 .collect(toList());
+    }
+
+    public List<Lotto> getLottoTicket() {
+        return lottoTicket;
+    }
+
+    @Override
+    public String toString() {
+        return lottoTicket.toString();
     }
 }

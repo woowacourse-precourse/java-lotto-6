@@ -16,8 +16,10 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
-    private User buyLottoTicket() {
+    public User buyLottoTicket() {
         int buyAmount = inputView.inputBuyAmount();
-        return lottoService.buyLottoTicket(buyAmount);
+        User user = lottoService.buyLottoTicket(buyAmount);
+        outputView.printLottoTicket(user.getLottoTicket());
+        return user;
     }
 }

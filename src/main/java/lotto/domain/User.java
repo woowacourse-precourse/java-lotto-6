@@ -12,4 +12,8 @@ public class User {
     public void spendAllMoney() {
         money.zero();
     }
+
+    public LottoTicket getLottoTicket() {
+        return lottoTicket;
+    }
 }

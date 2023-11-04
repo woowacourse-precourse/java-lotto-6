@@ -7,7 +7,7 @@ public class WinningNumbers {
     private final LottoNumbers lottoNumbers;
     private final BonusNumber bonusNumber;
 
-    WinningNumbers(LottoNumbers lottoNumbers, BonusNumber bonusNumber) {
+    public WinningNumbers(LottoNumbers lottoNumbers, BonusNumber bonusNumber) {
         validateDuplicated(lottoNumbers, bonusNumber);
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;

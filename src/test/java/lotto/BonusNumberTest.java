@@ -33,4 +33,14 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 1보다 작거나 45보다 클 경우 예외가 발생한다.")
+    @Test
+    void createBonusNumberOutOfRange() {
+        assertThatThrownBy(() -> new BonusNumber("0", lotto))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new BonusNumber("46", lotto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

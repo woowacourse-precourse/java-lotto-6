@@ -7,15 +7,26 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDistinctNumbers(numbers);
-        validateNumbersRange(numbers);
+        validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    public boolean containsNumber(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getValue());
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDistinctNumbers(numbers);
+        validateNumbersRange(numbers);
+    }
+
+    public void validateBonusNumber(BonusNumber bonusNumber) {
+        if(numbers.contains(bonusNumber.getValue())) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateSize(List<Integer> numbers) {

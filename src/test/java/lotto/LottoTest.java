@@ -40,9 +40,9 @@ class LottoTest {
     @Test
     void validateBonusNumber() {
 
-        assertThat(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))
-                .containsNumber(new BonusNumber(6)))
-                .isEqualTo(true);
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1,2,3,4,5,6))
+                .validateBonusNumber(new BonusNumber(5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
     // 아래에 추가 테스트 작성 가능
 }

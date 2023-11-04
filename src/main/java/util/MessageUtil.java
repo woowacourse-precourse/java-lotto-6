@@ -21,8 +21,8 @@ public class MessageUtil {
     public void printPurchase(int purchaseAmount){
         System.out.printf(PURCHASE.getMessage(), purchaseAmount);
     }
-    public void printWinningStatistic(int purchaseAmount){
-        System.out.printf(WINNING_STATISTIC.getMessage(), purchaseAmount);
+    public void printWinningStatistic(){
+        System.out.printf(WINNING_STATISTIC.getMessage());
     }
     public void printWinningResult(int matchNum, int price, int num){
         DecimalFormat decimalFormat = new DecimalFormat(",%d");

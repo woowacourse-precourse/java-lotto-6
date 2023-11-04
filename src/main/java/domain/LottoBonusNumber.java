@@ -8,13 +8,12 @@ public class LottoBonusNumber {
     private final InputUtil inputUtil = new InputUtil();
     private final ValidationUtil validationUtil = new ValidationUtil();
     private final MessageUtil messageUtil = new MessageUtil();
-
+    private int bonusNumber;
     public LottoBonusNumber getLottoBonusNumInfo() {
         messageUtil.printBonusNum();
-        String bonusNumber = inputUtil.userInput();
-        int validBonusNumber = validationUtil.validBonusNumber(bonusNumber);
-//        System.out.println(validBonusNumber);
+        String bonusNum = inputUtil.userInput();
+        int validBonusNumber = validationUtil.validBonusNumber(bonusNum);
+        this.bonusNumber = validBonusNumber;
         return this;
     }
-
-    }
+}

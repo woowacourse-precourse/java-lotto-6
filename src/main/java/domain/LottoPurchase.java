@@ -14,6 +14,7 @@ public class LottoPurchase {
     private final MessageUtil messageUtil = new MessageUtil();
 
     private List<Lotto> lottos;
+    private int lottoAmount;
     public LottoPurchase getLottoPurchaseInfo(){
         List<Lotto> lottos = new ArrayList<>();
         int lottoPurchaseAmount = getPurchaseLottoAmount();
@@ -23,6 +24,7 @@ public class LottoPurchase {
             lottos.add(lotto);
         }
         this.lottos = lottos;
+        this.lottoAmount = lottoAmount;
         return this;
     }
 

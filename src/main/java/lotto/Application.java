@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -11,6 +13,9 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int money = getLottoPurchasePrice();
         System.out.println("\n" + money / 1000 + "개를 구매했습니다.");
+
+        //ArrayList<Lotto> lottos = makeLottery(money);
+        //printLottoNumbers(lottos);
     }
 
     public static int getLottoPurchasePrice() {

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+
 public class LottoController {
 
     public void buyLotteries(String stringPurchasePrice) {
@@ -21,7 +23,7 @@ public class LottoController {
 
     private void validatePurchasePriceType(String purchasePrice) {
         try {
-            Integer.valueOf("abc");
+            Integer.valueOf(purchasePrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("로또 금액은 숫자만 입력 가능합니다.");
         }

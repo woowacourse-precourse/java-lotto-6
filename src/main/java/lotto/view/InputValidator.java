@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstants;
-import lotto.model.Lotto;
 import lotto.utils.Parser;
 
+// InputView에서 모델의 도움 없이 스스로 할 수 있는 수준의 검증 실행
 public class InputValidator {
     // 구입 금액 입력 검증
     public void validateBudgetInput(String userInput) {
@@ -27,11 +27,10 @@ public class InputValidator {
     }
 
     // 보너스 번호 입력 검증
-    public void validateBonusNumberInput(Lotto winningLottoTicket, String userInput) {
+    public void validateBonusNumberInput(String userInput) {
         validateInteger(userInput);
         int bonusNumber = Integer.parseInt(userInput);
         validateNumberInRange(bonusNumber);
-        validateDuplication(winningLottoTicket, bonusNumber);
     }
 
     public void validateInteger(String userInput) {
@@ -74,12 +73,6 @@ public class InputValidator {
 
     public void validateDuplication(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
-        }
-    }
-
-    public void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
-        if (winningLottoTicket.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
         }
     }

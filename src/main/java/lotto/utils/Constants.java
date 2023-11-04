@@ -6,4 +6,6 @@ public class Constants {
     public static final int MAX_RANGE = 45;
     public static final int LOTTO_PRICE = 1000;
 
+    public static final int ZERO = 0;
+
 }

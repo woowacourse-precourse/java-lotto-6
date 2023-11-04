@@ -45,5 +45,11 @@ public class Controller {
         return lottos;
     }
 
+    private Lotto outputWinningStatistics() {
+        InputView inputView = new InputView();
+        String userInputLotto = inputView.inputWinningNumber();
+        return new Lotto(seperateComma.convert(userInputLotto));
+    }
+
 
 }

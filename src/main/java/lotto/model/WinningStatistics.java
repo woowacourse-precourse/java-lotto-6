@@ -25,15 +25,7 @@ public class WinningStatistics {
         calculateWinningStatistics();
         rateOfReturn = calculateRateOfReturn(lottoTicketsPurchased);
     }
-
-    public Map<LottoPrize, Integer> getPrizeCounter() {
-        return prizeCounter;
-    }
-
-    public double getRateOfReturn() {
-        return rateOfReturn;
-    }
-
+    
     private void calculateWinningStatistics() {
         for (Lotto lotto : lottoTicketsPurchased) {
             LottoPrize lottoPrize = winningLotto.compare(lotto);
@@ -58,5 +50,13 @@ public class WinningStatistics {
     private double calculateRateOfReturn(List<Lotto> lottoTicketsPurchased) {
         return calculateSumOfPrize() / (double) (lottoTicketsPurchased.size()
                 * LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET) * 100.0;
+    }
+
+    public Map<LottoPrize, Integer> getPrizeCounter() {
+        return prizeCounter;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
     }
 }

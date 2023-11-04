@@ -14,14 +14,6 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         this.numbers = numbers;
     }
 
-    public Integer get(int index) {
-        return numbers.get(index);
-    }
-
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
     public int getMatchedCount(Lotto lotto) {
         int count = 0;
         for (int i = 0; i < numbers.size(); i++) {
@@ -48,6 +40,14 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
         }
+    }
+
+    public Integer get(int index) {
+        return numbers.get(index);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     @Override

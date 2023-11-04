@@ -8,9 +8,9 @@ public record Money(int amount) {
     private static final int MAX_PURCHASE_AMOUNT = 100_000;
 
     public Money {
-        validateAmountMultipleOfThousand(amount);
         validateMinimumAmount(amount);
         validateMaximumAmount(amount);
+        validateAmountMultipleOfThousand(amount);
     }
 
     public Money(String amount) {

@@ -18,6 +18,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getSortedNumbers() {
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);

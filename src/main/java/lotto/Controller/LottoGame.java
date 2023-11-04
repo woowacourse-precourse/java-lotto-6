@@ -40,12 +40,20 @@ public class LottoGame {
                 Validator.validateNumberRange(bonusNumber);
                 List<Rank> resultRanks = user.findAllResult(lottoWinningNumbers, bonusNumber);
                 List<Integer> resultCount = user.countTotalResult(resultRanks);
-                List<Integer> resultPrize = user.findAllPrize(resultCount);
-                OutputView.printResult(resultCount, resultPrize);
+                int resultPrize = user.TotalPrize(resultCount);
+                OutputView.printResultHead();
+                transmitOutput(resultCount);
                 break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void transmitOutput(List<Integer> resultCount) {
+        Rank[] ranks = Rank.values();
+        for (int i = 1; i < resultCount.size(); i++) {
+            OutputView.printResult(ranks[i].getPrintString(), resultCount.get(i));
         }
     }
 

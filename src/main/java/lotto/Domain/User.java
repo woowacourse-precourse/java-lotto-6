@@ -46,10 +46,10 @@ public class User {
         return resultByBonusNumber;
     }
 
-    public List<Integer> findAllPrize(List<Integer> resultCount) {
-        List<Integer> resultPrizes = new ArrayList<>();
+    public int TotalPrize(List<Integer> resultCount) {
+        int resultPrizes = 0;
         for (Rank rank : Rank.values()) {
-            resultPrizes.add(resultCount.get(rank.ordinal()) * rank.getPrize());
+            resultPrizes += resultCount.get(rank.ordinal()) * rank.getPrize();
         }
         return resultPrizes;
     }
@@ -58,7 +58,6 @@ public class User {
         Integer[] arr = {0,0,0,0,0,0};
         List<Integer> resultCount = new ArrayList<>(Arrays.asList(arr));
         for (Rank rank : resultRanks) {
-            System.out.println(rank.ordinal() + " : " + (resultCount.get(rank.ordinal()) + 1));
             resultCount.set(rank.ordinal(), resultCount.get(rank.ordinal()) + 1);
         }
         return resultCount;

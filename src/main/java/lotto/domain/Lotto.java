@@ -42,4 +42,9 @@ public class Lotto {
         }
         return lottoTickets;
     }
+
+    @Override
+    public String toString() {
+        return "" + numbers;
+    }
 }

@@ -7,7 +7,8 @@ public class LottoController {
     // model과 view에 의존해도 된다(코드 존재 가능)
     public void play(){
         try {
-            int amount = purchaseService.getInputPurchase();
+            purchaseService.getInputPurchase();
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

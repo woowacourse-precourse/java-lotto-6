@@ -27,9 +27,8 @@ public class LottoValidator {
         List<Integer> convertedNumbers = numbers.stream()
             .map(Integer::parseInt)
             .toList();
-        validateSize(convertedNumbers);
-        validateDuplicate(convertedNumbers);
-        convertedNumbers.forEach(this::validateRange);
+
+        validateLottoNumbers(convertedNumbers);
     }
 
     public void validateBonusNumber(final List<Integer> numbers, final String inputBonusNumber) {
@@ -37,7 +36,17 @@ public class LottoValidator {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
         validateContain(numbers, bonusNumber);
-        validateRange(bonusNumber);
+        validateNumber(bonusNumber);
+    }
+
+    public void validateLottoNumbers(final List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        numbers.forEach(this::validateRange);
+    }
+
+    public void validateNumber(final int number) {
+        validateRange(number);
     }
 
     private void validateContain(final List<Integer> numbers, final int inputBonusNumber) {

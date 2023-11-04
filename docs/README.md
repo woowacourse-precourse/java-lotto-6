@@ -13,7 +13,6 @@
 
 ### 🔨 &nbsp;입력 기능
 🌟 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다. <br>
-🌟 Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 를 활용한다.
 <br>
 
 - ✅ 로또 구매 금액을 입력받는다.
@@ -44,7 +43,9 @@
 
 ---  
 ### 🛠️ &nbsp;핵심 기능
-- [ ] 컴퓨터는 1~45 사이의 서로 다른 랜덤한 수 6개를 생성한다.
+- ✅ 랜덤한 수 6개를 생성한다.
+  - ✅ Random 값은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 를 활용한다.
+- [ ] 컴퓨터는 컴퓨터는 1~45 사이의 서로 다른 랜덤한 수를 생성한다.
   - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 6개가 아니면 예외를 발생시킨다.   
 - [ ] 사용자가 입력한 금액/1000 만큼 로또를 생성한다.
   - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.

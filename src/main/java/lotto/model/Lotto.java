@@ -1,12 +1,13 @@
 package lotto.model;
 
+import static lotto.util.Constants.CONFIG_NUMBERS_SIZE;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int CONFIG_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
 

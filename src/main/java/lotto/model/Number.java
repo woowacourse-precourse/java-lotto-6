@@ -1,11 +1,11 @@
 package lotto.model;
 
+import static lotto.util.Constants.MAX_NUMBER_RANGE;
+import static lotto.util.Constants.MIN_NUMBER_RANGE;
+
 import java.util.Objects;
 
 public class Number {
-
-  private static final int MIN_NUMBER_RANGE = 1;
-  private static final int MAX_NUMBER_RANGE = 45;
 
   private int number;
 

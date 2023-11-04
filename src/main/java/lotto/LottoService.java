@@ -2,9 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoService {
     public Money changeStringToInt(String str) {
@@ -32,5 +34,12 @@ public class LottoService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45,6);
         Collections.sort(numbers);
         return numbers;
+    }
+
+    public static WinningNumber getWinningNumbers(String input){
+        WinningNumber winningNumber = new WinningNumber(Arrays.asList(input.split(",")).stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList()));
+        return winningNumber;
     }
 }

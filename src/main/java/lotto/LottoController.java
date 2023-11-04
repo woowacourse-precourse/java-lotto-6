@@ -20,16 +20,28 @@ public class LottoController {
         HashMap<Integer, Lotto> lotties = lottoService.makeLotto(count);
         outputView.printAmountOfLotto(count);
         outputView.printLotto(lotties);
+        WinningNumber winningNumber = requestWinningNumber();
     }
 
     public Money requestMoney(){
         try{
             outputView.printMoneyInputMessage();
-            Money money = lottoService.changeStringToInt(inputView.getMoney());
+            Money money = lottoService.changeStringToInt(inputView.getInput());
             return money;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return requestMoney();
+    }
+
+    public WinningNumber requestWinningNumber(){
+        try {
+            outputView.printWinningNumbersInputMessage();
+            WinningNumber winningNumber = lottoService.getWinningNumbers(inputView.getInput());
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return requestWinningNumber();
     }
 }

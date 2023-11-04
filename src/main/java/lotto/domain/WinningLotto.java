@@ -5,12 +5,12 @@ import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 
 public class WinningLotto{
-    private Lotto lotto;
+    private Lotto winningLotto;
     private LottoNumber bonusNumber;
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
         validateNumbersContainingBonusNumber(numbers, bonusNumber);
-        lotto = new Lotto(numbers);
+        winningLotto = new Lotto(numbers);
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
@@ -19,5 +19,13 @@ public class WinningLotto{
             throw new IllegalArgumentException(
                     ErrorMessage.WINNING_NUMBERS_CONTAINS_BONUS_NUMBER.getMessage());
         }
+    }
+
+    public int getSameNumber(Lotto lotto) {
+        return lotto.getSameCount(winningLotto);
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.hasBonusNumber(bonusNumber);
     }
 }

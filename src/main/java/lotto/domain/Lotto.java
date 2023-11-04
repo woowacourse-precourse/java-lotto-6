@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.StringJoiner;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
-import lotto.utils.LottoConstantValue;
 import lotto.utils.LottoConstant;
+import lotto.utils.LottoConstantValue;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -39,6 +39,17 @@ public class Lotto {
         if (numbers.size() != uniqueNumbersLength) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION.getMessage());
         }
+    }
+
+    public int getSameCount(Lotto winningLotto) {
+        // count가 반환할 수 있는 최대 값은 6이므로 int로 형변환해도 값의 손실이 없다.
+        return (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+    }
+
+    public boolean hasBonusNumber(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     @Override

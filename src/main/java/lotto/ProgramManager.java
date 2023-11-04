@@ -12,16 +12,19 @@ public class ProgramManager {
 	}
 
 	void startProgram() {
-
+		// 구매 금액 입력
 		int price = getPrice();
+
+		// 구매내역 출력
 		showAmount(price);
 		List<Lotto> lottoList = showBuyLotto(price);
 		Customer customer = new Customer(price, lottoList);
 
+		// 당첨 번호 입력
 		Lotto winningNumberLotto = getLottoNumber();
 		int bonusNumber = getBonusNumber();
 		LottoHost lottoHost = new LottoHost(winningNumberLotto, bonusNumber);
-		showResult();
+		showResult(lottoHost, customer);
 	}
 
 	int getPrice() {
@@ -65,7 +68,33 @@ public class ProgramManager {
 		return bonusNumber;
 	}
 
-	void showResult() {
+	void showResult(LottoHost lottoHost, Customer customer) {
+		// 결과 생성
+		List<Integer> resultList = compareLotte(lottoHost, customer);
+		// 결과 출력
+		outputView.printResult(resultList);
 
+		// 수익률 계산 출력
+		outputView.printRate(calcRate(resultList, customer));
+	}
+
+	List<Integer> compareLotte(LottoHost lottoHost, Customer customer) {
+		List<Integer> resultList = lottoHost.compareLottoNumber(customer.getLottoList());
+		return resultList;
+	}
+
+	double calcRate(List<Integer> resultList, Customer customer) {
+		int prizeMoney = calcPrizeMoney(resultList);
+		int buyMoney = customer.getPrice();
+
+		return ((double)prizeMoney / (double)buyMoney) * 100;
+	}
+
+	int calcPrizeMoney(List<Integer> resultList) {
+		return resultList.get(0)*5000
+			+ resultList.get(1)*50000
+			+ resultList.get(2)*1500000
+			+ resultList.get(3)*30000000
+			+ resultList.get(4)*2000000000;
 	}
 }

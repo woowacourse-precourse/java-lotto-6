@@ -31,5 +31,9 @@ public class Lotto {
         return output;
     }
 
+    List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
 }

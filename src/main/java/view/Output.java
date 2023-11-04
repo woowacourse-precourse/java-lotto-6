@@ -1,6 +1,9 @@
 package view;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.Lotto;
 
 public class Output {
@@ -10,8 +13,14 @@ public class Output {
         int lottoAmount = purchaseAmount / 1000;
         System.out.printf(PURCHASE_AMOUNT_MESSAGE + "%n", lottoAmount);
 
-        List<Lotto> lottoList = null; // 구현 예정
+        List<Lotto> lottoList = generateLottoNumbers(lottoAmount);
 
         return lottoList;
+    }
+
+    private static List<Lotto> generateLottoNumbers(int lottoAmount) {
+        return IntStream.range(0, lottoAmount)
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .collect(Collectors.toList());
     }
 }

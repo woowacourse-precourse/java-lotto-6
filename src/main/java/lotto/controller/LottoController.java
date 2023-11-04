@@ -7,6 +7,7 @@ import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -26,8 +27,8 @@ public class LottoController {
     public void startLotto() {
         buyLottos();
         announceUserLotto();
+        drawLotto();
     }
-
 
     private void buyLottos() {
         String input = inputView.getPurchasePrice();
@@ -40,5 +41,16 @@ public class LottoController {
                 .map(lotto -> new LottoDto(lotto.getNumbers()))
                 .toList();
         outputView.printUserLotto(lottoDtos);
+    }
+
+    private void drawLotto() {
+        String inputViewWinningNumbers = inputView.getWinningNumbers();
+        List<String> splitInput = Arrays.stream(inputViewWinningNumbers.split(",")).toList();
+        List<Integer> winningNumbers = inputValidator.validateNumbers(splitInput);
+
+        String inputBonusNumber = inputView.getBonusNumber();
+        int bonusNumber = inputValidator.validateNumber(inputBonusNumber);
+
+        answerLotto = new AnswerLotto(winningNumbers, bonusNumber);
     }
 }

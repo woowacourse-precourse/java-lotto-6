@@ -37,6 +37,26 @@ public class AmountValidatorTest {
     }
 
     @ParameterizedTest
+    @DisplayName("구입금액: 입력이 음수인 경우")
+    @ValueSource(strings = {"-5", "-9000"})
+    void whenInputIsNegative(String input) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> validator.validate(input)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("구입금액: 너무 큰 수가 들어왔을 경우")
+    @ValueSource(strings = {"100000000000000000000000000000000000"})
+    void whenInputIsTooBig(String input) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> validator.validate(input)
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("구입금액: 올바른 입력이 들어왔을 때")
     @ValueSource(strings = {"14000", "8000"})
     void whenInputIsValid(String input) {

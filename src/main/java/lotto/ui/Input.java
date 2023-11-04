@@ -28,4 +28,13 @@ public class Input {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
+
+    public int getBonusNumber() {
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
 }

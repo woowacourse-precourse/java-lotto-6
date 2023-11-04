@@ -6,13 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
-    enum LottoRank {
+    public enum LottoRank {
         FIRST(6, "2,000,000,000"),
         SECOND(5, "30,000,000"),
         THIRD(5, "1,500,000"),
         FOURTH(4, "50,000"),
-        FIFTH(3, "5,000"),
-        NONE(0, "0");
+        FIFTH(3, "5,000");
 
         private final int countOfMatch;
         private final String winningMoney;
@@ -74,10 +73,9 @@ public class Application {
     }
 
     public static int[] receiveWinningNumbers(String str) {
-        int[] winningNumbers = Arrays.stream(str.split(","))
+        return Arrays.stream(str.split(","))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        return winningNumbers;
     }
 
     public static HashMap<LottoRank, Integer> getMatchCountByRank(ArrayList<Lotto> lottos, int[] winningNumbers, int bonusNumber) {
@@ -91,12 +89,11 @@ public class Application {
     }
 
     public static int getEarnedMoney(HashMap<LottoRank, Integer> matchCountByRank) {
-        int earned = matchCountByRank.get(LottoRank.FIFTH) * Integer.parseInt(LottoRank.FIFTH.getWinningMoney().replace(",", ""))
+        return matchCountByRank.get(LottoRank.FIFTH) * Integer.parseInt(LottoRank.FIFTH.getWinningMoney().replace(",", ""))
                 + matchCountByRank.get(LottoRank.FOURTH) * Integer.parseInt(LottoRank.FOURTH.getWinningMoney().replace(",", ""))
                 + matchCountByRank.get(LottoRank.THIRD) * Integer.parseInt(LottoRank.THIRD.getWinningMoney().replace(",", ""))
                 + matchCountByRank.get(LottoRank.SECOND) * Integer.parseInt(LottoRank.SECOND.getWinningMoney().replace(",", ""))
                 + matchCountByRank.get(LottoRank.FIRST) * Integer.parseInt(LottoRank.FIRST.getWinningMoney().replace(",", ""));
-        return earned;
     }
 
     public static double getRevenueRate(int earned, int money) {

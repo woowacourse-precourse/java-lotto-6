@@ -6,16 +6,13 @@ import lotto.domain.Money;
 public class Input {
 
     private final String MESSAGE_INPUT_AMOUNT = "구입금액을 입력해 주세요.";
-    private final String MESSAGE_ONLY_NUMBER = "공백이 없는 숫자만 입력 가능합니다.";
 
-    public int getPurchaseAmount(){
-        try{
+    public int getPurchaseAmount() {
+        System.out.println(MESSAGE_INPUT_AMOUNT);
+        try {
             return Integer.parseInt(Console.readLine());
-        } catch (IllegalArgumentException e){
-            System.out.println(MESSAGE_ONLY_NUMBER);
-            return getPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
-
-
 }

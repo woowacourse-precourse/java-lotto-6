@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import lotto.domain.lotto.boxed.LottoNumber;
-import lotto.numbers.SizedNumbersGenerator;
+import numbers.SizedNumbersGenerator;
 
 /**
  * 임의의 6자리 번호를 가진 로또를 생성해주는 객체
@@ -12,6 +12,10 @@ public final class RandomLottoGenerator implements LottoGenerator {
      * 6자리 List<Integer> 생성기
      */
     private final SizedNumbersGenerator sizedNumbersGenerator;
+
+    public RandomLottoGenerator() {
+        this(null);
+    }
 
     /**
      * 외부에서 주입해주지 않을 경우, 생성기 디폴트 값은 1~45 사이의 6자리 숫자 리스트를 생성하도록 함

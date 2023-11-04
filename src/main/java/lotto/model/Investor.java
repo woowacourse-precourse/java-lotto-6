@@ -20,4 +20,12 @@ public class Investor {
     public List<Lotto> buyLottosFromShop(final Shop shop) {
         return shop.createLottosAsPaid(investMoney.getMoney());
     }
+
+    public void addProfitMoney(final int money) {
+        profitMoney.addMoney(money);
+    }
+
+    public double calculateProfitRate() {
+        return (double) profitMoney.getMoney() / investMoney.getMoney();
+    }
 }

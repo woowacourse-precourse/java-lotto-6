@@ -12,4 +12,5 @@ public interface OutputView {
     void askBonusNumber();
     void alertResult();
     void printEachPrize(final String condition, final int prize, final int count);
+    void printProfitRate(final double rate);
 }

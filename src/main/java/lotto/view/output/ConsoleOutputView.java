@@ -6,6 +6,7 @@ import java.util.List;
 public class ConsoleOutputView implements OutputView {
 
     private static final String LOTTO_DELIMITER = ", ";
+    private static final int RATE_PERCENT = 100;
 
     @Override
     public void askInvestMoney() {
@@ -47,5 +48,10 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printEachPrize(final String condition, final int prize, final int count) {
         System.out.println(condition + " (" + String.format("%,d", prize) + "원)" + " - " + count + "개");
+    }
+
+    @Override
+    public void printProfitRate(final double rate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", rate * RATE_PERCENT) + "%입니다.");
     }
 }

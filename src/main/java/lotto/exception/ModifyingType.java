@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public enum ModifyingType {
+    MONEY_NUMBER("구입 금액"),
     LOTTO_NUMBER("로또 번호"),
     BONUS_NUMBER("보너스 번호")
     ;

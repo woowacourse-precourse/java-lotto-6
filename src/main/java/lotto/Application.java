@@ -15,5 +15,6 @@ public class Application {
 
         String winningNumber = InputView.winningNumber();
         String bonusNumber = InputView.bonusNumber();
+        lottoController.matchWinningNumber(lottery, winningNumber, bonusNumber);
     }
 }

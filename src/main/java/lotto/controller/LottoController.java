@@ -37,6 +37,18 @@ public class LottoController {
         }
     }
 
+    public void matchWinningNumber(List<Lotto> lottery, String stringWinningNumber, String stringBonusNumber) {
+        validateWinningNumber(stringWinningNumber);
+        validateBonusNumber(stringBonusNumber);
+
+        Integer bonusNumber = Integer.valueOf(stringBonusNumber);
+        List<Integer> winningNumber = Arrays.stream(stringWinningNumber.split(",")).map(s -> Integer.valueOf(s))
+                .collect(Collectors.toList());
+        LottoService lottoService = new LottoService();
+        Map<Integer, Integer> resultCount = lottoService.matchLotteryWinningNumber(
+                lottery, winningNumber, bonusNumber);
+    }
+
     private void validateBonusNumber(String bonusNumber) {
         try {
             Integer.valueOf(bonusNumber);

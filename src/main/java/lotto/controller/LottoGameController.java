@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
@@ -25,11 +27,7 @@ public class LottoGameController {
         showPlayerLottoNumber(player);
 
         LottoGame lottoGame = initLottoGame(player);
-
-    }
-
-    private void showPlayerLottoNumber(Player player) {
-        view.printPlayerNumbers(LottoDto.toDto(player.getLotteries()));
+        showResult(ticketQuantity, lottoGame);
     }
 
     private TicketQuantity initTicketQuantity() {
@@ -53,5 +51,15 @@ public class LottoGameController {
 
     private BonusNumber initBonusNumber(List<Integer> winningNumbers) {
         return view.getBonusNumber(winningNumbers);
+    }
+
+    private void showPlayerLottoNumber(Player player) {
+        view.showPlayerNumbers(LottoDto.toDto(player.getLotteries()));
+    }
+    
+    private void showResult(TicketQuantity ticketQuantity, LottoGame lottoGame) {
+        Map<LottoRank, Integer> result = lottoGame.calculateScore();
+        view.showStatistics(result);
+        view.showRateOfProfit(result, ticketQuantity);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain.lottoresult;
 
+import java.util.List;
 import java.util.Map;
 import lotto.domain.dto.LottoResultsDto;
 
@@ -12,7 +13,11 @@ public class LottoResultsRepository {
         lottoPrizeMoney = new LottoPrizeMoney(0);
     }
 
-    public void saveLottoResult(LottoResult lottoResult) {
+    public void saveLottoResults(List<LottoResult> lottoResults) {
+        lottoResults.forEach(this::saveLottoResult);
+    }
+
+    void saveLottoResult(LottoResult lottoResult) {
         if (lottoResult.isNone()) {
             return;
         }

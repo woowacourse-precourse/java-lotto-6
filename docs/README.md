@@ -43,7 +43,7 @@
 - [x] 로또 당첨 결과를 통해 당첨 내역 DTO 로 변환 - LottoResultRepository
 - [x] 로또 당첨 결과를 통해 총 상금 업데이트 - LottoPrizeMoney
 - [x] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 업데이트하기 - LottoResultRepository
-
+- [x] 로또 결과 리스트를 받아 결과 업데이트 하기 - LottoResultsRepository
 - ### Service
 - [ ] Player 가 로또를 구매해 저장함 - LottoService
 - [ ] Player 와 LottoBundle 를 통해 수익률 계산 - LottoService

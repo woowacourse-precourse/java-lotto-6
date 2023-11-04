@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.BonusNumber;
+import Model.Enum.Prize;
 import Model.Lotto;
 import Model.PurchaseAmount;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -12,8 +13,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
-    private Integer lottoAmount;
-    private List<Lotto> myLottoNumbers = new ArrayList<>();
+    private Integer lottoAmount = 0;
+    private List<Lotto> myLottoNumbers;
     private Lotto winningLottoNumbers;
     private BonusNumber winningBonusNumber;
     private List<Integer> matchingCounts;
@@ -34,9 +35,11 @@ public class LottoController {
 
     public void calculateGameResult() {
         calculateMatchingNumbers();
+        calculateRateOfReturn();
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {
+        myLottoNumbers = new ArrayList<>();
         List<Integer> numbers;
         for (int i = 1; i <= lottoAmount; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -66,6 +69,27 @@ public class LottoController {
             index += 1;
         }
         return indexes.get(index);
+    }
+
+    public void calculateRateOfReturn() {
+        int prize = calculatePrize(matchingCounts);
+    }
+
+    public int calculatePrize(List<Integer> matchingCounts) {
+        int lottoReward;
+        List<Prize> rewards = List.of(
+                Prize.FIFTH_PRIZE,
+                Prize.FOURTH_PRIZE,
+                Prize.THIRD_PRIZE,
+                Prize.SECOND_PRIZE,
+                Prize.FIRST_PRIZE
+        );
+        lottoReward = 0;
+        for (int i = 0; i < 5; i++) {
+            Prize prize = rewards.get(i);
+            lottoReward += matchingCounts.get(i) * prize.get();
+        }
+        return lottoReward;
     }
 
     public List<Lotto> getLottoNumbers() {

@@ -32,4 +32,15 @@ public class LottoControllerTest {
 
         assertThat(lottoNumbers).hasSize(expectedLottoAmount);
     }
+
+    @DisplayName("상금 계산")
+    @Test
+    void calculatePrize() {
+        List<Integer> matchingCounts = List.of(1, 2, 3, 1, 1);
+
+        int actualPrize = lottoController.calculatePrize(matchingCounts);
+        int expectedPrize = 2034605000;
+
+        assertThat(actualPrize).isEqualTo(expectedPrize);
+    }
 }

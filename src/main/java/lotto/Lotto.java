@@ -36,6 +36,7 @@ public class Lotto {
         try {
             return Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
+                    .sorted()
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_ABLE_TO_PARSE_INT_MESSAGE.getMessage());

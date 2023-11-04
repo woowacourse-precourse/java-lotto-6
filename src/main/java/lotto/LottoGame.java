@@ -9,6 +9,7 @@ import static lotto.message.LottoGameAnnouncement.COUNT_OF_LOTTO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.assertj.core.util.VisibleForTesting;
 
@@ -33,6 +34,7 @@ public class LottoGame {
         while(count-- > 0) {
             List<Integer> numbers =
                     Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_SIZE);
+            Collections.sort(numbers);
             Lotto lottoNumber = new Lotto(numbers);
             lottoNumbers.add(lottoNumber);
         }

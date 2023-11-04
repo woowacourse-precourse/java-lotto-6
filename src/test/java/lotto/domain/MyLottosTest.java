@@ -12,12 +12,9 @@ class MyLottosTest {
 
     @Order(3)
     @ParameterizedTest
-    @ValueSource(ints = {10,
-            5,
-            3})
+    @ValueSource(ints = {10, 5, 3})
     void 구입금액만큼_로또_생성_확인(int amount) {
-        MyLottos myLottos = new MyLottos();
-        myLottos.responseCreateMyLottos(amount);
+        MyLottos myLottos = new MyLottos(amount);
 
         assertThat(myLottos.getLottos().size()).isEqualTo(amount);
     }

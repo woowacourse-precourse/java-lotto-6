@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.domain.Lotto;
+import lotto.util.LottoUtils;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,7 +19,7 @@ public class LottoValidatorTest {
             "3500"})
     void 로또_구매할_금액_테스트(String amount) {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.amountInputValidator(amount)
+                LottoValidator.inputAmountRangeValidator(amount)
         );
     }
 
@@ -30,28 +30,31 @@ public class LottoValidatorTest {
             "4000z"})
     void 로또_구매할_금액_숫자_테스트(String amount) {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.amountInputValidator(amount)
+                LottoValidator.inputOnlyNumberValidator(amount)
         );
     }
+
 
     @Order(3)
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,4,5",
             "50,1,2,3,4,60",
             "10,2,3,4,5,46"})
-    void 당첨_로또_번호_범위_테스트(String lotto) {
+    void 당첨_로또_번호_범위_테스트(String lottoNumber) {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.amountInputValidator(lotto)
+                LottoValidator.inputLottoRangeValidator(LottoUtils.convertInputToLotto(lottoNumber))
         );
     }
+
     @Order(3)
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6,7",
             "10,2,4,5,6,7,8,9",
             "10"})
-    void 당첨_로또_번호_갯수_테스트(String lotto) {
+    void 당첨_로또_번호_갯수_테스트(String lottoNumber) {
+
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.winningLottoValidator(lotto)
+                LottoValidator.inputLottoSizeValidator(LottoUtils.convertInputToLotto(lottoNumber))
         );
     }
 
@@ -60,24 +63,24 @@ public class LottoValidatorTest {
     @ValueSource(strings = {"1,2,3,4,f,5",
             "a,b,c,d,e,f",
             "a,1,2,f,4,b"})
-    void 당첨_로또_번호_숫자_테스트(String amount) {
+    void 당첨_로또_번호_숫자_테스트(String lottoNumber) {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.amountInputValidator(amount)
+                LottoValidator.inputOnlyNumberValidator(lottoNumber)
         );
     }
 
     @Order(3)
     @ParameterizedTest
-    @ValueSource(strings = {"0",
-            "46",
-            "110"})
-    void 당첨_보너스_범위_테스트(String amount) {
-        List<Integer> lotto = new ArrayList<>();
+    @ValueSource(ints = {0,
+            46,
+            110})
+    void 당첨_보너스_범위_테스트(int bonusNumber) {
 
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.inputWinningBonusValidator(lotto,amount)
+                LottoValidator.lottoNumberRangeValidator(bonusNumber)
         );
     }
+
     @Order(3)
     @ParameterizedTest
     @ValueSource(strings = {"a",
@@ -86,19 +89,20 @@ public class LottoValidatorTest {
     void 당첨_보너스_숫자_테스트(String bonus) {
         List<Integer> lotto = new ArrayList<>();
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.inputWinningBonusValidator(lotto, bonus)
+                LottoValidator.inputWinningBonusValidator(bonus)
         );
     }
+
     @Order(3)
     @ParameterizedTest
-    @ValueSource(strings = {"1",
-            "2",
-            "3"})
-    void 당첨_보너스_로또_중복_테스트(String bonus) {
-        List<Integer> lotto = Arrays.asList(1,2,3,4,5,6);
+    @ValueSource(ints = {1,
+            2,
+            3})
+    void 당첨_보너스_로또_중복_테스트(int bonus) {
+        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.inputWinningBonusValidator(lotto ,bonus)
+                LottoValidator.inputWinningBonusDuplicationLottoValidator(lotto, bonus)
         );
     }
 }

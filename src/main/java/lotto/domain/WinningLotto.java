@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import lotto.util.LottoUtils;
 
 public class WinningLotto {
     private Lotto lotto;
@@ -16,19 +14,13 @@ public class WinningLotto {
     public Lotto getLotto() {
         return lotto;
     }
-    public Integer getBonus(){
+
+    public Integer getBonus() {
         return bonus;
     }
 
-    public Lotto convertWinningLotto(String lottoStr) {
-        List<Integer> lotto = new ArrayList<Integer>();
-
-        String[] splitStr = lottoStr.split(",");
-
-        Arrays.stream(splitStr).forEach(
-                l -> lotto.add(Integer.parseInt(l))
-        );
-        return new Lotto(lotto);
+    public Lotto convertWinningLotto(String inputWinningLotto) {
+        return new Lotto(LottoUtils.convertInputToLotto(inputWinningLotto));
     }
 
     public Integer convertWinningBonus(String bonus) {
@@ -36,14 +28,9 @@ public class WinningLotto {
     }
 
 
-    public RankingLotto matchLotto(Lotto myLotto){
-        int matchCount = myLotto.countMatch(this.getLotto());
-        boolean bonus = myLotto.containMatch(this.getBonus());
-
-        return RankingLotto.matchRank(matchCount, bonus);
+    public RankingLotto matchLotto(Lotto myLotto) {
+        return RankingLotto.matchRank(myLotto.countMatch(this.getLotto()),  myLotto.containMatch(this.getBonus()));
     }
-
-
 
 
 }

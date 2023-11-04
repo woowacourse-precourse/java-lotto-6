@@ -25,17 +25,17 @@ public class Lotto {
         return numbers;
     }
 
-    public static Lotto createLotto(){
+    public static Lotto createLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    public Integer countMatch(Lotto lotto){
+    public Integer countMatch(Lotto lotto) {
         return (int) numbers.stream()
                 .filter(l -> lotto.containMatch(l))
                 .count();
     }
 
-    public boolean containMatch(int number){
+    public boolean containMatch(int number) {
         return numbers.contains(number);
     }
 

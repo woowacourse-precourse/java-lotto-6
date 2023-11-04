@@ -12,7 +12,7 @@ public class Validator {
         }
     }
 
-    public static void checkRemainder(Integer userInput) {
+    public static void checkThousands(Integer userInput) {
         if ((userInput % 1000) != 0) {
             throw new IllegalArgumentException("[ERROR] 1000단위의 숫자를 입력해주세요.");
         }

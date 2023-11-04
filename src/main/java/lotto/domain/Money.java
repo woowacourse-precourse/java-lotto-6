@@ -16,7 +16,7 @@ public class Money {
         Validator.checkPositiveNumber(money);
         Validator.checkZero(userInput);
 
-        Validator.checkRemainder(money);
+        Validator.checkThousands(money);
     }
 
     public Integer countThousand() {

@@ -2,7 +2,6 @@ package domain;
 
 import constant.Rank;
 import java.util.List;
-import java.util.stream.Collectors;
 import validator.LottoValidator;
 
 public class Lotto {
@@ -27,7 +26,7 @@ public class Lotto {
     public void printNumbers() {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
         System.out.println(sortedNumbers);
     }
 

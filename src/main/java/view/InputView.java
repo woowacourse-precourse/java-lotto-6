@@ -19,8 +19,6 @@ public class InputView {
     public static String winningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         return Console.readLine();
-
-        // System.out.println();
     }
 
     public static String bonusNumber() {

@@ -7,6 +7,7 @@ import domain.Lotto;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import validator.LottoValidator;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -35,17 +36,9 @@ class LottoTest {
     @DisplayName("로또 번호에 숫자가 아닌 문자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByCharInput() {
-//        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, "+"));
-//        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, +)))
-//                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또 번호에 정수가 아닌 실수가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoByFloatInput() {
-//        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 6.5));
-//        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6.5)))
-//                .isInstanceOf(IllegalArgumentException.class);
+        String numbers = "1,2,3,4,5,+";
+        assertThatThrownBy(() -> new Lotto(LottoValidator.isNumeric(numbers)))
+                .isInstanceOf(NumberFormatException.class);
     }
 
     @DisplayName("로또 번호의 숫자 중 범위 초과 숫자가 있으면 예외가 발생한다.")

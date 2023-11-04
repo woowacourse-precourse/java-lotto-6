@@ -14,8 +14,8 @@ public class BonusNumberTest {
     @Test
     void createBonusByNonNumeric() {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThatThrownBy(() -> new BonusNumber(winningNumbers, "t"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new BonusNumber(winningNumbers, "wow"))
+                .isInstanceOf(NumberFormatException.class);
     }
 
     @DisplayName("보너스 번호가 범위 초과인 경우 예외가 발생한다.")

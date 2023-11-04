@@ -22,10 +22,9 @@ public class LottoValidator {
     public static List<Integer> isNumeric(String numbers) {
         try {
             String userInputNumbers = numbers.replace(" ", "");
-            List<Integer> winningNumbers = Arrays.stream(userInputNumbers.split(DELIMITER.getMessage()))
+            return Arrays.stream(userInputNumbers.split(DELIMITER.getMessage()))
                     .map(Integer::parseInt)
                     .toList();
-            return winningNumbers;
         } catch (Exception e) {
             throw new NumberFormatException(
                     ERROR_MESSAGE.getMessage() + INPUT_STRING.getMessage()

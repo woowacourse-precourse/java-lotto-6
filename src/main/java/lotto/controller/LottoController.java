@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.application.LottoService;
 import lotto.application.LottoStatistics;
@@ -22,42 +21,63 @@ public class LottoController {
     }
 
     public void run() {
-
-        int purchaseAmountInput = ParserUtil.parseLottoNumber(inputView.inputPurchaseAmount());
-        validatePurchaseAmountInput(purchaseAmountInput);
-
-        lottoService.purchaseLottoTickets(purchaseAmountInput);
+        int purchaseAmount = getValidatedInput(this::inputValidatePurchaseAmount);
+        lottoService.purchaseLottoTickets(purchaseAmount);
         outputView.printLottos(lottoService.getLottoDtos());
 
-        List<Integer> winningNumbersInput = ParserUtil.parseWinningNumbers(inputView.inputWinningNumbers());
-        validateWinningNumbers(winningNumbersInput);
+        List<Integer> winningNumbers = getValidatedInput(this::inputValidateWinningNumbers);
+        int bonusNumber = getValidatedInput(() -> inputValidateBonusNumber(winningNumbers));
 
-        int bonusNumberInput = ParserUtil.parseLottoNumber(inputView.inputBonusNumber());
-        validateBonusNumber(winningNumbersInput, bonusNumberInput);
-
-        lottoService.processWinningNumbers(winningNumbersInput, bonusNumberInput);
+        lottoService.processWinningNumbers(winningNumbers, bonusNumber);
         outputView.printPrizeResults(lottoService.getPrizeCount());
 
-        LottoStatistics statistics = new LottoStatistics(lottoService.getLottoResult(), purchaseAmountInput);
+        LottoStatistics statistics = new LottoStatistics(lottoService.getLottoResult(), purchaseAmount);
         outputView.printEarningsRate(statistics.calculateEarningsRate());
-
-        Console.close();
-
     }
 
-    private void validatePurchaseAmountInput(int input) {
-        ValidationUtil.validateNonNegative(input);
-        ValidationUtil.validateThousandUnit(input);
+    private <T> T getValidatedInput(InputSupplier<T> input) {
+        while (true) {
+            try {
+                return input.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printError();
+            }
+        }
+    }
+    private void validateBasicInput(String input) {
+        ValidationUtil.validateBlank(input);
+        ValidationUtil.validateSpecialCharacters(input);
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
+    private int inputValidatePurchaseAmount() {
+        String purchaseAmountInput = inputView.inputPurchaseAmount();
+        validateBasicInput(purchaseAmountInput);
+        int purchaseAmount = ParserUtil.parseLottoNumber(purchaseAmountInput);
+        ValidationUtil.validateThousandUnit(purchaseAmount);
+        return purchaseAmount;
+    }
+
+    private List<Integer> inputValidateWinningNumbers() {
+        String winningNumbersInput = inputView.inputWinningNumbers();
+        validateBasicInput(winningNumbersInput);
+        List<Integer> winningNumbers = ParserUtil.parseWinningNumbers(winningNumbersInput);
         ValidationUtil.validateCorrectNumbersCount(winningNumbers);
         ValidationUtil.validateNoDuplicates(winningNumbers);
         ValidationUtil.validateNumberRange(winningNumbers);
+        return winningNumbers;
     }
 
-    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private int inputValidateBonusNumber(List<Integer> winningNumbers) {
+        String bonusNumberInput = inputView.inputBonusNumber();
+        validateBasicInput(bonusNumberInput);
+        int bonusNumber = ParserUtil.parseLottoNumber(bonusNumberInput);
         ValidationUtil.validateBonusNumber(bonusNumber);
-        ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
+        ValidationUtil.validateBonusNumberNotInWinningNumbers(bonusNumber,winningNumbers);
+        return bonusNumber;
+    }
+
+    @FunctionalInterface
+    interface InputSupplier<T> {
+        T get() throws IllegalArgumentException;
     }
 }

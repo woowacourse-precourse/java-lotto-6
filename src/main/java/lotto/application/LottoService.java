@@ -29,7 +29,6 @@ public class LottoService {
 
     //입력검증으로 들어오기에 검증할 필요없음
     public void purchaseLottoTickets(int purchaseAmount) {
-        // 로또 구입 금액에 따라 로또 티켓을 생성한다
         int numberOfLottos = purchaseAmount / LOTTO_PRICE.getNumber();
         lottos.addAll(
                 IntStream.range(ZERO.getNumber(), numberOfLottos)
@@ -39,11 +38,9 @@ public class LottoService {
     }
 
     public void processWinningNumbers(List<Integer> winningNumbersInput, int bonusNumber) {
-        // 당첨 결과 계산
         this.winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
         this.lottoResult = new LottoResult();
         lottoResult.calculateResults(getLottoDtos(), winningNumbers.toDto());
-        //계산완료
     }
 
     public List<LottoDto> getLottoDtos() {

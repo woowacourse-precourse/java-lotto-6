@@ -1,6 +1,7 @@
 package lotto.ui;
 
 
+import static lotto.contents.ContentErrors.OUTPUT_ERROR;
 import static lotto.contents.ContentNumbers.ZERO;
 import static lotto.contents.ContentStrings.OUTPUT_DASH;
 import static lotto.contents.ContentStrings.OUTPUT_PURCHASED_LOTTO;
@@ -48,5 +49,9 @@ public class OutputView {
         System.out.println(OUTPUT_RATE_PREFIX.getValue() +
                 String.format(PERCENTAGE_FORMAT.getValue(), earningsRate) +
                 OUTPUT_RATE_SUFFIX.getValue());
+    }
+
+    public static void printError(){
+        System.out.println(OUTPUT_ERROR.getErrorMessage());
     }
 }

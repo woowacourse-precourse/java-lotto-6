@@ -63,11 +63,10 @@ public class ValidationUtil {
 
     // 입력된 문자열이 숫자와 쉼표로만 이루어져 있는지 검사합니다.
     public static void validateSpecialCharacters(String input) {
-        if (!input.matches("^\\d+(,\\d+){5}$")) {
+        if (!input.matches("^\\d+(,\\d+)*$")) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getErrorMessage());
         }
     }
-
     // 보너스 번호가 1~45 범위에 있는지 검사합니다.
     public static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < LOTTO_MIN_NUMBER.getNumber() || bonusNumber > LOTTO_MAX_NUMBER.getNumber()) {

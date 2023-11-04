@@ -10,7 +10,9 @@ public enum ContentErrors {
     INVALID_BONUS_NUMBER("[ERROR] 보너스 번호가 올바르지 않습니다."),
     INVALID_WINNING_NUMBERS("[ERROR] 당첨 번호가 올바르지 않습니다."),
     BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    BLANK_SPACE_IN_INPUT("[ERROR] 입력 값에 공백이 포함될 수 없습니다.");
+    BLANK_SPACE_IN_INPUT("[ERROR] 입력 값에 공백이 포함될 수 없습니다."),
+    OUTPUT_ERROR("[ERROR] 유효하지 않은 입력값 입니다.");
+
 
     private final String errorMessage;
 

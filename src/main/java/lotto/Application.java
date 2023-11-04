@@ -7,5 +7,6 @@ public class Application {
         doLotto.purchaseLotto();
         doLotto.makeRandomLottoNumbers();
         doLotto.makeWinningNumber();
+        doLotto.makeBonusNumber();
     }
 }

@@ -1,7 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
 import lotto.validation.InputValidation;
 
 public class InputValue {
@@ -18,5 +17,18 @@ public class InputValue {
             printUtil.printPurchaseAmountInput();
             return getPurchaseAmountInput();
         }
+    }
+
+    public String getWinnerNumbersInput() {
+        try {
+            String userInput = Console.readLine();
+            inputValidation.validateInputIsNull(userInput);
+            return userInput;
+        } catch (NullPointerException nullPointerException) {
+            System.out.println(nullPointerException.getMessage());
+            printUtil.printWinnerNumbersInput();
+            return getWinnerNumbersInput();
+        }
+
     }
 }

@@ -34,4 +34,13 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"/", ".", ",", "$", "#"})
+    @DisplayName("특수문자 입력값은 예외가 발생한다.")
+    void validateInteger_special_character_exceptionThrown(String strings) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

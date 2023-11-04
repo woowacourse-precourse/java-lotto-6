@@ -5,8 +5,9 @@ import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoController {
     public void run() {
@@ -24,7 +25,7 @@ public class LottoController {
         OutputView.displayBonusNumberGuide();
         final BonusNumber bonusNumber = inputBonusNumber();
 
-        final List<LottoMatch> lottoResultCount = compareWinningNumbers(amount.getAmount() / 1000, lottoList, winningLotto, bonusNumber);
+        final List<LottoMatch> lottoResultCount = compareWinningNumbers(lottoList, winningLotto, bonusNumber);
         final int winningAmount = calculateWinnings(lottoResultCount);
 
         OutputView.displayWinningStatisticsGuide();
@@ -50,20 +51,16 @@ public class LottoController {
     }
 
     private List<Lotto> buyLotto(int lottoCount) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        return lottoList;
+        return IntStream.range(0, lottoCount)
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .collect(Collectors.toList());
     }
 
     private WinningLotto inputWinningNumbers() {
-        List<String> winningNumbers;
         WinningLotto winningLotto;
         while (true) {
             try {
-                winningNumbers = InputView.inputWinningNumbers();
-                winningLotto = new WinningLotto(winningNumbers);
+                winningLotto = new WinningLotto(InputView.inputWinningNumbers());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -85,30 +82,23 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private List<LottoMatch> compareWinningNumbers(int lottoCount, List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        List<LottoMatch> lottoMatches = new ArrayList<>();
-
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = lottoList.get(i).getNumbers();
-            int count = 0;
-            for (int k = 0; k < 6; k++) {
-                if (winningLotto.getNumbers().contains(lottoNumbers.get(k))) {
-                    count++;
-                }
-            }
-            lottoMatches.add(LottoMatch.collect(count, lottoNumbers.contains(bonusNumber.getBonusNumber())));
-        }
-        return lottoMatches;
+    private List<LottoMatch> compareWinningNumbers(List<Lotto> lottoList, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        return lottoList.stream()
+                .map(Lotto::getNumbers)
+                .map(lottoNumbers -> {
+                    long count = lottoNumbers.stream()
+                            .filter(winningLotto.getNumbers()::contains)
+                            .count();
+                    boolean hasBonusNumber = lottoNumbers.contains(bonusNumber.getBonusNumber());
+                    return LottoMatch.collect((int) count, hasBonusNumber);
+                })
+                .collect(Collectors.toList());
     }
 
     private int calculateWinnings(List<LottoMatch> lottoResultCount) {
-        int winningAmount = 0;
-
-        for (LottoMatch lottoMatch : lottoResultCount) {
-            winningAmount += lottoMatch.getAmount();
-        }
-
-        return winningAmount;
+        return lottoResultCount.stream()
+                .mapToInt(LottoMatch::getAmount)
+                .sum();
     }
 
     private Double calculateYield(int winningAmount, Double amount) {

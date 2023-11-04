@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.Money;
+import lotto.model.WinningLotto;
 import lotto.util.RandomLottoGenerator;
 import lotto.view.Input;
 
@@ -10,7 +12,7 @@ public class LottoController {
     public void start() {
         Money money = getMoney();
         LottoTickets lottoTickets = getLottoTickets(money);
-        Lotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     private Money getMoney() {
@@ -22,7 +24,8 @@ public class LottoController {
         return LottoTickets.generateLottoTickets(new RandomLottoGenerator(), ticket);
     }
 
-    private Lotto getWinningLotto() {
-        return new Lotto(Input.inputWinningLotto());
+    private WinningLotto getWinningLotto() {
+        List<Integer> winningLotto = Input.inputWinningLotto();
+        return new WinningLotto(winningLotto);
     }
 }

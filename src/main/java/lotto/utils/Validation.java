@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import java.util.List;
 import lotto.view.ExceptionMessages;
 
 public class Validation {
@@ -16,9 +17,27 @@ public class Validation {
         }
     }
 
+    public static void validateListNumberInRange(List<Integer> number, int min, int max) {
+        if (number.stream().anyMatch(n -> n < min || n > max)) {
+            ExceptionMessages.NUMBER_IN_RANGE.throwException(min,max);
+        }
+    }
+
     public static void validateNumberMultipleOf(int number, int multiple) {
         if (number % multiple != 0) {
             ExceptionMessages.INPUT_MULTIPLE_NUMBER.throwException(multiple);
+        }
+    }
+
+    public static void validateListNumberNotDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            ExceptionMessages.DUPLICATED_NUMBER_IN_LIST.throwException();
+        }
+    }
+
+    public static void validateListNumberCount(List<Integer> numbers, int count) {
+        if (numbers.size() != count) {
+            ExceptionMessages.INPUT_COUNT.throwException(count);
         }
     }
 }

@@ -20,4 +20,5 @@ public class LottoService {
         }
         return correct;
     }
+
 }

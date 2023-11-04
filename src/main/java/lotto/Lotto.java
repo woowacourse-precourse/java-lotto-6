@@ -102,4 +102,29 @@ public class Lotto {
     }
 
 
+    public Position checkLotto(List<Integer> correctNumbers, Integer bonusNumber){
+        int checkCount = 0;
+        for (Integer correctNumber : correctNumbers) {
+            if(this.numbers.contains(correctNumber)){
+                checkCount += 1;
+            }
+        }
+
+        Position position = bonusCheck(bonusNumber, checkCount);
+        if(position == null && checkCount >= 3){
+            position = Position.valueOfPrint(checkCount + "개 일치");
+        }
+
+        return position;
+    }
+
+    private Position bonusCheck(Integer bonusNumber, int checkCount) {
+        if(checkCount == 5){
+            if(this.numbers.contains(bonusNumber)){
+                return Position.EQUAL_5PLUS;
+            }
+        }
+        return null;
+    }
+
 }

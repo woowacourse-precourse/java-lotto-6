@@ -38,11 +38,6 @@ public enum Ranking {
         return sum;
     }
 
-    public static void changeCountWhenHasBonusNumber() {
-        Ranking.SECOND.increaseCount();
-        Ranking.THIRD.decreaseCount();
-    }
-
     public void increaseCount() {
         count++;
     }
@@ -51,11 +46,20 @@ public enum Ranking {
         count--;
     }
 
+    public static void changeCountWhenHasBonusNumber() {
+        Ranking.SECOND.increaseCount();
+        Ranking.THIRD.decreaseCount();
+    }
+
     public String getMessage() {
         return message;
     }
 
     public int getCount() {
         return count;
+    }
+
+    public int getRank(){
+        return rank;
     }
 }

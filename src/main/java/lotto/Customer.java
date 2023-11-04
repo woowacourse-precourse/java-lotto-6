@@ -66,7 +66,11 @@ public class Customer {
         return lottos;
     }
 
-    public void compareWinLotto(WinLotto winLotto) {
+    public void checkWinLotto(WinLotto winLotto) {
 
+        for (int i = 0; i < lottos.size(); i++) {
+
+            winLotto.compareLotto(lottos.get(i));
+        }
     }
 }

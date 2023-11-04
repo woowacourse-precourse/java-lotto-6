@@ -10,9 +10,9 @@ public class LottoShop {
         this.customer = customer;
         this.winLotto = winLotto;
     }
-    
+
     public void compareWinLotto() {
 
-        customer.compareWinLotto(winLotto);
+        customer.checkWinLotto(winLotto);
     }
 }

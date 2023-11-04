@@ -108,4 +108,18 @@ public class WinLotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int compareLotto(Lotto lotto) {
+
+        int compareResult = 0;
+        for (int num : numbers) {
+
+            if (lotto.compareNum(num)) {
+
+                compareResult++;
+            }
+        }
+
+        return compareResult;
+    }
 }

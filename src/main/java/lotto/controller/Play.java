@@ -18,7 +18,7 @@ public class Play {
 
     private static final int lottoPrice = 1000;
     private static final int size = 6;
-    public HashMap<Rank, Integer> result;
+    public static HashMap<Rank, Integer> result;
     public static List<Lotto> lottery;
 
     public Play() {
@@ -59,6 +59,10 @@ public class Play {
             result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
         }
         printResultRank(result);
+
+        int sumPrize = calSumPrize();
+        double rateMean = calRate(sumPrize, price);
+        printMean(rateMean);
 
     }
 
@@ -105,6 +109,19 @@ public class Play {
         return Rank.THIRD;
     }
 
+    public static int calSumPrize() {
+        int sum = 0;
+        for (Rank rank : result.keySet()) {
+            sum += rank.getPrize();
+        }
+        return sum;
+    }
+    public static double calRate(int resultSum, int price) {
+        System.out.println(resultSum);
+        System.out.println(price);
+
+        return ((double)resultSum/(price))*100;
+    }
 
 
 }

@@ -13,9 +13,15 @@ import lotto.model.lottogenerator.RandomLottoGenerator;
 
 public class LottoController {
 
-    private ExceptionHandler retryHandler = new RetryExceptionHandler();
-    private LottoStore store = new LottoStore(new RandomLottoGenerator());
-    private LottoGameUI ui = new TerminalUI();
+    final private ExceptionHandler retryHandler;
+    final private LottoStore store;
+    final private LottoGameUI ui;
+
+    public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui){
+        this.retryHandler = handler;
+        this.store = store;
+        this.ui = ui;
+    }
 
     //TODO 1. 로또 구매
     public Lottos purchaseLotto() {

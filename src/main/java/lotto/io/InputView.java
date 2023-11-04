@@ -22,4 +22,10 @@ public class InputView {
         inputValidator.validateDivisionComma(winningNumbers);
         return winningNumbers;
     }
+
+    public String inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        inputValidator.validateNumeric(bonusNumber);
+        return bonusNumber;
+    }
 }

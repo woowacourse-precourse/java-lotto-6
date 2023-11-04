@@ -1,6 +1,5 @@
 package lotto.util;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +20,7 @@ class InputValidatorTest {
     void invalid_isNumericValidator(String input) {
         // given
         // when & then
-        assertThatThrownBy(()->InputValidator.isNumericValidator(input))
+        assertThatThrownBy(()-> CommonInputValidator.isNumericValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력은 숫자 형태여야 합니다.");
     }
@@ -32,7 +31,7 @@ class InputValidatorTest {
     void invalid_isThousandUnitValidator(Integer money) {
         // given
         // when & then
-        assertThatThrownBy(()->InputValidator.isThousandUnitValidator(money))
+        assertThatThrownBy(()-> CommonInputValidator.isThousandUnitValidator(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력 금액은 1,000원 단위여야 합니다.");
     }
@@ -43,7 +42,7 @@ class InputValidatorTest {
     void invalid_isInRangeValidator(Integer number) {
         // given
         // when & then
-        assertThatThrownBy(()->InputValidator.isInRangeValidator(number))
+        assertThatThrownBy(()-> CommonInputValidator.isInRangeValidator(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
@@ -54,7 +53,7 @@ class InputValidatorTest {
     void invalid_isNotOverlapSixValidator(List<Integer> numbers) {
         // given
         // when & then
-        assertThatThrownBy(()->InputValidator.isNotOverlapSixValidator(numbers))
+        assertThatThrownBy(()-> CommonInputValidator.isNotOverlapSixValidator(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 6개의 숫자에 중복된 로또 번호가 존재합니다.");
     }
@@ -65,7 +64,7 @@ class InputValidatorTest {
     void invalid_isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber) {
         // given
         // when & then
-        assertThatThrownBy(()->InputValidator.isNotOverlapBonusValidator(numbers, bonusNumber))
+        assertThatThrownBy(()-> CommonInputValidator.isNotOverlapBonusValidator(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호와 중복된 로또 번호가 존재합니다.");
     }
@@ -76,7 +75,7 @@ class InputValidatorTest {
         // given
         Integer money = 0;
         // when & then
-        assertThatThrownBy(()->InputValidator.isMinimumValidator(money))
+        assertThatThrownBy(()-> CommonInputValidator.isMinimumValidator(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력 금액은 최소 0원보다 커야 합니다.");
     }

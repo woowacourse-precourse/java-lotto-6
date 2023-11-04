@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-import lotto.util.InputValidator;
+import domain.Lotto;
+import lotto.util.CommonInputValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +16,10 @@ public class InputView {
     public Integer inputMoney(){
         String input = Console.readLine();
         try{
-            InputValidator.isNumericValidator(input);
+            CommonInputValidator.isNumericValidator(input);
             Integer money = Integer.parseInt(input);
-            InputValidator.isMinimumValidator(money);
-            InputValidator.isThousandUnitValidator(money);
+            CommonInputValidator.isMinimumValidator(money);
+            CommonInputValidator.isThousandUnitValidator(money);
             return money;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -32,12 +32,12 @@ public class InputView {
         try{
             List<String> parsedNumbers = parseNumbersFromInput(input);
             for(String parsedNumber : parsedNumbers){
-                InputValidator.isNumericValidator(parsedNumber);
+                CommonInputValidator.isNumericValidator(parsedNumber);
                 Integer number = Integer.parseInt(parsedNumber);
-                InputValidator.isInRangeValidator(number);
+                CommonInputValidator.isInRangeValidator(number);
                 numbers.add(number);
             }
-            InputValidator.isNotOverlapSixValidator(numbers);
+            CommonInputValidator.isNotOverlapSixValidator(numbers);
             return new Lotto(numbers);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -49,10 +49,10 @@ public class InputView {
         String input = Console.readLine();
         List<Integer> numbers = lotto.getNumbers();
         try{
-            InputValidator.isNumericValidator(input);
+            CommonInputValidator.isNumericValidator(input);
             Integer bonusNumber = Integer.parseInt(input);
-            InputValidator.isInRangeValidator(bonusNumber);
-            InputValidator.isNotOverlapBonusValidator(numbers, bonusNumber);
+            CommonInputValidator.isInRangeValidator(bonusNumber);
+            CommonInputValidator.isNotOverlapBonusValidator(numbers, bonusNumber);
             return bonusNumber;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

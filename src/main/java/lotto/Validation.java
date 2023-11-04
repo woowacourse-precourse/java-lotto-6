@@ -92,4 +92,12 @@ public class Validation {
         range1to45Check(raw);
         ticketNumberDuplecationCheck(raw);
     }
+
+    private static void bonusNumberDuplicationCheck(String raw, Lotto winnerTicket) {
+        Integer bonusNumber = Integer.parseInt(raw);
+        List<Integer> winnerTicketNumbers = winnerTicket.toList();
+        if (winnerTicketNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

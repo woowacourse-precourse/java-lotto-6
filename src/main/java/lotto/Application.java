@@ -20,17 +20,26 @@ public class Application {
     }
     // 입력받고 로또 생성
     private static int inputPurchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요");
-        int purchaseAmount = Integer.parseInt(Console.readLine());
-        System.out.println();
 
-        validPurchaseAmount(purchaseAmount);
+        try{
+            System.out.println("구입금액을 입력해 주세요");
+            int purchaseAmount = Integer.parseInt(Console.readLine());
+            System.out.println();
 
-        return purchaseAmount;
+            validPurchaseAmount(purchaseAmount);
+
+            return purchaseAmount;
+        }
+        catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.");
+            System.out.println();
+
+            return inputPurchaseAmount();
+        }
     }
     private static void validPurchaseAmount(int amount){
         if(amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("");
         }
     }
 

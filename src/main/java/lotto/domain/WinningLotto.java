@@ -4,15 +4,19 @@ import lotto.Lotto;
 
 public class WinningLotto {
 
-    private final Lotto winningLotto;
+    private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
-        this.winningLotto = winningLotto;
+    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
     public boolean isContain(int number) {
-        return winningLotto.isContain(number);
+        return lotto.isContain(number);
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

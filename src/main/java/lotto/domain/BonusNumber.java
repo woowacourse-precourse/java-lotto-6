@@ -7,4 +7,8 @@ public class BonusNumber {
     public BonusNumber(int value) {
         this.value = value;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

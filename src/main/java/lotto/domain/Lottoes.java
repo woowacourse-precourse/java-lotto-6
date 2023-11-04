@@ -28,6 +28,7 @@ public class Lottoes {
     public void calculateRanking(WinningLotto winningLotto) {
         for (Lotto lotto: elements) {
             int matchCount = calculateMatchCount(lotto, winningLotto);
+            boolean isMatchBonusNumber = hasBonusNumber(lotto, winningLotto.getBonusNumber());
         }
     }
 
@@ -42,6 +43,9 @@ public class Lottoes {
         return count;
     }
 
+    private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+        return lotto.isContain(bonusNumber.getValue());
+    }
 
     public String getLottoesNumber() {
         StringBuilder stringBuilder = new StringBuilder();

@@ -2,9 +2,12 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
+import lotto.model.Lotto;
 import lotto.service.InvestorService;
+import lotto.service.LottoCompanyService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class FactoryController {
@@ -34,7 +37,22 @@ public class FactoryController {
         return created;
     }
 
-    public GoalNumbers createGoalNumbers() {
+    public InvestorService createInvestorService() {
+        return createInstance(InvestorService.class, () -> {
+            outputView.askInvestMoney();
+            String investorInput = inputView.readLine();
+            return InvestorService.createDefault(investorInput);
+        });
+    }
+
+    public LottoCompanyService createLottoCompanyService(final List<Lotto> lottos) {
+        GoalNumbers goalNumbers = createGoalNumbers();
+        BonusNumber bonusNumber = createBonusNumber();
+
+        return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
+    }
+
+    private GoalNumbers createGoalNumbers() {
         return createInstance(GoalNumbers.class, () -> {
             outputView.askGoalNumbers();
             String goalNumbersInput = inputView.readLine();
@@ -42,19 +60,11 @@ public class FactoryController {
         });
     }
 
-    public BonusNumber createBonusNumber() {
+    private BonusNumber createBonusNumber() {
         return createInstance(BonusNumber.class, () -> {
             outputView.askBonusNumber();
             String bonusNumberInput = inputView.readLine();
             return BonusNumber.from(bonusNumberInput);
-        });
-    }
-
-    public InvestorService createInvestorService() {
-        return createInstance(InvestorService.class, () -> {
-            outputView.askInvestMoney();
-            String investorInput = inputView.readLine();
-            return InvestorService.createDefault(investorInput);
         });
     }
 }

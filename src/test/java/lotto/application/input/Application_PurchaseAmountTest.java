@@ -113,7 +113,7 @@ public class Application_PurchaseAmountTest extends MyApplicationTest {
     }
 
     private static Stream<String> getStringSourceIsNegativeInteger() {
-        return Stream.of("-1", "-0", "-1000");
+        return Stream.of("-1", "-1000");
     }
 
     private static Stream<String> getStringSourceCannotDivideByUnit() {

@@ -3,6 +3,7 @@ package lotto;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -57,6 +58,7 @@ public class MyApplicationTest {
     @AfterEach
     void clean() {
         outputs = Collections.emptyList();
+        Console.close();
     }
 
     @AfterAll

@@ -14,8 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLotto() {
-        return Collections.unmodifiableList(numbers);
+    private void validate(List<Integer> numbers) {
+        LottoValidator.validateSize(numbers);
+        LottoValidator.validateDuplicateNumber(numbers);
+        LottoValidator.validateRangeOfNumber(numbers);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
@@ -24,9 +26,7 @@ public class Lotto {
                 .toList();
     }
 
-    private void validate(List<Integer> numbers) {
-        LottoValidator.validateSize(numbers);
-        LottoValidator.validateDuplicateNumber(numbers);
-        LottoValidator.validateRangeOfNumber(numbers);
+    public List<Integer> getLotto() {
+        return Collections.unmodifiableList(numbers);
     }
 }

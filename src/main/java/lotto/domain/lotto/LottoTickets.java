@@ -1,20 +1,19 @@
 package lotto.domain.lotto;
 
+import static lotto.utils.LottoConstants.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import lotto.utils.LottoConstants;
 
 public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(PurchasePrice price) {
         this.lottoTickets = createLottoTickets(price);
-    }
-
-    public List<Lotto> getLottoTickets() {
-        return Collections.unmodifiableList(lottoTickets);
     }
 
     private List<Lotto> createLottoTickets(PurchasePrice price) {
@@ -29,11 +28,15 @@ public class LottoTickets {
     }
 
     private int getNumberOfTickets(PurchasePrice price) {
-        return price.getPrice() / 1000;
+        return price.getPrice() / LOTTO_PRICE;
     }
 
     private Lotto createNewLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MAX, LOTTO_NUM_MAX, LOTTO_NUM_SIZE);
         return new Lotto(numbers);
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
     }
 }

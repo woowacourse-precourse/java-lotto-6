@@ -54,6 +54,6 @@ public class LottoChecker {
 
         boolean withBonus = checkLotto.contains(bonusNum);
 
-        return LottoResultStatus.getResultStatus(matchCount, withBonus);
+        return LottoResultStatus.checkResult(matchCount, withBonus);
     }
 }

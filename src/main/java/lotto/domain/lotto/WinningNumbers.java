@@ -14,17 +14,13 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public static WinningNumbers create(String winningNumber) {
-        return new WinningNumbers(winningNumber);
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     private WinningNumbers(String winningNumber) {
         validate(winningNumber);
         this.numbers = parseWinningNumbers(winningNumber);
+    }
+
+    public static WinningNumbers create(String winningNumber) {
+        return new WinningNumbers(winningNumber);
     }
 
     private void validate(String winningNumber) {
@@ -54,5 +50,9 @@ public class WinningNumbers {
 
     private String[] extractNumbers(String winningNumber) {
         return winningNumber.split("(,+|\\s+)+");
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

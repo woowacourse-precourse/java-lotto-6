@@ -11,17 +11,13 @@ public class BonusNumber {
 
     private final int number;
 
-    public static BonusNumber create(String bonusNumber, WinningNumbers winningNumbers) {
-        return new BonusNumber(bonusNumber, winningNumbers);
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
     private BonusNumber(String bonusNumber, WinningNumbers winningNumbers) {
         validate(bonusNumber, winningNumbers);
         this.number = parseBonusNum(bonusNumber);
+    }
+
+    public static BonusNumber create(String bonusNumber, WinningNumbers winningNumbers) {
+        return new BonusNumber(bonusNumber, winningNumbers);
     }
 
     private void validate(String bonusNumber, WinningNumbers winningNumbers) {
@@ -51,5 +47,9 @@ public class BonusNumber {
 
     private int parseBonusNum(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

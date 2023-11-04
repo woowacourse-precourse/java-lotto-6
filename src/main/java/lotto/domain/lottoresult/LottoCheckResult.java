@@ -12,10 +12,6 @@ public class LottoCheckResult {
         initResult();
     }
 
-    public Map<LottoResultStatus, Integer> getResult() {
-        return Collections.unmodifiableMap(result);
-    }
-
     public void updateResult(LottoResultStatus lottoResultStatus) {
         result.put(lottoResultStatus, result.get(lottoResultStatus) + 1);
     }
@@ -24,5 +20,9 @@ public class LottoCheckResult {
         for (LottoResultStatus status : LottoResultStatus.values()) {
             result.put(status, 0);
         }
+    }
+
+    public Map<LottoResultStatus, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

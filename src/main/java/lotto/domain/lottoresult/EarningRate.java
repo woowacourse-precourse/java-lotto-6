@@ -9,11 +9,11 @@ public class EarningRate {
         this.rate = calcRate(numOfTickets, earnedMoney);
     }
 
-    public double getRate() {
-        return rate;
-    }
-
     private double calcRate(double numOfTickets, double earnedMoney) {
         return earnedMoney / (numOfTickets * LOTTO_PRICE) * 100;
+    }
+
+    public double getRate() {
+        return rate;
     }
 }

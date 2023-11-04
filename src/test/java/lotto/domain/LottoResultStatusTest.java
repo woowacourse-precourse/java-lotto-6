@@ -17,7 +17,7 @@ class LottoResultStatusTest {
     })
     @DisplayName("맞힌 개수가 3개 미만이면 보너스번호와 상관없이 FAIL 이다.")
     void testFailWinningStatus(int matchCount, boolean withBonusNum, LottoResultStatus expected) {
-        LottoResultStatus result = LottoResultStatus.getResultStatus(matchCount, withBonusNum);
+        LottoResultStatus result = LottoResultStatus.checkResult(matchCount, withBonusNum);
 
         assertEquals(expected, result);
     }
@@ -33,7 +33,7 @@ class LottoResultStatusTest {
     })
     @DisplayName("맞힌 개수가 3개 이상이면 알맞은 결과를 나타낸다.")
     void testGetWinningStatus(int matchCount, boolean withBonusNum, LottoResultStatus expected) {
-        LottoResultStatus result = LottoResultStatus.getResultStatus(matchCount, withBonusNum);
+        LottoResultStatus result = LottoResultStatus.checkResult(matchCount, withBonusNum);
 
         assertEquals(expected, result);
     }

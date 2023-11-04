@@ -21,10 +21,10 @@ class InputViewTest {
     @AfterEach
     void closeConsole() {
         Console.close();
-    } // (Console 열어보면) 기존의 Scanner를 계속 사용하게 되어 nextLine() 값이 없는 현상을 방지. 새로운 Scanner를 생성할 수 있도록.
+    } //기존의 Scanner를 계속 사용하게 되어 nextLine() 값이 없는 현상을 방지. 새로운 Scanner를 생성할 수 있도록 닫아준다.
 
     @Test
-    @DisplayName("inputValue() 메서드에 purchasePrice 키값을 넣으면 PurchasePrice 객체를 생성한다.")
+    @DisplayName("inputValue() 메서드에 purchasePrice 키 값을 넣으면 PurchasePrice 객체를 생성한다.")
     void testPriceInputValue() {
         //given
         String key = "purchasePrice";

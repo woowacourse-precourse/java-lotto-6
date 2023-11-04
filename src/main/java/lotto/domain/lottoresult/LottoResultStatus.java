@@ -22,7 +22,7 @@ public enum LottoResultStatus {
         this.checker = checker;
     }
 
-    public static LottoResultStatus getResultStatus(long matchCount, boolean withBonusNum) {
+    public static LottoResultStatus checkResult(long matchCount, boolean withBonusNum) {
         return Arrays.stream(LottoResultStatus.values())
                 .filter(status -> status.checker.test(matchCount, withBonusNum))
                 .findAny()

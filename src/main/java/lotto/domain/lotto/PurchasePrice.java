@@ -13,17 +13,13 @@ public class PurchasePrice {
 
     private final int price;
 
-    public static PurchasePrice create(String purchasePrice) {
-        return new PurchasePrice(purchasePrice);
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
     private PurchasePrice(String purchasePrice) {
         validate(purchasePrice);
         this.price = parsePrice(purchasePrice);
+    }
+
+    public static PurchasePrice create(String purchasePrice) {
+        return new PurchasePrice(purchasePrice);
     }
 
     private void validate(String purchasePrice) {
@@ -57,5 +53,9 @@ public class PurchasePrice {
         if (numberOfPrice % LOTTO_PRICE != 0) {
             throw new PurchasePriceDivisibleException();
         }
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

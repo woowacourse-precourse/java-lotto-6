@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,5 +39,13 @@ class LottoTest {
 
         Lotto C = new Lotto(List.of(10, 11, 12, 13, 14, 15));
         assertThat(A.compareTo(C) == 0).isTrue();
+    }
+
+    @DisplayName("로또는 항상 오름차순으로 기록된다.")
+    @Test
+    void ascendingLotto() {
+        Lotto input = new Lotto(new ArrayList<>(List.of(4, 1, 3, 2, 6, 5)));
+        Lotto goal = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+        assertThat(input.toString()).isEqualTo(goal.toString());
     }
 }

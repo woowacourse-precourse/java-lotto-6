@@ -6,6 +6,7 @@ import java.util.List;
 
 public class WinningNumber {
     private final List<Integer> numbers;
+    private BonusNumber bonus;
 
     public WinningNumber(List<Integer> numbers) {
         validate(numbers);
@@ -20,7 +21,7 @@ public class WinningNumber {
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number > 45 || number < 0)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_OVER_RANGE.toString());
+            throw new IllegalArgumentException(ExceptionMessage.IS_OVER_RANGE_WINNING.toString());
         }
     }
 
@@ -33,6 +34,17 @@ public class WinningNumber {
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString());
+        }
+    }
+
+    public void addBonusNumber(BonusNumber bonus) {
+        validateWinningNumbersContainsBonusNumber(bonus);
+        this.bonus = bonus;
+    }
+
+    private void validateWinningNumbersContainsBonusNumber(BonusNumber bonus) {
+        if (numbers.contains(bonus.getNumber())) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED_WITH_WINNING.toString());
         }
     }
 }

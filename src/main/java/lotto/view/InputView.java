@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.validator.InputValidator;
@@ -23,5 +24,11 @@ public class InputView {
                 Arrays.stream(input.split(","))
                         .map(Integer::parseInt).toList()
         );
+    }
+
+    public BonusNumber readBonusNumber() {
+        String input = Console.readLine();
+        validator.validateIsDigit(input);
+        return new BonusNumber(Integer.parseInt(input));
     }
 }

@@ -12,5 +12,6 @@ public class LottoCompareSite {
         outputView.printInputWinningNumbersMessage();
         WinningNumber winningNumber = inputView.readWinningNumber();
         outputView.printInputBonusNumberMessage();
+        winningNumber.addBonusNumber(inputView.readBonusNumber());
     }
 }

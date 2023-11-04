@@ -6,26 +6,6 @@ import lotto.domain.num.WinLottoNums;
 
 public class LottoryHost {
     private LottoNumResults lottoNumResults;
-    private String numsOfWin;
-    private String numOfBonus;
-
-    /**
-     * 당첨 번호 추첨을 뽑는다.
-     *
-     * @param strLine 당첨 번호 문자열
-     */
-    public void pickWinNum(String strLine) {
-        this.numsOfWin = strLine;
-    }
-
-    /**
-     * 보너스 번호를 뽑는다.
-     *
-     * @param strLine
-     */
-    public void pickBonusNum(String strLine) {
-        this.numOfBonus = strLine;
-    }
 
     public void pickNum(String strOfPickWinNum, String strOfPickBonusNum) {
         this.lottoNumResults = Config.lottoNumResults(strOfPickWinNum, strOfPickBonusNum);

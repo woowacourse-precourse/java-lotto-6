@@ -6,9 +6,7 @@ import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -36,7 +34,7 @@ public class StateController {
         try {
             validateMoney(money);
             this.money = money;
-            this.lottoCount = money/LOTTO_PRICE;
+            this.lottoCount = money / LOTTO_PRICE;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             enterMoney();
@@ -66,7 +64,14 @@ public class StateController {
     }
 
     private void enterBonus() {
-        this.bonus = Integer.parseInt(InputView.readBonus());
+        try {
+            int bonus = Integer.parseInt(InputView.readBonus());
+            validateBonus(bonus);
+            this.bonus = bonus;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            enterBonus();
+        }
     }
 
     private void validateMoney(int money) {
@@ -75,6 +80,12 @@ public class StateController {
         }
         if ((money % LOTTO_PRICE) != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 원 단위로 입력해주셔야 합니다.");
+        }
+    }
+
+    private void validateBonus(int number) {
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 숫자 범위는 1~45까지입니다.");
         }
     }
 }

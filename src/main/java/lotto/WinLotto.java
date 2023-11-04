@@ -93,8 +93,17 @@ public class WinLotto {
         try {
 
             int num = Integer.parseInt(bonusNumber);
+            validateBonusNumDuplicate(num);
             return num;
         } catch (NumberFormatException e) {
+
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumDuplicate(int bonusNumber) {
+
+        if (numbers.contains(bonusNumber)) {
 
             throw new IllegalArgumentException();
         }

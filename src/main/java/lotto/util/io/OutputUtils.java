@@ -9,6 +9,10 @@ public class OutputUtils {
     private static final String NUMBER_OF_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String RESULTS_ANNOUNCEMENT_MESSAGE = "당첨 통계";
+    private static final String SEPARATING_LINE = "---";
+    private static final String WINNING_DETAIL = "%s (%s원) - %d개";
+
     public static void printPurchaseAmountInputMessage() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
@@ -27,5 +31,10 @@ public class OutputUtils {
 
     public static void printBonusNumberInputMessage() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public static void printResultAnnouncementMessage() {
+        System.out.println(RESULTS_ANNOUNCEMENT_MESSAGE);
+        System.out.println(SEPARATING_LINE);
     }
 }

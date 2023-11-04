@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class CustomerTest {
+    private Customer customer;
+
+    @BeforeEach
+    void init() {
+        customer = new Customer("10000");
+    }
+
     @DisplayName("글자를 입력하거나 터무니 없는 값을 입력하면 예외가 발생한다.")
     @Test
     void createCustomerByNotNumber() {
@@ -43,8 +51,6 @@ class CustomerTest {
     @DisplayName("로또 구매 금액에 따라 구입 가능한 로또 숫자를 반환한다.")
     @Test
     void possibleBuyLottoByCashInHand() {
-        Customer customer = new Customer("10000");
-
         int result = customer.calculateLottoNum();
 
         assertThat(result).isEqualTo(10);
@@ -53,20 +59,16 @@ class CustomerTest {
     @DisplayName("구매 가능한 갯수만큼 실제로 로또를 구매한다.")
     @Test
     void buyLottoByCashInHand() {
-        Customer customer = new Customer("10000");
-
         customer.buyNewLotto();
 
-        List<Lotto> lottos = customer.getAllLotto();
+        List<Lotto> allLotto = customer.getAllLotto();
 
-        assertThat(lottos.size()).isEqualTo(10);
+        assertThat(allLotto.size()).isEqualTo(10);
     }
 
     @DisplayName("보유한 로또 번호들을 출력 요구 사항에 맞춘 문자열로 바꾸어 리스트로 반환한다.")
     @Test
     void getLottoTextsByList() {
-        Customer customer = new Customer("10000");
-
         customer.buyNewLotto();
 
         List<String> texts = customer.getLottoTexts();

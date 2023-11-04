@@ -33,7 +33,7 @@ public class MessageUtil {
         System.out.printf(WINNING_RATE.getMessage(), rate);
     }
 
-    public static void printPurchaseInfo(List<Integer> lottoNum){
+    public void printPurchaseInfo(List<Integer> lottoNum){
 //        System.out.print("[");
         Collections.sort(lottoNum);
         System.out.println(lottoNum.toString());

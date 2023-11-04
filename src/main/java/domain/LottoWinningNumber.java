@@ -16,8 +16,11 @@ public class LottoWinningNumber {
     public LottoWinningNumber getLottoWinningNumInfo(){
         messageUtil.printWinningNum();
         String winningNumber = inputUtil.userInput();
-
-//        String[] winningEachNumber = winningNumber.split(",\\s*");
+        String[] winningNumbers = validationUtil.validWinningNumber(winningNumber);
+//        for (String number : winningNumbers) {
+//            System.out.print(number + " "); // 각 숫자와 공백을 함께 출력
+//        }
+//        System.out.println();
         return this;
     }
 }

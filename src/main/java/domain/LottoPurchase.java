@@ -28,7 +28,7 @@ public class LottoPurchase {
 
     public int getPurchaseLottoAmount(){
         // 금액 입력받기, 8000원 리턴, 1000으로 나누기 전은 purchase
-        String lottoAmount = inputUtil.getLottoAmount();
+        String lottoAmount = inputUtil.userInput();
         return validationUtil.validPurchaseLottoAmount(lottoAmount);
     }
     private int getLottoAmount(int lottoPurchaseAmount) {

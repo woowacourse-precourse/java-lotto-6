@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    public void winningNumbersService(List<List<Integer>> totalLottoTickets) {
+    public List<Integer> winningNumbersService(List<List<Integer>> totalLottoTickets) {
 
         String inputValue = Console.readLine();
         String[] splitInputValues = inputValue.split(",");
@@ -16,7 +16,7 @@ public class WinningNumbers {
         List<Integer> winningNumbers = validateAndParseNumbers(splitInputValues);
 
         Lotto lotto = new Lotto(winningNumbers);
-
+        return lotto.getNumbers();
 
     }
 

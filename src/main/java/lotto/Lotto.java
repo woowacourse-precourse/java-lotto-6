@@ -21,6 +21,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
     private void validateUnique(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {

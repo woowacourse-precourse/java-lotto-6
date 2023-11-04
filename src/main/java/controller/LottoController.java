@@ -1,5 +1,6 @@
 package controller;
 
+import domain.BonusNumber;
 import domain.LottoMachine;
 import domain.LottoTicket;
 import domain.WinningNumbers;
@@ -18,8 +19,12 @@ public class LottoController {
         LottoMachine lottoMachine = new LottoMachine();
         return lottoMachine.lottoMachineService(lottoTicketCount);
     }
-    public void winner(List<List<Integer>> totalLottoTickets){
+    public List<Integer> winningNumber(List<List<Integer>> totalLottoTickets){
         WinningNumbers winningNumbers = new WinningNumbers();
-        winningNumbers.winningNumbersService(totalLottoTickets);
+        return winningNumbers.winningNumbersService(totalLottoTickets);
+    }
+
+    public List<Integer> bonusNumber(List<Integer> winningNumber) {
+        return BonusNumber.bonusNumberService(winningNumber);
     }
 }

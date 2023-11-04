@@ -2,6 +2,7 @@ package View;
 
 import camp.nextstep.edu.missionutils.Console;
 import controller.LottoController;
+import lotto.Lotto;
 
 import java.util.List;
 
@@ -18,9 +19,15 @@ public class View {
         System.out.println(lottoTicketCount+"개를 구매했습니다.");
         List<List<Integer>> totalLottoTickets = lottoController.lottoTicketCount(lottoTicketCount);
 
+        for (List<Integer> totalLottoTicket : totalLottoTickets) {
+            System.out.println(totalLottoTicket);
+        }
+
         System.out.println("당첨 번호를 입력해 주세요.");
-        lottoController.winner(totalLottoTickets);
+        List<Integer> winningNumber = lottoController.winningNumber(totalLottoTickets);
+        System.out.println(winningNumber);
 
-
+        System.out.println("보너스 번호를 입력해 주세요.");
+        List<Integer> winningNumberBonus = lottoController.bonusNumber(winningNumber);
     }
 }

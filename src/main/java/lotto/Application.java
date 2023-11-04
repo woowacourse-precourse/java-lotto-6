@@ -139,20 +139,19 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + lottoResult.get(2) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResult.get(1) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResult.get(0) + "개");
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", earningRate);
+        System.out.printf("총 수익률은 %,.1f%%입니다.%n", earningRate);
     }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottos;
 
         User user = new User();
-        Computer computer = new Computer();
         user.purchaseLotto();
 
         // 로또 개수 만큼 번호 계산
-        Application.createLottos(user.lottoCount);
+        lottos = Application.createLottos(user.lottoCount);
 
         // 4. 로또 번호 출력
         Application.printLottos(lottos);
@@ -174,9 +173,6 @@ public class Application {
 
         // 9. 당첨 결과 출력
         printResult(lottoResult, earningRate);
-
-
-
 
 
     }

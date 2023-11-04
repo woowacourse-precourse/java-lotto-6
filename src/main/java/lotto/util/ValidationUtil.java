@@ -42,6 +42,12 @@ public class ValidationUtil {
         return validateLottoRange(LottoWinningNumber);
     }
 
+    public int validateWinningNumberWithBonus(String bonus, List<Integer> lotto) {
+        int bonusNumber = isValidNumber(bonus);
+        isExistedNumber(bonusNumber, lotto);
+        return bonusNumber;
+    }
+
     private void validateCount(List<String> inputs) {
         if (inputs.size() != MAX_COUNT.getNumber()) {
             throwExceptionMessage(ExceptionMessage.COUNT_ERROR.getMessage());
@@ -83,6 +89,12 @@ public class ValidationUtil {
             throwExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
         return -1;
+    }
+
+    private void isExistedNumber(int bonus, List<Integer> lotto) {
+        if (lotto.contains(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     private void throwExceptionMessage(String errorMessage){

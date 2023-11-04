@@ -21,8 +21,7 @@ public class Lotto {
     }
 
     private void duplicateNumberCheck(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = numbers.stream()
-                .collect(Collectors.toSet());
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }

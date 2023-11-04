@@ -1,11 +1,14 @@
 package lotto;
 
+import lotto.model.Lotto;
 import lotto.model.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -38,5 +41,14 @@ class LottoTest {
         Validator validator = new Validator();
         assertThatThrownBy(() -> validator.validateCost("8900", 1000))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또의 숫자들을 문자열 배열로 전환")
+    @Test
+    void numberListToStringArray() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 14, 25, 36));
+        String[] lottoNumbers = new String[] {"1", "2", "3", "14", "25", "36"};
+        assertThat(lotto.stringLotto())
+                .containsExactly(lottoNumbers);
     }
 }

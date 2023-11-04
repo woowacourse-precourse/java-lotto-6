@@ -7,7 +7,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static int getBuyAmountFromInput() {
+    public static long getBuyAmountFromInput() {
         String buyAmount = read();
         return Integer.parseInt(buyAmount);
     }

@@ -31,16 +31,21 @@ public class WinnerCalculator {
 
         for (Lotto ticket : tickets) {
             int matchCount = getMatchCount(ticket.getNumbers(), winningLotto.getNumbers());
-            updateWinnerCount(matchCount,false);
+            boolean matchBonus = isMatchBonus(ticket);
+
+            updateWinnerCount(matchCount, matchBonus);
         }
         return winnerCount;
     }
 
-    private void updateWinnerCount(int matchCount, boolean matchBonus) {
-        LottoRank rank = LottoRank.valueOf(matchCount, false);
-        winnerCount.put(rank, winnerCount.get(rank) + INCREMENT);
+    private boolean isMatchBonus(Lotto ticket) {
+        return ticket.getNumbers().contains(bonusNumber.getBonusNumber());
     }
 
+    private void updateWinnerCount(int matchCount, boolean matchBonus) {
+        LottoRank rank = LottoRank.valueOf(matchCount, matchBonus);
+        winnerCount.put(rank, winnerCount.get(rank) + INCREMENT);
+    }
 
     private int getMatchCount(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
         int matchCount = 0;
@@ -52,4 +57,7 @@ public class WinnerCalculator {
         return matchCount;
     }
 
+    public LinkedHashMap<LottoRank, Integer> getWinnerCount() {
+        return this.winnerCount;
+    }
 }

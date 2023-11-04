@@ -45,4 +45,12 @@ public class Application {
         return lottos;
     }
 
+    public void purchaseLottoNumbersDisplay(List<Lotto> lottos){
+        int lottoQuantity = lottos.size();
+        System.out.println(lottoQuantity+"개를 구매했습니다.");
+        for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
+            lottos.get(quantity-1).lottoNumberDisplay();
+        }
+    }
+
 }

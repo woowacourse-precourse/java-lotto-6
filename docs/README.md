@@ -37,7 +37,7 @@
 - [X] 로또 번호 발행: LottoController.*publishMyLotto*
 - [X] 발행한 로또 수량 및 번호 출력: OutputView.*printMyLotto*
 - [X] 당첨 번호 입력: InputView.*getLotto*
-- [X] 당첨 번호 문자열 콤마를 기준으로 분리: Lotto.*changeStringToLotto*
+- [X] 당첨 번호 문자열 콤마를 기준으로 분리: InputView.*changeStringToLotto*
 - [X] 당첨 번호가 6개인지 확인: Lotto.*validate6numbers*
 - [X] 당첨 번호가 1~45 사이의 숫자인지 확인: Lotto.*validate1to45*
 - [X] 당첨 번호에 중복 숫자가 있는지 확인: Lotto.*validateNotEqual*

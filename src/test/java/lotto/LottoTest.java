@@ -17,13 +17,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("로또 번호에 1~45가 아닌 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoNotBetween1And45() {
@@ -31,16 +24,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 번호 문자열 콤마를 기준으로 분리")
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void splitLottoStringByComma() {
-        List<Integer> testLotto = List.of(1, 2, 3, 4, 5, 6);
-        Lotto actualLotto = new Lotto(testLotto);
-        Lotto expectedLotto = new Lotto(List.of(
-                1, 2, 3, 4, 5, 6
-        ));
-
-        assertThat(actualLotto).isEqualTo(expectedLotto);
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("두 로또의 일치하는 숫자 개수 계산")

@@ -38,6 +38,11 @@ public class InputValidator {
     }
 
     public static boolean isValidRangeNumber(String input) {
+        if(!input.contains(",")){
+            if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45){
+                throw new IllegalArgumentException(ERROR + NOT_A_VALID_RANGE_NUMBER);
+            }
+        }
         List<String> numbers = List.of(input.split(","));
         for (String number : numbers) {
             if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {

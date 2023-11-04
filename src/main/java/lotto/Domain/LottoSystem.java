@@ -12,8 +12,10 @@ public class LottoSystem {
         if(isNumber(lottoWinningNumber) && isValidRangeNumber(lottoWinningNumber)) {
             checkCommaDelimiter(lottoWinningNumber);
             checkSixNumber(lottoWinningNumber);
+            this.lottoWinningNumber = lottoWinningNumber;
         }
-        this.lottoWinningNumber = lottoWinningNumber;
-        this.lottoBonusNumber = lottoBonusNumber;
+        if(isNumber(lottoBonusNumber) && isValidRangeNumber(lottoBonusNumber)){
+            this.lottoBonusNumber = lottoBonusNumber;
+        }
     }
 }

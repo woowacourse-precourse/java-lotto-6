@@ -6,9 +6,11 @@ import java.util.List;
 public class WinningNumber {
 
     private static final String NO_DUPLICATE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
+    private static final String OUT_OF_RANGE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
     private final List<Integer> winningNumber;
 
     public WinningNumber(List<Integer> winningNumber) {
+        validateOutOfRange(winningNumber);
         validateDuplicate(winningNumber);
         this.winningNumber = winningNumber;
     }
@@ -19,7 +21,19 @@ public class WinningNumber {
         }
     }
 
+    private void validateOutOfRange(List<Integer> winningNumber) {
+        for (int number : winningNumber) {
+            if (isOutOfRange(number)) {
+                throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
+            }
+        }
+    }
+
     private boolean isDuplicateNumbers(List<Integer> winningNumber) {
         return new HashSet<>(winningNumber).size() < 6;
+    }
+
+    private boolean isOutOfRange(int number) {
+        return 45 < number || number < 1;
     }
 }

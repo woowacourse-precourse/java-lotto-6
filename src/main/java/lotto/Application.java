@@ -10,5 +10,6 @@ public class Application {
         // TODO: 프로그램 구현
         new AskRequest(new FrontController(), Command.INPUT_PURCHASE_AMOUNT).process();
         new NonAskRequest(new FrontController(), Command.BUY_LOTTO).process();
+        new NonAskRequest(new FrontController(), Command.OUTPUT_USER_LOTTO).process();
     }
 }

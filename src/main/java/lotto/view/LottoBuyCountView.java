@@ -1,9 +1,15 @@
 package lotto.view;
 
-public class LottoBuyCountView extends BasicView {
-    private static final String OUTPUT = "%d개를 구매하였습니다.";
+public class LottoBuyCountView implements View {
+    private final String OUTPUT = "%d개를 구매하였습니다.";
+    private final int buyCount;
 
     public LottoBuyCountView(int buyCount) {
-        super(String.format(OUTPUT, buyCount));
+        this.buyCount = buyCount;
+    }
+
+    @Override
+    public void render() {
+        System.out.println(String.format(OUTPUT, buyCount));
     }
 }

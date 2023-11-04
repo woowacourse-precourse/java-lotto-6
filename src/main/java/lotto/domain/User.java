@@ -22,4 +22,8 @@ public class User {
         return true;
     }
 
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
+    }
+
 }

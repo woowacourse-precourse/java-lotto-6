@@ -2,10 +2,11 @@ package lotto.controller;
 
 public enum Command {
     INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
-    BUY_LOTTO(null);
+    BUY_LOTTO,
+    OUTPUT_USER_LOTTO;
 
-    private final String message;
-
+    private String message;
+    Command() {};
     Command(String message) {
         this.message = message;
     }

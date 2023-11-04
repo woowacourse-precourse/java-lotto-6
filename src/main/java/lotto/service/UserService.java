@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.User;
 import lotto.repository.UserRepository;
@@ -21,5 +23,10 @@ public class UserService {
     public int buyLotto() {
         User user = userRepository.find();
         return lottoService.sellTo(user);
+    }
+
+    public List<Lotto> findLottosOfUser() {
+        User user = userRepository.find();
+        return user.getLottos();
     }
 }

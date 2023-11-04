@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.controller.user.UserBuyLottoController;
+import lotto.controller.user.UserGetLottoController;
 import lotto.controller.user.UserSaveController;
 import lotto.repository.UserRepository;
 import lotto.service.LottoService;
@@ -16,6 +17,7 @@ public class FrontController {
         controllerMap.put(Command.INPUT_PURCHASE_AMOUNT, new UserSaveController(new UserService(new UserRepository(),
                 new LottoService())));
         controllerMap.put(Command.BUY_LOTTO, new UserBuyLottoController(new UserService(new UserRepository(), new LottoService())));
+        controllerMap.put(Command.OUTPUT_USER_LOTTO, new UserGetLottoController(new UserService(new UserRepository(), new LottoService())));
     }
 
     public void service(Command command, String input) {

@@ -62,10 +62,13 @@ Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
 Lotto의 패키지 변경은 가능하다.
 
 요구사항 만족 설계
+customer클래스
 inputprice 메소드를 통해 입력값을 받고 1000으로 나누어 떨어지는지 검사한다.
 caltrying 메소드를 통해 반복횟수를 구한다.
 inputlotto 메소드를 통해 입력값을 받고 Lotto로 만든다.
-Raffle메소드로 inputlotto에서 받은 값이 1~45사이 숫자인지 확인한다.
+forraffle메소드로 inputlotto에서 받은 값이 1~45사이 숫자인지 확인한다.
+
+Raffle클래서
 Java Enum을 통해 1~6등을 정의한다
 result 메소드를 통해 결과를 계산한다.
 printresult 메소드를 통해 결과를 출력한다.

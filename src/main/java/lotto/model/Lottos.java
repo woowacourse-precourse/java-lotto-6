@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLottosDTO() {
         return Collections.unmodifiableList(lottos);
     }
 }

@@ -23,7 +23,7 @@ public class LottoController {
                 });
 
         Lottos lottos = lottoGenerator.purchase(money);
-        Writer.printModelsInList(lottos.getLottos());
+        Writer.printModelsInList(lottos.getLottosDTO());
     }
 
     //TODO 3. 로또 6자리 입력

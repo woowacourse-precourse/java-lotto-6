@@ -41,4 +41,13 @@ class LottoTest {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString())
                 .isEqualTo(new Lotto(List.of(6, 5, 4, 3, 2, 1)).toString());
     }
+
+    @Test
+    @DisplayName("해당 로또와 당첨 번호의 일치 개수를 계산한다.")
+    void getMatchCountWithWinningNumbers() {
+        Lotto given = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(given.getMatchCountWith(List.of(1, 2, 3, 4, 5, 6)))
+                .isEqualTo(6);
+    }
 }

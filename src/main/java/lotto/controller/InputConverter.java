@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 public class InputConverter {
     public static int convertPrice(String inputPrice) {
+        checkDigit(inputPrice);
         int price = Integer.parseInt(inputPrice);
         return price;
     }
@@ -14,15 +15,26 @@ public class InputConverter {
         List<Integer> winningNumbers = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(inputWinningNumber, ",");
         while(st.hasMoreTokens()) {
-            int winningNumber = Integer.parseInt(st.nextToken());
+            String nextNumber = st.nextToken();
+            checkDigit(nextNumber);
+            int winningNumber = Integer.parseInt(nextNumber);
             winningNumbers.add(winningNumber);
         }
         return winningNumbers;
     }
 
     public static int convertBonusNumber(String inputBonusNumber) {
+        checkDigit(inputBonusNumber);
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         return bonusNumber;
+    }
+
+    public static void checkDigit(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

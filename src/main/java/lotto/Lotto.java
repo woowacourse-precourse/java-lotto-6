@@ -43,4 +43,17 @@ public class Lotto {
         return numbers;
     }
 
+    public void printLotto(){
+        System.out.print("[");
+        for(int i = 0; i<6;i++){
+            if(i == 5) {
+                System.out.print(numbers.get(i));
+            }
+            else{
+                System.out.print(numbers.get(i)+", ");
+            }
+        }
+        System.out.println("]");
+    }
+
 }

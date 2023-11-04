@@ -10,6 +10,8 @@ public class Application {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
 
+        printLottoTickets(lottos);
+
         Lotto winningLotto = new Lotto(inputWinningNumbers());
         int bonusNumber = inputBonusNumber();
 
@@ -20,6 +22,7 @@ public class Application {
     private static int inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요");
         int purchaseAmount = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         validPurchaseAmount(purchaseAmount);
 
@@ -49,6 +52,8 @@ public class Application {
     private static List<Integer> inputWinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
+
         String[] numbers = input.split(",");
         List<Integer> winningNumbers = Arrays.stream(numbers)
                 .map(Integer::parseInt)
@@ -60,6 +65,7 @@ public class Application {
     private static int inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber =  Integer.parseInt(Console.readLine());
+        System.out.println();
 
         return bonusNumber;
     }
@@ -135,7 +141,11 @@ public class Application {
     }
 
     private static void printLottoTickets(List<Lotto> lottos){
-
+        System.out.println(lottos.size()+"개를 구매했습니다.");
+        for(Lotto lotto : lottos){
+            lotto.printLotto();
+        }
+        System.out.println();
     }
     private static void printLottoResult(Map<String, Integer> resultMap){
 
@@ -145,7 +155,7 @@ public class Application {
                 bonusMatch = true;
             String key = getKey(prize.getMatchCount(), bonusMatch);
 
-            System.out.printf("%s (%d원) - %d개\n", key, prize.getPrizeMoney(), resultMap.getOrDefault(key, 0));
+            System.out.printf("%s (%,d원) - %d개\n", key, prize.getPrizeMoney(), resultMap.getOrDefault(key, 0));
         }
     }
 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -35,7 +34,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("보너스 번호가 당첨 번호에 포함되어 있으면 true를 리턴한다.")
+    @DisplayName("보너스 번호가 당첨 번호에 포함되어 있으면 예외가 발생한다.")
     @Test
     void validateBonusNumber() {
 

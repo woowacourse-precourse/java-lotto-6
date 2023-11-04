@@ -7,13 +7,16 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public static Lotto from(List<Integer> numbers) {
+        validate(numbers);
+        return new Lotto(numbers);
+    }
+
+    private static void validate(List<Integer> numbers) {
         if (isSameLength(numbers)) {
-            //TODO : exception을 날리는 메서드로 분리
             throw new IllegalArgumentException(
                     String.format("[ERROR] %d개로 로또를 생성하려 했습니다. 로또의 번호는 6개 입니다", numbers.size()));
         }
@@ -22,12 +25,12 @@ public class Lotto {
         }
     }
 
-    private boolean isDupplicated(List<Integer> numbers) {
+    private static boolean isDupplicated(List<Integer> numbers) {
         List<Integer> duplicated = numbers.stream().distinct().toList();
         return duplicated.size() == numbers.size();
     }
 
-    private boolean isSameLength(List<Integer> numbers) {
+    private static boolean isSameLength(List<Integer> numbers) {
         return numbers.size() != LottoConstants.LENGTH.getConstants();
     }
 

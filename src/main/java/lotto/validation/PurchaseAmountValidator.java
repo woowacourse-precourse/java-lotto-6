@@ -13,4 +13,13 @@ public class PurchaseAmountValidator {
             throw new IllegalArgumentException(message.getMessage());
         }
     }
+
+    private static void validateMaxAmount(int amount) {
+        GameConfig maxPurchaseAmount = GameConfig.MAX_PURCHASE_AMOUNT;
+
+        if (amount > maxPurchaseAmount.getValue()) {
+            ExceptionMessage message = ExceptionMessage.EXCEED_MAX_PURCHASE_AMOUNT_EXCEPTION;
+            throw new IllegalArgumentException(message.getMessage());
+        }
+    }
 }

@@ -1,8 +1,10 @@
 package lotto.constant.message;
 
+import static lotto.constant.LottoInformation.DELIMITER;
 import static lotto.constant.LottoInformation.LOTTO_PRICE;
 import static lotto.constant.LottoInformation.MAX_NUMBER;
 import static lotto.constant.LottoInformation.MIN_NUMBER;
+import static lotto.constant.LottoInformation.NUMBER_COUNT;
 
 public enum ErrorMessage {
     BLANK_LINE("아무것도 입력하지 않았습니다."),
@@ -11,7 +13,8 @@ public enum ErrorMessage {
     DUPLICATE_BONUS("당첨 번호와 중복될 수 없습니다."),
     INVALID_NUMBER_RANGE(MIN_NUMBER + " ~ " + MAX_NUMBER + "사이의 숫자가 아닙니다"),
     DUPLICATE_NUMBER("중복된 숫자가 존재합니다."),
-    NOT_MONEY("주머니를 뒤적였지만 돈이 없습니다..");
+    NOT_MONEY("주머니를 뒤적였지만 돈이 없습니다.."),
+    INVALID_COUNT(NUMBER_COUNT + "개의 숫자를 구분자(" + DELIMITER + ")와 함께 입력해주세요.");
 
     private final String message;
 

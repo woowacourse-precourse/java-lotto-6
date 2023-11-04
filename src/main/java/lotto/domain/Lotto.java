@@ -4,6 +4,7 @@ import static lotto.constant.LottoInformation.MAX_NUMBER;
 import static lotto.constant.LottoInformation.MIN_NUMBER;
 import static lotto.constant.LottoInformation.NUMBER_COUNT;
 import static lotto.constant.message.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.constant.message.ErrorMessage.INVALID_COUNT;
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_COUNT.getMessage());
         }
     }
 

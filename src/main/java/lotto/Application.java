@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -66,6 +67,20 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
         }
         return split;
+    }
+
+    public List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
+        try {
+            List<Integer> winningNumber = new ArrayList<>();
+            for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
+                int number = Integer.parseInt(inputWinningNumberSplit[i]);
+                winningNumber.add(number);
+            }
+            Collections.sort(winningNumber);
+            return winningNumber;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자만 입력해주세요.");
+        }
     }
 
 

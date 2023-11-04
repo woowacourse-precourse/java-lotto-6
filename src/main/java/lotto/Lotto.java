@@ -3,14 +3,13 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        duplicateNumberCheck(numbers);
+        checkDuplicatedNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -20,11 +19,10 @@ public class Lotto {
         }
     }
 
-    private void duplicateNumberCheck(List<Integer> numbers) {
+    private void checkDuplicatedNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     }
-
 }

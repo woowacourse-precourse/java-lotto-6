@@ -29,7 +29,7 @@ class LottoTest {
     @Test
     void createLottosSizeTest(){
         Lottos lottos = new Lottos(5);
-        assertThat(lottos.getLottos().size()).isEqualTo(5);
+        assertThat(lottos.getLottosSize()).isEqualTo(5);
     }
 
     // 아래에 추가 테스트 작성 가능

@@ -8,7 +8,7 @@ public interface InputView {
 
     public String getWinningNumbers();
 
-    public String getAskBonusNumber();
+    public String getBonusNumber();
 
     default void print(String printMessage) {
         System.out.println(printMessage);

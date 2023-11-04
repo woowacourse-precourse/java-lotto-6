@@ -17,17 +17,20 @@ public class ConsoleInputView implements InputView {
         return ConsoleInputViewHolder.consoleInputView;
     }
 
+    @Override
     public String getPurchasePrice() {
         print(ASK_PURCHASE_PRICE_MESSAGE);
         return getInput();
     }
 
+    @Override
     public String getWinningNumbers() {
         print(ASK_WINNING_NUMBERS_MESSAGE);
         return getInput();
     }
 
-    public String getAskBonusNumber() {
+    @Override
+    public String getBonusNumber() {
         print(ASK_BONUS_NUMBER_MESSAGE);
         return getInput();
     }

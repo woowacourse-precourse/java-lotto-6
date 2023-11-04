@@ -8,6 +8,7 @@ public class Money {
 
     private static final int LOTTO_COST = 1000;
     private static final int ZERO_VALUE = 0;
+    private static final int PERCENTAGE = 100;
 
     private final int amount;
 
@@ -48,7 +49,7 @@ public class Money {
     }
 
     public double calculateReturnRate(final long sumOfPrice) {
-        return ((double) sumOfPrice / amount) * 100;
+        return ((double) sumOfPrice / amount) * PERCENTAGE;
     }
 
     @Override

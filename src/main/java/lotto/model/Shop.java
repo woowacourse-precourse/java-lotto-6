@@ -29,12 +29,12 @@ public class Shop {
         return new Shop(purchaseAmount);
     }
 
-    public List<Lotto> giveLottoes() {
+    public PaperBag giveLottoes() {
         List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < purchaseNumber; i++) {
             LottoGenerator lottoGenerator = new LottoGenerator();
             lottoes.add(lottoGenerator.getLotto());
         }
-        return lottoes;
+        return PaperBag.of(lottoes);
     }
 }

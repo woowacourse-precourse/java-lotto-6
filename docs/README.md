@@ -46,13 +46,12 @@
 ## `Lotto`
 - [x] 1~45중 중복되지 않는 6개의 로또번호를 가지고 있다.
 
-## `LottoWallet`
-- [ ] 구입금액만큼의 Lotto를 가지고 있다.
-- [ ] Lotto들을 가지고 있고, 꺼낼 수 있다.
-- [ ] 당첨금이 계산되어 있다.
+## `PaperBag`
+- [x] 구입금액만큼의 Lotto를 가지고 있다.
+- [x] Lotto들을 가지고 있고, 꺼낼 수 있다.
 
 ## `Person`
-- [ ] `LottoWallet`을 가지고 있다. Lotto를 받아 넣고, Lotto를 꺼낼 수 있다.
+- [ ] `PaperBag`을 가지고 있다. Lotto를 받아 넣고, Lotto를 꺼낼 수 있다.
 - [ ] 구입 금액, 당첨금, 수익률을 가지고 있다.
 
 ## `Calculator`

@@ -13,7 +13,7 @@ public class PriceValidator {
 
     private void isPriceEmpty(String input) {
         if(input.isEmpty()) {
-            System.out.println(ErrorMessage.PRICE_DOESNT_ENTER);
+            System.out.println(ErrorMessage.PRICE_DOESNT_ENTER.getErrorMessage());
             throw new IllegalArgumentException();
         }
     }

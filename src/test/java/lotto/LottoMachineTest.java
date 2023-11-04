@@ -28,39 +28,25 @@ public class LottoMachineTest {
         return argumentsStream;
     }
 
-    @DisplayName("1-45 6개의 랜덤 숫자가 든 복권 하나를 발행한다.")
+    @DisplayName("6개의 랜덤 숫자가 든 복권을 발행한다.")
     @ParameterizedTest
     @MethodSource("generateData")
     public void issueLotto(List<Integer> randomNumbers) {
-        // when
-        List<Integer> issuedLotto = lottoMachine.issueLotto(() -> randomNumbers);
-
-        // then
-        assertTrue(issuedLotto.size() == 6);
-        assertTrue(lottoMachine.getIssuedLottos().size() == 1);
-    }
-
-    @DisplayName("발행한 복권을 저장한다.")
-    @Test
-    public void issuedLottos() {
         // given & when
-        List<Integer> issuedLotto1 = lottoMachine.issueLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto = lottoMachine.issueLotto(() -> randomNumbers);
 
         // then
-        List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
-        issuedLottos.stream().forEach(lotto ->
-                assertThat(lotto.getNumbers()).isEqualTo(issuedLotto1));
+        assertTrue(lotto.getNumbers().size() == 6);
     }
 
-    @DisplayName("발행한 복권은 오름차순으로 저장된다.")
+
+    @DisplayName("복권은 오름차순으로 발행한다.")
     @Test
     public void issuedLottosSort() {
         // given & when
-        lottoMachine.issueLotto(() -> Arrays.asList(6, 5, 4, 3, 2, 1));
+        Lotto lotto = lottoMachine.issueLotto(() -> Arrays.asList(6, 5, 4, 3, 2, 1));
 
         // then
-        List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
-        issuedLottos.stream().forEach(lotto ->
-                assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 }

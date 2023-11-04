@@ -81,4 +81,21 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_NUMBER_IN_RANGE);
     }
+
+    private static Stream<Arguments> provideSixItemsTestCases() {
+        return Stream.of(
+                Arguments.of((Object) new String[]{"1", "2", "3", "4", "5", "6", "7"}),
+                Arguments.of((Object) new String[]{"1", "2", "3", "4", "5"}),
+                Arguments.of((Object) new String[]{"1"})
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("구분된 번호가 6개가 아닌 경우 예외 테스트")
+    @MethodSource("provideSixItemsTestCases")
+    void invalidInputsTest7(String[] input) {
+        Assertions.assertThatThrownBy(() -> Validator.isSixItems(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INPUT_SIX_ITEMS);
+    }
 }

@@ -1,8 +1,7 @@
-package lotto.util;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.Lotto;
 
 public final class LottoGenerator {
     private final static int SIZE_LOTTO_NUMBER = 6;

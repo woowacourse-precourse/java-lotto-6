@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.util.LottoGenerator;
 
 public class PurchaseLotto {
     private final List<Lotto> lottos;

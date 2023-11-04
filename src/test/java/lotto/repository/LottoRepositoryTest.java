@@ -2,9 +2,7 @@ package lotto.repository;
 
 import lotto.Lotto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
 import java.util.List;
@@ -15,6 +13,22 @@ import static org.mockito.Mockito.*;
 
 class LottoRepositoryTest {
 
+    private LottoRepository lottoRepository;
+    private Lotto lotto;
+    private Lotto otherLotto;
+
+    @BeforeEach
+    void setUp() {
+        lottoRepository = new LottoRepository();
+        lotto = mock(Lotto.class);
+        otherLotto = mock(Lotto.class);
+    }
+
+    @AfterEach
+    void clear() {
+        lottoRepository.clear();
+    }
+
     @Nested
     @DisplayName("저장 테스트")
     class SaveTest {
@@ -22,10 +36,6 @@ class LottoRepositoryTest {
         @Test
         @DisplayName("성공적으로 단일 Lotto를 저장해야 한다")
         public void 성공적으로_단일_Lotto를_저장해야_한다() {
-            LottoRepository lottoRepository = new LottoRepository();
-            Lotto lotto = mock(Lotto.class);
-            Lotto otherLotto = mock(Lotto.class);
-
             lottoRepository.save(lotto);
             lottoRepository.save(otherLotto);
             List<Lotto> lottos = lottoRepository.findAll();
@@ -38,10 +48,6 @@ class LottoRepositoryTest {
         @Test
         @DisplayName("성공적으로 다수의 Lotto를 저장해야 한다")
         public void 성공적으로_다수의_Lotto를_저장해야_한다() {
-            LottoRepository lottoRepository = new LottoRepository();
-            Lotto lotto = mock(Lotto.class);
-            Lotto otherLotto = mock(Lotto.class);
-
             lottoRepository.saveAll(List.of(lotto, otherLotto));
             List<Lotto> lottos = lottoRepository.findAll();
 
@@ -59,10 +65,6 @@ class LottoRepositoryTest {
         @Test
         @DisplayName("성공적으로 저장된 모든 로또들을 조회 해야 한다")
         public void 성공적으로_저장된_모든_로또들을_조회_해야_한다() {
-            LottoRepository lottoRepository = new LottoRepository();
-            Lotto lotto = mock(Lotto.class);
-            Lotto otherLotto = mock(Lotto.class);
-
             lottoRepository.saveAll(List.of(lotto, otherLotto));
             List<Lotto> lottos = lottoRepository.findAll();
 
@@ -80,10 +82,6 @@ class LottoRepositoryTest {
         @Test
         @DisplayName("성공적으로 데이터베이스를 삭제 해야 한다")
         public void 성공적으로_데이터베이스를_삭제_해야_한다() {
-            LottoRepository lottoRepository = new LottoRepository();
-            Lotto lotto = mock(Lotto.class);
-            Lotto otherLotto = mock(Lotto.class);
-
             lottoRepository.saveAll(List.of(lotto, otherLotto));
             lottoRepository.clear();
             List<Lotto> lottos = lottoRepository.findAll();

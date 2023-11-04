@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS;
 
 import java.math.BigDecimal;
+import lotto.utils.LottoUtil;
 
 public class LottoLogic {
     private final BigDecimal purchaseAmount;
@@ -11,6 +12,7 @@ public class LottoLogic {
 
     public LottoLogic(BigDecimal purchaseAmount, int bonusNumber) {
         validateMultiplesOf(purchaseAmount, BigDecimal.valueOf(1000));
+        LottoUtil.validateLottoNum(bonusNumber);
         this.purchaseAmount = purchaseAmount;
         this.bonusNumber = bonusNumber;
     }

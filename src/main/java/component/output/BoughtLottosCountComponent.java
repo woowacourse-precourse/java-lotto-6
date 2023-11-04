@@ -1,11 +1,13 @@
 package component.output;
 
 import component.Component;
+import component.Composable;
+import lotto.controller.dto.LottosBuyingResult;
 
 /**
  * 로또를 몇 개 구매했는지 보여주는 메세지를 렌더링하는 Component입니다.
  */
-public final class BoughtLottosCountComponent implements Component {
+public final class BoughtLottosCountComponent implements Component, Composable {
     /**
      * 메세지 템플릿
      */
@@ -20,8 +22,8 @@ public final class BoughtLottosCountComponent implements Component {
      */
     private final int lottosCount;
 
-    public BoughtLottosCountComponent(final int lottosCount) {
-        this.lottosCount = lottosCount;
+    public BoughtLottosCountComponent(final LottosBuyingResult data) {
+        this.lottosCount = data.count();
     }
 
     /**
@@ -33,4 +35,13 @@ public final class BoughtLottosCountComponent implements Component {
     public String render() {
         return String.format(BOUGHT_LOTTOS_COUNT_MESSAGE, lottosCount);
     }
+
+    /**
+     * 다른 컴포넌트와 내용을 연결하는 익명 Component 생성 가능
+     */
+    @Override
+    public Component compose(final Component other) {
+        return () -> render() + other.render();
+    }
+
 }

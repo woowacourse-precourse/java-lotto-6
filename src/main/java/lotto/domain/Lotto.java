@@ -37,6 +37,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return "[" + numbers + "]";
+        return numbers.toString();
     }
 }

@@ -27,10 +27,8 @@ class PurchaseAmountTest {
     @MethodSource("parameters")
     void validatePurchaseAmount(String testName, String amount) {
         // given
-        PurchaseAmount purchaseAmount = new PurchaseAmount();
-
         // when, then
-        assertThatThrownBy(() -> purchaseAmount.validatePurchaseAmount(amount))
+        assertThatThrownBy(() -> PurchaseAmount.from(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

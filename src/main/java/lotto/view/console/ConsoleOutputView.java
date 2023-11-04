@@ -7,8 +7,9 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningResult;
 import lotto.domain.WinningStatistics;
+import lotto.view.OutputView;
 
-public class OutputView {
+public class ConsoleOutputView implements OutputView {
     private static final String PURCHASED_LOTTOS_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DIVIDER = "---";
@@ -20,7 +21,8 @@ public class OutputView {
     private static final String TOTAL_PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %,.1f%%입니다.%n"; // 반올림 및 구분자
 
 
-    public void printPurchasedLottos(List<Lotto> lottos) {
+    @Override
+    public void displayPurchasedLottos(List<Lotto> lottos) {
         System.out.println();
         System.out.printf(PURCHASED_LOTTOS_COUNT_MESSAGE_FORMAT, lottos.size());
         for (Lotto lotto : lottos) {
@@ -29,7 +31,8 @@ public class OutputView {
         }
     }
 
-    public void printWinningStatistics(WinningStatistics winningStatistics) {
+    @Override
+    public void displayWinningStatistics(WinningStatistics winningStatistics) {
         final WinningResult winningResult = winningStatistics.getWinningResult();
         final Map<LottoRank, Integer> resultByLottoRank = winningResult.getResultByLottoRank();
         final double profitRatio = winningStatistics.getTotalProfitRate();

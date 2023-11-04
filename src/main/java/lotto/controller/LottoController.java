@@ -6,8 +6,8 @@ import lotto.domain.LottoStore;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 import lotto.domain.WinningStatistics;
-import lotto.view.console.InputView;
-import lotto.view.console.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 import lotto.view.console.util.InputUtil;
 
 public class LottoController {
@@ -21,10 +21,10 @@ public class LottoController {
 
     public void run() {
         List<Lotto> lottos = buyLottos();
-        printPurchasedLottos(lottos);
+        displayPurchasedLottos(lottos);
         WinningLotto winningLotto = determineWinningLotto();
         WinningStatistics winningStatistics = calculateWinningStatistics(lottos, winningLotto);
-        printWinningStatistics(winningStatistics);
+        displayWinningStatistics(winningStatistics);
     }
 
     private List<Lotto> buyLottos() {
@@ -52,11 +52,11 @@ public class LottoController {
         return new WinningStatistics(winningResult);
     }
 
-    private void printPurchasedLottos(List<Lotto> lottos) {
-        outputView.printPurchasedLottos(lottos);
+    private void displayPurchasedLottos(List<Lotto> lottos) {
+        outputView.displayPurchasedLottos(lottos);
     }
 
-    private void printWinningStatistics(WinningStatistics winningStatistics) {
-        outputView.printWinningStatistics(winningStatistics);
+    private void displayWinningStatistics(WinningStatistics winningStatistics) {
+        outputView.displayWinningStatistics(winningStatistics);
     }
 }

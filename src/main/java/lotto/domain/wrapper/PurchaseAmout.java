@@ -8,6 +8,7 @@ public class PurchaseAmout {
     private int purchaseAmout;
 
     public PurchaseAmout(int purchaseAmout) {
+        validate(purchaseAmout);
         this.purchaseAmout = purchaseAmout;
     }
 

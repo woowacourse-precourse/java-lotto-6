@@ -20,9 +20,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.numbersSizeCorrect(numbers);
-        LottoValidator.numberOverValueRange(numbers);
-        LottoValidator.numbersDuplication(numbers);
+        LottoValidator.numbersSizeDifferent(numbers);
+        LottoValidator.numbersOverValueRange(numbers);
+        LottoValidator.numbersDuplicated(numbers);
     }
 
     // TODO: 추가 기능 구현

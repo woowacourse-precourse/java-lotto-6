@@ -7,12 +7,13 @@ import lotto.view.Output;
 
 public class InputValidator {
     //상수들 역할에 따라 분리
+    private static final int NECESSARY_COMMA_COUNT = LottoConstant.LOTTO_NUMBER_COUNT - 1;
 
     private static final String NUMBER_REGEX = "[0-9]+";
 
 
-    public static void onlyNumber(String input) {
-        if (isNotMatchRegex(input, NUMBER_REGEX)) {
+    public static void notNumber(String input) {
+        if (isNotMatchRegex(input)) {
             Output.errorMessage(NOT_NUMBER_MESSAGE);
             throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
         }
@@ -20,14 +21,14 @@ public class InputValidator {
 
     //긍적의 조건문을 나타내기위한 함수 필요한가?
     //util로 빼줘야하나
-    private static boolean isNotMatchRegex(String input, String regex) {
-        if (input.matches(regex)) {
+    private static boolean isNotMatchRegex(String input) {
+        if (input.matches(InputValidator.NUMBER_REGEX)) {
             return false;
         }
         return true;
     }
 
-    public static void inNumberRange(String input) {
+    public static void overNumberRange(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {

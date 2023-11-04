@@ -9,7 +9,7 @@ public class PurchasePrice {
     private final int price;
 
     private PurchasePrice(int value) {
-        PurchasePriceValidator.divisibleUnit(value);
+        PurchasePriceValidator.indivisibleUnit(value);
         price = value;
     }
 

@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ public class LottoController {
             List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
             printLotteryList(totalLottery);
             Lotto winningNumber = getWinningNumber();
+            int bonusNumber = getBonusNumber(winningNumber);
         } catch(IllegalArgumentException e){
             throw new IllegalArgumentException(e);
         }
@@ -61,5 +61,22 @@ public class LottoController {
         } catch(IllegalArgumentException e){
             throw new IllegalArgumentException(e);
         }
+    }
+
+    private int getBonusNumber(Lotto winningNumber) throws IllegalArgumentException{
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        if(bonusNumber < 1 || bonusNumber > 45){
+            throw new IllegalArgumentException();
+        }
+
+        if(winningNumber.getNumbers().contains(bonusNumber)){
+            throw new IllegalArgumentException();
+        }
+
+        return bonusNumber;
     }
 }

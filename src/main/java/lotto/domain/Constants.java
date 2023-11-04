@@ -10,7 +10,6 @@ public class Constants {
     public static final int LOTTO_NUMBERS = 6;
     public static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    public static final int BRACKET_REMOVAL_INDEX = 1;
     public static final int MATCHED_FIVE_NUMBERS = 5;
     public static final int SECOND_RANK_IDENTIFIER = 10;
     public static final int FIRST_RANK = 0;

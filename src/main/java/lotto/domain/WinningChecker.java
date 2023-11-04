@@ -1,15 +1,14 @@
 package lotto.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class WinningChecker {
 
-    final List<String> myLottos;
+    final List<Lotto> myLottos;
     final List<Integer> winningNumbers;
     final int bonusNumber;
 
-    public WinningChecker(List<String> myLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public WinningChecker(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
         this.myLottos = myLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -17,8 +16,8 @@ public class WinningChecker {
 
     public List<Integer> countWinningLottos() {
         List<Integer> matchedNumberCounts = new ArrayList<>();
-        for (String lotto : myLottos) {
-            List<Integer> lottoNumbers = lottoNumberForCompare(lotto);
+        for (Lotto lotto : myLottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
             int matchedNumCount = countMatchedNumber(lottoNumbers);
             matchedNumCount = countMatchedBonusNumber(lottoNumbers, matchedNumCount);
 
@@ -27,15 +26,6 @@ public class WinningChecker {
             }
         }
         return countRanks(matchedNumberCounts);
-    }
-
-    private List<Integer> lottoNumberForCompare(String lotto) {
-        return Arrays.stream(
-                lotto.substring(Constants.BRACKET_REMOVAL_INDEX, lotto.length() - Constants.BRACKET_REMOVAL_INDEX)
-                        .split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
     }
 
     private int countMatchedNumber(List<Integer> lottoNumbers) {

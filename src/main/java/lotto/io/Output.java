@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.Constants;
+import lotto.domain.Lotto;
 
 import java.util.List;
 
@@ -15,10 +16,8 @@ public class Output {
         System.out.printf(Constants.QUANTITY_MESSAGE, lottoQuantity);
     }
 
-    public void printMyLottos(List<String> myLottos) {
-        for (String lottoNumbers : myLottos) {
-            System.out.println(lottoNumbers);
-        }
+    public void printMyLottos(List<Lotto> myLottos) {
+        myLottos.stream().map(Lotto::getNumbers).forEach(System.out::println);
     }
 
     public void printInputWinningNumbersMessage() {

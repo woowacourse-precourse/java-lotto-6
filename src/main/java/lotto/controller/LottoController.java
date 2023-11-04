@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
-import lotto.domain.ProfitCalculator;
-import lotto.domain.WinningChecker;
-import lotto.domain.Constants;
+import lotto.domain.*;
 import lotto.io.Input;
 import lotto.io.Output;
 
@@ -26,7 +23,7 @@ public class LottoController {
         output.printPurchaseQuantity(lottoQuantity);
 
         Lottos lottos = new Lottos(lottoQuantity);
-        List<String> myLottos = lottos.getMyLottos();
+        List<Lotto> myLottos = lottos.getMyLottos();
         output.printMyLottos(myLottos);
 
         output.printInputWinningNumbersMessage();

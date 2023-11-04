@@ -15,7 +15,7 @@ public class Lotto {
         }
     }
 
-    public String getNumbers() {
-        return numbers.toString();
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

@@ -10,7 +10,8 @@ public enum OutputMessage {
     MATCH_COUNT("%d개 일치"),
     BONUS_MATCH(", 보너스 볼 일치"),
     PRIZE_AMOUNT(" (%,d원) - "),
-    WINNING_NUMBER("%d개\n");
+    WINNING_NUMBER("%d개\n"),
+    PROFIT("총 수익률은 %.1f%%입니다.");
 
 
     private final String message;

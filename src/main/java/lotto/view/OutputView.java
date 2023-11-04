@@ -30,7 +30,11 @@ public class OutputView {
     }
 
     public void printResult(LottoResult result) {
-        System.out.println(result.getResultScreen());
+        System.out.print(result.getResultScreen());
+    }
+
+    public void printProfit(double profit) {
+        System.out.printf(OutputMessage.PROFIT.getMessage(), profit);
     }
     public void printNewLine() {
         System.out.println();

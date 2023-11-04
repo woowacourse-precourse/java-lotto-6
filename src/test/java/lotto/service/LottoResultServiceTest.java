@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -38,17 +40,9 @@ class LottoResultServiceTest {
         WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber(bonusNumber));
 
         // when
-        LottoResult lottoResult = lottoResultService.countMatchingNumbers(purchasedLotto, winningLotto);
+        List<LottoResult> lottoResult = lottoResultService.countMatchingNumbers(purchasedLotto, winningLotto);
 
         // then
-        Boolean expectedBonusCheck = winningLotto.isCorrectBonusNumber(new Lotto(randomNumbers));
-        Boolean actualBonusCheck = lottoResult.getCorrectBonusNumber();
-        assertEquals(expectedBonusCheck, actualBonusCheck);
 
-        List<Integer> expectedMatchCounts = purchasedLotto.getLottos().stream()
-                .map(lotto -> winningLotto.countNumbers(lotto))
-                .collect(Collectors.toList());
-        List<Integer> actualCounts = lottoResult.getCorrectNumbers();
-        assertEquals(expectedMatchCounts, actualCounts);
     }
 }

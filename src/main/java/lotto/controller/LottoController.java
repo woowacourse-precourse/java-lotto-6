@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.PurchasedLotto;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -26,10 +25,17 @@ public class LottoController {
     }
 
     public void run() {
-        Integer lottoCount = purchaseLotto();
+        Integer userMoney = inputMoney();
+        Integer lottoCount = purchaseLotto(userMoney);
 
         PurchasedLotto purchasedLotto = purchaseLottoByLottoCount(lottoCount);
         WinningLotto winningLotto = winningInput();
+
+        List<LottoResult> lottoResults = lottoResultService.countMatchingNumbers(purchasedLotto,winningLotto);
+        Map<LottoReward, Integer> reward = lottoResultService.confirmRewardLottos(lottoResults);
+        Double earnRate = lottoResultService.countEarnRate(reward, userMoney);
+
+        outputView.resultLotto(reward, earnRate);
     }
 
     private WinningLotto winningInput() {
@@ -54,10 +60,14 @@ public class LottoController {
         return purchasedLotto;
     }
 
-    private Integer purchaseLotto() {
+    private Integer inputMoney() {
         outputView.purchaseLottoMessage();
-        Integer inputMoney = inputView.purchaseLotto();
+        Integer userMoney = inputView.purchaseLotto();
 
+        return userMoney;
+    }
+
+    private Integer purchaseLotto(Integer inputMoney) {
         Integer lottoCount = lottoService.purchaseLottoWithValidPrice(inputMoney);
         outputView.purchaseLottoCountMessage(lottoCount);
 

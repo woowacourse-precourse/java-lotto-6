@@ -1,25 +1,7 @@
 package lotto;
 
 public enum Rank {
-    FIRST(2_000_000_000, 6){
-        @Override
-        public Integer calculatePrizeByRank(int rankCount) {
-            return prize * rankCount;
-        }
-    },
-    SECOND(30_000_000, 5){
-        @Override
-        public Integer calculatePrizeByRank(int rankCount) {
-            return prize * rankCount;
-        }
-    },
-    THIRD(1_500_000, 5){
-        @Override
-        public Integer calculatePrizeByRank(int rankCount) {
-            return prize * rankCount;
-        }
-    },
-    FOURTH(50_000, 4){
+    FAIL(0, 0){
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
@@ -31,13 +13,30 @@ public enum Rank {
             return prize * rankCount;
         }
     },
-    FAIL(0, 0){
+    FOURTH(50_000, 4){
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    ;
+    THIRD(1_500_000, 5){
+        @Override
+        public Integer calculatePrizeByRank(int rankCount) {
+            return prize * rankCount;
+        }
+    },
+    SECOND(30_000_000, 5){
+        @Override
+        public Integer calculatePrizeByRank(int rankCount) {
+            return prize * rankCount;
+        }
+    },
+    FIRST(2_000_000_000, 6){
+        @Override
+        public Integer calculatePrizeByRank(int rankCount) {
+            return prize * rankCount;
+        }
+    };
 
     protected final Integer prize;
     private final Integer matchingCount;

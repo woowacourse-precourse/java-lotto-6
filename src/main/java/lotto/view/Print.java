@@ -1,8 +1,10 @@
 package lotto.view;
 
+import lotto.controller.Rank;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Print {
@@ -28,6 +30,19 @@ public class Print {
         allNumber += String.join(",", tmpLotto);
         allNumber += "]";
         System.out.println(allNumber);
+    }
+
+    public static void printResultRank(HashMap<Rank, Integer> result) {
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (Rank rank : Rank.values()) {
+            if (result.containsKey(rank)) {
+                count = result.get(rank);
+            }
+            sb.append(rank.getCorrectNum()).append("개 일치 (").append(rank.getPrize())
+                            .append("원) - ").append(count).append("개\n");
+        }
+        System.out.println(sb);
     }
 
     public static void printStatistics() {

@@ -1,11 +1,11 @@
 package domain.validator;
 
 import util.ErrorMessage;
-import util.PriceOfLotto;
+import util.ConstantOfLotto;
 
 public class PriceUnitValidator {
 
-    private final int STARNDARD_UNIT = PriceOfLotto.priceOfLotto;
+    private final int STARNDARD_UNIT = ConstantOfLotto.priceOfLotto;
 
     public void checkPriceUnit(int price) {
         isPriceInStandardUnit(price, STARNDARD_UNIT);

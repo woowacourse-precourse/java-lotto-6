@@ -1,7 +1,7 @@
 package domain;
 
 import domain.validator.PriceUnitValidator;
-import util.PriceOfLotto;
+import util.ConstantOfLotto;
 
 public class Price {
 
@@ -13,6 +13,6 @@ public class Price {
     }
 
     public int numOfLotto() {
-        return price / PriceOfLotto.priceOfLotto;
+        return price / ConstantOfLotto.priceOfLotto;
     }
 }

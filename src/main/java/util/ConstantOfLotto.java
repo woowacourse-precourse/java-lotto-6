@@ -1,5 +1,5 @@
 package util;
 
-public class PriceOfLotto {
+public class ConstantOfLotto {
     public static final int priceOfLotto = 1000;
 }

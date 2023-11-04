@@ -29,4 +29,8 @@ public final class OutputHandler {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ Collections.frequency(awards,Award.FIVE_BONUS)+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+ Collections.frequency(awards,Award.SIX)+"개");
     }
+
+    public static void printYield(float yield){
+        System.out.println("총 수익률은 "+yield+"%입니다.");
+    }
 }

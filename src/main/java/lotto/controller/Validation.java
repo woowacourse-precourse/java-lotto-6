@@ -40,11 +40,11 @@ public class Validation {
     }
 
     public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        validateRange(bonusNumber);
+        validateBonusNumberRange(bonusNumber);
         validateBonusNumberDuplication(bonusNumber, winningNumbers);
     }
 
-    public void validateRange(int bonusNumber) {
+    public void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || 45 < bonusNumber) {
             throw new IllegalArgumentException(ErrorMessages
                      .OUT_OF_RANGE

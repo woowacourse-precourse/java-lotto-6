@@ -40,7 +40,7 @@ public class ValidationTest {
     void createBonusNumbersOverRange() {
         int bonusNumber = 57;
 
-        assertThatThrownBy(() -> new Validation().validateRange(bonusNumber))
+        assertThatThrownBy(() -> new Validation().validateBonusNumberRange(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

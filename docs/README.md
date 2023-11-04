@@ -68,7 +68,11 @@
 
 UserHandler : 사용자의 입력부분을 처리하는 클래스
 - getAmountFromUser() : 사용자 구매입력을 받는 메서드
-- getAmountFromUser()에서 에러처리 메서드 1,000원으로 나누어 떨어지지 않는 경우 [ERROR], 문자열을 입력한경우, 아무것도 입력하지 않은경우 
+- validateUserInput(String userInput) : 에러 처리 후 구매입력을 반환하는 메서드
+  - checkStartWithZero(String userInput) : 0으로 시작하는 숫자의 에러를 처리하는 메서드
+  - checkNumericString(String userInput) : 문자열의 에러를 처리하는 메서드
+  - checkUnitAmount(int amount) : 1000원 단위인지 검사 후 에러를 처리하는 메서드
+
 - 사용자의 구매입력 가격을 계산후(에러처리후) LottoGameController 클래스에 몇개 구매했는지 반환
   
 - getWinningNumberFromUser() : 사용자로 부터 당첨 번호를 받는 메서드

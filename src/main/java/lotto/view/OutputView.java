@@ -29,12 +29,12 @@ public class OutputView {
         for (Prize prize : Prize.values()) {
             if (prize == Prize.LAST_PLACE) continue;
             if (!prize.getCheckBonus()) {
-                System.out.printf("%d개 일치 (%s) - %d개",
+                System.out.printf("%d개 일치 (%s원) - %d개",
                         prize.getCountOfSameNumbers(),
                         formatter.format(prize.getReward()),
                         prizes.countPrize(prize));
             } else if (prize.getCheckBonus()){
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개",
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
                         prize.getCountOfSameNumbers(),
                         formatter.format(prize.getReward()),
                         prizes.countPrize(prize));

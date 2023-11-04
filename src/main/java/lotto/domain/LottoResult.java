@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.lang.ref.PhantomReference;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.constant.LottoPrice;
@@ -9,6 +10,7 @@ public class LottoResult {
     private final MessageService messageService = new MessageService();
     private final LottoWinningNumbers lottoWinningNumbers;
     private LottoCount lottoCount = new LottoCount();
+    private static final int BONUS_CHECK_COUNT = 10;
 
     public LottoResult(LottoWinningNumbers lottoWinningNumbers) {
         this.lottoWinningNumbers = lottoWinningNumbers;
@@ -17,7 +19,7 @@ public class LottoResult {
     public void getLottoStatus(List<Lotto> purchaseLottoNumber) {
         for (Lotto purchaseNumber : purchaseLottoNumber) {
             List<Integer> lottoNumbers = purchaseNumber.getNumbers();
-            int matchCount = getLottoMatchCount(lottoNumbers);
+            int matchCount = BonusNumberCheck(getLottoMatchCount(lottoNumbers),lottoNumbers);
             lottoCount = getCount(matchCount);
         }
         outputLottoResult(lottoCount);
@@ -32,6 +34,9 @@ public class LottoResult {
     private LottoCount getCount(int matchCount) {
         if (matchCount == LottoPrice.FIRST.getNumber()) {
             lottoCount.addSixCount();
+        }
+        if (matchCount == LottoPrice.SECOND.getNumber()) {
+            lottoCount.addFiveWithBonusCount();
         }
         if (matchCount == LottoPrice.THIRD.getNumber()) {
             lottoCount.addFiveCount();
@@ -55,7 +60,14 @@ public class LottoResult {
         messageService.outputLottoStatus(LottoPrice.FOURTH.getNumber(), LottoPrice.FOURTH.FormatPrice(),
                 lottoCount.getFourCount());
         messageService.outputLottoStatus(LottoPrice.FIFTH.getNumber(), LottoPrice.FIFTH.FormatPrice(),
-                lottoCount.getFiveCount());
+                lottoCount.getThreeCount());
+    }
+
+    private int BonusNumberCheck(int matchCount , List<Integer> lottoNumbers){
+        if(matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(lottoWinningNumbers.getBonusNumber())){
+            return matchCount + BONUS_CHECK_COUNT;
+        }
+        return matchCount;
     }
 
 }

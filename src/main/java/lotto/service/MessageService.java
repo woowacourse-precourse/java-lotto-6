@@ -42,6 +42,9 @@ public class MessageService {
     }
 
     public void outputLottoStatus(int number, String formatPrice, int resultCount) {
+        if (number > 10) {
+            number -= 10;
+        }
         String message = String.format(OutputMessage.OUTPUT_LOTTO_STATUS_MESSAGE.getMessage(), number, formatPrice,
                 resultCount);
         System.out.println(message);

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class LottoCount {
-    private final static int addCount = 1;
+    private final static int ADD_COUNT = 1;
     private int threeCount;
     private int fourCount;
     private int fiveCount;
@@ -29,18 +29,18 @@ public class LottoCount {
     }
 
     public void addThreeCount() {
-        this.threeCount += addCount;
+        this.threeCount += ADD_COUNT;
     }
     public void addFourCount() {
-        this.fourCount += addCount;
+        this.fourCount += ADD_COUNT;
     }
     public void addFiveCount() {
-        this.fiveCount += addCount;
+        this.fiveCount += ADD_COUNT;
     }
     public void addFiveWithBonusCount() {
-        this.fiveWithBonusCount += addCount;
+        this.fiveWithBonusCount += ADD_COUNT;
     }
     public void addSixCount() {
-        this.sixCount += addCount;
+        this.sixCount += ADD_COUNT;
     }
 }

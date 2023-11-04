@@ -90,5 +90,7 @@ public class LottoGameController {
         LottoGame lottoGame = initGame(lottoPurchaseCost);
         LottoRanks lottoRanks = createLottoRanks(lottoGame);
         String statisticsExpression = createStatisticsExpression(lottoRanks, lottoPurchaseCost);
+
+        outputView.printStatisticsMessage(statisticsExpression);
     }
 }

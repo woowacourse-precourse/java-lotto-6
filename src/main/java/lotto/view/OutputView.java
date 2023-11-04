@@ -35,4 +35,8 @@ public class OutputView {
     public void printReadBonusNumberMessage() {
         System.out.println(READ_BONUS_NUMBER_MESSAGE);
     }
+
+    public void printStatisticsMessage(String message) {
+        System.out.println(message);
+    }
 }

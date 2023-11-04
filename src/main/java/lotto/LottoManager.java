@@ -7,37 +7,14 @@ import java.util.List;
 
 public class LottoManager {
 
-    private int price;
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void start() {
-        try {
-            priceInput();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            start();
-        }
-    }
-
-    public void priceInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-
-        setPrice(input);
-    }
-
-    public void setPrice(String input) {
+    public static int priceInput(String input) {
         int price = numberFormatValidate(input);
         unitValidate(price);
 
-        this.price = price;
+        return price;
     }
 
-    private int numberFormatValidate(String input) {
+    private static int numberFormatValidate(String input) {
         int number;
 
         try {
@@ -49,7 +26,7 @@ public class LottoManager {
         return number;
     }
 
-    private void unitValidate (int price) {
+    private static void unitValidate(int price) {
         if (price < Const.priceUnit || price % Const.priceUnit != 0) {
             throw new IllegalArgumentException("[ERROR] " + Const.priceUnitOutput + " 단위의 금액을 입력해주십시오.");
         }
@@ -170,7 +147,7 @@ public class LottoManager {
         user.setFirstPlace(count);
     }
 
-    public void getYield(User user) {
+    public void getYield(User user, int price) {
         int total = user.getFifthPlace() * Const.fifthPrize
                 + user.getFourthPlace() * Const.fourthPrize
                 + user.getThirdPlace() * Const.thirdPrize

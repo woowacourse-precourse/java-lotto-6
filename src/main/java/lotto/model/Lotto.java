@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constant;
+import lotto.constant.Constants;
 import lotto.message.ExceptionMessage;
 
 import java.util.Arrays;
@@ -49,14 +49,14 @@ public class Lotto {
     }
 
     private void consistOfLottoSize(List<Integer> numbers) {
-        if (numbers.size() != Constant.LOTTO_SIZE.getValue()) {
-            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.throwException(Constant.LOTTO_SIZE.getValue());
+        if (numbers.size() != Constants.LOTTO_SIZE.getValue()) {
+            ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.throwException(Constants.LOTTO_SIZE.getValue());
         }
     }
 
     private void isInRange(List<Integer> numbers) {
-        int minLottoNumber = Constant.MIN_LOTTO_NUMBER.getValue();
-        int maxLottoNumber = Constant.MAX_LOTTO_NUMBER.getValue();
+        int minLottoNumber = Constants.MIN_LOTTO_NUMBER.getValue();
+        int maxLottoNumber = Constants.MAX_LOTTO_NUMBER.getValue();
         boolean isInRangeValue = numbers.stream().allMatch(number -> number >= minLottoNumber && number <= maxLottoNumber);
         if (!isInRangeValue) {
             ExceptionMessage.IS_NOT_IN_RANGE.throwException(minLottoNumber, maxLottoNumber);

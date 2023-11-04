@@ -1,12 +1,12 @@
 package lotto.model;
 
 import lotto.constant.BonusStatus;
-import lotto.constant.Constant;
+import lotto.constant.Constants;
 
 import java.util.*;
 
 public class WinningStatistics {
-    private static final int SPECIAL_MATCH_COUNT = Constant.SPECIAL_MATCH_COUNT.getValue();
+    private static final int SPECIAL_MATCH_COUNT = Constants.SPECIAL_MATCH_COUNT.getValue();
     private long totalReward = 0;
     private double rateOfReturn = 0.0;
     private final Map<WinningPrize, Integer> winningResult = new HashMap<>() {{

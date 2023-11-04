@@ -1,8 +1,7 @@
 package lotto.model;
 
-import lotto.constant.Constant;
+import lotto.constant.Constants;
 import lotto.message.ExceptionMessage;
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private static final int LOTTO_SIZE = Constant.LOTTO_SIZE.getValue();
-    private static final int MIN_LOTTO_NUMBER = Constant.MIN_LOTTO_NUMBER.getValue();
-    private static final int MAX_LOTTO_NUMBER = Constant.MAX_LOTTO_NUMBER.getValue();
+    private static final int LOTTO_SIZE = Constants.LOTTO_SIZE.getValue();
+    private static final int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
 
     @DisplayName("올바른 로또를 생성하면 성공한다.")
     @Test

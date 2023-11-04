@@ -1,13 +1,13 @@
 package lotto.model;
 
-import lotto.constant.Constant;
+import lotto.constant.Constants;
 import lotto.message.ExceptionMessage;
 
 import java.util.List;
 
 public class BonusNumber {
-    private static final int MIN_LOTTO_NUMBER = Constant.MIN_LOTTO_NUMBER.getValue();
-    private static final int MAX_LOTTO_NUMBER = Constant.MAX_LOTTO_NUMBER.getValue();
+    private static final int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
     private final int bonusNumber;
 
     public BonusNumber(String bonusNumber, List<Integer> winningLotto) {

@@ -12,7 +12,7 @@ public class NumberValidator {
         }
 
         if (!isWithinIntRange(number)) {
-            throw new IllegalArgumentException(NumberErrorMessage.OUT_OF_INT_RANGE.getMessage());
+            throw new IllegalArgumentException(NumberErrorMessage.OUT_OF_RANGE.getMessage());
         }
 
         if (isZero(number)) {

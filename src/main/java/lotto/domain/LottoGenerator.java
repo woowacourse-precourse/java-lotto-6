@@ -13,13 +13,14 @@ public class LottoGenerator {
     public LottoGenerator(int chance) {
         setMyLotto(chance);
     }
+
     public void setMyLotto(int chance) {
         IntStream.range(0, chance)
                 .mapToObj(i -> new Lotto(generateRandomLottoNumbers()))
                 .forEach(myLotto::add);
     }
 
-    private List<Integer> generateRandomLottoNumbers(){
+    private List<Integer> generateRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 Constants.LOTTO_MIN_NUM,
                 Constants.LOTTO_MAX_NUM,

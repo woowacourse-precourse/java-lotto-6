@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LottoGameMoneyDataTest {
+class MoneyConverterTest {
     MoneyConverter moneyConverter;
     @Test
     void invalidPatternCheck1() {

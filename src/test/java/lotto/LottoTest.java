@@ -42,4 +42,20 @@ class LottoTest {
         assertThatThrownBy(() -> pv.isThousands(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("숫자와 컴마외의 문자를 입력하면 예외가 발생한다.")
+    @Test
+    void validatorIsNumberAndComma(){
+        String number = "15,45,28,41.5.7";
+        assertThatThrownBy(() -> pv.isNumberAndComma(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("숫자와 컴마외의 문자를 입력하면 예외가 발생한다.")
+    @Test
+    void validatorIsLottoNumber(){
+        String number = "75,45,28,41,5,16";
+        assertThatThrownBy(() -> pv.isLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

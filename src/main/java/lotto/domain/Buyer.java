@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import lotto.view.ErrorMessage;
 
 public class Buyer {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
+
+    private final ArrayList<Lotto> purchasedLotto = new ArrayList<>();
     private final int purchaseAmount;
 
     private Buyer(int purchaseAmount) {
@@ -15,6 +18,18 @@ public class Buyer {
         return new Buyer(purchaseAmount);
     }
 
+    public void buyLotto(Lotto lotto) {
+        purchasedLotto.add(lotto);
+    }
+
+    public ArrayList<Lotto> getPurchasedLotto() {
+        return purchasedLotto;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % PURCHASE_AMOUNT_UNIT != 0) {
             ErrorMessage.divideNumberError(PURCHASE_AMOUNT_UNIT);
@@ -22,7 +37,4 @@ public class Buyer {
         }
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
 }

@@ -40,6 +40,12 @@ public class Lotto {
         }
     }
 
+    private static void isContainsBlank(String inputNumber) {
+        if (inputNumber.contains(Constant.BLANK.getCharValue())) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_CONTAINS_BLANK.get());
+        }
+    }
+
     private void validateNumbersLength(List<Number> numbers) {
         if (numbers.size() != Constant.LOTTO_NUMBERS_MAX_LENGTH.getIntValue()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_LENGTH.get());

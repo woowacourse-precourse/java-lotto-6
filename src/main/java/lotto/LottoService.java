@@ -25,4 +25,6 @@ public class LottoService {
     public boolean compareBonusNumber(Lotto answer, int bonusNumber) {
         return answer.getNumbers().contains(bonusNumber);
     }
+
+
 }

@@ -145,6 +145,13 @@ class ApplicationTest extends NsTest {
         assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("-1"));
     }
 
+    @Test
+    void 가격_입력_메소드(){
+        String priceString = "17000";
+        System.setIn(new ByteArrayInputStream(priceString.getBytes()));
+        int price=LottoInput.inputPrice();
+        assertThat(price).isEqualTo(17000);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

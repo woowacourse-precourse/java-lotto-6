@@ -33,4 +33,5 @@ public class LottoInput {
         int price=Integer.parseInt(priceString);
         return price;
     }
+
 }

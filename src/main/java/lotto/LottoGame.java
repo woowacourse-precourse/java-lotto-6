@@ -8,7 +8,9 @@ public class LottoGame {
     private Lotto answer;
     private Lotto[] consumerAnswer;
     private int total;
+    private int bonus;
     public void gameStart(){
 
     }
+
 }

@@ -17,6 +17,10 @@ public class LottoTickets {
                 .collect(Collectors.toList());
     }
 
+    public List<Lotto> getLottoTickets() {
+        return this.lottoTickets;
+    }
+
     private void validateNumberOfTickets(int numberOfTickets) {
         if(numberOfTickets <= 0) {
             throw new IllegalArgumentException(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());

@@ -31,6 +31,10 @@ public class User {
         return this.money;
     }
 
+    public Integer getLottoCount() {
+        return this.money/1000;
+    }
+
     private void validateValue(Integer money){
         validateDivide(money);
         validateZero(money);

@@ -29,7 +29,7 @@ public class LottoAdmin {
         String bonusStr = Console.readLine();
         validateBonusInput(bonusStr);
         Integer bonusNum = Integer.parseInt(bonusStr);
-        validateRange(bonusNumber);
+        validateRange(bonusNum);
         this.bonusNumber = bonusNum;
     }
 

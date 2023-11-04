@@ -13,10 +13,10 @@ public enum LottoResult {
     FOUR(50_000
             , 4
             , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 4),
-    FIVEANDBONUS(1_500_000
+    FIVE(1_500_000
             , 5
             , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && !containBonusNumber),
-    FIVE(30_000_000
+    FIVEANDBONUS(30_000_000
             , 5
             , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && containBonusNumber),
     SIX(2_000_000_000

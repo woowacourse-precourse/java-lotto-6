@@ -60,4 +60,9 @@ public class Lotto {
                 .filter(lottoAdmin::isContain)
                 .count();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

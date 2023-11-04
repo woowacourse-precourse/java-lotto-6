@@ -42,7 +42,7 @@ public class OutputUtils {
         System.out.println(String.format(WINNING_DETAIL, description, prize, number));
     }
 
-    public static void printWinningRateOfReturnMessage(Float rate) {
+    public static void printWinningRateOfReturnMessage(float rate) {
         System.out.println(String.format(WINNING_RATE_OF_RETURN_MESSAGE, rate));
     }
 }

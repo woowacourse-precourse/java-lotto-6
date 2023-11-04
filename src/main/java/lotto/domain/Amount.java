@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.AmountException;
+
 public class Amount {
     private static final int AMOUNT_LEAST_VALUE = 1_000;
 
@@ -17,13 +19,13 @@ public class Amount {
 
     private void isGreaterThanEqualLeastValue(int value) {
         if (value < AMOUNT_LEAST_VALUE) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 부터 입니다.");
+            throw AmountException.LEAST_VALUE_EXCEPTION.getException();
         }
     }
 
     private void isMultiple(int value) {
         if (value % AMOUNT_LEAST_VALUE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000의 단위로 입력할 수 있습니다.");
+            throw AmountException.UNIT_EXCEPTION.getException();
         }
     }
 }

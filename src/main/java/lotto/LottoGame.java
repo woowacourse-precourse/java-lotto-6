@@ -58,7 +58,7 @@ public class LottoGame {
             LottoMoney money, List<Lotto> lottoNumbers, Lotto winNumber, BonusNumber bonusNumber) {
         System.out.println(ANNOUNCE_BEFORE_RESULT.getMessage());
         System.out.println(SECTION.getMessage());
-        ResultCalculator.calculateWin(lottoNumbers, winNumber, bonusNumber);
-        ResultCalculator.printWin();
+        ResultCalculator.printWin(lottoNumbers, winNumber, bonusNumber);
+        ResultCalculator.printProfitPercentage(money);
     }
 }

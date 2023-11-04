@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum LottoWinMetric {
     NO_WIN("2개 이하 일치", 2, false, 0),
     FIFTH("3개 일치 (5,000원)", 3, false, 5000),
@@ -44,5 +47,11 @@ public enum LottoWinMetric {
 
     public String getMessage() {
         return this.message + " - " + this.count + "개";
+    }
+
+    public static Optional<Integer> getTotalWinMoney() {
+        return Arrays.stream(LottoWinMetric.values())
+                .map(metric -> metric.winMoney * metric.count)
+                .reduce(Integer::sum);
     }
 }

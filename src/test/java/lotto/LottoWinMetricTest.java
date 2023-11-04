@@ -36,4 +36,20 @@ class LottoWinMetricTest {
         // then
         assertEquals(result, SECOND);
     }
+
+    @Test
+    public void getTotalWinMoney_test() {
+        // given
+        FOURTH.initCount();
+        FOURTH.increase();
+        FIFTH.initCount();
+        FIFTH.increase();
+
+        // when
+        @SuppressWarnings("OptionalGetWithoutIsPresent")
+        int result = getTotalWinMoney().get();
+
+        // then
+        assertEquals(result, 55000);
+    }
 }

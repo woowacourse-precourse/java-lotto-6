@@ -18,4 +18,8 @@ public enum LottoGameAnnouncement {
     public String getMessage() {
         return this.message;
     }
+
+    public static String getProfitPercentageMessage(double profit) {
+        return "총 수익률은 " + profit + "%입니다.";
+    }
 }

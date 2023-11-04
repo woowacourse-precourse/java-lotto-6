@@ -50,4 +50,12 @@ public class LottoMoney {
     protected static boolean isBaseMoneyUnit(int number) {
         return number % BASE_MONEY_UNIT == 0;
     }
+
+    public double calculateProfitPercentage(int totalWinMoney) {
+        if (totalWinMoney == 0) {
+            return 0;
+        }
+        String formattedProfit = String.format("%.2f", (double) totalWinMoney / money * 100);
+        return Double.parseDouble(formattedProfit);
+    }
 }

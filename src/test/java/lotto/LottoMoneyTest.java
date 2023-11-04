@@ -118,4 +118,16 @@ class LottoMoneyTest {
         // then
         assertEquals(result, 8);
     }
+
+    @Test
+    public void calculateProfit() {
+        // given
+        LottoMoney lottoMoney = new LottoMoney("8000");
+
+        // when
+        double result = lottoMoney.calculateProfitPercentage(5000);
+
+        // then
+        assertEquals(result, 62.5);
+    }
 }

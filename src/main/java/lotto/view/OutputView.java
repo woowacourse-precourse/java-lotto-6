@@ -18,7 +18,7 @@ public class OutputView extends Message{
     public void showResult(String resultLine) {
         System.out.println(resultLine);
     }
-    public void showRevenue(float revenue){
+    public void showRevenue(double revenue){
         System.out.println(REVENUE_FRONT_MESSAGE + revenue + REVENUE_BACK_MESSAGE);
     }
 }

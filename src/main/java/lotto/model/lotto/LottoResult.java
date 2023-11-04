@@ -1,4 +1,8 @@
-package lotto.model;
+package lotto.model.lotto;
+
+import lotto.model.PaperBag;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoInfo;
 
 import java.util.ArrayList;
 import java.util.HashSet;

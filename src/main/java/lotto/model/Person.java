@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.lotto.LottoResult;
+
 public class Person {
     private PaperBag paperBag;
     private LottoResult lottoResult;

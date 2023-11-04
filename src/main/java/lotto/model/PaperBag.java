@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.lotto.Lotto;
+
 import java.util.List;
 
 public class PaperBag {

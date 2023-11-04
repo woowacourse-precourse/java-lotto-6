@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 public enum LottoInfo {
     FIRST_WINNER(4,6,"6개 일치 (2,000,000,000원)", 2000000000),

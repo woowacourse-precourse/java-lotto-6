@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +24,9 @@ class LottoNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
     void testOutOfRangeLottoNumberValidation(int number) {
-        assertThatThrownBy(() -> LottoNumber.from(number));
+        assertThatThrownBy(() -> LottoNumber.from(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
     }
 
     @DisplayName("동일 값의 로또 자릿 수는 서로 동등하다")

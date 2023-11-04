@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.LottoRule.LOTTO_LENGTH;
 
 import java.util.List;
+import lotto.view.ErrorMessage;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -23,13 +24,13 @@ public class Lotto {
 
     private void validateLength(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_LENGTH.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_LENGTH.getErrorMessage());
         }
     }
 
     private void validateUnique(List<LottoNumber> numbers) {
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO.getErrorMessage());
         }
     }
 

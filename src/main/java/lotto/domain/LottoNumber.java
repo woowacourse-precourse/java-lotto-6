@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.domain.LottoRule.MAX_LOTTO_NUMBER;
 import static lotto.domain.LottoRule.MIN_LOTTO_NUMBER;
+import static lotto.view.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class LottoNumber {
 
     private void validateRange(int value) {
         if (value < MIN_LOTTO_NUMBER.getValue() || value > MAX_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
         }
     }
 

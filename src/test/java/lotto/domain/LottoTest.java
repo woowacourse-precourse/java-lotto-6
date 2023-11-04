@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,8 @@ class LottoTest {
         lottoNumbers.add(LottoNumber.from(7));
 
         assertThatThrownBy(() -> Lotto.from(lottoNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_LENGTH.getErrorMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -38,7 +40,8 @@ class LottoTest {
         lottoNumbers.add(LottoNumber.from(5));
 
         assertThatThrownBy(() -> Lotto.from(lottoNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATED_LOTTO.getErrorMessage());
     }
 
     @DisplayName("조건에 맞는 로또는 검증을 통과한다.")

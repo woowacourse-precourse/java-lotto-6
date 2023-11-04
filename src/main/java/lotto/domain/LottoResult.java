@@ -24,4 +24,15 @@ public class LottoResult {
     public boolean checkMatchBonusNumber(Lotto purchaseLotto, int bonusNumber) {
         return purchaseLotto.getNumbers().contains(bonusNumber);
     }
+
+    private void calculateNumberOfWins(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        for (Lotto lotto : lottos) {
+            countWinningType(getMatchNumbers(lotto, winningLotto), checkMatchBonusNumber(lotto, bonusNumber));
+        }
+    }
+
+    private void countWinningType(int matchNumber, boolean matchBonus) {
+        WinningCriteria type = WinningCriteria.getWinningType(matchNumber, matchBonus);
+        result.put(type, result.getOrDefault(type, 0) + 1);
+    }
 }

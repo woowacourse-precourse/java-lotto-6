@@ -30,7 +30,7 @@ public enum WinningCriteria {
         return matchBonus;
     }
 
-    public WinningCriteria getWinningType(int matchCount, boolean matchBonus) {
+    public static WinningCriteria getWinningType(int matchCount, boolean matchBonus) {
         for (WinningCriteria type : WinningCriteria.values()) {
             if (type.getMatchCount() == matchCount && type.getMatchBonus() == matchBonus) {
                 return type;

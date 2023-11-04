@@ -48,9 +48,9 @@ public class PurchasePriceValidatorTest {
         input = "test\n\"\"\n123\n1000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        String result = inputPurchasePrice();
+        int result = inputPurchasePrice();
 
-        assertThat(result).isEqualTo("1000");
+        assertThat(result).isEqualTo(1000);
     }
 
 

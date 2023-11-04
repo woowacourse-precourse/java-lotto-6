@@ -33,7 +33,7 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        return numbers;
+        return numbers.stream().sorted().toList();
     }
 
     @Override

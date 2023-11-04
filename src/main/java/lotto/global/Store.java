@@ -8,6 +8,7 @@ import static lotto.global.LottoInformation.LOTTO_PRICE_UNIT;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 
@@ -30,10 +31,11 @@ public class Store {
     }
 
     private static List<Integer> createNumber() {
-        return Randoms.pickUniqueNumbersInRange(
+        final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LOTTO_MIN_NUMBER.getValue(),
                 LOTTO_MAX_NUMBER.getValue(),
                 LOTTO_BALLS_NUMBER.getValue()
         );
+        return numbers.stream().distinct().sorted().collect(Collectors.toList());
     }
 }

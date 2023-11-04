@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+import lotto.controller.dto.LottoResult;
 
 public class OutputView {
 
@@ -16,5 +18,11 @@ public class OutputView {
 
     public void printLotto(final List<Integer> lotto){
         System.out.println(lotto);
+    }
+
+    public void printResult(final LottoResult lottoResult, final double revenue) {
+        Map<String, Integer> rankCounts = lottoResult.getResult();
+        rankCounts.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
+        System.out.println("총 수익률은 " + revenue + "%입니다.");
     }
 }

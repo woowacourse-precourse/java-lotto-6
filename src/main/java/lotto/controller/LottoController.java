@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.controller.dto.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -92,6 +93,6 @@ public class LottoController {
     }
 
     private void printResult(final Map<Rank, Integer> status, final double revenue) {
-
+        outputView.printResult(LottoResult.from(status), revenue);
     }
 }

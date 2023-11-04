@@ -48,7 +48,7 @@ public class Money {
     }
 
     public double calculateRevenue(final long sumOfPrice) {
-        return ((double) amount / sumOfPrice) * 100;
+        return ((double) sumOfPrice / amount) * 100;
     }
 
     @Override

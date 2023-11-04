@@ -16,4 +16,9 @@ public class LottoPack {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.join("\n", lottoPack.toString());
+    }
+
 }

@@ -14,6 +14,7 @@ public class LottoController {
     public void run() {
         initPurchaseAmount();
         lottoService.purchaseLotto();
+        OutputView.displayLottos(lottoService.getLottoDtos());
     }
 
     private void initPurchaseAmount() {

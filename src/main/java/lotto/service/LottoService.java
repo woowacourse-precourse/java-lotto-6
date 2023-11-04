@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.LottoTicket;
 import lotto.model.PurchaseAmount;
@@ -16,6 +17,10 @@ public class LottoService {
     public void purchaseLotto() {
         IntStream.range(0, purchaseAmount.getMaxLottoCountForBudget())
                 .forEach(i -> lottoTicket.addLotto(RandomNumberGenerator.createUniqueNumbers()));
+    }
+
+    public List<LottoDto> getLottoDtos() {
+        return lottoTicket.toDto();
     }
 
 }

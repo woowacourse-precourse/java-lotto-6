@@ -20,10 +20,9 @@ public class LottoController {
             Writer.printGuide(PrintConst.GUIDE_PURCHASE);
             int money = Reader.getMoney();
             Lottos lottos = lottoGenerator.purchase(money);
+            Writer.printModelsInList(PrintConst.FORMAT_LOTTO_NUMBERS, lottos.getLottos());
         });
     }
-
-    //TODO 2. 로또 생성
 
     //TODO 3. 로또 6자리 입력
 

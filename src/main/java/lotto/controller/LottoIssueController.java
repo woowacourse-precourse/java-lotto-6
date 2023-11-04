@@ -39,9 +39,13 @@ public class LottoIssueController {
         if (validMoney < 0)
             throw new IllegalArgumentException();
 
-        if (validMoney % 1000 != 0)
+        if (isNotRemainedMoney(validMoney))
             throw new IllegalArgumentException();
 
         return validMoney;
+    }
+
+    private boolean isNotRemainedMoney(int validMoney) {
+        return validMoney % UNIT_PRICE != 0;
     }
 }

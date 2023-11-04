@@ -8,11 +8,18 @@ import lotto.domain.Lotto;
 public class LottoIssueService {
 
     public List<Lotto> issueLottos(int issueCount) {
+        validateIssueCount(issueCount);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issueCount; i++) {
             lottos.add(new Lotto(getLottoNumbers()));
         }
         return lottos;
+    }
+
+    private void validateIssueCount(int issueCount) {
+        if (issueCount <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> getLottoNumbers() {

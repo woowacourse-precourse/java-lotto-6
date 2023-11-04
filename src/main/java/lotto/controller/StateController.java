@@ -6,11 +6,7 @@ import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class StateController {
@@ -21,7 +17,7 @@ public class StateController {
 
     public void run() {
         enterMoney();
-        purchaseLotto(this.money);
+        purchaseLotto();
     }
 
     private void enterMoney() {
@@ -29,24 +25,19 @@ public class StateController {
         try {
             validateMoney(money);
             this.money = money;
-        }catch (IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             enterMoney();
         }
     }
 
-    private void purchaseLotto(int money) {
+    private void purchaseLotto() {
         lottos = new Lottos(IntStream
-                .range(0, lottoCount(money))
+                .range(0, lottos.getLottoCount())
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList());
-        OutputView.printLottoCount(lottoCount(money));
-        lottos.getLotto()
-                .forEach( lotto -> OutputView.printLotto(lotto.getNumbers()));
-    }
-
-    private int lottoCount(int money) {
-        return money/LOTTO_PRICE;
+        OutputView.printLottoCount(lottos.getLottoCount());
+        lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
     }
 
     private void validateMoney(int money) {

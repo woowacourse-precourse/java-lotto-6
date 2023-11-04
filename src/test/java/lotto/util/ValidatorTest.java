@@ -72,4 +72,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_NON_DUPLICATE_WIN_NUMBER);
     }
+
+    @ParameterizedTest
+    @DisplayName("숫자 범위 1~45사이가 아닌 입력 예외 테스트")
+    @ValueSource(strings = {"0", "999", "46", "-1"})
+    void invalidInputsTest6(String input) {
+        Assertions.assertThatThrownBy(() -> Validator.isNumberInRange(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INPUT_NUMBER_IN_RANGE);
+    }
 }

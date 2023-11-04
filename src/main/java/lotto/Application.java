@@ -28,8 +28,13 @@ public class Application {
         return new Lotto(convertStringToInt(originalNums));
     }
 
+    public static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
     public static List<Integer> convertStringToInt (List<String> original) {
-        List<Integer> convert = new ArrayList<Integer>();
+        List<Integer> convert = new ArrayList<>();
         for (String previous: original){
             int num = Integer.parseInt(previous);
             validateNumber(num);
@@ -47,7 +52,8 @@ public class Application {
     public static List<Lotto> generateLottos(int quantity){
         List<Lotto> allLotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++){
-            allLotto.add(new Lotto());
+            Lotto lotto = new Lotto();
+            allLotto.add(lotto);
         }
         return allLotto;
     }
@@ -75,6 +81,7 @@ public class Application {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", rankNumber.get(2));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", rankNumber.get(1));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", rankNumber.get(0));
+
         printRateOfReturn(rankNumber, amount);
     }
 
@@ -87,13 +94,17 @@ public class Application {
     }
 
     public static void printRateOfReturn(List<Integer> rankNumber, int amount) {
+        double rateOfReturn = calcRateOfReturn(rankNumber, amount);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
+    }
+
+    public static double calcRateOfReturn(List<Integer> rankNumber, int amount) {
         List<Integer> allPrize = Statistic.getPrize();
         int total = 0;
         for (int i = 0; i < 5; i++) {
             total += allPrize.get(i) * rankNumber.get(i);
         }
-        double rateOfReturn = (double)total/(double)amount*100.0;
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
+        return (double)total/(double)amount*100.0;
     }
 
     public static void main(String[] args) {
@@ -104,8 +115,7 @@ public class Application {
 
         Lotto winningLotto = inputWinningNumbers();
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine());
+        int bonus = inputBonusNumber();
 
         List<Integer> result = getResult(allLotto, winningLotto, bonus);
         printStatistic(result, amount);

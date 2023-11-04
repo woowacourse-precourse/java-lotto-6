@@ -1,4 +1,4 @@
-package lotto.exception.bonus_number;
+package lotto.exception;
 
 public class InvalidNumberException extends IllegalArgumentException {
 

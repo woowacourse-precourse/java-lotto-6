@@ -3,7 +3,7 @@ package lotto.model;
 import static lotto.util.Constant.LOTTO_PRICE;
 import static lotto.util.Constant.ZERO;
 
-import lotto.exception.money.InvalidMoneyException;
+import lotto.exception.InvalidMoneyException;
 
 public class Money {
 

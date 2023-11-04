@@ -1,4 +1,4 @@
-package lotto.exception.console_input;
+package lotto.exception;
 
 public class BlankInputException extends IllegalArgumentException {
 

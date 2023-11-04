@@ -3,7 +3,7 @@ package lotto.model;
 import static lotto.util.Constant.START_INCLUSIVE;
 import static lotto.util.Constant.END_INCLUSIVE;
 
-import lotto.exception.bonus_number.InvalidNumberException;
+import lotto.exception.InvalidNumberException;
 
 public class BonusNumber {
 

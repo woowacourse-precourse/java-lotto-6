@@ -8,8 +8,8 @@ import static lotto.util.Constant.THREE;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.lotto.ExistDuplicatedNumberException;
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.ExistDuplicatedNumberException;
+import lotto.exception.InvalidLottoNumberException;
 import lotto.util.NumbersGenerator;
 
 public class Lotto {

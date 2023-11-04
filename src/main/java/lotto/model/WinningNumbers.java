@@ -4,8 +4,8 @@ import static lotto.util.Constant.LOTTO_NUMBER_COUNT;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.lotto.ExistDuplicatedNumberException;
-import lotto.exception.lotto.InvalidLottoNumberException;
+import lotto.exception.ExistDuplicatedNumberException;
+import lotto.exception.InvalidLottoNumberException;
 
 public class WinningNumbers {
 

@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.console_input.BlankInputException;
+import lotto.exception.BlankInputException;
 
 public class ConsoleInputView implements InputView {
 

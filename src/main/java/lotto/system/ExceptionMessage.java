@@ -12,7 +12,7 @@ public final class ExceptionMessage {
 
     public static final String EACH_NOT_NUMERIC = "[ERROR] 입력된 값은 숫자가 아닙니다.";
     public static final String COUNT_NOT_EQUAL = "[ERROR] 입력된 당첨번호는 "+Constant.LOTTO_SIZE+"개의 숫자가 아닙니다.";
-    public static final String NUMBER_EACH_OUT_OF_RANGE = "[ERROR] 입력된 번호는 "+Constant.START_INCLUSIVE+"부터"+Constant.END_INCLUSIVE+" 사이의 숫자이어야 합니다.";
+    public static final String NUMBER_EACH_OUT_OF_RANGE = "[ERROR] 입력된 번호는 "+Constant.START_INCLUSIVE+"부터 "+Constant.END_INCLUSIVE+" 사이의 숫자이어야 합니다.";
 
     public static final String NUMBER_NOT_DISTINCT = "[ERROR] 중복된 로또 번호입니다.";
 

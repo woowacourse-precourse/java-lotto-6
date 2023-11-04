@@ -22,31 +22,49 @@ public final class InputHandler {
     }
 
     public static int readMoney() {
-        System.out.println(IOMessage.READ_MONEY_MESSAGE);
-        String input = Console.readLine();
-        moneyVerifier.check(input);
+        while(true) {
+            try {
+                System.out.println(IOMessage.READ_MONEY_MESSAGE);
+                String input = Console.readLine();
+                moneyVerifier.check(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        return Integer.parseInt(input);
     }
 
     public static List<Integer> readWinnerNumber() {
-        System.out.println();
-        System.out.println(IOMessage.READ_WINNING_NUM_MESSAGE);
-        String input = Console.readLine();
-        winnerNumberVerifier.check(input);
+        while(true) {
+            try {
+                System.out.println();
+                System.out.println(IOMessage.READ_WINNING_NUM_MESSAGE);
+                String input = Console.readLine();
+                winnerNumberVerifier.check(input);
 
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                return Arrays.stream(input.split(","))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static Integer readBonusNumber() {
-        System.out.println();
-        System.out.println(IOMessage.READ_BONUS_NUM_MESSAGE);
-        String input = Console.readLine();
-        bonusNumVerifier.check(input);
+        while(true) {
+            try {
+                System.out.println();
+                System.out.println(IOMessage.READ_BONUS_NUM_MESSAGE);
+                String input = Console.readLine();
+                bonusNumVerifier.check(input);
 
-        return Integer.parseInt(input);
+                return Integer.parseInt(input);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 

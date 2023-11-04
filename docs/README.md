@@ -54,7 +54,7 @@
   - 로또 숫자를 저장하는 기능
   - 로또끼리 비교하는 기능
   - 로또와 숫자를 비교하는 기능
-- LottoMarket
+- LottoMachine
   - 로또를 조건에 맞게 생성하는 기능
 - WinningLotto
   - 당첨 로또 번호를 저장 하는 기능
@@ -74,7 +74,7 @@
 ### repository
 - LottoRepository
     - 여러 개의 로또를 저장하는 기능
-    - 모든 로또를 반환하는 기능
+    - 모든 로또를 반환하는 기
 ### view
 - InputView
     - 로또 구입 금액을 입력받는 기능

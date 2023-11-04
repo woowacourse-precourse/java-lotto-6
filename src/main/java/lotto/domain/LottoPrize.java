@@ -16,11 +16,9 @@ enum LottoPrize {
     private final static Map<Map.Entry<Integer, Boolean>, LottoPrize> prizeClassifier = new HashMap<>();
 
     static {
-        prizeClassifier.put(new AbstractMap.SimpleEntry<>(FIRST.matchCount, FIRST.isBonusIncluded), FIRST);
-        prizeClassifier.put(new AbstractMap.SimpleEntry<>(SECOND.matchCount, SECOND.isBonusIncluded), SECOND);
-        prizeClassifier.put(new AbstractMap.SimpleEntry<>(THIRD.matchCount, THIRD.isBonusIncluded), THIRD);
-        prizeClassifier.put(new AbstractMap.SimpleEntry<>(FOURTH.matchCount, FOURTH.isBonusIncluded), FOURTH);
-        prizeClassifier.put(new AbstractMap.SimpleEntry<>(FIFTH.matchCount, FIFTH.isBonusIncluded), FIFTH);
+        for (LottoPrize prize : LottoPrize.values()) {
+            prizeClassifier.put(new AbstractMap.SimpleEntry<>(prize.matchCount, prize.isBonusIncluded), prize);
+        }
     }
 
     private final int matchCount;

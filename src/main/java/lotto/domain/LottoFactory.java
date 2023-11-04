@@ -22,7 +22,7 @@ public class LottoFactory {
     }
 
     public List<Lotto> createRandomLottoUpto(int count) {
-        IntStream.range(0, count)
+        return IntStream.range(0, count)
                  .mapToObj(loopIndex -> createRandomLotto())
                  .toList();
     }

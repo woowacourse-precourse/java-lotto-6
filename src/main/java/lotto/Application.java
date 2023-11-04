@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -33,9 +35,19 @@ public class Application {
     }
     private static List<Integer> generateRandomNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        
+
         return numbers;
     }
 
+    private static List<Integer> inputWinningNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        String[] numberStrings = input.split(",");
+        List<Integer> winningNumbers = Arrays.stream(numberStrings)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return winningNumbers;
+    }
 
 }

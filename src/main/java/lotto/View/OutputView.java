@@ -1,5 +1,8 @@
 package lotto.View;
 
+import lotto.model.Lotto;
+import lotto.model.LottoTickets;
+
 public class OutputView {
 
     private static final String LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -11,5 +14,11 @@ public class OutputView {
 
     public static void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + LOTTO_PURCHASE_MESSAGE);
+    }
+
+    public static void printLottoTickets(LottoTickets lottoTickets){
+        for (Lotto lotto : lottoTickets.getTickets()) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }

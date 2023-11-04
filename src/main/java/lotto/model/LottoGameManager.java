@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoGameManager {
-    private static final LottoNumberComparator lottoNumberComparator = new LottoNumberComparator();
+    private static LottoNumberComparator lottoNumberComparator;
 
     public static int calculateLottoCount(Amount amount) {
         return amount.getAmount() / 1000;
@@ -21,20 +21,27 @@ public class LottoGameManager {
                 .collect(Collectors.toList());
     }
 
-    public static void generateWinningLotto(List<String> numbersStr) {
-        lottoNumberComparator.setWinningLotto(new WinningLotto(numbersStr));
+    public static void generateWinningNumbers(List<String> numbersStr, String bonusNumberStr) {
+        if (numbersStr.contains(bonusNumberStr)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        lottoNumberComparator = LottoNumberComparator.create(generateWinningLotto(numbersStr), generateBonusNumber(bonusNumberStr));
     }
 
-    public static void generateBonusNumber(String bonusNumberStr) {
-        lottoNumberComparator.setBonusNumber(new BonusNumber(bonusNumberStr));
+    public static WinningLotto generateWinningLotto(List<String> numbersStr) {
+        return new WinningLotto(numbersStr);
+    }
+
+    public static BonusNumber generateBonusNumber(String bonusNumberStr) {
+        return new BonusNumber(bonusNumberStr);
     }
 
     public static List<LottoMatch> getWinningResults(List<Lotto> lottoList) {
-        return lottoNumberComparator.calculateMatches((lottoList));
+        return lottoNumberComparator.calculateMatches(lottoList);
     }
 
     public static Double calculateYield(List<LottoMatch> winningResults, Amount amount) {
-        return (calculatePrize(winningResults) / Double.valueOf(amount.getAmount()) - 1) * 100;
+        return calculatePrize(winningResults) / Double.valueOf(amount.getAmount()) * 100;
     }
 
     private static int calculatePrize(List<LottoMatch> lottoResultCount) {

@@ -12,16 +12,12 @@ import java.util.List;
 public class LottoController {
     public void run() {
         OutputView.displayPurchaseGuide();
-
         final Amount amount = inputLottoAmount();
         final List<Lotto> lottoList = LottoGameManager.buyLotto(LottoGameManager.calculateLottoCount(amount));
         OutputView.displayLottoNumbers(lottoList);
 
         OutputView.displayWinningNumberGuide();
-        inputWinningNumbers();
-
-        OutputView.displayBonusNumberGuide();
-        inputBonusNumber();
+        decideWinningNumbers();
 
         final List<LottoMatch> winningResults = LottoGameManager.getWinningResults(lottoList);
 
@@ -32,36 +28,33 @@ public class LottoController {
     }
 
     private Amount inputLottoAmount() {
-        Amount amount;
-
         while (true) {
             try {
-                amount = Amount.create(InputView.inputPurchaseAmount());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        return amount;
-    }
-
-    private void inputWinningNumbers() {
-        while (true) {
-            try {
-                LottoGameManager.generateWinningLotto(InputView.inputWinningNumbers());
-                break;
+                return Amount.create(InputView.inputPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void inputBonusNumber() {
+    private void decideWinningNumbers() {
+        List<String> numbersStr = inputWinningNumbers();
+        OutputView.displayBonusNumberGuide();
         while (true) {
             try {
-                LottoGameManager.generateBonusNumber(InputView.inputBonusNumber());
+                String bonusNumberStr = InputView.inputBonusNumber();
+                LottoGameManager.generateWinningNumbers(numbersStr, bonusNumberStr);
                 break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<String> inputWinningNumbers() {
+        while (true) {
+            try {
+                return InputView.inputWinningNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

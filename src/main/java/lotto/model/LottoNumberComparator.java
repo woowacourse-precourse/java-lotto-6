@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoNumberComparator {
-    private WinningLotto winningLotto;
-    private BonusNumber bonusNumber;
+    private final WinningLotto winningLotto;
+    private final BonusNumber bonusNumber;
 
-    public void setWinningLotto(WinningLotto winningLotto) {
+    private LottoNumberComparator(WinningLotto winningLotto, BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
     }
 
-    public void setBonusNumber(BonusNumber bonusNumber) {
-        this.bonusNumber = bonusNumber;
+    public static LottoNumberComparator create(WinningLotto winningLotto, BonusNumber bonusNumber) {
+        return new LottoNumberComparator(winningLotto, bonusNumber);
     }
 
     public List<LottoMatch> calculateMatches(List<Lotto> lottoList) {

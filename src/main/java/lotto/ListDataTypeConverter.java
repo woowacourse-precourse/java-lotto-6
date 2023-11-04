@@ -8,5 +8,4 @@ public class ListDataTypeConverter {
     public static List<String> integerToString(List<Integer> elements) {
         return elements.stream().map(element -> Integer.toString(element)).collect(Collectors.toList());
     }
-
 }

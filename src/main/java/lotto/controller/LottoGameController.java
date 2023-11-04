@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import static java.lang.String.format;
 import static lotto.constant.LottoOutputMessage.*;
 
+import java.util.List;
+import lotto.Lotto;
 import lotto.domain.LottoGame;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
@@ -21,7 +24,7 @@ public class LottoGameController {
 
     public void run() {
         Integer purchaseCount = initPurchaseAmount();
-        LottoGame lottoGame = lottoGameService.purchase(purchaseCount);
+        LottoGame lottoGame = initLottoGame(purchaseCount);
     }
 
     private Integer initPurchaseAmount() {
@@ -38,5 +41,14 @@ public class LottoGameController {
     private String requestPurchaseAmount() {
         outputView.output(PURCHASE_AMOUNT.getMessage());
         return inputView.requestPurchaseAmount();
+    }
+
+    private LottoGame initLottoGame(Integer purchaseCount) {
+        List<Lotto> lottos = lottoGameService.purchase(purchaseCount);
+        outputView.output(
+                format(PURCHASE_COUNT.getMessage(), purchaseCount)
+        );
+        lottos.forEach(lotto -> outputView.output(lotto.toString()));
+        return new LottoGame(lottos);
     }
 }

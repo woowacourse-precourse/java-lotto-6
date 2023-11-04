@@ -7,7 +7,6 @@ import static lotto.constant.LottoSetting.*;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.Lotto;
-import lotto.domain.LottoGame;
 
 
 public class LottoGameService {
@@ -18,10 +17,9 @@ public class LottoGameService {
         numberGenerator = new RandomNumberGenerator();
     }
 
-    public LottoGame purchase(Integer purchaseCount) {
-        List<Lotto> lottos = IntStream.range(0, purchaseCount)
+    public List<Lotto> purchase(Integer purchaseCount) {
+        return IntStream.range(0, purchaseCount)
                 .mapToObj(i -> new Lotto(numberGenerator.generate())).toList();
-        return new LottoGame(lottos);
     }
 
     public Integer validatePurchaseAmount(String purchaseAmountInput) {

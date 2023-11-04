@@ -54,6 +54,7 @@ public class LottoController {
             if (matchingCount < 3) continue;
             int index = findIndexWithValue(matchingCount);
             int newValue = matchingCounts.get(index) + 1;
+            matchingCounts.set(index, newValue);
         }
     }
 

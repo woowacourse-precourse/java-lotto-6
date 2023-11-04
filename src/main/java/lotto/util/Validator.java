@@ -27,4 +27,10 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_THOUSAND_UNIT);
         }
     }
+
+    public static void isValidCommaSeparator(String input) {
+        if (!Pattern.matches(Constants.VALID_COMMA_SEPARATOR_REGEX, input)) {
+            throw new IllegalArgumentException(ExceptionMessage.SEPARATOR_CHECK);
+        }
+    }
 }

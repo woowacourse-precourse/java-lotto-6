@@ -7,7 +7,6 @@ import static java.util.Collections.*;
 
 public class LottoResult {
 
-    private final LottoComparator comparator = new LottoComparator();
     private List<WinningLotto> winningLottos = new ArrayList<>();
     private Float rateOfReturn;
 
@@ -17,7 +16,7 @@ public class LottoResult {
 
     public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
         this.winningLottos = lottos.stream()
-                .map(lotto -> comparator.compareLotto(winningNumbers, bonus, lotto))
+                .map(lotto -> lotto.compareWinningNumbers(winningNumbers, bonus))
                 .toList();
 
         float averageOfPrice = (float) this.winningLottos.stream()

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,12 +31,23 @@ public class Lotto {
         return numbers.size() != removedDuplicateNumbers.size();
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public WinningLotto compareWinningNumbers(List<Integer> winningNumbers, Integer bonus) {
+        int matchWinningNumbersCount = this.countWinningNumbers(winningNumbers);
+        int matchBonusCount = this.countBonusMatch(bonus);
+
+        return Arrays.stream(WinningLotto.values())
+                .filter(winningLotto -> winningLotto.getLottoRank(matchWinningNumbersCount, matchBonusCount))
+                .findFirst()
+                .orElse(WinningLotto.LAST_PLACE);
     }
 
-    public int countBonusMatch(Integer bonus) {
+    private int countWinningNumbers(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
+    private int countBonusMatch(Integer bonus) {
         if (this.numbers.contains(bonus)) {
             return 1;
         }
@@ -43,9 +55,9 @@ public class Lotto {
         return 0;
     }
 
-    public int countWinningNumbers(List<Integer> winningNumbers) {
-        return (int) winningNumbers.stream()
-                .filter(this.numbers::contains)
-                .count();
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
+
 }

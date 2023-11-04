@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.RandomNumberGenerator;
+import lotto.utils.numbergenerators.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.IntStream;

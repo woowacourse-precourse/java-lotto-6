@@ -106,11 +106,9 @@ public class Application {
                     lottoCount++;
                 }
                 if (allLottoList.get(i).contains(userBonusNum)) {
-                    lottoBonusCount++;
+                    lottoBonusCount = 1;
                 }
             }
-            System.out.println("숫자 " + lottoCount + " " + lottoBonusCount);
-            System.out.println("---------");
 
             if (lottoCount == 3) {
                 winner5th++;
@@ -130,6 +128,14 @@ public class Application {
         }
 
         // TODO: 당첨 통계 출력
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + winner5th + "개");
+        System.out.println("4개 일치 (50,000원) - " + winner4th + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winner3rd + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner2nd + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winner1st + "개");
 
         // TODO: 수익률 계산
 

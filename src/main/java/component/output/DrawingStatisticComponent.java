@@ -1,7 +1,7 @@
 package component.output;
 
 import component.Component;
-import lotto.controller.dto.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 
 public final class DrawingStatisticComponent implements Component {
 
@@ -11,7 +11,7 @@ public final class DrawingStatisticComponent implements Component {
     private static final String THIRD_LINE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String FOURTH_LINE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIFTH_LINE = "6개 일치 (2,000,000,000원) - %d개\n";
-    private static final String FOOTER = "총 수익률은 %.1f%%입니다.\n";
+    private static final String FOOTER = "총 수익률은 %.1f%%입니다.";
     private final LottosDrawingResult data;
 
     public DrawingStatisticComponent(final LottosDrawingResult data) {

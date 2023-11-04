@@ -34,6 +34,7 @@
 - [x] 출력을 위해 가지고 있는 Lotto 를 DTO 로 변환하기 - LottoBundle
 - [x] Lotto 를 필요 형식으로 출력하기 위해 toString 오버라이딩 - Lotto
 - [x] Lotto 와 WinLotto 를 비교해 결과 리스트를 만들어 반환 - LottoBundle
+- [x] 로또 생성 시 숫자를 정렬함 - Lotto
 - ### LottoResult
 - [x] 로또 당첨 결과를 저장하는 Enum - LottoResult
 - [x] 로또 일치에 따라 당첨 결과를 반환 - LottoResult
@@ -85,9 +86,9 @@
 - [ ] 구입 금액에 숫자를 입력하지 않음 (빈칸 포함) - InputView
 - [ ] 로또 당첨 번호에 숫자가 아닌 값을 입력함 (빈칸 포함) - InputView
 - [ ] 로또 당첨 번호를 콤마 "," 로 구분하지 않음 - InputView
-- [ ] 로또 당첨 번호를 6개로 입력하지 않음 - InputView ? Lotto ?
-- [ ] 로또 당첨 번호에 중복된 숫자를 입력함 - Lotto
-- [ ] 로또 당첨 번호가 1~45의 숫자가 아님 - Lotto 
+- [x] 로또 당첨 번호를 6개로 입력하지 않음 - Lotto
+- [x] 로또 당첨 번호에 중복된 숫자를 입력함 - Lotto
+- [x] 로또 당첨 번호가 1~45의 숫자가 아님 - Lotto 
 - [ ] 보너스 번호에 숫자를 입력하지 않음 - InputView
 - [ ] 보너스 번호가 로또 번호랑 중복됨 - BonusNumber
 - [ ] 보너스 번호가 1~45의 숫자가 아님 - BonusNumber

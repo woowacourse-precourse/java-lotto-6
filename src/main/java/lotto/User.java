@@ -16,7 +16,7 @@ class User {
         return volume/1000;
     }
 
-    public List<Integer> inputNumber(){
+    public List<Integer> inputWinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 //       입력값 검증 함수

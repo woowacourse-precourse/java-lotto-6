@@ -5,7 +5,6 @@ import lotto.domain.LottoMoney;
 import lotto.view.InputView;
 
 public class LottoController {
-    static int count;
     public LottoController() {
     }
 

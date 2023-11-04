@@ -19,5 +19,6 @@ public enum OutputMessage {
 
     public void print(String value) {
         System.out.printf(message, value);
+        System.out.println();
     }
 }

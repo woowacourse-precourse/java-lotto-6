@@ -1,11 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     static int isMatchedThree = 0;
@@ -15,25 +16,17 @@ public class Application {
     static int isMatchedSix = 0;
 
     public static void main(String[] args) {
-        System.out.println("구입 금액을 입력해주세요.");
-        String answer = Console.readLine();
-        System.out.println();
 
-        int numberOfLotto = Integer.parseInt(answer) / 1000;
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+        InputView inputView = new InputView();
+        int answer = inputView.requestPrice();
 
-        List<Lotto> issuedLotto = new ArrayList<>();
+        OutputView outputView = new OutputView();
+        int boughtLotto = outputView.printPurchases(answer);
 
-        int init = 1;
-        while(init <= numberOfLotto) {
-            List<Integer> numbers = new ArrayList<>
-                (Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(numbers);
-            issuedLotto.add(new Lotto(numbers));
-            String result = Arrays.toString(numbers.toArray());
-            System.out.println(result);
-            init++;
-        }
+        LottoMachine lottoMachine = new LottoMachine(boughtLotto);
+        lottoMachine.issueTickets();
+
+        outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
 
         System.out.println();
         System.out.println("당첨 번호를 입력해주세요.");
@@ -53,7 +46,7 @@ public class Application {
         System.out.println();
         System.out.println("당첨 통계\n---");
 
-        for(Lotto lotto : issuedLotto) {
+        for(Lotto lotto : lottoMachine.getIssuedLotto()) {
             List<Integer> issuedNumbers = lotto.getNumbers();
             boolean isMatchedBonusNumber = false;
             if(issuedNumbers.contains(bonusNumber)) {
@@ -71,7 +64,7 @@ public class Application {
 
         float revenue = (5000 * isMatchedThree) + (50000 * isMatchedFour)
             + (1500000 * isMatchedFive) + (30000000 * isMatchedFiveAndBonus) + (2000000000 * isMatchedSix);
-        float result = (revenue / Integer.parseInt(answer)) * 100 ;
+        float result = (revenue / answer) * 100 ;
 
         System.out.println();
         System.out.printf("총 수익률은 %.1f%%입니다.", result);

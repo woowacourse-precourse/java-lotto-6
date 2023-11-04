@@ -4,10 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoMachine {
+public class LottoNumber {
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 
     public void drawWiningNumbers(String value) {
         checkWinningNumbers(value);

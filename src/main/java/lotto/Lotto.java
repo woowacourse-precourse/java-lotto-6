@@ -22,7 +22,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return "numbers =" + numbers;
+        return String.valueOf(numbers);
     }
 // TODO: 추가 기능 구현
 }

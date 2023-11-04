@@ -6,18 +6,18 @@
        - [x] : 보너스 번호를 입력 받는다.
 
     2. outputView
-        - [ ] : 발행한 로또 수량 및 번호를 출력한다.
+        - [x] : 발행한 로또 수량 및 번호를 출력한다.
         - [ ] : 당첨 내역을 출력한다.
         - [ ] : 수익률을 소수점 둘째 자리에서 반올림하여 출력한다.
         - [ ] : 예외 상황 시 에러 문구를 출력해야 한다.
 
 2. domain
     - [x] : 입력 받은 로또 구입 금액이 1,000원 단위인지 확인한다. Validate#checkInputPrice()
-    - [ ] : 입력 받은 로또 금액에 맞는 로또 수량을 발행한다.BuyLotto#buyLotto()
+    - [x] : 입력 받은 로또 금액에 맞는 로또 수량을 발행한다.BuyLotto#buyLotto()
     - [x] : 중복되지 않는 숫자 6개를 뽑는다. Numbers#creatRandomNumbers()
     - [ ] : 발행한 로또와 입력 받은 당첨 번호를 비교한다.Judgment#
     - [ ] : 당첨 번호로 등수를 결정한다.
-    - [ ] : 숫자의 3자리마다 콤마(,)를 찍어서 반환해준다 Numbers#putCommaInNumber()
+    - [x] : 숫자의 3자리마다 콤마(,)를 찍어서 반환해준다 Numbers#putCommaInNumber()
 
 3. controller : 게임 진행을 위해 컨트롤러를 이용한다.
 

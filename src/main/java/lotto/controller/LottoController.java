@@ -65,4 +65,8 @@ public class LottoController {
         BuyLotto buyLotto = new BuyLotto();
         return buyLotto.buyLotto(inputPrice);
     }
+
+    public void outputLottosNumber(List<Lotto> lottos) {
+        outputView.outputLottosNumbers(lottos);
+    }
 }

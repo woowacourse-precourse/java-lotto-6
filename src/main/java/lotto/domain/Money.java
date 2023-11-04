@@ -13,4 +13,8 @@ public class Money {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }

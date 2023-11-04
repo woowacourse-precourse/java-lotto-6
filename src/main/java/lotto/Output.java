@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import lotto.Controll.Reward;
-import lotto.Controll.SameNumber;
+import lotto.Control.Reward;
+import lotto.Control.SameNumber;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -85,8 +85,8 @@ public class Output {
     static void printStatistic(Lotto winnerTicket, Integer bonusNumber, Lotto... tickets) {
         System.out.println(System.lineSeparator() + "당첨 통계");
         System.out.println("---");
-        Controll controll = new Controll();
-        Map<SameNumber, Integer> sameNumberCount = controll.countSameNumber(winnerTicket, bonusNumber, tickets);
+        Control control = new Control();
+        Map<SameNumber, Integer> sameNumberCount = control.countSameNumber(winnerTicket, bonusNumber, tickets);
         printAllSameNumberResult(sameNumberCount);
         Integer earned = calculateReward(sameNumberCount);
         Integer spent = tickets.length * 1000;

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class Controll {
+public class Control {
     enum SameNumber {
         SAME0(0),
         SAME3(3),

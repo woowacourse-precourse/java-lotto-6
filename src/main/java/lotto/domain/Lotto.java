@@ -16,6 +16,16 @@ public class Lotto {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
 
+        numbers.stream().forEach(element -> {
+            sb.append(element).append(", ");
+        });
+        sb.delete(sb.length() - 2 , sb.length()).append("]");
+
+        return sb.toString();
+    }
 
 }

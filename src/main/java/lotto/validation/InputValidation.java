@@ -120,4 +120,9 @@ public class InputValidation {
         }
     }
 
+    public void validateDuplicateBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
+        if (winnerNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
+        }
+    }
 }

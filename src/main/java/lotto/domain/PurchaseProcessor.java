@@ -4,9 +4,11 @@ import java.math.BigInteger;
 import lotto.constant.ExceptionMessage;
 
 public class PurchaseProcessor {
+    private final long lottoCount;
 
     public PurchaseProcessor(String price) {
-        convertNumber(price);
+        long convertedCount = convertNumber(price);
+        this.lottoCount = convertCount(convertedCount);
     }
 
     private long convertNumber(String price) {
@@ -45,4 +47,14 @@ public class PurchaseProcessor {
         }
     }
 
+    private long convertCount(long price) {
+        if (price % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+        }
+        return price / 1000;
+    }
+
+    public long getLottoCount() {
+        return this.lottoCount;
+    }
 }

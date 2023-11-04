@@ -18,7 +18,7 @@ public class InputView {
     private String inputPrice;
 
     public int getLottoCount() {
-        System.out.println(INPUT_PRICE);
+        System.out.println("\n" + INPUT_PRICE);
         int lottoCount = 0;
         Casher casher = new Casher();
         while (true) {
@@ -34,12 +34,8 @@ public class InputView {
         return lottoCount;
     }
 
-    public int getInputPrice() {
-        return Integer.parseInt(inputPrice);
-    }
-
     public List<Integer> getWinningNumbers() {
-        System.out.println(INPUT_WINNING);
+        System.out.println("\n" + INPUT_WINNING);
         String numbers = null;
         WinningNumbers winning = null;
         while (true) {
@@ -56,7 +52,7 @@ public class InputView {
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println(INPUT_BONUS);
+        System.out.println("\n" + INPUT_BONUS);
         String number = null;
         BonusNumber bonusNumber = null;
         while (true) {
@@ -83,15 +79,19 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private String inputValue() {
-        return Console.readLine();
-    }
-
     private void validateNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.NOT_NUMBER.getMessage());
         }
+    }
+
+    public int getInputPrice() {
+        return Integer.parseInt(inputPrice);
+    }
+
+    private String inputValue() {
+        return Console.readLine();
     }
 }

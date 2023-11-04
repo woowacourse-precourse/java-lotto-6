@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Messages;
 import lotto.constants.Values;
 import lotto.utils.RandomNumberGenerator;
 
@@ -10,6 +11,7 @@ public class PurchasedLottos {
     private final List<Lotto> lottos;
 
     public PurchasedLottos(int purchaseAmount) {
+        validate(purchaseAmount);
         this.lottos = createPurchasedLottos(purchaseAmount);
     }
 
@@ -21,5 +23,26 @@ public class PurchasedLottos {
             purchasedLottos.add(lotto);
         }
         return purchasedLottos;
+    }
+
+    public void validate(int purchaseAmount) {
+        if (isAmountLessThanUnit(purchaseAmount)) {
+            throw new IllegalArgumentException(Messages.ERROR_AMOUNT_LESS_THAN_UNIT);
+        }
+        if (isNotMultipleOfLottoPurchaseUnit(purchaseAmount)) {
+            throw new IllegalArgumentException(Messages.ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT);
+        }
+    }
+
+    private boolean isAmountLessThanUnit(int purchaseAmount) {
+        return purchaseAmount < Values.LOTTO_PURCHASE_UNIT;
+    }
+
+    private boolean isNotMultipleOfLottoPurchaseUnit(int purchaseAmount) {
+        return Values.LOTTO_PURCHASE_UNIT != 0 && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != 0;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

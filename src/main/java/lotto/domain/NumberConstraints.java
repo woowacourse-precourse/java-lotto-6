@@ -1,7 +1,7 @@
 package lotto.domain;
 
 enum NumberConstraints {
-    PER_PRICE(1000);
+    LOTTO_PER_PRICE(1000);
 
     final private int value;
 

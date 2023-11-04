@@ -12,7 +12,9 @@ public class LottoMarketService {
         List<Lotto> lottoes = new ArrayList<>();
         Supplier<Integer> lottoNumSupplier = new LottoNumSupplier();
         for(int i=0;i<lottoCount;i++){
-            lottoes.add(new Lotto(generateNonDuplicatedNums(lottoNumSupplier)));
+            List<Integer> lottoNums = generateNonDuplicatedNums(lottoNumSupplier);
+            lottoNums.sort(Integer::compare);
+            lottoes.add(new Lotto(lottoNums));
         }
         return lottoes;
     }

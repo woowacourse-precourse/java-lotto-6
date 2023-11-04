@@ -26,17 +26,24 @@ public class MessageService {
         System.out.println(stringBuilder);
     }
 
-    public void inputWinningNumberMessage(){
+    public void inputWinningNumberMessage() {
         System.out.println();
         System.out.println(InputMessage.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
     }
 
-    public void inputBonusNumberMessage(){
+    public void inputBonusNumberMessage() {
         System.out.println();
         System.out.println(InputMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
-    public void outputResultMessage(){
+
+    public void outputResultMessage() {
         System.out.println();
         System.out.println(OutputMessage.RESULT_MESSAGE.getMessage());
+    }
+
+    public void outputLottoStatus(int number, String formatPrice, int resultCount) {
+        String message = String.format(OutputMessage.OUTPUT_LOTTO_STATUS_MESSAGE.getMessage(), number, formatPrice,
+                resultCount);
+        System.out.println(message);
     }
 }

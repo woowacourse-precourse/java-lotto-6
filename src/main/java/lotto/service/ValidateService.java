@@ -32,13 +32,13 @@ public class ValidateService {
     }
 
     private void validatePrice(int purchasePrice) {
-        if (purchasePrice < LottoPrice.LOTTO_PRICE.getNumber()) {
+        if (purchasePrice < LottoNumber.LOTTO_PRICE.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
         }
     }
 
     private void validateCheckDivisibility(int purchasePrice) {
-        if (purchasePrice % LottoPrice.LOTTO_PRICE.getNumber() != 0) {
+        if (purchasePrice % LottoNumber.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
         }
     }

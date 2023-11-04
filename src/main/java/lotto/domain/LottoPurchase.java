@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constant.LottoNumber;
 import lotto.constant.LottoPrice;
 import lotto.service.InputService;
 import lotto.service.LottoService;
@@ -30,7 +31,7 @@ public class LottoPurchase {
     }
 
     public int getPurchaseAmount() {
-        return getPurchasePrice() / LottoPrice.LOTTO_PRICE.getNumber();
+        return getPurchasePrice() / LottoNumber.LOTTO_PRICE.getNumber();
     }
 
     public List<Lotto> purchaseLottoNumbers(int purchaseAmount){

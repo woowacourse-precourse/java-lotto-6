@@ -6,7 +6,7 @@ public class InputView {
 
     private final static String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private final static String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-
+    private final static String ASK_BONUS_WINNING_NUMBER_MESSAGE = "보너스 번호를 입력해주세요.";
 
     public int askPrice() {
         askHowManyPurchase();
@@ -17,6 +17,10 @@ public class InputView {
 
     public void askWinningNumber() {
         System.out.println(ASK_WINNING_NUMBER_MESSAGE);
+    }
+
+    public void askBonusWinningNumber() {
+        System.out.println(ASK_BONUS_WINNING_NUMBER_MESSAGE);
     }
 
     private void askHowManyPurchase() {

@@ -1,4 +1,20 @@
 package lotto.util;
 
-public class UniqueRandomNumbersGenerator {
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
+
+public class UniqueRandomNumbersGenerator implements NumberGenerator {
+    private static final Integer LOTTO_LENGTH = 6;
+    private static final Integer RANGE_START_NUMBER = 1;
+    private static final Integer RANGE_END_NUMBER = 45;
+    @Override
+    public List<Integer> generateNumbers() {
+        return Randoms.pickUniqueNumbersInRange(RANGE_START_NUMBER, RANGE_END_NUMBER, LOTTO_LENGTH);
+    }
+
+    @Override
+    public Integer generateNumber() {
+        return Randoms.pickNumberInRange(RANGE_START_NUMBER, RANGE_END_NUMBER);
+    }
 }

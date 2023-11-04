@@ -2,11 +2,16 @@ package lotto;
 
 import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.dto.LottoNumbersInfo;
 import lotto.dto.LottoPurchaseInfo;
+import lotto.message.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +30,24 @@ public class LottoNumbersInfoTest {
         assertThatThrownBy(() -> new lotto.dto.LottoNumbersInfo(List.of(), 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 결과를 생성한다.")
+    void createLottoResult() {
+        LottoNumbersInfo numbersInfo = new LottoNumbersInfo(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))), 1);
+        HashMap<LottoResult, BigDecimal> expected = new HashMap<>(
+                Map.of(
+                        LottoResult.FIRST, BigDecimal.valueOf(1),
+                        LottoResult.SECOND, BigDecimal.ZERO,
+                        LottoResult.THIRD, BigDecimal.ZERO,
+                        LottoResult.FOURTH, BigDecimal.ZERO,
+                        LottoResult.FIFTH, BigDecimal.ZERO,
+                        LottoResult.NONE, BigDecimal.ZERO
+                )
+        );
+
+        assertThat(numbersInfo.getResult(List.of(1, 2, 3, 4, 5, 6)))
+                .isEqualTo(expected);
     }
 }

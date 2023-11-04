@@ -1,7 +1,6 @@
 package lotto.view;
 
 
-import java.util.Collections;
 import java.util.List;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
@@ -18,14 +17,9 @@ public class OutputView {
         List<LottoDto> lottos = lottosDto.lottos();
 
         for (LottoDto lotto : lottos) {
-            sort(lotto);
             String convertedLotto = convertFrom(lotto);
             System.out.println(convertedLotto);
         }
-    }
-
-    private void sort(final LottoDto lottoDto) {
-        Collections.sort(lottoDto.numbers());
     }
 
     private String convertFrom(final LottoDto lottoDto) {

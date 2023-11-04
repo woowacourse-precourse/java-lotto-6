@@ -58,4 +58,13 @@ public class LottoOutputViewTest {
                 "6개 일치 (2,000,000,000원) - 1개"
         );
     }
+
+    @Test
+    void printProfit_테스트() {
+        int inputBefore = 1000;
+        int inputAfter = 1555;
+
+        outputView.printProfit(inputBefore, inputAfter);
+        assertEquals("총 수익률은 55.5%입니다.", capture.toString().trim());
+    }
 }

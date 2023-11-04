@@ -67,5 +67,5 @@
   - 당첨 내역 정보를 인수로 받아 출력한다.
 
 ## 수익률 출력 기능
-- [ ] `LottoOutputView::printProfit` 메서드
+- [x] `LottoOutputView::printProfit` 메서드
   - 구입 금액, 당첨 금액을 인수로 받아 수익률을 출력한다.

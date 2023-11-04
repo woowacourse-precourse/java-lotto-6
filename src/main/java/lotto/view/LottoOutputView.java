@@ -40,4 +40,9 @@ public class LottoOutputView {
         System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", 5, format.format(FIVE_WITH_BONUS_MATCH_PRIZE), matchingFiveWithBonus);
         System.out.printf("%d개 일치 (%s) - %d개\n", 6, format.format(SIX_MATCH_PRIZE), matchingSix);
     }
+
+    public void printProfit(int before, int after) {
+        double profit = (double) (after - before) / before * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
+    }
 }

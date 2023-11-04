@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.utils.validator;
 
 public class Validator {
 

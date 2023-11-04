@@ -18,7 +18,16 @@ public class InputView {
     public List<Integer> inputLottoNumber(){
         String lottoInput = Console.readLine();
         List<String> lottoNumbers = InputConvertUtil.lottoNumberToLottoList(lottoInput);
+        validateEachNumberNotEmpty(lottoNumbers);
         return InputConvertUtil.lottoNumberToIntegerList(lottoNumbers);
+    }
+
+    private void validateEachNumberNotEmpty(List<String> lottoNumbers) {
+        for (String lottoNumber : lottoNumbers) {
+            if(lottoNumber.isEmpty()){
+                throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
+            }
+        }
     }
 
     private static void validateIntegerType(String purchaseAmount) {

@@ -1,8 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
-import lotto.constance.PrintConst;
-import lotto.model.Lotto;
+import lotto.model.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
 class WriterTest {

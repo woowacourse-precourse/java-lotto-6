@@ -12,8 +12,7 @@ import static lotto.controller.RandNumber.checkDuplicate;
 import static lotto.controller.RandNumber.makeRandNumber;
 import static lotto.controller.Rank.getRank;
 import static lotto.view.Message.*;
-import static lotto.view.Print.printBoughtLottoCount;
-import static lotto.view.Print.printLottery;
+import static lotto.view.Print.*;
 
 public class Play {
 
@@ -59,6 +58,7 @@ public class Play {
             }
             result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
         }
+        printResultRank(result);
 
     }
 

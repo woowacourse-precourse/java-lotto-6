@@ -28,13 +28,28 @@ public class LottoController {
     private int sum;
     private double percentage;
     public void gamePlay () {
+        //발행할 돈 입력
         inputMoney();
+
+        //입력된 돈을 통해 로또 생성
         initLottos();
+
+        //생성된 로또 [,]형태로 출력
         printLottos();
+
+        //로또의 정답 입력
         inputAnswer();
+
+        //보너스 값 입력
         inputBonus();
+
+        //입력된 정답 로또와 랜덤으로 생성된 로또를 비교해서 각 결과 저장
         checkEachLottos();
+
+        //각 결과의 값을 저장해서 퍼센트로 변환
         sumOfNumbers();
+
+        //결과 프린트
         OutputView lottoResult = new OutputView();
         lottoResult.printLottoResult(results, percentage);
     }
@@ -123,16 +138,24 @@ public class LottoController {
     }
 
     private void comparing (int count) {
-        if(count == 3) {
-            this.results[0]++;
-        } else if (count == 4) {
-            this.results[1]++;
-        } else if (count == 5) {
-            this.results[2]++;
-        } else if (count == 6) {
-            this.results[4]++;
-        } else if (count == -1) {
-            this.results[3]++;
+//        if(count == 3) {
+//            this.results[0]++;
+//        } else if (count == 4) {
+//            this.results[1]++;
+//        } else if (count == 5) {
+//            this.results[2]++;
+//        } else if (count == 6) {
+//            this.results[4]++;
+//        } else if (count == -1) {
+//            this.results[3]++;
+//        }
+        switch(count) {
+            case 3 : this.results[0]++;
+            case 4 : this.results[1]++;
+            case 5 : this.results[2]++;
+            case -1 : this.results[3]++;
+            case 6 : this.results[4]++;
+            default : break;
         }
     }
 

@@ -4,6 +4,9 @@ import lotto.exception.WinningNumberValidationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WinningLottoServiceTest {
@@ -13,5 +16,13 @@ class WinningLottoServiceTest {
         String incorrectFormatInput = "01, 02, 03, 04, 05, 0a";
         assertThrows(WinningNumberValidationException.class, () ->
                 WinningNumberValidationException.checkLottoNumberFormat(incorrectFormatInput));
+    }
+
+    @Test
+    @DisplayName("당첨 번호의 길이가 올바르지 않으면 예외를 발생시킨다")
+    void whenWinningNumberLengthIsIncorrect_thenThrowsException() {
+        List<Integer> incorrectLengthNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        assertThrows(WinningNumberValidationException.class, () ->
+                WinningNumberValidationException.checkWinningNumberLength(incorrectLengthNumbers));
     }
 }

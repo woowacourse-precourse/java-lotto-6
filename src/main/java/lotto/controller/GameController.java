@@ -12,7 +12,6 @@ import lotto.view.OutputView;
 
 public class GameController {
     Pay pay;
-    Lotto winningNumbers;
     LottoList userLottos;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -32,7 +31,7 @@ public class GameController {
     public void startGame() {
         List<Lotto> lottos = generateUserLottos();
         userLottos = new LottoList(lottos);
-        printUserLottos((lottos));
+        printUserLottos((userLottos.getLottos()));
     }
 
     private List<Lotto> generateUserLottos() {

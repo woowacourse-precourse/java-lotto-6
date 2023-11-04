@@ -97,8 +97,8 @@
 - [ ] 보너스 번호 클래스 BonusLottoNum
   - [ ] 보너스 번호가 같은지 확인한다. BonusNum#isSame
 
-- [ ] 당첨 번호 클래스 WinLottoNum
-  - [ ] 당첨 번호 추첨 번호가 같은지 확인한다. WinLottoNum#isSame
+- [x] 당첨 번호 클래스 WinLottoNums
+  - [x] 당첨 번호 모임중 추첨 번호가 같은지 확인한다. WinLottoNum#isSame
 
 - [ ] 당첨 번호와 보너스 번호들의 모임 클래스 LottoNumResults
   - [ ] 당첨 번호 추첨 번호가 같은지 확인한다. isSamePickNum

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoUtil {
@@ -25,5 +26,11 @@ public class LottoUtil {
                 .distinct()
                 .toList();
         return distinct.size() != numbers.size();
+    }
+
+    public static int getMatchingNumberCount(List<Integer> listA, List<Integer> listB) {
+        List<Integer> copy = new ArrayList<>(listA);
+        copy.retainAll(listB);
+        return copy.size();
     }
 }

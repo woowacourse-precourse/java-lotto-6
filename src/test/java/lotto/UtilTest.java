@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilTest {
     @ParameterizedTest
@@ -62,5 +61,12 @@ public class UtilTest {
         List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
 
         assertFalse(LottoUtil.hasDuplicatedNumbers(input));
+    }
+
+    @Test
+    void getMatchingNumberCount_테스트() {
+        List<Integer> inputA = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> inputB = List.of(5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
+        assertEquals(5, LottoUtil.getMatchingNumberCount(inputA, inputB));
     }
 }

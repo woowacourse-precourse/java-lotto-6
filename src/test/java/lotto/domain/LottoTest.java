@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DisplayName("로또")
 class LottoTest {
+
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -75,6 +77,18 @@ class LottoTest {
         assertDoesNotThrow(() -> new Lotto(lottoNumbers));
     }
 
+    @DisplayName("당첨 로또와 비교 기능 테스트")
+    @ParameterizedTest()
+    @MethodSource("compareWinnerLottoSuccessDummy")
+    void compareWinnerLottoSuccessTest(Lotto lotto, List<Integer> winnerNumbers, Integer bonusNumber, LottoResult expected) {
+        LottoResult result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
+        assertEquals(expected.getCountOfSameNumbers(), result.getCountOfSameNumbers());
+        assertEquals(expected.getCheckBonus(), result.getCheckBonus());
+    }
+
+
+
+
     static Stream<Arguments> overRangeNumbersDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(1, 2, 3, 4, 5, 49)),
@@ -113,6 +127,33 @@ class LottoTest {
                 Arguments.arguments(List.of(1, 2, 3, 19, 20, 42))
         );
     }
+
+    static Stream<Arguments> compareWinnerLottoSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments(new Lotto(
+                                            List.of(1, 2, 3, 4, 5, 6)
+                                    ),
+                                    List.of(1, 2, 3, 8, 9, 10),
+                                    7,
+                                    new LottoResult(3, false)
+                ),
+                Arguments.arguments(new Lotto(
+                                            List.of(1, 2, 3, 4, 5, 6)
+                                    ),
+                                    List.of(1, 2, 15, 8, 9, 10),
+                                    3,
+                                    new LottoResult(2, true)
+                ),
+                Arguments.arguments(new Lotto(
+                                            List.of(1, 2, 3, 4, 5, 8)
+                                    ),
+                                    List.of(1, 2, 5, 8, 9, 10),
+                                    3,
+                                    new LottoResult(4, true)
+                )
+        );
+    }
+
 
 
 }

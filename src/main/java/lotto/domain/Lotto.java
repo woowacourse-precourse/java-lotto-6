@@ -45,7 +45,6 @@ public class Lotto {
     public LottoResult compareWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
         Integer countOfSameNumbers = compareWithWinnerNumbers(winnerNumbers);
         Boolean checkBonus = compareWithBonusNumber(bonusNumber);
-
         return new LottoResult(countOfSameNumbers, checkBonus);
     }
 
@@ -72,11 +71,12 @@ public class Lotto {
             stringBuilder.append(" ");
         }
 
-        stringBuilder.replace(
-                stringBuilder.length()-2,
-                     stringBuilder.length(),
-                    "]");
+//        stringBuilder.replace(
+//                stringBuilder.length()-2,
+//                     stringBuilder.length(),
+//                    "]");
 
-        return stringBuilder.toString();
+        String lottoNumbers = stringBuilder.toString();
+        return lottoNumbers;
     }
 }

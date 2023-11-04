@@ -39,7 +39,6 @@ class CashTest {
     @ParameterizedTest()
     @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
     void createCashSuccessTest(int amount) {
-
         assertDoesNotThrow(() -> new Cash(amount));
     }
 
@@ -80,8 +79,7 @@ class CashTest {
                         new Cash(2000),
                         new Cash(3000),
                         new Cash(4000),
-                        new Cash(5000)),
-                        5
+                        new Cash(5000))
                 )
         );
     }

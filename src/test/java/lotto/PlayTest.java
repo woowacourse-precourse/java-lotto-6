@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.Play.calLottoCount;
-import static lotto.controller.Play.compareLottoAndWinning;
+import static lotto.controller.Play.*;
 
 public class PlayTest {
     @DisplayName("로또 한 장의 금액에 따라서 로또의 수를 반환한다.")
@@ -25,7 +24,7 @@ public class PlayTest {
 
     @DisplayName("로또와 당첨 번호를 비교해서 맞는 번호의 수를 반환한다.")
     @Test
-    void compareNumber() {
+    void compareLottoAndWinningTest() {
         List<Integer> lottoNumbers = new ArrayList<>();
         lottoNumbers.add(1);
         lottoNumbers.add(2);
@@ -42,5 +41,23 @@ public class PlayTest {
         winningNumbers.add(2);
         winningNumbers.add(9);
         Assertions.assertThat(compareLottoAndWinning(lottoNumbers, winningNumbers)).isEqualTo(5);
+    }
+
+    @DisplayName("로또와 보너스 숫자를 비교해서 맞으면 참, 틀리면 거짓을 반환한다.")
+    @Test
+    void compareLottoAndBonusTest() {
+        List<Integer> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(1);
+        lottoNumbers.add(2);
+        lottoNumbers.add(3);
+        lottoNumbers.add(4);
+        lottoNumbers.add(5);
+        lottoNumbers.add(6);
+
+        int bonusA = 1;
+        Assertions.assertThat(compareLottoAndBonus(lottoNumbers, bonusA)).isEqualTo(true);
+
+        int bonusB = 7;
+        Assertions.assertThat(compareLottoAndBonus(lottoNumbers, bonusB)).isEqualTo(false);
     }
 }

@@ -11,6 +11,7 @@ import lotto.util.io.OutputUtils;
 public class Raffle {
 
     private Lottos lottos;
+    private List<Integer> winningNumbers;
 
     public int getValidPurchaseAmount() {
         int money;
@@ -31,5 +32,17 @@ public class Raffle {
                 .mapToObj(i -> new Lotto(RandomNumber.createRandomLottoNumber()))
                 .collect(toList());
         lottos = new Lottos(newLottos);
+    }
+
+    public void getValidWinningNumbers() {
+        while (true) {
+            try {
+                OutputUtils.printWinningNumbersInputMessage();
+                winningNumbers = InputUtils.getWinningNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

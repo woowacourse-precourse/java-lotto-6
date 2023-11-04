@@ -18,7 +18,7 @@ public class InputView {
     public static Object inputValue(String key, Function<String, Object> numberCreateFunction) {
         while (true) {
             try {
-                System.out.println(getMessage(key));
+                System.out.println(getInputMessage(key));
                 String input = Console.readLine();
 
                 return numberCreateFunction.apply(input);
@@ -28,7 +28,7 @@ public class InputView {
         }
     }
 
-    private static String getMessage(String key) {
+    private static String getInputMessage(String key) {
         return inputMessages.get(key);
     }
 }

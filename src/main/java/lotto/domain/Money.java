@@ -10,7 +10,7 @@ public class Money {
     private static final int MINIMUM_AMOUNT = 1000;
     private int amount;
 
-    private Money(int amount) {
+    private Money(final int amount) {
         this.amount = amount;
     }
 
@@ -49,5 +49,9 @@ public class Money {
 
     private static String trim(final String input) {
         return input.trim();
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

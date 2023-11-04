@@ -1,6 +1,7 @@
 ## 기능 목록 ##
 
 - [x] 구매자로 부터 구매할 금액을 입력받는다.   - NumberGenerator#inputBuyCost()
+    - [x] 예외처리 : 금액은 1000원 단위로 나누어 떨어져야 한다. - NumberGenerator#inputBuyCostVaildation()
 - [ ] 1부터 45까지의 서로 다른 숫자 6개를 생성한다. - NumberGenerator#createRandomNumbers()
     - [x] 로또는 한개에 1,000원 단위로 구매할 개수를 구한다. - NumberGenerator#createUnitLotto()
     - [ ] 로또 번호는 오름차순으로 정렬해야 한다.   - NumberGenerator#sortAscendingNumbers()

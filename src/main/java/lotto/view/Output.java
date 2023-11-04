@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constant.OutputMessage.PURCHASE_COUNT_DEFAULT_MESSAGE;
+import static lotto.constant.OutputMessage.REQUEST_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.OutputMessage.REQUEST_PURCHASE_PRICE_MESSAGE;
 import static lotto.constant.OutputMessage.REQUEST_WINNING_NUMBER_MESSAGE;
 
@@ -27,7 +28,11 @@ public class Output {
         System.out.println(REQUEST_WINNING_NUMBER_MESSAGE);
     }
 
-    public void purchaseLotts(Player player) {
+    public void requestBonusNumber() {
+        System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
+    }
+
+    public void purchasedLotts(Player player) {
         Lottos lottos = player.getLottos();
         lottos.getLottos()
                 .forEach((lotto -> System.out.println(lotto.getNumbers())));

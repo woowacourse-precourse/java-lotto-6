@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LotteryResult;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
@@ -29,7 +30,7 @@ public class LottoController {
 
     public void run() {
         Player player = start();    //가독성이 나쁘지는 않을까? start를 통해서 player가 생성된다는 의미가 전달되나?
-        output.purchaseLotts(player);
+        output.purchasedLotts(player);
         play(player);
     }
 
@@ -49,21 +50,36 @@ public class LottoController {
     }
 
     private void play(Player player) {
+
+        LotteryResult lotteryResult = createLotteryResult();
+    }
+
+    private LotteryResult createLotteryResult() {
         output.requestWinningNumbers();
-        Lotto lotteryResult = createLotteryResult();
-        System.out.println(lotteryResult.getNumbers());
+        Lotto winningLotto = createWinningLotto();
+        output.requestBonusNumber();
+        try {
+            return LotteryResult.of(winningLotto, createBonusNumber());
+        } catch (IllegalArgumentException e) {
+            return LotteryResult.of(winningLotto, createBonusNumber());
+        }
     }
 
-    private Lotto createLotteryResult() {
-        return createWinningNumbers();
-//        createBonusNumber();
-    }
-
-    private Lotto createWinningNumbers() {
+    private Lotto createWinningLotto() {
         try {
             return new Lotto(input.winningNumbers());
         } catch (IllegalArgumentException e) {
-            return createWinningNumbers();
+            return createWinningLotto();
         }
     }
+
+    private int createBonusNumber() {
+        try {
+            return Integer.parseInt(input.bonusNumber());
+        } catch (IllegalArgumentException e) {
+            return createBonusNumber();
+        }
+    }
+
+
 }

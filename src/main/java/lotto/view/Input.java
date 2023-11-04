@@ -6,23 +6,18 @@ import java.util.List;
 import lotto.validator.InputValidator;
 
 public class Input {
-    public static final String SEPARATION_SIGN = ",";
+    public static final char SEPARATION_SIGN = ',';
 
     public int purchasePrice() {
         String input = defaultReadLine();
-        purchaseValidate(input);
+        numberValidate(input);
         return Integer.parseInt(input);
-    }
-
-    private void purchaseValidate(String input) {
-        InputValidator.onlyNumber(input);
-        InputValidator.inNumberRange(input);
     }
 
     public List<Integer> winningNumbers() {
         String input = defaultReadLine();
         winningNumbersValidate(input);
-        return Arrays.stream(input.split(SEPARATION_SIGN))
+        return Arrays.stream(input.split("" + SEPARATION_SIGN))
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -34,7 +29,14 @@ public class Input {
     }
 
     public String bonusNumber() {
-        return defaultReadLine();
+        String input = defaultReadLine();
+        numberValidate(input);
+        return input;
+    }
+
+    private void numberValidate(String input) {
+        InputValidator.notNumber(input);
+        InputValidator.overNumberRange(input);
     }
 
     private String defaultReadLine() {

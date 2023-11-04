@@ -39,7 +39,7 @@ class LottoTest {
 
     @DisplayName("랜덤으로 발행한 로또 넘버 6개를 정렬하는 기능")
     @Test
-    void SortedIssuedLottoNumberCheck() {
+    void confirmSortedLottoNumber() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Lotto issuedLotto = new Lotto();

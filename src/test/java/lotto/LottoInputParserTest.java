@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoInputParserTest {
     @DisplayName("당첨 번호에 (빈)문자가 포함인 경우 예외가 발생한다.")
     @Test
-    void PurchaseAmountIsEmpty() {
+    void createLottoByIncludingNotNumber() {
         assertThatThrownBy(() -> LottoInputParser.notNumber(""))
                 .isInstanceOf(IllegalArgumentException.class);
 

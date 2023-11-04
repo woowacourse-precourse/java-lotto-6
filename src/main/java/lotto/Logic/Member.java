@@ -66,7 +66,7 @@ public class Member {
 
         createMemberLotto(this.count);
     }
-    public void setPriceValid(String prices){ //숫자인지 판단
+    public void setPriceValid(String prices) throws IllegalArgumentException{
         try{
             this.price=Integer.parseInt(prices);
 
@@ -76,7 +76,7 @@ public class Member {
 
         priceValid(this.price);
     }
-    public void priceValid(int price){ //0이상, 1000원 단위인지 판단
+    public void priceValid(int price) throws IllegalArgumentException{
         if (price<=0)
             throw new IllegalArgumentException("[ERROR] 구매금액는 0 이하로 표현하면 안된다");
 

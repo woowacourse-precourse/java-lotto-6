@@ -25,9 +25,14 @@ public class UI {
         String price=camp.nextstep.edu.missionutils.Console.readLine();
         System.out.println();
 
-        member.setPriceValid(price);
+        try{
+            member.setPriceValid(price);
+            purchaseComment(member.getCount());
 
-        purchaseComment(member.getCount());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            priceComment();
+        }
     }
 
     public void purchaseComment(int count){
@@ -50,29 +55,46 @@ public class UI {
 
     public void numberComment(){
         System.out.println("당첨 번호를 입력해 주세요.");
-        numberInput();
 
-        System.out.println();
-        bonusComment();
+        numberInput();
     }
 
 
     public void numberInput(){
         String number=camp.nextstep.edu.missionutils.Console.readLine();
-        winningNumber.splitValid(number);
+        System.out.println();
+
+        try{
+            winningNumber.splitValid(number);
+            bonusComment();
+
+        } catch (IllegalArgumentException e){
+
+            System.out.println(e.getMessage());
+            numberComment();
+        }
+
     }
 
     public void bonusComment(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusInput();
 
-        System.out.println();
-        staticComment();
+        bonusInput();
     }
 
     public void bonusInput(){
         String bonus=camp.nextstep.edu.missionutils.Console.readLine();
-        winningNumber.setBonusValid(bonus);
+        System.out.println();
+
+        try{
+            winningNumber.setBonusValid(bonus);
+            staticComment();
+
+        }catch (IllegalArgumentException e){
+
+            System.out.println(e.getMessage());
+            bonusComment();
+        }
     }
 
     public void staticComment(){

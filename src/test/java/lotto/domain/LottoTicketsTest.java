@@ -31,9 +31,9 @@ class LottoTicketsTest {
 
     @DisplayName("로또 티켓 문자열로 가져오기")
     @Test
-    void NumbersOflottoTickets() {
+    void NumbersOfLottoTickets() {
         assertRandomUniqueNumbersInRangeTest(() ->
-                        assertThat(lottoTickets.getLottoTickets().stream().map(Lotto::toString))
+                        assertThat(new LottoTickets(5).getLottoTickets().stream().map(Lotto::toString))
                                 .contains("[1, 2, 3, 4, 5, 6]",
                                         "[4, 5, 6, 7, 8, 9]",
                                         "[3, 10, 23, 42, 43, 45]",
@@ -46,7 +46,6 @@ class LottoTicketsTest {
                 List.of(3,10,23,42,43,45),
                 List.of(10,20,30,35,40,45),
                 List.of(2,3,9,12,30,34)
-
         );
     }
 

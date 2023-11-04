@@ -79,7 +79,7 @@ public class OutputView {
     }
 
     private void printPrize(TotalPrize totalPrize, LottoPrize lottoPrize) {
-        int matchCount = lottoPrize.getMatchCount();
+        int matchCount = lottoPrize.getRequiredMatchingNumbers();
         String formattedPrizeAmount = formattingPrizeAmount(lottoPrize);
         long prizeCount = totalPrize.countMatchesForPrize(lottoPrize);
         String message = formattingNormalPrizeMessage(matchCount, formattedPrizeAmount, prizeCount);
@@ -98,7 +98,7 @@ public class OutputView {
     }
 
     private static String formattingPrizeAmount(LottoPrize lottoPrize) {
-        int prizeAmount = lottoPrize.getPrizeAmount();
+        int prizeAmount = lottoPrize.getPrizeMoney();
         return String.format(PRIZE_AMOUNT_FORMAT, prizeAmount);
     }
 

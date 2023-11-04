@@ -4,40 +4,40 @@ import java.util.stream.Stream;
 
 public enum LottoPrize {
     NOTHING(0, 0),
-    FIFTH(3, 5_000),
-    FOURTH(4, 50_000),
-    THIRD(5, 1_500_000),
-    SECOND(5, 30_000_000, true),
-    FIRST(6, 2_000_000_000);
+    FIFTH_PRIZE(3, 5_000),
+    FOURTH_PRIZE(4, 50_000),
+    THIRD_PRIZE(5, 1_500_000),
+    SECOND_PRIZE(5, 30_000_000, true),
+    FIRST_PRIZE(6, 2_000_000_000);
 
-    private final int matchCount;
-    private final int prizeAmount;
-    private final boolean matchBonus;
+    private final int requiredMatchingNumbers;
+    private final int prizeMoney;
+    private final boolean requiresBonusNumber;
 
-    LottoPrize(int matchCount, int prizeAmount) {
-        this(matchCount, prizeAmount, false);
+    LottoPrize(int requiredMatchingNumbers, int prizeMoney) {
+        this(requiredMatchingNumbers, prizeMoney, false);
     }
 
-    LottoPrize(int matchCount, int prizeAmount, boolean matchBonus) {
-        this.matchCount = matchCount;
-        this.prizeAmount = prizeAmount;
-        this.matchBonus = matchBonus;
+    LottoPrize(int requiredMatchingNumbers, int prizeMoney, boolean requiresBonusNumber) {
+        this.requiredMatchingNumbers = requiredMatchingNumbers;
+        this.prizeMoney = prizeMoney;
+        this.requiresBonusNumber = requiresBonusNumber;
     }
 
-    public static LottoPrize of(int matchCount, boolean hasBonusNumber) {
-        if (isSecondPrize(matchCount, hasBonusNumber)) {
-            return SECOND;
+    public static LottoPrize of(int numberOfMatches, boolean isBonusNumberMatched) {
+        if (isEligibleForSecondPrize(numberOfMatches, isBonusNumberMatched)) {
+            return SECOND_PRIZE;
         }
-        return from(matchCount);
+        return findByMatchingNumbers(numberOfMatches);
     }
 
-    private static boolean isSecondPrize(int matchCount, boolean hasBonusNumber) {
-        return matchCount == SECOND.matchCount && hasBonusNumber;
+    private static boolean isEligibleForSecondPrize(int numberOfMatches, boolean isBonusNumberMatched) {
+        return numberOfMatches == SECOND_PRIZE.requiredMatchingNumbers && isBonusNumberMatched;
     }
 
-    private static LottoPrize from(int matchCount) {
+    private static LottoPrize findByMatchingNumbers(int matchCount) {
         return Stream.of(values())
-                .filter(prize -> prize.matchCount == matchCount)
+                .filter(prize -> prize.requiredMatchingNumbers == matchCount)
                 .findFirst()
                 .orElse(NOTHING);
     }
@@ -46,27 +46,27 @@ public enum LottoPrize {
         if (value == null) {
             return 0;
         }
-        return prizeAmount * value;
+        return prizeMoney * value;
     }
 
     public boolean isSecondPrize() {
-        return this == SECOND;
+        return this == SECOND_PRIZE;
     }
 
     public boolean isWinningPrize() {
         return this != NOTHING;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public int getRequiredMatchingNumbers() {
+        return requiredMatchingNumbers;
     }
 
-    public int getPrizeAmount() {
-        return prizeAmount;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 
-    public boolean isMatchBonus() {
-        return matchBonus;
+    public boolean isRequiresBonusNumber() {
+        return requiresBonusNumber;
     }
 
 }

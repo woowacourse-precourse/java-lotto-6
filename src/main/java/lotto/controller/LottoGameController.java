@@ -37,7 +37,7 @@ public class LottoGameController {
         printLottoGroup(lottoGroup);
 
         LottoMachine lottoMachine = createLottoMachine(lottoGroup);
-        TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
+        TotalPrize totalPrize = lottoMachine.generatePrizeReport();
         printTotalPrize(totalPrize);
 
         TotalProfit totalProfit = totalPrize.calculateTotalProfit(investMoney);

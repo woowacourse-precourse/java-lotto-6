@@ -13,7 +13,7 @@ public final class LottoMachine {
         return new LottoMachine(lottoGroup, winningCombination);
     }
 
-    public TotalPrize calculateTotalPrize() {
-        return lottoGroup.calculateTotalPrize(winningCombination);
+    public TotalPrize generatePrizeReport() {
+        return lottoGroup.summarizeTotalPrize(winningCombination);
     }
 }

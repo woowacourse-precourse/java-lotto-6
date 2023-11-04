@@ -22,11 +22,11 @@ public class WinningCombination {
         return new WinningCombination(winningLotto, bonusNumber);
     }
 
-    public boolean containsLottoNumber(LottoNumber number) {
+    public boolean hasLottoNumber(LottoNumber number) {
         return winningLotto.hasNumber(number);
     }
 
-    public boolean containsBonusNumber(LottoNumber number) {
+    public boolean hasBonusNumber(LottoNumber number) {
         return bonusNumber.equals(number);
     }
 }

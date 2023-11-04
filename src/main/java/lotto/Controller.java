@@ -59,6 +59,18 @@ public class Controller {
     }
 
     private void inputBonusNumber(){
+        OutputView.inputBonusNumberMessage();
+        tryInputBonusNumber();
+    }
+
+    private void tryInputBonusNumber(){
+        try{
+            String input = InputView.input();
+            gameService.inputBonusNumber(input);
+        } catch(IllegalArgumentException e){
+            OutputView.errorMessage(e.getMessage());
+            tryInputBonusNumber();
+        }
     }
 
     private void printWinningStatistics(){

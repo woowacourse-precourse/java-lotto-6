@@ -21,7 +21,11 @@ public class OutputView {
         System.out.println("\n"+INPUT_WINNING_NUMBERS);
     }
 
+    public static void inputBonusNumberMessage(){
+        System.out.println("\n"+INPUT_BONUS_NUMBER);
+    }
+
     public static void errorMessage(String s){
-        System.out.println(s);
+        System.out.println("[ERROR] "+s);
     }
 }

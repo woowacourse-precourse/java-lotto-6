@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.message.ExceptionMessage;
+
 import java.util.regex.Pattern;
 
 public class InputValidator {

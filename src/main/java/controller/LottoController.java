@@ -21,6 +21,11 @@ public class LottoController {
     private Lottos makeLottos(){
         return new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));
     }
+    private LottoSystem makeLottoSystem(){
+        int bonusNumber = parser.parseInteger(getBonusNumberByUserInput());
+        List<Integer> winningNumber = parser.parseWinningNumber(getWinningNumberByUserInput());
+        return new LottoSystem(winningNumber, bonusNumber);
+    }
     private String getTotalMoneyByUserInput(){
         LottoView.printAskInputMoney();
         String input = Console.readLine();

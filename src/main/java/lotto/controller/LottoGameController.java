@@ -13,6 +13,7 @@ import lotto.domain.model.LottoDispenser;
 import lotto.domain.model.Lottos;
 import lotto.domain.model.WinningLotto;
 import lotto.domain.LottoRandomGenerator;
+import lotto.util.LottoStatistics;
 import lotto.domain.Repeater;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -78,9 +79,16 @@ public class LottoGameController {
         return new LottoRanks(rawLottoRanks);
     }
 
+    private String createStatisticsExpression(LottoRanks lottoRanks, LottoPurchaseCost lottoPurchaseCost) {
+        long rawPurchaseCost = lottoPurchaseCost.getCost();
+
+        return LottoStatistics.createStatisticsExpression(lottoRanks, rawPurchaseCost);
+    }
+
     public void play() {
         LottoPurchaseCost lottoPurchaseCost = readPurchaseCost();
         LottoGame lottoGame = initGame(lottoPurchaseCost);
         LottoRanks lottoRanks = createLottoRanks(lottoGame);
+        String statisticsExpression = createStatisticsExpression(lottoRanks, lottoPurchaseCost);
     }
 }

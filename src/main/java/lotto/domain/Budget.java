@@ -16,7 +16,7 @@ public class Budget {
         validateNumeric(inputBudget);
         int budget = Integer.parseInt(inputBudget);
         validateDivideResultIsZero(budget);
-        validateMinusPrice(budget);
+        validateLowerPrice(budget);
         return new Budget(budget);
     }
 
@@ -34,7 +34,7 @@ public class Budget {
         }
     }
 
-    private static void validateMinusPrice(int budget){
+    private static void validateLowerPrice(int budget){
         if(budget < LOTTO_UNIT_PRICE){
             throw new IllegalArgumentException(String.format(MINIMUM_PRICE_EXCEPTION_MESSAGE, LOTTO_UNIT_PRICE));
         }

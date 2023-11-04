@@ -50,12 +50,12 @@ public class LottoStore {
     public void getCollectLottoNumber(Map<Statistics, Integer> countForRate) {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
-            Integer count = compareLotto(lottoNumbers);
+            int count = compareLotto(lottoNumbers);
         }
     }
 
 
-    private Integer compareLotto(List<Integer> lottoNumbers) {
+    private int compareLotto(List<Integer> lottoNumbers) {
         int count = 0;
         for (Integer winningNumber : winningLotto) {
             checkLotto(lottoNumbers, winningNumber, count);

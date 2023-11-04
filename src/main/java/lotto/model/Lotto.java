@@ -13,7 +13,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = Collections.unmodifiableList(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

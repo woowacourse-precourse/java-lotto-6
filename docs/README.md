@@ -93,7 +93,8 @@
 
 ### 🛠 테스트 코드 (작은 단위 테스트)
 
-- [X] : `NumberUtilTest` 숫자 검증
+- [X] : `NumberUtilTest` 숫자 검증 테스트
+- [X] : `PurchaseAmoutTest` 구매금액 예외상황 테스트
 
 
 ## 🤔 패키지 구상

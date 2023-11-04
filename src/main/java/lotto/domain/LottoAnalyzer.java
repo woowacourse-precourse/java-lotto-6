@@ -35,6 +35,7 @@ public class LottoAnalyzer {
                     .distinct()
                     .count();
             boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
+            LottoRank lottoRank = LottoRank.getRank(match, hasBonusNumber);
         }
     }
 }

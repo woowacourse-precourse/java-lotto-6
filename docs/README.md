@@ -4,6 +4,7 @@
   -> 6개의 입력이 아닌 경우, 숫자가 아닌 경우, 1~45의 수가 아닌 경우
 - [] 보너스 번호를 입력 받는다 -> 숫자가 아닌 경우, 1~45의 수가 아닌 경우
 - [o] 로또 한개를 발행한다. Lotto#new Lotto()
+  - [o] 로또 번호 반환 Lotto#getLotto()List\<Integer>
   - [o] 로또 번호 검증 Lotto#validate(List<Integer> nums)
     - [o] 로또의 길이는 6가 맞는지 검증. Lotto#void validateBoundLength()
     - [o] 로또 번호는 1~45 사이의 숫자를 가지는지 검증. Lotto#void validateProperNums()

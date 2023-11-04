@@ -11,11 +11,14 @@ public class LottoSystem {
     private BonusNumber bonusNumber;
 
     public void run() {
-
-        initialize();
-        SettlementSystem settlementSystem = new SettlementSystem();
-        settlementSystem.makeResult(winningLotto,userLotto,bonusNumber);
-        settlementSystem.renderResult();
+        try {
+            initialize();
+            SettlementSystem settlementSystem = new SettlementSystem();
+            settlementSystem.makeResult(winningLotto, userLotto, bonusNumber);
+            settlementSystem.renderResult();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void initialize(){

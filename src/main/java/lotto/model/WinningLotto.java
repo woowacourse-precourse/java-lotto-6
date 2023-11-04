@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.message.ErrorMessage;
+import lotto.constant.ErrorMessage;
 
 public class WinningLotto {
 

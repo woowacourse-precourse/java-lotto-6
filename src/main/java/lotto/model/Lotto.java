@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.message.ErrorMessage;
+import lotto.constant.ErrorMessage;
 
 import java.util.List;
 import java.util.Set;

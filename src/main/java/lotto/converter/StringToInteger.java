@@ -1,6 +1,6 @@
 package lotto.converter;
 
-import lotto.message.ErrorMessage;
+import lotto.constant.ErrorMessage;
 
 import java.util.regex.Pattern;
 

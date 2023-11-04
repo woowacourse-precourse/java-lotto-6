@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.constant;
 
 public enum ErrorMessage {
     PREFIX("[ERROR] "),

@@ -13,9 +13,9 @@ public class GameUtility {
 
     private GameUtility() {}
 
-    public static User buyLotties(int payment) {
-        int purchaseLottoAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
-        return new User(generateLottoNumberRepeatNTimes(purchaseLottoAmount),payment);
+    public static User buyTickets(int payment) {
+        int ticketAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
+        return new User(payment, generateLottoNumberRepeatNTimes(ticketAmount));
     }
 
     public static List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {

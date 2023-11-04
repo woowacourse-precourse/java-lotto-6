@@ -12,7 +12,7 @@ public class LottoGame {
 
     public static void run() {
         int payment = getPaymentAndValidate();
-        User user = GameUtility.buyLotties(payment);
+        User user = GameUtility.buyTickets(payment);
     }
 
     private static int getPaymentAndValidate() {

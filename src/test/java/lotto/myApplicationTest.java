@@ -68,9 +68,9 @@ public class myApplicationTest {
             // given
             User user;
             // when
-            user = GameUtility.buyLotties(payment);
+            user = GameUtility.buyTickets(payment);
             // then
-            assertEquals(user.getLotties().size(), lottoAmount);
+            assertEquals(user.getLottoTickets().size(), lottoAmount);
         }
 
         @Test
@@ -84,8 +84,8 @@ public class myApplicationTest {
             assertRandomUniqueNumbersInRangeTest(
                     () -> {
                         User user;
-                        user = GameUtility.buyLotties(1000);
-                        assertEquals(user.getLotties().get(0).getNumbers(),LottoNumbers);
+                        user = GameUtility.buyTickets(1000);
+                        assertEquals(user.getLottoTickets().get(0).getNumbers(),LottoNumbers);
                     },
                     Arrays.asList(43, 41, 42, 23, 21, 8)
             );

@@ -13,13 +13,14 @@ public class LottoWinningNumbers {
     private final ValidateService validateService = new ValidateService();
     private final MessageService messageService = new MessageService();
     private int bonusNumber;
-    private List<Integer> winningNumbers;
+    private List<Integer> winningNumber;
 
-    public LottoWinningNumbers getWinningNumbersInfo(){
-        this.winningNumbers = getWinningNumbers();
-        this.bonusNumber = getBonusNumber();
+    public LottoWinningNumbers getWinningNumbersInfo() {
+        this.winningNumber = getWinningNumbers();
+        this.bonusNumber = getBonusNumbers();
         return this;
     }
+
     public List<Integer> getWinningNumbers() {
         messageService.inputWinningNumberMessage();
         while (true) {
@@ -35,24 +36,24 @@ public class LottoWinningNumbers {
     }
 
     private List<Integer> separateNumbers(List<String> inputValues) {
-        winningNumbers = new ArrayList<>();
+        winningNumber = new ArrayList<>();
         for (String value : inputValues) {
             try {
                 int number = Integer.parseInt(value.trim());
-                winningNumbers.add(number);
+                winningNumber.add(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
             }
         }
-        return winningNumbers;
+        return winningNumber;
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumbers() {
         messageService.inputBonusNumberMessage();
         while (true) {
             try {
                 bonusNumber = validateService.validateNumber(inputService.inputValue());
-                validateService.validateBonusNumber(bonusNumber,winningNumbers);
+                validateService.validateBonusNumber(bonusNumber, winningNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -60,4 +61,11 @@ public class LottoWinningNumbers {
         }
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import static lotto.util.LottoInformation.*;
 
 public class LottoMachine {
@@ -22,6 +23,14 @@ public class LottoMachine {
 
     public int getNumberOfTickets() {
         return numberOfTickets;
+    }
+
+    private Lottos createLottos(int numberOfTickets) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (lottos.size() < numberOfTickets) {
+            lottos.add(createLotto());
+        }
+        return new Lottos(lottos);
     }
 
     private Lotto createLotto() {

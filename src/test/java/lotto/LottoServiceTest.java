@@ -21,10 +21,10 @@ public class LottoServiceTest {
         List<Integer> winningNumbers = List.of(1, 2, 32, 43, 29, 45);
         int bonusNumber = 25;
         LottoService service = new LottoService(winningNumbers, bonusNumber);
-        Lotto lotto1stPlace = Lotto.issue(winningNumbers);
-        Lotto lotto3rdPlace = Lotto.issue(List.of(45, 2, 43, 32, 1, 30));
-        Lotto lotto4thPlace = Lotto.issue(List.of(45, 29, 43, 32, 3, 30));
-        Lotto lotto5thPlace = Lotto.issue(List.of(1, 29, 43, 31, 3, 30));
+        Lotto lotto1stPlace = new Lotto(winningNumbers);
+        Lotto lotto3rdPlace = new Lotto(List.of(45, 2, 43, 32, 1, 30));
+        Lotto lotto4thPlace = new Lotto(List.of(45, 29, 43, 32, 3, 30));
+        Lotto lotto5thPlace = new Lotto(List.of(1, 29, 43, 31, 3, 30));
         // when
         DrawResult actualResultOf1stPlaceLotto = service.checkResult(lotto1stPlace);
         DrawResult actualResultOf3rdPlaceLotto = service.checkResult(lotto3rdPlace);
@@ -45,9 +45,9 @@ public class LottoServiceTest {
         List<Integer> winningNumbers = List.of(1, 2, 32, 43, 29, 45);
         int bonusNumber = 25;
         LottoService service = new LottoService(winningNumbers, bonusNumber);
-        Lotto lotto2ndPlace = Lotto.issue(List.of(45, 2, 43, 32, 1, 25));
-        Lotto lotto4thPlaceWithBonus = Lotto.issue(List.of(45, 29, 43, 32, 3, 25));
-        Lotto lotto5thPlaceWithBonus = Lotto.issue(List.of(1, 29, 43, 31, 3, 25));
+        Lotto lotto2ndPlace = new Lotto(List.of(45, 2, 43, 32, 1, 25));
+        Lotto lotto4thPlaceWithBonus = new Lotto(List.of(45, 29, 43, 32, 3, 25));
+        Lotto lotto5thPlaceWithBonus = new Lotto(List.of(1, 29, 43, 31, 3, 25));
         // when
         DrawResult actualResultOf2ndPlaceLotto = service.checkResult(lotto2ndPlace);
         DrawResult actualResultOf4thPlaceWithBonusLotto = service.checkResult(lotto4thPlaceWithBonus);

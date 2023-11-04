@@ -15,10 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto issue(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
     public int countHitNumbers(Lotto comparisonTarget) {
         int hit = 0;
         for (int number: comparisonTarget.numbers) {

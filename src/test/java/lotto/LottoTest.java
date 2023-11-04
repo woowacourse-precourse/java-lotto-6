@@ -37,11 +37,11 @@ class LottoTest {
     void countHitNumbers() {
         // given
         List<Integer> winningNumbers = List.of(40, 41, 42, 43, 44, 45);
-        Lotto lotto0Hit = Lotto.issue(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto1Hit = Lotto.issue(List.of(1, 2, 3, 4, 5, 45));
-        Lotto lotto6Hit = Lotto.issue(winningNumbers);
+        Lotto lotto0Hit = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto1Hit = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+        Lotto lotto6Hit = new Lotto(winningNumbers);
         // when
-        Lotto winningLotto = Lotto.issue(winningNumbers);
+        Lotto winningLotto = new Lotto(winningNumbers);
         // then
         assertThat(lotto0Hit.countHitNumbers(winningLotto)).isEqualTo(0);
         assertThat(lotto1Hit.countHitNumbers(winningLotto)).isEqualTo(1);

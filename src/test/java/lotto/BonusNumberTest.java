@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {
 
-    static final Lotto winningLotto = Lotto.issue(List.of(1, 2, 3, 4, 5, 6));
+    static final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @DisplayName("보너스 번호는 1부터 45까지의 숫자만 가능하다.")
     @Test

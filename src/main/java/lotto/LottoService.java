@@ -10,7 +10,7 @@ public class LottoService {
     public LottoService() { }
 
     public LottoService(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningLotto = Lotto.issue(winningNumbers);
+        this.winningLotto = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 

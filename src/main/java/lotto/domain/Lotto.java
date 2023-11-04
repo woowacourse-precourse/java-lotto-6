@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,25 +16,22 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
-        } else if (!isWithinRangeNum(numbers, MIN, MAX)) {
+        } else if (!isWithinRangeNum(numbers)) {
             throw new IllegalArgumentException();
         } else if (!isNotDuplicateNum(numbers)) {
-            throw new IllegalArgumentException();
-        } else if (numbers.contains("")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복입니다");
         }
 
 
     }
 
     private boolean isNotDuplicateNum(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> Collections.frequency(numbers, number) == 1);
+        return numbers.stream().distinct().count() == numbers.size();
     }
 
-    private boolean isWithinRangeNum(List<Integer> numbers, int min, int max) {
+    private boolean isWithinRangeNum(List<Integer> numbers) {
         return numbers.stream()
-                .allMatch(number -> number >= min && number <= max);
+                .allMatch(number -> number >= MIN && number <= MAX);
     }
 
     public List<Integer> getNumbers() {

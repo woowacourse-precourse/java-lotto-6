@@ -17,7 +17,8 @@ public class MainLottoController {
         RandomLotto randomLotto = makeRandomLotto(inPutMoney()); //분리해야될듯 money가 갹체가 되어야하
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
-        ///////
+        /////// UserLotto userlotto = new UserLotto(Lotto,int)
+        //아니면 그냥 UserLotto를 밚롼
 
         //로또 입력받기
         //결과 출력

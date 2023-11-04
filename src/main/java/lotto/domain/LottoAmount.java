@@ -12,7 +12,10 @@ public class LottoAmount {
     }
 
     private int validatePurchasePrice(String money) {
+        checkValidInteger(money);
+        checkDivideByThousand(money);
 
+        return Integer.parseInt(money);
     }
 
     private void checkValidInteger(String money) {

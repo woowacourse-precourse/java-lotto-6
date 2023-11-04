@@ -12,7 +12,7 @@ public class Application {
 
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
                 String input = Console.readLine();
 
                 if (!input.matches("[1-9]\\d*")) {
@@ -39,7 +39,7 @@ public class Application {
 
         System.out.println();
         int lottoTicket = purchase / 1000;
-        System.out.println(lottoTicket + "개를 구매했습니다.");
+        System.out.println(lottoTicket + InputMessage.LOTTO_TICKET_COUNT.getMessage());
 
         List<List<Integer>> allLotto = new ArrayList<>();
         for (int i = 0; i < lottoTicket; i++) {
@@ -56,23 +56,23 @@ public class Application {
             allLotto.add(oneLotto);
         }
 
-        List<Integer> jackPot;
+        List<Integer> lottoNumbers;
         while (true) {
             try {
                 System.out.println();
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(InputMessage.LOTTO_NUMBERS.getMessage());
                 String[] numbers = Console.readLine().split(",");
-                jackPot = new ArrayList<>();
+                lottoNumbers = new ArrayList<>();
 
                 for (int i = 0; i < numbers.length; i++) {
                     try {
                         int number = Integer.parseInt(numbers[i]);
-                        jackPot.add(number);
+                        lottoNumbers.add(number);
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC.getMessage());
                     }
                 }
-                Lotto lotto = new Lotto(jackPot);
+                Lotto lotto = new Lotto(lottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -83,7 +83,7 @@ public class Application {
         while (true) {
             try {
                 System.out.println();
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println(InputMessage.BONUS_NUMBER.getMessage());
                 String input = Console.readLine();
 
                 try {
@@ -96,7 +96,7 @@ public class Application {
                     throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
                 }
 
-                if (jackPot.contains(bonusNumber)) {
+                if (lottoNumbers.contains(bonusNumber)) {
                     throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_DUPLICATE.getMessage());
                 }
 
@@ -109,7 +109,7 @@ public class Application {
         List<Integer> goodLuck = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (int i = 0; i < lottoTicket; i++) {
             int sameNumberCount = 0;
-            for (int number : jackPot) {
+            for (int number : lottoNumbers) {
                 if (allLotto.get(i).contains(number)) {
                     sameNumberCount++;
                 }

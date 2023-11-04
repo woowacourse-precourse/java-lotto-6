@@ -83,6 +83,20 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void validateIntegers_성공_테스트() {
+        List<String> input = List.of("123", "412", "-32");
+        Application.validateIntegers(input);
+    }
+
+    @Test
+    void validateIntegers_실패_테스트() {
+        List<String> input = List.of("test", "123", "456");
+
+        assertThatThrownBy(() -> Application.validateIntegers(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

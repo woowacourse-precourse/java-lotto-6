@@ -1,11 +1,26 @@
 package lotto;
 
-import static lotto.LottoNumberConstant.LOTTO_NUMBER_MAX;
-import static lotto.LottoNumberConstant.LOTTO_NUMBER_MIN;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.LottoConstant.*;
 
 public class Application {
+    private static LottoInputView inputView;
+    private static LottoOutputView outputView;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+    }
+
+    public static void validateIntegers(List<String> input) {
+        if (!LottoUtil.isIntegers(input)) {
+            throw new IllegalArgumentException("로또 번호는 정수만 가능합니다.");
+        }
     }
 
     public static void validateBuyingPrice(String input) {
@@ -15,7 +30,7 @@ public class Application {
         if (Integer.parseInt(input) < 0) {
             throw new IllegalArgumentException("구매가격은 0보다 큰 값만 가능합니다.");
         }
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("구매가격은 1000의 배수만 가능합니다.");
         }
     }

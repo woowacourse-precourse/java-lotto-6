@@ -3,8 +3,8 @@ package lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.LottoNumberConstant.LOTTO_NUMBER_MAX;
-import static lotto.LottoNumberConstant.LOTTO_NUMBER_MIN;
+import static lotto.LottoConstant.LOTTO_NUMBER_MAX;
+import static lotto.LottoConstant.LOTTO_NUMBER_MIN;
 
 public class Lotto {
     private final List<Integer> numbers;

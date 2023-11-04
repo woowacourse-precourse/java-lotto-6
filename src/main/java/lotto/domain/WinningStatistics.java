@@ -19,9 +19,8 @@ public class WinningStatistics {
     }
 
     private void initializeWinningInfo() {
-        for (WinningCriteria criteria : WinningCriteria.values()) {
-            winningInfo.put(criteria, 0);
-        }
+        Arrays.stream(WinningCriteria.values())
+                .forEach(criteria -> winningInfo.put(criteria, 0));
     }
 
     public void addResult(WinningCriteria winningCriteria) {
@@ -29,13 +28,9 @@ public class WinningStatistics {
     }
 
     public int calculateTotalPrizeAmount() {
-        int totalPrizeAmount = 0;
-        for (WinningCriteria criteria : WinningCriteria.values()) {
-            int prizeAmount = criteria.getPrizeAmount();
-            int winningCount = winningInfo.get(criteria);
-            totalPrizeAmount += prizeAmount * winningCount;
-        }
-        return totalPrizeAmount;
+        return Arrays.stream(WinningCriteria.values())
+                .mapToInt(criteria -> criteria.getPrizeAmount() * winningInfo.get(criteria))
+                .sum();
     }
 
     private String getMessage(WinningCriteria winningCriteria) {

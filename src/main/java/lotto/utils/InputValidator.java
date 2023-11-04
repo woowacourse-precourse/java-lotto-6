@@ -29,6 +29,12 @@ public class InputValidator {
         checkPriceFormat(input);
     }
 
+    public static void checkLotto(List<Integer> input) {
+        checkLottoSizeIsSix(input);
+        checkLottoIsInRange(input);
+        checkLottoNumberIsDuplicated(input);
+    }
+
     private static void checkIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + NUMBER);
@@ -60,19 +66,19 @@ public class InputValidator {
         }
     }
 
-    public static void checkLottoSizeIsSix(List<Integer> input) {
+    private static void checkLottoSizeIsSix(List<Integer> input) {
         if (input.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR + INVALID_SIZE);
         }
     }
 
-    public static void checkLottoIsInRange(List<Integer> input) {
+    private static void checkLottoIsInRange(List<Integer> input) {
         if (input.stream().anyMatch(number -> number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM)) {
             throw new IllegalArgumentException(ERROR + INVALID_RANGE);
         }
     }
 
-    public static void checkLottoNumberIsDuplicated(List<Integer> input) {
+    private static void checkLottoNumberIsDuplicated(List<Integer> input) {
         if (input.stream().distinct().findAny().isEmpty()) {
             throw new IllegalArgumentException(ERROR + DUPLICATED);
         }

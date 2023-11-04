@@ -19,5 +19,6 @@ public class LottoController {
         WinningNumber winningNumber = WinningNumber.from(winningNumbers, bonusNumber);
 
         LottoResult lottoResult = new LottoResult(user, winningNumber);
+        OutputView.printLottoResult(lottoResult.getLottoResult(user.getPurchasedLottos(), winningNumber));
     }
 }

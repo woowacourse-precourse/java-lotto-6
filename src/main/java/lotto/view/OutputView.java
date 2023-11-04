@@ -26,6 +26,15 @@ public class OutputView {
         printWinningStatistics(winningStatistics);
     }
 
+    public static void printTotalProfitRate(Map<LottoRank, Integer> winningStatistics, int purchaseAmount) {
+        List<LottoRank> lottoRanks = getWinningStatsFormat();
+        long TotalProfit = 0L;
+        for (LottoRank lottoRank : lottoRanks) {
+            TotalProfit += (long) lottoRank.getWinningPrize() * winningStatistics.getOrDefault(lottoRank, 0);
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", ((double) TotalProfit / purchaseAmount * 100.0));
+    }
+
     public static void printWinningStatistics(Map<LottoRank, Integer> winningStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---");

@@ -14,7 +14,8 @@ public class GameController {
     }
 
     public void play() {
-        lottoVendingMachine.purchaseLotto(InputView.inputPurchaseAmount());
+        int purchaseAmount = InputView.inputPurchaseAmount();
+        lottoVendingMachine.purchaseLotto(purchaseAmount);
         OutputView.printLottoTicketNumber(lottoVendingMachine.getLottoTicketNumber());
         OutputView.printPurchasedLottoTickets(lottoVendingMachine.getLottos());
 
@@ -23,6 +24,7 @@ public class GameController {
         addBonusNumber(lottoAnalyzer);
         lottoAnalyzer.analyzeLotto();
         OutputView.printFinalResult(lottoAnalyzer.getWinningStatistics());
+        OutputView.printTotalProfitRate(lottoAnalyzer.getWinningStatistics(), purchaseAmount);
     }
 
     private static void addBonusNumber(LottoAnalyzer lottoAnalyzer) {

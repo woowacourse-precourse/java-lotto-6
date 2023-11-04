@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -29,5 +31,10 @@ class PurchaseAmountTest {
                 .hasMessage(ErrorMessage.INVALID_PURCHASE_AMOUNT.getErrorMessage());
     }
 
-
+    @DisplayName("살 수 있는 로또 개수를 반환할 수 있다")
+    @Test
+    void testAffordableCountOfLotto() {
+        PurchaseAmount purchaseAmount = PurchaseAmount.from(2000);
+        assertThat(purchaseAmount.affordableCountOfLotto()).isEqualTo(2);
+    }
 }

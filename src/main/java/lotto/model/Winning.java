@@ -18,6 +18,7 @@ public class Winning {
         numbers.forEach(number -> validateNumberInRange(number, Code.WINNING.getCode()));
         this.numbers = numbers;
 
+        validateDuplicatedWinningAndBonus(numbers, bonusNumber);
         validateNumberInRange(bonusNumber, Code.BONUS.getCode());
         this.bonusNumber = bonusNumber;
     }
@@ -37,6 +38,12 @@ public class Winning {
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException(NOT_DUPLICATED);
+        }
+    }
+
+    private void validateDuplicatedWinningAndBonus(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(NOT_DUPLICATED);
         }
     }

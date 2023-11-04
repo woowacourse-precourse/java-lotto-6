@@ -42,16 +42,7 @@ class LottoTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호 입력 시 구분자로 쉼표(,)를 사용하지 않을 시 예외가 발생한다.")
-    @Test
-    void InputLottoByNotSeparatorComma() {
-        assertSimpleTest(() -> {
-            runException("1000", "1.2.3.4.5.6");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("로또 번호에 숫자가 아닌 다른 문자열을 입력하면 예외가 발생한다.")
+    @DisplayName("로또 번호에 숫자와 구분자 쉼표(,)를 제외하고 다른 문자열을 입력하면 예외가 발생한다.")
     @Test
     void InputLottoByNotNumber() {
         assertSimpleTest(() -> {

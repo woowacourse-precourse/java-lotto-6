@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public interface LottoGenerator {
     Lotto lottoGenerator();

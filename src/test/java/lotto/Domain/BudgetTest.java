@@ -4,6 +4,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,5 +31,16 @@ public class BudgetTest {
         int lottoCount = 19;
 
         assertThat(budget.calculateLottoCount()).isEqualTo(lottoCount);
+    }
+
+    @Test
+    @DisplayName("수익률 계산 테스트")
+    public void calculateReturnRateTest() {
+        Budget budget = new Budget("8000");
+        Map<Rank,Integer> rankCount = new HashMap<>();
+        rankCount.put(Rank.FIFTH,1);
+        double expectedReturnRate = 62.5;
+
+        assertThat(budget.calculateReturnRate(rankCount)).isEqualTo(expectedReturnRate);
     }
 }

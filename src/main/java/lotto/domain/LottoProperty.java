@@ -20,4 +20,20 @@ public class LottoProperty {
         this.lottoSize = lottoSize;
     }
 
+    public Integer pricePerLotto() {
+        return pricePerLotto;
+    }
+
+    public Integer lottoMinimumRangeFrom() {
+        return lottoMinimumRangeFrom;
+    }
+
+    public Integer lottoMaximumRangeTo() {
+        return lottoMaximumRangeTo;
+    }
+
+    public Integer lottoSize() {
+        return lottoSize;
+    }
+
 }

@@ -15,6 +15,16 @@ public class WinningNumber {
         this.winningNumber = winningNumber;
     }
 
+    public int calculateCorrectNumberCount(Lotto lotto) {
+        int count = 0;
+        for (int number : winningNumber) {
+            if (lotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private void validateDuplicate(List<Integer> winningNumber) {
         if (isDuplicateNumbers(winningNumber)) {
             throw new IllegalArgumentException(NO_DUPLICATE_ERROR_MESSAGE);

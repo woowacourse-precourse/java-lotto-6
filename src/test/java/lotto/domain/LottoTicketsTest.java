@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTicketsTest {
+    LottoTickets lottoTickets;
     @DisplayName("생성 테스트")
+    @BeforeEach
     @Test
     void createLottoTickets() {
-        LottoTickets lottoTickets = new LottoTickets(5);
+        lottoTickets = new LottoTickets(5);
+    }
+
+    @DisplayName("")
+    @Test
+    void getLottoTickets() {
+        assertThat(lottoTickets.getLottoTickets().size()).isEqualTo(5);
+    }
+
+    @DisplayName("로또 티켓 문자열로 가져오기")
+    @Test
+    void NumbersOflottoTickets() {
+        assertRandomUniqueNumbersInRangeTest(() ->
+                        assertThat(lottoTickets.getLottoTickets().stream().map(Lotto::toString))
+                                .contains("[1, 2, 3, 4, 5, 6]",
+                                        "[4, 5, 6, 7, 8, 9]",
+                                        "[3, 10, 23, 42, 43, 45]",
+                                        "[10, 20, 30, 35, 40, 45]",
+                                        "[2, 3, 9, 12, 30, 34]"
+                                )
+                ,
+                List.of(1,2,3,4,5,6),
+                List.of(4,5,6,7,8,9),
+                List.of(3,10,23,42,43,45),
+                List.of(10,20,30,35,40,45),
+                List.of(2,3,9,12,30,34)
+
+        );
     }
 
     @DisplayName("양수가 아닐 경우 예외가 발생해야함")

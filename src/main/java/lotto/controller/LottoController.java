@@ -1,32 +1,42 @@
 package lotto.controller;
 
-import lotto.domain.draw.DrawingMachine;
-import lotto.domain.lotto.Money;
 import lotto.dto.input.MoneyDto;
+import lotto.dto.output.LottosDto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final DrawingMachine drawingMachine;
+    private final LottoService service;
 
-    public LottoController(InputView inputView, OutputView outputView, DrawingMachine drawingMachine) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService service) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.drawingMachine = drawingMachine;
+        this.service = service;
     }
 
     public void run() {
-        Money money = getAmountFromUserInput();
+        // 입력
+        MoneyDto money = getAmountFromUserInput();
+        // 실행
+        LottosDto lottoTickets = service.drawLottoTicketsWithGivenMoney(money);
+        // 출력
+        printPurchasedLottoTickets(lottoTickets);
+
     }
 
-    // imp.
-    private Money getAmountFromUserInput() {
-        MoneyDto money = inputView.readPurchaseAmount();
-        String input = money.value();
-        // ref. 서비스에서 dto -> 도메인 객체로 변환
-        int amount = Integer.parseInt(input);
-        return Money.fromInitialMoney(amount);
+    private void printPurchasedLottoTickets(LottosDto lottoTickets) {
+        outputView.printLottoTickets(lottoTickets);
+    }
+
+    private MoneyDto getAmountFromUserInput() {
+        try {
+            return inputView.inputMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return getAmountFromUserInput();
+        }
     }
 }

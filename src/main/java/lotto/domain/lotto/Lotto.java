@@ -7,8 +7,8 @@ public class Lotto {
     private static final String NUMBERS_DUPLICATE_ERROR_MESSAGE = "로또 번호에 중복이 있으면 안됩니다.";
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 1~45 의 숫자입니다.";
     private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
+    static final int LOTTO_MIN_NUMBER = 1;
+    static final int LOTTO_MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

@@ -8,6 +8,7 @@ import lotto.view.Input;
 public class LottoProcedure {
     Payment payment;
     Lotto lotto;
+    Lotto winningLotto;
     BonusNumber bonusNumber;
 
     public void startLotto() {

@@ -37,6 +37,21 @@ public class Output {
         System.out.println(System.lineSeparator() + "보너스 번호를 입력해 주세요.");
     }
 
+    private static String calculateEarningRatio(Integer spent, Integer earned) {
+        return "총 수익률은 " + formatPoint((float) earned / spent * 100) + "%입니다.";
+    }
+
+    private static String formatPoint(float number) {
+        DecimalFormat format = new DecimalFormat("#.##");
+        format.setRoundingMode(RoundingMode.CEILING);
+        return format.format(number);
+    }
+
+    private static String formatComma(Integer number) {
+        DecimalFormat format = new DecimalFormat("#,###");
+        return format.format(number);
+    }
+
     static void printSameNumberResult(SameNumber sameNumber, Integer count) {
         System.out.print(SameNumber.toInteger(sameNumber) + "개 일치");
         if (sameNumber.equals(SameNumber.SAME5BONUS)) {
@@ -76,20 +91,5 @@ public class Output {
         Integer earned = calculateReward(sameNumberCount);
         Integer spent = tickets.length * 1000;
         System.out.println(calculateEarningRatio(spent, earned));
-    }
-
-    private static String calculateEarningRatio(Integer spent, Integer earned) {
-        return "총 수익률은 " + formatPoint((float) earned / spent * 100) + "%입니다.";
-    }
-
-    private static String formatPoint(float number) {
-        DecimalFormat format = new DecimalFormat("#.##");
-        format.setRoundingMode(RoundingMode.CEILING);
-        return format.format(number);
-    }
-
-    private static String formatComma(Integer number) {
-        DecimalFormat format = new DecimalFormat("#,###");
-        return format.format(number);
     }
 }

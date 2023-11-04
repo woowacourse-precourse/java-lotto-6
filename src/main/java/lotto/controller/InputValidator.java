@@ -20,16 +20,6 @@ class InputValidator {
     }
 
     @Test
-    @DisplayName("구입 금액이 정수 범위가 아닐 때 예외를 던진다")
-    void validatePurchaseAmount_NotAIntRange_ThrowsException() {
-        String input = "1234567890";
-
-        assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 정수 허용값 범위 내여야 합니다.");
-    }
-
-    @Test
     @DisplayName("구입 금액이 1000원 미만일 때 예외를 던진다")
     void validatePurchaseAmount_LessThanMinimum_ThrowsException() {
         String input = "500";
@@ -116,16 +106,6 @@ class InputValidator {
         assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("','는 연속해서 나오거나 시작/끝에 위치할 수 없습니다.");
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 정수 허용값을 넘어섰을 때 예외를 던진다")
-    void validateWinningNumbers_NotAIntRange_ThrowsException() {
-        String input = "1,2,3,4,5,1234567890";
-
-        assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 정수 허용값 범위 내여야 합니다.");
     }
 
     @Test

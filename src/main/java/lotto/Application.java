@@ -46,7 +46,28 @@ public class Application {
         return box;
     }
 
+    private static int myParseInt(String s){
+        int res;
 
+        try {
+            res = Integer.parseInt(s);   
+        } catch (Exception e) {
+            return -1;
+        }
+        
+        return res;
+    }
+
+    private static int setMoney(){
+        int res;
+        res = myParseInt(null);
+        if (res == -1 || res%1000 != 0) {
+            res = -1;
+            System.err.println(ErrorType.MONEY.getName());
+        }
+        System.out.println();
+        return res;
+    }
 
     public static void main(String[] args) {
         

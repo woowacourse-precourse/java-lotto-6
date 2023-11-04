@@ -20,11 +20,15 @@ public class LottoController {
         // 당첨 번호를 입력해 주세요.
         Lotto userLotto = getUserLottoNumber();
         // 보너스 번호를 입력해 주세요.
-        OutputView.printGetBonusNumber();
-        InputView.getUserBonusNumber();
+        int userBonusNumber = getUserBonusNumber();
         // 당첨 통계
 
         // 수익률
+    }
+
+    private static int getUserBonusNumber() {
+        OutputView.printGetBonusNumber();
+        return InputView.getUserBonusNumber();
     }
 
     private static Lotto getUserLottoNumber() {

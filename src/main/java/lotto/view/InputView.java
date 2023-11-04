@@ -11,9 +11,18 @@ public class InputView {
 
     public static int getPurchaseLottoPrice() {
         String cost = Console.readLine();
-        return costConvertToInt(cost);
         return convertToInt(cost);
     }
+
+    public static List<Integer> getUserLottoNumber() {
+        String input = Console.readLine();
+        String[] numbers = getSplit(input);
+        return mapToInteger(numbers);
+    }
+
+    public static int getUserBonusNumber() {
+        String input = Console.readLine();
+        return convertToInt(input);
     }
 
     private static int convertToInt(String cost) {
@@ -22,12 +31,6 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(PRICE_NOT_INTEGER_ERROR_MESSAGE);
         }
-    }
-
-    public static List<Integer> getUserLottoNumber() {
-        String input = Console.readLine();
-        String[] numbers = getSplit(input);
-        return mapToInteger(numbers);
     }
 
     private static String[] getSplit(String input) {

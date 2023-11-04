@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Grade.FIFTH;
 import static lotto.Grade.FIRST;
 import static lotto.Grade.FOURTH;
+import static lotto.Grade.NONE;
 import static lotto.Grade.SECOND;
 import static lotto.Grade.THIRD;
 
@@ -39,18 +40,27 @@ public class Calculator {
     }
 
     static private Grade obtainGrade(Integer sameNumbersNumber, Boolean isBonusInLotto) {
-        if (sameNumbersNumber == Lotto.size - 1) {
+        if (sameNumbersNumber == Lotto.size) {
             return FIRST;
         }
-        if ((sameNumbersNumber == Lotto.size - 2) && isBonusInLotto == true) {
+        if ((sameNumbersNumber == Lotto.size - 1) && isBonusInLotto == true) {
             return SECOND;
         }
-        if (sameNumbersNumber == Lotto.size - 3) {
+        if (sameNumbersNumber == Lotto.size - 1) {
             return THIRD;
         }
-        if (sameNumbersNumber == Lotto.size - 4) {
+
+        return getThirdAfterGrade(sameNumbersNumber);
+    }
+
+    private static Grade getThirdAfterGrade(Integer sameNumbersNumber) {
+        if (sameNumbersNumber == Lotto.size - 2) {
             return FOURTH;
         }
-        return FIFTH;
+        if (sameNumbersNumber == Lotto.size - 3) {
+            return FIFTH;
+        }
+        
+        return NONE;
     }
 }

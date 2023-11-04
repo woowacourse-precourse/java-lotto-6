@@ -1,7 +1,6 @@
 package lotto;
 
 import Controller.LottoController;
-import Model.Lotto;
 
 public class Application {
 

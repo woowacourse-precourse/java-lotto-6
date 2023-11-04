@@ -161,8 +161,4 @@ public class LottoController {
         }
         return lottoReward;
     }
-
-    public List<Lotto> getLottoNumbers() {
-        return myLottoNumbers;
-    }
 }

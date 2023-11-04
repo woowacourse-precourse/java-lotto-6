@@ -1,18 +1,15 @@
-package lotto;
+package lotto.lotto;
 
 import java.util.List;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoService;
-import lotto.lotto.WinningLotto;
 import lotto.money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGame {
+public class LottoController {
 
     private final LottoService lottoService;
 
-    public LottoGame(LottoService lottoService) {
+    public LottoController(LottoService lottoService) {
         this.lottoService = lottoService;
     }
 

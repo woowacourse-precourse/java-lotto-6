@@ -1,4 +1,4 @@
-package controller;
+package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ControllerTest {
+class LottoMachineTest {
 
     static Stream<Arguments> provideInvalidNumbers() {
         return Stream.of(
@@ -22,10 +22,10 @@ class ControllerTest {
     @DisplayName("랜덤으로 발급된 로또번호가 규정범위를 벗어난 경우 예외 발생")
     @ParameterizedTest
     @MethodSource("provideInvalidNumbers")
-    void createLottoNumberShouldThrowExceptionWhenNumbersAreOutOfRange(List<Integer> numbers) {
-        Controller controller = new Controller();
+    void createLottoNumberThrowExceptionWhenNumbersAreOutOfRange(List<Integer> numbers) {
+        LottoMachine lottoMachine = new LottoMachine();
 
-        assertThatThrownBy(() -> controller.validateNumberRange(numbers))
+        assertThatThrownBy(() -> lottoMachine.validateNumberRange(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
     }

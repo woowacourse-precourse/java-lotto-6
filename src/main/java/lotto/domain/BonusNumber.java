@@ -9,6 +9,7 @@ public class BonusNumber {
     final private int bonusNumber;
 
     public BonusNumber(int bonusNumber, WinningNumbers winningNumbers) {
+        validate(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 

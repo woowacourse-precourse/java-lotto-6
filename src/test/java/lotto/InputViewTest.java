@@ -14,4 +14,12 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력 받습니다.");
     }
+
+    @Test
+    void 구입_금액_천원_이하_예외_테스트() {
+        String purchaseAmount = "999";
+        assertThatThrownBy(() -> inputView.inputPurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
+    }
 }

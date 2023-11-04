@@ -63,6 +63,31 @@ public class Application {
     }
 
     // 결과 계산
+    public enum WinningPrize {
+        MATCH_3(3, 5000),
+        MATCH_4(4, 50000),
+        MATCH_5(5, 1500000),
+        MATCH_5_BONUS(5, 30000000),
+        MATCH_6(6, 2000000000);
+
+        private final int matchCount;
+        private final int prizeMoney;
+
+        WinningPrize(int matchCount, int prizeMoney) {
+            this.matchCount = matchCount;
+            this.prizeMoney = prizeMoney;
+        }
+
+        public int getMatchCount() {
+            return matchCount;
+        }
+
+        public int getPrizeMoney() {
+            return prizeMoney;
+        }
+    }
+
+
     private static Map<String, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber){
         Map<String, Integer> resultMap = new HashMap<>();
 

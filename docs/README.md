@@ -53,6 +53,8 @@
 - 보너스 번호 입력 받아 반환
 
 ---
+### enum winningPrize
+- 결과에 따른 수익 저장
 
 ### calculateResult(List<Lotto> lottos, WinningLotto winningLotto)
 - 당첨 결과를 계산하는 메서드

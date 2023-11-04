@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.GOAL_NUMBER_SIZE_EXCEPTION;
+
 import java.util.List;
 
 public enum LottoConstant {
@@ -25,7 +27,7 @@ public enum LottoConstant {
 
     public static void validateIsNumbersValidLottoLength(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(GOAL_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
 

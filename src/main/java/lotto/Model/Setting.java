@@ -9,6 +9,20 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Setting {
+    public int inputToInt(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            System.out.println("\n[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
+    public void checkNumber(int number){
+        if (number<1 || number>45){
+            System.out.println("\n[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
     public List<List<Integer>> createLottoNumber(int amount) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
@@ -69,5 +83,6 @@ public class Setting {
         }
         return player;
     }
+
 }
 

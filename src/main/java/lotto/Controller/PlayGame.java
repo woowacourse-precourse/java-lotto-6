@@ -11,6 +11,7 @@ import java.util.List;
 public class PlayGame {
     Setting setting = new Setting();
     Lotto winningNumbers;
+    int bonusNumber ;
 
     public void play() {
         System.out.println(PrintInput.INPUT_MONEY);
@@ -24,17 +25,31 @@ public class PlayGame {
             System.out.println(numbers);
         }
 
+        System.out.println("\n" + PrintInput.WINNING_NUMBER);
         input_lottoNumbers();
+
+        System.out.println("\n" + PrintInput.BONUS_NUMBER);
+        input_bonusNumber();
 
     }
 
     public void input_lottoNumbers() {
         try {
-            System.out.println("\n" + PrintInput.WINNING_NUMBER);
             String inputNumbers = Console.readLine();
             winningNumbers = new Lotto(setting.stringToList(inputNumbers));
         } catch (IllegalArgumentException e) {
             input_lottoNumbers();
+        }
+    }
+
+    public void input_bonusNumber() {
+        try{
+            String input = Console.readLine();
+            bonusNumber = setting.inputToInt(input);
+            setting.checkNumber(bonusNumber);
+            winningNumbers.check_bonusNumber(bonusNumber);
+        }catch (IllegalArgumentException e){
+            input_bonusNumber();
         }
     }
 }

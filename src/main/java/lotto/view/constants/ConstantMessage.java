@@ -8,7 +8,10 @@ public enum ConstantMessage {
     WINNING_STATISTICS_NOTICE("당첨 통계\n"),
     DIVIDER("---\n"),
     LOTTO_RESULT("%d개 일치 (%d원) - %d개\n"),
-    TOTAL_RETURN("총 수익률은 %.1f%입니다.\n");
+
+    LOTTO_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n"),
+
+    TOTAL_RETURN_RATE("총 수익률은 %.1f%입니다.\n");
 
     private final String message;
 

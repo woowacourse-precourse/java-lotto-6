@@ -1,13 +1,12 @@
 package controller;
 
 import java.util.List;
-import model.FinanceManager;
-import model.GameManager;
 import model.LottoTotalResult;
 import model.dto.LottoResponse;
-import model.dto.AnswerBonusNumber;
 import model.dto.AnswerLottoNumbers;
 import model.dto.LottoResult;
+import service.LottoService;
+import validator.LottoValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -15,16 +14,18 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private FinanceManager financeManager;
-    private GameManager gameManager;
+    private final LottoValidator validator;
+    private LottoService lottoService;
 
-    public LottoController(final InputView inputView, final OutputView outputView) {
+    public LottoController(final InputView inputView, final OutputView outputView,
+        final LottoValidator validator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.validator = validator;
     }
 
     public void run() {
-        initGame();
+        initService();
         informLottos();
         generateAnswerNumber();
         informLottoResult();
@@ -32,13 +33,13 @@ public class LottoController {
     }
 
     private void informLottoResult() {
-        LottoTotalResult totalResult = gameManager.calculateResult();
+        LottoTotalResult totalResult = lottoService.calculateResult();
         informWinningResult(totalResult);
         informRateOfReturn(totalResult);
     }
 
     private void informRateOfReturn(final LottoTotalResult totalResult) {
-        double rateOfReturn = financeManager.calculateRateOfReturn(totalResult);
+        double rateOfReturn = lottoService.calculateRateOfReturn(totalResult);
         outputView.informRateOfReturn(rateOfReturn);
     }
 
@@ -48,45 +49,60 @@ public class LottoController {
     }
 
     private void generateAnswerNumber() {
-        AnswerLottoNumbers answerLottoNumbers = getValidUserLottoNumbers();
-        AnswerBonusNumber answerBonusNumber = getUserBonusNumber();
+        List<Integer> answerLottoNumbers = getValidAnswerNumbers();
+        int answerBonusNumber = getValidBonusNumber(answerLottoNumbers);
 
-        gameManager.generateAnswerLotto(answerLottoNumbers, answerBonusNumber);
+        lottoService.generateAnswerLotto(answerLottoNumbers, answerBonusNumber);
     }
 
-    private AnswerBonusNumber getUserBonusNumber() {
+    private int getValidBonusNumber(final List<Integer> numbers) {
         outputView.askBonusNumber();
-        return new AnswerBonusNumber(inputView.read());
+        String inputBonusNumber = inputView.read();
+        try {
+            validator.validateBonusNumber(numbers, inputBonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.showErrorMessage(exception.getMessage());
+            getValidBonusNumber(numbers);
+        }
+        return Integer.parseInt(inputBonusNumber);
     }
 
-    private AnswerLottoNumbers getValidUserLottoNumbers() {
+    private List<Integer> getValidAnswerNumbers() {
         outputView.askLottoNumbers();
-        return new AnswerLottoNumbers(inputView.read());
+        AnswerLottoNumbers answerNumbers = new AnswerLottoNumbers(inputView.read());
+        try {
+            validator.validateAnswerNumbers(answerNumbers);
+        } catch (IllegalArgumentException exception) {
+            outputView.showErrorMessage(exception.getMessage());
+            getValidAnswerNumbers();
+        }
+
+        return answerNumbers.divideNumbers()
+            .stream()
+            .map(Integer::parseInt)
+            .toList();
     }
 
     private void informLottos() {
-        outputView.informLottoCount(financeManager.calculateLottoCount());
-        List<LottoResponse> lottoResponses = gameManager.getGeneratedLottos();
+        outputView.informLottoCount(lottoService.getLottoCount());
+        List<LottoResponse> lottoResponses = lottoService.getGeneratedLottos();
         outputView.noticeGeneratedLottos(lottoResponses);
     }
 
-    private void initGame() {
-        initFinanceManager();
-        initGameManager();
+    private void initService() {
+        int purchase = askValidPurchaseAmount();
+        lottoService = LottoService.from(purchase);
     }
 
-    private void initFinanceManager() {
+    private int askValidPurchaseAmount() {
         outputView.askPurchaseAmount();
         String inputPurchase = inputView.read();
-        while (!FinanceManager.isValidArgument(inputPurchase)) {
-            inputPurchase = inputView.read();
+        try {
+            validator.validatePurchase(inputPurchase);
+        } catch (IllegalArgumentException exception) {
+            outputView.showErrorMessage(exception.getMessage());
+            askValidPurchaseAmount();
         }
-
-        financeManager = FinanceManager.from(inputPurchase);
-    }
-
-    private void initGameManager() {
-        int lottoCount = financeManager.calculateLottoCount();
-        gameManager = GameManager.createDefault(lottoCount);
+        return Integer.parseInt(inputPurchase);
     }
 }

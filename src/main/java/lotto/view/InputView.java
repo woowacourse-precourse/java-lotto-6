@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.enumerate.Message.PLEASE_INPUT_AMOUNT;
+import static lotto.enumerate.Message.PLEASE_INPUT_BONUS_NUMBER;
 import static lotto.enumerate.Message.PLEASE_INPUT_WINNING_NUMBER;
 
 public class InputView {
@@ -16,6 +17,7 @@ public class InputView {
     }
 
     public String inputBonusNumber() {
-
+        System.out.println(PLEASE_INPUT_BONUS_NUMBER);
+        return readLine();
     }
 }

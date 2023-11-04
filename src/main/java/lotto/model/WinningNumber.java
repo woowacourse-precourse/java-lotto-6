@@ -16,19 +16,25 @@ public class WinningNumber {
 
     public WinningNumber(String numbers, String bonusNumber) {
         List<Integer> convertedNumbers = convert(numbers);
-        int convertedBonusNumber = Integer.parseInt(bonusNumber);
+        int convertedBonusNumber = convertBonus(bonusNumber);
+
         validateBonusNumber(convertedNumbers, convertedBonusNumber);
         this.numbers = convertedNumbers;
         this.bonusNumber = convertedBonusNumber;
     }
 
+    private static int convertBonus(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            exceptionCodeThrow(WINNING_NUMBER_IS_NOT_INTEGER);
+        }
+        return 0;
+    }
+
     private List<Integer> convert(String numbers) {
         numberValid(numbers);
-        return Arrays.stream(numbers
-                        .replace(" ", "")
-                        .split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed()
+        return Arrays.stream(numbers.replace(" ", "").split(",")).mapToInt(Integer::parseInt).boxed()
                 .collect(Collectors.toList());
     }
 

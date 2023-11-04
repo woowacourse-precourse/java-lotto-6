@@ -20,13 +20,4 @@ public class StringValidator {
         }
         return this;
     }
-
-    public StringValidator shouldNumeric(ErrorMessage errorMessage) {
-        try {
-            Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(errorMessage);
-        }
-        return this;
-    }
 }

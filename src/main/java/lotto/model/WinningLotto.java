@@ -18,7 +18,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNotInLotto(Lotto lotto, Bonus bonus) {
-        if (lotto.contains(bonus.getBonusNumber())) {
+        if (lotto.contains(bonus.bonusNumber())) {
             throw new IllegalArgumentException(
                 ExceptionMessage.INVALID_BONUS_DUPLICATION.getMessage());
         }

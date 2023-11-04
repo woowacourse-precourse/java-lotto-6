@@ -4,13 +4,10 @@ package lotto.model;
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 
-public class Bonus {
+public record Bonus(int bonusNumber) {
 
-    private final int bonusNumber;
-
-    public Bonus(int bonusNumber) {
+    public Bonus {
         validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
     }
 
     private void validate(int bonusNumber) {
@@ -22,10 +19,6 @@ public class Bonus {
             throw new IllegalArgumentException(
                 ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 
 }

@@ -22,17 +22,17 @@ public class WinningResult {
     public double calculateEarningsRate(final LottoGame lottoGame) {
         int buyingAmount = lottoGame.getBuyingAmount();
         int buyingPrice = buyingAmount * BUYING_PRICE_UNIT;
-        int totalPrize = calculateTotalPrize();
+        double totalPrize = calculateTotalPrize();
 
-        return (((double) totalPrize / buyingPrice) * PERCENTAGE_UNIT);
+        return (totalPrize / buyingPrice) * PERCENTAGE_UNIT;
     }
 
-    private int calculateTotalPrize() {
-        int firstPrize = rank1 * FIRST_PRIZE;
-        int secondPrize = rank2 * SECOND_PRIZE;
-        int thirdPrize = rank3 * THIRD_PRIZE;
-        int fourthPrize = rank4 * FOURTH_PRIZE;
-        int fifthPrize = rank5 * FIFTH_PRIZE;
+    private double calculateTotalPrize() {
+        double firstPrize = rank1 * FIRST_PRIZE;
+        double secondPrize = rank2 * SECOND_PRIZE;
+        double thirdPrize = rank3 * THIRD_PRIZE;
+        double fourthPrize = rank4 * FOURTH_PRIZE;
+        double fifthPrize = rank5 * FIFTH_PRIZE;
 
         return firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize;
     }

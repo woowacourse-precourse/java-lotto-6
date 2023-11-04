@@ -5,7 +5,6 @@ import static lotto.message.LottoGameErrorMessage.NUMBERS_NOT_IN_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.LottoMoney;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.Test;
 

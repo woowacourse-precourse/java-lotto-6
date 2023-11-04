@@ -5,6 +5,8 @@ public enum LottoGameAnnouncement {
     COUNT_OF_LOTTO("개를 구매했습니다."),
     ASK_WIN_NUMBERS("당첨 번호를 입력해 주세요."),
     ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    ANNOUNCE_BEFORE_RESULT("당첨 통계"),
+    SECTION("---"),
     ;
 
     private final String message;

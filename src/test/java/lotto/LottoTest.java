@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.stream.IntStream;
+import lotto.message.BonusNumber;
 import org.assertj.core.api.AbstractThrowableAssert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -150,5 +150,55 @@ class LottoTest {
 
         // when & then
         assertFalse(Lotto.isNumbersInRange(numbers));
+    }
+
+    @Test
+    public void countDuplicateTest() {
+        // given
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+        Lotto winLotto = new Lotto("4,5,6,7,8,9");
+
+        // when
+        int result = lotto.countDuplicate(winLotto);
+
+        // then
+        assertEquals(result, 3);
+    }
+
+    @Test
+    public void hasNumber_has() {
+        // given
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+
+        // when
+        boolean result = lotto.hasNumber(1);
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasNumber_notIncluded() {
+        // given
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+
+        // when
+        boolean result = lotto.hasNumber(7);
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    public void calculateBonus() {
+        // given
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+        BonusNumber bonus = new BonusNumber("1");
+
+        // when
+        boolean result = lotto.calculateBonus(5, bonus);
+
+        // then
+        assertTrue(result);
     }
 }

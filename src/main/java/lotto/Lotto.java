@@ -8,12 +8,14 @@ import static lotto.message.LottoGameErrorMessage.SIZE_IS_NOT_EXACT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.message.BonusNumber;
 import org.assertj.core.util.VisibleForTesting;
 
 public class Lotto {
     public static final int LOTTO_START_NUMBER = 1;
     public static final int LOTTO_END_NUMBER = 45;
     public static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int BONUS_BALL_TARGET_COUNT = 5;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,6 +27,24 @@ public class Lotto {
         List<Integer> numbers = convertInputAsIntegerList(input);
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public int countDuplicate(Lotto winNumber) {
+        return (int) this.numbers.stream()
+                .filter(winNumber::hasNumber)
+                .count();
+    }
+
+    @VisibleForTesting
+    protected boolean hasNumber(int number) {
+        return this.numbers.contains(number);
+    }
+
+    public boolean calculateBonus(int count, BonusNumber bonusNumber) {
+        if (count != BONUS_BALL_TARGET_COUNT) {
+            return false;
+        }
+        return hasNumber(bonusNumber.getNumber());
     }
 
     public String getLottoNumbersAsFormat() {

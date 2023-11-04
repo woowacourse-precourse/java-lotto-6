@@ -23,4 +23,12 @@ public class View {
     public static void printLotteryNumbers(List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public static void printPrize(Rank rank, Integer rankCount) {
+        System.out.println(rank.getMatchingCount() + "개 일치 (" + rank.getPrize() + ") - " + rankCount +"개");
+    }
+
+    public static void print2ndRankPrize(Rank rank, Integer rankCount) {
+        System.out.println(rank.getMatchingCount() + "개 일치, 보너스 볼 일치 (" + rank.getPrize() + ") - " + rankCount +"개");
+    }
 }

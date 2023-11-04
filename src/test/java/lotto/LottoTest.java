@@ -29,7 +29,7 @@ class LottoTest {
     @DisplayName("사용자 당첨번호 및 보너스 번호까지 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createUserLottoByDuplicatedNumber(){
-        assertThatThrownBy(() -> new UserLotto(List.of(1, 2, 3, 4, 5, 6, 5)))
+        assertThatThrownBy(() -> new UserLotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

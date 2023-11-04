@@ -36,6 +36,7 @@ public class InputController {
 
     public UserLotto inputNumbers(){
         view.inputNumbersPrint();
+        UserLotto lotto = null;
         List<Integer> numbers = new ArrayList<>();
 
         String[] input = Console.readLine().split(",");
@@ -51,9 +52,17 @@ public class InputController {
         }
         for(String s : input)
             numbers.add(Integer.parseInt(s));
+        try {
+            lotto = new UserLotto(numbers);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 당첨번호는 중복된 번호가 없어야 합니다.");
+        }
+        try{
+            lotto.addBonusNumber(inputBonusNumber());
+        }catch(IllegalArgumentException e){
+            System.out.println("ERROR] 보너스번호는 당첨번호와 중복되지 않아야 합니다.");
+        }
 
-        UserLotto lotto = new UserLotto(numbers);
-        lotto.addBonusNumber(inputBonusNumber());
 
         return lotto;
     }

@@ -26,20 +26,18 @@ public class UserLotto {
         if(numbers.size() != 6){
             throw new IllegalArgumentException();
         }else{
-            if(duplicationCheck(numbers)){
+            if(!duplicationCheck(numbers)){
                 throw new IllegalArgumentException();
             }
         }
-
     }
 
     private boolean duplicationCheck(List<Integer> numbers){
         boolean result = true;
         Iterator<Integer> it = numbers.iterator();
 
-        while(it.hasNext()){
+        while(it.hasNext())
             cnt[it.next()]++;
-        }
 
         for(int i = 1; i < 46; i++){
             if(cnt[i] > 1) {

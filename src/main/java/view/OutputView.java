@@ -36,4 +36,10 @@ public class OutputView {
         System.out.printf(ConstantStringManager.LOTTO_SAME_FIVE_BONUS.getMessage(), staticsValue.get(forthIndex));
         System.out.printf(ConstantStringManager.LOTTO_SAME_SIX.getMessage(), staticsValue.get(fifthIndex));
     }
+
+    public void printTotalReturn(int totalReturn) {
+        String message = ConstantStringManager.TOTAL_RETURN.getMessage();
+        System.out.printf(message, totalReturn);
+    }
 }
+

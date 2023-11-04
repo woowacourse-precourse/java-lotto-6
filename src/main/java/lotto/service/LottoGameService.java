@@ -4,11 +4,24 @@ import static java.lang.String.format;
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSetting.*;
 
+import java.util.List;
+import java.util.stream.IntStream;
+import lotto.Lotto;
+import lotto.domain.LottoGame;
+
 
 public class LottoGameService {
-    public void purchase(Integer purchaseCount) {
-        // TODO: purchaseCount만큼 로또 발행
 
+    private final NumberGenerator numberGenerator;
+
+    public LottoGameService() {
+        numberGenerator = new RandomNumberGenerator();
+    }
+
+    public LottoGame purchase(Integer purchaseCount) {
+        List<Lotto> lottos = IntStream.range(0, purchaseCount)
+                .mapToObj(i -> new Lotto(numberGenerator.generate())).toList();
+        return new LottoGame(lottos);
     }
 
     public Integer validatePurchaseAmount(String purchaseAmountInput) {

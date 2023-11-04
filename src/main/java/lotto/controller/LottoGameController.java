@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.constant.LottoOutputMessage.*;
 
+import lotto.domain.LottoGame;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,7 +21,7 @@ public class LottoGameController {
 
     public void run() {
         Integer purchaseCount = initPurchaseAmount();
-        lottoGameService.purchase(purchaseCount);
+        LottoGame lottoGame = lottoGameService.purchase(purchaseCount);
     }
 
     private Integer initPurchaseAmount() {

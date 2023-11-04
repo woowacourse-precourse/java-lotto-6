@@ -29,4 +29,7 @@ public class PurchaseAmount {
         }
     }
 
+    public Integer getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

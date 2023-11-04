@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.BonusNumber;
 import Model.Lotto;
 import Model.PurchaseAmount;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -12,18 +13,18 @@ import java.util.List;
 public class LottoController {
     List<Lotto> myLottoNumbers = new ArrayList<>();
     Lotto winningLottoNumbers;
+    BonusNumber winningBonusNumber;
 
     public void buyMyLotto() {
-        int input = InputView.getPurchaseAmount();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(input);
-
+        PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.getPurchaseAmount());
         publishMyLotto(purchaseAmount);
+
         OutputView.printMyLotto(myLottoNumbers);
     }
 
     public void assignLotto() {
-        String input = InputView.getLotto();
-        winningLottoNumbers = new Lotto(input);
+        winningLottoNumbers = new Lotto(InputView.getLotto());
+        winningBonusNumber = new BonusNumber(InputView.getBonusNumber());
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {

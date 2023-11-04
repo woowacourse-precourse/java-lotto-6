@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumberSize(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,14 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberSize(List<Integer> numbers) {
+        int validatedSize = Math.toIntExact(numbers.stream()
+                .filter(x -> x <= 45)
+                .filter(x -> x >= 1)
+                .count());
+
+        if(validatedSize != numbers.size()) {
+            throw new IllegalArgumentException("[Error] 각 숫자는 1~45 사이여야 합니다.");
+        }
+    }
 }

@@ -62,16 +62,21 @@ GameEngine
    - [ ] 수익률을 반환한다.
 
 GameEngineValidator
- - [ ] 가격이 마이너스이면 IllegalArgumentException을 반환한다
- - [ ] 가격이 숫자가 아닌경우, IllegalArgumentException을 반환한다
- - [ ] 가격이 천원단위가 아닌경우, IllegalArgumentException을 반환한다
- - [ ] 로또 숫자가 6개가 아니면, IllegalException을 반환한다.
- - [ ] 로또 숫자가 중복이 있는경우, IllegalArgumentException을 반환한다.
- - [ ] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
-
-
-LottoScore
-   -[ ] 로또 번호 맞추는 갯수,보너스 번호,금액이라는 값을 갖는다.
+ -[ ] 가격을 검증한다
+   - [ ] 가격이 숫자가 아닌경우, IllegalArgumentException을 반환한다
+   - [ ] 가격이 마이너스이면 IllegalArgumentException을 반환한다
+   - [ ] 가격이 천원단위가 아닌경우, IllegalArgumentException을 반환한다
+ -[ ] 로또 번호를 검증한다.
+   - [ ] 숫자가 아닌경우, IllegalArgumentException을 반환한다
+   - [ ] 로또 숫자가 6개가 아니면, IllegalException을 반환한다.
+   - [ ] 로또 숫자가 중복이 있는경우, IllegalArgumentException을 반환한다.
+   - [ ] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
+ -[ ] 보너스 번호를 검증한다.
+     - [ ] 숫자가 아닌경우, IllegalArgumentException을 반환한다
+     - [ ] 로또 숫자가 1부터 45사이가 아니면, IllegalArgumentException을 반환한다.
+ 
+ LottoScore
+  - [ ] 로또 번호 맞추는 갯수,보너스 번호,금액이라는 값을 갖는다.
 
 
 NumberGenerator

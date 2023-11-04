@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.RandomGenerator;
+import lotto.generator.RandomGenerator;
 
 public class LottoGame {
     public static final int STANDARD_SIZE = 6;

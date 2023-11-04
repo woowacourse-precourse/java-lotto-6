@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
+import lotto.generator.MockedRandomGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

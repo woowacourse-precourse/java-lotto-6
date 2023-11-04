@@ -21,7 +21,15 @@ public class Lottos {
         this.number = lottos.size();
     }
 
-    public void lottoRaffle(List<Integer> winningNumbers, int bonusNumber) {
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void draw(List<Integer> winningNumbers, int bonusNumber) {
         calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputUtils.printResultAnnouncementMessage();
         calculateWinningStatistics(winningNumbers, bonusNumber);
@@ -45,6 +53,7 @@ public class Lottos {
 
     private void printResult() {
         winningStatics.entrySet().stream()
+                .filter(r -> r.getKey() != Ranking.NONE)
                 .forEach(r -> OutputUtils.printWinningDetail(
                         r.getKey().getDescription(),
                         r.getKey().getPrize(),
@@ -54,7 +63,7 @@ public class Lottos {
     }
 
     private float calculateRateOfReturn(int money) {
-        float value = totalPrize / money * 100;
+        float value = (float) totalPrize / (float) money * 100;
         return (float) (Math.round(value * 100.0) / 100.0);
     }
 }

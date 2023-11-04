@@ -20,11 +20,11 @@ public class Application {
                 // 예외 처리
                 int lottoBought1000 = lottoBought % 1000;
                 if (lottoBought1000 != 0) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("1,000원 단위로 입력해 주세요.");
                 }
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1,000원 단위로 입력해 주세요.");
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
@@ -68,7 +68,6 @@ public class Application {
                         throw new IllegalArgumentException("숫자는 1~45까지 입력할 수 있습니다.");
                     }
                 }
-
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());

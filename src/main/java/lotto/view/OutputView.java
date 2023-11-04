@@ -20,6 +20,11 @@ public class OutputView {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
+    public void printInputWinningNumbers() {
+        printNewLine();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
     public void printNewLine() {
         System.out.println();
     }

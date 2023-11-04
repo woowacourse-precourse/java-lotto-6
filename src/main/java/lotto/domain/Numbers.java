@@ -7,6 +7,7 @@ public class Numbers {
 
     public Numbers(List<Integer> numbers) {
         this.values = numbers.stream()
+                .sorted()
                 .map(Number::new)
                 .toList();
     }

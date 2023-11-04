@@ -65,7 +65,7 @@
 
 - [x] 로또 판매자 클래스 LottoSeller
   - [x] 로또를 판다. LottoSeller#sell
-    - [ ] 사용자에게 로또 봉투판다.
+    - [x] 사용자에게 로또 봉투판다.
   - [x] 로또 봉투을 만든다.  LottoSeller#makeLottoEnvelope
 
 - [x] 로또 봉투 클래스 LottoEnvelop

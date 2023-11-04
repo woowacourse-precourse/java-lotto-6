@@ -23,6 +23,7 @@ public class LottoController {
         WinningNumber winningNumber = requestWinningNumber();
         BonusNumber bonusNumber = requestBonusNumber(winningNumber);
         HashMap<Integer, List<Integer>> result = lottoService.calculateCompareResult(count, lotties, winningNumber.getWinningNumbers(), bonusNumber.getBonusNumber());
+        HashMap<Integer, Integer> finalResult = lottoService.calculateFinalResult(result, count);
     }
 
     public Money requestMoney(){

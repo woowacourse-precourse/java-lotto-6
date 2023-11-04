@@ -77,4 +77,31 @@ public class LottoService {
         }
         return result;
     }
+
+    public static HashMap<Integer, Integer> calculateFinalResult(HashMap<Integer, List<Integer>> result, int count) {
+        HashMap<Integer, Integer> finalResult = new HashMap<>();
+        for (int i = 1; i < 6; i++) {
+            finalResult.put(i, 0);
+        }
+
+        for (int i = 0; i < count; i++) {
+            if (result.get(i).get(0) == 3){
+                finalResult.put(5, finalResult.get(5) + 1);
+            }
+            if (result.get(i).get(0) == 4){
+                finalResult.put(4, finalResult.get(4) + 1);
+            }
+            if (result.get(i).get(0) == 5){
+                finalResult.put(3, finalResult.get(3) + 1);
+            }
+            if (result.get(i).get(0) == 5 && result.get(i).get(1) == 1){
+                finalResult.put(3, finalResult.get(3) - 1);
+                finalResult.put(2, finalResult.get(2) + 1);
+            }
+            if (result.get(i).get(0) == 6){
+                finalResult.put(1, finalResult.get(1) + 1);
+            }
+        }
+        return finalResult;
+    }
 }

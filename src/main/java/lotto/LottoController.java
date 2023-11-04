@@ -5,6 +5,7 @@ import static lotto.constant.message.ErrorMessage.NOT_ONLY_DIGIT;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
+import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,52 +24,51 @@ public class LottoController {
     WinningNumbers winningNumbers = new WinningNumbers();
 
     public void purchaseLotto() {
-        try {
+        handleUserInput(() -> {
             String input = inputView.requestInputValue(INPUT_MONEY);
             int purchaseAmount = convertInteger(input);
-            customer.scanPocket(purchaseAmount);
 
+            customer.scanPocket(purchaseAmount);
             LottoSeller seller = new LottoSeller();
             seller.checkRemainder(customer.getMoney());
-
             outputView.printLottoCount(seller.getSellCount());
-            customer.setLotteryTicket(seller.makeLottoTickets());
-            outputView.printLottoNumbers(customer.getLotteryTicket());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            purchaseLotto();
-        }
+            customer.setLotteryTickets(seller.makeLottoTickets());
+            outputView.printLottoNumbers(customer.getLotteryTickets());
+        });
     }
 
     public void generateWinningNumbers() {
-        try {
+        handleUserInput(() -> {
             String input = inputView.requestInputValue(INPUT_WINNING_NUMBER);
             List<Integer> numbers = convertIntegerList(input);
             winningNumbers.makeWinningNumber(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            generateWinningNumbers();
-        }
+        });
     }
 
     public void generateBonusNumber() {
-        try {
+        handleUserInput(() -> {
             String inputValue = inputView.requestInputValue(INPUT_BONUS_NUMBER);
             int bonusNumber = convertInteger(inputValue);
             winningNumbers.makeBonusNumber(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            generateBonusNumber();
-        }
+        });
     }
 
     public void revealLottoResults() {
-        outputView.printResultMessage();
+        outputView.printOutputMessage(RESULT_MESSAGE);
         LottoCalculator calculator = new LottoCalculator(winningNumbers);
-        calculator.makePrizeResult(customer.getLotteryTicket());
+        calculator.makePrizeResult(customer.getLotteryTickets());
         outputView.printPrizeResult(calculator.getResult());
         String profitRate = calculator.calculateProfitRate(customer.getMoney());
-        System.out.println(profitRate);
+        outputView.printProfitRate(profitRate);
+    }
+
+    private void handleUserInput(Runnable action) {
+        try {
+            action.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            handleUserInput(action);
+        }
     }
 
     private int convertInteger(String input) {

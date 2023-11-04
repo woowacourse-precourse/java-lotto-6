@@ -35,7 +35,7 @@
         - [x] 보너스 번호가 1 ~ 45를 벗어나는 수이면 `IllegalArgumentException`을 발생시킨다.
         - [x] 보너스 번호가 당첨 번호와 겹치면 `IllegalArgumentException`을 발생시킨다.
 
-- [ ] 입력 값이 잘못된 경우 `IllegalArgumentException`을 발생시키고 `[ERROR]`로 시작하는 에러메세지를 출력시키고 그 부분부터 입력을 다시 받는다.
+- [x] 입력 값이 잘못된 경우 `IllegalArgumentException`을 발생시키고 `[ERROR]`로 시작하는 에러메세지를 출력시키고 그 부분부터 입력을 다시 받는다.
 
 - [x] 구매한 모든 로또 수량과 번호를 출력한다. 번호는 오름차순으 정렬해서 보여준다.
 

@@ -43,7 +43,7 @@ public class LottoController {
         return result;
     }
 
-    public int BonusNumbers(List<Integer> list) {
+    public int bonusNumbers(List<Integer> list) {
         int result = 0;
         String inputNumber = inputView.inputMessageBonusNumber();
         while (true) {

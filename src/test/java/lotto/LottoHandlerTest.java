@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoHandlerTest {
 
@@ -52,5 +53,21 @@ class LottoHandlerTest {
         assertThatThrownBy(() -> lottoHandler.calculateLottoTicketCount(receivedPurchasePrice))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력해 주세요.");
+    }
+
+    @DisplayName("구매한 로또 개수를 받아 개수에 해당하는 로또 번호들을 발행한다.")
+    @Test
+    void issueLottoNumbers() {
+        // given
+        int lottoTicket = 3;
+
+        // when
+        List<List<Integer>> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+
+        // then
+        assertThat(lottoNumbers.size()).isEqualTo(3);
+        assertThat(lottoNumbers.get(0).size()).isEqualTo(6);
+        assertThat(lottoNumbers.get(1).size()).isEqualTo(6);
+        assertThat(lottoNumbers.get(2).size()).isEqualTo(6);
     }
 }

@@ -34,4 +34,23 @@ public class ValidationTest {
         assertThatThrownBy(() -> new Validation().validateDuplication(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("[보너스 번호]1~45 사이의 숫자가 아닐 경우 예외가 발생한다.")
+    @Test
+    void createBonusNumbersOverRange() {
+        int bonusNumber = 57;
+
+        assertThatThrownBy(() -> new Validation().validateRange(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("[보너스 번호]당첨 번호와 중복된 숫자가 있을 경우 예외가 발생한다.")
+    @Test
+    void createDuplicatedBonusNumbers() {
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        int bonusNumber = 3;
+
+        assertThatThrownBy(() -> new Validation().validateBonusNumberDuplication(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,11 +1,16 @@
 package lotto.domain;
 
+import lotto.constant.LottoRank;
+
 public class WinningLotto {
     private final Lotto lotto;
-    private final int bonusNumber;
+    private int bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
+    public WinningLotto(Lotto lotto) {
         this.lotto = lotto;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 

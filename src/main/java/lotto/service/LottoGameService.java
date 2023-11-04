@@ -5,7 +5,7 @@ import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSetting.*;
 
 
-public class LottoService {
+public class LottoGameService {
     public void purchase(Integer purchaseCount) {
         // TODO: purchaseCount만큼 로또 발행
 

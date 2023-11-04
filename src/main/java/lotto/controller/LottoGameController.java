@@ -2,32 +2,32 @@ package lotto.controller;
 
 import static lotto.constant.LottoOutputMessage.*;
 
-import lotto.service.LottoService;
+import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
+public class LottoGameController {
 
     private final OutputView outputView;
     private final InputView inputView;
-    private final LottoService lottoService;
+    private final LottoGameService lottoGameService;
 
-    public LottoController() {
+    public LottoGameController() {
         outputView = new OutputView();
         inputView = new InputView();
-        lottoService = new LottoService();
+        lottoGameService = new LottoGameService();
     }
 
     public void run() {
         Integer purchaseCount = initPurchaseAmount();
-        lottoService.purchase(purchaseCount);
+        lottoGameService.purchase(purchaseCount);
     }
 
     private Integer initPurchaseAmount() {
         while (true) {
             try {
                 String purchaseAmountInput = requestPurchaseAmount();
-                return lottoService.validatePurchaseAmount(purchaseAmountInput);
+                return lottoGameService.validatePurchaseAmount(purchaseAmountInput);
             } catch (IllegalArgumentException exception) {
                 outputView.output(exception.getMessage());
             }

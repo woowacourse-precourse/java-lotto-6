@@ -15,6 +15,19 @@ public class WinningLotto {
                 .collect(Collectors.toList()));
     }
 
+    public void compare(Bonus bonus) {
+        int bonusNumber = bonus.getBonusNumber();
+        List<Integer> winningLottoNumbers = winningLotto.getNumbers();
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함되면 안됩니다.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return winningLotto.toString();
+    }
+
     private void validate(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) != ',' && !('0' <= input.charAt(i) && input.charAt(i) <= '9')) {

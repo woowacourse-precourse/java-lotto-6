@@ -16,4 +16,6 @@ public interface OutputView {
                                 int fourthPrizeWinners, int fifthPrizeWinners);
 
     void printTotalProfit(long totalPrize, long money);
+
+    void printErrorMessage(String message);
 }

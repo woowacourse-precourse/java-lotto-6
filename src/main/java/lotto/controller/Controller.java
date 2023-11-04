@@ -37,8 +37,13 @@ public class Controller {
     }
 
     private Money getMoney() {
-        String money = inputView.readLine();
-        return Money.createWith(money);
+        try {
+            String money = inputView.readLine();
+            return Money.createWith(money);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getMoney();
+        }
     }
 
     private Lottos getLottos(final long money) {
@@ -46,21 +51,36 @@ public class Controller {
     }
 
     private WinningNumbers getWinningNumbers() {
-        WinningNumber winningNumber = getWinningNumber();
-        LottoNumber bonusNumber = getBonusNumber();
-        return new WinningNumbers(winningNumber, bonusNumber);
+        try {
+            WinningNumber winningNumber = getWinningNumber();
+            LottoNumber bonusNumber = getBonusNumber();
+            return new WinningNumbers(winningNumber, bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private WinningNumber getWinningNumber() {
-        outputView.printWinningNumberRequestMessage();
-        String winningNumber = inputView.readLine();
-        return WinningNumber.createWith(winningNumber);
+        try {
+            outputView.printWinningNumberRequestMessage();
+            String winningNumber = inputView.readLine();
+            return WinningNumber.createWith(winningNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getWinningNumber();
+        }
     }
 
     private LottoNumber getBonusNumber() {
-        outputView.printBonusNumberRequestMessage();
-        String bonusNumber = inputView.readLine();
-        return LottoNumber.createWith(bonusNumber);
+        try {
+            outputView.printBonusNumberRequestMessage();
+            String bonusNumber = inputView.readLine();
+            return LottoNumber.createWith(bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getBonusNumber();
+        }
     }
 
 

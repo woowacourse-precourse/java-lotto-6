@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Output {
 
     private static int first = 0;
@@ -14,8 +16,20 @@ public class Output {
         System.out.println(wallet + "개를 구매했습니다.");
     }
 
-    public static void printCustomerLottos() {
+    public static void printCustomerLottos(List<Integer> numbers) {
 
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < numbers.size(); i++) {
+
+            sb.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+
+                sb.append(", ");
+            }
+        }
+
+        sb.append("]");
+        System.out.println(sb.toString());
     }
 
     public static void countRank(int correctCount) {

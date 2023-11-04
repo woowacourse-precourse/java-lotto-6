@@ -1,9 +1,8 @@
 package lotto.domain;
 
-public class LottoNumber {
+import static lotto.domain.LottoRule.*;
 
-    private static final int MIN = 1;
-    private static final int MAX = 45;
+public class LottoNumber {
 
     private final int value;
 
@@ -21,7 +20,7 @@ public class LottoNumber {
     }
 
     private void validateRange(int value) {
-        if (value < MIN || value > MAX) {
+        if (value < MIN_LOTTO_NUMBER.getValue() || value > MAX_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException();
         }
     }

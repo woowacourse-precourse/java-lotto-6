@@ -36,7 +36,11 @@ public class OutputView {
     }
 
     public static void displayWinningStatisticsGuide() {
-        stringBuilder.append("\n").append("당첨 통계").append("\n").append("---").append("\n");
+        stringBuilder.append("\n")
+                .append("당첨 통계")
+                .append("\n")
+                .append("---")
+                .append("\n");
     }
 
     public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
@@ -64,7 +68,7 @@ public class OutputView {
     }
 
     public static void displayYield(final double yield) {
-        stringBuilder.append("총 수익률은 ").append(String.format("%.1f", yield)).append("%").append("입니다.");
+        stringBuilder.append(String.format("총 수익률은 %.1f%%입니다.", yield));
         System.out.println(stringBuilder);
         stringBuilder.setLength(0);
     }

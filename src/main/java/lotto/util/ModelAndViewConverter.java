@@ -80,12 +80,6 @@ public class ModelAndViewConverter {
         String modelName = new Object() {
         }.getClass().getEnclosingMethod().getName().replace(REMOVE_FROM_METHOD_NAME, BLANK);
 
-        return getValueAndResetConverter(modelName);
-    }
-
-    private IllegalArgumentException getValueAndResetConverter(String modelName) {
-        IllegalArgumentException illegalArgumentException = (IllegalArgumentException) modelAndView.get(modelName);
-        modelAndView.remove(modelName);
-        return illegalArgumentException;
+        return (IllegalArgumentException) modelAndView.get(modelName);
     }
 }

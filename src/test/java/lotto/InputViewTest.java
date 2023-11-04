@@ -51,7 +51,7 @@ public class InputViewTest {
         String prizeNumber = "1,2,3,4,5#6";
         assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호의 구분자는 쉼표(,)만 가능합니다.");
+                .hasMessageContaining("[ERROR] 당첨 번호는 숫자로 구성되고 쉼표(,)로 구분됩니다.");
     }
 
     @Test
@@ -72,9 +72,9 @@ public class InputViewTest {
 
     @Test
     void 당첨번호_숫자_구성_예외_테스트() {
-        String prizeNumber = "1,2,3,4,5,46";
+        String prizeNumber = "1,2,3,4,5,c";
         assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 숫자로만 구성됩니다.");
+                .hasMessageContaining("[ERROR] 당첨 번호는 숫자로 구성되고 쉼표(,)로 구분됩니다.");
     }
 }

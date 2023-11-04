@@ -2,10 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Util {
     public static List<Integer> toList(String inputWinningNum){
@@ -19,7 +17,14 @@ public class Util {
     }
 
     public static List<Integer> getRandomNum() {
-        return Randoms.pickUniqueNumbersInRange(Constants.RANDOM_START_NUM, Constants.RANDOM_END_NUM, Constants.RANDOM_WINNING_NUM_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.RANDOM_START_NUM, Constants.RANDOM_END_NUM, Constants.NUM_COUNT);
+        List<Integer> noDuplication = new ArrayList<>(numbers.stream().distinct().toList());
+
+        while(noDuplication.size() < Constants.NUM_COUNT){
+            noDuplication.add(Randoms.pickNumberInRange(Constants.RANDOM_START_NUM, Constants.RANDOM_END_NUM));
+        }
+
+        return noDuplication;
     }
 
     public static List<Integer> sortRandomNum(List<Integer> randomNum) {

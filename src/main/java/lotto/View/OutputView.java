@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println(SIX_MATCHES_MESSAGE + winningStatistics.get(3));
     }
 
-    public static void printReturnRate(float returnRate) {
+    public static void printReturnRate(double returnRate) {
         System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 }

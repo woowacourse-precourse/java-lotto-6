@@ -3,7 +3,7 @@ package lotto;
 public class Constants {
     public static final int RANDOM_START_NUM = 1;
     public static final int RANDOM_END_NUM = 45;
-    public static final int RANDOM_WINNING_NUM_COUNT = 6;
+    public static final int NUM_COUNT = 6;
     public static final String SEPARATOR = ",";
     public static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";

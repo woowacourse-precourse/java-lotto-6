@@ -116,4 +116,38 @@ public class LottoServivceTest {
         Assertions.assertThat(resultTable.getOrDefault(LottoCount.THREE, 0))
                 .isEqualTo(0);
     }
+
+    @Test
+    void 로또_총_상금_테스트() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 10, 7); // 4개 + 보너스 번호 일치
+        List<Integer> numbers2 = List.of(1, 2, 3, 4, 10, 11); // 4개 일치
+        List<Integer> numbers3 = List.of(3, 2, 1, 10, 11, 7); // 3개 + 보너스 번호 일치
+        List<Integer> numbers4 = List.of(1, 9, 10, 11, 12, 13); // 1개 일치
+
+        createdLottos = new ArrayList<>(List.of(numbers, numbers2, numbers3, numbers4));
+        Map<LottoCount, Integer> resultTable = lottoService.compareLottoToWinningAndBonus(
+                createdLottos, winningNumbers, bonusNumber);
+
+        long totalWinningPrice = lottoService.getTotalWinningPrice(resultTable);
+        Assertions.assertThat(totalWinningPrice).isEqualTo(
+                LottoCount.FOUR.getPrice() * 2 + LottoCount.THREE.getPrice());
+    }
+
+    @Test
+    void 로또_총_상금_테스트2() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6); // 6개 일치
+        List<Integer> numbers2 = List.of(1, 2, 3, 4, 5, 11); // 5개 일치
+        List<Integer> numbers3 = List.of(5, 4, 3, 2, 1, 7); // 5개 + 보너스 번호 일치
+        List<Integer> numbers4 = List.of(3, 2, 1, 10, 11, 7); // 3개 + 보너스 번호 일치
+        List<Integer> numbers5 = List.of(1, 9, 10, 11, 12, 13); // 1개 일치
+
+        createdLottos = new ArrayList<>(List.of(numbers, numbers2, numbers3, numbers4, numbers5));
+        Map<LottoCount, Integer> resultTable = lottoService.compareLottoToWinningAndBonus(
+                createdLottos, winningNumbers, bonusNumber);
+
+        long totalWinningPrice = lottoService.getTotalWinningPrice(resultTable);
+        Assertions.assertThat(totalWinningPrice).isEqualTo(
+                LottoCount.SIX.getPrice() + LottoCount.FIVE.getPrice()
+                        + LottoCount.BONUS.getPrice() + LottoCount.THREE.getPrice());
+    }
 }

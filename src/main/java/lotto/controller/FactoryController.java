@@ -46,10 +46,12 @@ public class FactoryController {
     }
 
     public LottoCompanyService createLottoCompanyService(final List<Lotto> lottos) {
-        GoalNumbers goalNumbers = createGoalNumbers();
-        BonusNumber bonusNumber = createBonusNumber();
+        return createInstance(LottoCompanyService.class, () -> {
+            GoalNumbers goalNumbers = createGoalNumbers();
+            BonusNumber bonusNumber = createBonusNumber();
 
-        return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
+            return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
+        });
     }
 
     private GoalNumbers createGoalNumbers() {

@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.constance.PrintConst;
 import lotto.exceptionhandler.ExceptionHandler;
 import lotto.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.domain.LottoAnswer;
 import lotto.model.lottogenerator.AnswerGenerator;
-import lotto.ui.Reader;
+import lotto.view.LottoGameUI;
+import lotto.view.TerminalUI;
 import lotto.ui.Writer;
 import lotto.model.lottogenerator.RandomLottoGenerator;
 
@@ -16,15 +15,11 @@ public class LottoController {
 
     private ExceptionHandler retryHandler = new RetryExceptionHandler();
     private LottoStore store = new LottoStore(new RandomLottoGenerator());
+    private LottoGameUI ui = new TerminalUI();
 
     //TODO 1. 로또 구매
     public Lottos purchaseLotto() {
-        int money = retryHandler.getResult(
-                () -> {
-                    Writer.printGuide(PrintConst.GUIDE_PURCHASE);
-                    return Reader.getMoney();
-                });
-
+        int money = retryHandler.getResult(() -> ui.getMoney());
         Lottos lottos = store.purchase(money);
         Writer.printModelsInList(lottos.getLottosDTO());
 
@@ -32,16 +27,9 @@ public class LottoController {
     }
 
     public LottoAnswer getAnswer(){
-        LottoAnswer lottoAnswer = (LottoAnswer) retryHandler.getResult(()-> {
-            Writer.printGuide(PrintConst.GUIDE_LOTTO_NUMBERS);
-            List<Integer> answers = Reader.getAnswerNumbers();
-            Writer.printGuide(PrintConst.GUIDE_BONUS_NUMBERS);
-            Integer bonusNumber = Reader.getBonusNumber();
-            AnswerGenerator answerGenerator = new AnswerGenerator(answers, bonusNumber);
-            return answerGenerator.generate();
-        });
-
-        return lottoAnswer;
+        AnswerGenerator answerGenerator = retryHandler.getResult(
+                ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
+        return (LottoAnswer) answerGenerator.generate();
     }
 
     //TODO 4. 보너스 번호 입력

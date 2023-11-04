@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,27 +36,25 @@ public class LottoValidatorTest {
 
     @ParameterizedTest
     @MethodSource
-    void 로또숫자가_1부터_45의_범위를_벗어났을때_예외처리(List<Integer> lottoNumbers, List<Integer> expectNumbers) {
+    void 로또숫자가_1부터_45의_범위를_벗어났을때_예외처리(List<Integer> lottoNumbers) {
         //given
-        Lotto lotto = new Lotto(lottoNumbers);
+
         //when
-        List<Integer> resultNumbers = lotto.getNumbers();
+        Throwable result = catchThrowable(() -> {
+            lottoNumbers.forEach(LottoValidator::numberOverValueRange);
+
+        });
         //then
-        assertThat(resultNumbers).isEqualTo(expectNumbers);
+        assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> 로또숫자가_1부터_45의_범위를_벗어났을때_예외처리() {
         return Stream.of(
-                Arguments.of(new ArrayList<>(Arrays.asList(6, 5, 4, 3, 2, 1)),
-                        new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))),
-                Arguments.of(new ArrayList<>(Arrays.asList(45, 35, 25, 15, 5, 1)),
-                        new ArrayList<>(Arrays.asList(1, 5, 15, 25, 35, 45))),
-                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 3, 6, 5, 4)),
-                        new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))),
-                Arguments.of(new ArrayList<>(Arrays.asList(11, 21, 12, 22, 13, 33)),
-                        new ArrayList<>(Arrays.asList(11, 12, 13, 21, 22, 33))),
-                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 9, 8, 4, 3)),
-                        new ArrayList<>(Arrays.asList(1, 2, 3, 4, 8, 9)))
+                Arguments.of(new ArrayList<>(Arrays.asList(6, 5, 4, 3, 2, 450))),
+                Arguments.of(new ArrayList<>(Arrays.asList(45, 35, 25, 150, 5, 1))),
+                Arguments.of(new ArrayList<>(Arrays.asList(1, 2, 3, 60, 5, 4))),
+                Arguments.of(new ArrayList<>(Arrays.asList(11, 210, 12, 22, 13, 33))),
+                Arguments.of(new ArrayList<>(Arrays.asList(100, 2, 9, 8, 4, 3)))
 
         );
     }

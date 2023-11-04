@@ -8,8 +8,8 @@ public enum Rank {
     RANK_5("3개 일치 (5,000원) - ", 5000),
     UNRANK(null, null);
 
-    private String outputMessage;
-    private Integer prize;
+    private final String outputMessage;
+    private final Integer prize;
 
     Rank(String outputMessage, Integer prize) {
         this.outputMessage = outputMessage;

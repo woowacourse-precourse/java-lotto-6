@@ -12,11 +12,9 @@ import lotto.vo.WinLotto;
 public class GameController {
     private static final int LOTTO_PRICE = 1000;
 
-    private final OutputView outputView;
     private final Game game;
 
-    public GameController(OutputView outputView, Game game) {
-        this.outputView = outputView;
+    public GameController(Game game) {
         this.game = game;
     }
 

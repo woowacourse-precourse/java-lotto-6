@@ -30,6 +30,12 @@ class LottoPurchaseTest {
         assertThat(lottoPurchase.getNumberOfTickets()).isEqualTo(1);
     }
 
+    @DisplayName("구매한 갯수에 맞게 로또 티켓을 발행하는 메소드")
+    @Test
+    void generateLottoTickets() {
+        assertThat(lottoPurchase.generateLottoTickets().getLottoTickets().size()).isEqualTo(1);
+    }
+
     @DisplayName("숫자형이 아닌 문자가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByString() {

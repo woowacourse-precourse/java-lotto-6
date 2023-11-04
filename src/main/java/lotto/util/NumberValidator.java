@@ -6,10 +6,10 @@ import java.util.Set;
 import lotto.constant.ErrorMessage;
 
 public class NumberValidator {
-    static final int MIN_NUMBER = 1;
-    static final int MAX_NUMBER = 45;
-    static final int NUMBERS_SIZE = 6;
-    static Set<Integer> set;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int NUMBERS_SIZE = 6;
+    private static Set<Integer> set;
 
     public static void validateChangeNumber(String input) {
         try {

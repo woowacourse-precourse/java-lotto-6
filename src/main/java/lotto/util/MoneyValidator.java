@@ -4,7 +4,7 @@ import lotto.constant.ErrorMessage;
 
 public class MoneyValidator {
 
-    static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     public static void validateNumber(int number) {
         if(number < LOTTO_PRICE) {

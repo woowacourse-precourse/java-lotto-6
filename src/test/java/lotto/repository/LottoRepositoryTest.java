@@ -1,4 +1,4 @@
-package lotto;
+package lotto.repository;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

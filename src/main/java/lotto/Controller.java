@@ -74,5 +74,8 @@ public class Controller {
     }
 
     private void printWinningStatistics(){
+        OutputView.winningStatisticMessage();
+        List<Integer> matchingCounts = gameService.calculateMatchingCount();
+        OutputView.printMatchingCounts(matchingCounts);
     }
 }

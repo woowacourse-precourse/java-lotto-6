@@ -3,8 +3,6 @@ package lotto.model;
 import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
 
-import java.util.List;
-
 public class BonusNumber {
 
     private int number;
@@ -25,7 +23,7 @@ public class BonusNumber {
     }
 
     private void overlapWinningNumber(int tempNumber, Lotto winningNumbers){
-        if(winningNumbers.containNumbers(tempNumber)){
+        if(winningNumbers.containsNumber(tempNumber)){
             throw new IllegalArgumentException(ErrorMessage.OVERLAP_BONUS_NUMBER);
         }
     }
@@ -34,6 +32,10 @@ public class BonusNumber {
         if(tempNumber < NumberConstant.LOTTO_NUMBER_MIN || tempNumber > NumberConstant.LOTTO_NUMBER_MAX){
             throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_BONUS_NUMBER);
         }
+    }
+
+    public int getNumber(){
+        return number;
     }
 
 }

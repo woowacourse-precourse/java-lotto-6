@@ -57,8 +57,14 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public boolean containNumbers(int number){
+    public boolean containsNumber(int number){
         return numbers.contains(number);
     }
 
+    public int checkNumberInLotto(int number){
+        if(containsNumber(number)){
+            return 1;
+        }
+        return 0;
+    }
 }

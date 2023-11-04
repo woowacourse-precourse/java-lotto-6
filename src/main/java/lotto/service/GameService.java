@@ -1,14 +1,10 @@
 package lotto.service;
 
 import lotto.constant.NumberConstant;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.LottoInputParser;
-import lotto.model.PurchaseAmount;
+import lotto.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 public class GameService {
 
@@ -16,6 +12,7 @@ public class GameService {
     private List<Lotto> issuedLotto;
     private Lotto winningNumbers;
     private BonusNumber bonusNumber;
+    private MatchingCount matchingCount;
 
     public int inputPurchaseAmount(String input){
         purchaseAmount = new PurchaseAmount(input);
@@ -38,6 +35,14 @@ public class GameService {
 
     public void inputBonusNumber(String input){
         bonusNumber = new BonusNumber(input, winningNumbers);
+    }
+
+    public List<Integer> calculateMatchingCount(){
+        matchingCount = new MatchingCount(Statistic.values().length);
+        for(Lotto lotto : issuedLotto){
+            matchingCount.updateMatchingCounts(lotto, winningNumbers, bonusNumber);
+        }
+        return matchingCount.getMatchingCounts();
     }
 
 }

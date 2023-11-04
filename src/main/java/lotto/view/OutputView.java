@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Statistic;
+
 import java.util.List;
 
 import static lotto.constant.PrintMessage.*;
@@ -23,6 +25,17 @@ public class OutputView {
 
     public static void inputBonusNumberMessage(){
         System.out.println("\n"+INPUT_BONUS_NUMBER);
+    }
+
+    public static void winningStatisticMessage(){
+        System.out.println("\n"+WINNING_STATISTIC);
+    }
+
+    public static void printMatchingCounts(List<Integer> matchingCounts){
+        Statistic[] values = Statistic.values();
+        for(int i=0; i<values.length; i++){
+            System.out.println(values[i].printCount(matchingCounts.get(i)));
+        }
     }
 
     public static void errorMessage(String s){

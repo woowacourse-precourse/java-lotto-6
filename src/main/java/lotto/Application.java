@@ -11,7 +11,7 @@ public class Application {
 
 
     // domain? - Seller
-    public static List<Lotto> createLottos(Integer lottoCount){
+    public static List<Lotto> createLottos(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -21,7 +21,7 @@ public class Application {
     }
 
     // ui - 출력
-    public static void printLottos(List<Lotto> lottos){
+    public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
             Collections.sort(sortedLotto);
@@ -30,7 +30,7 @@ public class Application {
     }
 
     // domain - 어디로?
-    public static Lotto createWinningLotto(){
+    public static Lotto createWinningLotto() {
         boolean isRunning = true;
         Lotto winningLotto = null;
         while (isRunning) {
@@ -62,7 +62,7 @@ public class Application {
     }
 
     // domain - createWinningLotto()와 같은 곳으로
-    public static Integer createBonusNumber(Lotto winningLotto){
+    public static Integer createBonusNumber(Lotto winningLotto) {
         boolean isRunning = true;
         Integer bonusNumber = null;
         while (isRunning) {
@@ -86,28 +86,8 @@ public class Application {
         return bonusNumber;
     }
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-
-        List<Lotto> lottos = new ArrayList<>();
-
-        User user = new User();
-        Computer computer = new Computer();
-        user.purchaseLotto();
-
-        // 로또 개수 만큼 번호 계산
-        Application.createLottos(user.lottoCount);
-
-        // 4. 로또 번호 출력
-        Application.printLottos(lottos);
-
-        // 5. 당첨 번호 입력
-        Lotto winningLotto = createWinningLotto();
-
-        // 6. 보너스 번호 입력
-        Integer bonusNumber = createBonusNumber(winningLotto);
-
-        // 7. 당첨 내역 계산 로직
+    // domain - createBonusNumber()같은곳으로
+    public static List<Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
         int count;
         List<Integer> lottoResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
         for (Lotto lotto : lottos) {
@@ -137,6 +117,34 @@ public class Application {
                 lottoResult.set(4, lottoResult.get(4) + 1);
             }
         }
+        return lottoResult;
+    }
+
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        User user = new User();
+        Computer computer = new Computer();
+        user.purchaseLotto();
+
+        // 로또 개수 만큼 번호 계산
+        Application.createLottos(user.lottoCount);
+
+        // 4. 로또 번호 출력
+        Application.printLottos(lottos);
+
+        // 5. 당첨 번호 입력
+        Lotto winningLotto = createWinningLotto();
+
+        // 6. 보너스 번호 입력
+        Integer bonusNumber = createBonusNumber(winningLotto);
+
+        // 7. 당첨 내역 계산 로직
+        List<Integer> lottoResult = checkWinning(lottos, winningLotto, bonusNumber);
+
+        // 당첨금
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
         int sum = 0;
         Double rateInvestment;

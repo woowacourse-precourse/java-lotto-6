@@ -1,5 +1,6 @@
 package lotto.dto.input;
 
+import java.util.Arrays;
 import lotto.domain.Lotto;
 import lotto.util.Parser;
 import lotto.util.validator.NumberValidator;
@@ -15,7 +16,8 @@ public class UserLottoDTO {
     private void validateLotto(String inputLotto) {
         NumberValidator.isNullOrEmpty(inputLotto);
         NumberValidator.isLottoPattern(inputLotto);
-        NumberValidator.startsWithZero(inputLotto);
+        Arrays.stream(inputLotto.split(Parser.LOTTO_SEPARATOR))
+                .forEach((number) -> NumberValidator.startsWithZero(number));
     }
 
     public Lotto toLotto() {

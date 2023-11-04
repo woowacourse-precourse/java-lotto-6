@@ -5,7 +5,6 @@ import lotto.util.Parser;
 import lotto.util.validator.NumberValidator;
 
 public class UserMoneyDTO {
-
     private final String inputMoney;
 
     public UserMoneyDTO(String inputMoney) {

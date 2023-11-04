@@ -1,8 +1,10 @@
 package lotto.Domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class WinnigNumbers {
+
     public static final String INVALID_RANGE_MESSAGE = "[ERROR] 1~45 사이의 숫자를 입력해주세요";
     public static final String DUPLICATE_MESSAGE = "[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.";
     public static final int MIN_NUMBER = 1;
@@ -10,7 +12,7 @@ public class WinnigNumbers {
     private Lotto winnigNumbers;
     private int bonusNumber;
 
-    public WinnigNumbers(List<Integer> winNum, String bonusNum) {
+    public WinnigNumbers(List<Integer> winNum, String bonusNum) throws IllegalArgumentException {
         winnigNumbers = new Lotto(winNum);
         int bonusNumber = Integer.parseInt(bonusNum);
         validateNumber(bonusNumber);
@@ -18,16 +20,20 @@ public class WinnigNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumber(int bonusNumber) {
+    private void validateNumber(int bonusNumber) throws IllegalArgumentException {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_RANGE_MESSAGE);
         }
     }
 
-    private void validateDuplicate (List<Integer> winNum, int bonusNum) {
+    private void validateDuplicate(List<Integer> winNum, int bonusNum)
+        throws IllegalArgumentException {
         if (winNum.contains(bonusNum)) {
             throw new IllegalArgumentException(DUPLICATE_MESSAGE);
         }
     }
 
+    public Map<Rank, Integer> getRankCount(List<Lotto> lottos) {
+
+    }
 }

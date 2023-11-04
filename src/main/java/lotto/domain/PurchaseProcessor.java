@@ -5,12 +5,14 @@ import lotto.constant.ExceptionMessage;
 
 public class PurchaseProcessor {
 
+
     public PurchaseProcessor(String price) {
         convertNumber(price);
     }
 
-    private void convertNumber(String price) {
+    private long convertNumber(String price) {
         BigInteger bigPrice = parseToBigInteger(price);
+        return convertToLong(bigPrice);
     }
 
     private BigInteger parseToBigInteger(String price) {
@@ -18,6 +20,22 @@ public class PurchaseProcessor {
             return new BigInteger(price);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER.getMessage());
+        }
+    }
+
+    private long convertToLong(BigInteger bigPrice) {
+        validateRange(bigPrice);
+        return bigPrice.longValue();
+    }
+
+    private void validateRange(BigInteger bigPrice) {
+        LongRange(bigPrice);
+    }
+
+    private void LongRange(BigInteger bigPrice) {
+        if (bigPrice.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0 ||
+                bigPrice.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_PRICE_MESSAGE.getMessage());
         }
     }
 

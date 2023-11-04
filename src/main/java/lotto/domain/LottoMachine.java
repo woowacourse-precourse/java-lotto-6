@@ -13,6 +13,10 @@ import lotto.domain.validation.LottoValidationHandler;
 import lotto.util.StringUtils;
 
 public class LottoMachine {
+    private static final int ROUNDING_VALUE = 100;
+    private static final double ROUNDING_DOUBLE_VALUE = 100.0;
+    private static final double PERCENTAGE = 100.0;
+
 
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
@@ -93,5 +97,21 @@ public class LottoMachine {
                 .anyMatch(lotto -> lotto.getNumbers().stream()
                         .anyMatch(number -> number.equals(bonusNumber))
                 );
+    }
+
+    public double computedYieldRate(int purchaseAmount, List<LottoRank> lottoRanks) {
+        int totalPrizeMoney = getTotalPrizeMoney(lottoRanks);
+        double yieldRate = getYieldRate(purchaseAmount, totalPrizeMoney);
+        return Math.round(yieldRate * ROUNDING_VALUE) / ROUNDING_DOUBLE_VALUE;
+    }
+
+    private static double getYieldRate(int purchaseAmount, int totalPrizeMoney) {
+        return PERCENTAGE * totalPrizeMoney / purchaseAmount;
+    }
+
+    private int getTotalPrizeMoney(List<LottoRank> lottoRanks) {
+        return lottoRanks.stream()
+                .mapToInt(LottoRank::getPrizeMoney)
+                .sum();
     }
 }

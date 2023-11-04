@@ -137,4 +137,18 @@ class LottoMachineTest {
             this.lottoRank = lottoRank;
         }
     }
+
+    @Test
+    @DisplayName("소수점 둘째 자리에서 반올림하여 수익률을 계산한다.")
+    void computedYieldRate() {
+        // given
+        int purchaseAmount = 8_000;
+        List<LottoRank> lottoRanks = List.of(LottoRank.FIFTH_PRIZE);
+
+        // when
+        double yieldRate = lottoMachine.computedYieldRate(purchaseAmount, lottoRanks);
+
+        // then
+        assertThat(yieldRate).isEqualTo(62.5);
+    }
 }

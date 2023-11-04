@@ -14,13 +14,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 로또 번호는 총 6자리를 입력해야 합니다.");
             throw new IllegalArgumentException();
         }
     }
 
-    public void printLotteryNumber(int totalLotterySize){
-        System.out.println();
-        System.out.println(totalLotterySize + "개를 구매했습니다.");
+    public void printLotteryNumber(){
         System.out.print("[");
         for(int number : numbers){
             if(numbers.indexOf(number) == THE_SECOND_TO_THE_LAST){

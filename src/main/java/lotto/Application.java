@@ -7,16 +7,27 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        int purchaseAmount = inputPurchaseAmount();
-        List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
+        while(true){
+            try{
 
-        printLottoTickets(lottos);
+                int purchaseAmount = inputPurchaseAmount();
+                List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
 
-        Lotto winningLotto = new Lotto(inputWinningNumbers());
-        int bonusNumber = inputBonusNumber();
+                printLottoTickets(lottos);
 
-        printResult(lottos, winningLotto, bonusNumber, purchaseAmount);
+                Lotto winningLotto = new Lotto(inputWinningNumbers());
+                int bonusNumber = inputBonusNumber();
 
+                printResult(lottos, winningLotto, bonusNumber, purchaseAmount);
+
+            }
+            catch(IllegalArgumentException e){
+
+                System.out.println(e.getMessage());
+                System.out.println();
+
+            }
+        }
     }
     // 입력받고 로또 생성
     private static int inputPurchaseAmount(){
@@ -39,7 +50,7 @@ public class Application {
     }
     private static void validPurchaseAmount(int amount){
         if(amount % 1000 != 0) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -58,18 +69,23 @@ public class Application {
     }
 
     // 당첨 로또 생성
-    private static List<Integer> inputWinningNumbers(){
+    private static List<Integer> inputWinningNumbers() {
+
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         System.out.println();
 
         String[] numbers = input.split(",");
+
         List<Integer> winningNumbers = Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
         return winningNumbers;
+
     }
+
+
 
     private static int inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");

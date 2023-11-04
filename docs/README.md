@@ -7,6 +7,12 @@
 
 
 # 3. 학습 요구 사항 
+**학습 테스트 설정**
+1. src/test/java/study 폴더에 StringTest class 생성
+2. build.gradle 의존성 추가
+![img.png](img.png)
+3. 
+
 **String 클래스에 대한 학습 테스트**
 요구사항 1
 - [ ] "1,2"을 `,`로 split 했을 때 1과 2로 잘 분리되는지 확인

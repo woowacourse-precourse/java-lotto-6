@@ -6,6 +6,7 @@ import static lotto.util.Constants.MIN_NUMBER_RANGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.model.Number;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
@@ -17,6 +18,6 @@ public class RandomNumbersGenerator implements NumbersGenerator {
 
     return createRandomNumbers.stream()
         .map(Number::new)
-        .toList();
+        .collect(Collectors.toList());
   }
 }

@@ -2,6 +2,7 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.model.Number;
 
 class TestRandomNumbersGenerator implements NumbersGenerator {
@@ -15,7 +16,6 @@ class TestRandomNumbersGenerator implements NumbersGenerator {
     return Randoms
         .pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, FIX_SIZE).stream()
         .map(Number::new)
-        .toList();
-
+        .collect(Collectors.toList());
   }
 }

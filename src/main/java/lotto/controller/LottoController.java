@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.service.LottoService;
+import utils.RandomUtils;
 
 public class LottoController {
 
@@ -9,6 +10,7 @@ public class LottoController {
 
     public void run() {
         inputLottoAmount();
+        setLottoNumber();
         inputLottoNumber();
     }
 
@@ -43,5 +45,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void setLottoNumber() {
+        RandomUtils.makeRandomNumber();
     }
 }

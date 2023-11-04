@@ -2,16 +2,16 @@ package lotto.domain;
 
 public class PurchaseAmount {
     private static final int MIN_PRICE = 1000;
-    private static final int ONE_LOTTO_TICKET = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
 
-    public PurchaseAmount(int purchaseAmount) {
+    private PurchaseAmount(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
 
     public static PurchaseAmount from(int purchaseAmount) {
         validatePositive(purchaseAmount);
-        validateMultipleOfThousand(purchaseAmount);
+        validateMultipleOfLottoPrice(purchaseAmount);
 
         return new PurchaseAmount(purchaseAmount);
     }
@@ -22,10 +22,14 @@ public class PurchaseAmount {
         }
     }
 
-    public static void validateMultipleOfThousand(int purchaseAmount) {
-        if (purchaseAmount % ONE_LOTTO_TICKET != 0) {
+    public static void validateMultipleOfLottoPrice(int purchaseAmount) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR]");
         }
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }
 

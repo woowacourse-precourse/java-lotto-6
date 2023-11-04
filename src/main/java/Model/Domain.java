@@ -26,4 +26,8 @@ public class Domain {
     public List<Lotto> getMyLotto() {
         return myLotto;
     }
+
+    public List<Integer> getCorrectNumberCount() {
+        return correctNumberCount;
+    }
 }

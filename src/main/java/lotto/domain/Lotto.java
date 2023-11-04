@@ -16,6 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
+        validateDuplicationInNumbers(numbers);
     }
 
     private static void validateNumbersSize(final List<Integer> numbers) {
@@ -24,5 +25,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicationInNumbers(final List<Integer> numbers) {
+        if (hasDuplication(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재할 수 없습니다.");
+        }
+    }
+
+    private boolean hasDuplication(final List<Integer> numbers) {
+        return NUMBERS_LENGTH != numbers.stream()
+                .distinct()
+                .count();
+    }
+
 }

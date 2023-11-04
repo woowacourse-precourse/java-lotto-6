@@ -1,10 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -126,5 +128,23 @@ class ApplicationTest extends NsTest {
             throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
         }
         return lottoQuantity;
+    }
+
+    @Test
+    @DisplayName("입력받은 n개의 로또를 생성한다.")
+    void createLottos() {
+        List<Lotto> lottos = createLottos(5);
+        assertThat(lottos.size()).isEqualTo(5);
+    }
+
+    @DisplayName("입력받은 n개의 로또를 생성하는 메서드")
+    private List<Lotto> createLottos(int lottoQuantity){
+        List<Lotto> lottos= new ArrayList<>();
+        for(int quantity = 1; quantity <= lottoQuantity ; quantity++){
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(lottoNumbers);
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }

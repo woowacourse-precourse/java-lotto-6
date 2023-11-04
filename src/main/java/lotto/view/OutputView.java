@@ -11,10 +11,12 @@ public class OutputView {
     }
 
     public void printRequestWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public void printRequestBonusNumber() {
+        System.out.println();
         System.out.println("보너스 볼을 입력해 주세요.");
     }
 

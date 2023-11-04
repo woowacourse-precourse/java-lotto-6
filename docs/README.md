@@ -8,8 +8,8 @@
     - [x] 가격이 나누어 떨어지는 지 판단하는 기능 - Store#validateDividedByPrice
 
 
-- [ ] 로또 추첨을 받는 기능 - BroadCastingStation#drawLotto
-    - 중복되지 않는 숫자 6개와 보너스 번호 1개여야 한다.
+- [x] 로또 추첨을 받는 기능 - BroadCastingStation#drawLotto
+    - 중복되지 않는 숫자 6개와 보너스 번호 1개여야 한다. - BroadCastingStation#validateDuplicate
 
 
 - [ ] 당첨 결과를 확인하는 기능 - Buyer#checkWinning

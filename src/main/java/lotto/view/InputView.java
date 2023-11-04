@@ -50,7 +50,7 @@ public class InputView {
         return new WinnerLotto(winnerNumbers, bonusNumber);
     }
 
-    private List<Integer> inputWinnerNumbers() {
+    public List<Integer> inputWinnerNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = getInput();
         validateBlank(input);
@@ -65,7 +65,7 @@ public class InputView {
         return winnerNumbers;
     }
 
-    private Integer inputBonusNumber() {
+    public Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = getInput();
         validateBlank(input);

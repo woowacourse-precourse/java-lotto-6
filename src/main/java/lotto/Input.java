@@ -16,9 +16,9 @@ public class Input {
         return Console.readLine();
     }
 
-    public static int bonusNumberInput() {
+    public static String bonusNumberInput() {
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 }

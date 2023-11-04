@@ -1,7 +1,6 @@
 package lotto.constant;
 
 public enum ErrorMessage {
-
     ERROR("[ERROR] "),
     ONLY_THOUSAND("1000원 단위로 입력하셔야 합니다."),
     INVALID_INPUT("1000원 이상의 값을 입력하셔야 합니다."),
@@ -18,6 +17,6 @@ public enum ErrorMessage {
 
     @Override
     public String toString() {
-        return message;
+        return (ERROR + message);
     }
 }

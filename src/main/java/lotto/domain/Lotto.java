@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.constant.ErrorMessage;
 import lotto.util.NumberValidator;
 
 public class Lotto {

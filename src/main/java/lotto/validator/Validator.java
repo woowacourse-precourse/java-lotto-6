@@ -53,7 +53,7 @@ public class Validator {
     private void checkRange(String lottoNumberInput) {
         int numberCount = (int) Arrays.stream(lottoNumberInput.split(","))
                 .mapToInt(Integer::parseInt)
-                .filter(number -> (number > 45 || number < 1))
+                .filter(number -> (number >= 1 && number <= 45))
                 .count();
         if (numberCount != 6) {
             throw new IllegalArgumentException("1~45 사이의 수를 입력해주세요.");

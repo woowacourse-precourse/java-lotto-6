@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import lotto.domain.WinningNumber;
 import lotto.message.ErrorMessage;
 import lotto.message.InputMessage;
 
@@ -10,7 +11,7 @@ public class InputView {
     public static int getPrice() {
         InputMessage.PRICE_PROMPT.print();
         String input = readLine();
-        if (!isNumbericValue(input)) {
+        if (!isNumericValue(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
         int price = Integer.parseInt(input);
@@ -20,7 +21,7 @@ public class InputView {
         return price;
     }
 
-    private static boolean isNumbericValue(String input) {
+    private static boolean isNumericValue(String input) {
         char[] data = input.toCharArray();
         int index = 0;
 
@@ -34,4 +35,13 @@ public class InputView {
         }
         return true;
     }
+
+    public static WinningNumber getWinningNumbers() {
+        InputMessage.WINNING_NUMBER_PROMPT.print();
+
+        String input = readLine();
+        return WinningNumber.fromString(input);
+    }
+
+
 }

@@ -8,11 +8,11 @@ import lotto.model.WinningStatistics;
 
 public class OutputView {
     public static final String LOTTO_TICKETS_COUNT_FORMAT = "%d개를 구매했습니다.";
-    public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
     public static final String WINNING_STATISTICS_TEMPLATE_HEADER = "당첨 통계\n---\n";
+    public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void printLottoTicketsCount(int count) {
-        System.out.println(String.format(LOTTO_TICKETS_COUNT_FORMAT, count));
+        System.out.printf((LOTTO_TICKETS_COUNT_FORMAT) + "%n", count);
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
@@ -33,7 +33,6 @@ public class OutputView {
             if (lottoPrize == LottoPrize.NOTHING) {
                 continue;
             }
-
             int count = 0;
             if (prizeCount.get(lottoPrize) != null) {
                 count = prizeCount.get(lottoPrize);
@@ -45,10 +44,6 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn));
-    }
-
-    public void printError(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+        System.out.printf((RATE_OF_RETURN_FORMAT) + "%n", rateOfReturn);
     }
 }

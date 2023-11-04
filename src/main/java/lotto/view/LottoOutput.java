@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class LottoOutput {
 
     public String requestAmountMessage() {
@@ -10,4 +12,7 @@ public class LottoOutput {
         return count + "개를 구매했습니다.";
     }
 
+    public String getLottoNumbersMessage(List<Integer> lottoNumbers) {
+        return lottoNumbers.toString();
+    }
 }

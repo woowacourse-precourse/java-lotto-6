@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningRank;
 
+import java.util.Comparator;
 import java.util.Map;
 
 public class Output {
@@ -55,6 +56,7 @@ public class Output {
     private void showWinningResult(Map<WinningRank, Integer> winningResult) {
         winningResult.entrySet()
                 .stream()
+                .sorted(Comparator.comparingInt(e -> -e.getKey().getRanking()))
                 .filter(entry -> !entry.getKey().equals(WinningRank.NONE))
                 .forEach(entry -> System.out.println(entry.getKey() + String.format(WINNING_RANK_COUNT_FORMAT, entry.getValue())));
     }

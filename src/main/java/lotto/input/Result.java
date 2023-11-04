@@ -5,6 +5,7 @@ import static lotto.input.constant.Constant.FIFTH_RESULT;
 import static lotto.input.constant.Constant.FIFTH_WINNING_PRICE;
 import static lotto.input.constant.Constant.FIRST_RESULT;
 import static lotto.input.constant.Constant.FIRST_WINNING_PRICE;
+import static lotto.input.constant.Constant.FOURTH_RESULT;
 import static lotto.input.constant.Constant.FOURTH_WINNING_PRICE;
 import static lotto.input.constant.Constant.LOTTO_PRICE;
 import static lotto.input.constant.Constant.LOTTO_RESULT;
@@ -39,7 +40,7 @@ public enum Result {
     public static void printResult(int lottoCount) {
         System.out.print(LOTTO_RESULT);
         System.out.println(FIFTH_RESULT + FIFTH.getValue() + COUNT);
-        System.out.println(SECONT_RESULT + FOURTH.getValue() + COUNT);
+        System.out.println(FOURTH_RESULT + FOURTH.getValue() + COUNT);
         System.out.println(THIRD_RESULT + THIRD.getValue() + COUNT);
         System.out.println(SECONT_RESULT + SECOND.getValue() + COUNT);
         System.out.println(FIRST_RESULT + FIRST.getValue() + COUNT);

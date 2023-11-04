@@ -14,6 +14,7 @@ public class InputView {
 
     public LottoCounter readPurchaseAmount() {
         String input = Console.readLine();
+        validator.validateIsNumber(input);
         return new LottoCounter(Integer.parseInt(input));
     }
 
@@ -28,6 +29,7 @@ public class InputView {
 
     public BonusNumber readBonusNumber() {
         String input = Console.readLine();
+        validator.validateIsNumber(input);
         return new BonusNumber(Integer.parseInt(input));
     }
 }

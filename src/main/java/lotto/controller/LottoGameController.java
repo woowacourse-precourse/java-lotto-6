@@ -15,13 +15,13 @@ public class LottoGameController {
     }
 
     public void run() {
-        Customer customer = buyLottos();
+        Customer customer = createCustomerAndBuyLottos();
 
         Target target = createTargetNumbersAndBonusNumber();
 
     }
 
-    private Customer buyLottos() {
+    private Customer createCustomerAndBuyLottos() {
         System.out.println(GuideMessage.GET_PAYMENT_REQUEST_MESSAGE);
         int payment = inputHandler.getPayment();
 

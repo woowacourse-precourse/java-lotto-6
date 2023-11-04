@@ -60,6 +60,14 @@ public class Lotto {
         return number < 1 || number > 45;
     }
 
+    public boolean isOverlapping(int bonusNumber) {
+        return this.numbers.stream().anyMatch(number -> isSame(bonusNumber, number));
+    }
+
+    private boolean isSame(int bonusNumber, Integer number) {
+        return bonusNumber == number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

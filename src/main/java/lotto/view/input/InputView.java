@@ -4,26 +4,26 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.List;
 import lotto.validation.BonusNumberValidator;
-import lotto.validation.PriceValidator;
+import lotto.validation.PurchasePriceValidator;
 import lotto.validation.WinnerNumberValidator;
 
 public class InputView {
-    private PriceValidator priceValidator;
+    private PurchasePriceValidator purchasePriceValidator;
     private WinnerNumberValidator winnerNumberValidator;
     private BonusNumberValidator bonusNumberValidator;
 
-    public InputView(PriceValidator priceValidator,
+    public InputView(PurchasePriceValidator purchasePriceValidator,
                      WinnerNumberValidator winnerNumberValidator,
                      BonusNumberValidator bonusNumberValidator) {
-        this.priceValidator = priceValidator;
+        this.purchasePriceValidator = purchasePriceValidator;
         this.winnerNumberValidator = winnerNumberValidator;
         this.bonusNumberValidator = bonusNumberValidator;
     }
 
 
-    public int inputPrice() {
+    public int inputPurchasePrice() {
         String inputPrice = readLine();
-        return priceValidate(inputPrice);
+        return purchasePriceValidate(inputPrice);
     }
 
     public List<Integer> inputWinnerNumber() {
@@ -36,9 +36,9 @@ public class InputView {
         return bonusNumberValidate(inputBonusNumber);
     }
 
-    private int priceValidate(String inputPrice) {
-        priceValidator.isNullOrEmpty(inputPrice);
-        return priceValidator.isInteger(inputPrice);
+    private int purchasePriceValidate(String inputPrice) {
+        purchasePriceValidator.isNullOrEmpty(inputPrice);
+        return purchasePriceValidator.isInteger(inputPrice);
     }
 
     private List<Integer> winnerNumberValidate(String inputWinnerNumber) {

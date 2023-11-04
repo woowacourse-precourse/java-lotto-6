@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_BONUS_NUMBER;
-import static lotto.constant.PrintOutMessage.PLZ_INPUT_PRICE;
+import static lotto.constant.PrintOutMessage.PLZ_INPUT_PURCHASE_PRICE;
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_WINNER_NUMBER;
 import static lotto.constant.PrintOutMessage.PRINT_EARNING_PERCENT;
 import static lotto.constant.PrintOutMessage.PRINT_LOTTO_COUNT;
@@ -12,8 +12,8 @@ import lotto.constant.PrintOutMessage;
 import lotto.model.Lotto;
 
 public class OutputView {
-    public void printInputPrice() {
-        System.out.println(PLZ_INPUT_PRICE.message);
+    public void printInputPurchasePrice() {
+        System.out.println(PLZ_INPUT_PURCHASE_PRICE.message);
     }
 
     public void printLottoCount(int count) {
@@ -44,8 +44,8 @@ public class OutputView {
         System.out.println(PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(6, 0) + "개");
     }
 
-    public void printEarningPercent(int earningMoney, int price) {
-        double earningPercent = Math.round((double) earningMoney / price * 100 * 100) / 100.0;
+    public void printEarningPercent(int earningMoney, int purchasePrice) {
+        double earningPercent = Math.round((double) earningMoney / purchasePrice * 100 * 100) / 100.0;
         System.out.println(PRINT_EARNING_PERCENT.message + earningPercent + "%입니다.");
     }
 }

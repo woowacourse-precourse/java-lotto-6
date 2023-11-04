@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.Price;
 import lotto.model.PrizeMoney;
+import lotto.model.PurchasePrice;
 import lotto.model.Statistics;
 import lotto.model.WinnerNumber;
 import lotto.view.input.InputView;
@@ -26,13 +26,13 @@ public class LottoGameController {
 
     public void start() {
         // 로또 구입
-        outputView.printInputPrice();
-        Price price = new Price(inputView.inputPrice());
-        outputView.printLottoCount(price.getCount());
+        outputView.printInputPurchasePrice();
+        PurchasePrice purchasePrice = new PurchasePrice(inputView.inputPurchasePrice());
+        outputView.printLottoCount(purchasePrice.getCount());
 
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < price.getCount(); i++) {
+        for (int i = 0; i < purchasePrice.getCount(); i++) {
             Lotto lotto = new Lotto(createLottoNumbers());
             outputView.printLottoNumber(lotto);
             lottos.add(lotto);
@@ -47,7 +47,6 @@ public class LottoGameController {
         BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
 
         //로또 통계
-
         Map<Integer, Integer> matchingCount = new HashMap<>();
         List<Statistics> result = new ArrayList<>();
         PrizeMoney prizeMoney = new PrizeMoney();
@@ -77,7 +76,7 @@ public class LottoGameController {
 
         outputView.printWinningStatistics();
         outputView.printMatchingCount(matchingCount);
-        outputView.printEarningPercent(earningMoney, price.getPrice());
+        outputView.printEarningPercent(earningMoney, purchasePrice.getPurchasePrice());
     }
 
     private boolean isMatchingBonusNumber(List<Integer> lotto, int bonusNumber) {

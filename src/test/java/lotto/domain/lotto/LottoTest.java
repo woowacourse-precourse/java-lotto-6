@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.stream.Stream;
+import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

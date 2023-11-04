@@ -9,7 +9,7 @@ public class Calculator {
     }
 
     private static double calculateProfit(int initialInvestment, int finalValue) {
-        return ((double) (finalValue - initialInvestment) / initialInvestment) * 100.0;
+        return ((double) (finalValue) / initialInvestment) * 100.0;
     }
 
     public static double roundToTwoDecimalPlaces(double number) {

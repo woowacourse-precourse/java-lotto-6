@@ -76,7 +76,7 @@ public class LottoHandler {
         for (LottoInfo lottoInfo : LottoInfo.values()) {
             if (amount == lottoInfo.getWinningAmount()) {
                 int index = lottoInfo.getIndex();
-                winningNumber.set(index, winList.get(index) + 1);
+                winList.set(index, winList.get(index) + 1);
             }
         }
     }

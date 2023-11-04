@@ -33,7 +33,8 @@ public class Shop {
     public PaperBag giveLottoes() {
         List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < purchaseNumber; i++) {
-            lottoes.add(LottoGenerator.generateLotto(6));
+            Lotto lotto = LottoGenerator.generateLotto();
+            lottoes.add(lotto);
         }
         return PaperBag.of(lottoes);
     }

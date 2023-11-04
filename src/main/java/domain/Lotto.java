@@ -24,8 +24,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    // 중복 확인 기능
     public boolean containsNumber(Integer number) {
         return numbers.contains(number);
     }

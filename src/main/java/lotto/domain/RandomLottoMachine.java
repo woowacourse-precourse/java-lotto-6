@@ -14,23 +14,23 @@ public class RandomLottoMachine {
     private int purchasedLottoCount;
 
     public RandomLottoMachine(int purchasedLotto) {
-        purchasedLottoCount = purchasedLotto/1000;
+        purchasedLottoCount = purchasedLotto / 1000;
     }
 
-    public List<Lotto> getRandomLottoList(){
-        List<Integer> randomNumberForSort;
+    public List<Lotto> getRandomLottoList() {
         List<Lotto> randomNumbers = new ArrayList<>();
 
-        for(int i = 0; i<purchasedLottoCount; i++){
-            randomNumberForSort =
+        for (int i = 0; i < purchasedLottoCount; i++) {
+            List<Integer> randomNumberForSort =
                     Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(randomNumberForSort);
 
-            Lotto lotto =
-                    new Lotto((randomNumberForSort));
-            randomNumbers.add(lotto);
+            randomNumbers.add(new Lotto(randomNumberForSort));
         }
         return randomNumbers;
     }
 
+    public int getPurchasedLottoCount() {
+        return purchasedLottoCount;
+    }
 }

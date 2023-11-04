@@ -11,7 +11,7 @@ public class Money {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public int getPurchaseAmount(){
+    public int getPurchaseAmount() {
         return purchaseAmount;
     }
 

@@ -14,11 +14,11 @@ public class MainLottoController {
     Money money;
 
     public void startLotto() {
-        makeRandomLotto(inPutMoney());
+        RandomLotto randomLotto = makeRandomLotto(inPutMoney()); //분리해야될듯 money가 갹체가 되어야하
+        sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
-        //랜덤 로또 생성
-            //랜덤 로또 생성
-            //중간 로또 출력
+        ///////
+
         //로또 입력받기
         //결과 출력
 
@@ -33,15 +33,22 @@ public class MainLottoController {
         }
     }
 
-    private void makeRandomLotto(Money money){
+    private RandomLotto makeRandomLotto(Money money) {
         int purchasedLottoCount = money.getPurchaseAmount();
-
-        RandomLottoMachine randomLottoMachine =
+        RandomLottoMachine randomLottoMachine = //얘가 정적이 되어야하네...
                 new RandomLottoMachine(purchasedLottoCount);
-
-        randomLottoMachine.getRandomLottoList();
-
-
-
+        try {
+            return new RandomLotto(randomLottoMachine.getRandomLottoList());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[Error]");
+        }
     }
+
+    private void sendRandomLottoDataToView(List<Lotto> lottos) { //RandomLotto lottos?
+        Output.printPurchasedLottoCount(lottos.size());
+        for (Lotto lotto : lottos) {
+            Output.printPurchasedLottoList(lotto.getNumbers());
+        }
+    }
+
 }

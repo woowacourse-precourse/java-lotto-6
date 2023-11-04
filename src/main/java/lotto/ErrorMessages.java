@@ -2,7 +2,8 @@ package lotto;
 
 public enum ErrorMessages {
     ERROR_NOT_NUMBER("[ERROR] 양의 정수를 입력해 주세요"),
-    ERROR_NOT_MULTIPLE_OF_THOUSAND("[ERROR] 1000의 배수를 입력해 주세요.");
+    ERROR_NOT_MULTIPLE_OF_THOUSAND("[ERROR] " + LottoCost.UNIT + "~" + Integer.MAX_VALUE + " 사이의 " + LottoCost.UNIT
+            + "의 배수를 입력해 주세요.");
 
     private final String message;
 

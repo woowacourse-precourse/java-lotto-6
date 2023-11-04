@@ -4,10 +4,10 @@ import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_ERROR;
 import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.input.Validator.InputValidate;
+import lotto.input.Validator.AmountInputValidate;
 
 public class PurchaseAmountInput {
-    private final InputValidate inputValidate = new InputValidate();
+    private final AmountInputValidate inputValidate = new AmountInputValidate();
 
     public Integer userAmountInput() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);

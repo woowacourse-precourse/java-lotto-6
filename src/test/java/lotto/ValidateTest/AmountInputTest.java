@@ -3,12 +3,12 @@ package lotto.ValidateTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.input.Validator.InputValidate;
+import lotto.input.Validator.AmountInputValidate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class AmountInputTest {
-    InputValidate inputValidate = new InputValidate();
+    AmountInputValidate inputValidate = new AmountInputValidate();
 
     @DisplayName("금액 입력 테스트 : 숫자 변환 실패")
     @Test

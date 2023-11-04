@@ -2,7 +2,7 @@ package lotto.input.Validator;
 
 import static lotto.input.constant.Constant.LOTTO_PRICE;
 
-public class InputValidate {
+public class AmountInputValidate {
 
     public Long valueValidate(String value) {
         Long amount = isNumber(value);

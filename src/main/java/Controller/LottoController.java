@@ -17,14 +17,23 @@ public class LottoController {
     private List<Lotto> myLottoNumbers;
     private Lotto winningLottoNumbers;
     private BonusNumber winningBonusNumber;
-    private List<Integer> matchingCounts;
-    private double rateOfReturn;
+
+    public LottoController() {}
+
+    public LottoController(Integer lottoAmount,
+                           List<Lotto> myLottoNumbers,
+                           Lotto winningLottoNumbers,
+                           BonusNumber winningBonusNumber) {
+        this.lottoAmount = lottoAmount;
+        this.myLottoNumbers = myLottoNumbers;
+        this.winningLottoNumbers = winningLottoNumbers;
+        this.winningBonusNumber = winningBonusNumber;
+    }
 
     public void playLottoGame() {
         buyMyLotto();
         assignLotto();
-        calculateGameResult();
-        printGameResult();
+        showGameResult();
     }
 
     public void buyMyLotto() {
@@ -38,12 +47,13 @@ public class LottoController {
         assignBonusNumber();
     }
 
-    public void calculateGameResult() {
-        calculateMatchingNumbers();
-        calculateRateOfReturn();
-    }
+    public void showGameResult() {
+        List<Integer> matchingCounts;
+        double rateOfReturn;
 
-    public void printGameResult() {
+        matchingCounts = calculateMatchingNumbers();
+        rateOfReturn = calculateRateOfReturn(matchingCounts);
+
         OutputView.printWinningDetails(matchingCounts);
         OutputView.printRateOfReturn(rateOfReturn);
     }
@@ -104,8 +114,8 @@ public class LottoController {
         }
     }
 
-    public void calculateMatchingNumbers() {
-        matchingCounts = new ArrayList<>(Collections.nCopies(5, 0));
+    public List<Integer> calculateMatchingNumbers() {
+        List<Integer> matchingCounts = new ArrayList<>(Collections.nCopies(5, 0));
 
         for (int i = 0; i < lottoAmount; i++) {
             Lotto myLotto = myLottoNumbers.get(i);
@@ -116,6 +126,8 @@ public class LottoController {
             int newValue = matchingCounts.get(index) + 1;
             matchingCounts.set(index, newValue);
         }
+
+        return matchingCounts;
     }
 
     public int findIndexWithValue(int number, Lotto lotto) {
@@ -128,9 +140,9 @@ public class LottoController {
         return indexes.get(index);
     }
 
-    public void calculateRateOfReturn() {
+    public double calculateRateOfReturn(List<Integer> matchingCounts) {
         long prize = calculatePrize(matchingCounts);
-        rateOfReturn = ((double) prize / (lottoAmount * 1000)) * 100;
+        return ((double) prize / (lottoAmount * 1000)) * 100;
     }
 
     public long calculatePrize(List<Integer> matchingCounts) {

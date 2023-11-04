@@ -51,8 +51,17 @@ public class Application {
     }
 
     private static void setBonusNumber() {
-        bonusNumber = InputView.askBonusNumber(winningLotto);
-        System.out.println();
+        while (true) {
+            try {
+                bonusNumber = InputView.askBonusNumber();
+                Validation.isInRange(bonusNumber);
+                Validation.isDuplicate(winningLotto, bonusNumber);
+                System.out.println();
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static void setRate() {

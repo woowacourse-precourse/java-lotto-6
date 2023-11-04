@@ -86,6 +86,7 @@ public class Validation {
      * 숫자가 유효 범위 내에 속하는지 검사한다.
      *
      * @param number : 범위를 검사할 숫자
+     * @throws IllegalArgumentException : 1 ~ 45 범위 밖의 숫자
      */
     public static void isInRange(int number) {
         if (number < MIN || number > MAX) {
@@ -128,6 +129,19 @@ public class Validation {
         int unit = Config.LOTTO_PRICE;
         if (number <= 0 || number % unit != 0) {
             throw new IllegalArgumentException("[ERROR] " + unit + "단위로 입력해야 합니다.");
+        }
+    }
+
+    /**
+     * 번호가 로또와 중복되는지 검사하는 함수
+     *
+     * @param lotto : 로또
+     * @param number : 번호
+     * @throws IllegalArgumentException : 번호 중복
+     */
+    public static void isDuplicate(Lotto lotto, int number) throws IllegalArgumentException {
+        if (lotto.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
 }

@@ -18,7 +18,7 @@ public class NumberConstant {
     // MatchResult
     public static final int MIN_WIN_COUNT = 3;
     public static final int MAX_WIN_COUNT = 6;
-    public static final int COUNT_IDX_OFFSET = 2;
+    public static final int COUNT_IDX_OFFSET = 1;
     public static final int BONUS_MATCH_COUNT = 5;
 
     // SERVICE

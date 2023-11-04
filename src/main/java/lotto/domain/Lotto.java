@@ -61,23 +61,18 @@ public class Lotto {
         List<Integer> randomNumbers = randomLotto.getNumbers();
         List<Integer> winNumbers = winLotto.getNumbers();
 
-        if (bonusMatch(randomNumbers, winNumbers, bonusNum))
-            return MatchResult.BONUS;
-
         int matchCount = (int) randomNumbers.stream()
                 .filter(winNumbers::contains)
                 .count();
 
+        if (matchCount == BONUS_MATCH_COUNT && isBonusMatch(randomNumbers, bonusNum)) {
+            return MatchResult.BONUS;
+        }
+
         return MatchResult.fromCount(matchCount);
     }
 
-    private static boolean bonusMatch(List<Integer> randomNumbers, List<Integer> winNumbers, int bonusNum) {
-        if (randomNumbers.contains(bonusNum)) {
-            return randomNumbers.stream()
-                    .filter(winNumbers::contains)
-                    .count() == BONUS_MATCH_COUNT;
-        }
-
-        return false;
+    private static boolean isBonusMatch(List<Integer> randomNumbers, int bonusNum) {
+        return randomNumbers.contains(bonusNum);
     }
 }

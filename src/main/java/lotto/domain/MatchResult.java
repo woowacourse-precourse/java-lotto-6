@@ -4,10 +4,10 @@ import static lotto.domain.constant.NumberConstant.*;
 
 public enum MatchResult {
     NONE(NONE_PRIZE_MONEY),
+    BONUS(BONUS_PRIZE_MONEY),
     THREE(THREE_PRIZE_MONEY),
     FOUR(FOUR_PRIZE_MONEY),
     FIVE(FIVE_PRIZE_MONEY),
-    BONUS(BONUS_PRIZE_MONEY),
     SIX(SIX_PRIZE_MONEY);
 
     private final long prizeMoney;

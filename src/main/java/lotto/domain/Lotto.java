@@ -5,6 +5,7 @@ import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 
 public class Lotto {
+    private static final int LOTTO_NUMBERS_LENGTH = 6;
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,12 +16,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateLength(numbers);
+        validateDuplication(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.LOTTO_NUMBERS_LENGTH_ERROR.getFormattedMessage(LOTTO_NUMBERS_LENGTH));
         }
     }
 
-    private void hasDuplicateNumbers(List<Integer> numbers) {
+    private void validateDuplication(List<Integer> numbers) {
         long uniqueNumbersLength = numbers.stream()
                 .distinct()
                 .count();

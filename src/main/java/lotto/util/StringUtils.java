@@ -12,4 +12,8 @@ public class StringUtils {
         List<String> splitNumbers = Arrays.stream(numbers).map(String::trim).collect(toList());
         return splitNumbers;
     }
+
+    public static int StringToInt(String number) {
+        return Integer.parseInt(number.replaceAll(",", ""));
+    }
 }

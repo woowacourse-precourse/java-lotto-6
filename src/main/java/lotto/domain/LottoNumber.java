@@ -40,7 +40,15 @@ class LottoNumber {
     }
 
     private static boolean isOutOfRange(Integer number) {
-        return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
+        return isOutOfMinRange(number) || isOutOfMaxRange(number);
+    }
+
+    private static boolean isOutOfMinRange(Integer number) {
+        return number < MIN_NUMBER_RANGE;
+    }
+
+    private static boolean isOutOfMaxRange(Integer number) {
+        return number > MAX_NUMBER_RANGE;
     }
 
     @Override

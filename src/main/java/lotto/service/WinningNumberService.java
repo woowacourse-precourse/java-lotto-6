@@ -16,9 +16,9 @@ import lotto.view.OutputView;
 public class WinningNumberService {
     private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
     private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
     private final ValidationUtil validationUtil =new ValidationUtil();
     private final LottoResultCount lottoResultCount = new LottoResultCount();
+
     public void getInputWinningNumber(){
         String number = inputView.getInputWithMessage(InputMessage.INPUT_NUMBER.getMessage());
         List<Integer> winning = validationUtil.validateWinningNumber(number);
@@ -33,7 +33,7 @@ public class WinningNumberService {
             int matchCount = getMatchCount(LottoNums);
             addMatchCount(checkBonusNumber(LottoNums, matchCount));
         }
-        outputView.outputWinningResult();
+        ResultService resultService = new ResultService(lottoResultCount, lottoPurchase.getAmount());
     }
 
     private int getMatchCount(List<Integer> userNums) {

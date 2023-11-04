@@ -5,6 +5,7 @@ import lotto.model.Winning;
 
 import java.util.*;
 
+import static java.time.chrono.JapaneseEra.values;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.checkDuplicate;
@@ -47,6 +48,18 @@ public class Play {
         Winning winning = new Winning(winningNumbers, bonus);
         messageAboutWinningStatistic();
 
+        for (Lotto lotto : lottery) {
+            int resultCount = compareLottoAndWinning(lotto.getLotto(), winningNumbers);
+            Rank resultRank = findRank(resultCount);
+            if (resultRank == null) {
+                continue;
+            }
+            if (resultRank.getCorrectNum() == 5) {
+                resultRank = checkIfSecondOrThird(lotto, bonus);
+            }
+            result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
+        }
+
     }
 
     public static Lotto makeLottery() {
@@ -75,5 +88,23 @@ public class Play {
         Set<Integer> uniqueLotto = new HashSet<>(lotto);
         return uniqueLotto.contains(bonus);
     }
+
+    public static Rank findRank(int resultCount) {
+        Rank rank = getRank(resultCount);
+        if (rank != null) {
+            return rank;
+        }
+        return null;
+    }
+
+    //TODO : getLotto 이름 바꾸기
+    public static Rank checkIfSecondOrThird(Lotto lotto, int bonus) {
+        if (compareLottoAndBonus(lotto.getLotto(), bonus)) {
+            return Rank.SECOND;
+        }
+        return Rank.THIRD;
+    }
+
+
 
 }

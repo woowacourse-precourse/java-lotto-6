@@ -26,4 +26,16 @@ public enum WinningStatistics {
                 .findFirst()
                 .orElse(MISS);
     }
+
+    public boolean hasBonusCount() {
+        return matchBonusCount > 0;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
+    }
 }

@@ -25,9 +25,21 @@ public class RootValidatorTest {
         String target = "1,2 ,3,4,5,6";
 
         assertThatThrownBy(()->{
-            RootValidator.valueContainsSpace(target);
-        }
-            ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorProperty.VALUE_CONTATIN_SPACE.toString());
+                RootValidator.valueContainsSpace(target);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorProperty.VALUE_CONTATIN_SPACE.toString());
+    }
+
+    @Test
+    void 사용자_입력_값_숫자_아닌경우_검증_로직_테스트(){
+        //given
+        String target = "일이삼사오육칠";
+
+        assertThatThrownBy(()->{
+                RootValidator.valueIsNumeric(target);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorProperty.VALUE_IS_NOT_NUMERIC.toString());
     }
 }

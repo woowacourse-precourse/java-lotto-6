@@ -18,4 +18,10 @@ public abstract class RootValidator {
             throw new IllegalArgumentException(VALUE_CONTATIN_SPACE.toString());
         }
     }
+
+    public static void valueIsNumeric(String value){
+        if (!value.matches("[1-9]")){
+            throw new IllegalArgumentException(VALUE_IS_NOT_NUMERIC.toString());
+        }
+    }
 }

@@ -19,11 +19,11 @@ public class Amount {
         }
     }
 
-    private boolean isDivideByThousand(Integer value) {
+    private boolean isDivideByThousand(final Integer value) {
         return value % THOUSAND != ZERO;
     }
 
-    public Integer toValue() {
-        return value;
+    public Integer divideByThousand() {
+        return value / THOUSAND;
     }
 }

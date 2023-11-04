@@ -7,11 +7,12 @@ import lotto.io.InputValidator;
 import lotto.io.InputView;
 import lotto.io.OutputFommatter;
 import lotto.io.OutputView;
+import lotto.service.LottoService;
 
 public class ComponentFactory {
 
     public LottoController lottoController() {
-        return new LottoController(outputView(), inputManager());
+        return new LottoController(outputView(), inputManager(), lottoService());
     }
 
     private OutputView outputView() {
@@ -36,5 +37,9 @@ public class ComponentFactory {
 
     private InputValidator inputValidator() {
         return new InputValidator();
+    }
+
+    private LottoService lottoService() {
+        return new LottoService();
     }
 }

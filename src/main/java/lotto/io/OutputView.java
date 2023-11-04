@@ -1,7 +1,7 @@
 package lotto.io;
 
 import lotto.constant.ProcessMessage;
-import lotto.domain.Amount;
+import lotto.domain.Ticket;
 
 public class OutputView {
 
@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(ProcessMessage.PURCHASE_AMOUNT_REQUSET.toValue());
     }
 
-    public void printNumberOfTicket(final Amount amount) {
-        System.out.println(ProcessMessage.NEW_LINE.toValue() + outputFommatter.toNumberOfTicket(amount));
+    public void printNumberOfTicket(final Ticket ticket) {
+        System.out.println(ProcessMessage.NEW_LINE.toValue() + outputFommatter.toNumberOfTicket(ticket));
     }
 }

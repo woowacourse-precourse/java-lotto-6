@@ -1,9 +1,11 @@
 package lotto;
 
+import static lotto.message.LottoGameAnnouncement.ASK_BONUS_NUMBER;
 import static lotto.message.LottoGameAnnouncement.ASK_PURCHASE_MONEY;
-import static lotto.message.LottoGameAnnouncement.ASK_WIN_NUMBER;
+import static lotto.message.LottoGameAnnouncement.ASK_WIN_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.message.BonusNumber;
 import lotto.message.LottoGameAnnouncement;
 
 public class LottoGameReader {
@@ -21,8 +23,19 @@ public class LottoGameReader {
     public static Lotto getWinNumberFromConsole() {
         while (true) {
             try {
-                String input = readFromConsole(ASK_WIN_NUMBER);
+                String input = readFromConsole(ASK_WIN_NUMBERS);
                 return new Lotto(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static BonusNumber getBonusNumberFromConsole() {
+        while (true) {
+            try {
+                String input = readFromConsole(ASK_BONUS_NUMBER);
+                return new BonusNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

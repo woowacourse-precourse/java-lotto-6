@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Lotto.LOTTO_END_NUMBER;
 import static lotto.Lotto.LOTTO_NUMBER_SIZE;
 import static lotto.Lotto.LOTTO_START_NUMBER;
+import static lotto.LottoGameReader.getBonusNumberFromConsole;
 import static lotto.LottoGameReader.getMoneyFromConsole;
 import static lotto.LottoGameReader.getWinNumberFromConsole;
 import static lotto.message.LottoGameAnnouncement.COUNT_OF_LOTTO;
@@ -11,6 +12,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.message.BonusNumber;
 import org.assertj.core.util.VisibleForTesting;
 
 public class LottoGame {
@@ -19,6 +21,7 @@ public class LottoGame {
         LottoMoney money = getMoneyFromConsole();
         List<Lotto> lottoNumbers = getLottoNumbers(money.getCountForBuyingLotto());
         Lotto winNumber = getWinNumberFromConsole();
+        BonusNumber bonusNumber = getBonusNumberFromConsole();
     }
 
     private static List<Lotto> getLottoNumbers(int countForBuyingLotto) {

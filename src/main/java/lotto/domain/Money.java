@@ -12,6 +12,10 @@ public class Money {
         System.out.println(purchaseAmount);
     }
 
+    public int getPurchaseAmount(){
+        return purchaseAmount;
+    }
+
     public static void validate(int money) {
         if (money < MIN_AMOUNT) {
             throw new IllegalArgumentException(MIN_AMOUNT + "보다 큰 값을 입력해 주세요.");

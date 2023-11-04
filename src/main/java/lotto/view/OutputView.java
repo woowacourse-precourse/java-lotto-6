@@ -9,8 +9,12 @@ public class OutputView {
         System.out.printf((LOTTO_BUYED.getMessage()), lottoListNumber);
         lottoListString.forEach(System.out::println);
     }
+
     public void printWinningList(String winningList) {
         System.out.printf(winningList);
     }
 
+    public void printProfitRate(String profitRate) {
+        System.out.println(profitRate);
+    }
 }

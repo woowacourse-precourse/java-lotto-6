@@ -10,7 +10,7 @@ public class ProfitCalculator {
         this.winningLottoCounts = winningLottoCounts;
     }
 
-    public double getLottoProfit(int money) {
+    public double calculateProfit(int money) {
         int sum = 0;
         sum += winningLottoCounts.get(Constants.FIRST_RANK) * Rank.FIRST.getPrize();
         sum += winningLottoCounts.get(Constants.SECOND_RANK) * Rank.SECOND.getPrize();

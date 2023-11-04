@@ -17,25 +17,56 @@ public class LottoController {
     }
 
     public void start() {
+        int money = getUserAmount();
+        int lottoQuantity = getLottoQuantity(money);
+
+        List<Lotto> myLottos = buyLottos(lottoQuantity);
+        List<Integer> winningNumbers = generateWinningNumbers();
+        int bonusNumber = generateBonusNumber();
+
+        List<Integer> winningLottoCounts = getWinningLottosCount(myLottos, winningNumbers, bonusNumber);
+        double profit = getLottoProfit(winningLottoCounts, money);
+
+        output.printResult(winningLottoCounts, profit);
+    }
+
+    private int getUserAmount() {
         output.printInputPurchaseAmountMessage();
-        int money = input.getUserAmount();
+        return input.getUserAmount();
+    }
+
+    private int getLottoQuantity(int money) {
         int lottoQuantity = money / Constants.LOTTO_PRICE;
         output.printPurchaseQuantity(lottoQuantity);
+        return lottoQuantity;
+    }
 
+    private List<Lotto> buyLottos(int lottoQuantity) {
         Lottos lottos = new Lottos(lottoQuantity);
         List<Lotto> myLottos = lottos.getMyLottos();
         output.printMyLottos(myLottos);
+        return myLottos;
+    }
 
+    private List<Integer> generateWinningNumbers() {
         output.printInputWinningNumbersMessage();
-        List<Integer> winningNumbers = input.getWinningNumbers();
-        output.printInputBonusNumberMessage();
-        int bonusNumber = input.getBonusNumber();
+        return input.getWinningNumbers();
+    }
 
+    private int generateBonusNumber() {
+        output.printInputBonusNumberMessage();
+        return input.getBonusNumber();
+    }
+
+    private List<Integer> getWinningLottosCount(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
         WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
-        List<Integer> winningLottoCounts = winningChecker.countWinningLottos();
+        return winningChecker.countWinningLottos();
+    }
+
+    private double getLottoProfit(List<Integer> winningLottoCounts, int money) {
         ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
-        double profit = profitCalculator.getLottoProfit(money);
+        double profit = profitCalculator.calculateProfit(money);
         System.out.println(profit);
-        output.printResult(winningLottoCounts, profit);
+        return profit;
     }
 }

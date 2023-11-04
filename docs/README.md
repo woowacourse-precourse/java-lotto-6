@@ -2,47 +2,25 @@
 
 ## 📊 FlowChart - java-lotto-6 Mission
 
-[//]: # (```mermaid)
-
-[//]: # (flowchart TD)
-
-[//]: # (    A&#40;[Start]&#41; --> B[Game Phrase] )
-
-[//]: # (    B --->|경주할 자동차 이름을 입력하세요.이름은 쉼표 기준으로 구분|C[Car Name Input])
-
-[//]: # (    C --> D{Is it correct?})
-
-[//]: # (    D --YES-->N[TryNumber Phrase])
-
-[//]: # (    N -->|시도할 회수는 몇회인가요?|E[TryNumber Input : TN])
-
-[//]: # (    E --> F{Is is correct?})
-
-[//]: # (    F -- YES ----> G[Result Print : CNT=0])
-
-[//]: # (    G -->|각 자동차 무작위 값 생성|H[Generate RandomNumber : RN])
-
-[//]: # (    H --> I{RN >= 4})
-
-[//]: # (    I --YES --> J[Move Car])
-
-[//]: # (    I --No --> K[Stop Car])
-
-[//]: # (    J --> L{CNT == TN})
-
-[//]: # (    K --> L)
-
-[//]: # (    L --YES -->M[Winner Print])
-
-[//]: # (    L --No -->H)
-
-[//]: # (    M --End--> Z)
-
-[//]: # (    F --> No -----> Z[GAME OVER])
-
-[//]: # (    D -- No -----> Z[GAME OVER])
-
-[//]: # (```)
+```mermaid
+flowchart TD
+    A([Start]) --> B[Purchase Amount Input Phrase]
+    B --->|구입금액을 입력해 주세요.|C[purchase amount Input]
+    C --> D{Is it correct?}
+    D -- No:Re-Input -----> C
+    D --YES-->N[Lotto Counts & Numbers Output]
+    N -->E[Winning Numbers Input Phrase]
+    E -->|당첨 번호를 입력해 주세요.| F{Is is correct?}
+    F -- YES ----> G[Winning Numbers Output]
+    F -- No:Re-Input -----> E
+    G --> H[Bonus Number Input Phrase]
+    H -->|보너스 번호를 입력해 주세요.| I{Is is correct?}
+    I -- YES ----> J[Bonus Number Output]
+    I -- No:Re-Input -----> G
+    J -->|로또 번호와 당첨번호 + 보너스 번호 비교| K[Winning Statistics]
+    K -->L[winning statistics output]
+    L --> Z[Game Over]
+```
 
 ## 🧑‍💼기능 명세서
 
@@ -175,5 +153,5 @@
 
 [✅] - docs: 기능 명세서 작성
 
-[ ] - docs: flowchart 그리기
+[✅] - docs: flowchart 그리기
 

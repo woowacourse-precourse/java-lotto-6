@@ -18,36 +18,16 @@ public enum Rank {
         this.prize = prize;
     }
 
-    private int getMatch() {
-        return match;
-    }
-
-    private boolean isBonus() {
-        return bonus;
-    }
-
     public int getPrize() {
         return prize;
     }
 
     public static Rank getRank(int match, boolean bonus) {
-        if (match == 6) {
-            return Rank.FIRST;
+        for (Rank rank : values()) {
+            if (rank.match == match && rank.bonus == bonus) {
+                return rank;
+            }
         }
-        if (match == 5 && bonus) {
-            return Rank.SECOND;
-        }
-        if (match == 5) {
-            return Rank.THIRD;
-        }
-        if (match == 4) {
-            return Rank.FOURTH;
-        }
-
-        if (match == 3) {
-            return Rank.FIFTH;
-        }
-
-        return Rank.NONE;
+        return NONE;
     }
 }

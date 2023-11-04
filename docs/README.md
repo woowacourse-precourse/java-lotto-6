@@ -15,8 +15,7 @@
 - [x] 당첨 결과를 확인하는 기능 - Calculator#checkWinning
 
 
-- [ ] 수익률을 계산하는 기능 - Calculator#returnRate
-    - 소수점 둘째 자리에서 반올림 되어야 한다.
+- [x] 수익률을 계산하는 기능 - Calculator#returnRate
 
 
 - [x] 로또 번호가 6개 인지 판단하는 기능 - Lotto#validateSixNumbers
@@ -33,3 +32,4 @@
 - [ ] 보너스 번호를 입력받는다. - UI#inputBonusNumber
 - [ ] 당첨 통계를 보여준다. - UI#printWinningStats
 - [ ] 수익률을 보여준다. - UI#printReturnRates
+    - 소수점 둘째 자리에서 반올림 되어야 한다.

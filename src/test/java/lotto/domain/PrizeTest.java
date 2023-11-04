@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PrizeTest {
-
     @Test
     @DisplayName("일치하는 번호가 없을 때 NONE 반환")
     void returnNoneForNoMatches() {

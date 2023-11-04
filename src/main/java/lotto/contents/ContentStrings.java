@@ -13,7 +13,6 @@ public enum ContentStrings {
     OUTPUT_RATE_PREFIX("총 수익률은 "),
     OUTPUT_RATE_SUFFIX("%입니다.");
 
-
     private final String value;
 
     ContentStrings(String value) {
@@ -23,5 +22,4 @@ public enum ContentStrings {
     public String getValue() {
         return value;
     }
-
 }

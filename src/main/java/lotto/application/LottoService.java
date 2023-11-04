@@ -16,7 +16,6 @@ import lotto.dto.LottoDto;
 import lotto.dto.WinningNumbersDto;
 
 public class LottoService {
-
     private final LottoMachine lottoMachine;
     private final List<Lotto> lottos;
     private LottoResult lottoResult;

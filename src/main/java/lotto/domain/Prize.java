@@ -1,11 +1,11 @@
 package lotto.domain;
 
+
 public enum Prize {
     NONE(0, 0, false),
     THREE_MATCH(3, 5_000, false),
     FOUR_MATCH(4, 50_000, false),
     FIVE_MATCH(5, 1_500_000, false),
-
     FIVE_WITH_BONUS(5, 30_000_000, true),
     SIX_MATCH(6, 2_000_000_000, false);
 
@@ -32,7 +32,7 @@ public enum Prize {
     }
 
     public static Prize valueOf(int matchCount, boolean hasBonus) {
-        if (matchCount == 5 && hasBonus) {
+        if (matchCount == FIVE_WITH_BONUS.getMatchCount() && hasBonus) {
             return FIVE_WITH_BONUS;
         }
         for (Prize prize : Prize.values()) {
@@ -42,5 +42,4 @@ public enum Prize {
         }
         return NONE;
     }
-
 }

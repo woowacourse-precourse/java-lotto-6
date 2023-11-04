@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
-
     private WinningNumbersDto winningNumbersDto;
     private LottoResult lottoResult;
 
@@ -104,7 +103,5 @@ public class LottoResultTest {
         // then
         assertEquals(1, lottoResult.getPrizeCount().get(Prize.NONE));
     }
-
-
 }
 

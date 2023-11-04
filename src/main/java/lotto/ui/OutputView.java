@@ -1,7 +1,6 @@
 package lotto.ui;
 
 
-import static lotto.contents.ContentErrors.OUTPUT_ERROR;
 import static lotto.contents.ContentNumbers.ZERO;
 import static lotto.contents.ContentStrings.OUTPUT_DASH;
 import static lotto.contents.ContentStrings.OUTPUT_PURCHASED_LOTTO;
@@ -9,7 +8,6 @@ import static lotto.contents.ContentStrings.OUTPUT_RATE_PREFIX;
 import static lotto.contents.ContentStrings.OUTPUT_RATE_SUFFIX;
 import static lotto.contents.ContentStrings.OUTPUT_SPACE;
 import static lotto.contents.ContentStrings.OUTPUT_WINNING_STATISTICS;
-import static lotto.contents.ContentNumbers.PERCENTAGE;
 import static lotto.contents.ContentStrings.PERCENTAGE_FORMAT;
 
 import java.util.List;
@@ -19,7 +17,6 @@ import lotto.domain.Prize;
 import lotto.dto.LottoDto;
 
 public class OutputView {
-
     public void printLottos(List<LottoDto> lottos) {
         System.out.println(OUTPUT_SPACE.getValue() + lottos.size() + OUTPUT_PURCHASED_LOTTO.getValue());
         lottos.stream()
@@ -51,7 +48,7 @@ public class OutputView {
                 OUTPUT_RATE_SUFFIX.getValue());
     }
 
-    public static void printError(){
-        System.out.println(OUTPUT_ERROR.getErrorMessage());
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

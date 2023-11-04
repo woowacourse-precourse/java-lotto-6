@@ -11,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoMachineTest {
-
     @DisplayName("LottoMachine이 유효한 로또 번호를 생성하는지 테스트합니다.")
     @Test
     void generateLottoValidNumbers() {

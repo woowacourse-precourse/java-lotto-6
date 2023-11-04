@@ -12,4 +12,5 @@ public class RandomGeneratorUtil {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getNumber(), LOTTO_MAX_NUMBER.getNumber(),
                 LOTTO_NUMBERS_COUNT.getNumber());
     }
+
 }

@@ -67,6 +67,8 @@
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
 
 ## 패키지 구성도
 
@@ -77,7 +79,7 @@
 │   ├── WinningNumbers.java        // 당첨 번호를 나타내는 클래스
 │   ├── LottoMachine.java          // 로또 티켓을 생성하는 클래스
 │   ├── LottoResult.java           // 당첨 결과를 계산하는 클래스
-│   └── Prize.java                 // 당첨 등수와 상금을 나타내는 클래스
+│   └── Prize.java                 // 당첨 등수와 상금을 나타내는 Enum 클래스
 │
 ├── application
 │   ├── LottoService.java          // 도메인 객체들을 사용하여 로또 게임의 비즈니스 로직을 처리하는 클래스
@@ -96,8 +98,8 @@
 │   └── LottoController.java       // UI와 Application 사이를 연결하는 클래스
 │
 ├── dto
-│   ├── LottoDto.java              // 사용자에게 보여줄 로또의 데이터를 담는 클래스.
-│   └── WinningNumbersDto.java
+│   ├── LottoDto.java              // 로또의 데이터를 전달 오브젝트
+│   └── WinningNumbersDto.java     // 당첨 번호 데이터 전달 오브젝트
 │ 
 └── contents
     ├── ContentStrings.java       // 문자열 상수를 관리하는 Enum 클래스

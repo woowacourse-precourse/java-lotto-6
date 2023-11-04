@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputTest {
-
     @DisplayName("음수 금액을 입력하면 예외가 발생한다.")
     @Test
     void validateNonNegativeAmount() {

@@ -24,5 +24,4 @@ public class LottoStatistics {
                 .sum();
         return totalEarnings;
     }
-
 }

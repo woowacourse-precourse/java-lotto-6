@@ -7,7 +7,6 @@ import lotto.dto.LottoDto;
 import lotto.utils.ValidationUtil;
 
 public class Lotto {
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

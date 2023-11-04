@@ -14,7 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoStatisticsTest {
-
     private LottoService lottoService;
     private List<Lotto> testLotto;
 
@@ -68,8 +67,7 @@ public class LottoStatisticsTest {
     }
 
     /**
-     * 3등 당첨 시나리오 10000원을 투자하여 5천원의 수익을 얻었습니다.
-     * 이때 수익률은 50%입니다.
+     * 3등 당첨 시나리오 10000원을 투자하여 5천원의 수익을 얻었습니다. 이때 수익률은 50%입니다.
      */
     @Test
     @DisplayName("알맞은 수익률을 계산하여 출력하는지 테스트")

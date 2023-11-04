@@ -7,6 +7,7 @@ public class BonusNumber {
     private int value;
 
     public BonusNumber(int value) {
+        validate(value);
         this.value = value;
     }
 

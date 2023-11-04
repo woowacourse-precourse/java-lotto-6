@@ -2,12 +2,18 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(ConstNum.LOTTO_MIN.getNum(),
-                ConstNum.LOTTO_MAX.getNum(),
-                ConstNum.LENGTH.getNum());
+        Integer min = ConstNum.LOTTO_MIN.getNum();
+        Integer max = ConstNum.LOTTO_MAX.getNum();
+        Integer length = ConstNum.LENGTH.getNum();
+
+        return Randoms.pickUniqueNumbersInRange(min, max, length)
+                .stream()
+                .sorted()
+                .toList();
     }
 }

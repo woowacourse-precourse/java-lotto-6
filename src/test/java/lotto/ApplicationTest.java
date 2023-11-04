@@ -86,14 +86,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("입력한 값이 숫자인지 검증한다.")
+    @DisplayName("입력한 값이 숫자가 아닌지 검증한다.")
     void inputPurchaseAmountValidation_예외케이스() {
         assertThatThrownBy(() -> inputPurchaseAmountValidation("테스트"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000");
     }
 
-    @DisplayName("구매자에게 구매금액을 입력받는 메서드.")
+    @DisplayName("입력 받은 값이 숫자인지 검증하는 메서드")
     private  int inputPurchaseAmountValidation(String inputPurchaseAmount){
         try {
             int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
@@ -101,5 +101,30 @@ class ApplicationTest extends NsTest {
         }catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000");
         }
+    }
+
+    @Test
+    @DisplayName("입력한 값이 1,000원 단위인지 검증한다.")
+    void lottoQuantity_정상케이스() {
+        assertThatCode(() -> lottoQuantity(12000))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("입력한 값이 1,000원 단위가 아닌지 검증한다.")
+    void lottoQuantity_예외케이스() {
+        assertThatThrownBy(() -> lottoQuantity(12300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
+    }
+
+    @DisplayName("입력 받은 값이 1,000원 단위인지 검증하는 메서드")
+    private int lottoQuantity(int lottoPurchaseAmount){
+        int lottoQuantity = lottoPurchaseAmount % 1000;
+        System.out.println("lottoQuantity = " + lottoQuantity);
+        if(lottoQuantity != 0){
+            throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
+        }
+        return lottoQuantity;
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class LottoMachineTest {
     public void issueLotto(List<Integer> randomNumbers) {
         List<Integer> issuedLotto = lottoMachine.issueLotto(() -> randomNumbers);
 
-        assertEquals(issuedLotto, randomNumbers);
+        assertTrue(issuedLotto.size() == 6);
     }
 
     @DisplayName("발행한 복권을 저장한다.")
@@ -43,7 +44,16 @@ public class LottoMachineTest {
 
         List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
         issuedLottos.stream().forEach(lotto ->
-                assertEquals(lotto.getNumbers(), issuedLotto1));
+                assertThat(lotto.getNumbers()).isEqualTo(issuedLotto1));
     }
 
+    @DisplayName("발행한 복권은 오름차순으로 저장된다.")
+    @Test
+    public void issuedLottosSort() {
+        lottoMachine.issueLotto(() -> Arrays.asList(6, 5, 4, 3, 2, 1));
+
+        List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
+        issuedLottos.stream().forEach(lotto ->
+                assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6)));
+    }
 }

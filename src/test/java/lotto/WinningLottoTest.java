@@ -36,8 +36,17 @@ public class WinningLottoTest {
     void compare() {
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
 
-        Assertions.assertThatThrownBy(() -> winningLotto.compare(new Bonus("5")))
+        Assertions.assertThatThrownBy(() -> winningLotto.contain(new Bonus("5")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호에 포함되면 안됩니다.");
+    }
+
+    @DisplayName("당첨번호에 쉼표가 있는지 테스트")
+    @Test
+    void compare2() {
+        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
+
+        Assertions.assertThatThrownBy(() -> winningLotto.contain(new Bonus("5")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

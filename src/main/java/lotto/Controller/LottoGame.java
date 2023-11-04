@@ -52,7 +52,7 @@ public class LottoGame {
     private Bonus createBonusNumber(WinningLotto winningLotto) {
         try {
             Bonus bonus = new Bonus(InputView.inputBonusNumber());
-            winningLotto.compare(bonus);
+            winningLotto.contain(bonus);
             return bonus;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

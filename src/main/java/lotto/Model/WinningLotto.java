@@ -20,7 +20,7 @@ public class WinningLotto {
 
     }
 
-    public void compare(Bonus bonus) {
+    public void contain(Bonus bonus) {
         int bonusNumber = bonus.getBonusNumber();
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
         if (winningLottoNumbers.contains(bonusNumber)) {

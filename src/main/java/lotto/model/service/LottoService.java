@@ -10,4 +10,6 @@ public interface LottoService {
     Map<LottoCount, Integer> compareLottoToWinningAndBonus(List<List<Integer>> createdLottos,
                                                            List<Integer> winningNumbers,
                                                            int bonusNumber);
+
+    long getTotalWinningPrice(Map<LottoCount, Integer> lottoResult);
 }

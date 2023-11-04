@@ -8,7 +8,6 @@ import lotto.utils.enums.LottoCount;
 import lotto.utils.LottoCreator;
 
 public class LottoServiceImpl implements LottoService {
-    private final int LOTTO_MIN_COUNT = 3;
 
     @Override
     public List<List<Integer>> createLotto(int lottoCount) {
@@ -28,8 +27,18 @@ public class LottoServiceImpl implements LottoService {
             Integer duplicatedValue = resultTable.get(lottoCount);
             resultTable.put(lottoCount, duplicatedValue + 1);
         }
-
         return Collections.unmodifiableMap(resultTable);
+    }
+
+    @Override
+    public long getTotalWinningPrice(Map<LottoCount, Integer> lottoResult) {
+        long totalWinningPrice = 0;
+        for (LottoCount lottoCount : lottoResult.keySet()) {
+            long price = lottoCount.getPrice();
+            Integer count = lottoResult.get(lottoCount);
+            totalWinningPrice += (price * count);
+        }
+        return totalWinningPrice;
     }
 
     private LottoCount findLottoCount(List<Integer> createdLotto,

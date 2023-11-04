@@ -9,18 +9,23 @@ public class Converter {
 
     private static final String COMMA = ",";
 
+    public static long convertStringToLong(final String input) {
+        validateNumericString(input);
+        return Long.parseLong(input);
+    }
+
     public static int convertStringToInt(final String input) {
-        validateConvertToInt(input);
+        validateNumericString(input);
         return Integer.parseInt(input);
     }
 
-    private static void validateConvertToInt(final String input) {
-        if (!canConvertToInt(input)) {
+    private static void validateNumericString(final String input) {
+        if (!isNumeric(input)) {
             throw new CanNotConvertToIntException(input);
         }
     }
 
-    private static boolean canConvertToInt(final String input) {
+    private static boolean isNumeric(final String input) {
         return input.chars()
                 .allMatch(Character::isDigit);
     }
@@ -28,7 +33,7 @@ public class Converter {
     public static List<Integer> splitWithCommaAndConvertToIntegerList(final String input) {
         String[] texts = input.split(COMMA);
         for (String text : texts) {
-            validateConvertToInt(text);
+            validateNumericString(text);
         }
         return convertStringArrayToIntegerList(texts);
     }

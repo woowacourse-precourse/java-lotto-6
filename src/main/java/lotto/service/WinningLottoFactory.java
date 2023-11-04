@@ -4,6 +4,6 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 
 public interface WinningLottoFactory {
-    public Lotto winningLotto(String inputNumber);
-    public BonusNumber bonusNumber(String inputBonusNumber);
+    Lotto winningLotto(String inputNumber);
+    BonusNumber bonusNumber(String inputBonusNumber);
 }

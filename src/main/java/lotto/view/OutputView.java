@@ -7,4 +7,5 @@ public class OutputView {
         System.out.println(number + "개를 구매했습니다.");
         return number;
     }
+
 }

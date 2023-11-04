@@ -39,7 +39,7 @@ public class LottoNumberValidator {
     }
 
     private void validateOnlyNumberAndDelimiter(String lottoNumbers) {
-        if (lottoNumbers.matches(LOTTO_NUMBERS_PATTERN)) {
+        if (!lottoNumbers.matches(LOTTO_NUMBERS_PATTERN)) {
             throw new IllegalArgumentException(String.format(ONLY_NUMBER_OR_DELIMITER_ALLOWED, DELIMITER));
         }
     }

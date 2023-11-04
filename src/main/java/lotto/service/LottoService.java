@@ -15,14 +15,14 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
-    public List<Lotto> purchaseLotto(Long purchaseAmount) {
+    public List<Lotto> purchaseLotto(final Long purchaseAmount) {
         LottoPublisher lottoPublisher = new LottoPublisher();
         List<Lotto> lottos = lottoPublisher.publishLotto(purchaseAmount);
         lottoRepository.saveAll(lottos);
         return lottos;
     }
 
-    public LottoResult compareLotto(List<Integer> winningNumbers, Integer bonusNumber) {
+    public LottoResult compareLotto(final List<Integer> winningNumbers, final Integer bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = lottoRepository.findAll();
         return lottoResult.showLottoResult(winningNumbers, bonusNumber, lottos);

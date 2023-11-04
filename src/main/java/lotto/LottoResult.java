@@ -14,7 +14,7 @@ public class LottoResult {
         this.rateOfReturn = 0.0F;
     }
 
-    public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
+    public LottoResult showLottoResult(final List<Integer> winningNumbers, final Integer bonus, final List<Lotto> lottos) {
         this.winningLottos = lottos.stream()
                 .map(lotto -> lotto.compareWinningNumbers(winningNumbers, bonus))
                 .toList();

@@ -30,7 +30,7 @@ public class LottoController {
         return lottoService.purchaseLotto(amount);
     }
 
-    private void presentLottos(List<Lotto> lottos) {
+    private void presentLottos(final List<Lotto> lottos) {
         lottoOutputView.presentLottoList(lottos);
     }
 
@@ -41,7 +41,7 @@ public class LottoController {
         return lottoService.compareLotto(winningNumbers, bonusNumber);
     }
 
-    private void presentLottoResult(LottoResult lottoResult) {
+    private void presentLottoResult(final LottoResult lottoResult) {
         lottoOutputView.presentLottoResult(lottoResult);
     }
 }

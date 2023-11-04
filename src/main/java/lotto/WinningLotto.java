@@ -24,7 +24,7 @@ public enum WinningLotto {
         this.function = function;
     }
 
-    public boolean getLottoRank(int matchCount, int bonusCount) {
+    public boolean getLottoRank(final int matchCount, final int bonusCount) {
         return function.apply(matchCount, bonusCount);
     }
 

@@ -15,14 +15,14 @@ public class LottoPublisher {
     public LottoPublisher() {
     }
 
-    public List<Lotto> publishLotto(Long purchaseAmount) {
+    public List<Lotto> publishLotto(final Long purchaseAmount) {
         int purchasedLottoCount = calculateLottoAmount(purchaseAmount);
         return IntStream.range(0, purchasedLottoCount)
                 .mapToObj(i -> generateLotto())
                 .toList();
     }
 
-    private int calculateLottoAmount(Long purchaseAmount) {
+    private int calculateLottoAmount(final Long purchaseAmount) {
         return (int) (purchaseAmount / 1000);
     }
 

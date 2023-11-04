@@ -17,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_LENGTH_IS_NOT_SIX.getMessage());
         }
@@ -27,7 +27,7 @@ public class Lotto {
         }
     }
 
-    private boolean isDuplicateNumber(List<Integer> numbers) {
+    private boolean isDuplicateNumber(final List<Integer> numbers) {
         List<Integer> removedDuplicateNumbers = numbers.stream()
                 .distinct()
                 .toList();
@@ -35,7 +35,7 @@ public class Lotto {
         return numbers.size() != removedDuplicateNumbers.size();
     }
 
-    public WinningLotto compareWinningNumbers(List<Integer> winningNumbers, Integer bonus) {
+    public WinningLotto compareWinningNumbers(final List<Integer> winningNumbers, final Integer bonus) {
         int matchWinningNumbersCount = this.countWinningNumbers(winningNumbers);
         int matchBonusCount = this.countBonusMatch(bonus);
 
@@ -45,13 +45,13 @@ public class Lotto {
                 .orElse(WinningLotto.LAST_PLACE);
     }
 
-    private int countWinningNumbers(List<Integer> winningNumbers) {
+    private int countWinningNumbers(final List<Integer> winningNumbers) {
         return (int) winningNumbers.stream()
                 .filter(this.numbers::contains)
                 .count();
     }
 
-    private int countBonusMatch(Integer bonus) {
+    private int countBonusMatch(final Integer bonus) {
         if (this.numbers.contains(bonus)) {
             return 1;
         }

@@ -45,7 +45,7 @@ public class LottoInputView {
 
     }
 
-    private int convertToInt(String value) {
+    private int convertToInt(final String value) {
         return Integer.parseInt(value.trim());
     }
 

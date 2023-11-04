@@ -16,7 +16,7 @@ public class LottoRepository {
         lottoId++;
     }
 
-    public void saveAll(List<Lotto> lottos) {
+    public void saveAll(final List<Lotto> lottos) {
         lottos.forEach(this::save);
     }
 

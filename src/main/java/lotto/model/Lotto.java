@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.constance.PrintConst;
 
 public class Lotto {
-    public static final String LOTTO_PRINT_FORMAT = "[%d, %d, %d, %d, %d, %d]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,6 +21,6 @@ public class Lotto {
 
     @Override
     public String toString(){
-        return String.format(LOTTO_PRINT_FORMAT, this.numbers.toArray());
+        return String.format(PrintConst.FORMAT_LOTTO_NUMBERS, this.numbers.toArray());
     }
 }

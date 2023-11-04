@@ -16,12 +16,14 @@ public class LottoController {
 
     //TODO 1. 로또 구매
     public void purchaseLotto(){
-        retryHandler.run(()->{
-            Writer.printGuide(PrintConst.GUIDE_PURCHASE);
-            int money = Reader.getMoney();
-            Lottos lottos = lottoGenerator.purchase(money);
-            Writer.printModelsInList(lottos.getLottos());
-        });
+        int money = retryHandler.getResult(
+                ()->{
+                    Writer.printGuide(PrintConst.GUIDE_PURCHASE);
+                    return Reader.getMoney();
+                });
+
+        Lottos lottos = lottoGenerator.purchase(money);
+        Writer.printModelsInList(lottos.getLottos());
     }
 
     //TODO 3. 로또 6자리 입력

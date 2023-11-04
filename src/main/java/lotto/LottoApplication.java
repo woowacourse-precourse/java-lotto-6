@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LotteryStore;
 import lotto.domain.Money;
 import lotto.dto.PurchasedLottosDto;
-import lotto.view.InputMessageView;
+import lotto.view.ConsoleMessageView;
 import lotto.view.MoneyInputView;
 
 public class LottoApplication {
@@ -25,7 +25,7 @@ public class LottoApplication {
     }
 
     private String getMoneyFromUserInput() {
-        InputMessageView.printMoneyInputMessage();
+        ConsoleMessageView.printMoneyInputMessage();
         return MoneyInputView.input();
     }
 

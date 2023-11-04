@@ -60,15 +60,7 @@
 
 ---
 
-### 7. 당첨 로또를 발행한다
-
-- [ ]  쉼표를 구분자로하여, 문자열을 나누어 숫자 리스트로 로또 객체를 생성.
-    - [ ] **[예외]** 숫자 외에 다른 값이 있으면 `illegalArgumentException`예외 발생
-    - [ ] **[예외]** 숫자가 1과 45 사이의 값이 `illegalArgumentException`아니면 예외 발생
-
----
-
-### 8. 보너스 번호를 입력받는다.
+### 7. 보너스 번호를 입력받는다.
 
 - [X]  **[입력]** 사용자로부터 보너스 번호를 입력 받는다.
     - [X]  **[예외]** 입력 값이 공백으로만 이루어져 있으면 `illegalArgumentException`예외 발생
@@ -76,6 +68,15 @@
     - [X]  **[예외]** 로또에 이미 존재하는 번호면 `illegalArgumentException`예외 발생
     - [X]  **[예외]** 숫자가 아니면 `illegalArgumentException`예외 발생
     - [X]  **[예외]** 1에서 45 사이의 값이 아니면 `illegalArgumentException`예외 발생
+
+---
+
+### 8. 당첨 로또를 발행한다
+
+- [ ]  입력 받은 쉼표와 로또를 가진 당첨 로또를 발행한다.
+    - [ ] **[예외]** 숫자 외에 다른 값이 있으면 `illegalArgumentException`예외 발생
+    - [ ] **[예외]** 숫자가 1과 45 사이의 값이 `illegalArgumentException`아니면 예외 발생
+    - [ ] **[예외]** 로또에 이미 존재하는 번호면 `illegalArgumentException`예외 발생
 
 ---
 

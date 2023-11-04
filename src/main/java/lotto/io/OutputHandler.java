@@ -2,6 +2,8 @@ package lotto.io;
 
 
 import lotto.domain.Award;
+import lotto.system.Constant;
+import lotto.system.IOMessage;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +25,7 @@ public final class OutputHandler {
 
     public static void printReward(List<Award> awards){
         System.out.println();
-        System.out.println("당첨 통계");
+        System.out.println(IOMessage.WRITE_RESULT);
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+ Collections.frequency(awards,Award.THREE)+"개");
         System.out.println("4개 일치 (50,000원) - "+ Collections.frequency(awards,Award.FOUR)+"개");

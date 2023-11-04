@@ -15,7 +15,6 @@ public class Application {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 lottoBought = Integer.parseInt(Console.readLine());
-                System.out.println();
 
                 // 예외 처리
                 int lottoBought1000 = lottoBought % 1000;
@@ -30,6 +29,7 @@ public class Application {
 
         // TODO: 로또 번호 출력
         int lottoNum = lottoBought / 1000;
+        System.out.println();
         System.out.println(lottoNum + "개를 구매했습니다.");
 
         // stream.Collectors 사용하기
@@ -41,14 +41,13 @@ public class Application {
                 .collect(Collectors.toList());
 
         allLottoList.forEach(System.out::println);
-        System.out.println();
 
         // TODO: 당첨 번호 입력 받기
         while (true) {
             try {
+                System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String userNum = Console.readLine();
-                System.out.println();
 
                 String[] userNumListStr = userNum.split(",");
 
@@ -64,7 +63,7 @@ public class Application {
                     throw new IllegalArgumentException("6개의 숫자를 입력해 주세요.");
                 }
                 for (int i = 0; i < userNumListInt.length; i++) {
-                    if (userNumListInt[i] > 45 || userNumListInt[i] < 1) {
+                    if (userNumListInt[i] < 1 || userNumListInt[i] > 45) {
                         throw new IllegalArgumentException("숫자는 1~45까지 입력할 수 있습니다.");
                     }
                 }
@@ -75,6 +74,19 @@ public class Application {
         }
 
         // TODO: 보너스 번호 입력 받기
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String userBonusStr = Console.readLine();
+
+                int userBonusNum = Integer.parseInt(userBonusStr);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
 
         // TODO: 로또 번호와 당첨 번호 비교
 

@@ -43,5 +43,11 @@ public class Controller {
         if (!lottoValidation.checkDuplicateLottoNumber(input.getWinningLottoNumber())) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호 입니다.");
         }
+        if (!lottoValidation.checkBonusNumberRange(input.getBonusNumber(), 1, 45)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        }
+        if (!lottoValidation.checkDuplicateBonusNumber(input.getWinningLottoNumber(), input.getBonusNumber())) {
+            throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호 입니다.");
+        }
     }
 }

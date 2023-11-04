@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.InputNumbersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,7 +21,7 @@ class LottoControllerTest {
     @DisplayName(value = "입력된 숫자가 6개가 아닐 경우 예외가 발생하는지 확인")
     void inputNumbersByInsufficientSize(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputNumbers(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO(input, "1")))
                 .withMessage(LOTTO_SIZE_ERROR.getMessage());
     }
 
@@ -29,7 +30,7 @@ class LottoControllerTest {
     @DisplayName(value = "숫자가 아닌 입력 값이 존재할 경우 예외가 발생하는지 확인")
     void inputNumbersByNonNumericInputs(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputNumbers(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO(input, "1")))
                 .withMessage(NON_NUMERIC_ERROR.getMessage());
     }
 
@@ -38,7 +39,7 @@ class LottoControllerTest {
     @DisplayName(value = "중복된 숫자가 존재할 경우 예외가 발생하는지 확인")
     void inputNumbersByDuplicatedNumber(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputNumbers(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO(input, "1")))
                 .withMessage(DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
@@ -47,7 +48,7 @@ class LottoControllerTest {
     @DisplayName(value = "입력된 숫자가 1부터 45사이의 숫자가 아닐 경우 예외가 발생하는지 확인")
     void inputNumbersByOutOfRangeNumber(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputNumbers(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO(input, "1")))
                 .withMessage(NUMBER_OUT_OF_RANGE.getMessage());
     }
 
@@ -56,7 +57,7 @@ class LottoControllerTest {
     @DisplayName(value = "보너스 숫자에 숫자가 아닌 입력 값 입력될 경우 예외가 발생하는지 확인")
     void inputBonusNumberByNonNumericNumber(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputBonusNumber(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO("1 2 3 4 5 6", input)))
                 .withMessage(NON_NUMERIC_ERROR.getMessage());
     }
 
@@ -65,7 +66,7 @@ class LottoControllerTest {
     @DisplayName(value = "보너스 숫자에 한 개가 아닌 값이 입력될 경우 예외가 발생하는지 확인")
     void inputBonusNumberByInsufficientSize(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputBonusNumber(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO("1 2 3 4 5 6", input)))
                 .withMessage(BONUS_NUMBER_QUANTITY_ERROR.getMessage());
     }
 
@@ -74,7 +75,7 @@ class LottoControllerTest {
     @DisplayName(value = "입력된 보너스 숫자가 1부터 45사이의 숫자가 아닐 경우 예외가 발생하는지 확인")
     void inputBonusNumbersByOutOfRangeNumber(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoController.inputBonusNumber(input))
+                .isThrownBy(() -> lottoController.inputNumbers(new InputNumbersDTO("1 2 3 4 5 6", input)))
                 .withMessage(NUMBER_OUT_OF_RANGE.getMessage());
     }
 

@@ -15,16 +15,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.dto.InputNumbersDTO;
 
 public class LottoController {
 
     private static final String SPLIT_REGEX = " ";
 
-    public void inputNumbers(String input) {
-        validateDuplicateNumber(validateIsNumeric(validateInputSize(input)));
+    public void inputNumbers(InputNumbersDTO inputNumbersDTO) {
+        validateDuplicateNumber(validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
+        validateBonusNumber(inputNumbersDTO.getBonusNumber());
     }
 
-    public void inputBonusNumber(String input) {
+    private void validateBonusNumber(String input) {
         validateInputIsNull(input);
         String[] splitInput = input.split(SPLIT_REGEX);
         validateBonusNumberSize(splitInput);

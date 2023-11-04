@@ -9,20 +9,16 @@ import java.util.HashSet;
 
 // sout할 때 애시당초 [ ..., ... ] 이런 식으로 표현됨
 public class LottoNumberGenerator {
-    public List<Integer> numbers;
+    public List<Integer> generateNumbers() {
+        Set<Integer> numbers = filterDuplicates();
 
-    public LottoNumberGenerator() {
-        // 리스트화 시키기
-        List<Integer> sortedNumbers = new ArrayList<>(filterDuplicates());
-
-        // 오름차순 나열
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
 
-        this.numbers = sortedNumbers;
+        return sortedNumbers;
     }
 
-    // 중복 없이 숫자 6개 뽑아내기
-    public Set<Integer> filterDuplicates() {
+    private Set<Integer> filterDuplicates() {
         Set<Integer> numbers = new HashSet<>();
 
         while (numbers.size() < 6) {

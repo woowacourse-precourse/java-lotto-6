@@ -18,7 +18,7 @@ class LottoNumberGeneratorTest {
     @Test
     void testGeneratedNumbersRange() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
-        for (int number : generator.numbers) {
+        for (int number : generator.generateNumbers()) {
             assertTrue(number >= 1 && number <= 45);
         }
     }
@@ -27,14 +27,14 @@ class LottoNumberGeneratorTest {
     @Test
     void testGeneratedNumbersSize() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
-        assertEquals(6, generator.numbers.size());
+        assertEquals(6, generator.generateNumbers().size());
     }
 
     @DisplayName("생성되는 단위 로또 번호 요소는 중복되지 않는다.")
     @Test
     void testGeneratedNumbersUniqueness() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
-        Set<Integer> uniqueNumbers = new HashSet<>(generator.numbers);
+        Set<Integer> uniqueNumbers = new HashSet<>(generator.generateNumbers());
         assertEquals(6, uniqueNumbers.size());
     }
 
@@ -42,8 +42,10 @@ class LottoNumberGeneratorTest {
     @Test
     void testGeneratedNumbersSorting() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
-        List<Integer> sortedNumbers = new ArrayList<>(generator.numbers);
-        Collections.sort(sortedNumbers);
-        assertEquals(sortedNumbers, generator.numbers);
+        List<Integer> generatedNumbers = generator.generateNumbers();
+
+        for (int i = 1; i < generatedNumbers.size(); i++) {
+            assertTrue(generatedNumbers.get(i - 1) <= generatedNumbers.get(i));
+        }
     }
 }

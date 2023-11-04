@@ -34,7 +34,7 @@ public class LottoController {
         int numberOfTickets = purchaseAmount / 1000;
 
         for (int i = 0; i < numberOfTickets; i++) {
-            System.out.println(numberGenerator.numbers);
+            System.out.println(numberGenerator.generateNumbers());
         }
     }
 }

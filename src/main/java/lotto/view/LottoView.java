@@ -7,10 +7,13 @@ import lotto.domain.Rank;
 
 public class LottoView {
 
+    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %,.1f%%입니다.";
+    private static final String PRINT_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개";
+    private static final String SECOND_UNIQUE_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+
     public void printLotto(List<Lotto> lottoTickets) {
-        int amount = lottoTickets.size();
-        String printMessage = String.format("%d개를 구매했습니다.", amount);
-        System.out.println(printMessage);
+        System.out.println(PURCHASE_MESSAGE.formatted(lottoTickets.size()));
 
         lottoTickets.stream()
                 .map(Lotto::toString)
@@ -23,21 +26,18 @@ public class LottoView {
     }
 
     private void printLottoResult(Map<Rank, Integer> checkResult) {
-        checkResult.forEach((winResult, integer) -> {
-            StringBuilder builder = new StringBuilder();
-            builder.append(winResult.matchedCount).append("개 일치 ");
-            if (winResult.equals(Rank.SECOND)) {
-                builder.deleteCharAt(builder.length() - 1);
-                builder.append(", 보너스 볼 일치 ");
+        checkResult.forEach((rank, integer) -> {
+            if(rank.equals(Rank.SECOND)){
+                String format = String.format(SECOND_UNIQUE_MESSAGE, rank.matchedCount, rank.reward, integer);
+                System.out.println(format);
+                return;
             }
-            String reward = String.format("%,d원", winResult.reward);
-            builder.append("(").append(reward).append(")");
-            builder.append(" - ").append(integer).append("개");
-            System.out.println(builder.toString());
+            String format = String.format(PRINT_RESULT_MESSAGE, rank.matchedCount, rank.reward, integer);
+            System.out.println(format);
         });
     }
 
     public String printRate(double rate) {
-        return String.format("총 수익률은 %,.1f%%입니다.", rate);
+        return String.format(RATE_OF_RETURN_MESSAGE,rate);
     }
 }

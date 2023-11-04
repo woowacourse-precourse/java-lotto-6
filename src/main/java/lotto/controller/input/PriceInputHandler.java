@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.controller.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.AppConfig;
@@ -9,10 +9,12 @@ public class PriceInputHandler {
     private static final int MIN_PRICE_UNIT = 1000;
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 100000;
+    private static final String PURCHASE_INFO_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_ERROR_MESSAGE = "[ERROR] 지불할 금액을 다시 입력해주세요.";
 
     public int dividePaymentIntoLottoPrice() {
+        System.out.println(PURCHASE_INFO_MESSAGE);
         String input = Console.readLine();
-        System.out.println("구입금액을 입력해 주세요.");
         int price = validatePrice(input);
         return price / AppConfig.LOTTO_PRICE;
     }
@@ -24,7 +26,7 @@ public class PriceInputHandler {
             validateUnit(price);
             return price;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 지불할 금액을 다시 입력해주세요.");
+            System.out.println(PURCHASE_ERROR_MESSAGE);
             String newInput = Console.readLine();
             return validatePrice(newInput);
         }

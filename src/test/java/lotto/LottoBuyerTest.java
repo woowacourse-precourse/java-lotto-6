@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoCheckerTest {
+public class LottoBuyerTest {
     LottoBuyer lottoBuyer;
     Lotto target = new Lotto(List.of(6, 5, 4, 3, 2, 1));
     int bonus = 7;
@@ -31,8 +31,8 @@ public class LottoCheckerTest {
     }
 
     @Test
-    @DisplayName("실패는 모두 매핑되지않고, 각 등수마다 1개씩")
-    void 로또체커_통합_테스트() {
+    @DisplayName("실패는 모두 매핑되지않고, 각 등수마다 1개씩 매핑된다.")
+    void 로또바이어_통합_테스트() {
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         assertThat(map.get(Rank.FIRST)).isEqualTo(1);

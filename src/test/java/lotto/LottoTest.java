@@ -31,7 +31,7 @@ class LottoTest {
     Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @Test
-    @DisplayName("모든 숫자가 맞아야 한다.")
+    @DisplayName("1등은 모든 숫자가 맞아야 한다.")
     void 등수확인1(){
         //given
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
@@ -45,7 +45,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("5개의 숫자와 보너스 숫자가 맞아야한다.")
+    @DisplayName("2등은 5개의 숫자와 보너스 숫자가 맞아야한다.")
     void 등수확인2(){
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
@@ -59,7 +59,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("5개의 숫자가 맞아야한다. 보너스는 틀려야한다.")
+    @DisplayName("3등은 5개의 숫자가 맞아야한다. 보너스는 틀려야한다.")
     void 등수확인3(){
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,10));
@@ -72,7 +72,7 @@ class LottoTest {
         Assertions.assertThat(rank).isEqualTo(Rank.THIRD);
     }
     @Test
-    @DisplayName("4개의 숫자가 맞아야한다. 보너스는 무시한다.")
+    @DisplayName("4등은 4개의 숫자가 맞아야한다. 보너스는 무시한다.")
     void 등수확인4(){
         //given
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,12,13));
@@ -88,7 +88,7 @@ class LottoTest {
         Assertions.assertThat(rank2).isEqualTo(Rank.FORTH);
     }
     @Test
-    @DisplayName("3개의 숫자가 맞아야한다. 보너스는 무시한다.")
+    @DisplayName("5등은 3개의 숫자가 맞아야한다. 보너스는 무시한다.")
     void 등수확인5(){
         //given
         Lotto lotto1 = new Lotto(List.of(1,2,3,11,12,13));
@@ -102,5 +102,28 @@ class LottoTest {
         //then
         Assertions.assertThat(rank1).isEqualTo(Rank.FIFTH);
         Assertions.assertThat(rank2).isEqualTo(Rank.FIFTH);
+    }
+
+    @Test
+    @DisplayName("0~2개는 FAIL에 매치된다. 보너스는 무시된다.")
+    void 등수확인6(){
+        //given
+        Lotto lotto1 = new Lotto(List.of(1,2,14,11,12,13));
+        Lotto lotto2 = new Lotto(List.of(1,2,7,14,11,12));
+        Lotto lotto3 = new Lotto(List.of(1,25,7,14,11,12));
+        Lotto lotto4 = new Lotto(List.of(33,25,7,14,11,12));
+        int bonus = 7;
+
+        //when
+        Rank rank1 = lotto1.checkResult(target, bonus);
+        Rank rank2 = lotto2.checkResult(target, bonus);
+        Rank rank3 = lotto3.checkResult(target, bonus);
+        Rank rank4 = lotto4.checkResult(target, bonus);
+
+        //then
+        Assertions.assertThat(rank1).isEqualTo(Rank.FAIL);
+        Assertions.assertThat(rank2).isEqualTo(Rank.FAIL);
+        Assertions.assertThat(rank3).isEqualTo(Rank.FAIL);
+        Assertions.assertThat(rank4).isEqualTo(Rank.FAIL);
     }
 }

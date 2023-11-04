@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.controller.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -8,9 +8,13 @@ import lotto.domain.Lotto;
 
 public class TargetNumberHandler {
     private static final String INPUT_DELIMITER = ",";
+    private static final String TARGET_INFO_MESSAGE = "정답인 6개의 로또번호를 입력해주세요.";
+    private static final String TARGET_ERROR_MESSAGE = "[ERROR] 유효한 로또 정답 입력이 아닙니다.";
+    private static final String BONUS_INFO_MESSAGE = "6개의 번호와 중복되지 않는 보너스번호를 입력해주세요.";
+    private static final String BONUS_ERROR_MESSAGE = "[ERROR] 유효한 보너스 번호 입력이 아닙니다.";
 
-    public Lotto inputToLotto() {
-        System.out.println("정답인 6개의 로또번호를 입력해주세요.");
+    public Lotto inputToTargetLotto() {
+        System.out.println(TARGET_INFO_MESSAGE);
         String input = Console.readLine();
         Lotto lotto = validateTargetNumber(input);
         return lotto;
@@ -23,7 +27,7 @@ public class TargetNumberHandler {
             return new Lotto(target);
 
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 유효한 로또 정답 입력이 아닙니다.");
+            System.out.println(TARGET_ERROR_MESSAGE);
             String newInput = Console.readLine();
             return validateTargetNumber(newInput);
         }
@@ -37,8 +41,8 @@ public class TargetNumberHandler {
                 .toList();
     }
 
-    public int inputToBonus(Lotto target) {
-        System.out.println("6개의 번호와 중복되지 않는 보너스번호를 입력해주세요.");
+    public int inputToBonusNumber(Lotto target) {
+        System.out.println(BONUS_INFO_MESSAGE);
         String input = Console.readLine();
         int bonus = validateBonusNumber(input, target);
         return bonus;
@@ -51,7 +55,7 @@ public class TargetNumberHandler {
             return bonus;
 
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 유효한 보너스 번호 입력이 아닙니다.");
+            System.out.println(BONUS_ERROR_MESSAGE);
             String newInput = Console.readLine();
             return validateBonusNumber(newInput, target);
         }

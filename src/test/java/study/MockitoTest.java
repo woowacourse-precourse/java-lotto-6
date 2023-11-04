@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 public class MockitoTest {
 
     @Test
-    void Mockito_테스트(){
+    void Mockito_테스트() {
         List<String> list = Mockito.mock(ArrayList.class);
 
         Mockito.when(list.get(0)).thenReturn("123");

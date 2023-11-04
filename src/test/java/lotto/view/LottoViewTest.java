@@ -26,7 +26,7 @@ public class LottoViewTest {
         double value = calculator.calculateRateOfReturn(map, pay);
         String string = lottoView.printRate(value);
 
-        assertThat(string).isEqualTo("400.0%");
+        assertThat(string).isEqualTo("총 수익률은 500.0%입니다.");
     }
 
     @ParameterizedTest
@@ -36,7 +36,7 @@ public class LottoViewTest {
         //given
         String string = lottoView.printRate(value);
 
-        assertThat(string).isEqualTo("100.1%");
+        assertThat(string).isEqualTo("총 수익률은 100.1%입니다.");
     }
 
     @ParameterizedTest
@@ -46,6 +46,6 @@ public class LottoViewTest {
         //given
         String string = lottoView.printRate(value);
 
-        assertThat(string).isEqualTo("100.0%");
+        assertThat(string).isEqualTo("총 수익률은 100.0%입니다.");
     }
 }

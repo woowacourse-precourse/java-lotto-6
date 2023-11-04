@@ -1,12 +1,10 @@
 package study;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.stream.IntStream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,11 +24,12 @@ public class ListOfTest {
         Integer num = list.get(0) + 3;
         assertThat(num).isNotEqualTo(list.get(0));
     }
+
     @Test
-    void List출력테스트(){
-        System.out.println(List.of(1,2,3));
-        System.out.println(IntStream.range(1,4));
-        System.out.println(IntStream.range(1,4).boxed().toList());
+    void List출력테스트() {
+        System.out.println(List.of(1, 2, 3));
+        System.out.println(IntStream.range(1, 4));
+        System.out.println(IntStream.range(1, 4).boxed().toList());
     }
 
 

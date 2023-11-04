@@ -27,5 +27,6 @@ class UserTest {
         String amount = "2000";
         User user = new User(amount);
         assertThat(user.getLottoTicketCount()).isEqualTo(2);
+        assertThat(user.getLottos().size()).isEqualTo(2);
     }
 }

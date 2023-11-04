@@ -42,4 +42,12 @@ public final class Lotto implements LottoTicket {
         return numbers.contains(lottoNumber);
     }
 
+    /**
+     * 원본 deepcopy
+     */
+    public Lotto clone() {
+        final List<Integer> unwrappedNumbers = numbers.stream().map(LottoNumber::getValue).toList();
+        return new Lotto(unwrappedNumbers);
+    }
+
 }

@@ -22,7 +22,7 @@ public class InputValidator {
 
     public static void verifyNumericString(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("숫자 문자열만 입력해주세요.");
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
         }
     }
 }

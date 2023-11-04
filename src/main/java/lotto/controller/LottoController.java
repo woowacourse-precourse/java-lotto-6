@@ -25,8 +25,9 @@ public class LottoController {
         presentLottoResult(compareLotto());
     }
 
-    private void presentLottoResult(LottoResult lottoResult) {
-        lottoOutputView.presentLottoResult(lottoResult);
+    private List<Lotto> buyLottoTicketProcess() {
+        Long amount = lottoInputView.getLottoPurchaseAmountInput();
+        return lottoService.purchaseLotto(amount);
     }
 
     private void presentLottos(List<Lotto> lottos) {
@@ -40,9 +41,7 @@ public class LottoController {
         return lottoService.compareLotto(winningNumbers, bonusNumber);
     }
 
-    private List<Lotto> buyLottoTicketProcess() {
-        Long amount = lottoInputView.getLottoPurchaseAmountInput();
-        return lottoService.purchaseLotto(amount);
+    private void presentLottoResult(LottoResult lottoResult) {
+        lottoOutputView.presentLottoResult(lottoResult);
     }
-
 }

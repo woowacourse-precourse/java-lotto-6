@@ -1,5 +1,7 @@
 package lotto.validate;
 
+import java.util.List;
+
 public class Validate {
 
     public static void validateInteger(String str) {
@@ -21,6 +23,13 @@ public class Validate {
     public static void validateNumberInRange(int number, int start, int end) {
         if (number < start || number > end) {
             throw new IllegalArgumentException("입력 값이 해당 범위에 없습니다.");
+        }
+    }
+
+    // 입력 값이 List에 있는 값과 중복되는지 검증
+    public static void validateDuplicatedInList(int number, List<Integer> compares) {
+        if (compares.contains(number)) {
+            throw new IllegalArgumentException("입력 값이 중복되어 존재합니다.");
         }
     }
 }

@@ -35,14 +35,14 @@ public class User {
             Integer integerNumber = Integer.parseInt(number);
             return integerNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
         }
     }
 
     private Integer validatePurchaseAmount(String input) {
         Integer tmp = validateNumber(input);
         if (tmp % 1000 != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
         return tmp / 1000;
     }

@@ -55,7 +55,7 @@ public class OutputView {
                     .filter(match -> match == lottoMatch)
                     .count();
 
-            stringBuilder.append(String.format("%d개 일치%s(%,d원) - %d개",
+            stringBuilder.append(String.format("%d개 일치%s (%,d원) - %d개",
                     lottoMatch.getMatching(),
                     MatchingBonusBall,
                     lottoMatch.getAmount(),

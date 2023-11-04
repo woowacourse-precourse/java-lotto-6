@@ -9,9 +9,10 @@ import java.util.List;
 
 public class LottoService {
 
-    private final LottoRepository lottoRepository = new LottoRepository();
+    private final LottoRepository lottoRepository;
 
-    public LottoService() {
+    public LottoService(LottoRepository lottoRepository) {
+        this.lottoRepository = lottoRepository;
     }
 
     public List<Lotto> purchaseLotto(Long purchaseAmount) {

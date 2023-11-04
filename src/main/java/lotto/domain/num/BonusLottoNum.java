@@ -1,9 +1,17 @@
 package lotto.domain.num;
 
+import lotto.utill.Utii;
+
 /**
  * 보너스 번호 클래스
  */
 public class BonusLottoNum {
+    private Integer bonusNum;
+
+    public BonusLottoNum(Integer bonusNum) {
+        this.bonusNum = bonusNum;
+    }
+
     /**
      * 보너스 번호가 같은지 확인한다.
      *
@@ -11,6 +19,6 @@ public class BonusLottoNum {
      * @return
      */
     public Boolean isSame(Integer num) {
-        return false;
+        return Utii.isSameInt(bonusNum, num);
     }
 }

@@ -94,8 +94,8 @@
   - [ ] 중복되는 당첨 번호가 있는지 확인한다. Lotto#checkDuplicateWinNum
   - [ ] 중복되는 보너스 번호가 있는지 확인한다. Lotto#checkDulicateBonusNum
 
-- [ ] 보너스 번호 클래스 BonusLottoNum
-  - [ ] 보너스 번호가 같은지 확인한다. BonusNum#isSame
+- [x] 보너스 번호 클래스 BonusLottoNum
+  - [x] 보너스 번호가 같은지 확인한다. BonusNum#isSame
 
 - [x] 당첨 번호 클래스 WinLottoNums
   - [x] 당첨 번호 모임중 추첨 번호가 같은지 확인한다. WinLottoNum#isSame

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Validator;
+import lotto.ui.Output;
 
 public class LottoGenerator {
     // 로또 생성 컴퓨터
@@ -41,7 +42,7 @@ public class LottoGenerator {
                 isRunning = false;
 
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                Output.printError(ex);
             }
         }
         return bonusNumber;
@@ -66,13 +67,13 @@ public class LottoGenerator {
 
                     inputNumber.add(Integer.parseInt(userInput));
                 }
-                System.out.println(inputNumber); // 테스트
+
                 winningLotto = new Lotto(inputNumber);
 
                 isRunning = false;
 
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                Output.printError(ex);
             }
         }
         return winningLotto;

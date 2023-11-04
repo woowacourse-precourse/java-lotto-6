@@ -5,6 +5,10 @@ import lotto.domain.Computer;
 import lotto.domain.Lotto;
 
 public class Output {
+
+    public static void printError(IllegalArgumentException ex){
+        System.out.println(ex.getMessage());
+    }
     public static void printPurchase() {
         System.out.println("구입금액을 입력해 주세요.");
     }

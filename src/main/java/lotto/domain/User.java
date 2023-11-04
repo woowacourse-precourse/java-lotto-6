@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.ui.Output;
 
 public class User {
 
@@ -24,7 +25,7 @@ public class User {
                 isPurchasing = false;
 
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());   // 분리?
+                Output.printError(ex);
             }
         }
     }

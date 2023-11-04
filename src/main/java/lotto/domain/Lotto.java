@@ -49,9 +49,13 @@ class Lotto {
     }
 
     private static void checkNumbersDuplication(List<Integer> numbers) {
-        if (calculateUniqueCount(numbers) != LOTTO_NUMBERS_SIZE) {
+        if (hasDuplication(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATION_MESSAGE);
         }
+    }
+
+    private static boolean hasDuplication(List<Integer> numbers) {
+        return calculateUniqueCount(numbers) != LOTTO_NUMBERS_SIZE;
     }
 
     private static long calculateUniqueCount(List<Integer> numbers) {

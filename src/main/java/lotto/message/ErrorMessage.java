@@ -4,7 +4,7 @@ public enum ErrorMessage {
 
     INVALID_NUMBER_FORMAT("입력은 숫자 형식 이어야 합니다."),
     INVALID_PRICE_VALUE("금액은 1000원 단위로 입력 되어야 합니다."),
-    NEGATIVE_PRICE_VALUE("금액은 0 이상의 정수 이어야 합니다."),
+    NEGATIVE_PRICE_VALUE("금액은 양의 정수 이어야 합니다."),
     INVALID_INPUT_FORMAT("숫자와 쉼표(,)만 입력 되어야 합니다."),
     INVALID_NUMBER_RANGE("1 이상 45 이하의 수 만 입력 되어야 합니다."),
     INVALID_NUMBER_COUNT("%s개의 수가 입력 되어야 합니다."),

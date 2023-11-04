@@ -18,9 +18,7 @@ public class Application {
     static final String REGEX_FOR_LOTTO_NUMBER_RANGE = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^[4]{1}[0-5]{1}$";
 
     static List<Lotto> lottos = new ArrayList<>();
-    int desiredPurchaseAmount;
-    int numberOfLotto;
-    int bonusNumber;
+    static ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
 
     public static void main(String[] args) {
         System.out.println(InputGuideMessage.PLEASE_ENTER_LOTTO_PAYMENT_MESSAGE.getMessage());
@@ -33,6 +31,16 @@ public class Application {
         System.out.println(InputGuideMessage.PLEASE_ENTER_BONUS_NUMBER_MESSAGE.getMessage());
         int bonusNumber = validateEnteredBonusNumber(lottoWinningNumbers);
 
+        createNewLottos(numberOfLotto);
+
+        System.out.printf(InputGuideMessage.INFORM_HOW_MANY_LOTTOS_WERE_PURCHASED_MESSAGE.getMessage(), numberOfLotto);
+        for (Lotto lotto : lottos)
+            lotto.printNumber();
+
+        resultCalculationSystem.makeWinningResult(lottos, lottoWinningNumbers, bonusNumber);
+        resultCalculationSystem.calculateRateOfReturn(desiredPurchaseAmount);
+
+        resultCalculationSystem.printWinningResult();
     }
 
     private static void createNewLottos(int numberOfLotto) {

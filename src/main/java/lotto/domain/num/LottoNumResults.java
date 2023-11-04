@@ -37,10 +37,10 @@ public class LottoNumResults {
     /**
      * 보너스 번호가 같은지 확인
      *
-     * @param num
+     * @param targetNum
      * @return
      */
-    public Boolean isSameBonusNum(Integer num) {
-        return false;
+    public Boolean isSameBonusNum(Integer targetNum) {
+        return bonusLottoNum.isSame(targetNum);
     }
 }

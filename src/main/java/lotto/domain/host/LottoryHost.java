@@ -1,5 +1,6 @@
 package lotto.domain.host;
 
+import lotto.config.Config;
 import lotto.domain.num.LottoNumResults;
 import lotto.domain.num.WinLottoNums;
 
@@ -24,6 +25,10 @@ public class LottoryHost {
      */
     public void pickBonusNum(String strLine) {
         this.numOfBonus = strLine;
+    }
+
+    public void pickNum(String strOfPickWinNum, String strOfPickBonusNum) {
+        this.lottoNumResults = Config.lottoNumResults(strOfPickWinNum, strOfPickBonusNum);
     }
 
     /**

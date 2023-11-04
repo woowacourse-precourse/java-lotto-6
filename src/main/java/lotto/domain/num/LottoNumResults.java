@@ -1,5 +1,6 @@
 package lotto.domain.num;
 
+import lotto.config.Config;
 import lotto.utill.Utii;
 
 /**
@@ -12,9 +13,9 @@ public class LottoNumResults {
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
-    public LottoNumResults(WinLottoNums winLottoNums, BonusLottoNum bonusLottoNum) {
-        this.winLottoNums = winLottoNums;
-        this.bonusLottoNum = bonusLottoNum;
+    public LottoNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
+        this.winLottoNums = Config.winLottoNums(strOfPickWinNum);
+        this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
     }
 
     public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {

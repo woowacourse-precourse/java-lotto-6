@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinLottoTest {
-    private final WinLotto winLotto = new WinLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+    private final WinLotto winLotto = new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
 
     @DisplayName("WinLotto 와 Lotto 를 비교해 같은 숫자 개수를 반환한다.")
     @Test

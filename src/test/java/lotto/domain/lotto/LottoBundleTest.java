@@ -34,7 +34,7 @@ public class LottoBundleTest {
     void lottoBundleGetResultTest() {
         //Given
         lottoBundle.addLotto(lotto);
-        WinLotto winLotto = new WinLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        WinLotto winLotto = new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
         //When
         List<LottoResult> lottoResults = lottoBundle.getLottoResults(winLotto);
         //Then

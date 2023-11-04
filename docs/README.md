@@ -33,7 +33,7 @@
 - [x] 보너스 번호를 입력받는다.
     - 예외 처리
         - [x] 보너스 번호가 1 ~ 45를 벗어나는 수이면 `IllegalArgumentException`을 발생시킨다.
-        - [ ] 보너스 번호가 당첨 번호와 겹치면 `IllegalArgumentException`을 발생시킨다.
+        - [x] 보너스 번호가 당첨 번호와 겹치면 `IllegalArgumentException`을 발생시킨다.
 
 - [x] 구매한 모든 로또 수량과 번호를 출력한다. 번호는 오름차순으 정렬해서 보여준다.
 

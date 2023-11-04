@@ -3,6 +3,8 @@ package lotto.handler;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.ResultView;
 
+import java.util.List;
+
 public class UserHandler {
     public static int getAmountFromUser() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -51,4 +53,18 @@ public class UserHandler {
         }
 
     }
+
+    public static String getWinningNumberFromUser() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumberInput = Console.readLine();
+        return validateWinningNumberInput(winningNumberInput);
+    }
+
+    private static String validateWinningNumberInput(String winningNumberInput) {
+        return null;
+    }
+
+
+
+
 }

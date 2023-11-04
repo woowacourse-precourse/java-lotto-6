@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.constants.LottoConstants;
 
 public class Bonus {
-    
+
     private int bonus;
 
     private Bonus(int bonus) {
@@ -28,4 +28,7 @@ public class Bonus {
         return LottoConstants.MIN_NUMBER.getConstants() <= bonus && bonus <= LottoConstants.MAX_NUMBER.getConstants();
     }
 
+    public int getBonus() {
+        return bonus;
+    }
 }

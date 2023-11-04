@@ -1,34 +1,27 @@
 package lotto.view;
 
-import component.Composer;
 import component.output.BoughtLottosCountComponent;
 import component.output.DrawingStatisticComponent;
-import io.input.Writer;
-import lotto.controller.dto.LottosBuyingResult;
-import lotto.controller.dto.LottosDrawingResult;
+import component.output.LottoNumbersComponent;
+import io.output.Writer;
+import lotto.controller.dto.output.LottosBuyingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 
 public final class OutputView {
 
-    private final Composer composer;
-
     private final Writer writer;
 
-    public OutputView(
-            final Writer writer,
-            final Composer composer
-    ) {
+    public OutputView(final Writer writer) {
         this.writer = writer;
-        this.composer = composer;
     }
 
-    public void printLottosBuyingResult(final LottosBuyingResult result) {
-        final String composedMessage = composer.renderAll(
-                new BoughtLottosCountComponent(result.count())
-        );
-        writer.write(composedMessage);
+    public void printLottosBuyingResult(final LottosBuyingResult data) {
+        new BoughtLottosCountComponent(data)
+                .compose(new LottoNumbersComponent(data))
+                .renderTo(writer);
     }
 
-    public void printLottosDrawingResult(final LottosDrawingResult result) {
-        writer.write(new DrawingStatisticComponent(result).render());
+    public void printLottosDrawingResult(final LottosDrawingResult data) {
+        new DrawingStatisticComponent(data).renderTo(writer);
     }
 }

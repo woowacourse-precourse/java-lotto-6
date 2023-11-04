@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import lotto.domain.Lotto;
 
 public class Application {
 
@@ -16,6 +21,7 @@ public class Application {
         int lotto_count = price / 1000;
 
         //2) 구매 가능한 로또 개수만큼 로또 자동 발급 기능
+        List<Lotto> lotto_list = generateLottoList(lotto_count);
 
         //3) 발급한 로또 번호 출력 기능
 
@@ -69,6 +75,28 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 구매 금액에 공백이 포함되면 안됩니다.");
             }
         }
+    }
+
+    /**
+     * 2. 구매 가능한 로또 개수만큼 로또 자동 발급기능
+     */
+    static List<Lotto> generateLottoList(int lottoCount) {
+        List<Lotto> list = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            //랜덤 값 자동 생성 및 세팅
+            list.add(new Lotto(getRandomNumList()));
+        }
+        return list;
+    }
+
+    static private List<Integer> getRandomNumList() {
+        List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        sortRandomNumList(list); //정렬 시키기
+        return list;
+    }
+
+    static private void sortRandomNumList(List<Integer> list) {
+        Collections.sort(list);
     }
 
 }

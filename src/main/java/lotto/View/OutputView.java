@@ -1,6 +1,9 @@
 package lotto.View;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.Domain.Lotto;
+import lotto.Domain.LottoGenerator;
 
 public class OutputView {
 
@@ -10,6 +13,8 @@ public class OutputView {
 
     public static void printLottoAmount(int purchaseAmount) {
         System.out.println(purchaseAmount + LOTTO_AMOUNT_MESSAGE);
+
     }
+
 
 }

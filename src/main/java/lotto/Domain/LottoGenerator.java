@@ -13,12 +13,13 @@ public class LottoGenerator {
 
     private static List<Integer> lottoNumberList;
 
-    public static List<Integer> GenerateLottoNumbers() {
+    public static List<Integer> generateLottoNumbers() {
 
         lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
         List<Integer> generatedLottoNumbersList = new ArrayList<>(lottoNumberList);
         Collections.sort(generatedLottoNumbersList);
 
         return generatedLottoNumbersList;
+
     }
 }

@@ -2,6 +2,9 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,5 +38,24 @@ class PlayerTest {
         assertEquals(1, player1.getTicketCount());
         assertEquals(2, player2.getTicketCount());
         assertEquals(3, player3.getTicketCount());
+    }
+
+    @Test
+    public void 수익률을_올바르게_계산하는가() {
+        //given
+        Player player = new Player(new LottoTickets(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 10)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 9)),
+                new Lotto(List.of(1, 2, 3, 4, 9, 9)),
+                new Lotto(List.of(1, 2, 3, 9, 9, 9)),
+                new Lotto(List.of(1, 2, 9, 9, 9, 9))
+        )));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+
+        //when
+        GameResult gameResult = player.getRank();
+
+        //then
+        assertThat(gameResult.getWinningStatistics()).isEqualsTo(525916.7);
     }
 }

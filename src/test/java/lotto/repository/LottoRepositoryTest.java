@@ -26,17 +26,17 @@ public class LottoRepositoryTest {
 
     private static Stream<Arguments> generateLotto() {
         return Stream.of(
-                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))),
-                Arguments.of(new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))),
-                Arguments.of(new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18)))
+                Arguments.of(Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6))),
+                Arguments.of(Lotto.from(Arrays.asList(7, 8, 9, 10, 11, 12))),
+                Arguments.of(Lotto.from(Arrays.asList(13, 14, 15, 16, 17, 18)))
         );
     }
 
     @Test
     void 로또_번호_조회하기() {
-        Lotto firstLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto secondLotto = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
-        Lotto thirdLotto = new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18));
+        Lotto firstLotto = Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto secondLotto = Lotto.from(Arrays.asList(7, 8, 9, 10, 11, 12));
+        Lotto thirdLotto = Lotto.from(Arrays.asList(13, 14, 15, 16, 17, 18));
 
         lottoRepository.saveLotto(firstLotto);
         lottoRepository.saveLotto(secondLotto);

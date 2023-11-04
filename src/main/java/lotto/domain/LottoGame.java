@@ -19,7 +19,7 @@ public class LottoGame {
             );
         }
         Collections.sort(lotto);
-        return new Lotto(lotto);
+        return Lotto.from(lotto);
     }
 
     private void addAlternativeNumber(List<Integer> lotto, int randomNumber) {

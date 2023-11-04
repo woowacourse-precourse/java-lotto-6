@@ -1,16 +1,13 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
-import lotto.domain.Bonus;
-import lotto.domain.Lotto;
-import lotto.domain.LottoWithBonus;
 import org.junit.jupiter.api.Test;
 
 public class LottoWithBonusTest {
-    private Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+    private Lotto lotto = Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6));
     private LottoWithBonus lottoWithBonus;
 
     @Test

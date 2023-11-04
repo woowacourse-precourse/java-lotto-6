@@ -12,7 +12,7 @@ public class Lotto {
     private static final int STANDARD_SIZE = 6;
     private final List<Integer> numbers; // 필드 고정, private 도 고정
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }

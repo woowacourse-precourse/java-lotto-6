@@ -17,7 +17,7 @@ public class InputView {
 //        return getInputWithMessage(InputMessage.INPUT_BONUS.getMessage());
 //    }
 
-    private String getInputWithMessage(String message){
+    public String getInputWithMessage(String message){
         System.out.println(message);
         return inputUtil.getInput();
     }

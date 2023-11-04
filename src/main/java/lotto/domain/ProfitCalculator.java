@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ProfitCalculator {
 
-    List<Integer> winningLottoCounts;
+    private final List<Integer> winningLottoCounts;
 
     public ProfitCalculator(List<Integer> winningLottoCounts) {
         this.winningLottoCounts = winningLottoCounts;

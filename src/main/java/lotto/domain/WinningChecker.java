@@ -4,9 +4,9 @@ import java.util.*;
 
 public class WinningChecker {
 
-    final List<Lotto> myLottos;
-    final List<Integer> winningNumbers;
-    final int bonusNumber;
+    private final List<Lotto> myLottos;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
     public WinningChecker(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
         this.myLottos = myLottos;

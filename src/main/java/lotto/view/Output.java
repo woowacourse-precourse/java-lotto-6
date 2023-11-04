@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.message.WinningResult;
+import lotto.values.WinningResult;
 
 import java.util.ArrayList;
 
-import static lotto.message.GuideMessage.*;
+import static lotto.values.GuideMessage.*;
 
 public class Output {
     public void printMoneyPrompt() {

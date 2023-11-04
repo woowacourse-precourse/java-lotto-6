@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.values;
 
 public enum CorrectNumber {
     FIFTH_PLACE(3),

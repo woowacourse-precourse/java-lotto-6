@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.values;
 
 public enum GuideMessage {
     REQUEST_MONEY_MESSAGE("구입금액을 입력해 주세요."),

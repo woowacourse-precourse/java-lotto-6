@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.values;
 
 public enum EarningInformation {
     EARNING_FIFTH(5000),

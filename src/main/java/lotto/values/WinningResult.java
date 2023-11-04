@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.values;
 
 public enum WinningResult {
     WINNING_FIFTH_MESSAGE("3개 일치 (5,000원) - %d개\n"),

@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.values;
 
 public enum ErrorMessage {
     NOT_IN_NUMBER_RANGE("1번부터 45번까지만 입력할 수 있습니다."),

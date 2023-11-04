@@ -36,8 +36,8 @@ public class LottoGameController {
                 List<String> lottoNumbers = Arrays.asList(InputView.getUserInput().split(","));
 
                 OutputView.printBonusNumberInputText();
-
-                return new WinningNumber(lottoNumbers, null);
+                String bonusNumberInput = InputView.getUserInput();
+                return new WinningNumber(lottoNumbers, bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

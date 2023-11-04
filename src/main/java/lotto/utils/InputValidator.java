@@ -40,6 +40,13 @@ public class InputValidator {
         }
     }
 
+    public static void checkRange(String input) {
+        int number = Integer.parseInt(input);
+        if (number < MIN_NUM || number > MAX_NUM) {
+            throw new IllegalArgumentException(INVALID_RANGE);
+        }
+    }
+
     public static void checkLottoSizeIsSix(List<Integer> input) {
         if (input.size() != SIZE) {
             throw new IllegalArgumentException(ERROR + INVALID_SIZE);

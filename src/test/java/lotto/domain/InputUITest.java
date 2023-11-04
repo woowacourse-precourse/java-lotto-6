@@ -3,10 +3,17 @@ package lotto.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class InputUITest {
     private InputUI inputUI;
@@ -23,6 +30,14 @@ class InputUITest {
         assertThatThrownBy(()->inputUI.checkValidPurchase(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expect);
+    }
+
+    @Test
+    void checkLengthWinning_입력값_6자리_판단() {
+        String[] invalidInputs = {"1","2","3","4","5","6","7"};
+        assertThatThrownBy(()->inputUI.checkLengthWinning(invalidInputs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
     }
 
 

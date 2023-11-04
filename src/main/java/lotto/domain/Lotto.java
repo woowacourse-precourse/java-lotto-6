@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.Messages;
+import lotto.constants.Values;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +13,30 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (isInvalidLottoNumberCount(numbers)) {
+            throw new IllegalArgumentException(Messages.ERROR_COUNT_LOTTO_NUMBER);
+        }
+        if (hasDuplicates(numbers)) {
+            throw new IllegalArgumentException(Messages.ERROR_DUPLICATE_LOTTO_NUMBER);
+        }
+        if (hasNumberOutsideRange(numbers)) {
+            throw new IllegalArgumentException(Messages.ERROR_RANGE_LOTTO_NUMBER);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isInvalidLottoNumberCount(List<Integer> numbers) {
+        return numbers.size() != Values.LOTTO_NUMBER_COUNT;
+    }
+
+    private boolean hasDuplicates(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private boolean hasNumberOutsideRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(this::isOutsideRange);
+    }
+
+    private boolean isOutsideRange(int number) {
+        return number < Values.LOTTO_MIN_NUMBER || number > Values.LOTTO_MAX_NUMBER;
+    }
 }

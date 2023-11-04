@@ -168,4 +168,7 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+### git commit message template
+.gitmessage.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,gradle

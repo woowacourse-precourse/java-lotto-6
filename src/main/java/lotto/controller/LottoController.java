@@ -1,5 +1,13 @@
 package lotto.controller;
 
+import static lotto.model.LottoConstant.FIFTH_PRIZE_MATCH;
+import static lotto.model.LottoConstant.FIRST_PRIZE_MATCH;
+import static lotto.model.LottoConstant.GOAL_MATCH_POINT;
+import static lotto.model.LottoConstant.LOTTO_NUMBERS_SIZE;
+import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
+import static lotto.model.Point.FIRST_POINT;
+import static lotto.model.Point.SECOND_POINT;
+
 import lotto.model.Lotto;
 import lotto.model.Prize;
 import lotto.model.dto.LottoResponse;
@@ -30,21 +38,21 @@ public class LottoController {
 
         LottoJudge goalJudge = initGoalNumberJudge();
         LottoJudge bonusJudge = initBonusNumberJudge();
-        for (int i = 3; i < 6; i++) {
+        for (int i = FIFTH_PRIZE_MATCH.getValue(); i < FIRST_PRIZE_MATCH.getValue(); i++) {
             List<Lotto> matchLotto = goalJudge.collectLottoWithMatchSize(lottos, i);
-            Prize prize = Prize.findByPoint(i * 100);
+            Prize prize = Prize.findByPoint(i * GOAL_MATCH_POINT.getValue());
             investorService.addProfit(prize.getMoney() * matchLotto.size());
             outputView.printEachPrize(prize.getCondition(), prize.getMoney(), matchLotto.size());
         }
 
-        List<Lotto> secondMatchLotto = bonusJudge.collectLottoWithMatchSize(lottos, 5);
-        List<Lotto> secondResultLotto = goalJudge.collectLottoWithMatchSize(secondMatchLotto, 5);
-        Prize secondPrize = Prize.findByPoint(550);
+        List<Lotto> secondMatchLotto = bonusJudge.collectLottoWithMatchSize(lottos, SECOND_PRIZE_MATCH.getValue());
+        List<Lotto> secondResultLotto = goalJudge.collectLottoWithMatchSize(secondMatchLotto, SECOND_PRIZE_MATCH.getValue());
+        Prize secondPrize = Prize.findByPoint(SECOND_POINT.getPoint());
         investorService.addProfit(secondPrize.getMoney() * secondResultLotto.size());
         outputView.printEachPrize(secondPrize.getCondition(), secondPrize.getMoney(), secondResultLotto.size());
 
-        List<Lotto> firstLotto = goalJudge.collectLottoWithMatchSize(lottos, 6);
-        Prize prize = Prize.findByPoint(600);
+        List<Lotto> firstLotto = goalJudge.collectLottoWithMatchSize(lottos, LOTTO_NUMBERS_SIZE.getValue());
+        Prize prize = Prize.findByPoint(FIRST_POINT.getPoint());
         investorService.addProfit(prize.getMoney() * firstLotto.size());
         outputView.printEachPrize(prize.getCondition(), prize.getMoney(), firstLotto.size());
 

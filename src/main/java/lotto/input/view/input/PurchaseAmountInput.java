@@ -1,5 +1,6 @@
 package lotto.input.view.input;
 
+import static lotto.input.constant.Constant.LOTTO_PRICE;
 import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_ERROR;
 import static lotto.input.constant.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
 
@@ -29,7 +30,7 @@ public class PurchaseAmountInput {
     }
 
     private int getCount(Long amount) {
-        return amount.intValue() / 1000;
+        return amount.intValue() / LOTTO_PRICE;
     }
 
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.settings.Announcement.PURCHASE_AMOUNT_REQUEST;
 

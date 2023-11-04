@@ -1,10 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.settings.ErrorMessage.*;
 import static lotto.settings.LottoRange.*;
 
 public class PurchaseAmount {
-    private int amount;
+    private final int amount;
 
     public PurchaseAmount(int amount) {
         this.amount = amount;

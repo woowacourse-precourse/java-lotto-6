@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static lotto.settings.ErrorMessage.*;
 

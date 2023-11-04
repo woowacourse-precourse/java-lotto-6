@@ -1,4 +1,8 @@
-package lotto;
+package lotto.controller;
+
+import lotto.service.InputService;
+import lotto.domain.PurchaseAmount;
+import lotto.view.View;
 
 public class LottoController {
 

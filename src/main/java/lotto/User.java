@@ -35,7 +35,9 @@ public class User {
             Integer integerNumber = Integer.parseInt(number);
             return integerNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+            IllegalArgumentException error = new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+            System.out.println(error.getMessage());
+            throw error;
         }
     }
 

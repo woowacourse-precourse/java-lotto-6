@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchasePrice;
 
@@ -27,6 +28,13 @@ public class InputManager {
         return read(() -> {
             String winningNumbers = inputView.inputWinningNumbers();
             return inputMapper.toLotto(winningNumbers);
+        });
+    }
+
+    public BonusNumber inputBonusNumber(Lotto lotto) {
+        return read(() -> {
+            String bonusNUmber = inputView.inputBonusNumber();
+            return inputMapper.toBonusNumber(bonusNUmber, lotto);
         });
     }
 

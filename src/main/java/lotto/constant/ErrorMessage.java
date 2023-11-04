@@ -14,4 +14,5 @@ public class ErrorMessage {
 
     public static final String NOT_NUMBER_BONUS_NUMBER = "보너스 번호는 (빈)문자가 아닌 숫자여야 합니다.";
     public static final String OVERLAP_BONUS_NUMBER = "보너스 번호는 당첨 번호와 겹쳐서는 안됩니다.";
+    public static final String OUT_RANGE_BONUS_NUMBER = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 }

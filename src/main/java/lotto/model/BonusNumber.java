@@ -1,6 +1,9 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.NumberConstant;
+
+import java.util.List;
 
 public class BonusNumber {
 
@@ -9,6 +12,8 @@ public class BonusNumber {
     public BonusNumber(String input, Lotto winningNumbers){
         int tempNumber = notNumber(input);
         overlapWinningNumber(tempNumber, winningNumbers);
+        outOfRange(tempNumber);
+        number = tempNumber;
     }
 
     private int notNumber(String input){
@@ -22,6 +27,12 @@ public class BonusNumber {
     private void overlapWinningNumber(int tempNumber, Lotto winningNumbers){
         if(winningNumbers.containNumbers(tempNumber)){
             throw new IllegalArgumentException(ErrorMessage.OVERLAP_BONUS_NUMBER);
+        }
+    }
+
+    private void outOfRange(int tempNumber){
+        if(tempNumber < NumberConstant.LOTTO_NUMBER_MIN || tempNumber > NumberConstant.LOTTO_NUMBER_MAX){
+            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_BONUS_NUMBER);
         }
     }
 

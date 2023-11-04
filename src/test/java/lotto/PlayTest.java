@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,5 +60,14 @@ public class PlayTest {
 
         int bonusB = 7;
         Assertions.assertThat(compareLottoAndBonus(lottoNumbers, bonusB)).isEqualTo(false);
+    }
+
+    @DisplayName("로또 번호 랜덤 생성")
+    @Test
+    void makeLotteryTest() {
+        Lotto lotto = makeLottery();
+        for (int num : lotto.getLotto()) {
+            System.out.println(num);
+        }
     }
 }

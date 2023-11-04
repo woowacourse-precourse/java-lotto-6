@@ -44,6 +44,9 @@ public class LottoController {
 
     private boolean validMoneyInput() {
         try {
+            if (money == 0) {
+                throw new IllegalArgumentException("[ERROR] 구입금액은 0원일 수 없습니다. 다시 입력하세요.");
+            }
             if (money % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위입니다. 다시 입력하세요.");
             }

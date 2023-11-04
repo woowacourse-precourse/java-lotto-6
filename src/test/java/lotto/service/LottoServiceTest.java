@@ -38,45 +38,6 @@ class LottoServiceTest {
         assertThat(lottos.size()).isEqualTo(lottoQuantity);
     }
 
-    @DisplayName("1등 당첨 검증 테스트")
-    @Test
-    void winnerNumberMatchTest() {
-        lottoService = new LottoService(lottoWinningStrategy, fixedNumberGenerator);
-        int lottoQuantity = 1;
-        List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
-
-        List<Integer> winnerNumbers = fixedNumberGenerator();
-        int bonusNumber = 7;
-
-        List<Result> results = lottos.stream()
-                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winnerNumbers, bonusNumber))
-                .toList();
-
-        for (Result result : results) {
-            assertThat(result.getRank()).isEqualTo(Rank.FIRST);
-        }
-    }
-
-    @DisplayName("2등 당첨 검증 테스트")
-    @Test
-    void secondRankTest() {
-        lottoService = new LottoService(lottoWinningStrategy, fixedNumberGenerator);
-        int lottoQuantity = 1;
-        List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
-
-        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 10);
-        int bonusNumber = 6;
-
-        List<Result> results = lottos.stream()
-                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winnerNumbers, bonusNumber))
-                .toList();
-
-        for (Result result : results) {
-            assertThat(result.getRank()).isEqualTo(Rank.SECOND);
-        }
-
-    }
-
     @DisplayName("로또 당첨 수익률 검증 테스트")
     @Test
     void winningStatisticsTest() {

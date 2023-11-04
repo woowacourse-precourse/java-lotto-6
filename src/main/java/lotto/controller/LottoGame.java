@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
+import lotto.collection.Lotto;
+import lotto.domain.ResultNumber;
 import lotto.domain.User;
-import lotto.domain.WinningNumber;
 import lotto.dto.LottoTicketsDTO;
 import lotto.utility.GameUtility;
 import lotto.validator.LottoNumberValidator;
@@ -10,12 +10,9 @@ import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static lotto.validator.LottoNumberValidator.validateNumberRange;
 
 public class LottoGame {
 
@@ -25,14 +22,16 @@ public class LottoGame {
         int payment = getPaymentAndValidate();
         User user = GameUtility.buyTickets(payment);
 
-        OutputView.printLottoTickets(
-                new LottoTicketsDTO(
+        OutputView.printLottoTickets(new LottoTicketsDTO(
                         user.getLottoTickets().size(),
                         user.getLottoTickets())
         );
 
         OutputView.printLineBreak();
-        WinningNumber winningNumber = new WinningNumber(getWinningNumberAndValidate(),getBonusNumberAndValidate());
+
+        List<Integer> winningNumber = getWinningNumberAndValidate();
+        int bonusNumber = getBonusNumberAndValidate(winningNumber);
+        ResultNumber resultNumber = ResultNumber.create(winningNumber, bonusNumber);
     }
 
     private static int getPaymentAndValidate() {
@@ -41,7 +40,6 @@ public class LottoGame {
         try {
             OutputView.printInputPurchaseAmount();
             paymentString = InputView.receiveUserInput();
-
             Validator.isPrimeNumber(paymentString);
             Validator.isPositiveNumber(paymentString);
             Validator.isUnitsOfLottoPrice(paymentString);
@@ -50,43 +48,41 @@ public class LottoGame {
             System.out.println(e.getMessage());
             payment = getPaymentAndValidate();
         }
-
         return payment;
     }
 
-    private static Lotto getWinningNumberAndValidate() {
-        String lottoString;
-        Lotto lotto;
+    private static List<Integer> getWinningNumberAndValidate() {
+        String winningNumberString;
+        List<Integer> winningNumber;
         try {
             OutputView.printInputWinningNumber();
-            lottoString = InputView.receiveUserInput();
-            Validator.checkWinningNumberForm(lottoString);
-
-            lotto = new Lotto(Arrays.stream(lottoString.split(","))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList()));
+            winningNumberString = InputView.receiveUserInput();
+            Validator.checkWinningNumberForm(winningNumberString);
+            winningNumber = Arrays.stream(winningNumberString.split(","))
+                                                        .map((number) -> Integer.parseInt(number))
+                                                        .toList();
+            LottoNumberValidator.validateLottoNumber(winningNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            lotto = getWinningNumberAndValidate();
+            winningNumber = getWinningNumberAndValidate();
         }
-
-        return lotto;
+        return winningNumber;
     }
 
-    private static int getBonusNumberAndValidate() {
+
+    private static int getBonusNumberAndValidate(List<Integer> winningNumber) {
         String bonusNumberString;
         int bonusNumber;
         try {
             OutputView.printInputBonusNumber();
             bonusNumberString = InputView.receiveUserInput();
             Validator.isPrimeNumber(bonusNumberString);
-
             bonusNumber = Integer.parseInt(bonusNumberString);
+            LottoNumberValidator.validateDuplication(bonusNumber,winningNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            bonusNumber = getBonusNumberAndValidate();
+            bonusNumber = getBonusNumberAndValidate(winningNumber);
         }
-
         return bonusNumber;
     }
 

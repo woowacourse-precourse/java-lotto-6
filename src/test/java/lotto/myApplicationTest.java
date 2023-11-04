@@ -1,8 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.controller.LottoGame;
-import lotto.domain.Lotto;
+import lotto.collection.Lotto;
 import lotto.domain.User;
 import lotto.dto.LottoTicketsDTO;
 import lotto.utility.GameUtility;
@@ -61,6 +60,7 @@ public class myApplicationTest {
             Assertions.assertThatCode(() -> Validator.validatePurchaseAmount(input))
                     .doesNotThrowAnyException();
         }
+
     }
 
     @Nested
@@ -102,7 +102,7 @@ public class myApplicationTest {
     }
 
     @Nested
-    @DisplayName("발행한 로또 수량 및 번호를 출력하는 기능")
+    @DisplayName("발행한 로또 수량 및 번호를 출력하는 기능 테스트")
     public class 발행_로또_수량_및_번호_테스트 {
 
         private static ByteArrayOutputStream outputMessage;
@@ -138,6 +138,11 @@ public class myApplicationTest {
                     "[3, 5, 11, 16, 32, 38]"
             );
         }
+    }
+
+    @Nested
+    @DisplayName("당첨 번호 입력 테스트")
+    public class 당청_번호_입력_테스트 {
 
 
     }

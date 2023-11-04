@@ -8,6 +8,14 @@ import static lotto.constants.ValidatorConstants.*;
 
 public class LottoNumberValidator {
 
+    public static void validateLottoNumber(List<Integer> numbers) {
+        LottoNumberValidator.validateNumbersSize(numbers);
+        LottoNumberValidator.validateDuplication(numbers);
+        numbers.stream()
+                .forEach((number) -> validateNumberRange(number));
+    }
+
+
 
     public static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
@@ -26,6 +34,12 @@ public class LottoNumberValidator {
             return;
         }
         throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE.getValue());
+    }
+
+    public static void validateDuplication(int bonusNumber, List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
+            throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE.getValue());
+        }
     }
 
     public static void validateNumberRange(int number) {

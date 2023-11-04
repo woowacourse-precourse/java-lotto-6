@@ -39,4 +39,8 @@ public class Lotto {
     private boolean isOutsideRange(int number) {
         return number < Values.LOTTO_MIN_NUMBER || number > Values.LOTTO_MAX_NUMBER;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

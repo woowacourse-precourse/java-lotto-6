@@ -1,10 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.global.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static lotto.global.ErrorMessage.*;
 
 public class LottoInputView {
 
@@ -19,7 +22,7 @@ public class LottoInputView {
                 String input = Console.readLine();
                 purchaseAmount = Long.parseLong(input);
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 유효한 숫자를 입력해주세요.");
+                System.out.println(INPUT_NUMBER_IS_INVALID.getMessage());
             }
         }
         return purchaseAmount;

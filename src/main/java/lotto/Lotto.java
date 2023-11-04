@@ -10,11 +10,19 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NumberConstant.LOTTO_RANGE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validDuplicate(List<Integer> numbers){
+        Set<Integer> sNumbers = new HashSet<>(numbers);
+        if (sNumbers.size() != numbers.size()){
             throw new IllegalArgumentException();
         }
     }

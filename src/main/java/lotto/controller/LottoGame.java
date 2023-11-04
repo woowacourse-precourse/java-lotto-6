@@ -13,6 +13,7 @@ import lotto.utils.StringChanger;
 
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     private LottoSeller lottoSeller;
     private LottoScoreChecker lottoScoreChecker;
     private List<Lotto> userLottos;
@@ -57,9 +58,16 @@ public class LottoGame {
     }
 
     private void inputAmount() {
-        String userInput = InputViewer.requestAmountInput();
-        userInput = StringChanger.trimString(userInput);
-        userAmount = lottoSeller.getAmount(userInput);
+        while (true) {
+            try {
+                String userInput = InputViewer.requestAmountInput();
+                userInput = StringChanger.trimString(userInput);
+                userAmount = lottoSeller.getAmount(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE + LOTTO_PRICE + "로 나누어지는 수만 입력하세요.");
+            }
+        }
     }
 
     private void giveUserLottos() {
@@ -75,13 +83,27 @@ public class LottoGame {
     }
 
     private void getFirstNumbers() {
-        String userInput = InputViewer.requestWinningNumberInput();
-        lottoScoreChecker.setFirstNumbers(userInput);
+        while (true) {
+            try {
+                String userInput = InputViewer.requestWinningNumberInput();
+                lottoScoreChecker.setFirstNumbers(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE);
+            }
+        }
     }
 
     private void getBonusNumber() {
-        String userInput = InputViewer.requestBonusNumberInput();
-        lottoScoreChecker.setBonusNumber(userInput);
+        while (true) {
+            try {
+                String userInput = InputViewer.requestBonusNumberInput();
+                lottoScoreChecker.setBonusNumber(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE);
+            }
+        }
     }
 
     private void checkLottoScore() {

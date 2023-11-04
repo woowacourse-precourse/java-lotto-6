@@ -34,7 +34,7 @@ public class OutputViewer {
     public static void printLottoResult(Rank rank, int rankCount) {
         int matchedCount = rank.getMatchCount();
         String amount = rank.getAmountMessage();
-        if (matchedCount == 0) {
+        if (rank == Rank.NO_RANK) {
             return;
         }
         if (rank == Rank.FIVE_AND_BONUS_MATCH) {

@@ -60,7 +60,7 @@
 - 당첨 결과를 계산하는 메서드
 ### getPrizeMoney(Map<Integer, Integer> resultMap)
 - 당첨된 금액의 총합을 반환하는 메서드
-### getEarningsRate(int purchaseAmount, int totalPrizeMoney)
+### calculateEarningsRate(int purchaseAmount, int totalPrizeMoney)
 - 수익률 계산하는 메서드
 
 ---

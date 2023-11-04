@@ -10,10 +10,12 @@ import java.util.stream.Stream;
 import static lotto.domain.Prize.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@DisplayName("당첨")
 class PrizeTest {
 
     @DisplayName("생성 성공 테스트")
-    @ParameterizedTest
+    @ParameterizedTest()
     @MethodSource("createPrizeSuccessDummy")
     void createPrizeSuccessTest(Integer countOfSameNumber, Boolean checkBonus, Prize expected) {
         Prize result = of(countOfSameNumber, checkBonus);

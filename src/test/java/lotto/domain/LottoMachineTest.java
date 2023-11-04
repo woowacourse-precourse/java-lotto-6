@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("로또 생성기")
 class LottoMachineTest {
     LottoMachine lottoMachine;
     NumberGenerator numberGenerator;

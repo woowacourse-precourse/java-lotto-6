@@ -2,7 +2,6 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,10 +50,17 @@ public class Input {
     }
 
     private void validateWinningNumbers(List<String> userInput) {
+        validateNoBlank(userInput);
         validateOnlyNumbers(userInput);
         validateNumbersSizeSix(userInput);
         validateNumberRange(userInput);
         validateDuplicatedNumber(userInput);
+    }
+
+    private void validateNoBlank(List<String> userInput) {
+        if (userInput.stream().anyMatch(num -> num.contains(" "))) {
+            throw new IllegalArgumentException("[ERROR] 공백은 입력이 불가능 합니다.");
+        }
     }
 
     private void validateOnlyNumbers(List<String> userInput) {

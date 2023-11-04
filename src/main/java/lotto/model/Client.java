@@ -31,4 +31,22 @@ public class Client {
         List<Lotto> clonedLottos = new ArrayList<>(lottos);
         return Collections.unmodifiableList(clonedLottos);
     }
+
+
+    private long calculateWinningPrize(List<Integer> lottoResults) {
+        long winningPrize = 0;
+        for(int rank = 0; rank < lottoResults.size(); rank++) {
+            winningPrize += lottoResults.get(rank) * LottoResult.getPrizeByRank(rank);
+        }
+        return winningPrize;
+    }
+
+    public double calculateRateOfReturn(List<Integer> lottoResults) {
+        double rateOfReturn = (double) calculateWinningPrize(lottoResults) / payAmount;
+        rateOfReturn = Math.round(rateOfReturn * 1000) / 10.0;
+        return rateOfReturn;
+    }
+
+
+
 }

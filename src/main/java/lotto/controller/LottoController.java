@@ -17,7 +17,7 @@ public class LottoController {
         issueLotto(client);
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         drawWinningNumbers(lottoResultChecker);
-        checkLottoResults(client, lottoResultChecker);
+        announceLottoResults(client, lottoResultChecker);
     }
 
     private void payAmount(Client client) {
@@ -74,8 +74,10 @@ public class LottoController {
         }
     }
 
-    private void checkLottoResults(Client client, LottoResultChecker lottoResultChecker) {
+    private void announceLottoResults(Client client, LottoResultChecker lottoResultChecker) {
         List<Integer> lottoResults = lottoResultChecker.showLottoResults(client.getLottos());
         view.printLottoResult(lottoResults);
+        double rateOfReturn = client.calculateRateOfReturn(lottoResults);
+        view.printRateOfReturn(rateOfReturn);
     }
 }

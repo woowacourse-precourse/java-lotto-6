@@ -20,4 +20,13 @@ public enum LottoResult {
     public int getRank() {
         return rank;
     }
+
+    public static long getPrizeByRank(int rank) {
+        for (LottoResult result : values()) {
+            if (result.rank == rank) {
+                return result.prize;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 등수입니다.");
+    }
 }

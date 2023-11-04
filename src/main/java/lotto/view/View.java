@@ -46,4 +46,8 @@ public class View {
                 + "6개 일치 (2,000,000,000원) - %d개\n",lottoResult.get(5),lottoResult.get(4),lottoResult.get(3),
                 lottoResult.get(2),lottoResult.get(1));
     }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
+    }
 }

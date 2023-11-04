@@ -43,5 +43,21 @@ public class InputView {
         return WinningNumber.fromString(input);
     }
 
+    public static int getBonusNumber() {
+        InputMessage.BONUS_NUMBER_PROMPT.print();
 
+        String input = readLine();
+        if (!isNumericValue(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+        int number = Integer.parseInt(input);
+        if (!hasCorrectRange(number)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+        }
+        return number;
+    }
+
+    private static boolean hasCorrectRange(int number) {
+        return number > 0 && number < 46;
+    }
 }

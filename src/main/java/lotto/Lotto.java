@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -16,6 +17,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (hasDuplicated(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean hasDuplicated(List<Integer> numbers) {
+        return new HashSet<>(numbers).size() != numbers.size();
     }
 
     public static int purchaseCount(int pay) {
@@ -24,5 +33,9 @@ public class Lotto {
         }
 
         return pay / PRICE;
+    }
+
+    public String numberDescription() {
+        return numbers.toString();
     }
 }

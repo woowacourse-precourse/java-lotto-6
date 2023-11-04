@@ -30,6 +30,7 @@ public class InputValidation {
 
     public int validateBonusNumber(String input) {
         validateInputIsNumeric(input);
+        validateCheckRangeOfBonusNumberInput(input);
         int bonusNumber = Integer.parseInt(input);
         validateBonusNumberIsPositive(bonusNumber);
         validateBonusNumberOutOfRange(bonusNumber);
@@ -125,6 +126,14 @@ public class InputValidation {
 
         if (winnerNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 입력할 수 없습니다.");
+        }
+    }
+
+    public void validateCheckRangeOfBonusNumberInput(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

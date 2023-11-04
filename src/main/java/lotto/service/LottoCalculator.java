@@ -18,24 +18,24 @@ public class LottoCalculator {
     public void compareLotto(ComparatorRequest comparatorRequest) {
         WinningLotto winningLotto = comparatorRequest.winningLotto();
         List<Lotto> playerLotto = comparatorRequest.playerNumbers();
-
         for (Lotto number : playerLotto) {
             int rank = calculateRanking(number, winningLotto);
             if (winningLotto.hasBonusNumber(rank, number)) {
                 Ranking.changeCountWhenHasBonusNumber();
             }
-            Ranking.getWinner(rank);
+            Ranking.increaseRankingCount(rank);
         }
     }
 
     private int calculateRanking(Lotto number, WinningLotto winningLotto) {
         Set<Integer> winningNumber = new HashSet<>(winningLotto.numbers().getNumbers());
         winningNumber.addAll(number.getNumbers());
-        return LottoNumbers.LOTTO_SIZE.getNumber() - winningNumber.size();
+        int count = winningNumber.size() - LottoNumbers.LOTTO_SIZE.getNumber();
+        return LottoNumbers.LOTTO_SIZE.getNumber() - count;
     }
 
     public double calculatePayOff(int purchaseMoney) {
-        double payOff = (double) Ranking.getTotalAmount() / purchaseMoney * HUNDRED_PERCENT;
+        double payOff = (double) Ranking.getTotalPrizeMoney() / purchaseMoney * HUNDRED_PERCENT;
         return Math.round(payOff * HUNDRED_PERCENT) / HUNDRED_PERCENT_DOUBLE;
     }
 }

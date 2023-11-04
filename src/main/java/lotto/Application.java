@@ -50,4 +50,11 @@ public class Application {
         return winningNumbers;
     }
 
+    private static int inputBonusNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        int bonusNumber =  Integer.parseInt(Console.readLine());
+
+        return bonusNumber;
+    }
+
 }

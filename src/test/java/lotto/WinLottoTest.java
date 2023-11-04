@@ -17,4 +17,11 @@ public class WinLottoTest {
         assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,6,7", "1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateNumTest() {
+
+        assertThatThrownBy(() -> new WinLotto("1,2,3,4,a,6", "1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

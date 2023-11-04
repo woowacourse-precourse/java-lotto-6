@@ -31,7 +31,7 @@ public class WinLotto {
     private void validate(String[] checkNums) {
 
         validateSize(checkNums);
-        //validateNum(checkNums);
+        validateNum(checkNums);
         //validateRange(checkNums);
         //validateDuplicate(checkNums);
     }
@@ -44,5 +44,17 @@ public class WinLotto {
         }
     }
 
+    private void validateNum(String[] checkNums) {
 
+        try {
+
+            for (String str : checkNums) {
+
+                Integer.parseInt(str);
+            }
+        } catch (NumberFormatException e) {
+
+            throw new IllegalArgumentException();
+        }
+    }
 }

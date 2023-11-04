@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class ResultDetails {
 
+    private static final int PERCENTAGE_FACTOR = 100;
+
     private final Map<Rank, Integer> resultDetails = new HashMap<>();
 
     public ResultDetails() {
@@ -19,6 +21,14 @@ public class ResultDetails {
                 .map(winningNumbers::findRank)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .forEach((rank, count) -> resultDetails.put(rank, count.intValue()));
+    }
+
+    public double calculateProfitRate(int purchaseAmount) {
+        return (double) Rank.calculateTotalReward(resultDetails) / purchaseAmount * PERCENTAGE_FACTOR;
+    }
+
+    public int getWinnerCountByRank(Rank rank) {
+        return resultDetails.get(rank);
     }
 
     private void initializeWinningCountsForRanks() {

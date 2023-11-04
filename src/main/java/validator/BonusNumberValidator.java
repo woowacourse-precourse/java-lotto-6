@@ -17,7 +17,7 @@ public class BonusNumberValidator {
         try {
             int integerBonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(
+            throw new NumberFormatException(
                     ERROR_MESSAGE.getMessage() + NUMERIC_REQUIRED.getMessage()
             );
         }

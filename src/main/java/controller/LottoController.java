@@ -74,6 +74,8 @@ public class LottoController {
             try {
                 money = new Money(InputView.money());
                 return;
+            } catch (NumberFormatException error) {
+                OutputView.errorMessage(error);
             } catch (IllegalArgumentException error) {
                 OutputView.errorMessage(error);
             }
@@ -119,6 +121,8 @@ public class LottoController {
                 bonusNumber = new BonusNumber(winningNumbers, InputView.bonusNumber());
                 System.out.println();
                 return;
+            } catch (NumberFormatException error) {
+                OutputView.errorMessage(error);
             } catch (IllegalArgumentException error) {
                 OutputView.errorMessage(error);
             }

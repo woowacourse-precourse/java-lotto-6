@@ -14,7 +14,7 @@ public class MoneyValidator {
         try {
             long integerMoney = Long.parseLong(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(
+            throw new NumberFormatException(
                     ERROR_MESSAGE.getMessage() + NON_INTEGER_AMOUNT.getMessage()
             );
         }

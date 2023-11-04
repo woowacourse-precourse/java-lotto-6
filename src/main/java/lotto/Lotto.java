@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int NUMBER_COUNTER = 6;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNTER) {
             throw new IllegalArgumentException();
         }
 
@@ -21,7 +24,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        if (!(isBetweenTwoNumbers(numbers, 1, 45))) {
+        if (!(isBetweenTwoNumbers(numbers, START_NUMBER, END_NUMBER))) {
             throw new IllegalArgumentException();
         }
     }

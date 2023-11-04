@@ -10,12 +10,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto(String input) {
-        List<Integer> inputNumbers = changeStringToLotto(input);
-        validate(inputNumbers);
-        this.numbers = inputNumbers;
-    }
-
     private void validate(List<Integer> numbers) {
         validate6numbers(numbers);
         validate1to45(numbers);
@@ -24,14 +18,16 @@ public class Lotto {
 
     private void validate6numbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validate1to45(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(
+                        "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -40,25 +36,10 @@ public class Lotto {
         Set<Integer> numbersNotSame = new HashSet<>();
         for (int number : numbers) {
             if (!numbersNotSame.add(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(
+                        "[ERROR] 로또 번호는 중복 숫자가 없어야 합니다.");
             }
         }
-    }
-
-    public List<Integer> changeStringToLotto(String input) {
-        List<String> splitedInput = Arrays.asList(input.split(","));
-        splitedInput.replaceAll(String::trim);
-
-        List<Integer> inputNumbers = new ArrayList<>();
-        for (String inputNumber : splitedInput) {
-            try {
-                int number = Integer.parseInt(inputNumber);
-                inputNumbers.add(number);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
-            }
-        }
-        return inputNumbers;
     }
 
     public int howManySameNumbers(Lotto lotto) {

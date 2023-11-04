@@ -34,7 +34,7 @@ class LottoTest {
     @DisplayName("당첨 번호 문자열 콤마를 기준으로 분리")
     @Test
     void splitLottoStringByComma() {
-        String testLotto = "1,2,3,4,5,6";
+        List<Integer> testLotto = List.of(1, 2, 3, 4, 5, 6);
         Lotto actualLotto = new Lotto(testLotto);
         Lotto expectedLotto = new Lotto(List.of(
                 1, 2, 3, 4, 5, 6

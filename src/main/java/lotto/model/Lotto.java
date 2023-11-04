@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.LottoConstant.LOTTO_NUMBERS_SIZE;
+import static lotto.model.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_SIZE.getValue()) {
+        if (numbers.size() != LOTTO_NUMBER_LENGTH.getValue()) {
             throw new IllegalArgumentException();
         }
     }

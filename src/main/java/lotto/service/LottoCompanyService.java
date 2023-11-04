@@ -1,14 +1,13 @@
 package lotto.service;
 
-import static lotto.model.LottoConstant.FIFTH_PRIZE_MATCH;
-import static lotto.model.LottoConstant.FIRST_PRIZE_MATCH;
-import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
+import static lotto.model.constants.LottoRule.LOTTO_NUMBER_LENGTH;
+import static lotto.model.constants.LottoRule.MINIMUM_MATCH_SIZE;
 
 import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.LottoCompany;
-import lotto.model.Prize;
+import lotto.model.constants.Prize;
 import lotto.model.dto.PrizeResult;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +31,7 @@ public class LottoCompanyService {
 
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
-        for (int match = FIFTH_PRIZE_MATCH.getValue(); match <= FIRST_PRIZE_MATCH.getValue(); match++) {
+        for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
             Prize prize = Prize.findByMatch(match);
             PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchLottos.size());
@@ -47,9 +46,9 @@ public class LottoCompanyService {
     }
 
     private PrizeResult evaluateLottosWithBonus() {
-        int bonusMatchSize = SECOND_PRIZE_MATCH.getValue();
-        List<Lotto> secondPrizeLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, bonusMatchSize);
         Prize secondPrize = Prize.SECOND;
+        int matchSize = secondPrize.getMatch();
+        List<Lotto> secondPrizeLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, matchSize);
 
         return PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());
     }

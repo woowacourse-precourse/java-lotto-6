@@ -27,7 +27,7 @@ public class OutputView {
             if (rank == LottoRank.NONE) continue;
             System.out.println(rank.getMatchCount() + "개 일치" +
                     (rank == LottoRank.SECOND ? ", 보너스 볼 일치" : "") + " (" +
-                    String.format("%,d원", rank.getPrizeMoney()) + ")- " +
+                    String.format("%,d원", rank.getPrizeMoney()) + ") - " +
                     results.getOrDefault(rank, 0) + "개");
         }
 

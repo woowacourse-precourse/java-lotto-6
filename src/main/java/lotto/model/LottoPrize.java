@@ -2,7 +2,6 @@ package lotto.model;
 
 public enum LottoPrize {
     //TODO: THREE_MATCH 혹은 FIFTH, 현상태로 이름을 지을것인지 등수로 이름을 지을것인지
-    DEFAULT(0, false, 0, ""),
     THREE_MATCH(3, false, 5_000, "3개 일치 (5,000원) - %s개"),
     FOUR_MATCH(4, false, 50_000, "4개 일치 (50,000원) - %s개"),
     FIVE_MATCH(5, false, 1_500_000, "5개 일치 (1,500,000원) - %s개"),
@@ -30,7 +29,7 @@ public enum LottoPrize {
                 return prize;
             }
         }
-        return DEFAULT;
+        return null;
     }
 
     public Integer getPrize() {

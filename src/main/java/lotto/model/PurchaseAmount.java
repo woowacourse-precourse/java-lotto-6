@@ -36,4 +36,8 @@ public class PurchaseAmount {
     public Integer exchangeLottoTicket() {
         return amount / Rule.MONEY_UNIT;
     }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

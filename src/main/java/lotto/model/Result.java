@@ -22,9 +22,6 @@ public class Result {
 
     public void print() {
         for (LottoPrize lottoPrize : LottoPrize.values()) {
-            if (LottoPrize.DEFAULT.equals(lottoPrize)) {
-                continue;
-            }
             System.out.printf(lottoPrize.getMessage(), result.getOrDefault(lottoPrize, 0));
             System.out.println();
         }

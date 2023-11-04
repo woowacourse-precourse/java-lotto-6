@@ -11,6 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LottoController {
 
@@ -33,18 +34,19 @@ public class LottoController {
         List<LottoPrize> lottoPrizes = collectWinners(boughtLotto, winningLotto);
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);
-        Double totalReturn = calculate(lottoPrizes);
+        Double totalReturn = calculate(lottoPrizes, amount);
         outputView.printTotalReturn(totalReturn);
     }
 
-    private Double calculate(List<LottoPrize> lottoPrizes) { //TODO: LottoPrize에서 꽝은 넣지 않는 방법 고민하기
+    private Double calculate(List<LottoPrize> lottoPrizes, PurchaseAmount amount) { //TODO: LottoPrize에서 꽝은 넣지 않는 방법 고민하기
         Calculator calculator = new Calculator();
-        return calculator.calculatePrize(lottoPrizes);
+        return calculator.calculatePrize(lottoPrizes, amount);
     }
 
     private List<LottoPrize> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {
         return boughtLotto.stream()
                 .map(winningLotto::compare)
+                .filter(Objects::nonNull)
                 .toList();
     }
 }

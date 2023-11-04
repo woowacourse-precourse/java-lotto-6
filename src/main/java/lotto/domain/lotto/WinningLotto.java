@@ -29,10 +29,12 @@ public final class WinningLotto implements LottoTicket {
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
+    /**
+     * 로또 한 장을 추첨하여 등수, 당첨금 등의 데이터가 담긴 `LottoPrize` 반환
+     */
     public LottoPrize draw(final Lotto lotto) {
         final int matchedCount = countContained(lotto);
         final boolean hasBonusNumber = hasBonusNumber(lotto);
-        System.out.println(hasBonusNumber);
         return LottoPrize.of(matchedCount, hasBonusNumber);
     }
 

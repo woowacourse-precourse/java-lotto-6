@@ -79,8 +79,8 @@ class LottoTest {
     @DisplayName("당첨 로또와 비교 기능 테스트")
     @ParameterizedTest()
     @MethodSource("compareWinnerLottoSuccessDummy")
-    void compareWinnerLottoSuccessTest(Lotto lotto, List<Integer> winnerNumbers, Integer bonusNumber, LottoResult expected) {
-        LottoResult result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
+    void compareWinnerLottoSuccessTest(Lotto lotto, List<Integer> winnerNumbers, Integer bonusNumber, Prize expected) {
+        Prize result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
         assertEquals(expected.getCountOfSameNumbers(), result.getCountOfSameNumbers());
         assertEquals(expected.getCheckBonus(), result.getCheckBonus());
     }
@@ -142,21 +142,21 @@ class LottoTest {
                         ),
                         List.of(1, 2, 3, 8, 9, 10),
                         7,
-                        new LottoResult(3, false)
+                        Prize.of(3, false)
                 ),
                 Arguments.arguments(new Lotto(
                                 List.of(1, 2, 3, 4, 5, 6)
                         ),
                         List.of(1, 2, 15, 8, 9, 10),
                         3,
-                        new LottoResult(2, true)
+                        Prize.of(2, true)
                 ),
                 Arguments.arguments(new Lotto(
                                 List.of(1, 2, 3, 4, 5, 8)
                         ),
                         List.of(1, 2, 5, 8, 9, 10),
                         3,
-                        new LottoResult(4, true)
+                        Prize.of(4, true)
                 )
         );
 

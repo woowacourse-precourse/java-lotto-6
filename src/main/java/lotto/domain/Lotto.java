@@ -43,6 +43,12 @@ public class Lotto {
         }
     }
 
+    public Prize compareWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
+        Integer countOfSameNumbers = compareWithWinnerNumbers(winnerNumbers);
+        Boolean checkBonusNumber = compareWithBonusNumber(bonusNumber);
+        return Prize.of(countOfSameNumbers, checkBonusNumber);
+    }
+
 
     public Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
         return Math.toIntExact(numbers.stream()

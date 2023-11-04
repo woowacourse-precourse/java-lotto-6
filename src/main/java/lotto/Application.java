@@ -29,6 +29,7 @@ public class Application {
 
         // TODO: 로또 번호 출력
         int lottoNum = lottoBought / 1000;
+        System.out.println(lottoNum + "개를 구매했습니다.");
 
         // stream.Collectors 사용하기
         List<List<Integer>> allLottoList = IntStream.range(0, lottoNum)

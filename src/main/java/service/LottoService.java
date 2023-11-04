@@ -29,4 +29,8 @@ public class LottoService {
     public void addWinningLotto(Lotto numbers) {
         winningLotto.setNumbers(numbers);
     }
+
+    public void addBonusNumber(Integer bonusNumber) throws IllegalArgumentException {
+        winningLotto.setBonusNumber(bonusNumber);
+    }
 }

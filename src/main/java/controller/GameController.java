@@ -6,8 +6,6 @@ import service.LottoService;
 
 import view.GameView;
 
-import java.util.List;
-
 public class GameController {
 
     private final LottoService lottoService;
@@ -30,5 +28,7 @@ public class GameController {
 
     public void BonusLottoAdd(int number) {
         // TODO: 인자로 받은 번호 보너스 번호 생성
+    public void bonusLottoAdd(int number) throws IllegalArgumentException{
+        lottoService.addBonusNumber(number);
     }
 }

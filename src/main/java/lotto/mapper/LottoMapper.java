@@ -16,7 +16,7 @@ public final class LottoMapper {
     /**
      * Lottos(Domain) -> LottosBuyingResult(Dto) 변환
      */
-    public LottosBuyingResult mapFrom(final Lottos lottos) {
+    public static LottosBuyingResult mapFrom(final Lottos lottos) {
         final List<Lotto> lottosList = new ArrayList<>();
 
         while (lottos.isNotEmpty()) {

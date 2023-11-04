@@ -54,8 +54,8 @@ public class LottoController {
         }
     }
 
-    public void printResult(List<Integer> status) {
-        outputView.printResult(status);
+    public void printResult(List<Integer> status, String cond0) {
+        outputView.printResult(status, cond0);
     }
 
     private int purchaseSequence() {

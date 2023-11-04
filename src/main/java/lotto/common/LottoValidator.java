@@ -9,7 +9,11 @@ public class LottoValidator {
 
     public int checkPurchaseAmount(String input) {
         int amount = checkInteger(input);
+
         if (amount < 1) {
+            throw new IllegalArgumentException();
+        }
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException();
         }
         return amount;

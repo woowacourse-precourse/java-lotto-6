@@ -4,11 +4,17 @@ import java.util.List;
 
 public class Validate {
 
-    public static void validateInteger(String str) {
+    public static void validateInteger(String input) {
         try {
-            Integer.parseInt(str);
+            Integer.parseInt(input);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("정수가 아닙니다.");
+        }
+    }
+
+    public static void validatePositiveNumber(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("양의 숫자가 아닙니다.");
         }
     }
 

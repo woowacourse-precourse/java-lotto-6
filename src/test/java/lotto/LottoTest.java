@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     private LottoController lc = new LottoController();
-    private PriceValidator pv = new PriceValidator();
+    private Validator validator = new Validator();
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -31,7 +31,7 @@ class LottoTest {
     @Test
     void validatorIsNumber(){
         String number = "00notNumber";
-        assertThatThrownBy(() -> pv.isNumber(number))
+        assertThatThrownBy(() -> validator.isNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ class LottoTest {
     @Test
     void validatorIsThousands(){
         int number = 24864;
-        assertThatThrownBy(() -> pv.isThousands(number))
+        assertThatThrownBy(() -> validator.isThousands(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,15 +47,15 @@ class LottoTest {
     @Test
     void validatorIsNumberAndComma(){
         String number = "15,45,28,41.5.7";
-        assertThatThrownBy(() -> pv.isNumberAndComma(number))
+        assertThatThrownBy(() -> validator.isNumberAndComma(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("숫자와 컴마외의 문자를 입력하면 예외가 발생한다.")
+    @DisplayName("로또 규칙에 벗어난 숫자들을 입력하면 예외가 발생한다.")
     @Test
     void validatorIsLottoNumber(){
         String number = "75,45,28,41,5,16";
-        assertThatThrownBy(() -> pv.isLottoNumber(number))
+        assertThatThrownBy(() -> validator.isLottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

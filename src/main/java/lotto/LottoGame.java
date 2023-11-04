@@ -23,11 +23,22 @@ public class LottoGame {
     public void pickWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.(,로 구분하여 숫자와 ,만 입력)");
         boolean isValidated = lc.pickWinningNumber(Console.readLine());
-        if(isValidated) System.out.println("보너스 번호를 입력해 주세요.");
+        if(isValidated) {
+            pickBonusNumber();
+        }
     }
 
-    public void end(){
+    public void pickBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        boolean isValidated = lc.pickBonusNumber(Console.readLine());
+        if(isValidated){
+            printResult();
+        }
+    }
+
+    public void printResult(){
+        String result = lc.lottoResult();
+        System.out.println(result);
         Console.close();
     }
-
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class PriceValidator {
+public class Validator {
     private LottoGame lg;
-    public boolean validateNumber(String number, LottoGame lg){
+    public boolean validatePriceNumber(String number, LottoGame lg){
         this.lg = lg;
         try{
             isNumber(number);
@@ -66,5 +66,19 @@ public class PriceValidator {
             list.add(lottoNumber);
         }
         new Lotto(list);
+    }
+    public boolean validateBonusNumber(String number, LottoGame lg){
+        this.lg = lg;
+        try {
+            isNumber(number);
+            int num = Integer.parseInt(number);
+            if(num > 45 || num < 1) throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            System.out.println("[ERROR]1~45 사이의 숫자만 입력해주세요.");
+            lg.pickBonusNumber();
+            return false;
+        }
+        return true;
     }
 }

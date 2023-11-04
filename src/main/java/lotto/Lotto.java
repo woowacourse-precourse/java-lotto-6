@@ -30,6 +30,12 @@ public class Lotto {
             if (number.get(i) > 45 || number.get(i) < 1) throw new IllegalArgumentException();
         }
     }
+    public int getSize(){
+        return numbers.size();
+    }
+    public List<Integer> getList(){
+        return numbers;
+    }
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();

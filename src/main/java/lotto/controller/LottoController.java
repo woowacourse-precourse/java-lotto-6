@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Budget;
@@ -25,6 +26,7 @@ public class LottoController {
     }
 
     private WinningLotto drawLotto(){
-
+        String input = Console.readLine();
+        Lotto lotto = lottoGenerator.generateWinningLotto(input);
     }
 }

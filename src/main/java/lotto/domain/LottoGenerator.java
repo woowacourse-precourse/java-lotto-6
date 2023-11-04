@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.util.LottoParser;
 
 public class LottoGenerator {
     private static final int MAX_NUMBER = 45;
@@ -13,8 +14,8 @@ public class LottoGenerator {
         return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, RANGE));
     }
 
-    public void generateWinningLotto(String input){
-        // TODO: 당첨 구현 로또 생성
+    public Lotto generateWinningLotto(String input){
+        return new Lotto(LottoParser.parseWinningInputs(input));
     }
 
     public List<Lotto> generateMultipleLottoByBudget(Budget budget){

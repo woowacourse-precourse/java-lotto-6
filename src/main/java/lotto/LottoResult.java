@@ -10,20 +10,9 @@ public class LottoResult {
 
     private final LottoComparator comparator = new LottoComparator();
     private List<WinningLotto> winningLottos = new ArrayList<>();
-
-    private Integer matchesThree;
-    private Integer matchesFour;
-    private Integer matchFive;
-    private Integer matchFiveAndBonus;
-    private Integer matchSix;
     private Float rateOfReturn;
 
     public LottoResult() {
-        this.matchesThree = 0;
-        this.matchesFour = 0;
-        this.matchFive = 0;
-        this.matchFiveAndBonus = 0;
-        this.matchSix = 0;
         this.rateOfReturn = 0.0F;
     }
 
@@ -40,33 +29,6 @@ public class LottoResult {
         this.rateOfReturn = averageOfPrice / 10;
 
         return this;
-    }
-
-    private void calculateRateOfReturn(int size) {
-        int userInputMoney = size * 1000;
-        this.rateOfReturn += (matchesThree * 5000);
-        this.rateOfReturn += (matchesFour * 50000);
-        this.rateOfReturn += (matchFive * 1500000);
-        this.rateOfReturn += (matchFiveAndBonus * 30000000);
-        this.rateOfReturn += (matchSix * 2000000000);
-        this.rateOfReturn = this.rateOfReturn / userInputMoney * 100;
-    }
-
-    private void saveResult(List<Integer> result) {
-        Integer winningNumberMatchCount = result.get(0);
-        Integer bonusMatchCount = result.get(1);
-
-        if (winningNumberMatchCount == 3) {
-            matchesThree++;
-        } else if (winningNumberMatchCount == 4) {
-            matchesFour++;
-        } else if (winningNumberMatchCount == 5 && bonusMatchCount == 1) {
-            matchFiveAndBonus++;
-        } else if (winningNumberMatchCount == 5 && bonusMatchCount == 0) {
-            matchFive++;
-        } else if (winningNumberMatchCount == 6) {
-            matchSix++;
-        }
     }
 
     @Override

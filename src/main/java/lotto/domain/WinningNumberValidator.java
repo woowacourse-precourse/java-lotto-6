@@ -5,6 +5,7 @@ import static lotto.constant.message.ErrorMessage.INVALID_LENGTH_WINNING_NUMBER;
 import static lotto.constant.message.ErrorMessage.INVALID_RANGE_WINNING_NUMBER;
 import static lotto.constant.message.ErrorMessage.NON_INTEGER_WINNING_NUMBER;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class WinningNumberValidator {
@@ -29,6 +30,14 @@ public class WinningNumberValidator {
         if (numbers.stream()
                 .anyMatch(number -> Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45)) {
             throw new IllegalArgumentException(INVALID_RANGE_WINNING_NUMBER.getMessage());
+        }
+    }
+
+    private void checkNumbersDuplicate(List<String> numbers) {
+        HashSet<String> uniqueNumbers = new HashSet<>();
+
+        if (numbers.stream().anyMatch(name -> !uniqueNumbers.add(name))) {
+            throw new IllegalArgumentException();
         }
     }
 }

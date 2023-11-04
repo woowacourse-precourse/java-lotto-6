@@ -23,8 +23,8 @@ public class LottoController {
 
     public List<Lotto> buyLotto(Amount amount) {
         System.out.println();
-        List<Lotto> lottos = amount.buyLotto();
-        return lottos;
+        List<Lotto> buyLottos = amount.buyLotto();
+        return buyLottos;
     }
 
     public List<Lotto> printLotto(List<Lotto> lottos) {

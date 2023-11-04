@@ -34,14 +34,6 @@ public class WinningList {
         return sb.toString();
     }
 
-    private EnumMap<Rank, Integer> sortMap() {
-        return winningList.entrySet()
-                .stream()
-                .sorted(Entry.comparingByKey())
-                .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1,
-                        () -> new EnumMap<>(Rank.class)));
-    }
-
     public ProfitRate calculateProfitRate(AmountRecord amountRecord) {
         long sum = winningList.entrySet().stream().mapToLong(this::calculateProfit).sum();
         double originalRate = (double) sum / amountRecord.amount();

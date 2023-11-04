@@ -12,6 +12,7 @@ public class WinningLotto {
 
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
+    private static final int INCREASE_NUMBER = 1;
 
     public static final int LOTTO_NUMBERS_SIZE = 6;
 
@@ -26,6 +27,26 @@ public class WinningLotto {
 
     public static WinningLotto of(List<Integer> winningNumbers, Integer bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        int result = countMatchingWinningNumbers(lotto);
+        if (lotto.contains(bonusNumber)) {
+            result += INCREASE_NUMBER;
+        }
+        return result;
+    }
+
+    public boolean containsBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
+
+    private int countMatchingWinningNumbers(Lotto lotto) {
+        long count = winningNumbers.stream()
+                .filter(lotto::contains)
+                .count();
+
+        return Long.valueOf(count).intValue();
     }
 
     private void validate(List<Integer> winningNumbers, Integer bonusNumber) {

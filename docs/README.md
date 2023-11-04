@@ -65,10 +65,11 @@
 
 ## 서비스
 
-- [ ] LottoResultService : 로또 당첨 결과를 생성하는 서비스
-    - [ ] LottoResult를 가진다.
-    - [ ] WinningNumber를 가진다.
-    - [ ] PurchasedLotto를 가진다.
+- [x] LottoResultService : 로또 당첨 결과를 생성하는 서비스
+    - [x] WinningNumber를 가진다.
+    - [x] PurchasedLotto를 가진다.
+    - [x] LottoResultDto를 생성하는 메서드를 가진다.
+      -
 
 ## DTO
 

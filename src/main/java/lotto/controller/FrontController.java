@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.command.Command;
+import lotto.controller.lotto.WinningLottoSaveController;
 import lotto.controller.user.UserBuyLottoController;
 import lotto.controller.user.UserGetLottoController;
 import lotto.controller.user.UserSaveController;
 import lotto.repository.UserRepository;
+import lotto.repository.WinningLottoRepository;
 import lotto.service.LottoService;
 import lotto.service.UserService;
+import lotto.service.WinningLottoService;
 import lotto.view.View;
 
 public class FrontController {
@@ -20,6 +23,7 @@ public class FrontController {
                 new LottoService())));
         controllerMap.put(Command.BUY_LOTTO, new UserBuyLottoController(new UserService(new UserRepository(), new LottoService())));
         controllerMap.put(Command.OUTPUT_USER_LOTTO, new UserGetLottoController(new UserService(new UserRepository(), new LottoService())));
+        controllerMap.put(Command.INPUT_BONUS_NUMBER, new WinningLottoSaveController(new WinningLottoService(new WinningLottoRepository())));
     }
 
     public void service(Command command, List<String> input) {

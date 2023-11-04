@@ -24,17 +24,17 @@ public class MultiAskRequest extends Request {
         return inputs;
     }
 
-    private void executeLastCommand(List<String> inputs) {
-        printMessage(command);
-        addInput(inputs,command);
-    }
-
     private void executePrevCommand(List<String> inputs) {
         prevCommand.forEach(cmd -> {
             printMessage(cmd);
             addInput(inputs, cmd);
             addBlank();
         });
+    }
+
+    private void executeLastCommand(List<String> inputs) {
+        printMessage(command);
+        addInput(inputs,command);
     }
 
     private void addInput(List<String> inputs, Command command) {

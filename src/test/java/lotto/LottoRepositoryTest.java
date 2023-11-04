@@ -42,11 +42,11 @@ public class LottoRepositoryTest {
         lottoRepository.saveLotto(thirdLotto);
 
         Assertions.assertThat(lottoRepository.checkRepositorySize()).isEqualTo(3);
-        Assertions.assertThat(lottoRepository.findLottoByIndex(0).getLotto())
+        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(0))
                 .containsExactly(1,2,3,4,5,6);
-        Assertions.assertThat(lottoRepository.findLottoByIndex(1).getLotto())
+        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(1))
                 .containsExactly(7, 8, 9, 10, 11, 12);
-        Assertions.assertThat(lottoRepository.findLottoByIndex(2).getLotto())
+        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(2))
                 .containsExactly(13, 14, 15, 16, 17, 18);
     }
 

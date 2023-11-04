@@ -11,8 +11,9 @@ public class LottoRepository {
         lottoRepository.add(lotto);
     }
 
-    public Lotto findLottoByIndex(int index) {
-        return lottoRepository.get(index);
+    public List<Integer> findLottoNumbersByIndex(int index) {
+        Lotto foundLotto = lottoRepository.get(index);
+        return new ArrayList<>(foundLotto.getLotto());
     }
 
     public int checkRepositorySize() {

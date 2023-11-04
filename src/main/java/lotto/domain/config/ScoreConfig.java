@@ -6,8 +6,7 @@ public enum ScoreConfig {
     THIRD(5, 0),
     FORTH(4, 0),
     FIFTH(3, 0),
-    NOTHING(0, 0),
-    ;
+    NOTHING(0, 0);
 
     private final int matchCount;
     private final int bonusMatch;

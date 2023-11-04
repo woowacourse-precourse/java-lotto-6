@@ -16,4 +16,10 @@ public class InputView {
         inputValidator.validateNumeric(lottoPurchasePrice);
         return lottoPurchasePrice;
     }
+
+    public String inputWinningNumbers() {
+        String winningNumbers = Console.readLine();
+        inputValidator.validateDivisionComma(winningNumbers);
+        return winningNumbers;
+    }
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.BONUS_NUMBER_ALREADY_USE;
+
 import java.util.List;
 
 public class LottoCompany {
@@ -13,7 +15,17 @@ public class LottoCompany {
     }
 
     public static LottoCompany of(final GoalNumbers goalNumbers, final BonusNumber bonusNumber) {
+        validateIsBonusNumberDuplicate(goalNumbers, bonusNumber);
         return new LottoCompany(goalNumbers, bonusNumber);
+    }
+
+    private static void validateIsBonusNumberDuplicate(final GoalNumbers goalNumbers, final BonusNumber bonusNumber) {
+        int bonus = bonusNumber.getNumber();
+        List<Integer> goals = goalNumbers.getNumbers();
+
+        if (goals.contains(bonus)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_ALREADY_USE.getMessage());
+        }
     }
 
     public List<Lotto> calculateLottosWithSizeExceptBonus(final List<Lotto> lottos, final int matchSize) {

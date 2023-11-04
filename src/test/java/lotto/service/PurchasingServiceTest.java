@@ -1,7 +1,9 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +33,12 @@ class PurchasingServiceTest {
         assertThatThrownBy(() -> purchasingService.purchaseLotto("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원)");
+    }
+
+    @DisplayName("입력된 금액으로 구매 가능한 로또 수량을 발행해야 한다.")
+    @Test
+    void issueLottoByPurchaseAmount() {
+        purchasingService.purchaseLotto("10000");
+        assertThat(purchasingService.getBuyerPurchaseQuantity()).isEqualTo(10);
     }
 }

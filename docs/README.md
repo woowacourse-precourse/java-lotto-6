@@ -61,6 +61,10 @@
     - [x] 변수명 : WINNING_NUMBERS_COUNT
 - [x] 보너스 볼의 개수
     - [x] 변수명 : BONUS_NUMBER_COUNT
+- [x] 로또 번호의 최소 값
+    - [x] 변수명 : MIN_LOTTO_NUMBER
+- [x] 로또 번호의 최대 값
+    - [x] 변수명 : MAX_LOTTO_NUMBER
 
 ### 로또 메시지 관련 상수 (LottoMessage)
 

@@ -25,10 +25,10 @@ public class InputController {
             exceptionController.moneyException(temp);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 구입 금액은 숫자이어야 힙니다.");
-            inputMoney();
+            return inputMoney();
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 구입 금액은 1000으로 나누어떨어져야 합니다.");
-            inputMoney();
+            return inputMoney();
         }
         int money = Integer.parseInt(temp);
         return money;
@@ -44,10 +44,10 @@ public class InputController {
             exceptionController.numbersException(input);
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 당첨번호는 6개이어야 합니다.");
-            inputNumbers();
+            return inputNumbers();
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 당첨번호는 1과 45사이의 숫자 이어야 합니다.");
-            inputNumbers();
+            return inputNumbers();
         }
         for(String s : input)
             numbers.add(Integer.parseInt(s));
@@ -66,8 +66,10 @@ public class InputController {
             exceptionController.bonusNumberException(bonus_number);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+            return inputBonusNumber();
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 보너스 번호는 1에서 45사이의 숫자이어야 합니다.");
+            return inputBonusNumber();
         }
 
         return Integer.parseInt(bonus_number);

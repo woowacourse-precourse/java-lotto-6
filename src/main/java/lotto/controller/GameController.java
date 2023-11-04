@@ -33,6 +33,7 @@ public class GameController {
         purchaseLottos();
         createWinnerLotto();
         comparePurchasedLottosWithWinnerLotto();
+        showStaticResult();
     }
 
     private void createCashAndLottoMachine() {
@@ -58,6 +59,8 @@ public class GameController {
 
 
 
-
+    private void showStaticResult() {
+        outputView.printStaticResult(prizes, cash);
+    }
 
 }

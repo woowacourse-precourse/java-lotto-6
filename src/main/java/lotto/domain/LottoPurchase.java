@@ -16,6 +16,10 @@ public class LottoPurchase {
         this.amount = parsedAmount;
     }
 
+    public LottoTickets generateLottoTickets () {
+        return new LottoTickets(getNumberOfTickets());
+    }
+
     public int getAmount() {
         return amount;
     }

@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.domain.Lotto;
+
 public class BonusLottoNumValidator {
     private boolean isNotInRange(int bonusNum) {
         return bonusNum < 1 || bonusNum > 45;
@@ -11,11 +13,13 @@ public class BonusLottoNumValidator {
         }
     }
 
-    private boolean isDuplicateWinningNumbers(int bonusNum){
-        return true;
+    private boolean isDuplicateWinningNumbers(Lotto winLotto, int bonusNum){
+        return winLotto.hasSameNumber(bonusNum);
     }
 
-    public void checkDuplicateWinningNumbers(int bonusNum){
-
+    public void checkDuplicateWinningNumbers(Lotto winLotto, int bonusNum){
+        if (isDuplicateWinningNumbers(winLotto, bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
+        }
     }
 }

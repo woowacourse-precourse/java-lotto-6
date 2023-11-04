@@ -8,7 +8,8 @@
     - <span style="color:orange">[예외 사항]</span> 1000원 단위가 아닌 경우 exception 발생시킨다.
     - <span style="color:orange">[예외 사항]</span> 공백을 입력할 경우 exception 발생시킨다.
     - exception이 발생하면 다시 입력을 받는다.
-  - 로또 금액만큼 로또 객체를 할당한다.
+  - ✅ 로또 금액만큼 로또 객체를 할당한다.
+  - 할당한 로또 번호를 출력한다.
   - 당첨 번호와 보너스 번호를 입력받는다.
     - <span style="color:orange">[예외 사항]</span> 공백이 들어가면 exception 발생시킨다.
     - <span style="color:orange">[예외 사항]</span> 숫자가 아닌 값이 입력되면 exception 발생시킨다.

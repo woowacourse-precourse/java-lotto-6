@@ -17,18 +17,11 @@ public class Output {
     }
 
     static void printTicketsBought(Lotto... tickets) {
-        ticketsCountCheck(tickets);
         System.out.println(tickets.length + "개를 구매했습니다.");
         printTickets(tickets);
     }
 
-    private void ticketsCountCheck(Lotto... tickets) {
-        if (tickets.length <= 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void printTickets(Lotto... tickets) {
+    private static void printTickets(Lotto... tickets) {
         String output = Arrays.asList(tickets).stream()
                 .map(Lotto::toList)
                 .map(List::toString)

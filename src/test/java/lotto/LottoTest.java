@@ -30,4 +30,11 @@ class LottoTest {
         int[] winningNumbers = {1, 2, 3, 4, 5, 6};
         assertThat(lotto.matchCount(winningNumbers)).isEqualTo(6);
     }
+
+    @Test
+    void testMatchBonusNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.matchBonusNumber(7)).isFalse();
+        assertThat(lotto.matchBonusNumber(6)).isTrue();
+    }
 }

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Convertor {
     private static final String DELIMITER = ",";
 
-    private List<Integer> convertToNumbers(String input) {
+    public List<Integer> convertToNumbers(String input) {
         return stream(separate(input))
                 .map(number -> new Number(number.trim()))
                 .map(Number::getNumber)

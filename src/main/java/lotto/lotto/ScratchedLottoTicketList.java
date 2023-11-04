@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.enums.WinningChartEnum;
 
-public class LottoTicketResult {
+public class ScratchedLottoTicketList {
     private final List<ScratchedLottoTicket> scratchedLottoTickets;
     private  Integer sixMatchCount;
     private  Integer fiveAndBonusMatchCount;
@@ -12,7 +12,7 @@ public class LottoTicketResult {
     private  Integer fourMatchCount;
     private  Integer threeMatchCount;
 
-    public LottoTicketResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
+    public ScratchedLottoTicketList(List<ScratchedLottoTicket> scratchedLottoTickets) {
         this.scratchedLottoTickets = scratchedLottoTickets;
         this.sixMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum() == WinningChartEnum.SIX_MATCH)
@@ -31,8 +31,8 @@ public class LottoTicketResult {
                 .count();
     }
 
-    public static LottoTicketResult createLottoResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
-        return new LottoTicketResult(scratchedLottoTickets);
+    public static ScratchedLottoTicketList createLottoResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
+        return new ScratchedLottoTicketList(scratchedLottoTickets);
     }
 
     public Integer getSixMatchCount() {

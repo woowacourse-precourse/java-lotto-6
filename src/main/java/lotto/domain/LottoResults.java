@@ -17,8 +17,8 @@ public enum LottoResults {
     }
 
     public static LottoResults getLottoResult(int correctCount, boolean hasBonus) {
-        if (correctCount == 5 && hasBonus) {
-            return LottoResults.SECOND;
+        if (correctCount == 5 && !hasBonus) {
+            return LottoResults.THIRD;
         }
 
         for (LottoResults lottoResults : LottoResults.values()) {

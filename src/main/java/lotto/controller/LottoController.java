@@ -1,10 +1,13 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.LottoResults;
 import lotto.domain.Lottos;
 import lotto.domain.LottosDTO;
 import lotto.domain.WinningNumbers;
@@ -31,7 +34,11 @@ public class LottoController {
     }
 
     public void statistics() {
-
+        List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
+        Map<LottoResults, Integer> lottoStatistics = new HashMap<>();
+        for (LottoResults result : lottoResults) {
+            lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
+        }
     }
 
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {

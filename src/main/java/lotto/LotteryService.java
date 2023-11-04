@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class LotteryService {
     private int totalLottoAmount;
@@ -25,5 +26,17 @@ public class LotteryService {
         }
 
         this.totalLottoAmount = totalPurchasePayment / 1000;
+        System.out.print(this.totalLottoAmount);
+        outputMessage.printProgressMessage(Progress.BUY);
+    }
+
+    public void makeRandomLottoNumbers(){
+        DataOutput outputMessage = new DataOutput();
+        for(int i = 0; i < this.totalLottoAmount; i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto newLotto = new Lotto(numbers);
+            buyLottoSet.add(newLotto);
+            outputMessage.printPurchaseLottoNumbers(numbers);
+        }
     }
 }

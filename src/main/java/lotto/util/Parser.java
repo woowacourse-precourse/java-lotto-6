@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 public class Parser {
     public static final String LOTTO_SEPARATOR = ",";
 
-    public static int inputToNumber(String inputMoney) {
-        return Integer.parseInt(inputMoney);
+    public static int inputToNumber(String input) {
+        return Integer.parseInt(input);
     }
 
     public static List<Integer> inputToLottoNumbers(String inputLotto) {

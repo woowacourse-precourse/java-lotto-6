@@ -5,9 +5,13 @@ import lotto.exception.ExceptionMessage;
 public class Bonus {
     private final int bonusNumber;
 
-    public Bonus(int bonusNumber) {
+    private Bonus(int bonusNumber) {
         validateRange(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static Bonus from(int inputToNumber) {
+        return new Bonus(inputToNumber);
     }
 
     private void validateRange(int bonusNumber) {

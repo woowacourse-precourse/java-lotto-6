@@ -29,7 +29,7 @@ public class Lotto {
 
     private void validateNoDuplicatedLottoNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if (numbers.size() != LOTTO_SIZE_CRITERION) {
+        if (set.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }
     }

@@ -2,12 +2,14 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.global.ErrorMessage;
+import lotto.global.LottoInputMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static lotto.global.ErrorMessage.*;
+import static lotto.global.LottoInputMessage.*;
 
 public class LottoInputView {
 
@@ -15,17 +17,14 @@ public class LottoInputView {
     }
 
     public Long getLottoPurchaseAmountInput() {
-        Long purchaseAmount = null;
-        while (purchaseAmount == null) {
-            System.out.println("구입금액을 입력해 주세요.");
+        while (true) {
+            System.out.println(LOTTO_PURCHASE_AMOUNT.getMessage());
             try {
-                String input = Console.readLine();
-                purchaseAmount = Long.parseLong(input);
+                return Long.parseLong(Console.readLine());
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_NUMBER_IS_INVALID.getMessage());
             }
         }
-        return purchaseAmount;
     }
 
 

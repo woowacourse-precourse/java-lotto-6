@@ -1,15 +1,21 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.Map;
 import lotto.dto.response.LottoDto;
 import lotto.dto.response.LottoGroupDto;
 import lotto.model.LottoPrize;
 import lotto.model.TotalPrize;
+import lotto.model.TotalProfit;
 
 public class OutputView {
     private static final String EXCEPTION_FORMAT = "[ERROR] %s";
     private static final String LOTTO_GROUP_SIZE_FORMAT = "%d개를 구매했습니다.";
+    private static final String TOTAL_PRIZE_RESULT_MESSAGE = "당첨 통계\n---";
+    private static final String PRIZE_AMOUNT_FORMAT = "%,d";
+    private static final String NORMAL_PRIZE_MESSAGE_FORMAT = "%d개 일치 (%s) - %d개";
+    private static final String SECOND_PRIZE_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s) - %d개";
+    private static final String TOTAL_PROFIT_FORMAT = "%,.1f";
+    private static final String TOTAL_PROFIT_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
 
     private OutputView() {
     }
@@ -53,33 +59,48 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalProfit(double totalProfit) {
-        String formattedTotalProfit = String.format("%,.1f", totalProfit);
-        String message = String.format("총 수익률은 %s%%입니다.", formattedTotalProfit);
+    public void printTotalProfit(TotalProfit totalProfit) {
+        double rawTotalProfit = totalProfit.getTotalProfit();
+        String formattedTotalProfit = String.format(TOTAL_PROFIT_FORMAT, rawTotalProfit);
+        String message = String.format(TOTAL_PROFIT_MESSAGE_FORMAT, formattedTotalProfit);
         println(message);
     }
 
     public void printTotalPrize(TotalPrize totalPrize) {
-        System.out.println("당첨 통계\n---");
-        Map<LottoPrize, Long> prizeSummary = totalPrize.getPrizeSummary();
+        println(TOTAL_PRIZE_RESULT_MESSAGE);
         for (LottoPrize lottoPrize : LottoPrize.values()) {
-            if (lottoPrize == LottoPrize.NOTHING) {
-                continue;
-            }
-            printLottoPrize(lottoPrize, prizeSummary);
+            printWinningPrize(totalPrize, lottoPrize);
         }
     }
 
-    private void printLottoPrize(LottoPrize lottoPrize, Map<LottoPrize, Long> prizeSummary) {
-        Long count = prizeSummary.getOrDefault(lottoPrize, 0L);
+    private void printWinningPrize(TotalPrize totalPrize, LottoPrize lottoPrize) {
+        if (lottoPrize.isWinningPrize()) {
+            printPrize(totalPrize, lottoPrize);
+        }
+    }
+
+    private void printPrize(TotalPrize totalPrize, LottoPrize lottoPrize) {
         int matchCount = lottoPrize.getMatchCount();
-        int prizeAmount = lottoPrize.getPrizeAmount();
-        String formattedPrizeAmount = String.format("%,d원", prizeAmount);
-        String message = String.format("%d개 일치 (%s) - %d개", matchCount, formattedPrizeAmount, count);
-        if (lottoPrize == LottoPrize.SECOND) {
-            message = String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개", matchCount, formattedPrizeAmount, count);
+        String formattedPrizeAmount = formattingPrizeAmount(lottoPrize);
+        long prizeCount = totalPrize.countMatchesForPrize(lottoPrize);
+        String message = formattingNormalPrizeMessage(matchCount, formattedPrizeAmount, prizeCount);
+        if (lottoPrize.isSecondPrize()) {
+            message = formattingSecondPrizeMessage(matchCount, formattedPrizeAmount, prizeCount);
         }
         println(message);
+    }
+
+    private static String formattingSecondPrizeMessage(int matchCount, String formattedPrizeAmount, long prizeCount) {
+        return String.format(SECOND_PRIZE_MESSAGE_FORMAT, matchCount, formattedPrizeAmount, prizeCount);
+    }
+
+    private static String formattingNormalPrizeMessage(int matchCount, String formattedPrizeAmount, long prizeCount) {
+        return String.format(NORMAL_PRIZE_MESSAGE_FORMAT, matchCount, formattedPrizeAmount, prizeCount);
+    }
+
+    private static String formattingPrizeAmount(LottoPrize lottoPrize) {
+        int prizeAmount = lottoPrize.getPrizeAmount();
+        return String.format(PRIZE_AMOUNT_FORMAT, prizeAmount);
     }
 
     private static class LazyHolder {

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public final class UserMoney {
@@ -8,6 +9,7 @@ public final class UserMoney {
     private static final String ONE_HUNDRED_MILLION_MONEY_EXCEPTION = "사용자가 투입한 금액에서 1억원 이하로 입력해주세요.";
     private static final int ZERO_MONEY = 0;
     private static final int ONE_HUNDRED_MILLION_MONEY = 100_000_000;
+    private static final int PERCENT_MULTIPLIER = 100;
 
     private final int money;
 
@@ -47,6 +49,13 @@ public final class UserMoney {
 
     public static UserMoney from(int money) {
         return new UserMoney(money);
+    }
+
+    public double calculateProfitPercentage(TotalWinningMoney winningMoney) {
+        BigDecimal divided = winningMoney.divide(money);
+        BigDecimal value = BigDecimal.valueOf(PERCENT_MULTIPLIER);
+        return divided.multiply(value)
+                .doubleValue();
     }
 
     public int calculateLottoPurchaseCount(int lottoPrice) {

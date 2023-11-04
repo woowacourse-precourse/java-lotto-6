@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -16,18 +14,12 @@ public final class TotalPrize {
         return new TotalPrize(prizeSummary);
     }
 
-    public double calculateTotalProfit(LottoCount lottoCount) {
+    public TotalProfit calculateTotalProfit(UserMoney userMoney) {
         long totalWinningMoney = calculateTotalWinningMoney();
-        int userMoney = lottoCount.calculateUserMoney();
-        return calculateProfitPercentage(totalWinningMoney, userMoney);
-    }
+        TotalWinningMoney winningMoney = TotalWinningMoney.from(totalWinningMoney);
+        double totalProfit = userMoney.calculateProfitPercentage(winningMoney);
 
-    private double calculateProfitPercentage(long totalWinningMoney, int userMoney) {
-        BigDecimal totalWinning = new BigDecimal(totalWinningMoney);
-        BigDecimal investment = new BigDecimal(userMoney);
-        return totalWinning.divide(investment, MathContext.DECIMAL64)
-                .multiply(BigDecimal.valueOf(100))
-                .doubleValue();
+        return TotalProfit.from(totalProfit);
     }
 
     private long calculateTotalWinningMoney() {
@@ -37,7 +29,8 @@ public final class TotalPrize {
                 .sum();
     }
 
-    public Map<LottoPrize, Long> getPrizeSummary() {
-        return prizeSummary;
+    public long countMatchesForPrize(LottoPrize lottoPrize) {
+        return prizeSummary.getOrDefault(lottoPrize, 0L);
     }
+
 }

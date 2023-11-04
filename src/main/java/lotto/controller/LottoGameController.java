@@ -11,6 +11,7 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
 import lotto.model.NumberGenerator;
 import lotto.model.TotalPrize;
+import lotto.model.TotalProfit;
 import lotto.model.UserMoney;
 import lotto.model.WinningTicket;
 import lotto.util.RetryUtil;
@@ -29,22 +30,27 @@ public class LottoGameController {
     }
 
     public void run() {
-        LottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount);
+        UserMoney userMoney = RetryUtil.retryOnFail(this::createUserMoney);
+        LottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, userMoney);
         LottoGroup lottoGroup = LottoGroup.create(lottoCount, numberGenerator);
         printLottoGroup(lottoGroup);
 
         Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
         WinningTicket winningTicket = RetryUtil.retryOnFail(this::createWinningTicket, winningLotto);
         LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningTicket);
+
         TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
-        outputView.printTotalPrize(totalPrize);
-        double totalProfit = totalPrize.calculateTotalProfit(lottoCount);
+        printTotalPrize(totalPrize);
+        TotalProfit totalProfit = totalPrize.calculateTotalProfit(userMoney);
         outputView.printTotalProfit(totalProfit);
 
     }
 
-    private LottoCount createLottoCount() {
-        UserMoney userMoney = RetryUtil.retryOnFail(this::createUserMoney);
+    private void printTotalPrize(TotalPrize totalPrize) {
+        outputView.printTotalPrize(totalPrize);
+    }
+
+    private LottoCount createLottoCount(UserMoney userMoney) {
         return LottoCount.from(userMoney);
     }
 

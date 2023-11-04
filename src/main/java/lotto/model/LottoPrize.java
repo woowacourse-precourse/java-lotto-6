@@ -49,6 +49,14 @@ public enum LottoPrize {
         return prizeAmount * value;
     }
 
+    public boolean isSecondPrize() {
+        return this == SECOND;
+    }
+
+    public boolean isWinningPrize() {
+        return this != NOTHING;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }

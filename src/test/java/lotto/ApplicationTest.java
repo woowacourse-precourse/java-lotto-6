@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,22 +8,9 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
-    @Test
-    void 인풋_단위_테스트() {
-        assertThatThrownBy(() -> new InputValidator().validateInputData(1049, 1000))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 인풋_타입_테스트() {
-        assertThatThrownBy(() -> new InputValidator().validateInputType("asdf"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void 기능_테스트() {

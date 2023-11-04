@@ -95,21 +95,20 @@ public class InputView {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         validateBonusNumber(winningNumber, bonusNumber);
-        validateLottoNumber(bonusNumber);
         System.out.println();
         return Integer.parseInt(bonusNumber);
     }
 
     private void validateBonusNumber(String winningNumber, String bonusNumber) {
+        if (bonusNumber.isBlank()) {
+            throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
+        }
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getErrorMessage());
         }
+        validateLottoNumber(bonusNumber);
     }
     private void validateLottoNumber(String number) {
-        if (number.isBlank()) {
-            throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
-        }
-
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {

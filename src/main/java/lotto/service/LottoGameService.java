@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.dto.LottoNumbersDTO;
 import lotto.model.AutoLottoGenerator;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
@@ -36,9 +37,16 @@ public class LottoGameService {
         }
     }
 
-    public void printLottoNumbersOnSell(final LottoSeller seller, final int countOfLotto) {
+    public Lottos generateLottosOnSell(final LottoSeller seller, final int countOfLotto) {
         outputView.printCountOfLotto(countOfLotto);
-        Lottos lottos = seller.sell(countOfLotto);
+        return seller.sell(countOfLotto);
+    }
+
+    public void printLottoNumbersByCount(final Lottos lottos) {
+        for (int i = 0; i < lottos.size(); i++) {
+            LottoNumbersDTO lottoNumbers = new LottoNumbersDTO(lottos.findLottoByIndex(i));
+            outputView.printLottoNumbers(lottoNumbers);
+        }
     }
 
     private int readPurchaseAmount() {

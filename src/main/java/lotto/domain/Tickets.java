@@ -27,7 +27,8 @@ public class Tickets {
     public List<Integer> getMatchesForAllTickets(List<Integer> winningNumber) {
         List<Integer> matchesList = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            lotto.getMatches(winningNumber);
+            int matches = lotto.getMatches(winningNumber);
+            matchesList.add(matches);
         }
         return matchesList;
     }

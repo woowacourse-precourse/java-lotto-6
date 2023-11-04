@@ -8,7 +8,6 @@ import lotto.util.RandomNumberGenerator;
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
-
     public Lottos(final PurchaseAmountDto purchaseAmountDto) {
         int purchase_Quantity = purchaseAmountDto.purchaseQuantityLottos();
 

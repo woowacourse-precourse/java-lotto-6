@@ -55,7 +55,7 @@ public class Lotto {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
-    public boolean contain(int number){
+    public boolean contains(int number){
         return numbers.contains(number);
     }
 

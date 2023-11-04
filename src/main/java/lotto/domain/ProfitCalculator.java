@@ -26,8 +26,8 @@ public class ProfitCalculator {
 
     private double calculateProfitRate() {
         double totalWinnings = winningStatistics.calculateTotalPrizeAmount();
-        double profitRate = (totalWinnings / totalInvestment) * 100.0;
-        profitRate = Math.round(profitRate * 100.0) / 100.0;
+        double profitRate = (totalWinnings / totalInvestment) * Values.PERCENTAGE_FACTOR;
+        profitRate = Math.round(profitRate * Values.PERCENTAGE_FACTOR) / Values.PERCENTAGE_FACTOR;
         return profitRate;
     }
 }

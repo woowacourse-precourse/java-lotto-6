@@ -15,4 +15,11 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 1 ~ 45인 숫자가 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"-1", "0", "46"})
+    @ParameterizedTest
+    void createBonusNumberByWrongRangeNumber(String number) {
+        Assertions.assertThatThrownBy(() -> new BonusNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

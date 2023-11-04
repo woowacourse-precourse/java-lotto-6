@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class ListDataTypeConverter {
 
-    public static List<String> intergerToString(List<Integer> elements) {
+    public static List<String> integerToString(List<Integer> elements) {
         return elements.stream().map(element -> Integer.toString(element)).collect(Collectors.toList());
     }
 

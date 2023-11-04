@@ -21,7 +21,7 @@ public class PrintService {
     public static void buyLottoNumbers(Map<Integer, List<Integer>> lottoNumbers) {
         for (Integer key : lottoNumbers.keySet()) {
             String lottoNumber = String.join(", ",
-                ListDataTypeConverter.intergerToString(lottoNumbers.get(key)));
+                ListDataTypeConverter.integerToString(lottoNumbers.get(key)));
             System.out.printf("[ %s ]\n", lottoNumber);
         }
     }

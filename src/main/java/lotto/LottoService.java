@@ -42,4 +42,18 @@ public class LottoService {
                 .collect(Collectors.toList()));
         return winningNumber;
     }
+
+    public static BonusNumber getBonusNumber(String input) {
+        try{
+            return new BonusNumber(Integer.parseInt(input));
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public void isDuplicateWithWinningNumbers(BonusNumber bonusNumber, WinningNumber winningNumber) {
+        if (winningNumber.getWinningNumbers().contains(bonusNumber.getBonusNumber())) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
 }

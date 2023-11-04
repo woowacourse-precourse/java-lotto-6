@@ -37,4 +37,8 @@ public class WinningNumber {
             }
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return this.numbers;
+    }
 }

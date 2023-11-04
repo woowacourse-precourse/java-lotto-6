@@ -21,6 +21,7 @@ public class LottoController {
         outputView.printAmountOfLotto(count);
         outputView.printLotto(lotties);
         WinningNumber winningNumber = requestWinningNumber();
+        BonusNumber bonusNumber = requestBonusNumber(winningNumber);
     }
 
     public Money requestMoney(){
@@ -43,5 +44,17 @@ public class LottoController {
             System.out.println(e.getMessage());
         }
         return requestWinningNumber();
+    }
+
+    public BonusNumber requestBonusNumber(WinningNumber winningNumber) {
+        try {
+            outputView.printBonusNumberInputMessage();
+            BonusNumber bonusNumber = lottoService.getBonusNumber(inputView.getInput());
+            lottoService.isDuplicateWithWinningNumbers(bonusNumber, winningNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return requestBonusNumber(winningNumber);
     }
 }

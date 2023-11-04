@@ -34,7 +34,7 @@ BUILD SUCCESSFUL in 0s
 
 ---
 
-## 🚀 기능 요구 사항
+[## 🚀 기능 요구 사항
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
 
@@ -56,7 +56,7 @@ BUILD SUCCESSFUL in 0s
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
-
+]()
 ### 입출력 요구 사항
 
 #### 입력

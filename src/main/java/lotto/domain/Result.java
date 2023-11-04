@@ -18,6 +18,9 @@ public class Result {
     }
 
     public Long getPrizeCount(final Prize prize) {
+        if (!prizes.containsKey(prize)) {
+            return 0L;
+        }
         return prizes.get(prize);
     }
 

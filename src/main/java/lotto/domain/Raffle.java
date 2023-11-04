@@ -12,6 +12,7 @@ public class Raffle {
 
     private Lottos lottos;
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public int getValidPurchaseAmount() {
         int money;
@@ -39,6 +40,18 @@ public class Raffle {
             try {
                 OutputUtils.printWinningNumbersInputMessage();
                 winningNumbers = InputUtils.getWinningNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void getValidBonusNumber() {
+        while (true) {
+            try {
+                OutputUtils.printBonusNumberInputMessage();
+                bonusNumber = InputUtils.getBonusNumber(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

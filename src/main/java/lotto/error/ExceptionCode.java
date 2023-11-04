@@ -2,6 +2,7 @@ package lotto.error;
 
 public enum ExceptionCode {
 
+    EXCEED_MAX_TRY("최대 5번까지만 재시도할 수 있습니다."),
     INVALID_NUMBER_FORMAT("숫자를 입력해주세요."),
     NEGATIVE_MONEY_AMOUNT("금액은 음수일 수 없습니다."),
     INVALID_BUY_COUNT_UNIT("구매 금액 단위는 1,000원 입니다."),

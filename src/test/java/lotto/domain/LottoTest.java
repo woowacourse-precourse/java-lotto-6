@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -34,6 +36,20 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 발행한 로또 번호는 1~45의 숫자여야 합니다.");
+    }
+
+    @DisplayName("로또 내 숫자는 오름차순으로 정렬되어야 한다.")
+    @Test
+    void sortLottoToAscending() {
+        //given
+        List<Integer> sortBeforeLottoNumber = new ArrayList<>(List.of(6, 5, 4, 3, 2, 1));
+        List<Integer> sortAfterLottoNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        Lotto lotto = new Lotto(sortBeforeLottoNumber);
+
+        //then
+        Assertions.assertThat(lotto.getLottoNumbers()).isEqualTo(sortAfterLottoNumber);
     }
 
 }

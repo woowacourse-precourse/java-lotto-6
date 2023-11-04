@@ -51,4 +51,18 @@ class LottoAnalyzerTest {
         //then
         assertThat(match).isEqualTo(4);
     }
+
+    @DisplayName("로또 번호에 보너스 번호가 존재 테스트")
+    @Test
+    void hasBonusNumberTest() {
+        //given
+        List<Integer> lottoNumbers = List.of(2, 3, 6, 7, 14, 15, 21);
+        int bonusNumber = 21;
+
+        //when
+        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
+
+        //then
+        assertThat(hasBonusNumber).isEqualTo(true);
+    }
 }

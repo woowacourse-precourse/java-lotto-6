@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ public class Application {
             printCurrentLottoList(lotto_list.get(i));
         }
         //4) 당첨 번호 입력 기능
+        List<Integer> win_list = readWinningNumber();
 
         //5) 보너스 번호 입력 기능
 
@@ -105,7 +107,7 @@ public class Application {
 
 
     /**
-     * 발급한 로또 번호 출력 기능
+     * 3. 발급한 로또 번호 출력 기능
      */
     static void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
@@ -122,4 +124,58 @@ public class Application {
         System.out.print(String.join(", ", lotto_str_num));
         System.out.println("]");
     }
+
+    /**
+     * 4. 당첨 번호 입력 기능
+     */
+
+    static List<Integer> readWinningNumber() {
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        //컴마 예외
+        validateWinNumberComma(input);
+
+        //변환
+        List<String> list = Arrays.asList(input.split(","));
+        //리스트 예외
+        validateWinNumberList(list);
+
+        return list.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+    }
+
+    static void validateWinNumberComma(String input) throws IllegalArgumentException {
+        //1) 처음부터 컴마 입력 시
+        if (input.charAt(0) == ',') {
+            throw new IllegalArgumentException("[ERRPR] 당첨 번호에 처음부터 쉼표(,) 가 입력되면 안됩니다.");
+        }
+
+        //2) 중간 중복 컴마
+        if (input.contains(",,")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 쉼표가 포함되면 안됩니다.");
+        }
+
+        //3) 끝에 컴마만 입력 시
+        if (input.charAt(input.length() - 1) == ',') {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 끝에 쉼표(,)가 입력되면 안됩니다. ");
+        }
+    }
+
+    static void validateWinNumberList(List<String> list) throws IllegalArgumentException {
+        if (list.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+
+        //1) 숫자 아닌 값 포함 시 예외
+
+        //2) 당첨 번호 범위 벗어난 경우
+
+        //3) 공백 포함 시 예외
+
+        //4) 당첨 번호와 중복 시 예외
+
+        //5) 당첨 번호 개수가 6개 아닐 경우 예외
+    }
+
 }
+

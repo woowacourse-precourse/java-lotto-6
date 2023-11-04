@@ -1,11 +1,14 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.utils.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
+import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +27,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByLessThanMinimumNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LESS_THAN_MINIMUM_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByMoreThanMaximumNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(MORE_THEN_MAXIMUM_LOTTO_NUMBER.getMessage());
+    }
 }

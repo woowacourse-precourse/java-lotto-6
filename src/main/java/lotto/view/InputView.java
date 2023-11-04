@@ -8,9 +8,11 @@ import lotto.validator.BasicValidator;
 public class InputView {
 
     private final BasicValidator<String> moneyInputValidator;
+    private final BasicValidator<String> bonusNumberInputValidator;
 
-    public InputView(BasicValidator<String> moneyInputValidator) {
+    public InputView(BasicValidator<String> moneyInputValidator, BasicValidator<String> bonusNumberInputValidator) {
         this.moneyInputValidator = moneyInputValidator;
+        this.bonusNumberInputValidator = bonusNumberInputValidator;
     }
 
     public int inputMoney() {
@@ -28,6 +30,7 @@ public class InputView {
 
     public int inputBonusNumber() {
         String input = Console.readLine();
+        bonusNumberInputValidator.validate(input);
         return Integer.parseInt(input);
     }
 }

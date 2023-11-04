@@ -13,6 +13,7 @@ public class LottoController {
 
     public void run() {
         initPurchaseAmount();
+        lottoService.purchaseLotto();
     }
 
     private void initPurchaseAmount() {

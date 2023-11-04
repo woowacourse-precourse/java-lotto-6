@@ -52,4 +52,25 @@ class LottoRepositoryTest {
 
     }
 
+    @Nested
+    @DisplayName("조회 테스트")
+    class FindTest {
+
+        @Test
+        @DisplayName("성공적으로 저장된 모든 로또들을 조회 해야 한다")
+        public void 성공적으로_저장된_모든_로또들을_조회_해야_한다() {
+            LottoRepository lottoRepository = new LottoRepository();
+            Lotto lotto = mock(Lotto.class);
+            Lotto otherLotto = mock(Lotto.class);
+
+            lottoRepository.saveAll(List.of(lotto, otherLotto));
+            List<Lotto> lottos = lottoRepository.findAll();
+
+            assertThat(lottos).hasSize(2);
+            assertThat(lottos).containsExactly(lotto, otherLotto);
+
+            lottoRepository.clear();
+        }
+    }
+
 }

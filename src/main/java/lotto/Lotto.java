@@ -40,4 +40,12 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public int countBonusMatch(Integer bonus) {
+        if (this.numbers.contains(bonus)) {
+            return 1;
+        }
+
+        return 0;
+    }
 }

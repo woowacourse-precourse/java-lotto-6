@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.resolver;
 
 import java.util.function.Supplier;
 

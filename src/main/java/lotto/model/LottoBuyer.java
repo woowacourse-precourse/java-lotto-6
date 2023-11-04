@@ -22,6 +22,10 @@ public class LottoBuyer {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public int getLottoCount() {
+        return purchaseAmount / PURCHASE_AMOUNT_UNIT;
+    }
+
     private void validateAmountUnit(int purchaseAmount) {
         if (isNotDividedByPurchaseAmountUnit(purchaseAmount)) {
             NOT_VALID_PURCHASE_AMOUNT_UNIT.throwException();

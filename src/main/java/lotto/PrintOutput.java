@@ -11,6 +11,9 @@ public class PrintOutput {
         System.out.println(lotto);
     }
     public void printResult(){
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
+    }
+    public void printWinningStatics(String detail, int MatchCount){
+        System.out.println(detail + MatchCount+"개");
     }
 }

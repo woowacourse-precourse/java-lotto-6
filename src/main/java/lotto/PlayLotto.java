@@ -44,5 +44,6 @@ public class PlayLotto {
         printOutput.printResult();
         WinningStatics winningStatics = new WinningStatics();
         MatchCount = winningStatics.HowMatch(Lottos,winninglotto,BonusNum);
+        winningStatics.PrintWinningCount(MatchCount);
     }
 }

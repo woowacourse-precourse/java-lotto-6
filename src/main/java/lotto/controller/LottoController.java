@@ -27,5 +27,6 @@ public class LottoController {
         outputView.printNumberOfTicket(ticket);
         final Lottos lottos = lottoService.saveLottos(ticket);
         outputView.printNumberOfLottos(lottos);
+        outputView.printWinningLottoRequset();
     }
 }

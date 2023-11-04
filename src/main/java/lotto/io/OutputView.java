@@ -23,4 +23,8 @@ public class OutputView {
     public void printNumberOfLottos(final Lottos lottos) {
         System.out.println(outputFommatter.toLottos(lottos));
     }
+
+    public void printWinningLottoRequset() {
+        System.out.println(ProcessMessage.WINNING_LOTTO_REQUEST.toValue());
+    }
 }

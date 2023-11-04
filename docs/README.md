@@ -51,7 +51,7 @@
     - 1~45 값이 아니라면 `IllegalArgumentException` 발생
 
 ## 로또 발행 기능
-- [ ] `LottoNumberGenerator::generateLottoNumbers` 메서드
+- [x] `LottoNumberGenerator::generateLottoNumbers` 메서드
   - 랜덤한 로또 번호를 생성한다.
 
 ## 로또 발행 결과 출력 기능

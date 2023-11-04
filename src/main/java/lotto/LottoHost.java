@@ -23,7 +23,6 @@ public class LottoHost {
 
 	List<Integer> makeRandomLottoNumber() {
 		List<Integer> randomNumberList = new ArrayList<>();
-
 		HashSet<Integer> numberCheck = new HashSet();
 
 		while(randomNumberList.size() < 6) {

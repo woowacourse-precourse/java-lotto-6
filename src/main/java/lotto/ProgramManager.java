@@ -36,14 +36,16 @@ public class ProgramManager {
 	}
 
 	List<Lotto> showBuyLotto(int price) {
-		outputView.showAmount(price/1000);
-
 		List<Lotto> lottoList = new ArrayList<>();
 		LottoHost lottoHost = new LottoHost();
+		int numberOfBuyingLotto = price/1000;
 
-		List<Integer> numberList = lottoHost.makeRandomLottoNumber();
-		Lotto lotto = new Lotto(numberList);
-		lottoList.add(lotto);
+		while (numberOfBuyingLotto > 0) {
+			List<Integer> numberList = lottoHost.makeRandomLottoNumber();
+			Lotto lotto = new Lotto(numberList);
+			lottoList.add(lotto);
+			numberOfBuyingLotto--;
+		}
 
 		outputView.showBuyLottoNumber(lottoList);
 

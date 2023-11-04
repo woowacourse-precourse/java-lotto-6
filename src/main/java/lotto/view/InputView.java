@@ -4,24 +4,24 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.util.InputValidator;
 
 public class InputView {
-    private final InputValidator inputValidator;
 
-    public InputView(){
-        inputValidator = new InputValidator();
-    }
-
-    public void InputMoney(){
+    public Integer InputMoney(){
         String input = Console.readLine();
         try{
-            inputValidator.isNumericValidator(input);
+            InputValidator.isNumericValidator(input);
             Integer money = Integer.parseInt(input);
-            inputValidator.isMinimumValidator(money);
-            inputValidator.isThousandUnitValidator(money);
-            // 여기에 static 변수 사용하면 될듯
+            InputValidator.isMinimumValidator(money);
+            InputValidator.isThousandUnitValidator(money);
+            return money;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
-    public void InputSixNumbers(){}
+    public void InputSixNumbers(){
+        String input = Console.readLine();
+        try{
+
+        }
+    }
     public void InputBonusNumber(){}
 }

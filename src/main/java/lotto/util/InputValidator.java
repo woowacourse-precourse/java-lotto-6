@@ -18,49 +18,43 @@ public class InputValidator {
     private static final String IS_NOT_OVERLAP_SIX_VALIDATOR_ERROR_MESSAGE = "[ERROR] 6개의 숫자에 중복된 로또 번호가 존재합니다.";
     private static final String IS_NOT_OVERLAP_BONUS_VALIDATOR_ERROR_MESSAGE = "[ERROR] 보너스 번호와 중복된 로또 번호가 존재합니다.";
 
-    public Boolean isNumericValidator(String number){
+    public static void isNumericValidator(String number){
         try {
             Integer parsedNumber = Integer.parseInt(number);
-            return true;
         }catch(NumberFormatException e){
             throw new IllegalArgumentException(IS_NUMERIC_VALIDATOR_ERROR_MESSAGE);
         }
     }
 
-    public Boolean isThousandUnitValidator(Integer money){
+    public static void isThousandUnitValidator(Integer money){
         if(money % MONEY_UNIT != 0){
             throw new IllegalArgumentException(IS_THOUSAND_UNIT_VALIDATOR_ERROR_MESSAGE);
         }
-        return true;
     }
 
-    public Boolean isMinimumValidator(Integer money){
+    public static void isMinimumValidator(Integer money){
         if(money <= MINIMUM_MONEY_STANDARD){
             throw new IllegalArgumentException(IS_MINIMUM_VALIDATOR_ERROR_MESSAGE);
         }
-        return true;
     }
 
-    public Boolean isInRangeValidator(Integer number){
+    public static void isInRangeValidator(Integer number){
         if(number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER){
             throw new IllegalArgumentException(IS_IN_RANGE_VALIDATOR_ERROR_MESSAGE);
         }
-        return true;
     }
-    public Boolean isNotOverlapSixValidator(List<Integer> numbers){
+    public static void isNotOverlapSixValidator(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer number : numbers){
             if(!uniqueNumbers.add(number)){
                 throw new IllegalArgumentException(IS_NOT_OVERLAP_SIX_VALIDATOR_ERROR_MESSAGE);
             }
         }
-        return true;
     }
 
-    public Boolean isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber){
+    public static void isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber){
         if(numbers.contains(bonusNumber)){
             throw new IllegalArgumentException(IS_NOT_OVERLAP_BONUS_VALIDATOR_ERROR_MESSAGE);
         }
-        return true;
     }
 }

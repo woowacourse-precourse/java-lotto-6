@@ -1,6 +1,9 @@
 package lotto.view;
 
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningRank;
+
+import java.util.Map;
 
 public class Output {
 
@@ -9,6 +12,9 @@ public class Output {
     private static final String BUY_COUNT_FORMAT = "%d개를 구매했습니다.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS = "당첨 통계";
+    private static final String DIVIDER = "---";
+    private static final String WINNING_RANK_COUNT_FORMAT = " - %d개";
 
     public void showMoneyInputMessage() {
         System.out.println(MONEY_INPUT_MESSAGE);
@@ -37,6 +43,20 @@ public class Output {
     public void showBonusNumberInputMessage() {
         lineBreak();
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void showWinningStats(Map<WinningRank, Integer> winningResult) {
+        lineBreak();
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(DIVIDER);
+        showWinningResult(winningResult);
+    }
+
+    private void showWinningResult(Map<WinningRank, Integer> winningResult) {
+        winningResult.entrySet()
+                .stream()
+                .filter(entry -> !entry.getKey().equals(WinningRank.NONE))
+                .forEach(entry -> System.out.println(entry.getKey() + String.format(WINNING_RANK_COUNT_FORMAT, entry.getValue())));
     }
 
     private void lineBreak() {

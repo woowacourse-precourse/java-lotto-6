@@ -1,25 +1,27 @@
 package lotto.model.lotto;
 
 import lotto.model.PaperBag;
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoInfo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoResult {
+public class LottoHandler {
     private final List<Integer> winningNumber;
     private final int bonusNumber;
     private List<Integer> resultAmount;
     private List<Integer> winList;
 
-    private LottoResult(List<Integer> winningNumber, int bonusNumber) {
+    private LottoHandler(List<Integer> winningNumber, int bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
         this.resultAmount = new ArrayList<>();
         this.winList = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+    }
+
+    public static LottoHandler of(List<Integer> winningNumber, int bonusNumber) {
+        return new LottoHandler(winningNumber, bonusNumber);
     }
 
     public void calculateResult(PaperBag paperBag) {
@@ -74,7 +76,7 @@ public class LottoResult {
         for (LottoInfo lottoInfo : LottoInfo.values()) {
             if (amount == lottoInfo.getWinningAmount()) {
                 int index = lottoInfo.getIndex();
-                winningNumber.set(index, winList.get(index)+1);
+                winningNumber.set(index, winList.get(index) + 1);
             }
         }
     }
@@ -82,10 +84,10 @@ public class LottoResult {
     public String resultToString() {
         StringBuilder sb = new StringBuilder();
         sb.append(LottoInfo.FIFTH_WINNER.getInfo()).append(" - ").append(winList.get(0)).append("개").append("\n");
-        sb.append(LottoInfo.FOURTH_WINNER.getInfo()).append(" - ").append(winList.get(0)).append("개").append("\n");
-        sb.append(LottoInfo.THIRD_WINNER.getInfo()).append(" - ").append(winList.get(0)).append("개").append("\n");
-        sb.append(LottoInfo.SECOND_WINNER.getInfo()).append(" - ").append(winList.get(0)).append("개").append("\n");
-        sb.append(LottoInfo.FIRST_WINNER.getInfo()).append(" - ").append(winList.get(0)).append("개").append("\n");
+        sb.append(LottoInfo.FOURTH_WINNER.getInfo()).append(" - ").append(winList.get(1)).append("개").append("\n");
+        sb.append(LottoInfo.THIRD_WINNER.getInfo()).append(" - ").append(winList.get(2)).append("개").append("\n");
+        sb.append(LottoInfo.SECOND_WINNER.getInfo()).append(" - ").append(winList.get(3)).append("개").append("\n");
+        sb.append(LottoInfo.FIRST_WINNER.getInfo()).append(" - ").append(winList.get(4)).append("개").append("\n");
         return sb.toString();
     }
 

@@ -1,10 +1,11 @@
 package lotto.model;
 
-import lotto.model.lotto.LottoResult;
+import lotto.model.lotto.LottoHandler;
+
+import java.util.List;
 
 public class Person {
     private PaperBag paperBag;
-    private LottoResult lottoResult;
     private final int purchaseAmout;
 
 
@@ -16,12 +17,20 @@ public class Person {
         return new Person(purchaceAmout);
     }
 
-    private void buyLotto(PaperBag paperBag) {
+    public void buyLotto(PaperBag paperBag) {
         this.paperBag = paperBag;
     }
 
     public PaperBag getPaperBag() {
         return paperBag;
+    }
+
+    public String getLottoesToString() {
+        return paperBag.lottoesToString();
+    }
+
+    public int getPurchaseAmout() {
+        return purchaseAmout;
     }
 
 

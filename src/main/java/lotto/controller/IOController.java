@@ -36,7 +36,7 @@ public class IOController {
         outputView.confirmLottoCount(count);
     }
 
-    public void showLotto(List<Integer> output) {
+    public void showLotto(String output) {
         outputView.showLotto(output);
     }
 

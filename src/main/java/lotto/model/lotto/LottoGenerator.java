@@ -1,7 +1,6 @@
 package lotto.model.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +12,7 @@ public class LottoGenerator {
     public LottoGenerator() {
         this.lotto = generateLotto(6);
     }
-    private static Lotto generateLotto(int count) {
+    public static Lotto generateLotto(int count) {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < count) {
             int number = Randoms.pickNumberInRange(1,45);
@@ -25,7 +24,4 @@ public class LottoGenerator {
         return new Lotto(numbers);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
 }

@@ -6,7 +6,7 @@ public class OutputView extends Message{
     public void confirmLottoCount(int count) {
         System.out.println(count+INPUT_CONFIRM_MESSAGE);
     }
-    public void showLotto(List<Integer> output) {
+    public void showLotto(String output) {
         System.out.println(output);
     }
 

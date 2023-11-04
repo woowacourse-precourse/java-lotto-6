@@ -65,4 +65,14 @@ class Lotto {
                 .map(LottoNumber::from)
                 .toList();
     }
+
+    public int matchWith(Lotto other) {
+        return (int) other.numbers.stream()
+                .filter(this::contains)
+                .count();
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 }

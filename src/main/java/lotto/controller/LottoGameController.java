@@ -14,6 +14,14 @@ public class LottoGameController {
     }
 
     public void run() {
+        outputView.printRequestInputPurchaseAmountMessage();
+        inputView.inputPurchaseAmount();
+
+        outputView.printRequestInputWinningNumberMessage();
+        inputView.inputWinningNumbers();
+
+        outputView.printRequestInputBonusNumberMessage();
+        inputView.inputBonusNumbers();
         
     }
 }

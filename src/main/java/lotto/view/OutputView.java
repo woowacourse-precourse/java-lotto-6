@@ -1,7 +1,10 @@
 package lotto.view;
 
+import lotto.domain.winning.WinningRanking;
 import lotto.dto.LottoDto;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 
 public class OutputView {
@@ -17,11 +20,11 @@ public class OutputView {
         display(OutputMessage.REQUEST_BONUS_NUMBER);
     }
 
-    public void responsePurchaseCount(int count) {
+    public void responsePurchaseCount(final int count) {
         display(OutputMessage.RESPONSE_PURCHASE_COUNT, count);
     }
 
-    public void responseUserNumbersSet(List<LottoDto> lottos) {
+    public void responseUserNumbersSet(final List<LottoDto> lottos) {
         for (LottoDto lotto : lottos) {
             display(OutputMessage.RESPONSE_USER_NUMBERS_SET, lotto.toString());
         }
@@ -31,23 +34,27 @@ public class OutputView {
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_HEADER);
     }
 
-    public void responseWinningStatisticsBody2(LottoDto lotto) {
-        display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, lotto.getNumbers().subList(0, 5));
+    public void responseWinningStatisticsBody(final EnumMap<WinningRanking, Integer> rankingCountMap) {
+        List<Integer> list = new ArrayList<>();
+        for (WinningRanking ranking : WinningRanking.values()) {
+            if (ranking == WinningRanking.NONE) {
+                continue;
+            }
+            Integer count = rankingCountMap.getOrDefault(ranking, 0);
+            list.add(count);
+        }
+        display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, list.toArray());
     }
 
-    public void responseWinningStatisticsBody(List<Integer> result) {
-        display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, result);
+    public void responseTotalReturn(final double profit) {
+        display(OutputMessage.RESPONSE_TOTAL_RETURN, profit);
     }
 
-    public void responseTotalReturn(String result) {
-        display(OutputMessage.RESPONSE_TOTAL_RETURN, result);
+    public void displayErrorMessage(final String message) {
+        System.out.println(message);
     }
 
-    public void displayErrorMessage(String message) {
-        System.err.println(message);
-    }
-
-    private void display(OutputMessage message, Object... args) {
+    private void display(final OutputMessage message, Object... args) {
         System.out.printf(message.getMessage(), args);
     }
 }

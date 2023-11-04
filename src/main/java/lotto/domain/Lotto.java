@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.LOTTO_SIZE;
+import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +25,7 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
     }
@@ -35,7 +39,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         Stream<Integer> filtered = numbers.stream()
-                .filter(i -> i < 1 || i > 45);
+                .filter(i -> i < MIN_LOTTO_NUMBER.getValue() || i > MAX_LOTTO_NUMBER.getValue());
         if (filtered.findAny().isPresent()) {
             throw new IllegalArgumentException();
         }

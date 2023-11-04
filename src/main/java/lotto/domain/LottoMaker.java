@@ -10,6 +10,7 @@ import static lotto.constant.Constant.ZERO_COUNT;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NEGATIVE_COUNT;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;
+import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_SIX_NUMBERS;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_THOUSAND_UNIT;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.OVER_RANGE;
 import static lotto.domain.LottoMaker.LottoMakerErrorMessage.UNDER_THOUSAND_AMOUNT;
@@ -44,10 +45,17 @@ public class LottoMaker {
         if (isInvalidNumbersFormat(numbers)) {
             throw new IllegalArgumentException(WINNING_NUMBERS_INVALID_FORMAT.getErrorMessage());
         }
+        if (hasNotSixNumbers(numbers)) {
+            throw new IllegalArgumentException(NOT_SIX_NUMBERS.getErrorMessage());
+        }
     }
 
     private boolean isInvalidNumbersFormat(String numbers) {
         return !numbers.matches(NUMBERS_FORMAT_REGEX);
+    }
+
+    private boolean hasNotSixNumbers(String numbers) {
+        return numbers.split(COMMA).length != 6;
     }
 
     private void validateBonusNumber(String numbers, int bonusNumber) {
@@ -105,6 +113,7 @@ public class LottoMaker {
         NOT_THOUSAND_UNIT("[ERROR] 금액은 1000원 단위로 입력해야 합니다."),
         UNDER_THOUSAND_AMOUNT("[ERROR] 최소 1000원의 금액을 입력해야 합니다."),
         WINNING_NUMBERS_INVALID_FORMAT("[ERROR] 입력 형식이 올바르지 않습니다."),
+        NOT_SIX_NUMBERS("[ERROR] 입력 숫자는 6개여야 합니다."),
         DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다."),
         OVER_RANGE("[ERROR] 숫자 범위는 1부터 45까지 가능합니다."),
         NEGATIVE_COUNT("[ERROR] 갯수는 음수일 수 없습니다.");

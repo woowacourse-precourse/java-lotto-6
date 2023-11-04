@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.Lotto;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
+import lotto.repository.LottoRepository;
+import lotto.util.RandomNumGenerator;
 
 
 public class UserLotto {

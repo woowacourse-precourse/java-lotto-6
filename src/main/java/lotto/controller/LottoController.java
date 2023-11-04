@@ -13,9 +13,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private BuyAmount buyAmount;
+    private Lottos lottos;
+    private WinningNumbers winningNumbers;
+
     public void buyLotto() {
-        BuyAmount buyAmount = InputView.getBuyAmountFromInput();
-        Lottos lottos = createLottosFromAmount(buyAmount);
+        buyAmount = InputView.getBuyAmountFromInput();
+        lottos = createLottosFromAmount(buyAmount);
         LottosDTO lottosDTO = lottos.toLottosDTO();
         OutputView.displayAllLottos(lottosDTO);
     }
@@ -23,7 +27,11 @@ public class LottoController {
     public void drawLotto() {
         List<Integer> winningNumber = InputView.getWinningNumberFromInput();
         int bonusNumber = InputView.getBonusNumberFromInput();
-        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+        winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+    }
+
+    public void statistics() {
+
     }
 
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {

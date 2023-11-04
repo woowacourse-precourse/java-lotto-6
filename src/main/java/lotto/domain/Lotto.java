@@ -4,7 +4,7 @@ import static lotto.utils.LottoValidateUtils.*;
 
 import java.util.List;
 
-public class Lotto {
+public final class Lotto {
 
     private final List<Integer> numbers;
 

@@ -1,5 +1,6 @@
 package lotto.domain.player;
 
+import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.playermoney.PlayerWallet;
@@ -24,5 +25,9 @@ public class Player {
 
     public int getTicketNumber() {
         return lottoTicket.getLottoTicket();
+    }
+
+    public Profit getProfit(LottoResultsDto lottoResultsDto) {
+        return  playerWallet.calculateProfit(lottoResultsDto);
     }
 }

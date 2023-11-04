@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoresult.LottoResult;
+import lotto.domain.lottoresult.LottoResultsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,5 +40,18 @@ public class PlayerTest {
         player.buyRandomLottoWithAllTicket(boughtLotto, lottoBundle);
         //then
         assertThat(player.getTicketNumber()).isEqualTo(0);
+    }
+
+    @DisplayName("10,000원을 사용한 플레이어는 5,000원 당첨결과를 통해 이익률 50.0을 받을 수 있다.")
+    @Test
+    void playerTest_ProfitCalculateTest() {
+        //given
+        player.consumeAllMoneyToLottoTicket();
+        LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
+        lottoResultsRepository.saveLottoResult(LottoResult.FIFTH);
+        //when
+        Profit profit = player.getProfit(lottoResultsRepository.makeLottoResultsDto());
+        //then
+        assertThat(profit.getProfit()).isEqualTo(50.0);
     }
 }

@@ -3,7 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.InputMessage;
 
-public class InputView {
+public final class InputView {
+
+    private InputView() {
+    }
 
     public static String inputMoney() {
         System.out.println(InputMessage.INPUT_AMOUNT_OF_PAYMENT.getMessage());

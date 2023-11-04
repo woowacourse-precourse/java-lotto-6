@@ -2,19 +2,19 @@ package lotto.domain;
 
 public class PurchaseAmount {
 
-    public void validate(String purchaseAmount) {
-        validateAmountNotNumber(purchaseAmount);
-        validateAmountUnderThousand(Integer.parseInt(purchaseAmount));
-        validateDivideByThousand(Integer.parseInt(purchaseAmount));
+    public void validatePurchaseAmount(String purchaseAmount) {
+        validatePurchaseAmountNotNumber(purchaseAmount);
+        validatePurchaseAmountUnderThousand(Integer.parseInt(purchaseAmount));
+        validatePurchaseAmountDivideByThousand(Integer.parseInt(purchaseAmount));
     }
 
-    public void validateDivideByThousand(int purchaseAmount) {
+    public void validatePurchaseAmountDivideByThousand(int purchaseAmount) {
         if(purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
         }
     }
 
-    public void validateAmountNotNumber(String purchaseAmount) {
+    public void validatePurchaseAmountNotNumber(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
@@ -22,7 +22,7 @@ public class PurchaseAmount {
         }
     }
 
-    public void validateAmountUnderThousand(int purchaseAmount) {
+    public void validatePurchaseAmountUnderThousand(int purchaseAmount) {
         if(purchaseAmount < 1000) {
             throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000 이상의 정수입니다.");
         }

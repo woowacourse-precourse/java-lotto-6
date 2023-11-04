@@ -15,4 +15,8 @@ public class BuyAmount {
             throw new IllegalArgumentException(DIVISION_ERROR_MESSAGE);
         }
     }
+
+    public int getAbleToBuyCount() {
+        return (int) (buyAmount / 1000);
+    }
 }

@@ -40,7 +40,7 @@ public class LottoController {
 
     private void printLotteryList(List<Lotto> totalLottery){
         for(Lotto lottery : totalLottery){
-            lottery.printLotteryNumber();
+            lottery.printLotteryNumber(totalLottery.size());
         }
     }
 }

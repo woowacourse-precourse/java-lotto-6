@@ -18,7 +18,9 @@ public class Lotto {
         }
     }
 
-    public void printLotteryNumber(){
+    public void printLotteryNumber(int totalLotterySize){
+        System.out.println();
+        System.out.println(totalLotterySize + "개를 구매했습니다.");
         System.out.print("[");
         for(int number : numbers){
             if(numbers.indexOf(number) == THE_SECOND_TO_THE_LAST){

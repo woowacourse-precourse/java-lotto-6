@@ -1,37 +1,37 @@
 package lotto;
 
 public enum Rank {
-    FAIL(0, 0){
+    FAIL(0, 0) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    FIFTH(5_000, 3){
+    FIFTH(5_000, 3) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    FOURTH(50_000, 4){
+    FOURTH(50_000, 4) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    THIRD(1_500_000, 5){
+    THIRD(1_500_000, 5) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    SECOND(30_000_000, 5){
+    SECOND(30_000_000, 5) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;
         }
     },
-    FIRST(2_000_000_000, 6){
+    FIRST(2_000_000_000, 6) {
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;

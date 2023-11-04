@@ -17,4 +17,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    //  존재유무 확인하는 기능만 추가
+    public boolean isContainNumber(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputView {
-    public int getMoney() {
+    public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
 
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<Integer> getLottoWinningNumbers() {
+    public List<Integer> inputLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요");
         String numbers = Console.readLine();
 
@@ -22,7 +22,7 @@ public class InputView {
 
     }
 
-    public int getBonusNumber() {
+    public int inputBonusNumber() {
         return Integer.parseInt(Console.readLine());
     }
 }

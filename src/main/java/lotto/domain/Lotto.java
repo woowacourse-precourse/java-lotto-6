@@ -1,20 +1,15 @@
 package lotto.domain;
 import static java.util.Collections.*;
-import static lotto.constant.DomainConstant.LOTTO_SIZE;
-import static lotto.constant.DomainConstant.MAX_LOTTO_NUMBER;
-import static lotto.constant.DomainConstant.MIN_LOTTO_NUMBER;
-import static lotto.constant.ErrorMessage.*;
+import static lotto.utils.LottoValidateUtils.*;
 
-import java.util.HashSet;
 import java.util.List;
-import lotto.constant.ErrorMessage;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbers(numbers);
         this.numbers = numbers.stream()
             .sorted()
             .toList();
@@ -23,32 +18,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return unmodifiableList(numbers);
     }
-
-    private void validate(final List<Integer> numbers) {
-        validateLottoSize(numbers);
-        validateLottoNumberRange(numbers);
-        validateNoDuplicates(numbers);
-    }
-
-    private void validateLottoSize(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_LOTTO_NUMBERS.getMessage());
-        }
-    }
-
-    private void validateLottoNumberRange(final List<Integer> numbers) {
-        final List<Integer> validNumbers = numbers.stream()
-            .filter(number -> number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue())
-            .toList();
-
-        if(validNumbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
-    private void validateNoDuplicates(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
-        }
-    }
-
 }

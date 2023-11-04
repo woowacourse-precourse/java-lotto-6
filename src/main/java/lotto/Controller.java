@@ -51,5 +51,11 @@ public class Controller {
         return new Lotto(seperateComma.convert(userInputLotto));
     }
 
+    private int getBonus() {
+        InputView inputView = new InputView();
+        String inputBonus = inputView.inputBonusNumber();
+        return converterNumber.convert(inputBonus);
+    }
+
 
 }

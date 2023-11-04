@@ -2,9 +2,7 @@ package lotto.domain.model;
 
 import lotto.enums.ErrorMessage;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +10,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicateNumbers(numbers);
-        this.numbers = numbers;
+
+        this.numbers = Collections.unmodifiableList(sortNumbers(numbers));
     }
 
     private void validate(List<Integer> numbers) { // validate validateCountNumbers
@@ -36,6 +35,13 @@ public class Lotto {
         if (hasDuplicates) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS.getMessage());
         }
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        return sortedNumbers;
     }
 
     public List<Integer> getNumbers() {

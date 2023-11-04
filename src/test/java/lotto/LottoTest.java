@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void buyLottoByNotNumber() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateCost("8a000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,11 +1,11 @@
 package lotto;
 
-import lotto.domain.Game;
+import lotto.domain.Core;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        Game game = new Game();
-        game.start();
+        Core core = new Core();
+        core.start();
     }
 }

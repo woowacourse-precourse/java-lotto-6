@@ -36,9 +36,20 @@ class LottoTest {
     @Test
     void createMatchResultFromLottos() {
         Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+        Lotto winLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        MatchResult matchResult = Lotto.match(randomLotto, winLotto);
-        assertThat(matchResult).isEqualTo(MatchResult.FIVE);
+        MatchResult matchResult = Lotto.match(randomLotto, winLotto, 99);
+        assertThat(matchResult).isEqualTo(MatchResult.SIX);
+    }
+
+    @DisplayName("발행 로또에 대해 보너스 번호까지 고려하여 MatchResult를 반환한다")
+    @Test
+    void createMatchResultIncludingBonusNum() {
+        Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winLotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        int bonusNum = 6;
+
+        MatchResult matchResult = Lotto.match(randomLotto, winLotto, bonusNum);
+        assertThat(matchResult).isEqualTo(MatchResult.BONUS);
     }
 }

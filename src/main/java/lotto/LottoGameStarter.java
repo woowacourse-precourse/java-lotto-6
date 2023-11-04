@@ -9,6 +9,6 @@ public class LottoGameStarter {
         String bonusNum = Input.bonusNumberInput();
         WinLotto winLotto = new WinLotto(winNums, bonusNum);
         LottoShop lottoShop = new LottoShop(customer, winLotto);
-        lottoshop.compareWinNum();
+        lottoShop.compareWinLotto();
     }
 }

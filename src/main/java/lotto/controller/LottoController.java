@@ -1,12 +1,15 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.domain.LottoAwards;
 import lotto.domain.Member;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -24,9 +27,18 @@ public class LottoController {
         int bonusNumber = InputView.getBonusNumberInput();
         WinningNumber winningNumber = new WinningNumber(winnerLotto, bonusNumber);
 
-        // TODO: 멤버의 구매 로또 리스트를 넘겨받아 추첨하는 로직 추가
+        List<Rank> awardsResult = awards(member, winningNumber);
 
+    }
 
+    private List<Rank> awards(final Member member, final WinningNumber winningNumber) {
+        List<Rank> ranks = new ArrayList<>();
+
+        for (Lotto lotto : member.getLottos()) {
+            Rank rank = LottoAwards.awards(lotto, winningNumber);
+            ranks.add(rank);
+        }
+        return ranks;
     }
 
     private Member generateLottoMember(final int money) {

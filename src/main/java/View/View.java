@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import controller.LottoController;
 import lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class View {
 
@@ -28,6 +30,15 @@ public class View {
         System.out.println(winningNumber);
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        List<Integer> winningNumberBonus = lottoController.bonusNumber(winningNumber);
+        int bonusNumber = lottoController.bonusNumber(winningNumber);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Map<String, Integer> resultsCount = lottoController.checkWinners(totalLottoTickets,winningNumber,bonusNumber);
+
+        for (Map.Entry<String, Integer> entry : resultsCount.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue() + "개");
+
+        }
     }
 }

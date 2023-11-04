@@ -10,6 +10,7 @@ public class LottoMachine {
         List<List<Integer>> totalLottoTickets = new ArrayList<>();
         for (int i = 0; i < lottoTicketCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers); // 로또 번호 정렬
             totalLottoTickets.add(numbers);
         }
         return totalLottoTickets;

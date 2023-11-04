@@ -1,11 +1,9 @@
 package controller;
 
-import domain.BonusNumber;
-import domain.LottoMachine;
-import domain.LottoTicket;
-import domain.WinningNumbers;
+import domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public int start(String inputValue) {
@@ -24,7 +22,13 @@ public class LottoController {
         return winningNumbers.winningNumbersService(totalLottoTickets);
     }
 
-    public List<Integer> bonusNumber(List<Integer> winningNumber) {
-        return BonusNumber.bonusNumberService(winningNumber);
+    public int bonusNumber(List<Integer> winningNumber) {
+        BonusNumber bonusNumber = new BonusNumber();
+        return bonusNumber.bonusNumberService(winningNumber);
+    }
+
+    public Map<String, Integer> checkWinners(List<List<Integer>> totalLottoTickets, List<Integer> winningNumber, int bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        return lottoResult.checkWinnersCountService(totalLottoTickets, winningNumber,bonusNumber);
     }
 }

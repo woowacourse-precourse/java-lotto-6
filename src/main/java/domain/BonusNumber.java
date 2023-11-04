@@ -8,16 +8,14 @@ import java.util.List;
 
 public class BonusNumber {
 
-    public static List<Integer> bonusNumberService(List<Integer> winningNumbers) {
+    public int bonusNumberService(List<Integer> winningNumbers) {
         String inputValue = Console.readLine();
         int bonusNumber = Integer.parseInt(inputValue);
 
         validateNumberRange(bonusNumber);
         validateNumberUnique(bonusNumber, winningNumbers);
-        winningNumbers.add(bonusNumber);
-        Collections.sort(winningNumbers); // 로또 번호 정렬
 
-        return winningNumbers;
+        return bonusNumber;
     }
 
 

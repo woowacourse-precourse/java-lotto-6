@@ -6,7 +6,7 @@ import java.util.List;
 import static lotto.Error.Domain.WRONG_PRICE;
 
 public final class LottoMachine {
-    private static final int PRICE_PER_LOTTO = 1000;
+    static final int PRICE_PER_LOTTO = 1000;
     private final LottoCreateModel lottoCreateModel;
 
     public LottoMachine(LottoCreateModel lottoCreateModel) {

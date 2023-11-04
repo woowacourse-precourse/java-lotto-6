@@ -37,6 +37,8 @@
 ### Constants
 1. ExceptionMessages
 - [ ] 입력값 유효성 검사를 위한 오류 메시지
+2. LottoConstants
+- [ ] 로또 번호와 관련된 상수 정의
 
 ### Model
 1. Lotto

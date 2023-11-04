@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LottoStore {
 
@@ -45,4 +46,31 @@ public class LottoStore {
 
         return String.valueOf(sb);
     }
+
+    public void getCollectLottoNumber(Map<Statistics, Integer> countForRate) {
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            Integer count = compareLotto(lottoNumbers);
+        }
+    }
+
+
+    private Integer compareLotto(List<Integer> lottoNumbers) {
+        int count = 0;
+        for (Integer winningNumber : winningLotto) {
+            checkLotto(lottoNumbers, winningNumber, count);
+        }
+        return count;
+    }
+
+    private void checkLotto(List<Integer> lottoNumbers, Integer winningNumber, int count) {
+        if (isExist(lottoNumbers, winningNumber)) {
+            count++;
+        }
+    }
+
+    private boolean isExist(List<Integer> lottoNumbers, Integer winningNumber) {
+        return lottoNumbers.contains(winningNumber);
+    }
+
 }

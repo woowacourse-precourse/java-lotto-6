@@ -32,7 +32,7 @@ public final class LottoRepository {
     }
 
     /**
-     * toList는 UnmodifiableList이며, 모든 Lotto를 clone(deepcopy) 하여 storage에 저장된 데이터에 영향이 가지 않도록 모든 데이터를 사본으로 반환함
+     * toList는 UnmodifiableList를 반환하며, 모든 Lotto를 clone(deepcopy) 하여 storage에 저장된 데이터에 영향이 가지 않도록 모든 데이터를 사본이자 불변으로 반환함
      */
     public List<Lotto> findAll() {
         return storage.stream()

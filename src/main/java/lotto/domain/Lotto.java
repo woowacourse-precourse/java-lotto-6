@@ -57,14 +57,27 @@ public class Lotto {
         return new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE));
     }
 
-    public static MatchResult match(Lotto randomLotto, Lotto winLotto) {
+    public static MatchResult match(Lotto randomLotto, Lotto winLotto, int bonusNum) {
         List<Integer> randomNumbers = randomLotto.getNumbers();
         List<Integer> winNumbers = winLotto.getNumbers();
+
+        if (bonusMatch(randomNumbers, winNumbers, bonusNum))
+            return MatchResult.BONUS;
 
         int matchCount = (int) randomNumbers.stream()
                 .filter(winNumbers::contains)
                 .count();
 
         return MatchResult.fromCount(matchCount);
+    }
+
+    private static boolean bonusMatch(List<Integer> randomNumbers, List<Integer> winNumbers, int bonusNum) {
+        if (randomNumbers.contains(bonusNum)) {
+            return randomNumbers.stream()
+                    .filter(winNumbers::contains)
+                    .count() == BONUS_MATCH_COUNT;
+        }
+
+        return false;
     }
 }

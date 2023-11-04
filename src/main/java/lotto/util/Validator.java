@@ -15,7 +15,6 @@ public class Validator {
             e.printStackTrace();
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             System.out.println(e.getMessage());
         }
         return false;

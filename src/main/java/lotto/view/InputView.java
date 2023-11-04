@@ -7,7 +7,7 @@ import lotto.view.message.PrintMessage;
 public class InputView {
 
     public int inputPurchaseAmount() {
-        String input = "";
+        String input;
         while (true) {
             System.out.println(PrintMessage.INPUT_PURCHASE_AMOUNT.getMessage());
             input = Console.readLine();

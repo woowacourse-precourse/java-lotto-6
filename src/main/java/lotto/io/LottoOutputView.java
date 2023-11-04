@@ -1,9 +1,9 @@
 package lotto.io;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import static java.util.Collections.sort;
+
+import java.util.Collections;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoPurchase;
 
 public class LottoOutputView {
 
@@ -12,6 +12,7 @@ public class LottoOutputView {
     }
 
     public void printLottoNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
         System.out.println(numbers);
     }
 }

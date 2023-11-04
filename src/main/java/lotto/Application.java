@@ -13,7 +13,14 @@ public class Application {
         List<Integer> correctNumbers = gameManager.getCorrectLottoNumberByRead();
         int bonusNumber = gameManager.getBonusLottoNumberByRead();
 
-        gameManager.getCorrectLottoNumberByRead();
-        gameManager.getBonusLottoNumberByRead();
+        for (int i = 0; i < lottoAmount; i++) {
+            Lotto lotto = new Lotto(gameManager.createRandomNumber());
+            lotto.setCorrectNumbers(correctNumbers);
+            lotto.setBonusNumber(bonusNumber);
+            lottos.add(lotto);
+        }
+
+        System.out.println(lottoAmount+"개를 구매했습니다.");
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 }

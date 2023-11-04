@@ -11,6 +11,6 @@ public final class ErrorMessageComponent implements Component {
 
     @Override
     public String render() {
-        return "[ERROR]: " + errorMessage;
+        return "\n[ERROR] " + errorMessage;
     }
 }

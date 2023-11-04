@@ -40,13 +40,14 @@ public final class InputView {
         try {
             return BuyLottosDto.from(readLine());
         } catch (final IllegalArgumentException e) {
-            new ErrorMessageComponent(e.getMessage());
+            new ErrorMessageComponent(e.getMessage())
+                    .renderTo(writer);
             return inputBuyLottosDto();
         }
     }
 
     /**
-     * @return
+     * 로또 추첨을 위한 당첨 번호 및 보너스 번호를 입력 받아서 Dto로 변환합니다.
      */
     public DrawLottosDto inputDrawLottosDto() {
         final DrawLottosDtoBuilder builder = DrawLottosDtoBuilder.builder();
@@ -80,6 +81,7 @@ public final class InputView {
         return builder;
     }
 
+
     /**
      * 입력2-2. 당첨 번호로 사용할 보너스 번호를 입력 받음.
      *
@@ -103,6 +105,11 @@ public final class InputView {
         return builder;
     }
 
+    /**
+     * 우아한 테크코스에서 제공하는 `Console` 객체로 한 줄을 읽어옵니다.
+     * <p>
+     * 간단하게 trim을 호출하여 좌우 공백을 제거하는 것까지 추가하였습니다.
+     */
     private String readLine() {
         return Console.readLine().trim();
     }

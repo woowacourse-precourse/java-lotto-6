@@ -1,5 +1,7 @@
 package component;
 
+import io.output.Writer;
+
 /**
  * React의 Component에서 영감을 받아 매우 간단한 구조이지만, 각 메세지를 Component 단위로 나누어 보았습니다.
  * <p>
@@ -7,4 +9,9 @@ package component;
  */
 public interface Component {
     String render();
+
+    default void renderTo(Writer writer) {
+        writer.write(render());
+    }
+
 }

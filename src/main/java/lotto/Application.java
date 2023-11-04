@@ -6,6 +6,8 @@ public class Application {
         Game game = new Game(Screen.inputPurchasingAmount() / 1000);
         Screen.printAllLottos(game.getLottos());
         Screen.printAskingWinningNumbersMessage();
-        game.setWinningLotto(Screen.inputWinningNumbers());
+        Lotto winningLotto = Screen.inputWinningNumbers();
+        Screen.printAskingBonusNumberMessage();
+        Screen.inputBonusNumber(winningLotto);
     }
 }

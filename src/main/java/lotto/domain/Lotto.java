@@ -21,4 +21,15 @@ public class Lotto {
         Collections.sort(numbers);
         return numbers;
     }
+
+    public int getMatchedNumbersCount(WinningNumbers winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::isMatchedWithWinningNumbers)
+                .count();
+    }
+
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::isMatchedWithBonusNumber);
+    }
 }

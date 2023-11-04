@@ -19,4 +19,8 @@ public class Parser {
     public int inputToNumber(String playerInput) {
         return Integer.parseInt(playerInput);
     }
+
+    public String doubleToSecondDecimalString(double rate) {
+        return String.format("%.2f", rate);
+    }
 }

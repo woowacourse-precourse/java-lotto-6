@@ -1,33 +1,37 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
+import lotto.util.Calculator;
+import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private final WinningNumber winningNumber = new WinningNumber();
+    private final WinningNumbers winningNumbers = new WinningNumbers();
+    private final BonusNumber bonusNumber = new BonusNumber();
     private final LottoIssueController lottoIssueController = new LottoIssueController();
     private final WinningNumberController winningNumberController = new WinningNumberController();
-    private final NumberMatchController numberMatchController = new NumberMatchController();
-    private final LottoResultController lottoResultController = new LottoResultController();
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final Calculator calculator = new Calculator();
+    private final Parser parser = new Parser();
 
     private int getMoneyInput() {
         outputView.printInputMoneyMessage();
         return inputView.getMoney();
     }
 
-    private void getPurchaseDetails(int inputMoney, Lottos lottos) {
-        outputView.printPurchaseDetailsMessage(lottoIssueController.getLottoCount(inputMoney));
-        outputView.printPurchasedLottos(lottos.getPurchaseDetails());
-    }
-
     public Lottos purchaseLottos(int inputMoney) {
         Lottos lottos = lottoIssueController.createLottos(inputMoney);
         getPurchaseDetails(inputMoney, lottos);
         return lottos;
+    }
+
+    private void getPurchaseDetails(int inputMoney, Lottos lottos) {
+        outputView.printPurchaseDetailsMessage(lottoIssueController.getLottoCount(inputMoney));
+        outputView.printPurchasedLottos(lottos.getPurchaseDetails());
     }
 
     private String getWinningNumbersInput() {
@@ -42,26 +46,22 @@ public class GameController {
 
     public void setWinningNumber() {
         String inputNumbers = getWinningNumbersInput();
-        winningNumberController.setInputToWinningNumbers(winningNumber, inputNumbers);
+        winningNumberController.setInputToWinningNumbers(winningNumbers, inputNumbers);
 
         String inputNumber = getBonusNumberInput();
-        winningNumberController.setInputToBonusNumber(winningNumber, inputNumber);
-    }
-
-    private void matchLottos(Lottos lottos) {
-        numberMatchController.matchAllLottos(lottos, winningNumber);
+        winningNumberController.setInputToBonusNumber(bonusNumber, inputNumber);
     }
 
     private void getWinningStatistics() {
-        //당첨 통계 출력
+        //상세 내용 구하기
+        outputView.printWinningStatistics();
     }
 
-    private void calculateProfitRate(Lottos lottos, int inputMoney) {
-        lottoResultController.findStatistics(lottos);
 
-        int totalProfit = lottoResultController.getTotalProfit();
-        String profitRate = lottoResultController.getProfitRate(totalProfit, inputMoney);
-        outputView.printProfitRate(profitRate);
+    private void calculateProfitRate(Lottos lottos, int inputMoney) {
+        int totalProfit = lottos.getTotalProfit();
+        double profitRate = calculator.getProfitRate(totalProfit, inputMoney);
+        outputView.printProfitRate(parser.doubleToSecondDecimalString(profitRate));
     }
 
     public void play() {
@@ -69,7 +69,8 @@ public class GameController {
         Lottos lottos = purchaseLottos(inputMoney);
 
         setWinningNumber();
-        matchLottos(lottos);
+
+        lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
         getWinningStatistics();
         calculateProfitRate(lottos, inputMoney);
     }

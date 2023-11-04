@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.WinningNumber;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumbers;
 import lotto.util.Parser;
 
 import java.util.List;
@@ -8,13 +9,13 @@ import java.util.List;
 public class WinningNumberController {
     private final Parser parser = new Parser();
 
-    public void setInputToWinningNumbers(WinningNumber winningNumber, String playerInput) {
+    public void setInputToWinningNumbers(WinningNumbers winningNumbers, String playerInput) {
         List<Integer> inputNumbers = parser.stringListToNumberList(playerInput);
-        winningNumber.setWinningNumbers(inputNumbers);
+        winningNumbers.setWinningNumbers(inputNumbers);
     }
 
-    public void setInputToBonusNumber(WinningNumber winningNumber, String playerInput) {
+    public void setInputToBonusNumber(BonusNumber bonusNumber, String playerInput) {
         int inputNumber = parser.inputToNumber(playerInput);
-        winningNumber.setBonusNumber(inputNumber);
+        bonusNumber.setBonusNumber(inputNumber);
     }
 }

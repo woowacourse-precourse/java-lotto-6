@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(OutputViewMessage.INPUT_BONUS_NUMBER.getMessage());
     }
 
-    public void printWinningStatistics(String profitRate) {
+    public void printWinningStatistics() {
         System.out.println(OutputViewMessage.WINNINGS_STATISTICS_START_MESSAGE.getMessage());
         //상세 내용 출력
     }

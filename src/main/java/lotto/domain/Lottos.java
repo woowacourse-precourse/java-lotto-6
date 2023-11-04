@@ -1,35 +1,18 @@
 package lotto.domain;
 
+import lotto.domain.constants.LottoPrizeRule;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
-    private final List<Integer> winningCount = new ArrayList<>();
-    private final List<Boolean> hasBonusNumber = new ArrayList<>();
+    private final Map<Integer, Integer> winningStatistics = new HashMap<>();
 
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
-    }
-
-    public void addWinningCount(int count) {
-        winningCount.add(count);
-    }
-
-    public void checkBonusNumberMatched(boolean isBonusNumber) {
-        hasBonusNumber.add(isBonusNumber);
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
-    public List<Integer> getWinningCount() {
-        return winningCount;
-    }
-
-    public List<Boolean> getHasBonusNumber() {
-        return hasBonusNumber;
     }
 
     public String getPurchaseDetails() {
@@ -40,5 +23,34 @@ public class Lottos {
         }
 
         return purchasedLottos.toString();
+    }
+
+    public void calculateWinningStatistics(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        LottoPrizeRule.initWinningStatistics(winningStatistics);
+
+        for (Lotto lotto : lottos) {
+            int matchedNumbersCount = lotto.getMatchedNumbersCount(winningNumbers);
+            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
+            int place = LottoPrizeRule.findPlaceByRule(matchedNumbersCount, hasBonusNumber);
+
+            if (place != 0) {
+                addPlaceCount(place);
+            }
+        }
+    }
+
+    private void addPlaceCount(int place) {
+        winningStatistics.put(place, winningStatistics.get(place) + 1);
+    }
+
+    public int getTotalProfit() {
+        int totalProfit = 0;
+
+        for (int place : winningStatistics.keySet()) {
+            int wonLottoCount = winningStatistics.get(place);
+            totalProfit += LottoPrizeRule.getPrizeByPlace(place, wonLottoCount);
+        }
+
+        return totalProfit;
     }
 }

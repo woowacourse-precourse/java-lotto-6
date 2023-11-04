@@ -26,9 +26,9 @@ public class LottoValidation {
         return true;
     }
 
-    public boolean checkDuplicateBonusNumber(List<Integer> lottoNumber, int bonusNubmber) {
+    public boolean checkDuplicateBonusNumber(List<Integer> lottoNumber, int bonusNumber) {
         for (int nowNumber : lottoNumber) {
-            if (nowNumber == bonusNubmber) {
+            if (nowNumber == bonusNumber) {
                 return false;
             }
         }

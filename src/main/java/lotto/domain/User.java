@@ -8,6 +8,10 @@ public class User {
         amount = Integer.parseInt(purchaseAmount);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validatePurchaseAmount(String purchaseAmount){
         validateOnlyNumberAmount(purchaseAmount);
         int purchasedAmount = Integer.parseInt(purchaseAmount);

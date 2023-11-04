@@ -89,7 +89,7 @@ public class LottoGame {
     }
 
     private double calculateProfitRate(int lottoQuantity, int resultPrize) {
-        return resultPrize / (lottoQuantity * 10.0);
+        return resultPrize / (lottoQuantity * 10);
     }
 
     private void transmitOutput(List<Integer> resultCount) {

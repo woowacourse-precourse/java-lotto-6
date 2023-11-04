@@ -3,9 +3,13 @@ package lotto.View;
 import java.util.List;
 
 public class OutputView {
+	private static final String PRINT_LOTTO_QUANTITY = "%d개를 구매했습니다.\n";
+	private static final String PRINT_RESULT_HEAD = "\n당첨 통계\n---";
+	private static final String PRINT_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
+	
     public static void printPurchaseLottoAmount(int input) {
-        System.out.println();
-        System.out.println(input + "개를 구매했습니다.");
+    	System.out.println();
+        System.out.printf(PRINT_LOTTO_QUANTITY, input);
     }
 
     public static void printLottoNums(List<String> lottoNums) {
@@ -13,7 +17,7 @@ public class OutputView {
     }
 
     public static void printResultHead() {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(PRINT_RESULT_HEAD);
     }
     
     public static void printResult(String printString, int count) {
@@ -21,7 +25,7 @@ public class OutputView {
     }
 
     public static void printProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+        System.out.printf(PRINT_PROFIT_RATE, profitRate);
     }
 
 	public static void printErrorMessage(String message) {

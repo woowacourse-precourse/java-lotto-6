@@ -15,7 +15,7 @@
 - [x] 등수 별 당첨내역을 구하는 `getMatchCountByRank` 함수를 구현
 - [x] `getMatchCountByRank` 함수에 대한 테스트 코드 추가
 - [x] 로또를 통해 번 금액을 계산하는 `getEarnedMoney` 함수를 구현
-- [ ] `getEarnedMoney` 함수에 대한 테스트 코드 추가
+- [x] `getEarnedMoney` 함수에 대한 테스트 코드 추가
 - [ ] 당첨률을 소수 두번째 자리까지 출력하는 `getRevenueRate` 함수를 구현
 - [ ] `getRevenueRate` 함수에 대한 테스트 코드 추가
 - [ ] lotto 결과 통계를 출력하는 `printStatistics` 함수를 구현

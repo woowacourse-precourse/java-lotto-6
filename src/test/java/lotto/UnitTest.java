@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.Application.getMatchCountByRank;
-import static lotto.Application.receiveWinningNumbers;
+import static lotto.Application.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UnitTest extends NsTest {
@@ -58,6 +57,19 @@ public class UnitTest extends NsTest {
         expectedOutput.put(Application.LottoRank.SECOND, 0);
         expectedOutput.put(Application.LottoRank.FIRST, 0);
         HashMap<Application.LottoRank, Integer> result = getMatchCountByRank(lottos, new int[]{1, 2, 3, 4, 5, 6}, 7);
+        assertThat(result).isEqualTo(expectedOutput);
+    }
+
+    @Test
+    void testGetEarnedMoney() {
+        HashMap<Application.LottoRank, Integer> input = new HashMap<>();
+        input.put(Application.LottoRank.FIFTH, 1);
+        input.put(Application.LottoRank.FOURTH, 0);
+        input.put(Application.LottoRank.THIRD, 0);
+        input.put(Application.LottoRank.SECOND, 0);
+        input.put(Application.LottoRank.FIRST, 0);
+        int expectedOutput = 5000;
+        int result = getEarnedMoney(input);
         assertThat(result).isEqualTo(expectedOutput);
     }
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -44,6 +45,15 @@ class InputValidator {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구입 금액은 1000원 단위여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("올바른 구입금액 입력일 때, 예외를 던지지 않는다.")
+    void validateCarNamesInput_InputIsValid_DoesNotThrowException() {
+        String input = "2000";
+
+        assertThatCode(() -> InputValidator.validatePurchaseAmount(input))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -114,5 +124,14 @@ class InputValidator {
         assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("입력값은 정수 허용값 범위 내여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("올바른 당첨 번호 입력일 때, 예외를 던지지 않는다.")
+    void validateCarNamesInput_InputIsValid_DoesNotThrowException() {
+        String input = "1,2,3,4,5,6";
+
+        assertThatCode(() -> InputValidator.validateWinningNumbers(input))
+                .doesNotThrowAnyException();
     }
 }

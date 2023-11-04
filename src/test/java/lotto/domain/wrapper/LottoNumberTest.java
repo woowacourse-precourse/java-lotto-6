@@ -26,6 +26,6 @@ class LottoNumberTest {
     void createInvalidLottoNumber(int number) {
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(1, 45));
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getFormattedMessage(1, 45));
     }
 }

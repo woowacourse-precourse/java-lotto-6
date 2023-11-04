@@ -16,7 +16,7 @@ public class LottoNumber implements Comparable<LottoNumber>{
         if (number < LottoConstantValue.MIN_LOTTO_NUMBER.get()
                 || number > LottoConstantValue.MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(
+                    ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getFormattedMessage(
                             LottoConstantValue.MIN_LOTTO_NUMBER.get(), LottoConstantValue.MAX_LOTTO_NUMBER.get()));
         }
     }

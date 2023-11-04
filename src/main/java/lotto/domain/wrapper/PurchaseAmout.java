@@ -23,13 +23,13 @@ public class PurchaseAmout {
 
     private void validateMoreThanZero(int purchaseAmout) {
         if (purchaseAmout <= NO_MONEY) {
-            throw new IllegalArgumentException(ErrorMessage.NO_MONEY_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NO_MONEY.getMessage());
         }
     }
 
     private void validateChangeNoRemaining(int purchaseAmout) {
         if (purchaseAmout % LottoConstantValue.LOTTO_PRICE.get() != NO_MONEY) {
-            throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED.getMessage());
         }
     }
 }

@@ -11,12 +11,12 @@ public enum DrawResult {
 
     private int hitCount;
     private boolean bonusHit;
-    private int price;
+    private long winnings;
 
-    private DrawResult(int hitCount, boolean bonusHit, int price) {
+    private DrawResult(int hitCount, boolean bonusHit, long winnings) {
         this.hitCount = hitCount;
         this.bonusHit = bonusHit;
-        this.price = price;
+        this.winnings = winnings;
     }
 
     public static DrawResult resultOf(int hitCount, boolean bonusHit) {
@@ -33,7 +33,7 @@ public enum DrawResult {
         return NO_PRIZE;
     }
 
-    public int price() {
-        return this.price;
+    public long winnings() {
+        return this.winnings;
     }
 }

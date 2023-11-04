@@ -5,11 +5,11 @@ import java.util.List;
 public class LottoService {
 
     private Lotto winningLotto;
-    private int bonusNumber;
+    private BonusNumber bonusNumber;
 
     public LottoService() { }
 
-    public LottoService(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoService(List<Integer> winningNumbers, BonusNumber bonusNumber) {
         this.winningLotto = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
@@ -20,6 +20,6 @@ public class LottoService {
     }
 
     public boolean containsBonusNumber(Lotto lotto) {
-        return lotto.containsGivenNumber(this.bonusNumber);
+        return lotto.containsBonusNumber(this.bonusNumber);
     }
 }

@@ -15,9 +15,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int countHitNumbers(Lotto comparisonTarget) {
+    public int countHitNumbers(Lotto winningLotto) {
         int hit = 0;
-        for (int number: comparisonTarget.numbers) {
+        for (int number: winningLotto.numbers) {
             if (this.numbers.contains(number))
                 hit++;
         }
@@ -50,7 +50,11 @@ public class Lotto {
         }
     }
 
-    public boolean containsGivenNumber(int given) {
-        return this.numbers.contains(given);
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return this.numbers.contains(bonusNumber.getBonusNumber());
+    }
+
+    public boolean containsGivenNumber(int number) {
+        return this.numbers.contains(number);
     }
 }

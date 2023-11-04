@@ -5,9 +5,6 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
-import lotto.view.valid.BonusNumberValidation;
-import lotto.view.valid.BuyingPriceValidation;
-import lotto.view.valid.WinningNumberValidation;
 
 public class GameManager {
 
@@ -28,7 +25,7 @@ public class GameManager {
 
     private LottoGame prepareLottoGame() {
         messagePrinter.printBuyingPriceMessage();
-        int buyingPrice = messageReceiver.receiveBuyingPrice(new BuyingPriceValidation());
+        int buyingPrice = messageReceiver.receiveBuyingPrice();
         LottoGame lottoGame = LottoGame.createLottoGame(buyingPrice);
         messagePrinter.printBuyingAmountMessage(lottoGame);
         messagePrinter.printLottoNumbers(lottoGame);
@@ -38,9 +35,9 @@ public class GameManager {
 
     private WinningLotto prepareWinningLotto() {
         messagePrinter.printWinningNumbersMessage();
-        WinningLotto winningLotto = messageReceiver.receiveWinningNumbers(new WinningNumberValidation());
+        WinningLotto winningLotto = messageReceiver.receiveWinningNumbers();
         messagePrinter.printBonusNumberMessage();
-        messageReceiver.receiveBonusNumber(new BonusNumberValidation(winningLotto));
+        messageReceiver.receiveBonusNumber(winningLotto);
 
         return winningLotto;
     }

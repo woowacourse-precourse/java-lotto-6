@@ -3,7 +3,10 @@ package lotto.config;
 import lotto.GameManager;
 import lotto.view.MessagePrinter;
 import lotto.view.MessageReceiver;
+import lotto.view.valid.BonusNumberValidation;
+import lotto.view.valid.BuyingPriceValidation;
 import lotto.view.valid.ViewValidator;
+import lotto.view.valid.WinningNumberValidation;
 
 public class GameConfig {
 
@@ -24,6 +27,23 @@ public class GameConfig {
     }
 
     private static MessageReceiver messageReceiver(final ViewValidator viewValidator) {
-        return new MessageReceiver(viewValidator);
+        BuyingPriceValidation buyingPriceValidation = buyingPriceValidation();
+        WinningNumberValidation winningNumberValidation = winningNumberValidation();
+        BonusNumberValidation bonusNumberValidation = bonusNumberValidation();
+
+        return new MessageReceiver(viewValidator, buyingPriceValidation,
+                winningNumberValidation, bonusNumberValidation);
+    }
+
+    private static BuyingPriceValidation buyingPriceValidation() {
+        return new BuyingPriceValidation();
+    }
+
+    private static WinningNumberValidation winningNumberValidation() {
+        return new WinningNumberValidation();
+    }
+
+    private static BonusNumberValidation bonusNumberValidation() {
+        return new BonusNumberValidation();
     }
 }

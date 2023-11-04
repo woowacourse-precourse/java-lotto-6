@@ -1,19 +1,9 @@
 package lotto.view.valid;
 
-import lotto.domain.WinningLotto;
-
-public class BonusNumberValidation implements InputValidation<Void> {
-
-    private final WinningLotto winningLotto;
-
-    public BonusNumberValidation(final WinningLotto winningLotto) {
-        this.winningLotto = winningLotto;
-    }
+public class BonusNumberValidation implements InputValidation<Integer> {
 
     @Override
-    public Void validateInput(final String bonusNumberText, final ViewValidator viewValidator) {
-        int bonusNumber = viewValidator.parseInt(bonusNumberText);
-        winningLotto.createBonusNumber(bonusNumber);
-        return null;
+    public Integer validateInput(final String bonusNumberText, final ViewValidator viewValidator) {
+        return viewValidator.parseInt(bonusNumberText);
     }
 }

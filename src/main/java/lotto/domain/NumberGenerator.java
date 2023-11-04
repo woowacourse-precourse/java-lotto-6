@@ -14,31 +14,10 @@ public class NumberGenerator {
                 LOTTO_NUMBER_COUNT.getValue());
     }
 
-    private int createBonusNumber() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER.getValue(),
-                LOTTO_MAX_NUMBER.getValue(),
-                LOTTO_BONUS_NUMBER_COUNT.getValue()).get(0);
-    }
-
-    private boolean isDuplicatedNumber(List<Integer> numbers , int number) {
-        return numbers.contains(number);
-    }
-
-    private int getBonusNumber(List<Integer> numbers) {
-        while(true) {
-            int bonusNumber = createBonusNumber();
-
-            if(!isDuplicatedNumber(numbers , bonusNumber)) {
-                return bonusNumber;
-            }
-        }
-    }
-
-    private LottoNumber createLottoNumber() {
+    private Lotto createLottoNumber() {
         List<Integer> numbers = NumberGenerator();
-        int bonusNumber = getBonusNumber(numbers);
 
-        return new LottoNumber(new Lotto(numbers) , bonusNumber);
+        return new Lotto(numbers);
     }
 
 }

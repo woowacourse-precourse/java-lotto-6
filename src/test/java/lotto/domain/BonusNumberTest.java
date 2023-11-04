@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.BonusNumber;
@@ -39,5 +40,13 @@ public class BonusNumberTest {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new BonusNumber(winningNumbers, "6"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("유효한 보너스 번호일 시 정상적으로 보너스 번호가 생성된다.")
+    @Test
+    void createValidBonusNumber() {
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatCode(() -> new BonusNumber(winningNumbers, "7"))
+                .doesNotThrowAnyException();
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import static constant.ConstantNumber.PERCENTAGE_MULTIPLIER;
+
 public class RateOfReturn {
     private final double rate;
 
@@ -12,6 +14,6 @@ public class RateOfReturn {
     }
 
     private static double calculateRateOfReturn(long totalIncome, long money) {
-        return (double) totalIncome / money * 100;
+        return (double) totalIncome / money * PERCENTAGE_MULTIPLIER.getNumber();
     }
 }

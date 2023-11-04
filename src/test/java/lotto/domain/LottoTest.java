@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Lotto;
@@ -59,5 +60,12 @@ class LottoTest {
     void createLottoByUnderRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("유효한 로또일 시 정상적으로 로또가 생성된다.")
+    @Test
+    void createValidLotto() {
+        assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
     }
 }

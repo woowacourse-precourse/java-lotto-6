@@ -7,6 +7,7 @@ public class Money {
     private static final int NON_POSITIVE_STANDARD = 0;
     private static final String NON_POSITIVE_MONEY_MESSAGE = "돈은 양수여야 합니다.";
     private static final String UNKNOWN_MONEY_MESSAGE = "알 수 없는 돈과 해당 연산을 수행할 수 없습니다.";
+    public static final String CURRENCY = "원";
 
     private final int value;
 

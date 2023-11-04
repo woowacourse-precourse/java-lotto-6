@@ -8,6 +8,10 @@ public class PurchaseAmount {
         this.money = amount;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validate(int amount) {
         validateAmount(amount);
         validateIsMultipleOfThousand(amount);

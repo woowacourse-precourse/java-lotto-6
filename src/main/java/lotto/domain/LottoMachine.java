@@ -13,8 +13,6 @@ import lotto.domain.validation.LottoValidationHandler;
 import lotto.util.StringUtils;
 
 public class LottoMachine {
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
 
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
@@ -33,9 +31,9 @@ public class LottoMachine {
 
     public List<Integer> registerWinningNumber(String winningNumber) {
         List<String> convertedWinningNumbers = getWinningNumberListString(winningNumber);
-        this.winningNumbers = getWinningNumbersListInteger(convertedWinningNumbers);
+        List<Integer> winningNumbers = getWinningNumbersListInteger(convertedWinningNumbers);
 
-        return Collections.unmodifiableList(this.winningNumbers);
+        return Collections.unmodifiableList(winningNumbers);
     }
 
     private List<Integer> getWinningNumbersListInteger(List<String> winningNumbers) {
@@ -60,11 +58,40 @@ public class LottoMachine {
 
     public Integer registerBonusNumber(String bonusNumber) {
         validationBonusNumber(bonusNumber);
-        return this.bonusNumber = Integer.parseInt(bonusNumber);
+        return Integer.parseInt(bonusNumber);
     }
 
     private void validationBonusNumber(String bonusNumber) {
         LottoMachineValidationHandler.validationNumeric(bonusNumber);
         LottoMachineValidationHandler.validationNumbersRange(Integer.parseInt(bonusNumber));
+    }
+
+    public List<LottoRank> computedLottoRanking(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
+        boolean containBonusNumber = isContainBonusNumber(lottos, bonusNumber);
+        return getLottoRanks(lottos, winningNumbers, containBonusNumber);
+    }
+
+    private List<LottoRank> getLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, boolean containBonusNumber) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        for(Lotto lotto : lottos) {
+            int matchLottoNumber = getMatchLottoNumber(winningNumbers, lotto);
+            LottoRank lottoRank = LottoRank.getLottoRank(matchLottoNumber, containBonusNumber);
+            lottoRanks.add(lottoRank);
+        }
+
+        return Collections.unmodifiableList(lottoRanks);
+    }
+
+    private int getMatchLottoNumber(List<Integer> winningNumbers, Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private boolean isContainBonusNumber(List<Lotto> lottos, Integer bonusNumber) {
+        return lottos.stream()
+                .anyMatch(lotto -> lotto.getNumbers().stream()
+                        .anyMatch(number -> number.equals(bonusNumber))
+                );
     }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import lotto.domain.validation.LottoMachineValidationHandler;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 class LottoMachineTest {
 
     LottoMachine lottoMachine = new LottoMachine();
+    static Integer bonusNumber = 45;
 
     @ParameterizedTest
     @CsvSource(value = {"1:1","2:2","5:5", "10:10", "100:100"}, delimiter = ':')
@@ -89,5 +91,50 @@ class LottoMachineTest {
         // given // when // then
         assertThatThrownBy(() -> lottoMachine.registerBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("validLottoNumbers")
+    @DisplayName("로또 번호와 보너스 번호 당첨 번호를 이용해서 로또 등수를 계산한다.")
+    void computedLottoRanking(ComputedRankDto computedRankDto) {
+        // given
+        Lotto lotto = new Lotto(computedRankDto.lottoNumbers);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        LottoRank lottoRank = lottoMachine.computedLottoRanking(List.of(lotto), winningNumbers, bonusNumber)
+                .stream().findAny().get();
+
+        // then
+        assertThat(lottoRank).isEqualTo(computedRankDto.lottoRank);
+    }
+
+    private static Stream<ComputedRankDto> validLottoNumbers() {
+        return Stream.of(
+                new ComputedRankDto(List.of(1,2,3,4,5,6), LottoRank.FIRST_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,4,5,6), LottoRank.FIRST_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,4,5,bonusNumber), LottoRank.SECOND_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,4,5,8), LottoRank.THIRD_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,4,7,bonusNumber), LottoRank.FOURTH_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,4,7,8), LottoRank.FOURTH_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,7,8,bonusNumber), LottoRank.FIFTH_PRIZE),
+                new ComputedRankDto(List.of(1,2,3,7,8,9), LottoRank.FIFTH_PRIZE),
+                new ComputedRankDto(List.of(1,2,7,8,9,bonusNumber), LottoRank.NONE_PRIZE),
+                new ComputedRankDto(List.of(1,2,7,8,9,10), LottoRank.NONE_PRIZE),
+                new ComputedRankDto(List.of(1,7,8,9,10,bonusNumber), LottoRank.NONE_PRIZE),
+                new ComputedRankDto(List.of(1,7,8,9,10,11), LottoRank.NONE_PRIZE),
+                new ComputedRankDto(List.of(7,8,9,10,11,bonusNumber), LottoRank.NONE_PRIZE),
+                new ComputedRankDto(List.of(7,8,9,10,11,12), LottoRank.NONE_PRIZE)
+        );
+    }
+
+    static class ComputedRankDto {
+        List<Integer> lottoNumbers;
+        LottoRank lottoRank;
+
+        public ComputedRankDto(List<Integer> lottoNumbers, LottoRank lottoRank) {
+            this.lottoNumbers = lottoNumbers;
+            this.lottoRank = lottoRank;
+        }
     }
 }

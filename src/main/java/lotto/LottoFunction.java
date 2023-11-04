@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoFunction {
@@ -29,4 +30,23 @@ public class LottoFunction {
         }
         return lottoList;
     }
+
+    HashSet<Integer> getLuckyNumbers(String input) {
+
+        HashSet<Integer> luckyNumber = new HashSet<>();
+        List<String> inputNumber = new ArrayList<>(List.of(input.split(",")));
+
+        for (String splitInput : inputNumber) {
+            validator.isInteger(splitInput);
+            int number = Integer.parseInt(splitInput);
+            validator.isInRange(number);
+            luckyNumber.add(number);
+        }
+
+        if (luckyNumber.size() != 6) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        return luckyNumber;
+    }
+
 }

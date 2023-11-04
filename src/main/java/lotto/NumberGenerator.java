@@ -2,9 +2,12 @@ package lotto;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class NumberGenerator {
     public int inputBuyCost(){
-        return 0;
+        String buycost = Console.readLine();
+        return Integer.parseInt(buycost);
     }
 
     public int createUnitLotto(){

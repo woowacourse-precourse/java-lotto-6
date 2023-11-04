@@ -35,7 +35,7 @@ public class Application {
     }
 
     public static ArrayList<Lotto> makeLottery(int money) {
-        ArrayList<Lotto> lottos = new ArrayList<Lotto>();
+        ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money / 1000; ++i) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);

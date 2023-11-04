@@ -62,4 +62,14 @@ public class InputValidation {
         validateInputIsNumeric(exceptSeperator);
     }
 
+    public void validateWinnerNumbersPositive(String input) {
+        String[] winnerNumbers = input.split(",");
+
+        for (String number : winnerNumbers) {
+            if (Integer.parseInt(number) < 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 양수를 입력해야 합니다.");
+            }
+        }
+    }
+
 }

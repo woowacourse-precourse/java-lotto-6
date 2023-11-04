@@ -7,12 +7,14 @@ import static lotto.Message.ErrorMessage.AMOUNT_UNIT_ERROR_MESSAGE;
 
 public class Amount {
     private final int amount;
+    private final int lottoQuantity;
 
     public Amount(int amount) {
         rangeValidate(amount);
         unitValidate(amount);
 
         this.amount = amount;
+        this.lottoQuantity = countLottoQuantity(amount);
     }
 
     private void rangeValidate(int amount) {
@@ -27,7 +29,15 @@ public class Amount {
         }
     }
 
+    private int countLottoQuantity(int amount) {
+        return amount / AMOUNT_VALUE_MIN.getValue();
+    }
+
     public int getAmount() {
         return amount;
+    }
+
+    public int getLottoQuantity() {
+        return lottoQuantity;
     }
 }

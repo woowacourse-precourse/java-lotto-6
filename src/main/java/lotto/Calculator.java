@@ -39,16 +39,16 @@ public class Calculator {
     }
 
     static private Grade obtainGrade(Integer sameNumbersNumber, Boolean isBonusInLotto) {
-        if (sameNumbersNumber == 6) {
+        if (sameNumbersNumber == Lotto.size - 1) {
             return FIRST;
         }
-        if (sameNumbersNumber == 5 && isBonusInLotto == true) {
+        if ((sameNumbersNumber == Lotto.size - 2) && isBonusInLotto == true) {
             return SECOND;
         }
-        if (sameNumbersNumber == 5) {
+        if (sameNumbersNumber == Lotto.size - 3) {
             return THIRD;
         }
-        if (sameNumbersNumber == 4) {
+        if (sameNumbersNumber == Lotto.size - 4) {
             return FOURTH;
         }
         return FIFTH;

@@ -1,9 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lottos {
 
@@ -14,14 +13,17 @@ public class Lottos {
     }
 
     public static Lottos from(Integer count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        return new Lottos(lottos);
+        return new Lottos(generateLottos(count));
     }
 
     public List<Lotto> getList() {
         return Collections.unmodifiableList(lottos);
+    }
+
+    private static List<Lotto> generateLottos(Integer count) {
+        return Stream.generate(() ->
+                        new Lotto(RandomNumberGenerator.generateUniqueNumbers()))
+                .limit(count)
+                .toList();
     }
 }

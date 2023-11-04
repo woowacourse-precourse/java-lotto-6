@@ -29,9 +29,17 @@ public class Lotto {
     }
 
     private static List<Integer> convertStringToList(String inputNumber) {
+        validateInputString(inputNumber);
+
         return Arrays.stream(inputNumber.split(Constant.COMMA.getCharValue()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private static void validateInputString(String inputNumber) {
+        isEmpty(inputNumber);
+        isContainsBlank(inputNumber);
+        isEndsWithComma(inputNumber);
     }
 
     private static void isEmpty(String inputNumber) {

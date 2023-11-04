@@ -22,11 +22,19 @@ public class GameController {
     }
 
     public void play() {
-        // 구입 금액 입력
+        createCash();
         // 발행 로또 내역 출력
         // 당첨 번호 입력
         // 보너스 번호 입력
         // 당첨 통계 출력
     }
+
+    private void createCash() {
+        cash = inputView.InputCash();
+        System.out.println();
+    }
+
+
+
 
 }

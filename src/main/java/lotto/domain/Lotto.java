@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.constants.ExceptionMessage.IS_INSUFFICIENT;
+import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
 import java.util.List;
 

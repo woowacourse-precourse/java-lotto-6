@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static java.util.Arrays.stream;
-import static lotto.domain.constants.ExceptionMessage.IS_DUPLICATED;
+import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 
 import java.util.List;
 import java.util.stream.Collectors;

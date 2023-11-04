@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.constants.ExceptionMessage.BE_OUT_OF_RANGE;
-import static lotto.domain.constants.ExceptionMessage.HAS_LETTER;
+import static lotto.constants.ExceptionMessage.BE_OUT_OF_RANGE;
+import static lotto.constants.ExceptionMessage.HAS_LETTER;
 
 public class Number {
     private static final int MIN_NUMBER = 1;

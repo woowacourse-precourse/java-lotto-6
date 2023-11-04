@@ -29,4 +29,18 @@ class AmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_AMOUNT_RANGE);
     }
+
+    @Test
+    @DisplayName("구매 금액이 1000원 단위가 아닐 때 예외 발생")
+    void amount_division() {
+
+        // Given
+        int purchaseAmount = 12400;
+
+        // When
+        // Then
+        Assertions.assertThatThrownBy(() -> amount.calculateTotalLottoCount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_AMOUNT_DIVISION);
+    }
 }

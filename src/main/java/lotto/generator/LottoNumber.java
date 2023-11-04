@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class LottoNumberGenerator {
+public class LottoNumber {
     public List NumberGenerator(){
         List<Integer> LottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         System.out.println(LottoNumber);

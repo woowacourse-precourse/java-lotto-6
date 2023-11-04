@@ -1,12 +1,15 @@
 package lotto;
 
 
-import lotto.generator.LottoNumberGenerator;
+import lotto.generator.BonusNumber;
+import lotto.generator.LottoNumber;
 
 public class Application {
     public static void main(String[] args) {
-        LottoNumberGenerator lottoNumberGenerator =new LottoNumberGenerator();
+        LottoNumber lottoNumberGenerator =new LottoNumber();
         Lotto lotto =new Lotto(lottoNumberGenerator.NumberGenerator());
+        BonusNumber bonusNumber = new BonusNumber();
+        bonusNumber.bonusNumberGenerator();
 
 
         // TODO: 프로그램 구현

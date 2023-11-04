@@ -27,7 +27,7 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return message;
+        return errorPrefix + message;
     }
 
     public String getMessage(int value) {

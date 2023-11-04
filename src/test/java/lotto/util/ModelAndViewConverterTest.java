@@ -22,7 +22,7 @@ class ModelAndViewConverterTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoBundle.addLotto(lotto);
 
-        modelAndViewConverter.addComponent(lottoBundle.makeLottoDto());
+        modelAndViewConverter.addComponent(lottoBundle.makeLottoBundleDto());
 
         assertThat(modelAndViewConverter.getNumberOfLottoBundle()).isEqualTo(1);
         assertThat(modelAndViewConverter.getLottoMessages()).contains(lotto.toString());
@@ -33,7 +33,7 @@ class ModelAndViewConverterTest {
     void modelAndViesConverterTest_2() {
         ModelAndViewConverter modelAndViewConverter = new ModelAndViewConverter();
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
+        lottoResultsRepository.saveLottoResults(List.of(LottoResult.FOURTH));
 
         modelAndViewConverter.addComponent(lottoResultsRepository.makeLottoResultsDto());
         Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();

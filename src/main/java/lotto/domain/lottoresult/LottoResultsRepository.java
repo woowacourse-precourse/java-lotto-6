@@ -17,7 +17,7 @@ public class LottoResultsRepository {
         lottoResults.forEach(this::saveLottoResult);
     }
 
-    void saveLottoResult(LottoResult lottoResult) {
+    private void saveLottoResult(LottoResult lottoResult) {
         if (lottoResult.isNone()) {
             return;
         }

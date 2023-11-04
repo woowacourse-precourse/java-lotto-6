@@ -2,6 +2,7 @@ package lotto.domain.player.playermoney;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lottoresult.LottoResult;
 import lotto.domain.lottoresult.LottoResultsRepository;
@@ -25,7 +26,7 @@ public class UsedMoneyTest {
         //Given
         UsedMoney usedMoney = new UsedMoney(8000);
         LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResult(LottoResult.FIFTH);
+        lottoResultsRepository.saveLottoResults(List.of(LottoResult.FIFTH));
         LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
         //When
         Profit profit = usedMoney.calculateProfit(lottoResultsDto);

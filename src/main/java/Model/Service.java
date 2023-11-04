@@ -38,4 +38,11 @@ public class Service {
                 .filter(set::contains)
                 .count();
     }
+
+    public void compareNumbers() {
+        for (var e : Domain.getInstance().getMyLotto()) {
+            domain.getCorrectNumberCount()
+                    .add(numberFrequencyCount(e.getNumbers()));
+        }
+    }
 }

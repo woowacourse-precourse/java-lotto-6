@@ -24,8 +24,7 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        List<Integer> unmodifiableLotto = Collections.unmodifiableList(numbers);
-        return new ArrayList<>(unmodifiableLotto);
+        return Collections.unmodifiableList(new ArrayList<>(numbers));
     }
 
     private void validate(List<Integer> numbers) {

@@ -19,5 +19,8 @@ public class Application {
         if(money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000 단위로 입력해 주세요.");
         }
+
+        LottoGenerator.generate(money);
+
     }
 }

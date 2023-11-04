@@ -1,13 +1,13 @@
 package lotto.model;
 
-public class Number {
+public class LottoNumber {
 
     private final static int LOTTO_NUMBER_MIN_RANGE = 1;
     private final static int LOTTO_NUMBER_MAX_RANGE = 45;
 
     private final int winningNumber;
 
-    public Number(int winningNumber) {
+    public LottoNumber(int winningNumber) {
         validateWinningNumberRange(winningNumber);
         this.winningNumber = winningNumber;
     }

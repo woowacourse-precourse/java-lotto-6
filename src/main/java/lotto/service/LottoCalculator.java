@@ -33,4 +33,9 @@ public class LottoCalculator {
         winningNumber.addAll(number.getNumbers());
         return LottoNumbers.LOTTO_SIZE.getNumber() - winningNumber.size();
     }
+
+    public double calculatePayOff(int purchaseMoney) {
+        double payOff = (double) Ranking.getTotalAmount() / purchaseMoney * HUNDRED_PERCENT;
+        return Math.round(payOff * HUNDRED_PERCENT) / HUNDRED_PERCENT_DOUBLE;
+    }
 }

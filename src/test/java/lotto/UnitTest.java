@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UnitTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    private static final ArrayList<Lotto> lottos = new ArrayList<Lotto>(
+    private static final ArrayList<Lotto> lottos = new ArrayList<>(
             List.of(
                     new Lotto(List.of(8, 21, 23, 41, 42, 43)),
                     new Lotto(List.of(3, 5, 11, 16, 32, 38)),

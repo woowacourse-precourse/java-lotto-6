@@ -19,6 +19,8 @@ public class LottoGame {
     private HashMap<Integer, Integer> rankCounts;
     private int userAmount;
     private int countOfLottos;
+    private long winnigs;
+    private double profitRatio;
 
     public void init() {
         lottoSeller = new LottoSeller();
@@ -27,6 +29,8 @@ public class LottoGame {
         rankCounts = new HashMap<>();
         userAmount = 0;
         countOfLottos = 0;
+        winnigs = 0;
+        profitRatio = 0.0;
     }
 
     public void run() {
@@ -48,6 +52,8 @@ public class LottoGame {
 
     private void checkLottoRewards() {
         checkLottoScore();
+        calculateProfit();
+        printLottoScore();
     }
 
     private void inputAmount() {
@@ -82,6 +88,7 @@ public class LottoGame {
         for (Lotto lotto : userLottos) {
             Rank rank = lottoScoreChecker.getRank(lotto);
             countRanks(rank.getRank());
+            sumWinnings(rank.getAmount());
         }
     }
 
@@ -91,5 +98,30 @@ public class LottoGame {
             return;
         }
         rankCounts.put(rank, rankCounts.get(rank) + 1);
+    }
+
+    private void sumWinnings(long amount) {
+        winnigs += amount;
+    }
+
+    private void calculateProfit() {
+        profitRatio = (double) winnigs / userAmount * 100;
+    }
+
+    private void printLottoScore() {
+        OutputViewer.printTitleOfResult();
+        for (Rank rank : Rank.values()) {
+            printScoreBy(rank);
+        }
+        OutputViewer.printProfitRatio(profitRatio);
+    }
+
+    private void printScoreBy(Rank rank) {
+        int rankNumber = rank.getRank();
+        if (rankCounts.containsKey(rankNumber)) {
+            OutputViewer.printLottoResult(rank, rankCounts.get(rankNumber));
+            return;
+        }
+        OutputViewer.printLottoResult(rank, 0);
     }
 }

@@ -3,6 +3,7 @@ package lotto.util.validator;
 import lotto.util.ExceptionMessage;
 
 public class PurchaseLottoValidator implements Validatable {
+    @Override
     public void validate(int purchase) throws IllegalArgumentException {
         validatePurchaseLottoRange(purchase);
         validatePurchaseLottoUnit(purchase);

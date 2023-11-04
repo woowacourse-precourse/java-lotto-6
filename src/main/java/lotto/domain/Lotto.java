@@ -19,4 +19,20 @@ public class Lotto {
     public String getNumbers() {
         return String.join(", ", numbers.stream().map(number -> number.toString()).toList());
     }
+
+    public int getMatchCount(List<Integer> winningNumbers) {
+        int count = 0;
+
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean isMatch(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

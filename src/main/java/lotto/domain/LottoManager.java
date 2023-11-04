@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
 import lotto.ui.ConsoleInput;
 import lotto.ui.ConsoleOutput;
 import lotto.ui.Input;
@@ -80,5 +81,9 @@ public class LottoManager {
         }
 
         return winningNumbers;
+    }
+
+    public void getWinningStatus(List<Lotto> lottos) {
+        Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
     }
 }

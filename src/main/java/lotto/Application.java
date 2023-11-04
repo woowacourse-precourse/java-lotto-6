@@ -9,5 +9,6 @@ public class Application {
         LottoManager lottoManager = new LottoManager();
         List<Lotto> lottos = lottoManager.buyLotto();
         lottoManager.inputWinningNumbers();
+        lottoManager.getWinningStatus(lottos);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.BuyerLotto;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoShop;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
@@ -17,8 +18,15 @@ public class LottoController {
         this.lottoShop = lottoShop;
     }
 
-    private BuyerLotto createBuyerLotto(LottoShop lottoShop) {
-        Amount amount = generateAmount();
+    public void run() {
+        BuyerLotto buyerLotto = createBuyerLotto();
+        WinningLotto winningLotto = createWinningLotto();
+        LottoResult lottoResult = winningLotto.calculateStatistics(buyerLotto);
+        OutputView.printResult(lottoResult.getSortedRanks());
+    }
+
+    private BuyerLotto createBuyerLotto() {
+        int amount = generateAmount();
         List<Lotto> createBuyerLotto = lottoShop.createByBuyerLotto(amount);
 
         OutputView.printBuyerLotto(createBuyerLotto.size(), createBuyerLotto);

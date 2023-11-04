@@ -17,7 +17,8 @@
 - **조건**
   - 생성된 6자리의 로또 번호는 중복이 있으면 안됨
 - ***예외(Exception)***
-  - `로또 번호가 중복이 있을 경우`  `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
+  - `로또 번호가 중복이 있을 경우` `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
+  - 로또 번호가 `1~45`범위의 숫자가 아니라면 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
 
 ### 당첨 번호 입력 기능
 - [ ] `당첨 번호를 입력해 주세요.` 출력

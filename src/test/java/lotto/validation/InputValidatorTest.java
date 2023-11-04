@@ -1,14 +1,10 @@
 package lotto.validation;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValidatorTest {
+class InputValidatorTest {
 
     @Test
     void moneyValidate() {
@@ -18,17 +14,17 @@ class ValidatorTest {
         String input4 ="1500"; //1000원으로 나누어 떨어지지 않는 입력
 
         assertThrows(IllegalArgumentException.class, ()->{
-           Validator.moneyValidate(input1);
+           InputValidator.moneyValidate(input1);
         });
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.moneyValidate(input2);
+            InputValidator.moneyValidate(input2);
         });
 
-        Validator.moneyValidate(input3);
+        InputValidator.moneyValidate(input3);
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.moneyValidate(input4);
+            InputValidator.moneyValidate(input4);
         });
     }
 
@@ -41,22 +37,22 @@ class ValidatorTest {
         String[] input5 = {"1", "2", "3", "4", "5", "6"}; //정상 입력
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.winningValidate(input1);
+            InputValidator.winningValidate(input1);
         });
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.winningValidate(input2);
+            InputValidator.winningValidate(input2);
         });
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.winningValidate(input3);
+            InputValidator.winningValidate(input3);
         });
 
         assertThrows(IllegalArgumentException.class,()->{
-            Validator.winningValidate(input4);
+            InputValidator.winningValidate(input4);
         });
 
-        Validator.winningValidate(input5);
+        InputValidator.winningValidate(input5);
     }
 
     @Test
@@ -65,9 +61,9 @@ class ValidatorTest {
         String input2 = "45";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Validator.bonusValidate(input1);
+            InputValidator.bonusValidate(input1);
         });
 
-        Validator.bonusValidate(input2);
+        InputValidator.bonusValidate(input2);
     }
 }

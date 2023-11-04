@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningNum;
-import lotto.validation.Validator;
+import lotto.validation.InputValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class InputView {
             OutputView.moneyMessage();
             String money = Console.readLine();
 
-            Validator.moneyValidate(money);
+            InputValidator.moneyValidate(money);
 
             return Integer.parseInt(money);
         } catch (IllegalArgumentException e) {
@@ -27,7 +27,7 @@ public class InputView {
             OutputView.winningMessage();
             String[] winningNumber = Console.readLine().split(",",-1);
 
-            Validator.winningValidate(winningNumber);
+            InputValidator.winningValidate(winningNumber);
 
             return createWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
@@ -40,7 +40,7 @@ public class InputView {
             OutputView.bonusMessage();
             String bonusNumber = Console.readLine();
 
-            Validator.bonusValidate(bonusNumber);
+            InputValidator.bonusValidate(bonusNumber);
             winningNum.setBonusNumber(Integer.parseInt(bonusNumber));
 
             return Integer.parseInt(bonusNumber);

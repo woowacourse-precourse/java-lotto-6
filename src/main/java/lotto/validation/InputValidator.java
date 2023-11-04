@@ -4,7 +4,7 @@ import lotto.config.ErrorMessage;
 import lotto.config.ConstNum;
 import lotto.view.OutputView;
 
-public class Validator {
+public class InputValidator {
     public static void moneyValidate(String input) {
         Integer money = isNum(input);
         noMoneyValidate(money);

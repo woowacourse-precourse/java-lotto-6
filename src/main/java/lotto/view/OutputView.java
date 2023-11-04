@@ -47,4 +47,8 @@ public class OutputView {
     public void printRateOfReturn(double rateOfReturn) {
         System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn));
     }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

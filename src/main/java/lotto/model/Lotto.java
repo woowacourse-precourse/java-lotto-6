@@ -8,7 +8,9 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
     private final List<Integer> numbers;    // 접근 제어자 변경 ㄴㄴ
 
     public Lotto(List<Integer> numbers) {
-        validateNumbers(numbers);
+        validateLottoTicketSize(numbers);
+        numbers.forEach(this::validateNumberInRange);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -30,20 +32,14 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         return count;
     }
 
-    public void validateNumbers(List<Integer> numbers) {
-        validateLottoTicketSize(numbers.size());
-        numbers.forEach(this::validateNumberInRange);
-        validateDuplication(numbers);
-    }
-
     public void validateNumberInRange(int number) {
         if (number < LottoConstants.LOTTO_NUMBER_MIN || number > LottoConstants.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_IN_RANGE.getMessage());
         }
     }
 
-    public void validateLottoTicketSize(int size) {
-        if (size != LottoConstants.THE_SIZE_OF_ONE_LOTTO) {
+    public void validateLottoTicketSize(List<Integer> numbers) {
+        if (numbers.size() != LottoConstants.THE_SIZE_OF_ONE_LOTTO) {
             throw new IllegalArgumentException(ErrorMessage.THE_SIZE_OF_LOTTO_IS_NOT_PROPER.getMessage());
         }
     }

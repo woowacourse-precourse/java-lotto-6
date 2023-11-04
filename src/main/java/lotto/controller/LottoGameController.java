@@ -31,28 +31,19 @@ public class LottoGameController {
     private void startLottoGame() {
         int budget = askBudget();
         int quantity = createQuantity(budget);
-
         List<Lotto> lottoTicketsPurchased = createLottoTickets(new LottoRandomGenerator(), quantity);
-
         WinningLotto winningLotto = askWinningLottoTicket();
-        WinningStatistics winningStatistics = createWinningStatistics(winningLotto, lottoTicketsPurchased);
-        double rateOfReturn = createRateOfReturn(winningStatistics);
+
+        WinningStatistics winningStatistics = new WinningStatistics(winningLotto, lottoTicketsPurchased);
+        outputView.printWinningStatistics(winningStatistics);
+
+        double rateOfReturn = winningStatistics.getRateOfReturn();
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     public int askBudget() {
         String budget = inputView.scanBudget();
         return Integer.parseInt(budget);
-    }
-
-    public int createQuantity(int budget) {
-        return budget / LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET;
-    }
-
-    private List<Lotto> createLottoTickets(LottoGenerator lottoGenerator, int quantity) {
-        List<Lotto> lottoTickets = lottoGenerator.generateLottoTickets(quantity);
-        outputView.printLottoTicketsCount(lottoTickets.size());
-        outputView.printLottoTickets(lottoTickets);
-        return lottoTickets;
     }
 
     private WinningLotto askWinningLottoTicket() {
@@ -74,15 +65,15 @@ public class LottoGameController {
         return Integer.parseInt(inputView.scanBonusNumber());
     }
 
-    private WinningStatistics createWinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased) {
-        WinningStatistics winningStatistics = new WinningStatistics(winningLotto, lottoTicketsPurchased);
-        outputView.printWinningStatistics(winningStatistics);
-        return winningStatistics;
+    public int createQuantity(int budget) {
+        int quantity = budget / LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET;
+        outputView.printLottoTicketsCount(quantity);
+        return quantity;
     }
 
-    private double createRateOfReturn(WinningStatistics winningStatistics) {
-        double rateOfReturn = winningStatistics.getRateOfReturn();
-        outputView.printRateOfReturn(rateOfReturn);
-        return rateOfReturn;
+    private List<Lotto> createLottoTickets(LottoGenerator lottoGenerator, int quantity) {
+        List<Lotto> lottoTickets = lottoGenerator.generateLottoTickets(quantity);
+        outputView.printLottoTickets(lottoTickets);
+        return lottoTickets;
     }
 }

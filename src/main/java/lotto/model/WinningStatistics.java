@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +18,12 @@ public class WinningStatistics {
     public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased) {
         this.winningLotto = winningLotto;
         this.lottoTicketsPurchased = lottoTicketsPurchased;
-        prizeCounter = calculateWinningStatistics();
-        rateOfReturn = calculateSumOfPrize() / (double) (lottoTicketsPurchased.size()
-                * LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET) * 100.0;
+        prizeCounter = new HashMap<>() {{
+            Arrays.stream(LottoPrize.values())
+                    .forEach(lottoPrize -> put(lottoPrize, 0));
+        }};
+        calculateWinningStatistics();
+        rateOfReturn = calculateRateOfReturn(lottoTicketsPurchased);
     }
 
     public Map<LottoPrize, Integer> getPrizeCounter() {
@@ -30,24 +34,15 @@ public class WinningStatistics {
         return rateOfReturn;
     }
 
-    private Map<LottoPrize, Integer> calculateWinningStatistics() {
-        Map<LottoPrize, Integer> prizeCounter = new HashMap<>();
+    private void calculateWinningStatistics() {
         for (Lotto lotto : lottoTicketsPurchased) {
             LottoPrize lottoPrize = winningLotto.compare(lotto);
-            if (lottoPrize == LottoPrize.NOTHING) {
-                continue;
-            }
-            addPrize(prizeCounter, lottoPrize);
+            addPrize(lottoPrize);
         }
-        return prizeCounter;
     }
 
-    private void addPrize(Map<LottoPrize, Integer> prizeCount, LottoPrize lottoPrize) {
-        if (prizeCount.containsKey(lottoPrize)) {
-            prizeCount.put(lottoPrize, prizeCount.get(lottoPrize) + 1);
-            return;
-        }
-        prizeCount.put(lottoPrize, 1);
+    private void addPrize(LottoPrize lottoPrize) {
+        prizeCounter.put(lottoPrize, prizeCounter.get(lottoPrize) + 1);
     }
 
     private Long calculateSumOfPrize() {
@@ -58,5 +53,10 @@ public class WinningStatistics {
             sum += prize * count;
         }
         return sum;
+    }
+
+    private double calculateRateOfReturn(List<Lotto> lottoTicketsPurchased) {
+        return calculateSumOfPrize() / (double) (lottoTicketsPurchased.size()
+                * LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET) * 100.0;
     }
 }

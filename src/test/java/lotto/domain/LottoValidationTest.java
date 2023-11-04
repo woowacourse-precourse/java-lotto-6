@@ -34,7 +34,6 @@ class LottoValidationTest {
     @Test
     void checkDuplicateLottoNumberTest() {
         int[] numbers = {5, 9, 10, 14, 17, 17};
-        int bonusNumber = 12;
         for (int i = 0; i < numbers.length; i++) {
             lottoNumber.add(numbers[i]);
         }
@@ -42,5 +41,45 @@ class LottoValidationTest {
         boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber);
 
         assertEquals(notDuplicate, false);
+    }
+
+    @DisplayName("보너스 번호 1 ~45 사이의 값인지 테스트")
+    @Test
+    void checkBonusNumberRangeTest() {
+        int bonusNumber = 4;
+
+        assertThat(lottoValidation.checkBonusNumberRange(bonusNumber, 1, 45)).isTrue();
+    }
+
+    @DisplayName("보너스 번호 1 ~45 사이의 값이 아닌지 테스트")
+    @Test
+    void checkBonusNumberNotRangeTest() {
+        int bonusNumber = 48;
+
+        assertThat(lottoValidation.checkBonusNumberRange(bonusNumber, 1, 45)).isFalse();
+    }
+
+    @DisplayName("보너스 번호 중복이 아닐 경우 테스트")
+    @Test
+    void checkNotDuplicateBonusNumberTest() {
+        int[] numbers = {5, 9, 10, 14, 16, 17};
+        int bonusNumber = 4;
+        for (int i = 0; i < numbers.length; i++) {
+            lottoNumber.add(numbers[i]);
+        }
+
+        assertThat(lottoValidation.checkDuplicateBonusNumber(lottoNumber, bonusNumber)).isTrue();
+    }
+
+    @DisplayName("보너스 번호 중복일 경우 테스트")
+    @Test
+    void checkDuplicateBonusNumberTest() {
+        int[] numbers = {5, 9, 10, 14, 16, 17};
+        int bonusNumber = 17;
+        for (int i = 0; i < numbers.length; i++) {
+            lottoNumber.add(numbers[i]);
+        }
+
+        assertThat(lottoValidation.checkDuplicateBonusNumber(lottoNumber, bonusNumber)).isFalse();
     }
 }

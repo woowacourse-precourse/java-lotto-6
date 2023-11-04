@@ -1,13 +1,16 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.domain.wrapper.LottoNumber;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -15,6 +18,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

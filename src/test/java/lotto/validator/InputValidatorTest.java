@@ -26,9 +26,27 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"123", "12", "1"})
     @DisplayName("숫자로 입력하면 정상적이다.")
-    void When_InputNumeric_Then_Error(String number) {
+    void When_InputNumeric_Then_Correct(String number) {
         assertThatCode(() -> inputValidator.validateNumeric(number))
                 .doesNotThrowAnyException();
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2/3", "1-2-3", ",,,"})
+    @DisplayName("컴마를 기준으로 문자열을 구분한다.")
+    void When_InputNotDivisionComma_Then_Error(String winningNumber) {
+        assertThatThrownBy(() -> inputValidator.validateDivisionComma(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(error);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3", "1,2,3,4", "1,2,3,4,5"})
+    @DisplayName("컴마를 기준으로 입력하면 정상적이다.")
+    void When_InputDivisionComma_Then_Correct(String winningNumber) {
+        assertThatCode(() -> inputValidator.validateDivisionComma(winningNumber))
+                .doesNotThrowAnyException();
+    }
+
 
 }

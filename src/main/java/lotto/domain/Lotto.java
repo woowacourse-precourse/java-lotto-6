@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,12 +13,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateDuplicateNumber(numbers);
+        validateLottoSize(numbers);
+    }
+
+    private void validateLottoSize(List<Integer> numbers) {
+        if(numbers.size() != 6){
             throw new IllegalArgumentException();
         }
-        hasDuplicateNumber(numbers);
     }
-    private void hasDuplicateNumber(List<Integer> numbers) {
+    private void validateDuplicateNumber(List<Integer> numbers) {
         final Set<Integer> set = new HashSet<>();
 
         for (Integer yourInt : numbers) {
@@ -27,6 +31,9 @@ public class Lotto {
             }
         }
     }
+
+
+
 
     // TODO: 추가 기능 구현
 }

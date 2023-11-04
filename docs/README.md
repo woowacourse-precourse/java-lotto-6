@@ -1,15 +1,55 @@
+## InputView
 
-## InputView  
-## OutputView  
+- [] 입력 기능
+
+## OutputView
+
+- [] 출력 기능
+  - [] 예외 출력 기능
+
 ## Lotto
-## Controller
+
+- [] 번호 검증 기능
+    - [] 6개의 수인지 확인
+    - [] [1..45]의 수인지 확인
+    - [] 중복된 수가 있는지 확인
+  
+
+## Lottos
+
+- [] Lotto 정렬 기능
+
+
+## LottoGenerator
+- [] 금액
+- [] 금액에 따른 로또들을 생성하고 반환
+
+## LottoComputer 
+- [] 당첨 번호
+- [] 수익률 계산
+- [] 당첨내역 계산
+
+## LottoService  
+- [] 객체 들을 알맞게 사용
+
+## Parser
+- [] 문자열을 Lotto로 형변환 시킬 수 있는지 검증하는 기능
+- [] 문자열을 Lotto로 형변환 시키고 반환하는 기능
+
+## Constants
+
+
+사용자 입력 -> LottoService -> LottoGenerator -> Lottos -> Lotto
+-> Computer(Lottos) -> LottoService -> 화면 출력
+
+
+
+
 
 ```
 해야할 것
 추가된 요구사항에 맞게 코딩 -> 1주차, 2주차 요구사항도 가져오기
 로직 설계, 기능 분담, 설계 방식?, MVC, dto... 클린 코드
-
-
 ```
 
 ## 준수 사항 

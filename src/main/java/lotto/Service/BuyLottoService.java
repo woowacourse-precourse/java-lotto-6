@@ -24,6 +24,7 @@ public class BuyLottoService {
             outputView.printLottoNumber(lotto);
             lottos.add(lotto);
         }
+        outputView.printLottoCount(lottos.size());
         return new LottoResults(lottos);
     }
 

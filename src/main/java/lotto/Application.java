@@ -41,8 +41,6 @@ public class Application {
                 continue;
             box.add(rd);
         }
-        Collections.sort(box);
-        System.out.println(box);
         return box;
     }
 
@@ -72,6 +70,7 @@ public class Application {
     }
 
     public static List<Lotto> setUser(int ticketNum){
+        System.out.println(String.format("%d개를 구매했습니다.",ticketNum));
         List<Lotto> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
             res.add(new Lotto(setRandomNumbers()));
@@ -79,9 +78,9 @@ public class Application {
         return res;
     }
 
-    public static void showUser(List<List<Integer>> user) {
-        for (List<Integer> list : user) {
-            System.out.println(list);
+    public static void showUser(List<Lotto> user) {
+        for (Lotto l : user) {
+            System.out.println(l.getNumbers());
         }
     }
 
@@ -90,5 +89,6 @@ public class Application {
         List<Lotto> user;
         while(money == -1) money = setMoney(Console.readLine());
         user = setUser(money/1000);
+        showUser(user);
     }
 }

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.regex.Pattern;
 
 public class Money {
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("^-?\\d+$");
     private static final String ONLY_NUMBER_ALLOWED_MESSAGE = "숫자만 입력해 주세요.";
     private static final String MINIMUM_AMOUNT_MSG = "최소 금액은 1,000원 입니다.";
     private static final String THOUSAND_UNIT_ONLY_MSG = "금액은 1,000원 단위로 입력해 주세요.";
@@ -31,13 +31,13 @@ public class Money {
         }
     }
 
-    private static void isOverThousand(String amount) {
+    private static void isOverThousand(final String amount) {
         if ((parseNumeric(amount) < MINIMUM_AMOUNT)) {
             throw new IllegalArgumentException(MINIMUM_AMOUNT_MSG);
         }
     }
 
-    private static void isDivisibleByThousand(String amount) {
+    private static void isDivisibleByThousand(final String amount) {
         if ((parseNumeric(amount) % MINIMUM_AMOUNT != 0)) {
             throw new IllegalArgumentException(THOUSAND_UNIT_ONLY_MSG);
         }

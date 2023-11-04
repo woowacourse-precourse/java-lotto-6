@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.validation.ErrorMessage;
-import lotto.view.OutputView;
+import lotto.validation.WinningNumValidator;
 
 import java.util.ArrayList;
 
@@ -10,61 +9,17 @@ public class WinningNum {
     private Integer bonusNumber;
 
     public WinningNum(ArrayList<Integer> winningNum) {
-        lengthValidate(winningNum);
-        duplicatedValidate(winningNum);
-        numberRangeValidate(winningNum);
+        WinningNumValidator.validate(winningNum);
 
         this.winningNum = winningNum;
     }
 
     public void setBonusNumber(Integer number) {
-        duplicatedValidate(number);
-        rangeValidate(number);
+        WinningNumValidator.bonusValidate(winningNum, number);
+
         this.bonusNumber = number;
     }
 
-    private void lengthValidate(ArrayList<Integer> winningNum) {
-        if (winningNum.size() != ConstNum.LENGTH.getNum()) {
-            OutputView.errorMessage(ErrorMessage.LENGTH_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void duplicatedValidate(ArrayList<Integer> winningNum) {
-        long count = winningNum.stream()
-                .distinct()
-                .count();
-
-        if (count != ConstNum.LENGTH.getNum()) {
-            OutputView.errorMessage(ErrorMessage.DUPLICATED_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void numberRangeValidate(ArrayList<Integer> winningNum) {
-        for (Integer num : winningNum) {
-            rangeValidate(num);
-        }
-    }
-
-    private void rangeValidate(Integer number) {
-        if (number > ConstNum.LOTTO_MAX.getNum() || number < ConstNum.LOTTO_MIN.getNum()) {
-            OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
-        }
-    }
-
-
-    private void duplicatedValidate(Integer bonusNumber) {
-        if (winningNum.contains(bonusNumber)) {
-            OutputView.errorMessage(ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
-        }
-    }
     public Integer compare(Lotto lotto) {
         Integer count = 0;
         Boolean bonus = false;
@@ -80,14 +35,14 @@ public class WinningNum {
     }
 
     private Integer getRank(int count,Boolean bonus) {
-        if(count==6) return 1;
+        if(count==6) return LottoRank.FIRST.getNum();
         if (count == 5) {
-            if(bonus) return 2;
+            if(bonus) return LottoRank.SECOND.getNum();
 
-            return 3;
+            return LottoRank.THIRD.getNum();
         }
-        if (count==4) return 4;
-        if(count==3) return 5;
+        if (count==4) return LottoRank.FOURTH.getNum();
+        if(count==3) return LottoRank.FIFTH.getNum();
 
         return -1;
     }

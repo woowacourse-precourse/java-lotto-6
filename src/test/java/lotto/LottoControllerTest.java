@@ -38,8 +38,8 @@ public class LottoControllerTest {
     void calculatePrize() {
         List<Integer> matchingCounts = List.of(1, 2, 3, 1, 1);
 
-        int actualPrize = lottoController.calculatePrize(matchingCounts);
-        int expectedPrize = 2034605000;
+        long actualPrize = lottoController.calculatePrize(matchingCounts);
+        long expectedPrize = 2034605000;
 
         assertThat(actualPrize).isEqualTo(expectedPrize);
     }

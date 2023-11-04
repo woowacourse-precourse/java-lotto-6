@@ -69,8 +69,21 @@
   - [ ] 로또 봉투을 만든다.  LottoSeller#makeLottoEnvelope
 
 - [x] 로또 봉투 클래스 LottoEnvelop
+
   - [x] 봉투에 로또을 추가한다.
   - [x] ~~봉투를 반환한다.~~
+
+- [x] 로또 클래스 생성
+
+- [x] 로또 자동 생성 번호 클래스 생성
+
+  - [x] 로또을 생성한다.
+
+    - [x] ```
+      List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+      ```
+
+      
 
 
 

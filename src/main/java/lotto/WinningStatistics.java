@@ -15,8 +15,8 @@ public class WinningStatistics {
     }
 
     // 로또 구입할 금액 입력
-    public void purchaseLottoTickets(int totalAmount) {
-        int ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
+    public void purchaseLottoTickets(long totalAmount) {
+        long ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
         System.out.printf(LottoMessages.COMPLETE_MESSAGE_LOTTO_COST.getMessage(), ticket);
 
         for (int i = 0; i < ticket; i++) {
@@ -35,7 +35,7 @@ public class WinningStatistics {
     }
 
     // 일치한 갯수 확인
-    public void calculateStatistics(List<Integer> winningNumber, int bonusNumber, int userCost) {
+    public void calculateStatistics(List<Integer> winningNumber, int bonusNumber, long userCost) {
         for (Lotto lotto : lottoTickets) {
             calculateMatchingNumbers(lotto, winningNumber, bonusNumber);
         }
@@ -72,7 +72,7 @@ public class WinningStatistics {
 
     public void start() {
         UserInputHandler userInputHandler = new UserInputHandler();
-        int userCost = userInputHandler.inputUserLottoPurchase(); // 구입금액 입력하기
+        long userCost = userInputHandler.inputUserLottoPurchase(); // 구입금액 입력하기
         System.out.println();
 
         purchaseLottoTickets(userCost); // 구매한 금액만큼 로또 구입후 출력

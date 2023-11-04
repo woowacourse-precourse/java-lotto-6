@@ -15,7 +15,7 @@ public class UserInputHandler {
     private String winningNumbers;
 
     // 1. 로또 구매 금액 입력
-    public int inputUserLottoPurchase() {
+    public long inputUserLottoPurchase() {
         boolean restart = true;
         String lottoPurchase = null;
         while (restart) {
@@ -28,13 +28,13 @@ public class UserInputHandler {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(lottoPurchase);
+        return Long.parseLong(lottoPurchase);
     }
 
     // 1000원단위, 1000원 미만, 숫자 이외의 값 확인
     private void validUserLottoPurchase(String lottoPurchase) {
         try {
-            int lottoPurchaseValue = Integer.parseInt(lottoPurchase);
+            long lottoPurchaseValue = Long.parseLong(lottoPurchase);
             if (lottoPurchaseValue % DIVISION_ROLE != 0) {
                 throw new IllegalArgumentException(LOTTO_PURCHASE_FORMAT_ERROR.getMessage());
             } else if (lottoPurchaseValue < DIVISION_ROLE) {
@@ -79,9 +79,9 @@ public class UserInputHandler {
     }
 
     private void validDuplicateNumbers(String[] numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
+        Set<Long> uniqueNumbers = new HashSet<>();
         for (String s : numbers) {
-            int num = Integer.parseInt(s);
+            long num = Long.parseLong(s);
             if (uniqueNumbers.contains(num)) {
                 throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
             }
@@ -145,7 +145,7 @@ public class UserInputHandler {
     private void duplicateBonusNumber(int bonusNumber) {
         String[] userInput = winningNumbers.split(",");
         for (String s : userInput) {
-            int number = Integer.parseInt(s);
+            long number = Integer.parseInt(s);
             if (number == bonusNumber) {
                 throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
             }

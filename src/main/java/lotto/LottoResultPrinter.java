@@ -5,9 +5,9 @@ import java.util.List;
 import static lotto.LottoMessages.*;
 
 public class LottoResultPrinter {
-    public void printResult(List<Integer> matchingNumber, int userCost) {
+    public void printResult(List<Integer> matchingNumber, long userCost) {
         long totalSum = matchingNumber.get(3) * 5_000 +
-                matchingNumber.get(4) * 5_0000 +
+                matchingNumber.get(4) * 50_000 +
                 matchingNumber.get(5) * 1_500_000 +
                 matchingNumber.get(6) * 2_000_000_000 +
                 matchingNumber.get(0) * 30_000_000;

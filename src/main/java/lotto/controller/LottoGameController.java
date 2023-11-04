@@ -1,31 +1,23 @@
 package lotto.controller;
 
 import lotto.domain.LottoOwner;
-import lotto.domain.LottoTicket;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
     public void play() {
-        LottoTicket lottoTicket = purchaseLotto();
-        LottoOwner lottoOwner = generateLotto(lottoTicket);
+        LottoOwner lottoOwner = new LottoOwner();
+        purchaseLottoByOwner(lottoOwner);
 
     }
 
-    private LottoOwner generateLotto(LottoTicket lottoTicket) {
-        LottoOwner lottoOwner = new LottoOwner(lottoTicket);
-        OutputView.printLottoNumbers(lottoOwner.getLottoNumbers());
-        return lottoOwner;
-    }
-
-    private LottoTicket purchaseLotto() {
-        LottoTicket lottoTicket;
+    private void purchaseLottoByOwner(LottoOwner lottoOwner) {
         while (true) {
             try {
                 OutputView.printPurchasePriceInputText();
-                lottoTicket = new LottoTicket(InputView.getUserInput());
-                OutputView.printTicketNumber(lottoTicket.getTicketNumber());
-                return lottoTicket;
+                int ticketNumber = lottoOwner.purchaseLotto(InputView.getUserInput());
+                OutputView.printTicketNumber(ticketNumber);
+                return;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

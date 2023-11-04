@@ -7,8 +7,10 @@ import java.util.List;
 public class LottoOwner {
     List<Lotto> lottos;
 
-    public LottoOwner(LottoTicket lottoTicket) {
+    public int purchaseLotto(String money) {
+        LottoTicket lottoTicket = new LottoTicket(money);
         lottos = lottoTicket.generateLottos();
+        return lottoTicket.getTicketNumber();
     }
 
     public List<String> getLottoNumbers() {

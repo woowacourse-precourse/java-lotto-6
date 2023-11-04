@@ -17,5 +17,8 @@ public class Application {
         LottoNumbers lottoNumbers = new LottoNumbers();
         List<Integer> list = lottoNumbers.setRandomNumbers();
         System.out.println(list);
+
+        Lotto lotto = new Lotto(InputView.inputLottoWinningNumber());
+
     }
 }

@@ -7,7 +7,7 @@ public class InputValidator {
     private static final String MIN_PRICE_1000_MESSAGE = "로또 금액은 1000원 이상이어야 합니다";
     private static final String UNIT_OF_1000_REQUIRED_MESSAGE = "로또 금액은 1000원 단위로 입력되어야 합니다";
     private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
-    private static final String WINNING_NUMBERS_RANGE_ERROR = "당첨 번호는 1~45 사이 숫자여야합니다";
+    private static final String WINNING_NUMBERS_RANGE_ERROR = "당첨 번호는 1~45 사이의 숫자여야합니다";
     private static final String NUMBER_REGEX = "[0-9]+";
 
     public void validatePrice(String inputPrice) {
@@ -56,6 +56,10 @@ public class InputValidator {
         }
 
         validateNumberRanges(winningNumbers);
+
+        if (hasDuplicateNumber(winningNumbers)) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
+        }
     }
 
     private void validateNumberRanges(List<Integer> winningNumbers) {
@@ -64,5 +68,14 @@ public class InputValidator {
                 throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
             }
         }
+    }
+
+    private boolean hasDuplicateNumber(List<Integer> winningNumbers) {
+        long removeDuplicatedSize = winningNumbers.stream().distinct().count();
+        if (winningNumbers.size() != removeDuplicatedSize) {
+            return true;
+        }
+
+        return false;
     }
 }

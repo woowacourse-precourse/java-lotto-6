@@ -61,4 +61,9 @@ public class ConsoleOutputView implements OutputView {
     public void printProfitRate(final double rate) {
         System.out.println("총 수익률은 " + String.format("%.1f", rate * RATE_PERCENT) + "%입니다.");
     }
+
+    @Override
+    public void printExceptionMessage(final String message) {
+        System.out.println(message);
+    }
 }

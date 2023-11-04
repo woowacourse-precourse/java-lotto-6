@@ -14,4 +14,5 @@ public interface OutputView {
     void alertResult();
     void printEachPrize(final List<PrizeResult> results);
     void printProfitRate(final double rate);
+    void printExceptionMessage(final String message);
 }

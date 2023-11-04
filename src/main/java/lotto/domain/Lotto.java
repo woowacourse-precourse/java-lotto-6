@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,6 +14,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateLottoNumberCount(numbers);
+        validateNumberValidate(numbers);
+    }
+
+    private void validateNumberValidate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException("중복된 숫자가 존재합니다: " + number);
+            }
+        }
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {

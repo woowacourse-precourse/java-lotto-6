@@ -47,4 +47,14 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 중복된 숫자를 고를 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호 입력 시 글자를 입력하거나 터무니 없는 값을 입력하면 예외가 발생한다.")
+    @Test
+    void plusBonusByNotNumber() {
+        WinningLotto lotto = new WinningLotto(List.of("1", "2", "3", "4", "5", "6"));
+
+        assertThatThrownBy(() -> lotto.plusBonusNumeber("테스트!"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+    }
 }

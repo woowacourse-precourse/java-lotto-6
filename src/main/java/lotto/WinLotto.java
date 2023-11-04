@@ -14,7 +14,7 @@ public class WinLotto {
     public WinLotto(String winNums, String bonusNumber) {
 
         this.numbers = changeNumbers(winNums);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        this.bonusNumber = validateBonusNum(bonusNumber);
     }
 
     private List<Integer> changeNumbers(String winNums) {
@@ -85,6 +85,18 @@ public class WinLotto {
 
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    private int validateBonusNum(String bonusNumber) {
+
+        try {
+
+            int num = Integer.parseInt(bonusNumber);
+            return num;
+        } catch (NumberFormatException e) {
+
+            throw new IllegalArgumentException();
         }
     }
 }

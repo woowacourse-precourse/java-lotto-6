@@ -26,7 +26,7 @@ public class WinLottoTest {
     }
 
     @Test
-    void validateRange() {
+    void validateRangeTest() {
 
         assertThatThrownBy(() -> new WinLotto("0,2,3,4,5,6", "1"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -36,9 +36,30 @@ public class WinLottoTest {
     }
 
     @Test
-    void validateDuplicate() {
+    void validateDuplicateTest() {
 
         assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,4", "1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateBonusNumTest() {
+
+        assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,6", "a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateBonusSpaceTest() {
+
+        assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,6", " "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateBonusNullTest() {
+
+        assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,6", ""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

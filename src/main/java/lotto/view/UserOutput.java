@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import java.util.List;
 
@@ -17,10 +18,12 @@ public class UserOutput {
     }
 
     public static void ConsolePrintBonusInfo() {
+        ConsolePrintNewLine("");
         ConsolePrintNewLine(Message.INPUT_BONUS_NUMBER);
     }
 
     public static void ConsolePrintBoughtResult(int number, List<Lotto> lottos) {
+        ConsolePrintNewLine("");
         ConsolePrintNewLine(number + Message.OUTPUT_BOUGHT_NUMBER);
         for (Lotto lotto : lottos) {
             ConsolePrintNewLine(lotto.toString());
@@ -38,6 +41,7 @@ public class UserOutput {
     }
 
     private static void ConsolePrintStatInfo() {
+        ConsolePrintNewLine("");
         ConsolePrintNewLine(Message.OUTPUT_STATICS_INFO);
     }
     public static void ConsolePrintStatResult(double rate) {

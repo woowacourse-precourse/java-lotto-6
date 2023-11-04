@@ -24,6 +24,7 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
     @DisplayName("로또 번호가 1~45를 넘어가는 숫자가 있으면 예외를 발생한다")
     @Test
     void createLottoByRangeNumber() {

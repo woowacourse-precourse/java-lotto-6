@@ -24,23 +24,21 @@ public class InputView {
 
     private void validateEachNumberNotEmpty(List<String> lottoNumbers) {
         for (String lottoNumber : lottoNumbers) {
-            if(lottoNumber.isEmpty()){
-                throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
-            }
+            validateNotEmpty(lottoNumber);
         }
     }
 
-    private static void validateIntegerType(String purchaseAmount) {
+    private static void validateIntegerType(String input) {
         Pattern pattern = Pattern.compile("^-?\\d+$");
-        Matcher matcher = pattern.matcher(purchaseAmount);
+        Matcher matcher = pattern.matcher(input);
 
         if(!matcher.matches()){
             throw new IllegalArgumentException("[ERROR] : 입력 값은 정수 타입이어야 합니다");
         }
     }
 
-    private static void validateNotEmpty(String purchaseAmount) {
-        if(purchaseAmount.isEmpty()){
+    private static void validateNotEmpty(String input) {
+        if(input.isEmpty()){
             throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
         }
     }

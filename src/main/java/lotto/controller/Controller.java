@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.domain.Prize;
 import lotto.util.Utils;
 import lotto.view.inputMessage;
 
@@ -18,9 +19,12 @@ public class Controller {
         Buyer buyer = new Buyer(price);
     }
 
-    public int getPrizeNumber(){
+    public void pickPrize(){
+        Prize prize = new Prize(getPrizeNumber(),getBonusNumber());
+    }
+    public String getPrizeNumber(){
         inputMessage.prizeMessage();
-        return Utils.ChangeStringToInt(readLine());
+        return readLine();
     }
 
     public int getBonusNumber(){

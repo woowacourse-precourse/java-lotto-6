@@ -5,9 +5,8 @@ import static consts.NumericConfig.LOTTO_COUNT;
 import static consts.NumericConfig.START_INCLUSIVE;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import validator.LottoValidator;
 
 public class Lotto {
 
@@ -31,21 +30,8 @@ public class Lotto {
     }
 
     private static void validate(final List<Integer> numbers) {
-        validateDuplicate(numbers);
-        validateSize(numbers);
-    }
-
-    private static void validateSize(final List<Integer> numbers) {
-        if (numbers.size() > LOTTO_COUNT.number()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void validateDuplicate(final List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator validator=new LottoValidator();
+        validator.validateLottoNumbers(numbers);
     }
 
     public LottoNumber generateUniqueNumber() {

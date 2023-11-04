@@ -31,7 +31,6 @@ public class OutputView {
         }
         System.out.println("총 수익률은 " +
                 String.format("%,.1f", calcEarnRate(sumEarnMoney(ranks), member.getPurchasedPrice())) + "%입니다.");
-
     }
     private static int sumEarnMoney(List<Rank> ranks) {
         return ranks.stream()

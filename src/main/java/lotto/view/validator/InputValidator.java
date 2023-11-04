@@ -7,7 +7,7 @@ public class InputValidator {
         }
     }
 
-    public static void checkBonusNumber(String number) {
+    public static void validBonusType(String number) {
         if (digitCheck(number)) {
             throw new IllegalArgumentException("숫자만 입력해주세요.");
         }

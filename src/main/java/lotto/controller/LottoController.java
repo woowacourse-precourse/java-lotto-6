@@ -20,30 +20,20 @@ public class LottoController {
     }
     public void play(){
         int money = InputView.getPurchasePriceInput();
-        Member member = generateLottoMember(money);
+        List<Lotto> purchasedLottos = lottoService.purchase(money);
+        Member member = generatedMember(money, purchasedLottos);
+
         OutputView.purchaseResult(member);
 
         Lotto winnerLotto = new Lotto(InputView.getWinningNumberInput());
         int bonusNumber = InputView.getBonusNumberInput();
         WinningNumber winningNumber = new WinningNumber(winnerLotto, bonusNumber);
 
-        List<Rank> awardsResult = awards(member, winningNumber);
+        List<Rank> awardsResult = lottoService.awards(member, winningNumber);
         OutputView.gameResult(awardsResult,member);
-
     }
 
-    private List<Rank> awards(final Member member, final WinningNumber winningNumber) {
-        List<Rank> ranks = new ArrayList<>();
-
-        for (Lotto lotto : member.getLottos()) {
-            Rank rank = LottoAwards.awards(lotto, winningNumber);
-            ranks.add(rank);
-        }
-        return ranks;
-    }
-
-    private Member generateLottoMember(final int money) {
-        List<Lotto> purchasedLottos = lottoService.purchase(money);
+    private static Member generatedMember(final int money, final List<Lotto> purchasedLottos) {
         return new Member(money, purchasedLottos);
     }
 }

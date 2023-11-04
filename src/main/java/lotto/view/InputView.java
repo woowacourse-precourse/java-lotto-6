@@ -19,7 +19,7 @@ public class InputView {
 
         int responseMoney = Integer.parseInt(money);
 
-        UnitValidator.check(responseMoney);
+        UnitValidator.validUnitCheck(responseMoney);
         return responseMoney;
     }
     public static List<Integer> getWinningNumberInput() {
@@ -30,10 +30,13 @@ public class InputView {
     }
     public static int getBonusNumberInput() {
         print(WINNING_BONUS_NUMBER_INPUT);
-
-        // TODO: 검증 로직추가
         String bonus = Console.readLine();
-        return Integer.parseInt(bonus);
+        InputValidator.validBonusType(bonus);
+
+        int numberBonus = Integer.parseInt(bonus);
+
+        UnitValidator.validBonusUnitCheck(numberBonus);
+        return numberBonus;
 
     }
     private static void print(String message) {

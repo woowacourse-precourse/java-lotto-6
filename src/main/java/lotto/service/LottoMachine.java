@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.Const.Const.LOTTO_PURCHASED_UNIT;
+
+
 public class LottoMachine {
     public List<Lotto> roulette(int money) {
         List<Lotto> lottos = new ArrayList<>();
 
-        int quantity = money / 1000;
+        int quantity = money / LOTTO_PURCHASED_UNIT;
         while (lottos.size() != quantity) {
             lottos.add(new Lotto(sort(makeRandomNumbers())));
         }

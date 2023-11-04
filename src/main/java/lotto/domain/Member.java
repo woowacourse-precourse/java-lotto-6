@@ -4,8 +4,10 @@ import lotto.Lotto;
 
 import java.util.List;
 
+import static lotto.Const.Const.LOTTO_PURCHASED_UNIT;
+
 public class Member {
-    public static int LOTTO_PURCHASED_UNIT = 1000;
+
     private final int purchasedPrice;
     private final int purchasedCount;
     private List<Lotto> purchasedLottos;

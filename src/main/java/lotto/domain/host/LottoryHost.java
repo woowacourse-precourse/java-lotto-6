@@ -1,12 +1,19 @@
 package lotto.domain.host;
 
+import lotto.domain.num.LottoNumResults;
+import lotto.domain.num.WinLottoNums;
+
 public class LottoryHost {
+    private LottoNumResults lottoNumResults;
+    private String numsOfWin;
+
     /**
      * 당첨 번호 추첨을 뽑는다.
      *
      * @param strLine 당첨 번호 문자열
      */
     public void pickWinNum(String strLine) {
+        this.numsOfWin = strLine;
     }
 
     /**

@@ -88,8 +88,8 @@
 
 
 
-- [ ] 로또 진행자 클래스 LottoHost
-  - [ ] 당첨 번호 추첨을 뽑는다. LottoHost#pickWinNum
+- [x] 로또 진행자 클래스 LottoHost
+  - [x] 당첨 번호 추첨을 뽑는다. LottoHost#pickWinNum
   - [ ] 보너스 번호를 뽑는다. LottoHost#pickBonusNum
   - [ ] 중복되는 당첨 번호가 있는지 확인한다. Lotto#checkDuplicateWinNum
   - [ ] 중복되는 보너스 번호가 있는지 확인한다. Lotto#checkDulicateBonusNum

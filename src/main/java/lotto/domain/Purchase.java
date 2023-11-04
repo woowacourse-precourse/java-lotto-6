@@ -9,6 +9,7 @@ public class Purchase {
 
     public Purchase(int amount) {
         validateNumber(amount);
+        validatePositiveInteger(amount);
         validateThousandUnit(amount);
         this.amount = amount;
     }
@@ -22,6 +23,13 @@ public class Purchase {
 
     private boolean isNumeric(String str) {
         return str.matches(MATCH_NUMBER);
+    }
+
+    // 구입 금액 양의 정수인지 검증
+    private void validatePositiveInteger(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("0과 음수 에러");
+        }
     }
 
     // 구입 금액 1000원 단위인지 검증

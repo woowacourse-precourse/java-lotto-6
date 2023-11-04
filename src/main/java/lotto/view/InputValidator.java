@@ -40,6 +40,11 @@ public class InputValidator {
         return winningNumbers;
     }
 
+    public static int validateBonusNumber(String inputBonusNumber) {
+        int bonusNumber = convertStringToInteger(inputBonusNumber);
+        return bonusNumber;
+    }
+
     private static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != VALID_LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_SIZE);

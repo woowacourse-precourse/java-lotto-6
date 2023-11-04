@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
-        Integer userPurchaseAmount = Integer.parseInt(purchaseAmount);
+        Integer userPurchaseAmount = Integer.parseInt(Console.readLine());
 
         System.out.println();
         int numberOfLottos = userPurchaseAmount / 1000;
@@ -24,8 +23,7 @@ public class Application {
 
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputNumber = Console.readLine();
-        List<Integer> winningNumber = Arrays.stream(inputNumber.split(","))
+        List<Integer> winningNumber = Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

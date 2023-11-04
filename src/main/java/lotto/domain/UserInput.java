@@ -8,22 +8,40 @@ import static lotto.view.OutputView.*;
 
 public class UserInput {
 
-    public int inputPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_PRICE.getMessage());
+    public static int inputPurchaseAmount() {
+        try {
+            System.out.println(INPUT_PURCHASE_PRICE.getMessage());
 
-        return isValidPurchaseAmount(readLine());
+            return isValidPurchaseAmount(readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return inputPurchaseAmount();
+        }
     }
 
-    public ArrayList<Integer> inputWinningNumber() {
-        System.out.println(INPUT_WINNING_NUMBER.getMessage());
+    public static ArrayList<Integer> inputWinningNumber() {
+        try {
+            System.out.println(INPUT_WINNING_NUMBER.getMessage());
 
-        return isValidWinningNumber(readLine());
+            return isValidWinningNumber(readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return inputWinningNumber();
+        }
     }
 
-    public int inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER.getMessage());
+    public static int inputBonusNumber(ArrayList<Integer> winningNumbers) {
+        try {
+            System.out.println(INPUT_BONUS_NUMBER.getMessage());
 
-        return isValidBonusNumber(readLine());
+            return isValidBonusNumber(readLine() , winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return inputBonusNumber(winningNumbers);
+        }
     }
 
 }

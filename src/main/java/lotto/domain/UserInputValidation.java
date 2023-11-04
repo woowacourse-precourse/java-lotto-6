@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import static lotto.util.ErrorMessage.*;
@@ -36,6 +37,8 @@ public class UserInputValidation {
             isValidWinningNumber(element);
         });
 
+        isDuplicatedInput(convertedInput);
+
         return convertedInput;
     }
 
@@ -62,15 +65,30 @@ public class UserInputValidation {
         }
     }
 
-    public static int isValidBonusNumber(String input) {
+    public static int isValidBonusNumber(String input , ArrayList<Integer> winningNumbers) {
         try {
             int result = Integer.parseInt(input);
 
             isValidWinningNumber(result);
+            isDuplicatedInput(result , winningNumbers);
 
             return result;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_STRING_ERROR.getMessage());
+        }
+    }
+
+    private static void isDuplicatedInput(int input , ArrayList<Integer> winningNumbers) {
+        if(winningNumbers.contains(input)) {
+            throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER_ERROR.getMessage());
+        }
+    }
+
+    private static void isDuplicatedInput(ArrayList<Integer> winningNumbers) {
+        HashSet<Integer> hashSet = new HashSet<>(winningNumbers);
+
+        if(hashSet.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER_ERROR.getMessage());
         }
     }
 

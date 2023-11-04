@@ -4,6 +4,7 @@ import java.util.List;
 
 public class InputValidator {
     private static final String NOT_A_NUMBER_MESSAGE = "로또 금액은 숫자여야 합니다";
+    private static final String BONUS_NUMBER_NOT_A_NUMBER = "보너스 번호는 숫자여야 합니다";
     private static final String MIN_PRICE_1000_MESSAGE = "로또 금액은 1000원 이상이어야 합니다";
     private static final String UNIT_OF_1000_REQUIRED_MESSAGE = "로또 금액은 1000원 단위로 입력되어야 합니다";
     private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
@@ -77,5 +78,11 @@ public class InputValidator {
         }
 
         return false;
+    }
+
+    public void validateBonusNumber(String inputBonusNumber) {
+        if (isNumber(inputBonusNumber) == false) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_A_NUMBER);
+        }
     }
 }

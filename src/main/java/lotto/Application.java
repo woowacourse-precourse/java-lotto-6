@@ -7,6 +7,7 @@ import lotto.domain.Computer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.User;
+import lotto.ui.Input;
 import lotto.ui.Output;
 
 public class Application {
@@ -28,7 +29,7 @@ public class Application {
 
         // 6. 보너스 번호 입력
         Output.printBonusNumber();
-        Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto);
+        Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, Input.get());
 
         // 7. 당첨 내역 계산 로직
         List<Integer> lottoResult = Computer.checkWinning(user.lottos, winningLotto, bonusNumber);

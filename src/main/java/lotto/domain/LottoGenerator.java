@@ -23,14 +23,12 @@ public class LottoGenerator {
 
     }
 
-    public static Integer createBonusNumber(Lotto winningLotto) {
+    public static Integer createBonusNumber(Lotto winningLotto, String userInput) {
         boolean isRunning = true;
         Integer bonusNumber = null;
 
         while (isRunning) {
             try {
-
-                String userInput = Computer.getInput();
 
                 Validator.checkNumber(userInput);
                 Validator.checkZero(userInput);
@@ -49,13 +47,13 @@ public class LottoGenerator {
         return bonusNumber;
     }
 
-    public static Lotto createWinningLotto() {
+    public static Lotto createWinningLotto(String userInput) {
         boolean isRunning = true;
         Lotto winningLotto = null;
 
         while (isRunning) {
             try {
-                winningLotto = new Lotto(Computer.parseInput(Computer.splitInput(Computer.getInput())));
+                winningLotto = new Lotto(Computer.parseInput(Computer.splitInput(userInput)));
                 isRunning = false;
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);

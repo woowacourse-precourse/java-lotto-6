@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,12 @@ public class Lotto {
         validate(numbers);
         validateDuplicatedNumber(numbers);
         validateOverRangeNumber(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -38,4 +44,5 @@ public class Lotto {
             }
         }
     }
+
 }

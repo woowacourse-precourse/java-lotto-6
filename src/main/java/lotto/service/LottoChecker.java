@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class LottoChecker {
     private WinResult getResult (int matchedCount, int bonusCount) {
         return Arrays.stream(WinResult.values())
                 .filter(winResult -> winResult.matchedCount == matchedCount)
-                .filter(winResult -> winResult.bonusCount == bonusCount)
+                .filter(winResult -> winResult.bonus == bonusCount)
                 .findAny()
                 .orElse(WinResult.FAIL);
     }

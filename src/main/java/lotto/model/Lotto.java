@@ -1,8 +1,9 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 import lotto.config.AppConfig;
+import lotto.model.win.WinResult;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,10 +21,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Stream<Integer> stream() {
-        return numbers.stream();
-    }
-
     private List<Integer> distinct(List<Integer> numbers) {
         return numbers.stream().distinct().toList();
     }
@@ -34,4 +31,27 @@ public class Lotto {
                 .toList();
     }
 
+    public WinResult checkResult(List<Integer> target, int bonus) {
+        int count = checkWithTarget(target);
+        boolean canBeSecond = checkBonusIfUsable(count, bonus);
+
+        return Arrays.stream(WinResult.values())
+                .filter(winResult -> winResult.matchedCount == count)
+                .filter(winResult -> winResult.bonus == canBeSecond)
+                .findAny()
+                .orElse(WinResult.FAIL);
+    }
+
+    private int checkWithTarget(List<Integer> target) {
+        return (int) numbers.stream()
+                .filter(num -> target.contains(num))
+                .count();
+    }
+
+    private boolean checkBonusIfUsable(int count, int bonus) {
+        if(count == WinResult.THIRD.matchedCount) {
+            return numbers.contains(bonus);
+        }
+        return false;
+    }
 }

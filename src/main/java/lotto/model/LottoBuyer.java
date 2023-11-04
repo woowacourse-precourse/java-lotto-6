@@ -20,10 +20,6 @@ public class LottoBuyer {
         return lottoTickets.size();
     }
 
-    public int payment() {
-        return size() * AppConfig.LOTTO_PRICE;
-    }
-
     public Stream<Stream<Integer>> streamOfStream() {
         return lottoTickets.stream()
                 .map(Lotto::stream);

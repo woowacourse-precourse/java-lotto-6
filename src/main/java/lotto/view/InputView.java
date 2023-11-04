@@ -1,26 +1,27 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.LottoValidator;
 
 import java.util.List;
 
 public class InputView {
-    private final InputValidator inputValidator;
+    private final LottoValidator lottoValidator;
 
     public InputView() {
-        this.inputValidator = new InputValidator();
+        this.lottoValidator = new LottoValidator();
     }
 
     public int getPurchaseAmount() {
-        return inputValidator.checkPurchaseAmount(Console.readLine());
+        return lottoValidator.checkPurchaseAmount(Console.readLine());
     }
 
     public List<Integer> getLottoNumber() {
-        return inputValidator.checkLottoNumber(Console.readLine());
+        return lottoValidator.checkLottoNumber(Console.readLine());
     }
 
     public int getBonusNumber() {
-        return inputValidator.checkBonusNumber(Console.readLine());
+        return lottoValidator.checkBonusNumber(Console.readLine());
     }
 
 }

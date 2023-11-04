@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.entity.Lotto;
 import lotto.common.Message;
+import lotto.entity.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -47,9 +47,9 @@ public class LottoController {
         return result;
     }
 
-    public void printPurchaseResult(List<Lotto> lotties) {
-        outputView.printMessage(Message.COMPLETE_PURCHASE, lotties.size());
-        for (Lotto lotto : lotties) {
+    public void printPurchaseResult(List<Lotto> lottery) {
+        outputView.printMessage(Message.COMPLETE_PURCHASE, lottery.size());
+        for (Lotto lotto : lottery) {
             outputView.printLotto(lotto);
         }
     }

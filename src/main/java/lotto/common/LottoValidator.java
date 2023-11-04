@@ -1,11 +1,11 @@
-package lotto.view;
-
-import lotto.common.Range;
+package lotto.common;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class InputValidator {
+public class LottoValidator {
 
     public int checkPurchaseAmount(String input) {
         int amount = checkInteger(input);
@@ -28,6 +28,18 @@ public class InputValidator {
         return checkBoundary(input);
     }
 
+    public void validateLotto(List<Integer> numbers) {
+        Set<Integer> duplicated = new HashSet<>();
+        if (numbers.size() != Range.SIZE.getValue()) {
+            throw new IllegalArgumentException();
+        }
+        for (int number : numbers) {
+            if (!duplicated.add(checkBoundary(number))) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     private List<Integer> getNumbers(String[] input) {
         List<Integer> numbers = new ArrayList<>();
         for (String number : input) {
@@ -37,12 +49,15 @@ public class InputValidator {
         return numbers;
     }
 
-    private int checkBoundary(String input) {
-        int number = checkInteger(input);
+    private int checkBoundary(int number) {
         if (number < Range.START.getValue() || number > Range.END.getValue()) {
             throw new IllegalArgumentException();
         }
         return number;
+    }
+
+    private int checkBoundary(String input) {
+        return checkBoundary(checkInteger(input));
     }
 
     private int checkInteger(String input) {

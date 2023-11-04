@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Objects;
 import lotto.exception.Constant;
 import lotto.exception.ErrorMessage;
 
@@ -17,9 +18,18 @@ public class Number {
     }
 
     private static void validateNumber(int number) {
-        if ((number < Constant.LOTTO_NUMBER_MIN.getValue()) || (number > Constant.LOTTO_NUMBER_MAX.getValue())) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
+        if ((number < Constant.LOTTO_NUMBER_MIN.getIntValue()) || (number > Constant.LOTTO_NUMBER_MAX.getIntValue())) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_RANGE.get());
         }
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Reader {
-    static Pattern answerPattern = Pattern.compile("^([\\d],).{5}+[\\d]$");
+    private static Pattern answerPattern = Pattern.compile("^([\\d],).{5}+[\\d]$");
 
     public static int getMoney() {
         String inputMoney = Console.readLine();

@@ -3,7 +3,7 @@ package lotto.model.domain;
 import java.util.List;
 
 public class LottoAnswer extends Lotto {
-    Integer bonusNumber;
+    private Integer bonusNumber;
 
     public LottoAnswer(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);

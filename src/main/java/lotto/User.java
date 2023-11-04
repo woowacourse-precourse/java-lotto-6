@@ -7,7 +7,8 @@ public class User {
 
     public void inputPayment(String input) {
         checkInteger(input);
-        checkRemain();
+        checkRemainder();
+        checkRange();
     }
 
     public void checkInteger(String input) {
@@ -18,9 +19,15 @@ public class User {
         }
     }
 
-    public void checkRemain() {
-        if(payment % 1000 != 0){
+    public void checkRemainder() {
+        if (payment % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
+        }
+    }
+
+    public void checkRange() {
+        if(payment <= 0){
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 이상만 입력 가능 합니다.");
         }
     }
 }

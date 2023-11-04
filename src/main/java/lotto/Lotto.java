@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.StringJoiner;
 import lotto.util.Validator;
 
 public class Lotto {
@@ -30,10 +31,6 @@ public class Lotto {
         return uniqueSize!=LOTTO_SIZE;
     }
 
-    public List<Integer> getSortingNumbers(){
-        return numbers.stream().sorted().toList();
-    }
-
     public boolean isContains(int number){
         return numbers.contains(number);
     }
@@ -42,5 +39,19 @@ public class Lotto {
         return otherLotto.numbers.stream()
                 .filter(this::isContains)
                 .count();
+    }
+
+    public String getNumbersMessage(){
+        List<Integer> sortNumbers=getSortingNumbers();
+        StringJoiner numberMessage=new StringJoiner(", ","[","]");
+        sortNumbers.stream()
+                .map(String::valueOf)
+                .forEach(numberMessage::add);
+
+        return numberMessage.toString();
+    }
+
+    private List<Integer> getSortingNumbers(){
+        return numbers.stream().sorted().toList();
     }
 }

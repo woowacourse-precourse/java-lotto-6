@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,19 +23,6 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또 번호를 오름차순으로 정렬하여 가져온다.")
-    @Test
-    void 로또번호_오름차순(){
-        //given
-        List<Integer> lottoNumbers=new ArrayList<>(List.of(6,4,1,3,5,2));
-
-        //when
-        Lotto lotto=new Lotto(lottoNumbers);
-
-        //then
-        assertThat(lotto.getSortingNumbers()).containsExactly(1,2,3,4,5,6);
     }
 
     @DisplayName("로또 번호들 중 1부터 45까지의 값이 아닌것이 있는경우 예외처리.")

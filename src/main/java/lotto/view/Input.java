@@ -28,9 +28,9 @@ public class Input {
     }
 
     private void winningNumbersValidate(String input) {
-        List<String> dividedInput = Arrays.stream(input.split(SEPARATION_SIGN)).toList();
-        dividedInput.forEach(InputValidator::onlyNumber);
-        dividedInput.forEach(InputValidator::inNumberRange);
+        InputValidator.commaCountDifferent(input);
+        List<String> dividedInput = Arrays.stream(input.split("" + SEPARATION_SIGN)).toList();
+        dividedInput.forEach(this::numberValidate);
     }
 
     public String bonusNumber() {

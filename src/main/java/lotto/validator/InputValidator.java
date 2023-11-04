@@ -1,8 +1,11 @@
 package lotto.validator;
 
+import static lotto.constant.ErrorMessage.COMMA_COUNT_DIFFERENT_MESSAGE;
 import static lotto.constant.ErrorMessage.NOT_NUMBER_MESSAGE;
 import static lotto.constant.ErrorMessage.OVER_NUMBER_RANGE_MESSAGE;
+import static lotto.view.Input.SEPARATION_SIGN;
 
+import lotto.constant.LottoConstant;
 import lotto.view.Output;
 
 public class InputValidator {
@@ -34,6 +37,16 @@ public class InputValidator {
         } catch (NumberFormatException e) {
             Output.errorMessage(OVER_NUMBER_RANGE_MESSAGE);
             throw new IllegalArgumentException(OVER_NUMBER_RANGE_MESSAGE);
+        }
+    }
+
+    public static void commaCountDifferent(String input) {
+        long count = input.chars()
+                .filter(c -> c == SEPARATION_SIGN)
+                .count();
+        if ((int) count != NECESSARY_COMMA_COUNT) {
+            System.out.println(COMMA_COUNT_DIFFERENT_MESSAGE);
+            throw new IllegalArgumentException(COMMA_COUNT_DIFFERENT_MESSAGE);
         }
     }
 

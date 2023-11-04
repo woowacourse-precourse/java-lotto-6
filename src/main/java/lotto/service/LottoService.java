@@ -23,7 +23,7 @@ public class LottoService {
     }
     private Lotto generateLottoNumber() {
         List<Integer> lottoNumbers = new ArrayList<>(
-                Utills.randomUniqueNumbers(6, 1, 45));
+                Utills.randomUniqueNumbers(1, 45, 6));
         return new Lotto(lottoNumbers);
     }
 }

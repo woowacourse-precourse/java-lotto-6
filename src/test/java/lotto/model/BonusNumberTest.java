@@ -36,12 +36,10 @@ public class BonusNumberTest {
                     .hasMessage(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
 
-        @Test
+        @ParameterizedTest
         @DisplayName("로또 숫자에서 생성될 수 없는 수면 안 된다.")
-        void unvalidNumberValueExceptionTest() {
-            // given
-            String numberInput = "100";
-
+        @ValueSource(strings = {"100", "-50"})
+        void unvalidNumberValueExceptionTest(final String numberInput) {
             // when & then
             assertThatThrownBy(() -> BonusNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(UNVALID_GOAL_NUMBER.getMessage());

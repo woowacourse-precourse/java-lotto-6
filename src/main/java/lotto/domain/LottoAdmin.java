@@ -54,4 +54,8 @@ public class LottoAdmin {
     public boolean isContain(Integer number) {
         return winningNumber.isContain(number);
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

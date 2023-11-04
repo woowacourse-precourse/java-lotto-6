@@ -2,7 +2,8 @@ package lotto.common;
 
 public enum Range {
     START(1),
-    END(45);
+    END(45),
+    Size(6);
 
     private final int value;
 

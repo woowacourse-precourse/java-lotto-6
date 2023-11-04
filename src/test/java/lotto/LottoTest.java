@@ -78,20 +78,13 @@ class LottoTest {
         // then
         assertThat(result).isEqualTo(7);
     }
-    @Test
-    void createLotto() {
-        //given
+    Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange
                 (1, 45, 6);
-        //when
-        Lotto lotto = new Lotto(numbers);
-        //then
-        assertThat(lotto.getNumbers()).isEqualTo(numbers);
-        System.out.println(lotto.getNumbers());
+        return new Lotto(numbers);
     }
-
-
-  /*  void generateLotto() {
+    @Test
+    void generateLotto() {
         // given
         TestUser testUser = new TestUser();
         // when
@@ -109,9 +102,8 @@ class LottoTest {
             List<Integer> lottoNumbers = lotto.getNumbers();
             System.out.println(lottoNumbers.stream()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", ")));
+                    .collect(Collectors.joining(",")));
         });
-
-    }*/
+    }
 }
 

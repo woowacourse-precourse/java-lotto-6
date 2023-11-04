@@ -26,6 +26,13 @@ public class Validator {
         return convertToList(numbers);
     }
 
+    public static int isValidBonusNumber(String input) {
+        isEmpty(input);
+        isNumeric(input);
+        isNumberInRange(input);
+        return Integer.parseInt(input);
+    }
+
 
     public static List<Integer> convertToList(String[] numbers) {
         return Arrays.stream(numbers)

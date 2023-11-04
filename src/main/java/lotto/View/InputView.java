@@ -1,7 +1,9 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lotto.Domain.BonusNumberValidator;
 import lotto.Domain.LottoPurchaseAmountValidator;
@@ -23,8 +25,8 @@ public class InputView {
 
     }
 
-    public static Set<Integer> inputLottoNumbers() {
-        Set<Integer> lottoNumbers = new HashSet<>();
+    public static List<Integer> inputLottoNumbers() {
+        List<Integer> lottoNumbers = new ArrayList<>();
 
         System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
         String input = Console.readLine();
@@ -34,8 +36,8 @@ public class InputView {
         return lottoNumbers;
     }
 
-    private static Set<Integer> parseLottoNumbers(String input) {
-        Set<Integer> lottoNumbers = new HashSet<>();
+    private static List<Integer> parseLottoNumbers(String input) {
+        List<Integer> lottoNumbers = new ArrayList<>();
         String[] eachLottoNumbers = input.split(",");
 
         for (String token : eachLottoNumbers) {

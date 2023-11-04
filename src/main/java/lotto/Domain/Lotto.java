@@ -47,27 +47,34 @@ public class Lotto {
         }
     }
 
-        public static void validateIsNumberDuplicate(List < Integer > numbers) {
-            Set<Integer> existingNumbers = new HashSet<>();
+    public static void validateIsNumberDuplicate(List<Integer> numbers) {
+        Set<Integer> existingNumbers = new HashSet<>();
 
-            for (Integer number : numbers) {
-                if (existingNumbers.contains(number)) {
-                    throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
-                }
-                existingNumbers.add(number);
+        for (Integer number : numbers) {
+            if (existingNumbers.contains(number)) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+            }
+            existingNumbers.add(number);
+        }
+    }
+
+    public static void validateEachLottoNumber(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            try {
+                Integer.parseInt(number.toString());
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
             }
         }
+    }
 
-        public static void validateEachLottoNumber (List < Integer > numbers) {
-            for (Integer number : numbers) {
-                try {
-                    Integer.parseInt(number.toString());
-                }
-                catch (NumberFormatException e) {
-                    throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
-                }
-            }
-        }
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
 
 }

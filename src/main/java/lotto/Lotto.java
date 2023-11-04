@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,12 +21,10 @@ public class Lotto {
     }
 
     private void duplicateNumberCheck(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-
-        for (Integer number : numbers) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
-            }
+        Set<Integer> uniqueNumbers = numbers.stream()
+                .collect(Collectors.toSet());
+        if (numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     }
 

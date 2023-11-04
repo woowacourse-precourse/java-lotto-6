@@ -27,4 +27,18 @@ public class Lotto {
     public List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public void printNumbers() {
+        System.out.println(this.numbers);
+    }
+
+    public int countMatchingNumbers(Lotto winningLotto) {
+        int count = 0;
+        for (int num: this.numbers) {
+            if (winningLotto.numbers.contains(num)){
+                count++;
+            }
+        }
+        return count;
+    }
 }

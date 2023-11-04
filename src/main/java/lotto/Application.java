@@ -6,6 +6,8 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+    static int price = 1000;
+
     public static int inputLottoAmount() {
         int amount = Integer.parseInt(Console.readLine());
         validateAmount(amount);
@@ -39,12 +41,27 @@ public class Application {
         }
     }
 
-    public static List<Lotto> generateLotto(int quantity){
+    public static List<Lotto> generateLottos(int quantity){
         List<Lotto> allLotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++){
             allLotto.add(new Lotto());
         }
         return allLotto;
+    }
+
+    public static void printLottos(List<Lotto> allLotto, int quantity) {
+        System.out.printf("%d개를 구매했습니다.\n", quantity);
+        for (Lotto lotto: allLotto){
+            lotto.printNumbers();
+        }
+    }
+
+    public static List<Integer> compareLottos(List<Lotto> allLotto, Lotto winningLotto) {
+        List<Integer> result = new ArrayList<>();
+        for (Lotto lotto: allLotto) {
+            result.add(lotto.countMatchingNumbers(winningLotto));
+        }
+        return result;
     }
 
     public static void main(String[] args) {
@@ -54,6 +71,8 @@ public class Application {
         Lotto winningLotto = inputWinningNumbers();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
-        List<Lotto> allLotto = generateLotto(amount/1000);
+        List<Lotto> allLotto = generateLottos(amount/price);
+        printLottos(allLotto, amount/price);
+        List<Integer> result = compareLottos(allLotto, winningLotto);
     }
 }

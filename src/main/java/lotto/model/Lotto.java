@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.view.message.Error;
 
 public class Lotto {
@@ -10,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         checkOversize(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +22,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_DUPLICATE.getMessage());
+        }
+    }
 
     public List<Integer> getNumbers() {
         return numbers;

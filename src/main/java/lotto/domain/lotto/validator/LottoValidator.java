@@ -28,7 +28,6 @@ public final class LottoValidator {
         final int uniqueCount = (int) numbers.stream().distinct().count();
         if (uniqueCount != LOTTO_NUMBERS_LENGTH) {
             throw new DuplicateLottoNumberException();
-
         }
     }
 

@@ -43,6 +43,7 @@ public final class StrictInputParser {
      * @apiNote 변환 시, <h3 color="#bf0f4d">input은 반드시 ,로 구분된, 숫자로 이루어진 문자열이여야 합니다.</h3>
      */
     public static List<Integer> mustParseFromCommasSeparatedInputToIntList(final String input) {
+        InputValidator.validateCommasSeparatedInput(input);
         return Arrays.stream(input.split(COMMAS))
                 .map(StrictInputParser::mustParseToInt)
                 .toList();

@@ -15,13 +15,17 @@ public class Lotto {
 
     private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(getNumbersCountErrorMessage());
         }
+    }
+
+    protected String getNumbersCountErrorMessage() {
+        return ErrorMessage.LOTTO_NUMBER_COUNT.getMessage();
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
         if (!isNumbersInRange(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_IN_RANGE.getMessage());
+            throw new IllegalArgumentException(getNumbersInRangeErrorMessage());
         }
     }
 
@@ -33,9 +37,13 @@ public class Lotto {
                 );
     }
 
+    protected String getNumbersInRangeErrorMessage() {
+        return ErrorMessage.LOTTO_NUMBER_IN_RANGE.getMessage();
+    }
+
     private void validateDuplicatedNumber(List<Integer> numbers) {
         if (hasDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_UNIQUE.getMessage());
+            throw new IllegalArgumentException(getDuplicatedNumberErrorMessage());
         }
     }
 
@@ -45,5 +53,11 @@ public class Lotto {
                 .count() != numbers.size();
     }
 
-    // TODO: 추가 기능 구현
+    protected String getDuplicatedNumberErrorMessage() {
+        return ErrorMessage.LOTTO_NUMBER_UNIQUE.getMessage();
+    }
+
+    public boolean containsNumber(int number) {
+        return this.numbers.contains(number);
+    }
 }

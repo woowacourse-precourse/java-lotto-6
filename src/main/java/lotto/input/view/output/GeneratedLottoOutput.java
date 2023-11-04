@@ -1,5 +1,7 @@
 package lotto.input.view.output;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 
@@ -16,7 +18,9 @@ public class GeneratedLottoOutput {
     public void printGeneratedLottos() {
         printPhrasedLotto(lottoNumber);
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(numbers);
+            System.out.println(numbers);
         }
     }
 

@@ -243,4 +243,19 @@ class ApplicationTest extends NsTest {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자만 입력해주세요.");
         }
     }
+
+    @Test
+    @DisplayName("보너스 번호를 입력받는다.")
+    void inputBonusNumber() {
+        String inputBonusNumber = inputBonusNumber("7");
+        assertThat(inputBonusNumber).isEqualTo("7");
+    }
+
+    @DisplayName("보너스 번호를 입력받는 메서드")
+    private String inputBonusNumber(String inputWinningNumber){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Scanner in = new Scanner(inputWinningNumber);
+        inputWinningNumber = in.next();
+        return inputWinningNumber;
+    }
 }

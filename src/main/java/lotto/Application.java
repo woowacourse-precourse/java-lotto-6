@@ -43,7 +43,8 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
-        //HashMap<LottoRank, Integer> matchCountByRank = getMatchCountByRank(lottos, winningNumbers, bonusNumber);
+        HashMap<LottoRank, Integer> matchCountByRank = getMatchCountByRank(lottos, winningNumbers, bonusNumber);
+        printStatistics(matchCountByRank, money);
     }
 
     public static int getLottoPurchasePrice() {
@@ -110,5 +111,16 @@ public class Application {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
+    }
+
+    public static void printStatistics(HashMap<LottoRank, Integer> matchCountByRank, int money) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println(LottoRank.FIFTH.getCountOfMatch() + "개 일치 (" + LottoRank.FIFTH.getWinningMoney() + "원) - " + matchCountByRank.get(LottoRank.FIFTH) + "개");
+        System.out.println(LottoRank.FOURTH.getCountOfMatch() + "개 일치 (" + LottoRank.FOURTH.getWinningMoney() + "원) - " + matchCountByRank.get(LottoRank.FOURTH) + "개");
+        System.out.println(LottoRank.THIRD.getCountOfMatch() + "개 일치 (" + LottoRank.THIRD.getWinningMoney() + "원) - " + matchCountByRank.get(LottoRank.THIRD) + "개");
+        System.out.println(LottoRank.SECOND.getCountOfMatch() + "개 일치, 보너스 볼 일치 (" + LottoRank.SECOND.getWinningMoney() + "원) - " + matchCountByRank.get(LottoRank.SECOND) + "개");
+        System.out.println(LottoRank.FIRST.getCountOfMatch() + "개 일치 (" + LottoRank.FIRST.getWinningMoney() + "원) - " + matchCountByRank.get(LottoRank.FIRST) + "개");
+        System.out.println("총 수익률은 " + getRevenueRate(getEarnedMoney(matchCountByRank), money) + "%입니다.");
     }
 }

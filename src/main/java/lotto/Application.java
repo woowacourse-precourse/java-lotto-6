@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.config.AppConfig;
 import lotto.controller.LottoController;
 import lotto.controller.PlayerController;
 import lotto.domain.Lotto;
@@ -12,8 +13,9 @@ import lotto.view.View;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        PlayerController playerController = new PlayerController(new PlayerService(new LottoService(), new Player()));
-        LottoController lottoController = new LottoController();
+        AppConfig appConfig = new AppConfig();
+        PlayerController playerController = appConfig.playerController();
+        LottoController lottoController = appConfig.lottoController();
 
         View.printStartMessage();
         List<Lotto> purchaseLotto = playerController.purchaseLotto(View.input());

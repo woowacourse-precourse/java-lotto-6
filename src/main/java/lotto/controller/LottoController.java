@@ -15,15 +15,39 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.domain.Player;
 import lotto.dto.InputNumbersDTO;
+import lotto.service.LottoService;
+import lotto.service.PlayerService;
 
 public class LottoController {
 
     private static final String SPLIT_REGEX = " ";
 
+    private final LottoService lottoService;
+    private final PlayerService playerService;
+
+    private static LottoController INSTANCE;
+
+    private LottoController(LottoService lottoService, PlayerService playerService) {
+        this.lottoService = lottoService;
+        this.playerService = playerService;
+    }
+
+    public static LottoController getInstance(LottoService lottoService, PlayerService playerService) {
+        if (INSTANCE == null) {
+            INSTANCE = new LottoController(lottoService, playerService);
+        }
+        return INSTANCE;
+    }
+
     public void inputNumbers(InputNumbersDTO inputNumbersDTO) {
-        validateDuplicateNumber(validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
+        List<Integer> inputNumbers = validateDuplicateNumber(validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
         validateBonusNumber(inputNumbersDTO.getBonusNumber());
+
+        int[] lottoResult = playerService.compareLottoNumbers(inputNumbers, Integer.parseInt(inputNumbersDTO.getBonusNumber()));
+
+        System.out.println(Arrays.toString(lottoResult));
     }
 
     private void validateBonusNumber(String input) {
@@ -78,13 +102,15 @@ public class LottoController {
         return true;
     }
 
-    private void validateDuplicateNumber(List<Integer> numbers) {
+    private List<Integer> validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> nonDuplicatedNumbers = numbers.stream().collect(Collectors.toSet());
         if (nonDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
 
         validateNumberRange(numbers);
+
+        return numbers;
     }
 
     private void validateNumberRange(List<Integer> numbers) {

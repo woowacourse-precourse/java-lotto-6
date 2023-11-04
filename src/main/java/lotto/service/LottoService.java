@@ -9,6 +9,15 @@ public class LottoService {
 
     private final LottoGenerator lottoGenerator = new LottoGenerator();
 
+    private static final LottoService INSTANCE = new LottoService();
+
+    private LottoService() {
+    }
+
+    public static LottoService getInstance() {
+        return INSTANCE;
+    }
+
     public Lotto generateLotto() {
         return new Lotto(lottoGenerator.generateLottoNumbers());
     }

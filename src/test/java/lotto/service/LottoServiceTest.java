@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
 
-    private LottoService lottoService = new LottoService();
+    AppConfig appConfig = new AppConfig();
+    private LottoService lottoService = appConfig.lottoService();
 
     @Test
     @DisplayName(value = "일치하는 번호가 없으면 0을 반환하는지 확인")

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.config.AppConfig;
 import lotto.dto.InputNumbersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class LottoControllerTest {
 
-    LottoController lottoController = new LottoController();
+    AppConfig appConfig = new AppConfig();
+    LottoController lottoController = appConfig.lottoController();
 
     @ParameterizedTest
     @ValueSource(strings = { "1 2 3 4 5", "1 2 3 4 5 6 7" })

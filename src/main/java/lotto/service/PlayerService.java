@@ -13,9 +13,18 @@ public class PlayerService {
 
     private final Player player;
 
-    public PlayerService(LottoService lottoService, Player player) {
+    private static PlayerService INSTANCE;
+
+    private PlayerService(LottoService lottoService, Player player) {
         this.lottoService = lottoService;
         this.player = player;
+    }
+
+    public static PlayerService getInstance(LottoService lottoService, Player player) {
+        if (INSTANCE == null) {
+            INSTANCE = new PlayerService(lottoService, player);
+        }
+        return INSTANCE;
     }
 
     public List<Lotto> purchaseLotto(long buyingPrice) {

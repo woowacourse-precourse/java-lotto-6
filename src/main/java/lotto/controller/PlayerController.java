@@ -6,14 +6,25 @@ import static lotto.constant.LottoInfo.LOTTO_PRICE;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Player;
+import lotto.service.LottoService;
 import lotto.service.PlayerService;
 
 public class PlayerController {
 
     private final PlayerService playerService;
 
-    public PlayerController(PlayerService playerService) {
+    private static PlayerController INSTANCE;
+
+    private PlayerController(PlayerService playerService) {
         this.playerService = playerService;
+    }
+
+    public static PlayerController getInstance(PlayerService playerService) {
+        if (INSTANCE == null) {
+            INSTANCE = new PlayerController(playerService);
+        }
+        return INSTANCE;
     }
 
     public List<Lotto> purchaseLotto(String input) {

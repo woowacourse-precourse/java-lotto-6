@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.config.AppConfig;
 import lotto.domain.Player;
 import lotto.service.LottoService;
 import lotto.service.PlayerService;
@@ -14,7 +15,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerControllerTest {
 
-    private PlayerController playerController = new PlayerController(new PlayerService(new LottoService(), new Player()));
+    AppConfig appConfig = new AppConfig();
+    private PlayerController playerController = appConfig.playerController();
 
     @ParameterizedTest
     @DisplayName(value = "입력 값에 숫자 이외의 값이 있으면 예외가 발생하는지 확인")

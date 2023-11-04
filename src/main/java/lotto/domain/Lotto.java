@@ -12,10 +12,10 @@ import java.util.Objects;
  */
 class Lotto {
 
-    private static final int MAX_LOTTO_NUMBERS_SIZE = 6;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final String UNKNOWN_NUMBERS_MESSAGE = "알 수 없는 숫자 목록으로 로또를 생성할 수 없습니다.";
     private static final String INVALID_LOTTO_NUMBERS_SIZE_MESSAGE =
-            "로또 번호의 개수는 최대 " + MAX_LOTTO_NUMBERS_SIZE + "개입니다.";
+            "로또 번호의 개수는 최대 " + LOTTO_NUMBERS_SIZE + "개입니다.";
     private static final String LOTTO_NUMBERS_DUPLICATION_MESSAGE = "로또 번호에 중복된 숫자를 포함할 수 없습니다.";
 
     private final List<LottoNumber> numbers;
@@ -43,13 +43,13 @@ class Lotto {
     }
 
     private static void checkNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != MAX_LOTTO_NUMBERS_SIZE) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
         }
     }
 
     private static void checkNumbersDuplication(List<Integer> numbers) {
-        if (calculateUniqueCount(numbers) != MAX_LOTTO_NUMBERS_SIZE) {
+        if (calculateUniqueCount(numbers) != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATION_MESSAGE);
         }
     }

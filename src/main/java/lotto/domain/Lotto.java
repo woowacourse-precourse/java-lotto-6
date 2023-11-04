@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.ValidationUtils;
 
 public class Lotto {
 
@@ -15,6 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        ValidationUtils.validateNotNull(numbers);
         validateSizeOfNumbers(numbers);
         validateDuplicatedNumbers(numbers);
     }

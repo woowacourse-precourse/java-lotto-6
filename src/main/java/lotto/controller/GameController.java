@@ -25,13 +25,14 @@ public class GameController {
     public void initGame() {
         outputView.printPaymentRequest();
         pay = new Pay(inputView.enterCost());
+        List<Lotto> lottos = generateUserLottos();
+        userLottos = new LottoList(lottos);
+        printUserLottos((userLottos.getLottos()));
     }
 
     // TODO: 클래스 분리해보기!
     public void startGame() {
-        List<Lotto> lottos = generateUserLottos();
-        userLottos = new LottoList(lottos);
-        printUserLottos((userLottos.getLottos()));
+        
     }
 
     private List<Lotto> generateUserLottos() {

@@ -30,6 +30,7 @@ public final class Lotto implements LottoTicket {
      */
     private static List<LottoNumber> intoLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
+                .sorted()
                 .map(LottoNumber::new)
                 .toList();
     }
@@ -50,4 +51,10 @@ public final class Lotto implements LottoTicket {
         return new Lotto(unwrappedNumbers);
     }
 
+    /**
+     * mapper를 위해 getter open
+     */
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
 }

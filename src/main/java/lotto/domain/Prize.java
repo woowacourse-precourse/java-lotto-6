@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Prize {
 
-    FIRST_PLACE(6, false, 2_000_000_000),
+    FIRST_PLACE(6, false, 200_000_000),
     SECOND_PLACE(5, true, 30_000_000),
     THIRD_PLACE(5, false, 1_500_000),
     FOURTH_PLACE(4, false, 50_000),

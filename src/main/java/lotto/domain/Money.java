@@ -18,4 +18,8 @@ public class Money {
 
         Validator.checkRemainder(money);
     }
+
+    public Integer countThousand() {
+        return money / 1000;
+    }
 }

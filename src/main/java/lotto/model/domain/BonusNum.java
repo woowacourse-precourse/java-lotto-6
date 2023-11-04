@@ -4,7 +4,7 @@ public class BonusNum {
 
     private final int bonusNum;
 
-    BonusNum(int bonusNum) {
+    public BonusNum(int bonusNum) {
         this.bonusNum = bonusNum;
     }
 

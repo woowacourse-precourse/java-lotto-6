@@ -9,7 +9,7 @@ public enum LottoRule {
 
     MINIMUM_NUMBER(1),
     MAXIMUM_NUMBER(45),
-    MINIMUM_MATCH_SIZE(1),
+    MINIMUM_MATCH_SIZE(3),
     LOTTO_NUMBER_LENGTH(6);
 
     private final int value;

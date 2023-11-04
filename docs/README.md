@@ -41,3 +41,7 @@
 ### LottoController
 
 - 전체적인 흐름 진행해주는 역할 
+
+### LottoGenerater 
+
+- 로또 발급 해주는 클래스 

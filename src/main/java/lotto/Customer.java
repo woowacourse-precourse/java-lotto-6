@@ -103,11 +103,6 @@ public class Customer {
                 throw new IllegalArgumentException(lottoerr);
             }
         }
-        Set<Integer> set = new HashSet<>(nums);
-        if (nums.size() > set.size()) {
-            throw new IllegalArgumentException(equalerr);
-        }
-
     }
 
     private void validatebonus(int bonus, List<Integer> nums){

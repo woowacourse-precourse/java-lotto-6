@@ -30,7 +30,8 @@ public class LottoController {
         LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
         List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
         addPrizeMoney(investorService, prizeResults);
-        
+
+        outputView.alertResult();
         outputView.printEachPrize(prizeResults);
         outputView.printProfitRate(investorService.calculateProfitRate());
     }

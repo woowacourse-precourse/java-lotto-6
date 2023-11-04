@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
 public class Application {
@@ -24,7 +25,10 @@ public class Application {
         List<Lotto> lotto_list = generateLottoList(lotto_count);
 
         //3) 발급한 로또 번호 출력 기능
-
+        printLottoCount(lotto_count);
+        for (int i = 0; i < lotto_count; i++) {
+            printCurrentLottoList(lotto_list.get(i));
+        }
         //4) 당첨 번호 입력 기능
 
         //5) 보너스 번호 입력 기능
@@ -99,4 +103,23 @@ public class Application {
         Collections.sort(list);
     }
 
+
+    /**
+     * 발급한 로또 번호 출력 기능
+     */
+    static void printLottoCount(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
+    }
+
+    static void printCurrentLottoList(Lotto lotto) {
+        System.out.print("[");
+        List<Integer> lotto_num_list = lotto.getNumbers();
+        //-> 문자열로 변환해서
+        List<String> lotto_str_num = lotto_num_list.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        System.out.print(String.join(", ", lotto_str_num));
+        System.out.println("]");
+    }
 }

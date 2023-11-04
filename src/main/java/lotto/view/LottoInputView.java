@@ -51,7 +51,7 @@ public class LottoInputView {
 
     public Integer getBonusNumber() {
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(LOTTO_BONUS_NUMBER.getMessage());
         String userInput = Console.readLine();
         return Integer.parseInt(userInput);
     }

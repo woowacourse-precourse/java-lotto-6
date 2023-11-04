@@ -18,4 +18,10 @@ public class PrizeMoney {
         return this.prizeMoney.getOrDefault(matchCount, 0);
     }
 
+    public int getBonusPrizeMoney(int matchCount, boolean isMatchBonus) {
+        if (matchCount == 5 && isMatchBonus) {
+            return 1500000;
+        }
+        return 0;
+    }
 }

@@ -11,7 +11,7 @@ public enum OutputView {
     PRINT_3ST("5개 일치 (1,500,000원) - %d개"),
     PRINT_4ST("4개 일치 (50,000원) - %d개"),
     PRINT_5ST("3개 일치 (5,000원) - %d개"),
-    PRINT_RATE_OR_RETURN("총 수익률은 %.2f%%입니다."),
+    PRINT_RATE_OR_RETURN("총 수익률은 %.1f%%입니다."),
     WINNING_STATISTICS("당첨 통계");
 
     private String message;

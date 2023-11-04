@@ -53,7 +53,7 @@ public class LottoResult {
     }
 
     private double getRateOfReturn(int price) {
-        return (getRevenue() / price) * 100;
+        return (getRevenue() / (double) price) * 100;
     }
 
     private long getRevenue() {

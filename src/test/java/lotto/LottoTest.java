@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.util.ErrorConstants.DUPLICATE_NUMBER;
+import static lotto.util.ErrorConstants.OVER_RANGE;
+import static lotto.util.ErrorConstants.OVER_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -11,21 +14,26 @@ class LottoTest {
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(OVER_SIZE);
+        ;
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DUPLICATE_NUMBER);
+        ;
     }
 
     @DisplayName("로또 번호가 1-45 범위에 포함되지 않으면 예외가 발생한다.")
     @Test
     void createLottoByOverRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 56)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(OVER_RANGE);
+        ;
     }
 }

@@ -177,4 +177,28 @@ class ApplicationTest extends NsTest {
         inputWinningNumber = in.next();
         return inputWinningNumber;
     }
+
+    @Test
+    @DisplayName("입력받은 당첨번호를 쉼표(,) 기준으로 나눈다.")
+    void inputWinningNumberSplit_정상케이스() {
+        String inputWinningNumber = "1,2,3,4,5,6";
+        String[] strings = inputWinningNumberSplit(inputWinningNumber);
+        assertThat(strings).contains("1","2","3","4","5","6");
+    }
+
+    @Test
+    @DisplayName("입력받은 당첨번호를 쉼표(,) 긴준으로 나눈다.")
+    void inputWinningNumberSplit_예외케이스() {
+        assertThatThrownBy(() -> inputWinningNumberSplit("123456"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
+    }
+    @DisplayName("입력받은 당첨번호를 쉼표(,) 기준으로 나누는 메서드")
+    private String[] inputWinningNumberSplit(String inputWinningNumber){
+        String[] split = inputWinningNumber.split(",");
+        if(split.length != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
+        }
+        return split;
+    }
 }

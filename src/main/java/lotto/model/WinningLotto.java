@@ -13,15 +13,15 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateDuplication(Lotto winningLottoTicket, int bonusNumber) {
-        if (winningLottoTicket.contains(bonusNumber)) {
+    public void validateDuplication(Lotto winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
         }
     }
 
     public LottoPrize compare(Lotto lotto) {
         return LottoPrize.valueOf(
-                this.lotto.getMatchedCount(lotto),
+                this.lotto.compare(lotto),
                 lotto.contains(bonusNumber)
         );
     }

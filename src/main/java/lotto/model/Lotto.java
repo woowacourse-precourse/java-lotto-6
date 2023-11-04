@@ -14,7 +14,7 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         this.numbers = numbers;
     }
 
-    public int getMatchedCount(Lotto lotto) {
+    public int compare(Lotto lotto) {
         int count = 0;
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.contains(lotto.get(i))) {

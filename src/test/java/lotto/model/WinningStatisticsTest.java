@@ -47,6 +47,8 @@ public class WinningStatisticsTest {
             add(new Lotto(List.of(10, 3, 4, 5, 11, 12))); // 5등 복권
             add(new Lotto(List.of(12, 13, 14, 15, 16, 17)));    // 꽝
         }};
-        return new WinningStatistics(winningLotto, purchased);
+
+        int usedBudget = purchased.size() * LottoMachine.LOTTO_TICKET_PRICE;
+        return new WinningStatistics(winningLotto, purchased, usedBudget);
     }
 }

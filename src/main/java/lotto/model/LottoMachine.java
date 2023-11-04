@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstants;
 
-public class LottoRandomGenerator implements LottoGenerator {
+public class LottoMachine implements LottoGenerator {
     @Override
     public Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
@@ -15,6 +15,7 @@ public class LottoRandomGenerator implements LottoGenerator {
         return new Lotto(numbers);
     }
 
+    @Override
     public List<Lotto> generateLottoTickets(int quantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {

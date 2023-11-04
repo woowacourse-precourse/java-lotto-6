@@ -3,19 +3,19 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public static final String ENTER_BUDGET_MESSAGE = "구입금액을 입력해 주세요.";
-    public static final String ENTER_WINNING_LOTTO_TICKET_MESSAGE = "당첨 번호를 입력해 주세요.";
-    public static final String ENTER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    public InputValidator inputValidator;
+    public static final String ENTER_BUDGET_TEXT = "구입금액을 입력해 주세요.";
+    public static final String ENTER_WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
+    public static final String ENTER_BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
+    private InputValidator inputValidator;
 
-    public InputView(InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
+    public InputView() {
+        inputValidator = new InputValidator();
     }
 
     public String scanBudget() {
         while (true) {
             try {
-                System.out.println(ENTER_BUDGET_MESSAGE);
+                System.out.println(ENTER_BUDGET_TEXT);
                 String userInput = scanRawInput();
                 inputValidator.validateBudgetInput(userInput);
                 return userInput;
@@ -28,7 +28,7 @@ public class InputView {
     public String scanWinningNumbers() {
         while (true) {
             try {
-                System.out.println(ENTER_WINNING_LOTTO_TICKET_MESSAGE);
+                System.out.println(ENTER_WINNING_NUMBERS_TEXT);
                 String userInput = scanRawInput();
                 inputValidator.validateLottoTicketInput(userInput);
                 return userInput;
@@ -41,7 +41,7 @@ public class InputView {
     public String scanBonusNumber() {
         while (true) {
             try {
-                System.out.println(ENTER_BONUS_NUMBER_MESSAGE);
+                System.out.println(ENTER_BONUS_NUMBER_TEXT);
                 String userInput = scanRawInput();
                 inputValidator.validateBonusNumberInput(userInput);
                 return userInput;

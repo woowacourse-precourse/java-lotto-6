@@ -1,10 +1,10 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoConstants;
 import lotto.constant.LottoPrize;
 
 public class WinningStatistics {
@@ -15,7 +15,7 @@ public class WinningStatistics {
     private final Map<LottoPrize, Integer> prizeCounter;
     private final double rateOfReturn;
 
-    public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased) {
+    public WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased, int usedBudget) {
         this.winningLotto = winningLotto;
         this.lottoTicketsPurchased = lottoTicketsPurchased;
         prizeCounter = new HashMap<>() {{
@@ -23,9 +23,28 @@ public class WinningStatistics {
                     .forEach(lottoPrize -> put(lottoPrize, 0));
         }};
         calculateWinningStatistics();
-        rateOfReturn = calculateRateOfReturn(lottoTicketsPurchased);
+        rateOfReturn = calculateRateOfReturn(usedBudget);
     }
-    
+
+    private WinningStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased,
+                              Map<LottoPrize, Integer> prizeCounter, double rateOfReturn) {
+        this.winningLotto = winningLotto;
+        this.lottoTicketsPurchased = lottoTicketsPurchased;
+        this.prizeCounter = prizeCounter;
+        this.rateOfReturn = rateOfReturn;
+    }
+
+    public static WinningStatistics createDefaultWinningStatistics() {
+        WinningLotto winningLotto = null;
+        List<Lotto> lottoTicketsPurchased = new ArrayList<>();
+        Map<LottoPrize, Integer> prizeCounter = new HashMap<>() {{
+            Arrays.stream(LottoPrize.values())
+                    .forEach(lottoPrize -> put(lottoPrize, 0));
+        }};
+        double rateOfReturn = 0;
+        return new WinningStatistics(winningLotto, lottoTicketsPurchased, prizeCounter, rateOfReturn);
+    }
+
     private void calculateWinningStatistics() {
         for (Lotto lotto : lottoTicketsPurchased) {
             LottoPrize lottoPrize = winningLotto.compare(lotto);
@@ -47,9 +66,8 @@ public class WinningStatistics {
         return sum;
     }
 
-    private double calculateRateOfReturn(List<Lotto> lottoTicketsPurchased) {
-        return calculateSumOfPrize() / (double) (lottoTicketsPurchased.size()
-                * LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET) * 100.0;
+    private double calculateRateOfReturn(int usedBudget) {
+        return calculateSumOfPrize() / (double) usedBudget * 100.0;
     }
 
     public Map<LottoPrize, Integer> getPrizeCounter() {

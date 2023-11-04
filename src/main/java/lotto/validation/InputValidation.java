@@ -28,6 +28,15 @@ public class InputValidation {
         return winnerNumbers;
     }
 
+    public int validateBonusNumber(String input) {
+        validateInputIsNumeric(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateBonusNumberIsPositive(bonusNumber);
+        validateBonusNumberOutOfRange(bonusNumber);
+
+        return bonusNumber;
+    }
+
     public void validateInputIsNumeric(String input) {
         if (!input.matches("[-+]?\\d*")) {
             throw new NumberFormatException("[ERROR] 숫자만 입력해야 합니다.");

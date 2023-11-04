@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.type.ErrorCode;
 
 public class Ticket {
 
@@ -18,7 +18,7 @@ public class Ticket {
 
     private void validate(int moneyInput) {
         if (moneyInput % PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_MONEY_TO_BUY.getDescription());
         }
     }
 }

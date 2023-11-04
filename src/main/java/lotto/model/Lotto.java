@@ -27,7 +27,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getLottoNumber() {
+    public List<Integer> getNumbers() {
         return numbers.stream().toList();
     }
 }

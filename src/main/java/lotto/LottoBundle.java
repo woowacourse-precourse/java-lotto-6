@@ -1,14 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoBundle {
-    List<Lotto> lottoBundle;
+    private List<Lotto> lottoBundle = new ArrayList<>();
 
-    public LottoBundle(int lottoCount, List<Integer> randomNumber) {
-        for (int i = 0; i < lottoCount; i++) {
-            lottoBundle.add(new Lotto(randomNumber));
-        }
+    public void addLotto(List<Integer> randomNumber) {
+        lottoBundle.add(new Lotto(randomNumber));
     }
 
     public List<Lotto> getLottoBundle() {

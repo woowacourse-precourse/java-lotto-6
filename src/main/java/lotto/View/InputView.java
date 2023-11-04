@@ -8,4 +8,9 @@ public class InputView {
         OutputView.printLottoPurchaseAmountMessage();
         return Console.readLine();
     }
+
+    public static String inputWinningLottoNumbers() {
+        OutputView.printEnterWinningNumber();
+        return Console.readLine();
+    }
 }

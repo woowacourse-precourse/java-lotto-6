@@ -12,4 +12,8 @@ public class Lottos {
     public int size() {
         return lottos.size();
     }
+
+    public Lotto findLottoByIndex(int index) {
+        return lottos.get(index);
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.service.InputService.*;
-import static lotto.service.NumberService.*;
+import static lotto.service.ComputeService.*;
 
 public class LottoService {
     public void run() {

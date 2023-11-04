@@ -11,4 +11,5 @@ public class StringConstant {
     public static final String TEST_WINNUMBERS_SORT = "6,5,4,3,2,1";
     public static final String TEST_BONUSNUMBER_TYPE = "가나다라";
     public static final String TEST_BONUSNUMBER_RANGE = "46";
+    public static final String TEST_COMPUTE_EXPENSE = "1000";
 }

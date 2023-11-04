@@ -3,4 +3,7 @@ package lotto.exception;
 public class Message {
     public static final String CANNOT_BUY_LOTTO_EXCEPTION = "돈으로 로또를 살 수 없습니다.";
     public static final String MONEY_CREATION_EXCEPTION = "돈이 0원 미만입니다!";
+    public static final String NUMBER_OUT_OF_RANGE_EXCEPTION = "로또 숫자가 유효 범위를 벗어났습니다.";
+    public static final String NUMBER_DUPLICATION_EXCEPTION = "숫자에 중복이 존재합니다!";
+    public static final String LOTTO_OUT_OF_SIZE_EXCEPTION = "로또로 발행할 수 있는 숫자 범위를 벗어났습니다.";
 }

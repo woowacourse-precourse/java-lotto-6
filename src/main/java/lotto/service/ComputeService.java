@@ -11,7 +11,7 @@ import static lotto.domain.constant.NumberConstant.LOTTO_PRICE;
 import static lotto.domain.constant.NumberConstant.MATCHRESULT_INCREMENT_NUM;
 import static lotto.service.InputService.readExpense;
 
-public class NumberService {
+public class ComputeService {
     public static int computeLottoTicketNum() {
         return (int) (readExpense() / LOTTO_PRICE);
     }

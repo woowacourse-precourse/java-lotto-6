@@ -14,7 +14,7 @@ public class LottoRepositoryTest {
 
     @Test
     void 로도_생성_이후_저장하기() {
-        Lotto lotto = lottoGame.generateLotto();
+        Lotto lotto = lottoGame.generateLotto(new MockedRandomGenerator());
 
         lottoRepository.saveLotto(lotto);
 

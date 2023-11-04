@@ -2,6 +2,8 @@ package lotto.Model;
 
 import static lotto.Utils.toInt;
 
+import lotto.View.InputView;
+
 public class Price {
     int purchasePrice;
 
@@ -10,8 +12,8 @@ public class Price {
         this.purchasePrice = toInt(input);
     }
 
-    public int divideWithOneThousands(Price price) {
-        return price.purchasePrice / 1000;
+    public int divideWithOneThousands() {
+        return purchasePrice / 1000;
     }
 
     private void validate(String input) {

@@ -17,31 +17,38 @@ public class ConsoleInputView implements InputView {
     @Override
     public int readPurchaseAmount() {
         System.out.println(ENTER_PURCHASE_AMOUNT_MESSAGE);
-        String input = readNonEmptyInput();
-        return InputUtil.parseInputToInt(input);
+        return readPositiveNumber();
     }
 
     @Override
     public List<Integer> readWinningNumbers() {
         System.out.println();
         System.out.println(ENTER_WINNING_NUMBERS);
-        String input = readNonEmptyInput();
-        return InputUtil.parseInputToIntegers(input, DELIMITER);
+        return readIntegerList();
     }
 
     @Override
     public int readBonusNumber() {
         System.out.println();
         System.out.println(ENTER_BONUS_NUMBER);
-        String input = readNonEmptyInput();
-        int number = InputUtil.parseInputToInt(input);
-        NumberValidator.of(number).shouldPositive(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
-        return number;
+        return readPositiveNumber();
     }
 
     private String readNonEmptyInput() {
         String input = Console.readLine();
         StringValidator.of(input).shouldNotEmpty(ErrorMessage.INPUT_IS_EMPTY);
         return input;
+    }
+
+    private int readPositiveNumber() {
+        String input = readNonEmptyInput();
+        int number = InputUtil.parseInputToInt(input);
+        NumberValidator.of(number).shouldPositive(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
+        return number;
+    }
+
+    private List<Integer> readIntegerList() {
+        String input = readNonEmptyInput();
+        return InputUtil.parseInputToIntegers(input, DELIMITER);
     }
 }

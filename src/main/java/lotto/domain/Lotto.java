@@ -1,4 +1,4 @@
-package lotto.collection;
+package lotto.domain;
 
 import lotto.constants.GameNumberConstants;
 import lotto.validator.LottoNumberValidator;

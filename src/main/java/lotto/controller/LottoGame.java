@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.collection.Lotto;
 import lotto.domain.ResultNumber;
 import lotto.domain.User;
 import lotto.dto.LottoTicketsDTO;
@@ -12,7 +11,6 @@ import lotto.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoGame {
 

@@ -2,7 +2,7 @@ package lotto.utility;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.GameNumberConstants;
-import lotto.collection.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 
 import java.util.ArrayList;

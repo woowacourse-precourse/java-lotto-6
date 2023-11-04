@@ -1,10 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.collection.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.dto.LottoTicketsDTO;
 import lotto.utility.GameUtility;
+import lotto.validator.LottoNumberValidator;
 import lotto.validator.Validator;
 import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;

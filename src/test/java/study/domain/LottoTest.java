@@ -7,6 +7,7 @@ import static lotto.domain.LottoPrize.NO_PLACE;
 import static lotto.domain.LottoPrize.SECOND_PLACE;
 import static lotto.domain.LottoPrize.THIRD_PLACE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +17,24 @@ import lotto.domain.LottoPrize;
 import org.junit.jupiter.api.Test;
 
 public class LottoTest {
+
+    @Test
+    void validate_길이가_6이_아닌경우() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validate_범위가_아닌_수가_있는경우() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validate_중복된_수가_있는경우() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void contains() {

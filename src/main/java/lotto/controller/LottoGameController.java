@@ -25,5 +25,6 @@ public class LottoGameController {
         final LottoSeller seller = new LottoSeller();
         final LottoBuyer buyer = new LottoBuyer();
         int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
+        outputView.printCountOfLotto(countOfLotto);
     }
 }

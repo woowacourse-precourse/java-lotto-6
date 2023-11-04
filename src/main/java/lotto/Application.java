@@ -14,8 +14,8 @@ public class Application {
         InputView inputView = new InputViewImpl();
         OutputView outputView = new OutputViewImpl();
         StringToInteger stringToInteger = new StringToInteger();
-        InputController inputController = new InputController(inputView, outputView, stringToInteger);
-        LottoController lottoController = new LottoController(outputView, inputController);
+        InputController inputController = new InputController(stringToInteger);
+        LottoController lottoController = new LottoController(inputView, outputView, inputController);
         lottoController.run();
     }
 }

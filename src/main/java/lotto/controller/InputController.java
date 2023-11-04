@@ -13,36 +13,32 @@ import java.util.List;
 
 public class InputController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final StringToInteger integerConverter;
 
-    public InputController(InputView inputView, OutputView outputView, StringToInteger integerConverter) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public InputController(StringToInteger integerConverter) {
         this.integerConverter = integerConverter;
     }
 
-    public PurchaseAmount getPurchaseAmount() {
+    public PurchaseAmount getPurchaseAmount(InputView inputView, OutputView outputView) {
         while (true) {
             try {
-                return readPurchaseAmount();
+                return readPurchaseAmount(inputView);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
             }
         }
     }
 
-    private PurchaseAmount readPurchaseAmount() {
+    private PurchaseAmount readPurchaseAmount(InputView inputView) {
         Integer number = integerConverter.convert(inputView.readPurchaseAmount());
         return PurchaseAmount.of(number);
     }
 
-    public WinningLotto getWinningLotto() {
-        Lotto lotto = getWinningNumbers();
+    public WinningLotto getWinningLotto(InputView inputView, OutputView outputView) {
+        Lotto lotto = getWinningNumbers(inputView, outputView);
         while (true) {
             try {
-                Bonus bonus = getBonusNumber();
+                Bonus bonus = getBonusNumber(inputView, outputView);
                 return new WinningLotto(lotto, bonus);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
@@ -50,34 +46,34 @@ public class InputController {
         }
     }
 
-    private Lotto getWinningNumbers() {
+    private Lotto getWinningNumbers(InputView inputView, OutputView outputView) {
         while (true) {
             try {
-                return readWinningNumbers();
+                return readWinningNumbers(inputView);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
             }
         }
     }
 
-    private Lotto readWinningNumbers() {
+    private Lotto readWinningNumbers(InputView inputView) {
         List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
                 .map(integerConverter::convert)
                 .toList();
         return new Lotto(numbers);
     }
 
-    private Bonus getBonusNumber() {
+    private Bonus getBonusNumber(InputView inputView, OutputView outputView) {
         while (true) {
             try {
-                return readBonusNumber();
+                return readBonusNumber(inputView);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
             }
         }
     }
 
-    private Bonus readBonusNumber() {
+    private Bonus readBonusNumber(InputView inputView) {
         Integer number = integerConverter.convert(inputView.readBonusNumber());
         return new Bonus(number);
     }

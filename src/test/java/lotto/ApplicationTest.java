@@ -163,4 +163,18 @@ class ApplicationTest extends NsTest {
             lottos.get(quantity-1).lottoNumberDisplay();
         }
     }
+
+    @Test
+    @DisplayName("당첨번호를 입력받는다.")
+    void inputWinningNumber() {
+        String inputPurchaseAmount = inputPurchaseAmount("1,2,3,4,5,6");
+        assertThat(inputPurchaseAmount).isEqualTo("1,2,3,4,5,6");
+    }
+    @DisplayName("당첨번호를 입력받는 메서드")
+    private String inputWinningNumber(String inputWinningNumber){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Scanner in = new Scanner(inputWinningNumber);
+        inputWinningNumber = in.next();
+        return inputWinningNumber;
+    }
 }

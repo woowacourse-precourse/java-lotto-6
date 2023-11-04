@@ -15,4 +15,12 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
     }
+
+    @DisplayName("로또 번호의 숫자가 45보다 크면 안 된다.")
+    @Test
+    void createWinningLottoByOverNumberRange() {
+        assertThatThrownBy(() -> new WinningLotto(List.of("1", "4", "44", "56", "43", "23")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
+    }
 }

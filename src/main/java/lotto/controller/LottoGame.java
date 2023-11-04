@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTicketMaker;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
 import lotto.util.LottoGuideMessage;
@@ -19,6 +22,10 @@ public class LottoGame {
 
     public void start() {
         Money money = repeatUntilValidMoneyCreated();
+
+        LottoTicketMaker lottoTicketMaker = new LottoTicketMaker();
+        List<Lotto> lottoTickets = lottoTicketMaker.issueLottoTickets(money);
+
         WinningNumbers winningNumbers = repeatUntilValidWinningNumbersCreated();
         repeatUntilValidBonusNumberAssigned(winningNumbers);
     }

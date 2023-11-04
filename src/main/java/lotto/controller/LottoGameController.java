@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Customer;
 import lotto.domain.Target;
+import lotto.domain.WinningChecker;
 import lotto.handler.InputHandler;
 import lotto.message.GuideMessage;
 
@@ -19,6 +20,9 @@ public class LottoGameController {
 
         Target target = createTargetNumbersAndBonusNumber();
 
+        customer.calculateResult(target);
+
+        calculateAndPrintWinning(customer);
     }
 
     private Customer createCustomerAndBuyLottos() {
@@ -39,8 +43,14 @@ public class LottoGameController {
         System.out.println(GuideMessage.GET_BONUS_NUMBER_REQUEST_MESSAGE);
         int bonusNumber = inputHandler.getAndValidateBonusNumber(targetNumbers);
 
-        Target target = Target.createTargert(targetNumbers, bonusNumber);
-
-        return target;
+        return Target.createTarget(targetNumbers, bonusNumber);
     }
+
+    private static void calculateAndPrintWinning(Customer customer) {
+        WinningChecker winningChecker = WinningChecker.createWinningChecker();
+        winningChecker.checkWinning(customer);
+        winningChecker.printWinningInfo();
+        winningChecker.printRateOfProfit(customer);
+    }
+
 }

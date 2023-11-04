@@ -1,10 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.WinningInfo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static lotto.constants.SystemOption.*;
 import static lotto.message.GuideMessage.SHOW_LOTTOS_INFO_MESSAGE;
@@ -13,14 +12,16 @@ public class Customer {
 
     private List<Lotto> lottos;
     private int payment;
-    private int prize;
     private int numberOfLottos;
+    private List<Result> results;
+    private int totalPrizeAmount;
 
     public Customer(int payment) {
         this.lottos = new ArrayList<>();
         this.payment = payment;
-        this.prize = 0;
         this.numberOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
+        this.results = new ArrayList<>();
+        this.totalPrizeAmount = 0;
     }
 
 
@@ -48,5 +49,20 @@ public class Customer {
         for (Lotto lotto : lottos) {
             lotto.printNumbers();
         }
+    }
+
+    public void calculateResult(Target target) {
+        for (Lotto lotto : lottos) {
+            Result result = lotto.compareWith(target);
+            results.add(result);
+        }
+    }
+
+    public List<Result> getResults() {
+        return this.results;
+    }
+
+    public int getPayment() {
+        return payment;
     }
 }

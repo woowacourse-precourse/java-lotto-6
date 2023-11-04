@@ -11,9 +11,15 @@ public class Target {
         this.bonusNumber = bonusNumber;
     }
 
-
-    public static Target createTargert(List<Integer> targetNumbers,int bonusNumber) {
+    public static Target createTarget(List<Integer> targetNumbers, int bonusNumber) {
         return new Target(targetNumbers, bonusNumber);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,9 +19,7 @@ public class Lotto {
     }
 
     public int getMatchNumber(ArrayList<Integer> lottoNumbers) {
-        return (int) lottoNumbers.stream()
-                .filter(number -> numbers.contains(number))
-                .count();
+        return (int) lottoNumbers.stream().filter(number -> numbers.contains(number)).count();
     }
 
     public boolean isContain(int lottoNumber) {
@@ -34,7 +33,7 @@ public class Lotto {
         numbers.stream().forEach(element -> {
             sb.append(element).append(", ");
         });
-        sb.delete(sb.length() - 2 , sb.length()).append("]");
+        sb.delete(sb.length() - 2, sb.length()).append("]");
 
         return sb.toString();
     }

@@ -18,7 +18,7 @@ public class LottoResult {
             return;
         }
 
-        place[checkRemainPlace(match , bonus)]++;
+        checkRemainPlace(match , bonus);
     }
 
     private boolean is1stPlace(int match) {
@@ -29,12 +29,14 @@ public class LottoResult {
         return match == 5 && bonus;
     }
 
-    private int checkRemainPlace(int match , boolean bonus) {
+    private void checkRemainPlace(int match , boolean bonus) {
         if(bonus) {
-            return match + 1;
+            match += 1;
         }
 
-        return match;
+        if(match >= 3) { // 3 -> 4 , 4 -> 3 , 5 -> 2 , 6 -> 1
+            place[7 - match]++;
+        }
     }
 
     public void printLottoResult(int price) {
@@ -54,7 +56,7 @@ public class LottoResult {
         return (getRevenue() / price) * 100;
     }
 
-    public long getRevenue() {
+    private long getRevenue() {
         return place[0] * LOTTO_1ST_PRICE.getValue() +
                 place[1] * LOTTO_2ST_PRICE.getValue() +
                 place[2] * LOTTO_3ST_PRICE.getValue() +

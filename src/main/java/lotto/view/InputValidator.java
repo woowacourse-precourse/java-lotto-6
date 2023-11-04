@@ -39,7 +39,24 @@ public class InputValidator {
     private static List<Integer> splitWinningNumbersByComma(String inputWinningNumbers) {
         return Arrays.stream(inputWinningNumbers.split(COMMA))
                 .map(InputValidator::convertStringToInteger)
+                .peek(InputValidator::validateNumberRange)
+                .filter(InputValidator::isValidNumber)
                 .collect(Collectors.toList());
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < VALID_LOTTO_START_NUMBER || number > VALID_LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
+        }
+    }
+
+    private static boolean isValidNumber(int number) {
+        try {
+            validateNumberRange(number);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     private static int convertStringToInteger(String input) {

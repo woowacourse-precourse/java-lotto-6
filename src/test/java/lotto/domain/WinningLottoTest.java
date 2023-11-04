@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersTest {
+class WinningLottoTest {
     @Nested
     @DisplayName("validateLottoSize 메소드 test")
     class ValidateLottoSize {
@@ -20,8 +20,8 @@ class WinningNumbersTest {
 
             // when
             // then
-            WinningNumbers winningNumbers1 = new WinningNumbers(numbers1);
-            WinningNumbers winningNumbers2 = new WinningNumbers(numbers2);
+            WinningLotto winningLotto1 = new WinningLotto(numbers1);
+            WinningLotto winningLotto2 = new WinningLotto(numbers2);
         }
 
         @DisplayName("숫자 개수가 " + Lotto.SIZE + "와 일치하지 않으면 예외 발생")
@@ -33,9 +33,9 @@ class WinningNumbersTest {
 
             // when
             // then
-            assertThatThrownBy(() -> new WinningNumbers(numbers1)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
-            assertThatThrownBy(() -> new WinningNumbers(numbers2)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
@@ -52,7 +52,7 @@ class WinningNumbersTest {
 
             // when
             // then
-            WinningNumbers winningNumbers = new WinningNumbers(numbers);
+            WinningLotto winningLotto = new WinningLotto(numbers);
         }
 
         @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위를 벗어나면 예외 발생")
@@ -64,10 +64,10 @@ class WinningNumbersTest {
 
             // when
             // then
-            assertThatThrownBy(() -> new WinningNumbers(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
-            assertThatThrownBy(() -> new WinningNumbers(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+            assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(WinningLotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+            assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(WinningLotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
         }
     }
 
@@ -83,8 +83,8 @@ class WinningNumbersTest {
 
             // when
             // then
-            WinningNumbers winningNumbers1 = new WinningNumbers(numbers1);
-            WinningNumbers winningNumbers2 = new WinningNumbers(numbers2);
+            WinningLotto winningLotto1 = new WinningLotto(numbers1);
+            WinningLotto winningLotto2 = new WinningLotto(numbers2);
         }
 
         @DisplayName("")
@@ -96,9 +96,9 @@ class WinningNumbersTest {
 
             // when
             // then
-            assertThatThrownBy(() -> new WinningNumbers(numbers1)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
-            assertThatThrownBy(() -> new WinningNumbers(numbers2)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
         }
     }

@@ -2,12 +2,12 @@ package lotto.domain;
 
 import java.util.List;
 
-public class WinningNumbers {
+public class WinningLotto {
     public static final String INVALID_LOTTO_NUMBER_RANGE_MESSAGE =
             "당첨 번호를 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 사이의 숫자로 입력해주세요.";
     private final List<Integer> numbers;
 
-    public WinningNumbers(List<Integer> numbers) {
+    public WinningLotto(List<Integer> numbers) {
         validateWinningNumbers(numbers);
         this.numbers = numbers;
     }

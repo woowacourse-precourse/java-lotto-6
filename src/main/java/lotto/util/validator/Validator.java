@@ -64,6 +64,6 @@ public class Validator {
 	}
 
 	private static boolean isNumberOutOfRange(int number, int[] ranges) {
-		return number > ranges[1] || number < ranges[0];
+		return number > Math.max(ranges[0], ranges[1]) || number < Math.min(ranges[0], ranges[1]);
 	}
 }

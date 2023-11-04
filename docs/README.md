@@ -138,7 +138,9 @@
 
 - [ ] LottoService
     - [ ] 구매 금액을 가지고 로또를 발급받고 반환한다.
-    - [ ] 사용자의 입력을 가지고 WinningLotto를 만들고, LottoResult에서 비교해 상금과 맞춘 개수를 반환한다.
+    - [ ] 사용자의 입력을 가지고 WinningLotto를 만들고, LottoResult에서 비교해 상금과 맞춘 개수를 맵으로 반환한다.
+    - [ ] 수익률을 반환한다.
+    - [ ] 로또를 몇 개 샀는지 반환한다.
 
 ### controller
 

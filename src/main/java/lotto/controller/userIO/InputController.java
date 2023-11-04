@@ -25,12 +25,12 @@ public class InputController {
     private String scanBudget() {
         while (true) {
             try {
-                System.out.println(inputView.enterBudgetMessage());
+                inputView.printEnterBudgetMessage();
                 String userInput = Console.readLine();
                 inputValidator.validateBudgetInput(userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                inputView.println(e.getMessage());
             }
         }
     }
@@ -52,12 +52,12 @@ public class InputController {
     private String scanWinningLottoTicket() {
         while (true) {
             try {
-                System.out.println(inputView.enterWinningLottoTicket());
+                inputView.printEnterWinningLottoTicketMessage();
                 String userInput = Console.readLine();
                 inputValidator.validateLottoTicketInput(userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                inputView.println(e.getMessage());
             }
         }
     }
@@ -65,12 +65,12 @@ public class InputController {
     private String scanBonusNumber(Lotto winningLottoTicket) {
         while (true) {
             try {
-                System.out.println(inputView.enterBonusNumber());
+                inputView.printEnterBonusNumberMessage();
                 String userInput = Console.readLine();
                 inputValidator.validateBonusNumberInput(winningLottoTicket, userInput);
                 return userInput;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                inputView.println(e.getMessage());
             }
         }
     }

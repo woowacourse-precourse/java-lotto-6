@@ -11,20 +11,20 @@ public class OutputView {
     public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
     public static final String WINNING_STATISTICS_TEMPLATE_HEADER = "당첨 통계\n---\n";
 
-    public String lottoTicketsCountTemplate(int count) {
-        return String.format(LOTTO_TICKETS_COUNT_FORMAT, count);
+    public void printLottoTicketsCount(int count) {
+        System.out.println(String.format(LOTTO_TICKETS_COUNT_FORMAT, count));
     }
 
-    public String lottoTicketsTemplate(List<Lotto> lottoTickets) {
+    public void printLottoTickets(List<Lotto> lottoTickets) {
         StringBuilder sb = new StringBuilder();
         lottoTickets.forEach(lotto -> {
             sb.append(lotto.toString());
             sb.append("\n");
         });
-        return sb.toString();
+        System.out.println(sb);
     }
 
-    public String winningStatisticsTemplate(WinningStatistics winningStatistics) {
+    public void printWinningStatistics(WinningStatistics winningStatistics) {
         StringBuilder sb = new StringBuilder();
         Map<LottoPrize, Integer> prizeCount = winningStatistics.getPrizeCounter();
 
@@ -41,10 +41,10 @@ public class OutputView {
             sb.append(String.format(lottoPrize.getStatisticsFormat(), count))
                     .append("\n");
         }
-        return sb.toString();
+        System.out.println(sb);
     }
 
-    public String rateOfReturnTemplate(double rateOfReturn) {
-        return String.format(RATE_OF_RETURN_FORMAT, rateOfReturn);
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn));
     }
 }

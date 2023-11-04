@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.constant.LottoConstants;
 import lotto.controller.userIO.InputController;
 import lotto.controller.userIO.InputValidator;
-import lotto.controller.userIO.OutputController;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoRandomGenerator;
@@ -15,15 +14,13 @@ import lotto.view.OutputView;
 
 public class LottoGameService {
     private InputController inputController;
-    private OutputController outputController;
+    private OutputView outputView;
 
     public void init() {
         InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
         InputValidator inputValidator = new InputValidator();
-
         inputController = new InputController(inputView, inputValidator);
-        outputController = new OutputController(outputView);
+        outputView = new OutputView();
     }
 
     public void run() {
@@ -44,8 +41,8 @@ public class LottoGameService {
         int quantity = calculateQuantity(budget);
         List<Lotto> lottoTicketsPurchased = lottoGenerator.generateLottoTickets(quantity);
 
-        outputController.printLottoTicketsCount(lottoTicketsPurchased.size());
-        outputController.printLottoTickets(lottoTicketsPurchased);
+        outputView.printLottoTicketsCount(lottoTicketsPurchased.size());
+        outputView.printLottoTickets(lottoTicketsPurchased);
         return lottoTicketsPurchased;
     }
 
@@ -53,10 +50,10 @@ public class LottoGameService {
         WinningStatistics winningStatistics
                 = new WinningStatistics(winningLotto, lottoTicketsPurchased);
 
-        outputController.printWinningStatistics(winningStatistics);
+        outputView.printWinningStatistics(winningStatistics);
 
         double rateOfReturn = calculateRateOfReturn(budget, winningStatistics.calculateSumOfPrize());
-        outputController.printRateOfReturn(rateOfReturn);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     private int calculateQuantity(int budget) {

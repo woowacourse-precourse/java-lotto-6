@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.NEGATIVE_NUMBER_EXCEPTION;
 import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
 
 public class Money {
@@ -32,7 +33,7 @@ public class Money {
 
     private static void validateIsNotNegativeNumber(final int number) {
         if (number < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NEGATIVE_NUMBER_EXCEPTION.getMessage());
         }
     }
 

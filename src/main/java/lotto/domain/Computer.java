@@ -1,15 +1,20 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.Lotto;
-import lotto.Validator;
+
 
 public class Computer {
+
+    // 입력 받기
+    public static String getInput() {
+        return Console.readLine();
+    }
+
+    // 출력 담당 컴퓨터
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
@@ -18,22 +23,7 @@ public class Computer {
         }
     }
 
-    public static Double calculateEarningRate(List<Integer> lottoResult, List<Integer> prizeMoney, Integer lottoCount) {
-        int sum = 0;
-
-        for (int i = 0; i < lottoResult.size(); i++) {
-            sum += lottoResult.get(i) * prizeMoney.get(i);
-        }
-
-        return ((double) sum / (lottoCount * 1000)) * 100;
-
-    }
-
-    public static String getInput() {
-        return Console.readLine();
-    }
-
-    // domain - createBonusNumber()같은곳으로
+    // 당첨 체크
     public static List<Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
         int count;
         List<Integer> lottoResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
@@ -67,76 +57,18 @@ public class Computer {
         return lottoResult;
     }
 
-    // domain? - Seller
-    public static List<Lotto> createLottos(Integer lottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
+    // 수익률 계산
 
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(generateLotto());
+    public static Double calculateEarningRate(List<Integer> lottoResult, List<Integer> prizeMoney, Integer lottoCount) {
+        int sum = 0;
+
+        for (int i = 0; i < lottoResult.size(); i++) {
+            sum += lottoResult.get(i) * prizeMoney.get(i);
         }
-        return lottos;
-    }
 
-    private static Lotto generateLotto() {
-
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return ((double) sum / (lottoCount * 1000)) * 100;
 
     }
 
-    public static Lotto createWinningLotto() {
-        boolean isRunning = true;
-        Lotto winningLotto = null;
-        while (isRunning) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                List<String> userInputs = Arrays.asList(Computer.getInput().split(","));
-
-                List<Integer> inputNumber = new ArrayList<>();
-
-                for (String userInput : userInputs) {
-                    Validator.checkNumber(userInput);
-                    Validator.checkZero(userInput);
-
-                    Integer lottoNumber = Integer.parseInt(userInput);
-                    Validator.checkRange(lottoNumber);
-
-                    inputNumber.add(Integer.parseInt(userInput));
-                }
-                System.out.println(inputNumber);
-                winningLotto = new Lotto(inputNumber);
-
-                isRunning = false;
-
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        return winningLotto;
-    }
-
-    // domain - createWinningLotto()와 같은 곳으로
-    public static Integer createBonusNumber(Lotto winningLotto) {
-        boolean isRunning = true;
-        Integer bonusNumber = null;
-        while (isRunning) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String userInput = Computer.getInput();
-
-                Validator.checkNumber(userInput);
-                Validator.checkZero(userInput);
-
-                bonusNumber = Integer.parseInt(userInput);
-                Validator.checkRange(bonusNumber);
-                winningLotto.checkInclusion(bonusNumber);
-
-                isRunning = false;
-
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        return bonusNumber;
-    }
 
 }

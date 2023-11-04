@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Computer;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.User;
 import lotto.ui.Output;
 
@@ -13,7 +14,6 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        List<Lotto> lottos;
         User user = new User();
 
         Output.printPurchase();
@@ -23,13 +23,13 @@ public class Application {
         Computer.printLottos(user.lottos);
 
         // 5. 당첨 번호 입력
-        Lotto winningLotto = Computer.createWinningLotto();
+        Lotto winningLotto = LottoGenerator.createWinningLotto();
 
         // 6. 보너스 번호 입력
-        Integer bonusNumber = Computer.createBonusNumber(winningLotto);
+        Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto);
 
         // 7. 당첨 내역 계산 로직
-        List<Integer> lottoResult = Computer.checkWinning(lottos, winningLotto, bonusNumber);
+        List<Integer> lottoResult = Computer.checkWinning(user.lottos, winningLotto, bonusNumber);
 
         // 당첨금
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));

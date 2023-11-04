@@ -2,10 +2,10 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.domain.wrapper.LottoNumber;
+import lotto.utils.LottoConstant;
 import lotto.utils.ErrorMessage;
 
 public class Lotto {
-    private static final int LOTTO_NUMBERS_LENGTH = 6;
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,9 +21,12 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBERS_LENGTH.getNumber()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.LOTTO_NUMBERS_LENGTH_ERROR.getFormattedMessage(LOTTO_NUMBERS_LENGTH));
+                    ErrorMessage.LOTTO_NUMBERS_LENGTH_ERROR.getFormattedMessage(
+                            LottoConstant.LOTTO_NUMBERS_LENGTH.getNumber()
+                    )
+            );
         }
     }
 

@@ -2,10 +2,9 @@ package lotto.domain.wrapper;
 
 import java.util.Objects;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoConstant;
 
 public class LottoNumber {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private int number;
 
     public LottoNumber(int number) {
@@ -14,9 +13,11 @@ public class LottoNumber {
     }
 
     private void validate(int number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        if (number < LottoConstant.MIN_LOTTO_NUMBER.getNumber()
+                || number > LottoConstant.MAX_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
+                    ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(
+                            LottoConstant.MIN_LOTTO_NUMBER.getNumber(), LottoConstant.MAX_LOTTO_NUMBER.getNumber()));
         }
     }
 

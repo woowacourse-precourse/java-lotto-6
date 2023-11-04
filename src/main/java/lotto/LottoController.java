@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-public class LottoGenerator {
-	private static List<List<Integer>> createdNumbers = new ArrayList<>();
+public class LottoController {
+	private List<List<Integer>> createdNumbers;
+	private LottoView LottoView;
 
-	public LottoGenerator(int count) {
-		this.generate(count);
+	public LottoController() {
+		createdNumbers = new ArrayList<>();
+		LottoView = new LottoView();
+	}
+
+	public void setCount() {
+		int userInput = LottoView.getMoney();
+		System.out.print("setcount" + userInput);
 	}
 
 	public void generate(int count) {

@@ -68,4 +68,5 @@ public class WinLotto {
 			this.getSixNumbers();
 		}
 	}
+	 
 }

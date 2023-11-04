@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,7 +13,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        HashSet<Integer> hashSet = new HashSet<>(numbers);
+
+        if (numbers.size() != 6 || hashSet.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

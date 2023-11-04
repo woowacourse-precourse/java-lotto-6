@@ -74,6 +74,15 @@ public class LottoController {
         }
     }
 
+    public void publishMyLotto() {
+        myLottoNumbers = new ArrayList<>();
+        List<Integer> numbers;
+        for (int i = 1; i <= lottoAmount; i++) {
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            myLottoNumbers.add(new Lotto(numbers));
+        }
+    }
+
     public void assignLottoNumbers() {
         boolean validInput = false;
 
@@ -102,15 +111,6 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    public void publishMyLotto() {
-        myLottoNumbers = new ArrayList<>();
-        List<Integer> numbers;
-        for (int i = 1; i <= lottoAmount; i++) {
-            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            myLottoNumbers.add(new Lotto(numbers));
         }
     }
 

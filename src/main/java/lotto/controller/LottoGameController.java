@@ -4,9 +4,12 @@ import java.util.List;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.mapper.LottoMapper;
 import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoBonusNumber;
+import lotto.domain.model.LottoGame;
 import lotto.domain.model.LottoPurchaseCost;
 import lotto.domain.model.LottoDispenser;
 import lotto.domain.model.Lottos;
+import lotto.domain.model.WinningLotto;
 import lotto.domain.LottoRandomGenerator;
 import lotto.domain.Repeater;
 import lotto.view.InputView;
@@ -37,6 +40,19 @@ public class LottoGameController {
         return lottos;
     }
 
+    private LottoBonusNumber readBonusNumber() {
+        outputView.printReadBonusNumberMessage();
+
+        return repeater.repeatBeforeSuccess(() -> new LottoBonusNumber(inputView.readBonusNumber()));
+    }
+
+    private WinningLotto readLottoAnswer() {
+        outputView.printReadWinningLottoMessage();
+        Lotto winningLotto = repeater.repeatBeforeSuccess(() -> new Lotto(inputView.readWinningNumbers()));
+
+        return repeater.repeatBeforeSuccess(() -> new WinningLotto(winningLotto, readBonusNumber()));
+    }
+
     private void printBoughtLottos(Lottos lottos) {
         List<Lotto> rawLottos = lottos.getElements();
         List<LottoDto> lottoDtos = LottoMapper.toDtos(rawLottos);
@@ -44,14 +60,18 @@ public class LottoGameController {
         outputView.printLottos(lottoDtos);
     }
 
-    private void initGame(LottoPurchaseCost lottoPurchaseCost) {
+    private LottoGame initGame(LottoPurchaseCost lottoPurchaseCost) {
         int lottoAmount = lottoPurchaseCost.getLottoAmount();
         Lottos lottos = buyLottos(lottoAmount);
         printBoughtLottos(lottos);
+
+        WinningLotto winningLotto = readLottoAnswer();
+
+        return new LottoGame(lottos, winningLotto);
     }
 
     public void play() {
         LottoPurchaseCost lottoPurchaseCost = readPurchaseCost();
-        initGame(lottoPurchaseCost);
+        LottoGame lottoGame = initGame(lottoPurchaseCost);
     }
 }

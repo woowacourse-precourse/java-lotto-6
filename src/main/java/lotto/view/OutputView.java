@@ -8,6 +8,7 @@ import static lotto.constants.LottoIOMessage.TOTAL_RETURN_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_MONEY_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_RESULT_MSG;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +37,13 @@ public class OutputView {
         return lottoNum.toString();
     }
 
-    public void printWinningResult(Map<LottoRanks, Integer> enumMap) {
+    public void printWinningResult(Map<LottoRanks, Integer> result, double returnRate) {
         System.out.println(WINNING_RESULT_MSG);
+        printWinningLottoCounts(result);
+        printTotalReturnRate(returnRate);
+        Console.close();
+    }
+    public void printWinningLottoCounts(Map<LottoRanks, Integer> enumMap) {
         for (LottoRanks key : enumMap.keySet()) {
             if (key == LottoRanks.NONE)
                 continue;

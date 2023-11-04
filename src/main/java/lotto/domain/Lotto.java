@@ -3,8 +3,10 @@ package lotto.domain;
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoEnum;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +15,13 @@ public class Lotto {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(String numbers) {
+        List<Integer> parsedNumbers = stringToList(numbers);
+        validate(parsedNumbers);
+        Collections.sort(parsedNumbers);
+        this.numbers = parsedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -29,6 +38,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private List<Integer> stringToList(String stringNumbers) {
+        return Arrays.stream(stringNumbers.split(","))
+                .mapToInt(Integer::parseInt).boxed()
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

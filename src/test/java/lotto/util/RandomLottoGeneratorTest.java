@@ -1,7 +1,7 @@
 package lotto.util;
 
-import lotto.util.lottogenerator.LottoGenerator;
-import lotto.util.lottogenerator.RandomLottoGenerator;
+import lotto.model.lottogenerator.LottoGenerator;
+import lotto.model.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

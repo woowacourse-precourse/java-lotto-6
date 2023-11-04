@@ -1,4 +1,4 @@
-package lotto;
+package lotto.settings;
 
 public enum WinningAmount {
 //    - 1등: 6개 번호 일치 / 2,000,000,000원

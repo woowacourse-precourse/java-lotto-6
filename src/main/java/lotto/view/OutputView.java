@@ -9,6 +9,6 @@ public class OutputView {
     }
 
     public static void printNextLine() {
-        System.out.println(NEXT_LINE);
+        System.out.print(NEXT_LINE);
     }
 }

@@ -19,3 +19,12 @@ public class PlayerLotto {
         Collections.sort(sixNumbers);
         return sixNumbers;
     }
+    public List<Lotto> generatePlayerNumbers(int purchasePrice) {
+        int buyingCount = Unit.getPurchaseNumber(purchasePrice);
+        for (int i = 0; i < buyingCount; i++) {
+            playerNumbers.add(new Lotto(generateSixNumbers()));
+        }
+
+        return Collections.unmodifiableList(playerNumbers);
+    }
+}

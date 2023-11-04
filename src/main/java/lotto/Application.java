@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Computer;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.ui.Output;
 
@@ -16,9 +17,6 @@ public class Application {
 
         User user = new User();
         user.purchaseLotto();
-
-        // 로또 개수 만큼 번호 계산
-        lottos = Computer.createLottos(user.lottoCount);
 
         // 4. 로또 번호 출력
         Computer.printLottos(lottos);

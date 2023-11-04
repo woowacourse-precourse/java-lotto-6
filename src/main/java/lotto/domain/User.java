@@ -20,7 +20,7 @@ public class User {
 
                 payMoney();
                 lottoCount = money.countThousand();
-
+                lottos = LottoGenerator.createLottos(lottoCount);
                 isPurchasing = false;
 
             } catch (IllegalArgumentException ex) {

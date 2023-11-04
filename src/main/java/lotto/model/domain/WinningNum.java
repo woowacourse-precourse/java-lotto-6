@@ -6,7 +6,7 @@ public class WinningNum {
 
     private final ArrayList<Integer> winningnum;
 
-    WinningNum(ArrayList<Integer> winningnum) {
+    public WinningNum(ArrayList<Integer> winningnum) {
         this.winningnum = winningnum;
     }
 

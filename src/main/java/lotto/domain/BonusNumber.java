@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.constant.ExceptionMessage;
 import lotto.util.NumberConverter;
 
@@ -17,7 +18,7 @@ public class BonusNumber {
 
     public void validateNumber(String bonusNumber) {
         int number = numberConverter.convert(bonusNumber);
-        this.bonusNumber = isCorrectRange(number);
+        this.bonusNumber = isNotDuplicate(isCorrectRange(number));
     }
 
     private int isCorrectRange(int bonusNumber) {
@@ -25,6 +26,18 @@ public class BonusNumber {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_CORRECT_RANGE.getMessage());
         }
         return bonusNumber;
+    }
+
+    private int isNotDuplicate(int bonusNumber) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBERS_LOTTO.getMessage());
+        }
+        return bonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
     }
 
 }

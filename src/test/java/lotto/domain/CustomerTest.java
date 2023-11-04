@@ -13,7 +13,7 @@ class CustomerTest {
 
     @BeforeEach
     void init() {
-        customer = new Customer("10000");
+        this.customer = new Customer("10000");
     }
 
     @DisplayName("글자를 입력하거나 터무니 없는 값을 입력하면 예외가 발생한다.")

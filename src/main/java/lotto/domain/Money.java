@@ -1,17 +1,25 @@
 package lotto.domain;
 
+import lotto.constants.LottoStatus;
+
 public class Money {
     private final int money;
+    private final int Tickets;
 
     public Money(String input) {
         hasOnlyNumbers(input);
         this.money = Integer.parseInt(input);
-        isAtLeastPrice(money);
+        isMoreThanPrice(money);
         isDividedByPrice(money);
+        this.Tickets = money / LottoStatus.PRICE;
     }
 
     public int getMoney() {
         return money;
+    }
+
+    public int getTickets() {
+        return Tickets;
     }
 
     private void hasOnlyNumbers(String input) {
@@ -20,7 +28,7 @@ public class Money {
         }
     }
 
-    private void isAtLeastPrice(int money) {
+    private void isMoreThanPrice(int money) {
         if (money < 1000) {
             throw new IllegalArgumentException();
         }

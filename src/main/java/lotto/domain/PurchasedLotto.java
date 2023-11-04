@@ -11,11 +11,12 @@ public class PurchasedLotto {
 
     private List<Lotto> purchasedLotto;
 
-    public void issueLotto(int purchaseAmount) {
+    public List<Lotto> issueLotto(int purchaseAmount) {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-        IntStream.range(0, dividePurchaseAmount(purchaseAmount))
-                .forEach(i -> purchasedLotto.add(new Lotto(randomNumberGenerator.generateNumber())));
+        return IntStream.range(0, dividePurchaseAmount(purchaseAmount))
+                .mapToObj(i -> new Lotto(randomNumberGenerator.generateNumber()))
+                .toList();
     }
 
 }

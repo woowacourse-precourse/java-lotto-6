@@ -5,6 +5,7 @@ import lotto.domain.constant.Rank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static lotto.domain.constant.ErrorConst.PRICE_LESS_THAN_THOUSAND;
 import static lotto.domain.constant.ErrorConst.PRICE_NOT_DIVIDED_BY_THOUSAND;
@@ -45,6 +46,17 @@ public class LottoService {
             CorrectResult correctResult = winning.countSameNumber(lotto);
             updateSameRank(correctResult);
         }
+    }
+
+    public double calculateReturn() {
+        AtomicLong profit = new AtomicLong(0L);
+        long consumption = lottoStorage.size() * 1000;
+
+        winningDetails.forEach(((rank, count) -> {
+            profit.addAndGet((long) rank.getReward() * count);
+        }));
+
+        return profit.doubleValue() / consumption;
     }
 
     private void buyOneLotto() {

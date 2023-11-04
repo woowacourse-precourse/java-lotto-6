@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningStatistics;
 import lotto.handler.InputHandler;
 import lotto.service.LottoService;
+import lotto.utils.InputSupplier;
 import lotto.view.GameView;
 
 import java.util.List;
@@ -20,48 +21,38 @@ public class GameController {
     }
 
     public void startGame() {
-        int lottoQuantity = getLottoQuantity();
+        int lottoQuantity = getInput(() -> getLottoQuantity());
 
         List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
         gameView.showLottos(lottos);
 
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        List<Integer> winningNumbers = getInput(() -> getWinningNumbers());
+        int bonusNumber = getInput(() -> getBonusNumber((winningNumbers)));
 
         WinningStatistics winningStatistics = lottoService.getWinningStatistics(lottos, winningNumbers, bonusNumber);
         gameView.showWinningStatistics(winningStatistics);
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                String bonusNumberInput = gameView.getBonusNumberInput();
-                return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
-            } catch (IllegalArgumentException e) {
-                gameView.showError(e.getMessage());
-            }
+    private <T> T getInput(InputSupplier<T> inputSupplier) {
+        while (true) try {
+            return inputSupplier.get();
+        } catch (IllegalArgumentException e) {
+            gameView.showError(e.getMessage());
         }
     }
 
-    private List<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                String winningNumbersInput = gameView.getWinningNumbersInput();
-                return inputHandler.handleWinningNumbers(winningNumbersInput);
-            } catch (IllegalArgumentException e) {
-                gameView.showError(e.getMessage());
-            }
-        }
+    private int getBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+        String bonusNumberInput = gameView.getBonusNumberInput();
+        return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
     }
 
-    private int getLottoQuantity() {
-        while (true) {
-            try {
-                String purchaseAmountInput = gameView.getPurchaseAmountInput();
-                return inputHandler.handlePurchaseAmount(purchaseAmountInput);
-            } catch (IllegalArgumentException e) {
-                gameView.showError(e.getMessage());
-            }
-        }
+    private List<Integer> getWinningNumbers() throws IllegalArgumentException {
+        String winningNumbersInput = gameView.getWinningNumbersInput();
+        return inputHandler.handleWinningNumbers(winningNumbersInput);
+    }
+
+    private int getLottoQuantity() throws IllegalArgumentException {
+        String purchaseAmountInput = gameView.getPurchaseAmountInput();
+        return inputHandler.handlePurchaseAmount(purchaseAmountInput);
     }
 }

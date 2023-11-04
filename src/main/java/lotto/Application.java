@@ -146,7 +146,7 @@ public class Application {
     }
 
     private void printEarningsRate(double earningsRate){
-
+        System.out.printf("총 수익률은 %.1ㄹ%%dlqslek.\n", earningsRate);
     }
 
     private static String getKey(int matchCount, boolean bonusMatch){

@@ -31,4 +31,33 @@ public class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE));
     }
+
+
+    @Test
+    void 당첨_번호의_길이가_올바르지_않은_경우(){
+        assertSimpleTest(() -> assertThatThrownBy(() -> validate.CheckWinningNumber("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE));
+    }
+
+    @Test
+    void 당첨_번호가_숫자가_아닌_경우(){
+        assertSimpleTest(() -> assertThatThrownBy(() -> validate.CheckMoneyInput("1,2,0,s,5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE));
+    }
+
+    @Test
+    void 당첨_번호가_범위_내에_없는_경우(){
+        assertSimpleTest(() -> assertThatThrownBy(() -> validate.CheckMoneyInput("46,0,1,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE));
+    }
+
+    @Test
+    void  당첨_번호에_빈칸이_있는_경우(){
+        assertSimpleTest(() -> assertThatThrownBy(() -> validate.CheckMoneyInput("1,3 ,4,5,6,7"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE));
+    }
 }

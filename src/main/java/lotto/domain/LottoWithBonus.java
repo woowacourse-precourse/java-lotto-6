@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.exception.ExceptionMessage;
 
 public class LottoWithBonus {
     private final Lotto lotto;
@@ -17,7 +19,7 @@ public class LottoWithBonus {
                 .filter(lottoNumber -> lottoNumber == bonus.getBonusNumber())
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER.getErrorDescription());
         }
     }
 

@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Arrays;
+import lotto.domain.Bonus;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWithBonus;
 import org.junit.jupiter.api.Test;
 
 public class LottoWithBonusTest {

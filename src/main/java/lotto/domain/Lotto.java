@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class Lotto {
     public static final int MAX_VALUE = 45;
@@ -23,13 +24,13 @@ public class Lotto {
 
     private void hasStandardSize(List<Integer> numbers) {
         if (numbers.size() != STANDARD_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_SIZE.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.WRONG_LOTTO_SIZE.getErrorDescription());
         }
     }
 
     private void hasDuplicatedNumber(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER.getErrorDescription());
         }
     }
 
@@ -38,7 +39,7 @@ public class Lotto {
                 .filter(number -> ((number > MAX_VALUE) || (number < MIN_VALUE)))
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
         }
     }
 

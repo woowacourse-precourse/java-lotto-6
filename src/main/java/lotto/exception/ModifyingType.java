@@ -1,11 +1,11 @@
-package lotto;
+package lotto.exception;
 
-public enum ErrorType {
+public enum ModifyingType {
     LOTTO_NUMBER("로또 번호"),
     BONUS_NUMBER("보너스 번호")
     ;
 
-    ErrorType(String errorType) {
+    ModifyingType(String errorType) {
         this.errorType = errorType;
     }
 

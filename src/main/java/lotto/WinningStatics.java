@@ -1,5 +1,7 @@
 package lotto;
 
+import static java.lang.Math.round;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -8,18 +10,18 @@ public class WinningStatics {
     public List<Integer> Numbers = new ArrayList<>();
     public int[] MatchNum = new int[5];
     public enum NumberOfMatches{
-        Three(0,"3개 일치 (5,000원) - ", 5000),
-        Four(1,"4개 일치 (50,000원) - ",50000),
-        Fifth(2,"5개 일치 (1,500,000원) - ",1500000),
-        FifthPlusBonus(3, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000),
-        Sixth(4,"6개 일치 (2,000,000,000원) - ",2000000000);
-        private int Num;
-        private int value;
-        private String detail;
-        NumberOfMatches(int Num, String detail, int value) {
-            this.Num=Num;
+        Three(0,"3개 일치 (5,000원) - ", 5000,0),
+        Four(1,"4개 일치 (50,000원) - ",50000,0),
+        Fifth(2,"5개 일치 (1,500,000원) - ",1500000,0),
+        FifthPlusBonus(3, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000,0),
+        Sixth(4,"6개 일치 (2,000,000,000원) - ",2000000000,0);
+        private final double value;
+        private final String detail;
+        private int Count;
+        NumberOfMatches(int Num, String detail, double value, int Count) {
             this.detail=detail;
             this.value=value;
+            this.Count=Count;
         }
     }
     public int[] HowMatch(List<Lotto> Lottos,List<Integer> winninglotto,int BonusNum){
@@ -62,11 +64,29 @@ public class WinningStatics {
         return Numbers.contains(Bonus);
     }
     public void PrintWinningCount(int[] MatchCount){
+        setCount(MatchCount);
         PrintOutput printOutput = new PrintOutput();
-        printOutput.printWinningStatics(NumberOfMatches.Three.detail,MatchCount[0]);
-        printOutput.printWinningStatics(NumberOfMatches.Four.detail,MatchCount[1]);
-        printOutput.printWinningStatics(NumberOfMatches.Fifth.detail,MatchCount[2]);
-        printOutput.printWinningStatics(NumberOfMatches.FifthPlusBonus.detail,MatchCount[3]);
-        printOutput.printWinningStatics(NumberOfMatches.Sixth.detail,MatchCount[4]);
+        for(NumberOfMatches NOM : NumberOfMatches.values()){
+            printOutput.printWinningStatics(NOM.detail,NOM.Count);
+        };
+    }
+    public void setCount(int[] MatchCount){
+        int i = 0;
+        for(NumberOfMatches NOM : NumberOfMatches.values()){
+            NOM.Count=MatchCount[i];
+            i++;
+        }
+    }
+    public double getRateOfReturn(int Chance){
+        double Price = Chance*1000;
+        return getBenefit()/Price*100;
+    }
+
+    public double getBenefit(){
+        double totalBenefit = 0;
+        for(NumberOfMatches NOM : NumberOfMatches.values()){
+            totalBenefit += NOM.value*(double)NOM.Count;
+        }
+        return totalBenefit;
     }
 }

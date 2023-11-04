@@ -14,6 +14,7 @@ public class PlayLotto {
         getWinningNumber();
         int BonusNum = getBonusNumber();
         WinningStatics(BonusNum);
+        getRateOfReturn(Chance);
         //System.out.println(Lottos.get(7).getNumbers());
     }
     public int LottoIssue(){
@@ -45,5 +46,11 @@ public class PlayLotto {
         WinningStatics winningStatics = new WinningStatics();
         MatchCount = winningStatics.HowMatch(Lottos,winninglotto,BonusNum);
         winningStatics.PrintWinningCount(MatchCount);
+    }
+    public void getRateOfReturn(int Chance){
+        WinningStatics winningStatics = new WinningStatics();
+        double ROR = winningStatics.getRateOfReturn(Chance);
+        PrintOutput printOutput = new PrintOutput();
+        printOutput.printRateOfReturn(ROR);
     }
 }

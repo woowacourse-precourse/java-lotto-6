@@ -16,4 +16,7 @@ public class PrintOutput {
     public void printWinningStatics(String detail, int MatchCount){
         System.out.println(detail + MatchCount+"개");
     }
+    public void printRateOfReturn(double ROR){
+        System.out.printf("총 수익률은 %.1f%%입니다",ROR);
+    }
 }

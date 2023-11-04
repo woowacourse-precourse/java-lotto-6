@@ -13,7 +13,7 @@ public final class NumberGenerator {
         Integer number;
         do{
             number = Randoms.pickNumberInRange(1, 45);
-        } while(numbers.contains(number));
+        } while(!numbers.contains(number));
         return number;
     }
 }

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberValidatorTest {
 
@@ -33,13 +35,14 @@ class LottoNumberValidatorTest {
     }
 
     @DisplayName("숫자와 구분자로만 이루어지지 않은 문자열을 입력하면 예외를 발생시킨다.")
-    @Test
-    void onlyNotNumberAndDelimiterThrowIllegalArgumentException() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1.7.8.9.2.4", "1%7%8.9.2.4", "1/7/8/9/2/4", "1 7 8 9 2 4"})
+    void onlyNotNumberAndDelimiterThrowIllegalArgumentException(String input) {
         //given
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
 
         //when, then
-        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("1.7.8"))
+        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구분자 ,와 숫자로 구성된 문자열만을 입력할 수 있습니다.");
     }
@@ -79,13 +82,14 @@ class LottoNumberValidatorTest {
     }
 
     @DisplayName("연속적인 구분자가 있는 문자열을 입력하면 예외를 발생시킨다.")
-    @Test
-    void consecutiveDelimiterThrowIllegalArgumentException() {
+    @ParameterizedTest
+    @ValueSource(strings = {"24,,,7,6,,,5", "24,,7,6,,5", "24,7,6,,5,45"})
+    void consecutiveDelimiterThrowIllegalArgumentException(String input) {
         //given
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
 
         //when, then
-        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("24,,53,6,,5"))
+        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구분자 ,를 연속해서 입력할 수 없습니다.");
     }

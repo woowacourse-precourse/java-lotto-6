@@ -43,9 +43,9 @@ public class Validate {
 
     // int 자료형 List에 중복이 있는지 검증
     public static void validateDuplicatedOfList(List<Integer> compares) {
-        Set<Integer> set = new HashSet<>(compares);
+        Set<Integer> removeDuplicatedNumbers = new HashSet<>(compares);
 
-        if (compares.size() != set.size()) {
+        if (compares.size() != removeDuplicatedNumbers.size()) {
             throw new IllegalArgumentException("List에 중복이 존재합니다.");
         }
     }

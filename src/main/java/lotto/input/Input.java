@@ -40,12 +40,12 @@ public class Input {
 
             // 1 ~ 45 사이의 숫자인지 검증
             validate.validateNumberInRange(number, 1, 45);
-            
-            // 리스트에 중복된 값이 있는지 검증
-            validate.validateDuplicatedInList(number, winningNumber);
 
             winningNumber.add(number);
         }
+
+        // 리스트에 중복된 값이 있는지 검증
+        validate.validateDuplicatedOfList(winningNumber);
 
         return winningNumber;
     }

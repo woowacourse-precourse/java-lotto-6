@@ -23,8 +23,33 @@ public class Lotto {
             validate.validateNumberInRange(number, 1, 45);
         }
 
-        
+        // 중복된 값이 있는지 검증
+        validate.validateDuplicatedOfList(numbers);
     }
 
     // TODO: 추가 기능 구현
+    private void print() {
+        System.out.println(numbers.toString());
+    }
+
+    // 입력한 숫자가 로또에 들어 있는지 확인
+    private boolean numberInLotto(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
+    // 당첨 번호와 일치하는 갯수 반환
+    private int calculateCorrectCount(Lotto winningNumbers) {
+        int count = 0;
+
+        for (int number: numbers) {
+            if (winningNumbers.numberInLotto(number)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }

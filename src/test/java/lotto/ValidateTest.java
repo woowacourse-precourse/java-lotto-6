@@ -58,6 +58,15 @@ public class ValidateTest {
     }
 
     @Test
+    public void List에_중복되는_값이_있을_경우_예외() {
+        // given
+        List<Integer> checkDuplicated = Arrays.asList(1, 1, 3, 4, 5, 6);
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> validate.validateDuplicatedOfList(checkDuplicated));
+    }
+
+    @Test
     public void 범위에_맞지_않는_입력_예외() {
         // given
         List<Integer> tests = Arrays.asList(0, 46, 999);

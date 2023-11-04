@@ -14,4 +14,10 @@ public class InputValidator {
             throw new IllegalArgumentException("구입 금액은 1000 이상이어야 합니다.");
         }
     }
+
+    public static void inRange(int number) {
+        if(number < Lotto.LOTTO_MIN || number > Lotto.LOTTO_MAX){
+            throw new IllegalArgumentException(Lotto.OUT_OF_RANGE_ERROR);
+        }
+    }
 }

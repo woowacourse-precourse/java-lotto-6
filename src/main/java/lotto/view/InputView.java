@@ -41,6 +41,7 @@ public class InputView {
     public int readBonusNumber(){
         System.out.println(BONUS_NUMBER_INPUT_PROMPT);
         int bonusNumber = readLineAndParseInt();
+        InputValidator.inRange(bonusNumber);
         return bonusNumber;
     }
 

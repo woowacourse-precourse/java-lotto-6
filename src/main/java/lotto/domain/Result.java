@@ -12,7 +12,8 @@ public class Result {
     private final Money winMoney;
 
     public Result(final List<Prize> prizes) {
-        this.prizes = prizes.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        this.prizes = prizes.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         final List<Money> moneys = prizes.stream().map(Prize::getMoney).toList();
         this.winMoney = moneys.stream().reduce(Money.ZERO, Money::add);
     }

@@ -64,6 +64,21 @@ class ApplicationTest extends NsTest {
         int result=lottoService.compare(lotto1,lotto2);
         assertThat(result).isEqualTo(2);
     }
+    @Test
+    void 보너스_숫자가_맞는지_확인1(){
+        LottoService lottoService=new LottoService();
+        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
+        boolean check=lottoService.compareBonusNumber(lotto1,3);
+        assertThat(check).isEqualTo(true);
+    }
+
+    @Test
+    void 보너스_숫자가_맞는지_확인2(){
+        LottoService lottoService=new LottoService();
+        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
+        boolean check=lottoService.compareBonusNumber(lotto1,7);
+        assertThat(check).isEqualTo(false);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

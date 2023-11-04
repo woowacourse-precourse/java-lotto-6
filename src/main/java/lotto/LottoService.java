@@ -20,5 +20,7 @@ public class LottoService {
         }
         return correct;
     }
-
+    public boolean compareBonusNumber(Lotto answer,int bonusNumber){
+        return answer.getNumbers().contains(bonusNumber);
+    }
 }

@@ -5,21 +5,20 @@ import lotto.constant.NumberRange;
 
 public class BonusNumber {
     int bonusNumber;
-    NumberRange lowestNumber;
-    NumberRange highestNumber;
-    ErrorMessage notInRange = ErrorMessage.RANGE_ERROR_MESSAGE;
 
-    BonusNumber(int bonusNumber, NumberRange lowestNumber, NumberRange highestNumber) {
-        isInRange();
+    BonusNumber(int bonusNumber) {
+        isInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
-        this.lowestNumber = lowestNumber;
-        this.highestNumber = highestNumber;
     }
 
-    private void isInRange() {
-        if (!(bonusNumber >= lowestNumber.getRangeNumber()
-                && bonusNumber <= highestNumber.getRangeNumber())) {
-            throw new IllegalArgumentException(notInRange.getErrorMessage());
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    private void isInRange(int bonusNumber) {
+        if (!(bonusNumber >= NumberRange.LOWEST_NUMBER.getRangeNumber()
+                && bonusNumber <= NumberRange.HIGHEST_NUMBER.getRangeNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.RANGE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 }

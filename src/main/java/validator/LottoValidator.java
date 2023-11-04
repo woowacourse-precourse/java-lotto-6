@@ -46,12 +46,12 @@ public class LottoValidator {
         long distinctSize = numbers.stream()
             .distinct()
             .count();
-        boolean condition = distinctSize == numbers.size();
+        boolean condition = (distinctSize == numbers.size());
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
     private void validateSize(final List<Integer> numbers) {
-        boolean condition = numbers.size() <= 6;
+        boolean condition = numbers.size() == 6;
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 

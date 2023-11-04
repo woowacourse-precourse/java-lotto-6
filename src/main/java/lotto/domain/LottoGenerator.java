@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,8 @@ public class LottoGenerator {
         return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, RANGE));
     }
 
-    public Lotto generateWinningLotto(String input){
-        return new Lotto(LottoParser.parseWinningInputs(input));
+    public Lotto generateWinningLotto(){
+        return new Lotto(LottoParser.parseWinningInputs(Console.readLine()));
     }
 
     public List<Lotto> generateMultipleLottoByBudget(Budget budget){

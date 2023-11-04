@@ -27,6 +27,6 @@ public class LottoController {
 
     private WinningLotto drawLotto(){
         String input = Console.readLine();
-        Lotto lotto = lottoGenerator.generateWinningLotto(input);
+        Lotto lotto = lottoGenerator.generateWinningLotto();
     }
 }

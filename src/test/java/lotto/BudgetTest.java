@@ -16,4 +16,10 @@ public class BudgetTest {
         Assertions.assertThatThrownBy(() -> Budget.from("500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void createMoneyOfDivideResultNotZero(){
+        Assertions.assertThatThrownBy(() -> Budget.from("1100"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

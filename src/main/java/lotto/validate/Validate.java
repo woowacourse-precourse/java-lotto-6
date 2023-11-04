@@ -1,6 +1,8 @@
 package lotto.validate;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validate {
 
@@ -36,6 +38,15 @@ public class Validate {
     public static void validateDuplicatedInList(int number, List<Integer> compares) {
         if (compares.contains(number)) {
             throw new IllegalArgumentException("입력 값이 중복되어 존재합니다.");
+        }
+    }
+
+    // int 자료형 List에 중복이 있는지 검증
+    public static void validateDuplicatedOfList(List<Integer> compares) {
+        Set<Integer> set = new HashSet<>(compares);
+
+        if (compares.size() != set.size()) {
+            throw new IllegalArgumentException("List에 중복이 존재합니다.");
         }
     }
 }

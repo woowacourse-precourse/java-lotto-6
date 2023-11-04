@@ -19,7 +19,6 @@ public class Customer {
     private List<Integer> mynums;
 
     public void forraffle() {
-        inputpprice();
         while(true){
             try{
                 inputlotto();
@@ -33,8 +32,7 @@ public class Customer {
             }
         }
     }
-
-    private int inputpprice() {
+    public int inputpprice() {
         int price;
         while (true) {
             try {

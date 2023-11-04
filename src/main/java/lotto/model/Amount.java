@@ -2,9 +2,9 @@ package lotto.model;
 
 public class Amount {
 
-    private final int amount;
+    private final int money;
 
-    public Amount(int amount) {
-        this.amount = amount;
+    public Amount(int money) {
+        this.money = money;
     }
 }

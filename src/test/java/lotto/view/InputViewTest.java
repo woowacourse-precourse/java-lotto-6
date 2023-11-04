@@ -1,20 +1,17 @@
 package lotto.view;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 import java.util.function.Function;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.WinningNumbers;
+import lotto.view.inputview.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 
 class InputViewTest {
 

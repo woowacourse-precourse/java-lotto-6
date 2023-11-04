@@ -7,8 +7,8 @@ import lotto.domain.lotto.LottoTickets;
 import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.WinningNumbers;
 import lotto.service.LottoChecker;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.inputview.InputView;
+import lotto.view.outputview.OutputView;
 
 public class LottoController {
     private final LottoChecker lottoChecker;

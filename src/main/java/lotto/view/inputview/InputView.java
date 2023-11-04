@@ -1,9 +1,10 @@
-package lotto.view;
+package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import lotto.view.outputview.OutputView;
 
 public class InputView {
     private static final Map<String, String> inputMessages = new HashMap<>();

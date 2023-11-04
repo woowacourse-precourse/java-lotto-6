@@ -8,4 +8,7 @@ public class PrintInput {
     public void printWinningLotto() {
         System.out.println("\n당첨번호를 입력해 주세요.");
     }
+    public void printBonusLotto() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
 }

@@ -21,6 +21,15 @@ public class LottoInput {
         String s = Console.readLine();
         tempS = s.split((","));
         for (String temp : tempS) {
+            WinningNumbers.add(Integer.parseInt(temp));
+        }
+        return WinningNumbers;
+    }
+    public List<Integer> getBonusNum(){
+        String[] tempS;
+        String s = Console.readLine();
+        tempS = s.split((","));
+        for (String temp : tempS) {
         }
         return WinningNumbers;
     }

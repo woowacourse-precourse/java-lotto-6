@@ -10,6 +10,7 @@ public class PlayLotto {
         int Chance = LottoIssue();
         Lottos = makeLottoNum(Chance);
         getWinningNumber();
+        // int BonusNum = getBonusNumber();
         //System.out.println(Lottos.get(7).getNumbers());
 
     }
@@ -29,5 +30,12 @@ public class PlayLotto {
         printInput.printWinningLotto();
         LottoInput lottoInput = new LottoInput();
         winninglotto = lottoInput.getWinningNum();
+    }
+    public int getBonusNumber(){
+        PrintInput printInput = new PrintInput();
+        printInput.printBonusLotto();
+        LottoInput lottoInput = new LottoInput();
+        winninglotto = lottoInput.getBonusNum();
+        return 1;
     }
 }

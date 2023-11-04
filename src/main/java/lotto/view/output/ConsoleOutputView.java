@@ -43,4 +43,9 @@ public class ConsoleOutputView implements OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
+
+    @Override
+    public void printEachPrize(final String condition, final int prize, final int count) {
+        System.out.println(condition + " (" + String.format("%,d", prize) + "원)" + " - " + count + "개");
+    }
 }

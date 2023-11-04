@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface LottoJudge {
 
-    int countLottoWithMatchSize(final List<Lotto> lottos, final int matchSize);
+    List<Lotto> collectLottoWithMatchSize(final List<Lotto> lottos, final int matchSize);
 }

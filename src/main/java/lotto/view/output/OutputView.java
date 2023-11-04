@@ -11,4 +11,5 @@ public interface OutputView {
     void askGoalNumbers();
     void askBonusNumber();
     void alertResult();
+    void printEachPrize(final String condition, final int prize, final int count);
 }

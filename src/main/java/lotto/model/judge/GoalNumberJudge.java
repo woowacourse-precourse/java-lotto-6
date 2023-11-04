@@ -32,9 +32,9 @@ public class GoalNumberJudge implements LottoJudge {
     }
 
     @Override
-    public int countLottoWithMatchSize(final List<Lotto> lottos, final int matchSize) {
-        return (int) lottos.stream()
+    public List<Lotto> collectLottoWithMatchSize(final List<Lotto> lottos, final int matchSize) {
+        return lottos.stream()
                 .filter(lotto -> lotto.isContainsNumbersWithSize(goalNumbers, matchSize))
-                .count();
+                .toList();
     }
 }

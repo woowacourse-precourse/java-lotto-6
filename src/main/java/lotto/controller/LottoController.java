@@ -3,8 +3,12 @@ package lotto.controller;
 import lotto.model.Investor;
 import lotto.model.Lotto;
 import lotto.model.Money;
+import lotto.model.Prize;
 import lotto.model.Shop;
 import lotto.model.dto.LottoResponse;
+import lotto.model.judge.BonusNumberJudge;
+import lotto.model.judge.GoalNumberJudge;
+import lotto.model.judge.LottoJudge;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 import java.util.List;
@@ -34,6 +38,22 @@ public class LottoController {
         outputView.askBonusNumber();
         String bonusNumberInput = inputView.readLine();
         outputView.alertResult();
+        LottoJudge goalJudge = GoalNumberJudge.from(goalNumbersInput);
+        LottoJudge bonusJudge = BonusNumberJudge.from(bonusNumberInput);
+        for (int i = 3; i < 6; i++) {
+            List<Lotto> matchLotto = goalJudge.collectLottoWithMatchSize(lottos, i);
+            Prize prize = Prize.findByPoint(i * 100);
+            outputView.printEachPrize(prize.getCondition(), prize.getMoney(), matchLotto.size());
+        }
+
+        List<Lotto> secondMatchLotto = bonusJudge.collectLottoWithMatchSize(lottos, 5);
+        List<Lotto> secondResultLotto = goalJudge.collectLottoWithMatchSize(secondMatchLotto, 5);
+        Prize secondPrize = Prize.findByPoint(550);
+        outputView.printEachPrize(secondPrize.getCondition(), secondPrize.getMoney(), secondResultLotto.size());
+
+        List<Lotto> firstLotto = goalJudge.collectLottoWithMatchSize(lottos, 6);
+        Prize prize = Prize.findByPoint(600);
+        outputView.printEachPrize(prize.getCondition(), prize.getMoney(), firstLotto.size());
     }
 
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {

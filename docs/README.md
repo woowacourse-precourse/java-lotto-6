@@ -39,6 +39,8 @@
   - 당첨 통계를 반환한다.
 - LottoGameConstants
   - 로또 게임에 관련된 상수들을 가진다.
+- PrizeConstants
+  - 상금에 관련된 상수들을 가진다.
 - Exception
   - 호출된 익셉션에 따라 다른 오류를 출력한다.
 ### View

@@ -1,20 +1,18 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import exception.LottoException;
-
-import java.util.List;
 
 public class LottoTicket {
 
-    public void lottoTicketService() {
+    public int lottoTicketService() {
         // 사용자에게 로또 구입 금액을 입력하라고 요청
         System.out.println("로또 구입 금액을 입력해주세요:");
         String inputValue = Console.readLine();
 
         // 입력 값을 검증하고 구매한 티켓의 수를 계산
-        int numberOfTicketsPurchased = validateNumber(inputValue);
+
+        return validateNumber(inputValue);
 
     }
 

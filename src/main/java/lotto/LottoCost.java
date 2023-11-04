@@ -11,9 +11,7 @@ public class LottoCost {
             getLottoCost();
         }
 
-        int costValue = Integer.parseInt(cost);
-
-        if (!isMultipleOfThousand(costValue)) {
+        if (!isMultipleOfThousand(cost)) {
             getLottoCost();
         }
 
@@ -34,8 +32,9 @@ public class LottoCost {
         return hasOnlyNum;
     }
 
-    public boolean isMultipleOfThousand(int costValue) {
-        boolean isRemainderZero = (costValue % 1000 == 0);
+    public boolean isMultipleOfThousand(String cost) {
+        int costValue = Integer.parseInt(cost);
+        boolean isRemainderZero = (costValue != 0 && costValue % 1000 == 0);
 
         if (!isRemainderZero) {
             try {

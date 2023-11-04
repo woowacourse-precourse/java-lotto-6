@@ -19,12 +19,16 @@ public class LottoCompareResult {
             .filter(lottoRank -> lottoRank.hasSameCount(equalCount))
             .toList();
 
-        if (sameCountRank.size() == 1) {
+        if (hasNotBonusBallCondition(sameCountRank)) {
             return Optional.of(sameCountRank.get(0));
         }
 
         return sameCountRank.stream()
             .filter(lottoRank -> lottoRank.hasSameBonusBallCondition(isBonusNumberSame))
             .findFirst();
+    }
+
+    private boolean hasNotBonusBallCondition(final List<LottoRank> sameCountRank) {
+        return sameCountRank.size() == 1;
     }
 }

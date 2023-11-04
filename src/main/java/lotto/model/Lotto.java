@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.exception.LottoException;
@@ -10,6 +11,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         LottoException.checkNumbersException(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     public String sortNumbers() {

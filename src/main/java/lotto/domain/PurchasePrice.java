@@ -5,27 +5,22 @@ import lotto.utils.ValidationException;
 public class PurchasePrice {
     private final int purchasePrice;
 
-    public PurchasePrice(String purchasePrice) {
+    public PurchasePrice(int purchasePrice) {
         validate(purchasePrice);
-        this.purchasePrice = parsingStringToInt(purchasePrice);
+        this.purchasePrice = purchasePrice;
     }
 
     public int getPurchaseCount() {
         return purchasePrice / 1000;
     }
 
-    private void validate(String price) {
-        ValidationException validation = new ValidationException();
-
-        validation.isNullOrEmpty(price);
-        validation.isInteger(price);
-
-        int parsingPrice = parsingStringToInt(price);
-
-        validation.isDivideByPriceUnit(parsingPrice);
+    private void validate(int price) {
+        checkDivideByPriceUnit(price);
     }
 
-    private int parsingStringToInt(String purchasePrice) {
-        return Integer.parseInt(purchasePrice);
+    private void checkDivideByPriceUnit(int price) {
+        if (price % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 구입 금액을 입력해 주세요.");
+        }
     }
 }

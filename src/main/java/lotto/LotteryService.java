@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class LotteryService {
     private int totalLottoAmount;
     List<Lotto> buyLottoSet = new ArrayList<Lotto>();
+    List<Integer> winningNumber = new ArrayList<Integer>();
     Validation validator = new Validation();
 
     public LotteryService(){
@@ -38,5 +39,12 @@ public class LotteryService {
             buyLottoSet.add(newLotto);
             outputMessage.printPurchaseLottoNumbers(numbers);
         }
+    }
+
+    public void makeWinningNumber(){
+        DataInput inputWinningNumber = new DataInput();
+        DataOutput outputMessage = new DataOutput();
+        outputMessage.printProgressMessage(Progress.WINNING);
+        this.winningNumber = inputWinningNumber.userInputWinningNumbers();
     }
 }

@@ -6,5 +6,6 @@ public class Application {
         LotteryService doLotto = new LotteryService();
         doLotto.purchaseLotto();
         doLotto.makeRandomLottoNumbers();
+        doLotto.makeWinningNumber();
     }
 }

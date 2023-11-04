@@ -10,20 +10,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class InputPatternTest {
 
     @Test
-    @DisplayName("숫자 검증 정규식 장수에 숫자를 입력 안 하면 true를 반환한다.")
+    @DisplayName("숫자 검증 정규식 상수에 숫자를 입력 안 하면 true를 반환한다.")
     void When_InputNotNumeric_Then_True() {
         //given
-        String givenNumeric = "pobi";
+        String givenNotNumeric = "pobi";
 
         //when
-        boolean isNotNumeric = InputPattern.isNotNumeric(givenNumeric);
+        boolean isNotNumeric = InputPattern.isNotNumeric(givenNotNumeric);
 
         //then
         assertTrue(isNotNumeric);
     }
 
     @Test
-    @DisplayName("숫자 검증 정규식 장수에 숫자를 입력 하면 false를 반환한다.")
+    @DisplayName("숫자 검증 정규식 상수에 숫자를 입력 하면 false를 반환한다.")
     void When_InputNumericThen_False() {
         //given
         String givenNumeric = "123";
@@ -34,4 +34,32 @@ class InputPatternTest {
         //then
         assertFalse(isNotNumeric);
     }
+
+    @Test
+    @DisplayName("컴마 구분 정규식 상수에 컴마를 구분자로 입력 안하면 true를 반환한다.")
+    void When_InputDivisionComma_Then_True() {
+        //given
+        String givenNotDivisionComma = "1/2/3";
+
+        //when
+        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenNotDivisionComma);
+
+        //then
+        assertTrue(isNotDivisionComma);
+    }
+
+    @Test
+    @DisplayName("컴마 구분 정규식 상수에 컴마를 구분자로 입력 하면 false를 반환한다.")
+    void When_InputDivisionComma_Then_False() {
+        //given
+        String givenDivisionComma = "1,2,3";
+
+        //when
+        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenDivisionComma);
+
+        //then
+        assertFalse(isNotDivisionComma);
+
+    }
+
 }

@@ -174,8 +174,8 @@
      - [ ] **예외 처리** "[ERROR]" 로 지삭하는 에러 메세지를 출력하고, *IllegalArgumentException을* throw 하고 재입력을 받는다
 
 8. Console로 부터 사용자의 보너스 번호를 입력 받는다 (UserBonusDTO - Bonus)
-  - [ ] UserBonusDTO를 형성하고 Bonus로 변환한다 
-  - [ ] 공통 예외에 대한 검증을 DTO에서 진행한다 (userMoneyDTO와 동일)
+  - [x] UserBonusDTO를 형성하고 Bonus로 변환한다 
+  - [x] 공통 예외에 대한 검증을 DTO에서 진행한다 (userMoneyDTO와 동일)
       
 10. LottoGame에서 사용자의 로또 번호와 생성된 로또 번호를 비교한다 - LottoService (핵심 비즈니스 로직을 유지하는 곳 )
   - Repository에 저장되어 있는 로또 번호 리스트 정보를 가지고 온다

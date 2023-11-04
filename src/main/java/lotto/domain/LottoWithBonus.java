@@ -6,10 +6,14 @@ public class LottoWithBonus {
     private final Lotto lotto;
     private final Bonus bonus;
 
-    public LottoWithBonus(Lotto lotto, Bonus bonus) {
+    private LottoWithBonus(Lotto lotto, Bonus bonus) {
         validate(lotto, bonus);
         this.lotto = lotto;
         this.bonus = bonus;
+    }
+
+    public static LottoWithBonus of(Lotto lotto, Bonus bonus) {
+        return new LottoWithBonus(lotto, bonus);
     }
 
     private void validate(Lotto lotto, Bonus bonus) {

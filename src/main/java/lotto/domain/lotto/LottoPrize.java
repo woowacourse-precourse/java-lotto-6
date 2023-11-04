@@ -69,4 +69,10 @@ public enum LottoPrize {
     }
 
 
+    /**
+     * 각 등수별 당첨 금액을 불변 Money 객체로 반환
+     */
+    public Money getPrize() {
+        return price;
+    }
 }

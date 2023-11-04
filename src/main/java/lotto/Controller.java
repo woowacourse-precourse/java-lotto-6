@@ -21,6 +21,26 @@ public class Controller {
         return matchingCount;
     }
 
+    public static void setRankOnList(List<Rank> rankList, List<Integer> matchingNumberCountList) {
+        for (Integer matchingNumberCount : matchingNumberCountList) {
+            if (matchingNumberCount.equals(6)) {
+                rankList.add(Rank.FIRST);
+            }
+            if (matchingNumberCount.equals(5)) {
+                rankList.add(Rank.THIRD);
+            }
+            if (matchingNumberCount.equals(4)) {
+                rankList.add(Rank.FOURTH);
+            }
+            if (matchingNumberCount.equals(3)) {
+                rankList.add(Rank.FIFTH);
+            }
+            if (matchingNumberCount < 3) {
+                rankList.add(Rank.FAIL);
+            }
+        }
+    }
+
     public static boolean bonusNumberFlag(List<Integer> lotteryNumbers, Integer bonusNumber) {
         for (Integer lotteryNumber : lotteryNumbers) {
             if (lotteryNumber.equals(bonusNumber)) {

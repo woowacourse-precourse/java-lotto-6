@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static lotto.Notice.*;
-import static lotto.Rank.FAIL;
 
 public class Application {
     public static void main(String[] args) {
@@ -59,23 +58,7 @@ public class Application {
             matchingNumberCountList.add(countTemp);
         }// 리팩토링 고민해봐야 함.
 
-        for (Integer matchingNumberCount : matchingNumberCountList) {
-            if (matchingNumberCount.equals(6)) {
-                rankList.add(Rank.FIRST);
-            }
-            if (matchingNumberCount.equals(5)) {
-                rankList.add(Rank.THIRD);
-            }
-            if (matchingNumberCount.equals(4)) {
-                rankList.add(Rank.FOURTH);
-            }
-            if (matchingNumberCount.equals(3)) {
-                rankList.add(Rank.FIFTH);
-            }
-            if (matchingNumberCount < 3) {
-                rankList.add(FAIL);
-            }
-        }
+        Controller.setRankOnList(rankList, matchingNumberCountList);
 
         Integer bonusNumber = gameData.getBonusNumber();
         for (int i = 0; i < rankList.size(); i++) {

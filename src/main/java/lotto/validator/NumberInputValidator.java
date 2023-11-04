@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class BonusInputValidator implements InputValidator {
+public class NumberInputValidator implements InputValidator {
 
     private final static String INTEGER_PATTERN = "^\\d+$";
     private final static int MIN_RANGE = 1;

@@ -7,13 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class BonusInputValidatorTest {
+class NumberInputValidatorTest {
 
     private static InputValidator validator;
 
     @BeforeAll
     private static void beforeAll() {
-        validator = new BonusInputValidator();
+        validator = new NumberInputValidator();
     }
 
     @ParameterizedTest

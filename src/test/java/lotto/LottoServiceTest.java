@@ -1,11 +1,8 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -43,14 +40,9 @@ public class LottoServiceTest {
         LottoService lottoService = new LottoService(winningNumbers, mockMachine);
 
         //when
-        RankCounter rankCounter = lottoService.rank(lottos);
+        EnumMap<Rank, Integer> result = lottoService.rank(lottos);
 
         //then
-        assertThat(rankCounter.get(Rank.FIRST)).isEqualTo(1);
-        assertThat(rankCounter.get(Rank.SECOND)).isEqualTo(1);
-        assertThat(rankCounter.get(Rank.THIRD)).isEqualTo(1);
-        assertThat(rankCounter.get(Rank.FOURTH)).isEqualTo(1);
-        assertThat(rankCounter.get(Rank.FIFTH)).isEqualTo(1);
-        assertThat(rankCounter.get(Rank.BLANK)).isEqualTo(2);
+        assertThat(result.values()).containsExactly(1, 1, 1, 1, 1, 2);
     }
 }

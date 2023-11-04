@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,25 +17,38 @@ public class RankCounterTest {
     }
 
     private void assertCountZero(RankCounter rankCounter, Rank rank) {
-        assertThat(rankCounter.get(rank)).isEqualTo(0);
+        EnumMap<Rank, Integer> result = rankCounter.getCountResult();
+        assertThat(result.get(rank)).isEqualTo(0);
     }
 
     @DisplayName("count 메소드 호출시 값이 증가한다.")
     @Test
     void countRankTest() {
+        //given
         RankCounter rankCounter = new RankCounter();
-        int before = rankCounter.get(Rank.FIRST);
+        EnumMap<Rank, Integer> before = rankCounter.getCountResult();
+        int count = before.get(Rank.FIRST);
+
+        //when
         rankCounter.increaseCount(Rank.FIRST);
-        int after = rankCounter.get(Rank.FIRST);
-        assertThat(after).isEqualTo(before + 1);
+
+        //then
+        EnumMap<Rank, Integer> after = rankCounter.getCountResult();
+        assertThat(after.get(Rank.FIRST)).isEqualTo(count + 1);
     }
 
     @DisplayName("불변성이 보장된다.")
     @Test
     void changeValueButConstant() {
+        //given
         RankCounter rankCounter = new RankCounter();
-        int countNumber = rankCounter.get(Rank.FIRST);
+        EnumMap<Rank, Integer> result = rankCounter.getCountResult();
+        int count = result.get(Rank.FIRST);
+
+        //when
         rankCounter.increaseCount(Rank.FIRST);
-        assertThat(countNumber).isEqualTo(0);
+
+        //then
+        assertThat(count).isEqualTo(0);
     }
 }

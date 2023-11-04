@@ -17,7 +17,7 @@ public class RankCounter {
         map.put(rank, value + 1);
     }
 
-    public int get(Rank rank) {
-        return map.get(rank);
+    public EnumMap<Rank, Integer> getCountResult() {
+        return map;
     }
 }

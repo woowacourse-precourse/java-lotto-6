@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
 
 public class LottoService {
@@ -19,10 +19,10 @@ public class LottoService {
         return lottoMachine.makeLottosWith(money);
     }
 
-    public RankCounter rank(List<Lotto> lottos) {
+    public EnumMap<Rank, Integer> rank(List<Lotto> lottos) {
         lottos.stream()
                 .map(winningNumbers::rank)
                 .forEach(rankCounter::increaseCount);
-        return rankCounter;
+        return rankCounter.getCountResult();
     }
 }

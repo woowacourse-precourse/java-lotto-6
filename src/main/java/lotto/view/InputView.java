@@ -23,7 +23,7 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(inputMoney);
+        return Integer.parseInt(inputMoney)/1000;
     }
 
     private void validateInputMoney(String inputMoney) {

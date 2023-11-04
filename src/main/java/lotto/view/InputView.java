@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.dto.PurchaseAmountDto;
 import lotto.validator.InputValidator;
 
 public class InputView {
@@ -11,12 +12,12 @@ public class InputView {
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public int inputPurchaseAmount() {
+    public PurchaseAmountDto inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = readLine();
         InputValidator.validatePurchaseAmount(input);
 
-        return Integer.parseInt(input);
+        return new PurchaseAmountDto(Integer.parseInt(input));
     }
 
     public List<Integer> inputWinningNumbers() {

@@ -16,13 +16,13 @@ public class LottoRankTest {
         assertEquals(5, LottoRank.SECOND.getMatchCount());
         assertEquals(30_000_000, LottoRank.SECOND.getPrizeMoney());
 
-        assertEquals(4, LottoRank.THIRD.getMatchCount());
+        assertEquals(5, LottoRank.THIRD.getMatchCount());
         assertEquals(1_500_000, LottoRank.THIRD.getPrizeMoney());
 
-        assertEquals(3, LottoRank.FOURTH.getMatchCount());
+        assertEquals(4, LottoRank.FOURTH.getMatchCount());
         assertEquals(50_000, LottoRank.FOURTH.getPrizeMoney());
 
-        assertEquals(2, LottoRank.FIFTH.getMatchCount());
+        assertEquals(3, LottoRank.FIFTH.getMatchCount());
         assertEquals(5_000, LottoRank.FIFTH.getPrizeMoney());
 
         assertEquals(0, LottoRank.NONE.getMatchCount());

@@ -12,7 +12,8 @@ public class Application {
 
         Lotto winningLotto = new Lotto(inputWinningNumbers());
         int bonusNumber = inputBonusNumber();
-        
+
+        printResult(lottos, winningLotto, bonusNumber, purchaseAmount);
 
     }
     // 입력받고 로또 생성
@@ -57,7 +58,7 @@ public class Application {
     }
 
     private static int inputBonusNumber(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber =  Integer.parseInt(Console.readLine());
 
         return bonusNumber;
@@ -111,14 +112,14 @@ public class Application {
             boolean bonusMatch = false;
             if(prize == WinningPrize.MATCH_5_BONUS)
                 bonusMatch = true;
-            String key = getKey(prize.getPrizeMoney(), bonusMatch);
+            String key = getKey(prize.getMatchCount(), bonusMatch);
             totalPrizeMoney += prize.getPrizeMoney() * resultMap.getOrDefault(key, 0);
         }
         return totalPrizeMoney;
     }
 
     private static double calculateEarningsRate(int purchaseAmount, long totalPrizeMoney){
-        return (double) totalPrizeMoney / purchaseAmount * 100;
+        return ((double) totalPrizeMoney) / purchaseAmount * 100;
     }
 
     private static void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount){
@@ -127,6 +128,8 @@ public class Application {
         long totalPrizeMoney = getPrizeMoney(resultMap);
         double earningsRate = calculateEarningsRate(purchaseAmount, totalPrizeMoney);
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
         printLottoResult(resultMap);
         printEarningsRate(earningsRate);
     }
@@ -147,7 +150,7 @@ public class Application {
     }
 
     private static void printEarningsRate(double earningsRate){
-        System.out.printf("총 수익률은 %.1ㄹ%%dlqslek.\n", earningsRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningsRate);
     }
 
     private static String getKey(int matchCount, boolean bonusMatch){

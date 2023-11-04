@@ -25,7 +25,7 @@ public class Lottos {
 	}
 	
 	private List<Integer> generateRandomNumbers(int n) {
-		return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER.getconstant(), LOTTO_END_NUMBER.getconstant(), n);
+		return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER.getconstant(), LOTTO_END_NUMBER.getconstant(), LOTTO_LENGTH.getconstant());
 	}
 	
 	public List<Lotto> getLottos() {

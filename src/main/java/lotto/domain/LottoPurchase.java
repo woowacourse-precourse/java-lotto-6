@@ -16,9 +16,10 @@ public class LottoPurchase {
     private final ValidateService validateService = new ValidateService();
     private final LottoService lottoService = new LottoService();
 
-    List<Lotto> purchaseLotto = new ArrayList<>();
+    private List<Lotto> purchaseLotto = new ArrayList<>();
+    private int purchasePrice;
 
-    public int getPurchasePrice() {
+    public int inputPurchasePrice() {
         messageService.inputPurchasePrice();
         while (true) {
             try {
@@ -32,7 +33,7 @@ public class LottoPurchase {
     }
 
     public int getPurchaseAmount() {
-        return getPurchasePrice() / LottoNumber.LOTTO_PRICE.getNumber();
+        return inputPurchasePrice() / LottoNumber.LOTTO_PRICE.getNumber();
     }
 
     public List<Lotto> purchaseLottoNumbers(int purchaseAmount){
@@ -49,7 +50,7 @@ public class LottoPurchase {
         return new Lotto(lottoNumbers);
     }
 
-    public List<Lotto> getPurchaseLotto() {
-        return purchaseLotto;
+    public int getPurchasePrice(){
+        return purchasePrice;
     }
 }

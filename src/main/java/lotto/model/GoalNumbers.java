@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
-import static lotto.view.exception.InputException.UNVALID_GOAL_NUMBER;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -48,12 +47,8 @@ public class GoalNumbers {
     }
 
     private static void validateIsAllNumbersValid(final List<Integer> numbers) {
-        int validNumbers = (int) numbers.stream()
-                .filter(LottoConstant::isNumberValidLottoNumber)
-                .count();
-
-        if (validNumbers != numbers.size()) {
-            throw new IllegalArgumentException(UNVALID_GOAL_NUMBER.getMessage());
+        for (int number : numbers) {
+            LottoConstant.validateIsNumberValidLottoNumber(number);
         }
     }
 

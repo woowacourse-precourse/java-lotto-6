@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
+
 public class BonusNumber {
 
     private final int number;
@@ -10,6 +12,8 @@ public class BonusNumber {
 
     public static BonusNumber from(final String numberInput) {
         int number = convertToNumber(numberInput);
+        LottoConstant.validateIsNumberValidLottoNumber(number);
+
         return new BonusNumber(number);
     }
 
@@ -17,7 +21,7 @@ public class BonusNumber {
         try {
             return Integer.parseInt(numberInput);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 

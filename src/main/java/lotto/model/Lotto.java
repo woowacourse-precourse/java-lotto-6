@@ -18,6 +18,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     // 메서드 이름이랑 내부 매직 넘버는 수정해도 되는 부분인가?
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

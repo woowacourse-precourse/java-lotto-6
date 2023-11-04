@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,5 +22,14 @@ public class LottoTicket {
 
     public int getLottoSize() {
         return lottos.size();
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
+
+    @Override
+    public String toString() {
+        return lottos.toString();
     }
 }

@@ -50,9 +50,16 @@ public class LottoInputView {
     }
 
     public Integer getBonusNumber() {
-        System.out.println();
-        System.out.println(LOTTO_BONUS_NUMBER.getMessage());
-        String userInput = Console.readLine();
-        return Integer.parseInt(userInput);
+        while (true) {
+            System.out.println();
+            System.out.println(LOTTO_BONUS_NUMBER.getMessage());
+
+            try {
+                String userInput = Console.readLine();
+                return Integer.parseInt(userInput);
+            } catch (NumberFormatException e) {
+                System.out.println(INPUT_NUMBER_IS_NOT_DIGIT.getMessage());
+            }
+        }
     }
 }

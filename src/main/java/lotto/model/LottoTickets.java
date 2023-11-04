@@ -15,6 +15,10 @@ public class LottoTickets {
         this.tickets = tickets;
     }
 
+    public List<LottoTicket> getTickets() {
+        return tickets;
+    }
+
     public static LottoTickets generateTickets(int count) {
         List<LottoTicket> tickets = new ArrayList<>();
 

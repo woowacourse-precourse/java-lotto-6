@@ -32,4 +32,8 @@ public class Winning extends Lotto{
             throw new IllegalArgumentException(Message.NOT_DUPLICATED.getMessage());
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

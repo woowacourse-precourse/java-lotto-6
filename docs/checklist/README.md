@@ -68,3 +68,35 @@
 - [ ] 당첨 통계 출력하기
 - [ ] 수익률 계산하기
 - [ ] 수익률 출력하기
+
+---
+
+## 🙌 지난 2주차 미션 PR 리뷰
+- [ ] 한 번만 사용하는 변수들이니 따로 정의하지 않고 바로 매개변수로 넣기
+```java
+InputView userInputView = new InputView();
+OutputView userOutputView = new OutputView();
+RacingCarGameModel racingCarGameModel = new RacingCarGameModel();
+
+
+RacingCarGameController game = new RacingCarGameController(
+        userInputView,
+        userOutputView,
+        racingCarGameModel
+);
+
+⬇️
+
+RacingCarGameController game = new RacingCarGameController(
+        new InputView(),
+        new OutputView(),
+        new RacingCarGameModel()
+);
+```
+
+- [ ] 변수명에 변수 타입 넣지 않기 
+- [ ] 하나의 함수가 여러 기능을 하지 않게 더 잘게 쪼개기
+- [ ] 1주차 공통 피드백 '축약하지 않는다' 더 신경쓰기
+- [ ] 나중에 변경되지 않는 값은 final 로 선언하기
+- [ ] Java에서 제공하는 API 적극 활용하기
+  - 코드 작성 전 Java API에서 제공하는지 확인하기

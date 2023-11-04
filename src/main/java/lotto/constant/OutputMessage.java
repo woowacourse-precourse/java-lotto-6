@@ -11,7 +11,9 @@ public enum OutputMessage {
     BONUS_MATCH(", 보너스 볼 일치"),
     PRIZE_AMOUNT(" (%,d원) - "),
     WINNING_NUMBER("%d개\n"),
-    PROFIT("총 수익률은 %.1f%%입니다.");
+    PROFIT("총 수익률은 %.1f%%입니다."),
+    WINNING_STATISTICS("당첨 통계"),
+    LINE("---");
 
 
     private final String message;

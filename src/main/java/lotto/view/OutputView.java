@@ -30,6 +30,8 @@ public class OutputView {
     }
 
     public void printResult(LottoResult result) {
+        System.out.println(OutputMessage.WINNING_STATISTICS.getMessage());
+        System.out.println(OutputMessage.LINE.getMessage());
         System.out.print(result.getResultScreen());
     }
 

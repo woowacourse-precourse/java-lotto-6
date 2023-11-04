@@ -6,15 +6,15 @@ import lotto.domain.player.Profit;
 public class UsedMoney {
     private final int usedMoney;
 
-    public UsedMoney(int usedMoney) {
+    UsedMoney(int usedMoney) {
         this.usedMoney = usedMoney;
     }
 
-    public UsedMoney updateUsedMoney(int consumeMoney) {
+    UsedMoney updateUsedMoney(int consumeMoney) {
         return new UsedMoney(usedMoney + consumeMoney);
     }
 
-    public int getUsedMoney() {
+    int getUsedMoney() {
         return usedMoney;
     }
 

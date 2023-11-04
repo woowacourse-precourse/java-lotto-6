@@ -1,5 +1,6 @@
 package lotto.domain.player;
 
+import java.util.function.Supplier;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.playermoney.PlayerWallet;
@@ -9,19 +10,19 @@ public class LottoTicket {
 
     private final int lottoTicket;
 
-    public LottoTicket(int lottoTicket) {
+    LottoTicket(int lottoTicket) {
         this.lottoTicket = lottoTicket;
     }
 
-    public LottoTicket issueLottoTicket(PlayerWallet playerWallet) {
+    LottoTicket issueLottoTicket(PlayerWallet playerWallet) {
         return new LottoTicket(playerWallet.getUsedMoney() / LOTTO_PRICE);
     }
 
-    public LottoTicket changeAllTicketToLotto(Lotto randomLotto, LottoBundle lottoBundle) {
+    LottoTicket changeAllTicketToLotto(Supplier<Lotto> randomLotto, LottoBundle lottoBundle) {
         if (lottoTicket == 0) {
             return new LottoTicket(0);
         }
-        addLottoToLottoBundle(randomLotto, lottoBundle);
+        addLottoToLottoBundle(randomLotto.get(), lottoBundle);
         int newTicketCount = lottoTicket - 1;
         return new LottoTicket(newTicketCount).changeAllTicketToLotto(randomLotto, lottoBundle);
     }
@@ -30,7 +31,7 @@ public class LottoTicket {
         lottoBundle.addLotto(randomLotto);
     }
 
-    public int getLottoTicket() {
+    int getLottoTicket() {
         return lottoTicket;
     }
 }

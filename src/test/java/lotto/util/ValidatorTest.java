@@ -41,4 +41,14 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.isValidPurchaseAmount(input))
                 .doesNotThrowAnyException();
     }
+
+
+    @ParameterizedTest
+    @DisplayName("구분자를 잘못 입력 예외 테스트")
+    @ValueSource(strings = {"1,2,,,3,4,5,6", ",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,,2,3,4,5,6"})
+    void invalidInputsTest4(String input) {
+        Assertions.assertThatThrownBy(() -> Validator.isValidCommaSeparator(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.SEPARATOR_CHECK);
+    }
 }

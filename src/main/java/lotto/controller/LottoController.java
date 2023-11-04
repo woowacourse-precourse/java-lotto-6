@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constants.LottoIOMessage.BUYING_QUANTITY_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.model.BonusNum;
@@ -7,33 +9,21 @@ import lotto.model.BuyingCost;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private final InputView inputView;
-    private final BuyingCost buyingCost;
-    private final WinningNumbers winningNum;
-    private final BonusNum bonusNum;
+    private final OutputView outputView;
 
     public LottoController() {
         this.inputView = new InputView();
-        this.buyingCost = new BuyingCost();
-        this.winningNum = new WinningNumbers();
-        this.bonusNum = new BonusNum();
+        this.outputView = new OutputView();
     }
     public void run() {
         int cost = getValidBuyingCost(inputView);
-        // 구입한 로또 수량 및 번호 출력
         List<List<Integer>> manyLotto = Lotto.getManyLotto(cost/1000);
-        System.out.println();
-        System.out.println(cost/1000 + "개를 구매했습니다.");
-        for (List<Integer> oneLotto : manyLotto) {
-            System.out.print("[" + oneLotto.get(0));
-            for (int i = 1; i < oneLotto.size(); i++) {
-                System.out.print(", "+oneLotto.get(i));
-            }
-            System.out.println("]");
-        }
+        outputView.printQuantityAndAllNumbers(cost/1000, manyLotto);
         Lotto winning = getValidWinningNum(inputView);
         getValidBonusNum(inputView, winning);
 
@@ -105,10 +95,11 @@ public class LottoController {
     }
 
     public int getValidBuyingCost(InputView inputView) {
+        BuyingCost buyingCost = new BuyingCost();
         int validCost = 0;
         while (true) {
             try {
-                validCost = buyingCost.getCost(inputView.inputPurchaseCost());
+                validCost = buyingCost.getCost(inputView.inputBuyingCost());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -117,6 +108,7 @@ public class LottoController {
         return validCost;
     }
     public Lotto getValidWinningNum(InputView inputView) {
+        WinningNumbers winningNum = new WinningNumbers();
         Lotto result;
         while (true) {
             try {
@@ -130,6 +122,7 @@ public class LottoController {
         return result;
     }
     public void getValidBonusNum(InputView inputview, Lotto lotto) {
+        BonusNum bonusNum = new BonusNum();
         while (true) {
             try {
                 int validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber());

@@ -28,6 +28,13 @@ public class StringTest {
                 .containsExactly("1");
     }
 
+    @Test
+    public void test2(){
+        String target = "(1,2)";
+        target = target.substring(1, target.length()-1);
 
+        assertThat(target)
+                .contains("1,2");
+    }
 
 }

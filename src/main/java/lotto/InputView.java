@@ -21,6 +21,12 @@ public class InputView {
                 .toList();
     }
 
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return parseInt(input);
+    }
+
     private int parseInt(String input) {
         try {
             return Integer.parseInt(input);

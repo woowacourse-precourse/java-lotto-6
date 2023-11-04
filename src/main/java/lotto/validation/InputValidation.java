@@ -27,4 +27,10 @@ public class InputValidation {
             throw new NumberFormatException("[ERROR] 숫자만 입력해야 합니다.");
         }
     }
+
+    public void validateInputIsNull(String input) {
+        if (input == null || input.equals("")) {
+            throw new NullPointerException("[ERROR] 로또 구입 금액을 입력하세요.");
+        }
+    }
 }

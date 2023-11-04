@@ -23,6 +23,6 @@ public class LottoBuyer {
     }
 
     private boolean isNotDividedByPurchaseAmountUnit(int purchaseAmount) {
-        return purchaseAmount % PURCHASE_AMOUNT_UNIT != 0
+        return purchaseAmount % PURCHASE_AMOUNT_UNIT != 0;
     }
 }

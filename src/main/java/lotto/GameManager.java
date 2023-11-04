@@ -9,12 +9,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
     public List<Integer> createRandomNumber(){
-        Randoms.pickNumberInRange(1, 45);
-        Set<Integer> lottoNumbers = new TreeSet<>();
-        while (lottoNumbers.size() < 6) {
-            lottoNumbers.add(Randoms.pickNumberInRange(1, 45));
-        }
-        return lottoNumbers.stream().toList();
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public List<Integer> getWinningLottoNumberByRead(){

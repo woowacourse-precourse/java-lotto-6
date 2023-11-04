@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,5 +63,9 @@ public class Lotto {
         return (int) lottoNumber.stream()
                 .filter(numbers::contains)
                 .count();
+    }
+
+    public List<Number> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

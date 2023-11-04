@@ -14,7 +14,7 @@ public class WinningValidatorTest {
     @ValueSource(strings = {"0","-1","46"})
     void 당첨_번호_입력_값_범위_벗어난_경우_테스트(String winning){
         assertThatThrownBy(()->{
-                WinningValidator.winnerIsCorrectRange(winning);
+                WinningValidator.winnersCountIsOverOrUnder(winning);
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.WINNING_IS_NOT_CORRECTLY_RANGE.toString());

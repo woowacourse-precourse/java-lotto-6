@@ -22,7 +22,7 @@ public class InputUI {
     }
 
     public int getNumofLotto() {
-        return cost/1000 ;
+        return cost / 1000;
     }
 
 
@@ -65,10 +65,10 @@ public class InputUI {
     public int checkValidBonusNum(String tempBonus) {
         try {
             int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum < 0 || bonusNum > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            if (bonusNum >= 1 && bonusNum <= 45) {
+                return bonusNum;
             }
-            return bonusNum;
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
         }
@@ -104,7 +104,7 @@ public class InputUI {
     }
 
     public void checkLengthWinning(String[] parsedWinnings) {
-        if(parsedWinnings.length != 6) {
+        if (parsedWinnings.length != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }

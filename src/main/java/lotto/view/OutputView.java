@@ -14,15 +14,17 @@ import static lotto.constants.MessageConstants.WINNING_STATISTICS; //당첨 통�
 
 import java.util.List;
 
-import lotto.domain.LottoIssuance;
+import lotto.domain.Automatic;
 
 public class OutputView {
 
 	public static void buyLotto(int lottoCount) {
 
 		System.out.println(lottoCount + BUY_A_FEW);
-		List<Integer> lottoIssuance = LottoIssuance.publish(lottoCount);
-		System.out.println(lottoIssuance);
+		List<List<Integer>> lottoIssuance = Automatic.issuance(lottoCount);
+		for (List<Integer> lottoNumber : lottoIssuance) {
+			System.out.println(lottoNumber);
+		}
 
 	}
 

@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
 
+import lotto.model.constants.LottoRule;
+
 public class BonusNumber {
 
     private final int number;
@@ -12,7 +14,7 @@ public class BonusNumber {
 
     public static BonusNumber from(final String numberInput) {
         int number = convertToNumber(numberInput);
-        LottoConstant.validateIsNumberValidLottoNumber(number);
+        LottoRule.validateNumberValue(number);
 
         return new BonusNumber(number);
     }

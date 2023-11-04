@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
 
+import lotto.model.constants.LottoRule;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class GoalNumbers {
         List<Integer> numbers = Stream.of(splitNumbers)
                 .map(GoalNumbers::convertToNumber)
                 .toList();
-        LottoConstant.validateIsNumbersValidLottoLength(numbers);
+        LottoRule.validateNumbersLength(numbers);
         validateIsNumbersNotDuplicate(numbers);
         validateIsAllNumbersValid(numbers);
 
@@ -48,7 +49,7 @@ public class GoalNumbers {
 
     private static void validateIsAllNumbersValid(final List<Integer> numbers) {
         for (int number : numbers) {
-            LottoConstant.validateIsNumberValidLottoNumber(number);
+            LottoRule.validateNumberValue(number);
         }
     }
 

@@ -1,5 +1,10 @@
 package lotto.model.constants;
 
+import static lotto.view.exception.InputException.GOAL_NUMBER_SIZE_EXCEPTION;
+import static lotto.view.exception.InputException.UNVALID_GOAL_NUMBER;
+
+import java.util.List;
+
 public enum LottoRule {
 
     MINIMUM_NUMBER(1),
@@ -11,6 +16,18 @@ public enum LottoRule {
 
     LottoRule(final int value) {
         this.value = value;
+    }
+
+    public static void validateNumbersLength(final List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_LENGTH.value) {
+            throw new IllegalArgumentException(GOAL_NUMBER_SIZE_EXCEPTION.getMessage());
+        }
+    }
+
+    public static void validateNumberValue(final int number) {
+        if (number > MAXIMUM_NUMBER.value || number < MINIMUM_NUMBER.value) {
+            throw new IllegalArgumentException(UNVALID_GOAL_NUMBER.getMessage());
+        }
     }
 
     public int getValue() {

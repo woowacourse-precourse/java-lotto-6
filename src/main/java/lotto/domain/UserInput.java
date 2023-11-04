@@ -3,10 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.domain.UserInputValidation.isValidWinningNumber;
-import static lotto.view.OutputView.INPUT_PURCHASE_PRICE;
-import static lotto.domain.UserInputValidation.isValidPurchaseAmount;
-import static lotto.view.OutputView.INPUT_WINNING_NUMBER;
+import static lotto.domain.UserInputValidation.*;
+import static lotto.view.OutputView.*;
 
 public class UserInput {
 
@@ -20,6 +18,12 @@ public class UserInput {
         System.out.println(INPUT_WINNING_NUMBER.getMessage());
 
         return isValidWinningNumber(readLine());
+    }
+
+    public int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER.getMessage());
+
+        return isValidBonusNumber(readLine());
     }
 
 }

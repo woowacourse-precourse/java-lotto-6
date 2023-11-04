@@ -1,6 +1,6 @@
 package lotto.controller.dto.input;
 
-import parser.StrictInputParser;
+import lotto.parser.StrictInputParser;
 
 /**
  * 첫 번째 입력인 로또를 구매하기 위해 사용자가 입력한 '구입 금액'을 저장하는 Input Dto

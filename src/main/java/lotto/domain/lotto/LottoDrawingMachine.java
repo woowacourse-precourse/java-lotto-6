@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.Optional;
-import lotto.domain.lotto.dto.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 
 /**
  * 로또 추첨을 해주는 클래스

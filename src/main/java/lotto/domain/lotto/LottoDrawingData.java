@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.EnumMap;
-import lotto.domain.lotto.dto.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 import lotto.domain.money.Money;
 
 /**

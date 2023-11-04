@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.EnumMap;
-import lotto.domain.lotto.dto.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

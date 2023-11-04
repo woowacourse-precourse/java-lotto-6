@@ -1,7 +1,7 @@
 package lotto.controller.dto.input;
 
 import java.util.List;
-import parser.StrictInputParser;
+import lotto.parser.StrictInputParser;
 
 /**
  * 로또 추첨을 위한 입력 데이터,

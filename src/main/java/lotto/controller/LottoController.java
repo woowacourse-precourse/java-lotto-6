@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import lotto.controller.dto.LottosBuyingResult;
 import lotto.controller.dto.input.BuyLottosDto;
 import lotto.controller.dto.input.DrawLottosDto;
-import lotto.domain.lotto.dto.LottosDrawingResult;
+import lotto.controller.dto.output.LottosBuyingResult;
+import lotto.controller.dto.output.LottosDrawingResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public final class LottoController {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;

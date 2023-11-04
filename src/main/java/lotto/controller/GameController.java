@@ -1,41 +1,41 @@
 package lotto.controller;
 
-import lotto.domain.Cash;
-import lotto.domain.LottoMachine;
-import lotto.domain.Lottos;
-import lotto.domain.Prizes;
+import lotto.domain.*;
+import lotto.util.NumberGenerator;
+import lotto.util.UniqueRandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final NumberGenerator numberGenerator;
     private Cash cash;
     private Lottos lottos;
     private Prizes prizes;
     private LottoMachine lottoMachine;
+    private WinnerLotto winnerLotto;
 
     public GameController(
             InputView inputView,
-            OutputView outputView) {
+            OutputView outputView,
+            NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.numberGenerator = numberGenerator;
     }
 
     public void play() {
-        createCash();
-        // 발행 로또 내역 출력
-        // 당첨 번호 입력
-        // 보너스 번호 입력
-        // 당첨 통계 출력
+        createCashAndLottoMachine();
     }
 
-    private void createCash() {
+    private void createCashAndLottoMachine() {
         cash = inputView.InputCash();
-        System.out.println();
+        lottoMachine = new LottoMachine(numberGenerator, cash);
     }
-
 
 
 

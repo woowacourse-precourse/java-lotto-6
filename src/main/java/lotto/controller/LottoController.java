@@ -12,7 +12,6 @@ public class LottoController {
 
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
-
     private final LottoService lottoService;
 
     public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView, LottoService lottoService) {

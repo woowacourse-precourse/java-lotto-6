@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +25,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또가 가진 번호들을 의도한 포멧에 맞게 반환한다.")
+    @Test
+    void getLottoPrintFormat() {
+        // given
+        Lotto lotto = new Lotto(List.of(35,20,9,8,13,5));
+        // when
+        String lottoPrintFormat = lotto.toString();
+        // then
+        assertThat(lottoPrintFormat).isEqualTo("[5, 8, 9, 13, 20, 35]");
+    }
 }

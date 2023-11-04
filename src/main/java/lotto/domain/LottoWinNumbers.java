@@ -8,21 +8,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class WinLottoNumbers {
-    List<Integer> winLottoNumbers;
+public class LottoWinNumbers {
+    List<Integer> lottoWinNumbers;
 
-    public List<Integer> getWinLottoNumbers() {
-        return winLottoNumbers;
+    public List<Integer> getLottoWinNumbers() {
+        return lottoWinNumbers;
     }
 
-    public WinLottoNumbers(String input) {
-        this.winLottoNumbers = sliceLottoNumbers(input);
+    public LottoWinNumbers(String input) {
+        this.lottoWinNumbers = sliceLottoNumbers(input);
         sizeCheck();
         rangeCheck();
     }
 
     public void rangeCheck() {
-        if (winLottoNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
                             + ErrorMessage.WIN_LOTTO_RANGE_ERROR.getMessage());
@@ -42,7 +42,7 @@ public class WinLottoNumbers {
     }
 
     public void sizeCheck(){
-        if(winLottoNumbers.size()!=6){
+        if(lottoWinNumbers.size()!=6){
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
                             + ErrorMessage.WIN_LOTTO_SIZE_ERROR.getMessage());

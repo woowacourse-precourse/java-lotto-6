@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.MoneyConverter;
-import lotto.domain.WinLottoNumbers;
+import lotto.domain.LottoWinNumbers;
 import lotto.util.Status;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,7 +12,7 @@ public class GameController {
     OutputView outputView;
     MoneyConverter moneyConverter;
     LottoGenerator lottoGenerator;
-    WinLottoNumbers winLottoNumbers;
+    LottoWinNumbers lottoWinNumbers;
 
     public GameController() {
         inputView = new InputView();
@@ -57,7 +57,7 @@ public class GameController {
 
         while (status == Status.FAIL) {
             try {
-                winLottoNumbers = new WinLottoNumbers(inputView.inputWinLotto());
+                lottoWinNumbers = new LottoWinNumbers(inputView.inputWinLotto());
                 status = Status.SUCCESS;
             } catch (IllegalArgumentException ignored) {
             }

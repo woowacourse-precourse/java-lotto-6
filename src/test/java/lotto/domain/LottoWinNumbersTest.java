@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WinLottoNumbersTest {
+class LottoWinNumbersTest {
     @Test
     public void setWinLottoLoopTest() {
         Status status = Status.FAIL;
@@ -13,7 +13,7 @@ class WinLottoNumbersTest {
 
         while (status == Status.FAIL) {
             try {
-                new WinLottoNumbers("fail");
+                new LottoWinNumbers("fail");
                 status = Status.SUCCESS;
             }catch (IllegalArgumentException ignored){ }
             finally {
@@ -28,22 +28,22 @@ class WinLottoNumbersTest {
 
     @Test
     public void validTest(){
-        assertDoesNotThrow(() -> new WinLottoNumbers("1,2,3,4,5,6"));
+        assertDoesNotThrow(() -> new LottoWinNumbers("1,2,3,4,5,6"));
     }
 
     @Test
     public void typeTest(){
-        assertThrows(IllegalArgumentException.class, () -> new WinLottoNumbers("1,a,3,4,b,6"));
+        assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,a,3,4,b,6"));
     }
 
     @Test
     public void rangeTest() {
-        assertThrows(IllegalArgumentException.class, () -> new WinLottoNumbers("1,-1,3,4,50,6"));
+        assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,-1,3,4,50,6"));
     }
 
     @Test
     public void sizeTest() {
-        assertThrows(IllegalArgumentException.class, () -> new WinLottoNumbers("1,2,3,4,5,6,7"));
+        assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,2,3,4,5,6,7"));
     }
 
 }

@@ -30,4 +30,8 @@ public class Lotto {
     private void sortNumbers(List<Integer> numbers) {
         numbers.stream().sorted();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

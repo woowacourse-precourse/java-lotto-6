@@ -8,7 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
 
-    public List<Integer> getLottoNumberByRead(){
+    public List<Integer> getCorrectLottoNumberByRead(){
         String input = readLine();
         return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }

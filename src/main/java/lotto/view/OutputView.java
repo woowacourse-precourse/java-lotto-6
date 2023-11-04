@@ -34,6 +34,10 @@ public final class OutputView {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
+    public static void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    }
+
     private static void printEmptyLine() {
         System.out.println();
     }

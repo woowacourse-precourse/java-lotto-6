@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import java.util.List;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
 
@@ -35,5 +36,10 @@ public class NumberValidator {
         return this;
     }
 
-
+    public NumberValidator shouldNotContainedIn(List<Integer> expectedNumbers, ErrorMessage errorMessage) {
+        if (expectedNumbers.contains(value)) {
+            throw new InvalidInputException(errorMessage);
+        }
+        return this;
+    }
 }

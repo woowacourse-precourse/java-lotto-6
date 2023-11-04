@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.constant.LottoConstant;
 import lotto.exception.ErrorMessage;
-import lotto.exception.InvalidInputException;
 import lotto.validator.NumberValidator;
 
 public class WinningLotto {
@@ -22,23 +21,16 @@ public class WinningLotto {
     }
 
     public void validate(Lotto winningNumbers, int bonusNumber) {
-        validateBonusNumberDuplicate(winningNumbers, bonusNumber);
-        validateBonusNumberRange(bonusNumber);
+        NumberValidator.of(bonusNumber)
+                .shouldInRange(
+                        LottoConstant.LOTTO_NUMBER_MIN, LottoConstant.LOTTO_NUMBER_MAX,
+                        ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE)
+                .shouldNotContainedIn(
+                        winningNumbers.getNumbers(),
+                        ErrorMessage.LOTTO_NUMBERS_DUPLICATE
+                );
     }
 
-    private void validateBonusNumberDuplicate(Lotto winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new InvalidInputException(ErrorMessage.LOTTO_NUMBERS_DUPLICATE);
-        }
-    }
-
-    private void validateBonusNumberRange(int bonusNumber) {
-        NumberValidator.of(bonusNumber).shouldInRange(
-                LottoConstant.LOTTO_NUMBER_MIN,
-                LottoConstant.LOTTO_NUMBER_MAX,
-                ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE
-        );
-    }
 
     public Lotto getWinningNumbers() {
         return winningNumbers;

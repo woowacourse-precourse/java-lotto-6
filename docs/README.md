@@ -61,16 +61,16 @@
 - Prize
   - 일치하는 숫자의 개수에 따른 상금 목록을 나열하는 기능
 
-### Controller
+### controller
 - LottoController
     - 로또 구입 요청을 받는 기능
-### Service
+### service
 - LottoService
     - 로또 구입 요청에 따라 로또를 구입하는 기능
-### Repository
+### repository
 - LottoRepository
     - 여러 개의 로또를 저장하는 기능
-### View
+### view
 - InputView
     - 로또 구입 금액을 입력받는 기능
     - 당첨 번호를 입력받는 기능
@@ -78,22 +78,24 @@
 - OutputView
     - 구매한 로또의 개수와 번호를 출력하는 기능
     - 당첨 통계를 출력하는 기능
-### Constant
+### constant
 - ConstantValue
     - 규칙이 되는 상수를 관리하는 기능
-### Message
+### message
 - ExceptionMessage
     - 예외 메세지를 관리하는 기능
 - RequestMessage
     - 사용자에게 요청하는 메세지를 관리하는 기능
 - ResponseMessage
     - 사용자에게 응답하는 메세지를 관리하는 기능
-### Util
+### util
 - LottoConverter
   - 사용자의 입력을 로또로 변환해 주는 기능
   - 사용자의 입력을 보너스 번호로 변환해 주는 기능
 - InputValidator
   - 사용자의 입력이 입력 규칙에 맞는지 검증하는 기능
+- LottoValidator
+  - 로또 번호 입력이 입력 규칙에 맞는지 검증하는 기능
 
 # 공통 피드백 중요 항목
 

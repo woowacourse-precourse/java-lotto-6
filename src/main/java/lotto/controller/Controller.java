@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ErrorMessage;
 import lotto.constants.Message;
 import lotto.domain.Lotto;
+import lotto.service.InputService;
 import lotto.service.LottoService;
 import lotto.service.ValidationService;
 import lotto.utils.ParseUtils;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class Controller {
 
+    InputService inputService = new InputService();
     LottoService lottoService = new LottoService();
     ValidationService validationService = new ValidationService();
 
@@ -23,13 +25,15 @@ public class Controller {
         createUserLottos();
         showUserLottos();
         createWinningLotto();
-        createBonusLotto();
+        showResult();
     }
 
-    private void createBonusLotto() {
-        int bonusNumber = inputBonusNumber();
-        lottoService.setBonusNumber(bonusNumber);
+
+    private void showResult() {
+        System.out.println(Message.LOTTO_RESULT_MESSAGE);
+
     }
+
 
     private int inputBonusNumber() {
         System.out.println("\n" + Message.BONUS_NUMBER_REQUEST_MESSAGE);
@@ -50,16 +54,18 @@ public class Controller {
 
 
     private void createWinningLotto() {
-        Lotto winningLotto = inputWinningLotto();
-        lottoService.setWinningLotto(winningLotto);
+        List<Integer> winningLottoNumbers = inputWinningLotto();
+        int bonusNumber = inputBonusNumber();
+
+        lottoService.setWinningLotto(winningLottoNumbers, bonusNumber);
     }
 
-    private Lotto inputWinningLotto() {
+    private List<Integer> inputWinningLotto() {
         System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
 
         while (true) {
             String inputWinningNumbers = Console.readLine();
-            Lotto winningLotto = winningLottoValidationProcess(inputWinningNumbers);
+            List<Integer> winningLotto = winningLottoValidationProcess(inputWinningNumbers);
 
             if (winningLotto != null) {
                 return winningLotto;
@@ -67,9 +73,9 @@ public class Controller {
         }
     }
 
-    public Lotto winningLottoValidationProcess(String inputWinningNumbers) {
+    public List<Integer> winningLottoValidationProcess(String inputWinningNumbers) {
         try {
-            Lotto winningLotto = parseUtils.parseStringToLotto(inputWinningNumbers);
+            List<Integer> winningLotto = parseUtils.parseStringToIntegerList(inputWinningNumbers);
             validationService.winningLottoNumberValidation(winningLotto);
 
             return winningLotto;
@@ -91,34 +97,8 @@ public class Controller {
     }
 
     public void createUserLottos() {
-        int lottoAmount = inputAmount();
+        int lottoAmount = inputService.inputAmount();
         lottoService.createUserLottos(lottoAmount);
     }
 
-
-    public int inputAmount() {
-        System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
-
-        while (true) {
-            String inputAmount = Console.readLine();
-            Integer amount = amountValidationProcess(inputAmount);
-
-            if (amount != null) {
-                return amount;
-            }
-        }
-
-    }
-
-    public Integer amountValidationProcess(String inputAmount) {
-        try {
-            int amount = parseUtils.parseStringToInt(inputAmount);
-            validationService.amountValidation(amount);
-
-            return amount;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
 }

@@ -12,27 +12,27 @@ public class ValidationService {
 
     public void amountValidation(int amount) {
         if (amount < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_INVALID.getMessage());
-        }
-
-        if (amount % Value.LOTTO_TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_UNIT.getMessage());
-        }
-    }
-
-    public void winningLottoNumberValidation(Lotto winningLotto) {
-        if (winningLotto.getNumbers().size() < Value.LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
 
-        for (int number : winningLotto.getNumbers()) {
+        if (amount % Value.LOTTO_TICKET_PRICE != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void winningLottoNumberValidation(List<Integer> winningLottoNumbers) {
+        if (winningLottoNumbers.size() < Value.LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException();
+        }
+
+        for (int number : winningLottoNumbers) {
             if (number < Value.LOTTO_START_NUMBER || number > Value.LOTTO_END_NUMBER) {
                 throw new IllegalArgumentException();
             }
         }
 
-        Set<Integer> lottoNumbers = new HashSet<>(winningLotto.getNumbers());
-        if (lottoNumbers.size() != winningLotto.getNumbers().size()) {
+        Set<Integer> lottoNumbers = new HashSet<>(winningLottoNumbers);
+        if (lottoNumbers.size() != winningLottoNumbers.size()) {
             throw new IllegalArgumentException();
         }
     }

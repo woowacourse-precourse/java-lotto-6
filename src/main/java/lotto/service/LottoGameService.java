@@ -27,11 +27,7 @@ public class LottoGameService {
         return new LottoGameResponse(count, buyLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()));
     }
 
-    public Map<LottoRank, Integer> calculateResult(String winningNumbers, int bonusNumber) {
-        Lotto winningLotto = new Lotto(Arrays.stream(winningNumbers.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList()));
-
+    public Map<LottoRank, Integer> calculateResult(Lotto winningLotto, int bonusNumber) {
         Map<LottoRank, Integer> result = new HashMap<>();
 
         for (int i = 0; i < buyLottos.size(); i++) {

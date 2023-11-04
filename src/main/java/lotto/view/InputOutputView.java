@@ -3,32 +3,45 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
 import lotto.common.LottoRank;
-import lotto.dto.LottoGameResponse;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.dto.LottoGameResponse;
 
 public class InputOutputView {
     public Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        while(true) {
+        while (true) {
             try {
                 String money = Console.readLine();
                 return new Money(money);
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public String inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        return winningNumbers;
+        while (true) {
+            try {
+                String winningNumbers = Console.readLine();
+                return Lotto.createLotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        return bonusNumber;
+        while (true) {
+            try {
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void printBuyLottos(LottoGameResponse lottoGameResponse) {

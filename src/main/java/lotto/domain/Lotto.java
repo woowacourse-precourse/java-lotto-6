@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.constants.LottoRule;
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumbersSizeException;
-import lotto.exception.LottoRangeException;
+import lotto.exception.LottoNumberRangeException;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class Lotto {
     private void validateLottoRange(List<Integer> numbers) {
         long numbersCount = getCountFilterByLottoRange(numbers);
         if (numbersCount < LottoRule.NUMBER_MAX_SIZE) {
-            throw new LottoRangeException();
+            throw new LottoNumberRangeException();
         }
     }
 

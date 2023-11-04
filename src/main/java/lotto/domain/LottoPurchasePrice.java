@@ -23,4 +23,8 @@ public class LottoPurchasePrice {
     private boolean isNotThousandUnit(Integer purchasePrice) {
         return purchasePrice % UNIT != NOT_REMAIN;
     }
+
+    public Integer getLottosAmount() {
+        return purchasePrice / UNIT;
+    }
 }

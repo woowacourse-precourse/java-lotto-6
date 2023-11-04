@@ -8,7 +8,10 @@ import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
 import static lotto.model.Point.FIRST_POINT;
 import static lotto.model.Point.SECOND_POINT;
 
+import lotto.model.BonusNumber;
+import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
+import lotto.model.LottoCompany;
 import lotto.model.Prize;
 import lotto.model.dto.LottoResponse;
 import lotto.model.judge.BonusNumberJudge;
@@ -36,6 +39,8 @@ public class LottoController {
 
         printLottoValues(lottos);
 
+        LottoCompany lottoCompany = initLottoCompany();
+
         LottoJudge goalJudge = initGoalNumberJudge();
         LottoJudge bonusJudge = initBonusNumberJudge();
         for (int i = FIFTH_PRIZE_MATCH.getValue(); i < FIRST_PRIZE_MATCH.getValue(); i++) {
@@ -57,6 +62,25 @@ public class LottoController {
         outputView.printEachPrize(prize.getCondition(), prize.getMoney(), firstLotto.size());
 
         outputView.printProfitRate(investorService.calculateProfitRate());
+    }
+
+    private LottoCompany initLottoCompany() {
+        GoalNumbers goalNumbers = initGoalNumbers();
+        BonusNumber bonusNumber = initBonusNumber();
+
+        return LottoCompany.of(goalNumbers, bonusNumber);
+    }
+
+    private GoalNumbers initGoalNumbers() {
+        outputView.askGoalNumbers();
+        String goalNumbersInput = inputView.readLine();
+        return GoalNumbers.from(goalNumbersInput);
+    }
+
+    private BonusNumber initBonusNumber() {
+        outputView.askBonusNumber();
+        String bonusNumberInput = inputView.readLine();
+        return BonusNumber.from(bonusNumberInput);
     }
 
     private InvestorService initInvestorService() {

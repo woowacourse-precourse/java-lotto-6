@@ -4,16 +4,14 @@ import lotto.domain.WinningLotto;
 
 public class BonusNumberValidation implements InputValidation<Void> {
 
-    private final ViewValidator viewValidator;
     private final WinningLotto winningLotto;
 
-    public BonusNumberValidation(final ViewValidator viewValidator, final WinningLotto winningLotto) {
-        this.viewValidator = viewValidator;
+    public BonusNumberValidation(final WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
     }
 
     @Override
-    public Void validateInput(final String bonusNumberText) {
+    public Void validateInput(final String bonusNumberText, final ViewValidator viewValidator) {
         int bonusNumber = viewValidator.parseInt(bonusNumberText);
         winningLotto.createBonusNumber(bonusNumber);
         return null;

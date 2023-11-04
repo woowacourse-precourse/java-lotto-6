@@ -10,8 +10,8 @@ public class FinanceManager {
         this.purchaseAmount = amount;
     }
 
-    public static FinanceManager from(final String inputPurchase) {
-        return new FinanceManager(Integer.parseInt(inputPurchase));
+    public static FinanceManager from(final int purchase) {
+        return new FinanceManager(purchase);
     }
 
     public static boolean isValidArgument(final String inputPurchase) {

@@ -8,16 +8,14 @@ public class WinningLotto {
     public final int bonusNumber;
     private final Lotto lotto;
 
-    {
-        bonusNumber = new LottoRandomUtil().getWinningNumber();
-    }
-
     public WinningLotto() {
         this.lotto = new Lotto();
+        this.bonusNumber = new LottoRandomUtil().getWinningNumber();
     }
 
-    WinningLotto(List<Integer> numbers) {
-        lotto = new Lotto(numbers);
+    WinningLotto(List<Integer> numbers, int bonusNumber) {
+        this.lotto = new Lotto(numbers);
+        this.bonusNumber = bonusNumber;
     }
 
     int size() {
@@ -30,5 +28,9 @@ public class WinningLotto {
 
     List<Integer> getNumbers() {
         return lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

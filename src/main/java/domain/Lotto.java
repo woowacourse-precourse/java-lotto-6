@@ -28,9 +28,9 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int rank(WinningLotto winningLotto, int bonusNumber) {
+    public int rank(WinningLotto winningLotto) {
         int matchingNumbersCount = calculateMatchingNumbersCount(winningLotto);
-        return calculateRank(matchingNumbersCount, bonusNumber);
+        return calculateRank(matchingNumbersCount, winningLotto.getBonusNumber());
     }
 
     private int calculateMatchingNumbersCount(WinningLotto winningLotto) {

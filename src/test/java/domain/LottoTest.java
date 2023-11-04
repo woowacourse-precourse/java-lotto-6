@@ -27,18 +27,18 @@ class LottoTest {
     @Test
     public void 당첨_등수를_정확하게_매기는가() {
         //given
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
         Lotto lotto1st = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2nd = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        Lotto lotto2nd = new Lotto(List.of(1, 2, 3, 4, 5, 10));
         Lotto lotto3rd = new Lotto(List.of(1, 2, 3, 4, 5, 9));
         Lotto lotto4st = new Lotto(List.of(1, 2, 3, 4, 9, 9));
         Lotto lotto5st = new Lotto(List.of(1, 2, 3, 9, 9, 9));
 
         //then
-        assertEquals(1, lotto1st.rank(winningLotto, 9));
-        assertEquals(2, lotto2nd.rank(winningLotto, 9));
-        assertEquals(3, lotto3rd.rank(winningLotto, 10));
-        assertEquals(4, lotto4st.rank(winningLotto, 9));
-        assertEquals(5, lotto5st.rank(winningLotto, 9));
+        assertEquals(1, lotto1st.rank(winningLotto));
+        assertEquals(2, lotto2nd.rank(winningLotto));
+        assertEquals(3, lotto3rd.rank(winningLotto));
+        assertEquals(4, lotto4st.rank(winningLotto));
+        assertEquals(5, lotto5st.rank(winningLotto));
     }
 }

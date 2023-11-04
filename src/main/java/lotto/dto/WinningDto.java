@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Winning;
 
 public class WinningDto {
@@ -14,7 +15,7 @@ public class WinningDto {
 		winning.setBonus(n);
 	}
 	
-	public List<Integer> getCheckLotto() {
-		return winning.checkLotto();
+	public List<Integer> getLottoRankings(List<Lotto> lottos) {
+		return winning.getLottoRankings(lottos);
 	}
 }

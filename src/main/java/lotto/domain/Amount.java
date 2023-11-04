@@ -17,4 +17,8 @@ public class Amount {
 	public int getAvailableQuantity() {
 		return amount/1000;
 	}
+	
+	public int getAmount() {
+		return amount;
+	}
 }

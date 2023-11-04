@@ -1,7 +1,7 @@
 package lotto.service;
 
 public class Calculate {
-	public void calculateEarningRate() {
+	public static void calculateEarningRate() {
 		
 	}
 }

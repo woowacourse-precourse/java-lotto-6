@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.view.OutputView;
 import lotto.view.InputView;
 import lotto.dto.AmountDto;
+import lotto.dto.EarningDto;
 import lotto.dto.LottosDto;
 import lotto.dto.WinningDto;
 
@@ -10,6 +11,7 @@ public class Controller {
 	AmountDto amount;
 	LottosDto lottos;
 	WinningDto winning;
+	EarningDto earning;
  	
 	public void run() {
 		inputAmount();
@@ -21,10 +23,8 @@ public class Controller {
 	
 	private void inputAmount() {
 		try {
-			int purchaseAmount = 0;
 			OutputView.printInputAmount();
-			purchaseAmount = InputView.askAmount();
-			this.amount = new AmountDto(purchaseAmount);
+			this.amount = new AmountDto(InputView.askAmount());
 		} catch(IllegalArgumentException e) {
 			System.out.println(e);
 			inputAmount();
@@ -64,6 +64,7 @@ public class Controller {
 	}
 	
 	private void outputResult() {
-		OutputView.printResult();
+		this.earning = new EarningDto(winning.getLottoRankings(lottos.getLottos()));
+		OutputView.printResult(earning, amount);
 	}
 }

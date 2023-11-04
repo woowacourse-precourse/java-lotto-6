@@ -12,4 +12,8 @@ public class AmountDto {
 	public int getAvailableQuantity() {
 		return amount.getAvailableQuantity();
 	}
+	
+	public int getAmount() {
+		return amount.getAmount();
+	}
 }

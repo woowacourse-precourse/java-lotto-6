@@ -43,4 +43,12 @@ public class WinningNumbers {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean matchBonus(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public boolean contains(Integer number) {
+        return winningNumbers.contains(number);
+    }
 }

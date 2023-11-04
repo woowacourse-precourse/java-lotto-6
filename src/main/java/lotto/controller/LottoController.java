@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.LottoResultCalculator;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,6 +32,12 @@ public class LottoController {
         String winningNumbersInput = readWinningNumbersInput();
         int bonusNumber = readBonusNumberInput();
         WinningNumbers winningNumbers = createWinningNumbers(winningNumbersInput, bonusNumber);
+
+        LottoResultCalculator resultCalculator = new LottoResultCalculator(winningNumbers);
+        Map<Rank, Integer> results = resultCalculator.calculateResults(lottos);
+        outputView.printResults(results);
+
+
     }
 
     private List<Lotto> buyLottos(int purchaseAmount) {

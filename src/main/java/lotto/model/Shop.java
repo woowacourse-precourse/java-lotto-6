@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.MONEY_REMAIN_EXCEPTION;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class Shop {
 
     private void validateIsRemainValueCorrect(final int money) {
         if (money % lottoCost != DIVIDE_REMAIN_VALUE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
         }
     }
 

@@ -40,37 +40,33 @@ class LottoManagerTest {
     @DisplayName("숫자가 아닌 로또번호 입력시 예외가 발생한다.")
     @Test
     void numbersFormatValidate() {
-        LottoManager manager = new LottoManager();
         String[] wrongNumbers = {"a", "1", "2", "3", "4", "5"};
 
-        assertThatThrownBy(() -> manager.createLotto(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1~45의 범위를 벗어나면 예외가 발생한다.")
     @Test
     void arrangeValidate() {
-        LottoManager manager = new LottoManager();
         String[] wrongNumbers = {"46", "0", "2", "3", "4", "5"};
 
-        assertThatThrownBy(() -> manager.createLotto(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
     @Test
     void countValidate() {
-        LottoManager manager = new LottoManager();
         String[] wrongNumbers = {"2", "3", "4", "5"};
 
-        assertThatThrownBy(() -> manager.createLotto(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void duplicateValidate() {
-        LottoManager manager = new LottoManager();
         String[] wrongNumbers = {"1", "1", "2", "3", "4", "5"};
 
-        assertThatThrownBy(() -> manager.createLotto(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호와 당첨 번호가 중복되면 예외가 발생한다.")

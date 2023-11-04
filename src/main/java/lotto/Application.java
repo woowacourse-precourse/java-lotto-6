@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -14,7 +15,7 @@ public class Application {
 
         printLottos(user);
 
-        Lotto lotto = lottoManager.createUserNumbers();
+        Lotto lotto = readUserCreatedLotto();
 
         user.setUserLotto(lotto);
 
@@ -52,6 +53,27 @@ public class Application {
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    private static Lotto readUserCreatedLotto() {
+        Lotto userCreatedLotto = null;
+        boolean errorFlag = true;
+
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String[] splitNumbers = Console.readLine().replaceAll(" ", "").split(",");
+
+            try {
+                userCreatedLotto = LottoManager.createUserNumbers(splitNumbers);
+                errorFlag = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+            if (!errorFlag) {
+                return userCreatedLotto;
+            }
         }
     }
 }

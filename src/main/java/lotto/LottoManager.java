@@ -32,20 +32,7 @@ public class LottoManager {
         }
     }
 
-    public Lotto createUserNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] splitNumbers = Console.readLine().replaceAll(" ", "").split(",");
-
-        try {
-            return createLotto(splitNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return createUserNumbers();
-        }
-    }
-
-    public Lotto createLotto(String[] splitNumbers) {
+    public static Lotto createUserNumbers(String[] splitNumbers) {
         List<Integer> userNumbers = new ArrayList<>();
 
         for (String splitNumber : splitNumbers) {
@@ -58,7 +45,7 @@ public class LottoManager {
         return Lotto.createUserNumbers(userNumbers);
     }
 
-    private void arrangeValidate(int number) {
+    private static void arrangeValidate(int number) {
         if (Const.winningRangeStartNumber > number || Const.winningRangeEndNumber < number) {
             throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45 입니다.");
         }

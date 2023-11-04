@@ -33,4 +33,12 @@ class WinningLottoServiceTest {
         assertThrows(WinningNumberValidationException.class, () ->
                 WinningNumberValidationException.checkDuplicateWinningNumbers(duplicateNumbers));
     }
+
+    @Test
+    @DisplayName("당첨 번호가 지정된 범위를 벗어나면 예외를 발생시킨다")
+    void whenWinningNumbersAreOutOfBound_thenThrowsException() {
+        List<Integer> outOfBoundNumbers = Arrays.asList(0, 1, 2, 3, 4, 5);
+        assertThrows(WinningNumberValidationException.class, () ->
+                WinningNumberValidationException.checkBoundaryOfWinningNumbers(outOfBoundNumbers));
+    }
 }

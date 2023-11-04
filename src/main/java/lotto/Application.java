@@ -1,7 +1,17 @@
 package lotto;
 
+import lotto.io.lotto.LottoGame;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try {
+            LottoGame lottoGame = new LottoGame();
+            lottoGame.run();
+        } catch (Exception e) {
+            System.out.println("예기치 않은 오류로 인해 어플리케이션을 종료합니다.");
+            throw e;
+        }
     }
+
 }

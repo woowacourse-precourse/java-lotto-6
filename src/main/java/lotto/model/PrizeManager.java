@@ -26,8 +26,10 @@ public class PrizeManager {
         List<Integer> indexes = getIndexOfAllPrizes();
 
         for (int index : indexes) {
-            int want = counts.get(index) + 1;
-            counts.set(index, want);
+            if (index != -1) {
+                int want = counts.get(index) + 1;
+                counts.set(index, want);
+            }
         }
     }
 

@@ -19,6 +19,11 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(IS_INSUFFICIENT.getMessage());

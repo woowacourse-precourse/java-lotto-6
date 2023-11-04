@@ -25,10 +25,17 @@ class PurchaseLottoTest {
 
     @Test
     void 천원보다_적은_금액_입력() {
-
         assertThatCode(() -> purchaseLotto.purchase("1000")).doesNotThrowAnyException();
         assertThatThrownBy(() -> purchaseLotto.purchase("999"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 최소 구매 금액은 1,000원 입니다.");
+    }
+
+    @Test
+    void 천원_단위_입력() {
+        assertThatCode(() -> purchaseLotto.purchase("8000")).doesNotThrowAnyException();
+        assertThatThrownBy(() -> purchaseLotto.purchase("8009"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1,000원 단위로 입력해 주세요.");
     }
 }

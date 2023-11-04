@@ -1,12 +1,14 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domain.repository.Lotto;
 import lotto.enums.LottoRule;
+import lotto.enums.UserInterfaceMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -43,5 +45,14 @@ class LottoPublishServiceTest {
         List<Lotto> lottos = lottoPublishService.getPublishedLottoNumbers();
         // then
         assertThat(lottos.size()).isEqualTo(lottoPublishedSize);
+    }
+
+    @Test
+    void 잘못된_형식의_구매금액() {
+        assertThatThrownBy(() ->lottoPublishService.lottoPublish("1000j"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(UserInterfaceMessage.ERROR_INPUT_BONUS_NUMBER_INCLUSIVE.getValue(),
+                        LottoRule.START.getValue(), LottoRule.END.getValue()));
+
     }
 }

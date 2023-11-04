@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.service.LottoService;
 import utils.RandomUtils;
 
+import java.util.List;
+
 public class LottoController {
 
     private final LottoService lottoService = new LottoService();
@@ -48,6 +50,9 @@ public class LottoController {
     }
 
     public void setLottoNumber() {
-        RandomUtils.makeRandomNumber();
+        List<List<Integer>> userLottos = this.lottoService.setLottoNumbers();
+        for (List<Integer> userLotto : userLottos) {
+            System.out.println(userLotto);
+        }
     }
 }

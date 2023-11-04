@@ -1,7 +1,9 @@
 package lotto.view;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputValidator {
@@ -33,7 +35,25 @@ public class InputValidator {
         validateEmpty(inputWinningNumbers);
         validateContainBlank(inputWinningNumbers);
         List<Integer> winningNumbers = splitWinningNumbersByComma(inputWinningNumbers);
+        validateNumberSize(winningNumbers);
+        validateNumberDuplicate(winningNumbers);
         return winningNumbers;
+    }
+
+    private static void validateNumberSize(List<Integer> numbers) {
+        if (numbers.size() != VALID_LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_SIZE);
+        }
+    }
+
+    private static void validateNumberDuplicate(List<Integer> numbers) {
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+        int sizeOfNumbers = numbers.size();
+        int sieOfDistinctNumbers = distinctNumbers.size();
+
+        if (sizeOfNumbers != sieOfDistinctNumbers) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE);
+        }
     }
 
     private static List<Integer> splitWinningNumbersByComma(String inputWinningNumbers) {

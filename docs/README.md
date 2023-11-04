@@ -23,6 +23,8 @@
     - 문자열을 인수로 받아 정수인지 검사한다.
 
 ## 당첨 번호 입력 기능
+- [ ] `LottoOutputView::printAnswerInputRequest` 메서드
+  - 로또 당첨 번호 입력 요청 메시지를 출력한다.
 - [x] `LottoInputView::getLottoWinningNumbers` 메서드
   - 로또 당첨 번호를 입력받는다.
 - [x] `Lotto::validate` 메서드

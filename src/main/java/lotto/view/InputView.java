@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "[ERROR] 공백이나 빈 값은 입력이 불가능합니다.";
     private static final String NOT_ALLOWED_CHARACTER_ERROR_MESSAGE = "[ERROR] 숫자만 입력이 가능합니다.";
+    private static final String NAN_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 값은 입력이 불가능합니다.";
     private static final Pattern WINNING_NUMBERS = Pattern.compile("^\\d+(,\\d+)*$");
     private static final String SPACE = " ";
     private static final String DELIMITER = ",";
@@ -17,6 +18,12 @@ public class InputView {
         validateNullOrEmpty(input);
 
         return input;
+    }
+
+    public static long getNumber() {
+        String input = getLine();
+
+        return toLong(input);
     }
 
     public static List<Integer> getWinningNumbers() {
@@ -51,5 +58,16 @@ public class InputView {
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
+    }
+
+    private static long toLong(String amount) {
+        long result;
+        try {
+            result = Long.parseLong(amount);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(NAN_ERROR_MESSAGE);
+        }
+
+        return result;
     }
 }

@@ -9,13 +9,25 @@ import lotto.util.exception.DuplicationNumberException;
 /**
  * 당첨 번호 입력을 검증하는 검사기
  */
-public class WinningNumbersValidator {
+public class WinningBonusNumbersValidator {
 
     public static void validateWinningNumber(String winningNumbers) {
         validateNull(winningNumbers);
         validateEmpty(winningNumbers);
         List<String> parseWinningNumbers = Parser.parseString(winningNumbers);
         numberDuplicates(parseWinningNumbers);
+        lengthThanSix(parseWinningNumbers);
+    }
+
+    private static void lengthThanSix(List<String> parseWinningNumbers) {
+        if (parseWinningNumbers.size() > 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateBonusNumber(String bonusNumbers) {
+        validateNull(bonusNumbers);
+        validateEmpty(bonusNumbers);
     }
 
     private static void numberDuplicates(List<String> numbers) {

@@ -4,7 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
-import lotto.domain.PurchasedLotto;
+import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
 
@@ -17,5 +18,15 @@ public class LottoService {
             purchasedLotto.add(lotto);
         }
         return purchasedLotto;
+    }
+
+    public static PurchasedLottoDTO purchasedLottoToDTO(PurchasedLottoNumbers purchasedLottoNumbers){
+        int purchasedLottoCount = purchasedLottoNumbers.getPurchasedLotto().size();
+        List<Lotto> purchasedLotto = new ArrayList<>();
+        for(int i = 0; i < purchasedLottoCount; i++){
+            purchasedLotto.add(purchasedLottoNumbers.getPurchasedLotto().get(i));
+
+        }
+        return new PurchasedLottoDTO(purchasedLotto);
     }
 }

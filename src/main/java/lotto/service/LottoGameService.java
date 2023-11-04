@@ -1,45 +1,47 @@
 package lotto.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static lotto.utils.NumberGenerator.createInRangeNumber;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.dto.LottoGameResponse;
-import lotto.utils.NumberGenerator;
+import lotto.dto.LottoBuyResponse;
+import lotto.dto.LottoGameResultResponse;
 
 public class LottoGameService {
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_SIZE = 6;
+
     private List<Lotto> buyLottos;
 
-    public LottoGameResponse buy(Money money) {
-        buyLottos = new ArrayList<>();
+    public LottoBuyResponse buyLottos(Money money) {
         int count = money.getDividedThousandWonCount();
 
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(NumberGenerator.createInRangeNumber(1, 45, 6));
-            buyLottos.add(lotto);
-        }
+        buyLottos = IntStream.range(0, count)
+                .mapToObj(i -> new Lotto(createInRangeNumber(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE)))
+                .collect(Collectors.toList());
 
-        return new LottoGameResponse(count, buyLottos.stream().map(Lotto::getNumbers).collect(Collectors.toList()));
+        return LottoBuyResponse.fromLottoNumbers(buyLottos);
     }
 
-    public Map<LottoRank, Integer> calculateResult(Lotto winningLotto, int bonusNumber) {
-        Map<LottoRank, Integer> result = new HashMap<>();
+    public LottoGameResultResponse calculateResult(Lotto winningLotto, int bonusNumber) {
+        Map<LottoRank, Integer> gameResultCounts = new HashMap<>();
 
         for (int i = 0; i < buyLottos.size(); i++) {
-            int countingMatchingNumbers = 0;
-            boolean bonus;
-
-            countingMatchingNumbers = buyLottos.get(i).getCountingMatchingNumbers(winningLotto);
-            bonus = winningLotto.containsNumber(bonusNumber);
+            int countingMatchingNumbers = buyLottos.get(i).getCountingMatchingNumbers(winningLotto);
+            ;
+            boolean bonus = winningLotto.containsNumber(bonusNumber);
 
             LottoRank rank = LottoRank.getRankByMatchedNumbers(countingMatchingNumbers, bonus);
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
+            gameResultCounts.put(rank, gameResultCounts.getOrDefault(rank, 0) + 1);
         }
-        return result;
+
+        return LottoGameResultResponse.from(gameResultCounts);
     }
 }

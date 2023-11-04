@@ -11,7 +11,8 @@ import lotto.common.InputOutputMessages;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.dto.LottoGameResponse;
+import lotto.dto.LottoBuyResponse;
+import lotto.dto.LottoGameResultResponse;
 
 public class InputOutputView {
 
@@ -23,8 +24,16 @@ public class InputOutputView {
         return getUserInput(INPUT_WINNING_NUMBER, Lotto::createLotto);
     }
 
-    public int inputBonusNumber() {
-        return getUserInput(INPUT_BONUS_NUMBER, Integer::parseInt);
+    public int inputBonusNumber(Lotto winningNumbers) {
+        return getUserInput(INPUT_BONUS_NUMBER, input -> {
+            int bonusNumber = Integer.parseInt(input);
+
+            if (winningNumbers.containsNumber(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+
+            return bonusNumber;
+        });
     }
 
     public <T> T getUserInput(InputOutputMessages inputMessage, Function<String, T> parser) {
@@ -39,21 +48,23 @@ public class InputOutputView {
         }
     }
 
-    public void printBuyLottos(LottoGameResponse lottoGameResponse) {
-        System.out.printf("%s개를 구매했습니다.\n", lottoGameResponse.getCount());
-        for (int i = 0; i < lottoGameResponse.getCount(); i++) {
-            System.out.println(lottoGameResponse.getBuyLottoNumbers().get(i));
+    public void printBuyLottos(LottoBuyResponse lottoBuyResponse) {
+        System.out.printf("%s개를 구매했습니다.\n", lottoBuyResponse.getCount());
+        for (int i = 0; i < lottoBuyResponse.getCount(); i++) {
+            System.out.println(lottoBuyResponse.getBuyLottoNumbers().get(i));
         }
     }
 
-    public void printResult(Map<LottoRank, Integer> result) {
+    public void printResult(LottoGameResultResponse response) {
+        Map<LottoRank, Integer> gameResults = response.getGameResults();
+
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %s개\n", result.getOrDefault(LottoRank.FIFTH_RANK, 0));
-        System.out.printf("4개 일치 (50,000원) - %s개\n", result.getOrDefault(LottoRank.FOURTH_RANK, 0));
-        System.out.printf("5개 일치 (1,500,000원) - %s개\n", result.getOrDefault(LottoRank.THIRD_RANK, 0));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n", result.getOrDefault(LottoRank.SECOND_RANK, 0));
-        System.out.printf("6개 일치 (2,000,000,000원) - %s개\n", result.getOrDefault(LottoRank.FIRST_RANK, 0));
+        System.out.printf("3개 일치 (5,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FIFTH_RANK, 0));
+        System.out.printf("4개 일치 (50,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FOURTH_RANK, 0));
+        System.out.printf("5개 일치 (1,500,000원) - %s개\n", gameResults.getOrDefault(LottoRank.THIRD_RANK, 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n", gameResults.getOrDefault(LottoRank.SECOND_RANK, 0));
+        System.out.printf("6개 일치 (2,000,000,000원) - %s개\n", gameResults.getOrDefault(LottoRank.FIRST_RANK, 0));
         System.out.println("총 수익률은 62.5%입니다.");
     }
 }

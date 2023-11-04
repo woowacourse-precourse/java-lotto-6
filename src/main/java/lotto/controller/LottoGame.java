@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import java.util.Map;
-import lotto.common.LottoRank;
 import lotto.domain.Lotto;
-import lotto.dto.LottoGameResponse;
-import lotto.service.LottoGameService;
 import lotto.domain.Money;
+import lotto.dto.LottoBuyResponse;
+import lotto.dto.LottoGameResultResponse;
+import lotto.service.LottoGameService;
 import lotto.view.InputOutputView;
 
 public class LottoGame {
@@ -19,13 +18,17 @@ public class LottoGame {
 
     public void start() throws IllegalArgumentException {
         Money money = inputOutputView.inputMoney();
-        LottoGameResponse lottoGameResponse = lottoGameService.buy(money);
-        inputOutputView.printBuyLottos(lottoGameResponse);
+        LottoBuyResponse lottoBuyResponse = lottoGameService.buyLottos(money);
+        inputOutputView.printBuyLottos(lottoBuyResponse);
 
         Lotto winningNumbers = inputOutputView.inputWinningNumbers();
-        int bonusNumber = inputOutputView.inputBonusNumber();
+        int bonusNumber = inputOutputView.inputBonusNumber(winningNumbers);
 
-        Map<LottoRank, Integer> result = lottoGameService.calculateResult(winningNumbers, bonusNumber);
+        if (winningNumbers.containsNumber(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+
+        LottoGameResultResponse result = lottoGameService.calculateResult(winningNumbers, bonusNumber);
         inputOutputView.printResult(result);
     }
 }

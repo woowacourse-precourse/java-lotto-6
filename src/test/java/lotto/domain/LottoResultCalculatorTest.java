@@ -1,14 +1,12 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoResultCalculatorTest {
     WinningNumbers winningNumbers;
@@ -40,28 +38,46 @@ class LottoResultCalculatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("")
+    @DisplayName("랭킹을 계산한다.")
     @Test
     void calculateRanking() {
         // given
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 7);
+        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 7, 8);
+
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
         bonusNumber = BonusNumber.create("7");
         LottoResultCalculator lottoResultCalculator = LottoResultCalculator.create(winningNumbers, bonusNumber);
+        List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
         // when, then
-//        assertThat(lottoResultCalculator.countMatchingNumbers(new Lotto(numbers))).isEqualTo(6);  //일치하는 번호 개수 리턴
-//        assertThat(lottoResultCalculator.is)
+        lottoResultCalculator.calculateWinningRecords(Lottos.create(lottos));
+        //winningNumbers와 파라미터로 들어온 Lottos 를 비교하여 winningRecords 필드를 업데이트
+        //winningRecords : Map<Integer, Integer> 등수 : 몇개가 해당 등수인지
+
+        assertThat(lottoResultCalculator.getWinningRecords().get(1)).isEqualTo(1);  //1등 1개
+        assertThat(lottoResultCalculator.getWinningRecords().get(2)).isEqualTo(1);  //2등 1개
+        assertThat(lottoResultCalculator.getWinningRecords().get(3)).isEqualTo(0);  //3등 0개
+        assertThat(lottoResultCalculator.getWinningRecords().get(4)).isEqualTo(1);  //4등 1개
+        assertThat(lottoResultCalculator.getWinningRecords().get(5)).isEqualTo(0);  //3등 0개
     }
 
-    @DisplayName("")
+    @DisplayName("수익률을 계산한다.")
     @Test
     void calculateProfit() {
         // given
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 7);
+        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 7, 8);
 
-        // when
+        winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
+        bonusNumber = BonusNumber.create("7");
+        LottoResultCalculator lottoResultCalculator = LottoResultCalculator.create(winningNumbers, bonusNumber);
+        List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
-        // then
+        // when, then
+        lottoResultCalculator.calculateProfit();  // (번 돈 / money) * 100
 
     }
 

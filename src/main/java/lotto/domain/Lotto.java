@@ -1,12 +1,9 @@
 package lotto.domain;
 
-import lotto.constants.LottoNumberConstants;
 import lotto.exception.ErrorMessage;
 import lotto.validator.LottoNumberValidator;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static lotto.constants.LottoNumberConstants.*;
 
@@ -24,7 +21,6 @@ public class Lotto {
         }
 
         LottoNumberValidator.validateDuplicate(numbers);
-
         LottoNumberValidator.validateNumbersInRange(numbers);
     }
 

@@ -33,4 +33,14 @@ class LottoTest {
 
         assertThat(lotto.toString()).isEqualTo(expectedResult);
     }
+
+    @Test
+    @DisplayName("일치하는 번호 구하기 테스트")
+    void countSameNumbersTest() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,45));
+        int expectedSameNumbers = 5;
+
+        assertThat(lotto.countSameNumbers(winningLotto)).isEqualTo(expectedSameNumbers);
+    }
 }

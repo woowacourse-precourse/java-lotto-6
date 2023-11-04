@@ -14,15 +14,15 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public static void displayStatistics(List<Integer> lucky, double rate) {
-        displayStatisticsHeader();
+    public static void printResult(List<Integer> lucky, double rate) {
+        printResultHeader();
         for (int i = 0; i < lucky.size(); i++) {
             System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), lucky.get(i)));
         }
         System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
     }
 
-    private static void displayStatisticsHeader() {
+    private static void printResultHeader() {
         System.out.println(OutputMessage.LOTTO_STATISTICS.getMessage());
         System.out.println(OutputMessage.LINE_SEPARATOR.getMessage());
     }

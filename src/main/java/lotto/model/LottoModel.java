@@ -2,19 +2,20 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Constants;
 import lotto.view.OutputView;
 
 public class LottoModel {
     private List<List<Integer>> lottoTickets;
-    private List<Integer> userLottoNumbers;
+    private List<Integer> LottoNumbers;
     private int bonusNumber;
     private List<Integer> lucky;
     private int purchaseAmount;
 
-    public LottoModel(List<List<Integer>> lottoTickets, List<Integer> userLottoNumbers, int bonusNumber,
+    public LottoModel(List<List<Integer>> lottoTickets, List<Integer> LottoNumbers, int bonusNumber,
                       int purchaseAmount) {
         this.lottoTickets = lottoTickets;
-        this.userLottoNumbers = userLottoNumbers;
+        this.LottoNumbers = LottoNumbers;
         this.bonusNumber = bonusNumber;
         this.purchaseAmount = purchaseAmount;
         this.lucky = new ArrayList<>(List.of(0, 0, 0, 0, 0));
@@ -22,7 +23,7 @@ public class LottoModel {
 
     public void calculatePrize() {
         for (int i = 0; i < lottoTickets.size(); i++) {
-            int sameNumberCount = countSameNumbers(userLottoNumbers, lottoTickets.get(i));
+            int sameNumberCount = countSameNumbers(LottoNumbers, lottoTickets.get(i));
 
             if (sameNumberCount >= 3 && sameNumberCount != 5) {
                 lucky.set(sameNumberCount - 3, lucky.get(sameNumberCount - 3) + 1);
@@ -40,7 +41,7 @@ public class LottoModel {
         double sumPrize = calculateSumPrize();
         double beforeRate = sumPrize / purchaseAmount * 100;
         double rate = Math.round(beforeRate * 10.0) / 10.0;
-        OutputView.displayStatistics(lucky, rate);
+        OutputView.printResult(lucky, rate);
     }
 
     private int countSameNumbers(List<Integer> userNumbers, List<Integer> ticketNumbers) {
@@ -55,11 +56,11 @@ public class LottoModel {
 
     private double calculateSumPrize() {
         double sumPrize = 0;
-        sumPrize += 5000 * lucky.get(0);
-        sumPrize += 50000 * lucky.get(1);
-        sumPrize += 1500000 * lucky.get(2);
-        sumPrize += 30000000 * lucky.get(4);
-        sumPrize += 2000000000 * lucky.get(3);
+        sumPrize += Constants.SAME_3.getPrize() * lucky.get(0);
+        sumPrize += Constants.SAME_4.getPrize() * lucky.get(1);
+        sumPrize += Constants.SAME_5.getPrize() * lucky.get(2);
+        sumPrize += Constants.SAME_5_BONUS.getPrize() * lucky.get(4);
+        sumPrize += Constants.SAME_6.getPrize() * lucky.get(3);
         return sumPrize;
     }
 }

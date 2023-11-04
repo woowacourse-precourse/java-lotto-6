@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LottoGame {
     private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String OUTPUT_PURCHASE_AMOUNT = "\n%d개를 구매했습니다.\n";
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -20,6 +21,8 @@ public class LottoGame {
 
         int purchasedLottosNumber = purchaseAmount / LOTTO_PRICE;
         makeLottos(purchasedLottosNumber);
+
+        printLottos(purchasedLottosNumber);
     }
 
     private void makeLottos(int lottosNumber) {
@@ -34,5 +37,13 @@ public class LottoGame {
 
     private void addLotto(Lotto lotto) {
         this.lottos.add(lotto);
+    }
+
+    private void printLottos(int lottosNumber) {
+        System.out.printf(OUTPUT_PURCHASE_AMOUNT, lottosNumber);
+
+        for (Lotto lotto : lottos) {
+            lotto.printNaturalOrder();
+        }
     }
 }

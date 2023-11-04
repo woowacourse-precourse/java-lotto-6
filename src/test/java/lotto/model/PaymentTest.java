@@ -16,7 +16,7 @@ class PaymentTest {
     }
 
     @Test
-    @DisplayName("로또 금액 입력이 숫자가 아닌 문자를 입력하면 예외가 발생한다.")
+    @DisplayName("로또 금액을 정수가 아닌 문자를 입력하면 예외가 발생한다.")
     void 로또_금액이_숫자인지_검증() {
         assertThatThrownBy(() -> new Payment("test"))
                 .isInstanceOf(IllegalArgumentException.class);

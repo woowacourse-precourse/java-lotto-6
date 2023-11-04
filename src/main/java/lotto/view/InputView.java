@@ -17,7 +17,7 @@ public class InputView {
     public PurchaseAmountDto inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = readLine();
-        PurchaseAmountValidator.validatePurchaseAmount(input);
+        PurchaseAmountValidator.inputValidate(input);
 
         return new PurchaseAmountDto(Integer.parseInt(input));
     }
@@ -25,7 +25,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = readLine();
-        WinningLottoValidator.validateWinningNumbers(input);
+        WinningLottoValidator.inputValidate(input);
 
         return Arrays.stream(input.split(", ")).map(Integer::parseInt).toList();
     }
@@ -33,7 +33,7 @@ public class InputView {
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String input = readLine();
-        BonusNumberValidator.validateBonusNumber(input);
+        BonusNumberValidator.inputValidate(input);
 
         return Integer.parseInt(input);
     }

@@ -1,7 +1,7 @@
 package lotto.validator;
 
 public class BonusNumberValidator {
-    public static void validateBonusNumber(final String input) {
+    public static void inputValidate(final String input) {
         if (InputValidator.isEmpty(input)) {
             throw new IllegalArgumentException(InputValidator.ENTER_VALUE_MESSAGE);
         }

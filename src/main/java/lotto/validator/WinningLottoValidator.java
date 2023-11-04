@@ -8,7 +8,7 @@ public class WinningLottoValidator {
             "당첨 번호는 숫자와 '" + InputValidator.DELIMITER + "'만을 사용하여 입력해주세요.";
 
 
-    public static void validateWinningNumbers(final String input) {
+    public static void inputValidate(final String input) {
         if (InputValidator.isEmpty(input)) {
             throw new IllegalArgumentException(InputValidator.ENTER_VALUE_MESSAGE);
         }

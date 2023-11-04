@@ -55,8 +55,8 @@ public class LottoController {
         try {
             Bonus bonus = readBonusNumber();
             return new WinningLotto(lotto, bonus);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             return readWinning(lotto);
         }
     }
@@ -67,8 +67,8 @@ public class LottoController {
                     .map(integerConverter::convert)
                     .toList();
             return new Lotto(numbers);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             return readWinningNumbers();
         }
     }
@@ -77,8 +77,8 @@ public class LottoController {
         try {
             Integer number = integerConverter.convert(inputView.readBonusNumber());
             return new Bonus(number);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             return readBonusNumber();
         }
     }
@@ -87,8 +87,8 @@ public class LottoController {
         try {
             Integer number = integerConverter.convert(inputView.readPurchaseAmount());
             return PurchaseAmount.of(number);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             return readPurchaseAmount();
         }
     }

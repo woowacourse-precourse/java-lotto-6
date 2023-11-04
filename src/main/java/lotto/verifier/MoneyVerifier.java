@@ -1,6 +1,7 @@
 package lotto.verifier;
 
 import lotto.system.Constant;
+import lotto.system.ExceptionMessage;
 
 public class MoneyVerifier implements Verifier {
     @Override
@@ -14,20 +15,20 @@ public class MoneyVerifier implements Verifier {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMERIC);
         }
     }
 
     private void checkRange(String input) {
         int money = Integer.parseInt(input);
-        if (money < 0)
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0보다 커야 합니다");
+        if (money <= 0)
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_POSITIVE);
     }
 
     private void checkDivisible(String input) {
         int money = Integer.parseInt(input);
         if (money % Constant.MONEY_UNIT != 0)
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액이 1000원으로 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIVISIBLE);
     }
 
 

@@ -1,6 +1,7 @@
 package lotto.verifier;
 
 import lotto.system.Constant;
+import lotto.system.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class LottoVerifier implements Verifier {
             try {
                 Integer.parseInt(number);
             } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR] 입력된 값은 숫자가 아닙니다.");
+                throw new IllegalArgumentException(ExceptionMessage.EACH_NOT_NUMERIC);
             }
         }
     }
@@ -28,7 +29,7 @@ public class LottoVerifier implements Verifier {
     private void checkNumberCount(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != Constant.LOTTO_SIZE ){
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개의 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ExceptionMessage.COUNT_NOT_EQUAL);
         }
     }
 
@@ -37,7 +38,7 @@ public class LottoVerifier implements Verifier {
         for (String num : inputs) {
             int number = Integer.parseInt(num);
             if (number < Constant.START_INCLUSIVE || number > Constant.END_INCLUSIVE) {
-                throw new IllegalArgumentException("[ERROR] 로또번호는 1~45사이의 숫자이어야 합니다.");
+                throw new IllegalArgumentException(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
             }
         }
     }
@@ -48,7 +49,7 @@ public class LottoVerifier implements Verifier {
         for(String number : numbers){
             int numberInt = Integer.parseInt(number);
             if (winnerNumbers.contains(numberInt)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 로또 번호입니다.");
+                throw new IllegalArgumentException(ExceptionMessage.NUMBER_NOT_DISTINCT);
             }
             winnerNumbers.add(numberInt);
         }

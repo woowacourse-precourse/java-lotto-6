@@ -1,6 +1,7 @@
 package lotto.verifier;
 
 import lotto.system.Constant;
+import lotto.system.ExceptionMessage;
 
 public class BonusNumberVerifier implements Verifier{
     @Override
@@ -14,14 +15,14 @@ public class BonusNumberVerifier implements Verifier{
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMERIC);
         }
     }
 
     private void checkRange(String input){
         int BonusNumber = Integer.parseInt(input);
         if(BonusNumber < Constant.START_INCLUSIVE || BonusNumber > Constant.END_INCLUSIVE ){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1-45 사이의 숫자이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
         }
     }
 }

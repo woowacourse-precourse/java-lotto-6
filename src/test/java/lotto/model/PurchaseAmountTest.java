@@ -14,4 +14,12 @@ public class PurchaseAmountTest {
                 .isThrownBy(() -> new PurchaseAmount(500))
                 .withMessageContaining("[ERROR]");
     }
+
+    @DisplayName("구입 금액이 1000단위가 아니면 예외가 발생한다.")
+    @Test
+    void createPurchaseAmountByOutOfUnit() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PurchaseAmount(1500))
+                .withMessageContaining("[ERROR]");
+    }
 }

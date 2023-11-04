@@ -28,19 +28,39 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("1 ~ 45");
     }
 
+    @ParameterizedTest(name = "당첨 번호 : {0}, 로또 번호 : {1}, 기대 값 : {2}")
+    @MethodSource("generateLottoAndWinningNumber")
+    @DisplayName("당첨번호와 같은 로또번호 개수를 반환한다.")
+    void 당첨번호와_같은_로또번호_개수_테스트(List<Integer> lotto, List<Integer> winningNumber, int expected) {
+        //given
+        Lotto lottoNumber = new Lotto(lotto);
+        WinningNumber winningNumbers = new WinningNumber(winningNumber);
+
+        //when
+        int actual = winningNumbers.calculateCorrectNumberCount(lottoNumber);
+
+        //then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
     static Stream<Arguments> generateWinningNumber() {
         return Stream.of(
                 Arguments.of(List.of(1, 1, 2, 3, 4, 5)),
                 Arguments.of(List.of(1, 2, 2, 3, 4, 5)),
-                Arguments.of(List.of(1, 3, 3, 3, 4, 5))
-        );
+                Arguments.of(List.of(1, 3, 3, 3, 4, 5)));
     }
 
     static Stream<Arguments> generateOutOfRangeWinningNumber() {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 46, 47, 49, 51)),
                 Arguments.of(List.of(1, 2, 122, 133, 124, 55)),
-                Arguments.of(List.of(1, 3, 53, 73, 84, 95))
-        );
+                Arguments.of(List.of(1, 3, 53, 73, 84, 95)));
+    }
+
+    static Stream<Arguments> generateLottoAndWinningNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 12), 5),
+                Arguments.of(List.of(1, 12, 13, 14, 15, 16), List.of(1, 13, 15, 16, 41, 45), 4),
+                Arguments.of(List.of(1, 31, 32, 33, 41, 45), List.of(1, 11, 12, 13, 21, 25), 1));
     }
 }

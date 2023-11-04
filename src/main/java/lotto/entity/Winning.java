@@ -4,6 +4,7 @@ import lotto.property.LottoProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.property.LottoProperty.*;
@@ -31,6 +32,6 @@ public class Winning {
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+        return Collections.unmodifiableList(winningNumbers);
     }
 }

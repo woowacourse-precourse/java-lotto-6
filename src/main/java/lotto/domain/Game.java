@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
-import lotto.domain.WinLottoResult;
 
-public class GameService {
+public class Game {
+    private static final int LOTTO_MIN_NUM = 1;
+    private static final int LOTTO_MAX_NUM = 45;
+    private static final int LOTTO_LEN = 6;
 
     /**
      * 2. 구매 가능한 로또 개수만큼 로또 자동 발급기능
@@ -25,14 +25,16 @@ public class GameService {
         return list;
     }
 
-    static private List<Integer> getRandomNumList() {
-        List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sortRandomNumList(list); //정렬 시키기
-        return list;
+    private List<Integer> getRandomNumList() {
+        List<Integer> list = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_LEN);
+        return sort(list);
     }
 
-    static private void sortRandomNumList(List<Integer> list) {
-        Collections.sort(list);
+    private List<Integer> sort(List<Integer> list) {
+        // ApplicationTest 에서 테스트할 때 immutable list 를 넘겨줄 때가 있어서 mutable list 로 만들어줌
+        List<Integer> copiedList = new ArrayList<>(list);
+        Collections.sort(copiedList);
+        return copiedList;
     }
 
 

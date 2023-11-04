@@ -9,33 +9,32 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    static private final String READ_LOTTO_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
-    static private final String READ_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    static private final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-
-    /**
-     * 1) [로또 구매 금액] 입력받기 관련
-     */
-    static private void printReadMessage(String message) {
-        System.out.println(message);
-    }
+    private static final String READ_LOTTO_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String READ_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     //가격 입력받아서 가격을 리턴하고 구매할 로또
-    public int readLottoPrice() {
-        printReadMessage(READ_LOTTO_PRICE_MESSAGE);
+    public static int readLottoPrice() {
+        System.out.println(READ_LOTTO_PRICE_MESSAGE);
 
         String input = Console.readLine();
-        validateLottoPrice(input);
+
+        try {
+            validateLottoPrice(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readLottoPrice();
+        }
 
         return Integer.parseInt(input);
     }
 
-    private void validateLottoPrice(String input) throws IllegalArgumentException {
+    private static void validateLottoPrice(String input) throws IllegalArgumentException {
         //1) 숫자 입력 아니면 예외
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액의 범위는 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
         //2) 숫자 범위 어긋난 경우 예외
         int input_number = Integer.parseInt(input);
@@ -60,10 +59,9 @@ public class InputView {
      * 4. 당첨 번호 입력 기능
      */
 
-    public List<Integer> readWinningNumber() {
+    public static List<Integer> readWinningNumber() {
         System.out.println();
-
-        printReadMessage(READ_WINNING_NUMBER_MESSAGE);
+        System.out.println(READ_WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         //컴마 예외
         validateWinNumberComma(input);
@@ -76,7 +74,7 @@ public class InputView {
         return list.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
     }
 
-    static void validateWinNumberComma(String input) throws IllegalArgumentException {
+    private static void validateWinNumberComma(String input) throws IllegalArgumentException {
         //1) 처음부터 컴마 입력 시
         if (input.charAt(0) == ',') {
             throw new IllegalArgumentException("[ERRPR] 당첨 번호에 처음부터 쉼표(,) 가 입력되면 안됩니다.");
@@ -93,7 +91,7 @@ public class InputView {
         }
     }
 
-    static void validateWinNumberList(List<String> list) throws IllegalArgumentException {
+    private static void validateWinNumberList(List<String> list) throws IllegalArgumentException {
         if (list.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 숫자는 총 6개의 숫자가 입력되어야 합니다.");
         }
@@ -135,9 +133,9 @@ public class InputView {
      * 5. 보너스 번호 입력
      */
 
-    public int readBonusNumber() {
+    public static int readBonusNumber() {
         System.out.println();
-        printReadMessage(READ_BONUS_NUMBER_MESSAGE);
+        System.out.println(READ_BONUS_NUMBER_MESSAGE);
         String num = Console.readLine();
 
         //예외 처리
@@ -145,7 +143,7 @@ public class InputView {
         return Integer.parseInt(num);
     }
 
-    static void validateBonusNumber(String input) throws IllegalArgumentException {
+    private static void validateBonusNumber(String input) throws IllegalArgumentException {
         //1) 숫자 아닌 값 예외
         for (char num : input.toCharArray()) {
             if (!Character.isDigit(num)) {

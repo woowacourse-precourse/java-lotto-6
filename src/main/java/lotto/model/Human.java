@@ -6,7 +6,7 @@ public class Human {
 
     public Human(int money) {
         this.money = money;
-        this.count = money % 1000;
+        this.count = money / 1000;
     }
 
     public int getCount() {

@@ -42,6 +42,9 @@ public final class DrawLottosDto {
         return new DrawLottosDto(lottoNumbers, bonusNumber);
     }
 
+    /**
+     * 학습을 위해 작성해둔, 실제 사용되지 않는 메소드입니다.
+     */
     public static Builder builder() {
         return new Builder();
     }
@@ -60,7 +63,11 @@ public final class DrawLottosDto {
     }
 
     /**
-     *
+     * 학습을 위해 작성했던 static nested builder 클래스입니다.
+     * <p>
+     * 실제 사용하지는 않고 있습니다.
+     * <p>
+     * 동일한 기능의 DrawLottosDotBuilder가 실제 사용되는 Builder 클래스이므로 참고해주세요.
      */
     public static class Builder {
         private List<Integer> lottoNumbers;

@@ -8,6 +8,13 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+/**
+ * 입력, 실행, 출력 3단계의 흐름 제어 역할을 맡는 Controller 계층입니다.
+ * <p>
+ * 실제 로직이 작성된다기보다는, 전체적인 흐름 및 기능 목록을 한 눈에 볼 수 있도록,
+ * <p>
+ * 하위 계층에게 대부분의 처리를 위임하여 적은 코드량을 유지하여 가독성을 높이는 것이 좋다고 생각했습니다.
+ */
 public final class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -63,7 +70,7 @@ public final class LottoController {
      */
     private void drawLottos() {
         final DrawLottosDto inputDto = inputView.inputDrawLottosDto();
-        final LottosDrawingResult outputDto = lottoService.drawAllLottos(inputDto);
+        final LottosDrawingResult outputDto = lottoService.drawLottos(inputDto);
         outputView.printLottosDrawingResult(outputDto);
     }
 }

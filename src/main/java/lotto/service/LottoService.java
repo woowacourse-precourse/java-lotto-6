@@ -67,7 +67,7 @@ public final class LottoService {
     /**
      * 로또 추첨에 대한 입력 Dto를 받아서 추첨 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
-    public LottosDrawingResult drawAllLottos(final DrawLottosDto dto) {
+    public LottosDrawingResult drawLottos(final DrawLottosDto dto) {
         final WinningLotto winningLotto = LottoMapper.mapFrom(dto);
         final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
         final Lottos lottos = new Lottos(lottoRepository.findAll());

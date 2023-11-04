@@ -41,9 +41,21 @@ public class Input {
     }
 
     public List<Integer> getWinningNumbers() {
-        return Arrays.stream(Console.readLine().split(","))
+        List<Integer> userInput = Arrays.stream(Console.readLine().split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        validateWinningNumbers(userInput);
+        return userInput;
+    }
+
+    private void validateWinningNumbers(List<Integer> userInput) {
+        validateNumbersSizeSix(userInput);
+    }
+
+    private void validateNumbersSizeSix(List<Integer> userInput) {
+        if (userInput.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6자리 숫자를 입력해 주세요.");
+        }
     }
 
     public int getBonusNumber() {

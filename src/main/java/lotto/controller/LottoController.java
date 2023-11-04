@@ -56,8 +56,15 @@ public class LottoController {
     }
 
     private List<Integer> generateWinningNumbers() {
-        output.printInputWinningNumbersMessage();
-        return input.getWinningNumbers();
+        List<Integer> winningNumbers;
+        try {
+            output.printInputWinningNumbersMessage();
+            winningNumbers = input.getWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winningNumbers = generateWinningNumbers();
+        }
+        return winningNumbers;
     }
 
     private int generateBonusNumber() {

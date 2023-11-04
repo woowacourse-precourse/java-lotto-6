@@ -17,29 +17,40 @@ import java.util.stream.Collectors;
 public class LottoController {
 
     public void inputNumbers(String input) {
-        validateInputSize(input);
-        validateDuplicateNumber(validateIsNumeric(input));
+        validateDuplicateNumber(validateIsNumeric(validateInputSize(input)));
     }
 
-    private void validateInputSize(String input) {
-        if (Arrays.stream(input.split(" ")).count() != LOTTO_SIZE.getInfo()) {
+    private String[] validateInputSize(String input) {
+        String[] splitInput = input.split(" ");
+        if (Arrays.stream(splitInput).count() != LOTTO_SIZE.getInfo()) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
+
+        return splitInput;
     }
 
-    private List<Integer> validateIsNumeric(String input) {
+    private List<Integer> validateIsNumeric(String[] splitInput) {
         List<Integer> inputNumbers = new ArrayList<>();
-        for (char ch : input.toCharArray()) {
-            if (Character.isWhitespace(ch)) {
-                continue;
-            }
-            if (!Character.isDigit(ch)) {
+
+        for (String inputNumber : splitInput) {
+            if (!isNumeric(inputNumber)) {
                 throw new IllegalArgumentException(NON_NUMERIC_ERROR.getMessage());
             }
-            inputNumbers.add((Character.getNumericValue(ch)));
+
+            inputNumbers.add(Integer.parseInt(inputNumber));
         }
 
         return inputNumbers;
+    }
+
+    private boolean isNumeric(String inputNumber) {
+        for (char inputCh : inputNumber.toCharArray()) {
+            if (!Character.isDigit(inputCh)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {

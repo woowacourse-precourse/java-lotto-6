@@ -2,16 +2,17 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Input.Input;
+import lotto.validator.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -95,6 +96,40 @@ class ApplicationTest extends NsTest {
         System.setIn(new ByteArrayInputStream(bonus.getBytes()));
         int num=Input.makeBonusNumber();
         assertThat(num).isEqualTo(7);
+    }
+
+    @Test
+    void 로또_입력_예외1(){
+        assertThrows(IllegalArgumentException.class,
+                ()->Validator.checkAnswerNumber(new String[]{"1","2","3","4","5","46"}));
+    }
+
+    @Test
+    void 로또_입력_예외2(){
+        assertThrows(IllegalArgumentException.class,
+                ()->Validator.checkAnswerNumber(new String[]{"1","2","A","4","5","44"}));
+    }
+    @Test
+    void 로또_입력_예외3(){
+        assertThrows(IllegalArgumentException.class,
+                ()->Validator.checkAnswerNumber(new String[]{"1","2","3","4","5"}));
+    }
+
+    @Test
+    void 로또_중복_입력(){
+        assertThrows(IllegalArgumentException.class,
+                ()->Validator.checkDuplication(List.of(1,2,3,4,5,2)));
+
+    }
+
+    @Test
+    void 금액_입력_예외1(){
+        assertThrows(IllegalArgumentException.class,()->Validator.checkPrice("15002"));
+    }
+
+    @Test
+    void 금액_입력_예외2(){
+        assertThrows(IllegalArgumentException.class,()->Validator.checkPrice("15a"));
     }
     @Override
     public void runMain() {

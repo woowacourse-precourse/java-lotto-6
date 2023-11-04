@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.ExceptionType;
+import lotto.exception.InputException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,11 +14,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isSixLength(numbers)) {
-            throw new IllegalArgumentException();
+            throw new InputException(ExceptionType.ERROR_LOTTO_INPUT_SIX);
         }
 
         if (isDuplicates(numbers)) {
-            throw new IllegalArgumentException();
+            throw new InputException(ExceptionType.ERROR_LOTTO_DUPLICATE);
         }
     }
 

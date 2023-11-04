@@ -13,8 +13,8 @@ import lotto.dto.PurchasedLottosDto;
 public class LotteryStore {
 
 
-    LottoFactory lottoFactory;
-    LottoRepository lottoRepository;
+    LottoFactory lottoFactory = new LottoFactory();
+    LottoRepository lottoRepository = LottoRepository.getInstance();
 
     public void getLottoOrderUpTo(int count) {
         List<Lotto> orderedLottos = lottoFactory.createRandomLottoUpto(count);

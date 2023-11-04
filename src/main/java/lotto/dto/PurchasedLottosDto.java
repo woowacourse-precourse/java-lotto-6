@@ -15,4 +15,8 @@ public class PurchasedLottosDto {
         return new PurchasedLottosDto(lottos);
     }
 
+    public List<String> show() {
+        return purchasedLottos;
+    }
+
 }

@@ -11,7 +11,7 @@ public class LottoApplication {
     private static final long CURRENCY = 1000;
 
     Money money;
-    LotteryStore lottoStore;
+    LotteryStore lottoStore = new LotteryStore();
 
     public void run() {
         String money = getMoneyFromUserInput();
@@ -19,6 +19,8 @@ public class LottoApplication {
 
         lottoStore.getLottoOrderUpTo((int)this.money.showCountConvertTo(CURRENCY));
         PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
+
+
 
     }
 

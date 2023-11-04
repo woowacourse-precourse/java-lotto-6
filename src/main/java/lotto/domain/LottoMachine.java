@@ -13,14 +13,14 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
 
-	public LottoTicket purchaseLotto(PurchaseAmount purchaseAmount) {
+	public LottoPlayer purchaseLotto(PurchaseAmount purchaseAmount) {
 		int lottoTicketCount = purchaseAmount.getAmount() / LOTTO_PRICE.getValue();
 
 		List<Lotto> lottoList = IntStream.range(0, lottoTicketCount)
 			.mapToObj(i -> generateRandomLotto())
 			.collect(Collectors.toList());
 
-		return new LottoTicket(lottoList);
+		return new LottoPlayer(lottoList);
 	}
 
 	private Lotto generateRandomLotto() {

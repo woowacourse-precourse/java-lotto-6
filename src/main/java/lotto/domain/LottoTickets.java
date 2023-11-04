@@ -34,7 +34,7 @@ public class LottoTickets {
         for (Lotto lottoTicket : lottoTickets) {
             Integer rank = winningNum.compare(lottoTicket);
 
-            if(rank==ConstNum.LOSE.getNum()) continue;
+            if(rank== LottoRank.LOSE.getNum()) continue;
 
             result.set(rank, result.get(rank) + 1);
         }

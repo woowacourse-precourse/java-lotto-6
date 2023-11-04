@@ -25,7 +25,7 @@ public class Lotto {
 
     private void validateLottoRange(List<Integer> numbers) {
         long numbersCount = getCountFilterByLottoRange(numbers);
-        if (numbersCount < LottoRule.NUMBER_MAX_SIZE) {
+        if (numbersCount != LottoRule.NUMBER_MAX_SIZE) {
             throw new LottoNumberRangeException();
         }
     }
@@ -37,7 +37,7 @@ public class Lotto {
     }
 
     private static boolean isInRange(Integer num) {
-        return num < LottoRule.START_NUMBER || num > LottoRule.END_NUMBER;
+        return num >= LottoRule.START_NUMBER && num <= LottoRule.END_NUMBER;
     }
 
     private void validateLottoDuplicate(List<Integer> numbers) {

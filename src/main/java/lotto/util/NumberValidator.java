@@ -8,6 +8,7 @@ import lotto.constant.ErrorMessage;
 public class NumberValidator {
     static final int MIN_NUMBER = 1;
     static final int MAX_NUMBER = 45;
+    static final int NUMBERS_SIZE = 6;
     static Set<Integer> set;
 
     public static void validateChangeNumber(String input) {
@@ -17,6 +18,13 @@ public class NumberValidator {
             throw new IllegalArgumentException(ErrorMessage.ONLY_INPUT_NUMBER.toString());
         }
     }
+
+    public static void validateSizeSix(List<Integer> numbers) {
+        if (numbers.size() != NUMBERS_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_SIX_NUMBER.toString());
+        }
+    }
+
     public static void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
             isValidNumber(number);

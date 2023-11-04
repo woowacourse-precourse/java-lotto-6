@@ -26,4 +26,20 @@ public class AmountValidatorTest {
         );
     }
 
+    @ParameterizedTest
+    @DisplayName("구입금액: 입력이 1000의 배수가 아닌 경우")
+    @ValueSource(strings = {"1400", "900"})
+    void whenInputIsNotDividedBy1000(String input) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> validator.validate(input)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("구입금액: 올바른 입력이 들어왔을 때")
+    @ValueSource(strings = {"14000", "8000"})
+    void whenInputIsValid(String input) {
+        validator.validate(input);
+    }
 }

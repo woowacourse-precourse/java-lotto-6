@@ -2,6 +2,7 @@ package lotto.domain.prize_calculator;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import lotto.domain.lotto_prize.FixedLottoPrize;
 
 public class FixedPrizeCalculator implements PrizeCalculator {
     private HashMap<Long, Integer> matchCountPrizeMap;

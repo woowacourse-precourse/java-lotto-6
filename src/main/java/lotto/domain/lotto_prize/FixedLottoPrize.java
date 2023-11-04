@@ -1,4 +1,4 @@
-package lotto.domain.prize_calculator;
+package lotto.domain.lotto_prize;
 
 public enum FixedLottoPrize {
     THREE(3L, 5_000),

@@ -24,7 +24,14 @@ public class InputView {
                     .stream(Console.readLine().split(","))
                     .map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_ERROR.getMessage());
         }
+    }
+    public int getBonusNumber(){
+        try {
+            System.out.println("\n" + GameMessage.BONUS_NUMBERS_INPUT_MESSAGE);
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {}
+        throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_ERROR.getMessage());
     }
 }

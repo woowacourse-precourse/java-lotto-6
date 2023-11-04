@@ -10,6 +10,7 @@ import lotto.ui.Computer;
 public class Application {
 
 
+    // domain? - Seller
     public static List<Lotto> createLottos(Integer lottoCount){
         List<Lotto> lottos = new ArrayList<>();
 
@@ -17,6 +18,15 @@ public class Application {
             lottos.add(Computer.calculateLottoNumber());
         }
         return lottos;
+    }
+
+    // ui - 출력
+    public static void printLottos(List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedLotto);
+            System.out.println(sortedLotto);
+        }
     }
 
     public static void main(String[] args) {
@@ -32,11 +42,7 @@ public class Application {
         Application.createLottos(user.lottoCount);
 
         // 4. 로또 번호 출력
-        for (Lotto lotto : lottos) {
-            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
-            Collections.sort(sortedLotto);
-            System.out.println(sortedLotto);
-        }
+        Application.printLottos(lottos);
 
         // 5. 당첨 번호 입력
         Lotto winningLotto = null;

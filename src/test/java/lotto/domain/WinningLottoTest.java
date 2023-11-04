@@ -116,8 +116,6 @@ class WinningLottoTest {
                     .isEqualTo(3);
         }
 
-        // Lotto를 입력받고 보너스 번호가 있는지 확인
-
         @Test
         @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 확인한다")
         void contains_로또_번호에_보너스_번호가_포함되어_있는지_확인한다() {

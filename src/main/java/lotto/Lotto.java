@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import lotto.constant.NumberConstant;
 
@@ -11,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validDuplicate(numbers);
+        validNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -24,6 +26,14 @@ public class Lotto {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         if (sNumbers.size() != numbers.size()){
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validNumberRange(List<Integer> numbers){
+        for (int number : numbers){
+            if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
+                throw new IllegalArgumentException();
+            }
         }
     }
 

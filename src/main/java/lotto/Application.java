@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         int purchase = 0;
 
         while (true) {
@@ -18,18 +17,18 @@ public class Application {
 
                 if (!input.matches("[1-9]\\d*")) {
                     if (input.matches("[-]\\d+")) {
-                        throw new IllegalArgumentException("[ERROR] 음수는 입력할 수 없습니다.");
+                        throw new IllegalArgumentException(ErrorMessage.INVALID_NEGATIVE_PURCHASE.getMessage());
                     }
                     if (input.matches("0+")) {
-                        throw new IllegalArgumentException("[ERROR] 0은 입력할 수 없습니다.");
+                        throw new IllegalArgumentException(ErrorMessage.INVALID_ZERO_PURCHASE.getMessage());
                     }
-                    throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
                 }
 
                 purchase = Integer.parseInt(input);
 
                 if (purchase % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
                 }
 
                 break;
@@ -39,11 +38,11 @@ public class Application {
         }
 
         System.out.println();
-        int LottoTicket = purchase / 1000;
-        System.out.println(LottoTicket + "개를 구매했습니다.");
+        int lottoTicket = purchase / 1000;
+        System.out.println(lottoTicket + "개를 구매했습니다.");
 
         List<List<Integer>> allLotto = new ArrayList<>();
-        for (int i = 0; i < LottoTicket; i++) {
+        for (int i = 0; i < lottoTicket; i++) {
             List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(oneLotto);
             System.out.print("[");
@@ -70,7 +69,7 @@ public class Application {
                         int number = Integer.parseInt(numbers[i]);
                         jackPot.add(number);
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+                        throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC.getMessage());
                     }
                 }
                 Lotto lotto = new Lotto(jackPot);
@@ -90,27 +89,25 @@ public class Application {
                 try {
                     bonusNumber = Integer.parseInt(input);
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
                 }
 
                 if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자만 입력할 수 있습니다.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
                 }
 
                 if (jackPot.contains(bonusNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호에 존재하는 번호입니다.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_DUPLICATE.getMessage());
                 }
 
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
-
         }
 
         List<Integer> goodLuck = new ArrayList<>(List.of(0, 0, 0, 0, 0));
-        for (int i = 0; i < LottoTicket; i++) {
+        for (int i = 0; i < lottoTicket; i++) {
             int sameNumberCount = 0;
             for (int number : jackPot) {
                 if (allLotto.get(i).contains(number)) {
@@ -143,7 +140,7 @@ public class Application {
         sumPrize += 2000000000 * goodLuck.get(4);
 
         double beforeRate = sumPrize / purchase * 100;
-        double Rate = Math.round(beforeRate * 10.0) / 10.0;
+        double rate = Math.round(beforeRate * 10.0) / 10.0;
 
         System.out.println();
         System.out.println("당첨 통계");
@@ -154,7 +151,6 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + goodLuck.get(2) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + goodLuck.get(3) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + goodLuck.get(4) + "개");
-        System.out.println("총 수익률은 " + Rate + "%입니다.");
-
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

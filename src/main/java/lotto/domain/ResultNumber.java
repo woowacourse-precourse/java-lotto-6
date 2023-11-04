@@ -4,15 +4,15 @@ import java.util.List;
 
 public class ResultNumber {
     private static ResultNumber resultNumber =null;
-    private List<Integer> winningNumber;
-    private int bonusNumber;
+    private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
-    private ResultNumber(List<Integer> winningNumber, int bonusNumber) {
+    private ResultNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
 
-    public static ResultNumber create(List<Integer> winningNumber, int bonusNumber) {
+    public static ResultNumber create(WinningNumber winningNumber, BonusNumber bonusNumber) {
         if(resultNumber == null){
             resultNumber = new ResultNumber(winningNumber, bonusNumber);
         }
@@ -20,10 +20,10 @@ public class ResultNumber {
     }
 
     public List<Integer> getWinningNumber() {
-        return winningNumber;
+        return winningNumber.getWinningNumbers();
     }
 
     public int getBonusNumber() {
-        return bonusNumber;
+        return bonusNumber.getNumber();
     }
 }

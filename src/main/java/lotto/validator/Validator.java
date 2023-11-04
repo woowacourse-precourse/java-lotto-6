@@ -2,6 +2,8 @@ package lotto.validator;
 
 import lotto.constants.GameNumberConstants;
 
+import java.util.List;
+
 import static lotto.constants.ValidatorConstants.*;
 
 public class Validator {
@@ -12,6 +14,10 @@ public class Validator {
 
     }
 
+    public static void areAllPrimeNumber(List<String> inputs) {
+        inputs.stream().forEach(Validator::isPrimeNumber);
+    }
+
     public static void isPrimeNumber(String input) {
         try {
             Integer.parseInt(input);
@@ -20,14 +26,14 @@ public class Validator {
         }
     }
 
-    public static void isPositiveNumber(String input) {
-        if (Integer.parseInt(input) <= 0) {
+    public static void isPositiveNumber(int input) {
+        if (input <= 0) {
             throw new IllegalArgumentException(INPUT_IS_NOT_POSITIVE_NUMBER.getValue());
         }
     }
 
-    public static void isUnitsOfLottoPrice(String input) {
-        if (Integer.parseInt(input) % 1000 == 0) {
+    public static void isUnitsOfLottoPrice(int input) {
+        if (input % GameNumberConstants.LOTTO_PRICE.getValue() == 0) {
             return;
         }
         throw new IllegalArgumentException(String.format(

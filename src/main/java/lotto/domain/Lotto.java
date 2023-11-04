@@ -1,19 +1,18 @@
 package lotto.domain;
 
-import lotto.constants.GameNumberConstants;
 import lotto.validator.LottoNumberValidator;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static lotto.constants.GameNumberConstants.*;
 import static lotto.validator.LottoNumberValidator.validateNumberRange;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumberValidator.validateLottoNumber(numbers);
+        LottoNumberValidator.validateLottoSize(numbers);
+        LottoNumberValidator.validateDuplication(numbers);
+        LottoNumberValidator.validateNumberRangeInLotto(numbers);
         this.numbers = numbers;
     }
 

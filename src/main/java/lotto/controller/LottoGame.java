@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.ResultNumber;
-import lotto.domain.User;
+import lotto.domain.*;
 import lotto.dto.LottoTicketsDTO;
 import lotto.utility.GameUtility;
 import lotto.validator.LottoNumberValidator;
@@ -17,8 +16,8 @@ public class LottoGame {
     private LottoGame() {}
 
     public static void run() {
-        int payment = getPaymentAndValidate();
-        User user = GameUtility.buyTickets(payment);
+        Payment payment = getPaymentAndValidate();
+        User user = GameUtility.buyTickets(payment.getPayment());
 
         OutputView.printLottoTickets(new LottoTicketsDTO(
                         user.getLottoTickets().size(),
@@ -27,21 +26,19 @@ public class LottoGame {
 
         OutputView.printLineBreak();
 
-        List<Integer> winningNumber = getWinningNumberAndValidate();
-        int bonusNumber = getBonusNumberAndValidate(winningNumber);
+        WinningNumber winningNumber = getWinningNumberAndValidate();
+        BonusNumber bonusNumber = getBonusNumberAndValidate();
         ResultNumber resultNumber = ResultNumber.create(winningNumber, bonusNumber);
     }
 
-    private static int getPaymentAndValidate() {
+    private static Payment getPaymentAndValidate() {
         String paymentString;
-        int payment;
+        Payment payment;
         try {
             OutputView.printInputPurchaseAmount();
             paymentString = InputView.receiveUserInput();
             Validator.isPrimeNumber(paymentString);
-            Validator.isPositiveNumber(paymentString);
-            Validator.isUnitsOfLottoPrice(paymentString);
-            payment = Integer.parseInt(paymentString);
+            payment = new Payment(Integer.parseInt(paymentString));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             payment = getPaymentAndValidate();
@@ -49,17 +46,16 @@ public class LottoGame {
         return payment;
     }
 
-    private static List<Integer> getWinningNumberAndValidate() {
+    private static WinningNumber getWinningNumberAndValidate() {
         String winningNumberString;
-        List<Integer> winningNumber;
+        WinningNumber winningNumber;
         try {
             OutputView.printInputWinningNumber();
             winningNumberString = InputView.receiveUserInput();
             Validator.checkWinningNumberForm(winningNumberString);
-            winningNumber = Arrays.stream(winningNumberString.split(","))
-                                                        .map((number) -> Integer.parseInt(number))
-                                                        .toList();
-            LottoNumberValidator.validateLottoNumber(winningNumber);
+            Validator.areAllPrimeNumber(List.of(winningNumberString.split(",")));
+            winningNumber = WinningNumber.create(stringToIntList(winningNumberString));
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningNumber = getWinningNumberAndValidate();
@@ -67,19 +63,25 @@ public class LottoGame {
         return winningNumber;
     }
 
+    private static List<Integer> stringToIntList(String input) {
+        return Arrays.stream(input.split(","))
+                .map((number) -> Integer.parseInt(number))
+                .toList();
+    }
 
-    private static int getBonusNumberAndValidate(List<Integer> winningNumber) {
-        String bonusNumberString;
-        int bonusNumber;
+
+    private static BonusNumber getBonusNumberAndValidate() {
+        String numberString;
+        BonusNumber bonusNumber;
         try {
             OutputView.printInputBonusNumber();
-            bonusNumberString = InputView.receiveUserInput();
-            LottoNumberValidator.validateBonusNumber(bonusNumberString);
-            bonusNumber = Integer.parseInt(bonusNumberString);
-            LottoNumberValidator.validateDuplication(bonusNumber,winningNumber);
+            numberString = InputView.receiveUserInput();
+            LottoNumberValidator.validateBonusNumber(numberString);
+            bonusNumber = BonusNumber.create(Integer.parseInt(numberString));
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            bonusNumber = getBonusNumberAndValidate(winningNumber);
+            bonusNumber = getBonusNumberAndValidate();
         }
         return bonusNumber;
     }

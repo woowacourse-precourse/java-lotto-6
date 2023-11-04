@@ -8,13 +8,6 @@ import static lotto.constants.ValidatorConstants.*;
 
 public class LottoNumberValidator {
 
-    public static void validateLottoNumber(List<Integer> numbers) {
-        LottoNumberValidator.validateNumbersSize(numbers);
-        LottoNumberValidator.validateDuplication(numbers);
-        numbers.stream()
-                .forEach((number) -> validateNumberRange(number));
-    }
-
     public static void validateBonusNumber(String bonusNumber) {
         Validator.isPrimeNumber(bonusNumber);
         validateNumberRange(Integer.parseInt(bonusNumber));
@@ -22,7 +15,7 @@ public class LottoNumberValidator {
 
 
 
-    public static void validateNumbersSize(List<Integer> numbers) {
+    public static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
             throw new IllegalArgumentException(String.format(
                     LOTTO_INPUT_SHOULD_BE_N.getValue(),
@@ -45,6 +38,11 @@ public class LottoNumberValidator {
         if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
             throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE.getValue());
         }
+    }
+
+    public static void validateNumberRangeInLotto(List<Integer> lotto) {
+        lotto.stream()
+                .forEach((number) -> validateNumberRange(number));
     }
 
     public static void validateNumberRange(int number) {

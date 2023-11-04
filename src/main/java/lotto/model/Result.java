@@ -7,17 +7,17 @@ public class Result {
     private final List<Ranking> rankings;
     private final double totalProfit;
 
-    public Result(List<Ranking> rankings) {
+    public Result(List<Ranking> rankings, int payment) {
         this.rankings = rankings;
-        this.totalProfit = calculateTotalProfit();
+        this.totalProfit = calculateTotalProfit(payment);
     }
 
-    private double calculateTotalProfit() {
+    private double calculateTotalProfit(int payment) {
         double profit = 0;
         for (Ranking ranking : rankings) {
             profit += ranking.getProfit();
         }
-        return profit / rankings.size();
+        return profit / payment;
     }
 
     public String getNumOfRanks() {

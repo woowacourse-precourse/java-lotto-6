@@ -49,4 +49,8 @@ public class PayDTO {
     private static void checkNull(String text) {
         if(text == null || text.isEmpty()) throw new IllegalArgumentException(CATCH_ERROR + INPUT_EMPTY);
     }
+
+    public int getPayment() {
+        return payment;
+    }
 }

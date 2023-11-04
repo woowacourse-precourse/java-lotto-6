@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.LottoService;
-import lotto.model.Ranking;
 import lotto.model.Result;
 import lotto.model.dto.PayDTO;
 import lotto.model.dto.WinningNumDTO;
@@ -13,9 +11,9 @@ public class LottoController {
     private final LottoService lottoService;
 
     public LottoController(){
-        int numberOfLotto = readPayment();
-        this.lottoService = LottoService.buyLottos(numberOfLotto);
-        printPurchasedLottos(numberOfLotto);
+        PayDTO payDTO = InputView.readPayment();
+        this.lottoService = LottoService.buyLottos(payDTO);
+        printPurchasedLottos(payDTO.getNumberOfLotto());
     }
 
     private void printPurchasedLottos(int numberOfLotto) {
@@ -23,14 +21,9 @@ public class LottoController {
         OutputView.printPurchasedLottos(numberOfLotto, resultOfPurchasedLottos);
     }
 
-    public int readPayment(){
-        PayDTO pay = InputView.readPayment();
-        return pay.getNumberOfLotto();
-    }
-
     public void checkResult() {
         WinningNumDTO winningNumDTO = readWinningNums();
-        Result result = new Result(lottoService.checkResult(winningNumDTO));
+        Result result = lottoService.checkResult(winningNumDTO);
         OutputView.printResult(result);
     }
 

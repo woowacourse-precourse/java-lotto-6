@@ -6,10 +6,9 @@ import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class Input {
+public class InputLottoNum {
     private static final String WINNING_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String LOTTO_PRICE = "구입금액을 입력해 주세요.";
 
     private static List<Integer> winningNumber;
 
@@ -18,11 +17,6 @@ public class Input {
         convertToInteger(readLine());
         winningNumber.add(createBonusNumber());
         return winningNumber;
-    }
-
-    public static int enterPurchaseAmount() {
-        System.out.println(LOTTO_PRICE);
-        return Lotto.checkInteger(readLine());
     }
 
     public static int createBonusNumber() {

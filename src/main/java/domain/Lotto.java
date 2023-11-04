@@ -49,4 +49,13 @@ public class Lotto {
         return true;
     }
 
+    public static int checkInteger(String input){
+        try{
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            ExceptionMessage.typeException();
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

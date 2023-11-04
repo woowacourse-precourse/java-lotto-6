@@ -48,10 +48,10 @@
 ## 구현 기능 목록
 
 - [ ] Model
-  - [ ] Lotto
-      - [ ] Lotto 번호 검증
-          - [ ] 길이 검증
-          - [ ] 숫자 중복 검증
+  - [X] Lotto
+      - [X] Lotto 번호 검증
+          - [X] 길이 검증
+          - [X] 숫자 중복 검증
   - [ ] LottoTickets
       - [ ] Lotto 객체들 저장
       - [ ] Lotto 오름차순 정렬

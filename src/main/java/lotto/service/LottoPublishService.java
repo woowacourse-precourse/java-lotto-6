@@ -24,6 +24,11 @@ public class LottoPublishService {
         return LottoPublishServiceHolder.LOTTO_PUBLISH_SERVICE;
     }
 
+    // 상태 초기화
+    public void clearPublishedLottoNumbers() {
+        publishedLottoNumbers = new ArrayList<>();
+    }
+
     public void lottoPublish(String price) {
         lottoPrice = String2Integer(price);
         boughtLottoCount(lottoPrice);

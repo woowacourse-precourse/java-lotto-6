@@ -19,6 +19,7 @@ class LottoPublishServiceTest {
     @BeforeEach
     void setup() {
         lottoPublishService = LottoPublishService.getInstance();
+        lottoPublishService.clearPublishedLottoNumbers();
     }
 
     @DisplayName("중복되지_않는_6개의_숫자_생성")

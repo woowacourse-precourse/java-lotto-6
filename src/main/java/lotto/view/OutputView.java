@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 public class OutputView {
 
     private static final String MONEY_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
+    private static final String COUNT_MESSAGE = "개를 구매했습니다.";
 
     public static void printPurchase() {
         System.out.println(MONEY_REQUEST_MESSAGE);
@@ -14,8 +14,7 @@ public class OutputView {
 
     public static void printLotto(List<Integer> lotto) {
         StringJoiner stringJoiner = new StringJoiner(", ","[","]");
-        lotto.stream()
-                .forEach(number -> stringJoiner.add(number.toString()));
+        lotto.forEach(number -> stringJoiner.add(number.toString()));
         System.out.println(stringJoiner);
     }
 
@@ -23,7 +22,7 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
         stringBuilder.append(lottoCount);
-        stringBuilder.append(PURCHASE_MESSAGE);
+        stringBuilder.append(COUNT_MESSAGE);
         System.out.println(stringBuilder);
     }
 }

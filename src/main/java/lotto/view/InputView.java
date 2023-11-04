@@ -21,4 +21,9 @@ public class InputView {
         return InputValidator.validateWinningNumbers(playerInput);
     }
 
+    public Integer requestBonusNumberInput(){
+        System.out.println(REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
+        String playerInput = Console.readLine();
+        return InputValidator.validateBonusNumber(playerInput);
+    }
 }

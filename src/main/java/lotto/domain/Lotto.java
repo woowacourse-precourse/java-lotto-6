@@ -15,11 +15,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("6개의 숫자를 입력해 주세요");
         } else if (!isWithinRangeNum(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1부터 45까지의 숫자만 입력해 주세요");
         } else if (!isNotDuplicateNum(numbers)) {
-            throw new IllegalArgumentException("중복입니다");
+            throw new IllegalArgumentException("중복되지 않는 숫자를 입력해 주세요.");
         }
 
 

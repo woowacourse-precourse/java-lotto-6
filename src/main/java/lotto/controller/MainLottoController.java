@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Money;
-import lotto.domain.RandomLotto;
-import lotto.domain.RandomLottoMachine;
+import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -17,6 +14,7 @@ public class MainLottoController {
         RandomLotto randomLotto = makeRandomLotto(inPutMoney()); //분리해야될듯 money가 갹체가 되어야하
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
+        makeUserLotto();
         /////// UserLotto userlotto = new UserLotto(Lotto,int)
         //아니면 그냥 UserLotto를 밚롼
 
@@ -25,6 +23,7 @@ public class MainLottoController {
 
     }
 
+    //region 램덤로또
     private Money inPutMoney() {
         try {
             return new Money(input.getPurchaseAmount());
@@ -51,5 +50,24 @@ public class MainLottoController {
             Output.printPurchasedLottoList(lotto.getNumbers());
         }
     }
+    //endregion
 
+    private UserLotto makeUserLotto() {
+        Lotto mainNumber = inputMainLottoNumber();
+
+        int bonusNumber;
+        return new UserLotto();
+    }
+
+    private Lotto inputMainLottoNumber() {
+        try {
+            return new Lotto(input.getMainLottoNumber());
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return inputMainLottoNumber();
+        }
+    }
+    //private int inputBonusNumber(){
+
+    //}
 }

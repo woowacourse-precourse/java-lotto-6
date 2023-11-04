@@ -1,19 +1,36 @@
 package validator;
 
+import static constant.ConstantMessage.DELIMITER;
 import static constant.ConstantNumber.LOTTO_SIZE;
 import static constant.ConstantNumber.MAX_NUMBER;
 import static constant.ConstantNumber.MIN_NUMBER;
 import static constant.ExceptionMessage.DUPLICATE_NUMBER;
 import static constant.ExceptionMessage.ERROR_MESSAGE;
+import static constant.ExceptionMessage.INPUT_STRING;
 import static constant.ExceptionMessage.INVALID_INPUT_SIZE;
 import static constant.ExceptionMessage.OUT_OF_RANGE_NUMBER;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
     private LottoValidator() {
+    }
+
+    public static List<Integer> isNumeric(String numbers) {
+        try {
+            String userInputNumbers = numbers.replace(" ", "");
+            List<Integer> winningNumbers = Arrays.stream(userInputNumbers.split(DELIMITER.getMessage()))
+                    .map(Integer::parseInt)
+                    .toList();
+            return winningNumbers;
+        } catch (Exception e) {
+            throw new NumberFormatException(
+                    ERROR_MESSAGE.getMessage() + INPUT_STRING.getMessage()
+            );
+        }
     }
 
     public static void size(List<Integer> numbers) {

@@ -2,6 +2,7 @@ package constant;
 
 public enum ExceptionMessage {
     NUMERIC_REQUIRED("숫자를 입력해야 합니다."),
+    INPUT_STRING("숫자가 아닌 문자를 입력했습니다."),
     NON_INTEGER_AMOUNT("구입 금액이 정수가 아닙니다."),
     ZERO_INTEGER_AMOUNT("구입 금액은 0원이 불가능합니다."),
     NON_MULTIPLE_OF_1000("구입 금액이 1000원 단위가 아닙니다."),

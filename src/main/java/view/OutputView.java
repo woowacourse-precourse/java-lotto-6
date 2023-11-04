@@ -41,6 +41,10 @@ public class OutputView {
         System.out.printf((TOTAL_RATE_OF_RETURN.getMessage()) + "%n", rateOfReturn);
     }
 
+    public static void errorMessage(NumberFormatException error) {
+        System.out.println(error.getMessage());
+    }
+
     public static void errorMessage(IllegalArgumentException error) {
         System.out.println(error.getMessage());
     }

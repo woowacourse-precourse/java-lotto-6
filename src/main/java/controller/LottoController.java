@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
+import validator.LottoValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -101,8 +102,11 @@ public class LottoController {
     private void inputWinningNumbers() {
         while (true) {
             try {
-                winningNumbers = InputView.winningNumbers();
+                String numbers = InputView.winningNumbers();
+                winningNumbers = new Lotto(LottoValidator.isNumeric(numbers));
                 return;
+            } catch (NumberFormatException error) {
+                OutputView.errorMessage(error);
             } catch (IllegalArgumentException error) {
                 OutputView.errorMessage(error);
             }

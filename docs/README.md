@@ -22,12 +22,12 @@
 # 기능
 
 - getMoney
-- printLotto
 - getLotteryNumbers
 - getBonusNumber
 - calculateResult
-- printResult
 - calculateIncomeRate
+- printLotto
+- printResult
 - printIncomeRate
 
 # 기능 분배
@@ -35,6 +35,7 @@
 - Money
 - Lotto
 - LottoPack
+  - calculateResult
 - LotteryNumber
 - Result
 - IncomeRate

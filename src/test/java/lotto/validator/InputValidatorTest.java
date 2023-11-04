@@ -1,15 +1,15 @@
 package lotto.validator;
 
 
-import static lotto.validator.InputValidator.inNumberRange;
-import static lotto.validator.InputValidator.onlyNumber;
+import static lotto.validator.InputValidator.notNumber;
+import static lotto.validator.InputValidator.overNumberRange;
+import static lotto.view.Input.SEPARATION_SIGN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.view.Input;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,7 +25,7 @@ public class InputValidatorTest {
         //given
 
         //when
-        Throwable result = catchThrowable(() -> onlyNumber(input));
+        Throwable result = catchThrowable(() -> notNumber(input));
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
@@ -45,7 +45,7 @@ public class InputValidatorTest {
         //given
 
         //when
-        Throwable result = catchThrowable(() -> inNumberRange(input));
+        Throwable result = catchThrowable(() -> overNumberRange(input));
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
@@ -62,10 +62,10 @@ public class InputValidatorTest {
     @MethodSource
     void 콤마를_기준으로_숫자외에_문자가_존재할때_예외처리(String input) {
         //given
-        List<String> dividedInput = Arrays.stream(input.split(Input.SEPARATION_SIGN))
+        List<String> dividedInput = Arrays.stream(input.split("" + SEPARATION_SIGN))
                 .toList();
         //when
-        Throwable result = catchThrowable(() -> dividedInput.forEach(InputValidator::onlyNumber));
+        Throwable result = catchThrowable(() -> dividedInput.forEach(InputValidator::notNumber));
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
@@ -83,10 +83,10 @@ public class InputValidatorTest {
     @MethodSource
     void 콤마를_기준으로_숫자의_최대범위를_벗어났을때_예외처리(String input) {
         //given
-        List<String> dividedInput = Arrays.stream(input.split(Input.SEPARATION_SIGN))
+        List<String> dividedInput = Arrays.stream(input.split("" + SEPARATION_SIGN))
                 .toList();
         //when
-        Throwable result = catchThrowable(() -> dividedInput.forEach(InputValidator::inNumberRange));
+        Throwable result = catchThrowable(() -> dividedInput.forEach(InputValidator::overNumberRange));
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
@@ -99,4 +99,24 @@ public class InputValidatorTest {
                 Arguments.of("1,2,3,4,55555555555555555555,6")
         );
     }
+
+    @ParameterizedTest
+    @MethodSource
+    void 콤마의_개수가_5개가_아니라면_예외처리(String input) {
+        //given
+        //when
+        Throwable result = catchThrowable(() -> InputValidator.commaCountDifferent(input));
+        //then
+        assertThat(result).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> 콤마의_개수가_5개가_아니라면_예외처리() {
+        return Stream.of(
+                Arguments.of("1,2,3,4,5,6,"),
+                Arguments.of(",1,2,3,4,5,6"),
+                Arguments.of(",1,2,3,4,5,6,"),
+                Arguments.of(",,,,,,")
+        );
+    }
+
 }

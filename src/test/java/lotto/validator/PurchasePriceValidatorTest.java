@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.validator.PurchasePriceValidator.divisibleUnit;
+import static lotto.validator.PurchasePriceValidator.indivisibleUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -16,7 +16,7 @@ public class PurchasePriceValidatorTest {
         //given
 
         //when
-        Throwable result = catchThrowable(() -> divisibleUnit(input));
+        Throwable result = catchThrowable(() -> indivisibleUnit(input));
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }

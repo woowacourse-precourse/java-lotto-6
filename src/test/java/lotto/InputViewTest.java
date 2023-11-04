@@ -34,7 +34,8 @@ public class InputViewTest {
 
     @Test
     void 당첨_번호_입력_테스트() {
-        List<Integer> prizeNumber = inputView.inputPrizeNumber("1,2,3,4,5,6");
+        inputView.inputPrizeNumber("1,2,3,4,5,6");
+        List<Integer> prizeNumber = inputView.getPrizeNumber();
         assertThat(prizeNumber).hasSize(6);
     }
 
@@ -83,7 +84,7 @@ public class InputViewTest {
         String bonusNumber = "c";
         assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 숫자로 구성됩니다.");
+                .hasMessageContaining("[ERROR] 보너스 번호는 숫자로만 구성됩니다.");
     }
 
     @Test
@@ -98,8 +99,8 @@ public class InputViewTest {
     void 보너스_번호_당첨번호_포함_예외_테스트() {
         String bonusNumber = "6";
         String inputPrizeNumber = "1,2,3,4,5,6";
-        List<Integer> prizeNumber = inputView.inputPrizeNumber(inputPrizeNumber);
-        assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
+        inputView.inputPrizeNumber(inputPrizeNumber);
+                assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
     }

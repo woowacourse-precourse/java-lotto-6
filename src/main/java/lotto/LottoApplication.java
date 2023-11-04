@@ -5,6 +5,7 @@ import lotto.domain.Money;
 import lotto.dto.PurchasedLottosDto;
 import lotto.view.ConsoleMessageView;
 import lotto.view.MoneyInputView;
+import lotto.view.PurchasedLottoOutputView;
 
 public class LottoApplication {
 
@@ -18,8 +19,9 @@ public class LottoApplication {
         storeMoneyOf(money);
 
         lottoStore.getLottoOrderUpTo((int)this.money.showCountConvertTo(CURRENCY));
-        PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
 
+        PurchasedLottosDto purchasedLottos = fetchPurchasedLottos();
+        printFrom(purchasedLottos);
 
 
     }
@@ -35,6 +37,13 @@ public class LottoApplication {
 
     private PurchasedLottosDto fetchPurchasedLottos() {
         return lottoStore.showPurchasedLottos();
+    }
+
+    private void printFrom(PurchasedLottosDto purchasedLottosDto) {
+        int count = purchasedLottosDto.show()
+                                     .size();
+        PurchasedLottoOutputView.outputPurchasedCount(count);
+        PurchasedLottoOutputView.outputPurchasedLottos(purchasedLottosDto.show());
     }
 
 }

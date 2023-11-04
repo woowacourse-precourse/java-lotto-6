@@ -1,6 +1,7 @@
 package lotto.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -10,6 +11,26 @@ public class Validator {
         isNumeric(input);
         isThousandUnit(input);
         return Integer.parseInt(input);
+    }
+
+    public static List<Integer> isValidWinningNumbers(String input) {
+        isEmpty(input);
+        isValidCommaSeparator(input);
+        String[] numbers = input.split(Constants.COMMA);
+        isSixItems(numbers);
+        isDuplicateWinNumber(numbers);
+        for (String number : numbers) {
+            isNumeric(number);
+            isNumberInRange(number);
+        }
+        return convertToList(numbers);
+    }
+
+
+    public static List<Integer> convertToList(String[] numbers) {
+        return Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public static void isEmpty(String input) {

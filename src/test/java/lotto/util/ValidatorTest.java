@@ -98,4 +98,12 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INPUT_SIX_ITEMS);
     }
+
+    @ParameterizedTest
+    @DisplayName("당첨 번호를 입력 유효성 성공 테스트")
+    @ValueSource(strings = {"1,2,3,4,5,6", "8,21,23,41,42,43", "13,14,16,38,42,45"})
+    void validInputsTest2(String input) {
+        Assertions.assertThatCode(() -> Validator.isValidWinningNumbers(input))
+                .doesNotThrowAnyException();
+    }
 }

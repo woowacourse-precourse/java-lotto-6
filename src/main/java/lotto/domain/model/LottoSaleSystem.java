@@ -23,4 +23,11 @@ public class LottoSaleSystem {
         }
     }
 
+    public int getPurchaseCount() {
+        return purchaseCount;
+    }
+
+    public static double calculateProfit(int purchaseMoney, int profitMoney) {
+        return (profitMoney / purchaseMoney * 100);
+    }
 }

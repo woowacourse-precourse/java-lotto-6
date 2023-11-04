@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.LottoController;
 import validators.InputException;
 import view.InputView;
 
@@ -16,6 +17,7 @@ public class BuyLotto {
 	public BuyLotto(String amountText) {
 		int amount = changeBuyAmount(amountText);
 		int page = checkRightAmount(amount);
+		
 		this.amount = amount;
 		this.page = page;
 		this.numberList = numberList();
@@ -23,20 +25,29 @@ public class BuyLotto {
 	
 	private static void againBuyAmount() {
 		System.out.println();
-		InputView.getBuyAmount();
+		LottoController.buyLotto();
 	}
 
-	private static int changeBuyAmount(String amount) {
-		try {
-			InputException.checkNumber(amount);
-		} catch (Exception e) {
-			System.out.println(e);
-			againBuyAmount();
-		}
-		
-		return Integer.valueOf(amount);
+	private static int changeBuyAmount(String amountText) {
+		amountText = validateBuyAmount(amountText);
+		return Integer.valueOf(amountText);
 	}
 	
+	private static String validateBuyAmount(String amountText) {
+		while (true) {
+	        try {
+	            InputException.checkNull(amountText);
+	            InputException.checkNumber(amountText);
+
+	            return amountText;
+	        } catch (IllegalArgumentException e) {
+	            System.out.println(e);
+	            System.out.println();
+	            amountText = InputView.getBuyAmount();
+	        }
+	    }
+	}
+
 	private int checkRightAmount(int amount) {
 		try {
 			InputException.checkRightAmount(amount, LOTTO_PRICE);

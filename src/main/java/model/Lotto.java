@@ -11,10 +11,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
-        InputException.checkNumberRange(numbers);
         InputException.checkOverlap(numbers);
+        InputException.checkNumberRange(numbers);
+        
         this.numbers = numbers;
     }
+
 
 	private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -23,7 +25,9 @@ public class Lotto {
     }
 	
 	// TODO: 추가 기능 구현
-	public static List<Integer> divideText(String lottoNumberText) {
+	public static List<Integer> divideText(String lottoNumberText) throws IllegalArgumentException {
+		InputException.checkNull(lottoNumberText);
+		
 		List<String> numberTextList = Arrays.asList(lottoNumberText.split(",", -1));
 		List<Integer> numberList = new ArrayList<>();
 		for(String numberText : numberTextList) {
@@ -31,5 +35,9 @@ public class Lotto {
 			numberList.add(number);
 		}
 		return numberList;
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
 	}
 }

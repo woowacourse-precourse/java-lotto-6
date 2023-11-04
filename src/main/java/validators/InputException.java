@@ -38,4 +38,9 @@ public class InputException {
     	}
 	}
 
+	public static void checkNull(String lottoNumberText) {
+		if(lottoNumberText.isBlank()) {
+			throw new IllegalArgumentException(Error.NULL_VALUE.getMessage());
+		}
+	}
 }

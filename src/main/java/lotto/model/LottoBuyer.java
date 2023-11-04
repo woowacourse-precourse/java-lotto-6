@@ -12,8 +12,10 @@ public class LottoBuyer {
     private Lotto target;
     private int bonus;
 
-    public LottoBuyer(List<Lotto> lottoTickets) {
+    public LottoBuyer(List<Lotto> lottoTickets, Lotto target, int bonus) {
         this.lottoTickets = lottoTickets;
+        this.target = target;
+        this.bonus = bonus;
     }
 
     public Lotto getLotto(int index) {
@@ -22,11 +24,6 @@ public class LottoBuyer {
 
     public int size() {
         return lottoTickets.size();
-    }
-
-    public Stream<Stream<Integer>> streamOfStream() {
-        return lottoTickets.stream()
-                .map(Lotto::stream);
     }
 
     public Map<Rank, Integer> checkAllLotto() {

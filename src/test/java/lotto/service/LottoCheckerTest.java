@@ -12,10 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCheckerTest {
-
-    LottoChecker lottoChecker;
     LottoBuyer lottoBuyer;
-    List<Integer> target = List.of(6, 5, 4, 3, 2, 1);
+    Lotto target = new Lotto(List.of(6, 5, 4, 3, 2, 1));
     int bonus = 7;
     Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
@@ -29,14 +27,13 @@ public class LottoCheckerTest {
     @BeforeEach
     void 생성자주입() {
         List<Lotto> lottos = List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8);
-        lottoBuyer = new LottoBuyer(lottos);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(lottos,target,bonus);
     }
 
     @Test
     @DisplayName("실패 3개, 각 등수마다 1개씩")
     void 로또체커_통합_테스트() {
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         assertThat(map.get(Rank.FIRST)).isEqualTo(1);
         assertThat(map.get(Rank.SECOND)).isEqualTo(1);

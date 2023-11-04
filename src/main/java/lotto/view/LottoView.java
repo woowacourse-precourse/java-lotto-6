@@ -1,17 +1,20 @@
 package lotto.view;
 
+import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.win.Rank;
 
 public class LottoView {
 
-    public void printLotto(LottoBuyer buyer) {
-        int amount = buyer.size();
+    public void printLotto(List<Lotto> lottoTickets) {
+        int amount = lottoTickets.size();
         String printMessage = String.format("%d개를 구매했습니다.", amount);
         System.out.println(printMessage);
 
-        buyer.streamOfStream().map(stream -> stream.sorted().toList())
+        lottoTickets.stream()
+                .map(Lotto::toString)
                 .forEach(System.out::println);
     }
 

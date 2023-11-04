@@ -6,10 +6,10 @@ import java.util.Map;
 import lotto.config.AppConfig;
 import lotto.input.PriceInputHandler;
 import lotto.input.TargetNumberHandler;
+import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.win.Rank;
 import lotto.service.Calculator;
-import lotto.service.LottoChecker;
 import lotto.service.LottoShop;
 import lotto.view.LottoView;
 
@@ -20,20 +20,20 @@ public class LottoMachine {
     public void run() {
         int amount = getTicketAmount();
         LottoShop lottoShop = new LottoShop(amount);
-        LottoBuyer buyer = lottoShop.sell();
+        List<Lotto> lottoTickets = lottoShop.sell();
+        lottoView.printLotto(lottoTickets);
 
-        List<Integer> target = getTargetNumbers();
+        Lotto target = getTargetLotto();
         int bonus = getBonusNumber(target);
-        lottoView.printLotto(buyer);
+        LottoBuyer buyer = new LottoBuyer(lottoTickets, target, bonus);
 
-        LottoChecker lottoChecker = new LottoChecker(buyer, target, bonus);
-        Map<Rank, Integer> checkResult = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> checkResult = buyer.checkAllLotto();
 
         double rateOfReturn = calculator.calculateRateOfReturn(checkResult, amount * AppConfig.LOTTO_PRICE);
         lottoView.printResult(checkResult, rateOfReturn);
     }
 
-    private static int getBonusNumber(List<Integer> target) {
+    private static int getBonusNumber(Lotto target) {
         String bonusInput = Console.readLine();
         return TargetNumberHandler.validateBonusNumber(bonusInput, target);
     }
@@ -45,9 +45,10 @@ public class LottoMachine {
         return price / AppConfig.LOTTO_PRICE;
     }
 
-    private List<Integer> getTargetNumbers() {
+    private Lotto getTargetLotto() {
         System.out.println("정답인 6개의 로또번호를 입력해주세요.");
         String targetInput = Console.readLine();
-        return TargetNumberHandler.validateTargetNumber(targetInput);
+        List<Integer> target = TargetNumberHandler.validateTargetNumber(targetInput);
+        return new Lotto(target);
     }
 }

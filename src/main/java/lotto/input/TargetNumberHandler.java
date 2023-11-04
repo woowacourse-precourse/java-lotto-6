@@ -31,7 +31,7 @@ public class TargetNumberHandler {
         }
     }
 
-    public static int validateBonusNumber(String input, List<Integer> target){
+    public static int validateBonusNumber(String input, Lotto target){
         try {
             int bonus = Integer.parseInt(input.trim());
             validateBonus(bonus,target);
@@ -43,7 +43,7 @@ public class TargetNumberHandler {
         }
     }
 
-    private static void validateBonus(int bonus, List<Integer> target) {
+    private static void validateBonus(int bonus, Lotto target) {
         if (target.contains(bonus)){
             throw new IllegalArgumentException();
         }

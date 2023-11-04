@@ -11,12 +11,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCheckerUnitTest {
-
-    LottoChecker lottoChecker;
     LottoBuyer lottoBuyer;
-    List<Integer> target = List.of(1, 2, 3, 4, 5, 6);
+    Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     int bonus = 7;
-
 
     @Test
     @DisplayName("모든 숫자가 맞아야 한다.")
@@ -24,11 +21,10 @@ public class LottoCheckerUnitTest {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
@@ -41,11 +37,10 @@ public class LottoCheckerUnitTest {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
@@ -58,11 +53,10 @@ public class LottoCheckerUnitTest {
         //given
         Lotto lotto = new Lotto(List.of(2, 3, 4, 5, 6, 10));
         List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
@@ -76,11 +70,10 @@ public class LottoCheckerUnitTest {
         Lotto lotto1 = new Lotto(List.of(3, 4, 5, 6, 7, 11));
         Lotto lotto2 = new Lotto(List.of(3, 4, 5, 6, 11, 12));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
@@ -94,11 +87,10 @@ public class LottoCheckerUnitTest {
         Lotto lotto1 = new Lotto(List.of(3, 4, 5, 7, 11, 12));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 11, 12, 13));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
@@ -106,17 +98,16 @@ public class LottoCheckerUnitTest {
     }
 
     @Test
-    @DisplayName("2개 이하는 모두 FAIL로 반환한다. 보너스는 무시한다.")
+    @DisplayName("2개 이하는 모두 무시한다. 보너스는 무시한다.")
     void 로또체커_무효_테스트() {
         //given
         Lotto lotto1 = new Lotto(List.of(1, 2, 7, 10, 11, 12));
         Lotto lotto2 = new Lotto(List.of(1, 2, 30, 11, 12, 13));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets);
-        lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets, target, bonus);
 
         //when
-        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);

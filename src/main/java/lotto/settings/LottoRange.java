@@ -3,7 +3,8 @@ package lotto.settings;
 public enum LottoRange {
 
     MIN_VALUE(1),
-    MAX_VALUE(45);
+    MAX_VALUE(45),
+    SIZE(6);
 
     private final int number;
 

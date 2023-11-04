@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import static lotto.constant.ExceptionMessage.BONUS_NUMBER_QUANTITY_ERROR;
 import static lotto.constant.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.constant.ExceptionMessage.LOTTO_SIZE_ERROR;
 import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
 import static lotto.constant.ExceptionMessage.NUMBER_OUT_OF_RANGE;
+import static lotto.constant.LottoInfo.BONUS_NUMBER_SIZE;
 import static lotto.constant.LottoInfo.LOTTO_SIZE;
 import static lotto.constant.LottoInfo.MAXIMUM_NUMBER;
 import static lotto.constant.LottoInfo.MINIMUM_NUMBER;
@@ -16,12 +18,26 @@ import java.util.stream.Collectors;
 
 public class LottoController {
 
+    private static final String SPLIT_REGEX = " ";
+
     public void inputNumbers(String input) {
         validateDuplicateNumber(validateIsNumeric(validateInputSize(input)));
     }
 
+    public void inputBonusNumber(String input) {
+        String[] splitInput = input.split(SPLIT_REGEX);
+        validateBonusNumberSize(splitInput);
+        validateNumberRange(validateIsNumeric(splitInput));
+    }
+
+    private static void validateBonusNumberSize(String[] splitInput) {
+        if (splitInput.length != BONUS_NUMBER_SIZE.getInfo()) {
+            throw new IllegalArgumentException(BONUS_NUMBER_QUANTITY_ERROR.getMessage());
+        }
+    }
+
     private String[] validateInputSize(String input) {
-        String[] splitInput = input.split(" ");
+        String[] splitInput = input.split(SPLIT_REGEX);
         if (Arrays.stream(splitInput).count() != LOTTO_SIZE.getInfo()) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }

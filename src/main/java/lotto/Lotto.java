@@ -18,7 +18,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void duplicatedValidate(List<Integer> numbers) {
         HashSet compareValues = new HashSet<>(numbers);
         if (compareValues.size() != 6) {
@@ -29,5 +28,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    
+
 }

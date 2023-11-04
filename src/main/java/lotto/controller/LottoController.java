@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.model.Calculator;
+import lotto.model.PurchaseAmount;
 import lotto.model.Rank;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -18,8 +19,7 @@ public class LottoController {
     private List<Lotto> userLottos;
     private Map<Rank, Integer> result;
     private Calculator calculator;
-    private int purchaseAmount;
-    private int bonusNumber;
+    private PurchaseAmount purchaseAmount;
 
     public LottoController() {
         this.userLottos = new ArrayList<>();
@@ -38,8 +38,8 @@ public class LottoController {
     private void initPurchaseAmount() {
         while (true) {
             try {
-                purchaseAmount = InputView.readPurchaseAmount();
-                PurchaseAmountValidator.validate(purchaseAmount);
+                int input = InputView.readPurchaseAmount();
+                purchaseAmount = new PurchaseAmount(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -48,8 +48,10 @@ public class LottoController {
     }
 
     private void generateUserLottos() {
-        for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++) {
+        int countIssued = 0;
+        while (purchaseAmount.notFullyIssued(countIssued)) {
             userLottos.add(Lotto.generateUserLotto());
+            countIssued++;
         }
         OutputView.displayUserLottos(userLottos);
     }

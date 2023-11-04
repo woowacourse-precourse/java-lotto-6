@@ -8,8 +8,15 @@ public class InputService {
     public int readPurchaseAMount() {
         System.out.println("구입금액을 입력해 주세요.");
         this.purchaseAmount = Integer.parseInt(Console.readLine());
+        validatePositive(purchaseAmount);
         validateMultipleOfThousand(purchaseAmount);
         return purchaseAmount;
+    }
+
+    public void validatePositive(int purchaseAmount) {
+        if (purchaseAmount < 1000) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void validateMultipleOfThousand(int purchaseAmount) {

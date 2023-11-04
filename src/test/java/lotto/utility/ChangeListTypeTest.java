@@ -12,11 +12,11 @@ public class ChangeListTypeTest {
     @Test
     void testValidateNumber() {
         // 유효한 당첨번호
-        assertDoesNotThrow(() -> ChangeListType.parseInput("1,2,3,4,5,6"));
-        assertDoesNotThrow(() -> ChangeListType.parseInput("1,7,9,14,18,45"));
+        assertDoesNotThrow(() -> ChangeListType.changeListType("1,2,3,4,5,6"));
+        assertDoesNotThrow(() -> ChangeListType.changeListType("1,7,9,14,18,45"));
 
         // 문자열 포함인 경우 예외 발생
-        assertThrows(IllegalArgumentException.class, () -> ChangeListType.parseInput("a,b,c,d,e,f"));
-        assertThrows(IllegalArgumentException.class, () -> ChangeListType.parseInput("1,b,3,d,5,f"));
+        assertThrows(IllegalArgumentException.class, () -> ChangeListType.changeListType("a,b,c,d,e,f"));
+        assertThrows(IllegalArgumentException.class, () -> ChangeListType.changeListType("1,b,3,d,5,f"));
     }
 }

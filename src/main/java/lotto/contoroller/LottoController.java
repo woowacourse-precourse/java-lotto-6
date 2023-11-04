@@ -1,7 +1,10 @@
 package lotto.contoroller;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoNumberGenerator;
+import lotto.utility.ChangeListType;
 import lotto.utility.ChangeNumberType;
 import lotto.view.InputValue;
 import lotto.view.OutputMessage;
@@ -14,8 +17,10 @@ public class LottoController {
         System.out.printf("%n%d%s%n", purchaseAmount / 1000, OutputMessage.PURCHASE.getMessage());
         generateAndPrintLottoNumbers(purchaseAmount);
         // 요기까지
+        getInputLotto();
     }
 
+    // 구입 금액 입력
     private int getInputPurchase() {
         while (true) {
             try {
@@ -35,6 +40,21 @@ public class LottoController {
 
         for (int i = 0; i < numberOfTickets; i++) {
             System.out.println(numberGenerator.generateNumbers());
+        }
+        System.out.println();
+    }
+
+    // 당첨 번호 입력
+    private List<Integer> getInputLotto() {
+        while(true) {
+            try {
+                String input = InputValue.inputWinningNumbers();
+                List<Integer> winningNumbers = ChangeListType.changeListType(input);
+                Lotto lotto = new Lotto(winningNumbers);
+                return lotto.getNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

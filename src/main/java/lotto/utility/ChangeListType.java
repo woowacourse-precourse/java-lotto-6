@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeListType {
-    public static List<Integer> parseInput(String input) {
+    public static List<Integer> changeListType(String input) {
         String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();
 

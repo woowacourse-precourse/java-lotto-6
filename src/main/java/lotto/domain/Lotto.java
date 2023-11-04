@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // 입력값이 6개인지
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {

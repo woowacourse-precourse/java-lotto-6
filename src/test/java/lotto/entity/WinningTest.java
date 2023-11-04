@@ -21,4 +21,17 @@ public class WinningTest {
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(errorPrefix);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0","46","한글","","2 1","4,"})
+    void Winning_생성_BonusNumber_예외_테스트(String bonusNumber){
+        //given
+        String winningNumbers = "1,2,3,4,5,6";
+
+        assertThatThrownBy(()->{
+                new Winning(winningNumbers,bonusNumber);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(errorPrefix);
+    }
 }

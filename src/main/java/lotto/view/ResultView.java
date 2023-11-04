@@ -6,6 +6,10 @@ import java.util.List;
 
 public class ResultView {
 
+    public static void printNewLine(){
+        System.out.println();
+    }
+
     public static void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }

@@ -1,11 +1,14 @@
 package lotto.handler;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.ResultView;
 
 public class UserHandler {
     public static int getAmountFromUser() {
         System.out.println("구입금액을 입력해 주세요.");
         String userInput = Console.readLine();
+        ResultView.printNewLine();
+
         return validateUserInput(userInput);
     }
 

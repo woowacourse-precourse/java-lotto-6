@@ -104,8 +104,8 @@ public class Application {
         return resultMap;
     }
 
-    private double getPrizeMoney(Map<String, Integer>resultMap){
-        double totalPrizeMoney = 0;
+    private long getPrizeMoney(Map<String, Integer>resultMap){
+        long totalPrizeMoney = 0;
         for(WinningPrize prize : WinningPrize.values()){
             boolean bonusMatch = false;
             if(prize == WinningPrize.MATCH_5_BONUS)
@@ -116,14 +116,14 @@ public class Application {
         return totalPrizeMoney;
     }
 
-    private double calculateEarningsRate(int purchaseAmount, double totalPrizeMoney){
+    private double calculateEarningsRate(int purchaseAmount, long totalPrizeMoney){
         return (double) totalPrizeMoney / purchaseAmount * 100;
     }
 
     public void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount){
         Map<String, Integer> resultMap = calculateResult(lottos, winningLotto, bonusNumber);
 
-        double totalPrizeMoney = getPrizeMoney(resultMap);
+        long totalPrizeMoney = getPrizeMoney(resultMap);
         double earningsRate = calculateEarningsRate(purchaseAmount, totalPrizeMoney);
 
         printLottoResult(resultMap);

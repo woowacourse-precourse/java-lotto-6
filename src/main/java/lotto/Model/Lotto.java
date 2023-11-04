@@ -21,6 +21,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateNumberRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -34,6 +35,14 @@ public class Lotto {
 
         if (nonDuplicate.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될수 없습니다.");
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (1 > number || 45 < number) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45의 숫자만 가능합니다.");
+            }
         }
     }
 }

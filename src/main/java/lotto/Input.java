@@ -21,4 +21,10 @@ public class Input {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
+
+    public static void buyLottosInput(int wallet) {
+
+        wallet /= 1000;
+        System.out.println(wallet + "개를 구매했습니다.");
+    }
 }

@@ -5,8 +5,10 @@ public class LottoGameStarter {
 
         String wallet = Input.customerWalletInput();
         Customer customer = new Customer(wallet);
+
         String winNums = Input.winNumberInput();
         String bonusNum = Input.bonusNumberInput();
+
         WinLotto winLotto = new WinLotto(winNums, bonusNum);
         LottoShop lottoShop = new LottoShop(customer, winLotto);
         lottoShop.compareWinLotto();

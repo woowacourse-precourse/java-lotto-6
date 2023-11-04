@@ -10,7 +10,7 @@ public class UserTest {
     @DisplayName("구입한 금액이 1000원 단위가 아닐 경우 예외가 발생한다.")
     public void 구입_금액_천원_단위_테스트() throws Exception {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().purchaseLotto("1500");
+            new User("1500");
         });
     }
 
@@ -18,10 +18,10 @@ public class UserTest {
     @DisplayName("구입한 금액에 정수가 아닌 값이 입력되면 예외가 발생한다.")
     public void 구입_금액_정수_테스트() throws Exception {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().purchaseLotto("aaa");
+            new User("aaa");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().purchaseLotto("123.45");
+            new User("123.45");
         });
     }
 
@@ -29,7 +29,7 @@ public class UserTest {
     @DisplayName("구입한 금액이 0원이면 예외가 발생한다.")
     public void 구입_금액_최소_테스트() throws Exception {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().purchaseLotto("0");
+            new User("0");
         });
     }
 

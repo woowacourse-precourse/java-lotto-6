@@ -1,8 +1,11 @@
 package lotto.domain;
 
 public class User {
-    public void purchaseLotto(String purchaseAmount) {
+    private final int amount;
+
+    public User(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
+        amount = Integer.parseInt(purchaseAmount);
     }
 
     private void validatePurchaseAmount(String purchaseAmount){

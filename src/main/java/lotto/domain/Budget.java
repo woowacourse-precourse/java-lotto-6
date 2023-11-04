@@ -15,8 +15,8 @@ public class Budget {
     public static Budget from(String inputBudget){
         validateNumeric(inputBudget);
         int budget = Integer.parseInt(inputBudget);
-        validateDivideResultIsZero(budget);
         validateLowerPrice(budget);
+        validateDivideResultIsZero(budget);
         return new Budget(budget);
     }
 

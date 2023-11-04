@@ -10,4 +10,10 @@ public class BudgetTest {
         Assertions.assertThatThrownBy(() -> Budget.from("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void createBudgetLowerThanMinimumPrice(){
+        Assertions.assertThatThrownBy(() -> Budget.from("500"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

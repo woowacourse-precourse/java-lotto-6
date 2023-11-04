@@ -17,6 +17,6 @@ class LottoCostTest {
     @DisplayName("구입금액이 1000의 배수가 아닐 경우 false가 반환된다.")
     @Test
     void costNotMultipleOfThousand() {
-        assertThat(lottoCost.isMultipleOfThousand(1375)).isEqualTo(false);
+        assertThat(lottoCost.isMultipleOfThousand("1375")).isEqualTo(false);
     }
 }

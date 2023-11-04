@@ -6,9 +6,16 @@ import java.util.Set;
 
 public class LottoNumberValidator {
 
-    public static void lottoValidate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
+        validateNumberSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
+    }
+
+    public static void validateNumberSize(List<Integer> numbers) {
+        if(numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
+        }
     }
 
     private static void validateDuplicate(List<Integer> numbers) {
@@ -27,4 +34,5 @@ public class LottoNumberValidator {
             throw new IllegalArgumentException("[ERROR] 로또 범위는 1 ~ 45 입니다.");
         }
     }
+
 }

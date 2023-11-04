@@ -30,4 +30,8 @@ public class OutputView {
     public void displayRateOfReturn(BigDecimal yield) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, yield);
     }
+
+    public void displayErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

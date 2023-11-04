@@ -8,16 +8,34 @@ import java.util.stream.Stream;
 
 public class LottoWinnerSystem {
 
+    private final int WINNER_NUMBER_COUNT = 6;
+    private final int BONUS_NUMBER_COUNT = 1;
+
     private List<Integer> winNumbers;
+    private List<Integer> bonusNumber;
 
     public List<Integer> isValidWinNumber(String input) {
         try {
             List<Integer> numbers = convertIntegerList(input);
-            isValidLength(numbers);
+            isValidLength(numbers, WINNER_NUMBER_COUNT);
             isDistinct(numbers);
             isValidRange(numbers);
 
             this.winNumbers = numbers;
+            return numbers;
+        } catch(NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+    }
+
+    public List<Integer> isValidBonusNumber(String input, List<Integer> winNumbers) {
+        try {
+            List<Integer> numbers = convertIntegerList(input);
+            isValidLength(numbers, BONUS_NUMBER_COUNT);
+            isValidRange(numbers);
+            isContainWinNumbers(winNumbers, numbers);
+
+            this.bonusNumber = numbers;
             return numbers;
         } catch(NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
@@ -29,9 +47,9 @@ public class LottoWinnerSystem {
         return numbers;
     }
 
-    private static void isValidLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 6개를 입력해 주세요.");
+    private static void isValidLength(List<Integer> numbers, int numberCount) {
+        if (numbers.size() != numberCount) {
+            throw new IllegalArgumentException("[ERROR] 알맞은 개수의 숫자를 입력해 주세요.");
         }
     }
 
@@ -47,6 +65,12 @@ public class LottoWinnerSystem {
             if (numbers.get(i) < 1 && numbers.get(i) > 45) {
                 throw new IllegalArgumentException("[ERROR] 1-45 이내의 숫자를 입력해 주세요.");
             }
+        }
+    }
+
+    private void isContainWinNumbers(List<Integer> winNumbers, List<Integer> numbers) {
+        if (winNumbers.contains(numbers.get(0))) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 번호입니다.");
         }
     }
 }

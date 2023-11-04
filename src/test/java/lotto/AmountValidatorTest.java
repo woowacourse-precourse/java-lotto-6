@@ -47,5 +47,12 @@ public class AmountValidatorTest {
             AmountValidator.validateAmount("3000")
         );
     }
+
+    @Test
+    void 천원_입력_테스트() {
+        assertDoesNotThrow(() ->
+            AmountValidator.validateAmount("1000")
+        );
+    }
 }
 

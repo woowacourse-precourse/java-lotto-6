@@ -17,7 +17,7 @@ public class AmountValidator {
     }
 
     private static void validateMinimumAmount(int amount) {
-        if (amount <= 1000) {
+        if (amount < 1000) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 최소 1000원 입니다.");
         }
     }

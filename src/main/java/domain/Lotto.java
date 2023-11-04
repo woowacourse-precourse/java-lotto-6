@@ -1,21 +1,16 @@
 package domain;
 
 import constant.ConstantNumber;
+import util.LottoRandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        this(pickUniqueNumbersInRange(
-                ConstantNumber.MINIMUM_WINNING_NUMBER.get(),
-                ConstantNumber.MAXIMUM_WINNING_NUMBER.get(),
-                ConstantNumber.WINNING_NUMBER_COUNT.get()
-        ));
+        this(new LottoRandomUtil().getWinningNumbers(ConstantNumber.WINNING_NUMBER_COUNT.get()));
     }
 
     public Lotto(List<Integer> numbers) {

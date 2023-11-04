@@ -1,13 +1,16 @@
 package domain;
 
-import constant.ConstantNumber;
+import util.LottoRandomUtil;
 
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-
 public class WinningLotto {
+    public final int bonusNumber;
     private final Lotto lotto;
+
+    {
+        bonusNumber = new LottoRandomUtil().getWinningNumber();
+    }
 
     public WinningLotto() {
         this.lotto = new Lotto();

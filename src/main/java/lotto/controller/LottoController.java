@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.entity.Lotto;
 import lotto.common.Message;
 import lotto.view.InputView;
 import lotto.view.OutputView;

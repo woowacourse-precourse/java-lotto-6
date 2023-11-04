@@ -7,4 +7,8 @@ public class InputView {
     public String lottoPriceInput() {
         return Console.readLine();
     }
+
+    public String lottoWinningNumberInput() {
+        return Console.readLine();
+    }
 }

@@ -16,14 +16,12 @@ public class LottoInputParser {
         return numbers;
     }
 
-    public static int stringToNumber(String input){
+    private static int stringToNumber(String input){
         try{
             return Integer.parseInt(input);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_WINNING_NUMBER);
         }
     }
-
-
 
 }

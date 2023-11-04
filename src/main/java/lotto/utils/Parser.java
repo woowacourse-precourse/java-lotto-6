@@ -4,13 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Bonus;
+import lotto.model.Budget;
 import lotto.model.Lotto;
 
 public class Parser {
 
-    public static int parseBudget(String budget) {
+    public static Budget parseToBudget(String budget) {
         try {
-            return Integer.parseInt(budget);
+            return new Budget(Integer.parseInt(budget));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                 ExceptionMessage.INVALID_BUDGET_NON_NUMERIC.getMessage());

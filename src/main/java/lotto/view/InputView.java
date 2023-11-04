@@ -2,9 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Bonus;
+import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.utils.Parser;
-import lotto.utils.validator.BudgetValidator;
 
 public class InputView {
 
@@ -20,12 +20,10 @@ public class InputView {
         }
     }
 
-    public int inputBudget(){
+    public Budget inputBudget(){
         System.out.println(ConsoleMessage.INPUT_BUDGET.message);
         String input = Console.readLine();
-        int budget = Parser.parseBudget(input);
-        new BudgetValidator().validate(budget);
-        return budget;
+        return Parser.parseToBudget(input);
     }
 
     public Lotto inputWinningNumbers(){

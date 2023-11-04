@@ -1,14 +1,17 @@
-package lotto.utils.validator;
+package lotto.model;
 
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 
-public class BudgetValidator implements Validator<Integer> {
+public record Budget(int inputMoney) {
 
-    @Override
-    public void validate(Integer budget) {
-        validateBudgetIsPositive(budget);
-        validateBudgetAmount(budget);
+    public Budget {
+        validate(inputMoney);
+    }
+
+    private void validate(Integer inputMoney) {
+        validateBudgetIsPositive(inputMoney);
+        validateBudgetAmount(inputMoney);
     }
 
     private void validateBudgetAmount(int budget) {
@@ -23,6 +26,4 @@ public class BudgetValidator implements Validator<Integer> {
                 ExceptionMessage.INVALID_BUDGET_NOT_POSITIVE.getMessage());
         }
     }
-
-
 }

@@ -9,7 +9,7 @@ public class WinningInfo {
 
     private final int bonusNumber;
 
-    public WinningInfo(List<Integer> numbers, int bonusNumber) {
+    private WinningInfo(List<Integer> numbers, int bonusNumber) {
         LottoValidator.validateDuplicateNumber(numbers);
         LottoValidator.validateSize(numbers);
         LottoValidator.validateNumbersRange(numbers);
@@ -17,6 +17,10 @@ public class WinningInfo {
         validateBonusNumber(numbers, bonusNumber);
         this.winningNumbers = numbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningInfo from(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningInfo(winningNumbers, bonusNumber);
     }
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {

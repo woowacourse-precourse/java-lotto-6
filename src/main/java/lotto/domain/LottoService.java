@@ -29,10 +29,10 @@ public class LottoService {
             FORTH, 0,
             FIFTH, 0);
 
-    public void buyLottos(int price) {
+    public void buyLottos(long price) {
         validate(price);
-        int count = price / PRICE;
-        for (int i = 0; i < count; i++) {
+        long count = price / PRICE;
+        for (long i = 0; i < count; i++) {
             buyOneLotto();
         }
     }
@@ -83,18 +83,18 @@ public class LottoService {
 
     //TODO: validateMoreThanThousand 등을 인터페이스, 람다식 등을 이용해 변경
     //      그러면 하위 메서드를 계속 정의할 필요가 없을듯
-    private static void validate(int price) {
+    private static void validate(long price) {
         validateMoreThanThousand(price);
         validateMultipleOfThousand(price);
     }
 
-    private static void validateMultipleOfThousand(int price) {
+    private static void validateMultipleOfThousand(long price) {
         if (price % PRICE != 0) {
             throw new IllegalArgumentException(PRICE_NOT_DIVIDED_BY_THOUSAND);
         }
     }
 
-    private static void validateMoreThanThousand(int price) {
+    private static void validateMoreThanThousand(long price) {
         if (price < PRICE) {
             throw new IllegalArgumentException(PRICE_LESS_THAN_THOUSAND);
         }

@@ -41,6 +41,8 @@
         - 정수, 최소, 최대를 인수로 받아 입력된 정수가 범위에 있는지 검사한다.
   - [x] `LottoUtil::hasDuplicatedNumbers` 메서드
     - 정수 리스트를 인수로 받아 중복된 값이 있는지 검사한다.
+- [ ] `Application::validateIntegers` 메서드
+  - 문자열 리스트를 인수로 받아 각 요소가 정수인지 검사한다.
 
 ## 보너스 번호 입력 기능
 - [x] `LottoInputView::getBonusNumber`

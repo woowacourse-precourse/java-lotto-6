@@ -107,4 +107,12 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 입력할 수 없습니다.");
         }
     }
+
+    public void validateBonusNumberIsPositive(int bonusNumber) {
+        if (bonusNumber < 0) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 양수로 입력해야 합니다.");
+        }
+    }
+
+
 }

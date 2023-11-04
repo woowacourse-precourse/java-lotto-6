@@ -10,8 +10,8 @@ public class OutputView {
         System.out.print(LOTTO_PURCHASE_PROMPT);
     }
 
-    public static void printLottoCount() {
-        System.out.print(LOTTO_COUNT_MESSAGE);
+    public static void printLottoCount(int lottoCount) {
+        System.out.printf(LOTTO_COUNT_MESSAGE, lottoCount);
     }
 
     public static void printWinningNumbersPrompt() {

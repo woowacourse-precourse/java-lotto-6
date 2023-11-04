@@ -11,4 +11,8 @@ public class OutputView {
     public void printWinningNumbersGuideMessage() {
         System.out.println(WINNING_NUMBERS_GUIDE_MESSAGE.getText());
     }
+
+    public void printBonusNumberGuideMessage() {
+        System.out.println(BONUS_NUMBER_GUIDE_MESSAGE.getText());
+    }
 }

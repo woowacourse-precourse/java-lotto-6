@@ -9,7 +9,8 @@ public enum WinningRank {
     TWO("2등", 5, 30000000, List.of(true)),
     THREE("3등", 5, 1500000, List.of(false)),
     FOUR("4등", 4, 50000, List.of(true, false)),
-    FIVE("5등", 3, 5000, List.of(true, false));
+    FIVE("5등", 3, 5000, List.of(true, false)),
+    NONE("미당첨", 0, 0, List.of(true, false));
 
     private static final String INVALID_COUNT_EXCEPTION = "존재하지 않는 당첨 개수입니다.";
 
@@ -26,9 +27,20 @@ public enum WinningRank {
     }
 
     public static WinningRank find(int count, boolean isBonusMatch) {
+        if (NONE.count <= count && count < FIVE.count) {
+            return NONE;
+        }
         return Arrays.stream(values())
                 .filter(winningRank -> winningRank.count == count && winningRank.bonusMatchCases.contains(isBonusMatch))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COUNT_EXCEPTION));
+    }
+
+    @Override
+    public String toString() {
+        if (this.equals(TWO)) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%d원)", count, reward);
+        }
+        return String.format("%d개 일치 (%d원)", count, reward);
     }
 }

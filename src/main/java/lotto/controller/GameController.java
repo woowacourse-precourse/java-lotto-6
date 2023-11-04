@@ -9,10 +9,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    GameService gameService = new GameService();
-    WinLottoResult winLottoResult;
+    private InputView inputView;
+    private OutputView outputView;
+    private GameService gameService;
+    private WinLottoResult winLottoResult;
+
+    public GameController(InputView inputView, OutputView outputView, GameService gameService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.gameService = gameService;
+    }
 
     //전체 게임 여기서 컨트롤
     public void gameStart() {

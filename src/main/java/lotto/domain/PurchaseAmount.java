@@ -15,6 +15,10 @@ public class PurchaseAmount {
         return new PurchaseAmount(purchaseAmount);
     }
 
+    public int affordableCountOfLotto() {
+        return purchaseAmount / LottoRule.LOTTO_PRICE.getValue();
+    }
+    
     private void validate(int purchaseAmount) {
         validateEnoughAmount(purchaseAmount);
         validateAmountInMultiplesOfPrice(purchaseAmount);

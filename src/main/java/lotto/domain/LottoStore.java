@@ -6,7 +6,7 @@ import lotto.constant.LottoConstant;
 import lotto.domain.generator.LottoNumbersGenerator;
 import lotto.domain.generator.LottoRandomNumbersGenerator;
 import lotto.exception.ErrorMessage;
-import lotto.exception.InvalidInputException;
+import lotto.validator.NumberValidator;
 
 public class LottoStore {
     private final LottoNumbersGenerator lottoNumbersGenerator;
@@ -26,9 +26,10 @@ public class LottoStore {
     }
 
     private void validateMultipleOfLottoPrice(int purchaseAmount) {
-        if (purchaseAmount % LottoConstant.LOTTO_PRICE != 0) {
-            throw new InvalidInputException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
-        }
+        NumberValidator.of(purchaseAmount).shouldBeMultipleOf(
+                LottoConstant.LOTTO_PRICE,
+                ErrorMessage.INVALID_PURCHASE_AMOUNT
+        );
     }
 
     private List<Lotto> generateLottos(int lottoCount) {

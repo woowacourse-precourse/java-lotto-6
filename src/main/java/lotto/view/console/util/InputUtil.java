@@ -6,6 +6,8 @@ import java.util.List;
 import lotto.exception.AppException;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
+import lotto.validator.NumberValidator;
+import lotto.validator.StringValidator;
 
 public class InputUtil {
     private InputUtil() {
@@ -13,9 +15,7 @@ public class InputUtil {
 
     public static String readNonEmptyLineInput() {
         String input = Console.readLine();
-        if (input == null || input.isEmpty()) {
-            throw new InvalidInputException(ErrorMessage.INPUT_IS_EMPTY);
-        }
+        StringValidator.of(input).shouldNotEmpty(ErrorMessage.INPUT_IS_EMPTY);
         return input;
     }
 
@@ -30,9 +30,7 @@ public class InputUtil {
 
     public static int readNaturalInt() {
         int input = readInt();
-        if (input < 1) {
-            throw new InvalidInputException(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
-        }
+        NumberValidator.of(input).shouldPositive(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
         return input;
     }
 

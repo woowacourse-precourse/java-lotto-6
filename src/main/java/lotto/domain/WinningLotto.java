@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constant.LottoConstant;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
+import lotto.validator.NumberValidator;
 
 public class WinningLotto {
     private final Lotto winningNumbers;
@@ -32,9 +33,11 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < LottoConstant.LOTTO_NUMBER_MIN || bonusNumber > LottoConstant.LOTTO_NUMBER_MAX) {
-            throw new InvalidInputException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE);
-        }
+        NumberValidator.of(bonusNumber).shouldInRange(
+                LottoConstant.LOTTO_NUMBER_MIN,
+                LottoConstant.LOTTO_NUMBER_MAX,
+                ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE
+        );
     }
 
     public Lotto getWinningNumbers() {

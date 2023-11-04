@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoManagerTest {
+
     @DisplayName("구매금액을 입력하면 해당하는 양만큼 티켓을 생성한다.")
     @Test
     void buyTicketsTest() {
@@ -42,6 +43,31 @@ class LottoManagerTest {
 
         // 구입 갯수만큼 반환되었는지 테스트
         assertTrue(tickets.size() == AMOUNT);
+    }
+
+    @DisplayName("당첨번호와 보유중인 티켓을 비교하여 일치하는 갯수를 반환한다.")
+    @Test
+    void checkTickets() {
+        // 변수 설정
+        LottoManager lotto = new LottoManager();
+        int MONEY = 2000;
+        String winning = "1,2,3,4,5,6";
+        String bonus = "7";
+        int POINT_MIN = 0;
+        int POINT_MAX = 7;
+
+        // 티켓 구입
+        lotto.buyTickets(MONEY);
+
+        // 티켓 확인
+        List<Integer> points = lotto.checkTicketPoints(winning, bonus);
+
+        // 반환값이 예상범위 내인지 테스트
+        for (int point : points) {
+            assertTrue(POINT_MIN <= point);
+            assertTrue(point <= POINT_MAX);
+        }
+
     }
 
 }

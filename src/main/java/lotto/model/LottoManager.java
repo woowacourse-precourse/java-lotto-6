@@ -1,12 +1,15 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Tickets;
 
 public class LottoManager {
     private Tickets tickets = new Tickets();
     private int TICKET_PRICE = 1000;
+
 
     public void buyTickets(int money) {
         int amount = calculateTicketAmount(money);
@@ -24,6 +27,24 @@ public class LottoManager {
         return list;
     }
 
+    public List<Integer> checkTicketPoints(String winning, String bonus) {
+        List<Integer> winningNumber = winningNumbersToIntegerList(winning, bonus);
+        List<Integer> points = tickets.getMatchesForAllTickets(winningNumber);
+
+        return points;
+    }
+
+
+    private List<Integer> winningNumbersToIntegerList(String winning, String bonus) {
+        List<Integer> numbers = Arrays
+                .stream(winning.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        int bonusNumber = Integer.parseInt(bonus);
+        numbers.add(bonusNumber);
+
+        return numbers;
+    }
 
     private int calculateTicketAmount(int money) {
         int amount = money / TICKET_PRICE;

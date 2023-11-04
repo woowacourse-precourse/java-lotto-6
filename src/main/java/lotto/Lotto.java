@@ -19,18 +19,4 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private String[] splitInputByComma(String input) {
-        return input.split(",");
-    }
-
-    private List<Integer> convertToIntegerList(String[] splittedLottoNumber) {
-        return Arrays.stream(splittedLottoNumber)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
-
-    public List<Integer> parseCommaSeparatedUserLottoInput(String userInput) {
-        String[] splittedLottoNumber = splitInputByComma(userInput);
-        return convertToIntegerList(splittedLottoNumber);
-    }
 }

@@ -14,6 +14,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateIsLottoNumber(int number) {
+        if (number < 0 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 0에서 45사이의 숫자여야 합니다.");
+        }
+    }
+
     public static void validateDivision1000(int number) {
         if (number % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.");

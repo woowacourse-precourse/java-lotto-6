@@ -12,7 +12,7 @@ public class Setting {
     public List<List<Integer>> createLottoNumber(int amount) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-        while (lottoNumbers.size() < amount){
+        while (lottoNumbers.size() < amount) {
             List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(randomNumbers);
             lottoNumbers = addLottoNumbers(lottoNumbers, randomNumbers);
@@ -57,6 +57,17 @@ public class Setting {
             lottoNumbers.add(randomNumber);
         }
         return lottoNumbers;
+    }
+
+    public List<Integer> stringToList(String s) {
+        List<Integer> player = new ArrayList<>();
+        String[] numbers = s.split(",");
+
+        for (String ss : numbers) {
+            int playerNumber = Integer.parseInt(ss);
+            player.add(playerNumber);
+        }
+        return player;
     }
 }
 

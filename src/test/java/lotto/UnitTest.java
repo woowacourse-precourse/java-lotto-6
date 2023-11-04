@@ -37,6 +37,19 @@ class UnitTest extends NsTest {
         );
     }
 
+    @DisplayName("로또 번호가 잘 생성되는지 테스트")
+    @Test
+    void inputLottoNumbers_Test() {
+        assertSimpleTest(() -> {
+                    run("2000","1,2,3,4,5,6,7","1,1,2,3,4,5","1,2,3,4,5,100","1,2,3,4,5,6");
+                    assertThat(output()).contains(
+                            "[ERROR] 로또 번호는 6개의 수를 입력해주세요.",
+                            "[ERROR] 로또 수는 중복 없이 입력해주세요.",
+                            "[ERROR] 로또 번호 1부터 45까지의 수로 입력해주세요.");
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

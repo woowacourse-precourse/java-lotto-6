@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constants.Messages;
 import lotto.constants.Values;
 import lotto.utils.RandomNumberGenerator;
@@ -44,5 +45,15 @@ public class PurchasedLottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    @Override
+    public String toString() {
+        String purchaseMessage = String.format(Messages.PURCHASE_MESSAGE, lottos.size());
+        String lottosString = lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+
+        return purchaseMessage + "\n" + lottosString;
     }
 }

@@ -19,7 +19,7 @@ public class LottoManager {
 
     // TODO: 로또 숫자 생성하기: 중복되지 않는 숫자 6개
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         System.out.println(numbers);
         return numbers;
@@ -56,9 +56,9 @@ public class LottoManager {
     }
 
     public void printProfit(int totalPrize, int purchasingAmount) {
-        double profitRatio = ((double) totalPrize / purchasingAmount); // 수익률 계산
+        double profitRatio = ((double) totalPrize / purchasingAmount / 10); // 수익률 계산
 
         // 소수점 둘째 자리에서 반올림 출력
-        System.out.printf("총 수익률은 %.1f%% 입니다.%n", profitRatio);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRatio);
     }
 }

@@ -17,6 +17,11 @@ public class Lotto {
         this.numbers = sorted(numbers);
     }
 
+    public boolean contains(Integer number) {
+        return numbers.stream()
+                .anyMatch(isEqual(number));
+    }
+
     private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
@@ -46,29 +51,6 @@ public class Lotto {
         }
     }
 
-    public boolean contains(Integer number) {
-        return numbers.stream()
-                .anyMatch(isEqual(number));
-    }
-
-    public int countMatchingNumbers(List<Integer> targetNumbers) {
-        long count = targetNumbers.stream()
-                .filter(this::compareNumbers)
-                .count();
-
-        return Long.valueOf(count).intValue();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("[%s]", appendLottoNumbers());
-    }
-
-    private boolean compareNumbers(Integer number) {
-        return numbers.stream()
-                .anyMatch(isEqual(number));
-    }
-
     private String appendLottoNumbers() {
         StringBuilder sb = new StringBuilder();
 
@@ -81,5 +63,10 @@ public class Lotto {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s]", appendLottoNumbers());
     }
 }

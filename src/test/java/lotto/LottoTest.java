@@ -48,18 +48,6 @@ class LottoTest {
         }
 
         @Test
-        @DisplayName("로또 번호와 당첨 번호를 비교하여 일치하는 번호의 개수 확인")
-        void isEqual_로또_번호와_당첨_번호를_비교하여_일치하는_번호의_개수_확인() {
-            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-            List<Integer> winningNumbers = List.of(1, 2, 4, 7, 8, 9);
-
-            Lotto lotto = new Lotto(lottoNumbers);
-
-            assertThat(lotto.countMatchingNumbers(winningNumbers))
-                    .isEqualTo(3);
-        }
-
-        @Test
         @DisplayName("로또에 특정 번호가 있는 경우를 확인")
         void check_로또에_특정_번호가_있는_경우를_확인() {
             List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);

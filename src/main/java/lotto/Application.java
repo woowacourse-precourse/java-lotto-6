@@ -1,8 +1,11 @@
 package lotto;
 
+import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.Notice.*;
+import static lotto.Rank.FAIL;
 
 public class Application {
     public static void main(String[] args) {
@@ -70,7 +73,7 @@ public class Application {
                 rankList.add(Rank.FIFTH);
             }
             if (matchingNumberCount < 3) {
-                rankList.add(Rank.FAIL);
+                rankList.add(FAIL);
             }
         }
 
@@ -89,7 +92,23 @@ public class Application {
         View.printMessage(GAME_STATISTICS);
         View.printMessage(SEPARATE_LINE);
 
+        for (Rank rank : Rank.values()) {
+            DecimalFormat df = new DecimalFormat("###,###");
+            Integer matchingCount = Collections.frequency(rankList, rank);
+            if (rank.equals(Rank.FAIL)) {
+                continue;
+            }
+            if (rank.equals(Rank.SECOND)) {
+                View.print2ndRankPrize(rank, matchingCount, df);
+            }
+            if (!(rank.equals(Rank.SECOND))) {
+                View.printPrize(rank, matchingCount, df);
+            }
+        }
 
+        Integer totalPrize = Controller.calculateTotalPrize(rankList);
+        Double pricePrizeRatio = Controller.calculatePricePrizeRatio(totalPrize, budget);
+        View.printPricePrizeRatio(pricePrizeRatio);
 
     }
 

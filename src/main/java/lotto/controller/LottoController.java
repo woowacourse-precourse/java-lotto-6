@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.service.InputService;
 import lotto.domain.PurchaseAmount;
+import lotto.service.LottoService;
 import lotto.view.View;
 
 public class LottoController {
@@ -12,5 +13,7 @@ public class LottoController {
 
         int purchaseCount = purchaseAmount.calculateCount();
         View.purchaseCount(purchaseCount);
+        LottoService.createRandomNumber(purchaseCount);
+
     }
 }

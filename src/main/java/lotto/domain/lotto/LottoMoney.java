@@ -14,4 +14,8 @@ public class LottoMoney {
             throw new IllegalArgumentException("error");
         }
     }
+
+    public int calculatePurchasableCount(int prizePerLotto) {
+        return money / prizePerLotto;
+    }
 }

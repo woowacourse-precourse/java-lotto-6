@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import java.util.List;
 import lotto.constant.LottoConstants;
@@ -13,7 +13,7 @@ import lotto.model.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGameController {
+public class LottoGameService {
     private InputController inputController;
     private OutputController outputController;
 
@@ -52,6 +52,7 @@ public class LottoGameController {
     private void prepareStatistics(WinningLotto winningLotto, List<Lotto> lottoTicketsPurchased, int budget) {
         WinningStatistics winningStatistics
                 = new WinningStatistics(winningLotto, lottoTicketsPurchased);
+
         outputController.printWinningStatistics(winningStatistics);
 
         double rateOfReturn = calculateRateOfReturn(budget, winningStatistics.calculateSumOfPrize());

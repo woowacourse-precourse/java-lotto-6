@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Lotto {
     private static final int NUMBER_COUNTER = 6;
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
+    static final int START_NUMBER = 1;
+    static final int END_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -42,9 +42,9 @@ public class Lotto {
         return distinctNumbers.size() == numbers.size();
     }
 
-    private boolean isBetweenTwoNumbers(List<Integer> numbers, int start, int end) {
+    static boolean isBetweenTwoNumbers(List<Integer> numbers, int start, int end) {
         for (Integer number : numbers) {
-            if (!((start <= number) && (start <= end))) {
+            if (!((start <= number) && (number <= end))) {
                 return false;
             }
         }

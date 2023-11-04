@@ -15,6 +15,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int getPurchasingVolume(){
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        int volume = Integer.parseInt(input);
+        //        입력값 검증 함수
+        return volume/1000;
+    }
+
     public List<Integer> inputNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();

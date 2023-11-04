@@ -2,15 +2,14 @@ package lotto.model;
 
 public class Money {
 
-    private final String NUMBER_PATTERN = "\\d+";
-    private final int CURRENT_UNIT = 1000;
+    private final String POSITIVE_NUMBER_PATTERN = "\\d+$";
+    public static final int CURRENT_UNIT = 1000;
 
     private int money;
 
     public Money(String input) {
-        isNumeric(input);
+        isPositiveNumber(input);
         money = Integer.parseInt(input);
-        isPositive();
         isModEqualZero();
     }
 
@@ -18,14 +17,10 @@ public class Money {
         return money;
     }
 
-    private void isNumeric(String target) {
-        if (!target.matches(NUMBER_PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
-        }
-    }
 
-    private void isPositive() {
-        if (money <= 0) {
+
+    private void isPositiveNumber(String target) {
+        if (!target.matches(POSITIVE_NUMBER_PATTERN)) {
             throw new IllegalArgumentException("[ERROR] 양의 정수만 입력하세요.");
         }
     }

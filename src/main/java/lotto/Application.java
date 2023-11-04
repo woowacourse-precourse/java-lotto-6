@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,14 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinningNumber = Console.readLine();
         return inputWinningNumber;
+    }
+
+    public String[] inputWinningNumberSplit(String inputWinningNumber){
+        String[] split = inputWinningNumber.split(",");
+        if(split.length != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
+        }
+        return split;
     }
 
 

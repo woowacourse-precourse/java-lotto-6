@@ -45,7 +45,7 @@ public class Application {
                     Validator.checkZero(userInput);
 
                     Integer lottoNumber = Integer.parseInt(userInput);
-                    computer.checkRange(lottoNumber);
+                    Validator.checkRange(lottoNumber);
 
                     inputNumber.add(Integer.parseInt(userInput));
                 }
@@ -71,8 +71,8 @@ public class Application {
                 Validator.checkZero(userInput);
 
                 bonusNumber = Integer.parseInt(userInput);
-                computer.checkRange(bonusNumber);
-                computer.isIncluding(winningLotto.getNumbers(), bonusNumber);
+                Validator.checkRange(bonusNumber);
+                winningLotto.checkInclusion(bonusNumber);
 
                 isRunning = false;
 

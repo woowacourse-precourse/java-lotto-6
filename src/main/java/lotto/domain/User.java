@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.Validator;
 import lotto.ui.Computer;
 
 public class User {
@@ -14,14 +15,14 @@ public class User {
                 Computer computer = new Computer();
                 String userInput = computer.getInput();
 
-                computer.checkNumber(userInput);
+                Validator.checkNumber(userInput);
 
                 money = Integer.parseInt(userInput);
 
-                computer.checkPositiveNumber(money);
-                computer.checkZero(userInput);
+                Validator.checkPositiveNumber(money);
+                Validator.checkZero(userInput);
 
-                computer.checkRemainder(money);
+                Validator.checkRemainder(money);
 
                 lottoCount = computer.calculateLotto(money);
 

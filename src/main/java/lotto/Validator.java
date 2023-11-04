@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.List;
 
 public class Validator {
 
@@ -30,5 +29,12 @@ public class Validator {
         if (number <= 0) {
             throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
         }
+    }
+    public static void checkRange(Integer userInput) {
+
+        if ((userInput < 1) || (userInput > 45)) {
+            throw new IllegalArgumentException("[ERROR] 1~45 범위의 숫자를 입력 하세요.");
+        }
+
     }
 }

@@ -48,6 +48,9 @@ public class LottoView {
     private static void printlnConstantMessage(ConstantMessage constantMessage){
         System.out.println(constantMessage.getMessage());
     }
+    public static void printException(String message) {
+        System.out.println(message);
+    }
     private static void printNewLine(){
         System.out.println();
     }

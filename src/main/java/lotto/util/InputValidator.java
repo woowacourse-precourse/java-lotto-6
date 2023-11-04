@@ -56,18 +56,22 @@ public class InputValidator {
             throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_6_REQUIRED);
         }
 
-        validateNumberRanges(winningNumbers);
+        validateNumberRange(winningNumbers);
 
         if (hasDuplicateNumber(winningNumbers)) {
             throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
         }
     }
 
-    private void validateNumberRanges(List<Integer> winningNumbers) {
+    private void validateNumberRange(List<Integer> winningNumbers) {
         for (Integer number : winningNumbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
-            }
+            validateNumberRange(number);
+        }
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
         }
     }
 
@@ -84,5 +88,9 @@ public class InputValidator {
         if (isNumber(inputBonusNumber) == false) {
             throw new IllegalArgumentException(BONUS_NUMBER_NOT_A_NUMBER);
         }
+
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+        validateNumberRange(bonusNumber);
     }
 }

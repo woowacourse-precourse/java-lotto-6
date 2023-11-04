@@ -2,9 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Screen {
     static public int inputPurchasingAmount() {
         String puchasingAmount = Console.readLine();
+
         try {
             checkPurchasingAmount(puchasingAmount);
         }
@@ -24,11 +27,19 @@ public class Screen {
         return purchasingAmount.matches("^[1-9]\\d*000$");
     }
 
+    static public void printPurchasingAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    static public void printAllLottos(List<Lotto> lottos) {
+        System.out.printf("%s개를 구매했습니다.%n", lottos.size());
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
     static private void printErrorMessage(String message) {
         System.out.println(message);
     }
 
-    static public void printPurchasingAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
 }

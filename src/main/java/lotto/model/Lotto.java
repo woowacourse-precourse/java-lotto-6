@@ -1,7 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -38,6 +40,10 @@ public class Lotto {
         if(!isBetweenOneAndFortyFive(numbers)){
             throw new IllegalArgumentException();
         }
+
+        if(isDuplicatedNumber(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> makeNumbers(final String numbers){
@@ -58,5 +64,12 @@ public class Lotto {
 
     private boolean isBetweenOneAndFortyFive(final String numbers){
         return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE && number <= MAX_INCLUSIVE);
+    }
+
+    private boolean isDuplicatedNumber(final String numbers){
+
+        Set<String> set = new HashSet<>(List.of(numbers.split(",")));
+
+        return set.size() != numbers.split(",").length;
     }
 }

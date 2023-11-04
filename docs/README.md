@@ -8,8 +8,10 @@
 - [x] 당첨 숫자를 입력받는 `getWinningNumbers` 함수를 구현
 - [x] `getWinningNumbers` 함수에 대한 테스트 코드 추가
 - [x] 당첨 숫자와 lotto가 몇개나 일치하는지 확인하는 `matchCount` 함수를 구현
+- [ ] `matchCount` 함수에 대한 테스트 코드 추가
 - [x] 현재 lotto가 bonus number를 가지고 있는지 확인하는 `matchBonusNumber` 함수를 구현
+- [ ] `matchBonusNumber` 함수에 대한 테스트 코드 추가
 - [x] lotto 등수와 당첨 금액에 대한 enum `LottoRank` 추가
 - [x] 등수 별 당첨내역을 구하는 `getMatchCountByRank` 함수를 구현
-- [ ] `getMatchCountByRank` 함수에 대한 테스트 코드 추가
+- [x] `getMatchCountByRank` 함수에 대한 테스트 코드 추가
 - [ ] lotto 결과 통계를 출력하는 `printStatistics` 함수를 구현

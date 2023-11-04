@@ -21,7 +21,7 @@ public final class InputHandler {
     }
 
     public static int readMoney() {
-        System.out.println("구입금액을 입력해 주세요");
+        System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         moneyVerifier.check(input);
 
@@ -29,6 +29,7 @@ public final class InputHandler {
     }
 
     public static List<Integer> readWinnerNumber() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요");
         String input = Console.readLine();
         winnerNumberVerifier.check(input);
@@ -39,6 +40,7 @@ public final class InputHandler {
     }
 
     public static Integer readBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         bonusNumVerifier.check(input);

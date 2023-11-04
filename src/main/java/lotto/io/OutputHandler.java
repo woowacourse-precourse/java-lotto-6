@@ -17,10 +17,12 @@ public final class OutputHandler {
     }
 
     public static void printReceipts(int size){
+        System.out.println();
         System.out.println(size+"개를 구매했습니다.");
     }
 
     public static void printReward(List<Award> awards){
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+ Collections.frequency(awards,Award.THREE)+"개");

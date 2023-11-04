@@ -50,5 +50,15 @@ class LottoTest {
         // then
         assertThat(result).isEqualTo(5000);
     }
+    @Test
+    void inputWinningLottoNumberTest() {
+        // given
+        TestUser testUser = new TestUser();
+        // when
+        int[] result = testUser.inputWinningLottoNumber();
+
+        // then
+        assertThat(result).isEqualTo(new int[]{1, 2, 3, 4, 5, 6});
+    }
 }
 

@@ -38,15 +38,7 @@ class LottoValidationTest {
             lottoNumber.add(numbers[i]);
         }
 
-        boolean notDuplicate = true;
-
-        for (int i = 0; i < lottoNumber.size(); i++) {
-            notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber, lottoNumber.get(i));
-
-            if (!notDuplicate) {
-                break;
-            }
-        }
+        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber);
 
         assertEquals(notDuplicate, false);
     }

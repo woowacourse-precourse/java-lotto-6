@@ -12,16 +12,11 @@ public class LottoValidation {
         return true;
     }
 
-    public boolean checkDuplicateLottoNumber(List<Integer> lottoNumber, int nowNumber) {
-        int count = 0;
-        for (int number : lottoNumber) {
-            if (nowNumber == number) {
-                count++;
-            }
-            if (count > 1) {
-                return false;
-            }
+    public boolean checkDuplicateLottoNumber(List<Integer> lottoNumber) {
+        if (lottoNumber.size() != lottoNumber.stream().distinct().count()) {
+            return false;
         }
+
         return true;
     }
 }

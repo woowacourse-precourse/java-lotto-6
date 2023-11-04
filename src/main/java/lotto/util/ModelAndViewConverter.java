@@ -70,4 +70,22 @@ public class ModelAndViewConverter {
 
         return (Profit) modelAndView.get(modelName);
     }
+
+    public String getErrorMessage() {
+        IllegalArgumentException e = getIllegalArgumentException();
+        return e.getMessage();
+    }
+
+    private IllegalArgumentException getIllegalArgumentException() {
+        String modelName = new Object() {
+        }.getClass().getEnclosingMethod().getName().replace(REMOVE_FROM_METHOD_NAME, BLANK);
+
+        return getValueAndResetConverter(modelName);
+    }
+
+    private IllegalArgumentException getValueAndResetConverter(String modelName) {
+        IllegalArgumentException illegalArgumentException = (IllegalArgumentException) modelAndView.get(modelName);
+        modelAndView.remove(modelName);
+        return illegalArgumentException;
+    }
 }

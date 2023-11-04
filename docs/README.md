@@ -62,7 +62,7 @@
 - [x] LottoBundleDto 를 통해 로또들의 데이터를 List<String> 형으로 반환  - ModelAndViewConverter
 - [x] LottoResultDto 를 통해 로또 당첨 통계 데이터를 Map<LottoResult, Integer> 형으로 반환  - ModelAndViewConverter
 - [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
-- [ ] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
+- [x] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
 - [x] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
 
 # View

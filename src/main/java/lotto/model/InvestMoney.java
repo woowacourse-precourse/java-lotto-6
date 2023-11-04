@@ -13,9 +13,8 @@ public final class InvestMoney {
 
     private final int money;
 
-    private InvestMoney(int money, LottoPrice lottoPrice) {
+    private InvestMoney(int money) {
         validate(money);
-        validateDivisibilityByLottoPrice(money, lottoPrice);
         this.money = money;
     }
 
@@ -45,12 +44,13 @@ public final class InvestMoney {
         }
     }
 
-    private void validateDivisibilityByLottoPrice(int money, LottoPrice lottoPrice) {
-        lottoPrice.validateDivisibility(money);
+    public static InvestMoney from(int money) {
+        return new InvestMoney(money);
     }
 
-    public static InvestMoney of(int money, LottoPrice lottoPrice) {
-        return new InvestMoney(money, lottoPrice);
+    public PurchasableLottoCount calculatePurchasableLottoCount(LottoPrice lottoPrice) {
+        int lottoCount = lottoPrice.calculateLottoCount(money);
+        return PurchasableLottoCount.from(lottoCount);
     }
 
     public double calculateProfitPercentage(TotalWinningMoney winningMoney) {

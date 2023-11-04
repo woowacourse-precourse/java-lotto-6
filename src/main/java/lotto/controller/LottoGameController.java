@@ -6,12 +6,12 @@ import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoGroupDto;
 import lotto.model.InvestMoney;
 import lotto.model.Lotto;
-import lotto.model.LottoCount;
 import lotto.model.LottoGroup;
 import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
 import lotto.model.LottoPrice;
 import lotto.model.NumberGenerator;
+import lotto.model.PurchasableLottoCount;
 import lotto.model.TotalPrize;
 import lotto.model.TotalProfit;
 import lotto.model.WinningTicket;
@@ -32,7 +32,7 @@ public class LottoGameController {
 
     public void run() {
         InvestMoney investMoney = RetryUtil.retryOnFail(this::createInvestMoney);
-        LottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investMoney);
+        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investMoney);
         LottoGroup lottoGroup = LottoGroup.create(lottoCount, numberGenerator);
         printLottoGroup(lottoGroup);
 
@@ -51,14 +51,14 @@ public class LottoGameController {
         outputView.printTotalPrize(totalPrize);
     }
 
-    private LottoCount createLottoCount(InvestMoney investMoney) {
-        return LottoCount.from(investMoney);
+    private PurchasableLottoCount createLottoCount(InvestMoney investMoney) {
+        return investMoney.calculatePurchasableLottoCount(LottoPrice.STANDARD_PRICE);
     }
 
     private InvestMoney createInvestMoney() {
         InvestMoneyDto investMoneyDto = RetryUtil.retryOnFail(inputView::readInvestMoney);
         int investMoney = investMoneyDto.getInvestMoney();
-        return InvestMoney.of(investMoney, LottoPrice.STANDARD_PRICE);
+        return InvestMoney.from(investMoney);
     }
 
     private void printLottoGroup(LottoGroup lottoGroup) {

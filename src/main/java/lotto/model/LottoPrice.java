@@ -12,7 +12,16 @@ public enum LottoPrice {
         this.price = price;
     }
 
-    public void validateDivisibility(int investMoney) {
+    public int multiply(int count) {
+        return price * count;
+    }
+
+    public int calculateLottoCount(int investMoney) {
+        validateDivisible(investMoney);
+        return investMoney / price;
+    }
+
+    private void validateDivisible(int investMoney) {
         if (!isDivisible(investMoney)) {
             String exceptionMessage = String.format(INDIVISIBLE_AMOUNT_EXCEPTION_FORMAT, price);
             throw new IllegalArgumentException(exceptionMessage);
@@ -21,13 +30,5 @@ public enum LottoPrice {
 
     private boolean isDivisible(int investMoney) {
         return investMoney % price == ZERO;
-    }
-
-    public int multiply(int count) {
-        return price * count;
-    }
-
-    public int calculateLottoCount(InvestMoney investMoney) {
-        return investMoney.calculateLottoPurchaseCount(price);
     }
 }

@@ -14,14 +14,15 @@ public final class LottoGroup {
         this.lottos = new ArrayList<>(lottos);
     }
 
-    public static LottoGroup create(LottoCount lottoCount, NumberGenerator numberGenerator) {
-        List<Lotto> lottos = createLottos(lottoCount, numberGenerator);
+    public static LottoGroup create(PurchasableLottoCount purchasableLottoCount, NumberGenerator numberGenerator) {
+        List<Lotto> lottos = createLottos(purchasableLottoCount, numberGenerator);
         return new LottoGroup(lottos);
     }
 
-    private static List<Lotto> createLottos(LottoCount lottoCount, NumberGenerator numberGenerator) {
+    private static List<Lotto> createLottos(PurchasableLottoCount purchasableLottoCount,
+                                            NumberGenerator numberGenerator) {
         return Stream.generate(() -> Lotto.create(numberGenerator))
-                .limit(lottoCount.getCount())
+                .limit(purchasableLottoCount.getCount())
                 .toList();
     }
 

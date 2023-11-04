@@ -2,13 +2,13 @@ package lotto.model;
 
 import java.util.Objects;
 
-public final class LottoCount {
+public final class PurchasableLottoCount {
     private static final String MINIMUM_COUNT_EXCEPTION_FORMAT = "로또 구입 개수는 %d개 이상이어야 합니다.";
     private static final int MINIMUM_COUNT = 1;
 
     private final int count;
 
-    LottoCount(int count) {
+    PurchasableLottoCount(int count) {
         validate(count);
         this.count = count;
     }
@@ -20,13 +20,8 @@ public final class LottoCount {
         }
     }
 
-    public static LottoCount from(InvestMoney investMoney) {
-        int purchaseLottoCount = LottoPrice.STANDARD_PRICE.calculateLottoCount(investMoney);
-        return new LottoCount(purchaseLottoCount);
-    }
-
-    public int calculateUserMoney() {
-        return LottoPrice.STANDARD_PRICE.multiply(count);
+    public static PurchasableLottoCount from(int lottoCount) {
+        return new PurchasableLottoCount(lottoCount);
     }
 
     public int getCount() {
@@ -41,7 +36,7 @@ public final class LottoCount {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LottoCount that = (LottoCount) o;
+        PurchasableLottoCount that = (PurchasableLottoCount) o;
         return count == that.count;
     }
 

@@ -21,6 +21,10 @@ public class LottoGameController {
         int input = InputView.readPayMoney();
         Lottos lottos = lottoService.purchaseLottos(Money.of(input));
         OutputView.printMyLotto(lottos);
+        readWinningInfo();
+    }
+
+    private void readWinningInfo() {
         List<Integer> winningNumbers = InputView.readWinningNumbers();
         int bonusNumber = InputView.readBonusNumber();
         WinningInfo winningInfo = WinningInfo.from(winningNumbers, bonusNumber);

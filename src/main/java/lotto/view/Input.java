@@ -1,8 +1,11 @@
 package lotto.view;
 
+import static lotto.error.ExceptionCode.INVALID_NUMBER_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.error.LottoException;
 
 public class Input {
 
@@ -16,17 +19,33 @@ public class Input {
 
     public static long readBuyAmount() {
         System.out.println(BUY_AMOUNT_MESSAGE);
-        return Long.parseLong(Console.readLine());
+        return parseLong(Console.readLine());
     }
 
     public static List<Integer> readWinnerNumbers() {
         System.out.println(WINNER_NUMBER_MESSAGE);
         return Arrays.stream(Console.readLine().split(NUMBER_DELIMITER))
-                .map(Integer::parseInt).toList();
+                .map(Input::parseInt).toList();
     }
 
     public static Integer readBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        return parseInt(Console.readLine());
+    }
+
+    private static long parseLong(final String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (final NumberFormatException e) {
+            throw new LottoException(INVALID_NUMBER_FORMAT);
+        }
+    }
+
+    private static Integer parseInt(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (final NumberFormatException e) {
+            throw new LottoException(INVALID_NUMBER_FORMAT);
+        }
     }
 }

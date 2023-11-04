@@ -25,57 +25,48 @@ public class LottoSystem {
     }
 
     public void run() {
-        final Money moneyForBuy = readMoneyForBuy();
-        final Lottos lottos = buyLottos(moneyForBuy);
-        Output.printBoughtLotto(lottos);
-        final WinnerNumbers winnerNumbers = readWinnerNumbers();
-        final Result result = lottos.getResult(winnerNumbers);
-        Output.printResult(result, moneyForBuy);
+        try {
+            final Money moneyForBuy = readMoneyForBuy();
+            final Lottos lottos = buyLottos(moneyForBuy);
+            Output.printBoughtLotto(lottos);
+            final WinnerNumbers winnerNumbers = readWinnerNumbers();
+            final Result result = lottos.getResult(winnerNumbers);
+            Output.printResult(result, moneyForBuy);
+        } catch (RuntimeException e) {
+            printError(e);
+        }
     }
 
     private Money readMoneyForBuy() {
         for (int tryCount = 1; tryCount <= MAX_TRY; ++tryCount) {
             try {
                 return new Money(readBuyAmount());
-            } catch (final NumberFormatException e) {
-                printError(e);
-            } catch (final LottoException e) {
-                printError(e);
             } catch (final RuntimeException e) {
                 printError(e);
             }
         }
-        printError(EXCEED_MAX_TRY);
-        throw new IllegalArgumentException();
+        throw new LottoException(EXCEED_MAX_TRY);
     }
 
     private Lottos buyLottos(final Money money) {
         for (int tryCount = 1; tryCount <= MAX_TRY; ++tryCount) {
             try {
                 return lottoSeller.buy(money);
-            } catch (final LottoException e) {
-                printError(e);
             } catch (final RuntimeException e) {
                 printError(e);
             }
         }
-        printError(EXCEED_MAX_TRY);
-        throw new IllegalArgumentException();
+        throw new LottoException(EXCEED_MAX_TRY);
     }
 
     private WinnerNumbers readWinnerNumbers() {
         for (int tryCount = 1; tryCount <= MAX_TRY; ++tryCount) {
             try {
                 return new WinnerNumbers(Input.readWinnerNumbers(), Input.readBonusNumber());
-            } catch (final NumberFormatException e) {
-                printError(e);
-            } catch (final LottoException e) {
-                printError(e);
             } catch (final RuntimeException e) {
                 printError(e);
             }
         }
-        printError(EXCEED_MAX_TRY);
-        throw new IllegalArgumentException();
+        throw new LottoException(EXCEED_MAX_TRY);
     }
 }

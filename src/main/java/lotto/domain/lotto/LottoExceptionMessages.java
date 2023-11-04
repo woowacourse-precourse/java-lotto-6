@@ -15,7 +15,11 @@ enum LottoExceptionMessages {
             "로또 번호는 %d부터 %d 사이의 숫자이어야 합니다.",
             LottoConfig.MIN_NUMBER.getValue(),
             LottoConfig.MAX_NUMBER.getValue()
-    ));
+    )),
+
+    DUPLICATED_BONUS_NUMBER(
+            "보너스 번호는 당첨 번호와 중복된 값이 없어야 합니다."
+    );
 
     private final String message;
 

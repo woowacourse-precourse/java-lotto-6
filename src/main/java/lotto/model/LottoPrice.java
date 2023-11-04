@@ -12,16 +12,13 @@ public enum LottoPrice {
         this.price = price;
     }
 
-    public int multiply(int count) {
-        return price * count;
-    }
-
-    public int calculateLottoCount(int investMoney) {
+    public PurchasableLottoCount calculateLottoCount(int investMoney) {
         validateDivisible(investMoney);
-        return investMoney / price;
+        int count = investMoney / price;
+        return PurchasableLottoCount.from(count);
     }
 
-    private void validateDivisible(int investMoney) {
+    public void validateDivisible(int investMoney) {
         if (!isDivisible(investMoney)) {
             String exceptionMessage = String.format(INDIVISIBLE_AMOUNT_EXCEPTION_FORMAT, price);
             throw new IllegalArgumentException(exceptionMessage);

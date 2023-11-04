@@ -22,6 +22,11 @@ public final class InvestMoney {
         validatePositive(money);
         validateNotZero(money);
         validateBelowMaximumLimit(money);
+        validateDivisible(money);
+    }
+
+    private void validateDivisible(int money) {
+        LottoPrice.STANDARD_PRICE.validateDivisible(money);
     }
 
     private void validatePositive(int money) {
@@ -49,8 +54,7 @@ public final class InvestMoney {
     }
 
     public PurchasableLottoCount calculatePurchasableLottoCount(LottoPrice lottoPrice) {
-        int lottoCount = lottoPrice.calculateLottoCount(money);
-        return PurchasableLottoCount.from(lottoCount);
+        return lottoPrice.calculateLottoCount(money);
     }
 
     public double calculateTotalProfitRate(TotalWinningMoney totalWinningMoney) {

@@ -20,7 +20,7 @@ public abstract class RootValidator {
     }
 
     public static void valueIsNumeric(String value){
-        if (!value.matches("[1-9]")){
+        if (!value.matches("\\d+")){
             throw new IllegalArgumentException(VALUE_IS_NOT_NUMERIC.toString());
         }
     }

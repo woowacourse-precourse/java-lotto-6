@@ -5,6 +5,9 @@ import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LottoGameController {
     public void play() {
         LottoOwner lottoOwner = new LottoOwner();
@@ -28,6 +31,8 @@ public class LottoGameController {
 
     private WinningNumber generateWinningNumber() {
         OutputView.printLottoNumbersInput();
+        List<String> lottoNumbers = Arrays.asList(InputView.getUserInput().split(","));
+        WinningNumber winningNumber = new WinningNumber(lottoNumbers);
         return null;
     }
 

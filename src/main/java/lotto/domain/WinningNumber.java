@@ -8,6 +8,7 @@ public class WinningNumber {
     private Lotto lottoNumber;
     public WinningNumber(List<String> inputs) {
         lottoNumber = new Lotto(inputs.stream()
+                .map(String::trim)
                 .map(this::convertInputToLottoNumber)
                 .toList());
     }

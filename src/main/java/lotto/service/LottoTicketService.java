@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.collections.LottoPurchaseAmount;
 import lotto.model.collections.LottoTicketCount;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.constant.LottoConfig.*;
@@ -19,8 +20,9 @@ public class LottoTicketService {
         return new LottoTicketCount(ticketCountValue);
     }
 
-    public Lotto generateSingleLottoNumbers() {
+    public Lotto generateLottoNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+        Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
 }

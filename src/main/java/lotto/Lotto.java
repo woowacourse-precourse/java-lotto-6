@@ -29,10 +29,8 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> parseCommaSeparatedUserInput(String userInput) {
+    public List<Integer> parseCommaSeparatedUserLottoInput(String userInput) {
         String[] splittedLottoNumber = splitInputByComma(userInput);
         return convertToIntegerList(splittedLottoNumber);
     }
-
-
 }

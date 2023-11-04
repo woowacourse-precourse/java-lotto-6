@@ -10,6 +10,9 @@ public class GenerateRandomList {
     private final static Integer MAX_NUMBER = 45;
     private final static Integer NUMBER_SIZE = 6;
 
+    private GenerateRandomList() {
+    }
+
     public static List<Integer> createRandomList() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_SIZE);
         asendingSortList(numbers);

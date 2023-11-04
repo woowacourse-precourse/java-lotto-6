@@ -57,7 +57,7 @@ class CustomerTest {
 
         customer.buyNewLotto();
 
-        List<Lotto> lottos = customer.getLottos();
+        List<Lotto> lottos = customer.getAllLotto();
 
         assertThat(lottos.size()).isEqualTo(10);
     }

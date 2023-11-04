@@ -20,7 +20,7 @@ public class LottoController {
             Writer.printGuide(PrintConst.GUIDE_PURCHASE);
             int money = Reader.getMoney();
             Lottos lottos = lottoGenerator.purchase(money);
-            Writer.printModelsInList(PrintConst.FORMAT_LOTTO_NUMBERS, lottos.getLottos());
+            Writer.printModelsInList(lottos.getLottos());
         });
     }
 

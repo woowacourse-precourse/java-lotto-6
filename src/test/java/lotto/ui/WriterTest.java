@@ -14,7 +14,7 @@ class WriterTest {
                 new Lotto(List.of(7, 8, 9, 10, 11, 12)));
 
         //when
-        Writer.printModelsInList(PrintConst.FORMAT_LOTTO_NUMBERS, lottos);
+        Writer.printModelsInList(lottos);
         //then
     }
 

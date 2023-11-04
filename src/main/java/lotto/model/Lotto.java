@@ -1,9 +1,10 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.model.varargs.VarArgsMaker;
+import lotto.constance.PrintConst;
+import lotto.model.varargs.FormatPrintable;
 
-public class Lotto implements VarArgsMaker {
+public class Lotto implements FormatPrintable {
     public static final String LOTTO_PRINT_FORMAT = "[%d, %d, %d, %d, %d, %d]";
     private final List<Integer> numbers;
 
@@ -23,6 +24,11 @@ public class Lotto implements VarArgsMaker {
     @Override
     public String toString(){
         return String.format(LOTTO_PRINT_FORMAT, this.numbers.toArray());
+    }
+
+    @Override
+    public String format() {
+        return PrintConst.FORMAT_LOTTO_NUMBERS;
     }
 
     @Override

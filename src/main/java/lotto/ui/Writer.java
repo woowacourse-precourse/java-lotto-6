@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
-import lotto.model.varargs.VarArgsMaker;
+import lotto.model.varargs.FormatPrintable;
 
 public class Writer {
 
@@ -16,9 +16,9 @@ public class Writer {
         System.out.println();
     }
 
-    public static <Model extends VarArgsMaker> void printModelsInList(String format, List<Model> models){
+    public static <Model extends FormatPrintable> void printModelsInList(List<Model> models){
         for(Model model : models){
-            System.out.printf(format, model.varArgs());
+            System.out.printf(model.format(), model.varArgs());
             System.out.println();
         }
     }

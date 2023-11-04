@@ -7,7 +7,7 @@ import lotto.config.AppConfig;
 import lotto.input.PriceInputHandler;
 import lotto.input.TargetNumberHandler;
 import lotto.model.LottoBuyer;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 import lotto.service.Calculator;
 import lotto.service.LottoChecker;
 import lotto.service.LottoShop;
@@ -27,7 +27,7 @@ public class LottoMachine {
         lottoView.printLotto(buyer);
 
         LottoChecker lottoChecker = new LottoChecker(buyer, target, bonus);
-        Map<WinResult, Integer> checkResult = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> checkResult = lottoChecker.checkAllLotto();
 
         double rateOfReturn = calculator.calculateRateOfReturn(checkResult, amount * AppConfig.LOTTO_PRICE);
         lottoView.printResult(checkResult, rateOfReturn);

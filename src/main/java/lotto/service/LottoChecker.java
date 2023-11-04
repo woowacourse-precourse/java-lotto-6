@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 
 public class LottoChecker {
     private static final int BONUS_IS_USELESS = 0;
@@ -20,10 +20,10 @@ public class LottoChecker {
         this.bonus = bonus;
     }
 
-    public Map<WinResult, Integer> checkAllLotto() {
-        Map<WinResult, Integer> map = new LinkedHashMap<>();
-        Arrays.stream(WinResult.values())
-                .filter(winResult -> !winResult.equals(WinResult.FAIL))
+    public Map<Rank, Integer> checkAllLotto() {
+        Map<Rank, Integer> map = new LinkedHashMap<>();
+        Arrays.stream(Rank.values())
+                .filter(winResult -> !winResult.equals(Rank.FAIL))
                 .forEach(winResult -> map.put(winResult,0));
 
         for (int i = 0; i < lottoBuyer.size(); i++) {
@@ -32,8 +32,8 @@ public class LottoChecker {
             int matchedCount = matchWithTarget(lotto);
             int bonusCount = matchWithBonus(lotto, matchedCount);
 
-            WinResult result = getResult(matchedCount, bonusCount);
-            if(result.equals(WinResult.FAIL)) {
+            Rank result = getResult(matchedCount, bonusCount);
+            if(result.equals(Rank.FAIL)) {
                 continue;
             }
             Integer savedNumber = map.getOrDefault(result, 0);
@@ -41,12 +41,12 @@ public class LottoChecker {
         }
         return map;
     }
-    private WinResult getResult (int matchedCount, int bonusCount) {
-        return Arrays.stream(WinResult.values())
+    private Rank getResult (int matchedCount, int bonusCount) {
+        return Arrays.stream(Rank.values())
                 .filter(winResult -> winResult.matchedCount == matchedCount)
                 .filter(winResult -> winResult.bonus == bonusCount)
                 .findAny()
-                .orElse(WinResult.FAIL);
+                .orElse(Rank.FAIL);
     }
 
     private int matchWithTarget(Lotto lotto) {
@@ -56,7 +56,7 @@ public class LottoChecker {
     }
 
     private int matchWithBonus(Lotto lotto, int matchedCount) {
-        if(matchedCount == WinResult.THIRD.matchedCount) {
+        if(matchedCount == Rank.THIRD.matchedCount) {
             return (int) lotto.stream()
                     .filter(num -> bonus == num)
                     .count();

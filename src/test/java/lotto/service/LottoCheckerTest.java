@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,13 +36,13 @@ public class LottoCheckerTest {
     @Test
     @DisplayName("실패 3개, 각 등수마다 1개씩")
     void 로또체커_통합_테스트() {
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
-        assertThat(map.get(WinResult.FIRST)).isEqualTo(1);
-        assertThat(map.get(WinResult.SECOND)).isEqualTo(1);
-        assertThat(map.get(WinResult.THIRD)).isEqualTo(1);
-        assertThat(map.get(WinResult.FORTH)).isEqualTo(1);
-        assertThat(map.get(WinResult.FIFTH)).isEqualTo(1);
-        assertThat(map.get(WinResult.FAIL)).isEqualTo(3);
+        assertThat(map.get(Rank.FIRST)).isEqualTo(1);
+        assertThat(map.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(map.get(Rank.THIRD)).isEqualTo(1);
+        assertThat(map.get(Rank.FORTH)).isEqualTo(1);
+        assertThat(map.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(map.get(Rank.FAIL)).isEqualTo(3);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +28,11 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.FIRST)).isEqualTo(1);
+        assertThat(map.get(Rank.FIRST)).isEqualTo(1);
     }
 
     @Test
@@ -45,11 +45,11 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.SECOND)).isEqualTo(1);
+        assertThat(map.get(Rank.SECOND)).isEqualTo(1);
     }
 
     @Test
@@ -62,11 +62,11 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.THIRD)).isEqualTo(1);
+        assertThat(map.get(Rank.THIRD)).isEqualTo(1);
     }
 
     @Test
@@ -80,11 +80,11 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.FORTH)).isEqualTo(2);
+        assertThat(map.get(Rank.FORTH)).isEqualTo(2);
     }
 
     @Test
@@ -98,11 +98,11 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.FIFTH)).isEqualTo(2);
+        assertThat(map.get(Rank.FIFTH)).isEqualTo(2);
     }
 
     @Test
@@ -116,10 +116,10 @@ public class LottoCheckerUnitTest {
         lottoChecker = new LottoChecker(lottoBuyer, target, bonus);
 
         //when
-        Map<WinResult, Integer> map = lottoChecker.checkAllLotto();
+        Map<Rank, Integer> map = lottoChecker.checkAllLotto();
 
         //then
         assertThat(map.size()).isEqualTo(1);
-        assertThat(map.get(WinResult.FAIL)).isEqualTo(2);
+        assertThat(map.get(Rank.FAIL)).isEqualTo(2);
     }
 }

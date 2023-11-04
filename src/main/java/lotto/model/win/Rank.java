@@ -1,6 +1,6 @@
 package lotto.model.win;
 
-public enum WinResult {
+public enum Rank {
     FIFTH(3, false, 5, 5000),
     FORTH(4, true, 4, 50000),
     THIRD(5, false, 3, 1500000),
@@ -13,7 +13,7 @@ public enum WinResult {
     public int rank;
     public long reward;
 
-    WinResult(int matchedCount, boolean bonus, int rank, long reward) {
+    Rank(int matchedCount, boolean bonus, int rank, long reward) {
         this.matchedCount = matchedCount;
         this.bonus = bonus;
         this.rank = rank;

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -20,8 +20,8 @@ public class CalculatorTest {
     @Test
     void 계산기_테스트() {
         //given
-        Map<WinResult, Integer> map = new HashMap<>();
-        map.put(WinResult.FIFTH, 1);
+        Map<Rank, Integer> map = new HashMap<>();
+        map.put(Rank.FIFTH, 1);
         int pay = 1000;
 
         double value = calculator.calculateRateOfReturn(map, pay);

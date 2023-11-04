@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.List;
 import lotto.config.AppConfig;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -31,15 +31,12 @@ public class Lotto {
                 .toList();
     }
 
-    public WinResult checkResult(List<Integer> target, int bonus) {
+    public Rank checkResult(Lotto targetLotto, int bonus) {
+        List<Integer> target = targetLotto.numbers;
         int count = checkWithTarget(target);
         boolean canBeSecond = checkBonusIfUsable(count, bonus);
 
-        return Arrays.stream(WinResult.values())
-                .filter(winResult -> winResult.matchedCount == count)
-                .filter(winResult -> winResult.bonus == canBeSecond)
-                .findAny()
-                .orElse(WinResult.FAIL);
+        return getWinResult(count, canBeSecond);
     }
 
     private int checkWithTarget(List<Integer> target) {
@@ -49,9 +46,17 @@ public class Lotto {
     }
 
     private boolean checkBonusIfUsable(int count, int bonus) {
-        if(count == WinResult.THIRD.matchedCount) {
+        if(count == Rank.THIRD.matchedCount) {
             return numbers.contains(bonus);
         }
         return false;
+    }
+
+    private Rank getWinResult(int count, boolean canBeSecond) {
+        return Arrays.stream(Rank.values())
+                .filter(winResult -> winResult.matchedCount == count)
+                .filter(winResult -> winResult.bonus == canBeSecond)
+                .findAny()
+                .orElse(Rank.FAIL);
     }
 }

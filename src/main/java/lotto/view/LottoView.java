@@ -1,9 +1,8 @@
 package lotto.view;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.model.LottoBuyer;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 
 public class LottoView {
 
@@ -16,16 +15,16 @@ public class LottoView {
                 .forEach(System.out::println);
     }
 
-    public void printResult(Map<WinResult, Integer> checkResult, double rateOfReturn) {
+    public void printResult(Map<Rank, Integer> checkResult, double rateOfReturn) {
         printLottoResult(checkResult);
         System.out.println(printRate(rateOfReturn));
     }
 
-    private void printLottoResult(Map<WinResult, Integer> checkResult) {
+    private void printLottoResult(Map<Rank, Integer> checkResult) {
         checkResult.forEach((winResult, integer) -> {
             StringBuilder builder = new StringBuilder();
             builder.append(winResult.matchedCount).append("개 일치 ");
-            if (winResult.equals(WinResult.SECOND)) {
+            if (winResult.equals(Rank.SECOND)) {
                 builder.deleteCharAt(builder.length()-1);
                 builder.append(", 보너스 볼 일치 ");
             }

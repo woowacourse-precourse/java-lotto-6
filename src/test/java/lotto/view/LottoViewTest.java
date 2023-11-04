@@ -4,12 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.win.WinResult;
+import lotto.model.win.Rank;
 import lotto.service.Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSources;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoViewTest {
@@ -20,8 +19,8 @@ public class LottoViewTest {
     @Test
     void 수익률_출력형식_테스트() {
         //given
-        Map<WinResult, Integer> map = new HashMap<>();
-        map.put(WinResult.FIFTH, 1);
+        Map<Rank, Integer> map = new HashMap<>();
+        map.put(Rank.FIFTH, 1);
         int pay = 1000;
 
         double value = calculator.calculateRateOfReturn(map, pay);

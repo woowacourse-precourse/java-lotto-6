@@ -53,4 +53,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public boolean hasSameNumber(BonusNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::hasSameNumber);
+    }
 }

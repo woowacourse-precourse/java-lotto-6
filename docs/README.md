@@ -34,7 +34,10 @@
 ---
 ### int inputPurchaseAmount()
 - 구입금액 입력받음
-- 구입금액이 형식에 맞는지 확인 -> 아니면 에러 처리
+- 구입금액이 형식에 맞는지 확인
+
+### void validPurchaseAmount(int purchaseAmount)
+- 구입금액이 형식에 맞지 않으면 에러 처리
 
 ### List<Lotto> generateLottos(int count)
 - 로또 개수에 맞게 생성

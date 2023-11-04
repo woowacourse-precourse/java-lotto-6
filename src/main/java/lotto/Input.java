@@ -19,4 +19,10 @@ class Input {
         Lotto winnerTicket = new Lotto(numbers);
         return winnerTicket;
     }
+
+    public static Integer inputBonusNumber(Lotto winnerTicket) {
+        String raw = Console.readLine();
+        Validation.inputBonusNumberExceptionCheck(raw, winnerTicket);
+        return Integer.parseInt(raw);
+    }
 }

@@ -12,18 +12,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoTicketsGeneratingMachineTest {
     @ParameterizedTest
-    @DisplayName("로또 티켓 생성 실패 테스트 - 생성할 수 없는 개수")
+    @DisplayName("로또 티켓 개수가 양수가 아닐 경우 예외가 발생한다.")
     @ValueSource(ints = {-1, 0})
-    void createLottoTicketsImpossibleInitSizeFailTest(int initSize) {
+    void createLottoTicketsNotPositiveInitSize(int initSize) {
         LottoTicketsGeneratingMachine lottoTicketsGeneratingMachine = new LottoTicketsGeneratingMachine();
         assertThrows(IllegalArgumentException.class,
                 () -> lottoTicketsGeneratingMachine.generateRandomLottoTickets(initSize));
     }
 
     @ParameterizedTest
-    @DisplayName("로또 티켓 생성 성공 테스트")
+    @DisplayName("로또 티켓 정상 생성")
     @ValueSource(ints = {1, 10, 100})
-    void createLottoTicketsSuccessTest(int initSize) {
+    void createLottoTickets(int initSize) {
         LottoTicketsGeneratingMachine lottoTicketsGeneratingMachine = new LottoTicketsGeneratingMachine();
         LottoTickets lottoTickets = assertDoesNotThrow(
                 () -> lottoTicketsGeneratingMachine.generateRandomLottoTickets(initSize));

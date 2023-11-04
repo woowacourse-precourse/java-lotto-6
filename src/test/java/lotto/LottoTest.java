@@ -27,22 +27,22 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호 개수 6개 미만 테스트")
-    void createLottoLessSizeFailTest() {
+    @DisplayName("로또 번호의 개수가 6개를 넘지 못 하면 예외가 발생한다.")
+    void createLottoByLessSize() {
         var lottoNumbers = List.of(1, 2, 3, 4, 5);
         assertThrows(IllegalArgumentException.class, () -> new Lotto(lottoNumbers));
     }
 
     @Test
-    @DisplayName("로또 번호 중 생성할 수 없는 개수 포함 테스트")
-    void createLottoOutOfLottoNumberRangeTest() {
+    @DisplayName("로또 번호의 범위를 넘어가는 수가 있다면 예외가 발생한다.")
+    void createLottoByOutOfLottoNumberRange() {
         var lottoNumbers = List.of(1, 2, 3, 4, 5, 46);
         assertThrows(IllegalArgumentException.class, () -> new Lotto(lottoNumbers));
     }
 
     @Test
-    @DisplayName("로또 생성 테스트")
-    void createLottoSuccessTest() {
+    @DisplayName("로또 정상 생성")
+    void createLotto() {
         var lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         assertDoesNotThrow(() -> new Lotto(lottoNumbers));
     }

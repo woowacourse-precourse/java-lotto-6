@@ -13,23 +13,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoTicketsPurchasingMachineTest {
     @ParameterizedTest
-    @DisplayName("로또 금액 지불 실패 테스트 - 구입할 수 없는 금액")
+    @DisplayName("로또 금액으로 양수가 아닌 수를 지불하면 예외가 발생한다.")
     @ValueSource(ints = {-10_000, -1_000, 0})
-    void purchaseOfLottoTicketsImpossiblePayAmountTest(int amount) {
+    void purchaseOfLottoTicketsNotPositiveAmount(int amount) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
         assertThrows(IllegalArgumentException.class, () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
     }
 
     @ParameterizedTest
-    @DisplayName("로또 금액 지불 실패 테스트 - 구매 금액 단위 맞지 않음")
+    @DisplayName("로또 금액으로 구매 금액 단위에 맞지 않는 수를 지불하면 예외가 발생한다.")
     @ValueSource(ints = {1, 11, 111, 1_111, 11_111})
-    void purchaseOfLottoTicketsNotCorrectPayAmountTest(int amount) {
+    void purchaseOfLottoTicketsNotCorrectUnitAmount(int amount) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
         assertThrows(IllegalArgumentException.class, () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
     }
 
     @ParameterizedTest
-    @DisplayName("로또 금액 정상 지불 테스트")
+    @DisplayName("로또 금액 정상 지불")
     @MethodSource("purchaseAmountAndExpectLottoTicketsNumber")
     void purchaseOfLottoTicketsSuccessTest(int purchaseAmount, int expectLottoTicketsNumber) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();

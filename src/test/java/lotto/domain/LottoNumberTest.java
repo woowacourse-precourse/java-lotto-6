@@ -14,15 +14,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoNumberTest {
     @ParameterizedTest
-    @DisplayName("로또 번호 생성 불가 테스트 - 범위 벗어남")
+    @DisplayName("로또 번호의 범위를 벗어난 값으로 로또 번호를 생성하면 예외가 발생한다.")
     @ValueSource(ints = {-45, -1, 0, 46, 99})
-    void createLottoNumberOutOfRangeFailTest(int value) {
+    void createLottoNumberOutOfRange(int value) {
         assertThrows(IllegalArgumentException.class, () -> new LottoNumber(value));
     }
 
     @Test
     @DisplayName("로또 정상 생성")
-    void createLottoNumberSuccessTest() {
+    void createLottoNumber() {
         assertDoesNotThrow(() -> IntStream.rangeClosed(1, 45)
                 .mapToObj(LottoNumber::new)
                 .toList());

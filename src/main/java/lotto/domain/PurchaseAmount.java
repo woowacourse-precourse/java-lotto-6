@@ -20,4 +20,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
+import lotto.validator.LottoNumberValidator;
 
 public class LottoPurchaseManager {
     private static final int LOTTO_PRICE = 1000;
@@ -17,17 +18,9 @@ public class LottoPurchaseManager {
 
 
     private long calculateLottoQuantity(String input) {
-        long money = validateNumeric(input);
+        long money = LottoNumberValidator.validateNumeric(input);
         validatePurchaseAmount(money);
         return money / LOTTO_PRICE;
-    }
-
-    private long validateNumeric(String input) {
-        try {
-            return Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_NUMERIC.getMessage());
-        }
     }
 
     private void validatePurchaseAmount(long money) {

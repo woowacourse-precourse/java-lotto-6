@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.constants.LottoNumberConstants;
 import lotto.exception.ErrorMessage;
+import lotto.validator.LottoNumberValidator;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;
@@ -28,8 +28,8 @@ public class WinningNumbers {
         validateBlank(input);
         validateStartsOrEndsWithDelimiter(input);
         List<Integer> numbers = parseWinningNumbersInput(input);
-        validateDuplicates(numbers);
-        validateSize(numbers);
+        LottoNumberValidator.validateDuplicate(numbers);
+        LottoNumberValidator.validateSize(numbers);
         return numbers;
     }
 
@@ -54,29 +54,10 @@ public class WinningNumbers {
     private Integer safeParseInt(String input) {
         try {
             int number = Integer.parseInt(input);
-            validateRange(number);
+            LottoNumberValidator.validateRange(number);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());
-        }
-    }
-
-    private void validateRange(Integer number) {
-        if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_INVALID_RANGE.getMessage());
-        }
-    }
-
-    private static void validateDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_DUPLICATED.getMessage());
-        }
-    }
-
-    private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != NUMBERS_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_INVALID_SIZE.getMessage());
         }
     }
 

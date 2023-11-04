@@ -1,10 +1,13 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.LottoNumberConstants;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static lotto.constants.LottoNumberConstants.*;
 
 public class LottoGenerator {
     public Lottos generateLottos(long quantity) {
@@ -13,11 +16,11 @@ public class LottoGenerator {
             Lotto lotto = generateLotto();
             lottos.add(lotto);
         }
-        return new Lottos(lottos);
+        return Lottos.create(lottos);
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MINIMUM_RANGE, MAXIMUM_RANGE, NUMBERS_SIZE);
         numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }

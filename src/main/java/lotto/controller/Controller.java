@@ -3,9 +3,13 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.Message;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.service.ValidationService;
 import lotto.utils.ParseUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controller {
@@ -15,6 +19,7 @@ public class Controller {
     LottoService lottoService = new LottoService();
     ValidationService validationService = new ValidationService();
 
+    List<Lotto> userLotto = new ArrayList<>();
 
     public void run() {
         createUserLottos();
@@ -23,6 +28,7 @@ public class Controller {
 
     private void createUserLottos() {
         int lottoAmount = getAmount();
+        this.userLotto = lottoService.createUserLottos(lottoAmount);
     }
 
     public int getAmount() {

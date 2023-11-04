@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.domain.constant.ErrorConst.LOTTO_MORE_THAN_COUNT;
+import static lotto.domain.constant.ErrorConst.LOTTO_COUNT_NOT_SIX;
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -32,7 +32,7 @@ class LottoTest {
     void createLottoByUnderSize() {
         assertThatIllegalArgumentException().isThrownBy(() ->{
             new Lotto(List.of(1, 2, 3, 4, 5));
-        }).withMessage(LOTTO_MORE_THAN_COUNT);
+        }).withMessage(LOTTO_COUNT_NOT_SIX);
     }
 
     @Test

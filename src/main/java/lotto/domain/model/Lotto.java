@@ -3,7 +3,7 @@ package lotto.domain.model;
 import java.util.List;
 
 import static lotto.domain.constant.ErrorConst.LOTTO_HAS_DUPLICATE;
-import static lotto.domain.constant.ErrorConst.LOTTO_MORE_THAN_COUNT;
+import static lotto.domain.constant.ErrorConst.LOTTO_COUNT_NOT_SIX;
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
 import static lotto.domain.constant.LottoConst.COUNT;
 import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;
@@ -38,7 +38,7 @@ public class Lotto {
 
     private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != COUNT) {
-            throw new IllegalArgumentException(LOTTO_MORE_THAN_COUNT);
+            throw new IllegalArgumentException(LOTTO_COUNT_NOT_SIX);
         }
     }
 

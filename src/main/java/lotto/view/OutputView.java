@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println(lotto.getLotto());
     }
 
-    public void printWinningNumbers(){
+    public void printWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 

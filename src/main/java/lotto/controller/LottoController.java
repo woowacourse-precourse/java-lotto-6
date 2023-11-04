@@ -56,7 +56,7 @@ public class LottoController {
 
     private void printLottos(final Lottos lottos) {
         for (final Lotto lotto : lottos.getLottos()) {
-            outputView.printLotto(LottoResult.from(lotto.getNumbers()));
+            outputView.printLotto(LottoResult.from(lotto.getLottoNumbers()));
         }
     }
 
@@ -73,7 +73,7 @@ public class LottoController {
             try {
                 String input = inputView.readInput();
                 List<String> lotto = Converter.convertCommaSeparatedStringToList(input);
-                return Lotto.fromStringList(lotto);
+                return Lotto.createLottoFromStrings(lotto);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }

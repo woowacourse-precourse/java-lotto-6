@@ -25,6 +25,6 @@ public class WinningLotto {
     }
 
     public int countMatchingNumbers(final List<Number> lottoNumbers) {
-        return lotto.getSameCount(lottoNumbers);
+        return lotto.countMatchingNumbers(lottoNumbers);
     }
 }

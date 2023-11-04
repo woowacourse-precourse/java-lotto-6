@@ -22,8 +22,8 @@ public class WinningResultCalculator {
     }
 
     private Rank calculateRank(final WinningLotto winningLotto, final Lotto lotto) {
-        int sameCount = winningLotto.countMatchingNumbers(lotto.getNumbers());
-        boolean matchBonus = winningLotto.hasMatchingBonus(lotto.getNumbers());
+        int sameCount = winningLotto.countMatchingNumbers(lotto.getLottoNumbers());
+        boolean matchBonus = winningLotto.hasMatchingBonus(lotto.getLottoNumbers());
         return Rank.of(sameCount, matchBonus);
     }
 

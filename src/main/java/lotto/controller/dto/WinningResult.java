@@ -21,7 +21,8 @@ public class WinningResult {
 
         Arrays.stream(Rank.values())
                 .filter(Rank::isNotBoom)
-                .forEach(rank -> result.put(rank.getPriceMessage(), rankCounts.getOrDefault(rank, DEFAULT_VALUE)));
+                .forEach(rank -> result.put(rank.getPriceMessage(),
+                        rankCounts.getOrDefault(rank, DEFAULT_VALUE)));
 
         return new WinningResult(result);
     }

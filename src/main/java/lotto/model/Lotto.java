@@ -17,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto fromStringList(final List<String> numbers) {
+    public static Lotto createLottoFromStrings(final List<String> numbers) {
         validate(numbers);
 
         List<Number> number = numbers.stream()
@@ -27,7 +27,7 @@ public class Lotto {
         return new Lotto(number);
     }
 
-    public static Lotto fromIntegerList(final List<Integer> numbers) {
+    public static Lotto createLottoFromIntegers(final List<Integer> numbers) {
         validate(numbers);
 
         List<Number> number = numbers.stream()
@@ -63,13 +63,13 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int getSameCount(final List<Number> lottoNumber) {
+    public int countMatchingNumbers(final List<Number> lottoNumber) {
         return (int) lottoNumber.stream()
                 .filter(numbers::contains)
                 .count();
     }
 
-    public List<Number> getNumbers() {
+    public List<Number> getLottoNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 }

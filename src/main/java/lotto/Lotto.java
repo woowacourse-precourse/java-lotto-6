@@ -21,4 +21,12 @@ public class Lotto {
     public void printLottoNumbers() {
         System.out.println(numbers.toString());
     }
+
+    public int countMatchingLottoNumbers(LottoResult result) {
+        int count = 0;
+        for (Integer number : numbers) {
+            count = count + result.containResultNumbers(number);
+        }
+        return count;
+    }
 }

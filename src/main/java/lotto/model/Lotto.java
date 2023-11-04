@@ -1,4 +1,5 @@
-package lotto;
+package lotto.model;
+
 
 import java.util.List;
 
@@ -15,6 +16,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

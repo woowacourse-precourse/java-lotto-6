@@ -28,9 +28,10 @@
 
 **Set Collection에 대한 학습 테스트**
 요구사항 1
-- [ ] Set의 size() 메소드 활용해 Set의 크기를 확인하는 학습테스트 작성
+- [X] Set의 size() 메소드 활용해 Set의 크기를 확인하는 학습테스트 작성
+- [X] @ParameterizedTest 어노테이션을 활용하여 위 요구사항의 중복 코드 제거 작성
 
-요구사항 2
+  요구사항 2
 - [ ] Set의 contains() 메소드를 활용해 1, 2, 3의 값이 존재하는지 확인하는 테스트 구현
 - [ ] (발생하는 중복 코드에 대해) JUnit ParameterizedTest를 활용해 중복 코드 제거
 

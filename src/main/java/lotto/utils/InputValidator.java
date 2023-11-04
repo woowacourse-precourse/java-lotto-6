@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class InputValidator {
 
     private static final String ERROR = "[ERROR] ";
-    private static final String NOT_NUMBER = "숫자를 입력해주세요.";
+    private static final String NUMBER = "숫자를 입력해주세요.";
     private static final String BLANK = "입력이 공백입니다.";
     private static final String INVALID_PRICE = "1000원 단위의 수를 입력해주세요.";
     private static final String INVALID_SIZE = "6개의 번호를 입력해주세요.";
@@ -15,17 +15,17 @@ public class InputValidator {
     private static final String INVALID_LOTTO_FORMAT = "숫자와 쉼표를 이용해 입력해주세요.";
     private static final String INVALID_BONUS_NUMBER = "입력한 당첨 번호 중 보너스 번호가 이미 존재합니다.";
 
-    private static final int PRICE = 1000;
-    private static final int SIZE = 6;
-    private static final int MIN_NUM = 1;
-    private static final int MAX_NUM = 45;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_LOTTO_NUM = 1;
+    private static final int MAX_LOTTO_NUM = 45;
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[1-9]*$");
-    private static final Pattern INVALID_LOTTO_PATTERN = Pattern.compile("(\\d*,){5}\\d*$");
+    private static final Pattern LOTTO_PATTERN = Pattern.compile("(\\d*,){5}\\d*$");
 
     public static void checkIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException(ERROR + NOT_NUMBER);
+            throw new IllegalArgumentException(ERROR + NUMBER);
         }
     }
 
@@ -36,14 +36,14 @@ public class InputValidator {
     }
 
     public static void checkPrice(String input) {
-        if (Integer.parseInt(input) % PRICE != 0) {
+        if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR + INVALID_PRICE);
         }
     }
 
     public static void checkRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < MIN_NUM || number > MAX_NUM) {
+        if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(ERROR + INVALID_RANGE);
         }
     }
@@ -55,13 +55,13 @@ public class InputValidator {
     }
 
     public static void checkLottoSizeIsSix(List<Integer> input) {
-        if (input.size() != SIZE) {
+        if (input.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR + INVALID_SIZE);
         }
     }
 
     public static void checkLottoIsInRange(List<Integer> input) {
-        if (input.stream().anyMatch(number -> number < MIN_NUM || number > MAX_NUM)) {
+        if (input.stream().anyMatch(number -> number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM)) {
             throw new IllegalArgumentException(ERROR + INVALID_RANGE);
         }
     }
@@ -73,7 +73,7 @@ public class InputValidator {
     }
 
     public static void checkLottoNumberFormat(String input) {
-        if (!INVALID_LOTTO_PATTERN.matcher(input).matches()) {
+        if (!LOTTO_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + INVALID_LOTTO_FORMAT);
         }
     }

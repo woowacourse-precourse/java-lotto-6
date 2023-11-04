@@ -22,6 +22,6 @@ public enum ExceptionMessage {
     private final String errorDescription;
 
     public String getErrorDescription() {
-        return errorDescription;
+        return PREFIX + errorDescription;
     }
 }

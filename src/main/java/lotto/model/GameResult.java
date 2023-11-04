@@ -22,14 +22,12 @@ public class GameResult {
         }
         this.totalProfit = (totalPrize) / (double) money * 100;
     }
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (LottoResult result : LottoResult.values()) {
-            if(!result.equals(LottoResult.NOTHING_MATCHES))
-                sb.append(result.getMessage()).append(" - ").append(resultCounts.getOrDefault(result,0)).append("개\n");
-        }
-        sb.append("총 수익률은 ").append(String.format("%.1f", totalProfit)).append("%입니다.");
-        return sb.toString();
+
+    public EnumMap<LottoResult, Integer> getResultCounts() {
+        return resultCounts;
+    }
+
+    public double getTotalProfit() {
+        return totalProfit;
     }
 }

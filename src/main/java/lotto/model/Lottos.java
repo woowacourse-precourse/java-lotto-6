@@ -26,12 +26,7 @@ public class Lottos {
         return arr;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb  = new StringBuilder();
-        for(Lotto lotto : lottos){
-            sb.append(lotto);
-        }
-        return sb.toString();
+    public List<Lotto> getLottosForMessage() {
+        return lottos;
     }
 }

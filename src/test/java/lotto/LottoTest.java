@@ -58,12 +58,4 @@ class LottoTest {
         LottoResult result = userLotto.matchUp(winningLotto, 7);
         assertThat(result).isEqualTo(LottoResult.single(7));
     }
-
-    @DisplayName("toString 메소드가 로또 번호를 정확한 형식으로 출력하는지 테스트")
-    @Test
-    void testToStringFormat() {
-        Lotto lotto = new Lotto(List.of(10, 2, 34, 23, 5, 8));
-        String expectedFormat = "[2, 5, 8, 10, 23, 34]\n";
-        assertThat(lotto.toString()).isEqualTo(expectedFormat);
-    }
 }

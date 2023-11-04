@@ -45,10 +45,7 @@ public class Lotto {
         return this.numbers.contains(number) ;
     }
 
-    @Override
-    public String toString() {
-        List<Integer> result = new ArrayList<>(numbers);
-        result.sort((a,b)->a-b);
-        return result.toString()+"\n";
+    public List<Integer> getNumbersForMessage() {
+        return numbers;
     }
 }

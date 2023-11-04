@@ -14,14 +14,13 @@ public class Statistics {
         }
     }
 
-    public Map<Ranking, Integer> createData(List<Ranking> rankings) {
+    public void createData(List<Ranking> rankings) {
         for(Ranking ranking : rankings) {
             if(ranking == null) {
                 continue;
             }
             results.put(ranking, results.get(ranking) + 1);
         }
-        return results;
     }
 
     public float getRateOfReturn() {

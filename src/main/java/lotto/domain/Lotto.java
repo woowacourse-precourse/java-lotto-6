@@ -22,20 +22,26 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_INFO.getMessage() +
+                            ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
     private void uniqueValidate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_UNIQUE_ERROR.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_INFO.getMessage() +
+                            ErrorMessage.LOTTO_UNIQUE_ERROR.getMessage());
         }
     }
 
     private void rangeValidate(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_INFO.getMessage() +
+                            ErrorMessage.LOTTO_RANGE_ERROR.getMessage());
         }
     }
 }

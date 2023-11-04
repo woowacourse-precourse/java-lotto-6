@@ -4,7 +4,9 @@ import lotto.util.Constants;
 import lotto.util.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -19,13 +21,14 @@ public class LottoWinNumbers {
         this.lottoWinNumbers = sliceLottoNumbers(input);
         sizeCheck();
         rangeCheck();
+        uniqueCheck();
     }
 
     public void rangeCheck() {
         if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_RANGE_ERROR.getMessage());
         }
     }
 
@@ -37,15 +40,24 @@ public class LottoWinNumbers {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_STRING_ERROR.getMessage());
         }
     }
 
-    public void sizeCheck(){
-        if(lottoWinNumbers.size()!=6){
+    public void sizeCheck() {
+        if (lottoWinNumbers.size() != 6) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
+        }
+    }
+
+    private void uniqueCheck() {
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoWinNumbers);
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_INFO.getMessage()
+                            + ErrorMessage.LOTTO_UNIQUE_ERROR.getMessage());
         }
     }
 }

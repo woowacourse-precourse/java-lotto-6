@@ -46,4 +46,9 @@ class LottoWinNumbersTest {
         assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,2,3,4,5,6,7"));
     }
 
+    @Test
+    public void uniqueTest() {
+        assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,2,3,4,5,5"));
+    }
+
 }

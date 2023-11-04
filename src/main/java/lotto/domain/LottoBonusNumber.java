@@ -28,7 +28,7 @@ public class LottoBonusNumber {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_WIN_STRING_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_BONUS_STRING_ERROR.getMessage());
         }
     }
 }

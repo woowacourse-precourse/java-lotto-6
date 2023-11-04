@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -12,15 +15,19 @@ public class LottoController {
     }
 
     public void playGame() {
-        requestMoney();
+        Money money = requestMoney();
+        int count = lottoService.calculateCount(money.getMoney());
+        HashMap<Integer, Lotto> lotties = lottoService.makeLotto(count);
     }
 
-    public void requestMoney(){
+    public Money requestMoney(){
         try{
             outputView.printMoneyInputMessage();
             Money money = lottoService.changeStringToInt(inputView.getMoney());
+            return money;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return requestMoney();
     }
 }

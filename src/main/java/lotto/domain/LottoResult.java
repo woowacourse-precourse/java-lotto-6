@@ -8,4 +8,8 @@ public class LottoResult {
                 .filter(number -> winningLotto.getNumbers().stream().anyMatch(Predicate.isEqual(number)))
                 .count();
     }
+
+    public boolean checkMatchBonusNumber(Lotto purchaseLotto, int bonusNumber) {
+        return purchaseLotto.getNumbers().contains(bonusNumber);
+    }
 }

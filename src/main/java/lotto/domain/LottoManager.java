@@ -40,7 +40,17 @@ public class LottoManager {
 
     private int getPrice() {
         output.printLottoPriceRequest();
-        return input.getPrice();
+        Integer price = null;
+        while (price == null) {
+            try {
+                Integer invalidPrice = input.getPrice();
+                price = invalidPrice;
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
+
+        return price;
     }
 
     public void inputWinningNumbers() {

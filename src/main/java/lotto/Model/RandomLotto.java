@@ -6,15 +6,18 @@ import java.util.List;
 
 public class RandomLotto {
     private int count;
-    private Price price;
 
     public RandomLotto(Price price) {
-        count = price.divideWithOneThousands(price);
+        count = price.divideWithOneThousands();
     }
 
-//    public int minusCount() {
-//        return count--;''
-//    }
+    public int getCount() {
+        return count;
+    }
+
+    public int minusCount() {
+        return count--;
+    }
 
     public Lotto createRandomLottos() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));

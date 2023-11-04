@@ -24,6 +24,16 @@ public class Lotto {
         }
     }
 
+    public int countMatchedNumbers(Lotto winningLotto){
+        int count = 0;
+        for(int number: numbers){
+            if(winningLotto.getNumbers().contains(number)){
+                count++;
+            }
+        }
+        return count;
+    }
+
     public List<Integer> getNumbers(){
         return numbers;
     }

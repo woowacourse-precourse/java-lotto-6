@@ -9,10 +9,16 @@ public class InputView {
 
     private final BasicValidator<String> moneyInputValidator;
     private final BasicValidator<String> bonusNumberInputValidator;
+    private final BasicValidator<String> winningNumbersInputValidator;
 
-    public InputView(BasicValidator<String> moneyInputValidator, BasicValidator<String> bonusNumberInputValidator) {
+    public InputView(
+            BasicValidator<String> moneyInputValidator,
+            BasicValidator<String> bonusNumberInputValidator,
+            BasicValidator<String> winningNumbersInputValidator
+    ) {
         this.moneyInputValidator = moneyInputValidator;
         this.bonusNumberInputValidator = bonusNumberInputValidator;
+        this.winningNumbersInputValidator = winningNumbersInputValidator;
     }
 
     public int inputMoney() {
@@ -23,6 +29,7 @@ public class InputView {
 
     public List<Integer> inputWinningNumbers() {
         String input = Console.readLine();
+        winningNumbersInputValidator.validate(input);
         return Stream.of(input.split(","))
                 .map(Integer::parseInt)
                 .toList();

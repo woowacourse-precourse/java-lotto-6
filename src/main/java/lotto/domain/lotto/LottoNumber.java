@@ -1,12 +1,9 @@
 package lotto.domain.lotto;
 
-public class LottoNumber {
+public record LottoNumber(int number) {
 
-    private final int number;
-
-    public LottoNumber(int number) {
+    public LottoNumber {
         validateRange(number);
-        this.number = number;
     }
 
     private void validateRange(int number) {

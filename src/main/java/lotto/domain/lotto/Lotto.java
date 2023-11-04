@@ -35,5 +35,15 @@ public class Lotto {
                 .map(LottoNumber::new)
                 .toList();
     }
+
+    public int getIncludedNumberCount(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
     
 }

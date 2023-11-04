@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.lotto.dto.LottoNumberMatchDTO;
 
 public class WinningLottoNumbers {
 
@@ -19,6 +20,12 @@ public class WinningLottoNumbers {
         if (isIncluded) {
             throw new IllegalArgumentException(LottoExceptionMessages.DUPLICATED_BONUS_NUMBER.getMessage());
         }
+    }
+
+    public LottoNumberMatchDTO getMatchDTO(Lotto lotto) {
+        int includedNumberCount = numbers.getIncludedNumberCount(lotto);
+        boolean isIncludedBonusNumber = lotto.contains(bonusNumber);
+        return new LottoNumberMatchDTO(includedNumberCount, isIncludedBonusNumber);
     }
 
 }

@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumber {
+    private final List<Integer> winningNumber;
 
-    public void setWinningNumber() {
-
+    public WinningNumber(List<String> numbers) {
+        winningNumber = validateWinningNumber(numbers);
     }
 
     public List<Integer> validateWinningNumber(List<String> numbers) {

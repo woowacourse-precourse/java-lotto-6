@@ -10,4 +10,7 @@ public class PrintOutput {
     public void printLottoList(List<Integer> lotto) {
         System.out.println(lotto);
     }
+    public void printResult(){
+        System.out.println("당첨 통계\n---");
+    }
 }

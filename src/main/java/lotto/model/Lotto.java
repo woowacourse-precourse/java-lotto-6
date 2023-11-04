@@ -46,6 +46,12 @@ public class Lotto {
         }
     }
 
+    private static void isEndsWithComma(String inputNumber) {
+        if (inputNumber.endsWith(Constant.COMMA.getCharValue())) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_ENDS_WITH_COMMA.get());
+        }
+    }
+
     private void validateNumbersLength(List<Number> numbers) {
         if (numbers.size() != Constant.LOTTO_NUMBERS_MAX_LENGTH.getIntValue()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_LENGTH.get());

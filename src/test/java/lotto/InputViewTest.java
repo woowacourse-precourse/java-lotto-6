@@ -12,7 +12,7 @@ class InputViewTest {
     @DisplayName("입력 금액이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void createPaymentWithNonNumericInput() {
-        assertThatThrownBy(() -> new InputView().paymentToInteger("12a"))
+        assertThatThrownBy(() -> new InputView().numberToInteger("12a"))
               .isInstanceOf(IllegalArgumentException.class);
     }
 

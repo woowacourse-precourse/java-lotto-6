@@ -8,10 +8,10 @@ import lotto.ErrorMessages;
 public class InputView {
     public int inputUserPayment() {
         String payment = Console.readLine();
-        return paymentToInteger(payment);
+        return numberToInteger(payment);
     }
 
-    public int paymentToInteger(String payment) {
+    public int numberToInteger(String payment) {
         try {
             return Integer.parseInt(payment);
         } catch (NumberFormatException e) {
@@ -44,5 +44,10 @@ public class InputView {
             }
         }
         return integerWinningNumbers;
+    }
+
+    public int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return numberToInteger(bonusNumber);
     }
 }

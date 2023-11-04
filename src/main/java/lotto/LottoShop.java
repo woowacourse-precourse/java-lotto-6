@@ -14,5 +14,6 @@ public class LottoShop {
     public void compareWinLotto() {
 
         customer.checkWinLotto(winLotto);
+        Output.printResult();
     }
 }

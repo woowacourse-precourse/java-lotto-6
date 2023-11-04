@@ -42,7 +42,7 @@ public class Customer {
 
     private void buyLottos() {
 
-        Input.buyLottosInput(wallet);
+        Output.printbuyLottos(wallet);
         createLottos();
     }
 
@@ -70,7 +70,8 @@ public class Customer {
 
         for (int i = 0; i < lottos.size(); i++) {
 
-            int rank = winLotto.compareLotto(lottos.get(i));
+            int correctCount = winLotto.compareLotto(lottos.get(i));
+            Output.countRank(correctCount);
         }
     }
 }

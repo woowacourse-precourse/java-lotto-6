@@ -1,6 +1,6 @@
 package view;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final String ENTER_PRICE = "구입금액을 입력해 주세요.";
@@ -9,16 +9,16 @@ public class InputView {
 
     public static String enterPrice() {
         System.out.println(ENTER_PRICE);
-        return readLine();
+        return Console.readLine();
     }
 
     public static String enterWinningNumbers() {
         System.out.println(ENTER_WINNGING_NUMBERS);
-        return readLine();
+        return Console.readLine();
     }
 
     public static String enterBonusNumbers() {
         System.out.println(ENTER_BONUS_NUMBERS);
-        return readLine();
+        return Console.readLine();
     }
 }

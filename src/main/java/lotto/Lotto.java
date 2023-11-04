@@ -6,10 +6,13 @@ import static lotto.constant.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MES
 import static lotto.constant.ErrorMessage.LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.constant.LottoInfo.LOTTO_SIZE;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoInfo;
+import lotto.util.NumberGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -47,5 +50,21 @@ public class Lotto {
     private boolean hasLessThanMinNumber(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < LottoInfo.LOTTO_MIN_NUMBER.getValue());
+    }
+
+    public static Lotto createPlayerLotto(final NumberGenerator numberGenerator) {
+        return new Lotto(getPlayerLottoNumbers(numberGenerator));
+    }
+
+    private static List<Integer> getPlayerLottoNumbers(final NumberGenerator numberGenerator) {
+        List<Integer> randomNumbers = numberGenerator.pickNumbers();
+        randomNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(randomNumbers);
+
+        return randomNumbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

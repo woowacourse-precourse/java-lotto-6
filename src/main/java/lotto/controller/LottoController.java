@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import lotto.view.OutputView;
+import lotto.view.View;
 
 public class LottoController {
-    OutputView outputView = new OutputView();
+    View view = new View();
 
     public void run() {
-        outputView.printPurchaseAmountInputMessage();
+        view.printPurchaseAmountInputMessage();
+        view.inputValue();
     }
 }

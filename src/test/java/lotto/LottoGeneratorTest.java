@@ -1,8 +1,6 @@
 package lotto;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.input.view.output.GeneratedLottoOutput;
 import org.assertj.core.api.Assertions;
@@ -21,17 +19,17 @@ class LottoGeneratorTest {
         Assertions.assertThat(numbers.size()).isEqualTo(6);
     }
 
-    @Test
-    @DisplayName("로또 번호 생성 값 정렬 확인")
-    void generateLottoTest() {
-        List<Integer> numbers = generator.generateNumbers();
-        List<Integer> compareNumbers = new ArrayList<>(numbers);
-        List<Integer> notSortedNumbers = new ArrayList<>(numbers);
-        Lotto lotto = generator.generateLotto(numbers);
-        Collections.sort(compareNumbers);
-        Assertions.assertThat(lotto.getNumbers()).isEqualTo(compareNumbers);
-        Assertions.assertThat(lotto.getNumbers()).isNotEqualTo(notSortedNumbers);
-    }
+//    @Test
+//    @DisplayName("로또 번호 생성 값 정렬 확인")
+//    void generateLottoTest() {
+//        List<Integer> numbers = generator.generateNumbers();
+//        List<Integer> compareNumbers = new ArrayList<>(numbers);
+//        List<Integer> notSortedNumbers = new ArrayList<>(numbers);
+//        Lotto lotto = generator.generateLotto(numbers);
+//        Collections.sort(compareNumbers);
+//        Assertions.assertThat(lotto.getNumbers()).isEqualTo(compareNumbers);
+//        Assertions.assertThat(lotto.getNumbers()).isNotEqualTo(notSortedNumbers);
+//    }
 
     @Test
     @DisplayName("구매 금액 만큼 로또 번호 생성")

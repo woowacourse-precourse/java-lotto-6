@@ -29,28 +29,13 @@ public class Application {
         }
     }
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-
-        List<Lotto> lottos = new ArrayList<>();
-
-        User user = new User();
-        Computer computer = new Computer();
-        user.purchaseLotto();
-
-        // 로또 개수 만큼 번호 계산
-        Application.createLottos(user.lottoCount);
-
-        // 4. 로또 번호 출력
-        Application.printLottos(lottos);
-
-        // 5. 당첨 번호 입력
-        Lotto winningLotto = null;
+    public static Lotto createWinningLotto(){
         boolean isRunning = true;
+        Lotto winningLotto = null;
         while (isRunning) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                List<String> userInputs = Arrays.asList(computer.getInput().split(","));
+                List<String> userInputs = Arrays.asList(Computer.getInput().split(","));
 
                 List<Integer> inputNumber = new ArrayList<>();
 
@@ -72,6 +57,26 @@ public class Application {
                 System.out.println(ex.getMessage());
             }
         }
+        return winningLotto;
+    }
+
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        User user = new User();
+        Computer computer = new Computer();
+        user.purchaseLotto();
+
+        // 로또 개수 만큼 번호 계산
+        Application.createLottos(user.lottoCount);
+
+        // 4. 로또 번호 출력
+        Application.printLottos(lottos);
+
+        // 5. 당첨 번호 입력
+        Lotto winningLotto = createWinningLotto();
 
         // 6. 보너스 번호 입력
         isRunning = true;

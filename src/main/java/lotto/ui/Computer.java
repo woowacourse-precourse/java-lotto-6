@@ -6,7 +6,7 @@ import lotto.Lotto;
 
 public class Computer {
 
-    public String getInput() {
+    public static String getInput() {
         return Console.readLine();
     }
 

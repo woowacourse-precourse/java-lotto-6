@@ -24,6 +24,7 @@ class LottosTest {
         List<LottoRewardCondition> compareResults = lottos.createCompareResults(winningLotto);
 
         // then
-        assertThat(compareResults).containsExactly(LottoRewardCondition.FIRST_WINNER, LottoRewardCondition.SECOND_WINNER);
+        assertThat(compareResults).containsExactly(LottoRewardCondition.FIRST_WINNER,
+                LottoRewardCondition.SECOND_WINNER);
     }
 }

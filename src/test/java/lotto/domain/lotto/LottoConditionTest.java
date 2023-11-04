@@ -23,5 +23,4 @@ class LottoConditionTest {
         // given & when & then
         assertThat(LottoCondition.isInvalidLength(length)).isTrue();
     }
-
 }

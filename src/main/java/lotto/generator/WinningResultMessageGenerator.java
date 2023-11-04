@@ -41,7 +41,6 @@ public class WinningResultMessageGenerator {
         return String.format(PROFIT_RATIO_FORMAT, profitRatio);
     }
 
-
     private static String createWinningCountMessage(final List<Integer> winningCounts) {
         return IntStream.range(0, winningCounts.size())
                 .mapToObj(i -> String.format(WINNING_COUNT_FORMATS.get(i), winningCounts.get(i)))

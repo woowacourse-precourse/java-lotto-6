@@ -28,7 +28,9 @@ public class NumberValidator {
     }
 
     public static void validateBonusNumber(String bonusNumber) {
-
+        if (bonusNumber.isEmpty()) {
+            throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
+        }
     }
 
     private static boolean isNumeric(String number) {

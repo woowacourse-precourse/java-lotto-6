@@ -5,6 +5,7 @@
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+
 # Model
 - ###  Player
 - [x] 로또 구입 금액을 보유 금액에 저장 - HoldingMoney
@@ -45,8 +46,11 @@
 - [x] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 업데이트하기 - LottoResultRepository
 - [x] 로또 결과 리스트를 받아 결과 업데이트 하기 - LottoResultsRepository
 - ### Service
-- [ ] Player 가 로또를 구매해 저장함 - LottoService
-- [ ] Player 와 LottoBundle 를 통해 수익률 계산 - LottoService
+- [ ] Player 가 로또를 구매해 저장함 - LottoPurchaseService
+- [ ] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
+- [ ] 로또 당첨 결과를 리스트 형태로 반환 - LottoPurchaseService
+- [ ] 로또 결과 리스트를 받아 당첨 결과를 업데이트 - LottoResultsService
+- [ ] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsService
 - ### DTO
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto
 - [x] 로또의 총 개수를 반환하기 - LottoDto
@@ -57,6 +61,8 @@
 - [x] LottoBundleDto 를 통해 로또들의 데이터를 List<String> 형으로 반환  - ModelAndViewConverter
 - [x] LottoResultDto 를 통해 로또 당첨 통계 데이터를 Map<LottoResult, Integer> 형으로 반환  - ModelAndViewConverter
 - [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
+- [ ] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
+- [ ] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
 
 # View
 - [x] 로또 구입 금액 입력 - InputView
@@ -67,11 +73,12 @@
 - [x] 수익률 출력 - OutputView
 
 # Controller
-- [ ] 로또 구입 금액 입력받아 Player 생성 - GameController
-- [ ] 구입 금액에 따른 로또 랜덤 생성해 LottoBundle 생성 - GameController
-- [ ] 로또 당첨번호, 보너스 번호 입력받아 WinLotto 생성 - GameController
-- [ ] 당첨 내역 및 수익률 계산해 출력하기 - GameController
-- [ ] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - GameController
+- [ ] 로또 구입 금액 입력받아 Player 생성 - LottoController
+- [ ] LottoPurchaseService 통해 로또 구입 - LottoController
+- [ ] 구입한 로또 출력 - LottoController
+- [ ] 로또 당첨번호, 보너스 번호 입력받아 WinLotto 생성 - LottoController
+- [ ] 당첨 내역 및 수익률 계산해 출력하기 - LottoController
+- [ ] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - LottoController
 
 # 에러 상황
 - [ ] 구입 금액을 1000단위로 입력하지 않음 - PlayerWallet

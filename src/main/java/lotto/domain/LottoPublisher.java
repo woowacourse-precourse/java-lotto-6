@@ -15,7 +15,7 @@ public class LottoPublisher {
             lottos.add(lotto);
         }
 
-        this.userLottos = userLottos;
+        this.userLottos = lottos;
     }
 
     private int countLottos() {

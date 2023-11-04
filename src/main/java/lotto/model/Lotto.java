@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.Rule;
 
 import java.util.List;
 import java.util.Set;
@@ -23,26 +24,27 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Rule.NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (Set.copyOf(numbers).size() != 6) {
+        if (Set.copyOf(numbers).size() != Rule.NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        boolean isInvalidRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
+        boolean isInvalidRange = numbers.stream()
+                .anyMatch(number -> number < Rule.MIN_NUMBER || number > Rule.MAX_NUMBER);
         if (isInvalidRange) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 
     public Integer count(Lotto lotto) {
-        return (int) IntStream.range(0, 6)
+        return (int) IntStream.range(0, Rule.NUMBER_SIZE)
                 .filter(i -> lotto.contains(numbers.get(i)))
                 .count();
     }
@@ -55,5 +57,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
 }

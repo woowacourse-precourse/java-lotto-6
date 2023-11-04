@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.Rule;
 import lotto.model.LottoPrize;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class Calculator {
     }
 
     private int sumPurchaseAmount(List<LottoPrize> lottoPrizes) {
-        return lottoPrizes.size() * 1000;
+        return lottoPrizes.size() * Rule.MONEY_UNIT;
     }
 
     private long sumPrize(List<LottoPrize> lottoPrizes) {

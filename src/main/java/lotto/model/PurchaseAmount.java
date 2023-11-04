@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.Rule;
 
 public class PurchaseAmount {
 
@@ -21,18 +22,18 @@ public class PurchaseAmount {
     }
 
     private void validateRange(Integer amount) {
-        if (amount < 1000 || amount > 100000) {
+        if (amount < Rule.MIN_MONEY || amount > Rule.MAX_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_RANGE.getMessage());
         }
     }
 
     private void validateUnit(Integer amount) {
-        if (amount % 1000 != 0) {
+        if (amount % Rule.MONEY_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
     public Integer exchangeLottoTicket() {
-        return amount / 1000;
+        return amount / Rule.MONEY_UNIT;
     }
 }

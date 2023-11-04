@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.Rule;
 
 public class Bonus {
 
@@ -16,7 +17,7 @@ public class Bonus {
     }
 
     private void validateRange(Integer bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < Rule.MIN_NUMBER || bonusNumber > Rule.MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }

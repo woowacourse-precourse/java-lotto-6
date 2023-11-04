@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ class LottoGeneratorTest {
 
         List<Integer> lotto = generator.generate();
 
-        assertThat(lotto.size()).isEqualTo(6);
+        assertThat(lotto.size()).isEqualTo(Rule.NUMBER_SIZE);
     }
 
     @DisplayName("1부터 45 범위의 숫자 생성")
@@ -27,7 +28,7 @@ class LottoGeneratorTest {
 
         List<Integer> lotto = generator.generate();
 
-        assertThat(lotto).allMatch(number -> 1 <= number && number <= 45);
+        assertThat(lotto).allMatch(number -> Rule.MIN_NUMBER <= number && number <= Rule.MAX_NUMBER);
     }
 
     @DisplayName("중복되지 않은 숫자 생성")

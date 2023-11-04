@@ -34,4 +34,16 @@ public class Controller {
         return purchase;
     }
 
+    private List<Lotto> buyLottos(int count) {
+        randomNumbersLotto randomNumbersLotto = new randomNumbersLotto();
+        outputView outputview = new outputView();
+
+        List<Lotto> lottos = IntStream.range(0, count)
+                .mapToObj(i -> new Lotto(randomNumbersLotto.makeRandomNumLottos())).collect(
+                        Collectors.toList());
+        outputview.printLotto(lottos);
+        return lottos;
+    }
+
+
 }

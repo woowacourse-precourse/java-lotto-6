@@ -3,9 +3,12 @@ package lotto;
 import lotto.dto.Lotto;
 import lotto.dto.NumberType;
 import lotto.dto.Ranking;
+import lotto.message.InputGuideMessage;
 
 import java.text.DecimalFormat;
 import java.util.*;
+
+import static lotto.message.InputGuideMessage.*;
 
 public class ResultCalculationSystem {
     private Map<Integer, Ranking> rankingAccumulator = new HashMap<>();
@@ -87,18 +90,20 @@ public class ResultCalculationSystem {
     }
 
     public void printWinningResult() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
 
-        System.out.println("당첨 통계\n---");
+        System.out.println(INFORM_WINNING_STATICS_MESSAGE.getMessage());
         for (int i = 5; i > 0; i--) {
             Ranking ranking = rankingAccumulator.get(i);
             String formattedAmount = decimalFormat.format(ranking.getRewardMoney());
-            String additionalMessage = ", 보너스 볼 일치";
+            String additionalMessage = INFORM_BONUS_NUMBER_CORRECT_MESSAGE.getMessage();
             if (ranking.getMatchedBonusNumberAmount() == 0)
                 additionalMessage = "";
-            System.out.printf("%d개 일치" + additionalMessage + " (%s원) - %d개\n", ranking.getMatchedWinningNumberAmount(), formattedAmount, ranking.getNumberOfWins());
+            System.out.printf(INFORM_RANK_AND_WINNING_COUNT_MESSAGE.getMessage(),
+                    ranking.getMatchedWinningNumberAmount(), additionalMessage, formattedAmount, ranking.getNumberOfWins());
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
+        String formattedRateOfReturn = decimalFormat.format(rateOfReturn);
+        System.out.printf(INFORM_TOTAL_RATE_OF_RETURN.getMessage(), formattedRateOfReturn);
     }
 
     private class Pair {

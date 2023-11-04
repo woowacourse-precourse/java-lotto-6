@@ -103,6 +103,18 @@ public class Application {
         }
         return resultMap;
     }
+
+    private double getPrizeMoney(Map<String, Integer>result){
+        double totalPrizeMoney = 0;
+        for(WinningPrize prize : WinningPrize.values()){
+            boolean bonusMatch = false;
+            if(prize == WinningPrize.MATCH_5_BONUS)
+                bonusMatch = true;
+            String key = getKey(prize.getPrizeMoney(), bonusMatch);
+            totalPrizeMoney += prize.getPrizeMoney() * resultMap.getOrDefault(key, 0);
+        }
+        return totalPrizeMoney;
+    }
     
     private static String getKey(int matchCount, boolean bonusMatch){
         if(matchCount == 5 && bonusMatch){

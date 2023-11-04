@@ -27,7 +27,8 @@ public class Game {
         return this.lottos;
     }
 
-    public void setWinningLotto(Lotto winningLotto) {
+    public void setLottoNumbers(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
     }
 }

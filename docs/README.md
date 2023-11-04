@@ -111,6 +111,7 @@
 ### InputValidator
 
 - [x] 입력이 숫자인지 확인한다.
+- [x] 입력이 쉼표(,)로 구분되었는지 확인한다.
 
 ### PurchaseAmountValidator
 

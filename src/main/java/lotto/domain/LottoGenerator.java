@@ -12,7 +12,7 @@ public class LottoGenerator {
     }
 
     public Lottos generateLotto(Money money) {
-        int numberOfLotto = money.calculateNumberOfLottos();
+        int numberOfLotto = money.calculateNumberOfLotto();
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLotto; i++) {

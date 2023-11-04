@@ -19,6 +19,6 @@ public class LottoGeneratorTest {
 
         // then
         Assertions.assertThat(lottos.getLottoCount())
-                .isEqualTo(money.calculateNumberOfLottos());
+                .isEqualTo(money.calculateNumberOfLotto());
     }
 }

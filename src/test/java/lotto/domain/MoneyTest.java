@@ -66,7 +66,7 @@ public class MoneyTest {
         Money money = Money.of(input);
 
         // when
-        int result = money.calculateNumberOfLottos();
+        int result = money.calculateNumberOfLotto();
 
         //then
         Assertions.assertThat(result).isEqualTo(input / NumberConstraints.LOTTO_PER_PRICE.value());

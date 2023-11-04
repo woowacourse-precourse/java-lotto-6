@@ -13,7 +13,6 @@ public record Money(
         return new Money(input);
     }
 
-
     private static void validateLessThanPerPrice(int input) {
         if (input < LOTTO_PER_PRICE.value()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
@@ -26,7 +25,7 @@ public record Money(
         }
     }
 
-    public int calculateNumberOfLottos() {
+    public int calculateNumberOfLotto() {
         return money / LOTTO_PER_PRICE.value();
     }
 }

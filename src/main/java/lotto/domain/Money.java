@@ -6,11 +6,11 @@ import lotto.error.LottoException;
 
 public class Money {
 
-    public static final Money ZERO = new Money(0L);
-
     private static final Long THOUSAND = 1000L;
 
     private static final Long ZERO_AMOUNT = 0L;
+
+    public static final Money ZERO = new Money(0L);
 
     private final Long amount;
 
@@ -46,6 +46,6 @@ public class Money {
     }
 
     public float getRate(final Money money) {
-        return (float) amount / money.amount;
+        return (float) money.amount / amount;
     }
 }

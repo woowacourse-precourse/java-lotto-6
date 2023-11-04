@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -42,6 +43,21 @@ class ValidatorTest {
     @DisplayName("구입 금액 검증 예외")
     void 로또_번호_검증_예외(String input) {
         assertThatThrownBy(() -> validator.validateLottoNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("lotto.validator.BonusNumberArgumentProvider#provideCorrectInput")
+    @DisplayName("보너스 번호 검증")
+    void 보너스_번호_검증(Lotto lotto, String input) {
+        validator.validateBonusNumber(lotto, input);
+    }
+
+    @ParameterizedTest
+    @MethodSource("lotto.validator.BonusNumberArgumentProvider#provideExceptionInput")
+    @DisplayName("보너스 번호 검증 예외")
+    void 보너스_번호_검증_예외(Lotto lotto, String input) {
+        assertThatThrownBy(() -> validator.validateBonusNumber(lotto, input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

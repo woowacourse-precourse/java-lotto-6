@@ -16,8 +16,10 @@
 - [x] 로또 구입 금액에 따라 Ticket 을 발급해줌 - LottoTicket
 - [x] 티켓 수 만큼 랜덤 로또로 변경하며 로또를 lottoBundle 에 넣음 - LottoTicket
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
-- [ ] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
-- [ ] 수익률을 저장함 - RateOfReturn
+- [x] 로또 상금을 받아 사용 금액과 비교한 수익률을 계산함 - UsedMoney
+- [ ] UsedMoney 에 수익률 계산을 명령함 - PlayerWallet
+- [ ] 로또 결과를 통해 수익률 가져오기 - Player
+- [x] 수익률을 저장함 - Profit
 - ### Lotto
 - [x] Lotto 를 상속받아 당첨번호와 보너스 번호를 저장 - WinLotto
 - [x] 보너스 번호를 저장 - BonusNumber

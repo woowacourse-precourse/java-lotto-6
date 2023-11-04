@@ -49,7 +49,8 @@ public class Prizes {
             return 0.0;
         }
 
-        return (totalReward / totalSeed * 100.0);
+        Double benefit = (totalReward / totalSeed * 100.0);
+        return Math.round(benefit * 100) / 100.0;
 
 
     }

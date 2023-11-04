@@ -17,6 +17,10 @@ public class LottoRepository {
         lottoRepository.forEach(Lotto::printLottoInfo);
     }
 
+    public Lotto get(int index){
+        return lottoRepository.get(index);
+    }
+
     public int size(){
         return lottoRepository.size();
     }

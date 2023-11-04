@@ -21,6 +21,10 @@ public class UserLotto {
         }
     }
 
+    public Lotto getIndexAt(int index){
+        return userLottory.get(index);
+    }
+
     private Lotto makeLotto() {
         return new Lotto(RandomNumGenerator.makeUniqueRandomList());
     }

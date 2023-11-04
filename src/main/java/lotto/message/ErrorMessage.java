@@ -9,7 +9,6 @@ public enum ErrorMessage {
     INVALID_LOTTO_AMOUNT("로또 금액은 1000원 단위여야 합니다."),
     AMOUNT_LESS_THAN_ZERO("로또 금액은 0보다 커야 합니다."),
     INVALID_AMOUNT_FORMAT("구입금액은 숫자 형식이어야 합니다."),
-    LOTTO_NUMBERS_NOT_SORTED("로또 번호는 오름차순이어야 합니다."),
     BONUS_NUMBER_MATCH("보너스 번호가 당첨 번호에 포함되었습니다");
 
     private final String message;

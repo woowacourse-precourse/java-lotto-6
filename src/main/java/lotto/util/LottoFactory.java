@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,17 +17,27 @@ public class LottoFactory {
     }
 
     public static Lotto getLotto(){
-        return new Lotto(getSortedLottoNumbers());
+        List<Integer> lottoNumbers = getLottoNumbers();
+        return new Lotto(sortedAscending(lottoNumbers));
+    }
+
+    private static List<Integer> sortedAscending(List<Integer> numbers) {
+        List<Integer> sortedNumber = getSortedNumber(numbers);
+        if (!sortedNumber.equals(numbers)) {
+            return sortedNumber;
+        }
+        return numbers;
+    }
+
+    private static List<Integer> getSortedNumber(List<Integer> numbers) {
+        List<Integer> sortedLotto = new ArrayList<>(numbers);
+        Collections.sort(sortedLotto);
+
+        return sortedLotto;
     }
 
     public static Lotto getLotto(List<Integer> numbers){
         return new Lotto(numbers);
-    }
-
-    private static List<Integer> getSortedLottoNumbers() {
-        List<Integer> lottoNumbers = getLottoNumbers();
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
     }
 
     private static List<Integer> getLottoNumbers(){

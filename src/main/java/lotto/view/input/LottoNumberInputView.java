@@ -2,6 +2,7 @@ package lotto.view.input;
 
 import lotto.domain.lotto.Lotto;
 import lotto.message.LottoBuyMessage;
+import lotto.util.LottoFactory;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;
@@ -15,14 +16,14 @@ public class LottoNumberInputView extends Input{
         this.inputValidator = new InputValidator();
     }
 
-    public List<Integer> requestWinningLottoNumbers() {
+    public Lotto requestWinningLotto() {
         printRequestWinningLottoNumbers();
 
         List<Integer> numbers = getNumbers();
         validateWiningLottoNumbers(numbers);
         System.out.println();
 
-        return numbers;
+        return LottoFactory.getLotto(numbers);
     }
 
     private void printRequestWinningLottoNumbers() {

@@ -10,7 +10,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicateNumbers(numbers);
-        validateSortedAscending(numbers);
         this.numbers = numbers;
     }
 
@@ -29,20 +28,6 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
-    }
-
-    private void validateSortedAscending(List<Integer> numbers) {
-        List<Integer> sortedNumber = getSortedNumber(numbers);
-        if (!sortedNumber.equals(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
-        }
-    }
-
-    private List<Integer> getSortedNumber(List<Integer> numbers) {
-        List<Integer> sortedLotto = new ArrayList<>(numbers);
-        Collections.sort(sortedLotto);
-
-        return sortedLotto;
     }
 
     public LottoRank determineLottoRank(Lotto winningLotto, int bonus) {

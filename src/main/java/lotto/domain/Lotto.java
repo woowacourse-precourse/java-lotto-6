@@ -4,6 +4,7 @@ import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,7 +17,9 @@ public class Lotto {
     }
 
     public static List<Integer> issueLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lotto);
+        return lotto;
     }
 
     @Override

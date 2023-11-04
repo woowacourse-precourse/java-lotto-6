@@ -32,7 +32,7 @@ public class LottoTickets {
     }
 
     private Lotto createNewLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MAX.getValue(), LOTTO_NUM_MAX.getValue(),
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MIN.getValue(), LOTTO_NUM_MAX.getValue(),
                 LOTTO_NUM_SIZE.getValue());
         return new Lotto(numbers);
     }

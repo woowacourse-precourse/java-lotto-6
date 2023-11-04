@@ -2,6 +2,7 @@ package lotto.io;
 
 import lotto.domain.Constants;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.List;
 
@@ -43,11 +44,11 @@ public class Output {
     }
 
     private static void printWinningCounts(List<Integer> winningLottoCounts) {
-        System.out.printf(Constants.WINNING_THREE_NUMBERS, winningLottoCounts.get(Constants.FIFTH_RANK));
-        System.out.printf(Constants.WINNING_FOUR_NUMBERS, winningLottoCounts.get(Constants.FOURTH_RANK));
-        System.out.printf(Constants.WINNING_FIVE_NUMBERS, winningLottoCounts.get(Constants.THIRD_RANK));
-        System.out.printf(Constants.WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottoCounts.get(Constants.SECOND_RANK));
-        System.out.printf(Constants.WINNING_SIX_NUMBERS, winningLottoCounts.get(Constants.FIRST_RANK));
+        System.out.printf(Constants.WINNING_THREE_NUMBERS, winningLottoCounts.get(Rank.FIFTH.getRankIndex()));
+        System.out.printf(Constants.WINNING_FOUR_NUMBERS, winningLottoCounts.get(Rank.FOURTH.getRankIndex()));
+        System.out.printf(Constants.WINNING_FIVE_NUMBERS, winningLottoCounts.get(Rank.THIRD.getRankIndex()));
+        System.out.printf(Constants.WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottoCounts.get(Rank.SECOND.getRankIndex()));
+        System.out.printf(Constants.WINNING_SIX_NUMBERS, winningLottoCounts.get(Rank.FIRST.getRankIndex()));
     }
 
     private static void printProfit(double profit) {

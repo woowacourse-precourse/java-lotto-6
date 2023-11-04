@@ -36,9 +36,9 @@ public class WinningChecker {
     }
 
     private int countMatchedBonusNumber(List<Integer> lottoNumbers, int matchedNumCount) {
-        if (matchedNumCount == Constants.MATCHED_FIVE_NUMBERS) {
+        if (matchedNumCount == Rank.THIRD.getMatchedCount()) {
             if (lottoNumbers.contains(bonusNumber)) {
-                matchedNumCount += Constants.SECOND_RANK_IDENTIFIER;
+                matchedNumCount += Rank.SECOND.getIdentifier();
             }
         }
         return matchedNumCount;
@@ -60,11 +60,11 @@ public class WinningChecker {
 
     private Map<Integer, Integer> createRankMapping() {
         Map<Integer, Integer> rankWithMatchedCount = new HashMap<>();
-        rankWithMatchedCount.put(Constants.MATCHED_SIX, Constants.FIRST_RANK);
-        rankWithMatchedCount.put(Constants.MATCHED_FIVE_AND_BONUS, Constants.SECOND_RANK);
-        rankWithMatchedCount.put(Constants.MATCHED_FIVE, Constants.THIRD_RANK);
-        rankWithMatchedCount.put(Constants.MATCHED_FOUR, Constants.FOURTH_RANK);
-        rankWithMatchedCount.put(Constants.MATCHED_THREE, Constants.FIFTH_RANK);
+        rankWithMatchedCount.put(Rank.FIRST.getMatchedCount(), Rank.FIRST.getRankIndex());
+        rankWithMatchedCount.put(Rank.SECOND.getMatchedCount(), Rank.SECOND.getRankIndex());
+        rankWithMatchedCount.put(Rank.THIRD.getMatchedCount(), Rank.THIRD.getRankIndex());
+        rankWithMatchedCount.put(Rank.FOURTH.getMatchedCount(), Rank.FOURTH.getRankIndex());
+        rankWithMatchedCount.put(Rank.FIFTH.getMatchedCount(), Rank.FIFTH.getRankIndex());
         return rankWithMatchedCount;
     }
 

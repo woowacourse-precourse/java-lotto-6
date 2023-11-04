@@ -12,7 +12,7 @@ class PaymentTest {
 
     @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"0", "100", "999"})
-    @DisplayName("구입 금액 예외 처리: 1,000원 이하인 경우")
+    @DisplayName("구입 금액 예외 처리: 최소 금액 1,000원 미만인 경우")
     void givenUnderThousand_whenCreatePayment_thenThrowException(String amount) {
         // when & then
         assertThatIllegalArgumentException()

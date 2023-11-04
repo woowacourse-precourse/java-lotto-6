@@ -1,7 +1,11 @@
 package lotto.view.message;
 
-public enum Error implements Messageable {
-    PURCHASE_AMOUNT_VALIDATION_ERROR("로또 구입 금액은 1000단위의 양의 정수여야만 합니다");
+public enum Error {
+    PURCHASE_AMOUNT_VALIDATION("로또 구입 금액은 1000단위의 양의 정수여야만 합니다"),
+    LOTTO_NUMBER_OVERSIZE("로또 번호는 6자리 여야만 합니다."),
+    LOTTO_NUMBER_DUPLICATE("로또 번호는 중복될 수 없습니다."),
+    LOTTO_NUMBER_OVERBOUND("로또 번호는 1에서 45 사이의 숫자여아만 합니다."),
+    ;
 
     private final String CODE = "[ERROR] ";
     private String message;
@@ -10,7 +14,6 @@ public enum Error implements Messageable {
         this.message = CODE + message;
     }
 
-    @Override
     public String getMessage() {
         return message;
     }

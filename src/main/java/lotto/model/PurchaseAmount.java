@@ -21,19 +21,19 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION.getMessage());
         }
     }
 
     private void checkPositive(Integer parsedInput) {
         if (parsedInput <= 0) {
-            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION.getMessage());
         }
     }
 
     private void checkThousandMultiple(Integer parsedInput) {
         if (parsedInput % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION.getMessage());
         }
     }
 

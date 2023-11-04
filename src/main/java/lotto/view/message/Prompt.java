@@ -1,6 +1,6 @@
 package lotto.view.message;
 
-public enum Prompt implements Messageable {
+public enum Prompt {
     PURCHASE_AMOUNT("구입금액"
             + " 입력해 주세요.");
 
@@ -10,7 +10,6 @@ public enum Prompt implements Messageable {
         this.message = message;
     }
 
-    @Override
     public String getMessage() {
         return message;
     }

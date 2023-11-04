@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.io.OutputHandler;
 
@@ -24,6 +24,15 @@ public class Lotto {
 
     public void printLottoInfo(){
         OutputHandler.printLotto(numbers);
+    }
+
+    public int compareWithAnotherLotto(Lotto another){
+        int count=0;
+        for(int i=0;i<6;i++){
+            if(another.contains(numbers.get(i)))
+                count++;
+        }
+        return count;
     }
 
 }

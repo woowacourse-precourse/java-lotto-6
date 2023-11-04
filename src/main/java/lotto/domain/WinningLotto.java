@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
 import lotto.io.InputHandler;
 
 public class WinningLotto {

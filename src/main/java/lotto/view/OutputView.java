@@ -11,6 +11,7 @@ public class OutputView {
     }
 
     public void printWinningList(String winningList) {
+        System.out.println();
         System.out.printf(winningList);
     }
 

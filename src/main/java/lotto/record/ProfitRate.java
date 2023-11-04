@@ -8,10 +8,10 @@ import lotto.util.ExceptionCodeThrow;
 
 public record ProfitRate(double originalRate, double roundedRate) {
     public ProfitRate {
-        if (Math.round(originalRate) != roundedRate) {
+        if (originalRate * 100 != roundedRate) {
             ExceptionCodeThrow.exceptionCodeThrow(PROFIT_RATE_NOT_ROUNDED);
         }
-        String formattedValue = String.format("%.2f", roundedRate);
+        String formattedValue = String.format("%.1f", roundedRate);
         int decimalPlaces = formattedValue.length() - formattedValue.indexOf('.') - 1;
 
         if (decimalPlaces > 1) {

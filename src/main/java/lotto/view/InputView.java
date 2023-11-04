@@ -7,17 +7,19 @@ import static lotto.enumerate.Message.PLEASE_INPUT_WINNING_NUMBER;
 
 public class InputView {
     public String inputAmount() {
-        System.out.println(PLEASE_INPUT_AMOUNT);
+        System.out.println(PLEASE_INPUT_AMOUNT.getMessage());
         return readLine();
     }
 
     public String inputWinningNumber() {
-        System.out.println(PLEASE_INPUT_WINNING_NUMBER);
+        System.out.println();
+        System.out.println(PLEASE_INPUT_WINNING_NUMBER.getMessage());
         return readLine();
     }
 
     public String inputBonusNumber() {
-        System.out.println(PLEASE_INPUT_BONUS_NUMBER);
+        System.out.println();
+        System.out.println(PLEASE_INPUT_BONUS_NUMBER.getMessage());
         return readLine();
     }
 }

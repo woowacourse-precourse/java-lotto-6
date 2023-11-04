@@ -11,7 +11,7 @@ import lotto.record.LottoNumberRecord;
 import lotto.record.ProfitRate;
 
 public class WinningList {
-    private static final String WINNING_STRING_FIRST = "당첨 통계\n---";
+    private static final String WINNING_STRING_FIRST = "당첨 통계\n---\n";
     private final Map<Rank, Integer> winningList;
 
     public WinningList(List<LottoNumberRecord> lottoNumberRecordList, WinningNumber winningNumber) {
@@ -45,8 +45,8 @@ public class WinningList {
 
     public ProfitRate calculateProfitRate(AmountRecord amountRecord) {
         long sum = winningList.entrySet().stream().mapToLong(this::calculateProfit).sum();
-        double originalRate = ((double) sum / amountRecord.amount());
-        double roundedRate = Math.round(originalRate);
+        double originalRate = (double) sum / amountRecord.amount();
+        double roundedRate = (double) Math.round(originalRate * 1000) / 1000 * 100;
         return new ProfitRate(originalRate, roundedRate);
     }
 

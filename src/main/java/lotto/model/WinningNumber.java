@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.enumerate.ErrorCode.BONUS_NUMBER_IS_NOT_INTEGER;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_BONUS_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.enumerate.ErrorCode.WINNING_NUMBER_IS_NOT_INTEGER;
@@ -27,21 +28,25 @@ public class WinningNumber {
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            exceptionCodeThrow(WINNING_NUMBER_IS_NOT_INTEGER);
+            exceptionCodeThrow(BONUS_NUMBER_IS_NOT_INTEGER);
         }
         return 0;
     }
 
     private List<Integer> convert(String numbers) {
         numberValid(numbers);
-        return Arrays.stream(numbers.replace(" ", "").split(",")).mapToInt(Integer::parseInt).boxed()
+        return Arrays.stream(getSplit(numbers)).mapToInt(Integer::parseInt).boxed()
                 .collect(Collectors.toList());
     }
 
     private void numberValid(String numbers) {
-        if (Arrays.stream(numbers.split(",")).anyMatch(this::notInt)) {
+        if (Arrays.stream(getSplit(numbers)).anyMatch(this::notInt)) {
             exceptionCodeThrow(WINNING_NUMBER_IS_NOT_INTEGER);
         }
+    }
+
+    private static String[] getSplit(String numbers) {
+        return numbers.replace(" ", "").split(",");
     }
 
     private boolean notInt(String number) {

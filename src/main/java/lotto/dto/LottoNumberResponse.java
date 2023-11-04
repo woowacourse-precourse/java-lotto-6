@@ -1,6 +1,6 @@
 package lotto.dto;
 
-public record LottoResponse(
+public record LottoNumberResponse(
         String numbers
 ) {
     @Override

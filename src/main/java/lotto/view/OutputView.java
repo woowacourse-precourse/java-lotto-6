@@ -1,12 +1,8 @@
 package lotto.view;
 
-import lotto.dto.LottoResponses;
+import lotto.dto.LottoNumberResponses;
 import lotto.exception.ErrorMessage;
 import lotto.view.constants.PrintMessage;
-import lotto.view.constants.PrintSymbol;
-
-import java.text.Format;
-import java.util.stream.Collectors;
 
 import static lotto.view.constants.PrintMessage.*;
 import static lotto.view.constants.PrintMessage.RESPONSE_PURCHASE_COUNT;
@@ -32,7 +28,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPurchaseStatus(final LottoResponses responses) {
+    public static void printPurchaseStatus(final LottoNumberResponses responses) {
         String formattedMessage = String.format(RESPONSE_PURCHASE_COUNT.getMessage(), responses.purchaseCount());
 
         printNewLine();

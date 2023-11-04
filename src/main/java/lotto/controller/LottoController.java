@@ -3,16 +3,16 @@ package lotto.controller;
 import lotto.constance.PrintConst;
 import lotto.exceptionhandler.ExceptionHandler;
 import lotto.exceptionhandler.RetryExceptionHandler;
+import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.ui.Reader;
 import lotto.ui.Writer;
-import lotto.util.lottogenerator.LottoGenerator;
-import lotto.util.lottogenerator.RandomLottoGenerator;
+import lotto.model.lottogenerator.RandomLottoGenerator;
 
 public class LottoController {
 
     ExceptionHandler retryHandler = new RetryExceptionHandler();
-    LottoGenerator lottoGenerator = new RandomLottoGenerator();
+    LottoStore store = new LottoStore(new RandomLottoGenerator());
 
     //TODO 1. 로또 구매
     public void purchaseLotto() {
@@ -22,7 +22,7 @@ public class LottoController {
                     return Reader.getMoney();
                 });
 
-        Lottos lottos = lottoGenerator.purchase(money);
+        Lottos lottos = store.purchase(money);
         Writer.printModelsInList(lottos.getLottosDTO());
     }
 

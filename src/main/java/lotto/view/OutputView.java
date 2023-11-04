@@ -12,11 +12,17 @@ import static lotto.constants.MessageConstants.NUMBER; //개
 import static lotto.constants.MessageConstants.TOTAL_RATE_OF_RETURN; //총 수익률
 import static lotto.constants.MessageConstants.WINNING_STATISTICS; //당첨 통계
 
+import java.util.List;
+
+import lotto.domain.LottoIssuance;
+
 public class OutputView {
 
 	public static void buyLotto(int lottoCount) {
 
 		System.out.println(lottoCount + BUY_A_FEW);
+		List<Integer> lottoIssuance = LottoIssuance.publish(lottoCount);
+		System.out.println(lottoIssuance);
 
 	}
 

@@ -38,6 +38,9 @@ public sealed class LottoNumber permits BonusNumber {
         }
     }
 
+    /**
+     * Boxed Class의 내부 필드값을 복사하여 반환합니다.
+     */
     public int getValue() {
         return value;
     }

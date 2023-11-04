@@ -12,7 +12,7 @@ public final class WalletMapper {
     /**
      * BuyLottosDto -> Wallet(Domain) 변환
      */
-    public Wallet mapFrom(final BuyLottosDto dto) {
+    public static Wallet mapFrom(final BuyLottosDto dto) {
         final Money money = Money.from(dto.getAmount());
         return new Wallet(money);
     }

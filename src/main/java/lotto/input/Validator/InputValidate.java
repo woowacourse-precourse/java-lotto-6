@@ -1,5 +1,7 @@
 package lotto.input.Validator;
 
+import static lotto.input.constant.Constant.LOTTO_PRICE;
+
 public class InputValidate {
 
     public Long valueValidate(String value) {
@@ -9,7 +11,7 @@ public class InputValidate {
     }
 
     public void isDivided1000(Long amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }

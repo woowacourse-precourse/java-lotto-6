@@ -9,11 +9,11 @@ public class InputView {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw IllegalArgumentExceptionType.PARSE_INT_FAIL.getException();
+            throw IllegalArgumentExceptionType.PARSING_NUMBER_FAIL.getException();
         }
     }
 
-    public long readMoneyAmount() {
+    public long readCostAmount() {
         return parseLong(Console.readLine());
     }
 }

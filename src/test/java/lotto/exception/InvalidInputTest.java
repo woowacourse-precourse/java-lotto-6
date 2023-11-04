@@ -67,4 +67,17 @@ class InvalidInputTest {
                 .hasMessage("[ERROR] 로또는 6개의 숫자여야 합니다.");
     }
 
+    @DisplayName("입력 받은 금액이 1000단위가 아니면 예외가 발생한다.")
+    @Test
+    void notThousandUnitException(){
+        //given
+        InvalidInput invalidInput = new InvalidInput();
+        int cost = 500;
+
+        //when //then
+        assertThatThrownBy(() -> invalidInput.notThousandUnitException(cost))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 1000 단위여야 한다.");
+    }
+
 }

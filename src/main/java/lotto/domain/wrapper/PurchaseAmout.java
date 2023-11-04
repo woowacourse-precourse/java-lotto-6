@@ -12,6 +12,10 @@ public class PurchaseAmout {
         this.purchaseAmout = purchaseAmout;
     }
 
+    public int getLottoCount() {
+        return purchaseAmout / LottoConstant.LOTTO_PRICE.getNumber();
+    }
+
     private void validate(int purchaseAmout) {
         validateMoreThanZero(purchaseAmout);
         validateChangeNoRemaining(purchaseAmout);

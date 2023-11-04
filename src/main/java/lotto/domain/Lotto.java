@@ -23,10 +23,10 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.getNumber()) {
+        if (numbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBERS_LENGTH_ERROR.getFormattedMessage(
-                            LottoConstantValue.LOTTO_NUMBERS_LENGTH.getNumber()
+                            LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()
                     )
             );
         }
@@ -45,8 +45,8 @@ public class Lotto {
     public String toString() {
         StringJoiner lottoPrintFormat = new StringJoiner(
                 LottoConstant.DELIMITER.getLottoStringWithSpace(),
-                LottoConstant.OPENING_BRACKET.getLottoConstant(),
-                LottoConstant.CLOSING_BRACKET.getLottoConstant());
+                LottoConstant.OPENING_BRACKET.get(),
+                LottoConstant.CLOSING_BRACKET.get());
         numbers.stream()
                 .sorted()
                 .map(LottoNumber::toString)

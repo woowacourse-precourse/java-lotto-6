@@ -13,11 +13,11 @@ public class LottoNumber implements Comparable<LottoNumber>{
     }
 
     private void validate(int number) {
-        if (number < LottoConstantValue.MIN_LOTTO_NUMBER.getNumber()
-                || number > LottoConstantValue.MAX_LOTTO_NUMBER.getNumber()) {
+        if (number < LottoConstantValue.MIN_LOTTO_NUMBER.get()
+                || number > LottoConstantValue.MAX_LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(
-                            LottoConstantValue.MIN_LOTTO_NUMBER.getNumber(), LottoConstantValue.MAX_LOTTO_NUMBER.getNumber()));
+                            LottoConstantValue.MIN_LOTTO_NUMBER.get(), LottoConstantValue.MAX_LOTTO_NUMBER.get()));
         }
     }
 

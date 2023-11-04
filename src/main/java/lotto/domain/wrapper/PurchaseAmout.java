@@ -13,7 +13,7 @@ public class PurchaseAmout {
     }
 
     public int getLottoCount() {
-        return purchaseAmout / LottoConstantValue.LOTTO_PRICE.getNumber();
+        return purchaseAmout / LottoConstantValue.LOTTO_PRICE.get();
     }
 
     private void validate(int purchaseAmout) {
@@ -28,7 +28,7 @@ public class PurchaseAmout {
     }
 
     private void validateChangeNoRemaining(int purchaseAmout) {
-        if (purchaseAmout % LottoConstantValue.LOTTO_PRICE.getNumber() != NO_MONEY) {
+        if (purchaseAmout % LottoConstantValue.LOTTO_PRICE.get() != NO_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED_ERROR.getMessage());
         }
     }

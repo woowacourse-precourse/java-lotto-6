@@ -12,7 +12,7 @@ public enum LottoConstantValue {
         this.number = number;
     }
 
-    public int getNumber() {
+    public int get() {
         return number;
     }
 }

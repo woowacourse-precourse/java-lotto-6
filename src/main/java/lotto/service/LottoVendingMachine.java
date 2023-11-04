@@ -22,9 +22,9 @@ public class LottoVendingMachine {
 
     private Lotto createLotto() {
         List<Integer> randomNumbers = new ArrayList<>();
-        while (randomNumbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.getNumber()) {
+        while (randomNumbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
             int randomNumber = Randoms.pickNumberInRange(
-                    LottoConstantValue.MIN_LOTTO_NUMBER.getNumber(), LottoConstantValue.MAX_LOTTO_NUMBER.getNumber());
+                    LottoConstantValue.MIN_LOTTO_NUMBER.get(), LottoConstantValue.MAX_LOTTO_NUMBER.get());
             if (!randomNumbers.contains(randomNumber)) {
                 randomNumbers.add(randomNumber);
             }

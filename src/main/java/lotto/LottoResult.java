@@ -22,4 +22,11 @@ public class LottoResult {
         }
         return list;
     }
+
+    public int containResultNumbers(int number) {
+        if (resultNumbers.contains(number)) {
+            return 1;
+        }
+        return 0;
+    }
 }

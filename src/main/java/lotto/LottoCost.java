@@ -3,7 +3,7 @@ package lotto;
 public class LottoCost {
     final static int UNIT = 1000;
 
-    public int getLottoCost() {
+    public int getNumberOfPurchase() {
         Input input = new Input();
         String cost = input.buyLotto();
         boolean isValidated = isNumber(cost) && isMultipleOf(UNIT, cost);
@@ -15,7 +15,7 @@ public class LottoCost {
             }
         }
 
-        return Integer.parseInt(cost);
+        return Integer.parseInt(cost) / UNIT;
     }
 
     public boolean isNumber(String cost) {

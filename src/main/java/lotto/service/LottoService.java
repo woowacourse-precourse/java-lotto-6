@@ -27,10 +27,27 @@ public class LottoService {
         int lottoCount = tryNum / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(randomNum));
+            System.out.println(randomNum);
         }
         if (lottos.size() != lottoCount) {
             throw new IllegalStateException();
+        }
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            List<Integer> winningNum = new ArrayList<>();
+
+            for (String s : Console.readLine().split(",")) {
+                try {
+                    winningNum.add(Integer.parseInt(s));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException();
+                }
+            }
+            if (winningNum.size() == 6) {
+                break;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package lotto.domain.lotto.dto;
+package lotto.controller.dto.output;
 
 public record LottosDrawingResult(
         int firstCount,

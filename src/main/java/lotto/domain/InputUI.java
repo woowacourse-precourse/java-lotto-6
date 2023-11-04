@@ -56,12 +56,15 @@ public class InputUI {
     }
 
     public void bonusBall() {
-        try {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String tempBonus = Console.readLine();
-            bonusNum = checkValidBonusNum(tempBonus);
-        } catch (IllegalArgumentException e) {
-            throw e;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String tempBonus = Console.readLine();
+                bonusNum = checkValidBonusNum(tempBonus);
+                break;
+            } catch (IllegalArgumentException e) {
+                throw e;
+            }
         }
     }
 

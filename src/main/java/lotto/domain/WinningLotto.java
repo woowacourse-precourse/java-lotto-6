@@ -3,12 +3,16 @@ package lotto.domain;
 import java.util.ArrayList;
 
 public class WinningLotto {
-    Lotto lotto;
-    BonusLottoNum bonusLottoNum;
+    private Lotto lotto;
+    private int bonusLottoNum;
 
-    public WinningLotto(Lotto lotto, BonusLottoNum bonusLottoNum) {
+    public WinningLotto(Lotto lotto, int bonusLottoNum) {
         this.lotto = lotto;
         this.bonusLottoNum = bonusLottoNum;
+    }
+
+    private void validateBonusLottoNum() {
+
     }
 
     public int matchNumberNum(Lotto userLotto) {

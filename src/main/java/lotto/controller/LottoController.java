@@ -3,7 +3,8 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoCounter;
-import lotto.domain.Lottoes;
+import lotto.domain.WinningLotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,11 +14,11 @@ public class LottoController {
     private final InputView inputView = new InputView();
 
     public void start() {
-        LottoCounter counter = readPurchaseAmount();
-        Lottoes lottoes = new Lottoes(counter.getTicketCount());
-        outputView.printLottoesNumber(lottoes);
-        Lotto winningLotto = readWinningNumber();
-        BonusNumber bonusNumber = readBonusNumber();
+        LottoService service = new LottoService(readPurchaseAmount());
+        outputView.printLottoesNumber(service.getLottoes());
+        service.calculateRanking(new WinningLotto(readWinningNumber(), readBonusNumber()));
+        outputView.printResult(service.getResult());
+        outputView.printProfit(service.getProfit());
     }
 
     private LottoCounter readPurchaseAmount() {

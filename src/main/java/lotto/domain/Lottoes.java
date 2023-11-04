@@ -61,4 +61,8 @@ public class Lottoes {
                 .append(OutputMessage.NEW_LINE.getMessage()));
         return stringBuilder.toString();
     }
+
+    public LottoResult getResult() {
+        return result;
+    }
 }

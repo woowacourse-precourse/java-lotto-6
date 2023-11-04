@@ -67,4 +67,18 @@ class LottoTest {
 
         assertThat(winningLotto.getMatchCount(userLotto)).isEqualTo(5);
     }
+
+    @DisplayName("로또번호 오름차순 문자열 반환 기능")
+    @Test
+    void 로또번호_오름차순_문자열_출력(){
+        //given
+        Lotto lotto=new Lotto(List.of(2,1,5,3,4,6));
+        String expected="[1, 2, 3, 4, 5, 6]";
+
+        //when
+        String result=lotto.getNumbersMessage();
+
+        assertThat(result).isEqualTo(expected);
+
+    }
 }

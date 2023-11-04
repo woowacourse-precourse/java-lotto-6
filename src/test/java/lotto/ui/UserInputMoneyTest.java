@@ -14,6 +14,20 @@ class UserInputMoneyTest {
     }
 
     @Test
+    void 빈_값인_경우() {
+        int notMatchPrice = 0;
+        assertThatThrownBy(() -> new UserInputMoney(notMatchPrice))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 마이너스_값인_경우() {
+        int notMatchPrice = -2000;
+        assertThatThrownBy(() -> new UserInputMoney(notMatchPrice))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 천원단위_입력인_경우() {
         int matchPrice = 5000;
         UserInputMoney money = new UserInputMoney(matchPrice);

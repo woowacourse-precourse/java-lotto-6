@@ -43,7 +43,7 @@ public class Lotto {
     }
 
     private void validateNumbersUnique(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
+        if (numbers.stream().distinct().count() != COUNT) {
             throw new IllegalArgumentException(LOTTO_HAS_DUPLICATE);
         }
     }

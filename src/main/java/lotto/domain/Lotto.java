@@ -5,6 +5,7 @@ import java.util.List;
 public class Lotto {
     private static final String LOTTO_NUMBER_SIZE_6_REQUIRED = "로또 번호는 6개여야합니다";
     private static final String LOTTO_NUMBER_DUPLICATE_NOT_ALLOWED = "로또 번호는 중복되면 안됩니다";
+    private static final String DELIMITER = ", ";
 
     private final List<Integer> numbers;
 
@@ -33,7 +34,7 @@ public class Lotto {
     }
 
     public String getNumbers() {
-        return String.join(", ", numbers.stream().map(number -> number.toString()).toList());
+        return String.join(DELIMITER, numbers.stream().map(number -> number.toString()).toList());
     }
 
     public int getMatchCount(List<Integer> winningNumbers) {

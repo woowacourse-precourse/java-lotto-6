@@ -5,6 +5,7 @@ import java.util.List;
 
 public class SplitNumber {
     private static final String NUMBER_REQUIRED = "숫자만 입력 가능합니다";
+    private static final String NUMBER_REGEX = "[0-9]+";
 
     public static List<Integer> splitNumber(String inputNumber) {
         List<String> splitedNumber = List.of(inputNumber.split(","));
@@ -26,7 +27,7 @@ public class SplitNumber {
     }
 
     private static void validateIsNumber(String number) {
-        if (number.matches("[0-9]+") == false) {
+        if (number.matches(NUMBER_REGEX) == false) {
             throw new IllegalArgumentException(NUMBER_REQUIRED);
         }
     }

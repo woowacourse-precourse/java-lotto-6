@@ -59,10 +59,10 @@
       - [X] Lotto 객체 생성 로직
   - [X] LottoNumberGenerator
       - [X] 번호 생성 로직
-  - [ ] LottoMachine
-      - [ ] 구매 금액 검증
-      - [ ] Lotto 티켓 구매, LottoFactory를 사용하여 객체 생성
-      - [ ] LottoTickets에 Lotto 추가
+  - [X] LottoMachine
+      - [X] 구매 금액 검증
+      - [X] Lotto 티켓 구매, LottoFactory를 사용하여 객체 생성
+      - [X] LottoTickets에 Lotto 추가
   - [ ] LottoResult
       - [ ] LottoTickets와 WinningLotto를 사용하여 통계 계산
       - [ ] 총 수익률 계산

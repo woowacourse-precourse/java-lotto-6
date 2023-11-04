@@ -14,16 +14,16 @@ public class LottoNumbersGenerator implements RandomNumbersGenerator {
 
     @Override
     public List<Integer> createUniqueElementList() {
-        Set<Integer> LottoNumbers = getLottoNumberSet();
-        return convertToList(LottoNumbers);
+        Set<Integer> lottoNumbers = getLottoNumberSet();
+        return convertToList(lottoNumbers);
     }
 
     private Set<Integer> getLottoNumberSet() {
-        Set<Integer> LottoNumbers = new HashSet<>();
-        while (LottoNumbers.size() <= LOTTO_LIST_SIZE) {
-            LottoNumbers.add(Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
+        Set<Integer> lottoNumbers = new HashSet<>();
+        while (lottoNumbers.size() < LOTTO_LIST_SIZE) {
+            lottoNumbers.add(Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
         }
-        return LottoNumbers;
+        return lottoNumbers;
     }
 
     private List<Integer> convertToList(Set<Integer> lottoNumberSet) {

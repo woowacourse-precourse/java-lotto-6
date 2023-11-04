@@ -1,19 +1,33 @@
 package lotto.model;
 
 import static lotto.model.LottoConstant.LOTTO_NUMBERS_SIZE;
+import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateIsNumbersUnique(numbers);
+        validateNumbersSize(numbers);
+
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateIsNumbersUnique(final List<Integer> numbers) {
+        List<Integer> uniqueNumbers = numbers.stream()
+                .distinct()
+                .toList();
+
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateNumbersSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }

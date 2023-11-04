@@ -10,7 +10,7 @@ class NumberTest {
 
     @Test
     @DisplayName("숫자 값을 저장하면 String으로 값을 받을 수 있다.")
-    void When_saveValue_Then_getString() {
+    void Given_CreateNumber_When_saveValue_Then_getString() {
         //given
         Number number = new Number(3);
 

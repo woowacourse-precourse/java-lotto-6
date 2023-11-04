@@ -35,11 +35,22 @@ class PaymentTest {
     }
 
     @Test
-    @DisplayName("구입 금액 생성 성공")
-    void givenThousand_whenCreatePayment_thenNoException() {
+    @DisplayName("구입 금액 예외 처리: 최대 금액 2,000,000,000원을 초과한 경우")
+    void givenOverTwoBillion_whenCreatePayment_thenThrowException() {
         // given
-        String amount = "1000";
+        String amount = "2000001000";
 
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Payment(amount))
+                .withMessageStartingWith("[ERROR]")
+                .withMessageContaining("최대 구입 금액은 2,000,000,000원 입니다.");
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"1000", "2000000000"})
+    @DisplayName("구입 금액 생성 성공")
+    void givenAmount_whenCreatePayment_thenNoException(String amount) {
         // when & then
         assertThatNoException()
                 .isThrownBy(() -> new Payment(amount));

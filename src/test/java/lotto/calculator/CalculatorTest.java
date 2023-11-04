@@ -12,6 +12,7 @@ import lotto.lotto.LottoTicket;
 import lotto.lotto.LottoTicketResult;
 import lotto.lotto.ScratchedLottoTicket;
 import lotto.lotto.WinningNumbers;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,9 +62,25 @@ class CalculatorTest {
     @DisplayName("로또 개수만큼 반복하여 ScratchedLottoTicket 리스트를 만들고, lottoTicketResult 로 반환한다")
     @Test
     void calculateResult() {
-        List<LottoTicket> list = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
-        LottoTicketResult lottoTicketResult = calculator.calculateResult(winningNumbers, winBonusNumber, list);
-        lottoTicketResult.getFiveAndBonusMatchCount();
+        //if
+        List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
+        LottoTicketResult lottoTicketResult = calculator.calculateResult(winningNumbers, winBonusNumber, lottoTickets);
 
+        //when
+        List<ScratchedLottoTicket> scratchedLottoTickets = lottoTicketResult.getScratchedLottoTickets();
+
+        List<LottoTicket> findLottoTickets = scratchedLottoTickets.stream().map(ScratchedLottoTicket::getLottoTicket).toList();
+        int findFiveMatchCount = (int)scratchedLottoTickets.stream()
+                .filter(ticket -> ticket.getWinningChartEnum().equals(FIVE_MATCH)).count();
+        int findFourMatchCount = (int)scratchedLottoTickets.stream()
+                .filter(ticket -> ticket.getWinningChartEnum().equals(FOUR_MATCH)).count();
+        Integer fiveMatchCount = lottoTicketResult.getFiveMatchCount();
+        Integer fourMatchCount = lottoTicketResult.getFourMatchCount();
+
+        //then
+        Assertions.assertThat(findLottoTickets).contains(lottoTicketWithFourMatch);
+        Assertions.assertThat(findLottoTickets).contains(lottoTicketWithFourMatch);
+        Assertions.assertThat(fiveMatchCount).isEqualTo(findFiveMatchCount);
+        Assertions.assertThat(fourMatchCount).isEqualTo(findFourMatchCount);
     }
 }

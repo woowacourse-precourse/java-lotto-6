@@ -1,16 +1,19 @@
 package lotto.lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.enums.WinningChartEnum;
 
 public class LottoTicketResult {
+    private final List<ScratchedLottoTicket> scratchedLottoTickets;
     private  Integer sixMatchCount;
     private  Integer fiveAndBonusMatchCount;
     private  Integer fiveMatchCount;
-    private  Integer fourMatch;
-    private  Integer threeMatch;
+    private  Integer fourMatchCount;
+    private  Integer threeMatchCount;
 
     public LottoTicketResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
+        this.scratchedLottoTickets = scratchedLottoTickets;
         this.sixMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum() == WinningChartEnum.SIX_MATCH)
                 .count();
@@ -20,10 +23,10 @@ public class LottoTicketResult {
         this.fiveMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum() == WinningChartEnum.FIVE_MATCH)
                 .count();
-        this.fourMatch = (int) scratchedLottoTickets.stream()
+        this.fourMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum() == WinningChartEnum.FOUR_MATCH)
                 .count();
-        this.threeMatch = (int) scratchedLottoTickets.stream()
+        this.threeMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum() == WinningChartEnum.THREE_MATCH)
                 .count();
     }
@@ -44,11 +47,15 @@ public class LottoTicketResult {
         return fiveMatchCount;
     }
 
-    public Integer getFourMatch() {
-        return fourMatch;
+    public Integer getFourMatchCount() {
+        return fourMatchCount;
     }
 
-    public Integer getThreeMatch() {
-        return threeMatch;
+    public Integer getThreeMatchCount() {
+        return threeMatchCount;
+    }
+
+    public List<ScratchedLottoTicket> getScratchedLottoTickets() {
+        return new ArrayList<>(scratchedLottoTickets);
     }
 }

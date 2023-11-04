@@ -37,7 +37,7 @@ public class User {
         }
     }
 
-    public List<Lotto> getPurchasedLottos() {
+    public List<Lotto> purchaseLottos() {
         purchasedLottos = new ArrayList<>();
         int lottoCount = getLottoCount();
         for (int i=0; i<lottoCount; i++) {
@@ -54,5 +54,9 @@ public class User {
     private Lotto generateLottoNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, 6);
         return new Lotto(numbers);
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 }

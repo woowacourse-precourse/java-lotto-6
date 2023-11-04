@@ -38,7 +38,7 @@ public class UserTest {
         User user = User.from(amount);
 
         // when
-        List<Lotto> purchasedLottos = user.getPurchasedLottos();
+        List<Lotto> purchasedLottos = user.purchaseLottos();
 
         // then
         assertEquals(amount/lottoPrice, purchasedLottos.size());

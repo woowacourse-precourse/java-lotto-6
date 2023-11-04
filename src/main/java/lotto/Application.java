@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.WinLotto;
 
 public class Application {
 
@@ -34,6 +35,8 @@ public class Application {
         List<Integer> win_list = readWinningNumber();
 
         //5) 보너스 번호 입력 기능
+        int bonus_num = readBonusNumber();
+        WinLotto winLotto = new WinLotto(win_list, bonus_num);
 
         //6) 당첨에 대한 통계 기능
 
@@ -175,6 +178,30 @@ public class Application {
         //4) 당첨 번호와 중복 시 예외
 
         //5) 당첨 번호 개수가 6개 아닐 경우 예외
+    }
+
+    /**
+     * 5. 보너스 번호 입력
+     */
+
+    static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String num = Console.readLine();
+
+        //예외 처리
+        validateBonusNumber(num);
+        return Integer.parseInt(num);
+    }
+
+    static void validateBonusNumber(String input) throws IllegalArgumentException {
+        //1) 숫자 아닌 값 예외
+
+        //2) 범위 벗어난 값 예외
+
+        //3) 공백 포함 시 예외
+
+        //4) 앞선 6개 당첨 번호와 중복 시 예외
+
     }
 
 }

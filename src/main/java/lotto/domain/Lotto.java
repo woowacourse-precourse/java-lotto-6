@@ -38,6 +38,7 @@ public class Lotto {
         Set<Integer> values = new HashSet<>(numbers);
         return values.size() < numbers.size();
     }
+
     private void validateLottoRegex(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!LOTTO_REGEX_PATTERN.matcher(number.toString()).matches()) {

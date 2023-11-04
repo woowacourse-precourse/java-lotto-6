@@ -29,10 +29,10 @@ public class LottoController {
         outputView.printNumberOfTicket(ticket);
         final Lottos lottos = lottoService.saveLottos(ticket);
         outputView.printNumberOfLottos(lottos);
-        outputView.printWinningLottoRequset();
         WinningLotto winningLotto;
         while (true) {
             try {
+                outputView.printWinningLottoRequset();
                 winningLotto = inputManager.readWinningLotto();
                 break;
             } catch (IllegalArgumentException e) {
@@ -42,6 +42,7 @@ public class LottoController {
         BonusNumber bonusNumber;
         while (true) {
             try {
+                outputView.printBonusNumberRequset();
                 bonusNumber = inputManager.readBonusNumber();
                 break;
             } catch (IllegalArgumentException e) {

@@ -18,12 +18,13 @@ public class LottoView {
 
     // OutputView
     public static void printBuyResult(int number){
+        printNewLine();
         System.out.print(number);
         printlnConstantMessage(ConstantMessage.BUY_RESULT);
     }
     public static void printLottoList(Lottos lottos){
         for(int i=0; i<lottos.getLottos().size(); i++){
-            System.out.println(lottos.getLottos().get(i));
+            System.out.println(lottos.getLottos().get(i).getNumbers());
         }
         printNewLine();
     }

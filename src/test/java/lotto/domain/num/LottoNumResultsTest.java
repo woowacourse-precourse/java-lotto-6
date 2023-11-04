@@ -33,4 +33,17 @@ class LottoNumResultsTest {
         assertThat(result).isTrue();
     }
 
+    @DisplayName("당첨 번호 추첨 번호가 같은지 확인한다.")
+    @Test
+    void isSameBonusNum() {
+        Integer targetNum = 7;
+        Integer indexOfSpecial = 6;
+
+        // when
+        Boolean result = lottoNumResults.isSameBonusNum(targetNum, indexOfSpecial);
+
+        // than
+        assertThat(result).isTrue();
+    }
+
 }

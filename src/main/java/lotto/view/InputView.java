@@ -11,14 +11,14 @@ public class InputView {
 
     //ToDO: 입력 검증
 
-    public int getLottoPurchaseAmount(){
+    public static int getLottoPurchaseAmount(){
         String input = Console.readLine();
         int lottoPurchaseAmount = Integer.parseInt(input);
 
         return lottoPurchaseAmount;
     }
 
-    public List<Integer> getLottoWinningNumbers(){
+    public static List<Integer> getLottoWinningNumbers(){
         String[] inputs = Console.readLine().split(",");
         List<Integer> lottoWinningNumbers = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class InputView {
         return lottoWinningNumbers;
     }
 
-    public int getBonusNumber(){
+    public static int getBonusNumber(){
         String input = Console.readLine();
         int bonusNumber = Integer.parseInt(input);
         return bonusNumber;

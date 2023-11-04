@@ -11,6 +11,10 @@ public class LottoAmount {
         this.amount = Integer.parseInt(amount);
     }
 
+    public int getLottoCount() {
+        return amount / LOTTO_PRICE;
+    }
+
     private void validateAmount(String amount) {
         int amountSum = Integer.parseInt(amount);
         if (amountSum % LOTTO_PRICE != 0) {

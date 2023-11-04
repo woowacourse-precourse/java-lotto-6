@@ -1,6 +1,10 @@
 package lotto.domain;
 
 public class PurchaseLotto {
+    private static final int PURCHASE_AMOUNT_UNIT = 1000;
+    private static final int PURCHASE_AMOUNT_MAX = 100000;
+    private static final int NUMBER_ZERO = 0;
+
     public static void validator(String amount){
         validateSpace(amount);
         validateNumber(amount);
@@ -26,14 +30,14 @@ public class PurchaseLotto {
 
     private static void validateMultipleOf1000(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum % 1000 != 0){
+        if(amountNum % PURCHASE_AMOUNT_UNIT != NUMBER_ZERO){
             throw new IllegalArgumentException("[ERROR] 입력값이 1000원 단위가 아닙니다.");
         }
     }
 
     private static void validateMaxPurchase(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum > 100000){
+        if(amountNum > PURCHASE_AMOUNT_MAX){
             throw new IllegalArgumentException("[ERROR] 로또 최대 구매 금액을 초과했습니다.");
         }
     }

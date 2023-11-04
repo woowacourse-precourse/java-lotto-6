@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.domain.UserMoney;
 import lotto.dto.input.UserMoneyDTO;
 import lotto.util.Parser;
@@ -24,7 +26,7 @@ public class UserMoneyDTOTest {
     @ParameterizedTest(name = "인자 : {0}")
     @NullAndEmptySource
     void 아무것도_입력하지_않은_경우_예외(String inputMoney) {
-        Assertions.assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
+        assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("아무것도 입력하지");
     }
@@ -32,7 +34,7 @@ public class UserMoneyDTOTest {
     @ParameterizedTest(name = "인자 : {0}")
     @ValueSource(strings = {"1001,", "뮤10"})
     void 숫자가_아닌_경우_예외(String inputMoney) {
-        Assertions.assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
+        assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자를 입력하지");
     }
@@ -40,7 +42,7 @@ public class UserMoneyDTOTest {
     @ParameterizedTest(name = "인자 : {0}")
     @ValueSource(strings = {"000", "01","01234"})
     void 첫번쨰_숫자가_0이고_길이가_1보다_크다면_예외(String inputMoney) {
-        Assertions.assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
+        assertThatThrownBy(() -> userMoneyDTO = new UserMoneyDTO(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("0으로 시작하는 수는");
     }

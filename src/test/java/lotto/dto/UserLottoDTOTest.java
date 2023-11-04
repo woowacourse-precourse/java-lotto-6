@@ -46,4 +46,6 @@ public class UserLottoDTOTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("0으로 시작하는 수는");
     }
+
+
 }

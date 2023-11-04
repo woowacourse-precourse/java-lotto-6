@@ -1,12 +1,12 @@
 package lotto.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.generator.MockedRandomGenerator;
-import lotto.repository.LottoRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 
@@ -20,7 +20,7 @@ public class LottoRepositoryTest {
 
         lottoRepository.saveLotto(lotto);
 
-        Assertions.assertThat(lottoRepository.checkRepositorySize()).isEqualTo(1);
+        assertThat(lottoRepository.checkRepositorySize()).isEqualTo(1);
     }
 
 
@@ -42,12 +42,12 @@ public class LottoRepositoryTest {
         lottoRepository.saveLotto(secondLotto);
         lottoRepository.saveLotto(thirdLotto);
 
-        Assertions.assertThat(lottoRepository.checkRepositorySize()).isEqualTo(3);
-        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(0))
+        assertThat(lottoRepository.checkRepositorySize()).isEqualTo(3);
+        assertThat(lottoRepository.findLottoNumbersByIndex(0))
                 .containsExactly(1,2,3,4,5,6);
-        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(1))
+        assertThat(lottoRepository.findLottoNumbersByIndex(1))
                 .containsExactly(7, 8, 9, 10, 11, 12);
-        Assertions.assertThat(lottoRepository.findLottoNumbersByIndex(2))
+        assertThat(lottoRepository.findLottoNumbersByIndex(2))
                 .containsExactly(13, 14, 15, 16, 17, 18);
     }
 

@@ -9,10 +9,11 @@ public enum ErrorMessage {
     NOT_MET_LOTTO_NUMBERS_LENGTH("로또 번호는 중복되지 않은 6개의 숫자만 가능해요."),
     NOT_CONTAINS_BONUS_NUMBER_IN_WINNING_NUMBERS("보너스 숫자는 당첨 번호와 중복 될 수 없어요");
 
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private final String message;
 
     public String getMessage() {
-        return message;
+        return ERROR_MESSAGE_PREFIX + message;
     }
 
     ErrorMessage(String message) {

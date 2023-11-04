@@ -3,6 +3,7 @@ package lotto.views;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
+import lotto.global.ErrorMessage;
 import lotto.global.Utils;
 
 public class InputView {
@@ -20,6 +21,10 @@ public class InputView {
     public Set<Integer> getOriginalWinningNumbers() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
         String[] input = Console.readLine().split(",");
+        if(input.length != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
+        }
+
         Set<Integer> originalWinningNumbers = new HashSet<>();
         for (int i = 0; i < input.length; i++) {
             String number = input[i];

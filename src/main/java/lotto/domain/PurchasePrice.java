@@ -6,7 +6,7 @@ public class PurchasePrice {
     private final int purchasePrice;
 
     public PurchasePrice(String purchasePrice) {
-        isPurchasePriceValid(purchasePrice);
+        validate(purchasePrice);
         this.purchasePrice = parsingStringToInt(purchasePrice);
     }
 
@@ -14,7 +14,7 @@ public class PurchasePrice {
         return purchasePrice / 1000;
     }
 
-    private void isPurchasePriceValid(String price) {
+    private void validate(String price) {
         ValidationException validation = new ValidationException();
 
         validation.isNullOrEmpty(price);

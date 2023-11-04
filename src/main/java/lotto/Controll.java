@@ -3,12 +3,12 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Function;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -130,18 +130,54 @@ public class Controll {
         return sameNumberCount;
     }
 
+    Integer getTicketCountWithInputMoney() {
+        Integer ticketCount = null;
+        while (ticketCount == null) {
+            try {
+                ticketCount = ticketsForMoney(Input.inputMoney());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return ticketCount;
+    }
+
+    Lotto getInputWinnerNumber() {
+        Lotto winnerTicket = null;
+        while (winnerTicket == null) {
+            try {
+                winnerTicket = Input.inputWinnerNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winnerTicket;
+    }
+
+    Integer getInputBonusNumber(Lotto winnerTicket) {
+        Integer bunusNumber = null;
+        while (bunusNumber == null) {
+            try {
+                bunusNumber = Input.inputBonusNumber(winnerTicket);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bunusNumber;
+    }
+
     public void start() {
         Output.printInputMoney();
-        Integer ticketCount = ticketsForMoney(Input.inputMoney());
+        Integer ticketCount = getTicketCountWithInputMoney();
         Lotto[] tickets = new Lotto[ticketCount];
         for (int i = 0; i < ticketCount; i++) {
             tickets[i] = buyLotto();
         }
         Output.printTicketsBought(tickets);
         Output.printInputWinnerNumber();
-        Lotto winnerTicket = Input.inputWinnerNumber();
+        Lotto winnerTicket = getInputWinnerNumber();
         Output.printInputBonusNumber();
-        Integer bonusNumber = Input.inputBonusNumber(winnerTicket);
+        Integer bonusNumber = getInputBonusNumber(winnerTicket);
         Output.printStatistic(winnerTicket, bonusNumber, tickets);
     }
 }

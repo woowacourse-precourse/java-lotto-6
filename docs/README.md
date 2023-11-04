@@ -15,16 +15,16 @@
 
 **String 클래스에 대한 학습 테스트**
 요구사항 1
-- [ ] "1,2"을 `,`로 split 했을 때 1과 2로 잘 분리되는지 확인
-- [ ] "1"을 `,`로 split 했을 때 1만을 포함하는 배열이 반환되는지 구현
+- [X] "1,2"을 `,`로 split 했을 때 1과 2로 잘 분리되는지 확인
+- [X] "1"을 `,`로 split 했을 때 1만을 포함하는 배열이 반환되는지 구현
 
 요구사항 2
-- [ ] "(1,2)"값이 주어졌을 때 String의 substring() 메소드를 활용해 `()`을 제거 후 "1,2" 반환 구현
+- [X] "(1,2)"값이 주어졌을 때 String의 substring() 메소드를 활용해 `()`을 제거 후 "1,2" 반환 구현
 
 요구사항 3
-- [ ] "abc" 값이 주어졌을 때 String의 charAt() 메소드를 활용해 특정 위치 문자 가져오는 학습 작성
-- [ ] String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundException 발생하는 부분 학습 테스트 구현
-- [ ] JUnit의 @DisplayName을 활용해 테스트 메소드 의도를 드러낸다.
+- [X] "abc" 값이 주어졌을 때 String의 charAt() 메소드를 활용해 특정 위치 문자 가져오는 학습 작성
+- [X] String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundException 발생하는 부분 학습 테스트 구현
+- [X] JUnit의 @DisplayName을 활용해 테스트 메소드 의도를 드러낸다.
 
 **Set Collection에 대한 학습 테스트**
 요구사항 1

@@ -24,8 +24,10 @@ public class LottoManager {
     public List<Lotto> buyLotto() {
         int price = getPrice();
         int numberOfLotto = getNumberOfLotto(price);
+        List<Lotto> lottos = lottoGenerator.generateLottos(numberOfLotto);
+        output.printPurchasedLotto(lottos);
 
-        return lottoGenerator.generateLottos(numberOfLotto);
+        return lottos;
     }
 
     private int getNumberOfLotto(int price) {

@@ -3,7 +3,7 @@ package lotto.model.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.utils.LottoCount;
+import lotto.utils.enums.LottoCount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import lotto.model.BonusNumber;
 import lotto.model.WinningNumbers;
 import lotto.utils.Casher;
-import lotto.utils.Code;
-import lotto.utils.Message;
+import lotto.utils.enums.Code;
+import lotto.utils.enums.Message;
 
 public class InputView {
     private final String INPUT_PRICE = "구입금액을 입력해 주세요.";

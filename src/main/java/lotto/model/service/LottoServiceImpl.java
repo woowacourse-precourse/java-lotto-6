@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.utils.LottoCount;
+import lotto.utils.enums.LottoCount;
 import lotto.utils.LottoCreator;
 
 public class LottoServiceImpl implements LottoService {

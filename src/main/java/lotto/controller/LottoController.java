@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.model.service.LottoService;
-import lotto.utils.LottoCount;
+import lotto.utils.enums.LottoCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -2,7 +2,7 @@ package lotto.model.service;
 
 import java.util.List;
 import java.util.Map;
-import lotto.utils.LottoCount;
+import lotto.utils.enums.LottoCount;
 
 public interface LottoService {
     List<List<Integer>> createLotto(int lottoCount);

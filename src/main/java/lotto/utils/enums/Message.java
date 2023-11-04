@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.enums;
 
 public enum Message {
     NOT_NUMBER("유효한 숫자 형식이 아닙니다. 다시 입력해 주세요."),

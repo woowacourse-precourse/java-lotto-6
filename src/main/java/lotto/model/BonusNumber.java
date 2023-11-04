@@ -1,9 +1,9 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.utils.Code;
+import lotto.utils.enums.Code;
 import lotto.utils.InputValidator;
-import lotto.utils.Message;
+import lotto.utils.enums.Message;
 
 public class BonusNumber {
     private final int bonusNumber;

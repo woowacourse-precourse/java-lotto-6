@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import lotto.utils.LottoCount;
+import lotto.utils.enums.LottoCount;
 
 public class OutputView {
     private final String OUTPUT_FORMAT = "당첨 통계";

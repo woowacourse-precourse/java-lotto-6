@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.enums;
 
 public enum Code {
     Error("[ERROR]"),

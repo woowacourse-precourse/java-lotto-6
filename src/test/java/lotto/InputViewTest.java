@@ -55,20 +55,11 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -100, -123, -1000, -10000})
-    @DisplayName("음의 정수 입력값은 예외가 발생한다.")
+    @ValueSource(ints = {-1, -100, -123, -1000, -10000, 0})
+    @DisplayName("0 이하의 입력값은 예외가 발생한다.")
     void validateNegativeInteger_negative_integer_exceptionThrown(int ints) {
         InputView inputView = new InputView();
-        Assertions.assertThatThrownBy(() -> inputView.validateNegativeInteger(ints))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0})
-    @DisplayName("0 입력값은 예외가 발생한다.")
-    void validateZero_zero_exceptionThrown(int ints) {
-        InputView inputView = new InputView();
-        Assertions.assertThatThrownBy(() -> inputView.validateZero(ints))
+        Assertions.assertThatThrownBy(() -> inputView.validateNegativeIntegerAndZero(ints))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

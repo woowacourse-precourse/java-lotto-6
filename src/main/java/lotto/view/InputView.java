@@ -7,23 +7,22 @@ public class InputView {
     private final static String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
 
     public int askPrice() {
-        askHowManyPurchase(ASK_PURCHASE_MESSAGE);
+        askHowManyPurchase();
         String input = Console.readLine();
         validateBlankAndEmptyInteger(input);
-        return validateZero(validateNegativeInteger(validateInteger(input)));
+        return validateNegativeIntegerAndZero(validateInteger(input));
     }
 
-    private void askHowManyPurchase(String askPurchaseMessage) {
-        System.out.println(askPurchaseMessage);
+    private void askHowManyPurchase() {
+        System.out.println(ASK_PURCHASE_MESSAGE);
     }
 
     public int validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            askHowManyPurchase("[ERROR] 정수 외에는 입력받을 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 정수 외에는 입력받을 수 없습니다.");
         }
-
         return Integer.parseInt(input);
     }
 
@@ -33,19 +32,10 @@ public class InputView {
         }
     }
 
-    public int validateNegativeInteger(int input) {
-        if (input < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수는 입력받을 수 없습니다.");
+    public int validateNegativeIntegerAndZero(int input) {
+        if (input <= 0) {
+            throw new IllegalArgumentException("[ERROR] 0 이하의 값은 입력받을 수 없습니다.");
         }
-
-        return input;
-    }
-
-    public int validateZero(int input) {
-        if (input == 0) {
-            throw new IllegalArgumentException("[ERROR] 0은 입력받을 수 없습니다.");
-        }
-
         return input;
     }
 }

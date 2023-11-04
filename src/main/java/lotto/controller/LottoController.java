@@ -41,13 +41,11 @@ public class LottoController {
         return INSTANCE;
     }
 
-    public void inputNumbers(InputNumbersDTO inputNumbersDTO) {
+    public int[] inputNumbers(InputNumbersDTO inputNumbersDTO) {
         List<Integer> inputNumbers = validateDuplicateNumber(validateIsNumeric(validateInputSize(inputNumbersDTO.getInputNumbers())));
         validateBonusNumber(inputNumbersDTO.getBonusNumber());
 
-        int[] lottoResult = playerService.compareLottoNumbers(inputNumbers, Integer.parseInt(inputNumbersDTO.getBonusNumber()));
-
-        System.out.println(Arrays.toString(lottoResult));
+        return playerService.compareLottoNumbers(inputNumbers, Integer.parseInt(inputNumbersDTO.getBonusNumber()));
     }
 
     private void validateBonusNumber(String input) {

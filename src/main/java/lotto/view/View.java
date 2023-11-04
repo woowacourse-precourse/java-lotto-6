@@ -1,9 +1,15 @@
 package lotto.view;
 
+import static lotto.constant.LottoResult.FIFTH_PLACE;
+import static lotto.constant.LottoResult.FIRST_PLACE;
+import static lotto.constant.LottoResult.FOURTH_PLACE;
+import static lotto.constant.LottoResult.SECOND_PLACE;
+import static lotto.constant.LottoResult.THIRD_PLACE;
 import static lotto.constant.Message.BOUGHT_QUANTITY_MESSAGE;
 import static lotto.constant.Message.BUYING_PRICE_MESSAGE;
 import static lotto.constant.Message.INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.Message.INPUT_NUMBER_MESSAGE;
+import static lotto.constant.Message.LOTTO_RESULT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -42,14 +48,13 @@ public class View {
         return new InputNumbersDTO(inputNumbers, inputBonusNumber);
     }
 
-    public static void printLottoResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - ");
-        System.out.println("4개 일치 (50,000원) - ");
-        System.out.println("5개 일치 (1,500,000원) - ");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        System.out.println("6개 일치 (2,000,000,000원) - ");
+    public static void printLottoResult(int[] lottoResult) {
+        System.out.println(LOTTO_RESULT_MESSAGE.getMessage());
+        System.out.println(FIFTH_PLACE.printMessage(lottoResult[5]));
+        System.out.println(FOURTH_PLACE.printMessage(lottoResult[4]));
+        System.out.println(THIRD_PLACE.printMessage(lottoResult[3]));
+        System.out.println(SECOND_PLACE.printMessage(lottoResult[2]));
+        System.out.println(FIRST_PLACE.printMessage(lottoResult[1]));
     }
 
 }

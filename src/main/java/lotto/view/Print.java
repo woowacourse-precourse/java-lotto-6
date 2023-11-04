@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.model.Lotto;
 
-import javax.print.attribute.IntegerSyntax;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class Print {
         String allNumber = "[";
         allNumber += String.join(",", tmpLotto);
         allNumber += "]";
-
         System.out.println(allNumber);
     }
 

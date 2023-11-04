@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
+    Lotto(Lotto lotto) {
+        this.numbers = lotto.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         numbersSizeValidation(numbers);
         numbersDuplicateValidation(numbers);

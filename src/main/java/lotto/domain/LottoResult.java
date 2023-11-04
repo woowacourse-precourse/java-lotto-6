@@ -25,7 +25,7 @@ public class LottoResult {
         return purchaseLotto.getNumbers().contains(bonusNumber);
     }
 
-    private void calculateNumberOfWins(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    public void calculateNumberOfWins(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         for (Lotto lotto : lottos) {
             countWinningType(getMatchNumbers(lotto, winningLotto), checkMatchBonusNumber(lotto, bonusNumber));
         }

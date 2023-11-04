@@ -4,7 +4,6 @@ import lotto.Model.Lotto;
 import lotto.View.InputView;
 
 import static lotto.Util.toList;
-import lotto.View.InputView;
 
 public class InputController {
     public static int setLottoCount() {
@@ -23,12 +22,12 @@ public class InputController {
         }
     }
 
-    public static int setBounsNumber() {
+    public static int setBonusNumber() {
         try {
-            return Integer.parseInt(InputView.bounsNumberInput());
+            return Integer.parseInt(InputView.bonusNumberInput());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setBounsNumber();
+            return setBonusNumber();
         }
     }
 }

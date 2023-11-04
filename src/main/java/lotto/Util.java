@@ -27,8 +27,8 @@ public class Util {
         return noDuplication;
     }
 
-    public static List<Integer> sortRandomNum(List<Integer> randomNum) {
-        Collections.sort(randomNum);
-        return randomNum;
+    public static List<Integer> sortLottoNumbers(List<Integer> lottoNum) {
+        Collections.sort(lottoNum);
+        return lottoNum;
     }
 }

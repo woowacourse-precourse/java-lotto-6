@@ -1,58 +1,61 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.domain.Game;
 import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
-import lotto.domain.WinLottoResult;
-import lotto.service.GameService;
+import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.vo.WinLotto;
 
 public class GameController {
-    private InputView inputView;
-    private OutputView outputView;
-    private GameService gameService;
-    private WinLottoResult winLottoResult;
+    private static final int LOTTO_PRICE = 1000;
 
-    public GameController(InputView inputView, OutputView outputView, GameService gameService) {
-        this.inputView = inputView;
+    private final OutputView outputView;
+    private final Game game;
+
+    public GameController(OutputView outputView, Game game) {
         this.outputView = outputView;
-        this.gameService = gameService;
+        this.game = game;
+    }
+
+    private int getLottoCount(int price) {
+        return price / LOTTO_PRICE;
     }
 
     //전체 게임 여기서 컨트롤
     public void gameStart() {
         //1) 구매 금액 입력받기
-        int price = inputView.readLottoPrice();
-        int lotto_count = price / 1000;
+        int price = InputView.readLottoPrice();
+        int lotto_count = getLottoCount(price);
 
         //2) 구매 가능한 로또 개수만큼 로또 자동 발급 기능
-        List<Lotto> lotto_list = gameService.generateLottoList(lotto_count);
+        List<Lotto> lotto_list = game.generateLottoList(lotto_count);
 
         //3) 발급한 로또 번호 출력 기능
-        outputView.printLottoCount(lotto_count);
+        OutputView.printLottoCount(lotto_count);
         for (int i = 0; i < lotto_count; i++) {
-            outputView.printCurrentLottoList(lotto_list.get(i));
+            OutputView.printCurrentLottoList(lotto_list.get(i));
         }
 
-        WinLotto winLotto = new WinLotto();
         //4) 당첨 번호 입력 기능
-        List<Integer> win_list = inputView.readWinningNumber();
-        winLotto.setNumbers(win_list);
+        List<Integer> winNumbers = InputView.readWinningNumber();
 
         //5) 보너스 번호 입력 기능
-        int bonus_num = inputView.readBonusNumber();
-        winLotto.setBonus_num(bonus_num);
+        int bonusNumber = InputView.readBonusNumber();
+
+        WinLotto winLotto = new WinLotto(winNumbers, bonusNumber);
 
         //6) 당첨에 대한 통계 기능
-        gameService.judgePrizeLotto(winLotto, lotto_list, winLottoResult);
-        outputView.printResultLottoPrize(winLottoResult);
+        Map<Rank, Integer> rankCountMap = game.judgePrizeLotto(winLotto, lotto_list);
+        OutputView.printResultLottoPrize(rankCountMap);
 
         //7) 수익률 계산 기능
-        int result = gameService.getLottoPrizePrice(winLottoResult);
-        double out = gameService.getPercentPrize(price, result);
+        int result = game.getLottoTotalPrizePrice(rankCountMap);
+        double out = game.getPercentPrize(price, result);
 
-        outputView.printPrizePercentResult(out);
+        OutputView.printPrizePercentResult(out);
 
     }
 

@@ -3,10 +3,11 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.vo.WinLotto;
 
 public class Game {
     private static final int LOTTO_MIN_NUM = 1;
@@ -37,40 +38,60 @@ public class Game {
         return copiedList;
     }
 
+    private Map<Rank, Integer> getRankCountMap() {
+        Map<Rank, Integer> rankCountMap = new LinkedHashMap<>();
+
+        rankCountMap.put(Rank.RANK_5, 0);
+        rankCountMap.put(Rank.RANK_4, 0);
+        rankCountMap.put(Rank.RANK_3, 0);
+        rankCountMap.put(Rank.RANK_2, 0);
+        rankCountMap.put(Rank.RANK_1, 0);
+
+        return rankCountMap;
+    }
 
     /**
      * 6. 당첨에 대한 통계 기능
+     * <p>
+     * 전체 로또들 당첨 결과 보기
      */
-    public void judgePrizeLotto(WinLotto winLotto, List<Lotto> lottoList, WinLottoResult winLottoResult) {
-        Map<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < lottoList.size(); i++) {
-            int count = countWithNum(lottoList.get(i), winLotto);
-            boolean flag = isBunus(lottoList.get(i), winLotto.getBonus_num());
+    public Map<Rank, Integer> judgePrizeLotto(WinLotto winLotto, List<Lotto> lottos) {
+        Map<Rank, Integer> rankCountMap = getRankCountMap();
 
-            if (count == 3) {
-                map.put("three", map.getOrDefault("three", 0) + 1);
-            }
-            if (count == 4) {
-                map.put("four", map.getOrDefault("four", 0) + 1);
-            }
-            if (count == 5 && !flag) {
-                map.put("five", map.getOrDefault("five", 0) + 1);
-            }
-            if (count == 5 && flag) {
-                map.put("five_bonus", map.getOrDefault("five_bonus", 0) + 1);
-            }
-            if (count == 6) {
-                map.put("six", map.getOrDefault("six", 0) + 1);
-            }
+        for (Lotto lotto : lottos) {
+            // 몇등인지 계산한다.
+            Rank rank = calculateRank(winLotto, lotto);
+            rankCountMap.put(rank, rankCountMap.getOrDefault(rank, 0) + 1);
         }
 
-        for (String key : map.keySet()) {
-            for (WinLottoResult cur : winLottoResult.values()) {
-                if (cur.getName().equals(key)) {
-                    cur.setCount(map.get(key));
-                }
-            }
+        return rankCountMap;
+    }
+
+    private Rank calculateRank(WinLotto winLotto, Lotto lotto) {
+        int duplicatedCount = countDuplicate(lotto, winLotto);
+        boolean isDuplicatedBonusNum = isBunus(lotto, winLotto.getBonusNum());
+
+        if (duplicatedCount == 6) {
+            return Rank.RANK_1;
         }
+
+        if (duplicatedCount == 5 && isDuplicatedBonusNum) {
+            return Rank.RANK_2;
+        }
+
+        if (duplicatedCount == 5) {
+            return Rank.RANK_3;
+        }
+
+        if (duplicatedCount == 4) {
+            return Rank.RANK_4;
+        }
+
+        if (duplicatedCount == 3) {
+            return Rank.RANK_5;
+        }
+
+        return Rank.UNRANK;
     }
 
     private boolean isBunus(Lotto lotto, int bonus) {
@@ -83,7 +104,7 @@ public class Game {
     }
 
     //각 리스트별 카운팅 개수 리턴해서
-    private int countWithNum(Lotto lotto, WinLotto winLotto) {
+    private int countDuplicate(Lotto lotto, WinLotto winLotto) {
         List<String> lotto_num = lotto.getNumbers().stream()
                 .map(Object::toString)
                 .collect(Collectors.toList());
@@ -101,24 +122,15 @@ public class Game {
     /**
      * 수익률 계산 기능
      */
-    public int getLottoPrizePrice(WinLottoResult winLottoResult) {
+    public int getLottoTotalPrizePrice(Map<Rank, Integer> rankIntegerMap) {
         int lottoPrizePrice = 0;
-        for (WinLottoResult cur : winLottoResult.values()) {
-            if (cur.getName().equals("three")) {
-                lottoPrizePrice += (5000) * cur.getCount();
+
+        for (Rank rank : rankIntegerMap.keySet()) {
+            if (rank == Rank.UNRANK) {
+                continue;
             }
-            if (cur.getName().equals("four")) {
-                lottoPrizePrice += (50000) * cur.getCount();
-            }
-            if (cur.getName().equals("five")) {
-                lottoPrizePrice += (1500000) * cur.getCount();
-            }
-            if (cur.getName().equals("five_bonus")) {
-                lottoPrizePrice += (30000000) * cur.getCount();
-            }
-            if (cur.getName().equals("six")) {
-                lottoPrizePrice += (2000000000) * cur.getCount();
-            }
+
+            lottoPrizePrice += rank.getPrize() * rankIntegerMap.get(rank);
         }
         return lottoPrizePrice;
     }

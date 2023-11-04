@@ -53,4 +53,23 @@ class LottoTest {
         Lotto sixNumbersSameLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lottoContainOneToSix.compareLottoNumber(sixNumbersSameLotto)).isEqualTo(6);
     }
+
+    @DisplayName("6개가 아닌 숫자로 Lotto 를 만들면 에러가 발생한다.")
+    @Test
+    void lottoErrorTest_1() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("중복되는 숫자로 Lotto 를 만들면 에러가 발생한다.")
+    @Test
+    void lottoErrorTest_2() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 1, 2, 3, 4, 5))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1~45 의 숫자가 아닌 수로 로또를 만들면 에러가 발생한다.")
+    @Test
+    void lottoErrorTest_3() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46))).isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,10 +47,38 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("구매 금액에 숫자가 아닌 다른게 입력되면 에러가 발생한다.")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 번호를 콤마(,) 가 아닌 다른 구분자로 입력하면 에러가 발생한다.")
+    @Test
+    void 예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1.2.3.4.5.6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 번호에 숫자가 아닌 다른게 입력되면 에러가 발생한다.")
+    @Test
+    void 예외_테스트_3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 넘버에 숫자가 아닌 다른게 입력되면 에러가 발생한다.")
+    @Test
+    void 예외_테스트_4() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

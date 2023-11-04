@@ -1,6 +1,8 @@
 package lotto.domain.player.playermoney;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,12 @@ public class HoldingMoneyTest {
     void holdingMoneyTest() {
         HoldingMoney holdingMoney = new HoldingMoney(10000);
         holdingMoney = holdingMoney.consumeHoldingMoney(10000);
-        Assertions.assertThat(holdingMoney.getHoldingMoney()).isEqualTo(0);
+        assertThat(holdingMoney.getHoldingMoney()).isEqualTo(0);
+    }
+
+    @DisplayName("1000 단위가 아닌 숫자로 HoldingMoney를 생성하면 오류가 발생한다.")
+    @Test
+    void holdingMoneyErrorTest() {
+        assertThatThrownBy(() -> new HoldingMoney(500)).isInstanceOf(IllegalArgumentException.class);
     }
 }

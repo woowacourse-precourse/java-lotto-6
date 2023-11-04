@@ -7,6 +7,7 @@ import lotto.controller.dto.PurchasedLottoResponse;
 import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.Money;
+import lotto.model.WinningNumber;
 import lotto.model.WinningNumbers;
 import lotto.util.Converter;
 import lotto.util.RandomNumbersGenerator;
@@ -29,10 +30,8 @@ public class Controller {
         Lottos lottos = getLottos(money.getMoney());
         showPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
-        BonusNumber bonusNumber = getBonusNumber();
-        showWinningStatistics(lottos, winningNumbers.getNumbers(), bonusNumber.getNumber());
-        long totalPrize = getTotalPrize(lottos, winningNumbers.getNumbers(), bonusNumber.getNumber());
-        showTotalProfit(totalPrize, money.getMoney());
+        showWinningStatistics(lottos, winningNumbers);
+        showTotalProfit(lottos, winningNumbers, money.getMoney());
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
@@ -50,9 +49,15 @@ public class Controller {
     }
 
     private WinningNumbers getWinningNumbers() {
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber();
+        return new WinningNumbers(winningNumber, bonusNumber);
+    }
+
+    private WinningNumber getWinningNumber() {
         outputView.printWinningNumberRequestMessage();
         String winningNumber = inputView.readLine();
-        return new WinningNumbers(Converter.splitWithCommaAndConvertToIntegerList(winningNumber));
+        return new WinningNumber(Converter.splitWithCommaAndConvertToIntegerList(winningNumber));
     }
 
     private BonusNumber getBonusNumber() {
@@ -62,19 +67,19 @@ public class Controller {
     }
 
 
-    private void showWinningStatistics(final Lottos lottos, final List<Integer> winningNumbers, final int bonusNumber) {
-        outputView.printWinningStatistics(lottos.countFirstPrizeWinners(winningNumbers),
-                lottos.countSecondPrizeWinners(winningNumbers, bonusNumber),
-                lottos.countThirdPrizeWinners(winningNumbers),
-                lottos.countFourthPrizeWinners(winningNumbers),
-                lottos.countFifthPrizeWinners(winningNumbers));
+    private void showWinningStatistics(final Lottos lottos, final WinningNumbers winningNumbers) {
+        List<Integer> winningNumber = winningNumbers.getWinningNumber();
+        int bonusNumber = winningNumbers.getBonusNumber();
+        outputView.printWinningStatistics(lottos.countFirstPrizeWinners(winningNumber),
+                lottos.countSecondPrizeWinners(winningNumber, bonusNumber),
+                lottos.countThirdPrizeWinners(winningNumber),
+                lottos.countFourthPrizeWinners(winningNumber),
+                lottos.countFifthPrizeWinners(winningNumber));
     }
 
-    private long getTotalPrize(final Lottos lottos, final List<Integer> winningNumbers, final int bonusNumber) {
-        return lottos.calculateWinningTotalPrize(winningNumbers, bonusNumber);
-    }
-
-    private void showTotalProfit(final long totalPrize, final long money) {
+    private void showTotalProfit(final Lottos lottos, final WinningNumbers winningNumbers, final long money) {
+        long totalPrize = lottos.calculateWinningTotalPrize(winningNumbers.getWinningNumber(),
+                winningNumbers.getBonusNumber());
         outputView.printTotalProfit(totalPrize, money);
     }
 }

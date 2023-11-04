@@ -1,46 +1,34 @@
 package lotto.model;
 
-import static lotto.util.Constant.LOTTO_NUMBER_COUNT;
-
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.ExistDuplicatedNumberException;
-import lotto.exception.InvalidLottoNumberException;
 
 public class WinningNumbers {
 
-    private final List<Integer> numbers;
+    private final WinningNumber winningNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningNumbers(final List<Integer> numbers) {
-        validateSixNumbers(numbers);
-        validateDuplicateNumbers(numbers);
-        this.numbers = numbers;
+    public WinningNumbers(final WinningNumber winningNumber, final BonusNumber bonusNumber) {
+        validateDuplicate(winningNumber.getNumbers(), bonusNumber.getNumber());
+        this.winningNumber = winningNumber;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validateSixNumbers(final List<Integer> numbers) {
-        if (!hasSixNumbers(numbers)) {
-            throw new InvalidLottoNumberException(numbers);
+    private void validateDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
+        if (hasDuplicate(winningNumber, bonusNumber)) {
+            throw new ExistDuplicatedNumberException(winningNumber, bonusNumber);
         }
     }
 
-    private boolean hasSixNumbers(final List<Integer> numbers) {
-        return numbers.size() == LOTTO_NUMBER_COUNT.getValue();
+    private boolean hasDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
+        return winningNumber.contains(bonusNumber);
     }
 
-    private void validateDuplicateNumbers(final List<Integer> numbers) {
-        if (hasDuplicate(numbers)) {
-            throw new ExistDuplicatedNumberException(numbers);
-        }
+    public List<Integer> getWinningNumber() {
+        return winningNumber.getNumbers();
     }
 
-    private boolean hasDuplicate(final List<Integer> numbers) {
-        int distinctCount = (int) numbers.stream()
-                .distinct()
-                .count();
-        return distinctCount != numbers.size();
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
     }
 }

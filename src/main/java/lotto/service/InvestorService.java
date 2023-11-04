@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.model.Investor;
 import lotto.model.Lotto;
-import lotto.model.Money;
 import lotto.model.Shop;
 import java.util.List;
 
@@ -17,8 +16,7 @@ public class InvestorService {
     }
 
     public static InvestorService createDefault(final String investorInput) {
-        Money investMoney = Money.from(investorInput);
-        Investor investor = Investor.createDefault(investMoney);
+        Investor investor = Investor.createDefault(investorInput);
         Shop lottoShop = Shop.createDefault();
 
         return new InvestorService(investor, lottoShop);

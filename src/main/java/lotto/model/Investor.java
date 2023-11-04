@@ -12,7 +12,8 @@ public class Investor {
         this.profitMoney = profitMoney;
     }
 
-    public static Investor createDefault(final Money investMoney) {
+    public static Investor createDefault(final String investMoneyInput) {
+        Money investMoney = Money.from(investMoneyInput);
         Money profitMoney = Money.createDefault();
         return new Investor(investMoney, profitMoney);
     }

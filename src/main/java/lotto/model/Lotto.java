@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Lotto {
     public static final int PRICE = 1000;
+    public static final int LOTTO_LOWER_INCLUSIVE = 1;
+    public static final int LOTTO_UPPER_INCLUSIVE = 45;
+    public static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,10 +15,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateSize(numbers);
+    }
+
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+
 }

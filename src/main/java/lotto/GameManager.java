@@ -17,7 +17,7 @@ public class GameManager {
         return lottoNumbers.stream().toList();
     }
 
-    public List<Integer> getCorrectLottoNumberByRead(){
+    public List<Integer> getWinningLottoNumberByRead(){
         String input = readLine();
         return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }

@@ -10,12 +10,12 @@ public class Application {
         int lottoAmount = gameManager.getPaymentForLottoByRead();
         List<Lotto> lottos = new ArrayList<>();
 
-        List<Integer> correctNumbers = gameManager.getCorrectLottoNumberByRead();
+        List<Integer> winningNumbers = gameManager.getWinningLottoNumberByRead();
         int bonusNumber = gameManager.getBonusLottoNumberByRead();
 
         for (int i = 0; i < lottoAmount; i++) {
             Lotto lotto = new Lotto(gameManager.createRandomNumber());
-            lotto.setCorrectNumbers(correctNumbers);
+            lotto.setWinningNumbers(winningNumbers);
             lotto.setBonusNumber(bonusNumber);
             lottos.add(lotto);
         }

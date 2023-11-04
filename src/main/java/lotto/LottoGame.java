@@ -7,4 +7,8 @@ public class LottoGame {
     public long getLottoAmount(long buyCash){
         return buyCash/BUY_UNIT;
     }
+
+    public double getTotalProfitRate(long totalProfit,long buyCash){
+        return Math.round((double)totalProfit/buyCash*1000.0)/10.0;
+    }
 }

@@ -24,5 +24,10 @@ class LottoTest {
     }
 
     // 추가 테스트
-
+    @DisplayName("보너스 번호에 중복된 숫자가 입력되면 예외 발생")
+    @Test
+    void createBonusNumberDuplicate(){
+        assertThatThrownBy(() -> Lotto.validateBonusNumber(List.of(1,2,3,4,5,6), 6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

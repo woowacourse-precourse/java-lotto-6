@@ -24,4 +24,12 @@ class PurchaseAmountTest {
                 .hasMessageContaining("[ERROR] 숫자를 입력해주세요.");
     }
 
+    @Test
+    @DisplayName("구입할 수 있는 최대 로또 갯수를 잘 반환하는지 확인")
+    void getMaxLottoCountForBudget() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount("50000");
+
+        assertThat(purchaseAmount.getMaxLottoCountForBudget()).isEqualTo(50);
+    }
+
 }

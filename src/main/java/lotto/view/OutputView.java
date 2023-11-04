@@ -19,12 +19,12 @@ public class OutputView {
         System.out.printf(BUYING_QUANTITY_FORMAT, quantity);
         printAllLottoNumber(manyLotto);
     }
-    public void printAllLottoNumber(List<List<Integer>> manyLotto) {
+    private void printAllLottoNumber(List<List<Integer>> manyLotto) {
         for (List<Integer> oneLotto : manyLotto) {
             printOneLottoNumber(oneLotto);
         }
     }
-    public void printOneLottoNumber(List<Integer> oneLotto) {
+    private void printOneLottoNumber(List<Integer> oneLotto) {
         System.out.println(convertLottoNumToString(oneLotto));
     }
     public String convertLottoNumToString(List<Integer> oneLotto) {
@@ -37,7 +37,7 @@ public class OutputView {
         return lottoNum.toString();
     }
 
-    public void printWinningResult(Map<LottoRanks, Integer> result, double returnRate) {
+    public void printLottoResult(Map<LottoRanks, Integer> result, double returnRate) {
         System.out.println(WINNING_RESULT_MSG);
         printWinningLottoCounts(result);
         printTotalReturnRate(returnRate);

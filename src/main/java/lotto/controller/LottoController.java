@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNum;
 import lotto.model.BuyingCost;
+import lotto.model.Matching;
 import lotto.model.Lotto;
 import lotto.constants.LottoRanks;
 import lotto.model.WinningNumbers;
@@ -23,33 +22,15 @@ public class LottoController {
     }
     public void run() {
         int totalCost = getValidBuyingCost(inputView);
-        int counts = totalCost/1000;
-        List<List<Integer>> manyLotto = Lotto.getManyLotto(counts);
-        outputView.printQuantityAndAllNumbers(counts, manyLotto);
-        Lotto answer = getValidWinningNum(inputView);
-        int bonusNum = getValidBonusNum(inputView, answer);
+        List<List<Integer>> purchasedLotto = Lotto.getManyLotto(totalCost/1000);
+        outputView.printQuantityAndAllNumbers(purchasedLotto.size(), purchasedLotto);
 
-        // 각 로또마다 당첨번호와 일치하는 숫자 개수, 보너스 숫자와의 일치 여부 구하기
-        List<Integer> matchedNumber = new ArrayList<>(Collections.nCopies(counts, 0));
-        List<Boolean> matchedBonusNum = new ArrayList<>(Collections.nCopies(counts, false));
-        for (int i = 0; i < counts; i++) {
-            List<Integer> oneLotto = manyLotto.get(i);
-            matchedNumber.set(i, answer.countSameNumber(oneLotto));
-            if (matchedNumber.get(i) == 5 && oneLotto.contains(bonusNum)) {
-                matchedBonusNum.set(i, true);
-            }
-        }
-        Map<LottoRanks, Integer> winnerCount = LottoRanks.getEnumMap();
-        for (int i = 0; i < counts; i++) {
-            int sameNumCount = matchedNumber.get(i);
-            boolean sameBonusNum = matchedBonusNum.get(i);
-            LottoRanks key = LottoRanks.findKey(sameNumCount, sameBonusNum);
-            winnerCount.put(key, winnerCount.get(key)+1);
-        }
-        double returnRates = getTotalWinnings(winnerCount, totalCost);
-        outputView.printWinningResult(winnerCount, returnRates);
+        Lotto winningNum = getValidWinningNum(inputView);
+        int bonusNum = getValidBonusNum(inputView, winningNum);
+
+        Map<LottoRanks, Integer> lottoResult = matching(purchasedLotto, winningNum, bonusNum);
+        outputView.printLottoResult(lottoResult, getReturnRate(lottoResult, totalCost));
     }
-
     public int getValidBuyingCost(InputView inputView) {
         BuyingCost buyingCost = new BuyingCost();
         int validCost;
@@ -90,7 +71,13 @@ public class LottoController {
         }
         return validBonusNum;
     }
-    public Double getTotalWinnings(Map<LottoRanks,Integer> enumMap, int cost) {
+    public Map<LottoRanks, Integer> matching(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
+        Matching nextPhase = new Matching(purchased, winningNum);
+        nextPhase.compareToWinningNumbers(bonusNum);
+        return nextPhase.countLottoWinningResult(purchased.size());
+    }
+
+    public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {
         long totalSum = 0;
         for (LottoRanks key : enumMap.keySet()) {
             totalSum += (long) key.getWinnings() *enumMap.get(key);

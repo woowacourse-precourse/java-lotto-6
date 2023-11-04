@@ -1,23 +1,42 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.view.InputView;
+import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class StateController {
 
     private static final int LOTTO_PRICE = 1000;
-
     private int money;
 
-    public void purchaseLotto() {
+    public void run() {
+        enterMoney();
+//        purchaseLotto(this.money);
+    }
+
+    private void enterMoney() {
         int money = Integer.parseInt(InputView.readMoney());
         try {
             validateMoney(money);
             this.money = money;
         }catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            purchaseLotto();
+            enterMoney();
         }
+    }
+
+
+
+    private int calculateMoney(int money) {
+        return money/LOTTO_PRICE;
     }
 
     private void validateMoney(int money) {

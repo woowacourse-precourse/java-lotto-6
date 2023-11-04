@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkSameNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +19,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void checkSameNumber(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

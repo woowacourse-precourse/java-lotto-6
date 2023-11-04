@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoResult;
@@ -11,6 +10,7 @@ import lotto.domain.Money;
 import lotto.domain.Number;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResultCalculator;
 import lotto.util.Converter;
 import lotto.util.NumberGenerator;
 import lotto.util.RandomNumberGenerator;
@@ -29,29 +29,29 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
-        Lottos lottos = generateLottos(money, new RandomNumberGenerator());
-        printLottos(lottos);
-        WinningLotto winningLotto = generateWinningLotto();
-        Map<Rank, Integer> winningStatus = calculateWinningStatus(winningLotto, lottos);
-        double revenue = getReturnRate(winningStatus, money);
-        printResult(winningStatus, revenue);
+        Lottos lottos = buyLottos(money, new RandomNumberGenerator());
+        WinningLotto winningLotto = getWinningLotto();
+        calculateLottoResult(lottos, winningLotto, money);
     }
 
     private Money getMoney() {
-        try {
-            outputView.printPurchaseMessage();
-            String input = inputView.readInput();
-            return Money.from(input);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e);
-            return getMoney();
+        while (true) {
+            try {
+                outputView.printPurchaseMessage();
+                String input = inputView.readInput();
+                return Money.from(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
         }
     }
 
-    private Lottos generateLottos(final Money money, final NumberGenerator numberGenerator) {
+    private Lottos buyLottos(final Money money, final NumberGenerator numberGenerator) {
         int buyCount = money.buyLotto();
         outputView.printBuyLotto(buyCount);
-        return Lottos.of(buyCount, numberGenerator);
+        Lottos lottos = Lottos.of(buyCount, numberGenerator);
+        printLottos(lottos);
+        return lottos;
     }
 
     private void printLottos(final Lottos lottos) {
@@ -60,61 +60,40 @@ public class LottoController {
         }
     }
 
-    private WinningLotto generateWinningLotto() {
+    private WinningLotto getWinningLotto() {
         Lotto lotto = generateWinningLottoNumbers();
         Number bonusNumber = generateBonusNumber();
         return new WinningLotto(lotto, bonusNumber);
     }
 
     private Lotto generateWinningLottoNumbers() {
-        try {
-            String input = inputView.readInput();
-            List<String> lotto = Converter.convertCommaSeparatedStringToList(input);
-            return Lotto.fromStringList(lotto);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e);
-            return generateWinningLottoNumbers();
+        while (true) {
+            try {
+                String input = inputView.readInput();
+                List<String> lotto = Converter.convertCommaSeparatedStringToList(input);
+                return Lotto.fromStringList(lotto);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
         }
     }
 
     private Number generateBonusNumber() {
-        try {
-            String input = inputView.readInput();
-            return Number.from(input);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e);
-            return generateBonusNumber();
+        while (true) {
+            try {
+                String input = inputView.readInput();
+                return Number.from(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
         }
     }
 
-    private Map<Rank, Integer> calculateWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
-        Map<Rank, Integer> winningStatus = new EnumMap<>(Rank.class);
-        List<Lotto> lottoList = lottos.getLottos();
-
-        for (Lotto lotto : lottoList) {
-            Rank rank = calculateRank(winningLotto, lotto);
-            winningStatus.put(rank, winningStatus.getOrDefault(rank, 0) + 1);
-        }
-
-        return winningStatus;
-    }
-
-    private Rank calculateRank(final WinningLotto winningLotto, final Lotto lotto) {
-        int sameCount = winningLotto.countMatchingNumbers(lotto.getNumbers());
-        boolean matchBonus = winningLotto.hasMatchingBonus(lotto.getNumbers());
-        return Rank.of(sameCount, matchBonus);
-    }
-
-    public double getReturnRate(final Map<Rank, Integer> status, final Money money) {
-        long sumOfPrice = calculateSumOfPrice(status);
-        return money.calculateReturnRate(sumOfPrice);
-    }
-
-    private long calculateSumOfPrice(final Map<Rank, Integer> status) {
-        return status.entrySet()
-                .stream()
-                .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
+    private void calculateLottoResult(final Lottos lottos, final WinningLotto winningLotto, final Money money) {
+        WinningResultCalculator winningResultCalculator = new WinningResultCalculator();
+        Map<Rank, Integer> winningStatus = winningResultCalculator.calculateWinningStatus(winningLotto, lottos);
+        double revenue = winningResultCalculator.getReturnRate(winningStatus, money);
+        printResult(winningStatus, revenue);
     }
 
     private void printResult(final Map<Rank, Integer> status, final double revenue) {

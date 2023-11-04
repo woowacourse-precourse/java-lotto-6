@@ -9,34 +9,40 @@ import lotto.service.Calculator;
 import lotto.service.LottoIssuer;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
 
     private final OutputView outputView;
-    private final InputController exceptionController;
+    private final InputController inputController;
 
 
     public LottoController(OutputView outputView, InputController inputController) {
         this.outputView = outputView;
-        this.exceptionController = inputController;
+        this.inputController = inputController;
     }
 
     public void run() {
-        PurchaseAmount amount = exceptionController.getPurchaseAmount();
+        PurchaseAmount amount = inputController.getPurchaseAmount();
         LottoIssuer lottoIssuer = LottoIssuer.of(amount);
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
-        WinningLotto winningLotto = exceptionController.getWinningLotto();
-        List<LottoPrize> lottoPrizes = new ArrayList<>();
-        for (Lotto bought : boughtLotto) {
-            lottoPrizes.add(winningLotto.compare(bought));
-        }
+        WinningLotto winningLotto = inputController.getWinningLotto();
+        List<LottoPrize> lottoPrizes = collectWinners(boughtLotto, winningLotto);
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);
-        Calculator calculator = new Calculator();
-        Double totalReturn = calculator.calculatePrize(lottoPrizes);
+        Double totalReturn = calculate(lottoPrizes);
         outputView.printTotalReturn(totalReturn);
+    }
+
+    private Double calculate(List<LottoPrize> lottoPrizes) { //TODO: LottoPrize에서 꽝은 넣지 않는 방법 고민하기
+        Calculator calculator = new Calculator();
+        return calculator.calculatePrize(lottoPrizes);
+    }
+
+    private List<LottoPrize> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {
+        return boughtLotto.stream()
+                .map(winningLotto::compare)
+                .toList();
     }
 }

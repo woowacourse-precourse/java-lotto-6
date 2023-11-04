@@ -31,9 +31,6 @@ public class LottoResult {
     }
 
     public boolean hasBonusNumber(List<Integer> numbers) {
-        if (numbers.contains(bonusNumber)) {
-            return true;
-        }
-        return false;
+        return numbers.contains(bonusNumber);
     }
 }

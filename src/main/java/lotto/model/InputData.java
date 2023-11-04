@@ -10,7 +10,8 @@ public class InputData {
 		while(!isValidInput) {
 			try {
 				inputData = Integer.parseInt(Console.readLine());
-				Validate.isThousandMultiple(inputData);
+				Validate.isMinimumAmount(inputData);//최소금액검사
+				Validate.isThousandMultiple(inputData);//1000단위인지
 				isValidInput = true;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());

@@ -6,7 +6,7 @@ public class Application {
         
         LottoController createdLotto = new LottoController();
 
-        createdLotto.setCount();
+        createdLotto.processGame();
 //        WinLotto userCreate = new WinLotto();
         
 //        Lotto userLotto = new Lotto(count);

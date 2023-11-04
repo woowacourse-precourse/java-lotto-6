@@ -1,5 +1,6 @@
 package lotto.domain.player;
 
+import java.util.function.Supplier;
 import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
@@ -19,7 +20,7 @@ public class Player {
         lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
     }
 
-    public void buyRandomLottoWithAllTicket(Lotto randomLotto, LottoBundle lottoBundle) {
+    public void buyRandomLottoWithAllTicket(Supplier<Lotto> randomLotto, LottoBundle lottoBundle) {
         lottoTicket = lottoTicket.changeAllTicketToLotto(randomLotto, lottoBundle);
     }
 

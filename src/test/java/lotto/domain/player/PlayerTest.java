@@ -37,7 +37,7 @@ public class PlayerTest {
         LottoBundle lottoBundle = new LottoBundle();
         player.consumeAllMoneyToLottoTicket();
         //when
-        player.buyRandomLottoWithAllTicket(boughtLotto, lottoBundle);
+        player.buyRandomLottoWithAllTicket(() -> boughtLotto, lottoBundle);
         //then
         assertThat(player.getTicketNumber()).isEqualTo(0);
     }

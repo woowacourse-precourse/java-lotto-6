@@ -44,7 +44,7 @@ public class LottoTicketTest {
         // given
         lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
         // when
-        lottoTicket = lottoTicket.changeAllTicketToLotto(boughtLotto, lottoBundle);
+        lottoTicket = lottoTicket.changeAllTicketToLotto(() -> boughtLotto, lottoBundle);
         // then
         assertThat(lottoTicket.getLottoTicket()).isEqualTo(0);
     }
@@ -55,8 +55,8 @@ public class LottoTicketTest {
         // given
         lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
         // when
-        lottoTicket = lottoTicket.changeAllTicketToLotto(boughtLotto, lottoBundle);
-        List<Lotto> lottoData = lottoBundle.makeLottoDto().getLottoBundleData();
+        lottoTicket = lottoTicket.changeAllTicketToLotto(() -> boughtLotto, lottoBundle);
+        List<Lotto> lottoData = lottoBundle.makeLottoBundleDto().getLottoBundleData();
         // then
         assertThat(lottoData.size()).isEqualTo(10);
         assertThat(lottoData).contains(boughtLotto);

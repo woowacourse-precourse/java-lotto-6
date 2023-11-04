@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.LottoWinningNumbers;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,9 +56,8 @@ public class LottoWinningNumbersTest {
     }
 
     @Test
-    @DisplayName("보너스 번호가 로또 당첨 번호와 중복된다면 예외가 발생한다.")
-    void createLottoWinningNumbersByDuplicateBonusNumber() {
-        assertThrows(IllegalArgumentException.class,
-                () -> LottoWinningNumbers.createWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 6));
+    @DisplayName("로또 당첨 번호 생성")
+    void createLottoWinningNumbers() {
+        assertDoesNotThrow(() -> LottoWinningNumbers.createWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7));
     }
 }

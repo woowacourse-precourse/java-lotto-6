@@ -3,8 +3,8 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
 import lotto.domain.WinningCondition;
-import lotto.domain.WinningRank;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -30,15 +30,16 @@ public class LottoController {
         output.showLottoTickets(lottoTickets);
 
         WinningCondition winningCondition = makeWinningCondition();
-        Map<Lotto, WinningRank> winningRankByLotto = winningCondition.findWinningRankByLotto(lottoTickets);
-        output.showWinningStats(makeWinningResult(winningRankByLotto));
+        Map<Lotto, Rank> rankByLotto = winningCondition.findRankByLotto(lottoTickets);
+        Map<Rank, Integer> winningResult = makeWinningResult(rankByLotto);
+        output.showWinningStats(winningResult);
     }
 
-    private Map<WinningRank, Integer> makeWinningResult(Map<Lotto, WinningRank> winningRankByLotto) {
-        Map<WinningRank, Integer> winningResult = Arrays.stream(WinningRank.values())
+    private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {
+        Map<Rank, Integer> winningResult = Arrays.stream(Rank.values())
                 .collect(Collectors.toMap(rank -> rank, rank -> 0));
 
-        for (WinningRank rank : winningRankByLotto.values()) {
+        for (Rank rank : rankByLotto.values()) {
             winningResult.put(rank, winningResult.get(rank) + 1);
         }
 
@@ -50,9 +51,9 @@ public class LottoController {
         Lotto winningLotto = makeWinningLotto(input.readWinningNumbers());
 
         output.showBonusNumberInputMessage();
-        int bonus = toInt(input.readBonusNumber());
+        int bonusNumber = toInt(input.readBonusNumber());
 
-        return new WinningCondition(winningLotto, bonus);
+        return new WinningCondition(winningLotto, bonusNumber);
     }
 
     private Lotto makeWinningLotto(String winningNumbers) {

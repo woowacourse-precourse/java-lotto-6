@@ -12,11 +12,11 @@ public class LottoTickets {
         this.lottos = lottos;
     }
 
-    public Map<Lotto, WinningRank> findWinningRankByLotto(Lotto winningLotto, int bonus) {
+    public Map<Lotto, Rank> findRankByLotto(Lotto winningLotto, int bonusNumber) {
         return lottos.stream()
                 .collect(Collectors.toMap(
                         lotto -> lotto,
-                        lotto -> lotto.findWinningRank(winningLotto, bonus)
+                        lotto -> lotto.findRank(winningLotto, bonusNumber)
                 ));
     }
 

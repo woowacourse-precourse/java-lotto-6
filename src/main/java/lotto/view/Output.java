@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.domain.LottoTickets;
-import lotto.domain.WinningRank;
+import lotto.domain.Rank;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -46,18 +46,18 @@ public class Output {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
-    public void showWinningStats(Map<WinningRank, Integer> winningResult) {
+    public void showWinningStats(Map<Rank, Integer> winningResult) {
         lineBreak();
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDER);
         showWinningResult(winningResult);
     }
 
-    private void showWinningResult(Map<WinningRank, Integer> winningResult) {
+    private void showWinningResult(Map<Rank, Integer> winningResult) {
         winningResult.entrySet()
                 .stream()
                 .sorted(Comparator.comparingInt(e -> -e.getKey().getRanking()))
-                .filter(entry -> !entry.getKey().equals(WinningRank.NONE))
+                .filter(entry -> !entry.getKey().equals(Rank.NONE))
                 .forEach(entry -> System.out.println(entry.getKey() + String.format(WINNING_RANK_COUNT_FORMAT, entry.getValue())));
     }
 

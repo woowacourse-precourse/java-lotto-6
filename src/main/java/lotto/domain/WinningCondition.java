@@ -5,14 +5,14 @@ import java.util.Map;
 public class WinningCondition {
 
     private final Lotto winningLotto;
-    private final int bonus;
+    private final int bonusNumber;
 
-    public WinningCondition(Lotto winningLotto, int bonus) {
+    public WinningCondition(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
-        this.bonus = bonus;
+        this.bonusNumber = bonusNumber;
     }
 
-    public Map<Lotto, WinningRank> findWinningRankByLotto(LottoTickets lottoTickets) {
-        return lottoTickets.findWinningRankByLotto(winningLotto, bonus);
+    public Map<Lotto, Rank> findRankByLotto(LottoTickets lottoTickets) {
+        return lottoTickets.findRankByLotto(winningLotto, bonusNumber);
     }
 }

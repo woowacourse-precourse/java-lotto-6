@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public enum WinningRank {
+public enum Rank {
 
     ONE(1, 6, 2000000000, List.of(true, false)),
     TWO(2, 5, 30000000, List.of(true)),
@@ -15,23 +15,23 @@ public enum WinningRank {
     private static final String INVALID_COUNT_EXCEPTION = "존재하지 않는 당첨 개수입니다.";
 
     private final int ranking;
-    private final int count;
+    private final int matchCount;
     private final int reward;
     private final List<Boolean> bonusMatchCases;
 
-    WinningRank(int ranking, int count, int reward, List<Boolean> bonusMatchCases) {
+    Rank(int ranking, int matchCount, int reward, List<Boolean> bonusMatchCases) {
         this.ranking = ranking;
-        this.count = count;
+        this.matchCount = matchCount;
         this.reward = reward;
         this.bonusMatchCases = bonusMatchCases;
     }
 
-    public static WinningRank find(int count, boolean isBonusMatch) {
-        if (NONE.count <= count && count < FIVE.count) {
+    public static Rank find(int count, boolean hasBonusNumber) {
+        if (NONE.matchCount <= count && count < FIVE.matchCount) {
             return NONE;
         }
         return Arrays.stream(values())
-                .filter(winningRank -> winningRank.count == count && winningRank.bonusMatchCases.contains(isBonusMatch))
+                .filter(rank -> rank.matchCount == count && rank.bonusMatchCases.contains(hasBonusNumber))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COUNT_EXCEPTION));
     }
@@ -39,9 +39,9 @@ public enum WinningRank {
     @Override
     public String toString() {
         if (this.equals(TWO)) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%d원)", count, reward);
+            return String.format("%d개 일치, 보너스 볼 일치 (%d원)", matchCount, reward);
         }
-        return String.format("%d개 일치 (%d원)", count, reward);
+        return String.format("%d개 일치 (%d원)", matchCount, reward);
     }
 
     public int getRanking() {

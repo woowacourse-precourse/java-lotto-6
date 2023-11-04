@@ -8,7 +8,7 @@ import lotto.model.WinningStatistics;
 
 public class OutputView {
     public static final String LOTTO_TICKETS_COUNT_FORMAT = "%d개를 구매했습니다.";
-    public static final String WINNING_STATISTICS_TEMPLATE_HEADER = "당첨 통계\n---\n";
+    public static final String WINNING_STATISTICS_TEMPLATE_HEADER = "당첨 통계\n---";
     public static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void printLottoTicketsCount(int count) {
@@ -16,19 +16,15 @@ public class OutputView {
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
-        StringBuilder sb = new StringBuilder();
         lottoTickets.forEach(lotto -> {
-            sb.append(lotto.toString());
-            sb.append("\n");
+            System.out.println(lotto.toString());
         });
-        System.out.println(sb);
     }
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
-        StringBuilder sb = new StringBuilder();
         Map<LottoPrize, Integer> prizeCount = winningStatistics.getPrizeCounter();
 
-        sb.append(WINNING_STATISTICS_TEMPLATE_HEADER);
+        System.out.println(WINNING_STATISTICS_TEMPLATE_HEADER);
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             if (lottoPrize == LottoPrize.NOTHING) {
                 continue;
@@ -37,10 +33,8 @@ public class OutputView {
             if (prizeCount.get(lottoPrize) != null) {
                 count = prizeCount.get(lottoPrize);
             }
-            sb.append(String.format(lottoPrize.getStatisticsFormat(), count))
-                    .append("\n");
+            System.out.printf((lottoPrize.getStatisticsFormat()) + "%n", count);
         }
-        System.out.println(sb);
     }
 
     public void printRateOfReturn(double rateOfReturn) {

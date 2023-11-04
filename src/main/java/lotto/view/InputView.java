@@ -18,6 +18,14 @@ public class InputView {
         return parseWinningNum(readLine());
     }
 
+    public static int readBonusNum() {
+        try {
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+    }
+
     public static ArrayList<Integer> parseWinningNum(String winningNum) {
         ArrayList<Integer> winningNums = new ArrayList<>();
         String[] winningNumStr = winningNum.split(",");

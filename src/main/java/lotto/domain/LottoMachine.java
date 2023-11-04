@@ -24,12 +24,14 @@ public class LottoMachine {
     }
 
     private LottoTicket generateRandomTicket() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                MIN_LOTTO_NUMBER,
-                MAX_LOTTO_NUMBER,
-                NUMBER_OF_LOTTO_NUMBERS
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(
+                        MIN_LOTTO_NUMBER,
+                        MAX_LOTTO_NUMBER,
+                        NUMBER_OF_LOTTO_NUMBERS
+                )
         );
-        Collections.sort(randomNumbers);
+        Collections.sort(randomNumbers); 
         return new LottoTicket(randomNumbers);
     }
 

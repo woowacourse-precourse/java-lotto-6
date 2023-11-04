@@ -35,5 +35,7 @@ public class Pay {
         }
     }
 
-
+    public int getLottoAmounts() {
+        return pay / ConfigurationNumbers.PRICE.getNumber();
+    }
 }

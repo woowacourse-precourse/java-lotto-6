@@ -26,6 +26,14 @@ public class Controller {
         }
         outputView.outputLottosNumbers(outputRandomLottoNumber);
 
+        String userInPut = inputView.inputWinningNumber();
+        System.out.println();
+        String bonusNum = inputView.inputBonusNumber();
+        System.out.println();
+
+
+
+
     }
 
 }

@@ -1,6 +1,7 @@
 package lotto.contoroller;
 
 import java.util.List;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoNumberGenerator;
@@ -18,6 +19,7 @@ public class LottoController {
         generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
         // 요기까지
         List<Integer> winningNumbers = getInputLotto();
+        int bonusNumber = getInputBonus();
     }
 
     // 구입 금액 입력
@@ -51,7 +53,23 @@ public class LottoController {
                 String input = InputValue.inputWinningNumbers();
                 List<Integer> winningNumbers = ChangeListType.changeListType(input);
                 Lotto lotto = new Lotto(winningNumbers);
+                System.out.println();
                 return lotto.getNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    // 보너스 번호 입력
+    private int getInputBonus() {
+        while(true) {
+            try {
+                String input = InputValue.inputBonusNumber();
+                int bonusNumber = ChangeNumberType.changeNumberType(input);
+                Bonus bonus = new Bonus(bonusNumber);
+                System.out.println();
+                return bonus.getNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

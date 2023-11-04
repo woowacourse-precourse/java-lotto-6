@@ -12,18 +12,18 @@ import java.util.Arrays;
 
 public class GameService {
 
-    private int purchaseAmount;
+    private PurchaseAmount purchaseAmount;
     private List<Lotto> issuedLotto;
     private Lotto winningNumbers;
     private BonusNumber bonusNumber;
 
     public int inputPurchaseAmount(String input){
-        purchaseAmount = PurchaseAmount.validated(input);
-        return purchaseAmount;
+        purchaseAmount = new PurchaseAmount(input);
+        return purchaseAmount.getPurchaseAmount();
     }
 
     public List<Lotto> createIssuedLotto(){
-        int issuedLottoCount = purchaseAmount/ NumberConstant.LOTTO_ONE_PRICE;
+        int issuedLottoCount = purchaseAmount.getPurchaseAmount()/ NumberConstant.LOTTO_ONE_PRICE;
         issuedLotto = new ArrayList<>();
         for(int i=1; i<=issuedLottoCount; i++){
             issuedLotto.add(new Lotto());

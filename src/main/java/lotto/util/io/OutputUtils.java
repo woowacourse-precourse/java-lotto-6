@@ -37,4 +37,8 @@ public class OutputUtils {
         System.out.println(RESULTS_ANNOUNCEMENT_MESSAGE);
         System.out.println(SEPARATING_LINE);
     }
+
+    public static void printWinningDetail(String description, String prize, int number) {
+        System.out.println(String.format(WINNING_DETAIL, description, prize, number));
+    }
 }

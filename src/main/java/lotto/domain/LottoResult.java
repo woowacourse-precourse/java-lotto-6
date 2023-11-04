@@ -19,7 +19,7 @@ public class LottoResult {
     public void getLottoStatus(List<Lotto> purchaseLottoNumber) {
         for (Lotto purchaseNumber : purchaseLottoNumber) {
             List<Integer> lottoNumbers = purchaseNumber.getNumbers();
-            int matchCount = BonusNumberCheck(getLottoMatchCount(lottoNumbers),lottoNumbers);
+            int matchCount = BonusNumberCheck(getLottoMatchCount(lottoNumbers), lottoNumbers);
             lottoCount = getCount(matchCount);
         }
         outputLottoResult(lottoCount);
@@ -51,20 +51,20 @@ public class LottoResult {
     }
 
     private void outputLottoResult(LottoCount lottoCount) {
-        messageService.outputLottoStatus(LottoPrice.FIRST.getNumber(), LottoPrice.FIRST.FormatPrice(),
-                lottoCount.getSixCount());
-        messageService.outputLottoStatus(LottoPrice.SECOND.getNumber(), LottoPrice.SECOND.FormatPrice(),
-                lottoCount.getFiveWithBonusCount());
-        messageService.outputLottoStatus(LottoPrice.THIRD.getNumber(), LottoPrice.THIRD.FormatPrice(),
-                lottoCount.getFiveCount());
-        messageService.outputLottoStatus(LottoPrice.FOURTH.getNumber(), LottoPrice.FOURTH.FormatPrice(),
-                lottoCount.getFourCount());
         messageService.outputLottoStatus(LottoPrice.FIFTH.getNumber(), LottoPrice.FIFTH.FormatPrice(),
                 lottoCount.getThreeCount());
+        messageService.outputLottoStatus(LottoPrice.FOURTH.getNumber(), LottoPrice.FOURTH.FormatPrice(),
+                lottoCount.getFourCount());
+        messageService.outputLottoStatus(LottoPrice.THIRD.getNumber(), LottoPrice.THIRD.FormatPrice(),
+                lottoCount.getFiveCount());
+        messageService.outputLottoWithBonusStatus(LottoPrice.SECOND.getNumber(), LottoPrice.SECOND.FormatPrice(),
+                lottoCount.getFiveWithBonusCount());
+        messageService.outputLottoStatus(LottoPrice.FIRST.getNumber(), LottoPrice.FIRST.FormatPrice(),
+                lottoCount.getSixCount());
     }
 
-    private int BonusNumberCheck(int matchCount , List<Integer> lottoNumbers){
-        if(matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(lottoWinningNumbers.getBonusNumber())){
+    private int BonusNumberCheck(int matchCount, List<Integer> lottoNumbers) {
+        if (matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(lottoWinningNumbers.getBonusNumber())) {
             return matchCount + BONUS_CHECK_COUNT;
         }
         return matchCount;

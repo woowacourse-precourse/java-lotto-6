@@ -42,10 +42,14 @@ public class MessageService {
     }
 
     public void outputLottoStatus(int number, String formatPrice, int resultCount) {
-        if (number > 10) {
-            number -= 10;
-        }
         String message = String.format(OutputMessage.OUTPUT_LOTTO_STATUS_MESSAGE.getMessage(), number, formatPrice,
+                resultCount);
+        System.out.println(message);
+    }
+
+    public void outputLottoWithBonusStatus(int number, String formatPrice, int resultCount) {
+        String message = String.format(OutputMessage.OUTPUT_LOTTO_WITH_BONUS_STATUS_MESSAGE.getMessage(), number - 10,
+                formatPrice,
                 resultCount);
         System.out.println(message);
     }

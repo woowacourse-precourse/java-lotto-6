@@ -13,7 +13,11 @@ public class InputInfo {
         return (exception == null);
     }
 
-    public String getUserInput(){
+    public String getUserInput() {
         return userInput;
+    }
+
+    public String getExceptionMessage() {
+        return exception.getMessage();
     }
 }

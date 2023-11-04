@@ -14,6 +14,7 @@ public class Convertor {
     public static String[] splitInput(String userInput) {
         return userInput.split(",");
     }
+
     public static List<Integer> convertToList(String[] userInputArray) {
         List<Integer> numbersList = new ArrayList<>();
         for (int i = 0; i < LOTTERY_NUMBERS; i++) {

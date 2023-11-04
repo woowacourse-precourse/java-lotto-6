@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.view.InputView;
+import lotto.view.Input;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class InputViewTest {
     @DisplayName("입력 금액이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void createPaymentWithNonNumericInput() {
-        assertThatThrownBy(() -> new InputView().numberToInteger("12a"))
+        assertThatThrownBy(() -> new Input().numberToInteger("12a"))
               .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ class InputViewTest {
     @Test
     void createWinningNumbersWithNonNumericInput() {
         List<String> winningNumbers = List.of("1","2","a");
-        assertThatThrownBy(() -> new InputView().winningNumbersToInteger(winningNumbers))
+        assertThatThrownBy(() -> new Input().lottoToInteger(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

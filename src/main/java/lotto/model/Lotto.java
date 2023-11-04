@@ -41,4 +41,8 @@ public class Lotto {
                     .getMessage());
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

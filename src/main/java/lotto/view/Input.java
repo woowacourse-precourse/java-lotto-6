@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.ErrorMessages;
 
-public class InputView {
-    public int inputUserPayment() {
+public class Input {
+    public static int inputPayment() {
         String payment = Console.readLine();
         return numberToInteger(payment);
     }
 
-    public int numberToInteger(String payment) {
+    public static int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return numberToInteger(bonusNumber);
+    }
+
+    public static int numberToInteger(String payment) {
         try {
             return Integer.parseInt(payment);
         } catch (NumberFormatException e) {
@@ -21,17 +26,17 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinningNumbers() {
-        String winningNumbers = Console.readLine();
-        List<String> splitNumbers = splitNumbersByComma(winningNumbers);
-        return winningNumbersToInteger(splitNumbers);
+    public static List<Integer> inputLotto() {
+        String lotto = Console.readLine();
+        List<String> splitLotto = splitNumbersByComma(lotto);
+        return lottoToInteger(splitLotto);
     }
 
-    public List<String> splitNumbersByComma(String splitNumbers) {
+    public static List<String> splitNumbersByComma(String splitNumbers) {
         return List.of(splitNumbers.split(","));
     }
 
-    public List<Integer> winningNumbersToInteger(List<String> winningNumbers) {
+    public static List<Integer> lottoToInteger(List<String> winningNumbers) {
         List<Integer> integerWinningNumbers = new ArrayList<>();
 
         for (String number : winningNumbers) {
@@ -46,8 +51,5 @@ public class InputView {
         return integerWinningNumbers;
     }
 
-    public int inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        return numberToInteger(bonusNumber);
-    }
+
 }

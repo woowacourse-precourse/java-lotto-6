@@ -21,9 +21,7 @@ public class LottoGame {
     public void start() {
         int lottoQuantity = findLottoQuantity();
         User user = findUser(lottoQuantity);
-        System.out.println();
         List<Integer> lottoWinningNumbers = findWinningNumbers();
-        System.out.println();
         int bonusNumber = findBonusNumber();
         List<Rank> resultRanks = user.findAllResult(lottoWinningNumbers, bonusNumber);
         List<Integer> resultCount = user.countTotalResult(resultRanks);
@@ -32,7 +30,6 @@ public class LottoGame {
         transmitOutput(resultCount);
         double profitRate = calculateProfitRate(lottoQuantity, resultPrize);
         OutputView.printProfitRate(profitRate);
-
     }
 
     private int findBonusNumber() {
@@ -122,7 +119,6 @@ public class LottoGame {
         for (int i = 0; i < count; i++) {
             try {
                 List<Integer> numbers = makeRandomNums();
-                Validator.valiateDuplicateNums(numbers);
                 lottoSort(numbers);
                 lottos.add(makeLotto(numbers));
                 OutputView.printLottoNums(Parser.parseIntToString(numbers));

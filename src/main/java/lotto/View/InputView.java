@@ -11,11 +11,13 @@ public class InputView {
     }
 
     public static String requestWinningNumbers() {
+    	System.out.println();
         printMessage(ASK_LOTTO_RESULT);
         return Console.readLine();
     }
 
     public static String requestBonusNumber() {
+    	System.out.println();
         printMessage(ASK_BONUS_NUMBER);
         return Console.readLine();
     }

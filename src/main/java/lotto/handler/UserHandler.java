@@ -3,7 +3,7 @@ package lotto.handler;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.ResultView;
 
-import java.util.List;
+import java.util.*;
 
 public class UserHandler {
     public static int getAmountFromUser() {
@@ -20,7 +20,7 @@ public class UserHandler {
         }
 
         checkStartWithZero(userInput);
-        checkNumericString(userInput);
+        checkNumerString(userInput);
 
         int amount = Integer.parseInt(userInput);
 
@@ -39,7 +39,7 @@ public class UserHandler {
         }
     }
 
-    private static void checkNumericString(String userInput) {
+    private static void checkNumerString(String userInput) {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
@@ -63,10 +63,50 @@ public class UserHandler {
     }
 
     private static List<String> validateWinningNumberInput(String winningNumberInput) {
-        return null;
+        //에러 : 아무것도 입력하지 않았을 경우
+        if (winningNumberInput == null || winningNumberInput.isEmpty()) {
+            throw new IllegalArgumentException("번호를 입력해주세요.");
+        }
+
+        List<String> winningNumbers = splitNumbers(winningNumberInput);
+//        checkWinningNumberSize(winningNumbers);
+
+        Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException("중복된 번호를 입력하였습니다.");
+        }
+
+        for (String winningNumber : winningNumbers) {
+//            checkWinningNumberString(winningNumber);
+            validateWinningNumber(winningNumber);
+        }
+        return winningNumbers;
     }
 
+    private static List<String> splitNumbers(String winningNumberInput) {
+        return Arrays.asList(winningNumberInput.split(","));
+    }
 
+    private static void checkWinningNumberSize(String winningNumbers) {
 
+//        if (winningNumbers.size() != 6) {
+//            throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
+//        }
+
+    }
+
+    private static void validateWinningNumber(String winningNumber) {
+        // 문자열을 입력했을 경우, 쉼표로 구분하지 않았을 경우, 로또 번호의 숫자범위를 벗어났을 경우, 6개가 아닌경우, 중복되는 경우
+        int number;
+        try {
+            number = Integer.parseInt(winningNumber.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해주세요.");
+        }
+
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자입니다.");
+        }
+    }
 
 }

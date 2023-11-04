@@ -5,8 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Collections;
 
-
-
 public class Paper {
 
     public List<Integer> numbers;
@@ -34,10 +32,13 @@ public class Paper {
             }
         }
         if(cnt==5 && numbers.contains(bonusNumber)){
-            correspondNumber = 7;
+            correspondNumber = 6;
             return;
         }
-        correspondNumber=cnt;
+        if(cnt==6){
+            correspondNumber = 7;
+        }
+
     }
 
     public void checkWinMoney(){
@@ -53,11 +54,11 @@ public class Paper {
             winMoney=1500000;
             return;
         }
-        if(correspondNumber==6) {
+        if(correspondNumber==7) {
             winMoney=20000000;
             return;
         }
-        if(correspondNumber==7) {
+        if(correspondNumber==6) {
             winMoney=30000000;
         }
     }

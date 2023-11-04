@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.outputMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,16 @@ public class Buyer {
 
     public Buyer(int price) {
         this.price = price;
+        makeLotteries();
+        outputMessage.buyMessage(Lotteries);
+    }
+    public void makeLotteries(){
+        int amount = calculationAmount(price);
+        for (int i = 0; i < amount; i ++ ){
+            List<Integer> lottoNumber = makeLottoNumber();
+            Lotto lotto = new Lotto(lottoNumber);
+            Lotteries.add(lotto);
+        }
     }
     public int calculationAmount(int price){
             return price/1000;
@@ -21,14 +32,9 @@ public class Buyer {
         return numbers;
     }
 
-    public void makeLotteries(){
-        List<Integer> lottoNumber = makeLottoNumber();
-        int amount = calculationAmount(price);
-        for (int i = 0; i < amount; i ++ ){
-            Lotto lotto = new Lotto(lottoNumber);
-            Lotteries.add(lotto);
-        }
-    }
+
+
+
 
 
 }

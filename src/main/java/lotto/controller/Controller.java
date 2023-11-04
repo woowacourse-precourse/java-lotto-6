@@ -12,9 +12,10 @@ public class Controller {
         buyLotto();
     }
     public void buyLotto(){
-        inputMessage.buyMessage();
+        inputMessage.priceMessage();
         String price = readLine();
         Buyer buyer = new Buyer(ChangeStringToInt(price));
+
     }
 
 }

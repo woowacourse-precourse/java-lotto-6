@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.validator.PurchaseLottoValidatable;
+import lotto.util.validator.PurchaseLottoValidator;
 import lotto.util.Util;
 
 public class InputView {
@@ -15,7 +15,7 @@ public class InputView {
         try {
             System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
             int purchase = Util.convertStringToInt(Console.readLine());
-            new PurchaseLottoValidatable().validate(purchase);
+            new PurchaseLottoValidator().validate(purchase);
             return purchase;
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);

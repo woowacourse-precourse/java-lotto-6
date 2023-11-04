@@ -2,7 +2,7 @@ package lotto.util.validator;
 
 import lotto.util.ExceptionMessage;
 
-public class PurchaseLottoValidatable implements Validatable {
+public class PurchaseLottoValidator implements Validatable {
     public void validate(int purchase) throws IllegalArgumentException {
         validatePurchaseLottoRange(purchase);
         validatePurchaseLottoUnit(purchase);

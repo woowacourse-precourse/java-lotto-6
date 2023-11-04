@@ -24,7 +24,6 @@ public class InputValidate {
                 System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
             }
         }
-
         return answerLotto;
     }
 

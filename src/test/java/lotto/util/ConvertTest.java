@@ -45,4 +45,25 @@ public class ConvertTest {
                     .withMessageContaining("[ERROR]");
         }
     }
+
+    @Nested
+    @DisplayName("문자열을 정수형 리스트로 변환하는 과정에서 발생하는 예외를 잡아 고의로 IllegalArgumentException을 발생시킨다.")
+    class StringToIntegerListException {
+
+        @DisplayName("문자열에 공백이 포함되어 있으면 예외가 발생한다.")
+        @Test
+        void should_ThrowIllegalArgumentException_When_Blank() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> Convert.stringToIntegerList("1,2,3,,5,6"))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("문자열에 숫자가 아닌 입력이 포함되어 있으면 예외가 발생한다.")
+        @Test
+        void should_ThrowIllegalArgumentException_When_NonInteger() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> Convert.stringToIntegerList("1,2,3,f,5,6"))
+                    .withMessageContaining("[ERROR]");
+        }
+    }
 }

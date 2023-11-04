@@ -10,6 +10,7 @@ import lotto.util.io.OutputUtils;
 
 public class Lottos {
 
+    private static final int PRICE_PER_TICKET = 1000;
     private final List<Lotto> lottos;
     private final int number;
     private Map<Ranking, Integer> winningStatics;
@@ -49,6 +50,10 @@ public class Lottos {
                         r.getKey().getPrize(),
                         r.getValue().intValue()
                 ));
+    }
 
+    private float calculateRateOfReturn(int money) {
+        float value = totalPrize / money * 100;
+        return (float) (Math.round(value * 100.0) / 100.0);
     }
 }

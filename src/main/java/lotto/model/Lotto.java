@@ -10,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-//        isBetween1And45(numbers);
+        isBetween1And45(numbers);
         isDuplicate(numbers);
         sortAsc(numbers);
         this.numbers = numbers;
@@ -22,13 +22,13 @@ public class Lotto {
         }
     }
 
-//    private void isBetween1And45(List<Integer> numbers) {
-//        for (Integer number : numbers) {
-//            if (number < 1 || number > 45) {
-//                ValidateMessage.LOTTO_NUMBER_IS_BETWEEN_1_TO_45.throwException();
-//            }
-//        }
-//    }
+    private void isBetween1And45(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                ValidateMessage.LOTTO_NUMBER_IS_BETWEEN_1_TO_45.throwException();
+            }
+        }
+    }
 
     private void isDuplicate(List<Integer> numbers) {
         long count = numbers.stream().distinct().count();

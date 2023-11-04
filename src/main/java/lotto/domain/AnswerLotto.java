@@ -33,6 +33,6 @@ public class AnswerLotto extends Lotto {
 	}
 
 	public int getBonusNumber() {
-		return bonusNumber.getBonusNumber();
+		return bonusNumber.bonusNumber();
 	}
 }

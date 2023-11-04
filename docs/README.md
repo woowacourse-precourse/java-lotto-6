@@ -70,12 +70,12 @@
 
 ### 8. 보너스 번호를 입력받는다.
 
-- [ ]  **[입력]** 사용자로부터 보너스 번호를 입력 받는다.
-    - [ ]  **[예외]** 입력 값이 공백으로만 이루어져 있으면 `illegalArgumentException`예외 발생
-    - [ ]  **[예외]** 입력 값이 빈 문자열이면 `illegalArgumentException`예외 발생
-    - [ ]  **[예외]** 로또에 이미 존재하는 번호면 `illegalArgumentException`예외 발생
-    - [ ]  **[예외]** 숫자가 아니면 `illegalArgumentException`예외 발생
-    - [ ]  **[예외]** 1에서 45 사이의 값이 아니면 `illegalArgumentException`예외 발생
+- [X]  **[입력]** 사용자로부터 보너스 번호를 입력 받는다.
+    - [X]  **[예외]** 입력 값이 공백으로만 이루어져 있으면 `illegalArgumentException`예외 발생
+    - [X]  **[예외]** 입력 값이 빈 문자열이면 `illegalArgumentException`예외 발생
+    - [X]  **[예외]** 로또에 이미 존재하는 번호면 `illegalArgumentException`예외 발생
+    - [X]  **[예외]** 숫자가 아니면 `illegalArgumentException`예외 발생
+    - [X]  **[예외]** 1에서 45 사이의 값이 아니면 `illegalArgumentException`예외 발생
 
 ---
 

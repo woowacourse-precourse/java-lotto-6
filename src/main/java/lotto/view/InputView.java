@@ -12,6 +12,7 @@ public class InputView {
 
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해주세요.";
     private static final String INPUT_DRAWN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public InputView(PurchaseAmountValidator purchaseAmountValidator) {
         this.purchaseAmountValidator = purchaseAmountValidator;
@@ -29,5 +30,11 @@ public class InputView {
         System.out.println(INPUT_DRAWN_NUMBERS_MESSAGE);
         String drawnNumbers = Console.readLine();
         return lottoNumberValidator.validateLottNumbers(drawnNumbers);
+    }
+
+    public Integer getBonusNumber(List<String> lottoNumbers) {
+        System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
+        String bonusNumber = Console.readLine();
+        return lottoNumberValidator.validateBonusNumber(bonusNumber, lottoNumbers);
     }
 }

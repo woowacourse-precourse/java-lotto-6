@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.Tickets;
+
 public class LottoController {
 
-    public void gernerateLotto(final int wallet) {
-
+    public void gernerateTicket(final int wallet) {
+        Tickets tickets = Tickets.from(wallet);
+        tickets.generate();
     }
 
     public void drawNumber() {

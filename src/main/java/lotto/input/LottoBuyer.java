@@ -8,9 +8,9 @@ import lotto.controller.LottoController;
 public class LottoBuyer {
     private LottoController lottoController = ApplicationContext.getController();
 
-    public void gernerateLotto(){
+    public void gernerateTicket(){
         int wallet = Integer.parseInt(readLine());
-        lottoController.gernerateLotto(wallet);
+        lottoController.gernerateTicket(wallet);
     }
 
     public void verifyWinRecord(){

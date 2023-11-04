@@ -21,7 +21,7 @@ public class ApplicationContext {
     }
 
     private void lottoProcess() {
-        lottoBuyer.gernerateLotto();
+        lottoBuyer.gernerateTicket();
         lottoDrawer.drawNumber();
         lottoBuyer.verifyWinRecord();
         lottoBuyer.verifyReturns();

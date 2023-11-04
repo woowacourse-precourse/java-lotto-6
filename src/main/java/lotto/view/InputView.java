@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Parser;
+import lotto.view.validator.InputValidator;
+import lotto.view.validator.UnitValidator;
 
 import java.util.List;
 
@@ -13,8 +15,12 @@ public class InputView {
     public static int getPurchasePriceInput() {
         print(USER_PURCHASE_PRICE_INPUT);
         String money = Console.readLine();
-        // TODO: 검증 로직 추가
-        return Integer.parseInt(money);
+        InputValidator.validMoneyType(money);
+
+        int responseMoney = Integer.parseInt(money);
+
+        UnitValidator.check(responseMoney);
+        return responseMoney;
     }
     public static List<Integer> getWinningNumberInput() {
         print(WINNING_NUMBERS_INPUT);

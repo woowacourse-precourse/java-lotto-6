@@ -52,7 +52,7 @@ public class InputView {
     public void inputBonusNumber() {
         System.out.println(OutputMessage.BONUS_NUMBER.getMessage());
         try {
-            gameController.BonusLottoAdd(validateRange(validateInteger(Console.readLine())));
+            gameController.bonusLottoAdd(validateRange(validateInteger(Console.readLine())));
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
             inputBonusNumber();

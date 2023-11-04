@@ -8,7 +8,7 @@ import java.util.List;
 public class Input {
 
     public static List<Integer> inputLottoMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return inputLottoNumber();
     }
 
@@ -29,7 +29,7 @@ public class Input {
     }
 
     public static int inputBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return inputBonusNumber();
     }
 

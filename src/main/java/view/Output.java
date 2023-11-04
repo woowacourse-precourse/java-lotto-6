@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 import lotto.Lotto;
 
 public class Output {
-    public static final String PURCHASE_AMOUNT_MESSAGE = "%d개를 구매했습니다.";
+    private static final String PURCHASE_AMOUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String LOTTO_NUMBERS_SEPARATOR = "[%s]";
     private static final String LOTTO_NUMBERS_JOIN_SEPARATOR = ", ";
 

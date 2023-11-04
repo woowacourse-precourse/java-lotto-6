@@ -9,11 +9,15 @@ public class LottoGame {
     public void start(){
         lc = new LottoController();
         System.out.println("구입금액을 입력해 주세요.");
-        lc.validatePrice(Console.readLine());
-        lc.buyLotto();
+        boolean isValidated = lc.validatePrice(Console.readLine());
+        if(isValidated) lc.buyLotto();
     }
 
-    public void pickNumber(){
+    public void viewMyNumber(){
+
+    }
+
+    public void pickWinningNumber(){
 
     }
 

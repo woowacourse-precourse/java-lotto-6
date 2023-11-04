@@ -16,7 +16,7 @@ class PurchaseAmountTest {
 	private Exception exception;
 
 	@Test
-	@DisplayName("구매금액을 옮바르게 반환 하는 테스트")
+	@DisplayName("구매금액을 올바르게 반환하는지 검증하는 테스트")
 	void getPurchaseAmount() {
 		String correct_PurchaseAmount = "2000";
 
@@ -31,6 +31,7 @@ class PurchaseAmountTest {
 		String type_blank = "";
 
 		exception = assertThrows(IllegalArgumentException.class, () -> purchaseAmount = new PurchaseAmount(type_blank));
+
 		assertEquals(exception.getMessage(), BLANK_PURCHASE_AMOUNT.getMessage());
 	}
 
@@ -40,6 +41,7 @@ class PurchaseAmountTest {
 		String type_null = null;
 
 		exception = assertThrows(IllegalArgumentException.class, () -> purchaseAmount = new PurchaseAmount(type_null));
+
 		assertEquals(exception.getMessage(), BLANK_PURCHASE_AMOUNT.getMessage());
 	}
 
@@ -49,6 +51,7 @@ class PurchaseAmountTest {
 		String type_string = "이천원";
 
 		exception = assertThrows(IllegalArgumentException.class, () -> purchaseAmount = new PurchaseAmount(type_string));
+
 		assertEquals(exception.getMessage(), NON_NUMERIC_PURCHASE_AMOUNT.getMessage());
 	}
 
@@ -58,6 +61,7 @@ class PurchaseAmountTest {
 		String type_not_multiple_of_thousand = "1500";
 
 		exception = assertThrows(IllegalArgumentException.class, () -> purchaseAmount = new PurchaseAmount(type_not_multiple_of_thousand));
+
 		assertEquals(exception.getMessage(), INVALID_PURCHASE_AMOUNT.getMessage());
 	}
 }

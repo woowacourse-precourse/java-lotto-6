@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.config.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
+import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
 import static lotto.config.LottoConfig.MAX_LOTTO_NUMBER;
@@ -18,13 +18,17 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
 	private void validate(List<Integer> numbers) {
 		if (!checkSize(numbers)) {
 			throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
 		}
 
 		if (!checkNumberRange(numbers)) {
-			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
+			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
 
 		if (!checkDuplication(numbers)) {
@@ -49,6 +53,6 @@ public class Lotto {
 	private boolean checkDuplication(List<Integer> numbers) {
 		long count = numbers.stream().distinct().count();
 
-		return count == LOTTO_SIZE.getValue();
+		return count == numbers.size();
 	}
 }

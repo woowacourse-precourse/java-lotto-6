@@ -1,14 +1,16 @@
 package lotto;
 
 public class LottoCost {
+    final static int UNIT = 1000;
+
     public int getLottoCost() {
         Input input = new Input();
         String cost = input.buyLotto();
-        boolean isValidated = isNumber(cost) && isMultipleOfThousand(cost);
+        boolean isValidated = isNumber(cost) && isMultipleOf(UNIT, cost);
 
         while (!isValidated) {
             cost = input.buyLotto();
-            if (isNumber(cost) && isMultipleOfThousand(cost)) {
+            if (isNumber(cost) && isMultipleOf(UNIT, cost)) {
                 isValidated = true;
             }
         }
@@ -30,9 +32,10 @@ public class LottoCost {
         return hasOnlyNum;
     }
 
-    public boolean isMultipleOfThousand(String cost) {
+    public boolean isMultipleOf(int unit, String cost) {
         int costValue = Integer.parseInt(cost);
-        boolean isRemainderZero = (costValue != 0 && costValue % 1000 == 0);
+        boolean isRemainderZero
+                = (costValue >= unit && costValue < Integer.MAX_VALUE && costValue % unit == 0);
 
         if (!isRemainderZero) {
             try {

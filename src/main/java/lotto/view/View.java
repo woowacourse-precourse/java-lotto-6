@@ -33,15 +33,30 @@ public final class View {
             return message.isBlank();
         }
 
-        public static String validateCost(String cost) {
+        private static String validateCost(String cost) {
+            validateNumber(cost);
+            validateUnit(cost);
+            return cost;
+        }
+
+        private static void validateNumber(String cost) {
             if (isNotNumber(cost)) {
                 throw new IllegalArgumentException("숫자를 입력해주세요.");
             }
-            return cost;
         }
 
         private static boolean isNotNumber(String message) {
             return !message.matches("\\d+");
+        }
+
+        private static void validateUnit(String cost) {
+            if (isNotDivisible(cost)) {
+                throw new IllegalArgumentException(String.format("%s원 단위의 구입 금액을 입력해주세요."));
+            }
+        }
+
+        private static boolean isNotDivisible(String cost) {
+            return Integer.parseInt(cost) % 1000 != 0;
         }
     }
 }

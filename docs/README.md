@@ -12,7 +12,7 @@
   - 1~45까지의 숫자가 아닐 경우 `[ERROR]`로 시작하는 에러 메시지와 함께 **예외**를 발생 시킨다.
   - 예외 발생 시, 재 입력을 받는다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-- [ ] 로또를 랜덤 생성한다.
+- [x] 로또를 랜덤 생성한다.
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
 - [x] 로또 번호를 검증 한다.
   - 개수가 6개 아닐 경우 `[ERROR]`로 시작하는 에러 메시지와 함께 **예외**를 발생 시킨다.

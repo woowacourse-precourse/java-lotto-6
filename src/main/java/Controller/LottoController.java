@@ -131,8 +131,8 @@ public class LottoController {
     }
 
     public int findIndexWithValue(int number, Lotto lotto) {
-        List<Integer> counts = List.of(3, 4, 5, 0, 6);
-        List<Integer> indexes = List.of(0, 1, 2, 0, 4);
+        List<Integer> counts = List.of(3, 4, 5, 5, 6);
+        List<Integer> indexes = List.of(0, 1, 2, 3, 4);
         int index = counts.indexOf(number);
         if (number == 5 && lotto.isContains(winningBonusNumber)) {
             index += 1;

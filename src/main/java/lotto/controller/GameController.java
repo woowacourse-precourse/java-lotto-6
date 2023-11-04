@@ -52,7 +52,7 @@ public class GameController {
     }
 
     private static void checkWinningDetails(){
-        winningDetails = new WinningDetails(lottos,winningNumbers.getNumbers(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
+        winningDetails = new WinningDetails(lottos,winningNumbers.getNumbers(),bonusNumber.getValue()); //당첨 내역
         OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
     }
 

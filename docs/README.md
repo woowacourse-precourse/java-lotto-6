@@ -1,6 +1,6 @@
 # 기능 요구 사항
 
-### 로또 게임 규칙
+## 로또 게임 규칙
 ```
 - 로또 번호의 숫자 범위는 1~45까지이다.
 - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
@@ -40,14 +40,18 @@
 
 ### Output
 
-- 출력 메소드
+- 출력 메소드 
 
-## Model
+### ErrorMessage
+
+- ```IllegalArgumentException``` 을 던지기 전 에러 내용 출력
+
+## Domain
 
 ### Money
 
 - 유효성 검사 통과 시 금액을 저장
-  - 1000으로 나눠 떨어지지 않으면 ```IllegalArgumentException``` 발생
+  - 1000으로 나누어 떨어지지 않으면 ```IllegalArgumentException``` 발생
   - 금액에 따라 구매한 로또 수 리턴
 
 ### Lotto
@@ -62,11 +66,9 @@
     - 입력 받은 값이 1 ~ 45 범위면 ```IllegalArgumentException``` 발생
     - 입력 받은 값이 당첨 번호에 포함되어 있다면 ```IllegalArgumentException``` 발생
 
-## Domain
-
 ### LottoGenerator
 
-- 중복 없는 로또 번호 6자리를 list 객체로 반환
+- 중복 없는 로또 번호 6자리를 Lotto 객체로 반환
 
 ## Controller
 
@@ -88,4 +90,5 @@
     - 프로그램 종료
 
 ### Application
+
 - 프로그램 시작

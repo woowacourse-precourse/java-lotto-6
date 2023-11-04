@@ -29,4 +29,11 @@ public class NumberTest {
         assertThatThrownBy(() -> LottoPurchaseAmountValidator.validateFitPurchaseAmountCondition(notDividedThousand ))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void check_ZeroInput() {
+        String negativeNumberInput = "0";
+        assertThatThrownBy(() -> LottoPurchaseAmountValidator.validateFitPurchaseAmountCondition(negativeNumberInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

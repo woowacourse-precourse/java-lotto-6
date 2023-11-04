@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.enumerate.ErrorCode.AMOUNT_IS_NOT_LONG;
 import static lotto.enumerate.ErrorCode.AMOUNT_IS_UNDER_THOUSAND_WON;
 import static lotto.enumerate.ErrorCode.AMOUNT_UNIT_IS_NOT_1000_WON;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
@@ -12,9 +13,21 @@ import lotto.record.AmountRecord;
 public class Amount {
     private final long amount;
 
-    public Amount(long amount) {
+    public Amount(String amount) {
         validAmount(amount);
-        this.amount = amount;
+        this.amount = convertValid(amount);
+    }
+
+    private static void amountUnderThousandWonValid(long convertedAmount) {
+        if (convertedAmount <= 0) {
+            exceptionCodeThrow(AMOUNT_IS_UNDER_THOUSAND_WON);
+        }
+    }
+
+    private static void unitThousandWonValid(long convertedAmount) {
+        if (convertedAmount % 1000 != 0) {
+            exceptionCodeThrow(AMOUNT_UNIT_IS_NOT_1000_WON);
+        }
     }
 
     public List<Lotto> buyLotto() {
@@ -40,20 +53,18 @@ public class Amount {
         }
     }
 
-    private void validAmount(long amount) {
-        unitThousandWonValid(amount);
-        amountUnderThousandWonValid(amount);
+    private void validAmount(String amount) {
+        long convertedAmount = convertValid(amount);
+        unitThousandWonValid(convertedAmount);
+        amountUnderThousandWonValid(convertedAmount);
     }
 
-    private static void amountUnderThousandWonValid(long amount) {
-        if (amount <= 0) {
-            exceptionCodeThrow(AMOUNT_IS_UNDER_THOUSAND_WON);
+    private long convertValid(String amount) {
+        try {
+            return Long.parseLong(amount);
+        } catch (NumberFormatException e) {
+            exceptionCodeThrow(AMOUNT_IS_NOT_LONG);
         }
-    }
-
-    private static void unitThousandWonValid(long amount) {
-        if (amount % 1000 != 0) {
-            exceptionCodeThrow(AMOUNT_UNIT_IS_NOT_1000_WON);
-        }
+        return 0;
     }
 }

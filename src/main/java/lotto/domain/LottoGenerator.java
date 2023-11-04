@@ -6,10 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import lotto.generator.RandomStrategy;
 
-public class LottoGame {
+public class LottoGenerator {
     public Lotto generateLotto(RandomStrategy randomGenerator) {
         List<Integer> lotto = new ArrayList<>();
         while (!hasStandardSize(lotto, Lotto.STANDARD_SIZE)) {
+            // 수정,, strategy 움직인 이유가 없음.. 인자 제외해야 한다
             addAlternativeNumber(lotto, randomGenerator.generate(
                     () -> Randoms.pickNumberInRange(Lotto.MIN_VALUE, Lotto.MAX_VALUE))
             );
@@ -23,10 +24,6 @@ public class LottoGame {
             return;
         }
         lotto.add(randomNumber);
-    }
-
-    private int generateRandomNumberInRange(int startInclusive, int endInclusive) {
-        return Randoms.pickNumberInRange(startInclusive, endInclusive);
     }
 
     private boolean hasStandardSize(List<Integer> lotto, int standardSize) {

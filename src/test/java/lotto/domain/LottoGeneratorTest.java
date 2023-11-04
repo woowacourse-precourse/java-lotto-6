@@ -7,8 +7,8 @@ import java.util.List;
 import lotto.generator.MockedRandomGenerator;
 import org.junit.jupiter.api.Test;
 
-public class LottoGameTest {
-    private LottoGame lottoGame = new LottoGame();
+public class LottoGeneratorTest {
+    private LottoGenerator lottoGame = new LottoGenerator();
 
     @Test
     void 로또_번호_조건_만족_여부_검증() {

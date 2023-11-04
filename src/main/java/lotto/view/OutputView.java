@@ -3,19 +3,24 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.WinningPrize;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
     private static final String PurchaseLottosCountPrintFormat = "%d개를 구매했습니다.\n";
     private static final String WinningStatisticsPrintMessage = "당첨 통계\n---";
-    private static final String WinningResultPrintFormat = "%d개 일치 (%d원) - %d개\n";
-    private static final String RateOfReturnPrintFormat = "총 수익률은 %.2f%입니다.\n";
+    private static final String WinningResultPrintFormat = "%d개 일치 (%s원) - %d개\n";
+    private static final String RateOfReturnPrintFormat = "총 수익률은 %.2f%%입니다.\n";
+
+    public void showEmptyLine(){
+        System.out.println();
+    }
 
     public void showPurchaseLottos(int purchaseLottosCount, List<Lotto> purchaseLottos) {
         System.out.printf(PurchaseLottosCountPrintFormat, purchaseLottosCount);
         for (Lotto purchaseLotto : purchaseLottos) {
-            System.out.println(purchaseLotto);
+            System.out.println(purchaseLotto.getNumbers());
         }
     }
 
@@ -33,7 +38,8 @@ public class OutputView {
         for (Map.Entry<WinningPrize, Integer> entry : winningResult.entrySet()) {
             WinningPrize winningPrize = entry.getKey();
             int count = entry.getValue();
-            System.out.printf(WinningResultPrintFormat, winningPrize.getMatchCount(), winningPrize.getReward(), count);
+            String reward = NumberFormat.getInstance().format(winningPrize.getReward());
+            System.out.printf(WinningResultPrintFormat, winningPrize.getMatchCount(), reward, count);
         }
     }
 

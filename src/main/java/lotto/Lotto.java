@@ -1,12 +1,13 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    public static final int STANDARD_SIZE = 6;
     public static final int MAX_VALUE = 45;
     public static final int MIN_VALUE = 1;
+    private static final int STANDARD_SIZE = 6;
     private final List<Integer> numbers; // 필드 고정, private 도 고정
 
     public Lotto(List<Integer> numbers) {
@@ -28,7 +29,7 @@ public class Lotto {
 
     private void hasDuplicatedNumber(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(ErrorException.DUPLICATED_LOTTO_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorException.DUPLICATED_NUMBER.getErrorDescription());
         }
     }
 
@@ -37,7 +38,11 @@ public class Lotto {
                 .filter(number -> ((number > MAX_VALUE) || (number < MIN_VALUE)))
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorException.OUT_OF_RANGE_LOTTO_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorException.OUT_OF_RANGE_NUMBER.getErrorDescription());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

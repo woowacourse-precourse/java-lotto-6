@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,15 @@ public class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
         Assertions.assertDoesNotThrow(() -> new PurchaseAmount(12000));
         Assertions.assertDoesNotThrow(() -> new PurchaseAmount(1000));
+    }
+
+    @DisplayName("입력한 금액에 맞는 개수의 로또를 발행해야 한다.")
+    @Test
+    void correctPurchaseAmount() {
+        PurchaseAmount p = new PurchaseAmount(123_000);
+        assertThat(p.getTicketQuantity()).isEqualTo(123);
+        p = new PurchaseAmount(0);
+        assertThat(p.getTicketQuantity()).isEqualTo(0);
     }
 
 }

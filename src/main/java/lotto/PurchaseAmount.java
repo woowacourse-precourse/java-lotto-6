@@ -11,6 +11,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public int getTicketQuantity() {
+        return this.amount / LOTTERY_TICKET_PRICE;
+    }
+
     private void validate(int amount) throws IllegalArgumentException {
         if (amount % LOTTERY_TICKET_PRICE != 0) {
             throw new IllegalArgumentException();

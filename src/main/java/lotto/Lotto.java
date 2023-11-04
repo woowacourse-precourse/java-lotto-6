@@ -25,10 +25,10 @@ public class Lotto {
         }
     }
 
-    public int countMatchedNumbers(Lotto winningLotto){
+    public int countMatchedNumbers(Lotto lotto){
         int count = 0;
         for(int number: numbers){
-            if(winningLotto.getNumbers().contains(number)){
+            if(lotto.getNumbers().contains(number)){
                 count++;
             }
         }

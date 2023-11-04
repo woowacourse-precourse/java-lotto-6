@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
@@ -16,6 +14,7 @@ public class Application {
         int bonusNumber = inputBonusNumber();
 
     }
+    // 입력받고 로또 생성
     private static int inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요");
         int purchaseAmount = Integer.parseInt(Console.readLine());
@@ -44,6 +43,7 @@ public class Application {
         return numbers;
     }
 
+    // 당첨 로또 생성
     private static List<Integer> inputWinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
@@ -62,4 +62,26 @@ public class Application {
         return bonusNumber;
     }
 
+    // 결과 계산
+    private static Map<String, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber){
+        Map<String, Integer> resultMap = new HashMap<>();
+
+        for(Lotto lotto : lottos){
+            int matchCount = winningLotto.countMatchedNumbers(lotto);
+
+            if(matchCount<3)continue;
+
+            boolean bonusMatch = winningLotto.isBonusMatched(bonusNumber);
+            String key = getKey(matchCount, bonusMatch);
+
+            resultMap.put(key, resultMap.getOrDefault(key, 0) + 1);
+        }
+        return resultMap;
+    }
+    
+    private static String getKey(int matchCount, boolean bonusMatch){
+        // 추가로 작성
+        
+        return matchCount + "개 일치";
+    }
 }

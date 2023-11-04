@@ -29,4 +29,8 @@ public class Lotto {
         }
         return count;
     }
+
+    public boolean hasBonusNumber(LottoResult result) {
+        return result.hasBonusNumber(numbers);
+    }
 }

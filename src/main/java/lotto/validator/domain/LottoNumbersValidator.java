@@ -2,12 +2,10 @@ package lotto.validator.domain;
 
 import java.util.List;
 import lotto.domain.lotto.LottoCondition;
+import lotto.validator.domain.exception.DomainExceptionMessage;
+import lotto.validator.domain.exception.DomainIllegalArgumentException;
 
 public class LottoNumbersValidator {
-
-    private static final String OUT_OF_RANGE_LOTTO_NUMBER = "[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.";
-    private static final String INVALID_LOTTO_LENGTH = "[ERROR] 로또 번호의 길이는 6개여야 합니다.";
-    private static final String DUPLICATES_LOTTO_NUMBERS = "[ERROR] 로또 번호는 중복을 허용하지 않습니다.";
 
     private LottoNumbersValidator() {
     }
@@ -20,7 +18,7 @@ public class LottoNumbersValidator {
 
     private static void validateRange(final List<Integer> numbers) {
         if (isOutOfRange(numbers)) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER);
+            throw new DomainIllegalArgumentException(DomainExceptionMessage.OUT_OF_RANGE_NUMBER);
         }
     }
 
@@ -31,13 +29,13 @@ public class LottoNumbersValidator {
 
     private static void validateLength(final List<Integer> numbers) {
         if (LottoCondition.isInvalidLength(numbers.size())) {
-            throw new IllegalArgumentException(INVALID_LOTTO_LENGTH);
+            throw new DomainIllegalArgumentException(DomainExceptionMessage.INVALID_LOTTO_LENGTH);
         }
     }
 
     private static void validateDuplicates(final List<Integer> numbers) {
         if (isDuplicate(numbers)) {
-            throw new IllegalArgumentException(DUPLICATES_LOTTO_NUMBERS);
+            throw new DomainIllegalArgumentException(DomainExceptionMessage.DUPLICATES_LOTTO_NUMBERS);
         }
     }
 

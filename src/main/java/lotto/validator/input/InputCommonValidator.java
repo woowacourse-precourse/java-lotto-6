@@ -1,10 +1,10 @@
 package lotto.validator.input;
 
 import java.util.List;
+import lotto.validator.input.exception.InputExceptionMessage;
+import lotto.validator.input.exception.InputIllegalArgumentException;
 
 public class InputCommonValidator {
-
-    private static final String INVALID_NUMBER_FORMAT = "[ERROR] 숫자만 입력해야 합니다.";
 
     private InputCommonValidator() {
     }
@@ -21,7 +21,7 @@ public class InputCommonValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT);
+            throw new InputIllegalArgumentException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
         }
     }
 }

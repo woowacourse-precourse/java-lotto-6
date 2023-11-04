@@ -11,11 +11,11 @@ import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.LottoMoney;
 import lotto.dto.BuyingResults;
 import lotto.dto.WinningResults;
+import lotto.validator.domain.exception.DomainExceptionMessage;
+import lotto.validator.domain.exception.DomainIllegalArgumentException;
 
 // todo 기능 분리 시도
 public class LottoMachine {
-
-    private static final String NOT_FOUND_LOTTO = "[ERROR] 로또 번호가 존재하지 않습니다.";
 
     private final LottosRepository lottosRepository;
 
@@ -57,11 +57,11 @@ public class LottoMachine {
 
     private Lottos findUserLottosObject() {
         return lottosRepository.findUserLottos()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LOTTO));
+                .orElseThrow(() -> new DomainIllegalArgumentException(DomainExceptionMessage.NOT_FOUND_LOTTO));
     }
 
     private WinningLotto findWinningLottoObject() {
         return lottosRepository.findWinningLotto()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LOTTO));
+                .orElseThrow(() -> new DomainIllegalArgumentException(DomainExceptionMessage.NOT_FOUND_LOTTO));
     }
 }

@@ -36,19 +36,23 @@ public class Controller {
 
         while (true) {
             String inputAmount = Console.readLine();
-            try {
-                return amountValidationProcess(inputAmount);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            Integer amount = amountValidationProcess(inputAmount);
+
+            if (amount != null) {
+                return amount;
             }
-            return amountValidationProcess(inputAmount);
         }
     }
 
-    public int amountValidationProcess(String inputAmount) {
-        int amount = parseUtils.parseStringToInt(inputAmount);
-        validationService.amountValidation(amount);
+    public Integer amountValidationProcess(String inputAmount) {
+        try {
+            int amount = parseUtils.parseStringToInt(inputAmount);
+            validationService.amountValidation(amount);
 
-        return amount;
+            return amount;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

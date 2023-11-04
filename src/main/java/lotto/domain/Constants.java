@@ -32,4 +32,5 @@ public class Constants {
     public static final String WINNING_FIVE_ADD_BONUS_NUMBERS = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     public static final String WINNING_SIX_NUMBERS = "6개 일치 (2,000,000,000원) - %d개\n";
     public static final String PROFIT = "총 수익률은 %.1f%%입니다.";
+    public static final int WINNING_COUNT = 3;
 }

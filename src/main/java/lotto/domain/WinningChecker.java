@@ -22,10 +22,9 @@ public class WinningChecker {
             int matchedNumCount = countMatchedNumber(lottoNumbers);
             matchedNumCount = countMatchedBonusNumber(lottoNumbers, matchedNumCount);
 
-            if (matchedNumCount >= 3) {
+            if (matchedNumCount >= Constants.WINNING_COUNT) {
                 matchedNumberCounts.add(matchedNumCount);
             }
-
         }
         return countRanks(matchedNumberCounts);
     }

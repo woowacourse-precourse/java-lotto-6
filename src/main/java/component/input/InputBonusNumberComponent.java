@@ -1,0 +1,12 @@
+package component.input;
+
+import component.Component;
+
+public final class InputBonusNumberComponent implements Component {
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+    @Override
+    public String render() {
+        return INPUT_BONUS_NUMBER_MESSAGE;
+    }
+}

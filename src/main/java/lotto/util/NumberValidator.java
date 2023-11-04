@@ -19,25 +19,31 @@ public class NumberValidator {
         }
     }
 
-    public static void validateSizeSix(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
+        validateSizeSix(numbers);
+        validateNumbersRange(numbers);
+        validateDuplicates(numbers);
+    }
+
+    private static void validateSizeSix(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_SIX_NUMBER.toString());
         }
     }
 
-    public static void validateNumbersRange(List<Integer> numbers) {
+    private static void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
-            isValidNumber(number);
+            isValidRange(number);
         }
     }
 
-    private static void isValidNumber(int number) {
+    private static void isValidRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.toString());
         }
     }
 
-    public static void validateDuplicates(List<Integer> numbers) {
+    private static void validateDuplicates(List<Integer> numbers) {
         set = new HashSet<>();
         for (int number : numbers) {
             checkDuplicates(number);

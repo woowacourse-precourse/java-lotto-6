@@ -6,6 +6,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WinLottoNumbersTest {
+    @Test
+    public void setWinLottoLoopTest() {
+        Status status = Status.FAIL;
+        int attempt = 0;
+
+        while (status == Status.FAIL) {
+            try {
+                new WinLottoNumbers("fail");
+                status = Status.SUCCESS;
+            }catch (IllegalArgumentException ignored){ }
+            finally {
+                attempt++;
+            }
+            if(attempt==3){
+                break;
+            }
+        }
+        assertEquals(attempt, 3);
+    }
 
     @Test
     public void validTest(){

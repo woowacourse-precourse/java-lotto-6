@@ -96,7 +96,7 @@ public class LottoController {
 
     public int getValidBuyingCost(InputView inputView) {
         BuyingCost buyingCost = new BuyingCost();
-        int validCost = 0;
+        int validCost;
         while (true) {
             try {
                 validCost = buyingCost.getCost(inputView.inputBuyingCost());

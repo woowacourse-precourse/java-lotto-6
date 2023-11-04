@@ -3,22 +3,24 @@ package lotto.view;
 import static lotto.constants.ExceptionMessage.BLANK_INPUT;
 import static lotto.constants.ExceptionMessage.ERROR_FORMAT;
 import static lotto.constants.ExceptionMessage.SPACE_INCLUDED;
+import static lotto.constants.LottoIOMessage.BONUS_NUM_INPUT;
+import static lotto.constants.LottoIOMessage.BUYING_COST_INPUT;
+import static lotto.constants.LottoIOMessage.WINNING_NUM_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.Validation;
 
 public class InputView {
 
-    public String inputPurchaseCost() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public String inputBuyingCost() {
+        System.out.println(BUYING_COST_INPUT);
         String inputCost = Console.readLine();
         validateInput(inputCost);
         return inputCost;
     }
 
     public String inputWinnerNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUM_INPUT);
         String inputWinningNum = Console.readLine();
         validateInput(inputWinningNum);
         Validation.validateComma(inputWinningNum);
@@ -26,8 +28,7 @@ public class InputView {
     }
 
     public String inputBonusNumber() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUM_INPUT);
         String inputBonusNum = Console.readLine();
         validateInput(inputBonusNum);
         return inputBonusNum;

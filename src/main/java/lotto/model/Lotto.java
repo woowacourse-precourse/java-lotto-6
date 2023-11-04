@@ -16,6 +16,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto create(String inputNumber) {
+        List<Number> numbers = convertStringToNumbers(inputNumber);
+        return new Lotto(numbers);
+    }
+
     private static List<Number> convertStringToNumbers(String inputNumber) {
         List<Integer> inputNumbers = convertStringToList(inputNumber);
         return inputNumbers.stream()

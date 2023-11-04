@@ -3,6 +3,7 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
+import lotto.Model.Lotto;
 import lotto.Validator.BonusNumberValidator;
 import lotto.Validator.LottoPurchaseAmountValidator;
 
@@ -37,13 +38,9 @@ public class InputView {
     private static Set<Integer> parseLottoNumbers(String input) {
         Set<Integer> lottoNumbers = new HashSet<>();
         String[] eachLottoNumbers = input.split(",");
-        LottoNumberValidator.validateLottoNumbersCount(lottoNumbers);
 
         for (String token : eachLottoNumbers) {
             int lottoNumber = Integer.parseInt(token);
-            LottoNumberValidator.validateIsNumberInRange(lottoNumber, lottoNumbers);
-            LottoNumberValidator.validateIsNumberDuplicate(lottoNumber, lottoNumbers);
-            LottoNumberValidator.validateEachLottoNumber(token);
             lottoNumbers.add(lottoNumber);
         }
 

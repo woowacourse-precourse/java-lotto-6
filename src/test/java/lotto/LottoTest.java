@@ -40,12 +40,5 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    /*@DisplayName("로또 번호에 문자열이 입력된 경우 예외가 발생한다.")
-    @Test
-    void validateEachLottoNumberWithNonNumericInput() {
-        assertThatThrownBy(() -> Lotto.validateEachLottoNumber("A"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }*/
-
 
 }

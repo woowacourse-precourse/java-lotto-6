@@ -18,6 +18,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateIsNumberInRange(numbers);
+        validateIsNumberDuplicate(numbers);
+        validateEachLottoNumber(numbers);
+
         this.numbers = numbers;
     }
 
@@ -33,29 +37,37 @@ public class Lotto {
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 로또 번호를 입력했습니다.";
-    private static final int REQUIRED_NUMBER_COUNT = 6;
-    private static final String LOTTO_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개 입력해야 합니다.";
     private static final String LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE = "[ERROR] 로또 번호는 숫자여야 합니다.";
 
-    public static void validateIsNumberInRange(int number, Set<Integer> existingNumbers) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
+    public static void validateIsNumberInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
+            }
         }
     }
 
-    public static void validateIsNumberDuplicate(int number, Set<Integer> existingNumbers) {
+        public static void validateIsNumberDuplicate(List < Integer > numbers) {
+            Set<Integer> existingNumbers = new HashSet<>();
 
-        if (existingNumbers.contains(number)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+            for (Integer number : numbers) {
+                if (existingNumbers.contains(number)) {
+                    throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+                }
+                existingNumbers.add(number);
+            }
         }
-    }
 
-    public static int validateEachLottoNumber(String token) {
-        try {
-            return Integer.parseInt(token);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
+        public static void validateEachLottoNumber (List < Integer > numbers) {
+            for (Integer number : numbers) {
+                try {
+                    Integer.parseInt(number.toString());
+                }
+                catch (NumberFormatException e) {
+                    throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC_ERROR_MESSAGE);
+                }
+            }
         }
-    }
+
 
 }

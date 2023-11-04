@@ -14,6 +14,31 @@ public class PrizeManager {
         }
     }
 
+    public List<Integer> getPrizeCounts() {
+        List<Integer> counts = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        calculatePrizeCounts(counts);
+
+        return counts;
+    }
+
+
+    private void calculatePrizeCounts(List<Integer> counts) {
+        List<Integer> indexes = getIndexOfAllPrizes();
+
+        for (int index : indexes) {
+            int want = counts.get(index) + 1;
+            counts.set(index, want);
+        }
+    }
+
+    private List<Integer> getIndexOfAllPrizes() {
+        List<Integer> indexes = new ArrayList<>();
+        for (int prize : prizes) {
+            int index = Rank.getIndexByPrize(prize);
+            indexes.add(index);
+        }
+        return indexes;
+    }
 
     // testcode
     protected List<Integer> getPrizes() {

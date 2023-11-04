@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class PrizeManagerTest {
 
-
     @DisplayName("입력받은 점수를 토대로 상금을 목록에 추가한다.")
     @Test
     void checkTicketAndAddPrizes() {
@@ -29,6 +28,26 @@ class PrizeManagerTest {
         // 일치 여부 확인
         assertEquals(expectedPrizes, prizes);
 
+    }
+
+    @DisplayName("상금 목록에서 입력받은 등수의 갯수를 구한다.")
+    @Test
+    void getPrizeCountsTest() {
+        //변수 생성
+        PrizeManager prize = new PrizeManager();
+
+        // 상금 목록 생성
+        List<Integer> points = new ArrayList<>(List.of(7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3));
+        prize.checkTicketAndAddPrizes(points);
+
+        // 예상 출력값 저장
+        List<Integer> expectedPrizeCounts = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+
+        // 기능 실행 및 실제 출력값 저장
+        List<Integer> prizeCounts = prize.getPrizeCounts();
+
+        //일치 여부 확인
+        assertEquals(expectedPrizeCounts, prizeCounts);
     }
 
 }

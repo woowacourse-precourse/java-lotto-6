@@ -6,6 +6,7 @@ public class InputValidation {
         validateCheckRangeOfInput(input);
         int purchaseAmount = Integer.parseInt(input);
         validatePurchaseAmountIsPositive(purchaseAmount);
+        validatePurchaseAmountOutOfRange(purchaseAmount);
         validatePurchaseAmountUnit(purchaseAmount);
 
         return purchaseAmount;
@@ -21,6 +22,12 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하로 입력해야 합니다.");
+        }
+    }
+
+    public void validatePurchaseAmountOutOfRange(int purchaseAmount) {
+        if (purchaseAmount > 2100000000) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하로 입력해야 합니다.");
         }
     }

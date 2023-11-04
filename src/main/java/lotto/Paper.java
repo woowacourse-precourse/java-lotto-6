@@ -12,6 +12,11 @@ public class Paper {
     public List<Integer> numbers;
     private int correspondNumber;
     private int winMoney;
+
+    public Paper(){
+        pickLottoNumber();
+    }
+
     public void pickLottoNumber(){
         this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
@@ -64,7 +69,7 @@ public class Paper {
         return winMoney;
     }
 
-    public void printNumbers(){
+    public void printPaperNumbers(){
         System.out.println(numbers);
     }
 

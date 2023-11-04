@@ -1,11 +1,16 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
     private final static String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
 
-    public void askPrice(String input) {
+    public int askPrice() {
         askHowManyPurchase(ASK_PURCHASE_MESSAGE);
+        String input = Console.readLine();
+        validateBlankAndEmptyInteger(input);
+        return validateZero(validateNegativeInteger(validateInteger(input)));
     }
 
     private void askHowManyPurchase(String askPurchaseMessage) {

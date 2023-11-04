@@ -11,6 +11,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    // 입력값이 6개인지
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

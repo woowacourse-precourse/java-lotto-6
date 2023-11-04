@@ -23,13 +23,13 @@ public class Lotto {
 
     private void hasStandardSize(List<Integer> numbers) {
         if (numbers.size() != STANDARD_SIZE) {
-            throw new IllegalArgumentException(ErrorException.WRONG_LOTTO_SIZE.getErrorDescription());
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_SIZE.getErrorDescription());
         }
     }
 
     private void hasDuplicatedNumber(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException(ErrorException.DUPLICATED_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorDescription());
         }
     }
 
@@ -38,7 +38,7 @@ public class Lotto {
                 .filter(number -> ((number > MAX_VALUE) || (number < MIN_VALUE)))
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorException.OUT_OF_RANGE_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
         }
     }
 

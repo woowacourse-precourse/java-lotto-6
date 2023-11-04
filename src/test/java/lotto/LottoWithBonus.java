@@ -17,7 +17,7 @@ public class LottoWithBonus {
                 .filter(lottoNumber -> lottoNumber == bonus.getBonusNumber())
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorException.DUPLICATED_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getErrorDescription());
         }
     }
 

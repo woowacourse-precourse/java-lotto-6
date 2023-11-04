@@ -10,7 +10,7 @@ public class Bonus {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber > 45 || bonusNumber < 1) {
-            throw new IllegalArgumentException(ErrorException.OUT_OF_RANGE_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
         }
     }
 

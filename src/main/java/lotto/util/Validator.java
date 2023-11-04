@@ -1,53 +1,44 @@
 package lotto.util;
 
 import lotto.exception.ErrorMessage;
+import lotto.policy.LottoPolicy;
 
 public class Validator {
-    private static final int LOTTO_AMOUNT = 1000;
 
     public static boolean verifyPurchaseAmount(String input) {
-        if (verifyComposedOfNumbers(input) || verifyAboveThousand(Integer.parseInt(input))
-                || verifyDivisibilityByThousand(Integer.parseInt(input))) {
-            return false;
+        try {
+            verifyComposedOfNumbers(input);
+            verifyAboveThousand(Integer.parseInt(input));
+            verifyDivisibilityByThousand(Integer.parseInt(input));
+            return true;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-        return true;
+        return false;
     }
 
-    private static boolean verifyComposedOfNumbers(String input) {
+    private static void verifyComposedOfNumbers(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
-            System.out.println(ErrorMessage.INPUT_NOT_COMPOSED_OF_NUMBER.getMessage());
-            return true;
+            throw new NumberFormatException(ErrorMessage.INPUT_NOT_COMPOSED_OF_NUMBER.getMessage());
         }
-        return false;
     }
 
-    private static boolean verifyAboveThousand(int input) {
-        try {
-            if (input < LOTTO_AMOUNT) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            System.out.println(ErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
-            return true;
+    private static void verifyAboveThousand(int input) {
+        if (input < LottoPolicy.LOTTO_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
         }
-        return false;
     }
 
-    private static boolean verifyDivisibilityByThousand(int input) {
-        try {
-            if (input % LOTTO_AMOUNT != 0) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            System.out.println(ErrorMessage.INDIVISIBLE_PURCHASE_AMOUNT.getMessage());
-            return true;
+    private static void verifyDivisibilityByThousand(int input) {
+        if (input % LottoPolicy.LOTTO_AMOUNT.getValue() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_PURCHASE_AMOUNT.getMessage());
         }
-        return false;
     }
 
     private Validator() {

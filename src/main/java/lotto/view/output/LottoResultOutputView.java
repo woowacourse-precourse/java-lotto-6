@@ -1,6 +1,11 @@
 package lotto.view.output;
 
+import lotto.domain.lotto.LottoRank;
 import lotto.message.LottoResultMessage;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 public class LottoResultOutputView {
 
@@ -12,28 +17,10 @@ public class LottoResultOutputView {
         System.out.println(LottoResultMessage.DASH_LINE.getMessage());
     }
 
-    public void printLottoAllMatch() {
-
-        printThreeLottoMatch();
-        printFourLottoMatch();
-        printFiveLottoMatch();
-        printFiveLottoMatchWithBonus();
-        printSixLottoMatch();
+    public void printLottoAllMatch(Map<LottoRank, Long> lottoRankCountMap) {
+        Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
+        lottoRanks.stream()
+                .forEach(lottoRank -> lottoRank.accept(lottoRankCountMap.get(lottoRank)));
     }
 
-    private void printThreeLottoMatch() {
-        System.out.print(LottoResultMessage.THREE_MATCH_FORMAT.getMessage());
-    }
-    private void printFourLottoMatch() {
-        System.out.print(LottoResultMessage.FOUR_MATCH_FORMAT.getMessage());
-    }
-    private void printFiveLottoMatch() {
-        System.out.print(LottoResultMessage.FIVE_MATCH_FORMAT.getMessage());
-    }
-    private void printFiveLottoMatchWithBonus() {
-        System.out.print(LottoResultMessage.FIVE_MATCH_WITH_BONUS_FORMAT.getMessage());
-    }
-    private void printSixLottoMatch() {
-        System.out.print(LottoResultMessage.SIX_MATCH_FORMAT.getMessage());
-    }
 }

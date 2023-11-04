@@ -1,8 +1,6 @@
 package lotto.domain.lotto;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lottos {
@@ -17,12 +15,23 @@ public class Lottos {
     }
 
     public Map<LottoRank, Long> countLottoRanks(final Lotto winningLotto, final int bonus) {
-        return lottos.stream()
+        EnumMap<LottoRank, Long> lottoRankCountMap = new EnumMap<>(LottoRank.class);
+
+        //init
+        for (LottoRank rank : LottoRank.values()) {
+            lottoRankCountMap.put(rank, 0L);
+        }
+
+        //lottoRanks
+        List<LottoRank> lottoRanks = lottos.stream()
                 .map(lotto -> lotto.determineLottoRank(winningLotto, bonus))
-                .collect(Collectors.groupingBy(
-                        rank -> rank,
-                        Collectors.counting()
-                ));
+                .toList();
+
+        for (LottoRank rank : lottoRanks) {
+            lottoRankCountMap.put(rank, lottoRankCountMap.get(rank) + 1);
+        }
+        
+        return lottoRankCountMap;
     }
 
     public List<Lotto> getLottos() {

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.view.output.LottoBuyOutputView;
+import lotto.view.output.LottoResultOutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ class LottoControllerTest {
         // given
         String amount = "10000";
         int denomination = 1000;
-        LottoController lottoController = new LottoController(new LottoBuyOutputView());
+        LottoController lottoController = new LottoController(new LottoBuyOutputView(), new LottoResultOutputView());
         System.setIn(new ByteArrayInputStream(amount.getBytes()));
         // when
         Lottos lottos = lottoController.buyLottos();

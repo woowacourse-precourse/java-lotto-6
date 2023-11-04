@@ -3,6 +3,7 @@ package lotto.domain;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.util.StringUtils;
@@ -43,6 +44,7 @@ public class Lottos {
                         lotto -> lotto.getRanking(winningNumbers, bonusNumber),
                         summingInt(lotto -> 1)
                 ));
+        Arrays.stream(Ranking.values()).forEach(ranking -> winningStatics.putIfAbsent(ranking, 0));
     }
 
     private void calculateTotalPrize() {

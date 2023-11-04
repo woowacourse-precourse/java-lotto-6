@@ -28,6 +28,20 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public WinningStatistics containsLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        int match = (int) winningLotto.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+
+        int bonusMatch = 0;
+
+        if (numbers.contains(bonusNumber.getBonusNumber())) {
+            bonusMatch = 1;
+        }
+
+        return WinningStatistics.of(match, bonusMatch);
+    }
+
     private List<Integer> sortedLotto(List<Integer> numbers) {
         List<Integer> sortedLotto = new ArrayList<>(numbers);
         Collections.sort(sortedLotto);
@@ -47,7 +61,7 @@ public class Lotto {
 
     private void validateDuplicateLotto(List<Integer> numbers) {
         if (isDuplicateLotto(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호가 중복되었습니다.");
         }
     }
 

@@ -18,7 +18,7 @@ public class WinnerNumberVerifier implements Verifier {
             try {
                 Integer.parseInt(number);
             } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR]입력된 값은 숫자가 아닙니다.");
+                throw new IllegalArgumentException("[ERROR] 입력된 값은 숫자가 아닙니다.");
             }
         }
     }
@@ -26,7 +26,7 @@ public class WinnerNumberVerifier implements Verifier {
     private void checkNumberCount(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR]당첨번호는 6개의 숫자가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개의 숫자가 아닙니다.");
         }
     }
 
@@ -35,7 +35,7 @@ public class WinnerNumberVerifier implements Verifier {
         for (String num : inputs) {
             int number = Integer.parseInt(num);
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR]로또번호는 1~45사이의 숫자이어야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또번호는 1~45사이의 숫자이어야 합니다.");
             }
         }
     }
@@ -46,7 +46,7 @@ public class WinnerNumberVerifier implements Verifier {
         for(String number : numbers){
             int numberInt = Integer.parseInt(number);
             if (winnerNumbers.contains(numberInt)) {
-                throw new IllegalArgumentException("중복된 로또 번호입니다.");
+                throw new IllegalArgumentException("[ERROR] 중복된 로또 번호입니다.");
             }
             winnerNumbers.add(numberInt);
         }

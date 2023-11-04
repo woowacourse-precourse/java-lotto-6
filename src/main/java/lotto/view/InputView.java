@@ -8,12 +8,11 @@ import lotto.utils.Message;
 public class InputView {
     private final String INPUT_PRICE = "구입금액을 입력해 주세요.";
 
-    public void inputLottoPrice() {
+    public int getLottoCount() {
         System.out.println(INPUT_PRICE);
         String inputPrice = null;
         int lottoCount = 0;
         Casher casher = new Casher();
-        // 각종 검증 후 예외 메시지 발생
         while (true) {
             inputPrice = inputValue();
             try {
@@ -24,7 +23,7 @@ public class InputView {
                 System.out.println(Code.Error.getCode() + " " + e.getMessage());
             }
         }
-        // 로또 생성기에게 lottoCount를 전달해서 로또 생성 요청
+        return lottoCount;
     }
 
     private String inputValue() {

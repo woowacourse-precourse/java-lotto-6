@@ -13,7 +13,7 @@ class LottoTest {
     @Test
     void createLottoByOverSize() {
         // given & when & then
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,7 +21,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // given & when & then
-        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.createFrom(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class LottoTest {
     @Test
     void createLotto_exception_outOfRangeNumber() {
         // given & when & then
-        assertThatThrownBy(() -> Lotto.from(List.of(0, 2, 3, 4, 5, 46)))
+        assertThatThrownBy(() -> Lotto.createFrom(List.of(0, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,7 @@ class LottoTest {
     @Test
     void contains() {
         // given
-        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
 
         // when
         boolean result = lotto.contains(1);
@@ -50,8 +50,8 @@ class LottoTest {
     @Test
     void extractSameCount() {
         // given
-        Lotto firstLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-        Lotto secondLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 7));
+        Lotto firstLotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
+        Lotto secondLotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 7));
 
         // when
         int sameCount = firstLotto.extractSameCount(secondLotto);

@@ -15,4 +15,10 @@ public class InputView {
         return InputValidator.validatePurchaseAmount(playerInput);
     }
 
+    public List<Integer> requestWinningNumbersInput(){
+        System.out.println(REQUEST_WINNING_NUMBERS_MESSAGE.getMessage());
+        String playerInput = Console.readLine();
+        return InputValidator.validateWinningNumbers(playerInput);
+    }
+
 }

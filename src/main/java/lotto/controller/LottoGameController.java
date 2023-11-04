@@ -33,17 +33,37 @@ public class LottoGameController {
     }
 
     private WinningNumber generateWinningNumber() {
+        Lotto lottoNumber = generateLottoNumber();
+        while (true) {
+            try {
+                BonusNumber bonusNumber = generateBonusNumber();
+                return new WinningNumber(lottoNumber, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto generateLottoNumber() {
         while (true) {
             try {
                 OutputView.printLottoNumbersInputText();
                 List<Integer> lottoNumbers = Arrays.stream(InputView.getUserInput().split(","))
+                        .map(String::trim)
                         .map(this::convertInputToNumber)
                         .toList();
+                return new Lotto(lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 
-                Lotto lottoNumber = new Lotto(lottoNumbers);
+    private BonusNumber generateBonusNumber() {
+        while (true) {
+            try {
                 OutputView.printBonusNumberInputText();
-                BonusNumber bonusNumber = new BonusNumber(convertInputToNumber(InputView.getUserInput()));
-                return new WinningNumber(lottoNumber, bonusNumber);
+                return new BonusNumber(convertInputToNumber(InputView.getUserInput()));
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

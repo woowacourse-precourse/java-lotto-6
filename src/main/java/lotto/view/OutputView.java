@@ -30,11 +30,9 @@ public class OutputView {
 
     public static void printLottoNumbersInputText() {
         System.out.print(LOTTO_NUMBERS_INPUT_TEXT);
-        System.out.println();
     }
 
     public static void printBonusNumberInputText () {
         System.out.print(BONUS_NUMBER_INPUT_TEXT);
-        System.out.println();
     }
 }

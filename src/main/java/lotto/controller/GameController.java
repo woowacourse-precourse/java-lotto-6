@@ -8,7 +8,7 @@ public class GameController {
         this.inputView = inputView;
     }
     public void startGame() {
-        String answer = inputView.readPurchaseAmount();
+        int answer = inputView.readPurchaseAmount();
         System.out.println(answer);
     }
 }

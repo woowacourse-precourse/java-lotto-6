@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS);
     }
 
-    public static void printLottoResult() {
+    public void printLottoResult() {
         System.out.println(String.format(LOTTO_RESULT));
     }
 }

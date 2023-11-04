@@ -227,3 +227,38 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+- 유의사항
+  - else 예약어 금지
+  - Java Enum 사용
+  - 도메인 로직에 단위 테스트 구현, UI 로직 제외
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리
+  - Lotto에 필드 추가 불가, 패키지 변경은 가능
+
+
+## 구현할 기능
+- Lotto class -> 로또 용지 역할
+  - 객체 하나가 6개 고유의 숫자를 가진다
+- LottoPlayer class -> 구매 정보를 갖고 있음
+  - 얼마나 살건지 입력 받은 것으로 몇개를 살수 있는지
+  - 당첨 번호를 입력받음
+- LottoResult class -> 구매한 로또들의 당첨 결과를 가짐
+  - winningList 를 가지고 있음
+- LottoCalculator class -> 한 개의 로또에 대한 당첨 결과
+  - 로또 객체를 가져와 결과를 반환 (숫자 몇 개가 맞는지)
+- View class -> 입출력 담당
+  - 입출력을 담당
+- Exception class -> 에러 메시지와 각 에러를 어떻게 처리할 지
+  - 사용자가 잘못된 값을 입력할 경우
+  - 이번엔 게임을 끝내는 것이 아닌 그 부분 부터 입력을 다시 받는다.
+- validation class
+  - 알맞음 입력에 대한 검증
+    - 번호 입력 1~45 범위 내 인지
+    - 중복값이 존재하지는 않는지
+    - 구매 금액은 숫자로 이뤄져있는지 ,1000원으로 나눠떨어지는지
+- 상수들 모아놓는 enum class
+  - lotto 관련
+  - error 관련
+  - input 관련
+  - output 관련

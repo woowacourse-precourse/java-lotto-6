@@ -7,6 +7,9 @@ public class Application {
         LottoPurchase lottoPurchase = new LottoPurchase();
 
         int userPurchase = lottoPurchase.inputLottoPurchase();
-        System.out.println(userPurchase);
+        System.out.printf("\n%d개를 구매하셨습니다.\n",userPurchase);
+
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        randomNumberGenerator.generateRandomNumber(userPurchase);
     }
 }

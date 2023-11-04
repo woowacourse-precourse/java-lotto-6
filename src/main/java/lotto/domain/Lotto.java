@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.constants.LottoStatus;
 
@@ -11,6 +12,7 @@ public class Lotto {
         validate(numbers);
         checkRange(numbers);
         checkSameNumber(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -32,5 +34,14 @@ public class Lotto {
                 number < LottoStatus.MIN_VALUE || number > LottoStatus.MAX_VALUE)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public static Lotto generate() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

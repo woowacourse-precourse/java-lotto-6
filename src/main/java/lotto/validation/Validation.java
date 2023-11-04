@@ -51,7 +51,7 @@ public class Validation {
 
     public static void checkStringConsistOfNaturalNumbers(final String[] target) {
         for (String numbers : target) {
-            checkIsNumber(numbers);
+            checkIsNumber(numbers.trim());
         }
     }
 

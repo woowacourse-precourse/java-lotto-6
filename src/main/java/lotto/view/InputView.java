@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.InputValidator;
+import lotto.util.LottoValidator;
 
 import java.util.List;
 
@@ -18,12 +19,16 @@ public class InputView {
     public List<Integer> requestWinningNumbersInput(){
         System.out.println(REQUEST_WINNING_NUMBERS_MESSAGE.getMessage());
         String playerInput = Console.readLine();
-        return InputValidator.validateWinningNumbers(playerInput);
+        List<Integer> winningNumbers = InputValidator.validateWinningNumbers(playerInput);
+        LottoValidator.validateLotto(winningNumbers);
+        return winningNumbers;
     }
 
     public Integer requestBonusNumberInput(){
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
         String playerInput = Console.readLine();
-        return InputValidator.validateBonusNumber(playerInput);
+        Integer bonusNumber = InputValidator.validateBonusNumber(playerInput);
+        LottoValidator.validateLottoNumberOutOfRange(bonusNumber);
+        return bonusNumber;
     }
 }

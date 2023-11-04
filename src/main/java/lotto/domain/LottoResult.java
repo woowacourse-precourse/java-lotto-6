@@ -10,5 +10,11 @@ public class LottoResult {
         this.checkBonus = checkBonus;
     }
 
+    public Integer getCountOfSameNumbers() {
+        return countOfSameNumbers;
+    }
 
+    public Boolean getCheckBonus() {
+        return checkBonus;
+    }
 }

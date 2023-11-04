@@ -31,4 +31,12 @@ class LottoTest {
         assertThatThrownBy(() -> validator.validateCost("8a000"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void buyLottoByNotThousands() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateCost("8900"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

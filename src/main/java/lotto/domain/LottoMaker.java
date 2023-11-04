@@ -74,7 +74,7 @@ public class LottoMaker {
     }
 
 
-    public Lotto createOneLotto() {
+    private Lotto createOneLotto() {
         List<Integer> lottoNumbers = lottoNumberMaker.createLottoNumbers();
         return new Lotto(lottoNumbers);
     }

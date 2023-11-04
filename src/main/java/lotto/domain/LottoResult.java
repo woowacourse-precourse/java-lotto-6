@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 import lotto.constant.Ranking;
 
@@ -11,6 +12,7 @@ public class LottoResult {
 
     private static final int DEFAULT = 0;
     private static final int INCREASING_COUNT = 1;
+    private static final int PERCENTAGE = 100;
     private final Map<Ranking, Integer> result = new EnumMap<>(Ranking.class);
 
     public LottoResult() {
@@ -20,6 +22,18 @@ public class LottoResult {
     public void increaseCount(Ranking ranking) {
         int now = result.get(ranking);
         result.put(ranking, now + INCREASING_COUNT);
+    }
+
+    public double getProfit(int ticketCount) {
+        double totalPrize = calculateTotalPrize();
+        return (totalPrize / (LottoConstant.LOTTO_PRICE_UNIT.getValue() * ticketCount)) * PERCENTAGE;
+    }
+
+    private double calculateTotalPrize() {
+        return result.keySet()
+                .stream()
+                .mapToInt((ranking -> ranking.getPrize() * result.get(ranking)))
+                .sum();
     }
 
     public String getResultScreen() {

@@ -4,25 +4,26 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int LOTTO_NUMBERS_SIZE = 6;
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private final List<LottoNumber> numbers;
+
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         if (isaInvalidLength(numbers) || isDuplicated(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isaInvalidLength(List<Integer> numbers) {
+    private boolean isaInvalidLength(List<LottoNumber> numbers) {
         return numbers.size() != LOTTO_NUMBERS_SIZE;
     }
 
-    private boolean isDuplicated(List<Integer> numbers) {
+    private boolean isDuplicated(List<LottoNumber> numbers) {
         if(Set.copyOf(numbers).size() != numbers.size()) {
             return true;
         }

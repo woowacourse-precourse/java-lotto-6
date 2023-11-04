@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoScoreChecker;
 import lotto.domain.LottoSeller;
-import lotto.domain.WinningNumbers;
+import lotto.domain.Rank;
 import lotto.userInterface.InputViewer;
 import lotto.userInterface.OutputViewer;
 import lotto.utils.StringChanger;
@@ -12,15 +14,17 @@ import lotto.utils.StringChanger;
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private LottoSeller lottoSeller;
-    private WinningNumbers winningNumbers;
+    private LottoScoreChecker lottoScoreChecker;
     private List<Lotto> userLottos;
+    private HashMap<Integer, Integer> rankCounts;
     private int userAmount;
     private int countOfLottos;
 
     public void init() {
         lottoSeller = new LottoSeller();
         userLottos = new ArrayList<>();
-        winningNumbers = new WinningNumbers();
+        lottoScoreChecker = new LottoScoreChecker();
+        rankCounts = new HashMap<>();
         userAmount = 0;
         countOfLottos = 0;
     }
@@ -28,6 +32,7 @@ public class LottoGame {
     public void run() {
         purchaseLotto();
         getWinningNumbers();
+        checkLottoRewards();
     }
 
     private void purchaseLotto() {
@@ -37,13 +42,12 @@ public class LottoGame {
     }
 
     private void getWinningNumbers() {
-        String userInput = InputViewer.requestWinningNumberInput();
-        List<String> inputNumbers = StringChanger.stringToTrimmedStringList(userInput);
-        winningNumbers.setWinningLotto(inputNumbers);
+        getFirstNumbers();
+        getBonusNumber();
+    }
 
-        userInput = InputViewer.requestBonusNumberInput();
-        userInput = StringChanger.trimString(userInput);
-        winningNumbers.setBonusNumber(userInput);
+    private void checkLottoRewards() {
+        checkLottoScore();
     }
 
     private void inputAmount() {
@@ -62,5 +66,30 @@ public class LottoGame {
         for (Lotto lotto : userLottos) {
             OutputViewer.printPurchasedLotto(lotto);
         }
+    }
+
+    private void getFirstNumbers() {
+        String userInput = InputViewer.requestWinningNumberInput();
+        lottoScoreChecker.setFirstNumbers(userInput);
+    }
+
+    private void getBonusNumber() {
+        String userInput = InputViewer.requestBonusNumberInput();
+        lottoScoreChecker.setBonusNumber(userInput);
+    }
+
+    private void checkLottoScore() {
+        for (Lotto lotto : userLottos) {
+            Rank rank = lottoScoreChecker.getRank(lotto);
+            countRanks(rank.getRank());
+        }
+    }
+
+    private void countRanks(int rank) {
+        if (!rankCounts.containsKey(rank)) {
+            rankCounts.put(rank, 1);
+            return;
+        }
+        rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 }

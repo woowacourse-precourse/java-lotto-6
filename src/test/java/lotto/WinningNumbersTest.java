@@ -16,7 +16,7 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers();
         String invalidUserInput = "1,2,3,4,a,b";
         List<String> invalidInput = makeInputList(invalidUserInput);
-        assertThatThrownBy(() -> winningNumbers.setWinningLotto(invalidInput))
+        assertThatThrownBy(() -> winningNumbers.setFirstRankLotto(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +51,7 @@ public class WinningNumbersTest {
 
     private void makeWinningLotto(WinningNumbers winningNumbers, String userInput) {
         List<String> validInput = makeInputList(userInput);
-        winningNumbers.setWinningLotto(validInput);
+        winningNumbers.setFirstRankLotto(validInput);
     }
 
     private List<String> makeInputList(String userInput) {

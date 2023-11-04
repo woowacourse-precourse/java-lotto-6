@@ -8,19 +8,19 @@ import lotto.utils.Validator;
 public class WinningNumbers {
     private static final int LOTTO_NUMBER_START = 1;
     private static final int LOTTO_NUMBER_END = 45;
-    private Lotto winningLotto;
+    private Lotto firstRankLotto;
     private int bonusNumber = 0;
 
-    public void setWinningLotto(List<String> inputNumbers) {
-        winningLotto = new Lotto(stringToNumbers(inputNumbers));
+    public void setFirstRankLotto(List<String> inputNumbers) {
+        firstRankLotto = new Lotto(stringToNumbers(inputNumbers));
     }
 
     public void setBonusNumber(String userInput) {
         bonusNumber = stringToBonusNumber(userInput);
     }
 
-    public Lotto getWinningLotto() {
-        return new Lotto(new ArrayList<>(winningLotto.showNumbers()));
+    public Lotto getFirstRankLotto() {
+        return new Lotto(new ArrayList<>(firstRankLotto.showNumbers()));
     }
 
     public int getBonusNumber() {
@@ -44,7 +44,7 @@ public class WinningNumbers {
     }
 
     private void validateWinningNumbers(int bonusNumber) {
-        List<Integer> winningNumbers = winningLotto.showNumbers();
+        List<Integer> winningNumbers = firstRankLotto.showNumbers();
         winningNumbers.add(bonusNumber);
         Validator.validateUniqueNumbersInRange(winningNumbers, LOTTO_NUMBER_START, LOTTO_NUMBER_END);
     }

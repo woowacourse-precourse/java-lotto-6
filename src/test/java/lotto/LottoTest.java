@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.utils.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.utils.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
 import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,7 +25,8 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATED_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.")

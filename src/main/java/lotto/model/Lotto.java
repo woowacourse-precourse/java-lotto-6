@@ -7,7 +7,6 @@ import static lotto.utils.LottoException.MORE_THEN_MAXIMUM_LOTTO_NUMBER;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.utils.LottoException;
 
 public class Lotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;

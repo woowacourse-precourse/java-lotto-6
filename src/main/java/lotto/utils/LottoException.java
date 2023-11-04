@@ -9,7 +9,7 @@ public enum LottoException {
     private final String message;
 
     LottoException(String message) {
-        this.message = message;
+        this.message = ERROR_SYMBOL + message;
     }
 
     public void throwException() {

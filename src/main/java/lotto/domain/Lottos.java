@@ -20,4 +20,8 @@ public class Lottos {
     private Numbers getLotto() {
         return new Numbers(LottoRandomNumbers.getRandomNumbers());
     }
+
+    public List<Numbers> getLottoValues() {
+        return List.copyOf(lottoValues);
+    }
 }

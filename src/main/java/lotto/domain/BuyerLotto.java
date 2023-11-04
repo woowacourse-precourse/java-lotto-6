@@ -9,4 +9,8 @@ public class BuyerLotto {
     public BuyerLotto(List<Lotto> buyerLotto) {
         this.buyerLotto = buyerLotto;
     }
+
+    public List<Lotto> getBuyerLotto() {
+        return buyerLotto;
+    }
 }

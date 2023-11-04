@@ -3,13 +3,6 @@ package lotto.domain;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * TODO : 아래 주석 지우기
- * 제공된 Lotto 클래스를 활용해 구현해야 한다.
- * numbers의 접근 제어자인 private을 변경할 수 없다.
- * Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
- * Lotto의 패키지 변경은 가능하다.
- */
 class Lotto {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;

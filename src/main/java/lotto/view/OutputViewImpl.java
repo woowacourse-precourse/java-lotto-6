@@ -13,6 +13,7 @@ public class OutputViewImpl implements OutputView {
         for (Lotto lotto : boughtLotto) {
             System.out.println(lotto.toString());
         }
+        System.out.println();
     }
 
     @Override

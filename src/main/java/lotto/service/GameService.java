@@ -6,8 +6,9 @@ public class GameService {
 
     private int purchaseAmount;
 
-    public void inputPurchaseAmount(String input){
+    public int inputPurchaseAmount(String input){
         purchaseAmount = PurchaseAmount.validated(input);
+        return purchaseAmount;
     }
 
 }

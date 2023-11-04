@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.NumberConstant;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,29 +10,30 @@ public class Controller {
     private final GameService gameService = new GameService();
 
     public void run() {
-        purchaseAmount();
-        printIssuedLotto();
+        int purchaseAmount = inputPurchaseAmount();
+        printIssuedLotto(purchaseAmount/ NumberConstant.LOTTO_ONE_PRICE);
         inputWinningNumbers();
         inputBonusNumber();
         printWinningStatistics();
     }
 
-    private void purchaseAmount(){
+    private int inputPurchaseAmount(){
         OutputView.inputPurchaseAmountMessage();
-        inputPurchaseAmount();
+        return tryInputPurchaseAmount();
     }
 
-    private void inputPurchaseAmount(){
+    private int tryInputPurchaseAmount(){
         try{
             String input = InputView.input();
-            gameService.inputPurchaseAmount(input);
+            return gameService.inputPurchaseAmount(input);
         } catch(IllegalArgumentException e){
             OutputView.errorMessage(e.getMessage());
-            inputPurchaseAmount();
+            return tryInputPurchaseAmount();
         }
     }
 
-    private void printIssuedLotto(){
+    private void printIssuedLotto(int issuedLottoCount){
+        OutputView.printIssuedLottoMessage(issuedLottoCount);
     }
 
     private void inputWinningNumbers(){

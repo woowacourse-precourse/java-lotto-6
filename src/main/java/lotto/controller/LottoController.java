@@ -28,13 +28,8 @@ public class LottoController {
 
         printLottoValues(lottos);
 
-        outputView.askGoalNumbers();
-        String goalNumbersInput = inputView.readLine();
-        outputView.askBonusNumber();
-        String bonusNumberInput = inputView.readLine();
-        outputView.alertResult();
-        LottoJudge goalJudge = GoalNumberJudge.from(goalNumbersInput);
-        LottoJudge bonusJudge = BonusNumberJudge.from(bonusNumberInput);
+        LottoJudge goalJudge = initGoalNumberJudge();
+        LottoJudge bonusJudge = initBonusNumberJudge();
         for (int i = 3; i < 6; i++) {
             List<Lotto> matchLotto = goalJudge.collectLottoWithMatchSize(lottos, i);
             Prize prize = Prize.findByPoint(i * 100);
@@ -72,5 +67,17 @@ public class LottoController {
     private void printLottoValues(final List<Lotto> lottos) {
         List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
         outputView.printEachLottoNumbers(lottoResponses);
+    }
+
+    private GoalNumberJudge initGoalNumberJudge() {
+        outputView.askGoalNumbers();
+        String goalNumbersInput = inputView.readLine();
+        return GoalNumberJudge.from(goalNumbersInput);
+    }
+
+    private BonusNumberJudge initBonusNumberJudge() {
+        outputView.askBonusNumber();
+        String bonusNumberInput = inputView.readLine();
+        return BonusNumberJudge.from(bonusNumberInput);
     }
 }

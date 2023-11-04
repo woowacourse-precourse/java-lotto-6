@@ -68,7 +68,10 @@
     - [ ] 사용자에게 로또 봉투판다.
   - [ ] 로또 봉투을 만든다.  LottoSeller#makeLottoEnvelope
 
-- [ ] 로또 봉투 클래스 LottoEnvelop
+- [x] 로또 봉투 클래스 LottoEnvelop
+  - [x] 봉투에 로또을 추가한다.
+  - [ ] 봉투를 반환한다.
+
 
 
 

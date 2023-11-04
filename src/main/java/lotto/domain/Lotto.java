@@ -17,17 +17,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         ValidationUtils.validateNotNull(numbers);
-        validateSizeOfNumbers(numbers);
-        validateDuplicatedNumbers(numbers);
+        validateLottoNumbersSize(numbers);
+        validateNoDuplicatedLottoNumbers(numbers);
     }
 
-    private void validateSizeOfNumbers(List<Integer> numbers) {
+    private void validateLottoNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplicatedNumbers(List<Integer> numbers) {
+    private void validateNoDuplicatedLottoNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (numbers.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();

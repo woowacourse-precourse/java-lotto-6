@@ -87,11 +87,11 @@ public class LottoMaker {
     }
 
     private void validatePrice(int price) {
-        if (price % ONE_LOTTO_PRICE != ZERO_AMOUNT) {
-            throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
-        }
         if (price < ONE_LOTTO_PRICE) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
+        }
+        if (price % ONE_LOTTO_PRICE != ZERO_AMOUNT) {
+            throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }
 

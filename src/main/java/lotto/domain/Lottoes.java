@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
+import lotto.constant.Ranking;
 
 import java.util.*;
 
 public class Lottoes {
 
+    private static final int THIRD_RANKING_NUMBER = 5;
     private final List<Lotto> elements = new ArrayList<>();
 
     public Lottoes(int ticketCounts) {
@@ -28,7 +30,8 @@ public class Lottoes {
     public void calculateRanking(WinningLotto winningLotto) {
         for (Lotto lotto: elements) {
             int matchCount = calculateMatchCount(lotto, winningLotto);
-            boolean isMatchBonusNumber = hasBonusNumber(lotto, winningLotto.getBonusNumber());
+            boolean isMatchBonusNumber = hasBonusNumber(lotto, winningLotto.getBonusNumber(), matchCount);
+            Ranking ranking = Ranking.getRanking(matchCount, isMatchBonusNumber);
         }
     }
 
@@ -43,7 +46,10 @@ public class Lottoes {
         return count;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+    private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber, int count) {
+        if (count != THIRD_RANKING_NUMBER) {
+            return false;
+        }
         return lotto.isContain(bonusNumber.getValue());
     }
 

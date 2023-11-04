@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.LottoGenerator;
-import lotto.controller.dto.ResponseLottoDto;
+import lotto.controller.dto.LottoResponseDto;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,9 +15,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public ResponseLottoDto toResponseDto(){
+    public LottoResponseDto toResponseDto(){
         sort();
-        return new ResponseLottoDto(numbers);
+        return new LottoResponseDto(numbers);
     }
 
     private void sort(){

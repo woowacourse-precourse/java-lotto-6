@@ -16,7 +16,7 @@ public class LottoController {
         int lottoCount = getLottoCount(purchasePrice);
         OutputView.printPurchaseLotto(lottoCount);
         Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
-
+        OutputView.printLottosValue(lottos.toResponseDto());
     }
 
     private int getLottoCount(int purchasePrice) {

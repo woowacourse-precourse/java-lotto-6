@@ -8,14 +8,14 @@ public class OutputView {
     public static final String STATISTIC_RESULT_OUTPUT = "당첨 통계";
     public static final String NEXT_LINE_OUTPUT = "---";
 
-    public void purchaseResult(Member member) {
+    public static void purchaseResult(Member member) {
         int purchasedCount = member.getPurchasedCount();
         print(purchasedCount + PURCHASE_RESULT_OUTPUT);
 
         member.getLottos().stream()
-                .forEach(OutputView::printLotto);
+                .forEach(lotto -> printLotto(lotto));
     }
-    public void gameResult() {
+    public static void gameResult() {
         print(STATISTIC_RESULT_OUTPUT);
         print(NEXT_LINE_OUTPUT);
 

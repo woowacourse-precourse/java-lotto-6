@@ -3,9 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.LottoMatch;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -44,26 +42,24 @@ public class OutputView {
     }
 
     public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
-        Map<LottoMatch, Integer> lottoMatchMap = new HashMap<>();
-
-        for (LottoMatch lottoMatch : lottoResultCount) {
-            lottoMatchMap.put(lottoMatch, lottoMatchMap.getOrDefault(lottoMatch, 0) + 1);
-        }
-
         for (LottoMatch lottoMatch : LottoMatch.values()) {
             if (lottoMatch == LottoMatch.NOTHING) {
                 continue;
             }
             String MatchingBonusBall = "";
-            if (lottoMatch.equals(LottoMatch.FIVE_AND_BONUS)) {
+            if (lottoMatch == LottoMatch.FIVE_AND_BONUS) {
                 MatchingBonusBall = ", 보너스 볼 일치";
             }
+
+            long matchCount = lottoResultCount.stream()
+                    .filter(match -> match == lottoMatch)
+                    .count();
 
             stringBuilder.append(String.format("%d개 일치%s(%,d원) - %d개",
                     lottoMatch.getMatching(),
                     MatchingBonusBall,
                     lottoMatch.getAmount(),
-                    getMatchCount(lottoMatchMap.get(lottoMatch)))).append("\n");
+                    matchCount)).append("\n");
         }
     }
 
@@ -71,12 +67,5 @@ public class OutputView {
         stringBuilder.append(String.format("총 수익률은 %.1f%%입니다.", yield));
         System.out.println(stringBuilder);
         stringBuilder.setLength(0);
-    }
-
-    private static int getMatchCount(Integer matching) {
-        if (matching == null) {
-            return 0;
-        }
-        return matching;
     }
 }

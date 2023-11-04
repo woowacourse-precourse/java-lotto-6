@@ -29,9 +29,9 @@ public class LottoNumberGeneratorTest {
     @Test
     void generateSortedLottoNumber() {
         when(Randoms.pickUniqueNumbersInRange(1, 45, 6))
-                .thenReturn(List.of(5, 4, 3, 2, 1));
+턴                .thenReturn(List.of(6, 5, 4, 3, 2, 1));
 
-        assertThat(LottoNumberGenerator.INSTANCE.generateLottoNumbers())
-                .containsExactly(1, 2, 3, 4, 5);
+        assertThat(LottoNumberGenerator.generateLottoNumbers())
+                .containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

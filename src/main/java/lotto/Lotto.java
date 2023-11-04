@@ -28,10 +28,11 @@ public class Lotto {
     }
 
     private void checkNumberRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해주세요.");
-            }
-        }
+        numbers.stream()
+                .filter(number -> number < 1 || number > 45)
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해주세요.");
+                });
     }
 }

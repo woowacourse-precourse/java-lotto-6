@@ -24,6 +24,7 @@ public class Input {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch(NumberFormatException e) {
+            ErrorMessage.printInputFormatError();
             throw new IllegalArgumentException();
         }
     }
@@ -37,6 +38,7 @@ public class Input {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
+            ErrorMessage.printInputFormatError();
             throw new IllegalArgumentException();
         }
     }

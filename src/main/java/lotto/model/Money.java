@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.view.ErrorMessage;
+
 public class Money {
 
     private static final int LOTTO_PRICE = 1000;
@@ -16,6 +18,7 @@ public class Money {
 
     private void validate(int value) {
         if(value % LOTTO_PRICE != 0) {
+            ErrorMessage.printMoneyFormatError();
             throw new IllegalArgumentException();
         }
     }

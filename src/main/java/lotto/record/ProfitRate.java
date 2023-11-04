@@ -2,6 +2,7 @@ package lotto.record;
 
 import static lotto.enumerate.ErrorCode.PROFIT_RATE_DECIMAL_NOT_ONE;
 import static lotto.enumerate.ErrorCode.PROFIT_RATE_NOT_ROUNDED;
+import static lotto.enumerate.Message.PROFIT_RATE_IS;
 
 import lotto.util.ExceptionCodeThrow;
 
@@ -16,5 +17,8 @@ public record ProfitRate(double originalRate, double roundedRate) {
         if (decimalPlaces > 1) {
             ExceptionCodeThrow.exceptionCodeThrow(PROFIT_RATE_DECIMAL_NOT_ONE);
         }
+    }
+    public String printProfitRate() {
+        return String.format(PROFIT_RATE_IS.getMessage(), roundedRate);
     }
 }

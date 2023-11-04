@@ -14,6 +14,8 @@ public class OutputView {
     private static final String WINNING_STATISTICS_SEPARATOR = "---";
     private static final String REVENUE_MESSAGE = "총 수익률은 ";
     private static final String REVENUE_PERCENTAGE = "%입니다.";
+    private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public void printPurchaseMessage() {
         System.out.println(PURCHASE_PROMPT_MESSAGE);
@@ -29,6 +31,14 @@ public class OutputView {
 
     public void printLotto(final LottoResult lotto) {
         System.out.println(lotto.getLotto());
+    }
+
+    public void printWinningNumbers(){
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+    }
+
+    public void printBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
     public void printResult(final WinningResult winningResult, final double revenue) {

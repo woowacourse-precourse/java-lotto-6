@@ -61,7 +61,9 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
+        outputView.printWinningNumbers();
         Lotto lotto = generateWinningLottoNumbers();
+        outputView.printBonusNumber();
         Number bonusNumber = generateBonusNumber();
         return new WinningLotto(lotto, bonusNumber);
     }

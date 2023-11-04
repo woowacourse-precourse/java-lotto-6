@@ -14,7 +14,12 @@ public class Validation {
         }
     }
 
-    public static void validateWinningNumbers(Integer[] winningNumbers) {
+    public void validateWinningNumbers(List<Integer> winningNumbers) {
+        validateRange(winningNumbers);
+        validateDuplication(winningNumbers);
+    }
+
+    public void validateRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (winningNumber < 1 || 45 < winningNumber) {
                 throw new IllegalArgumentException(ErrorMessages
@@ -22,8 +27,15 @@ public class Validation {
                       .getMessage());
             }
         }
+    }
 
-        Set<Integer> checkDuplicates = new HashSet<>();
-        checkDuplicates.addAll(List.of(winningNumbers));
+    public void validateDuplication(List<Integer> winningNumbers) {
+        Set<Integer> checkDuplicates = new HashSet<>(winningNumbers);
+
+        if (checkDuplicates.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessages
+                    .DUPLICATE_NUMBER
+                    .getMessage());
+        }
     }
 }

@@ -10,4 +10,12 @@ public class InputView {
     public static int requestPayMoney() {
         return parseInt(Console.readLine());
     }
+
+    public static String requestWinnerNumber() {
+        return Console.readLine();
+    }
+
+    public static String requestBonusNumber() {
+        return Console.readLine();
+    }
 }

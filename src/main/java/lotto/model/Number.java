@@ -10,6 +10,7 @@ public class Number {
   private int number;
 
   public Number(int number) {
+    validateRangeNumber(number);
     this.number = number;
   }
 
@@ -20,7 +21,7 @@ public class Number {
   }
 
   private boolean isInRange(int number) {
-    return number >= MIN_NUMBER_RANGE && number <= MAX_NUMBER_RANGE;
+    return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
   }
 
   public int getNumber() {

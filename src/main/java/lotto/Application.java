@@ -6,6 +6,30 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
+    enum LottoRank {
+        FIRST(6, "2,000,000,000"),
+        SECOND(5, "30,000,000"),
+        THIRD(5, "1,500,000"),
+        FOURTH(4, "50,000"),
+        FIFTH(3, "5,000"),
+        NONE(0, "0");
+
+        private final int countOfMatch;
+        private final String winningMoney;
+
+        LottoRank(int countOfMatch, String winningMoney) {
+            this.countOfMatch = countOfMatch;
+            this.winningMoney = winningMoney;
+        }
+
+        public int getCountOfMatch() {
+            return countOfMatch;
+        }
+        public String getWinningMoney() {
+            return winningMoney;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int money = getLottoPurchasePrice();

@@ -34,6 +34,12 @@
 
 ### 2-2. 출력 (구매한 로또 번호 정보 - 리스트 형식)
 
+- 2-2-1. 구입 개수 만큼 로또 번호 생성
+
+```
+List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+```
+
 - 구입 개수 만큼 로또 정보 출력
 
 example)

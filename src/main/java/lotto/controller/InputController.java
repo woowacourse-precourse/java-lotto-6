@@ -8,7 +8,7 @@ import static lotto.view.OutputView.printSystemMessage;
 
 import lotto.view.SystemMessage;
 
-public class ViewController {
+public class InputController {
 
     public static String request(SystemMessage systemMessage, int depth) {
         String input;

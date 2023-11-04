@@ -31,8 +31,15 @@ public class LottoController {
     }
 
     private int getUserAmount() {
-        output.printInputPurchaseAmountMessage();
-        return input.getUserAmount();
+        int money = 0;
+        try {
+            output.printInputPurchaseAmountMessage();
+            money = input.getUserAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            money = getUserAmount();
+        }
+        return money;
     }
 
     private int getLottoQuantity(int money) {

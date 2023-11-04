@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,9 +28,21 @@ class PurchaseAmountTest {
     @ParameterizedTest(name = "{0}")
     @MethodSource("parameters")
     void validatePurchaseAmount(String testName, String amount) {
-        // given
         // when, then
         assertThatThrownBy(() -> PurchaseAmount.from(amount))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액을 반환한다.")
+    @Test
+    void getPurchaseAmount() {
+        // given
+        PurchaseAmount purchaseAmount = PurchaseAmount.from("3000");
+
+        // when
+        int getPurchaseAmount = purchaseAmount.getPurchaseAmount();
+
+        // then
+        Assertions.assertThat(getPurchaseAmount).isEqualTo(3000);
     }
 }

@@ -30,7 +30,7 @@ public enum LottoRank {
         this.expression = expression;
     }
 
-    public void accept(long count) {
+    public void printRankMessage(long count) {
         rankMessage.accept(count);
     }
 

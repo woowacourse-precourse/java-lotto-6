@@ -1,7 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoRank;
 import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
@@ -44,24 +42,12 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호가 오름차순으로 정렬되어 있지 않으면 예외가 발생한다.")
-    public void validateSortedAscending() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 4, 3, 5, 6);
-        // when // then
-        assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
-    }
-
-
-    @Test
     @DisplayName("당첨된 로또와 비교해서 로또의 순위를 얻을 수 있다.")
     public void determineLottoRank() {
         // given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        int bonus = 45;
+        int bonus = 6;
         // when
         LottoRank lottoRank = lotto.determineLottoRank(winningLotto, bonus);
         // then

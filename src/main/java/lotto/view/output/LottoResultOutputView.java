@@ -23,7 +23,7 @@ public class LottoResultOutputView {
     public void printLottoAllMatch(Map<LottoRank, Long> lottoRankCountMap) {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
         lottoRanks.stream()
-                .forEach(lottoRank -> lottoRank.accept(lottoRankCountMap.get(lottoRank)));
+                .forEach(lottoRank -> lottoRank.printRankMessage(lottoRankCountMap.get(lottoRank)));
     }
 
     public void printTotalProfitRate(long amount, Map<LottoRank, Long> lottoRankCountMap) {

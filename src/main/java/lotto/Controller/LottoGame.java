@@ -40,7 +40,7 @@ public class LottoGame {
                 Validator.validateNumberRange(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+            	OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -56,7 +56,7 @@ public class LottoGame {
                 Validator.validateNumbersRange(lottoWinningNumbers);
                 return lottoWinningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+            	OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -69,20 +69,20 @@ public class LottoGame {
                 OutputView.printPurchaseLottoAmount(lottoQuantity);
                 return lottoQuantity;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
     private User findUser(int lottoQuantity) {
         User user;
-        while (true) {
+        while (true) {		
             try {
                 List<Lotto> lottos = makeLottos(lottoQuantity);
                 user = new User(lottos);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+            	OutputView.printErrorMessage(e.getMessage());
             }
         }
         return user;

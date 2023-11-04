@@ -81,15 +81,17 @@ public class InputUI {
     }
 
     public void winnings() {
-        try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String inputWinnings = Console.readLine();
-            String[] parsedWinnings = inputWinnings.split(",");
-            winningNums = checkValidWinnings(parsedWinnings);
-        } catch (IllegalArgumentException e) {
-            throw e;
+        while(true){
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputWinnings = Console.readLine();
+                String[] parsedWinnings = inputWinnings.split(",");
+                winningNums = checkValidWinnings(parsedWinnings);
+                break;
+            } catch (IllegalArgumentException e) {
+                throw e;
+            }
         }
-
     }
 
     public List<Integer> checkValidWinnings(String[] parsedWinnings) {

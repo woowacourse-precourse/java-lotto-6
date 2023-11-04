@@ -4,14 +4,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.generator.RandomGenerator;
+import lotto.generator.RandomStrategy;
 
 public class LottoGame {
     public static final int STANDARD_SIZE = 6;
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 45;
 
-    public Lotto generateLotto(RandomGenerator randomGenerator) {
+    public Lotto generateLotto(RandomStrategy randomGenerator) {
         List<Integer> lotto = new ArrayList<>();
         while (!hasStandardSize(lotto, STANDARD_SIZE)) {
             addAlternativeNumber(lotto, randomGenerator.generate(

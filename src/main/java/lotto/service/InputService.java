@@ -34,7 +34,6 @@ public class InputService {
     }
 
 
-    // 정렬 기능 추가해야 !!!
     public static List<Integer> readWinNumbers() {
         List<Integer> winNumbers = new ArrayList<>();
         String[] input = readLine().split(SPLIT_DELIMITER);

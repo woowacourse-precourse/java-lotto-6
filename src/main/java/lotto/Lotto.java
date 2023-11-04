@@ -5,20 +5,23 @@ import java.util.List;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 45;
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = List.copyOf(numbers);
+        this.numbers = toLottoNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
-        validateNumberRange(numbers);
+    }
+
+    private List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -36,18 +39,7 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
-        if (hasOutOfRangeNumber(numbers)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean hasOutOfRangeNumber(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
-    }
-
-    public List<Integer> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         return numbers;
     }
 }

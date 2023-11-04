@@ -3,8 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.lang.reflect.Field;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,13 +46,14 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource
     void createLotto(List<Integer> numbers) throws Exception {
-        Field numbersField = Lotto.class.getDeclaredField("numbers");
-        numbersField.setAccessible(true);
+        List<LottoNumber> expected = numbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
 
         Lotto lotto = new Lotto(numbers);
 
-        Object actual = numbersField.get(lotto);
-        assertThat(actual).isEqualTo(List.copyOf(numbers));
+        List<LottoNumber> actual = lotto.getNumbers();
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<List<Integer>> createLotto() {

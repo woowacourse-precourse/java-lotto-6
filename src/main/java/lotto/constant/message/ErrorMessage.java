@@ -11,7 +11,7 @@ public enum ErrorMessage {
     NOT_ONLY_DIGIT("숫자만 입력해주세요."),
     HAS_REMAINDER(LOTTO_PRICE + "원 단위로 넣어주세요."),
     DUPLICATE_BONUS("당첨 번호와 중복될 수 없습니다."),
-    INVALID_NUMBER_RANGE(MIN_NUMBER + " ~ " + MAX_NUMBER + "사이의 숫자가 아닙니다"),
+    INVALID_NUMBER_RANGE("로또 번호는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + " 사이의 숫자여야 합니다."),
     DUPLICATE_NUMBER("중복된 숫자가 존재합니다."),
     NOT_MONEY("주머니를 뒤적였지만 돈이 없습니다.."),
     INVALID_COUNT(NUMBER_COUNT + "개의 숫자를 구분자(" + DELIMITER + ")와 함께 입력해주세요.");

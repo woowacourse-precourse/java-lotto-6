@@ -1,18 +1,22 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateCount(numbers);
+        validateRange(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
     }
 
@@ -24,4 +28,14 @@ public class Lotto {
             }
         }
     }
+
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
+        }
+    }
+
+
 }

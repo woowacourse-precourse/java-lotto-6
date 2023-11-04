@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Application {
     public static void main(String[] args) {
@@ -60,7 +58,6 @@ public class Application {
         }
 
         List<Integer> jackPot;
-        Set<Integer> uniqueNumbers;
         while (true) {
             try {
                 System.out.println();
@@ -68,26 +65,15 @@ public class Application {
                 String[] numbers = Console.readLine().split(",");
                 jackPot = new ArrayList<>();
 
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < numbers.length; i++) {
                     try {
                         int number = Integer.parseInt(numbers[i]);
-
-                        if (number < 1 || number > 45) {
-                            throw new IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자만 입력할 수 있습니다.");
-                        }
-
                         jackPot.add(number);
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
                     }
                 }
-
-                uniqueNumbers = new HashSet<>(jackPot);
-
-                if (uniqueNumbers.size() != 6) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
-                }
-
+                Lotto lotto = new Lotto(jackPot);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -115,7 +101,6 @@ public class Application {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호에 존재하는 번호입니다.");
                 }
 
-                jackPot.add(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

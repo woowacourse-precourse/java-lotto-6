@@ -1,24 +1,28 @@
-package lotto.service;
+package lotto.domain;
 
 import lotto.Lotto;
 import lotto.dto.PurchaseLottoDto;
-import lotto.service.validation.LottoPurchaseAmountValidation;
+import lotto.domain.validation.LottoPurchaseAmountValidation;
 import lotto.view.NumberOfLottoPurchaseView;
 
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
-public class PurchaseLottoNumberService {
+public class PurchaseLottoNumberDomain {
+    private NumberOfLottoPurchaseView numberOfLottoPurchaseView;
+
+    public PurchaseLottoNumberDomain() {
+        this.numberOfLottoPurchaseView = new NumberOfLottoPurchaseView();
+    }
+
     public List<Lotto> userPurchaseLottoLogic() {
         String lottoPurchaseAmount = LottoPurchaseAmountFromUser();
         validateLottoPurchaseAmount(lottoPurchaseAmount);
-        List<Lotto> purchaseLotto = purchaseLotto(parseInt(lottoPurchaseAmount));
-        return purchaseLotto;
+        return purchaseLotto(parseInt(lottoPurchaseAmount));
     }
 
     private String LottoPurchaseAmountFromUser() {
-        NumberOfLottoPurchaseView numberOfLottoPurchaseView = new NumberOfLottoPurchaseView();
         return numberOfLottoPurchaseView.lottoPurchaseInterface();
     }
 
@@ -29,6 +33,8 @@ public class PurchaseLottoNumberService {
 
     private List<Lotto> purchaseLotto(int amount) {
         PurchaseLottoDto purchaseLotto = new PurchaseLottoDto(amount);
-        return purchaseLotto.BuyLottoGroup();
+        List<Lotto> purchasedLotto = purchaseLotto.BuyLottoGroup();
+        numberOfLottoPurchaseView.lottoPurchasedResult(purchasedLotto);
+        return purchasedLotto;
     }
 }

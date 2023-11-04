@@ -1,5 +1,5 @@
 package lotto.constants;
 
-public class ErrorMassageConstants {
+public enum ErrorMassageConstants {
 
 }

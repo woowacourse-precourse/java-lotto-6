@@ -1,8 +1,5 @@
 package lotto.dto;
-
 import lotto.Lotto;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseLottoDto {
@@ -20,9 +17,6 @@ public class PurchaseLottoDto {
     }
 
     private void purchaseLotto(int numberOfLotto) {
-        List<Lotto> purchaseLottoGroup = new ArrayList<Lotto>();
-        purchaseLottoGroup = Lotto.purchaseLottoEach(numberOfLotto);
-        this.purchaseLottoGroup = purchaseLottoGroup;
+        this.purchaseLottoGroup = Lotto.purchaseLottoEach(numberOfLotto);
     }
-
 }

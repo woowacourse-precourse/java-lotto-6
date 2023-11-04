@@ -1,5 +1,9 @@
 package lotto.view;
 
-public class LottoWinningStatisticsView {
+import java.util.List;
 
+public class LottoWinningStatisticsView {
+    public void lottoStatisticsView(List<Integer> lottoStatistics) {
+
+    }
 }

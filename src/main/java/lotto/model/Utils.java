@@ -19,7 +19,6 @@ public final class Utils {
         }
     }
 
-
     public static List<Integer> convertStringToIntegerList(String string) {
         return splitWinningNumbers(string).stream()
                 .map(inputNumber -> convertStringToInt(inputNumber))

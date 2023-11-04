@@ -37,7 +37,7 @@ public class LottoController {
         WinningLotto winningLotto = readWinningLottoAndBonus();
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto bought : boughtLotto) {
-            lottoPrizes.add(winningLotto.from(bought));
+            lottoPrizes.add(winningLotto.compare(bought));
         }
         Result result = Result.from(lottoPrizes);
         outputView.printWinningStatistics(result);

@@ -8,6 +8,7 @@ public class InvalidInput {
     private static final int MAX_NUMBER = 45;
     private static final int ALLOW_DUPLICATE_NUMBER_COUNT = 1;
     private static final int LOTTO_SIZE = 6;
+    private static final int UNIT = 1000;
 
     private static String message;
 
@@ -44,13 +45,21 @@ public class InvalidInput {
         }
     }
 
-    private static void isDuplicate(List<Integer> numbers, Integer number) {
+    public void notThousandUnitException(int cost) {
+        message = ExceptionMessage.NOT_THOUSAND_UNIT.getMessage();
+
+        if (cost % UNIT != 0) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    private static void isDuplicate(List<Integer> numbers, int number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT) {
             throw new IllegalArgumentException(message);
         }
     }
 
-    private static void isBetweenInRange(Integer number) {
+    private static void isBetweenInRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(message);
         }

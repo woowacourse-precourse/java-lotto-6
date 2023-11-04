@@ -1,6 +1,7 @@
 package lotto.view;
 
-import lotto.domain.ConstNum;
+import lotto.config.Message;
+import lotto.config.ConstNum;
 import lotto.domain.LottoTickets;
 import lotto.domain.Result;
 

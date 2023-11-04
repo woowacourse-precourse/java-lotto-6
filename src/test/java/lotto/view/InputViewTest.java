@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import lotto.validation.ErrorMessage;
+import lotto.config.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +49,7 @@ class InputViewTest extends NsTest {
                     ERROR_MESSAGE,
                     ErrorMessage.NUM_ERROR.getMessage(),
                     ErrorMessage.BONUS_DUPLICATED_ERROR.getMessage(),
-                    ErrorMessage.BONUS_RANGE_ERROR.getMessage()
+                    ErrorMessage.RANGE_ERROR.getMessage()
             );
         });
     }

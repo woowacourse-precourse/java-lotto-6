@@ -1,4 +1,4 @@
-package lotto.validation;
+package lotto.config;
 
 public enum ErrorMessage {
     NO_MONEY("구매 금액이 부족합니다."),

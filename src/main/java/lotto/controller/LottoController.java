@@ -28,6 +28,5 @@ public class LottoController {
 
         Result result = lottoTickets.getResult(winningNum);
         OutputView.resultMessage(result,money);
-
     }
 }

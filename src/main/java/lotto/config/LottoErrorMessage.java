@@ -1,4 +1,4 @@
-package lotto.validation;
+package lotto.config;
 
 public enum LottoErrorMessage {
     INCORRECT_LOTTO("로또 숫자가 6개가 아닙니다."),

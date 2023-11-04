@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.validation.LottoErrorMessage;
+import lotto.config.ConstNum;
+import lotto.config.LottoErrorMessage;
 import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 

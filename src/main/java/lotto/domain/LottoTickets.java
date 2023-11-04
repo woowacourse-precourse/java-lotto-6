@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.config.ConstNum;
+import lotto.config.LottoRank;
 import lotto.validation.LottoValidator;
 
 import java.util.ArrayList;

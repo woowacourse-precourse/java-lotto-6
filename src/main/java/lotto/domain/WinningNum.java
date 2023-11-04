@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.LottoRank;
 import lotto.validation.WinningNumValidator;
 
 import java.util.ArrayList;

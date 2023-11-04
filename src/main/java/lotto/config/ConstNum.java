@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.config;
 
 public enum ConstNum {
     LENGTH(6),

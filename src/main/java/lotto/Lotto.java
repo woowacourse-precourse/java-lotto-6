@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        checkDuplicatedNumbers(numbers);
+        checkDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    private void checkDuplicatedNumbers(List<Integer> numbers) {
+    private void checkDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");

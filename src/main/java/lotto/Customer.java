@@ -74,4 +74,9 @@ public class Customer {
             Output.countRank(correctCount);
         }
     }
+
+    public double calculateRateOfReturn(double reward) {
+
+        return reward / wallet * 100;
+    }
 }

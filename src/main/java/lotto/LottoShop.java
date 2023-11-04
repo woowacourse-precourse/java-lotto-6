@@ -15,5 +15,6 @@ public class LottoShop {
 
         customer.checkWinLotto(winLotto);
         Output.printResult();
+        Output.printRateOfReturn(customer);
     }
 }

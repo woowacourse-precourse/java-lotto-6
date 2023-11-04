@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Output {
@@ -59,7 +60,19 @@ public class Output {
         System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
     }
 
-    public static void printRateOfReturn() {
+    public static void printRateOfReturn(Customer customer) {
 
+        double reward = 0;
+        reward += fifth * 5000;
+        reward += fourth * 50000;
+        reward += third * 1_500_000;
+        reward += first * 2_000_000_000;
+
+        double rate = customer.calculateRateOfReturn(reward);
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+        String formattedNumber = decimalFormat.format(rate);
+
+        System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
     }
 }

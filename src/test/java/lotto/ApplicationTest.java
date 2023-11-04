@@ -152,6 +152,7 @@ class ApplicationTest extends NsTest {
         int price=LottoInput.inputPrice();
         assertThat(price).isEqualTo(17000);
     }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

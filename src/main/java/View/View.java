@@ -1,7 +1,9 @@
 package View;
 
 import Input.LottoInput;
+import lotto.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class View {
@@ -45,5 +47,12 @@ public class View {
             }
         }
         return bonus;
+    }
+
+    public static void showTotalLotto(Lotto[] lottos){
+        System.out.println(lottos.length+"개를 구입했습니다.");
+        for(int i=0;i<lottos.length;i++){
+            System.out.println(lottos[i].getNumbers());
+        }
     }
 }

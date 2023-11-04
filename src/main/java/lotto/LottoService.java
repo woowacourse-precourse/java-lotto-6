@@ -9,7 +9,13 @@ public class LottoService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
-
+    public Lotto[] makeLottoList(int how){
+        Lotto[] lottos=new Lotto[how];
+        for(int i=0;i<how;i++){
+            lottos[i]=new Lotto(makeRandomNumber());
+        }
+        return lottos;
+    }
     public int compare(Lotto answer, Lotto consumer) {
         List<Integer> answerNumbers = answer.getNumbers();
         List<Integer> consumerNumbers = consumer.getNumbers();

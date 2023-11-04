@@ -7,7 +7,7 @@ public class View {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void inputValue() {
-        Console.readLine();
+    public String inputValue() {
+        return Console.readLine();
     }
 }

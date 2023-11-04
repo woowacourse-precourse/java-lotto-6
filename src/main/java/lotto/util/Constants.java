@@ -14,7 +14,7 @@ public class Constants {
     public static final int LOTTO_COUNT_DEFAULT = 0;
     public static final int LOTTO_COUNT_SIZE= 1;
     public static final int LOTTO_BONUS_WINNER_COUNT= 5;
-    public static final int LOTTO_BONUS_WINNER_INDEX= 0;
+    public static final int LOTTO_BONUS_WINNER_INDEX= 7;
 
     public static final Pattern MONEY_PATTERN = Pattern.compile("^[1-9][0-9]*000$");
 }

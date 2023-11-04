@@ -13,6 +13,7 @@ public class GameController {
     LottoWinNumbers lottoWinNumbers;
     LottoBonusNumber lottoBonusNumber;
     LottoCountCalculator lottoCountCalculator;
+    LottoProfitCalculator lottoProfitCalculator;
 
     public GameController() {
         inputView = new InputView();
@@ -28,6 +29,7 @@ public class GameController {
         setWinLottoNumbers();
         setLottoBonusNumber();
         setLottoCountCalculator();
+        setLottoProfitCalculator();
     }
 
     public void moneyConvertLotto() {
@@ -82,10 +84,16 @@ public class GameController {
     }
 
     public void setLottoCountCalculator(){
-        lottoCountCalculator.setLottoResult(
+        lottoCountCalculator = new LottoCountCalculator(
                 lottoGenerator.getMyLotto(),
                 lottoWinNumbers.getLottoWinNumbers(),
                 lottoBonusNumber.getBonusNumber()
         );
+    }
+
+    public void setLottoProfitCalculator(){
+        lottoProfitCalculator = new LottoProfitCalculator(
+                lottoCountCalculator.getLottoResult(),
+                moneyConverter.getChance());
     }
 }

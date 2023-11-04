@@ -10,7 +10,11 @@ public class LottoCountCalculator {
     private Map<Integer, Integer> lottoResult;
 
     public LottoCountCalculator(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
-        setLottoResult(lotto,winLotto,bonus);
+        setLottoResult(lotto, winLotto, bonus);
+    }
+
+    public Map<Integer, Integer> getLottoResult() {
+        return lottoResult;
     }
 
     public void setLottoResult(List<Lotto> lotto, List<Integer> winLotto, int bonus) {

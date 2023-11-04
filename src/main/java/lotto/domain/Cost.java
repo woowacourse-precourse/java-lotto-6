@@ -1,16 +1,17 @@
 package lotto.domain;
 
+import static lotto.constant.CostConstant.UNIT;
+
 import lotto.exception.InvalidInput;
 
 public class Cost {
     private final int cost;
-    private static final int UNIT = 1000;
     public Cost(int cost) {
         validate(cost);
         this.cost = cost;
     }
     public int calculateQuantity(){
-        return cost / UNIT;
+        return cost / UNIT.getValue();
     }
 
     private void validate(int cost){

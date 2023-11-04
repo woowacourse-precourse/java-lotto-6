@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.view.ErrorMessage.printInputFormatError;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +26,7 @@ public class Input {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch(NumberFormatException e) {
-            ErrorMessage.printInputFormatError();
+            printInputFormatError();
             throw new IllegalArgumentException();
         }
     }
@@ -38,7 +40,7 @@ public class Input {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            ErrorMessage.printInputFormatError();
+            printInputFormatError();
             throw new IllegalArgumentException();
         }
     }

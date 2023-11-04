@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.Money;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 
 public class Output {
 

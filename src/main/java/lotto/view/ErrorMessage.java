@@ -6,7 +6,7 @@ public enum ErrorMessage {
     MONEY_FORMAT_ERROR("[ERROR] 1000원 단위로 입력해주세요."),
     LOTTO_DISTINCT_NUMBERS_ERROR("[ERROR] 숫자 중복 없이 입력해주세요."),
     LOTTO_NUMBER_RANGE_ERROR("[ERROR] 1 ~ 45 사이 숫자를 입력해주세요."),
-    LOTTO_NUMBERS_SIZE_ERROR("[ERROR] 6자리 숫자를 입력해주세요."),
+    LOTTO_NUMBERS_SIZE_ERROR("[ERROR] 숫자 6개를 입력해주세요."),
     BONUS_NUMBER_RANGE_ERROR("[ERROR] 1 ~ 45 사이 숫자를 입력해주세요."),
     BONUS_NUMBER_DISTINCT_ERROR("[ERROR] 당첨 번호와 중복 없이 입력해주세요.");
 

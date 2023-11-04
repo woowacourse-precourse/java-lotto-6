@@ -1,8 +1,15 @@
-package lotto.model;
+package lotto.domain;
+
+import static lotto.domain.LottoDetails.lottoSize;
+import static lotto.domain.LottoDetails.lottoNumberMinimum;
+import static lotto.domain.LottoDetails.lottoNumberMaximum;
+import static lotto.view.ErrorMessage.printBonusNumberDistinctError;
+import static lotto.view.ErrorMessage.printLottoDistinctNumberError;
+import static lotto.view.ErrorMessage.printLottoNumberRangeError;
+import static lotto.view.ErrorMessage.printLottoNumbersSizeError;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.view.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,14 +33,14 @@ public class Lotto {
 
     public void validateBonusNumber(BonusNumber bonusNumber) {
         if(numbers.contains(bonusNumber.getValue())) {
-            ErrorMessage.printBonusNumberDistinctError();
+            printBonusNumberDistinctError();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            ErrorMessage.printLottoNumbersSizeError();
+        if (numbers.size() != lottoSize()) {
+            printLottoNumbersSizeError();
             throw new IllegalArgumentException();
         }
     }
@@ -42,15 +49,15 @@ public class Lotto {
         if(numbers.size() != numbers.stream()
                 .distinct()
                 .count()) {
-            ErrorMessage.printLottoDistinctNumberError();
+            printLottoDistinctNumberError();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         if(numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45)) {
-            ErrorMessage.printLottoNumberRangeError();
+                .anyMatch(number -> number < lottoNumberMinimum() || number > lottoNumberMaximum())) {
+            printLottoNumberRangeError();
             throw new IllegalArgumentException();
         }
     }

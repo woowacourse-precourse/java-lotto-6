@@ -3,9 +3,9 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LottoGenerator;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.Money;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.view.Input;
 import lotto.view.Output;
 

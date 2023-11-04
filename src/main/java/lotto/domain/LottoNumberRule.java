@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 
-public enum LottoRule {
+public enum LottoNumberRule {
     BASIC(1, 45, 6);
 
     private final int maxLottoNumber;
@@ -14,7 +14,7 @@ public enum LottoRule {
     public final String ERROR_MESSAGE_OUT_OF_RANGE;
     public final String ERROR_MESSAGE_DUPLICATED;
 
-    LottoRule(int maxLottoNumber, int minLottoNumber, int lottoNumberSize) {
+    LottoNumberRule(int maxLottoNumber, int minLottoNumber, int lottoNumberSize) {
         this.maxLottoNumber = maxLottoNumber;
         this.minLottoNumber = minLottoNumber;
         this.lottoNumberSize = lottoNumberSize;

@@ -11,7 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoRule rule = LottoRule.BASIC;
+        LottoNumberRule rule = LottoNumberRule.BASIC;
         rule.validateLottoNumbers(numbers);
     }
 

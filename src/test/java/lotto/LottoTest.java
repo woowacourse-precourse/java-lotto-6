@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoRule;
+import lotto.domain.LottoNumberRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ class LottoTest {
     void createLottoByNotAllowedRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoRule.BASIC.ERROR_MESSAGE_OUT_OF_RANGE);
+                .hasMessage(LottoNumberRule.BASIC.ERROR_MESSAGE_OUT_OF_RANGE);
 
     }
 }

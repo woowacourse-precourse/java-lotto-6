@@ -22,10 +22,10 @@ import view.OutputView;
 public class LottoController {
     private Money money;
     private BonusNumber bonusNumber;
-
+    private Lotto winningNumbers;
     private Lottos lottos;
     private HashMap<Rank, Integer> rankCountsMap;
-    private Lotto winningNumbers;
+    private RateOfReturn rateOfReturn;
 
 
     public LottoController() {
@@ -40,14 +40,35 @@ public class LottoController {
     }
 
     public void start() {
-        getLottoMoney();
+        // 1.로또 구입 금액 입력
+        inputLottoMoney();
+
+        // 2. 로또 개수 계산 및 출력
         long ticketCount = OutputView.LottoTicketCount(money.getMoney());
+
+        // 3. 로또 생성
         makeLottoLists(ticketCount);
-        getWinningNumbersAndBonusNumber();
+
+        // 4. 로또 당첨 번호 및 보너스 번호 입력, 수익률 계산
+        runLottoGame();
+
+        // 5. 결과 출력
         result();
     }
 
-    private void getLottoMoney() {
+    private void runLottoGame() {
+        getWinningNumbersAndBonusNumber();
+        calculateRankCount();
+        calculateRateOfReturn();
+    }
+
+    private void result() {
+        OutputView.resultStart();
+        OutputView.printStatistics(rankCountsMap);
+        OutputView.printRateOfReturn(rateOfReturn.getRate());
+    }
+
+    private void inputLottoMoney() {
         while (true) {
             try {
                 money = new Money(InputView.money());
@@ -73,11 +94,11 @@ public class LottoController {
     }
 
     private void getWinningNumbersAndBonusNumber() {
-        getWinningNumbers();
-        getBonusNumber();
+        inputWinningNumbers();
+        inputBonusNumber();
     }
 
-    private void getWinningNumbers() {
+    private void inputWinningNumbers() {
         while (true) {
             try {
                 winningNumbers = InputView.winningNumbers();
@@ -88,7 +109,7 @@ public class LottoController {
         }
     }
 
-    private void getBonusNumber() {
+    private void inputBonusNumber() {
         while (true) {
             try {
                 bonusNumber = new BonusNumber(winningNumbers, InputView.bonusNumber());
@@ -100,20 +121,18 @@ public class LottoController {
         }
     }
 
-    private void result() {
-        OutputView.resultStart();
-
+    private void calculateRankCount() {
         for (Lotto lotto : lottos.getLottoLists()) {
             Rank rank = lotto.getRank(winningNumbers.getNumbers(), bonusNumber.getBonusNumber());
 
             int currentCount = rankCountsMap.getOrDefault(rank, 0);
             rankCountsMap.put(rank, currentCount + 1);
         }
+    }
 
-        OutputView.printStatistics(rankCountsMap);
+    private void calculateRateOfReturn() {
         long totalIncome = getTotalIncome(rankCountsMap);
-        RateOfReturn rateOfReturn = new RateOfReturn(totalIncome, money.getMoney());
-        OutputView.printRateOfReturn(rateOfReturn.getRate());
+        rateOfReturn = new RateOfReturn(totalIncome, money.getMoney());
     }
 
     private static long getTotalIncome(HashMap<Rank, Integer> rankCountsMap) {

@@ -34,12 +34,12 @@ public class Calculator {
                 .count();
     }
 
-    public static float caculateReturnOfRate(Map<Ranking, Integer> result, int ticketQuantity ) {
+    public static float caculateReturnOfRate(Map<Ranking, Integer> result, int ticketQuantity) {
         int totalRevenue = 0;
         for (Map.Entry<Ranking, Integer> entry : result.entrySet()) {
-            int eachRankRevenue = entry.getKey().getReward()*entry.getValue();
-            totalRevenue +=eachRankRevenue;
+            int eachRankRevenue = entry.getKey().getReward() * entry.getValue();
+            totalRevenue += eachRankRevenue;
         }
-        return (float) totalRevenue/(ticketQuantity*1000)*100;
+        return (float) totalRevenue / (ticketQuantity * 1000) * 100;
     }
 }

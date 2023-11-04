@@ -22,17 +22,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+PICK_NUMBER_ERROR);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + PICK_NUMBER_ERROR);
         }
         if (numbers.stream()
                 .distinct()
                 .count() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+DUPLICATE_ERROR);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + DUPLICATE_ERROR);
         }
-        if(numbers.stream()
-                .filter((number)->number>45||number<1)
-                .count()>0){
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+RANGE_ERROR);
+        if (numbers.stream()
+                .filter((number) -> number > 45 || number < 1)
+                .count() > 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + RANGE_ERROR);
         }
     }
     // TODO: 추가 기능 구현
@@ -41,7 +41,7 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean isMatch(int number){
+    public boolean isMatch(int number) {
         return numbers.contains(number);
     }
 }

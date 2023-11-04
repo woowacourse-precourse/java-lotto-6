@@ -1,11 +1,8 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.utils.validator.ErrorMessageConstants.DUPLICATE_ERROR;
-import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.validator.ErrorMessageConstants.RANGE_ERROR;
-
-import java.util.ArrayList;
-import java.util.List;
+import static lotto.ErrorMessageConstants.DUPLICATE_ERROR;
+import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.ErrorMessageConstants.RANGE_ERROR;
 
 public class WinningNumbers {
 
@@ -28,20 +25,20 @@ public class WinningNumbers {
         return bonusNumber;
     }
 
-    public void validateBonusNumber(){
+    public void validateBonusNumber() {
         validateDuplicate();
         validateNumberRange();
     }
 
     private void validateNumberRange() {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+RANGE_ERROR);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + RANGE_ERROR);
         }
     }
 
     private void validateDuplicate() {
-        if(mainNumbers.getNumbers().contains(bonusNumber)){
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+DUPLICATE_ERROR);
+        if (mainNumbers.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + DUPLICATE_ERROR);
         }
     }
 

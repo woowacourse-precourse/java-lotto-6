@@ -19,7 +19,7 @@ public class WinningNumbersValidator {
 
     private static void validateCommaPosition(String inputValue) {
         if (inputValue.startsWith(",") || inputValue.endsWith(",")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+COMMA_POSITION_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + COMMA_POSITION_ERROR_MESSAGE);
         }
     }
 
@@ -28,9 +28,8 @@ public class WinningNumbersValidator {
         try {
             stringToInt(numbers);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+NUMBER_FORMAT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_FORMAT_ERROR_MESSAGE);
         }
-
     }
 
     private static void stringToInt(List<String> numbers) {

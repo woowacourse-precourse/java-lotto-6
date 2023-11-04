@@ -5,17 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import lotto.domain.Calculator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbersGenerator;
-import lotto.view.OutView;
 import lotto.domain.PurchaseAmountCalculator;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumbers;
-import lotto.domain.Calculator;
 import lotto.utils.Converter;
 import lotto.utils.validator.BonusNumberValidator;
 import lotto.utils.validator.WinningNumbersValidator;
 import lotto.view.InputView;
+import lotto.view.OutView;
 
 public class LottoGame {
 
@@ -43,13 +43,12 @@ public class LottoGame {
         OutView.printRateOfReturn(returnOfRate);
     }
 
-    private int settingTicketQuantity() {
-        int ticketQuantity;
-        while (true) {
+    public int settingTicketQuantity() {
+        int ticketQuantity = 0;
+        while (ticketQuantity == 0) {
             try {
                 String inputPurchaseAmount = InputView.getPurchaseAmount();
                 ticketQuantity = getTicketQuantity(inputPurchaseAmount);
-                break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -61,7 +60,7 @@ public class LottoGame {
         return purchaseAmountCalculator.getTicketQuantity(inputValue);
     }
 
-    private ArrayList<Lotto> settingConsumerLottos(int ticketQuantity) {
+    public ArrayList<Lotto> settingConsumerLottos(int ticketQuantity) {
         ArrayList<Lotto> consumerLottos = new ArrayList<>();
         publishLottoByTicketQuantity(ticketQuantity, consumerLottos);
         return consumerLottos;
@@ -74,7 +73,7 @@ public class LottoGame {
         }
     }
 
-    private static WinningNumbers settingWinningNumbers() {
+    public static WinningNumbers settingWinningNumbers() {
         Lotto winningLotto = settingMainNumbers();
 
         WinningNumbers winningNumbers = getBonusNumber(winningLotto);

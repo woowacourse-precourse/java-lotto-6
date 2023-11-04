@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplication(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = duplicateSortedList(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -26,6 +22,12 @@ public class Lotto {
         if(set.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private List<Integer> duplicateSortedList(List<Integer> numbers) {
+        List<Integer> list = new ArrayList<>(numbers);
+        Collections.sort(list);
+        return list;
     }
 
     @Override

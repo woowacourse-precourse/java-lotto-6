@@ -114,5 +114,10 @@ public class InputValidation {
         }
     }
 
+    public void validateBonusNumberOutOfRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 
 }

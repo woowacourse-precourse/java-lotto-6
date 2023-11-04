@@ -14,6 +14,7 @@ public class LottoController {
         int purchaseCount = purchaseAmount.calculateCount();
         View.purchaseCount(purchaseCount);
         LottoService.createRandomNumber(purchaseCount);
-        LottoService.createWinningNumber(purchaseCount);
+
+        LottoService.createWinningNumber();
     }
 }

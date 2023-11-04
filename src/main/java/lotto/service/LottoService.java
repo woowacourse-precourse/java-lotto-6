@@ -21,7 +21,7 @@ public class LottoService {
         }
     }
 
-    public static void createWinningNumber(int purchaseCount){
+    public static void createWinningNumber(){
         View.requestWinningNumber();
         InputService.winningNumbers();
 

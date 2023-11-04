@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningTest {
@@ -35,13 +34,13 @@ public class WinningTest {
     @DisplayName("당첨 로또 번호의 숫자가 45이면 예외가 발생하지 않는다.")
     @Test
     void checkRange45Test() {
-        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 45), 1);
+        Winning winning = new Winning(List.of(7, 2, 3, 4, 5, 45), 1);
     }
 
     @DisplayName("당첨 로또 번호의 숫자가 1이면 예외가 발생하지 않는다.")
     @Test
     void checkRange1Test() {
-        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6), 1);
+        Winning winning = new Winning(List.of(7, 2, 3, 4, 5, 6), 1);
     }
 
     @DisplayName("보너스 번호 범위가 1보다 작으면 예외가 발생한다.")
@@ -55,6 +54,13 @@ public class WinningTest {
     @Test
     void checkBonusRangeMaxTest() {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 45), 46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다.")
+    @Test
+    void checkDuplicationBetweenWinningNumberAndBonus() {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 45), 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

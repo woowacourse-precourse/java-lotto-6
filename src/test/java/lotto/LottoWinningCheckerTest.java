@@ -16,11 +16,25 @@ public class LottoWinningCheckerTest {
     void createLottoChecker() {
         checker = new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6), 7);
     }
-
+    @DisplayName("당첨 번호와 보너스 번호가 중복인 경우")
+    @Test
+    void createLottoWinningCheckerByDuplicateBonusNumber(){
+        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6), 6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("당첨 번호 중복인 경우")
+    @Test
+    void createLottoWinningCheckerByDuplicateNumber(){
+        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 5), 7))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @DisplayName("당첨 번호 갯수 6개 아닐 때")
     @Test
-    void createLottoWinningChecker() {
+    void createLottoWinningCheckerByOverSize() {
         assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5), 7))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6, 8), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

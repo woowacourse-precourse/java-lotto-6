@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public enum LottoPrize {
 
     FIRST_PRIZE(2_000_000_000),
@@ -16,5 +18,9 @@ public enum LottoPrize {
 
     public int getPrize() {
         return prize;
+    }
+
+    public static long calculateWinningPrize(final LottoPrize lottoPrize, final long count) {
+        return lottoPrize.getPrize() * count;
     }
 }

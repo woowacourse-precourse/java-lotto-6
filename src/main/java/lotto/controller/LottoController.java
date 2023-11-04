@@ -14,6 +14,7 @@ public class LottoController {
         OutputView.printPurchasedLottos(user.getPurchasedLottos());
 
         String[] winningNumbers = InputView.inputWinningNumbers();
-        WinningNumber winningNumber = WinningNumber.from(winningNumbers);
+        int bonusNumber = InputView.inputBonusNumber();
+        WinningNumber winningNumber = WinningNumber.from(winningNumbers, bonusNumber);
     }
 }

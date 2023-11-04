@@ -18,4 +18,11 @@ public class InputView {
         InputValidator.validateIsAllNumber(input);
         return input;
     }
+
+    public static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        InputValidator.validateIsNumber(input);
+        return Integer.parseInt(input);
+    }
 }

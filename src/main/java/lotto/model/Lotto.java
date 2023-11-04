@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -44,5 +44,9 @@ public class Lotto {
 
     public List<Integer> getSortedNumbers() {
         return numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
     }
 }

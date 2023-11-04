@@ -1,8 +1,12 @@
 package lotto.domain;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.constants.Messages;
+import lotto.constants.Values;
 import lotto.constants.WinningCriteria;
 
 public class WinningStatistics {
@@ -35,30 +39,24 @@ public class WinningStatistics {
     }
 
     private String getMessage(WinningCriteria winningCriteria) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormat decimalFormat = new DecimalFormat(Values.DECIMAL_FORMAT_PATTERN);
         String formattedPrizeAmount = decimalFormat.format(winningCriteria.getPrizeAmount());
+        String winningFormat = Messages.WINNING_MESSAGE;
         if (winningCriteria == WinningCriteria.SECOND) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", winningCriteria.getMatchingCount(),
-                    formattedPrizeAmount, winningInfo.get(winningCriteria));
-        } else {
-            return String.format("%d개 일치 (%s원) - %d개\n", winningCriteria.getMatchingCount(), formattedPrizeAmount,
-                    winningInfo.get(winningCriteria));
+            winningFormat = Messages.WINNING_SECOND_MESSAGE;
         }
+        return String.format(winningFormat, winningCriteria.getMatchingCount(), formattedPrizeAmount,
+                winningInfo.get(winningCriteria));
     }
 
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("당첨 통계\n");
-        sb.append("---\n");
-
-        for (WinningCriteria criteria : WinningCriteria.values()) {
-            if (criteria == WinningCriteria.LOSE) {
-                continue;
-            }
-            sb.append(getMessage(criteria));
-        }
-        return sb.toString();
+        String statistics = Messages.WINNING_STATISTICS + "\n" + Messages.SEPARATOR_LINE + "\n";
+        String result = Arrays.stream(WinningCriteria.values())
+                .filter(criteria -> criteria != WinningCriteria.LOSE)
+                .map(this::getMessage)
+                .collect(Collectors.joining("\n"));
+        return statistics + result;
     }
 }

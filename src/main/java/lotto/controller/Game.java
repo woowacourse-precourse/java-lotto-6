@@ -11,6 +11,18 @@ public class Game {
     private final ResultService resultService = new ResultService();
 
     public void start() {
-        String purchaseAmount = View.inputPurchaseAmount();
+
+        boolean isValidPurchaseAmount = false;
+        while (!isValidPurchaseAmount) {
+            String purchaseAmountInput = View.inputPurchaseAmount();
+            try {
+                userService.purchaseLottos(purchaseAmountInput);
+                isValidPurchaseAmount = true;
+            } catch (IllegalArgumentException e) {
+                View.printMessage(e.getMessage());
+            }
+        }
+
+
     }
 }

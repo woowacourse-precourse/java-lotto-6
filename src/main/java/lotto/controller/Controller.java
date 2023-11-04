@@ -44,7 +44,7 @@ public class Controller {
         return new Money(convertStringToInt(money));
     }
 
-    private Lottos getLottos(final int money) {
+    private Lottos getLottos(final long money) {
         return Lottos.createWith(money, new RandomNumbersGenerator());
     }
 

@@ -7,6 +7,7 @@ import static lotto.util.Constant.ZERO;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import lotto.util.NumbersGenerator;
 
 public class Lottos {
@@ -17,13 +18,13 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos createWith(final int money, final NumbersGenerator numbersGenerator) {
-        int lottoTicketCount = money / LOTTO_PRICE.getValue();
+    public static Lottos createWith(final long money, final NumbersGenerator numbersGenerator) {
+        long lottoTicketCount = money / LOTTO_PRICE.getValue();
         return new Lottos(createLottos(lottoTicketCount, numbersGenerator));
     }
 
-    private static List<Lotto> createLottos(final int lottoTicketCount, final NumbersGenerator numbersGenerator) {
-        return IntStream.range(ZERO.getValue(), lottoTicketCount)
+    private static List<Lotto> createLottos(final long lottoTicketCount, final NumbersGenerator numbersGenerator) {
+        return LongStream.range(ZERO.getValue(), lottoTicketCount)
                 .mapToObj(lotto -> Lotto.createWith(numbersGenerator))
                 .toList();
     }

@@ -17,4 +17,6 @@ public interface Output {
     void printBonusNumberRequest();
 
     void printWinningStatus(Map<WinningStatus, Integer> winningStatus);
+
+    void printRateOfReturn(double rateOfReturn);
 }

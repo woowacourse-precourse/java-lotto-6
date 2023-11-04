@@ -88,5 +88,6 @@ public class LottoManager {
         double rateOfReturn = ReturnCalculator.calculate(winningStatus, lottos.size());
 
         output.printWinningStatus(winningStatus);
+        output.printRateOfReturn(rateOfReturn);
     }
 }

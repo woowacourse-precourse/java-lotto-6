@@ -62,4 +62,9 @@ public class ConsoleOutput implements Output {
 
         System.out.println(buffer);
     }
+
+    @Override
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 %.1f%%입니다.".formatted(rateOfReturn));
+    }
 }

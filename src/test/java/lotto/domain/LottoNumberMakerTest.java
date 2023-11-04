@@ -1,0 +1,21 @@
+package lotto.domain;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class LottoNumberMakerTest {
+
+    @DisplayName("입력된 문자열 형태의 숫자들을 정렬된 숫자 리스트로 변환하는지 확인합니다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "1,3,4,2,5,6", "2,3,4,6,5,1"})
+    void createByInput(String input) {
+        LottoNumberMaker lottoNumberMaker = new LottoNumberMaker();
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThat(lottoNumberMaker.createByInput(input)).isEqualTo(expected);
+    }
+}

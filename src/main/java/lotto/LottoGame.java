@@ -29,7 +29,7 @@ public class LottoGame {
 		Lottos lottos = createLottos(money);
 		AnswerLotto answerLotto = createAnswerLotto();
 		int priceSum = lottoService.calculateLottoPriceSum(lottos, answerLotto);
-		double totalReturn = lottoService.calculateTotalReturn(money.getMoney(), priceSum);
+		double totalReturn = lottoService.calculateTotalReturn(money.money(), priceSum);
 
 		printLottoResult(lottos, answerLotto, totalReturn);
 	}

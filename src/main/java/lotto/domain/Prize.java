@@ -28,4 +28,15 @@ public enum Prize {
                 .orElse(LAST_PLACE);
     }
 
+    public Integer getCountOfSameNumbers() {
+        return countOfSameNumbers;
+    }
+
+    public Boolean getCheckBonus() {
+        return checkBonus;
+    }
+
+    public Integer getReward() {
+        return reward;
+    }
 }

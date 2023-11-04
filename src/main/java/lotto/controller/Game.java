@@ -22,7 +22,7 @@ public class Game {
         Integer lottoCount;
         String cost = message.inputCost();
 
-        validator.validateCost(cost);
+        validator.validateCost(cost, LOTTO_PRICE);
         lottoCount = countLotto(cost);
         message.printLottoCount(lottoCount);
         return lottoCount;

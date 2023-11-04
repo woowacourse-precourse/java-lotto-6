@@ -28,7 +28,7 @@ class LottoTest {
     @Test
     void buyLottoByNotNumber() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.validateCost("8a000"))
+        assertThatThrownBy(() -> validator.validateCost("8a000", 1000))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,7 +36,7 @@ class LottoTest {
     @Test
     void buyLottoByNotThousands() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.validateCost("8900"))
+        assertThatThrownBy(() -> validator.validateCost("8900", 1000))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

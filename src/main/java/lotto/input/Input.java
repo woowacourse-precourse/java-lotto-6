@@ -30,13 +30,21 @@ public class Input {
 
     public List<Integer> inputWinningNumber() {
         List<Integer> winningNumber = new ArrayList<>();
-        for(String number: inputGenerator.readLine().split(",", -1)) {
+        for(String inputNumber: inputGenerator.readLine().split(",", -1)) {
+            // Integer 자료형 인지 검증
+            validate.validateInteger(inputNumber);
+
+            // 양의 값인지 검증
+            int number = Integer.parseInt(inputNumber);
+            validate.validatePositiveNumber(number);
 
             // 1 ~ 45 사이의 숫자인지 검증
+            validate.validateNumberInRange(number, 1, 45);
             
             // 리스트에 중복된 값이 있는지 검증
+            validate.validateDuplicatedInList(number, winningNumber);
 
-            winningNumber.add(Integer.parseInt(number));
+            winningNumber.add(number);
         }
 
         return winningNumber;

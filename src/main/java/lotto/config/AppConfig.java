@@ -1,6 +1,5 @@
 package lotto.config;
 
-import lotto.controller.FactoryController;
 import lotto.controller.LottoController;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
@@ -17,11 +16,7 @@ public class AppConfig {
         return new ConsoleOutputView();
     }
 
-    public FactoryController factoryController() {
-        return new FactoryController(inputView(), outputView());
-    }
-
     public LottoController lottoController() {
-        return new LottoController(outputView(), factoryController());
+        return new LottoController(inputView(), outputView());
     }
 }

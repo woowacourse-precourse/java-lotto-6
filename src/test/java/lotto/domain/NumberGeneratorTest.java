@@ -20,7 +20,7 @@ public class NumberGeneratorTest {
         // then
         Assertions.assertDoesNotThrow(() -> {
             for (Integer number : numbers) {
-                Assertions.assertTrue(number >= 1 && number <= 45);
+                Assertions.assertTrue(number >= NumberConstraints.LOTTO_MIN_NUMBER.value() && number <= NumberConstraints.LOTTO_MAX_NUMBER.value());
             }
         });
     }

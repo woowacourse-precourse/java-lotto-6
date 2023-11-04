@@ -1,10 +1,11 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import lotto.generator.MockedRandomGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LottoGameTest {
@@ -20,10 +21,10 @@ public class LottoGameTest {
 
         List<Integer> lottoNumbers = generatedLotto.getLotto();
 
-        Assertions.assertThat(lottoNumbers.size()).isEqualTo(6);
-        Assertions.assertThat(lottoNumbers.size()).isEqualTo(
+        assertThat(lottoNumbers.size()).isEqualTo(6);
+        assertThat(lottoNumbers.size()).isEqualTo(
                 new HashSet<Integer>(lottoNumbers).size());
-        Assertions.assertThat(
+        assertThat(
                 lottoNumbers.stream()
                         .filter(number -> number > 45 || number < 1)
                         .findFirst()

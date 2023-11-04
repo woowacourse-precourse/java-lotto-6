@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidLottoSizeException;
+import lotto.exception.InvalidRangeException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,19 +33,19 @@ public class Lotto {
 
     private void validateRange(Integer number) {
         if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
-            throw new IllegalArgumentException();
+            throw new InvalidRangeException();
         }
     }
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoSizeException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new DuplicateLottoNumberException();
         }
     }
 

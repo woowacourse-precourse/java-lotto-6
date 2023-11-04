@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.DiviedThousandException;
+import lotto.exception.InputMoneyZeroException;
+import lotto.exception.InvalidInputNumFormatException;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -42,19 +45,19 @@ public class User {
 
     private void validateFormat(String money){
         if (!Pattern.compile("\\d+").matcher(money).matches()) {
-            throw new IllegalArgumentException();
+            throw new InvalidInputNumFormatException();
         }
     }
 
     private void validateDivide(Integer money){
         if (money % LOTTOVALUE != ZERO) {
-            throw new IllegalArgumentException();
+            throw new DiviedThousandException();
         }
     }
 
     private void validateZero(Integer money) {
         if (money == ZERO) {
-            throw new IllegalArgumentException();
+            throw new InputMoneyZeroException();
         }
     }
 }

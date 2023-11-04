@@ -37,6 +37,7 @@ public class LottoController {
             user.inputMoney();
             System.out.println();
         }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             inputMoney(user);
         }
     }
@@ -47,6 +48,7 @@ public class LottoController {
             lottoAdmin.inputWinningNumber();
             System.out.println();
         }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             inputWinningNumber(lottoAdmin);
         }
     }
@@ -57,6 +59,7 @@ public class LottoController {
             lottoAdmin.inputBonusNumber();
             System.out.println();
         }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             inputBonusNumber(lottoAdmin);
         }
     }

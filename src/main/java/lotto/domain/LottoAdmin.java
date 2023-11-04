@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InvalidRangeException;
+import lotto.exception.InvalidWinningLottoFormatException;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -35,7 +37,7 @@ public class LottoAdmin {
 
     private void validateWinningInput(String inputValue) {
         if (!WINNINGPATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException();
+            throw new InvalidWinningLottoFormatException();
         }
     }
 
@@ -47,7 +49,7 @@ public class LottoAdmin {
 
     private void validateRange(Integer number) {
         if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
-            throw new IllegalArgumentException();
+            throw new InvalidRangeException();
         }
     }
 

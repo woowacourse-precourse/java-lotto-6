@@ -1,8 +1,9 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Comparator;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class LottoGeneratorTest {
         List<Integer> numbers = lottoGenerator.createRandomNumbersByAscending();
 
         //then
-        Assertions.assertThat(numbers)
+        assertThat(numbers)
                 .hasSize(6)
                 .isSortedAccordingTo(Comparator.naturalOrder());
     }
@@ -27,19 +28,25 @@ public class LottoGeneratorTest {
     @Test
     void createLottoWhenGivenNumberCount6() {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        Assertions.assertThat(lottoGenerator.createOnlyOneLotto(stubNumbers()))
+        assertThat(lottoGenerator.createOnlyOneLotto(stubNumbers()))
                 .isInstanceOf(Lotto.class);
     }
 
-    @DisplayName("발행 개수를 전달하면 그만큼 로또를 생성해야 한다.")
+    @DisplayName("발행 개수를 전달하면 정상적으로 로또를 생성해야 한다.")
     @Test
     void createLottoBundleWhenCountPassing() {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        lottoGenerator.createLottoBundle(10);
 
-        Assertions.assertThat(lottoGenerator.createLottoBundle(10))
-                .hasSize(10);
+        Lottos lottos = lottoGenerator.createLottoBundle(10);
 
+        assertThat(lottos.getSize())
+                .isEqualTo(10);
+
+        for (Lotto lotto : lottos.lottoBundle()) {
+            assertThat(lotto.getNumbers())
+                    .hasSize(6)
+                    .isSortedAccordingTo(Comparator.naturalOrder());
+        }
 
     }
 

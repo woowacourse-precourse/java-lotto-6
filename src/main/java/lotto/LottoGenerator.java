@@ -19,13 +19,13 @@ public class LottoGenerator {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> createLottoBundle(int issueCount) {
+    public Lottos createLottoBundle(int issueCount) {
         List<Lotto> lottoBundle = new ArrayList<>();
         for (int i = 0; i < issueCount; i++) {
             Lotto lotto = createOnlyOneLotto(createRandomNumbersByAscending());
             lottoBundle.add(lotto);
         }
-        return lottoBundle;
+        return new Lottos(lottoBundle);
     }
 
 }

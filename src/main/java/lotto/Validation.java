@@ -1,5 +1,10 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Validation {
     static void emptyCheck(String raw) {
         if (raw == null) {
@@ -40,5 +45,17 @@ public class Validation {
         nanCheck(raw);
         naturalNumberCheck(raw);
         devide1000Check(raw);
+    }
+
+    static void ticketNumberDuplecationCheck(String raw) {
+        List<Integer> numbers = Arrays.stream(raw.split(","))
+                .map(Integer::parseInt)
+                .toList();
+        Set<Integer> set = new HashSet<>(numbers);
+        Integer numbersSize = numbers.size();
+        Integer setSize = set.size();
+        if (numbersSize != setSize) {
+            throw new IllegalArgumentException();
+        }
     }
 }

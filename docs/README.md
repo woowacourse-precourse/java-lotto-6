@@ -14,6 +14,9 @@
 * `LottoBundle` : 로또 뭉치
     * [x] : 로또 뭉치를 만들 수 있다.
 
+* `LottoMachine` : 로또 뭉치 생성기
+    * [x] : RandomService 에 따라 만들어지는 수로 로또 뭉치를 만든다.
+
 * `LottoSeller` : 로또 판매원
     * [] : 돈으로 구매할 수 있는 로또를 산다.
 

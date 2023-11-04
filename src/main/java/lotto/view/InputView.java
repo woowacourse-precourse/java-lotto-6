@@ -103,10 +103,10 @@ public class InputView {
         if (bonusNumber.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
         }
+        validateLottoNumber(bonusNumber);
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getErrorMessage());
         }
-        validateLottoNumber(bonusNumber);
     }
     private void validateLottoNumber(String number) {
         try {

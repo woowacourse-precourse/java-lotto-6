@@ -1,6 +1,6 @@
-package lotto;
+package lotto.view;
 
-public class OutView {
+public class OutputView {
 
     private final static String PURCHASE_QUANTITY = "%d개를 구매했습니다.";
 

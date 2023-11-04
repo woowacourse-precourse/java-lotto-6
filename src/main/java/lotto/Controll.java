@@ -102,4 +102,19 @@ public class Controll {
         }
         return sameNumberCount;
     }
+
+    public void start() {
+        Output.printInputMoney();
+        Integer ticketCount = ticketsForMoney(Input.inputMoney());
+        Lotto[] tickets = new Lotto[ticketCount];
+        for (int i = 0; i < ticketCount; i++) {
+            tickets[i] = buyLotto();
+        }
+        Output.printTicketsBought(tickets);
+        Output.printInputWinnerNumber();
+        Lotto winnerTicket = Input.inputWinnerNumber();
+        Output.printInputBonusNumber();
+        Integer bonusNumber = Input.inputBonusNumber(winnerTicket);
+        Output.printStatistic(winnerTicket, bonusNumber, tickets);
+    }
 }

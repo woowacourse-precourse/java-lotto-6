@@ -21,7 +21,7 @@ public class LottoController {
     public void makeLottoGameInstance(LottoGame lottoGame){
         lg = lottoGame;
     }
-    public boolean validatePrice(String number){
+    public boolean howMuchIsIt(String number){
         if(!validator.validatePriceNumber(number, lg)) return false;
         price = Integer.parseInt(number);
         if(!validator.validateThousands(price, lg)) return false;
@@ -43,6 +43,7 @@ public class LottoController {
         lottoList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int times = price/1000;
+        sb.append(times).append("개를 구매했습니다.");
         for(int i = 0; i < times; i++){
             Lotto lotto = new Lotto(lottoMaker());
             lottoList.add(lotto);
@@ -75,7 +76,7 @@ public class LottoController {
 
     public String lottoResult(){
         prizeTimes();
-        int income = calcIncome();
+        double income = calcIncome();
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n").append("---\n");
         sb.append("3개 일치 (5,000원) - ").append(fifth).append("개\n");
@@ -112,14 +113,15 @@ public class LottoController {
         if(sameNumbers == 6) return 1;
         return 6;
     }
-    public int calcIncome(){
-        int sum = 0;
+    public double calcIncome(){
+        double sum = 0;
         sum += fifth*5000;
         sum += fourth*50000;
         sum += third*1500000;
         sum += second*30000000;
         sum += first*2000000000;
 
-        return sum/price*100;
+        double income = sum/(double)price*100;
+        return (double) Math.round(income * 10) /10;
     }
 }

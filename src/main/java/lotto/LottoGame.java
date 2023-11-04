@@ -10,7 +10,7 @@ public class LottoGame {
         lc = new LottoController();
         lc.makeLottoGameInstance(lottoGame);
         System.out.println("구입금액을 입력해 주세요.");
-        boolean isValidated = lc.validatePrice(Console.readLine());
+        boolean isValidated = lc.howMuchIsIt(Console.readLine());
         if(isValidated) buyLotto();
     }
 

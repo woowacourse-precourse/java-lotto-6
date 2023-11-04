@@ -14,7 +14,7 @@ class WinningResultTest {
         // given
         LottoGame lottoGame = LottoGame.createLottoGame(10000);
         WinningResult winningResult = new WinningResult();
-        winningResult.winningRank(6, false);
+        winningResult.winRank(6, false);
 
         // when
         double earningsRate = winningResult.calculateEarningsRate(lottoGame);

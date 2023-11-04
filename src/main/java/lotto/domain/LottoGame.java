@@ -35,7 +35,7 @@ public final class LottoGame {
         for (Lotto lotto : lottos) {
             int correctAmount = lotto.calculateCorrectAmount(winningLotto);
             boolean bonusCorrect = lotto.calculateBonusCorrect(winningLotto);
-            winningResult.winningRank(correctAmount, bonusCorrect);
+            winningResult.winRank(correctAmount, bonusCorrect);
         }
 
         return winningResult;

@@ -11,12 +11,12 @@ public class WinningResult {
     private int rank4;
     private int rank5;
 
-    public void winningRank(final int correctAmount, final boolean bonusCorrect) {
-        winningRank1(correctAmount);
-        winningRank2(correctAmount, bonusCorrect);
-        winningRank3(correctAmount, bonusCorrect);
-        winningRank4(correctAmount);
-        winningRank5(correctAmount);
+    public void winRank(final int correctAmount, final boolean bonusCorrect) {
+        winRank1(correctAmount);
+        winRank2(correctAmount, bonusCorrect);
+        winRank3(correctAmount, bonusCorrect);
+        winRank4(correctAmount);
+        winRank5(correctAmount);
     }
 
     public double calculateEarningsRate(final LottoGame lottoGame) {
@@ -37,31 +37,31 @@ public class WinningResult {
         return firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize;
     }
 
-    private void winningRank1(final int correctAmount) {
+    private void winRank1(final int correctAmount) {
         if (correctAmount == FIRST_CORRECT_AMOUNT) {
             rank1++;
         }
     }
 
-    private void winningRank2(final int correctAmount, final boolean bonusCorrect) {
+    private void winRank2(final int correctAmount, final boolean bonusCorrect) {
         if (correctAmount == SECOND_CORRECT_AMOUNT && bonusCorrect) {
             rank2++;
         }
     }
 
-    private void winningRank3(final int correctAmount, final boolean bonusCorrect) {
+    private void winRank3(final int correctAmount, final boolean bonusCorrect) {
         if (correctAmount == THIRD_CORRECT_AMOUNT && !bonusCorrect) {
             rank3++;
         }
     }
 
-    private void winningRank4(final int correctAmount) {
+    private void winRank4(final int correctAmount) {
         if (correctAmount == FOURTH_CORRECT_AMOUNT) {
             rank4++;
         }
     }
 
-    private void winningRank5(final int correctAmount) {
+    private void winRank5(final int correctAmount) {
         if (correctAmount == FIFTH_CORRECT_AMOUNT) {
             rank5++;
         }

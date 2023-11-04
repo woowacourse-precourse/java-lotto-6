@@ -24,4 +24,10 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
+    public String printPurchasedLottos() {
+        StringBuilder sb = new StringBuilder();
+        lottos.forEach(lotto -> sb.append(lotto.getResult()).append("/n"));
+        return sb.toString();
+    }
+
 }

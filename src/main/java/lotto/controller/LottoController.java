@@ -8,10 +8,18 @@ public class LottoController {
     private final LottoService lottoService;
 
     public LottoController(){
-        PayDTO pay = BeforeScreen.readPayment();
-        this.lottoService = new LottoService(pay.getNumberOfLotto());
+        int numberOfLotto = readPayment();
+        this.lottoService = new LottoService(numberOfLotto);
+        printPurchasedLottos(numberOfLotto);
     }
-    public void execute(){
 
+    private void printPurchasedLottos(int numberOfLotto) {
+        String resultOfPurchasedLottos = lottoService.printPurchasedLottos();
+        BeforeScreen.printPurchasedLottos(numberOfLotto, resultOfPurchasedLottos);
+    }
+
+    public int readPayment(){
+        PayDTO pay = BeforeScreen.readPayment();
+        return pay.getNumberOfLotto();
     }
 }

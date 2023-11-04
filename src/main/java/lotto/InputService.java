@@ -7,24 +7,28 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputService {
 
     public static Integer purchaseAmount(){
-        String s = Console.readLine();
-        validateTrim(s);
-        validateNumber(s);
-        return Integer.parseInt(s);
+        String input = readLine();
+        validateTrim(input);
+        validateNumber(input);
+        return Integer.parseInt(input);
     }
 
-    private static void validateNumber(String s) {
+    private static void validateNumber(String input) {
         try{
-            Integer.parseInt(s);
+            Integer.parseInt(input);
         }catch (Exception e){
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
-    private static void validateTrim(String s) {
-        String trim = s.trim();
-        if(s.length() != trim.length()){
+    private static void validateTrim(String input) {
+        String trimInput = input.trim();
+        if(input.length() != trimInput.length()){
             throw new IllegalArgumentException(CONTAIN_SPACE.getMessage());
         }
+    }
+
+    private static String readLine(){
+        return Console.readLine();
     }
 }

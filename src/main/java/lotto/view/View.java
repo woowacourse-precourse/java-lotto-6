@@ -26,4 +26,13 @@ public class View {
         }
     }
 
+    public void printRequestWinningNumbers() {
+        System.out.println(ViewMessage.REQUEST_WINNING_NUMBER_MESSAGE.getMessage());
+    }
+
+    public void printRequestBonusNumber() {
+        System.out.println(ViewMessage.REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
+    }
+
+
 }

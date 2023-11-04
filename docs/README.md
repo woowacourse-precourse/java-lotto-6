@@ -17,7 +17,7 @@
 
 ## Code Style
 - [ ] 자바 코딩 컨벤션 준수
-- [ ] MVC 패턴에 맞게 패키지 생성
+- [x] MVC 패턴에 맞게 패키지 생성
 - [ ] 클래스 분리 및 패키지별 정리
 - [ ] 코드 이식성 강화를 위한 Component-Based Development (CBD) 준수
 - [ ] 기능별 메소드 개발

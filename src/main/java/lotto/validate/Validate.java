@@ -7,8 +7,6 @@ public class Validate {
 	}
 	//입력받은 숫자가 1000미만인지
 	public static void isMinimumAmount(int inputData) {
-	    if (inputData < 1000) {
-	        throw new IllegalArgumentException("[ERROR] 1000이상의 숫자로 입력해주세요.");
-	    }
+	    if (inputData < 1000) throw new IllegalArgumentException("[ERROR] 1000이상의 숫자로 입력해주세요.");
 	}
 }

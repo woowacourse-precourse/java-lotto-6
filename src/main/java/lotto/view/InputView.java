@@ -3,9 +3,13 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
+import lotto.exception.InputLottoException;
 import lotto.exception.InputNumberException;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputView {
     public static LottoMoney showMoney() {
@@ -37,5 +41,39 @@ public class InputView {
             System.out.println(number);
         }
         System.out.println();
+    }
+
+    public static Lotto insertLottoNum() {
+        while (true) {
+            System.out.println("당첨번호를 입력해 주세요.");
+            String readLine = Console.readLine();
+            try {
+                validateLottoNum(readLine);
+                List<Integer> list = numToList(readLine);
+                return new Lotto(list);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+        }
+    }
+
+    public static List<Integer> numToList(String readLine) {
+        List<Integer> list = new ArrayList<>();
+        String[] split = readLine.split(",");
+        for (String s : split) {
+            list.add(Integer.parseInt(s));
+        }
+        return list;
+    }
+
+    public static void validateLottoNum(String readLine) {
+//        Set<Integer> set = new HashSet<>();
+        String[] split = readLine.split(",");
+        for (String s : split) {
+            if (Integer.parseInt(s) < 1 || Integer.parseInt(s) > 45) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new InputLottoException();
+            }
+        }
     }
 }

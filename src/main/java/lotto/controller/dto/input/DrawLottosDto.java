@@ -2,6 +2,7 @@ package lotto.controller.dto.input;
 
 import java.util.List;
 import lotto.parser.StrictInputParser;
+import lotto.validator.InputValidator;
 
 /**
  * 로또 추첨을 위한 입력 데이터,
@@ -20,7 +21,7 @@ public final class DrawLottosDto {
      */
     private final int bonusNumber;
 
-    private DrawLottosDto(
+    public DrawLottosDto(
             final List<Integer> lottoNumbers,
             final int bonusNumber
     ) {
@@ -41,6 +42,10 @@ public final class DrawLottosDto {
         return new DrawLottosDto(lottoNumbers, bonusNumber);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Dto 내의 데이터는 추후 다른 객체에 의해 사용되어야 하기 때문에 getter를 모두 열어 두었습니다.
      * <p>
@@ -52,6 +57,33 @@ public final class DrawLottosDto {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    /**
+     *
+     */
+    public static class Builder {
+        private List<Integer> lottoNumbers;
+        private int bonusNumber;
+
+        private Builder() {
+        }
+
+        public Builder lottoNumbers(final String input) {
+            InputValidator.validateCommasSeparatedInput(input);
+            this.lottoNumbers = StrictInputParser.mustParseFromCommasSeparatedInputToIntList(input);
+            return this;
+        }
+
+        public Builder bonusNumber(final String input) {
+            InputValidator.validateNumericInput(input);
+            this.bonusNumber = StrictInputParser.mustParseToInt(input);
+            return this;
+        }
+
+        public DrawLottosDto build() {
+            return new DrawLottosDto(lottoNumbers, bonusNumber);
+        }
     }
 
 }

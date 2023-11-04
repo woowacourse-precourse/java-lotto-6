@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.stream.Collectors;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
 
@@ -19,14 +22,16 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---------");
 
+
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.NONE) continue;
             System.out.println(rank.getMatchCount() + "개 일치" +
                     (rank == LottoRank.SECOND ? ", 보너스 볼 일치" : "") + " (" +
-                    rank.getPrizeMoney() + "원)- " +
+                    String.format("%,d원", rank.getPrizeMoney()) + ")- " +
                     results.getOrDefault(rank, 0) + "개");
         }
 
-        System.out.println("총 수익률은 " + String.format("%.2f%%", profitRatio) + "입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f%%", profitRatio) + "입니다.");
     }
+
 }

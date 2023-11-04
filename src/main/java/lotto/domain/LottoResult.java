@@ -27,6 +27,6 @@ public class LottoResult {
         long totalPrizeMoney = results.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
-        return ((double) totalPrizeMoney - purchaseAmount) / purchaseAmount * 100;
+        return ((double) totalPrizeMoney)  / purchaseAmount * 100;
     }
 }

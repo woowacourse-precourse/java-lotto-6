@@ -29,4 +29,15 @@ public class InputProcessor {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public static int processBonusNumber() {
+        OutputView.printBonusNumberPrompt();
+        try {
+            String input = InputView.getInput();
+            InputValidation.validateNumeric(input);
+            return InputConverter.convertToNumber(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 }

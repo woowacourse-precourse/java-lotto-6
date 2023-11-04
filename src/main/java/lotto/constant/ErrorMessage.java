@@ -6,7 +6,7 @@ public class ErrorMessage {
             = "[ERROR] 구입금액은 1000원 단위로 입력해야합니다.";
 
     public static final String WINNING_NUMBER_SIZE
-            = "[ERROR] 당첨번호는 6자리가 넘어갈 수 없습니다.";
+            = "[ERROR] 당첨번호는 6자리로 입력해야합니다.";
 
     public static final String WINNING_NUMBER_DUPLICATE
             = "[ERROR] 당첨번호는 중복될 수 없습니다.";

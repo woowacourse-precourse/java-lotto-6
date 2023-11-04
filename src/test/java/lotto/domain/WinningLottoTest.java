@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -95,6 +96,39 @@ class WinningLottoTest {
             assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
+        }
+    }
+
+    @Nested
+    @DisplayName("[WinningLotto] 기능 테스트")
+    class WinningLottoUnitTest {
+
+        @Test
+        @DisplayName("로또 번호와 당첨 번호를 비교하여 일치하는 숫자의 수를 센다")
+        void contains_로또_번호와_당첨_번호를_비교하여_일치하는_숫자의_수를_센다() {
+            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+            List<Integer> winningLottoNumbers = List.of(1, 2, 3, 7, 8, 9);
+
+            Lotto lotto = new Lotto(lottoNumbers);
+            WinningLotto winningLotto = WinningLotto.of(winningLottoNumbers, 10);
+
+            assertThat(winningLotto.countMatchingNumbers(lotto))
+                    .isEqualTo(3);
+        }
+
+        // Lotto를 입력받고 보너스 번호가 있는지 확인
+
+        @Test
+        @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 확인한다")
+        void contains_로또_번호에_보너스_번호가_포함되어_있는지_확인한다() {
+            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+            List<Integer> winningLottoNumbers = List.of(1, 2, 3, 7, 8, 9);
+
+            Lotto lotto = new Lotto(lottoNumbers);
+            WinningLotto winningLotto = WinningLotto.of(winningLottoNumbers, 6);
+
+            assertThat(winningLotto.containsBonusNumber(lotto))
+                    .isTrue();
         }
     }
 }

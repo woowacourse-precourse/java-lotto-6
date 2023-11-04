@@ -15,4 +15,8 @@ public class LottoEnvelop {
     public void add(Lotto lotto) {
         lottoEnvelops.add(lotto);
     }
+
+    public LottoEnvelop get() {
+        return (LottoEnvelop) lottoEnvelops;
+    }
 }

@@ -9,7 +9,6 @@ public class Money {
     public Money(int purchaseAmount) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        System.out.println(purchaseAmount);
     }
 
     public int getPurchaseAmount(){

@@ -1,13 +1,25 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
+        if(validateNumbers(numbers)){
+            this.numbers = numbers;
+        }
+        throw new IllegalArgumentException("[ERROR] 로또는 중복된 번호를 가지거나 6자리 여야합니다.");
+    }
+
+    private boolean validateNumbers(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        return numberSet.size() == 6;
     }
 
     private int countMatchingNumbers(List<Integer> winningNumbers) {

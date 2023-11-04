@@ -25,4 +25,12 @@ class WinningLottoServiceTest {
         assertThrows(WinningNumberValidationException.class, () ->
                 WinningNumberValidationException.checkWinningNumberLength(incorrectLengthNumbers));
     }
+
+    @Test
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외를 발생시킨다")
+    void whenWinningNumbersHaveDuplicates_thenThrowsException() {
+        List<Integer> duplicateNumbers = Arrays.asList(1, 1, 3, 4, 5, 6);
+        assertThrows(WinningNumberValidationException.class, () ->
+                WinningNumberValidationException.checkDuplicateWinningNumbers(duplicateNumbers));
+    }
 }

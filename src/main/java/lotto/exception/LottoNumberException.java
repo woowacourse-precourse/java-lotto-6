@@ -10,7 +10,7 @@ public class LottoNumberException {
     private LottoNumberException() {
     }
 
-    public static void validate(List<Integer> numbers) {
+    public static void lottoValidate(List<Integer> numbers) {
         lottoSizeValidate(numbers);
         lottoNumberDuplicateValidate(numbers);
     }

@@ -22,7 +22,6 @@
 # 기능
 
 - getMoney
-- createLotto
 - printLotto
 - getLotteryNumbers
 - getBonusNumber
@@ -35,7 +34,7 @@
 
 - Money
 - Lotto
-  - createLotto
+- LottoPack
 - LotteryNumber
 - Result
 - IncomeRate

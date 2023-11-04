@@ -26,7 +26,7 @@ class LottoBucketTest {
     void 로또_바구니의_범위를_벗어난_로또를_꺼내면_예외를_발생시킨다(int lottoAmount, int index) {
         LottoBucket lottoBucket = new LottoBucket(lottoAmount);
 
-        assertThatThrownBy(() -> lottoBucket.getLotto(index)).isInstanceOf(ArrayIndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> lottoBucket.getLotto(index)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @ParameterizedTest

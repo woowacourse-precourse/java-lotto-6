@@ -25,13 +25,6 @@ public class LottoBucket {
     }
 
     public Lotto getLotto(int index) {
-        validateLottoIndex(index);
         return lottoBucket.get(index);
-    }
-
-    private void validateLottoIndex(int index) {
-        if (index < 0 || index >= lottoAmount) {
-            throw new ArrayIndexOutOfBoundsException("LottoBucketIndexOutOfBoundsException");
-        }
     }
 }

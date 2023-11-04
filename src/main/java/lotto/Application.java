@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.lang.Math;
+import java.text.DecimalFormat;
 
 import lotto.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -116,12 +117,13 @@ public class Application {
     }
 
     private static void printres(int[] res) {
+        DecimalFormat df = new DecimalFormat("###,###");
         int i = 4;
-        System.out.println(String.format("6개 일치 (%d) - %d개", prices[i], res[i--]));
-        System.out.println(String.format("5개 일치 (%d) - %d개", prices[i], res[i--]));
-        System.out.println(String.format("5개 일치 (%d) - %d개", prices[i], res[i--]));
-        System.out.println(String.format("4개 일치, 보너스 볼 일치 (%d) - %d개", prices[i], res[i--]));
-        System.out.println(String.format("3개 일치 (%d) - %d개", prices[i], res[i--]));
+        System.out.println(String.format("6개 일치 (%s원) - %d개", df.format(prices[i]), res[i--]));
+        System.out.println(String.format("5개 일치 (%s원) - %d개", df.format(prices[i]), res[i--]));
+        System.out.println(String.format("5개 일치 (%s원) - %d개", df.format(prices[i]), res[i--]));
+        System.out.println(String.format("4개 일치, 보너스 볼 일치 (%s원) - %d개", df.format(prices[i]), res[i--]));
+        System.out.println(String.format("3개 일치 (%s원) - %d개", df.format(prices[i]), res[i--]));
     }
 
     public static int[] resultList(List<Lotto> user, Lotto winNumber, int bonus) {
@@ -139,7 +141,7 @@ public class Application {
             userPrice += prices[i] * res[i];
         }
         float returnRate = Math.round(userPrice / money * 1000) / 10;
-        System.out.println(String.format("총 수익률은 %.1f입니다.", returnRate));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", returnRate));
     }
 
     public static void main(String[] args) {

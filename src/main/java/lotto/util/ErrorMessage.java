@@ -1,7 +1,7 @@
 package lotto.util;
 
 public enum ErrorMessage {
-    ERROR_INFO("ERROR "),
+    ERROR_INFO("[ERROR] "),
     MONEY_ERROR("구매 금액은 1000원 단위의 숫자를 입력해 주세요. ex) 5000"),
 
     LOTTO_STRING_ERROR("로또 번호에 문자열이 들어올 수 없습니다."),

@@ -1,12 +1,12 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.util.OutPutMessage;
+import lotto.util.OutputMessage;
 import java.util.List;
 
 public class OutputView {
     public void printChances(int chance) {
-        System.out.println(String.valueOf(chance) + OutPutMessage.OUTPUT_MONEY_MESSAGE);
+        System.out.println(String.valueOf(chance) + OutputMessage.OUTPUT_MONEY_MESSAGE.getMessage());
     }
 
     public void printLotto(List<Lotto> generatedLotto) {

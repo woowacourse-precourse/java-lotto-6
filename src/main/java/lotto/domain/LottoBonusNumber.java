@@ -5,7 +5,7 @@ import lotto.util.ErrorMessage;
 public class LottoBonusNumber {
     int lottoBonusNumber;
 
-    public int getLottoBonusNumber() {
+    public int getBonusNumber() {
         return lottoBonusNumber;
     }
 

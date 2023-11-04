@@ -9,13 +9,14 @@ public class MoneyConverter {
     private final int chance;
 
     public MoneyConverter(String input) {
-        patternCheck(input, Constants.MONEY_PATTERN, ErrorMessage.MONEY_ERROR);
+        patternCheck(input, Constants.MONEY_PATTERN);
         this.chance = convertMoneyToChances(input);
     }
 
-    public void patternCheck(String input, Pattern pattern, ErrorMessage e) {
+    public void patternCheck(String input, Pattern pattern) {
         if (!pattern.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO + e.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO.getMessage()
+                            + ErrorMessage.MONEY_ERROR.getMessage());
         }
     }
 

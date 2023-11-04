@@ -2,20 +2,10 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoBuyer;
-import lotto.lotto.win.WinResult;
-import lotto.view.LottoView;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import lotto.model.win.WinResult;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  *     - 1등: 6개 번호 일치 / 2,000,000,000원

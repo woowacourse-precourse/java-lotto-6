@@ -2,10 +2,10 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoBuyer;
-import lotto.lotto.LottoNumberGenerator;
-import lotto.lotto.NumberGenerator;
+import lotto.model.Lotto;
+import lotto.model.LottoBuyer;
+import lotto.model.LottoNumberGenerator;
+import lotto.model.NumberGenerator;
 
 public class LottoShop {
     private int sellCount;

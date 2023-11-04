@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoBuyer;
-import lotto.lotto.win.WinResult;
+import lotto.model.Lotto;
+import lotto.model.LottoBuyer;
+import lotto.model.win.WinResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

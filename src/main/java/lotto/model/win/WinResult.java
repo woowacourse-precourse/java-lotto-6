@@ -1,4 +1,4 @@
-package lotto.lotto.win;
+package lotto.model.win;
 
 public enum WinResult {
     FIRST(6, 0, 1, 2000000000),

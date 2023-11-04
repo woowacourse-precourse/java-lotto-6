@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.lotto.win.WinResult;
+import lotto.model.win.WinResult;
 
 public class Calculator {
 

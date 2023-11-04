@@ -2,9 +2,8 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.IntStream;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoNumberGenerator;
+import lotto.model.Lotto;
+import lotto.model.LottoNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

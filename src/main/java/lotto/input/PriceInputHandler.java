@@ -22,7 +22,7 @@ public class PriceInputHandler {
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 100000;
 
-    public int validate(String input) {
+    public static int validatePrice(String input) {
         try {
             int price = convertInteger(input);
             validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
@@ -31,18 +31,18 @@ public class PriceInputHandler {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 지불할 금액을 다시 입력해주세요.");
             String newInput = Console.readLine();
-            return validate(newInput);
+            return validatePrice(newInput);
         }
     }
-    private int convertInteger(String input) throws IllegalArgumentException{
+    private static int convertInteger(String input){
         return Integer.parseInt(input);
     }
-    private void validateRange(int target, int start, int end) throws IllegalArgumentException{
+    private static void validateRange(int target, int start, int end){
         if(target < start || target > end) {
             throw new IllegalArgumentException();
         }
     }
-    private void validateUnit (int price) throws IllegalArgumentException{
+    private static void validateUnit (int price){
         if ((price % MIN_PRICE_UNIT) != ZERO) {
             throw new IllegalArgumentException();
         }

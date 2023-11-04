@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoBuyer;
-import lotto.lotto.win.WinResult;
+import lotto.model.Lotto;
+import lotto.model.LottoBuyer;
+import lotto.model.win.WinResult;
 
 public class LottoChecker {
     private static final int BONUS_IS_USELESS = 0;

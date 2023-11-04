@@ -1,7 +1,6 @@
-package lotto.lotto;
+package lotto.model;
 
 import java.util.List;
-import java.util.stream.Stream;
 import lotto.config.AppConfig;
 
 public class LottoBuyer {

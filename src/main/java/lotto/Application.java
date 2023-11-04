@@ -6,14 +6,13 @@ import lotto.service.LottoService;
 import lotto.utils.DefaultLottoWinningStrategy;
 import lotto.utils.LottoFormatter;
 import lotto.utils.RandomNumberGenerator;
-import lotto.utils.WinningStatisticsFormatter;
 import lotto.view.GameView;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        GameController gameController = new GameController(new GameView(new LottoFormatter(), new WinningStatisticsFormatter()), new InputHandler(), new LottoService(new DefaultLottoWinningStrategy(), new RandomNumberGenerator()));
+        GameController gameController = new GameController(new GameView(new LottoFormatter()), new InputHandler(), new LottoService(new DefaultLottoWinningStrategy(), new RandomNumberGenerator()));
         gameController.startGame();
     }
 }

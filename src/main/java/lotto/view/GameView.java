@@ -2,19 +2,17 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 import lotto.utils.LottoFormatter;
-import lotto.utils.WinningStatisticsFormatter;
 
 import java.util.List;
 
 public class GameView {
     private final LottoFormatter lottoFormatter;
-    private final WinningStatisticsFormatter winningStatisticsFormatter;
 
-    public GameView(LottoFormatter lottoFormatter, WinningStatisticsFormatter winningStatisticsFormatter) {
+    public GameView(LottoFormatter lottoFormatter) {
         this.lottoFormatter = lottoFormatter;
-        this.winningStatisticsFormatter = winningStatisticsFormatter;
     }
 
     public String getPurchaseAmountInput() {
@@ -47,8 +45,18 @@ public class GameView {
     }
 
     public void showWinningStatistics(WinningStatistics winningStatistics) {
-        String formattedStatistics = winningStatisticsFormatter.format(winningStatistics);
-        System.out.println(formattedStatistics);
+        System.out.println("당첨 통계\n---");
+
+        for (Rank rank : Rank.values()) {
+            if (rank== Rank.NONE) continue;
+
+            String result = getResult(rank, winningStatistics);
+
+            System.out.println(result);
+        }
+
+        System.out.println(getProfitRate(winningStatistics));
+
     }
 
     public void showError(String errorMessage) {
@@ -57,5 +65,32 @@ public class GameView {
 
     private String getInput() {
         return Console.readLine();
+    }
+
+    private String getBonusMatch(Rank rank) {
+        String bonusMatch = "";
+        if (rank.isBonusMatch()) {
+            bonusMatch = ", 보너스 볼 일치";
+        }
+        return bonusMatch;
+    }
+
+    private String getResult(Rank rank, WinningStatistics winningStatistics) {
+        int matchCount = rank.getMatchCount();
+        String bonusMatch = getBonusMatch(rank);
+        String prizeMoney = String.format("%,d", rank.getPrizeMoney());
+        Integer winningCount = winningStatistics.getRankCount().getOrDefault(rank, 0);
+
+        String result = String.format(("%d개 일치%s (%s원) - %d개"),
+                matchCount,
+                bonusMatch,
+                prizeMoney,
+                winningCount);
+
+        return result;
+    }
+
+    private String getProfitRate(WinningStatistics winningStatistics) {
+        return String.format("총 수익률은 %.1f%%입니다.", winningStatistics.getProfitRate());
     }
 }

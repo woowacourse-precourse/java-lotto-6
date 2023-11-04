@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
-import lotto.domain.lotto.dto.LottoDrawingResult;
 
 /**
  * 사용자가 구매한 모든 로또를 담는 일급 컬렉션입니다.
@@ -23,18 +22,10 @@ public final class Lottos {
     }
 
     public Optional<Lotto> nextLotto() {
-        return Optional.ofNullable(lottos.remove());
+        return Optional.ofNullable(lottos.poll());
     }
 
-    public LottoDrawingResult getResult(final Lottos lottos) {
-//        final EnumMap<LottoPrize, Integer> mp = new EnumMap<>(LottoPrize.class);
-        // TODO:
-        return null;
+    public int size() {
+        return lottos.size();
     }
-
-//    private LottoPrize draw(final Lotto lotto) {
-//        final int matchedCount = lotto.countContained(lotto);
-//        final boolean hasBonusNumber = lotto.contains(bonusNumber);
-//        return LottoPrize.of(matchedCount, hasBonusNumber);
-//    }
 }

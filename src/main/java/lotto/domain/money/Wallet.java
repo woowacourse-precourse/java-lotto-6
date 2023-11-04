@@ -7,6 +7,14 @@ public final class Wallet {
         this.money = money;
     }
 
+    public static Wallet empty() {
+        return new Wallet(Money.zero());
+    }
+
+    public static Wallet with(final long amount) {
+        return new Wallet(Money.from(amount));
+    }
+
     public void spend(final Money other) {
         this.money = Money.clone(money.decreased(other));
     }
@@ -15,7 +23,7 @@ public final class Wallet {
         this.money = Money.clone(money.increased(other));
     }
 
-    public boolean hasEnoughToBuy(final Money money) {
+    public boolean hasEqualOrMoreThan(final Money money) {
         return this.money.isEqualsOrGreaterThan(money);
     }
 }

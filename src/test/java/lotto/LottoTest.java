@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -32,5 +33,13 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Messages.ERROR_RANGE_LOTTO_NUMBER);
+    }
+
+    @DisplayName("로또 출력 포맷에 맞게 문자열로 변환한다.")
+    @Test
+    void shouldPrintLottoInCorrectFormat() {
+        String expectedValue = "[1, 2, 3, 4, 5, 6]\n";
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.toString()).isEqualTo(expectedValue);
     }
 }

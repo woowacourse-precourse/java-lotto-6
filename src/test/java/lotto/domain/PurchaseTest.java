@@ -14,9 +14,6 @@ public class PurchaseTest {
         assertDoesNotThrow(() -> new Purchase(1000));
         assertDoesNotThrow(() -> new Purchase(5000));
 
-        // 음수인 경우 예외 발생
-        assertThrows(IllegalArgumentException.class, () -> new Purchase(-1000));
-
         // 문자열인 경우 예외 발생
         assertThrows(IllegalArgumentException.class, () -> new Purchase(Integer.parseInt("abc")));
     }

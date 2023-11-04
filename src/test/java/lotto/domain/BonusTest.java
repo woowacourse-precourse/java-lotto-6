@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.exception.Message.BONUS_NUMBER_DUPLICATION_EXCEPTION;
+import static lotto.exception.Message.BONUS_NUMBER_RANGE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,6 +32,15 @@ public class BonusTest {
         assertThatCode(() -> new Bonus(winnerLotto, number)).doesNotThrowAnyException();
     }
 
+    @ParameterizedTest
+    @DisplayName("보너스 숫자가 1 ~ 45 사이의 수가 아니라면 예외를 던진다.")
+    @ValueSource(ints = {0, 46})
+    void create_bonus_error_with_out_of_range(int bonusNumber) {
+        // when // then
+        assertThatThrownBy(() -> new Bonus(winnerLotto, bonusNumber))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_RANGE_EXCEPTION);
+    }
 
     @ParameterizedTest
     @DisplayName("보너스 숫자가 당첨 로또의 숫자와 겹치면 예외를 던진다.")

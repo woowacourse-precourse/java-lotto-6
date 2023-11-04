@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class BonusNumber {
 
     private final int bonusNumber;
@@ -11,6 +13,11 @@ public class BonusNumber {
 
     public int getBonusNumber() {
         return this.bonusNumber;
+    }
+
+    public boolean compareBonusNumberWithLotto(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return lottoNumbers.contains(bonusNumber);
     }
 
     public void validateNumberRange(int number) {

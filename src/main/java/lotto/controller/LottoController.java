@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
+import lotto.model.BonusNumber;
 import lotto.model.Calculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.Rank;
-import lotto.validator.BonusNumberValidator;
-import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +19,7 @@ public class LottoController {
     private Map<Rank, Integer> result;
     private Calculator calculator;
     private PurchaseAmount purchaseAmount;
+    private BonusNumber bonusNumber;
 
     public LottoController() {
         this.userLottos = new ArrayList<>();
@@ -71,8 +71,8 @@ public class LottoController {
     private void initBonusNumber() {
         while (true) {
             try {
-                bonusNumber = InputView.readBonusNumber();
-                BonusNumberValidator.validate(winnerLotto, bonusNumber);
+                int input = InputView.readBonusNumber();
+                bonusNumber = new BonusNumber(winnerLotto, input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -81,7 +81,7 @@ public class LottoController {
     }
 
     private void generateResult() {
-        calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
+        calculator = new Calculator(winnerLotto, userLottos, bonusNumber.getBonusNumber());
         result = calculator.getCalculateResult();
     }
 

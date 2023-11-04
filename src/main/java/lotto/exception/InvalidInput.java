@@ -13,6 +13,7 @@ public class InvalidInput {
 
     public void duplicateNumberException(List<Integer> numbers) {
         message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();
+
         for (Integer number : numbers) {
             isDuplicate(numbers, number);
         }
@@ -20,12 +21,14 @@ public class InvalidInput {
 
     public void outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
+
         for (Integer number : numbers) {
             isBetweenInRange(number);
         }
     }
     public int notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
+
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
@@ -35,12 +38,11 @@ public class InvalidInput {
 
     public void sizeExceededException(List<Integer> numbers) {
         message = ExceptionMessage.EXCEEDED_LOTTO_SIZE.getMessage();
+
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(message);
         }
     }
-
-
 
     private static void isDuplicate(List<Integer> numbers, Integer number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT) {

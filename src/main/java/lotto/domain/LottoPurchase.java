@@ -19,6 +19,7 @@ public class LottoPurchase {
     List<Lotto> purchaseLotto = new ArrayList<>();
 
     public int getPurchasePrice() {
+        messageService.inputPurchasePrice();
         while (true) {
             try {
                 int purchasePrice = validateService.validateNumber(inputService.inputValue());

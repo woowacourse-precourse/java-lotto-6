@@ -10,7 +10,6 @@ public class LottoGame {
     private final LottoPurchase lottoPurchase = new LottoPurchase();
     private final LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
     public void LottoPlay() {
-        messageService.inputPurchasePrice();
         int purchaseAmount = lottoPurchase.getPurchaseAmount();
         messageService.outputPurchaseAmount(purchaseAmount);
         List<Lotto> purchaseNumbers = lottoPurchase.purchaseLottoNumbers(purchaseAmount);

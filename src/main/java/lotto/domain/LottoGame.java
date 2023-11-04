@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -10,13 +11,17 @@ public class LottoGame {
     public Lotto generateLotto() {
         List<Integer> lotto = new ArrayList<>();
         while (!hasStandardSize(lotto, STANDARD_SIZE)) {
-            int randomNumber = generateRandomNumberInRange(1, 45);
-            if (hasDuplicatedNumber(lotto, randomNumber)) {
-                continue;
-            }
-            lotto.add(randomNumber);
+            addAlternativeNumber(lotto, generateRandomNumberInRange(1, 45));
         }
+        Collections.sort(lotto);
         return new Lotto(lotto);
+    }
+
+    private void addAlternativeNumber(List<Integer> lotto, int randomNumber) {
+        if (hasDuplicatedNumber(lotto, randomNumber)) {
+            return;
+        }
+        lotto.add(randomNumber);
     }
 
     private boolean hasStandardSize(List<Integer> lotto, int standardSize) {

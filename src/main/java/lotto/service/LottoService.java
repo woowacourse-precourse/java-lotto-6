@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
+    public static final int LOTTO_PRICE = 1000;
+    public static final int DEFAULT_COUNT = 0;
 
     private final LottoWinningStrategy lottoWinningStrategy;
     private final NumberGenerator numberGenerator;
@@ -24,24 +26,24 @@ public class LottoService {
 
     public List<Lotto> buyLottos(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>(lottoQuantity);
-        for (int i = 0; i < lottoQuantity; i++) {
+        for (int currentLottoQuantity = 0; currentLottoQuantity < lottoQuantity; currentLottoQuantity++) {
             lottos.add(createLotto());
         }
 
         return lottos;
     }
 
-    public WinningStatistics getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        List<Result> results = matchLotto(lottos, winningNumbers, bonusNumber);
+    public WinningStatistics getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusBall) {
+        List<Result> results = matchLotto(lottos, winningNumbers, bonusBall);
 
-        Map<Rank, Integer> rankCount = new HashMap<>();
+        Map<Rank, Integer> winningCount = new HashMap<>();
         for (Result result : results) {
-            rankCount.put(result.getRank(), rankCount.getOrDefault(result.getRank(), 0) + 1);
+            winningCount.put(result.getRank(), winningCount.getOrDefault(result.getRank(), DEFAULT_COUNT) + 1);
         }
 
-        double profitRate = calculateProfitRate(results.size(), rankCount);
+        double profitRate = calculateProfitRate(results.size(), winningCount);
 
-        WinningStatistics winningStatistics = new WinningStatistics(rankCount, profitRate);
+        WinningStatistics winningStatistics = new WinningStatistics(winningCount, profitRate);
         return winningStatistics;
     }
 
@@ -50,17 +52,17 @@ public class LottoService {
         return new Lotto(generatedNumbers);
     }
 
-    private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusBall) {
         List<Result> results = lottos.stream()
-                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winningNumbers, bonusNumber))
+                .map(lotto -> lotto.determineResult(lottoWinningStrategy, winningNumbers, bonusBall))
                 .toList();
 
         return results;
     }
 
-    private double calculateProfitRate(int resultSize, Map<Rank, Integer> rankCount) {
-        int totalSpentAmount = 1000 * resultSize;
-        int totalWinningMoney = rankCount.entrySet().stream()
+    private double calculateProfitRate(int resultSize, Map<Rank, Integer> winningCount) {
+        int totalSpentAmount = LOTTO_PRICE * resultSize;
+        int totalWinningMoney = winningCount.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
 

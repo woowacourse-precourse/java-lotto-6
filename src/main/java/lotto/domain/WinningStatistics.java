@@ -3,16 +3,16 @@ package lotto.domain;
 import java.util.Map;
 
 public class WinningStatistics {
-    private Map<Rank, Integer> rankCount;
-    private double profitRate;
+    private final Map<Rank, Integer> winningCount;
+    private final double profitRate;
 
-    public WinningStatistics(Map<Rank, Integer> rankCount, double profitRate) {
-        this.rankCount = Map.copyOf(rankCount);
+    public WinningStatistics(Map<Rank, Integer> winningCount, double profitRate) {
+        this.winningCount = Map.copyOf(winningCount);
         this.profitRate = profitRate;
     }
 
-    public Map<Rank, Integer> getRankCount() {
-        return rankCount;
+    public Map<Rank, Integer> getWinningCount() {
+        return winningCount;
     }
 
     public double getProfitRate() {

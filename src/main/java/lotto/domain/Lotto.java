@@ -5,6 +5,9 @@ import lotto.utils.LottoWinningStrategy;
 import java.util.*;
 
 public class Lotto {
+    public static final int DEFAULT_LOTTO_SIZE = 6;
+    public static final double MIN_RANGE = 1;
+    public static final double MAX_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,19 +16,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != 6) {
+        Set<Integer> uniqueBalls = new HashSet<>(numbers);
+        if (uniqueBalls.size() != DEFAULT_LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
-        for (Integer number : uniqueNumbers) {
-            if (number < 1 || number > 45) {
+        for (Integer ball : uniqueBalls) {
+            if (ball < MIN_RANGE || ball > MAX_RANGE) {
                 throw new IllegalArgumentException();
             }
         }
     }
 
-    public Result determineResult(LottoWinningStrategy winningStrategy, List<Integer> winningNumbers, int bonusNumber) {
-        return winningStrategy.determineResult(numbers, winningNumbers, bonusNumber);
+    public Result determineResult(LottoWinningStrategy winningStrategy, List<Integer> winningNumbers, int bonusBall) {
+        return winningStrategy.determineResult(numbers, winningNumbers, bonusBall);
     }
 
     public List<Integer> getSortedNumbers() {

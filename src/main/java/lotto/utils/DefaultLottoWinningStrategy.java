@@ -9,9 +9,9 @@ public class DefaultLottoWinningStrategy implements LottoWinningStrategy {
     public static final int DEFAULT_COUNT = 0;
 
     @Override
-    public Result determineResult(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    public Result determineResult(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusBall) {
         int matchCount = getMatchCount(lottoNumbers, winningNumbers);
-        boolean bonusMatch = getBonusMatch(lottoNumbers, bonusNumber);
+        boolean bonusMatch = getBonusMatch(lottoNumbers, bonusBall);
 
         return new Result(matchCount, bonusMatch);
     }

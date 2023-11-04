@@ -11,6 +11,10 @@ public class InputHandler {
 
     public static final String COMMA = ",";
     public static final int LOTTO_PRICE = 1000;
+    public static final int MIN_PURCHASE_AMOUNT = 0;
+    public static final int LOTTO_SIZE = 6;
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
 
     public int handlePurchaseAmount(String purchaseAmountInput) {
         validateNull(purchaseAmountInput);
@@ -29,25 +33,24 @@ public class InputHandler {
         for (String numberInput : numbersInput) {
             validateNull(numberInput);
 
-            int winningNumber = parseInteger(numberInput);
-            validateNumber(winningNumber);
+            int winningBall = parseInteger(numberInput);
+            validateBall(winningBall);
 
-            winningNumbers.add(winningNumber);
+            winningNumbers.add(winningBall);
         }
-
         validateWinningNumbers(winningNumbers);
 
         return winningNumbers;
     }
 
-    public int handleBonusNumber(String bonusNumberInput, List<Integer> winningNumber) {
-        validateNull(bonusNumberInput);
+    public int handleBonusBall(String bonusBallInput, List<Integer> winningNumber) {
+        validateNull(bonusBallInput);
 
-        int bonusNumber = parseInteger(bonusNumberInput);
+        int bonusBall = parseInteger(bonusBallInput);
 
-        validateBonusNumber(bonusNumber, winningNumber);
+        validateBonusBall(bonusBall, winningNumber);
 
-        return bonusNumber;
+        return bonusBall;
     }
 
     private void validateNull(String input) {
@@ -67,7 +70,7 @@ public class InputHandler {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < 0) {
+        if (purchaseAmount < MIN_PURCHASE_AMOUNT) {
             throw new InvalidPurchaseAmountException();
         }
         if (purchaseAmount % LOTTO_PRICE != 0) {
@@ -75,24 +78,24 @@ public class InputHandler {
         }
     }
 
-    private void validateNumber(int number) {
-        if (number < 1 || number > 45) {
-            throw new InvalidNumberException();
+    private void validateBall(int ball) {
+        if (ball < MIN_RANGE || ball > MAX_RANGE) {
+            throw new InvalidBallException();
         }
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
-        if (uniqueWinningNumbers.size() != 6) {
+        if (uniqueWinningNumbers.size() != LOTTO_SIZE) {
             throw new InvalidWinningNumbersException();
         }
     }
 
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumber) {
-        validateNumber(bonusNumber);
+    private void validateBonusBall(int bonusBall, List<Integer> winningNumber) {
+        validateBall(bonusBall);
 
-        if (winningNumber.contains(bonusNumber)) {
-            throw new InvalidBonusNumberException();
+        if (winningNumber.contains(bonusBall)) {
+            throw new InvalidBonusBallException();
         }
     }
 }

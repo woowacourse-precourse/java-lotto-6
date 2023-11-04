@@ -22,7 +22,6 @@ public class GameController {
 
     public void startGame() {
         int lottoQuantity = getInput(() -> getLottoQuantity());
-
         List<Lotto> lottos = lottoService.buyLottos(lottoQuantity);
         gameView.showLottos(lottos);
 
@@ -41,9 +40,9 @@ public class GameController {
         }
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        String bonusNumberInput = gameView.getBonusNumberInput();
-        return inputHandler.handleBonusNumber(bonusNumberInput, winningNumbers);
+    private int getLottoQuantity() throws IllegalArgumentException {
+        String purchaseAmountInput = gameView.getPurchaseAmountInput();
+        return inputHandler.handlePurchaseAmount(purchaseAmountInput);
     }
 
     private List<Integer> getWinningNumbers() throws IllegalArgumentException {
@@ -51,8 +50,8 @@ public class GameController {
         return inputHandler.handleWinningNumbers(winningNumbersInput);
     }
 
-    private int getLottoQuantity() throws IllegalArgumentException {
-        String purchaseAmountInput = gameView.getPurchaseAmountInput();
-        return inputHandler.handlePurchaseAmount(purchaseAmountInput);
+    private int getBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+        String bonusNumberInput = gameView.getBonusNumberInput();
+        return inputHandler.handleBonusBall(bonusNumberInput, winningNumbers);
     }
 }

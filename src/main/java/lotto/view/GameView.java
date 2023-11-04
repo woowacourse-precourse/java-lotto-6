@@ -78,7 +78,7 @@ public class GameView {
         int matchCount = rank.getMatchCount();
         String bonusMatch = getBonusMatch(rank);
         String prizeMoney = String.format(PRIZE_MONEY_FORMAT, rank.getPrizeMoney());
-        Integer winningCount = winningStatistics.getRankCount().getOrDefault(rank, DEFAULT_WINNING_COUNT);
+        Integer winningCount = winningStatistics.getWinningCount().getOrDefault(rank, DEFAULT_WINNING_COUNT);
 
         String result = String.format(RESULT_FORMAT,
                 matchCount,

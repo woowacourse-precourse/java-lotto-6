@@ -1,5 +1,11 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Controll {
     enum SameNumber {
         SAME0(0),
@@ -32,5 +38,12 @@ public class Controll {
         Reward(Integer reward) {
             this.reward = reward;
         }
+    }
+
+    Lotto buyLotto() {
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(numbers);
+        Lotto lotto = new Lotto(numbers);
+        return lotto;
     }
 }

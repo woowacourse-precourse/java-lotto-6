@@ -1,5 +1,9 @@
 package lotto.valid;
 
+import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_DUPLICATE_SIZE;
+import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_SIZE;
+import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_SPLIT_ONLY_NUMBER;
+import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_VALUE_RANGE;
 import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_SIZE;
@@ -27,26 +31,26 @@ public class WinNumberValid {
         String reg = "^[0-9]*$";
         for (String number : nums) {
             if (!number.matches(reg)) {
-                throw new IllegalArgumentException("[ERROR] ,로 구별된 문자들은 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException(ERROR_WINNUMBER_SPLIT_ONLY_NUMBER);
             }
         }
     }
 
     private static void validWinNumberSize(List<Integer> intNums) {
         if (intNums.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_WINNUMBER_SIZE);
         }
     }
 
     private static void validWinNumberDistinctSize(List<Integer> intNums) {
         if (intNums.stream().distinct().count() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 6개 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_WINNUMBER_DUPLICATE_SIZE);
         }
     }
 
     private static void validWinNumberValue(List<Integer> intNums) {
         if (!intNums.stream().allMatch(num -> num >= LOTTO_MIN_NUMBER && num <= LOTTO_MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 모든 숫자는 1과 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ERROR_WINNUMBER_VALUE_RANGE);
         }
     }
 }

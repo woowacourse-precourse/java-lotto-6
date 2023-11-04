@@ -56,25 +56,25 @@ public final class Lotto {
         return new Lotto(uniqueNumbers);
     }
 
-    public LottoPrize calculatePrize(WinningTicket winningTicket) {
-        int matchCount = getMatchCount(winningTicket);
-        boolean hasBonusNumber = hasBonusNumber(winningTicket);
+    public LottoPrize calculatePrize(WinningCombination winningCombination) {
+        int matchCount = getMatchCount(winningCombination);
+        boolean hasBonusNumber = hasBonusNumber(winningCombination);
 
         return LottoPrize.of(matchCount, hasBonusNumber);
     }
 
-    private boolean hasBonusNumber(WinningTicket winningTicket) {
+    private boolean hasBonusNumber(WinningCombination winningCombination) {
         return numbers.stream()
-                .anyMatch(winningTicket::containsBonusNumber);
+                .anyMatch(winningCombination::containsBonusNumber);
     }
 
-    private int getMatchCount(WinningTicket winningTicket) {
+    private int getMatchCount(WinningCombination winningCombination) {
         return (int) numbers.stream()
-                .filter(winningTicket::containsLottoNumber)
+                .filter(winningCombination::containsLottoNumber)
                 .count();
     }
 
-    public boolean contains(LottoNumber number) {
+    public boolean hasNumber(LottoNumber number) {
         return numbers.contains(number);
     }
 

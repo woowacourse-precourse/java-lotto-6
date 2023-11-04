@@ -1,19 +1,19 @@
 package lotto.model;
 
 public final class LottoMachine {
-    private final WinningTicket winningTicket;
+    private final WinningCombination winningCombination;
     private final LottoGroup lottoGroup;
 
-    private LottoMachine(LottoGroup lottoGroup, WinningTicket winningTicket) {
+    private LottoMachine(LottoGroup lottoGroup, WinningCombination winningCombination) {
         this.lottoGroup = lottoGroup;
-        this.winningTicket = winningTicket;
+        this.winningCombination = winningCombination;
     }
 
-    public static LottoMachine of(LottoGroup lottoGroup, WinningTicket winningTicket) {
-        return new LottoMachine(lottoGroup, winningTicket);
+    public static LottoMachine of(LottoGroup lottoGroup, WinningCombination winningCombination) {
+        return new LottoMachine(lottoGroup, winningCombination);
     }
 
     public TotalPrize calculateTotalPrize() {
-        return lottoGroup.calculateTotalPrize(winningTicket);
+        return lottoGroup.calculateTotalPrize(winningCombination);
     }
 }

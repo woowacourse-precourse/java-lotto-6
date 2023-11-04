@@ -13,9 +13,9 @@ import lotto.util.DigitsWithCommaSeparatedValidator;
 public class InputView {
     private static final String INVEST_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자(정수)형태의 문자열만 숫자로 변환할 수 있습니다.";
-    private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String WINNING_NUMBER_DELIMITER = ",";
+    private static final String WINNING_NUMBERS_DELIMITER = ",";
 
     private InputView() {
     }
@@ -55,17 +55,17 @@ public class InputView {
     }
 
     public WinningNumbersDto readWinningNumbers() {
-        println(WINNING_NUMBER_INPUT_MESSAGE);
-        String rawWinningNumber = Console.readLine();
+        println(WINNING_NUMBERS_INPUT_MESSAGE);
+        String rawWinningNumbers = Console.readLine();
         printEmptyLine();
-        validateWinningNumber(rawWinningNumber);
-        List<Integer> winningNumbers = splitToInt(WINNING_NUMBER_DELIMITER, rawWinningNumber);
+        validateWinningNumbers(rawWinningNumbers);
+        List<Integer> winningNumbers = splitToInt(WINNING_NUMBERS_DELIMITER, rawWinningNumbers);
         return new WinningNumbersDto(winningNumbers);
     }
 
-    private void validateWinningNumber(String rawWinningNumber) {
-        BlankValidator.validate(rawWinningNumber);
-        DigitsWithCommaSeparatedValidator.validate(rawWinningNumber);
+    private void validateWinningNumbers(String rawWinningNumbers) {
+        BlankValidator.validate(rawWinningNumbers);
+        DigitsWithCommaSeparatedValidator.validate(rawWinningNumbers);
     }
 
     private List<Integer> splitToInt(String delimiter, String input) {

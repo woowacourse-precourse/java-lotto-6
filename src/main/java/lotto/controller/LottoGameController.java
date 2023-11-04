@@ -14,7 +14,7 @@ import lotto.model.NumberGenerator;
 import lotto.model.PurchasableLottoCount;
 import lotto.model.TotalPrize;
 import lotto.model.TotalProfit;
-import lotto.model.WinningTicket;
+import lotto.model.WinningCombination;
 import lotto.util.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,18 +32,37 @@ public class LottoGameController {
 
     public void run() {
         InvestMoney investMoney = RetryUtil.retryOnFail(this::createInvestMoney);
+
         LottoGroup lottoGroup = RetryUtil.retryOnFail(this::createLottoGroup, investMoney);
         printLottoGroup(lottoGroup);
 
-        Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
-        WinningTicket winningTicket = RetryUtil.retryOnFail(this::createWinningTicket, winningLotto);
-        LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningTicket);
-
+        LottoMachine lottoMachine = createLottoMachine(lottoGroup);
         TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
         printTotalPrize(totalPrize);
+
         TotalProfit totalProfit = totalPrize.calculateTotalProfit(investMoney);
         outputView.printTotalProfit(totalProfit);
+    }
 
+    private LottoMachine createLottoMachine(LottoGroup lottoGroup) {
+        Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
+        WinningCombination winningCombination = RetryUtil.retryOnFail(this::createWinningCombination, winningLotto);
+        return LottoMachine.of(lottoGroup, winningCombination);
+    }
+
+    private Lotto createWinningLotto() {
+        WinningNumbersDto winningNumbersDto = RetryUtil.retryOnFail(inputView::readWinningNumbers);
+        return Lotto.from(winningNumbersDto.getWinningNumbers());
+    }
+
+    private WinningCombination createWinningCombination(Lotto winningLotto) {
+        LottoNumber bonusNumber = RetryUtil.retryOnFail(this::createBonusNumber);
+        return WinningCombination.of(winningLotto, bonusNumber);
+    }
+
+    private LottoNumber createBonusNumber() {
+        BonusNumberDto bonusNumberDto = RetryUtil.retryOnFail(inputView::readBonusNumber);
+        return LottoNumber.from(bonusNumberDto.getBonusNumber());
     }
 
     private LottoGroup createLottoGroup(InvestMoney investMoney) {
@@ -68,20 +87,5 @@ public class LottoGameController {
     private void printLottoGroup(LottoGroup lottoGroup) {
         LottoGroupDto lottoGroupDto = LottoGroupDto.from(lottoGroup);
         outputView.printLottoGroup(lottoGroupDto);
-    }
-
-    private Lotto createWinningLotto() {
-        WinningNumbersDto winningNumbersDto = RetryUtil.retryOnFail(inputView::readWinningNumbers);
-        return Lotto.from(winningNumbersDto.getWinningNumbers());
-    }
-
-    private WinningTicket createWinningTicket(Lotto winningLotto) {
-        LottoNumber bonusNumber = RetryUtil.retryOnFail(this::createBonusNumber);
-        return WinningTicket.of(winningLotto, bonusNumber);
-    }
-
-    private LottoNumber createBonusNumber() {
-        BonusNumberDto bonusNumberDto = RetryUtil.retryOnFail(inputView::readBonusNumber);
-        return LottoNumber.from(bonusNumberDto.getBonusNumber());
     }
 }

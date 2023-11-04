@@ -22,7 +22,8 @@ public class Lotto {
 
     public static List<Integer> generateLotteryNumbers() {
         List<Integer> lotteryNumbers = new ArrayList<>();
-        List<Integer> numbersInRange = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbersInRange = Randoms.
+                pickUniqueNumbersInRange(1, 45, 6);
         lotteryNumbers.addAll(numbersInRange);
         return lotteryNumbers;
     }

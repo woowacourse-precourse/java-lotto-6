@@ -14,6 +14,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        long distinctCount = numbers.stream().distinct().count();
+        if (numbers.size() != distinctCount) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> getLotto() {

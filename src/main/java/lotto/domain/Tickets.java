@@ -24,7 +24,7 @@ public class Tickets {
 
 
     // testcode
-    protected int getTicketsCount() {
+    public int getTicketsCount() {
         return lottos.size();
     }
 

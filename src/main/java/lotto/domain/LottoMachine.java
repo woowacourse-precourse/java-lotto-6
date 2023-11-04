@@ -29,6 +29,7 @@ public class LottoMachine {
                 MAX_LOTTO_NUMBER,
                 NUMBER_OF_LOTTO_NUMBERS
         );
+        Collections.sort(randomNumbers);
         return new LottoTicket(randomNumbers);
     }
 }

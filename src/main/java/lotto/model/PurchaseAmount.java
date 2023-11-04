@@ -14,17 +14,26 @@ public class PurchaseAmount {
         this.price = convertStringToInt(price);
     }
 
-    public int getPurchaseAmount(){
+    public int getPurchaseAmount() {
         return price;
     }
 
     private void validate(String price) {
-        IsPositive(price);
+        IsNumber(price);
+        IsPositive(convertStringToInt(price));
         IsMultipleOfUnit(convertStringToInt(price));
     }
 
-    private void IsPositive(String price) {
-        if(!price.chars().allMatch(Character::isDigit)){
+    private void IsNumber(String price) {
+        try {
+            Integer.parseInt(price);
+        } catch (NumberFormatException ex) {
+            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
+        }
+    }
+
+    private void IsPositive(int price) {
+        if (price < 0) {
             ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.throwException();
         }
     }

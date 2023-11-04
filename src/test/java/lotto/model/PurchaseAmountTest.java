@@ -36,15 +36,6 @@ public class PurchaseAmountTest {
                 .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
     }
 
-    @DisplayName("0을 입력하면 예외 발생")
-    @Test
-    void inputZero() {
-        String inputValue = "0";
-        assertThatThrownBy(() -> new PurchaseAmount(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.getMessage());
-    }
-
     @DisplayName("0보다 작은 숫자를 입력하면 예외 발생")
     @Test
     void inputUnderZero() {

@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
+import lotto.constance.PrintConst;
 
 public class Writer {
 
@@ -21,5 +22,9 @@ public class Writer {
         for (Model model : models) {
             System.out.println(model);
         }
+    }
+
+    public static void printException(IllegalArgumentException e){
+        System.out.println(PrintConst.EXCEPTION_PREFIX + e.getMessage());
     }
 }

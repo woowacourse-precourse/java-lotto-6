@@ -3,6 +3,7 @@ package lotto.model.domain;
 import java.util.List;
 import lotto.constance.GameConst;
 import lotto.constance.PrintConst;
+import lotto.util.LottoGameException;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -27,13 +28,13 @@ public class Lotto {
                         number < GameConst.LOTTO_RANGE_START)
                 .count();
         if(wrongNumberCount != 0){
-            throw new IllegalArgumentException("잘못된 범위의 숫자가 존재합니다. 숫자 범위 : 1 ~ 45");
+            throw LottoGameException.WRONG_LOTTO_RANGE.makeException();
         }
     }
 
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw LottoGameException.WRONG_LOTTO_SIZE.makeException();
         }
     }
 
@@ -42,7 +43,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctNum != LOTTO_SIZE){
-            throw new IllegalArgumentException("LOTTO에는 중복된 숫자를 사용할 수 없습니다.");
+            throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
         }
     }
 

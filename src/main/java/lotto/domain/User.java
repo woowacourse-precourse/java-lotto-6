@@ -16,7 +16,7 @@ public class User {
 
     private List<Lotto> lottos;
 
-    public void inputMoney(){
+    public void inputMoney() {
         String moneyStr = Console.readLine();
         validateFormat(moneyStr);
         Integer money = Integer.parseInt(moneyStr);
@@ -38,18 +38,18 @@ public class User {
         return this.money/1000;
     }
 
-    private void validateValue(Integer money){
+    private void validateValue(Integer money) {
         validateDivide(money);
         validateZero(money);
     }
 
-    private void validateFormat(String money){
+    private void validateFormat(String money) {
         if (!Pattern.compile("\\d+").matcher(money).matches()) {
             throw new InvalidInputNumFormatException();
         }
     }
 
-    private void validateDivide(Integer money){
+    private void validateDivide(Integer money) {
         if (money % LOTTOVALUE != ZERO) {
             throw new DiviedThousandException();
         }

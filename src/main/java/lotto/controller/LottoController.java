@@ -8,7 +8,7 @@ import lotto.output.LottoStatistics;
 
 public class LottoController {
 
-    public void lottoStart(){
+    public void lottoStart() {
         // 유저가 당첨 금액 입력
         User user = new User();
         inputMoney(user);

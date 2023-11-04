@@ -22,6 +22,17 @@ public class User {
         return haveSeveralLotto;
     }
 
+    public List<Lotto> saveLottos() {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for(int i=0; i<haveSeveralLotto; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+
 
 
 }

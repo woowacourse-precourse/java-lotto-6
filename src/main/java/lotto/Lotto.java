@@ -29,4 +29,11 @@ public class Lotto {
             papers.add(paper);
         }
     }
+
+    public void printPapers(){
+        for(Paper i : papers){
+            System.out.println(i.getNumber());
+        }
+
+    }
 }

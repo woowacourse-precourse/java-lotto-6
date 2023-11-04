@@ -47,7 +47,7 @@ public class LottoController {
     }
 
     private Lottos buyLottos(final Money money, final NumberGenerator numberGenerator) {
-        int buyCount = money.buyLotto();
+        long buyCount = money.buyLotto();
         outputView.printBuyLotto(buyCount);
         Lottos lottos = Lottos.of(buyCount, numberGenerator);
         printLottos(lottos);

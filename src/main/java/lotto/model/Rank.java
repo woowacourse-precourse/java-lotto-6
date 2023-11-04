@@ -35,11 +35,15 @@ public enum Rank {
     }
 
     private boolean hasFiveCountAndBonus(final int sameCount, final boolean sameBonus) {
-        return sameCount == 5 && this.hasBonusNumber == sameBonus;
+        return sameCount == SECOND.matchingCount && this.hasBonusNumber == sameBonus;
     }
 
     private boolean hasMatchingCount(final int sameCount) {
         return this.matchingCount == sameCount;
+    }
+
+    public boolean isNotBoom() {
+        return this != BOOM;
     }
 
     public long getPrice() {
@@ -48,9 +52,5 @@ public enum Rank {
 
     public String getPriceMessage() {
         return priceMessage;
-    }
-
-    public boolean isNotBoom() {
-        return this != BOOM;
     }
 }

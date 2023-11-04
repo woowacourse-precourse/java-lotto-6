@@ -11,12 +11,12 @@ public class WinningResultCalculator {
 
     public Map<Rank, Integer> calculateWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
         Map<Rank, Integer> winningStatus = new EnumMap<>(Rank.class);
-        List<Lotto> lottoList = lottos.getLottos();
+        List<Lotto> purchasedLottos = lottos.getLottos();
 
-        for (Lotto lotto : lottoList) {
+        purchasedLottos.forEach(lotto -> {
             Rank rank = calculateRank(winningLotto, lotto);
             winningStatus.put(rank, winningStatus.getOrDefault(rank, DEFAULT_VALUE) + ONE_VALUE);
-        }
+        });
 
         return winningStatus;
     }
@@ -35,7 +35,8 @@ public class WinningResultCalculator {
     private long calculateSumOfPrice(final Map<Rank, Integer> status) {
         return status.entrySet()
                 .stream()
-                .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
+                .mapToLong(entry -> entry.getKey()
+                        .getPrice() * entry.getValue())
                 .sum();
     }
 }

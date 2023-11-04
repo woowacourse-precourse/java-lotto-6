@@ -13,8 +13,8 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(final int buyCount, final NumberGenerator numberGenerator) {
-        List<Lotto> lottos = new ArrayList<>(buyCount);
+    public static Lottos of(final long buyCount, final NumberGenerator numberGenerator) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < buyCount; count++) {
             List<Integer> randomNumbers = numberGenerator.generateSortedList();
             lottos.add(Lotto.fromIntegerList(randomNumbers));

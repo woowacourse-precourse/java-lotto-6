@@ -10,15 +10,15 @@ public class Money {
     private static final int ZERO_VALUE = 0;
     private static final int PERCENTAGE = 100;
 
-    private final int amount;
+    private final long amount;
 
-    private Money(final int amount) {
+    private Money(final long amount) {
         this.amount = amount;
     }
 
     public static Money from(final String amount) {
         validateNumericValue(amount);
-        int value = Integer.parseInt(amount);
+        long value = Long.parseLong(amount);
         validateRange(value);
         return new Money(value);
     }
@@ -34,17 +34,17 @@ public class Money {
                 .allMatch(Character::isDigit);
     }
 
-    private static void validateRange(final int value) {
+    private static void validateRange(final long value) {
         if (isInValidRange(value)) {
             throw new InvalidMoneyRangeException();
         }
     }
 
-    private static boolean isInValidRange(final int value) {
+    private static boolean isInValidRange(final long value) {
         return value % LOTTO_COST != ZERO_VALUE || value < LOTTO_COST;
     }
 
-    public int buyLotto() {
+    public long buyLotto() {
         return amount / LOTTO_COST;
     }
 

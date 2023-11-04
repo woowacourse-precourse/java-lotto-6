@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println(PURCHASE_PROMPT_MESSAGE);
     }
 
-    public void printBuyLotto(final int count) {
+    public void printBuyLotto(final long count) {
         System.out.println(count + LOTTO_PURCHASE_MESSAGE);
     }
 

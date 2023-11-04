@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,9 +39,19 @@ class LottoNumberValidatorTest {
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
 
         //when, then
-        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("123.324.324"))
+        assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("1.7.8"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구분자 ,와 숫자로 구성된 문자열만을 입력할 수 있습니다.");
+    }
+
+    @DisplayName("숫자와 구분자로만 이루어지진 문자열을 입력하면 예외를 발생시키지 않는다.")
+    @Test
+    void onlyNumberAndDelimiterNotThrowIllegalArgumentException() {
+        //given
+        LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
+
+        //when, then
+        assertDoesNotThrow(() -> lottoNumberValidator.validateLottNumbers("1,3,4,5,6,9"));
     }
 
     @DisplayName("구분자로 시작하는 문자열을 입력하면 예외를 발생시킨다.")

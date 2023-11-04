@@ -43,9 +43,13 @@ class Lotto {
     }
 
     private static void checkNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
+        if (isInvalidSize(numbers)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE_MESSAGE);
         }
+    }
+
+    private static boolean isInvalidSize(List<Integer> numbers) {
+        return numbers.size() != LOTTO_NUMBERS_SIZE;
     }
 
     private static void checkNumbersDuplication(List<Integer> numbers) {

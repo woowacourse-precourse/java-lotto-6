@@ -1,11 +1,16 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
+import lotto.service.LottoService;
 
 public class LottoController {
 
-    public void buyLotteries(String stringPurchasePrice) {
+    public List<Lotto> buyLottery(String stringPurchasePrice) {
         Integer purchasePrice = validatePurchasePrice(stringPurchasePrice);
+
+        LottoService lottoService = new LottoService();
+        return lottoService.buyLottery(purchasePrice);
     }
 
     private Integer validatePurchasePrice(String stringPurchasePrice) {

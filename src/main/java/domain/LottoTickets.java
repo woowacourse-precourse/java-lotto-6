@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
+    public static final int TICKET_COST = 1000;
+
     private final List<Lotto> lottoList = new ArrayList<>();
 
     public void add(int count) {

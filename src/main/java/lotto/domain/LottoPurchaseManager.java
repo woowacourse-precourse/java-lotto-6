@@ -4,8 +4,19 @@ import lotto.exception.ErrorMessage;
 
 public class LottoPurchaseManager {
     private static final int LOTTO_PRICE = 1000;
+    private final LottoGenerator lottoGenerator;
 
-    public long calculateLottoQuantity(String input) {
+    public LottoPurchaseManager(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
+    }
+
+    public Lottos createLottos(String input) {
+        long quantity = calculateLottoQuantity(input);
+        return lottoGenerator.generateLottos(quantity);
+    }
+
+
+    private long calculateLottoQuantity(String input) {
         long money = validateNumeric(input);
         validatePurchaseAmount(money);
         return money / LOTTO_PRICE;

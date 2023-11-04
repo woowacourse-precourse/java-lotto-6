@@ -1,11 +1,11 @@
 ## 기능 목록 
 ### 로또 입력
-- [ ] 로또 구입 금액을 입력 받을 수 있다
-  - [ ] 입력 금액이 1000 으로 나누어 떨어지지 않는 경우 `IllegalArgumentException` 발생시킨다.
-  - [ ] 입력 금액이 1000 미만인 경우 `IllegalArgumentException` 발생시킨다.
+- [x] 로또 구입 금액을 입력 받을 수 있다
+  - [x] 입력 금액이 1000 으로 나누어 떨어지지 않는 경우 `IllegalArgumentException` 발생시킨다.
+  - [x] 입력 금액이 1000 미만인 경우 `IllegalArgumentException` 발생시킨다.
 - [ ] 당첨 번호를 입력받을 수 있다.
   - [ ] 번호를 쉼표 기준으로 구분해 저장할 수 있다.
-  - [ ] 1~45 사이의 숫자가 아닌 경우 `IllegalArgumentException` 발생시킨다.
+  - [ ] 당첨 번호로 Lotto 객체를 만들 수 있다.
 - [ ] 보너스 번호를 입력 받을 수 있다.
     - [ ] 1~45 사이의 숫자가 아닌 경우 `IllegalArgumentException` 발생시킨다.
 - [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고,
@@ -32,11 +32,12 @@
 - 1~45 사이의 랜덤 숫자 6개를 생성할 수 있다.
 - 랜덤 숫자를 로또 번호 객체로 변환할 수 있다
 
-### 로또 번호
+### 로또 (Lotto)
 - [ ] 6개의 숫자를 가질 수 있다.
   - [ ] 로또 번호를 오름차순으로 정렬 할 수 있다.
-  - [ ] 중복되는 숫자는 저장할 수 없다.
   - [ ] 1~45 사이의 숫자가 아닌 경우 `IllegalArgumentException` 발생시킨다.
+  - [ ] 6개가 아닌 경우 `IllegalArgumentException` 발생시킨다.
+  - [ ] 6개가 모두 다르지 않은 경우 `IllegalArgumentException` 발생시킨다.
 
 ### 당첨 로또 번호
 - [ ] `당첨 번호`와 `보너스 번호`를 저장할 수 있다.

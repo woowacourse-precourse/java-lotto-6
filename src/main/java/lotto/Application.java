@@ -89,6 +89,15 @@ public class Application {
         return matchCountByRank;
     }
 
+    public static int getEarnedMoney(HashMap<LottoRank, Integer> matchCountByRank) {
+        int earned = matchCountByRank.get(LottoRank.FIFTH) * Integer.parseInt(LottoRank.FIFTH.getWinningMoney().replace(",", ""))
+                + matchCountByRank.get(LottoRank.FOURTH) * Integer.parseInt(LottoRank.FOURTH.getWinningMoney().replace(",", ""))
+                + matchCountByRank.get(LottoRank.THIRD) * Integer.parseInt(LottoRank.THIRD.getWinningMoney().replace(",", ""))
+                + matchCountByRank.get(LottoRank.SECOND) * Integer.parseInt(LottoRank.SECOND.getWinningMoney().replace(",", ""))
+                + matchCountByRank.get(LottoRank.FIRST) * Integer.parseInt(LottoRank.FIRST.getWinningMoney().replace(",", ""));
+        return earned;
+    }
+
     public static void printLottoNumbers(ArrayList<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = Arrays.asList(lotto.getNumbers().toArray(new Integer[0]));

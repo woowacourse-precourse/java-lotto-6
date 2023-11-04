@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Constant.Constants;
+
 import java.util.*;
 
 public class Lotto {
@@ -17,7 +19,7 @@ public class Lotto {
     }
 
     private void validate6numbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.NUM_COUNT) {
             throw new IllegalArgumentException(
                     "[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -25,7 +27,7 @@ public class Lotto {
 
     private void validate1to45(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < Constants.MIN_NUM || number > Constants.MAX_NUM) {
                 throw new IllegalArgumentException(
                         "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }

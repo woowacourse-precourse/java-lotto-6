@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Constant.Constants;
+
 public class BonusNumber {
     private int bonusNumber;
 
@@ -9,7 +11,7 @@ public class BonusNumber {
     }
 
     public void validate1to45(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < Constants.MIN_NUM || bonusNumber > Constants.MAX_NUM) {
             throw new IllegalArgumentException(
                     "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }

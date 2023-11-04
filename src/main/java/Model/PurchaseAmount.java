@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Constant.Constants;
+
 public class PurchaseAmount {
     private int purchaseAmount;
 
@@ -9,7 +11,7 @@ public class PurchaseAmount {
     }
 
     private void validate(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % Constants.DIVISOR != 0) {
             throw new IllegalArgumentException(
                     "[ERROR] 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
         }

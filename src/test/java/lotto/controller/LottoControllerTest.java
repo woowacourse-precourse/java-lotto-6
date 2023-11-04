@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.constant.ExceptionMessage.LOTTO_SIZE_ERROR;
+import static lotto.constant.ExceptionMessage.NON_NUMERIC_ERROR;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LottoControllerTest {
@@ -14,10 +15,19 @@ class LottoControllerTest {
     @ParameterizedTest
     @ValueSource(strings = { "1, 2, 3, 4, 5", "1, 2, 3, 4, 5, 6, 7" })
     @DisplayName(value = "입력된 숫자가 6개가 아닐 경우 예외가 발생하는지 확인")
-    void inputNumbers(String input) {
+    void inputNumbersByInsufficientSize(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> lottoController.inputNumbers(input))
                 .withMessage(LOTTO_SIZE_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "a, 2, ㅁ, 4, 5, 6", "-1, 2, 3, k, 5, 6" })
+    @DisplayName(value = "숫자가 아닌 입력 값이 존재할 경우 예외가 발생하는지 확인")
+    void inputNumbersByNonNumericInputs(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> lottoController.inputNumbers(input))
+                .withMessage(NON_NUMERIC_ERROR.getMessage());
     }
 
 }

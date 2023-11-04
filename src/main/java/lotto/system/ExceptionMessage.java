@@ -16,6 +16,8 @@ public final class ExceptionMessage {
 
     public static final String NUMBER_NOT_DISTINCT = "[ERROR] 중복된 로또 번호입니다.";
 
+    public static final String BONUS_NUMBER_EXISTS_IN_WINNING_LOTTO = "[ERROR] 입력된 보너스 넘버는 당첨번호에 이미 존재합니다.";
+
 
 
 

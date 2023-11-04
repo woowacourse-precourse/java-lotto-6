@@ -11,28 +11,28 @@ import lotto.view.valid.WinningNumberValidation;
 public class GameConfig {
 
     public static GameManager buildGameManager() {
-        ViewValidator viewValidator = viewValidator();
-        MessageReceiver messageReceiver = messageReceiver(viewValidator);
         MessagePrinter messagePrinter = messagePrinter();
+        MessageReceiver messageReceiver = messageReceiver();
 
         return new GameManager(messagePrinter, messageReceiver);
-    }
-
-    private static ViewValidator viewValidator() {
-        return new ViewValidator();
     }
 
     private static MessagePrinter messagePrinter() {
         return new MessagePrinter();
     }
 
-    private static MessageReceiver messageReceiver(final ViewValidator viewValidator) {
+    private static MessageReceiver messageReceiver() {
+        ViewValidator viewValidator = viewValidator();
         BuyingPriceValidation buyingPriceValidation = buyingPriceValidation();
         WinningNumberValidation winningNumberValidation = winningNumberValidation();
         BonusNumberValidation bonusNumberValidation = bonusNumberValidation();
 
         return new MessageReceiver(viewValidator, buyingPriceValidation,
                 winningNumberValidation, bonusNumberValidation);
+    }
+
+    private static ViewValidator viewValidator() {
+        return new ViewValidator();
     }
 
     private static BuyingPriceValidation buyingPriceValidation() {

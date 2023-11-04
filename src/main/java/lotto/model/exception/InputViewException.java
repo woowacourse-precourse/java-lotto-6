@@ -1,13 +1,11 @@
-package lotto.exception;
+package lotto.model.exception;
 
 import static lotto.model.MagicVariable.NONE_PURCHASE_PRICE;
 import static lotto.model.MagicVariable.LOTTO_PRICE;
 import static lotto.model.MagicVariable.NUMBERS_MIN_RANGE;
 import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
 
-import java.text.ParseException;
 import java.util.List;
-import lotto.model.Lotto;
 
 
 public class InputViewException extends IllegalArgumentException {
@@ -32,7 +30,7 @@ public class InputViewException extends IllegalArgumentException {
 
     public static void checkBonusTypeException(String userBonusNumber) {
         if (!userBonusNumber.matches("^[0-9]+$")) {
-            String BONUS_NUMBER_TYPE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 숫자여야 합니다.";
+            String BONUS_NUMBER_TYPE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 양수여야 합니다.";
             throw new InputViewException(BONUS_NUMBER_TYPE_ERROR_MESSAGE);
         }
     }

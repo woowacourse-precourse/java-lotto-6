@@ -8,7 +8,7 @@ import static lotto.model.MagicVariable.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.LottoProcessException;
+import lotto.model.exception.LottoProcessException;
 
 public class LottoProcess {
     public List<Lotto> purchaseLotto(int money) {

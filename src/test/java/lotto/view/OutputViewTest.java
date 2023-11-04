@@ -1,7 +1,6 @@
 package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.list;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayOutputStream;
@@ -9,7 +8,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import lotto.model.Lotto;
-import lotto.model.Prize;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

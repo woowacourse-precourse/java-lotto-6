@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.model.exception;
 
 import static lotto.model.MagicVariable.LOTTO_PRICE;
 import static lotto.model.MagicVariable.NONE_PURCHASE_PRICE;

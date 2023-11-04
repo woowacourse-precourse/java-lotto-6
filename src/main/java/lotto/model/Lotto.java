@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.exception.LottoException;
+import lotto.model.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;

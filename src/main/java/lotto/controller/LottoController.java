@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.exception.InputViewException;
+import lotto.model.exception.InputViewException;
 import lotto.model.Lotto;
 import lotto.model.LottoProcess;
 import lotto.model.WinningLotto;

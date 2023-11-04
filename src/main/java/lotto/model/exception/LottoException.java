@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.model.exception;
 
 import java.util.List;
 import static lotto.model.MagicVariable.NUMBERS_SIZE;

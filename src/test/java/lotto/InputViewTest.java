@@ -77,4 +77,30 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호는 숫자로 구성되고 쉼표(,)로 구분됩니다.");
     }
+
+    @Test
+    void 보너스_번호_숫자_예외_테스트() {
+        String bonusNumber = "c";
+        assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 숫자로 구성됩니다.");
+    }
+
+    @Test
+    void 보너스_번호_숫자_범위_예외_테스트() {
+        String bonusNumber = "46";
+        assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 45 미만의 숫자로 구성됩니다.");
+    }
+
+    @Test
+    void 보너스_번호_당첨번호_포함_예외_테스트() {
+        String bonusNumber = "6";
+        String inputPrizeNumber = "1,2,3,4,5,6";
+        List<Integer> prizeNumber = inputView.inputPrizeNumber(inputPrizeNumber);
+        assertThatThrownBy(() -> inputView.inputBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+    }
 }

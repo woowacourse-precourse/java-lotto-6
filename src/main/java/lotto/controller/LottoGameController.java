@@ -32,8 +32,11 @@ public class LottoGameController {
     private WinningNumber generateWinningNumber() {
         while (true) {
             try {
-                OutputView.printLottoNumbersInput();
+                OutputView.printLottoNumbersInputText();
                 List<String> lottoNumbers = Arrays.asList(InputView.getUserInput().split(","));
+
+                OutputView.printBonusNumberInputText();
+
                 return new WinningNumber(lottoNumbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

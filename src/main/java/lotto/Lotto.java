@@ -6,15 +6,16 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLotto(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateLotto(List<Integer> numbers) {
+        InputValidator.validateLottoLength(numbers);
+        InputValidator.validateNoDuplicates(numbers);
+
+        for (int number: numbers) {
+            InputValidator.validateIsLottoNumber(number);
         }
     }
-
-    // TODO: 추가 기능 구현
 }

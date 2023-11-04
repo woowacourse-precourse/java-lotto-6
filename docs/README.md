@@ -7,7 +7,7 @@
 - [x] 구매 금액을 입력받는다. Application#purchaseAmountInput
   - [x] 1000원으로 나누어 떨어지지 않으면 예외 처리한다. InputValidator#validateDivision1000
   - [x] 숫자가 아니면 예외 처리한다. InputValidator#validateIsNumeric
-- [ ] 당첨 번호를 입력받는다.
+- [x] 당첨 번호를 입력받아 로또로 만든다.
   - [x] 쉼표로 구분해 당첨 번호 입력 리스트 만들기. InputManager#winningLottoInput
   - [x] 6개의 숫자가 아니면 예외 처리한다. InputValidator#validateLottoLength
   - [x] 숫자에 중복이 있으면 예외 처리한다. InputValidator#validateNoDuplicates

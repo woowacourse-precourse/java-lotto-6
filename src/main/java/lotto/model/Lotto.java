@@ -6,13 +6,13 @@ import java.util.Set;
 
 public class Lotto {
     public static final int PRICE = 1000;
-    public static final int LOTTO_LOWER_INCLUSIVE = 1;
-    public static final int LOTTO_UPPER_INCLUSIVE = 45;
+    public static final int LOTTO_MIN = 1;
+    public static final int LOTTO_MAX = 45;
     public static final int LOTTO_SIZE = 6;
-    private static final String INVALID_SIZE_ERROR = "로또 번호는 " + LOTTO_SIZE + "자리여야 합니다.";
-    private static final String OUT_OF_RANGE_ERROR =
-            "로또 번호는 " + LOTTO_LOWER_INCLUSIVE + "부터 " + LOTTO_UPPER_INCLUSIVE + " 사이의 숫자ㅒ야 합니다.";
-    private static final String DUPLICATE_NUMBER_ERROR = "로또 번호는 중복되지 않아야 합니다.";
+    public static final String INVALID_SIZE_ERROR = "로또 번호는 " + LOTTO_SIZE + "자리여야 합니다.";
+    public static final String OUT_OF_RANGE_ERROR =
+            "로또 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자ㅒ야 합니다.";
+    public static final String DUPLICATE_NUMBER_ERROR = "로또 번호는 중복되지 않아야 합니다.";
 
     private final List<Integer> numbers;
 
@@ -42,7 +42,7 @@ public class Lotto {
     }
 
     private boolean isOutOfRange(Integer number) {
-        return number < LOTTO_LOWER_INCLUSIVE || number > LOTTO_UPPER_INCLUSIVE;
+        return number < LOTTO_MIN || number > LOTTO_MAX;
     }
 
     private void validateUnique(List<Integer> numbers) {

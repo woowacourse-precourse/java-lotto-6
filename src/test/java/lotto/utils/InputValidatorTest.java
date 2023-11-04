@@ -47,4 +47,13 @@ public class InputValidatorTest {
 
         assertThat(inputValidator.preprocessUserInput(testString)).isEqualTo(expectedResult);
     }
+
+    @DisplayName("유저 입력값 구매금액 캐스팅 테스트 - 정상 데이터 - 성공")
+    @Test
+    void convertInputToPaymentAmountTest() {
+        String testString = "5000";
+        int expectedResult = 5000;
+
+        assertThat(inputValidator.convertInputToPaymentAmount(testString)).isEqualTo(expectedResult);
+    }
 }

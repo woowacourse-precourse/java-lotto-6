@@ -1,16 +1,18 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.Winning;
 
 import java.util.*;
 
-import static lotto.controller.InputConverter.convertPrice;
-import static lotto.controller.InputHandler.inputPrice;
+import static lotto.controller.InputConverter.*;
+import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.checkDuplicate;
 import static lotto.controller.RandNumber.makeRandNumber;
 import static lotto.controller.Rank.getRank;
-import static lotto.view.Message.messageAboutPrice;
+import static lotto.view.Message.*;
 import static lotto.view.Print.printBoughtLottoCount;
+import static lotto.view.Print.printLottery;
 
 public class Play {
 
@@ -32,11 +34,23 @@ public class Play {
         for (int i=0; i<count; i++) {
             lottery.add(makeLottery());
         }
+
+        printLottery(lottery);
+        messageAboutUserLottoNumber();
+        String tmpWinningNumbers = inputWinningNumbers();
+        List<Integer> winningNumbers = convertWinningNumber(tmpWinningNumbers);
+
+        messageAboutUserBonusNumber();
+        String tmpBonusNumber = inputBonusNumber();
+        int bonus = convertBonusNumber(tmpBonusNumber);
+
+        Winning winning = new Winning(winningNumbers, bonus);
+        messageAboutWinningStatistic();
+
     }
 
     public static Lotto makeLottery() {
         Lotto lotto = null;
-
         List<Integer> number = makeRandNumber();
         number = checkDuplicate(number);
         lotto = new Lotto(number);

@@ -68,7 +68,7 @@ public class Computer {
     }
 
     // domain? - Seller
-    public static List<Lotto> createLotto(Integer lottoCount) {
+    public static List<Lotto> createLottos(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {

@@ -14,6 +14,7 @@ public class UserHandler {
             throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
         }
 
+        checkStartWithZero(userInput);
         checkNumericString(userInput);
 
         int amount = Integer.parseInt(userInput);
@@ -21,6 +22,12 @@ public class UserHandler {
         checkUnitAmount(amount);
 
         return amount;
+    }
+
+    private static void checkStartWithZero(String userInput) {
+        if (userInput.startsWith("0")) {
+            throw new IllegalArgumentException("[ERROR] 0으로 시작하는 숫자를 입력하지 마세요.");
+        }
     }
 
     private static void checkNumericString(String userInput) {

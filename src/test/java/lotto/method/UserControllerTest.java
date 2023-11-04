@@ -12,13 +12,13 @@ public class UserControllerTest {
     @Test
     void 정상_로또_구입_금액_입력() {
         UserInterfaceLogic.setUserInput("1000");
-        Assertions.assertThat(UserController.getLottoPrice()).isEqualTo(1000);
+        Assertions.assertThat(UserController.inputLottoPrice()).isEqualTo(1000);
     }
 
     @DisplayName("잘못된 로또 구입 금액을 입력하면 정상적인 값을 입력할 때까지 다시 요청한다.")
     @Test
     void 비정상_로또_구입_금액_입력() {
         UserInterfaceLogic.setUserInput("1000q\n1001\n1000");
-        Assertions.assertThat(UserController.getLottoPrice()).isEqualTo(1000);
+        Assertions.assertThat(UserController.inputLottoPrice()).isEqualTo(1000);
     }
 }

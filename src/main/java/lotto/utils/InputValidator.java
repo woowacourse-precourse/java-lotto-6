@@ -23,19 +23,25 @@ public class InputValidator {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[1-9]*$");
     private static final Pattern LOTTO_PATTERN = Pattern.compile("(\\d*,){5}\\d*$");
 
-    public static void checkIsNumber(String input) {
+    public static void checkPrice(String input) {
+        checkIsBlank(input);
+        checkIsNumber(input);
+        checkPriceFormat(input);
+    }
+
+    private static void checkIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + NUMBER);
         }
     }
 
-    public static void checkIsBlank(String input) {
+    private static void checkIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR + BLANK);
         }
     }
 
-    public static void checkPrice(String input) {
+    private static void checkPriceFormat(String input) {
         if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR + INVALID_PRICE);
         }

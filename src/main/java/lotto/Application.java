@@ -120,6 +120,17 @@ public class Application {
         return lottoResult;
     }
 
+    public static Double calculateEarningRate(List<Integer> lottoResult, List<Integer> prizeMoney, Integer lottoCount) {
+        int sum = 0;
+
+        for (int i = 0; i < lottoResult.size(); i++) {
+            sum += lottoResult.get(i) * prizeMoney.get(i);
+        }
+
+        return ((double) sum / (lottoCount * 1000)) * 100;
+
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -146,15 +157,9 @@ public class Application {
 
         // 당첨금
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
-        int sum = 0;
-        Double rateInvestment;
 
         // 8. 수익률 계산 로직
-        for (int i = 0; i < lottoResult.size(); i++) {
-            sum += lottoResult.get(i) * prizeMoney.get(i);
-        }
-
-        rateInvestment = ((double) sum / (user.lottoCount * 1000)) * 100;
+        Double earningRate = calculateEarningRate(lottoResult, prizeMoney, user.lottoCount);
 
         // 9. 당첨 결과 출력
         System.out.println("당첨 통계");
@@ -167,7 +172,7 @@ public class Application {
 
         // 10. 수익률 출력
 
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateInvestment);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", earningRate);
 
     }
 }

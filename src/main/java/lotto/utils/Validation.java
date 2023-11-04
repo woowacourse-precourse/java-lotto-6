@@ -15,4 +15,10 @@ public class Validation {
             ExceptionMessages.NUMBER_IN_RANGE.throwException(min,max);
         }
     }
+
+    public static void validateNumberMultipleOf(int number, int multiple) {
+        if (number % multiple != 0) {
+            ExceptionMessages.INPUT_MULTIPLE_NUMBER.throwException(multiple);
+        }
+    }
 }

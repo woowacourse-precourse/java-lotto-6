@@ -32,7 +32,7 @@ public class LottoBuyOutputView {
 
         return numbers.stream()
                 .map(String::valueOf)
-                .collect(joining(",", "[", "]"));
+                .collect(joining(", ", "[", "]"));
     }
 
     private void printLottoNumbers(String lottoNumbers) {

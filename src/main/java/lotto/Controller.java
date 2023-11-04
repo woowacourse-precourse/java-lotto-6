@@ -1,9 +1,12 @@
 package lotto;
 
 import lotto.constant.NumberConstant;
+import lotto.model.IssuedLotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class Controller {
 
@@ -34,6 +37,10 @@ public class Controller {
 
     private void printIssuedLotto(int issuedLottoCount){
         OutputView.printIssuedLottoMessage(issuedLottoCount);
+        List<IssuedLotto> issuedLotto = gameService.createIssuedLotto();
+        for(IssuedLotto lotto : issuedLotto){
+            OutputView.printIssuedLotto(lotto.getSortedNumbers());
+        }
     }
 
     private void inputWinningNumbers(){

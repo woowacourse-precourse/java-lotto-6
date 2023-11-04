@@ -19,11 +19,11 @@ public class AssetManager {
 
     private void validateBudget(int budget) throws IllegalArgumentException {
         if (budget % LOTTO_PRICE != ZERO) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_ALLOW_REMAINDER.toString());
+            throw new IllegalArgumentException(ErrorMessages.NOT_ALLOW_REMAINDER.value());
         }
 
         if (budget < LOTTO_PRICE) {
-            throw new IllegalArgumentException(ErrorMessages.TOO_LOW_BUDGET.toString());
+            throw new IllegalArgumentException(ErrorMessages.TOO_LOW_BUDGET.value());
         }
     }
 }

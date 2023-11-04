@@ -16,14 +16,14 @@
 🌟 Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 를 활용한다.
 <br>
 
-- [ ] 로또 구매 금액을 입력받는다.
-  - <span style ="color:yellow">⚠️</span> &nbsp; 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.
+- [x] 로또 구매 금액을 입력받는다.
+  - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.
 - [ ] 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
-- [ ] 보너스 번호를 입력 받는다.
+- [x] 보너스 번호를 입력 받는다.
 - [ ] 예외가 발생한다면, 그 부분부터 다시 입력받는다.
 - [ ] 공통 예외를 정의한다.
-  - <span style ="color:yellow">⚠️</span> &nbsp; 입력받는 수가 숫자가 아니면 예외를 발생시킨다.
-  - <span style ="color:yellow">⚠️</span> &nbsp; 로또 번호(당첨 번호, 보너스 번호)가 1~45 사이에 해당하지 않으면 예외를 발생시킨다.
+  - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 입력받는 수가 숫자가 아니면 예외를 발생시킨다.
+  - [ ] <span style ="color:yellow">⚠️</span> &nbsp; 로또 번호(당첨 번호, 보너스 번호)가 1~45 사이에 해당하지 않으면 예외를 발생시킨다.
 
 
 <br>

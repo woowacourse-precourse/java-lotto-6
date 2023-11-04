@@ -1,10 +1,16 @@
 package lotto.input;
 
+import static lotto.input.constant.Constant.COUNT;
+import static lotto.input.constant.Constant.FIFTH_RESULT;
 import static lotto.input.constant.Constant.FIFTH_WINNING_PRICE;
+import static lotto.input.constant.Constant.FIRST_RESULT;
 import static lotto.input.constant.Constant.FIRST_WINNING_PRICE;
 import static lotto.input.constant.Constant.FOURTH_WINNING_PRICE;
 import static lotto.input.constant.Constant.LOTTO_PRICE;
+import static lotto.input.constant.Constant.LOTTO_RESULT;
 import static lotto.input.constant.Constant.SECOND_WINNING_PRICE;
+import static lotto.input.constant.Constant.SECONT_RESULT;
+import static lotto.input.constant.Constant.THIRD_RESULT;
 import static lotto.input.constant.Constant.THIRD_WINNING_PRICE;
 
 public enum Result {
@@ -31,12 +37,12 @@ public enum Result {
     }
 
     public static void printResult(int lottoCount) {
-        System.out.print("당첨 통계\n---\n");
-        System.out.println("3개 일치 (5,000원) - " + FIFTH.getValue() + "개");
-        System.out.println("4개 일치 (50,000원) - " + FOURTH.getValue() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + THIRD.getValue() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + SECOND.getValue() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + FIRST.getValue() + "개");
+        System.out.print(LOTTO_RESULT);
+        System.out.println(FIFTH_RESULT + FIFTH.getValue() + COUNT);
+        System.out.println(SECONT_RESULT + FOURTH.getValue() + COUNT);
+        System.out.println(THIRD_RESULT + THIRD.getValue() + COUNT);
+        System.out.println(SECONT_RESULT + SECOND.getValue() + COUNT);
+        System.out.println(FIRST_RESULT + FIRST.getValue() + COUNT);
         System.out.printf("총 수익률은 %.1f%%입니다.", (double) calculateReturn() / ((long) LOTTO_PRICE * lottoCount) * 100);
     }
 }

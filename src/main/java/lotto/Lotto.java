@@ -1,8 +1,9 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-public class Lotto {
+public class Lotto implements Comparable<Lotto> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,4 +30,10 @@ public class Lotto {
         return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
     }
 
+    @Override
+    public int compareTo(Lotto other) {
+        Long sameCount = this.numbers.stream()
+                .filter(number -> other.numbers.stream().anyMatch(Predicate.isEqual(number))).count();
+        return sameCount.intValue();
+    }
 }

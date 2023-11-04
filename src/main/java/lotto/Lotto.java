@@ -10,7 +10,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int countMatchingNumbers(List<Integer> winningNumbers) {
+    private int countMatchingNumbers(List<Integer> winningNumbers) {
         int count = 0;
         for (Integer winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {
@@ -20,11 +20,20 @@ public class Lotto {
         return count;
     }
 
-    public int checkBonusNumber(int bonusNumber) {
+    private int checkBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             return 1;
         }
         return 0;
 
+    }
+
+    public int calcuateNumber(List<Integer> winningNumbers, int bonusNumber) {
+        int matchNumber = this.countMatchingNumbers(winningNumbers);
+        if (matchNumber == 6) {
+            return 7;
+        } else {
+            return matchNumber + this.checkBonusNumber(bonusNumber);
+        }
     }
 }

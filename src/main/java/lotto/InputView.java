@@ -2,6 +2,10 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputView {
     // 테스트를 위해 분리
     public String inputStr() {
@@ -23,5 +27,13 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력 받습니다.");
         }
         return purchaseAmount;
+    }
+
+    public List<Integer> inputPrizeNumber(String inputStr) {
+        List<Integer> prizeNumber = Arrays.stream(inputStr.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return prizeNumber;
     }
 }

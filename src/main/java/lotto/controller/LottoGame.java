@@ -1,29 +1,29 @@
-package lotto;
+package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
+import lotto.common.LottoRank;
+import lotto.dto.LottoGameResponse;
+import lotto.service.LottoGameService;
+import lotto.view.InputOutputView;
 
 public class LottoGame {
     private LottoGameService lottoGameService;
+    private InputOutputView inputOutputView;
 
     public LottoGame() {
         this.lottoGameService = new LottoGameService();
+        this.inputOutputView = new InputOutputView();
     }
 
     public void start() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
+        int money = inputOutputView.inputMoney();
         LottoGameResponse lottoGameResponse = lottoGameService.buy(money);
-
         System.out.printf("%s개를 구매했습니다.\n", lottoGameResponse.getCount());
         for (int i = 0; i < lottoGameResponse.getCount(); i++) {
             System.out.println(lottoGameResponse.getBuyLottoNumbers().get(i));
         }
-
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        String winningNumbers = inputOutputView.inputWinningNumbers();
+        int bonusNumber = inputOutputView.inputBonusNumber();
 
         Map<LottoRank, Integer> result = lottoGameService.calculateResult(winningNumbers, bonusNumber);
         printResult(result);

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.common.LottoRank;
+import lotto.domain.Lotto;
+import lotto.dto.LottoGameResponse;
+import lotto.utils.NumberGenerator;
 
 public class LottoGameService {
     private List<Lotto> buyLottos;

@@ -26,4 +26,8 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    private void sortNumbers(List<Integer> numbers) {
+        numbers.stream().sorted();
+    }
 }

@@ -11,19 +11,17 @@ public class LottoNumResults {
     private static final Integer END_PICK_NUM_INDEX = 5;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
-    private Boolean isSame;
 
     public LottoNumResults(WinLottoNums winLottoNums, BonusLottoNum bonusLottoNum) {
         this.winLottoNums = winLottoNums;
         this.bonusLottoNum = bonusLottoNum;
-        isSame = false;
     }
 
     public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
-        isSame = isSameWinNums(targetNum, indexOfSpecial);
-        isSame = isSameBonusNum(targetNum, indexOfSpecial);
-
-        return null;
+        if (isContainScopeOfWinNums(indexOfSpecial)) {
+            return isSameWinNums(targetNum, indexOfSpecial);
+        }
+        return isSameBonusNum(targetNum, indexOfSpecial);
     }
 
     /**
@@ -33,7 +31,7 @@ public class LottoNumResults {
      * @return
      */
     public Boolean isSameWinNums(Integer targetNum, Integer indexOfSpecial) {
-        if (isContainScope(indexOfSpecial)) {
+        if (isContainScopeOfWinNums(indexOfSpecial)) {
             return winLottoNums.isSame(targetNum, indexOfSpecial);
         }
 
@@ -54,7 +52,7 @@ public class LottoNumResults {
         return false;
     }
 
-    private boolean isContainScope(Integer indexOfSpecial) {
+    private boolean isContainScopeOfWinNums(Integer indexOfSpecial) {
         return indexOfSpecial >= START_PICK_NUM_INDEX
                 && indexOfSpecial <= END_PICK_NUM_INDEX;
     }

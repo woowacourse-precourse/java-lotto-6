@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.model;
 
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
 import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;

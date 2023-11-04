@@ -1,6 +1,11 @@
-package lotto.domain;
+package lotto.domain.service;
 
+import lotto.domain.model.CorrectResult;
 import lotto.domain.constant.Rank;
+import lotto.domain.model.Bonus;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Winning;
+import lotto.domain.util.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

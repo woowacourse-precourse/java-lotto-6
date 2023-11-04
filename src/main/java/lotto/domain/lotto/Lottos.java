@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import lotto.dto.LottoResult;
+
 import java.util.*;
 
 public class Lottos {
@@ -13,9 +15,9 @@ public class Lottos {
         return lottos.size();
     }
 
-    public Map<LottoRank, Long> setLottoRankCountMap(final Lotto winningLotto, final int bonus) {
+    public Map<LottoRank, Long> setLottoRankCountMap(LottoResult lottoResult) {
         EnumMap<LottoRank, Long> lottoRankCountMap = initializeLottoRankCountMap();
-        setLottoRankCountMap(winningLotto, bonus, lottoRankCountMap);
+        setLottoRankCountMap(lottoResult, lottoRankCountMap);
 
         return lottoRankCountMap;
     }
@@ -29,9 +31,12 @@ public class Lottos {
         return lottoRankCountMap;
     }
 
-    private void setLottoRankCountMap(Lotto winningLotto, int bonus, Map<LottoRank, Long> lottoRankCountMap) {
+    private void setLottoRankCountMap(LottoResult lottoResult, Map<LottoRank, Long> lottoRankCountMap) {
+        final Lotto winningLotto = lottoResult.getWinningLotto();
+        final int bonusNumber = lottoResult.getBonusNumber();
+
         lottos.stream()
-                .map(lotto -> lotto.determineLottoRank(winningLotto, bonus))
+                .map(lotto -> lotto.determineLottoRank(winningLotto, bonusNumber))
                 .forEach(rank -> lottoRankCountMap.put(rank, lottoRankCountMap.get(rank) + 1));
     }
 

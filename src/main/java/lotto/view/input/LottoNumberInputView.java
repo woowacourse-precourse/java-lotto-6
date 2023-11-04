@@ -3,17 +3,17 @@ package lotto.view.input;
 import lotto.domain.lotto.Lotto;
 import lotto.message.LottoBuyMessage;
 import lotto.util.LottoFactory;
-import lotto.validator.InputValidator;
+import lotto.validator.LottoNumberInputValidator;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoNumberInputView extends Input{
 
-    private final InputValidator inputValidator;
+    private final LottoNumberInputValidator validator;
 
     public LottoNumberInputView() {
-        this.inputValidator = new InputValidator();
+        this.validator = new LottoNumberInputValidator();
     }
 
     public Lotto requestWinningLotto() {
@@ -21,9 +21,13 @@ public class LottoNumberInputView extends Input{
 
         List<Integer> numbers = getNumbers();
         validateWiningLottoNumbers(numbers);
-        System.out.println();
+        newLine();
 
         return LottoFactory.getLotto(numbers);
+    }
+
+    private void newLine() {
+        System.out.println();
     }
 
     private void printRequestWinningLottoNumbers() {
@@ -32,21 +36,21 @@ public class LottoNumberInputView extends Input{
 
     private List<Integer> getNumbers() {
         return Arrays.stream(readLine().split(","))
-                .map(inputValidator::parseInt)
+                .map(validator::parseInt)
                 .toList();
     }
 
     private void validateWiningLottoNumbers(List<Integer> numbers) {
-        inputValidator.validateLottoSize(numbers);
-        inputValidator.validateLottoNumberRange(numbers);
+        validator.validateLottoSize(numbers);
+        validator.validateLottoNumberRange(numbers);
     }
 
     public int requestBonusLottoNumber(Lotto winningLotto) {
         printRequestBonusLottoNumber();
 
-        int bonusNumber = inputValidator.parseInt(readLine());
+        int bonusNumber = validator.parseInt(readLine());
         validateBonusLottoNumber(bonusNumber, winningLotto);
-        System.out.println();
+        newLine();
 
         return bonusNumber;
     }
@@ -56,8 +60,8 @@ public class LottoNumberInputView extends Input{
     }
 
     private void validateBonusLottoNumber(int bonusNumber, Lotto winningLotto) {
-        inputValidator.validateLottoNumberRange(bonusNumber);
-        inputValidator.validateBonusNumberMatch(bonusNumber, winningLotto.getNumbers());
+        validator.validateLottoNumberRange(bonusNumber);
+        validator.validateBonusNumberMatch(bonusNumber, winningLotto.getNumbers());
     }
 
 }

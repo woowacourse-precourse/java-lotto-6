@@ -14,33 +14,29 @@ public class LottoOutputController {
     private final LottoBuyOutputView lottoBuyOutputView;
     private final LottoResultOutputView lottoResultOutputView;
 
-    public LottoOutputController(LottoBuyOutputView lottoBuyOutputView, LottoResultOutputView lottoResultOutputView) {
-        this.lottoBuyOutputView = lottoBuyOutputView;
-        this.lottoResultOutputView = lottoResultOutputView;
+    public LottoOutputController() {
+        this.lottoBuyOutputView = new LottoBuyOutputView();
+        this.lottoResultOutputView = new LottoResultOutputView();
     }
 
     public void printBuyLottos(LottoGameInfo lottoGameInfo) {
-        // 구매한 로또 번호 출력 - output
-        printBuyLottos(lottoGameInfo.getLottos());
+        Lottos lottos = lottoGameInfo.getLottos();
+        lottoBuyOutputView.printPurchaseLottoCountMessage(lottos);
+        lottoBuyOutputView.printAllLottoNumbers(lottos);
     }
 
     public void resultMessage(LottoGameInfo lottoGameInfo, LottoResult lottoResult) {
         //당첨 통계
         Map<LottoRank, Long> lottoRankCountMap =
-                printResult(lottoGameInfo.getLottos(), lottoResult.getWinningLotto(), lottoResult.getBonusNumber());
+                printResult(lottoGameInfo.getLottos(), lottoResult);
 
         //총 수익률
         printTotalProfitRate(lottoGameInfo.getAmount(), lottoRankCountMap);
     }
 
-    private void printBuyLottos(Lottos lottos) {
-        lottoBuyOutputView.printPurchaseLottoCountMessage(lottos);
-        lottoBuyOutputView.printAllLottoNumbers(lottos);
-    }
 
-
-    private Map<LottoRank, Long> printResult(Lottos lottos, Lotto winningLotto, int bonus) {
-        Map<LottoRank, Long> lottoRankCountMap = lottos.setLottoRankCountMap(winningLotto, bonus);
+    private Map<LottoRank, Long> printResult(Lottos lottos, LottoResult lottoResult) {
+        Map<LottoRank, Long> lottoRankCountMap = lottos.setLottoRankCountMap(lottoResult);
         printStartResultMessage();
         lottoResultOutputView.printLottoAllMatch(lottoRankCountMap);
 

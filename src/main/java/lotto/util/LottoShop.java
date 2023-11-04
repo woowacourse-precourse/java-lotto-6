@@ -31,4 +31,5 @@ public class LottoShop {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
+
 }

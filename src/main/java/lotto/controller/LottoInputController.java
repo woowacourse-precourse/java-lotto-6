@@ -6,20 +6,20 @@ import lotto.domain.lotto.Lottos;
 import lotto.dto.LottoResult;
 import lotto.util.LottoShop;
 import lotto.view.input.LottoNumberInputView;
-import lotto.view.input.LottoShopInput;
+import lotto.view.input.LottoGameStartInput;
 
 public class LottoInputController {
 
-    private final LottoShopInput lottoShopInput;
+    private final LottoGameStartInput lottoGameStartInput;
     private final LottoNumberInputView lottoNumberInputView;
 
-    public LottoInputController(LottoShopInput lottoShopInput, LottoNumberInputView lottoNumberInputView) {
-        this.lottoShopInput = lottoShopInput;
-        this.lottoNumberInputView = lottoNumberInputView;
+    public LottoInputController() {
+        this.lottoGameStartInput = new LottoGameStartInput();
+        this.lottoNumberInputView = new LottoNumberInputView();
     }
 
     public LottoGameInfo createLottoGame() {
-        long amount = lottoShopInput.requestLottoPurchaseAmount();
+        long amount = lottoGameStartInput.requestLottoPurchaseAmount();
         Lottos lottos = LottoShop.buyLottos(amount);
         return new LottoGameInfo(amount, lottos);
     }

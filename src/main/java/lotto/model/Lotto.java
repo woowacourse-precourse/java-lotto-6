@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_SIX_COUNT_WINNING_NUMBER);
         }
     }
 

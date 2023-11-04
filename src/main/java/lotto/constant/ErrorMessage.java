@@ -8,4 +8,5 @@ public class ErrorMessage {
     public static final String NOT_1000_UNIT_PURCHASE_AMOUNT = "[ERROR] 구입금액은 1,000원 단위로 입력 가능합니다.";
 
     public static final String NOT_NUMBER_WINNING_NUMBER = "[ERROR] 당첨 번호는 (빈)문자가 아닌 숫자여야 합니다.";
+    public static final String NOT_SIX_COUNT_WINNING_NUMBER = "[ERROR] 당첨 번호는 6개여야 합니다.";
 }

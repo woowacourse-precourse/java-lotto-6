@@ -31,8 +31,7 @@ public class GameService {
 
     public void inputWinningNumbers(String input){
         List<Integer> tempWinningNumbers = LottoInputParser.notNumber(input);
-        System.out.println(tempWinningNumbers);
-//        winningNumbers = new Lotto(input)
+        winningNumbers = new Lotto(tempWinningNumbers);
     }
 
 }

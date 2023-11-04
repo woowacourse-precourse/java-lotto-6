@@ -37,4 +37,18 @@ public class StringTest {
                 .contains("1,2");
     }
 
+    @Test
+    @DisplayName("### 문자열의 특정 위치 문자가 위치값을 벗어나는지 테스트 ###")
+    public void test3(){
+        String input = "abc";
+        int inputSize = input.length();
+
+        assertThatThrownBy(() -> {
+            input.charAt(inputSize);
+
+        })
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessageContaining("Index : " + inputSize + ", Size : " + inputSize);
+    }
+
 }

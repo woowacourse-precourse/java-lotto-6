@@ -29,6 +29,17 @@ public class InputValue {
             printUtil.printWinnerNumbersInput();
             return getWinnerNumbersInput();
         }
+    }
 
+    public String getBonusNumberInput() {
+        try {
+            String userInput = Console.readLine();
+            inputValidation.validateInputIsNull(userInput);
+            return userInput;
+        } catch (NullPointerException nullPointerException) {
+            System.out.println(nullPointerException.getMessage());
+            printUtil.printBonusNumberInput();
+            return getBonusNumberInput();
+        }
     }
 }

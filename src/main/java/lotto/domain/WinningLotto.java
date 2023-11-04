@@ -16,11 +16,11 @@ public record WinningLotto(List<Integer> numbers, int bonusNumber) {
         if (matchCount == FOUR) {
             return LottoPrizes.FOUR_NUMBERS_MATCHED;
         }
+        if (matchCount == FIVE && lotto.isContain(bonusNumber)) {
+            return LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED;
+        }
         if (matchCount == FIVE) {
             return LottoPrizes.FIVE_NUMBER_MATCHED;
-        }
-        if (matchCount == SIX && lotto.isContain(bonusNumber)) {
-            return LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED;
         }
         if (matchCount == SIX) {
             return LottoPrizes.SIX_NUMBER_MATCHED;
@@ -29,14 +29,8 @@ public record WinningLotto(List<Integer> numbers, int bonusNumber) {
     }
 
     public long getMatchCount(Lotto lotto) {
-        long matchCount = numbers.stream()
+        return numbers.stream()
                 .filter(lotto::isContain)
                 .count();
-
-        if (lotto.isContain(bonusNumber)) {
-            matchCount++;
-        }
-
-        return matchCount;
     }
 }

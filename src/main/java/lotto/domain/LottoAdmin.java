@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InvalidInputNumFormatException;
 import lotto.exception.InvalidRangeException;
 import lotto.exception.InvalidWinningLottoFormatException;
 
@@ -43,7 +44,7 @@ public class LottoAdmin {
 
     private void validateBonusInput(String inputValue) {
         if (!BONUSPATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException();
+            throw new InvalidInputNumFormatException();
         }
     }
 

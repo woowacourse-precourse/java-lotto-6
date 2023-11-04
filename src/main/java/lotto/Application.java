@@ -3,6 +3,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Application {
             initWinCheckMap(winCheckMap);
             winCheck(lottoList, correctNumbers, bonusNumber, winCheckMap);
 
+            printLottoResult(buyMoney, winCheckMap);
         } catch (NumberFormatException ex) {
             System.out.println("[ERROR] 입력은 숫자로 입력되어야 합니다.");
         } catch (IllegalArgumentException ex) {
@@ -50,14 +52,13 @@ public class Application {
         }
     }
 
+
     private static void initWinCheckMap(Map<Position, Integer> winCheckMap) {
-
-        Position[] positions = Position.values();
-
         for (Position position : Position.values()) {
             winCheckMap.put(position, 0);
         }
     }
+
 
     private static void winCheck(List<Lotto> lottoList, List<Integer> correctNumbers, Integer bonusNumber, Map<Position, Integer> winCheckMap) {
         for (Lotto lotto : lottoList) {
@@ -70,5 +71,21 @@ public class Application {
     }
 
 
+    private static void printLottoResult(int buyMoney, Map<Position, Integer> winCheckMap) {
+        int totalPrice = 0;
+
+        System.out.println("당첨 통계\n---------");
+
+        for (Position position : winCheckMap.keySet()) {
+            totalPrice += winCheckMap.get(position) * position.getPositionMoney();
+
+            System.out.print(position.getPositonPrint() + " (" + position.getPositionMoney() +"원)");
+            System.out.println(" - " + winCheckMap.get(position) + "개");
+        }
+
+        double totalPercent = (double) totalPrice / buyMoney * 100.0;
+        DecimalFormat df = new DecimalFormat("0.0");
+        System.out.println("총 수익률은 " + df.format(totalPercent) + "%입니다.");
+    }
 
 }

@@ -1,6 +1,7 @@
 package lotto.util;
 
 import lotto.domain.lotto.Lotto;
+import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,15 @@ class LottoFactoryTest {
         // then
         List<Integer> numbers = lotto.getNumbers();
         assertThat(numbers).allMatch(number -> number >= 1 && number <= 45);
+    }
+
+    @Test
+    @DisplayName("오름차순으로 정렬된 숫자가 아니면 예외가 발생한다.")
+    public void getLottoException() {
+        // when // then
+        assertThatThrownBy(() -> LottoFactory.getLotto(List.of(1, 2, 21, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
     }
 
     @Test

@@ -39,7 +39,7 @@ public class MoneyInputValidator implements BasicValidator<String> {
         }
     }
 
-    private static boolean isNotMultipleOfThousand(int money) {
+    private boolean isNotMultipleOfThousand(int money) {
         return money % LOTTO_PURCHASE_PRICE != ZERO;
     }
 

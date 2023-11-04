@@ -33,8 +33,8 @@ public class LottoNumberValidator {
     }
 
     public Integer validateBonusNumber(String bonusNumber, List<String> lottoNumbers) {
-        validateBlank(bonusNumber);
         validateEmpty(bonusNumber);
+        validateBlank(bonusNumber);
         validateNumber(bonusNumber);
         validateNumberRange(bonusNumber);
         validateNumberAlreadyUsedInLotto(bonusNumber, lottoNumbers);

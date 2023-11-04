@@ -5,7 +5,7 @@ import enums.Error;
 public class InputException {
 
 	public static void checkNumber(String buyAmountText) {
-		if(!buyAmountText.matches("[0-45]+")) {
+		if(!buyAmountText.matches("[0-9]+")) {
 			throw new IllegalArgumentException(Error.WRONG_VALUE.getMessage());
 		}
 	}

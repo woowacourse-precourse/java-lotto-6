@@ -6,11 +6,13 @@ import view.InputView;
 public class BuyAmount {
 
 	private int buyAmount;
+	private int lottoPage;
 	
 	public BuyAmount(String buyAmountText) {
 		int buyAmount = changeBuyAmount(buyAmountText);
-		checkRightAmount(buyAmount);
+		int lottoPage = checkRightAmount(buyAmount);
 		this.buyAmount = buyAmount;
+		this.lottoPage = lottoPage;
 	}
 	
 	private static void againBuyAmount() {
@@ -29,16 +31,22 @@ public class BuyAmount {
 		return Integer.valueOf(buyAmount);
 	}
 	
-	private void checkRightAmount(int buyAmount) {
+	private int checkRightAmount(int buyAmount) {
 		try {
 			InputException.checkRightAmount(buyAmount);
 		} catch (Exception e) {
 			System.out.println(e);
 			againBuyAmount();
 		}
+		
+		return buyAmount/1000;
 	}
 
 	public int getBuyAmount() {
 		return buyAmount;
+	}
+
+	public int getLottoPage() {
+		return lottoPage;
 	}
 }

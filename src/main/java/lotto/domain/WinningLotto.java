@@ -8,6 +8,7 @@ import static lotto.exception.LottoNumberException.*;
 
 public class WinningLotto {
     private final List<Integer> numbers;
+    private Integer bonusNumber;
 
     public WinningLotto(List<String> input) {
         inputValidate(input);
@@ -21,7 +22,7 @@ public class WinningLotto {
         inputValidate(bonus);
         Integer number = Integer.parseInt(bonus.get(0));
         numberDuplicateValidate(number);
-        numbers.add(number);
+        this.bonusNumber = number;
     }
 
     private void numberDuplicateValidate(Integer number) {

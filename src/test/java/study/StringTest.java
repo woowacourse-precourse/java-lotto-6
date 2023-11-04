@@ -18,5 +18,16 @@ public class StringTest {
                 .contains("1", "2");
     }
 
+    @Test
+    @Disabled
+    public void test1_2(){
+        String target = "1,";
+        String[] targets = target.split(",");
+
+        assertThat(targets)
+                .containsExactly("1");
+    }
+
+
 
 }

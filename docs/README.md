@@ -8,11 +8,11 @@
     - [o] 로또의 길이는 6가 맞는지 검증. Lotto#void validateBoundLength()
     - [o] 로또 번호는 1~45 사이의 숫자를 가지는지 검증. Lotto#void validateProperNums()
     - [o] 로또는 중복된 숫자를 가지는 지 검증. Lotto#void validateDuplicatedNums()
-- [] 로또를 구입한 개수만큼 발행한다. LottoMarketService#issueLottoes()
-  - []중복되지 않는 무작위 수를 6개를 생성한다. LottoMarketService#generateNonduplicatedNums()
-  - []입력 받은 돈으로 로또 발행 개수를 구한다. LottoMarketService#lottoCount()
-    - []1000원으로 나누어 떨어지지 않으면 예외. LottoMarketService#valiadateMoney
-  - []무작위의 숫자를 반환한다. LottoNumGenerator#pickLottoNum implement Supplier\<Integer>()
+- [o] 로또를 구입한 개수만큼 발행한다. LottoMarketService#List\<Lotto> issueLottoes(int lottoCount)
+  - [o]중복되지 않는 무작위 수를 6개를 생성한다. LottoMarketService#List\<Integer> generateNonduplicatedNums(Supplier\<Integer> lottoNumSupplier)
+  - [o]입력 받은 돈으로 로또 발행 개수를 구한다. LottoMarketService#int calculateLottoCount(int money)
+    - [o]1000원으로 나누어 떨어지지 않으면 예외. LottoMarketService#void valiadateMoney(int money)
+  - [o]무작위의 숫자를 반환한다. LottoNumGenerator#integer get()
 - [] 구매한 로또의 번호와 당첨 번호를 비교
 - [] 당첨 내역 출력
 - [] 수익률 출력

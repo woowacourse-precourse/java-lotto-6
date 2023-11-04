@@ -11,6 +11,8 @@ import static lotto.util.Constant.FIVE;
 import static lotto.util.Constant.SIX;
 import static lotto.util.Converter.formatNumberWithComma;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
@@ -46,7 +48,9 @@ public class ConsoleOutputView implements OutputView {
         printNewLine();
         System.out.println(lottos.size() + PURCHASED_LOTTO_MESSAGE);
         for (final List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+            List<Integer> purchasedLotto = new ArrayList<>(lotto);
+            Collections.sort(purchasedLotto);
+            System.out.println(purchasedLotto);
         }
     }
 

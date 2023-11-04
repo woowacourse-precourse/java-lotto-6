@@ -5,6 +5,7 @@ import static lotto.config.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.config.ErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT;
 import static lotto.config.LottoConfig.LOTTO_PRICE;
 
+import lotto.util.InputUtil;
 import lotto.util.NumberUtil;
 
 public class PurchaseAmount {
@@ -22,7 +23,7 @@ public class PurchaseAmount {
 	}
 
 	private void validate(String amount) {
-		if (isBlankOrNull(amount)) {
+		if (InputUtil.isBlankOrNull(amount)) {
 			throw new IllegalArgumentException(BLANK_PURCHASE_AMOUNT.getMessage());
 		}
 
@@ -33,10 +34,6 @@ public class PurchaseAmount {
 		if (!isMultipleOfThousand(amount)) {
 			throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
 		}
-	}
-
-	private boolean isBlankOrNull(String amount) {
-		return amount == null || amount.isBlank();
 	}
 
 	private boolean isMultipleOfThousand(String amount) {

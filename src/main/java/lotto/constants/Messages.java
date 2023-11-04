@@ -5,8 +5,12 @@ public class Messages {
     public static final String PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
-    public static final String LOTTO_NUMBERS_MESSAGE = "[%s]";
+    public static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.\n";
+    public static final String LOTTO_NUMBERS_MESSAGE = "[%s]\n";
+    public static final String WINNING_STATISTICS = "당첨 통계\n";
+    public static final String SEPARATOR_LINE = "---\n";
+    public static final String WINNING_MESSAGE = "%d개 일치 (%s원) - %d개\n";
+    public static final String WINNING_SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     public static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %s입니다.";
 
     private static final String ERROR_PREFIX = "[ERROR] ";

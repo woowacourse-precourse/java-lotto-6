@@ -70,4 +70,20 @@ class LottoHandlerTest {
         assertThat(lottoNumbers.get(1).size()).isEqualTo(6);
         assertThat(lottoNumbers.get(2).size()).isEqualTo(6);
     }
+
+    @DisplayName("발행한 로또 번호는 오름차순으로 정렬되어 있다.")
+    @Test
+    void issueLottoNumberOrderByAsc() {
+        // given
+        int lottoTicket = 1;
+
+        // when
+        List<List<Integer>> lottoNumbers = lottoHandler.issueLottoNumbers(lottoTicket);
+
+        // then
+        List<Integer> lottoNumber = lottoNumbers.get(0);
+        for (int i = 0; i < lottoNumber.size() - 1; i++) {
+            assertThat(lottoNumber.get(i) < lottoNumber.get(i + 1)).isTrue();
+        }
+    }
 }

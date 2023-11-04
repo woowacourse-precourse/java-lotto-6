@@ -25,7 +25,7 @@ public class GameController {
         PurchasePrice money = inputView.getMoney();
         int purchaseLottoAmount = money.getPurchaseLottoAmount();
         List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(purchaseLottoAmount);
-
+        outputView.printPurchaseResult(purchaseResults);
 
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
 

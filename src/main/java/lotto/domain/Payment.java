@@ -11,30 +11,30 @@ public class Payment {
     private final int amount;
 
     public Payment(final String amount) {
-        validate(amount);
+        validate(Integer.parseInt(amount));
         this.amount = Integer.parseInt(amount);
     }
 
-    private void validate(final String amount) {
+    private void validate(final int amount) {
         validateMinimumAmount(amount);
         validateThousandUnit(amount);
         validateMaximumAmount(amount);
     }
 
-    private void validateMinimumAmount(final String amount) {
-        if (Integer.parseInt(amount) < LOTTO_PRICE) {
+    private void validateMinimumAmount(final int amount) {
+        if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(MIN_AMOUNT_ERROR_MESSAGE);
         }
     }
 
-    private void validateThousandUnit(final String amount) {
-        if (Integer.parseInt(amount) % LOTTO_PRICE != 0) {
+    private void validateThousandUnit(final int amount) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(UNIT_ERROR_MESSAGE);
         }
     }
 
-    private void validateMaximumAmount(final String amount) {
-        if (Integer.parseInt(amount) > MAX_AMOUNT) {
+    private void validateMaximumAmount(final int amount) {
+        if (amount > MAX_AMOUNT) {
             throw new IllegalArgumentException(MAX_AMOUNT_ERROR_MESSAGE);
         }
     }

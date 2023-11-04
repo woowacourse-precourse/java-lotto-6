@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
-import lotto.model.constants.LottoRule;
+import lotto.constants.LottoRule;
 
 public class BonusNumber {
 

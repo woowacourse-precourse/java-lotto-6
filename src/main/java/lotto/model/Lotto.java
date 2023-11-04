@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.constants.LottoRule.LOTTO_NUMBER_LENGTH;
+import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package lotto.model.constants;
+package lotto.constants;
 
 import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;

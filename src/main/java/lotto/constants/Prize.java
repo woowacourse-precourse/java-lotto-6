@@ -1,4 +1,4 @@
-package lotto.model.constants;
+package lotto.constants;
 
 public enum Prize {
 

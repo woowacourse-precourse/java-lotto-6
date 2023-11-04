@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constant.NumberConstant.*;
+
 public enum MatchResult {
     NONE(0),
     THREE(3),
@@ -14,8 +16,8 @@ public enum MatchResult {
     }
 
     public static MatchResult fromCount(int count) {
-        if (count >= 3 && count <= 6)
-            return values()[count];
+        if (count >= MIN_WIN_COUNT && count <= MAX_WIN_COUNT)
+            return values()[count - COUNT_IDX_OFFSET];
         else
             return NONE;
     }

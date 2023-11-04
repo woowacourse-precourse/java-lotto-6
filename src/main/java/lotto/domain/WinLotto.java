@@ -14,4 +14,8 @@ public class WinLotto {
     public void setNumbers(List<Integer> numbers) {
         this.numbers = numbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -12,4 +12,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String inputPrizeNumber() {
+        System.out.println(INPUT_LOTTO_PRIZE_NUMBER);
+        return Console.readLine();
+    }
+
 }

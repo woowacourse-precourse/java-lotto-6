@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
@@ -26,20 +24,13 @@ public class LottoController {
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
 
-        LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
+        LottoCompanyService lottoCompanyService = factoryController.createLottoCompanyService(lottos);
         List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
         addPrizeMoney(investorService, prizeResults);
 
         outputView.alertResult();
         outputView.printEachPrize(prizeResults);
         outputView.printProfitRate(investorService.calculateProfitRate());
-    }
-
-    private LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
-        GoalNumbers goalNumbers = factoryController.createGoalNumbers();
-        BonusNumber bonusNumber = factoryController.createBonusNumber();
-
-        return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
     }
 
     private void printLottoValues(final List<Lotto> lottos) {

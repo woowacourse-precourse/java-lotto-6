@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Convert {
 
-    private static final String NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력하셔야 합니다.";
+    private static final String NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
     private static final String BLANK_OR_NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 공백 혹은 숫자가 아닌 입력을 포함할 수 없습니다.";
 
     public static Integer stringToInteger(String inputValue) {

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -14,16 +13,32 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        validateLength(numbers);
+        validateDuplication(numbers);
+        validateRange(numbers);
+    }
 
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
         List<Integer> checker = new ArrayList<>();
         for (int number : numbers) {
             if (checker.contains(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 숫자는 중복될 수 없습니다.");
             }
             checker.add(number);
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1 ~ 45 범위의 숫자만 가능합니다.");
+            }
         }
     }
 
@@ -36,24 +51,13 @@ public class Lotto {
     }
 
     public String toString() {
-        List<Integer> sorted = getIntegers();
-
-        StringBuilder string = new StringBuilder("[");
-        for (int index = 0; index < sorted.size(); index++) {
-            string.append(sorted.get(index));
-            if (index == sorted.size() - 1) {
-                break;
-            }
+        StringBuilder string = new StringBuilder("[" + numbers.get(0));
+        for (int number : numbers.subList(1, numbers.size())) {
             string.append(", ");
+            string.append(number);
         }
         string.append("]");
 
         return String.valueOf(string);
-    }
-
-    private List<Integer> getIntegers() {
-        List<Integer> sorted = new ArrayList<>(this.numbers);
-        sorted.sort(Comparator.naturalOrder());
-        return sorted;
     }
 }

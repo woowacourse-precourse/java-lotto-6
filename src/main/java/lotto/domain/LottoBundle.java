@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,15 +23,13 @@ public class LottoBundle {
         return bundle;
     }
 
-    public int getSize() {
-        return bundle.size();
-    }
-
     public void makeLotto(int price) {
         int quantity = price / LOTTO_PRICE;
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_LENGTH);
-            bundle.add(new Lotto(numbers));
+            List<Integer> sorted = new ArrayList<>(numbers);
+            sorted.sort(Comparator.naturalOrder());
+            bundle.add(new Lotto(sorted));
         }
     }
 
@@ -46,24 +45,25 @@ public class LottoBundle {
     public Map<Rank, Integer> result(Lotto winning, int bonus) {
         Map<Rank, Integer> result = new HashMap<>();
         List<Integer> winningNumbers = winning.getNumbers();
+
         for (Lotto lotto : this.bundle) {
-            int count = 0;
             List<Integer> lottoNumbers = lotto.getNumbers();
-
-            for (Integer lottoNumber : lottoNumbers) {
-                if (winningNumbers.contains(lottoNumber)) {
-                    count++;
-                }
-            }
-
-            Rank rank = Rank.values()[count];
+            Rank rank = Rank.values()[getCount(lottoNumbers, winningNumbers)];
             if (rank == Rank.THIRD && lottoNumbers.contains(bonus)) {
                 rank = Rank.SECOND;
             }
-
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
-
         return result;
+    }
+
+    private static int getCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer lottoNumber : lottoNumbers) {
+            if (winningNumbers.contains(lottoNumber)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

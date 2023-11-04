@@ -27,8 +27,32 @@ public class Application {
         OutputView.showResult(result, rate);
     }
 
-    private static void setResult() {
-        result = bundle.result(winningLotto, bonusNumber);
+    private static void makeLottoBundle() {
+        cost = InputView.askPrice();
+        bundle.makeLotto(cost);
+        System.out.println();
+    }
+
+    private static void showBundle() {
+        OutputView.showBundle(bundle.getBundle());
+        System.out.println();
+    }
+
+    private static void makeWinningLotto() {
+        while (true) {
+            try {
+                winningLotto = new Lotto(InputView.askWinningNumber());
+                System.out.println();
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void setBonusNumber() {
+        bonusNumber = InputView.askBonusNumber(winningLotto);
+        System.out.println();
     }
 
     private static void setRate() {
@@ -38,24 +62,7 @@ public class Application {
         rate = (rate / cost) * 100;
     }
 
-    private static void setBonusNumber() {
-        bonusNumber = InputView.askBonusNumber(winningLotto);
-        System.out.println();
-    }
-
-    private static void makeWinningLotto() {
-        winningLotto = InputView.askWinningNumber();
-        System.out.println();
-    }
-
-    private static void showBundle() {
-        OutputView.showBundle(bundle.getBundle());
-        System.out.println();
-    }
-
-    private static void makeLottoBundle() {
-        cost = InputView.askPrice();
-        bundle.makeLotto(cost);
-        System.out.println();
+    private static void setResult() {
+        result = bundle.result(winningLotto, bonusNumber);
     }
 }

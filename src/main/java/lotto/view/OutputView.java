@@ -10,6 +10,11 @@ public class OutputView {
     public static void showResult(Map<Rank, Integer> result, double rate) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        rankResult(result);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
+    }
+
+    private static void rankResult(Map<Rank, Integer> result) {
         for (Rank rank : Rank.values()) {
             if (rank.getCount() == 0) {
                 continue;
@@ -22,7 +27,6 @@ public class OutputView {
             System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getCount(), rank.getText(),
                     result.getOrDefault(rank, 0));
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
     }
 
     public static void showBundle(List<Lotto> bundle) {

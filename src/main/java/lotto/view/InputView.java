@@ -11,20 +11,16 @@ public class InputView {
     /**
      * 당첨 번호를 입력받는 함수
      *
-     * @return : 당첨 로또
-     * @throws IllegalArgumentException : 숫자 여부, 번호 개수, 번호 범위, 중복
+     * @return : 숫자 리스트 형식의 당첨 번호
+     * @throws IllegalArgumentException : 숫자 리스트 변환에 실패
      */
-    public static Lotto askWinningNumber() throws IllegalArgumentException {
+    public static List<Integer> askWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        while (true) {
-            try {
-                String input = Console.readLine();
-                Validation.winningNumber(input);
-                List<Integer> numbers = Arrays.stream(input.split(",", -1)).map(Integer::parseInt).toList();
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = Console.readLine();
+            return Arrays.stream(input.split(",", -1)).map(Integer::parseInt).toList();
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 올바른 형식이 아닙니다.");
         }
     }
 

@@ -2,7 +2,7 @@ package lotto.utils;
 
 import lotto.view.InputView;
 
-public class converterStringToInteger implements Converter<String ,Integer> {
+public class converterStringToInteger implements Converter<String, Integer> {
 
     @Override
     public Integer convert(String target) {

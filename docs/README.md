@@ -47,8 +47,8 @@
 - [X] 발행 로또 번호와 당첨 번호 사이에 일치하는 번호 개수 계산: LottoController.*calculateMatchingNumbers*
 - [X] 상금 계산: LottoController.*calculatePrize*
 - [X] 수익률 계산: LottoController.*calculateRateOfReturn*
-- [] 당첨 내역 출력: OutputView.*printWinningDetails*
-- [] 수익률 출력: OutputView.*printRateOfReturn*
+- [X] 당첨 내역 출력: OutputView.*printWinningDetails*
+- [X] 수익률 출력: OutputView.*printRateOfReturn*
 
 ## LottoController
 

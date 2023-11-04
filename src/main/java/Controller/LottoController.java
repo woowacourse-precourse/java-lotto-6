@@ -39,6 +39,11 @@ public class LottoController {
         calculateRateOfReturn();
     }
 
+    public void printGameResult() {
+        OutputView.printWinningDetails(matchingCounts);
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
+
     public void publishMyLotto(PurchaseAmount purchaseAmount) {
         myLottoNumbers = new ArrayList<>();
         List<Integer> numbers;

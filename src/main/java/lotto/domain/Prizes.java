@@ -45,4 +45,15 @@ public class Prizes {
         return totalPrice;
     }
 
+    public Double calculateBenefit(Integer totalSeed) {
+        Integer totalReward = countTotalPrice();
+        if (totalReward == 0) {
+            return 0.0;
+        }
+
+        Double benefit = ((double) totalReward / (double) totalSeed * 100.0);
+        return benefit;
+
+    }
+
 }

@@ -18,6 +18,7 @@ public class LottoController {
     private Lotto winningLottoNumbers;
     private BonusNumber winningBonusNumber;
     private List<Integer> matchingCounts;
+    private double rateOfReturn = 0.0;
 
     public void buyMyLotto() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.getPurchaseAmount());
@@ -73,6 +74,7 @@ public class LottoController {
 
     public void calculateRateOfReturn() {
         int prize = calculatePrize(matchingCounts);
+        rateOfReturn = ((double) prize / (lottoAmount * 1000)) * 100;
     }
 
     public int calculatePrize(List<Integer> matchingCounts) {

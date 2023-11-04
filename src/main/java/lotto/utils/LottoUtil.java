@@ -15,9 +15,5 @@ public class LottoUtil {
         }
     }
 
-    public static void validateMultiplesOf(BigDecimal num, BigDecimal factor) {
-        if (num.remainder(factor).compareTo(BigDecimal.ZERO) != 0) {
-            throw new IllegalArgumentException(AMOUNT_IS_NOT_IN_THOUSAND_WN_UNITS.getMessage());
-        }
-    }
+
 }

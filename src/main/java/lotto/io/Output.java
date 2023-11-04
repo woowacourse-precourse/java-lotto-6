@@ -1,5 +1,7 @@
 package lotto.io;
 
+import lotto.domain.Constants;
+
 import java.util.List;
 
 public class Output {

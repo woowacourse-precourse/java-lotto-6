@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.io.Constants;
-
 import java.util.List;
 
 public class ProfitCalculator {

@@ -2,9 +2,8 @@ package lotto.controller;
 
 import lotto.domain.Lottos;
 import lotto.domain.ProfitCalculator;
-import lotto.domain.Rank;
 import lotto.domain.WinningChecker;
-import lotto.io.Constants;
+import lotto.domain.Constants;
 import lotto.io.Input;
 import lotto.io.Output;
 

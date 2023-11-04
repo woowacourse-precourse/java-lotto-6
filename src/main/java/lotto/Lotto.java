@@ -9,6 +9,7 @@ public class Lotto {
     private int bonusNumber;
     private Map<Integer, Boolean> winningNumbers = new HashMap<>();
     private int winningCount = 0;
+    private int winningMoney = 0;
 
 
     public Lotto(List<Integer> numbers) {
@@ -19,6 +20,33 @@ public class Lotto {
     public void setWinningNumbersAndBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         setBonusNumber(bonusNumber);
         setWinningNumbers(winningNumbers);
+        judgeWinning();
+    }
+
+    private void judgeWinning() {
+        switch (getWinningCount()) {
+            case 3:
+                winningMoney = 5000;
+                break;
+            case 4:
+                winningMoney = 50000;
+                break;
+            case 5:
+                winningMoney = 1500000;
+                break;
+            case 6:
+                winningMoney = 2000000000;
+                break;
+            default:
+                break;
+        }
+        if (isWinningCountWithBonusNumber()) {
+            winningMoney = 30000000;
+        }
+    }
+
+    public int getWinningMoney() {
+        return winningMoney;
     }
 
     private Lotto setBonusNumber(int number) {
@@ -33,14 +61,14 @@ public class Lotto {
     }
 
     public int getWinningCount() {
-        if (winningCount == 5 && getWinningCountWithBonusNumber()) {
+        if (winningCount == 5 && isWinningCountWithBonusNumber()) {
             return winningCount - 1;
         }
         return winningCount;
     }
 
     // 5개 번호가 일치하되 보너스 번호가 일치하지 않는 경우
-    public boolean getWinningCountWithBonusNumber() {
+    public boolean isWinningCountWithBonusNumber() {
         if (winningCount == 5 && numbers.contains(bonusNumber)) {
             return true;
         }

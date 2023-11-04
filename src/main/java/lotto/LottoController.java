@@ -25,6 +25,8 @@ public class LottoController {
         HashMap<Integer, List<Integer>> result = lottoService.calculateCompareResult(count, lotties, winningNumber.getWinningNumbers(), bonusNumber.getBonusNumber());
         HashMap<Integer, Integer> finalResult = lottoService.calculateFinalResult(result, count);
         int totalReward = lottoService.calculateTotalReward(finalResult);
+        String ror = lottoService.rorDoubleToString(lottoService.calculateRateOfReturn(finalResult, money.getMoney()));
+        printResult(finalResult, ror);
     }
 
     public Money requestMoney(){
@@ -59,5 +61,10 @@ public class LottoController {
             System.out.println(e.getMessage());
         }
         return requestBonusNumber(winningNumber);
+    }
+
+    public void printResult(HashMap<Integer, Integer> finalResult, String ror) {
+        outputView.printResultMessage(finalResult);
+        outputView.printRateOfReturn(ror);
     }
 }

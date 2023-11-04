@@ -137,4 +137,27 @@ public class LottoService {
         int totalReward= calculateTotalReward(finalResult);
         return (totalReward/money)*100;
     }
+
+    public static String rorDoubleToString(Double ror) {
+        String rateOfReturn = String.format("%.1f", ror);
+        String formattedRateOfReturn = "";
+        int count = 0;
+        for (int i = rateOfReturn.length() - 1; i >= 0; i--) {
+            if (i == rateOfReturn.length() - 1 || i == rateOfReturn.length() - 2){
+                formattedRateOfReturn += rateOfReturn.charAt(i);
+                continue;
+            }
+            if (count == 3){
+                formattedRateOfReturn += ",";
+                count = 0;
+            }
+            formattedRateOfReturn += rateOfReturn.charAt(i);
+            count++;
+        }
+        String finalRateOfReturn = "";
+        for (int i = formattedRateOfReturn.length()-1; i >= 0; i--) {
+            finalRateOfReturn += formattedRateOfReturn.charAt(i);
+        }
+        return finalRateOfReturn;
+    }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMoneyTest {
@@ -23,5 +24,20 @@ class LottoMoneyTest {
     @ValueSource(ints = {1000,10000,200000})
     void 성공(int money) {
         assertDoesNotThrow(() -> new LottoMoney(money));
+    }
+
+    @ParameterizedTest
+    @DisplayName("구매 가능 계수 계산")
+    @CsvSource(value = {"1000,1","10000,10"})
+    void 구매_개수(int money, int expected) {
+        //given
+        LottoMoney lottoMoney = new LottoMoney(money);
+
+        //when
+        int count = lottoMoney.calculatePurchasableCount(1000);
+
+        //then
+        Assertions.assertThat(count).isEqualTo(expected);
+
     }
 }

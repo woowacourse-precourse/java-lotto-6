@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Lottos {
-    private static final int UNIT_PRICE = 1_000;
-
     private final List<Lotto> lottos;
 
-    private Lottos(final int ticketCount) {
-        List<Lotto> lottos = generateLottos(ticketCount);
-
-        this.lottos = lottos;
+    private Lottos(final Buyer buyer) {
+        final int ticketCount = buyer.getTicketCount();
+        this.lottos = generateLottos(ticketCount);
     }
 
-    public static Lottos create(final int ticketCount) {
-        return new Lottos(ticketCount);
+    public static Lottos create(final Buyer buyer) {
+        return new Lottos(buyer);
     }
 
     private List<Lotto> generateLottos(final int ticketCount) {
@@ -28,5 +25,9 @@ public class Lottos {
                 .stream()
                 .map(Lotto::new)
                 .toList();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

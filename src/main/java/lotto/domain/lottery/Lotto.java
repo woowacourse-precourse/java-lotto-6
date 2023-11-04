@@ -39,4 +39,8 @@ public class Lotto {
 
         return !Objects.equals(numbers.size(), uniqueNumberCount);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -1,11 +1,11 @@
 package lotto;
 
-import lotto.controller.LottoMachine;
+import lotto.controller.PurchaseController;
 import lotto.domain.lottery.Lottos;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMachine lottoMachine = new LottoMachine();
+        PurchaseController lottoMachine = new PurchaseController();
 
         Lottos lottos = lottoMachine.purchase();
     }

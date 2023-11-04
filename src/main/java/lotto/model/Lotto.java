@@ -18,12 +18,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
 }

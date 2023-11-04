@@ -16,16 +16,21 @@ public class LottoView {
     }
 
     public void start(){
-        System.out.println(STARTTEXT);
-        String pMoney = Console.readLine();
-        lottoController = new LottoController(Integer.parseInt(pMoney));
-        System.out.println(lottoController.getMaxRound()+SHOWTEXT);
-        //lottoController.startLotto();
-        System.out.println(INPUTNUMBERTEXT);
-        String numbers = Console.readLine();
-        System.out.println(INPUTBONUSTEXT);
-        String bonus = Console.readLine();
-        lottoController.setLotto(getNumbers(numbers), Integer.parseInt(bonus));
+        try {
+            lottoController = new LottoController();
+            System.out.println(STARTTEXT);
+            String pMoney = Console.readLine();
+            lottoController.setpMoney(Integer.parseInt(pMoney));
+            System.out.println(lottoController.getMaxRound() + SHOWTEXT);
+            lottoController.startLotto();
+            System.out.println(INPUTNUMBERTEXT);
+            String numbers = Console.readLine();
+            System.out.println(INPUTBONUSTEXT);
+            String bonus = Console.readLine();
+            lottoController.setLotto(getNumbers(numbers), Integer.parseInt(bonus));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private List<Integer> getNumbers(String numbers){

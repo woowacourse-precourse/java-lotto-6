@@ -3,12 +3,8 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningNumbers {
-
-    public static final String INVALID_LOTTO_SIZE_MESSAGE = "당첨 번호는 숫자 " + Lotto.SIZE + "개를 입력해야 합니다.";
     public static final String INVALID_LOTTO_NUMBER_RANGE_MESSAGE =
             "당첨 번호를 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 사이의 숫자로 입력해주세요.";
-    public static final String DUPLICATE_NUMBERS_MESSAGE = "당첨 번호를 중복되지 않은 숫자로 입력해주세요.";
-
     private final List<Integer> numbers;
 
     public WinningNumbers(List<Integer> numbers) {
@@ -24,7 +20,7 @@ public class WinningNumbers {
 
     private void validateNumberSize(final List<Integer> numbers) {
         if (numbers.size() != Lotto.SIZE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
+            throw new IllegalArgumentException(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
 
@@ -42,7 +38,7 @@ public class WinningNumbers {
             long count = numbers.stream().filter(num -> num.equals(number)).count();
 
             if (count > 1) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBERS_MESSAGE);
+                throw new IllegalArgumentException(Lotto.DUPLICATE_NUMBERS_MESSAGE);
             }
         }
     }

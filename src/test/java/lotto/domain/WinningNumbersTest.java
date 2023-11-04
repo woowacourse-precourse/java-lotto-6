@@ -34,9 +34,9 @@ class WinningNumbersTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningNumbers(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
             assertThatThrownBy(() -> new WinningNumbers(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
 
@@ -97,9 +97,9 @@ class WinningNumbersTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningNumbers(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
             assertThatThrownBy(() -> new WinningNumbers(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningNumbers.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
         }
     }
 }

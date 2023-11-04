@@ -10,14 +10,14 @@ public class MoneyValidatorTest {
     @DisplayName("1000원 이하의 값을 입력하면 예외가 발생한다.")
     @Test
     void testUnderThousand() {
-        assertThatThrownBy(() -> MoneyValidator.validateNumber(500))
+        assertThatThrownBy(() -> MoneyValidator.validateMoney(500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1000원 단위가 아닌 값을 입력하면 예외가 발생한다.")
     @Test
     void testThousandUnits() {
-        assertThatThrownBy(() -> MoneyValidator.validateThousand(3500))
+        assertThatThrownBy(() -> MoneyValidator.validateMoney(3500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

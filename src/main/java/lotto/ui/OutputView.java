@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println("구입금액을 입력해주세요.");
     }
 
-    public void showLottoNumbers(List<Lotto> lottos) {
+    public void showLottosNumber(List<Lotto> lottos) {
         int issueCount = lottos.size();
         System.out.println(issueCount + "개 구매했습니다.");
         for (int i = 0; i < issueCount; i++) {

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -32,24 +33,8 @@ public class Lotto {
     // TODO: 추가 기능 구현
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        final int issueCount = numbers.size();
-        buildNumbers(builder, issueCount);
-        return builder.toString();
-    }
-
-    private void buildNumbers(final StringBuilder builder, final int issueCount) {
-        builder.append("[");
-        for (int currentIdx = 0; currentIdx < issueCount; currentIdx++) {
-            builder.append(numbers.get(currentIdx));
-            if (!isLastNumber(issueCount, currentIdx)) {
-                builder.append(", ");
-            }
-        }
-        builder.append("]");
-    }
-
-    private boolean isLastNumber(int issueCount, int currentIdx) {
-        return issueCount - 1 == currentIdx;
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[",  "]"));
     }
 }

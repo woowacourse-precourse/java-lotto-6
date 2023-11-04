@@ -12,6 +12,6 @@ public class LottoContentController {
     }
 
     public void showLottosResult(List<Lotto> lottos) {
-        output.showLottoNumbers(lottos);
+        output.showLottosNumber(lottos);
     }
 }

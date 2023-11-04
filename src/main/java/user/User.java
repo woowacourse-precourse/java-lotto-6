@@ -14,7 +14,6 @@ public class User {
     }
 
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
                 String money = Console.readLine();
@@ -39,7 +38,6 @@ public class User {
     }
 
     public List<String> inputSixLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             try {
                 sixLottoNumbers = new ArrayList<>(List.of(Console.readLine().split(",")));
@@ -90,7 +88,6 @@ public class User {
     }
 
     public String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
         while (true) {
             try {
                 String bonusNumber = Console.readLine();

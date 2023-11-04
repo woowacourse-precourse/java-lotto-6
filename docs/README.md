@@ -63,6 +63,7 @@
   - 보너스 번호와 로또를 비교하는 기능
 - Prize
   - 일치하는 숫자의 개수에 따른 상금 목록을 나열하는 기능
+  - 일치하는 숫자의 개수에 맞는 순위를 반환하는 기능
 
 ### controller
 - LottoController
@@ -73,6 +74,7 @@
 ### repository
 - LottoRepository
     - 여러 개의 로또를 저장하는 기능
+    - 모든 로또를 반환하는 기능
 ### view
 - InputView
     - 로또 구입 금액을 입력받는 기능

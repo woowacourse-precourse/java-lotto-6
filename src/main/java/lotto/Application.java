@@ -57,6 +57,18 @@ public class Application {
                     userNumListInt[i] = Integer.parseInt(userNumListStr[i]);
                 }
 
+                if (userNum.startsWith(",") || userNum.endsWith(",")) {
+                    throw new IllegalArgumentException("콤마(,)로 시작하거나 끝날 수 없습니다.");
+                }
+                if (userNumListInt.length != 6) {
+                    throw new IllegalArgumentException("6개의 숫자를 입력해 주세요.");
+                }
+                for (int i = 0; i < userNumListInt.length; i++) {
+                    if (userNumListInt[i] > 45 || userNumListInt[i] < 1) {
+                        throw new IllegalArgumentException("숫자는 1~45까지 입력할 수 있습니다.");
+                    }
+                }
+
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());

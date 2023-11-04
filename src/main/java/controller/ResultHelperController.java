@@ -3,19 +3,20 @@ package controller;
 import lotto.Lotto;
 import model.ProfitCalculable;
 import model.LottoJudge;
+import view.LottoResultPrinter;
 import view.Mainview;
 
 class ResultHelperController {
-    private Mainview mainview;
+    private LottoResultPrinter resultPrinter;
 
-    public ResultHelperController(Mainview mainview) {
-        this.mainview = mainview;
+    public ResultHelperController(LottoResultPrinter resultPrinter) {
+        this.resultPrinter = resultPrinter;
     }
 
     private int[] processResult(LottoJudge judgeMan, Lotto userLotto, int bonusNumber) {
         int[] result = judgeMan.judgeLotto(userLotto, bonusNumber);
-        mainview.printHowManyAndLottos(judgeMan.getComputerLottos());
-        mainview.printresult(result);
+        resultPrinter.printHowManyAndLottos(judgeMan.getComputerLottos());
+        resultPrinter.printresult(result);
         return result;
     }
 
@@ -23,13 +24,9 @@ class ResultHelperController {
         return profitCalculateMan.calculateProfit(result);
     }
 
-    // 내 생각은 이 메소드에서 차례차례 호출하도록 하는 거임
-    // 먼저 게임의 결과를 호출하면서 바로 그걸로 수익을 얻고
-    //그리고 이거 그대로 가면 됨
-
     private void processRateofProfit(ProfitCalculable rateCalculateMan, int money, int profit) {
         String rateOfProfit = rateCalculateMan.calculateRateOfProfit(String.valueOf(money), profit);
-        mainview.printRateOfProfit(rateOfProfit);
+        resultPrinter.printRateOfProfit(rateOfProfit);
     }
 
     void processLottoGame(ProcessLottoGameParameters parameters) {

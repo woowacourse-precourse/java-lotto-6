@@ -61,21 +61,20 @@ final class MoneyTest {
     @ValueSource(ints = {1_000, 1_000_000})
     void spend_lessThanAmount_shouldDecreaseAmount(final int amount) {
         // given
-        final Money money1 = Money.from(amount);
-        final Money money2 = Money.from(amount);
+        final Money money = Money.from(amount);
 
         final Money price1 = Money.from(amount - 1);
         final Money price2 = Money.from(amount);
 
         // when
-        money1.decreased(price1);
-        money2.decreased(price2);
+        final Money moneyDecreased1 = money.decreased(price1);
+        final Money moneyDecreased2 = money.decreased(price2);
 
         // then
-        assertThat(money1)
-                .extracting("amount").isEqualTo(1);
-        assertThat(money2)
-                .extracting("amount").isEqualTo(0);
+        assertThat(moneyDecreased1)
+                .extracting("amount").isEqualTo(1L);
+        assertThat(moneyDecreased2)
+                .extracting("amount").isEqualTo(0L);
     }
 
     @DisplayName("현재 가진 잔액 이상을 소비하는 경우 예외 발생")

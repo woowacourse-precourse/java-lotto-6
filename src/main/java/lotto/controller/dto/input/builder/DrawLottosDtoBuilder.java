@@ -2,8 +2,8 @@ package lotto.controller.dto.input.builder;
 
 import java.util.List;
 import lotto.controller.dto.input.DrawLottosDto;
+import lotto.domain.lotto.validator.LottoValidator;
 import lotto.parser.StrictInputParser;
-import lotto.validator.InputValidator;
 
 public final class DrawLottosDtoBuilder {
     private List<Integer> lottoNumbers;
@@ -16,22 +16,18 @@ public final class DrawLottosDtoBuilder {
         return new DrawLottosDtoBuilder();
     }
 
-    public static void main(String[] args) {
-        final DrawLottosDto dto = DrawLottosDtoBuilder.builder()
-                .lottoNumbers("1,2,3,4,5,6")
-                .bonusNumber("7")
-                .build();
-    }
-
     public DrawLottosDtoBuilder lottoNumbers(final String input) {
-        InputValidator.validateCommasSeparatedInput(input);
-        this.lottoNumbers = StrictInputParser.mustParseFromCommasSeparatedInputToIntList(input);
+        final List<Integer> lottoNumbers = StrictInputParser.mustParseFromCommasSeparatedInputToIntList(input);
+        LottoValidator.validateLottoLength(lottoNumbers);
+        LottoValidator.validateDuplication(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
         return this;
     }
 
     public DrawLottosDtoBuilder bonusNumber(final String input) {
-        InputValidator.validateNumericInput(input);
-        this.bonusNumber = StrictInputParser.mustParseToInt(input);
+        final int bonusNumber = StrictInputParser.mustParseToInt(input);
+        LottoValidator.validateDuplicationWithBonusNumber(lottoNumbers, bonusNumber);
+        this.bonusNumber = bonusNumber;
         return this;
     }
 

@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 
 import java.util.ArrayList;
@@ -18,8 +20,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoConstant.COUNT.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_NUMBER.getMessage());
         }
     }
 

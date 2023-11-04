@@ -4,9 +4,11 @@ import java.util.List;
 
 public class Lotto {
 
-    private final static Integer MIN_NUMBER = 1;
+    public final static Integer MIN_NUMBER = 1;
 
-    private final static Integer MAX_NUMBER = 45;
+    public final static Integer MAX_NUMBER = 45;
+
+    public final static int NUMBER_COUNT = 6;
 
     private final static String NUMBER_STRING_DELIMITER = ", ";
 
@@ -18,7 +20,7 @@ public class Lotto {
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
         numbers.forEach(this::validateNumber);

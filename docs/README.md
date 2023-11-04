@@ -72,6 +72,7 @@
 - [x] 로또 출력 - OutputView
 - [x] 당첨 내역 출력 - OutputView
 - [x] 수익률 출력 - OutputView
+- [x] 에러 출력 - OutputView
 
 # Controller
 - [x] 로또 구입 금액 입력받아 Player 생성 - LottoController

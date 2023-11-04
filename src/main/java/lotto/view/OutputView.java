@@ -14,6 +14,7 @@ public class OutputView {
     private static final String STATISTICS_PRIZE_AND_COUNT = " (%,d원) - %d개\n";
     private static final String STATISTICS_BONUS_BALL_MATCH = ", 보너스 볼 일치";
     private static final String PROFIT_MESSAGE = "총 수익률은 %,.1f%%입니다.";
+    private static final String ERROR_START_MESSAGE = "[ERROR]";
 
     public void printTotalNumberOfLotto(ModelAndViewConverter modelAndViewConverter) {
         System.out.printf(NUMBER_OF_LOTTO_MESSAGE, modelAndViewConverter.getNumberOfLottoBundle());
@@ -63,5 +64,10 @@ public class OutputView {
     public void printProfit(ModelAndViewConverter modelAndViewConverter) {
         double profitMessage = modelAndViewConverter.getProfitMessage();
         System.out.printf(PROFIT_MESSAGE,profitMessage);
+    }
+
+    public void printError(ModelAndViewConverter modelAndViewConverter) {
+        String errorMessage = modelAndViewConverter.getErrorMessage();
+        System.out.println(ERROR_START_MESSAGE + errorMessage);
     }
 }

@@ -14,7 +14,7 @@ public class PurchaseAmount {
         }
     }
 
-    public int getPurchaseAmount() {
+    public int get() {
         return purchaseAmount;
     }
 }

@@ -15,4 +15,8 @@ public class InputView {
             .map(Integer::parseInt)
             .toList();
     }
+
+    public static int readBonusNumber() {
+        return Integer.parseInt(Console.readLine());
+    }
 }

@@ -80,7 +80,9 @@ public class Application {
     }
     
     private static String getKey(int matchCount, boolean bonusMatch){
-        // 추가로 작성
+        if(matchCount == 5 && bonusMatch){
+            return "5개 일치, 보너스 볼 일치";
+        }
         
         return matchCount + "개 일치";
     }

@@ -80,4 +80,15 @@ public class InputValidation {
         }
     }
 
+    public void validateDuplicateWinnerNumbers(List<Integer> winnerNumbers) {
+        Set<Integer> numbers = new HashSet<>();
+
+        for (Integer number : winnerNumbers) {
+            numbers.add(number);
+        }
+
+        if (winnerNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 입력할 수 없습니다.");
+        }
+    }
 }

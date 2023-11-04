@@ -7,5 +7,10 @@
     * 로또 금액 입력 : InputView.showMoney()
       * 입력 받은 로또 금액을 LottoMoney의 inputMoney에 넣어줌.
       * 입력 받은 로또 급액을 1000으로 나눈 몫을 LottoMoney의 count에 넣어줌.
+    * 로또 번호 발행 : lottoMoney.setNumbers()
+      * getRandomLotto() : 
+        * Randoms.pickUniqueNumbersInRange()를 이용해 6개의 임의의 수를 리스트로 받음.
+        * sort()를 이용하여 정렬 시켜준 뒤 리스트 반환.
+      * 이렇게 받은 리스트를 돌면서 한 줄의 당첨 번호들을 출력.
     * 
 

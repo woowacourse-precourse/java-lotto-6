@@ -5,6 +5,7 @@ import lotto.domain.LottoMoney;
 import lotto.view.InputView;
 
 public class LottoController {
+    static int count;
     public LottoController() {
     }
 
@@ -13,7 +14,7 @@ public class LottoController {
     }
 
     public void play() {
-        // 로또 금액 입력
-        LottoMoney lottoMoney = InputView.showMoney();
+        LottoMoney lottoMoney = InputView.showMoney();  // 로또 금액 입력
+        lottoMoney.setNumbers();  // 로또 번호 발행
     }
 }

@@ -50,10 +50,16 @@ public class InputValidation {
         }
     }
 
-    public void validateInputCorrectSeperator(String input) {
-        String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,]", "");
-        if (!deleteAllWords.isEmpty()) {
-           throw new IllegalArgumentException("[ERROR] 쉼표(,)를 구분하여 입력하세요.");
+    public void validateInputUseCorrectSeperator(String input) {
+        String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,-]", "");
+        if (deleteAllWords.length() != 0) {
+            throw new IllegalArgumentException("[ERROR] 쉼표(,)를 구분하여 입력하세요.");
         }
     }
+
+    public void validateWinnerNumbersNumeric(String input) {
+        String exceptSeperator = input.replaceAll("[,-]", "");
+        validateInputIsNumeric(exceptSeperator);
+    }
+
 }

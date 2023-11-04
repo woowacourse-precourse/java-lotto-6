@@ -1,7 +1,7 @@
 package lotto.utils.validator;
 
-import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.validator.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
+import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
 
 public class BonusNumberValidator {
     public static void validate(String inputBonusNumber) {

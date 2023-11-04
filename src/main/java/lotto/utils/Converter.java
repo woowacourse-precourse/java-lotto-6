@@ -3,7 +3,7 @@ package lotto.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class Converter {
 

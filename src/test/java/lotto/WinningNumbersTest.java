@@ -1,10 +1,7 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import lotto.utils.Converter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

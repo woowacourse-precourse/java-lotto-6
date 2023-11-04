@@ -5,9 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbersGenerator;
+import lotto.view.OutView;
+import lotto.domain.PurchaseAmountCalculator;
+import lotto.domain.Ranking;
+import lotto.domain.WinningNumbers;
+import lotto.domain.Calculator;
 import lotto.utils.Converter;
 import lotto.utils.validator.BonusNumberValidator;
 import lotto.utils.validator.WinningNumbersValidator;
+import lotto.view.InputView;
 
 public class LottoGame {
 

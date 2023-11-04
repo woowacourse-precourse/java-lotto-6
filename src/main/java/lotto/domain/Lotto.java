@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.utils.validator.ErrorMessageConstants.DUPLICATE_ERROR;
-import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.validator.ErrorMessageConstants.PICK_NUMBER_ERROR;
-import static lotto.utils.validator.ErrorMessageConstants.RANGE_ERROR;
+import static lotto.ErrorMessageConstants.DUPLICATE_ERROR;
+import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.ErrorMessageConstants.PICK_NUMBER_ERROR;
+import static lotto.ErrorMessageConstants.RANGE_ERROR;
 
 import java.util.ArrayList;
 import java.util.Collections;

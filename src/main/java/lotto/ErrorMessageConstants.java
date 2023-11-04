@@ -1,4 +1,4 @@
-package lotto.utils.validator;
+package lotto;
 
 public class ErrorMessageConstants {
     public static final String ERROR_MESSAGE_HEAD = "[ERROR]";

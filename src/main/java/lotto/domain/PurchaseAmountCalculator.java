@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.validator.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
-import static lotto.utils.validator.ErrorMessageConstants.NUMBER_RANGE_ERROR_MESSAGE;
-import static lotto.utils.validator.ErrorMessageConstants.NUMBER_UNIT_ERROR_MESSAGE;
+import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
+import static lotto.ErrorMessageConstants.NUMBER_RANGE_ERROR_MESSAGE;
+import static lotto.ErrorMessageConstants.NUMBER_UNIT_ERROR_MESSAGE;
 
 public class PurchaseAmountCalculator {
 

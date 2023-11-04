@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.LottoNumbersGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ class LottoNumbersGeneratorTest {
         //given
 
         //when
-        List<Integer> lottoNumbers = LottoNumbersGenerator.generateRandomNumbers();
+        List<Integer> lottoNumbers = lottoNumbersGenerator.generateRandomNumbers();
         long count = lottoNumbers.stream()
                 .distinct().count();
         //then

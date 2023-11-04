@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Ranking.None;
-import static lotto.Ranking.Second;
+import static lotto.domain.Ranking.None;
+import static lotto.domain.Ranking.Second;
 
 import java.util.Arrays;
 import java.util.List;

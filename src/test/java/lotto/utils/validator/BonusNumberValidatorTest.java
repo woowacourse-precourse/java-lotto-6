@@ -2,6 +2,8 @@ package lotto.utils.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.PurchaseAmountCalculator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

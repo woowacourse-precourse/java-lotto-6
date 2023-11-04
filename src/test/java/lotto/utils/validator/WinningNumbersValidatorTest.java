@@ -2,10 +2,12 @@ package lotto.utils.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
 import lotto.utils.validator.WinningNumbersValidator;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersValidatorTest {
+class WinningNumbersValidatorTest extends NsTest {
 
     @Test
     void 콤마_위치_테스트() {

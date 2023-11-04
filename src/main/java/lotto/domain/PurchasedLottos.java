@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.constants.Messages;
 import lotto.constants.Values;
 import lotto.utils.RandomNumberGenerator;
@@ -17,13 +17,10 @@ public class PurchasedLottos {
     }
 
     private List<Lotto> createPurchasedLottos(int purchaseAmount) {
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        int numberOfLottosToPurchase = purchaseAmount / Values.LOTTO_PURCHASE_UNIT;
-        for (int i = 0; i < numberOfLottosToPurchase; i++) {
-            Lotto lotto = new Lotto(RandomNumberGenerator.generateRandomNumbers());
-            purchasedLottos.add(lotto);
-        }
-        return purchasedLottos;
+        int purchasedLottoCount = purchaseAmount / Values.LOTTO_PURCHASE_UNIT;
+        return IntStream.range(0, purchasedLottoCount)
+                .mapToObj(i -> new Lotto(RandomNumberGenerator.generateRandomNumbers()))
+                .collect(Collectors.toList());
     }
 
     public void validate(int purchaseAmount) {
@@ -43,10 +40,6 @@ public class PurchasedLottos {
         return Values.LOTTO_PURCHASE_UNIT != 0 && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != 0;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     @Override
     public String toString() {
         String purchaseMessage = String.format(Messages.PURCHASE_MESSAGE, lottos.size());
@@ -55,5 +48,9 @@ public class PurchasedLottos {
                 .collect(Collectors.joining("\n"));
 
         return purchaseMessage + "\n" + lottosString;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

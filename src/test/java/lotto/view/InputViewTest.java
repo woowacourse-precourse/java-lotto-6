@@ -47,4 +47,17 @@ public class InputViewTest {
         assertEquals(false, info.isValidate());
         assertEquals(ExceptionCode.INVALID_INPUT_INTEGER.getMessage(), info.getExceptionMessage());
     }
+
+    @Test
+    void 로또_구입_금액_입력_값이_1000원으로_나누어_떠어지지_않는_경우_예외처리() {
+        // given
+        String userInput = "1001";
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+        // when
+        InputInfo info = inputView.inputPurchaseAmount();
+        // then
+        assertEquals(false, info.isValidate());
+        assertEquals(ExceptionCode.INVALID_INPUT_DIVIDED.getMessage(), info.getExceptionMessage());
+    }
 }

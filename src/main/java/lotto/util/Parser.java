@@ -21,6 +21,6 @@ public class Parser {
     }
 
     public String doubleToSecondDecimalString(double rate) {
-        return String.format("%.2f", rate);
+        return String.format("%.1f", rate);
     }
 }

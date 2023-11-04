@@ -2,14 +2,11 @@ package lotto.domain;
 
 import lotto.domain.constants.LottoPrizeRule;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
-    private final Map<Integer, Integer> winningStatistics = new HashMap<>();
+    private final Map<Integer, Integer> winningStatistics = new LinkedHashMap<>();
 
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
@@ -37,6 +34,11 @@ public class Lottos {
                 addPlaceCount(place);
             }
         }
+        System.out.println(winningStatistics);
+    }
+
+    public int getLottoCountByPlace(int place) {
+        return winningStatistics.get(place);
     }
 
     private void addPlaceCount(int place) {
@@ -48,7 +50,7 @@ public class Lottos {
 
         for (int place : winningStatistics.keySet()) {
             int wonLottoCount = winningStatistics.get(place);
-            totalProfit += LottoPrizeRule.getPrizeByPlace(place, wonLottoCount);
+            totalProfit += LottoPrizeRule.findPrizeByPlace(place) * wonLottoCount;
         }
 
         return totalProfit;

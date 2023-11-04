@@ -3,10 +3,14 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
+import lotto.domain.constants.LottoPrizeRule;
+import lotto.domain.constants.OutputViewMessage;
 import lotto.util.Calculator;
 import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
     private final WinningNumbers winningNumbers = new WinningNumbers();
@@ -52,9 +56,9 @@ public class GameController {
         winningNumberController.setInputToBonusNumber(bonusNumber, inputNumber);
     }
 
-    private void getWinningStatistics() {
-        //상세 내용 구하기
-        outputView.printWinningStatistics();
+    private void getWinningStatistics(Lottos lottos) {
+        String winningStatisticsDetails = LottoPrizeRule.getWinningStatisticsMessage(lottos);
+        outputView.printWinningStatistics(winningStatisticsDetails);
     }
 
 
@@ -71,7 +75,7 @@ public class GameController {
         setWinningNumber();
 
         lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
-        getWinningStatistics();
+        getWinningStatistics(lottos);
         calculateProfitRate(lottos, inputMoney);
     }
 }

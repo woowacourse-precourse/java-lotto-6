@@ -18,19 +18,19 @@ public class OutputView {
     }
 
     public void printInputWinningNumbersMessage() {
-        System.out.println(OutputViewMessage.INPUT_WINNING_NUMBERS.getMessage());
+        System.out.println(OutputViewMessage.INPUT_WINNING_NUMBERS_MESSAGE.getMessage());
     }
 
     public void printInputBonusNumberMessage() {
-        System.out.println(OutputViewMessage.INPUT_BONUS_NUMBER.getMessage());
+        System.out.println(OutputViewMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
-    public void printWinningStatistics() {
+    public void printWinningStatistics(String winningStatisticsDetails) {
         System.out.println(OutputViewMessage.WINNINGS_STATISTICS_START_MESSAGE.getMessage());
-        //상세 내용 출력
+        System.out.print(winningStatisticsDetails);
     }
 
     public void printProfitRate(String profitRate) {
-        System.out.printf(OutputViewMessage.PROFIT_RATE.getMessage(), profitRate);
+        System.out.printf(OutputViewMessage.PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
 }

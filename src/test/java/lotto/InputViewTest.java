@@ -25,4 +25,13 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "80 00", "1 0000", "10000 "})
+    @DisplayName("공백은 예외가 발생한다.")
+    void validateInteger_blank_empty_exceptionThrown(String strings) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -19,7 +19,7 @@ public class GameController {
 
     public void gameStart() {
         PurchasePrice money = inputView.getMoney();
-
+        inputView.getLottoTicket();
     }
 
 }

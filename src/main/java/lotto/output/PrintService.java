@@ -11,6 +11,6 @@ public class PrintService {
     }
 
     public static void informPurchaseCount(int count) {
-        System.out.println(count+"개를 구매했습니다.");
+        System.out.println(count + "개를 구매했습니다.");
     }
 }

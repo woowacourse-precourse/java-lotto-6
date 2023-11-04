@@ -14,7 +14,7 @@ import lotto.domain.LottoTickets;
  **********************************************************************************************************************/
 public class LottoGenerator {
 
-    public LottoTickets buyLottos(LottoPurchaseAmount amount) {
+    public static LottoTickets buyLottos(LottoPurchaseAmount amount) {
         List<Lotto> lottos = new ArrayList<>();
 
         while (amount.isOverLottoPrice()) {

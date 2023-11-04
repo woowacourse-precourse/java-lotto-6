@@ -51,7 +51,7 @@ public class Validate {
 
     // 보너스 번호 사용
     private void CheckBonusNumberLength(String input){
-        if(input.length() != 1){
+        if(input.length() != 1 || input.length() != 2){
             throw new IllegalArgumentException(INCORRECT_BONUS_LENGTH_ERROR);
         }
     }

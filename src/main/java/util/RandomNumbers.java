@@ -1,6 +1,7 @@
 package util;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.LottoNumber;
 
@@ -12,6 +13,11 @@ public class RandomNumbers {
                 LottoNumber.MAX_NUMBER.getNumber(),
                 LottoNumber.LIMIT_NUMBER.getNumber()
         );
+        sortedLottoNumbers(lottoNumberList);
         return lottoNumberList;
+    }
+
+    private static void sortedLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
     }
 }

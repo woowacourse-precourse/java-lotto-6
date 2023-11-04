@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
 import lotto.vo.BonusNumber;
 
 public class LottoGame {

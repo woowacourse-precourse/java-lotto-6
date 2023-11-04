@@ -3,7 +3,7 @@ package lotto.view;
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
 import lotto.vo.TicketQuantity;

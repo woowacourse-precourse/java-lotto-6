@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 import lotto.util.NumberGenerator;
 import lotto.vo.TicketQuantity;
 

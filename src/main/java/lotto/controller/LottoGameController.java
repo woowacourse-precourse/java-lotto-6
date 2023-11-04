@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Player;
 import lotto.util.RandomNumberGenerator;

@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.Constants;
+import lotto.utils.ExceptionMessage;
 
 public class Lotto {
 
@@ -13,31 +15,34 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
         validateNumberRange(numbers);
     }
 
     // TODO: 추가 기능 구현
+    private void validateNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != Constants.LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(
+                ExceptionMessage.INVALID_WINNING_NUMBER_SIZE.getMessage());
+        }
+    }
+
     private void validateDuplicateNumbers(List<Integer> numbers) {
-        final int LOTTO_NUMBERS_SIZE = 6;
         long distinctCount = numbers.stream().distinct().count();
-        if (distinctCount != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException();
+        if (distinctCount != Constants.LOTTO_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(
+                ExceptionMessage.INVALID_WINNING_NUMBER_DUPLICATION.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        final int MIN_NUMBER = 1;
-        final int MAX_NUMBER = 45;
-
         boolean isOutOfRange = numbers.stream()
-            .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
+            .anyMatch(number -> number < Constants.MIN_RANGE || number > Constants.MAX_RANGE);
 
         if (isOutOfRange) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

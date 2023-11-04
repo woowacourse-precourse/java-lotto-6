@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.ExceptionMessage;
+
 public class WinningLotto {
 
     private final Lotto lotto;
@@ -17,7 +19,8 @@ public class WinningLotto {
 
     private void validateBonusNotInLotto(Lotto lotto, Bonus bonus) {
         if (lotto.contains(bonus.getBonusNumber())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                ExceptionMessage.INVALID_BONUS_DUPLICATION.getMessage());
         }
     }
 

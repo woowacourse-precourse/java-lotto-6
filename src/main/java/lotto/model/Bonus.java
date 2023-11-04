@@ -1,6 +1,9 @@
 package lotto.model;
 
 
+import lotto.utils.Constants;
+import lotto.utils.ExceptionMessage;
+
 public class Bonus {
 
     private final int bonusNumber;
@@ -15,11 +18,9 @@ public class Bonus {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        final int MIN_NUMBER = 1;
-        final int MAX_NUMBER = 45;
-
-        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException();
+        if (bonusNumber < Constants.MIN_RANGE || bonusNumber > Constants.MAX_RANGE) {
+            throw new IllegalArgumentException(
+                ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

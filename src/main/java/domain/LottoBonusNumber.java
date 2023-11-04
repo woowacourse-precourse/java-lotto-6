@@ -4,6 +4,8 @@ import util.InputUtil;
 import util.MessageUtil;
 import util.ValidationUtil;
 
+import java.util.List;
+
 public class LottoBonusNumber {
     private final InputUtil inputUtil = new InputUtil();
     private final ValidationUtil validationUtil = new ValidationUtil();
@@ -15,5 +17,8 @@ public class LottoBonusNumber {
         int validBonusNumber = validationUtil.validBonusNumber(bonusNum);
         this.bonusNumber = validBonusNumber;
         return this;
+    }
+    public int getLottoBonusNum(){
+        return bonusNumber;
     }
 }

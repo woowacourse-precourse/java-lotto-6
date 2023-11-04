@@ -27,6 +27,12 @@ public class LottoPurchase {
         this.lottoAmount = lottoAmount;
         return this;
     }
+    public List<Lotto> getUserLottos(){
+        return lottos;
+    }
+    public int getUserLottoAmount(){
+        return lottoAmount;
+    }
 
     public int getPurchaseLottoAmount(){
         // 금액 입력받기, 8000원 리턴, 1000으로 나누기 전은 purchase

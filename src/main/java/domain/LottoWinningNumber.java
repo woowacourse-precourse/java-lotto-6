@@ -15,10 +15,13 @@ public class LottoWinningNumber {
     private List<Integer> winningLottoNumbers;
 
     public LottoWinningNumber getLottoWinningNumInfo() {
-        this.winningLottoNumbers = getLottoWinningNum();
+        this.winningLottoNumbers = getLottoWinningNumber();
         return this;
     }
-    private List<Integer> getLottoWinningNum(){
+    public List<Integer> getLottoWinningNum(){
+        return winningLottoNumbers;
+    }
+    private List<Integer> getLottoWinningNumber(){
         messageUtil.printWinningNum();
         String winningNumber = inputUtil.userInput();
         String[] validWinningNumber = validationUtil.validWinningNumber(winningNumber);

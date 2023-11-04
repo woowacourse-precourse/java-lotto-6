@@ -1,12 +1,10 @@
 package lotto;
 
-import domain.Lotto;
-import domain.LottoPurchase;
-import domain.LottoWinningNumber;
-import domain.LottoBonusNumber;
+import domain.*;
 import util.InputUtil;
 import util.MessageUtil;
 import util.ValidationUtil;
+import java.util.List;
 
 public class LottoRun {
 //    private final InputUtil inputUtil = new InputUtil();
@@ -15,12 +13,15 @@ public class LottoRun {
     private final LottoPurchase lottoPurchase = new LottoPurchase();
     private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
     private final LottoBonusNumber lottoBonusNumber = new LottoBonusNumber();
+//    private final LottoResultCompute lottoResultCompute = new LottoResultCompute();
     public void run(){
         messageUtil.printPurchaseAmount();
 //        getLottoPurchaseInfo
-        lottoPurchase.getLottoPurchaseInfo();
-        lottoWinningNumber.getLottoWinningNumInfo();
-        lottoBonusNumber.getLottoBonusNumInfo();
+        LottoPurchase purchaseInfo = lottoPurchase.getLottoPurchaseInfo();
+        LottoWinningNumber winningNumInfo = lottoWinningNumber.getLottoWinningNumInfo();
+        LottoBonusNumber bonusNumInfo = lottoBonusNumber.getLottoBonusNumInfo();
+        LottoResultCompute resultCompute = new LottoResultCompute(winningNumInfo, bonusNumInfo);
+        resultCompute.getLottoResultComputeInfo(purchaseInfo.getUserLottos(), purchaseInfo.getUserLottoAmount());
 
     }
 

@@ -34,4 +34,11 @@ public class WinLottoTest {
         assertThatThrownBy(() -> new WinLotto("1,2,3,4,46,6", "1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateDuplicate() {
+
+        assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,4", "1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

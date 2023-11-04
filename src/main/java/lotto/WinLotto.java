@@ -35,7 +35,7 @@ public class WinLotto {
         validateSize(checkNums);
         validateNum(checkNums);
         validateRange(checkNums);
-        //validateDuplicate(checkNums);
+        validateDuplicate(checkNums);
     }
 
     private void validateSize(String[] checkNums) {
@@ -67,6 +67,21 @@ public class WinLotto {
             int num = Integer.parseInt(str);
 
             if (num < MINRANGE || num > MAXRANGE) {
+
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private void validateDuplicate(String[] checkNums) {
+
+        List<Integer> list = new ArrayList<>();
+        for (String str : checkNums) {
+
+            int num = Integer.parseInt(str);
+
+            list.add(num);
+            if (list.contains(num)) {
 
                 throw new IllegalArgumentException();
             }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.LottoNumberConstant.LOTTO_NUMBER_MAX;
 import static lotto.LottoNumberConstant.LOTTO_NUMBER_MIN;
@@ -17,7 +18,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if (isLottoNumbers(numbers)) {
+        if (!isLottoNumbers(numbers)) {
             String message = String.format("로또 숫자의 범위는 %d~%d입니다.", LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
             throw new IllegalArgumentException(message);
         }
@@ -33,5 +34,15 @@ public class Lotto {
 
     private boolean isLottoNumber(int number) {
         return LottoUtil.isInRange(number, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+        return "[" +
+                sortedNumbers.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", ")) +
+                "]";
     }
 }

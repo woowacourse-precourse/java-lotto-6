@@ -55,7 +55,7 @@
   - 랜덤한 로또 번호를 생성한다.
 
 ## 로또 발행 결과 출력 기능
-- [ ] `LottoOutputView::printBoughtResult` 메서드
+- [x] `LottoOutputView::printBoughtResult` 메서드
   - 발행된 로또 번호들을 인수로 받아 출력한다.
 
 ## 당첨 확인 기능

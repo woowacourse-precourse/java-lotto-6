@@ -135,14 +135,14 @@ public class LottoGame {
 
     private void lottoSort(List<Integer> numbers) {
         for (int i = 0; i < numbers.size() - 1; i++) {
-            for (int j = 0; j < numbers.size() - 1; j++) {
+            for (int j = i + 1; j < numbers.size(); j++) {
                 minSwap(numbers, i, j);
             }
         }
     }
 
     private void minSwap(List<Integer> numbers, int i, int j) {
-        if (numbers.get(i) < numbers.get(j)) {
+        if (numbers.get(i) > numbers.get(j)) {
             int tmp = numbers.get(i);
             numbers.set(i, numbers.get(j));
             numbers.set(j, tmp);

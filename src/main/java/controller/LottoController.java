@@ -10,6 +10,7 @@ import domain.BonusNumber;
 import domain.Lotto;
 import domain.Lottos;
 import domain.Money;
+import domain.RateOfReturn;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,8 +51,8 @@ public class LottoController {
             try {
                 money = new Money(InputView.money());
                 return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                OutputView.errorMessage(error);
             }
         }
     }
@@ -80,8 +81,8 @@ public class LottoController {
             try {
                 winningNumbers = InputView.winningNumbers();
                 return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                OutputView.errorMessage(error);
             }
         }
     }
@@ -92,8 +93,8 @@ public class LottoController {
                 bonusNumber = new BonusNumber(winningNumbers, InputView.bonusNumber());
                 System.out.println();
                 return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException error) {
+                OutputView.errorMessage(error);
             }
         }
     }
@@ -109,6 +110,7 @@ public class LottoController {
         }
 
         OutputView.printStatistics(rankCountsMap);
-        OutputView.printEarningtRatio(rankCountsMap, money.getMoney());
+        RateOfReturn rateOfReturn = new RateOfReturn(rankCountsMap, money.getMoney());
+        OutputView.printRateOfReturn(rateOfReturn.getRate());
     }
 }

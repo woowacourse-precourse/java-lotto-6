@@ -2,7 +2,6 @@ package view;
 
 import constant.Rank;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class OutputView {
     private OutputView() {
@@ -29,27 +28,11 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원)" + " - " + rankCountsMap.get(Rank.FIRST) + "개");
     }
 
-    public static void printEarningtRatio(HashMap<Rank, Integer> rankCountsMap, long money) {
-        long totalIncome = getTotalIncome(rankCountsMap);
-        double profitRatio = calculateProfitRatio(totalIncome, money);
-        System.out.println("총 수익률은 " + profitRatio + "%입니다.");
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
-    private static long getTotalIncome(HashMap<Rank, Integer> rankCountsMap) {
-        long totalIncome = 0;
-
-        for (Entry<Rank, Integer> entry : rankCountsMap.entrySet()) {
-            if (entry.getValue() != 0) {
-                Rank rank = entry.getKey();
-                totalIncome += (long) rank.getPrize() * entry.getValue();
-            }
-        }
-        return totalIncome;
-    }
-
-    private static double calculateProfitRatio(long totalIncome, long money) {
-        double profitRatio = (double) totalIncome / money * 100;
-        profitRatio = Math.round(profitRatio * 10) / 10.0;
-        return profitRatio;
+    public static void errorMessage(IllegalArgumentException error) {
+        System.out.println(error.getMessage());
     }
 }

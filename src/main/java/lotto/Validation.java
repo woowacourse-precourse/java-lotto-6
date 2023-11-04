@@ -84,4 +84,12 @@ public class Validation {
             }
         }
     }
+
+    public static void inputWinnerNumberExceptionCheck(String raw) {
+        emptyCheck(raw);
+        commaCheck(raw);
+        split6Check(raw);
+        range1to45Check(raw);
+        ticketNumberDuplecationCheck(raw);
+    }
 }

@@ -21,22 +21,28 @@ public class LottoController {
     }
 
     public void run() {
-        buyLottoTicketProcess();
-        compareLotto();
+        presentLottos(buyLottoTicketProcess());
+        presentLottoResult(compareLotto());
     }
 
-    private void compareLotto() {
-        List<Integer> winningNumbers = lottoInputView.getWinningNumbers();
-        Integer bonusNumber = lottoInputView.getBonusNumber();
-
-        LottoResult lottoResult = lottoService.compareLotto(winningNumbers, bonusNumber);
+    private void presentLottoResult(LottoResult lottoResult) {
         lottoOutputView.presentLottoResult(lottoResult);
     }
 
-    private void buyLottoTicketProcess() {
-        Long amount = lottoInputView.getLottoPurchaseAmountInput();
-        List<Lotto> lottos = lottoService.purchaseLotto(amount);
+    private void presentLottos(List<Lotto> lottos) {
         lottoOutputView.presentLottoList(lottos);
+    }
+
+    private LottoResult compareLotto() {
+        List<Integer> winningNumbers = lottoInputView.getWinningNumbers();
+        Integer bonusNumber = lottoInputView.getBonusNumber();
+
+        return lottoService.compareLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Lotto> buyLottoTicketProcess() {
+        Long amount = lottoInputView.getLottoPurchaseAmountInput();
+        return lottoService.purchaseLotto(amount);
     }
 
 }

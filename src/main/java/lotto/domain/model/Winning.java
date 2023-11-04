@@ -6,13 +6,13 @@ import static lotto.domain.constant.ErrorConst.WINNING_HAS_DUPLICATE;
 
 public class Winning {
 
-    private final Lotto winningNumber;
-    private final Bonus bonusNumber;
+    private final Lotto main;
+    private final Bonus bonus;
 
-    public Winning(Lotto winningNumber, Bonus bonusNumber) {
-        validate(winningNumber, bonusNumber);
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    public Winning(Lotto main, Bonus bonus) {
+        validate(main, bonus);
+        this.main = main;
+        this.bonus = bonus;
     }
 
     /**
@@ -25,25 +25,25 @@ public class Winning {
      */
     public CorrectResult countSameNumber(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
-        List<Integer> winning = winningNumber.getNumbers();
-        int bonus = bonusNumber.getBonusNumber();
+        List<Integer> winningMainNumbers = main.getNumbers();
+        int winningBonusNumber = bonus.getNumber();
 
         int sameCount = Math.toIntExact(
                 lottoNumbers.stream()
-                            .filter(winning::contains)
+                            .filter(winningMainNumbers::contains)
                             .count()
         );
-        boolean existBonus = lottoNumbers.contains(bonus);
+        boolean existBonus = lottoNumbers.contains(winningBonusNumber);
 
         return new CorrectResult(sameCount, existBonus);
     }
 
-    private void validate(Lotto winningNumber, Bonus bonusNumber) {
-        List<Integer> winning = winningNumber.getNumbers();
-        int bonus = bonusNumber.getBonusNumber();
+    private void validate(Lotto main, Bonus bonus) {
+        List<Integer> winningMainNumbers = main.getNumbers();
+        int winningBonusNumber = bonus.getNumber();
 
-        if (winning.stream().anyMatch(
-                number -> number == bonus
+        if (winningMainNumbers.stream().anyMatch(
+                number -> number == winningBonusNumber
         )) {
             throw new IllegalArgumentException(WINNING_HAS_DUPLICATE);
         }

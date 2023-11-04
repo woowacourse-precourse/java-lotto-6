@@ -6,19 +6,19 @@ import static lotto.domain.constant.LottoConst.LOWEST_NUMBER;
 
 public class Bonus {
 
-    private final int bonusNumber;
+    private final int number;
 
-    public Bonus(int bonusNumber) {
-        validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public Bonus(int number) {
+        validate(number);
+        this.number = number;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public int getNumber() {
+        return number;
     }
 
-    private void validate(int bonusNumber) {
-        if (bonusNumber < LOWEST_NUMBER || bonusNumber > HIGHEST_NUMBER) {
+    private void validate(int number) {
+        if (number < LOWEST_NUMBER || number > HIGHEST_NUMBER) {
             throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE);
         }
     }

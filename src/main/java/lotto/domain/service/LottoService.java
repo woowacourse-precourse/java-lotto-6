@@ -42,8 +42,8 @@ public class LottoService {
         }
     }
 
-    public void generateWinning(Lotto winningNumber, Bonus bonusNumber) {
-        winning = new Winning(winningNumber, bonusNumber);
+    public void generateWinning(Lotto main, Bonus bonus) {
+        winning = new Winning(main, bonus);
     }
 
     public void rank() {

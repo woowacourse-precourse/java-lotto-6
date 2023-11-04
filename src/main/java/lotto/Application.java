@@ -19,6 +19,7 @@ import lotto.validation.BonusNumberValidator;
 import lotto.validation.PurchasePriceValidator;
 import lotto.validation.WinnerNumberValidator;
 import lotto.view.input.InputView;
+import lotto.view.input.Template.InputValidatorTemplate;
 import lotto.view.output.OutputView;
 
 public class Application {
@@ -27,8 +28,10 @@ public class Application {
         PurchasePriceValidator purchasePriceValidator = new PurchasePriceValidator();
         WinnerNumberValidator winnerNumberValidator = new WinnerNumberValidator();
         BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+        InputValidatorTemplate template = new InputValidatorTemplate();
 
-        InputView inputView = new InputView(purchasePriceValidator, winnerNumberValidator, bonusNumberValidator);
+        InputView inputView = new InputView(purchasePriceValidator, winnerNumberValidator, bonusNumberValidator,
+                template);
         OutputView outputView = new OutputView();
 
         InputPurchasePriceService inputPurchasePriceService = new InputPurchasePriceService(inputView, outputView);

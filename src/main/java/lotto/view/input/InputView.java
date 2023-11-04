@@ -1,39 +1,37 @@
 package lotto.view.input;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 import java.util.List;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.PurchasePriceValidator;
 import lotto.validation.WinnerNumberValidator;
+import lotto.view.input.Template.InputValidatorTemplate;
 
 public class InputView {
-    private PurchasePriceValidator purchasePriceValidator;
-    private WinnerNumberValidator winnerNumberValidator;
-    private BonusNumberValidator bonusNumberValidator;
+    private final PurchasePriceValidator purchasePriceValidator;
+    private final WinnerNumberValidator winnerNumberValidator;
+    private final BonusNumberValidator bonusNumberValidator;
+
+    private final InputValidatorTemplate template;
 
     public InputView(PurchasePriceValidator purchasePriceValidator,
                      WinnerNumberValidator winnerNumberValidator,
-                     BonusNumberValidator bonusNumberValidator) {
+                     BonusNumberValidator bonusNumberValidator, InputValidatorTemplate template) {
         this.purchasePriceValidator = purchasePriceValidator;
         this.winnerNumberValidator = winnerNumberValidator;
         this.bonusNumberValidator = bonusNumberValidator;
+        this.template = template;
     }
 
-
     public int inputPurchasePrice() {
-        String inputPrice = readLine();
-        return purchasePriceValidate(inputPrice);
+        return template.InputWithValidation(this::purchasePriceValidate);
     }
 
     public List<Integer> inputWinnerNumber() {
-        String inputWinnerNumber = readLine();
-        return winnerNumberValidate(inputWinnerNumber);
+        return template.InputWithValidation(this::winnerNumberValidate);
     }
 
     public int inputBonusNumber() {
-        String inputBonusNumber = readLine();
-        return bonusNumberValidate(inputBonusNumber);
+        return template.InputWithValidation(this::bonusNumberValidate);
     }
 
     private int purchasePriceValidate(String inputPrice) {

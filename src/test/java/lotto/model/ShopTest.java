@@ -15,7 +15,7 @@ public class ShopTest {
     public void remainZeroTest() {
         // given
         Investor investor = Investor.createDefault("5000");
-        Shop shop = Shop.createDefault();
+        Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
 
         // when
         List<Lotto> boughtLottos = investor.buyLottosFromShop(shop);
@@ -29,10 +29,10 @@ public class ShopTest {
     public void remainExceptionTest() {
         // given
         Investor investor = Investor.createDefault("2390");
-        Shop shop = Shop.createDefault();
 
         // when & then
-        assertThatThrownBy(() -> investor.buyLottosFromShop(shop)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Shop.withOrderedMoney(investor.getInvestMoney()))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MONEY_REMAIN_EXCEPTION.getMessage());
     }
 }

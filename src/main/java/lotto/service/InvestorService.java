@@ -17,7 +17,7 @@ public class InvestorService {
 
     public static InvestorService createDefault(final String investorInput) {
         Investor investor = Investor.createDefault(investorInput);
-        Shop lottoShop = Shop.createDefault();
+        Shop lottoShop = Shop.withOrderedMoney(investor.getInvestMoney());
 
         return new InvestorService(investor, lottoShop);
     }

@@ -32,7 +32,7 @@ public class InvestorTest {
         // given
         String investorInput = "5000";
         Investor investor = Investor.createDefault(investorInput);
-        Shop shop = Shop.createDefault();
+        Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
 
         // when
         List<Lotto> lottos = investor.buyLottosFromShop(shop);

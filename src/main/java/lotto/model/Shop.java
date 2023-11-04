@@ -7,21 +7,21 @@ import java.util.List;
 
 public class Shop {
 
-    private static final int DEFAULT_COST = 1000;
+    private static final int LOTTO_COST = 1000;
     private static final int DIVIDE_REMAIN_VALUE = 0;
 
-    private final int lottoCost;
+    private final int money;
 
-    private Shop(final int lottoCost) {
-        this.lottoCost = lottoCost;
+    private Shop(final int money) {
+        this.money = money;
     }
 
-    public static Shop createDefault() {
-        return new Shop(DEFAULT_COST);
+    public static Shop withOrderedMoney(final int money) {
+        validateIsRemainValueCorrect(money);
+        return new Shop(money);
     }
 
     public List<Lotto> createLottosAsPaid(final int money) {
-        validateIsRemainValueCorrect(money);
         int lottoSize = calculateBuyLottoSize(money);
 
         List<Lotto> lottos = new ArrayList<>();
@@ -33,13 +33,13 @@ public class Shop {
         return lottos;
     }
 
-    private void validateIsRemainValueCorrect(final int money) {
-        if (money % lottoCost != DIVIDE_REMAIN_VALUE) {
+    private static void validateIsRemainValueCorrect(final int money) {
+        if (money % LOTTO_COST != DIVIDE_REMAIN_VALUE) {
             throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
         }
     }
 
     private int calculateBuyLottoSize(final int money) {
-        return money / lottoCost;
+        return money / LOTTO_COST;
     }
 }

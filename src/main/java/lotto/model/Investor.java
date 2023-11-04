@@ -29,4 +29,8 @@ public class Investor {
     public double calculateProfitRate() {
         return (double) profitMoney.getMoney() / investMoney.getMoney();
     }
+
+    public int getInvestMoney() {
+        return investMoney.getMoney();
+    }
 }

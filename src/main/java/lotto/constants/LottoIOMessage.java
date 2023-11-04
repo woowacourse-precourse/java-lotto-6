@@ -11,5 +11,5 @@ public class LottoIOMessage {
     public static final String SAME_BONUS_NUM = ", 보너스 볼 일치";
     public static final String WINNING_MONEY_FORMAT = " (%s원)";
     public static final String GET_REWARDED_LOTTO_COUNT = " - %d개\n";
-    public static final String TOTAL_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
+    public static final String TOTAL_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 }

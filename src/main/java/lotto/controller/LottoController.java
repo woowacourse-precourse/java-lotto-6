@@ -34,7 +34,7 @@ public class LottoController {
         // 각 로또마다 당첨번호와 일치하는 숫자 개수, 보너스 숫자와의 일치 여부 구하기
         List<Integer> matchedNumber = new ArrayList<>(Collections.nCopies(counts, 0));
         List<Boolean> matchedBonusNum = new ArrayList<>(Collections.nCopies(counts, false));
-        for (int i = 0; i < manyLotto.size(); i++) {
+        for (int i = 0; i < counts; i++) {
             List<Integer> oneLotto = manyLotto.get(i);
             matchedNumber.set(i, winning.getSameNumberCount(oneLotto));
             if (matchedNumber.get(i) == 5 && oneLotto.contains(bonusNum)) {
@@ -42,23 +42,15 @@ public class LottoController {
             }
         }
         Map<LottoRanks, Integer> winnerCount = LottoRanks.getEnumMap();
-        for (int i = 0; i < manyLotto.size(); i++) {
+        for (int i = 0; i < counts; i++) {
             int sameNumCount = matchedNumber.get(i);
             boolean sameBonusNum = matchedBonusNum.get(i);
             LottoRanks key = LottoRanks.findKey(sameNumCount, sameBonusNum);
             winnerCount.put(key, winnerCount.get(key)+1);
         }
-
-        // 당첨 통계 산출 결과 출력하기
+        double returnRates = getTotalWinnings(winnerCount, cost);
         outputView.printWinningResult(winnerCount);
-
-        // 수익률 산출 및 출력하기
-        long totalPrize = 0;
-        for (LottoRanks key : winnerCount.keySet()) {
-            totalPrize += (long)key.getWinnings() * winnerCount.get(key);
-        }
-        double returnRates = (double)totalPrize*100/cost;
-        System.out.println("총 수익률은 " + String.format("%.1f", returnRates) + "%입니다.");
+        outputView.printTotalReturnRate(returnRates);
         Console.close();
     }
 
@@ -101,5 +93,13 @@ public class LottoController {
             }
         }
         return validBonusNum;
+    }
+
+    public Double getTotalWinnings(Map<LottoRanks,Integer> enumMap, int cost) {
+        long totalSum = 0;
+        for (LottoRanks key : enumMap.keySet()) {
+            totalSum += (long) key.getWinnings() *enumMap.get(key);
+        }
+        return (double)(totalSum*100)/cost;
     }
 }

@@ -4,6 +4,7 @@ import static lotto.constants.LottoIOMessage.BUYING_QUANTITY_FORMAT;
 import static lotto.constants.LottoIOMessage.GET_REWARDED_LOTTO_COUNT;
 import static lotto.constants.LottoIOMessage.SAME_BONUS_NUM;
 import static lotto.constants.LottoIOMessage.SAME_NUMBER_COUNT_FORMAT;
+import static lotto.constants.LottoIOMessage.TOTAL_RETURN_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_MONEY_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_RESULT_MSG;
 
@@ -51,5 +52,9 @@ public class OutputView {
     public String convertWinningMoneyToString(int winningMoney) {
         DecimalFormat temp = new DecimalFormat("###,###");
         return temp.format(winningMoney);
+    }
+
+    public void printTotalReturnRate(double returnRate) {
+        System.out.printf(TOTAL_RETURN_FORMAT, returnRate);
     }
 }

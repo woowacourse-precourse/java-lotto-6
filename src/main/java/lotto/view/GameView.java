@@ -67,14 +67,6 @@ public class GameView {
         return Console.readLine();
     }
 
-    private String getBonusMatch(Rank rank) {
-        String bonusMatch = "";
-        if (rank.isBonusMatch()) {
-            bonusMatch = ", 보너스 볼 일치";
-        }
-        return bonusMatch;
-    }
-
     private String getResult(Rank rank, WinningStatistics winningStatistics) {
         int matchCount = rank.getMatchCount();
         String bonusMatch = getBonusMatch(rank);
@@ -88,6 +80,14 @@ public class GameView {
                 winningCount);
 
         return result;
+    }
+
+    private String getBonusMatch(Rank rank) {
+        String bonusMatch = "";
+        if (rank.isBonusMatch()) {
+            bonusMatch = ", 보너스 볼 일치";
+        }
+        return bonusMatch;
     }
 
     private String getProfitRate(WinningStatistics winningStatistics) {

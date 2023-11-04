@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +19,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    //로또번호 오름차순 정렬
+    public List<Integer> ascendingOrder (List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
+    }
 }

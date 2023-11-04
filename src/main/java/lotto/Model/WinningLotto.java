@@ -10,9 +10,14 @@ public class WinningLotto {
 
     public WinningLotto(String input) {
         validate(input);
-        this.winningLotto = new Lotto(Stream.of(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList()));
+        try {
+            this.winningLotto = new Lotto(Stream.of(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList()));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 예시처럼 입력해주세요. 예시) 1,2,3,4,5,6");
+        }
+
     }
 
     public void compare(Bonus bonus) {
@@ -29,11 +34,6 @@ public class WinningLotto {
     }
 
     private void validate(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != ',' && !('0' <= input.charAt(i) && input.charAt(i) <= '9')) {
-                throw new IllegalArgumentException("[ERROR] 숫자와 쉼표로만 당첨 번호를 입력해 주세요.");
-            }
-        }
         if (input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 쉼표로 끝나는 당첨번호는 입력할 수 없습니다.");
         }

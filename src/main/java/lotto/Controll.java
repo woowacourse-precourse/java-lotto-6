@@ -38,6 +38,10 @@ public class Controll {
             }
             return SAME0;
         }
+
+        static Integer toInteger(SameNumber sameNumber) {
+            return sameNumber.sameNumber;
+        }
     }
 
     enum Reward {
@@ -52,6 +56,29 @@ public class Controll {
 
         Reward(Integer reward) {
             this.reward = reward;
+        }
+
+        Integer toInteger() {
+            return this.reward;
+        }
+
+        static Integer fromSameNumber(SameNumber sameNumber) {
+            if (sameNumber == SameNumber.SAME6) {
+                return REWARD6.toInteger();
+            }
+            if (sameNumber == SameNumber.SAME5BONUS) {
+                return REWARD5BONUS.toInteger();
+            }
+            if (sameNumber == SameNumber.SAME5) {
+                return REWARD5.toInteger();
+            }
+            if (sameNumber == SameNumber.SAME4) {
+                return REWARD4.toInteger();
+            }
+            if (sameNumber == SameNumber.SAME3) {
+                return REWARD3.toInteger();
+            }
+            return REWARD0.toInteger();
         }
     }
 

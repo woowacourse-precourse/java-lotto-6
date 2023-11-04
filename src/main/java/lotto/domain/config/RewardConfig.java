@@ -1,5 +1,7 @@
 package lotto.domain.config;
 
+import lotto.domain.valueobject.FormattedNumber;
+
 public enum RewardConfig {
     FIRST(2000000000),
     SECOND(30000000),
@@ -14,7 +16,7 @@ public enum RewardConfig {
         this.reward = reward;
     }
 
-    public int getReward() {
-        return reward;
+    public FormattedNumber getRewardWithCommaSeparator() {
+        return new FormattedNumber(reward);
     }
 }

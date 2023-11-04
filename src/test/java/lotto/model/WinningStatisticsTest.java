@@ -18,9 +18,11 @@ public class WinningStatisticsTest {
         WinningStatistics winningStatistics = getWinningStatistics();
         Map<LottoPrize, Integer> expected = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
+            put(LottoPrize.SECOND, 0);   // 2등 0개
             put(LottoPrize.THIRD, 1);   // 3등 1개
             put(LottoPrize.FOURTH, 1);   // 4등 1개
             put(LottoPrize.FIFTH, 3);   // 5등 3개
+            put(LottoPrize.NOTHING, 2);   // 꽝 2개
         }};
 
         // when

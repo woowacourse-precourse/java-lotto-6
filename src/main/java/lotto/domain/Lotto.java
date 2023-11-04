@@ -21,6 +21,12 @@ public class Lotto {
         return numbers.contains(lottoNumber);
     }
 
+    public int countMatchingNumber(Lotto target) {
+        return (int) numbers.stream()
+                .filter(target::contains)
+                .count();
+    }
+
     private void validate(List<LottoNumber> numbers) {
         validateLength(numbers);
         validateUnique(numbers);

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -14,4 +15,12 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
+
+    public List<Prize> compareAllLottoWithWinnerLotto(List<Integer> winnerNumbers, Integer bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
+                .collect(Collectors.toList());
+    }
+
+
 }

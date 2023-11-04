@@ -7,6 +7,10 @@ import java.util.stream.IntStream;
 
 public class LottoPublisher {
 
+    private static final int MIN_RANGE_VALUE = 1;
+    private static final int MAX_RANGE_VALUE = 45;
+    private static final int NUMBER_OF_PICK = 6;
+
 
     public LottoPublisher() {
     }
@@ -23,7 +27,7 @@ public class LottoPublisher {
     }
 
     private Lotto generateLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE_VALUE, MAX_RANGE_VALUE, NUMBER_OF_PICK)
                 .stream()
                 .sorted(Integer::compareTo)
                 .toList();

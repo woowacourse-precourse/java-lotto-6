@@ -12,7 +12,7 @@ public class Customer {
     private final List<Lotto> buyLotto;
 
     public Customer(String money) {
-        validate(money);
+        moneyValidate(money);
         this.MONEY = Integer.parseInt(money);
         this.buyLotto = new ArrayList<>();
     }

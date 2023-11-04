@@ -6,7 +6,7 @@ public class InputMoneyException {
     private InputMoneyException() {
     }
 
-    public static void validate(String money) {
+    public static void moneyValidate(String money) {
         notNumberValidate(money);
         moneyRangeValidate(money);
         moneyUnitValidate(money);

@@ -12,7 +12,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import lotto.model.LottoRanks;
+import lotto.constants.LottoRanks;
 
 public class OutputView {
     public void printQuantityAndAllNumbers(int quantity, List<List<Integer>> manyLotto) {

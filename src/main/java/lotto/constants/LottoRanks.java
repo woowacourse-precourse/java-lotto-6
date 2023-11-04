@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.constants;
 
 import java.util.EnumMap;
 import java.util.Map;

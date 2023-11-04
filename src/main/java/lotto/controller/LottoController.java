@@ -7,7 +7,7 @@ import java.util.Map;
 import lotto.model.BonusNum;
 import lotto.model.BuyingCost;
 import lotto.model.Lotto;
-import lotto.model.LottoRanks;
+import lotto.constants.LottoRanks;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;

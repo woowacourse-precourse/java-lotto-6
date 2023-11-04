@@ -10,9 +10,7 @@ import controller.GameController;
 import domain.Lotto;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class InputView {
 
@@ -44,11 +42,11 @@ public class InputView {
     }
 
     private List<Integer> makeWinNumber(String[] winNumbers) {
-        Set<Integer> winNumber = new HashSet<>();
+        List<Integer> winNumber = new ArrayList<>();
         for(String number : winNumbers) {
             winNumber.add(validateRange(validateInteger(number)));
         }
-        return new ArrayList<>(winNumber);
+        return winNumber;
     }
 
     public void inputBonusNumber() {

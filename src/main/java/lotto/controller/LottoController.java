@@ -1,20 +1,20 @@
 package lotto.controller;
 
-import lotto.io.InputView;
+import lotto.io.InputManager;
 import lotto.io.OutputView;
 
 public class LottoController {
 
     private final OutputView outputView;
-    private final InputView inputView;
+    private final InputManager inputManager;
 
-    public LottoController(final OutputView outputView, final InputView inputView) {
+    public LottoController(final OutputView outputView, final InputManager inputManager) {
         this.outputView = outputView;
-        this.inputView = inputView;
+        this.inputManager = inputManager;
     }
 
     public void run() {
         outputView.printPurchaseAmountRequset();
-        inputView.readPurchaseAmount();
+        inputManager.readPurchaseAmount();
     }
 }

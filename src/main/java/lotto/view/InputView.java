@@ -9,7 +9,7 @@ public class InputView {
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static String getInput(String message) {
-        OutputView.printInputMessage(message);
+        System.out.println(message);
         try {
             return InputValidator.validate(Console.readLine());
         } catch (IllegalArgumentException e) {

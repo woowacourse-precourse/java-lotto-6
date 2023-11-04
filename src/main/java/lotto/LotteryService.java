@@ -68,11 +68,11 @@ public class LotteryService {
 
     public void checkEachLottoMatch(Lotto toCheckLotto){
         int winningCount = checkPrizeNumberMatch(toCheckLotto);
-        prize.addPrize(winningCount);
 
-        if(winningCount == 5){
-            checkBonusNumberMatch(toCheckLotto);
+        if(winningCount == 5 && checkBonusNumberMatch(toCheckLotto)){
+            return;
         }
+        prize.addPrize(6 - winningCount);
     }
 
     public int checkPrizeNumberMatch(Lotto toCheckLotto){
@@ -88,9 +88,11 @@ public class LotteryService {
         return winningCount;
     }
 
-    public void checkBonusNumberMatch(Lotto toCheckLotto){
+    public boolean checkBonusNumberMatch(Lotto toCheckLotto){
         if(toCheckLotto.getNumbers().contains(this.bonusNumber)) {
-            prize.addPrize(2);
+            prize.addPrize(0);
+            return true;
         }
+        return false;
     }
 }

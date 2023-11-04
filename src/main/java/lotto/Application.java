@@ -8,5 +8,6 @@ public class Application {
         doLotto.makeRandomLottoNumbers();
         doLotto.makeWinningNumber();
         doLotto.makeBonusNumber();
+        doLotto.checkEveryLottoMatch();
     }
 }

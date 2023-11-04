@@ -1,16 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.assertj.core.api.Assertions;
+import lotto.Input.Input;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -78,6 +79,15 @@ class ApplicationTest extends NsTest {
         Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
         boolean check=lottoService.compareBonusNumber(lotto1,7);
         assertThat(check).isEqualTo(false);
+    }
+
+    @Test
+    void 로또_숫자_입력(){
+        String lotto = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(lotto.getBytes()));
+        Input input=new Input();
+        List<Integer> result=input.makeAnswerNumber();
+        assertThat(result).isEqualTo(List.of(1,2,3,4,5,6));
     }
     @Override
     public void runMain() {

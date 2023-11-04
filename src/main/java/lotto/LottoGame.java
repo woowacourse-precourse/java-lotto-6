@@ -7,6 +7,12 @@ public class LottoGame {
     private Lotto[] consumerAnswer;
     public void gameStart(){
         int price=Integer.parseInt(readLine());
-        int num=price/1000;
+        int num=price/1000; //exception처리
+        String ans=readLine();
+        String[] split = ans.split(",");
+        for(int i=0;i<num;i++){
+
+        }
+
     }
 }

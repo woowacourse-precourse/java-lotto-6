@@ -8,6 +8,9 @@ import java.util.Collections;
 
 public class Game {
     private final List<Lotto> lottos = new ArrayList<>();
+    private Lotto winningLotto;
+    private int bonusNumber;
+
 
     public Game(final int time) {
         while (this.lottos.size() < time) {
@@ -22,5 +25,9 @@ public class Game {
 
     public List<Lotto> getLottos() {
         return this.lottos;
+    }
+
+    public void setWinningLotto(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
     }
 }

@@ -5,5 +5,7 @@ public class Application {
         Screen.printPurchasingAmount();
         Game game = new Game(Screen.inputPurchasingAmount() / 1000);
         Screen.printAllLottos(game.getLottos());
+        Screen.printAskingWinningNumbersMessage();
+        game.setWinningLotto(Screen.inputWinningNumbers());
     }
 }

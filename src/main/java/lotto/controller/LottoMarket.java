@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.RandomNumbersGenerator;
 import lotto.service.LottoMarketService;
@@ -19,5 +20,7 @@ public class LottoMarket {
     private void buy(Money money) {
         LottoMarketService service = new LottoMarketService(money, new RandomNumbersGenerator());
         outputView.printPurchasedLottoCount(service.getPurchasedCount());
+        Lottos lottos = service.makeLottos();
+        outputView.printLottos(lottos.getLottos());
     }
 }

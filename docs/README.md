@@ -104,7 +104,7 @@
 
 ### 기호 관련 상수 (CommonSymbol)
 
-- [ ] "," 기호
+- [x] "," 기호
 
 ## validation
 

@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.constant.InputMessage;
 import lotto.constant.OutputMessage;
@@ -15,10 +17,12 @@ public class MessageService {
     }
 
     public void outputPurchaseNumbers(List<Integer> numbers) {
+        List<Integer>sortNumbers = new ArrayList<>(numbers);
+        sortNumbers.sort(Comparator.naturalOrder());
         StringBuilder stringBuilder = new StringBuilder("[");
-        for (int i = 0; i < numbers.size(); i++) {
-            stringBuilder.append(numbers.get(i));
-            if (i < numbers.size() - 1) {
+        for (int i = 0; i < sortNumbers.size(); i++) {
+            stringBuilder.append(sortNumbers.get(i));
+            if (i < sortNumbers.size() - 1) {
                 stringBuilder.append(", ");
             }
         }

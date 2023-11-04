@@ -45,7 +45,6 @@ public class LottoPurchase {
 
     public Lotto generateLottoNumbers() {
         List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
-        Collections.sort(lottoNumbers);
         messageService.outputPurchaseNumbers(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

@@ -18,8 +18,8 @@ class LottoNumResultsTest {
     @BeforeEach
     void setUp() {
         winLottoNums = new WinLottoNums("1,2,3,4,5,6");
-        bonusLottoNum = new BonusLottoNum(7);
-        lottoNumResults = new LottoNumResults(winLottoNums, bonusLottoNum);
+        bonusLottoNum = new BonusLottoNum("7");
+        lottoNumResults = new LottoNumResults("1,2,3,4,5,6", "7");
     }
 
     @DisplayName("당첨 번호 추첨 번호들과, 보너스 번호들을 같은지 확인한다.")

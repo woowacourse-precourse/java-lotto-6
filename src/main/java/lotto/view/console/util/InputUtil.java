@@ -1,37 +1,21 @@
 package lotto.view.console.util;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.exception.AppException;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
-import lotto.validator.NumberValidator;
-import lotto.validator.StringValidator;
 
 public class InputUtil {
     private InputUtil() {
     }
 
-    public static String readNonEmptyLineInput() {
-        String input = Console.readLine();
-        StringValidator.of(input).shouldNotEmpty(ErrorMessage.INPUT_IS_EMPTY);
-        return input;
-    }
-
-    public static int readInt() {
+    public static int parseInputToInt(String input) {
         try {
-            String input = readNonEmptyLineInput();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new InvalidInputException(ErrorMessage.INPUT_NOT_A_NUMBER);
         }
-    }
-
-    public static int readNaturalInt() {
-        int input = readInt();
-        NumberValidator.of(input).shouldPositive(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
-        return input;
     }
 
     public static List<Integer> parseInputToIntegers(String input, String regex) {

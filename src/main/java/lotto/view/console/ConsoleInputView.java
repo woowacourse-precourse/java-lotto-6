@@ -1,6 +1,10 @@
 package lotto.view.console;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.exception.ErrorMessage;
+import lotto.validator.NumberValidator;
+import lotto.validator.StringValidator;
 import lotto.view.InputView;
 import lotto.view.console.util.InputUtil;
 
@@ -13,14 +17,15 @@ public class ConsoleInputView implements InputView {
     @Override
     public int readPurchaseAmount() {
         System.out.println(ENTER_PURCHASE_AMOUNT_MESSAGE);
-        return InputUtil.readNaturalInt();
+        String input = readNonEmptyInput();
+        return InputUtil.parseInputToInt(input);
     }
 
     @Override
     public List<Integer> readWinningNumbers() {
         System.out.println();
         System.out.println(ENTER_WINNING_NUMBERS);
-        String input = InputUtil.readNonEmptyLineInput();
+        String input = readNonEmptyInput();
         return InputUtil.parseInputToIntegers(input, DELIMITER);
     }
 
@@ -28,6 +33,15 @@ public class ConsoleInputView implements InputView {
     public int readBonusNumber() {
         System.out.println();
         System.out.println(ENTER_BONUS_NUMBER);
-        return InputUtil.readNaturalInt();
+        String input = readNonEmptyInput();
+        int number = InputUtil.parseInputToInt(input);
+        NumberValidator.of(number).shouldPositive(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER);
+        return number;
+    }
+
+    private String readNonEmptyInput() {
+        String input = Console.readLine();
+        StringValidator.of(input).shouldNotEmpty(ErrorMessage.INPUT_IS_EMPTY);
+        return input;
     }
 }

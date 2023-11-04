@@ -57,8 +57,8 @@
       - [ ] Lotto 오름차순 정렬
   - [ ] LottoFactory
       - [ ] Lotto 객체 생성 로직
-  - [ ] LottoNumberGenerator
-      - [ ] 번호 생성 로직
+  - [X] LottoNumberGenerator
+      - [X] 번호 생성 로직
   - [ ] LottoMachine
       - [ ] 구매 금액 검증
       - [ ] Lotto 티켓 구매, LottoFactory를 사용하여 객체 생성

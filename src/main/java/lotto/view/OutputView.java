@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.Lotto;
 import lotto.domain.Member;
 
+
 public class OutputView {
     public static final String PURCHASE_RESULT_OUTPUT = "개를 구매했습니다.";
     public static final String STATISTIC_RESULT_OUTPUT = "당첨 통계";
@@ -23,7 +24,7 @@ public class OutputView {
     }
 
     private static void printLotto(final Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+        System.out.println(lotto.getStringNumbers());
     }
 
     private static void print(String message) {

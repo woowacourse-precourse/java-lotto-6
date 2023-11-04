@@ -15,7 +15,13 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public String getNumbers() {
+    public boolean numberCheck(int number) {
+        return numbers.contains(number);
+    }
+    public String getStringNumbers() {
         return numbers.toString();
+    }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

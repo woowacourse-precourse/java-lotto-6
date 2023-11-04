@@ -36,7 +36,7 @@ public class StartLotto {
         try {
             return Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            throw new NumberFormatException("올바른 숫자 형식이 아닙니다. 숫자를 입력해주세요.");
         }
     }
 
@@ -58,14 +58,14 @@ public class StartLotto {
 
     private void checkNumberInRange(int number) {
         if (number < 1 || 45 < number) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("당첨(보너스) 번호는 1 ~ 45 사이의 값을 가집니다.");
         }
     }
 
     private void checkDuplicatedNumber(int number, List<Integer> numberList) {
         for (Integer oneNumber : numberList) {
             if (number == oneNumber) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("당첨(보너스) 번호는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
             }
         }
     }
@@ -84,7 +84,7 @@ public class StartLotto {
 
     private void checkIs1000wonUnit(int price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구입금액은 1000원 단위입니다. 다시 입력해주세요.");
         }
     }
 
@@ -268,5 +268,9 @@ public class StartLotto {
 
     private double roundSecondDigit(double value) {
         return Math.round(value * 100.0) / 100.0;
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println("[ERROR] " + e.getMessage());
     }
 }

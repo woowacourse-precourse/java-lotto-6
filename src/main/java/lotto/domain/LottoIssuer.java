@@ -18,7 +18,9 @@ public class LottoIssuer {
         if (!hasCorrectUnit(price)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_VALUE.getMessage());
         }
-
+        if (!isPositive(price)) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PRICE_VALUE.getMessage());
+        }
         int quantity = calculateQuantity(price);
         List<Lotto> lottos = issueLottos(quantity);
         printLottos(lottos);
@@ -49,5 +51,9 @@ public class LottoIssuer {
 
     private boolean hasCorrectUnit(int price) {
         return price % lottoPrice == 0;
+    }
+
+    private boolean isPositive(int price) {
+        return price > 0;
     }
 }

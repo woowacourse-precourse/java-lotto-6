@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,8 +21,10 @@ public class Lotto {
     }
 
     public static List<Integer> generateLotteryNumbers() {
-
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotteryNumbers = new ArrayList<>();
+        List<Integer> numbersInRange = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        lotteryNumbers.addAll(numbersInRange);
+        return lotteryNumbers;
     }
 
     public static void sortLotteryNumbers(List<Integer> numbers) {

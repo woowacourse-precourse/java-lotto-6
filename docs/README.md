@@ -54,3 +54,44 @@
 
 ### 🟥 예외 처리
 - [ ] `[ERROR]` 로 시작하는 에러 메시지를 출력
+
+---
+
+# 도메인
+
+## 🍀 로또
+
+### 📚 WinningLottoNumbers
+
+- 📄 `Lotto` : 당첨 번호들
+- 📄 `LottoNumber` : 보너스 번호
+- ✔️ 보너스 번호 중복 검증
+- 🛠️ 로또에 대한 일치 정보를 `LottoNumberMatchDTO`로 반환
+
+### 📘 Lotto
+
+- 📄 `List<LottoNumber>` : 로또 번호들
+- ✔️ 개수 검증
+- ✔️ 중복 검증
+
+### 📄 LottoNumber
+
+- 📄 `int` : 로또 번호
+- ✔️ 범위 검증
+
+### 🏭 LottoGenerator
+
+- 🛠️ 전략을 통해 `Lotto`를 생성
+
+### 📦 LottoNumberMatchDTO
+
+- 📄 `int` : 일치하는 번호의 수
+- 📄 `boolean` 보너스 번호 포함 여부
+
+### ✉️ LottoExceptionMessages
+
+- 🔒 로또에 대한 예외 메시지 상수
+
+### ⚙️ LottoConfig
+
+- 🔒 로또에 대한 숫자 상수

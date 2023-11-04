@@ -13,7 +13,7 @@ public class InputValue {
         return Console.readLine();
     }
 
-    public static String inputBounusNumber() {
+    public static String inputBonusNumber() {
         System.out.println(InputMessage.BONUS_NUMBER);
         return Console.readLine();
     }

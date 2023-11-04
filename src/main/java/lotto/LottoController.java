@@ -45,12 +45,20 @@ public class LottoController {
             String input = inputView.requestInputValue(INPUT_WINNING_NUMBER);
             List<Integer> numbers = convertIntegerList(input);
             winningNumbers.makeWinningNumber(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateWinningNumbers();
+        }
+    }
+
+    public void generateBonusNumber() {
+        try {
             String inputValue = inputView.requestInputValue(INPUT_BONUS_NUMBER);
             int bonusNumber = convertInteger(inputValue);
             winningNumbers.makeBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateWinningNumbers();
+            generateBonusNumber();
         }
     }
 
@@ -84,7 +92,7 @@ public class LottoController {
     }
 
     private void validateOnlyDigit(String input) {
-        if (!input.chars().allMatch(Character::isDigit)) {
+        if (!input.chars().allMatch(Character::isDigit) || input.isEmpty()) {
             throw new IllegalArgumentException(NOT_ONLY_DIGIT.getMessage());
         }
     }

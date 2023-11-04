@@ -34,4 +34,8 @@ public class Money {
     private boolean canDivideByThousand(final int money) {
         return money % LOTTO_PRICE.getValue() == ZERO.getValue();
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

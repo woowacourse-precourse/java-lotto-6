@@ -23,4 +23,8 @@ public class BonusNumber {
     private boolean isValidNumber(final int number) {
         return START_INCLUSIVE.getValue() <= number && number <= END_INCLUSIVE.getValue();
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

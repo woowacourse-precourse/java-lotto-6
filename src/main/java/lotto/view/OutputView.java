@@ -7,4 +7,8 @@ public class OutputView {
     public void printPurchaseMessage() {
         System.out.println(OutputMessage.PURCHASE_AMOUNT.getMessage());
     }
+
+    public void printNewLine() {
+        System.out.println();
+    }
 }

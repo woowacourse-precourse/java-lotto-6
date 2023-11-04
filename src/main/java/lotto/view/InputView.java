@@ -1,11 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoCounter;
 
 public class InputView {
 
-    public int readPurchaseAmount() {
+    public LottoCounter readPurchaseAmount() {
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        return new LottoCounter(Integer.parseInt(input));
     }
 }

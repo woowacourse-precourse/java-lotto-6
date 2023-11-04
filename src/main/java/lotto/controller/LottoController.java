@@ -29,6 +29,7 @@ public class LottoController {
 
         List<Rank> awardsResult = awards(member, winningNumber);
 
+
     }
 
     private List<Rank> awards(final Member member, final WinningNumber winningNumber) {

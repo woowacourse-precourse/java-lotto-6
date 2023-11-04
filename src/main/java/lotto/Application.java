@@ -1,8 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -54,8 +55,26 @@ public class Application {
 
         int[] winNumbers = Stream.of(winNumber.split(",")).mapToInt(Integer::parseInt).toArray();
 
+        List<Integer> parseWinNumbers = Arrays.stream(winNumbers).boxed().collect(Collectors.toList());
+
         if (winNumbers.length != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+        }
+
+        System.out.println("보너스 번호를 입력해주세요.");
+        String bonusNumber = Console.readLine();
+        int parseBounusNumber = Integer.parseInt(bonusNumber);
+
+        if (bonusNumber.isBlank()) {
+            throw new IllegalStateException("[ERROR] 아무 것도 입력되지 않았습니다.");
+        }
+
+        if (parseBounusNumber < 1 || parseBounusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
+        }
+
+        if(parseWinNumbers.contains(parseBounusNumber)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 다른 번호를 입력해주세요.");
         }
 
     }

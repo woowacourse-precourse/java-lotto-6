@@ -6,7 +6,10 @@ import java.util.List;
 
 public class GenerateLottoNumbers {
 
-    private static ArrayList<Integer> allLottos = new ArrayList<>();
+    public GenerateLottoNumbers(int pieceOfLotto){
+        generateAllLottos(pieceOfLotto);
+    }
+    private ArrayList<List<Integer>> allLottos = new ArrayList<List<Integer>>();
 
     private List<Integer> generateEachLottoNumbers(){
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
@@ -15,10 +18,10 @@ public class GenerateLottoNumbers {
 
     private void generateAllLottos(int pieceOfLotto){
         for(int index = 0; index < pieceOfLotto; index++){
-            allLottos.addAll(index,generateEachLottoNumbers());
+            allLottos.add(generateEachLottoNumbers());
         }
     }
-    public ArrayList<Integer> getAllLottos(){
+    public ArrayList<List<Integer>> getAllLottos(){
         return allLottos;
     }
 }

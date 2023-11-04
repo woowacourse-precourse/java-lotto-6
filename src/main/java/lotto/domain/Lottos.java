@@ -14,4 +14,12 @@ public class Lottos {
         final List<Prize> prizes = lottos.stream().map(lotto -> lotto.getPrize(winnerNumbers)).toList();
         return new Result(prizes);
     }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
+    public List<String> getNumberStrings() {
+        return lottos.stream().map(Lotto::getNumberString).toList();
+    }
 }

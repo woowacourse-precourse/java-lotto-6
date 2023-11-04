@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.model.Lotto;
+
 public class OutputView {
 
     public int printPurchases(int numberOfLotto) {
@@ -8,4 +12,10 @@ public class OutputView {
         return number;
     }
 
+    public void printIssuedLotto(List<Lotto> issuedLotto) {
+        for(Lotto lotto : issuedLotto) {
+            String result = Arrays.toString(lotto.getNumbers().toArray());
+            System.out.println(result);
+        }
+    }
 }

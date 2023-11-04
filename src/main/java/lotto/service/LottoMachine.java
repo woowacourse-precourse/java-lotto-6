@@ -5,6 +5,7 @@ import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoMachine {
     public List<Lotto> roulette(int money) {
@@ -12,7 +13,7 @@ public class LottoMachine {
 
         int quantity = money / 1000;
         while (lottos.size() != quantity) {
-            lottos.add(new Lotto(makeRandomNumbers()));
+            lottos.add(new Lotto(sort(makeRandomNumbers())));
         }
 
         return lottos;
@@ -20,5 +21,11 @@ public class LottoMachine {
 
     private static List<Integer> makeRandomNumbers(){
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+    private static List<Integer> sort(List<Integer> numbers) {
+        return new ArrayList<>(numbers)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

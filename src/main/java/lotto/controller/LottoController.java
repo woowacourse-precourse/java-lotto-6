@@ -7,10 +7,10 @@ import lotto.domain.LottoResultCalculator;
 import lotto.domain.ProfitCalculator;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -18,16 +18,19 @@ public class LottoController {
     private final LottoNumberGenerator lottoNumberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
+
 
     public LottoController() {
         this.lottoNumberGenerator = new LottoNumberGenerator();
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.lottoService = new LottoService(lottoNumberGenerator);
     }
 
     public void playLotto() {
         int purchaseAmount = inputView.readPurchaseAmount();
-        List<Lotto> lottos = buyLottos(purchaseAmount);
+        List<Lotto> lottos = lottoService.buyLottos(purchaseAmount);
         printLottos(lottos);
 
         String winningNumbersInput = readWinningNumbersInput();
@@ -41,15 +44,6 @@ public class LottoController {
         ProfitCalculator profitCalculator = new ProfitCalculator();
         double profitRate = profitCalculator.calculateProfitRate(purchaseAmount, results);
         outputView.printProfitRate(profitRate);
-    }
-
-    private List<Lotto> buyLottos(int purchaseAmount) {
-        int numberOfLottos = purchaseAmount / 1000;
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < numberOfLottos; i++) {
-            lottos.add(new Lotto(lottoNumberGenerator.generate()));
-        }
-        return lottos;
     }
 
     private void printLottos(List<Lotto> lottos) {

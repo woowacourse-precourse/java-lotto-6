@@ -28,7 +28,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" ", "", "80 00", "10 000", "10000 "})
+    @ValueSource(strings = {" ", "", "80 00", "10 000", "10000 ", "\t", "\n"})
     @DisplayName("공백은 예외가 발생한다.")
     void validateBlankAndEmptyInteger_blank_empty_exceptionThrown(String strings) {
         InputView inputView = new InputView();

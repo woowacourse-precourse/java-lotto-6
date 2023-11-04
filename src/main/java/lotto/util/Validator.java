@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -18,6 +19,12 @@ public class Validator {
         int num = Integer.parseInt(input);
         if (num % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(WRONG_UNIT_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateNonNumericNumbers(List<String> input) {
+        for (String num : input) {
+            validateNonNumeric(num);
         }
     }
 }

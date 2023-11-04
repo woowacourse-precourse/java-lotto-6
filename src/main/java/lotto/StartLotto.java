@@ -1,11 +1,12 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 
 public class StartLotto {
     private List<Lotto> lottoList;
@@ -28,9 +29,9 @@ public class StartLotto {
     }
 
     private int changeStringToInteger(String inputString) {
-        try{
+        try {
             return Integer.parseInt(inputString);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
     }
@@ -38,7 +39,7 @@ public class StartLotto {
     private List<Integer> changeStringToInteger(String[] inputString) {
         List<Integer> retVal = new ArrayList<Integer>();
 
-        for(String s: inputString) {
+        for (String s : inputString) {
             int number = changeStringToInteger(s);
             checkNumberInRange(number);
             checkDuplicatedNumber(number, retVal);
@@ -49,14 +50,14 @@ public class StartLotto {
     }
 
     private void checkNumberInRange(int number) {
-        if(number < 1 || 45 < number) {
+        if (number < 1 || 45 < number) {
             throw new IllegalArgumentException();
         }
     }
 
     private void checkDuplicatedNumber(int number, List<Integer> numberList) {
-        for(Integer oneNumber: numberList) {
-            if(number == oneNumber) {
+        for (Integer oneNumber : numberList) {
+            if (number == oneNumber) {
                 throw new IllegalArgumentException();
             }
         }
@@ -75,7 +76,7 @@ public class StartLotto {
     }
 
     private void checkIs1000wonUnit(int price) {
-        if(price % 1000 != 0) {
+        if (price % 1000 != 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -112,7 +113,7 @@ public class StartLotto {
     private void generateLottoList() {
         int listLen = this.purchasePrice / 1000;
 
-        for(int i = 0; i < listLen; i++) {
+        for (int i = 0; i < listLen; i++) {
             Lotto oneLotto = generateLotto();
             this.lottoList.add(oneLotto);
         }
@@ -136,7 +137,7 @@ public class StartLotto {
     private void printLottoList() {
         int listLen = this.purchasePrice / 1000;
 
-        for(int i = 0; i < listLen; i++) {
+        for (int i = 0; i < listLen; i++) {
             Lotto oneLotto = this.lottoList.get(i);
             printOneLotto(oneLotto);
         }
@@ -145,7 +146,7 @@ public class StartLotto {
     private void printOneLotto(Lotto oneLotto) {
         System.out.print('[');
 
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.print(oneLotto.getNumbers().get(i) + ", ");
         }
 
@@ -162,11 +163,11 @@ public class StartLotto {
     }
 
     private void fillPriceHistoryMap() {
-        for(Lotto lotto: this.lottoList) {
+        for (Lotto lotto : this.lottoList) {
             int sameNumberCount = countSameNumber(lotto);
             boolean lottoHasBonusNumber = false;
 
-            if(sameNumberCount == 5) {
+            if (sameNumberCount == 5) {
                 lottoHasBonusNumber = checkLottoHasBonusNumber(lotto);
             }
             fillPriceHistory(sameNumberCount, lottoHasBonusNumber);
@@ -177,8 +178,8 @@ public class StartLotto {
         List<Integer> numbers = lotto.getNumbers();
         int count = 0;
 
-        for(int number: numbers) {
-            if(checkNumberInWinningNumbers(number)) {
+        for (int number : numbers) {
+            if (checkNumberInWinningNumbers(number)) {
                 count++;
             }
         }
@@ -187,8 +188,8 @@ public class StartLotto {
     }
 
     private boolean checkNumberInWinningNumbers(int number) {
-        for(int winningNumber: this.winningNumbers) {
-            if(number == winningNumber) {
+        for (int winningNumber : this.winningNumbers) {
+            if (number == winningNumber) {
                 return true;
             }
         }
@@ -199,8 +200,8 @@ public class StartLotto {
     private boolean checkLottoHasBonusNumber(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
 
-        for(int number: numbers) {
-            if(number == this.bonusNumber) {
+        for (int number : numbers) {
+            if (number == this.bonusNumber) {
                 return true;
             }
         }
@@ -209,21 +210,54 @@ public class StartLotto {
     }
 
     private void fillPriceHistory(int count, boolean hasBonusNumber) {
-        if(count == 3) {
+        if (count == 3) {
             this.priceHistory.put("Fifth", this.priceHistory.get("Fifth") + 1);
         }
-        if(count == 4) {
+        if (count == 4) {
             this.priceHistory.put("Forth", this.priceHistory.get("Forth") + 1);
         }
-        if(count == 5) {
-            if(!hasBonusNumber) {
-                this.priceHistory.put("Third", this.priceHistory.get("Third") + 1);
-                return;
-            }
+        if (count == 5 && !hasBonusNumber) {
+            this.priceHistory.put("Third", this.priceHistory.get("Third") + 1);
+        }
+        if (count == 5 && hasBonusNumber) {
             this.priceHistory.put("Second", this.priceHistory.get("Second") + 1);
         }
-        if(count == 6) {
+        if (count == 6) {
             this.priceHistory.put("First", this.priceHistory.get("First") + 1);
         }
+    }
+
+    private void printTotalEarningRate(double totalEarningRate) {
+        System.out.println("총 수익률은 " + totalEarningRate + "%입니다.");
+    }
+
+    private double calcEarningRate() {
+        double priceSum = 0.0;
+        for (String price : new String[]{"Fifth", "Forth", "Third", "Second", "First"}) {
+            priceSum += calcPrice(price);
+        }
+        double earningRate = (priceSum / this.purchasePrice) * 100.0;
+        return roundSecondDigit(earningRate);
+    }
+
+    private double calcPrice(String price) {
+        int count = this.priceHistory.get(price);
+        if (Objects.equals(price, "Fifth")) {
+            return count * Price.FIFTH.getPrice();
+        }
+        if (Objects.equals(price, "Forth")) {
+            return count * Price.FORTH.getPrice();
+        }
+        if (Objects.equals(price, "Third")) {
+            return count * Price.THIRD.getPrice();
+        }
+        if (Objects.equals(price, "Second")) {
+            return count * Price.SECOND.getPrice();
+        }
+        return count * Price.FIRST.getPrice();
+    }
+
+    private double roundSecondDigit(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }

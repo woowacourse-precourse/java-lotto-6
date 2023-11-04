@@ -4,10 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+    private LottoController lc = new LottoController();
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -24,4 +26,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("구매 금액에 문자를 입력하면 예외가 발생한다.")
+    @Test
+    void validateNumber(){
+        String number = "00notNumber";
+        assertThatThrownBy(() -> lc.validateNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구매 금액에 문자를 입력하면 예외가 발생하고, 다시 시작한다.")
+    @Test
+    void isThousandsTest(){
+        String number = "notNumber";
+        assertThatThrownBy(() -> lc.isNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

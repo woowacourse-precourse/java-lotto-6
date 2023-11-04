@@ -1,10 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,23 +25,13 @@ public class Application {
 
         LottoMachine lottoMachine = new LottoMachine(boughtLotto);
         lottoMachine.issueTickets();
-
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
 
-        System.out.println();
-        System.out.println("당첨 번호를 입력해주세요.");
-        String userLottoNumber = Console.readLine();
+        String winningNumbers = inputView.requestWinningNumber();
+        WinningLotto winningLotto = new WinningLotto(winningNumbers);
 
-        List<Integer> numbers = new ArrayList<>();
-        String delimiter = ",";
-        String[] userNumber = userLottoNumber.split(delimiter);
-        for(String number : userNumber) {
-            numbers.add(Integer.parseInt(number));
-        }
-
-        System.out.println();
-        System.out.println("보너스 번호를 입력해주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = inputView.requestBonusNumber();
+        Bonus bonus = new Bonus(bonusNumber);
 
         System.out.println();
         System.out.println("당첨 통계\n---");
@@ -49,10 +39,10 @@ public class Application {
         for(Lotto lotto : lottoMachine.getIssuedLotto()) {
             List<Integer> issuedNumbers = lotto.getNumbers();
             boolean isMatchedBonusNumber = false;
-            if(issuedNumbers.contains(bonusNumber)) {
+            if(issuedNumbers.contains(bonus.getNumber())) {
                 isMatchedBonusNumber = true;
             }
-            issuedNumbers.retainAll(numbers);
+            issuedNumbers.retainAll(winningLotto.getNumbers());
             calculateResult(issuedNumbers.size(), isMatchedBonusNumber);
         }
 

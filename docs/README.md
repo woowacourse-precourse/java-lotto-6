@@ -46,17 +46,25 @@
         <th>설명</th>
     </tr>
     <tr>
-        <td>Controller</td>
+        <td>controller</td>
         <td>LottoGameController</td>
         <td>사용자의 입력을 처리하며 비즈니스 로직을 수행하고 모델과 뷰를 연결합니다.</td>
     </tr>
     <tr>
-        <td>Model</td>
+        <td rowspan="3">model</td>
         <td>Lotto</td>
         <td>로또, 발행된 숫자 6자리를 포함하고 있습니다.</td>
     </tr>
     <tr>
-        <td rowspan="2">View</td>
+        <td>User</td>
+        <td>발행된 로또를 List로 가진다.</td>
+    </tr>
+    <tr>
+        <td>WinLotto</td>
+        <td>당첨 번호 로또 객체와 보너스 번호를 가지고 있는 record입니다.</td>
+    </tr>
+    <tr>
+        <td rowspan="2">view</td>
         <td>InputView</td>
         <td>사용자 입력을 처리하는 view 클래스입니다.</td>
     </tr>
@@ -65,7 +73,7 @@
         <td>사용자의 출력을 처리하는 view 클래스입니다.</td>
     </tr>
     <tr>
-        <td rowspan="3">Utils</td>
+        <td rowspan="3">utils</td>
         <td>ErrorMessage</td>
         <td>에러 메시지를 담고있는 Enum입니다.</td>
     </tr>

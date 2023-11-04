@@ -1,6 +1,7 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.system.Constant;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public final class RandomNumGenerator {
     }
 
     public static List<Integer> makeUniqueRandomList(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(Constant.START_INCLUSIVE,Constant.END_INCLUSIVE,Constant.LOTTO_SIZE);
     }
 }

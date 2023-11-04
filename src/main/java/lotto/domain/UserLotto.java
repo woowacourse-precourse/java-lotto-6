@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 import lotto.repository.LottoRepository;
+import lotto.system.Constant;
 import lotto.util.RandomNumGenerator;
 
 
@@ -16,7 +17,7 @@ public class UserLotto {
     }
 
     private void buyLotto() {
-        int count = InputHandler.readMoney() / 1000;
+        int count = InputHandler.readMoney() / Constant.MONEY_UNIT;
         for (int i = 0; i < count; i++) {
             userLottory.add(makeLotto());
         }

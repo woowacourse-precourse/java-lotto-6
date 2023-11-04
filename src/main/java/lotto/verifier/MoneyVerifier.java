@@ -1,5 +1,7 @@
 package lotto.verifier;
 
+import lotto.system.Constant;
+
 public class MoneyVerifier implements Verifier {
     @Override
     public void check(String input) {
@@ -24,7 +26,7 @@ public class MoneyVerifier implements Verifier {
 
     private void checkDivisible(String input) {
         int money = Integer.parseInt(input);
-        if (money % 1000 != 0)
+        if (money % Constant.MONEY_UNIT != 0)
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액이 1000원으로 나누어 떨어지지 않습니다.");
     }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.io.OutputHandler;
+import lotto.system.Constant;
 import lotto.verifier.LottoVerifier;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class Lotto {
 
     public int compareWithAnotherLotto(Lotto another){
         int count=0;
-        for(int i=0;i<6;i++){
+        for(int i = 0; i< Constant.LOTTO_SIZE; i++){
             if(another.contains(numbers.get(i)))
                 count++;
         }

@@ -56,4 +56,14 @@ class User {
         }
         return count;
     }
+
+    public List<Integer> countAllLottoMatchNumbers(List<List<Integer>> allLotto, List<Integer> winningNumbers){
+        int count = 0;
+        List<Integer> lottoMatchingCount = new ArrayList<>();
+        for(List<Integer> singleLotto : allLotto){
+            count = countSingleLottoMatchNumbers(singleLotto, winningNumbers);
+            lottoMatchingCount.add(count);
+        }
+        return lottoMatchingCount;
+    }
 }

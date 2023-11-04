@@ -19,7 +19,7 @@ public class InputView {
     }
     public List<Integer> getNumbers(){
         try {
-            System.out.println(GameMessage.NUMBERS_INPUT_MESSAGE);
+            System.out.println("\n" + GameMessage.NUMBERS_INPUT_MESSAGE);
             return Arrays
                     .stream(Console.readLine().split(","))
                     .map(Integer::parseInt).collect(Collectors.toList());

@@ -26,8 +26,7 @@ public class GameController {
         try {
             return validator.validate(inputView.getPayment());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.println();
+            System.out.println(e + "\n");
             return getPayment();
         }
     }

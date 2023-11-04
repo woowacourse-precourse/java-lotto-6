@@ -1,18 +1,22 @@
 package lotto.utils;
 
 public enum LottoConstant {
-    MIN_LOTTO_NUMBER(1),
-    MAX_LOTTO_NUMBER(45),
-    LOTTO_NUMBERS_LENGTH(6),
-    LOTTO_PRICE(1000);
+    SPACE(" "),
+    DELIMITER(","),
+    OPENING_BRACKET("["),
+    CLOSING_BRACKET("]");
 
-    private final int number;
+    private String lottoConstant;
 
-    LottoConstant(int number) {
-        this.number = number;
+    LottoConstant(String lottoConstant) {
+        this.lottoConstant = lottoConstant;
     }
 
-    public int getNumber() {
-        return number;
+    public String getLottoConstant() {
+        return lottoConstant;
+    }
+
+    public String getLottoStringWithSpace() {
+        return lottoConstant + SPACE.getLottoConstant();
     }
 }

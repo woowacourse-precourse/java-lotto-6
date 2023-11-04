@@ -1,9 +1,11 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.StringJoiner;
 import lotto.domain.wrapper.LottoNumber;
-import lotto.utils.LottoConstant;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoConstantValue;
+import lotto.utils.LottoConstant;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -21,10 +23,10 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != LottoConstant.LOTTO_NUMBERS_LENGTH.getNumber()) {
+        if (numbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.getNumber()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBERS_LENGTH_ERROR.getFormattedMessage(
-                            LottoConstant.LOTTO_NUMBERS_LENGTH.getNumber()
+                            LottoConstantValue.LOTTO_NUMBERS_LENGTH.getNumber()
                     )
             );
         }
@@ -37,5 +39,18 @@ public class Lotto {
         if (numbers.size() != uniqueNumbersLength) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner lottoPrintFormat = new StringJoiner(
+                LottoConstant.DELIMITER.getLottoStringWithSpace(),
+                LottoConstant.OPENING_BRACKET.getLottoConstant(),
+                LottoConstant.CLOSING_BRACKET.getLottoConstant());
+        numbers.stream()
+                .sorted()
+                .map(LottoNumber::toString)
+                .forEach(lottoPrintFormat::add);
+        return lottoPrintFormat.toString();
     }
 }

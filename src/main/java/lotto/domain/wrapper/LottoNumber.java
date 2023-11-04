@@ -2,9 +2,9 @@ package lotto.domain.wrapper;
 
 import java.util.Objects;
 import lotto.utils.ErrorMessage;
-import lotto.utils.LottoConstant;
+import lotto.utils.LottoConstantValue;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber>{
     private int number;
 
     public LottoNumber(int number) {
@@ -13,11 +13,11 @@ public class LottoNumber {
     }
 
     private void validate(int number) {
-        if (number < LottoConstant.MIN_LOTTO_NUMBER.getNumber()
-                || number > LottoConstant.MAX_LOTTO_NUMBER.getNumber()) {
+        if (number < LottoConstantValue.MIN_LOTTO_NUMBER.getNumber()
+                || number > LottoConstantValue.MAX_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(
                     ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(
-                            LottoConstant.MIN_LOTTO_NUMBER.getNumber(), LottoConstant.MAX_LOTTO_NUMBER.getNumber()));
+                            LottoConstantValue.MIN_LOTTO_NUMBER.getNumber(), LottoConstantValue.MAX_LOTTO_NUMBER.getNumber()));
         }
     }
 
@@ -36,5 +36,15 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber otherLottoNumber) {
+        return Integer.compare(number, otherLottoNumber.number);
     }
 }

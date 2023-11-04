@@ -1,6 +1,6 @@
 package lotto.domain.wrapper;
 
-import lotto.utils.LottoConstant;
+import lotto.utils.LottoConstantValue;
 import lotto.utils.ErrorMessage;
 
 public class PurchaseAmout {
@@ -13,7 +13,7 @@ public class PurchaseAmout {
     }
 
     public int getLottoCount() {
-        return purchaseAmout / LottoConstant.LOTTO_PRICE.getNumber();
+        return purchaseAmout / LottoConstantValue.LOTTO_PRICE.getNumber();
     }
 
     private void validate(int purchaseAmout) {
@@ -28,7 +28,7 @@ public class PurchaseAmout {
     }
 
     private void validateChangeNoRemaining(int purchaseAmout) {
-        if (purchaseAmout % LottoConstant.LOTTO_PRICE.getNumber() != NO_MONEY) {
+        if (purchaseAmout % LottoConstantValue.LOTTO_PRICE.getNumber() != NO_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED_ERROR.getMessage());
         }
     }

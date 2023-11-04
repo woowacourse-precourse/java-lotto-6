@@ -9,8 +9,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static lotto.exception.ExceptionMessage.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static lotto.exception.ExceptionMessage.OUT_OF_RANGE;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -45,6 +47,13 @@ class LottoTest {
                 {0, 1, 2, 3, 4, 5},
                 {46, 1, 2, 3, 4, 5}
         });
+    }
+
+    @DisplayName("[Success] 로또 번호를 형식에 맞게 문자열로 리턴한다.")
+    @Test
+    void lottoNumbersToString() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).toString())
+                .isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @DisplayName("[Success] 로또 번호와 당첨 번호 사이 일치하는 숫자의 개수를 리턴한다.")

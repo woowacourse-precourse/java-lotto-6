@@ -10,7 +10,7 @@ class WinningLottoValidatorTest {
     @Nested
     @DisplayName("validateWinningNumber 메소드 test")
     class validateWinningNumber {
-        @DisplayName("당첨 번호가 숫자와 '" + InputValidator.DELIMITER + "'만으로 이루어져 있으면 검증 성공")
+        @DisplayName("당첨 번호가 숫자와 '" + WinningLottoValidator.DELIMITER + "'만으로 이루어져 있으면 검증 성공")
         @Test
         void Winning_number_is_matched_winning_numbers_regex() {
             // given
@@ -31,9 +31,8 @@ class WinningLottoValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
+            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
+                    IllegalArgumentException.class).hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
         }
 
         @DisplayName("당첨 번호에 숫자 이외에 문자가 들어있다면 예외 발생")
@@ -44,12 +43,12 @@ class WinningLottoValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
+                            IllegalArgumentException.class)
                     .hasMessage(WinningLottoValidator.WRONG_INPUT_WINNING_NUMBERS_MESSAGE);
         }
 
-        @DisplayName("당첨 번호가 구분자가 '" + InputValidator.DELIMITER + "' 가 아닐 때 예외 발생")
+        @DisplayName("당첨 번호가 구분자가 '" + WinningLottoValidator.DELIMITER + "' 가 아닐 때 예외 발생")
         @Test
         void test() {
             // given
@@ -57,8 +56,8 @@ class WinningLottoValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
+                            IllegalArgumentException.class)
                     .hasMessage(WinningLottoValidator.WRONG_INPUT_WINNING_NUMBERS_MESSAGE);
         }
     }

@@ -6,8 +6,8 @@ public class Lotto {
     public static final int SIZE = 6;
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
-    public static final String INVALID_LOTTO_SIZE_MESSAGE = "당첨 번호는 숫자 " + SIZE + "개여야 합니다.";
-    public static final String DUPLICATE_NUMBERS_MESSAGE = "당첨 번호를 중복되지 않아야 합니다";
+    public static final String INVALID_LOTTO_SIZE_MESSAGE = "당첨 번호는" + SIZE + "개 입니다.";
+    public static final String DUPLICATE_NUMBERS_MESSAGE = "당첨 번호는 중복되지 않아야 합니다";
 
     private final List<Integer> numbers;
 

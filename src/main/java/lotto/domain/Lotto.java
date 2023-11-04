@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != ConstNum.LENGTH.getNum()) {
             OutputView.errorMessage(LottoErrorMessage.INCORRECT_LOTTO.getMessage());
             throw new IllegalArgumentException();
         }

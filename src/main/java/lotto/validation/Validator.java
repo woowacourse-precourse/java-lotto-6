@@ -1,10 +1,9 @@
 package lotto.validation;
 
+import lotto.domain.ConstNum;
 import lotto.view.OutputView;
 
 public class Validator {
-    private static Integer PRICE=1000;
-
     public static void moneyValidate(String input) {
         Integer money = isNum(input);
         noMoneyValidate(money);
@@ -35,7 +34,7 @@ public class Validator {
     }
 
     private static void noMoneyValidate(Integer money) {
-        if(money<PRICE){
+        if(money< ConstNum.PRICE.getNum()){
             OutputView.errorMessage(ErrorMessage.NO_MONEY.getMessage());
 
             throw new IllegalArgumentException();
@@ -43,7 +42,7 @@ public class Validator {
     }
 
     private static void divideValidate(Integer money) {
-        if(money % PRICE !=0){
+        if(money % ConstNum.PRICE.getNum() !=0){
             OutputView.errorMessage(ErrorMessage.DIVIDE_ERROR.getMessage());
 
             throw new IllegalArgumentException();

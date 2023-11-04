@@ -6,9 +6,6 @@ import lotto.view.OutputView;
 import java.util.ArrayList;
 
 public class WinningNum {
-    private final Integer LENGTH = 6;
-    private final Integer MINIMUM = 1;
-    private final Integer MAXIMUM = 45;
     private final ArrayList<Integer> winningNum;
     private Integer bonusNumber;
 
@@ -21,7 +18,7 @@ public class WinningNum {
     }
 
     private void lengthValidate(ArrayList<Integer> winningNum) {
-        if (winningNum.size() != LENGTH) {
+        if (winningNum.size() != ConstNum.LENGTH.getNum()) {
             OutputView.errorMessage(ErrorMessage.LENGTH_ERROR.getMessage());
 
             throw new IllegalArgumentException();
@@ -33,7 +30,7 @@ public class WinningNum {
                 .distinct()
                 .count();
 
-        if (count != LENGTH) {
+        if (count != ConstNum.LENGTH.getNum()) {
             OutputView.errorMessage(ErrorMessage.DUPLICATED_ERROR.getMessage());
 
             throw new IllegalArgumentException();
@@ -42,7 +39,7 @@ public class WinningNum {
 
     private void numberRangeValidate(ArrayList<Integer> winningNum) {
         for (Integer num : winningNum) {
-            if(num>MAXIMUM || num<MINIMUM){
+            if(num>ConstNum.LOTTO_MAX.getNum() || num<ConstNum.LOTTO_MIN.getNum()){
                 OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
@@ -64,7 +61,7 @@ public class WinningNum {
     }
 
     private void bonusRangeValidate(Integer bonusNumber) {
-        if (bonusNumber > MAXIMUM || bonusNumber < MINIMUM) {
+        if (bonusNumber > ConstNum.LOTTO_MAX.getNum() || bonusNumber < ConstNum.LOTTO_MIN.getNum()) {
             OutputView.errorMessage(ErrorMessage.BONUS_RANGE_ERROR.getMessage());
 
             throw new IllegalArgumentException();

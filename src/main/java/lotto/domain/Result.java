@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Result {
@@ -22,11 +21,11 @@ public class Result {
 
     private Long getProfit() {
         Long profit = 0L;
-        profit += 2_000_000_000 * getCount(1);
-        profit += 30_000_000 * getCount(2);
-        profit += 1_500_000 * getCount(3);
-        profit += 50_000 * getCount(4);
-        profit += 5_000 * getCount(5);
+        profit += (long)ConstNum.FIRST_PRIZE.getNum() * getCount(1);
+        profit += (long)ConstNum.SECOND_PRIZE.getNum() * getCount(2);
+        profit += (long)ConstNum.THIRD_PRIZE.getNum() * getCount(3);
+        profit += (long)ConstNum.FOURTH_PRIZE.getNum() * getCount(4);
+        profit += (long)ConstNum.FIFTH_PRIZE.getNum() * getCount(5);
 
         return profit;
     }

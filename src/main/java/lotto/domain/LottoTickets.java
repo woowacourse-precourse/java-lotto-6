@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    private final Integer PRICE = 1000;
-    private final Integer NOTHING = -1;
     private final LottoGenerator lottoGenerator;
 
     private ArrayList<Lotto> lottoTickets = new ArrayList<>();
@@ -17,7 +15,7 @@ public class LottoTickets {
     }
 
     public ArrayList<Lotto> buyLotto(Integer money) {
-        int ticket = money / PRICE;
+        int ticket = money / ConstNum.PRICE.getNum();
 
         while (lottoTickets.size() != ticket) {
             List<Integer> lottoNum = lottoGenerator.generate();
@@ -36,7 +34,7 @@ public class LottoTickets {
         for (Lotto lottoTicket : lottoTickets) {
             Integer rank = winningNum.compare(lottoTicket);
 
-            if(rank==NOTHING) continue;
+            if(rank==ConstNum.LOSE.getNum()) continue;
 
             result.set(rank, result.get(rank) + 1);
         }

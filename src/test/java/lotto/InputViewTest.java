@@ -43,4 +43,13 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "-2", "-3", "-10000", "-1000"})
+    @DisplayName("음의 정수 입력값은 예외가 발생한다.")
+    void validateInteger_negative_integer_exceptionThrown(String strings) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

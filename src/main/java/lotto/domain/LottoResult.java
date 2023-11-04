@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 public class LottoResult {
     private final HashMap<WinningCriteria, Integer> result;
 
-    public LottoResult(List<Lotto> purchaseLotto, Lotto winningNumbers, int bonusNumber) {
+    public LottoResult() {
         this.result = new HashMap<>();
     }
 
@@ -34,5 +34,18 @@ public class LottoResult {
     private void countWinningType(int matchNumber, boolean matchBonus) {
         WinningCriteria type = WinningCriteria.getWinningType(matchNumber, matchBonus);
         result.put(type, result.getOrDefault(type, 0) + 1);
+    }
+
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (WinningCriteria type : result.keySet()) {
+            totalPrize += type.getPrize();
+        }
+        return totalPrize;
+    }
+
+    public double calculateRateOfReturn(int amount) {
+        int totalPrize = calculateTotalPrize();
+        return (totalPrize / amount) * 100;
     }
 }

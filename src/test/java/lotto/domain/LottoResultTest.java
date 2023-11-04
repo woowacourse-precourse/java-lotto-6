@@ -29,7 +29,7 @@ public class LottoResultTest {
         result.put(WinningCriteria.FOURTH, 1);
         result.put(WinningCriteria.FIFTH, 1);
 
-        LottoResult lottoResult = new LottoResult(lottos, lotto, bonus);
+        LottoResult lottoResult = new LottoResult();
         lottoResult.calculateNumberOfWins(lottos, lotto, bonus);
         assertThat(lottoResult.getResult()).isEqualTo(result);
     }

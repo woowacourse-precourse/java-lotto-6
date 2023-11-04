@@ -9,7 +9,7 @@ public class Validation {
             validateLottoPrice(lottoPrice);
             return lottoPrice;
         } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다. (숫자 범위: 1,000 ~ 2,147,483,000)", ne);
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 유효한 숫자여야 합니다. (숫자 범위: 1,000 ~ 2,147,483,000)", ne);
         }
     }
 

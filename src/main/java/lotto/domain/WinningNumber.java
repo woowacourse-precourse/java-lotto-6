@@ -6,7 +6,7 @@ import java.util.List;
 public class WinningNumber {
 
     private static final String NO_DUPLICATE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
-    private static final String OUT_OF_RANGE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
+    private static final String OUT_OF_RANGE_ERROR_MESSAGE = "1 ~ 45사이의 숫자만 입력할 수 있습니다.";
     private final List<Integer> winningNumber;
 
     public WinningNumber(List<Integer> winningNumber) {

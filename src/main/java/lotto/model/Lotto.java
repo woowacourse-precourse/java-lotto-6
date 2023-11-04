@@ -3,8 +3,6 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicate(numbers);
+        outOfRange(numbers);
         this.numbers = numbers;
     }
 
@@ -39,6 +38,18 @@ public class Lotto {
     private void duplicateCheck(List<Integer> subNumbers, int baseNumber){
         if(subNumbers.contains(baseNumber)){
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER);
+        }
+    }
+
+    private void outOfRange(List<Integer> numbers){
+        for(int number : numbers){
+            outOfRangeDetail(number);
+        }
+    }
+
+    private void outOfRangeDetail(int number){
+        if(number < NumberConstant.LOTTO_NUMBER_MIN || number > NumberConstant.LOTTO_NUMBER_MAX){
+            throw  new IllegalArgumentException(ErrorMessage.OUT_RANGE_WINNING_NUMBER);
         }
     }
 

@@ -10,4 +10,5 @@ public class ErrorMessage {
     public static final String NOT_NUMBER_WINNING_NUMBER = "[ERROR] 당첨 번호는 (빈)문자가 아닌 숫자여야 합니다.";
     public static final String NOT_SIX_COUNT_WINNING_NUMBER = "[ERROR] 당첨 번호는 6개여야 합니다.";
     public static final String DUPLICATE_WINNING_NUMBER = "[ERROR] 당첨 번호는 중복이 없어야 합니다.";
+    public static final String OUT_RANGE_WINNING_NUMBER = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
 }

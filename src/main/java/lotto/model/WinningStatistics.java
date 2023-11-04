@@ -10,11 +10,11 @@ public class WinningStatistics {
     private long totalReward = 0;
     private double rateOfReturn = 0.0;
     private final Map<WinningPrize, Integer> winningResult = new LinkedHashMap<>() {{
-        put(WinningPrize.FIRST_PRIZE, 0);
-        put(WinningPrize.SECOND_PRIZE, 0);
-        put(WinningPrize.THIRD_PRIZE, 0);
-        put(WinningPrize.FOURTH_PRIZE, 0);
         put(WinningPrize.FIFTH_PRIZE, 0);
+        put(WinningPrize.FOURTH_PRIZE, 0);
+        put(WinningPrize.THIRD_PRIZE, 0);
+        put(WinningPrize.SECOND_PRIZE, 0);
+        put(WinningPrize.FIRST_PRIZE, 0);
     }};
 
     public Map<WinningPrize, Integer> getWinningResult() {

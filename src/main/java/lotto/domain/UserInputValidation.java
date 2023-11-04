@@ -1,7 +1,10 @@
 package lotto.domain;
 
-import static lotto.util.ErrorMessage.INPUT_MULTIPLES_OF_1000_ERROR;
-import static lotto.util.ErrorMessage.INPUT_STRING_ERROR;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static lotto.util.ErrorMessage.*;
 
 public class UserInputValidation {
 
@@ -9,15 +12,50 @@ public class UserInputValidation {
         try {
             int result = Integer.parseInt(input);
 
-            if(result % 1000 != 0) {
-                throw new IllegalArgumentException(INPUT_MULTIPLES_OF_1000_ERROR.getMessage());
-            }
+            isValidInputMultiplesOf1000(result);
 
             return result;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_STRING_ERROR.getMessage());
         }
+    }
 
+    public static void isValidInputMultiplesOf1000(int input) {
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException(INPUT_MULTIPLES_OF_1000_ERROR.getMessage());
+        }
+    }
+
+    public static ArrayList<Integer> isValidWinningNumber(String input) {
+        String result[] = input.split(",");
+
+        if (result.length != 6) {
+            throw new IllegalArgumentException(INPUT_WINNING_NUMBER_ERROR.getMessage());
+        }
+
+        ArrayList<Integer> convertedInput = convertWinningNumberByInt(result);
+        convertedInput.stream().forEach(element -> {
+            isValidWinningNumber(element);
+        });
+
+        return convertedInput;
+    }
+
+    public static ArrayList<Integer> convertWinningNumberByInt(String input[]) {
+        return Arrays.stream(input).map(element -> {
+                    try {
+                        return Integer.parseInt(element);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException(INPUT_STRING_ERROR.getMessage());
+                    }
+                })
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public static void isValidWinningNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR.getMessage());
+        }
     }
 
 }

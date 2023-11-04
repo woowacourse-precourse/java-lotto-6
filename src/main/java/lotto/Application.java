@@ -24,8 +24,7 @@ public class Application {
         if (!LottoUtil.isInteger(input)) {
             throw new IllegalArgumentException("보너스 번호는 정수만 가능합니다.");
         }
-        int bonusNumber = Integer.parseInt(input);
-        if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
+        if (!LottoUtil.isInRange(Integer.parseInt(input), LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX)) {
             throw new IllegalArgumentException("로또 번호는 1~45값만 가능합니다.");
         }
     }

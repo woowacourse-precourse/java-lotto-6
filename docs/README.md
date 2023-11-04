@@ -59,7 +59,7 @@
   - 발행된 로또 번호들을 인수로 받아 출력한다.
 
 ## 당첨 확인 기능
-- [ ] `getMatchingNumberCount` 메서드
+- [ ] `LottoUtil::getMatchingNumberCount` 메서드
   - 정답과 일치하는 번호의 개수를 반환한다.
 
 ## 당첨 내역 출력 기능

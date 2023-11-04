@@ -20,5 +20,6 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult(user, winningNumber);
         OutputView.printLottoResult(lottoResult.getLottoResult(user.getPurchasedLottos(), winningNumber));
+        OutputView.printYield(lottoResult.getYield());
     }
 }

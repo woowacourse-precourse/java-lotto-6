@@ -56,6 +56,10 @@ public class User {
         return new Lotto(numbers);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
     }

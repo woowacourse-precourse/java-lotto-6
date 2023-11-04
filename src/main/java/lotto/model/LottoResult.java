@@ -50,4 +50,22 @@ public class LottoResult {
         int count = lottoResult.getOrDefault(rank, 0) + 1;
         lottoResult.put(rank, count);
     }
+
+    public double getYield() {
+        return calculateYield();
+    }
+
+    private double calculateYield() {
+        double investmentAmount = user.getAmount();
+        double totalPrize = (double) calculateTotalPrize();
+        return totalPrize / investmentAmount * 100;
+    }
+
+    private long calculateTotalPrize() {
+        long totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrize += lottoResult.get(rank) * rank.getPrizeMoney();
+        }
+        return totalPrize;
+    }
 }

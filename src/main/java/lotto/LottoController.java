@@ -8,6 +8,7 @@ import java.util.List;
 public class LottoController {
     private int money;
     private List<Lotto> lottos;
+    private WinningLotto winningLotto;
     private final OutputView outputView;
 
     public LottoController() {
@@ -28,6 +29,17 @@ public class LottoController {
             lottos.add(newLotto);
         }
         outputView.printCreateLottoNumbers(lottos);
+    }
+
+    public void inputWinningLottoNumbers() {
+        String inputNumbers = Console.readLine().trim();
+        List<String> splitInput = List.of(inputNumbers.split(","));
+        List<Integer> winningNumbers = splitInput.stream()
+                .map(Integer::parseInt)
+                .toList();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int inputBonusNumber = Integer.parseInt(Console.readLine());
+        this.winningLotto = new WinningLotto(winningNumbers, inputBonusNumber);
     }
 
     private boolean validMoneyInput() {

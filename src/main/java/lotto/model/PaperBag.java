@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
-
 import java.util.List;
 
 public class PaperBag {
@@ -15,7 +13,7 @@ public class PaperBag {
         return new PaperBag(lottoes);
     }
 
-    private List<Lotto> getLottoes() {
+    public List<Lotto> getLottoes() {
         return lottoes;
     }
 

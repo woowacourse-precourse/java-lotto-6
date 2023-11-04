@@ -37,4 +37,44 @@ public class InputViewTest {
         List<Integer> prizeNumber = inputView.inputPrizeNumber("1,2,3,4,5,6");
         assertThat(prizeNumber).hasSize(6);
     }
+
+    @Test
+    void 당첨번호_중복_예외_테스트() {
+        String prizeNumber = "1,1,2,3,4,5";
+        assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 중복되면 안됩니다.");
+    }
+
+    @Test
+    void 당첨번호_구분자_예외_테스트() {
+        String prizeNumber = "1,2,3,4,5#6";
+        assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호의 구분자는 쉼표(,)만 가능합니다.");
+    }
+
+    @Test
+    void 당첨번호_길이_예외_테스트() {
+        String prizeNumber = "1,2,3,4";
+        assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 6개의 숫자로 구성됩니다.");
+    }
+
+    @Test
+    void 당첨번호_숫자_범위_예외_테스트() {
+        String prizeNumber = "1,2,3,4,5,46";
+        assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 45 이하의 숫자로 구성됩니다.");
+    }
+
+    @Test
+    void 당첨번호_숫자_구성_예외_테스트() {
+        String prizeNumber = "1,2,3,4,5,46";
+        assertThatThrownBy(() -> inputView.inputPrizeNumber(prizeNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 숫자로만 구성됩니다.");
+    }
 }

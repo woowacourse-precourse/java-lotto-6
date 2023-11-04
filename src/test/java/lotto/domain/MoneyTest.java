@@ -15,7 +15,7 @@ public class MoneyTest {
         int input = 1000;
 
         // when
-        Money money = new Money(input);
+        Money money = Money.of(input);
 
         // then
         assertThat(money).isNotNull();
@@ -29,7 +29,7 @@ public class MoneyTest {
         int input = 2455;
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new Money((input)))
+        Assertions.assertThatThrownBy(() -> Money.of((input)))
                 .hasMessage("[ERROR] 1000원 단위로 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,7 +41,7 @@ public class MoneyTest {
         int input = 999;
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new Money(input))
+        Assertions.assertThatThrownBy(() -> Money.of(input))
                 .hasMessage("[ERROR] 1000원 이상의 금액을 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -53,7 +53,7 @@ public class MoneyTest {
         int input = -1000;
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new Money(input))
+        Assertions.assertThatThrownBy(() -> Money.of(input))
                 .hasMessage("[ERROR] 1000원 이상의 금액을 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -63,7 +63,7 @@ public class MoneyTest {
     void calculateGenerateLottosTest() {
         // given
         int input = 4000;
-        Money money = new Money(input);
+        Money money = Money.of(input);
 
         // when
         int result = money.calculateNumberOfLottos();

@@ -27,12 +27,5 @@ public class InputValidator {
         isInteger(input);
         isThousandUnit(input);
         return true;
-    }
-
-    public static void validateCommaSeparated(String input) {
-        if (!input.matches("^(\\d+,){5}\\d+$")) {
-            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 하며, 쉼표로 구분되어야 합니다.");
-        }
-    }
-
+    }g
 }

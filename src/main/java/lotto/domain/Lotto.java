@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,10 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicated(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> issueLotto() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private void validateSize(List<Integer> numbers) {

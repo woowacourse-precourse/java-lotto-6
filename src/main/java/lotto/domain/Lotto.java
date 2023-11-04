@@ -17,7 +17,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자로 구성되야합니다");
         }
     }
 
@@ -28,7 +28,7 @@ public class Lotto {
                     )
                    .size()
                 != LOTTO_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자로 이루어진 로또를 생성할 수 없습니다.")
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자로 이루어진 로또를 생성할 수 없습니다.");
         }
     }
 

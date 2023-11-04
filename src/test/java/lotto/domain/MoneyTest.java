@@ -22,6 +22,18 @@ public class MoneyTest {
         Assertions.assertThat(money.money()).isEqualTo(input);
     }
 
+    @DisplayName("1000원으로 나누어 떨어지지 않는 금액의 경우 예외가 발생한다.")
+    @Test
+    void createMoneyByNotMultiplyOfLottoPerPrice() {
+        // given
+        int input = 2455;
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> new Money((input)))
+                .hasMessage("[ERROR] 1000원 단위로 입력해주세요.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("1000원 미만의 금액으로 돈 객체를 생성하면 예외가 발생한다.")
     @Test
     void createMoneyByLessThan1000Test() {
@@ -30,6 +42,7 @@ public class MoneyTest {
 
         // when & then
         Assertions.assertThatThrownBy(() -> new Money(input))
+                .hasMessage("[ERROR] 1000원 이상의 금액을 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,6 +54,7 @@ public class MoneyTest {
 
         // when & then
         Assertions.assertThatThrownBy(() -> new Money(input))
+                .hasMessage("[ERROR] 1000원 이상의 금액을 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

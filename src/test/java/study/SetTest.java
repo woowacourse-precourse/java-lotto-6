@@ -18,6 +18,16 @@ public class SetTest {
                 .hasSize(2);
     }
 
+    @Test
+    public void test2(){
+        Set<Integer> target = new HashSet<>();
+        target.add(1);
+        target.add(2);
+        target.add(3);
 
+        assertThat(target.contains(1)).isTrue();
+        assertThat(target.contains(2)).isTrue();
+        assertThat(target.contains(3)).isTrue();
+    }
 
 }

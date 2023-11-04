@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoAnalyzer;
 import lotto.domain.LottoVendingMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,5 +17,8 @@ public class GameController {
         lottoVendingMachine.purchaseLotto(InputView.inputPurchaseAmount());
         OutputView.printLottoTicketNumber(lottoVendingMachine.getLottoTicketNumber());
         OutputView.printPurchasedLottoTickets(lottoVendingMachine.getLottos());
+
+        LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(lottoVendingMachine.getLottos());
+        lottoAnalyzer.addWinningNumbers(InputView.inputWinningNumbers());
     }
 }

@@ -12,7 +12,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return Validator.isValidWinningNumbers(Console.readLine());
     }
 }

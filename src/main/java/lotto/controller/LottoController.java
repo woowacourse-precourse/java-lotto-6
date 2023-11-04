@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
+import lotto.domain.WinningLotto;
 import lotto.io.InputManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
@@ -28,20 +30,25 @@ public class LottoController {
         final Lottos lottos = lottoService.saveLottos(ticket);
         outputView.printNumberOfLottos(lottos);
         outputView.printWinningLottoRequset();
+        WinningLotto winningLotto;
         while (true) {
             try {
-                inputManager.readWinningLotto();
+                winningLotto = inputManager.readWinningLotto();
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e);
             }
         }
+        BonusNumber bonusNumber;
         while (true) {
             try {
-
+                bonusNumber = inputManager.readBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
             }
         }
+        winningLotto.updateBonusNumber(bonusNumber.toValue());
     }
-
 
 }

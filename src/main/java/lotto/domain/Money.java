@@ -24,4 +24,7 @@ public record Money(
         }
     }
 
+    public int calculateNumberOfLottos() {
+        return money / LOTTO_PER_PRICE.value();
+    }
 }

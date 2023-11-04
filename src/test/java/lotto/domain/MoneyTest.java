@@ -57,4 +57,18 @@ public class MoneyTest {
                 .hasMessage("[ERROR] 1000원 이상의 금액을 입력해주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("현재 돈으로 발행 가능한 로또 수를 계산할 수 있다.")
+    @Test
+    void calculateGenerateLottosTest() {
+        // given
+        int input = 4000;
+        Money money = new Money(input);
+
+        // when
+        int result = money.calculateNumberOfLottos();
+
+        //then
+        Assertions.assertThat(result).isEqualTo(input / NumberConstraints.LOTTO_PER_PRICE.value());
+    }
 }

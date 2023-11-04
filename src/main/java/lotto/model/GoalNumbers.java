@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
-import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 import lotto.model.constants.LottoRule;
 import java.util.List;

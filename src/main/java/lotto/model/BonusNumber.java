@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 import lotto.model.constants.LottoRule;
 

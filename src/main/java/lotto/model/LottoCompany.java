@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.view.exception.InputException.BONUS_NUMBER_ALREADY_USE;
+import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
 
 import java.util.List;
 

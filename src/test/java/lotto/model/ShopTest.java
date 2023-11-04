@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.view.exception.InputException.MONEY_REMAIN_EXCEPTION;
+import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

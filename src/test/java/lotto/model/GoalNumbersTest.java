@@ -1,9 +1,9 @@
 package lotto.model;
 
-import static lotto.view.exception.InputException.GOAL_NUMBER_SIZE_EXCEPTION;
-import static lotto.view.exception.InputException.NUMBER_DUPLICATE_EXCEPTION;
-import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
-import static lotto.view.exception.InputException.UNVALID_GOAL_NUMBER;
+import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
+import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

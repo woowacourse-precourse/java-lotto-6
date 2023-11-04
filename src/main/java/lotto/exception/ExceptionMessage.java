@@ -1,6 +1,6 @@
-package lotto.view.exception;
+package lotto.exception;
 
-public enum InputException {
+public enum ExceptionMessage {
 
     NUMBER_FORMAT_EXCEPTION("숫자여야 합니다."),
     NEGATIVE_NUMBER_EXCEPTION("양수 (0 포함)여야 합니다."),
@@ -14,7 +14,7 @@ public enum InputException {
     
     private final String message;
 
-    InputException(final String message) {
+    ExceptionMessage(final String message) {
         this.message = message;
     }
 

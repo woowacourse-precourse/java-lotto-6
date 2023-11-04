@@ -1,7 +1,7 @@
 package lotto.model.constants;
 
-import static lotto.view.exception.InputException.GOAL_NUMBER_SIZE_EXCEPTION;
-import static lotto.view.exception.InputException.UNVALID_GOAL_NUMBER;
+import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
 
 import java.util.List;
 

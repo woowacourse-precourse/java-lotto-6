@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.model.constants.Prize.SECOND;
 import static lotto.model.constants.Prize.THIRD;
-import static lotto.view.exception.InputException.BONUS_NUMBER_ALREADY_USE;
+import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

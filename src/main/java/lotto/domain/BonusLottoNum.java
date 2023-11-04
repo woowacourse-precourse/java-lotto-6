@@ -11,14 +11,6 @@ public class BonusLottoNum {
 
     }
 
-    private boolean isInteger() {
-        return true;
-    }
-
-    private void checkInteger() {
-
-    }
-
     private boolean isInRange() {
         return true;
     }

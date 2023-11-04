@@ -11,14 +11,6 @@ public class PurchasePrice {
 
     }
 
-    private boolean isInteger() {
-        return true;
-    }
-
-    private void checkInteger() {
-
-    }
-
     private boolean isOverMinPrice() {
         return true;
     }

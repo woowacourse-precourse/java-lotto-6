@@ -18,9 +18,8 @@ class PurchaseAmountTest {
     @Test
     @DisplayName("숫자가 아닌 값을 입력받으면 예외 처리")
     void inputNonNumericPurchaseAmount() {
-        assertThatThrownBy(() -> {
-            PurchaseAmount purchaseAmount = new PurchaseAmount("a");
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new PurchaseAmount("a"))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자를 입력해주세요.");
     }
 

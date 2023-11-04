@@ -65,8 +65,7 @@ public class StateController {
 
     private void enterBonus() {
         try {
-            int bonus = Integer.parseInt(InputView.readBonus());
-            validateBonus(bonus);
+            validateBonus(Integer.parseInt(InputView.readBonus()));
             this.bonus = bonus;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -86,6 +85,9 @@ public class StateController {
     private void validateBonus(int number) {
         if (number > 45 || number < 1) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 숫자 범위는 1~45까지입니다.");
+        }
+        if (answerLotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 로또 번호와 중복될 수 없습니다.");
         }
     }
 }

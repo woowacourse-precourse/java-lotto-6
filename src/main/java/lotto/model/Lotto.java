@@ -2,17 +2,19 @@ package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {
-        Collections.sort(numbers);
         return numbers;
     }
 
@@ -27,6 +29,5 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호는 입력할 수 없습니다.");
         }
     }
-
     // TODO: 추가 기능 구현
 }

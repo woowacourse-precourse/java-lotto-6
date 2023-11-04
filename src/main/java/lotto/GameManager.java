@@ -1,9 +1,22 @@
 package lotto;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
+
+    public List<Integer> getLottoNumberByRead(){
+        String input = readLine();
+        return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+    }
+
+    public Integer getBonusLottoNumberByRead(){
+        String input = readLine();
+        return Integer.parseInt(input);
+    }
 
     public int getPaymentForLottoByRead() {
         int lottoAmount = 0;

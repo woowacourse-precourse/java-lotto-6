@@ -6,5 +6,7 @@ public class Application {
         GameManager gameManager = new GameManager();
         int lottoAmount =gameManager.getPaymentForLottoByRead();
 
+        gameManager.getLottoNumberByRead();
+        gameManager.getBonusLottoNumberByRead();
     }
 }

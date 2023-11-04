@@ -14,14 +14,10 @@ public class LotteryStore {
     LottoFactory lottoFactory;
 
     public void getLottoOrderUpTo(int count) {
-        List<Lotto> orderedLottos = createRandomLottoUpTo(count);
+        List<Lotto> orderedLottos = lottoFactory.createRandomLottoUpto(count);
 
     }
-    private List<Lotto> createRandomLottoUpTo(int count) {
-        return IntStream.range(0, count)
-                        .mapToObj(loopIndex -> lottoFactory.createRandomLotto())
-                        .toList();
-    }
+
 
 
 

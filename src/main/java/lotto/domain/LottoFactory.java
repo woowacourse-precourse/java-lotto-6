@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoFactory {
 
@@ -18,6 +19,12 @@ public class LottoFactory {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
+    }
+
+    public List<Lotto> createRandomLottoUpto(int count) {
+        IntStream.range(0, count)
+                 .mapToObj(loopIndex -> createRandomLotto())
+                 .toList();
     }
 
 

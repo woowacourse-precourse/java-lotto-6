@@ -30,6 +30,12 @@ public class Customer {
         return this.MONEY / 1000;
     }
 
+    public List<String> getLottoTexts() {
+        return buyLotto.stream()
+                .map(Lotto::getLottoNumbersText)
+                .toList();
+    }
+
     public List<Lotto> getAllLotto() {
         return Collections.unmodifiableList(buyLotto);
     }

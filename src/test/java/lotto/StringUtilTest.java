@@ -16,4 +16,9 @@ public class StringUtilTest {
     void testStringtoInt() {
         assertEquals(1, StringUtil.convertStringToInt("1"));
     }
+
+    @Test
+    void testListToString() {
+        assertEquals("1, 2, 3", StringUtil.convertListToString(List.of(1,2,3)));
+    }
 }

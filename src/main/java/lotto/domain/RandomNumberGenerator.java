@@ -17,6 +17,6 @@ public class RandomNumberGenerator implements NumberGenerator {
             int number = Randoms.pickNumberInRange(LOTTO_MIN_NUMBER.value(), LOTTO_MAX_NUMBER.value());
             numbersSet.add(number);
         }
-        return numbersSet.stream().toList();
+        return numbersSet.stream().sorted().toList();
     }
 }

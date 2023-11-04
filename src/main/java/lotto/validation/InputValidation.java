@@ -46,7 +46,7 @@ public class InputValidation {
     public void validateCheckRangeOfPurchaseAmountInput(String input) {
         try {
             Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하인 양수로 입력해야 합니다.");
         }
     }
@@ -87,9 +87,20 @@ public class InputValidation {
         validateInputIsNumeric(exceptSeperator);
     }
 
+    public void validateCheckRangeOfWinnerNumberInput(String[] input) {
+        try {
+            for(String number : input) {
+                Integer.parseInt(number);
+            }
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public void validateWinnerNumbersPositive(String input) {
         String[] winnerNumbers = input.split(",");
 
+        validateCheckRangeOfWinnerNumberInput(winnerNumbers);
         for (String number : winnerNumbers) {
             if (Integer.parseInt(number) < 0) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 양수를 입력해야 합니다.");

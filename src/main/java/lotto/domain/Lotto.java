@@ -4,9 +4,7 @@ import static lotto.utils.LottoValidateUtils.*;
 
 import java.util.List;
 
-public final class Lotto {
-
-    private final List<Integer> numbers;
+public record Lotto(List<Integer> numbers) {
 
     public Lotto(final List<Integer> numbers) {
         validateLottoNumbers(numbers);
@@ -15,7 +13,8 @@ public final class Lotto {
             .toList();
     }
 
-    public List<Integer> getNumbers() {
+    @Override
+    public List<Integer> numbers() {
         return unmodifiableList(numbers);
     }
 }

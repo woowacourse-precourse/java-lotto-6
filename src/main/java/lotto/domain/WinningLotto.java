@@ -18,6 +18,13 @@ public class WinningLotto {
 
     public void plusBonusNumber(List<String> bonus) {
         inputValidate(bonus);
-        int number = Integer.parseInt(bonus.get(0));
+        Integer number = Integer.parseInt(bonus.get(0));
+        numberDuplicateValidate(number);
+    }
+
+    private void numberDuplicateValidate(Integer number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

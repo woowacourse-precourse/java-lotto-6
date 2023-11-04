@@ -66,7 +66,7 @@
 ---
 ## 🚀 클래스별 기능정리
 
-UserHandler : 사용자의 입력부분을 처리하는 클래스
+### UserHandler : 사용자의 입력부분을 처리하는 클래스
 - getAmountFromUser() : 사용자 구매입력을 받는 메서드
 - validateUserInput(String userInput) : 에러 처리 후 구매입력을 반환하는 메서드
   - checkStartWithZero(String userInput) : 0으로 시작하는 숫자의 에러를 처리하는 메서드
@@ -81,8 +81,12 @@ UserHandler : 사용자의 입력부분을 처리하는 클래스
 - getBonusNumberFromUser() : 사용자로부터 보너스 번호를 받는 메서드
 - 에러 처리 메서드: 아무것도 입력하지 않았을 경우, 문자열을 입력했을 경우, 로또 번호의 숫자범위를 벗어났을 경우, 1자가 아닌경우
   
-ResultView : 결과 출력 클래스
-Lotto : 로또난수 생성하는 클래스
+### ResultView : 결과 출력 클래스
+- printLottoCount(int lottoCount) : 로또 개수 반환받아서 사용자의 로또 구매 개수를 출력하는 메서드
+- printLottoNumber(List<Integer> numbers) : 생성된 로또 숫자를 출력하는 메서드
+- printNewLine() : 출력시 필요한 줄바꿈 메서드
+
+### Lotto : 로또난수 생성하는 클래스
 - validate(List<Integer> numbers) : 6자가 아닌 경우 에러 반환
 - Lotto(List<Integer> numbers) : 로또번호 6자를 생성하는 생성자
 - getNumbers() : numbers 필드의 값을 반환
@@ -93,7 +97,7 @@ Lotto : 로또난수 생성하는 클래스
 - 6개 출력 메서드
 - UserHandler클래스에서 반환된 개수 * 일치하는 메서드 = 총수익률 출력 메서드
   
-LottoGameController : 로또번호의 메인 로직을 담당하는 클래스
+### LottoGameController : 로또번호의 메인 로직을 담당하는 클래스
 - UserHandler클래스에서 반환된 개수로 로또 개수만큼 무작위 생성후 ResultView 클래스로 던져 결과출력
 - buyLottos() : 사용자가 구매할 로또의 개수(lottoCount)만큼 로또를 생성하는 기능
 - lottoGenerate() : 1부터 45까지의 범위에서 무작위 숫자 리스트로 만들고, 이 리스트를 Lotto 클래스의 생성자에 전달하여 Lotto 객체를 생성

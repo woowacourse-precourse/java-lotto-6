@@ -9,13 +9,13 @@ public class Numbers {
     }
 
     public String putCommaInNumber(long price) {
-        final String numberStr = Long.toString(price);
+        final String NUMBER_TO_STR = Long.toString(price);
+        final int MAX_INDEX = NUMBER_TO_STR.length();
         StringBuilder result = new StringBuilder();
-        int maxIndex = numberStr.length();
 
-        for (int i = 0; i < maxIndex; i++) {
-            result.append(numberStr.charAt(i));
-            if ((maxIndex - i) % 3 == 1 && i != maxIndex - 1) {
+        for (int i = 0; i < MAX_INDEX; i++) {
+            result.append(NUMBER_TO_STR.charAt(i));
+            if ((MAX_INDEX - i) % 3 == 1 && i != MAX_INDEX - 1) {
                 result.append(",");
             }
         }

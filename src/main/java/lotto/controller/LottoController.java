@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Lotto;
+import lotto.domain.BuyLotto;
 import lotto.domain.Validate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -57,5 +59,10 @@ public class LottoController {
         }
 
         return result;
+    }
+
+    public List<Lotto> buyLottos(long inputPrice) {
+        BuyLotto buyLotto = new BuyLotto();
+        return buyLotto.buyLotto(inputPrice);
     }
 }

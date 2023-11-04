@@ -9,6 +9,7 @@ import static lotto.domain.constant.ErrorConst.PRICE_NOT_DIVIDED_BY_THOUSAND;
 public class LottoService {
 
     private final List<Lotto> lottoStorage = new ArrayList<>();
+    private Winning winning;
 
     public void buyLottos(int price) {
         validate(price);
@@ -16,6 +17,10 @@ public class LottoService {
         for (int i = 0; i < count; i++) {
             buyOneLotto();
         }
+    }
+
+    public void generateWinning(Lotto winningNumber, Bonus bonusNumber) {
+        winning = new Winning(winningNumber, bonusNumber);
     }
 
     private void buyOneLotto() {

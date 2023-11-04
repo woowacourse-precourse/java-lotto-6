@@ -8,12 +8,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import view.InputView;
 import view.OutputView;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
+    private PurchaseAmount purchaseAmount;
     private Integer lottoAmount = 0;
     private List<Lotto> myLottoNumbers;
     private Lotto winningLottoNumbers;
@@ -21,25 +21,17 @@ public class LottoController {
     private List<Integer> matchingCounts;
     private double rateOfReturn = 0.0;
 
+    public void playLottoGame() {
+        buyMyLotto();
+        assignLotto();
+        calculateGameResult();
+        printGameResult();
+    }
+
     public void buyMyLotto() {
-        PurchaseAmount purchaseAmount;
-        boolean validInput = false;
-
-        while(!validInput) {
-            try {
-                int input = InputView.getPurchaseAmount();
-                purchaseAmount = new PurchaseAmount(input);
-
-                lottoAmount = (purchaseAmount.get()) / 1000;
-                publishMyLotto(purchaseAmount);
-
-                OutputView.printMyLotto(myLottoNumbers);
-
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        assignPurchaseAmount();
+        publishMyLotto(purchaseAmount);
+        OutputView.printMyLotto(myLottoNumbers);
     }
 
     public void assignLotto() {
@@ -55,6 +47,23 @@ public class LottoController {
     public void printGameResult() {
         OutputView.printWinningDetails(matchingCounts);
         OutputView.printRateOfReturn(rateOfReturn);
+    }
+
+    public void assignPurchaseAmount() {
+        int inputPurchaseAmount;
+        boolean validInput = false;
+
+        while(!validInput) {
+            try {
+                inputPurchaseAmount = InputView.getPurchaseAmount();
+                purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
+                lottoAmount = (purchaseAmount.get()) / 1000;
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void assignLottoNumbers() {
@@ -78,8 +87,8 @@ public class LottoController {
         boolean validInput = false;
 
         while (!validInput) {
-            inputBonusNumber = InputView.getBonusNumber();
             try {
+                inputBonusNumber = InputView.getBonusNumber();
                 winningBonusNumber = new BonusNumber(inputBonusNumber);
                 winningBonusNumber.validateAlreadyExist(winningLottoNumbers);
 

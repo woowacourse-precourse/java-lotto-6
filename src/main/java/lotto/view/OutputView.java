@@ -37,7 +37,7 @@ public class OutputView {
             System.out.println();
         }
 
-        System.out.printf("총 수익률은 %.f 입니다.",
+        System.out.printf("총 수익률은 %.2f 입니다.",
                 prizes.calculateBenefit(cash
                         .getSeed())
         );

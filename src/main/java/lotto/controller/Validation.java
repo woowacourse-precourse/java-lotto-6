@@ -38,4 +38,25 @@ public class Validation {
                     .getMessage());
         }
     }
+
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        validateRange(bonusNumber);
+        validateBonusNumberDuplication(bonusNumber, winningNumbers);
+    }
+
+    public void validateRange(int bonusNumber) {
+        if (bonusNumber < 1 || 45 < bonusNumber) {
+            throw new IllegalArgumentException(ErrorMessages
+                     .OUT_OF_RANGE
+                     .getMessage());
+        }
+    }
+
+    public void validateBonusNumberDuplication(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessages
+                   .DUPLICATE_NUMBER
+                   .getMessage());
+        }
+    }
 }

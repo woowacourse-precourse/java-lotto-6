@@ -9,7 +9,7 @@ public class LottoCompareSite {
     private final InputView inputView = new InputView();
 
     public void access() {
-        outputView.printInputWinningNumbers();
+        outputView.printInputWinningNumbersMessage();
         WinningNumber winningNumber = inputView.readWinningNumber();
     }
 }

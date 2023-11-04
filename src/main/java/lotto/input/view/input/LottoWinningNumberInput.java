@@ -14,8 +14,6 @@ public class LottoWinningNumberInput {
     List<Integer> winningNumbers = new ArrayList<>();
     private final WinningNumberInputValidate validator = new WinningNumberInputValidate();
 
-    public LottoWinningNumberInput() {
-    }
 
     public List<Integer> createWinningNumbers() {
         winningNumberInput();

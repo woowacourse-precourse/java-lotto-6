@@ -7,7 +7,8 @@ public enum ErrorProperty {
     VALUE_CONTATIN_SPACE("입력 값에 공백이 포함되어있습니다."),
     VALUE_IS_NOT_NUMERIC("입력 값은 숫자외의 값을 허용하지 않습니다."),
     WINNING_IS_NOT_CORRECTLY_RANGE("당첨번호는 1 ~ 45 사이의 숫자여야합니다."),
-    WINNING_COUNT_IS_OVER_OR_UNDER("당첨번호의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE));
+    WINNING_COUNT_IS_OVER_OR_UNDER("당첨번호의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE)),
+    WINNING_FORMAT_IS_NOT_CORRECT("당첨번호의 입력 양식이 옳바르지 못합니다.");
 
     private String errorMessage;
 

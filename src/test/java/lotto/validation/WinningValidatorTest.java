@@ -5,6 +5,8 @@ import lotto.validation.validator.WinningValidator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningValidatorTest {
@@ -27,5 +29,15 @@ public class WinningValidatorTest {
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorProperty.WINNING_COUNT_IS_OVER_OR_UNDER.toString());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,","1,2,,3,4,5,6"})
+    void 당첨_번호_입력_값_양식_검증_로직_테스트(String winningNumbers){
+        assertThatThrownBy(()->{
+                WinningValidator.winningFormatIsCorrect(winningNumbers);
+            }
+                ).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorProperty.WINNING_FORMAT_IS_NOT_CORRECT.toString());
     }
 }

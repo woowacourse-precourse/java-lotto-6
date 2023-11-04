@@ -16,4 +16,10 @@ public class WinningValidator extends RootValidator{
             throw new IllegalArgumentException(WINNING_COUNT_IS_OVER_OR_UNDER.toString());
         }
     }
+
+    public static void winningFormatIsCorrect(String winningNumbers){
+        if (!winningNumbers.matches("(\\d,)*\\d{1}")){
+            throw new IllegalArgumentException(WINNING_FORMAT_IS_NOT_CORRECT.toString());
+        }
+    }
 }

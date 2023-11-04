@@ -40,21 +40,9 @@ public class LottoStore {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int count = compareLotto(lottoNumbers);
-            checkBonus(count);
         }
     }
-
-    private void checkBonus(int count) {
-        if (count == 4) {
-            checkAddBonusCount();
-        }
-    }
-
-    private void checkAddBonusCount() {
-
-    }
-
-
+    
     private int compareLotto(List<Integer> lottoNumbers) {
         int count = 0;
         for (Integer winningNumber : winningLotto) {

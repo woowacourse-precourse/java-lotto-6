@@ -11,6 +11,10 @@ public class InputView {
     public int inputPurchaseAmount(String inputStr) {
         int purchaseAmount = Integer.parseInt(inputStr);
 
+        if (purchaseAmount < 1000) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
+        }
+
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력 받습니다.");
         }

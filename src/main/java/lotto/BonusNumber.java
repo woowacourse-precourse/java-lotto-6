@@ -4,8 +4,6 @@ import java.util.List;
 
 public class BonusNumber {
     private static int number = 0;
-    private static final String ERROR_DUPLICATE_NUMBER = "[ERROR] 중복된 숫자가 발생했습니다.";
-    private static final String ERROR_NUMBER = "[ERROR] 숫자를 입력하세요.";
 
     public BonusNumber(List<Integer> lottoNumber, String bonus) {
         checkNumber(bonus);
@@ -19,7 +17,7 @@ public class BonusNumber {
                 .anyMatch(number->number==bonusNumber);
 
         if(isPresent) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE);
         }
     }
 
@@ -27,7 +25,7 @@ public class BonusNumber {
         boolean isNumber = bonus.chars().allMatch(Character::isDigit);
 
         if(!isNumber) {
-            throw new IllegalArgumentException(ERROR_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER);
         }
     }
 

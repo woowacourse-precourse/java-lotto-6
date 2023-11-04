@@ -16,8 +16,8 @@ class LottoCalculatorTest {
     @DisplayName("로또와 당첨 번호의 개수를 비교하는 기능")
     @Test
     void countMatchNumbers() {
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("33");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(33);
         LottoCalculator calculator = new LottoCalculator(numbers);
         Lotto lotto = new Lotto(List.of(2, 3, 4, 12, 43, 45));
 
@@ -27,8 +27,8 @@ class LottoCalculatorTest {
     @DisplayName("2등 당첨이라면 매치 개수는 7을 반환한다")
     @Test
     void countMatchBonusNumbers() {
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("3");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(3);
         LottoCalculator calculator = new LottoCalculator(numbers);
         Lotto lotto = new Lotto(List.of(3, 4, 12, 17, 39, 43));
 
@@ -39,8 +39,8 @@ class LottoCalculatorTest {
     @Test
     void makePrizeResult() {
         //given
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("3");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(3);
         Lotto secondLotto = new Lotto(List.of(3, 4, 12, 17, 39, 43)); // 2등
         Lotto thirdLotto = new Lotto(List.of(1, 4, 12, 17, 43, 45)); // 3등
         LottoCalculator calculator = new LottoCalculator(numbers);
@@ -60,8 +60,8 @@ class LottoCalculatorTest {
     @Test
     void calculateTotalPrize() {
         //given
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("3");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(3);
         Lotto firstLotto = new Lotto(List.of(1, 4, 12, 17, 39, 43)); // 1등
         Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 17, 18, 45)); // 4등
         Lotto secondLotto = new Lotto(List.of(3, 4, 12, 17, 39, 43)); // 2등
@@ -73,40 +73,35 @@ class LottoCalculatorTest {
         assertThat(totalPrize).isEqualTo(2030050000);
     }
 
-    @DisplayName("4000원을 넣고 4등 당첨 시 수익률 반환 테스트")
+    @DisplayName("4,000원을 넣고 50,000원 당첨 시 수익률 반환 테스트")
     @Test
     public void calculateProfitRate() {
         //given
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("3");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(3);
         Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 17, 18, 45)); // 4등
         LottoCalculator calculator = new LottoCalculator(numbers);
         calculator.makePrizeResult(List.of(fourthLotto));
         int money = 4000;
         //when
         String profitRateFromCalculator = calculator.calculateProfitRate(money);
-        // 수익률 계산 공식 (상금 - 사용한 돈) / 사용한 돈 * 100
-        double profitRateFromFormula = (double) (50000 - money) / money * 100;
-        double rounded = Math.round(profitRateFromFormula * 10.0) / 10.0;
         //then
-        assertThat(profitRateFromCalculator).isEqualTo(rounded + "%");
+        assertThat(profitRateFromCalculator).isEqualTo("1250.0");
     }
 
-    @DisplayName("46000원을 넣고 5등 당첨 시 수익률 반환 테스트")
+    @DisplayName("46000원을 넣고 5,000원 당첨 시 수익률 반환 테스트")
     @Test
     public void calculateLossPercentage() {
         //given
-        numbers.makeWinningNumber("4,12,39,43,1,17");
-        numbers.makeBonusNumber("3");
+        numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
+        numbers.makeBonusNumber(3);
         Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 18, 22, 45)); // 5등
         LottoCalculator calculator = new LottoCalculator(numbers);
         calculator.makePrizeResult(List.of(fourthLotto));
         int money = 46000;
         //when
         String profitRateFromCalculator = calculator.calculateProfitRate(money);
-        double profitRateFromFormula = (double) (5000 - money) / money * 100;
-        double rounded = Math.round(profitRateFromFormula * 10.0) / 10.0;
         //then
-        assertThat(profitRateFromCalculator).isEqualTo(rounded + "%");
+        assertThat(profitRateFromCalculator).isEqualTo("10.9");
     }
 }

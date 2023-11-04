@@ -18,24 +18,6 @@ public class LottoCalculator {
         this.bonusNumber = winningNumbers.getBonusNumber();
     }
 
-    public void initResult() {
-        result.put(Prize.FIFTH, 0);
-        result.put(Prize.FOURTH, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.FIRST, 0);
-        result.put(Prize.NONE, 0);
-    }
-
-    public String calculateProfitRate(int money) {
-        long totalPrize = calculateTotalPrize();
-        double profit = ((double) totalPrize / money) * 100;
-        profit = Math.round(profit * 10) / 10.0;
-
-        DecimalFormat df = new DecimalFormat("#.0");
-        return df.format(profit);
-    }
-
     public void makePrizeResult(List<Lotto> lottoTickets) {
         initResult();
         for (Lotto oneTicket : lottoTickets) {
@@ -46,6 +28,15 @@ public class LottoCalculator {
                 result.put(prize, result.get(prize) + 1);
             }
         }
+    }
+
+    public void initResult() {
+        result.put(Prize.FIFTH, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.FIRST, 0);
+        result.put(Prize.NONE, 0);
     }
 
     public int countMatchNumbers(Lotto lotto) {
@@ -59,6 +50,17 @@ public class LottoCalculator {
             }
         }
         return matchCount;
+    }
+
+    public String calculateProfitRate(int money) {
+        long totalPrize = calculateTotalPrize();
+        if (totalPrize == 0) {
+            return "0.0";
+        }
+        double profit = ((double) totalPrize / money) * 100;
+        profit = Math.round(profit * 10) / 10.0;
+        DecimalFormat df = new DecimalFormat("#.0");
+        return df.format(profit);
     }
 
     public long calculateTotalPrize() {

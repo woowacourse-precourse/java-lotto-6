@@ -95,9 +95,9 @@ class LottoCalculatorTest {
         //given
         numbers.makeWinningNumber(List.of(4, 12, 39, 43, 1, 17));
         numbers.makeBonusNumber(3);
-        Lotto fourthLotto = new Lotto(List.of(1, 4, 12, 18, 22, 45)); // 5등
+        Lotto fifthLotto = new Lotto(List.of(1, 4, 12, 18, 22, 45)); // 5등
         LottoCalculator calculator = new LottoCalculator(numbers);
-        calculator.makePrizeResult(List.of(fourthLotto));
+        calculator.makePrizeResult(List.of(fifthLotto));
         int money = 46000;
         //when
         String profitRateFromCalculator = calculator.calculateProfitRate(money);

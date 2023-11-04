@@ -10,18 +10,18 @@ public class PurchasePrice {
         return new PurchasePrice(amount);
     }
 
-    public int getPurchaseLottoAmount() {
-        return this.money / Lotto.PRICE;
-    }
-
     private PurchasePrice(Integer money) {
-        validateAmount(money);
+        validatePrice(money);
         this.money = money;
     }
 
-    private void validateAmount(Integer amount) {
+    private void validatePrice(Integer amount) {
         if (amount % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.CHECK_UNIT_PRICE.getMessage());
         }
+    }
+
+    public int getPurchaseLottoAmount() {
+        return this.money / Lotto.PRICE;
     }
 }

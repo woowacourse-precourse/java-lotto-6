@@ -12,6 +12,7 @@ public class Winning {
     public Winning(List<Integer> numbers, int bonus) {
         checkNumberLength(numbers);
         checkNumberRange(numbers);
+        checkBonusRange(bonus);
         this.numbers = numbers;
         this.bonus = bonus;
     }
@@ -26,6 +27,10 @@ public class Winning {
         for (int number : numbers) {
             checkRange(number);
         }
+    }
+
+    private void checkBonusRange(int bonus) {
+        checkRange(bonus);
     }
 
     private void checkRange(int num) {

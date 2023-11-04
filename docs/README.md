@@ -8,7 +8,7 @@
 
 ## 기능 목록
 ### view package
-- output class
+- outputView class
   + [ ] 로또 구입금액 입력 요구문장을 출력하는 기능
   + [ ] 로또를 몇개 구입했는지 출력하는 기능
   + [ ] 미중복 랜덤 6자리 숫자를 로또 구매 개수 만큼 출력하는 기능
@@ -16,7 +16,7 @@
   + [ ] 보너스 번호 입력 요구문장을 출력하는 기능
   + [ ] 당첨 통계를 출력하는 기능
   + [ ] 총 수익률을 출력하는 기능
-- input class
+- inputView class
   + [ ] 로또 구입 금액을 입력 받는 기능
   + [ ] 로또 당첨 번호를 입력 받는 기능
   + [ ] 보너스 번호를 입력 받는 기능
@@ -32,6 +32,9 @@
 
 ### controller package
   + [ ] model, view를 통해 로또 진행
+
+### enums package
+  + [0] 상수 string을 한번에 관리하는 기능 
 
 ### utility package
 - computerInputException class (Lotto)

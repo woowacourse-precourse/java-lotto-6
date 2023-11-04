@@ -17,6 +17,15 @@ public class InputUI {
         this.cost = INIT_NUM;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public int getNumofLotto() {
+        return cost/1000 ;
+    }
+
+
     public void purchase() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
@@ -26,6 +35,7 @@ public class InputUI {
             throw e;
         }
     }
+
 
     public int checkValidPurchase(String tempCost) {
         try {
@@ -79,6 +89,7 @@ public class InputUI {
     public List<Integer> checkValidWinnings(String[] parsedWinnings) {
         try {
             List<Integer> winningNum = new ArrayList<>();
+            checkLengthWinning(parsedWinnings);
             for (String element : parsedWinnings) {
                 int winning = Integer.parseInt(element);
                 checkExceptionWinning(winning);
@@ -89,6 +100,12 @@ public class InputUI {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
         } catch (IllegalArgumentException e) {
             throw e;
+        }
+    }
+
+    public void checkLengthWinning(String[] parsedWinnings) {
+        if(parsedWinnings.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
 

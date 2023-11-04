@@ -91,6 +91,7 @@ public class InputView {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
     public int receiveBonusNumber(String winningNumber) {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
@@ -108,6 +109,7 @@ public class InputView {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getErrorMessage());
         }
     }
+
     private void validateLottoNumber(String number) {
         try {
             Integer.parseInt(number);

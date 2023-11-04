@@ -33,7 +33,7 @@ class UserLottosTest {
     @Test
     void compareAllLottos() {
         // 위의 setUp에서 설정한 유저의 로또와 비교했을 때, 모든 당첨 결과를 1개씩 가지도록 당첨 번호를 설정
-        List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
 

@@ -30,4 +30,8 @@ public class LottoMachine {
     public List<Lotto> getIssuedLotto() {
         return this.issuedLotto;
     }
+
+    public int getLottoPrice() {
+        return lottoTicket * 1000;
+    }
 }

@@ -24,6 +24,10 @@ public class UserHandler {
         return amount;
     }
 
+    public static int getLottoCountFromUser(int amount) {
+        return amount/1000;
+    }
+
     private static void checkStartWithZero(String userInput) {
         if (userInput.startsWith("0")) {
             throw new IllegalArgumentException("[ERROR] 0으로 시작하는 숫자를 입력하지 마세요.");

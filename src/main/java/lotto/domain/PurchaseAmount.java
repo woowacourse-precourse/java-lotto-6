@@ -38,4 +38,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000 이상의 정수입니다.");
         }
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

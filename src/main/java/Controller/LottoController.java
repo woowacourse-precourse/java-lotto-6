@@ -78,12 +78,12 @@ public class LottoController {
     }
 
     public void calculateRateOfReturn() {
-        int prize = calculatePrize(matchingCounts);
+        long prize = calculatePrize(matchingCounts);
         rateOfReturn = ((double) prize / (lottoAmount * 1000)) * 100;
     }
 
-    public int calculatePrize(List<Integer> matchingCounts) {
-        int lottoReward;
+    public long calculatePrize(List<Integer> matchingCounts) {
+        long lottoReward;
         List<Prize> rewards = List.of(
                 Prize.FIFTH_PRIZE,
                 Prize.FOURTH_PRIZE,

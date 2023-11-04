@@ -7,13 +7,13 @@ public enum Prize {
     SECOND_PRIZE(30000000),
     FIRST_PRIZE(2000000000);
 
-    private final int prize;
+    private final long prize;
 
-    Prize(int prize) {
+    Prize(long prize) {
         this.prize = prize;
     }
 
-    public int get() {
+    public long get() {
         return prize;
     }
 }

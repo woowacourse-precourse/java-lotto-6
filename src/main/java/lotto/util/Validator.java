@@ -45,4 +45,11 @@ public class Validator {
             numbers.add(input);
         }
     }
+
+    public static void isNumberInRange(String input) {
+        int number = Integer.parseInt(input);
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_IN_RANGE);
+        }
+    }
 }

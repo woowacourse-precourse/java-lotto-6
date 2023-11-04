@@ -3,17 +3,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
     public List<Integer> createRandomNumber(){
         Randoms.pickNumberInRange(1, 45);
-        Set<Integer> lottoNumbers = new HashSet<>();
+        Set<Integer> lottoNumbers = new TreeSet<>();
         while (lottoNumbers.size() < 6) {
             lottoNumbers.add(Randoms.pickNumberInRange(1, 45));
         }

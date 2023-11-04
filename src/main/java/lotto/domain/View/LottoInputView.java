@@ -21,7 +21,7 @@ public class LottoInputView {
                 Validator.validateInputCash(cash);
                 validInputFlag = true;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자가 아닌 값을 입력했습니다.");
+                System.out.println("[ERROR] 숫자가 아닌 값을 입력했거나 금액 제한을 넘었습니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -8,6 +8,10 @@ public class Validator {
     public static void validateInputCash(int cash) {
         if (cash <= 0) {
             throw new IllegalArgumentException("[ERROR] 0보다 작은 값을 입력했습니다.");
+        } else if (cash < Constant.LOTTO_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 최소 구매 금액은 "
+                    + Constant.LOTTO_PRICE
+                    + "입니다.");
         } else if (cash % Constant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(
                     "[ERROR] 구매 금액은 "

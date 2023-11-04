@@ -48,4 +48,8 @@ public class PlayerController {
         }
     }
 
+    public String calculateRateOfReturn() {
+        return String.format("%.1f", playerService.calculateRateOfReturn() * 100);
+    }
+
 }

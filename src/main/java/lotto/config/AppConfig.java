@@ -21,7 +21,7 @@ public class AppConfig {
     }
 
     public LottoController lottoController() {
-        return LottoController.getInstance(lottoService(), playerService());
+        return LottoController.getInstance(playerService());
     }
 
     public PlayerController playerController() {

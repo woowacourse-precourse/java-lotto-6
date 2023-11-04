@@ -1,6 +1,12 @@
 package lotto.service;
 
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
+import static lotto.constant.LottoInfo.LOTTO_SIZE;
+import static lotto.constant.LottoResult.FIFTH_PLACE;
+import static lotto.constant.LottoResult.FIRST_PLACE;
+import static lotto.constant.LottoResult.FOURTH_PLACE;
+import static lotto.constant.LottoResult.SECOND_PLACE;
+import static lotto.constant.LottoResult.THIRD_PLACE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +20,8 @@ public class PlayerService {
     private final Player player;
 
     private static PlayerService INSTANCE;
+
+    private int[] lottoResult;
 
     private PlayerService(LottoService lottoService, Player player) {
         this.lottoService = lottoService;
@@ -43,12 +51,12 @@ public class PlayerService {
 
     public int[] compareLottoNumbers(List<Integer> inputNumbers, int bonusNumber) {
         List<Lotto> purchasedLotto = player.getPurchasedLotto();
-        int[] lottoResult = new int[7];
+        lottoResult = new int[LOTTO_SIZE.getInfo() + 2];
 
         for (Lotto lotto : purchasedLotto) {
             int sameCount = lottoService.compareLotto(lotto, inputNumbers);
             if (sameCount == 5 && !lotto.isContainNumber(bonusNumber)) {
-                lottoResult[3]++;
+                lottoResult[0]++;
                 continue;
             }
 
@@ -60,6 +68,12 @@ public class PlayerService {
         }
 
         return lottoResult;
+    }
+
+    public float calculateRateOfReturn() {
+        return (float) (FIRST_PLACE.calculateAward(lottoResult[1]) + SECOND_PLACE.calculateAward(lottoResult[0])
+                + THIRD_PLACE.calculateAward(lottoResult[2]) + FOURTH_PLACE.calculateAward(lottoResult[3])
+                + FIFTH_PLACE.calculateAward(lottoResult[4])) / player.getPrice();
     }
 
 }

@@ -50,11 +50,15 @@ public class View {
 
     public static void printLottoResult(int[] lottoResult) {
         System.out.println(LOTTO_RESULT_MESSAGE.getMessage());
-        System.out.println(FIFTH_PLACE.printMessage(lottoResult[5]));
-        System.out.println(FOURTH_PLACE.printMessage(lottoResult[4]));
-        System.out.println(THIRD_PLACE.printMessage(lottoResult[3]));
-        System.out.println(SECOND_PLACE.printMessage(lottoResult[2]));
+        System.out.println(FIFTH_PLACE.printMessage(lottoResult[4]));
+        System.out.println(FOURTH_PLACE.printMessage(lottoResult[3]));
+        System.out.println(THIRD_PLACE.printMessage(lottoResult[2]));
+        System.out.println(SECOND_PLACE.printMessage(lottoResult[0]));
         System.out.println(FIRST_PLACE.printMessage(lottoResult[1]));
+    }
+
+    public static void printRateOfReturn(String rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
 }

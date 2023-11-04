@@ -15,28 +15,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.domain.Player;
 import lotto.dto.InputNumbersDTO;
 import lotto.service.LottoService;
 import lotto.service.PlayerService;
 
 public class LottoController {
 
-    private static final String SPLIT_REGEX = " ";
+    private static final String SPLIT_REGEX = ",";
 
-    private final LottoService lottoService;
     private final PlayerService playerService;
 
     private static LottoController INSTANCE;
 
-    private LottoController(LottoService lottoService, PlayerService playerService) {
-        this.lottoService = lottoService;
+    private LottoController(PlayerService playerService) {
         this.playerService = playerService;
     }
 
-    public static LottoController getInstance(LottoService lottoService, PlayerService playerService) {
+    public static LottoController getInstance(PlayerService playerService) {
         if (INSTANCE == null) {
-            INSTANCE = new LottoController(lottoService, playerService);
+            INSTANCE = new LottoController(playerService);
         }
         return INSTANCE;
     }

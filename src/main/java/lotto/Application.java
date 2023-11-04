@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.config.AppConfig;
 import lotto.controller.LottoController;
@@ -17,11 +18,29 @@ public class Application {
         PlayerController playerController = appConfig.playerController();
         LottoController lottoController = appConfig.lottoController();
 
-        View.printStartMessage();
-        List<Lotto> purchaseLotto = playerController.purchaseLotto(View.input());
+        List<Lotto> purchaseLotto;
+        while (true) {
+            try {
+                View.printStartMessage();
+                purchaseLotto = playerController.purchaseLotto(View.input());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         View.printPurchaseMessage(purchaseLotto.size());
         View.printPurchasedLotto(purchaseLotto);
-        lottoController.inputNumbers(View.printInputNumbersMessage());
-        View.printLottoResult();
+
+        while (true) {
+            try {
+                View.printLottoResult(lottoController.inputNumbers(View.printInputNumbersMessage()));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        View.printRateOfReturn(playerController.calculateRateOfReturn());
     }
 }

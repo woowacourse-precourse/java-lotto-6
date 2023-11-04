@@ -2,12 +2,9 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
-import lotto.domain.Player;
+import lotto.util.RandomGenerator;
 
 public class LottoService {
-
-    private final LottoGenerator lottoGenerator = new LottoGenerator();
 
     private static final LottoService INSTANCE = new LottoService();
 
@@ -19,7 +16,7 @@ public class LottoService {
     }
 
     public Lotto generateLotto() {
-        return new Lotto(lottoGenerator.generateLottoNumbers());
+        return new Lotto(RandomGenerator.generateNumber());
     }
 
     public int compareLotto(Lotto lotto, List<Integer> inputNumbers) {

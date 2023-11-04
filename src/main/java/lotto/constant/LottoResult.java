@@ -9,15 +9,19 @@ public enum LottoResult {
     FIFTH_PLACE("3개 일치 (5,000원) - ", 5000);
 
     private String message;
-    private int award;
+    private long award;
 
-    LottoResult(String message, int award) {
+    LottoResult(String message, long award) {
         this.message = message;
         this.award = award;
     }
 
     public String printMessage(int count) {
         return this.message + count + "개";
+    }
+
+    public long calculateAward(int count) {
+        return this.award * count;
     }
 
 }

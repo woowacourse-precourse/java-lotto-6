@@ -17,8 +17,9 @@ public class GameController {
     }
 
     public void lottoAdd(int pay) {
-        // TODO: 인자로 받은 금액 로또 구매
-
+        int count = lottoService.addPay(pay);
+        gameView.printGameCount(count);
+        gameView.printLottoList(lottoService.addLotto(count));
     }
 
     public void winningLottoAdd(List<Integer> numbers) {

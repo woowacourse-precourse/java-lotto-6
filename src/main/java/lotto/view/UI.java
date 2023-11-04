@@ -8,7 +8,7 @@ public class UI {
     public static String inputLottoAmount() {
         displayMessage(Instructions.MESSAGE_OF_ENTERING_LOTTO_AMOUNT);
         String lottoAmountInputValue  = Console.readLine();
-        //입력 검증 추가 예정
+        //TODO - 입력 검증 추가
         return lottoAmountInputValue;
     }
 

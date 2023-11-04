@@ -48,7 +48,7 @@ public class LottoResultTest {
 
         // then
         long expectedTotalPrize = LottoRank.FIRST.getPrizeMoney() + (LottoRank.THIRD.getPrizeMoney() * 2);
-        double expectedProfitRatio = ((double) (expectedTotalPrize - purchaseAmount) / purchaseAmount) * 100;
+        double expectedProfitRatio = ((double) expectedTotalPrize)  / purchaseAmount * 100;
         assertEquals(expectedProfitRatio, profitRatio);
     }
 }

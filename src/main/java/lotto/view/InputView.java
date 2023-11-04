@@ -38,5 +38,11 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
+    public int readBonusNumber(){
+        System.out.println(BONUS_NUMBER_INPUT_PROMPT);
+        int bonusNumber = readLineAndParseInt();
+        return bonusNumber;
+    }
+
 
 }

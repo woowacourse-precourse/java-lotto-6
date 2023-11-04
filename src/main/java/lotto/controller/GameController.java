@@ -31,6 +31,8 @@ public class GameController {
     public void play() {
         createCashAndLottoMachine();
         purchaseLottos();
+        createWinnerLotto();
+        comparePurchasedLottosWithWinnerLotto();
     }
 
     private void createCashAndLottoMachine() {
@@ -45,6 +47,13 @@ public class GameController {
 
     private void createWinnerLotto() {
         winnerLotto = inputView.inputWinnerLotto();
+    }
+
+
+    private void comparePurchasedLottosWithWinnerLotto() {
+        List<Prize> result = lottos.compareAllLottoWithWinnerLotto(winnerLotto.getWinnerNumbers(),
+                winnerLotto.getBonusNumber());
+        prizes = new Prizes(result);
     }
 
 

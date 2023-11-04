@@ -25,7 +25,7 @@ public class Money {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    public double returnOfRate(double totalPrizeMoney) {
+    public double returnOfProfitRate(double totalPrizeMoney) {
         return totalPrizeMoney / purchaseAmount;
     }
 

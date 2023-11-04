@@ -60,6 +60,6 @@ class MoneyTest {
 
         Money money = Money.of(moneyInput);
 
-        assertThat(money.returnOfRate(2000)).isEqualTo(0.5);
+        assertThat(money.returnOfProfitRate(2000)).isEqualTo(0.5);
     }
 }

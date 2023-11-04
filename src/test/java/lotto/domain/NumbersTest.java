@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -40,8 +41,24 @@ class NumbersTest {
         assertThat(numberValues).hasSize(6);
     }
 
-
     static Stream<List<Integer>> numberValuesSource() {
         return Stream.of(List.of(1, 2, 3, 4, 5, 6));
     }
+
+    @Test
+    @DisplayName("각 숫자들이 오름차순 정렬되어 저장된다.")
+    void Given_CreateNumbers_When_GetNumberValues_Then_NumbersAsc() {
+        //given
+        Numbers numbers = new Numbers(List.of(43, 42, 41, 23, 22, 8));
+
+        //when
+        List<Number> numberValues = numbers.getValues();
+        List<String> numbersAsc = numberValues.stream()
+                .map(Number::getValue)
+                .toList();
+
+        //then
+        assertThat(numbersAsc).isEqualTo(List.of("8", "22", "23", "41", "42", "43"));
+    }
+
 }

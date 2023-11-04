@@ -3,11 +3,9 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoTicket {
-    private final int count;
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottoTickets;
 
-    public LottoTicket(int count, List<Lotto> lottos) {
-        this.count = count;
-        this.lottos = lottos;
+    public LottoTicket(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
     }
 }

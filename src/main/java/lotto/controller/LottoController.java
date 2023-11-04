@@ -16,6 +16,6 @@ public class LottoController {
 
     private void buyLotto(){
         Budget budget = Budget.from(InputView.getBudgetInput());
-        Lottos lottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
+        Lottos userMultipleLottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
     }
 }

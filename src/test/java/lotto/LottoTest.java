@@ -34,6 +34,13 @@ class LottoTest {
 
         String expectedResult = "[1, 2, 5, 6, 34, 42]";
         Assertions.assertThat(lotto.toString()).isEqualTo(expectedResult);
+    }
 
+    @DisplayName("로또 번호가 1~45인지 테스트한다.")
+    @Test
+    void validateNumberRange() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 3, 5, 50, 4, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 1~45의 숫자만 가능합니다.");
     }
 }

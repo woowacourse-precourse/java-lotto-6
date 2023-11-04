@@ -17,6 +17,12 @@ public class WinningNum {
         this.winningNum = winningNum;
     }
 
+    public void setBonusNumber(Integer number) {
+        duplicatedValidate(number);
+        rangeValidate(number);
+        this.bonusNumber = number;
+    }
+
     private void lengthValidate(ArrayList<Integer> winningNum) {
         if (winningNum.size() != ConstNum.LENGTH.getNum()) {
             OutputView.errorMessage(ErrorMessage.LENGTH_ERROR.getMessage());
@@ -39,18 +45,18 @@ public class WinningNum {
 
     private void numberRangeValidate(ArrayList<Integer> winningNum) {
         for (Integer num : winningNum) {
-            if(num>ConstNum.LOTTO_MAX.getNum() || num<ConstNum.LOTTO_MIN.getNum()){
-                OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
-                throw new IllegalArgumentException();
-            }
+            rangeValidate(num);
         }
     }
 
-    public void setBonusNumber(Integer number) {
-        duplicatedValidate(number);
-        bonusRangeValidate(number);
-        this.bonusNumber = number;
+    private void rangeValidate(Integer number) {
+        if (number > ConstNum.LOTTO_MAX.getNum() || number < ConstNum.LOTTO_MIN.getNum()) {
+            OutputView.errorMessage(ErrorMessage.RANGE_ERROR.getMessage());
+
+            throw new IllegalArgumentException();
+        }
     }
+
 
     private void duplicatedValidate(Integer bonusNumber) {
         if (winningNum.contains(bonusNumber)) {
@@ -59,15 +65,6 @@ public class WinningNum {
             throw new IllegalArgumentException();
         }
     }
-
-    private void bonusRangeValidate(Integer bonusNumber) {
-        if (bonusNumber > ConstNum.LOTTO_MAX.getNum() || bonusNumber < ConstNum.LOTTO_MIN.getNum()) {
-            OutputView.errorMessage(ErrorMessage.BONUS_RANGE_ERROR.getMessage());
-
-            throw new IllegalArgumentException();
-        }
-    }
-
     public Integer compare(Lotto lotto) {
         Integer count = 0;
         Boolean bonus = false;

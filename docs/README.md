@@ -88,17 +88,12 @@
     - 사용자에게 요청하는 메세지를 관리하는 기능
 - ResponseMessage
     - 사용자에게 응답하는 메세지를 관리하는 기능
-
-### Validator
-- Validator
-    - 모든 검증이 일관성 있게 이루어지도록 통일하는 인터페이스 기능
-- MoneyValidator
-    - 입력된 금액이 규칙에 맞는지 검증하는 기능
-- LottoValidator
-    - 로또 번호 입력이 규칙에 맞는지 검증하는 기능
-    - 여기서는 당첨 번호 입력 시에만 사용된다
-- BonusLottoNumberValidator
-    - 보너스 번호 입력이 규칙에 맞는지 검증하는 기능
+### Util
+- LottoConverter
+  - 사용자의 입력을 로또로 변환해 주는 기능
+  - 사용자의 입력을 보너스 번호로 변환해 주는 기능
+- InputValidator
+  - 사용자의 입력이 입력 규칙에 맞는지 검증하는 기능
 
 # 공통 피드백 중요 항목
 

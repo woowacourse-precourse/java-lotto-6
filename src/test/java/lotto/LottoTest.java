@@ -52,6 +52,17 @@ class LottoTest {
                 "[1, 2, 3, 4, 5, 6]\n"+
                 "[1, 2, 3, 20, 23, 27]\n"
         );
+    }
 
+    @DisplayName("쉼표로 구분된 숫자를 입력받아 숫자 배열로 반환한다.")
+    @Test
+    void setWinningNumberToArray() {
+        String number = "1,2,3,4,5,6";
+        List<Integer> numbers = LottoStore.getInstance().setWinningLotto(number);
+
+        assertThat(numbers.size()).isEqualTo(6);
+        assertThat(numbers.toString()).isEqualTo(
+                "[1, 2, 3, 4, 5, 6]"
+        );
     }
 }

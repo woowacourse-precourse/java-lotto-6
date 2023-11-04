@@ -17,7 +17,7 @@ public class Output {
     }
 
     static void printTicketsBought(Lotto... tickets) {
-        System.out.println(tickets.length + "개를 구매했습니다.");
+        System.out.println(System.lineSeparator() + tickets.length + "개를 구매했습니다.");
         printTickets(tickets);
     }
 
@@ -25,7 +25,7 @@ public class Output {
         String output = Arrays.asList(tickets).stream()
                 .map(Lotto::toList)
                 .map(List::toString)
-                .collect(Collectors.joining("+" + System.lineSeparator()));
+                .collect(Collectors.joining(" " + System.lineSeparator()));
         System.out.println(output);
     }
 
@@ -78,19 +78,8 @@ public class Output {
         System.out.println(calculateEarningRatio(spent, earned));
     }
 
-    // 당첨 통계
-    // ---
-    // 3개 일치 (5,000원) - 1개
-    // 4개 일치 (50,000원) - 0개
-    // 5개 일치 (1,500,000원) - 0개
-    // 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-    // 6개 일치 (2,000,000,000원) - 0개
-    // 총 수익률은 62.5%입니다.
-
     private static String calculateEarningRatio(Integer spent, Integer earned) {
-        DecimalFormat format = new DecimalFormat("#.##");
-        format.setRoundingMode(RoundingMode.CEILING);
-        return format.format((float) earned / spent);
+        return "총 수익률은 " + formatPoint((float) earned / spent * 100) + "%입니다.";
     }
 
     private static String formatPoint(float number) {

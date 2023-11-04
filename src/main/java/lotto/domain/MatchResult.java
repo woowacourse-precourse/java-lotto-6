@@ -3,22 +3,27 @@ package lotto.domain;
 import static lotto.domain.constant.NumberConstant.*;
 
 public enum MatchResult {
-    NONE(0),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6);
+    NONE(NONE_PRIZE_MONEY),
+    THREE(THREE_PRIZE_MONEY),
+    FOUR(FOUR_PRIZE_MONEY),
+    FIVE(FIVE_PRIZE_MONEY),
+    BONUS(BONUS_PRIZE_MONEY),
+    SIX(SIX_PRIZE_MONEY);
 
-    private int count;
+    private final long prizeMoney;
 
-    MatchResult(int count) {
-        this.count = count;
+    MatchResult(long prizeMoney) {
+        this.prizeMoney = prizeMoney;
     }
 
     public static MatchResult fromCount(int count) {
         if (count >= MIN_WIN_COUNT && count <= MAX_WIN_COUNT)
             return values()[count - COUNT_IDX_OFFSET];
-        else
-            return NONE;
+
+        return NONE;
+    }
+
+    public long getPrizeMoney() {
+        return prizeMoney;
     }
 }

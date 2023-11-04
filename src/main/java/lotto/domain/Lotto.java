@@ -31,6 +31,10 @@ public class Lotto implements Comparable<Lotto> {
         return numbers.toString();
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private List<Integer> makeAscending(List<Integer> numbers) {
         sort(numbers);
         return numbers;

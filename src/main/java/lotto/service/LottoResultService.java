@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResultService {
+
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREMENT = 1;
+    private static final double PERCENTAGE = 100.0;
+
     public List<LottoResult> countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
         List<LottoResult> lottoResults = new ArrayList<>();
 
@@ -26,20 +31,20 @@ public class LottoResultService {
 
         for (LottoResult lottoResult : lottoResults) {
             LottoReward lottoReward = LottoReward.getReward(lottoResult.getCorrectNumbers(), lottoResult.getCorrectBonusNumber());
-            rewardCount.put(lottoReward, rewardCount.getOrDefault(lottoReward, 0) +1);
+            rewardCount.put(lottoReward, rewardCount.getOrDefault(lottoReward, INITIAL_COUNT) + INCREMENT);
         }
 
         return rewardCount;
     }
 
     public Double countEarnRate(Map<LottoReward, Integer> reward, Integer userMoney) {
-        Integer totalProfit = 0;
+        Integer totalProfit = INITIAL_COUNT;
 
         for (Map.Entry<LottoReward, Integer> entry : reward.entrySet()) {
             totalProfit += entry.getKey().getReward() * entry.getValue();
         }
 
-        Double earnRate = (double) (totalProfit / userMoney);
-        return Math.round(earnRate * 100) / 1.0;
+        Double earnRate = (double) totalProfit / userMoney * PERCENTAGE;
+        return Math.round(earnRate * PERCENTAGE) / PERCENTAGE;
     }
 }

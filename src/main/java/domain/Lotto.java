@@ -14,9 +14,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.sizeValidate(numbers);
-        LottoValidator.duplicateValidate(numbers);
-        LottoValidator.matchRangeValidate(numbers);
+        LottoValidator.size(numbers);
+        LottoValidator.duplicate(numbers);
+        LottoValidator.inRange(numbers);
     }
 
     // TODO: 추가 기능 구현

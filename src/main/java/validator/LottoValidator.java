@@ -16,7 +16,7 @@ public class LottoValidator {
     private LottoValidator() {
     }
 
-    public static void sizeValidate(List<Integer> numbers) {
+    public static void size(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(
                     ERROR_MESSAGE.getMessage() + INVALID_INPUT_SIZE.getMessage()
@@ -24,7 +24,7 @@ public class LottoValidator {
         }
     }
 
-    public static void duplicateValidate(List<Integer> numbers) {
+    public static void duplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>();
 
         for (Integer number : numbers) {
@@ -36,7 +36,7 @@ public class LottoValidator {
         }
     }
 
-    public static void matchRangeValidate(List<Integer> numbers) {
+    public static void inRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
                 throw new IllegalArgumentException(

@@ -12,8 +12,6 @@ public class RateOfReturn {
     }
 
     private static double calculateRateOfReturn(long totalIncome, long money) {
-        double rateOfReturn = (double) totalIncome / money * 100;
-        rateOfReturn = Math.round(rateOfReturn * 10) / 10.0;
-        return rateOfReturn;
+        return (double) totalIncome / money * 100;
     }
 }

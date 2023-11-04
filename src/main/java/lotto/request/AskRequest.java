@@ -13,11 +13,14 @@ public class AskRequest extends Request {
 
     @Override
     protected List<String> askAndInput() {
-        System.out.println(command.getMessage());
+        printMessage();
         String input = Console.readLine();
-
         command.validate(input);
 
         return List.of(input);
+    }
+
+    private void printMessage() {
+        System.out.println(command.getMessage());
     }
 }

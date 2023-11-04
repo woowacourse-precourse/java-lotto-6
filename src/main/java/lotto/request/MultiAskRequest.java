@@ -18,16 +18,33 @@ public class MultiAskRequest extends Request {
     protected List<String> askAndInput() {
         List<String> inputs = new ArrayList<>();
 
-        prevCommand.forEach(command -> {
-            System.out.println(command.getMessage());
-            inputs.add(Console.readLine());
-            addBlank();
-        });
-
-        System.out.println(command.getMessage());
-        inputs.add(Console.readLine());
+        executePrevCommand(inputs);
+        executeLastCommand(inputs);
 
         return inputs;
+    }
+
+    private void executeLastCommand(List<String> inputs) {
+        printMessage(command);
+        addInput(inputs,command);
+    }
+
+    private void executePrevCommand(List<String> inputs) {
+        prevCommand.forEach(cmd -> {
+            printMessage(cmd);
+            addInput(inputs, cmd);
+            addBlank();
+        });
+    }
+
+    private void addInput(List<String> inputs, Command command) {
+        String input = Console.readLine();
+        command.validate(input);
+        inputs.add(input);
+    }
+
+    private void printMessage(Command command) {
+        System.out.println(command.getMessage());
     }
 
     private void addBlank() {

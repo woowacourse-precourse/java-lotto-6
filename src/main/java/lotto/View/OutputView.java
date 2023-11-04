@@ -19,4 +19,8 @@ public class OutputView {
     public static void printResult(String printString, int count) {
         System.out.println(printString + count + "개");
     }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+    }
 }

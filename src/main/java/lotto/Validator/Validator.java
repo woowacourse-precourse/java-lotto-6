@@ -26,7 +26,7 @@ public class Validator {
 
     private static void valiateEqualNums(int num1, int num2) {
         if (num1 == num2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
@@ -40,19 +40,19 @@ public class Validator {
 
     public static void validateLastComma(String input) {
         if (input.charAt(input.length() - 1) == ',') {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
     public static void validateNumberRange(int number) {
         if (number < LOW_NUMBER || number > HIGH_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

@@ -76,6 +76,6 @@ public class LottoBuyerTest {
         buyer.pay(purchaseAmount);
 
         //then
-        assertThat(buyer.getLottoCount()).isEqualTo(4);
+        assertThat(buyer.getCountOfLotto()).isEqualTo(4);
     }
 }

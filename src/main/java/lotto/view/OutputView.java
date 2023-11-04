@@ -10,12 +10,16 @@ import java.util.List;
     - 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%)
  */
 public class OutputView {
-    public static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
-        System.out.println();
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+    private static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
         System.out.printf("%d개를 구매했습니다.%n", numberOfTickets);
     }
 
     public static void printPurchasedLottoNumbers(List<Lotto> lottoTickets) {
+        System.out.println();
+        printNumberOfPurchasedLottoTickets(lottoTickets.size());
         lottoTickets.forEach(lotto -> System.out.println(lotto.toString()));
     }
 

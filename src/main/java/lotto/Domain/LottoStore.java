@@ -1,6 +1,7 @@
 package lotto.Domain;
 
 import static lotto.Validator.InputValidator.checkDivisibleBy1000;
+import static lotto.Validator.InputValidator.isEmpty;
 import static lotto.Validator.InputValidator.isNumber;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -12,7 +13,7 @@ import lotto.Lotto;
 public class LottoStore {
     public List<Lotto> generateLotto(String lottoQuantity) {
         int quantity = 0;
-        if (isNumber(lottoQuantity)) {
+        if (isEmpty(lottoQuantity) && isNumber(lottoQuantity)) {
             checkDivisibleBy1000(lottoQuantity);
             quantity = Integer.parseInt(lottoQuantity) / 1000;
         }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,9 +29,11 @@ public class LottoCalculator {
 
     public String calculateProfitRate(int money) {
         long totalPrize = calculateTotalPrize();
-        double profit = ((double) totalPrize - money) / money * 100;
+        double profit = ((double) totalPrize / money) * 100;
+        profit = Math.round(profit * 10) / 10.0;
 
-        return String.format("%.1f%%", profit);
+        DecimalFormat df = new DecimalFormat("#.0");
+        return df.format(profit);
     }
 
     public void makePrizeResult(List<Lotto> lottoTickets) {

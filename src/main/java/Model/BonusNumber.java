@@ -21,4 +21,8 @@ public class BonusNumber {
             }
         }
     }
+
+    public int get() {
+        return bonusNumber;
+    }
 }

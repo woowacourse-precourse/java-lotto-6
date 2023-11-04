@@ -9,5 +9,6 @@ public class Application {
 
         lottoController.buyMyLotto();
         lottoController.assignLotto();
+        lottoController.calculateGameResult();
     }
 }

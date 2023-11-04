@@ -34,7 +34,6 @@ public class LottoController {
 
     public void calculateGameResult() {
         calculateMatchingNumbers();
-        isContainBonusNumber();
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {
@@ -52,21 +51,21 @@ public class LottoController {
             Lotto myLotto = myLottoNumbers.get(i);
             int matchingCount = myLotto.howManySameNumbers(winningLottoNumbers);
             if (matchingCount < 3) continue;
-            int index = findIndexWithValue(matchingCount);
+
+            int index = findIndexWithValue(matchingCount, myLotto);
             int newValue = matchingCounts.get(index) + 1;
             matchingCounts.set(index, newValue);
         }
     }
 
-    public int findIndexWithValue(int number) {
+    public int findIndexWithValue(int number, Lotto lotto) {
         List<Integer> counts = List.of(3, 4, 5, 0, 6);
-        List<Integer> indexes = List.of(0, 1, 2, 0, 3);
+        List<Integer> indexes = List.of(0, 1, 2, 0, 4);
         int index = counts.indexOf(number);
+        if (number == 5 && lotto.isContains(winningBonusNumber)) {
+            index += 1;
+        }
         return indexes.get(index);
-    }
-
-    public boolean isContainBonusNumber() {
-        return true;
     }
 
     public List<Lotto> getLottoNumbers() {

@@ -69,6 +69,10 @@ public class Lotto {
         return (int) sameNumberCount;
     }
 
+    public boolean isContains(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.get());
+    }
+
     public int getSize() {
         return numbers.size();
     }

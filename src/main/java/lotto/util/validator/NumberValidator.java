@@ -21,9 +21,17 @@ public class NumberValidator {
         }
     }
 
+    public static void isLottoPattern(String inputLotto) {
+        if (!LOTTO_PATTERN.matcher(inputLotto).matches()) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHES_NUMBER_PATTERN.getErrorDescription());
+        }
+    }
+
     public static void startsWithZero(String input) {
         if (input.startsWith(WRONG_PREFIX) && input.length() > WRONG_CONDITION) {
             throw new IllegalArgumentException(ExceptionMessage.MULTIPLE_LETTERS_STARTS_WITH_ZERO.getErrorDescription());
         }
     }
+
+
 }

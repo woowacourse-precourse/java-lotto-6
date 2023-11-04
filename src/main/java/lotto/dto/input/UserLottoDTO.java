@@ -14,7 +14,7 @@ public class UserLottoDTO {
 
     private void validateLotto(String inputLotto) {
         NumberValidator.isNullOrEmpty(inputLotto);
-        NumberValidator.isNumberPattern(inputLotto);
+        NumberValidator.isLottoPattern(inputLotto);
         NumberValidator.startsWithZero(inputLotto);
     }
 

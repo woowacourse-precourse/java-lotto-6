@@ -9,7 +9,7 @@ public class WinningStatistics {
     private static final int SPECIAL_MATCH_COUNT = Constants.SPECIAL_MATCH_COUNT.getValue();
     private long totalReward = 0;
     private double rateOfReturn = 0.0;
-    private final Map<WinningPrize, Integer> winningResult = new HashMap<>() {{
+    private final Map<WinningPrize, Integer> winningResult = new LinkedHashMap<>() {{
         put(WinningPrize.FIRST_PRIZE, 0);
         put(WinningPrize.SECOND_PRIZE, 0);
         put(WinningPrize.THIRD_PRIZE, 0);

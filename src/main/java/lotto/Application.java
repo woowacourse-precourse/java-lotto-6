@@ -33,7 +33,7 @@ public class Application {
     }
 
     // 랜덤 번호 6개 뽑기
-    private static List<Integer> setRandomNumbers() {
+    public static List<Integer> setRandomNumbers() {
         List<Integer> box = new ArrayList<>();
         while (box.size() != 6) {
             int rd = Randoms.pickNumberInRange(1, 45);
@@ -46,7 +46,7 @@ public class Application {
         return box;
     }
 
-    private static int myParseInt(String s){
+    public static int myParseInt(String s){
         int res;
 
         try {
@@ -58,7 +58,7 @@ public class Application {
         return res;
     }
 
-    private static int setMoney(String s){
+    public static int setMoney(String s){
         int res;
 
         res = myParseInt(s);
@@ -67,12 +67,23 @@ public class Application {
             res = -1;
         }
         System.out.println();
-        
+
         return res;
     }
 
+    public static List<List<Integer>> setUser(int ticketNum){
+        List<List<Integer>> res = new ArrayList<>();
+        for (int index = 0; index < ticketNum; index++) {
+            res.add(setRandomNumbers());
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
         int money = -1;
+        List<List<Integer>> user;
         while(money == -1) money = setMoney(Console.readLine());
+        user = setUser(money/1000);
     }
 }

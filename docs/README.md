@@ -55,8 +55,8 @@
   - [ ] LottoTickets
       - [ ] Lotto 객체들 저장
       - [ ] Lotto 오름차순 정렬
-  - [ ] LottoFactory
-      - [ ] Lotto 객체 생성 로직
+  - [X] LottoFactory
+      - [X] Lotto 객체 생성 로직
   - [X] LottoNumberGenerator
       - [X] 번호 생성 로직
   - [ ] LottoMachine

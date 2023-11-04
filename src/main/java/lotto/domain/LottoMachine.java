@@ -32,4 +32,22 @@ public class LottoMachine {
         Collections.sort(randomNumbers);
         return new LottoTicket(randomNumbers);
     }
+
+    public LottoResult calculateResults(List<LottoTicket> tickets, List<Integer> winningNumbers, int bonusNumber) {
+        int purchaseAmount = tickets.size() * LOTTO_PRICE;
+        LottoResult result = new LottoResult(purchaseAmount);
+        for (LottoTicket ticket : tickets) {
+            int matchCount = countMatches(ticket, winningNumbers);
+            boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
+            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+            result.updateResult(rank);
+        }
+        return result;
+    }
+
+    private int countMatches(LottoTicket ticket, List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .filter(ticket.getNumbers()::contains)
+                .count();
+    }
 }

@@ -31,7 +31,7 @@ public enum Rank {
             return prize * rankCount;
         }
     },
-    DEFAULT(0, 0){
+    FAIL(0, 0){
         @Override
         public Integer calculatePrizeByRank(int rankCount) {
             return prize * rankCount;

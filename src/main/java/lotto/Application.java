@@ -70,7 +70,7 @@ public class Application {
                 rankList.add(Rank.FIFTH);
             }
             if (matchingNumberCount < 3) {
-                rankList.add(Rank.DEFAULT);
+                rankList.add(Rank.FAIL);
             }
         }
 
@@ -88,6 +88,7 @@ public class Application {
 
         View.printMessage(GAME_STATISTICS);
         View.printMessage(SEPARATE_LINE);
+
 
 
     }

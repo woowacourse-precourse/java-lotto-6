@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WinLotto extends Lotto {
 
-    private final Integer bonus;
+    final Integer bonus;
 
     public WinLotto(List<Integer> numbers, Integer bonus) {
         super(numbers);

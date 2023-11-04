@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,12 +13,42 @@ public class Lotto {
 
     // TODO: 인스턴스 변수 추가 불가 X.
     // TODO: 패키지 변경 가능 O.
+    // TODO: 접근제한자 변경 불가 X.
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
+
+    public Ranking matchWithWinLotto(WinLotto winLotto) {
+        Integer matchNumbers = matchWithNumbers(winLotto);
+        Integer matchBonus = matchWithBonus(winLotto);
+        return Ranking.compareRanking(matchNumbers, matchBonus);
+    }
+
+    private Integer matchWithBonus(WinLotto winLotto) {
+        if (numbers.contains(winLotto.bonus)) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private Integer matchWithNumbers(Lotto winLotto) {
+        Integer matchNumber = 0;
+
+        List<Integer> winNumbers = winLotto.numbers;
+
+        for (Integer winNumber : winNumbers) {
+            if(numbers.contains(winNumber)) {
+                matchNumber ++;
+            }
+        }
+
+        return matchNumber;
+    }
+
 
     // TODO: 접근제한자 private 변경 불가 X.
     private void validate(List<Integer> numbers) {

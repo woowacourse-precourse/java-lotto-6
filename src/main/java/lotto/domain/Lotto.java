@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private static final Integer LOTTO_LENGTH = 6;
+    private static final Integer RANGE_START_NUMBER = 1;
+    private static final Integer RANGE_END_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
+        validateNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
@@ -29,6 +32,13 @@ public class Lotto {
                    .size()
                 != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자로 이루어진 로또를 생성할 수 없습니다.");
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch( number -> !(RANGE_START_NUMBER <= number && number <= RANGE_END_NUMBER))) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자의 허용 범위는 1~45까지입니다.");
         }
     }
 

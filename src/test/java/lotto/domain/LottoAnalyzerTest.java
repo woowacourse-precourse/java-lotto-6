@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoAnalyzerTest {
@@ -33,5 +34,21 @@ class LottoAnalyzerTest {
         assertThatThrownBy(() -> lottoAnalyzer.addBonusNumber(bonus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.DUPLICATE_WINNING_NUMBER);
+    }
+
+    @DisplayName("로또번호와 당첨번호 간의 일치하는 숫자 갯수 반환 테스트")
+    @Test
+    void countMatchingNumbersTest() {
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
+        List<Integer> lotto = List.of(2, 3, 6, 7, 14, 15, 21);
+
+        //when
+        int match = (int) winningNumbers.stream().filter(lotto::contains)
+                .distinct()
+                .count();
+
+        //then
+        assertThat(match).isEqualTo(4);
     }
 }

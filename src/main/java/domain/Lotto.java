@@ -29,4 +29,21 @@ public class Lotto {
     public boolean containsNumber(Integer number) {
         return numbers.contains(number);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public int compareLotto(Lotto lotto) {
+        Set<Integer> orignLotto = new HashSet<>(numbers);
+        int count = 0;
+        for(Integer number : lotto.numbers) {
+            if(orignLotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

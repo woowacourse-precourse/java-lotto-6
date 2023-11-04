@@ -1,17 +1,15 @@
 package lotto.domain.lottery.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.constants.LottoConstraint;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static lotto.domain.constants.LottoConstraint.LOTTO_PICK_COUNT;
+import static lotto.domain.constants.LottoConstraint.*;
 
 public class RandomNumberGenerator {
-    private static final int LOTTO_NUMBER_LOWER_BOUND = 1;
-    private static final int LOTTO_NUMBER_UPPER_BOUND = 45;
-
     private RandomNumberGenerator() {
     }
 
@@ -26,6 +24,7 @@ public class RandomNumberGenerator {
 
     private static int generateLottoNumber() {
         return Randoms.pickNumberInRange(
-                LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND);
+                NUMBER_LOWER_BOUND.getValue(), NUMBER_UPPER_BOUND.getValue()
+        );
     }
 }

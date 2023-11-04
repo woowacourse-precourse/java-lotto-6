@@ -1,32 +1,31 @@
 package lotto.controller;
 
+import lotto.domain.lottery.LottoCalculator;
 import lotto.domain.lottery.Lottos;
-import lotto.domain.validator.Validator;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import static lotto.parser.LottoService.calculatePurchaseTicketCount;
 import static lotto.view.constants.PrintMessage.PRINT_REQUEST_PURCHASE_PAYMENT;
 
 public class LottoMachine {
     public Lottos purchase() {
         OutputView.printMessage(PRINT_REQUEST_PURCHASE_PAYMENT);
-        final int payment = readValidPayment();
-        final int purchaseTicketCount = calculatePurchaseTicketCount(payment);
+        final int ticketCount = readPayment();
 
-        return Lottos.create(purchaseTicketCount);
+        return Lottos.create(ticketCount);
     }
 
-    private static int readValidPayment() {
+    private static String readPayment() {
         try {
-            int payment = InputView.readPayment();
-            Validator.validateUnitPrice(payment);
-
-            return payment;
+            return InputView.readLine();
         } catch (LottoException exception) {
             OutputView.println(exception.getMessage());
-            return readValidPayment();
+            return readPayment();
         }
+    }
+
+    private static int cal(final int payment) {
+        return LottoCalculator.calculateLottoTicketCount(payment);
     }
 }

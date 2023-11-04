@@ -11,8 +11,8 @@ public class LottoNumber {
     private void generateLottoNumbers(){
         this.lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45, 6);
     }
-    public List<Integer> createWinningNumber(String input){
-        return Arrays.stream(input.split(","))
+    public void createWinningNumber(String input){
+        this.lottoNumbers =  Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
     }

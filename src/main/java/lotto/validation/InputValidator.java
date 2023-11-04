@@ -17,6 +17,15 @@ public class InputValidator {
         }
     }
 
+    public static void validateBonusNumber(final String bonusNumber) {
+        if (bonusNumber.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        if (!isNumeric(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private static boolean isNumeric(final String number) {
         try {
             Integer.valueOf(number);

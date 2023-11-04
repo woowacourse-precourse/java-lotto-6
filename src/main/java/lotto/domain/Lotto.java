@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.DuplicateNumbersException;
-import lotto.exception.InvalidSizeException;
+import lotto.exception.InvalidLottoSizeException;
 
 public class Lotto {
 
@@ -43,7 +43,7 @@ public class Lotto {
 
     private static void validateSize(final List<?> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new InvalidSizeException();
+            throw new InvalidLottoSizeException();
         }
     }
 

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
-import lotto.exception.InvalidRangeException;
+import lotto.exception.InvalidLottoRangeException;
 import lotto.exception.NonPositiveIntException;
 
 public class Number {
@@ -44,7 +44,7 @@ public class Number {
 
     private static void validateRange(final int number) {
         if (!isValidRange(number)) {
-            throw new InvalidRangeException();
+            throw new InvalidLottoRangeException();
         }
     }
 

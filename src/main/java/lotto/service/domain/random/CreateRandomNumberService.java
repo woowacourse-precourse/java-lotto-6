@@ -1,11 +1,12 @@
 package lotto.service.domain.random;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.Collections;
 import java.util.List;
-
-public class RandomPickUniqueNumbers{
+@DisplayName("랜덤을 입맛대로 가공하는 서비스 로직")
+public class CreateRandomNumberService {
     private static List<Integer> autoUniqueNumbers;
     public static List<Integer> getAutoUniqueNumbers(int pickNumber) {
         autoUniqueNumbers
@@ -20,6 +21,4 @@ public class RandomPickUniqueNumbers{
         }while (autoUniqueNumbers.contains(missNumber));
         return missNumber;
     }
-
-
 }

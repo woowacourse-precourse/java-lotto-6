@@ -21,4 +21,8 @@ public class LottoDto {
         List<Integer> playerNumbers = playerLotto.getNumbers();
         return new LottoDto(playerNumbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

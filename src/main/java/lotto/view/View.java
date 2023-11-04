@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE;
 
 import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
@@ -63,5 +64,9 @@ public class View {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE.getMessage());
         }
+    }
+
+    public void printPlayerNumbers(final List<LottoDto> playerLotteries) {
+        outputView.printPlayerNumbers(playerLotteries);
     }
 }

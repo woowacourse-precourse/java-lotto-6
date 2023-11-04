@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.dto.LottoDto;
+
 public class OutputView {
 
     public void printRequestInputPurchaseAmountMessage() {
@@ -24,4 +27,10 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printPlayerNumbers(List<LottoDto> playerLotteries) {
+        playerLotteries.stream().forEach(lottoDto -> {
+            System.out.println(lottoDto.getNumbers());
+        });
+        System.out.println();
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Player;
@@ -19,8 +20,15 @@ public class LottoGameController {
 
     public void run() {
         TicketQuantity ticketQuantity = initTicketQuantity();
+
         Player player = initPlayer(ticketQuantity);
+        showPlayerLottoNumber(player);
+
         LottoGame lottoGame = initLottoGame(player);
+    }
+
+    private void showPlayerLottoNumber(Player player) {
+        view.printPlayerNumbers(LottoDto.toDto(player.getLotteries()));
     }
 
     private TicketQuantity initTicketQuantity() {

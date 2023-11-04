@@ -12,7 +12,7 @@ public class WinningCondition {
         this.bonus = bonus;
     }
 
-    public Map<Lotto, WinningRank> findWinningResult(LottoTickets lottoTickets) {
-        return lottoTickets.findWinningResult(winningLotto, bonus);
+    public Map<Lotto, WinningRank> findWinningRankByLotto(LottoTickets lottoTickets) {
+        return lottoTickets.findWinningRankByLotto(winningLotto, bonus);
     }
 }

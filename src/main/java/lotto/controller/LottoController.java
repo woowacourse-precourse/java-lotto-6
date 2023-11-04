@@ -28,7 +28,7 @@ public class LottoController {
         output.showLottoTickets(lottoTickets);
 
         WinningCondition winningCondition = makeWinningCondition();
-        Map<Lotto, WinningRank> winningResult = winningCondition.findWinningResult(lottoTickets);
+        Map<Lotto, WinningRank> winningRankByLotto = winningCondition.findWinningRankByLotto(lottoTickets);
     }
 
     private WinningCondition makeWinningCondition() {

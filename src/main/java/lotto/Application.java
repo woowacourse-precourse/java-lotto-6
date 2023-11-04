@@ -98,6 +98,12 @@ public class Application {
         return earned;
     }
 
+    public static double getRevenueRate(int earned, int money) {
+        double rate = (double) earned / money * 100;
+        rate = Math.round(rate * 100.0) / 100.0;
+        return rate;
+    }
+
     public static void printLottoNumbers(ArrayList<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = Arrays.asList(lotto.getNumbers().toArray(new Integer[0]));

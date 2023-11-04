@@ -33,6 +33,7 @@ public class Input {
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_GUIDE);
         String bonusNumber = Console.readLine();
+        validateBlank(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 

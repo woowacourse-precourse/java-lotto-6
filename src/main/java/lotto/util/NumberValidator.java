@@ -1,5 +1,10 @@
 package lotto.util;
 
+import java.util.List;
+
+import static lotto.util.LottoInformation.MIN_NUMBER;
+import static lotto.util.LottoInformation.MAX_NUMBER;
+
 public class NumberValidator {
 
     public static void validatePurchaseAmount(String number) {
@@ -34,6 +39,10 @@ public class NumberValidator {
 
         if (!isNumeric(bonusNumber)) {
             throw new IllegalArgumentException(NumberErrorMessage.NOT_A_NUMBER.getMessage());
+        }
+
+        if (!isWithinRange(bonusNumber)) {
+            throw new IllegalArgumentException(NumberErrorMessage.OUT_OF_RANGE.getMessage());
         }
     }
 
@@ -72,5 +81,14 @@ public class NumberValidator {
     private static boolean isDivisibleByThousands(String number) {
         int numericValue = Integer.parseInt(number);
         return numericValue % 1000 == 0;
+    }
+
+    private static boolean isWithinRange(String bonusNumberAsString) {
+        int bonusNumber = Integer.parseInt(bonusNumberAsString);
+
+        if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
+            return false;
+        }
+        return true;
     }
 }

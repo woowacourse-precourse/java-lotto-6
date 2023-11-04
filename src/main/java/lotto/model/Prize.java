@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.model.Point.FIFTH_POINT;
 import static lotto.model.Point.FIRST_POINT;
 import static lotto.model.Point.FOURTH_POINT;
+import static lotto.model.Point.GOAL_MATCH_POINT;
 import static lotto.model.Point.SECOND_POINT;
 import static lotto.model.Point.THIRD_POINT;
 
@@ -24,9 +25,9 @@ public enum Prize {
         this.money = money;
     }
 
-    public static Prize findByPoint(final int point) {
+    public static Prize findByMatch(final int match) {
         for (Prize prize : values()) {
-            if (prize.point == point) {
+            if (prize.point == match * GOAL_MATCH_POINT.getPoint()) {
                 return prize;
             }
         }

@@ -11,9 +11,7 @@ public enum LottoConstant {
     SECOND_PRIZE_MATCH(5),
     THIRD_PRIZE_MATCH(5),
     FOURTH_PRIZE_MATCH(4),
-    FIFTH_PRIZE_MATCH(3),
-    BONUS_MATCH_POINT(50),
-    GOAL_MATCH_POINT(100);
+    FIFTH_PRIZE_MATCH(3);
 
     private final int value;
 

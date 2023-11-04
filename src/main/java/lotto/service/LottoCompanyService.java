@@ -2,7 +2,6 @@ package lotto.service;
 
 import static lotto.model.LottoConstant.FIFTH_PRIZE_MATCH;
 import static lotto.model.LottoConstant.FIRST_PRIZE_MATCH;
-import static lotto.model.LottoConstant.GOAL_MATCH_POINT;
 import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
 
 import lotto.model.Lotto;
@@ -29,9 +28,9 @@ public class LottoCompanyService {
 
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
-        for (int i = FIFTH_PRIZE_MATCH.getValue(); i <= FIRST_PRIZE_MATCH.getValue(); i++) {
-            List<Lotto> matchLottos = lottoCompany.calculateLottosWithSizeExceptBonus(lottos, i);
-            Prize prize = Prize.findByPoint(i * GOAL_MATCH_POINT.getValue());
+        for (int match = FIFTH_PRIZE_MATCH.getValue(); match <= FIRST_PRIZE_MATCH.getValue(); match++) {
+            List<Lotto> matchLottos = lottoCompany.calculateLottosWithSizeExceptBonus(lottos, match);
+            Prize prize = Prize.findByMatch(match);
             PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchLottos.size());
             results.add(prizeResult);
         }

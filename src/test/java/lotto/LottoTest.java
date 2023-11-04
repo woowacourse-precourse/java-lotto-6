@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
@@ -56,5 +57,19 @@ class LottoTest {
                 Arguments.of((Object) List.of(1, 46, 2, 3, 4, 5)),
                 Arguments.of((Object) List.of(1, 2, 3, 4, 5))
         );
+    }
+
+    @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"2, true", "7, false"})
+    void 특정_번호_포함_여부_확인(int number, boolean expectedResult) {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean result = lotto.hasNumber(number);
+
+        // then
+        assertEquals(expectedResult, result);
     }
 }

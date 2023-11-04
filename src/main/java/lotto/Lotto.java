@@ -42,7 +42,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> getLotto() {
         return Collections.unmodifiableList(numbers);
     }
 }

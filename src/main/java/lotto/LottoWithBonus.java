@@ -12,7 +12,7 @@ public class LottoWithBonus {
 
     private void validate(Lotto lotto, Bonus bonus) {
         // 중복된 숫자가 존재하는지 확인한다
-        if (lotto.getNumbers()
+        if (lotto.getLotto()
                 .stream()
                 .filter(lottoNumber -> lottoNumber == bonus.getBonusNumber())
                 .findFirst()

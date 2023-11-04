@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class AmountValidator implements Validator {
+public class AmountInputValidator implements InputValidator {
 
     private final static String INTEGER_PATTERN = "^\\d+$";
     private final static int DIVISOR_FOR_THOUSAND = 1000;

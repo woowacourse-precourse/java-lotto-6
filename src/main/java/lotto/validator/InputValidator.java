@@ -1,5 +1,5 @@
 package lotto.validator;
 
-public interface Validator {
+public interface InputValidator {
     void validate(String input);
 }

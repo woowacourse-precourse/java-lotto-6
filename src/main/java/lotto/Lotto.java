@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.LottoRule.MAXIMUM;
+import static lotto.LottoRule.MINIMUM;
+import static lotto.LottoRule.SIZE;
+
 import java.util.List;
 
 public class Lotto {
@@ -13,13 +17,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
     }
@@ -31,6 +35,7 @@ public class Lotto {
     }
 
     private boolean isNotNumberInRange(List<Integer> numbers) {
-        return !numbers.stream().allMatch(number -> number >= 1 && number <= 45);
+        return !numbers.stream().allMatch(number ->
+                number >= MINIMUM.getValue() && number <= MAXIMUM.getValue());
     }
 }

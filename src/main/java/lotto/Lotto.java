@@ -7,7 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = upperSort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +16,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private List<Integer> upperSort(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
+    }
+
+    @Override
+    public String toString() {
+        return "numbers =" + numbers;
+    }
+// TODO: 추가 기능 구현
 }

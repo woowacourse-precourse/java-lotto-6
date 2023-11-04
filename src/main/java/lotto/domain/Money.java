@@ -13,9 +13,12 @@ public class Money {
         return new Money(Long.parseLong(money));
     }
 
-
     public long showCountConvertTo(long currency) {
         return money/currency;
+    }
+
+    public long showMoney() {
+        return money;
     }
 
 

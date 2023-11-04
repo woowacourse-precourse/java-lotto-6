@@ -36,7 +36,9 @@ class LottoTest {
         lottoNumbers.add(4);
         lottoNumbers.add(5);
         lottoNumbers.add(6);
+
         Lotto lotto = new Lotto(lottoNumbers);
+        
         assertThat(List.of(1, 2, 3, 4, 5, 6)).isEqualTo(lotto.getLotto());
     }
 

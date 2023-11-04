@@ -7,10 +7,11 @@ public class WinLotto {
     private List<Integer> numbers;
     private int bonus_num;
 
-    public WinLotto(List<Integer> numbers, int bonus_num) {
-        this.numbers = numbers;
+    public void setBonus_num(int bonus_num) {
         this.bonus_num = bonus_num;
     }
 
-
+    public void setNumbers(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
 }

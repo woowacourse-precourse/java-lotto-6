@@ -15,12 +15,15 @@ public class Computer {
     }
 
     // 출력 담당 컴퓨터
-    public static void printLottos(List<Lotto> lottos) {
+    public static List<Lotto> sortLottos(List<Lotto> lottos) {
+        List<Lotto> sortedLottos = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
-            Collections.sort(sortedLotto);
-            System.out.println(sortedLotto);
+            List<Integer> sortedNumber = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumber);
+            Lotto sortedLotto = new Lotto(sortedNumber);
+            sortedLottos.add(sortedLotto);
         }
+        return sortedLottos;
     }
 
     // 당첨 체크

@@ -46,4 +46,8 @@ public class Controll {
         Lotto lotto = new Lotto(numbers);
         return lotto;
     }
+
+    Integer ticketsForMoney(Integer money) {
+        return money / 1000;
+    }
 }

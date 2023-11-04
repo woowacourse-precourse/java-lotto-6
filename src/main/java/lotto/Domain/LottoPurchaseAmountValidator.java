@@ -1,4 +1,4 @@
-package lotto.Validator;
+package lotto.Domain;
 
 public class LottoPurchaseAmountValidator {
 

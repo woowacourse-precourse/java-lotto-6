@@ -3,9 +3,8 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
-import lotto.Model.Lotto;
-import lotto.Validator.BonusNumberValidator;
-import lotto.Validator.LottoPurchaseAmountValidator;
+import lotto.Domain.BonusNumberValidator;
+import lotto.Domain.LottoPurchaseAmountValidator;
 
 public class InputView {
 

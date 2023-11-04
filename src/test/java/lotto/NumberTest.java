@@ -2,9 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.Validator.LottoPurchaseAmountValidator;
-import lotto.View.InputView;
-import org.assertj.core.api.ThrowableAssert;
+import lotto.Domain.LottoPurchaseAmountValidator;
 import org.junit.jupiter.api.Test;
 
 public class NumberTest {

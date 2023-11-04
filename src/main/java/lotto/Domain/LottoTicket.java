@@ -10,7 +10,7 @@ public class LottoTicket {
 
     private final List<Lotto> lottos;
 
-    public LottoTicket(int lottoCount) throws IllegalArgumentException{
+    public LottoTicket(int lottoCount) throws IllegalArgumentException {
         lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = NumbersGenerator.generateRandomNumbers();
@@ -24,7 +24,7 @@ public class LottoTicket {
 
     public List<String> getLottoString() {
         return lottos.stream()
-                .map(lotto -> lotto.toString())
-                .collect(Collectors.toList());
+            .map(lotto -> lotto.toString())
+            .collect(Collectors.toList());
     }
 }

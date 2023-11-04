@@ -12,7 +12,7 @@ public final class InputValidator {
     /**
      * 입력이 ,로 구분된 문자열인지 검증하는 정규 표현식
      */
-    private static final String COMMAS_SEPARATED_REGEX = "^(\\d+,)\\d+$";
+    private static final String COMMAS_SEPARATED_REGEX = "^(\\d+,)+\\d+$";
 
     /**
      * 반드시 static 메소드만 사용하도록 객체 생성 제한

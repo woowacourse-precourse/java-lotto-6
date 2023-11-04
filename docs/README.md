@@ -46,9 +46,9 @@
 - [x] LottoPrizeMoney 에 당첨내역 업데이트해 총 상금 업데이트하기 - LottoResultRepository
 - [x] 로또 결과 리스트를 받아 결과 업데이트 하기 - LottoResultsRepository
 - ### Service
-- [ ] Player 가 로또를 구매해 저장함 - LottoPurchaseService
-- [ ] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
-- [ ] 로또 당첨 결과를 리스트 형태로 반환 - LottoPurchaseService
+- [x] Player 가 로또를 구매해 저장함 - LottoPurchaseService
+- [x] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - LottoPurchaseService
+- [x] 로또 당첨 결과를 리스트 형태로 반환 - LottoPurchaseService
 - [ ] 로또 결과 리스트를 받아 당첨 결과를 업데이트 - LottoResultsService
 - [ ] 로또 당첨 결과를 LottoResultsDto 를 통해 반환 - LottoResultsService
 - ### DTO

@@ -11,7 +11,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String get_winning_number(){
+    public static String getWinningNumber() {
         System.out.println(WINNING_NUMBER_PROMPT);
         return Console.readLine();
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.*;
+
 public class PurchaseLotto {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
     private static final int PURCHASE_AMOUNT_MAX = 100000;
@@ -21,13 +23,13 @@ public class PurchaseLotto {
 
     private static void validateSpace(String amount) {
         if(amount.contains(" ")){
-            throw new IllegalArgumentException("[ERROR] 입력값 안에 공백이 포함돼 있습니다.");
+            throw new IllegalArgumentException(ERROR_CONTAIN_SPACE.toString());
         }
     }
 
     private static void validateNumber(String amount) {
         if (!isNumeric(amount)) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER.toString());
         }
     }
 
@@ -38,21 +40,21 @@ public class PurchaseLotto {
     private static void validateFirstNumber(String amount) {
         int firstNumber = amount.charAt(0) - '0';
         if(firstNumber == NUMBER_ZERO){
-            throw new IllegalArgumentException("[ERROR] 첫 숫자는 0이 될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_NOT_FIRST_ZERO.toString());
         }
     }
 
     private static void validateMultipleOf1000(String amount) {
         int amountNum = Integer.parseInt(amount);
         if(amountNum % PURCHASE_AMOUNT_UNIT != NUMBER_ZERO){
-            throw new IllegalArgumentException("[ERROR] 입력값이 1000원 단위가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NOT_UNIT.toString());
         }
     }
 
     private static void validateMaxPurchase(String amount) {
         int amountNum = Integer.parseInt(amount);
         if(amountNum > PURCHASE_AMOUNT_MAX){
-            throw new IllegalArgumentException("[ERROR] 로또 최대 구매 금액을 초과했습니다.");
+            throw new IllegalArgumentException(ERROR_OVER_MAX.toString());
         }
     }
 }

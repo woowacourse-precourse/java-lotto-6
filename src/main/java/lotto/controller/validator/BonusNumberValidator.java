@@ -1,6 +1,6 @@
-package lotto.Controller;
+package lotto.controller.validator;
 
-import lotto.MagicNumber;
+import lotto.GameConstants;
 import lotto.Message;
 
 public class BonusNumberValidator implements Validator {
@@ -19,10 +19,10 @@ public class BonusNumberValidator implements Validator {
     }
 
     public void isInRange(int bonusNumber) {
-        if (bonusNumber < MagicNumber.MIN_LOTTO_NUMBER) {
+        if (bonusNumber < GameConstants.MIN_LOTTO_NUMBER) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
-        if (bonusNumber > MagicNumber.MAX_LOTTO_NUMBER) {
+        if (bonusNumber > GameConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }

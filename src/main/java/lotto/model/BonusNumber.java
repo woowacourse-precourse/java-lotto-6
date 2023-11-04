@@ -3,16 +3,12 @@ package lotto.model;
 public class BonusNumber {
     private final int bonusNumber;
 
-    private BonusNumber(String bonusNumberStr) {
+    public BonusNumber(String bonusNumberStr) {
         validateNull(bonusNumberStr);
         validateEmpty(bonusNumberStr);
         int bonusNumber = validateNotNumber(bonusNumberStr);
         validateInvalidLottoNumberRange(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    public static BonusNumber create(String bonusNumber) {
-        return new BonusNumber(bonusNumber);
     }
 
     public int getBonusNumber() {

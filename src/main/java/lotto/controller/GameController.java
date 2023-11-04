@@ -25,6 +25,7 @@ public class GameController {
 
     private void winningLotto() {
         lottoStore.setWinningLotto(String.valueOf(inputView.printWinningNumber()));
+        lottoStore.setBonusNumber(inputView.printBonusNumber());
     }
 
     private void LottoPublish() {

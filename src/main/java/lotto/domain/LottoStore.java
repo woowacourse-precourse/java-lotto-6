@@ -27,6 +27,10 @@ public class LottoStore {
         return winningLotto;
     }
 
+    public void setBonusNumber(int bonus) {
+        this.bonusNumber = bonus;
+    }
+
     public List<Lotto> getLotto() {
         return lottos;
     }

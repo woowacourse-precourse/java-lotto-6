@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.Caculation;
 import lotto.model.LottoModel;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,10 +20,12 @@ public class LottoController {
         List<Integer> lottoNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber(lottoNumbers);
 
-        LottoModel model = new LottoModel(lottoTickets, lottoNumbers, bonusNumber, purchaseAmount);
-        model.calculatePrize();
+        LottoModel model = new LottoModel(lottoTickets, lottoNumbers, bonusNumber);
+        model.lottoPlaying();
+
         System.out.println();
-        model.displayStatistics();
+        Caculation caculation = new Caculation(model.getLucky(), purchaseAmount);
+        caculation.displayStatistics();
     }
 
     private static List<List<Integer>> generateLottoTickets(int ticketCount) {

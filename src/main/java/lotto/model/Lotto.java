@@ -15,10 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getMessage());
@@ -38,5 +34,9 @@ public class Lotto {
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE_NUMBER.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

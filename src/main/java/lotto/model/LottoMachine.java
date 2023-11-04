@@ -9,25 +9,25 @@ import camp.nextstep.edu.missionutils.Randoms;
 import static lotto.util.LottoInformation.*;
 
 public class LottoMachine {
-    private final int numberOfTickets;
+    private final int numberOfLottoTickets;
     private final Lottos lottos;
 
     public LottoMachine(int payment) {
-        this.numberOfTickets = calculateNumberOfTickets(payment);
-        this.lottos = createLottos(numberOfTickets);
+        this.numberOfLottoTickets = calculateNumberOfLottoTickets(payment);
+        this.lottos = createLottos(numberOfLottoTickets);
     }
 
-    private int calculateNumberOfTickets(int payment) {
+    private int calculateNumberOfLottoTickets(int payment) {
         return payment / LOTTO_PRICE;
     }
 
-    public int getNumberOfTickets() {
-        return numberOfTickets;
+    public int getNumberOfLottoTickets() {
+        return numberOfLottoTickets;
     }
 
-    private Lottos createLottos(int numberOfTickets) {
+    private Lottos createLottos(int numberOfLottoTickets) {
         List<Lotto> lottos = new ArrayList<>();
-        while (lottos.size() < numberOfTickets) {
+        while (lottos.size() < numberOfLottoTickets) {
             lottos.add(createLotto());
         }
         return new Lottos(lottos);

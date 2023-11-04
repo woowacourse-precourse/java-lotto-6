@@ -22,4 +22,20 @@ public class View {
     private void printLotto(Lotto lotto){
         System.out.println(lotto.getNumbersMessage());
     }
+
+    public List<Integer> inputWinningNumbers(){
+        List<String> inputNumbers=split(readLine());
+        inputNumbers.forEach(Validator.INSTANCE::numberValidate);
+
+        return toIntegerList(inputNumbers);
+    }
+
+    private List<String> split(String input){
+        return List.of(input.split(","));
+    }
+
+    private List<Integer> toIntegerList(List<String> inputNumbers){
+        return inputNumbers.stream().map(Integer::parseInt).toList();
+    }
+
 }

@@ -13,6 +13,9 @@ public class LottoWinnerSystem {
     public List<Integer> isValidWinNumber(String input) {
         try {
             List<Integer> numbers = convertIntegerList(input);
+            isValidLength(numbers);
+            isDistinct(numbers);
+            isValidRange(numbers);
 
             this.winNumbers = numbers;
             return numbers;

@@ -10,6 +10,7 @@ public class Validator {
     private static final String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자로만 이루어진 값을 입력해주세요.";
     private static final String WRONG_UNIT_ERROR_MESSAGE = "[ERROR] 입력 금액은 1,000원 단위여야 합니다.";
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 숫자가 포함되어 있습니다.";
 
     public static void validateNonNumeric(String input) {
         String pattern = "^[0-9]*$";
@@ -40,6 +41,12 @@ public class Validator {
     public static void validateRangeOfNumbers(List<Integer> numbers) {
         for (int num : numbers) {
             validateRange(num);
+        }
+    }
+
+    public static void validateDuplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 }

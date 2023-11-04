@@ -80,4 +80,10 @@ public class Output {
         format.setRoundingMode(RoundingMode.CEILING);
         return format.format((float) earned / spent);
     }
+
+    private static String formatPoint(float number) {
+        DecimalFormat format = new DecimalFormat("#.##");
+        format.setRoundingMode(RoundingMode.CEILING);
+        return format.format(number);
+    }
 }

@@ -85,6 +85,7 @@ ResultView : 결과 출력 클래스
 Lotto : 로또난수 생성하는 클래스
 - validate(List<Integer> numbers) : 6자가 아닌 경우 에러 반환
 - Lotto(List<Integer> numbers) : 로또번호 6자를 생성하는 생성자
+- getNumbers() : numbers 필드의 값을 반환
 - 3개 일치하는 경우 출력 메서드
 - 4개 일치하는 경우 출력 메서드
 - 5개 일치하는 경우 출력 메서드
@@ -94,7 +95,8 @@ Lotto : 로또난수 생성하는 클래스
   
 LottoGameController : 로또번호의 메인 로직을 담당하는 클래스
 - UserHandler클래스에서 반환된 개수로 로또 개수만큼 무작위 생성후 ResultView 클래스로 던져 결과출력
-- 생성된 로또 개수를 받아서 무작위로 로또 생성
+- buyLottos() : 사용자가 구매할 로또의 개수(lottoCount)만큼 로또를 생성하는 기능
+- lottoGenerate() : 1부터 45까지의 범위에서 무작위 숫자 리스트로 만들고, 이 리스트를 Lotto 클래스의 생성자에 전달하여 Lotto 객체를 생성
 - 무작위로 로또 생성한 뒤 getWinningNumberFromUser()의 당첨번호들이 3개가 있는지 검사하는 로직 (일치하면 개수를 ResultView로 반환)
 - 무작위로 로또 생성한 뒤 getWinningNumberFromUser()의 당첨번호들이 4개가 있는지 검사하는 로직 (일치하면 개수를 ResultView로 반환)
 - 무작위로 로또 생성한 뒤 getWinningNumberFromUser()의 당첨번호들이 5개가 있는지 검사하는 로직 (일치하면 개수를 ResultView로 반환)

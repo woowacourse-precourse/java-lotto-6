@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final String SPLIT_CHAR = ", ";
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +19,10 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString(){
+        return numbers.stream()
+                .sorted().map(Objects::toString)
+                .collect(Collectors.joining(SPLIT_CHAR));
+    }
 }

@@ -41,6 +41,6 @@ public class Budget {
     }
 
     public int getCountOfLottoLines(){
-        return budget % LOTTO_UNIT_PRICE;
+        return budget / LOTTO_UNIT_PRICE;
     }
 }

@@ -6,6 +6,7 @@ import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
@@ -17,5 +18,6 @@ public class LottoController {
     private void buyLotto(){
         Budget budget = Budget.from(InputView.getBudgetInput());
         Lottos userMultipleLottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
+        OutputView.printUserLottos(userMultipleLottos, budget);
     }
 }

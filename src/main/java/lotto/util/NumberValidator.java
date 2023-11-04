@@ -37,7 +37,7 @@ public class NumberValidator {
         }
     }
 
-    private static void isValidRange(int number) {
+    public static void isValidRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.toString());
         }
@@ -50,7 +50,7 @@ public class NumberValidator {
         }
     }
 
-    private static void checkDuplicates(int number) {
+    public static void checkDuplicates(int number) {
         if (!set.add(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE.toString());
         }

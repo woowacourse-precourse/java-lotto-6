@@ -17,28 +17,33 @@ public class LottoController {
     final private LottoStore store;
     final private LottoGameUI ui;
 
+    private Lottos lottos;
+    private AnswerGenerator answerGenerator;
+
     public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui){
         this.retryHandler = handler;
         this.store = store;
         this.ui = ui;
     }
 
-    //TODO 1. 로또 구매
-    public Lottos purchaseLotto() {
-        int money = retryHandler.getResult(() -> ui.getMoney());
-        Lottos lottos = store.purchase(money);
+    public void run(){
+        purchaseLotto();
+        createAnswer();
+    }
+
+    private void purchaseLotto() {
+        lottos = retryHandler.getResult(
+                () -> {
+                    int money = ui.getMoney();
+                    return store.purchase(money);
+                }); // vs inline code
         Writer.printModelsInList(lottos.getLottosDTO());
-
-        return lottos;
     }
 
-    public LottoAnswer getAnswer(){
-        AnswerGenerator answerGenerator = retryHandler.getResult(
+    private void createAnswer(){
+        answerGenerator = retryHandler.getResult(
                 ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
-        return (LottoAnswer) answerGenerator.generate();
     }
-
-    //TODO 4. 보너스 번호 입력
 
     //TODO 5. 결과 생성 및 처리
 }

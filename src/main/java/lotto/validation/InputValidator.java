@@ -6,6 +6,8 @@ import static lotto.constant.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
 
 public class InputValidator {
 
+    private static final Integer ZERO = 0;
+
     private InputValidator() {
     }
 
@@ -48,7 +50,7 @@ public class InputValidator {
     private static boolean isPositive(final String amount) {
         try {
             Integer numericAmount = Integer.valueOf(amount);
-            return (numericAmount > 0);
+            return (numericAmount > ZERO);
         } catch (NumberFormatException e) {
             return false;
         }

@@ -8,12 +8,13 @@ public class WinningLotto {
     public WinningLotto() {
         winningLotto = makeWinningLotto();
     }
-    private Lotto makeWinningLotto(){
-        return new Lotto(InputHandler.readWinnerNumber());
-    }
 
     public boolean contains(int number){
         return winningLotto.contains(number);
+    }
+
+    private Lotto makeWinningLotto(){
+        return new Lotto(InputHandler.readWinnerNumber());
     }
 
 

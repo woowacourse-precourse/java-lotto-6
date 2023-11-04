@@ -17,11 +17,15 @@ public class InputView {
 
     public int inputPurchaseMoney() {
         System.out.println(INPUT_PURCHASE_MONEY_MESSAGE);
+        return returnInputWithNumberValidation(PURCHASE_NUMBER_ERROR_MESSAGE);
+    }
+
+    private static int returnInputWithNumberValidation(String errorMessage) {
         try {
             String input = Console.readLine();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PURCHASE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
@@ -53,11 +57,6 @@ public class InputView {
 
     public int inputBonusNumber() {
         System.out.println(INPUT_WIN_LOTTO_BONUS_NUMBER_MESSAGE);
-        try{
-            String input = Console.readLine();
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BONUS_NUMBER_ERROR_MESSAGE);
-        }
+        return returnInputWithNumberValidation(BONUS_NUMBER_ERROR_MESSAGE);
     }
 }

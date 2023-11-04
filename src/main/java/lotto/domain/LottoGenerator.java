@@ -28,7 +28,7 @@ public class LottoGenerator {
         Integer bonusNumber = null;
         while (isRunning) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+
                 String userInput = Computer.getInput();
 
                 Validator.checkNumber(userInput);

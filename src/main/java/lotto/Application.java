@@ -27,6 +27,7 @@ public class Application {
         Lotto winningLotto = LottoGenerator.createWinningLotto();
 
         // 6. 보너스 번호 입력
+        Output.printBonusNumber();
         Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto);
 
         // 7. 당첨 내역 계산 로직

@@ -4,6 +4,7 @@ import static lotto.view.InputView.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.view.InputView.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
 import static lotto.view.InputView.InputErrorMessage.NOT_EXIST_INPUT_ERROR;
 import static lotto.view.InputView.InputErrorMessage.NOT_NUMBER;
+import static lotto.view.InputView.InputErrorMessage.NOT_SIX_NUMBERS;
 import static lotto.view.InputView.InputErrorMessage.NOT_THOUSAND_UNIT;
 import static lotto.view.InputView.InputErrorMessage.OVER_RANGE;
 import static lotto.view.InputView.InputErrorMessage.UNDER_THOUSAND_AMOUNT;
@@ -24,6 +25,7 @@ public class InputView {
     private static final int ZERO_AMOUNT = 0;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
+    private static final int NUMBERS_COUNT = 6;
 
     public int receivePurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
@@ -67,7 +69,21 @@ public class InputView {
         if (isInvalidNumbersFormat(winningNumber)) {
             throw new IllegalArgumentException(WINNING_NUMBERS_INVALID_FORMAT.getErrorMessage());
         }
+        if (hasNotSixNumbers(winningNumber)) {
+            throw new IllegalArgumentException(NOT_SIX_NUMBERS.getErrorMessage());
+        }
+        validateEachNumber(winningNumber);
+    }
 
+    private boolean hasNotSixNumbers(String winningNumber) {
+        return winningNumber.split(COMMA).length != NUMBERS_COUNT;
+    }
+
+    private boolean isInvalidNumbersFormat(String winningNumber) {
+        return !winningNumber.matches(NUMBERS_FORMAT_REGEX);
+    }
+
+    private void validateEachNumber(String winningNumber) {
         List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
         try {
             numbers.forEach(this::validateLottoNumber);
@@ -75,11 +91,6 @@ public class InputView {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-
-    private boolean isInvalidNumbersFormat(String winningNumber) {
-        return !winningNumber.matches(NUMBERS_FORMAT_REGEX);
-    }
-
     public int receiveBonusNumber(String winningNumber) {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
@@ -117,6 +128,7 @@ public class InputView {
         NOT_THOUSAND_UNIT("[ERROR] 금액은 1000원 단위로 입력해야 합니다."),
         UNDER_THOUSAND_AMOUNT("[ERROR] 최소 1000원의 금액을 입력해야 합니다."),
         WINNING_NUMBERS_INVALID_FORMAT("[ERROR] 입력 형식이 올바르지 않습니다."),
+        NOT_SIX_NUMBERS("[ERROR] 당첨 번호는 6개의 숫자로 이루어져야 합니다."),
         DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다."),
         NOT_NUMBER("[ERROR] 값은 숫자만 가능합니다."),
         OVER_RANGE("[ERROR] 숫자 범위는 1부터 45까지 가능합니다.");

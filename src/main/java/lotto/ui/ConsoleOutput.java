@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 
 public class ConsoleOutput implements Output {
     private static final String LOTTO_PRICE_REQUEST = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS_REQUEST = "당첨 번호를 입력해 주세요.";
     private static final String NUMBER_OF_LOTTO = "%d개를 구매했습니다.";
 
     public void printLottoPriceRequest() {
@@ -14,9 +15,19 @@ public class ConsoleOutput implements Output {
     @Override
     public void printPurchasedLotto(List<Lotto> lottos) {
         printNumberOfLotto(lottos.size());
-        for (Lotto lotto: lottos) {
+        for (Lotto lotto : lottos) {
             printLotto(lotto);
         }
+    }
+
+    @Override
+    public void printWinningNumbersRequest() {
+        System.out.println(WINNING_NUMBERS_REQUEST);
+    }
+
+    @Override
+    public void printError(String message) {
+        System.out.println("[ERROR] " + message);
     }
 
     private void printLotto(Lotto lotto) {

@@ -29,7 +29,7 @@ class LottoManagerTest {
         doNothing().when(output).printLottoPriceRequest();
         when(lottoGenerator.generateLottos(anyInt())).thenReturn(new ArrayList<>());
 
-        LottoManager lottoManager = new LottoManager(input, output, lottoGenerator);
+        LottoManager lottoManager = new LottoManager(input, output, lottoGenerator, new WinningNumbersManager());
 
         //when
         lottoManager.buyLotto();

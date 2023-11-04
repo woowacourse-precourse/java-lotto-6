@@ -10,15 +10,18 @@ public class LottoManager {
     private Input input;
     private Output output;
     private LottoGenerator lottoGenerator;
+    private WinningNumbersManager winningNumbersManager;
 
     public LottoManager() {
-        this(new ConsoleInput(), new ConsoleOutput(), new LottoGenerator());
+        this(new ConsoleInput(), new ConsoleOutput(), new LottoGenerator(), new WinningNumbersManager());
     }
 
-    public LottoManager(Input input, Output output, LottoGenerator lottoGenerator) {
+    public LottoManager(Input input, Output output, LottoGenerator lottoGenerator,
+                        WinningNumbersManager winningNumbersManager) {
         this.input = input;
         this.output = output;
         this.lottoGenerator = lottoGenerator;
+        this.winningNumbersManager = winningNumbersManager;
     }
 
     public List<Lotto> buyLotto() {
@@ -37,5 +40,25 @@ public class LottoManager {
     private int getPrice() {
         output.printLottoPriceRequest();
         return input.getPrice();
+    }
+
+    public void inputWinningNumbers() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        winningNumbersManager.inputWinningNumbers(winningNumbers);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        output.printWinningNumbersRequest();
+        List<Integer> winningNumbers = null;
+
+        while (winningNumbers == null) {
+            try {
+                winningNumbers = input.getWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
+
+        return winningNumbers;
     }
 }

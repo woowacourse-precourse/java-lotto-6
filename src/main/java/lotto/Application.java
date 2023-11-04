@@ -20,7 +20,7 @@ public class Application {
     enum ErrorType { 
         NUMBERANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
         DUP("[ERROR] 로또 번호는 중복할 수 없습니다."),
-        MONEY("[ERROR] 금액은 1000으로 나누어 떨어져야 합니다."),
+        MONEY("[ERROR] 금액은 1000으로 나누어 떨어지는 정수 입니다."),
         NOTINTEGER("[ERROR] 정수를 입력해 주세요.");
 
         final private String name; 
@@ -54,22 +54,23 @@ public class Application {
         } catch (Exception e) {
             return -1;
         }
-        
+
         return res;
     }
 
-    private static int setMoney(){
+    private static int setMoney(String s){
         int res;
-        res = myParseInt(null);
+        res = myParseInt(s);
         if (res == -1 || res%1000 != 0) {
+            System.err.println(res + ErrorType.MONEY.getName());
             res = -1;
-            System.err.println(ErrorType.MONEY.getName());
         }
         System.out.println();
         return res;
     }
 
     public static void main(String[] args) {
-        
+        int money = -1;
+        while(money == -1) money = setMoney(Console.readLine());
     }
 }

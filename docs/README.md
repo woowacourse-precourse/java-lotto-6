@@ -110,6 +110,10 @@
 
 - [x] 입력이 숫자인지 확인한다.
 
+### PurchaseAmountValidator
+
+- [x] 구입 금액이 1,000원 단위인지 확인한다.
+
 ## view
 
 ### InputView

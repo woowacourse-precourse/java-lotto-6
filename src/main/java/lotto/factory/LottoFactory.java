@@ -1,16 +1,18 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
+import lotto.domain.Lottos;
 import lotto.io.InputManager;
 import lotto.io.InputMapper;
 import lotto.io.InputView;
 import lotto.io.OutputView;
+import lotto.service.LottoService;
 import lotto.validator.InputValidator;
 
 public class LottoFactory {
 
     public LottoController lottoController() {
-        return new LottoController(inputManager(), outputView());
+        return new LottoController(inputManager(), outputView(), lottoService());
     }
 
     private InputManager inputManager() {
@@ -31,5 +33,14 @@ public class LottoFactory {
 
     private OutputView outputView() {
         return new OutputView();
+    }
+
+
+    private LottoService lottoService() {
+        return new LottoService(lottos());
+    }
+
+    private Lottos lottos() {
+        return new Lottos();
     }
 }

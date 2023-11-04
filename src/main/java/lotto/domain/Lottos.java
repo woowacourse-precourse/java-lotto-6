@@ -5,6 +5,8 @@ import static java.util.stream.Collectors.summingInt;
 
 import java.util.List;
 import java.util.Map;
+import lotto.util.StringUtils;
+import lotto.util.io.OutputUtils;
 
 public class Lottos {
 
@@ -18,7 +20,13 @@ public class Lottos {
         this.number = lottos.size();
     }
 
-
+    public void lottoRaffle(List<Integer> winningNumbers, int bonusNumber) {
+        calculateWinningStatistics(winningNumbers, bonusNumber);
+        OutputUtils.printResultAnnouncementMessage();
+        calculateWinningStatistics(winningNumbers, bonusNumber);
+        calculateTotalPrize();
+        printResult();
+    }
 
     private void calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
         winningStatics = lottos.stream()
@@ -26,5 +34,21 @@ public class Lottos {
                         lotto -> lotto.getRanking(winningNumbers, bonusNumber),
                         summingInt(lotto -> 1)
                 ));
+    }
+
+    private void calculateTotalPrize() {
+        totalPrize = winningStatics.entrySet().stream()
+                .map(r -> StringUtils.StringToInt(r.getKey().getPrize()) * r.getValue())
+                .reduce(0, Integer::sum);
+    }
+
+    private void printResult() {
+        winningStatics.entrySet().stream()
+                .forEach(r -> OutputUtils.printWinningDetail(
+                        r.getKey().getDescription(),
+                        r.getKey().getPrize(),
+                        r.getValue().intValue()
+                ));
+
     }
 }

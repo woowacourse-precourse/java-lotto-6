@@ -37,7 +37,7 @@ public class LottoGameController {
 
                 OutputView.printBonusNumberInputText();
 
-                return new WinningNumber(lottoNumbers);
+                return new WinningNumber(lottoNumbers, null);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

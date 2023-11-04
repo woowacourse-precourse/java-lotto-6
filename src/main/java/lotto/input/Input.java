@@ -49,4 +49,20 @@ public class Input {
 
         return winningNumber;
     }
+
+    public int bonusNumber() {
+        String input = inputGenerator.readLine();
+
+        // Integer 자료형 인지 검증
+        validate.validateInteger(input);
+
+        // 양의 값인지 검증
+        int bonusNumber = Integer.parseInt(input);
+        validate.validatePositiveNumber(bonusNumber);
+
+        // 1 ~ 45 사이의 숫자인지 검증
+        validate.validateNumberInRange(bonusNumber, 1, 45);
+
+        return bonusNumber;
+    }
 }

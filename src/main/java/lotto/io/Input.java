@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,12 +16,12 @@ public class Input {
     }
 
     private void validateUserInput(String userInput) {
-        validateOnlyNumbers(userInput);
+        validateOnlyNumber(userInput);
         validateAboveOrEqualThousand(userInput);
         validateDivisibleByThousand(userInput);
     }
 
-    private void validateOnlyNumbers(String userInput) {
+    private void validateOnlyNumber(String userInput) {
         for (int i = 0; i < userInput.length(); i++) {
             if(!Character.isDigit(userInput.charAt(i))){
                 throw new IllegalArgumentException("[ERROR] 1000원 이상 숫자만 입력해 주세요.\n");
@@ -41,32 +42,44 @@ public class Input {
     }
 
     public List<Integer> getWinningNumbers() {
-        List<Integer> userInput = Arrays.stream(Console.readLine().split(","))
+        List<String> userInput = Arrays.asList(Console.readLine().split(","));
+        validateWinningNumbers(userInput);
+
+        return userInput.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        validateWinningNumbers(userInput);
-        return userInput;
     }
 
-    private void validateWinningNumbers(List<Integer> userInput) {
+    private void validateWinningNumbers(List<String> userInput) {
+        validateOnlyNumbers(userInput);
         validateNumbersSizeSix(userInput);
         validateNumberRange(userInput);
         validateDuplicatedNumber(userInput);
     }
 
-    private void validateNumbersSizeSix(List<Integer> userInput) {
+    private void validateOnlyNumbers(List<String> userInput) {
+        for (String num : userInput) {
+            if(!(num.chars().allMatch(Character::isDigit))) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            }
+        }
+    }
+
+    private void validateNumbersSizeSix(List<String> userInput) {
         if (userInput.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6자리 숫자를 입력해 주세요.");
         }
     }
 
-    private void validateNumberRange(List<Integer> userInput) {
-        if (userInput.stream().anyMatch(num -> num < 1 || num > 45)) {
+    private void validateNumberRange(List<String> userInput) {
+        if (userInput.stream()
+                .mapToInt(Integer::parseInt)
+                .anyMatch(num -> num < 1 || num > 45)) {
             throw new IllegalArgumentException("[ERROR] 각 번호는 1 이상 45 이하로 입력해 주세요.");
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> userInput) {
+    private void validateDuplicatedNumber(List<String> userInput) {
         if (userInput.size() != userInput.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 6자리 숫자를 입력해 주세요.");
         }

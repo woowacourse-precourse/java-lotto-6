@@ -1,18 +1,16 @@
 package lotto;
 
 public class LottoCost {
-    String cost = "";
-
     public int getLottoCost() {
         Input input = new Input();
-        cost = input.buyLotto();
+        String cost = input.buyLotto();
+        boolean isValidated = isNumber(cost) && isMultipleOfThousand(cost);
 
-        if (!isNumber(cost)) {
-            getLottoCost();
-        }
-
-        if (!isMultipleOfThousand(cost)) {
-            getLottoCost();
+        while (!isValidated) {
+            cost = input.buyLotto();
+            if (isNumber(cost) && isMultipleOfThousand(cost)) {
+                isValidated = true;
+            }
         }
 
         return Integer.parseInt(cost);

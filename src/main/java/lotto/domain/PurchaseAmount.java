@@ -15,4 +15,10 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 정수입니다.");
         }
     }
+
+    public void validateAmountUnderThousand(int purchaseAmount) {
+        if(purchaseAmount < 1000) {
+            throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000 이상의 정수입니다.");
+        }
+    }
 }

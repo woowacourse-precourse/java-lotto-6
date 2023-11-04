@@ -18,6 +18,10 @@ public class LottoPublisher {
                 .toList();
     }
 
+    private int calculateLottoAmount(Long purchaseAmount) {
+        return (int) (purchaseAmount / 1000);
+    }
+
     private Lotto generateLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
                 .stream()
@@ -26,9 +30,4 @@ public class LottoPublisher {
 
         return new Lotto(randomNumbers);
     }
-
-    private int calculateLottoAmount(Long purchaseAmount) {
-        return (int) (purchaseAmount / 1000);
-    }
-
 }

@@ -11,7 +11,7 @@ public class PurchaseLottos {
     private final int count;
     private final List<Lotto> purchaseLottos = new ArrayList<>();
 
-    PurchaseLottos(LottoMachine lottoMachine, int purchaseAmount) {
+    public PurchaseLottos(LottoMachine lottoMachine, int purchaseAmount) {
         this.lottoMachine = lottoMachine;
         this.count = purchaseAmount / Constants.PURCHASE_AMOUNT_UNIT.getValue();
         setPurchaseLottos();

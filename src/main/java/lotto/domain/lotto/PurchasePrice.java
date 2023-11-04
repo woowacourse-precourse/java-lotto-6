@@ -44,13 +44,13 @@ public class PurchasePrice {
     }
 
     private void validateNotBelowOptimalPrice(int numberOfPrice) {
-        if (numberOfPrice < LOTTO_PRICE) {
+        if (numberOfPrice < LOTTO_PRICE.getValue()) {
             throw new PurchasePriceLowAmountException();
         }
     }
 
     private void validateDivisibleByProperAmount(int numberOfPrice) {
-        if (numberOfPrice % LOTTO_PRICE != 0) {
+        if (numberOfPrice % LOTTO_PRICE.getValue() != 0) {
             throw new PurchasePriceDivisibleException();
         }
     }

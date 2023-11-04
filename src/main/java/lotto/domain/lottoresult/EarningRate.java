@@ -10,7 +10,7 @@ public class EarningRate {
     }
 
     private double calcRate(double numOfTickets, double earnedMoney) {
-        return earnedMoney / (numOfTickets * LOTTO_PRICE) * 100;
+        return earnedMoney / (numOfTickets * LOTTO_PRICE.getValue()) * 100;
     }
 
     public double getRate() {

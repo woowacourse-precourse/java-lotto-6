@@ -10,7 +10,7 @@ import lotto.exception.domain.lotto.LottoSizeException;
 public class LottoValidator {
 
     public static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUM_SIZE) {
+        if (numbers.size() != LOTTO_NUM_SIZE.getValue()) {
             throw new LottoSizeException();
         }
     }
@@ -20,7 +20,7 @@ public class LottoValidator {
                 .distinct()
                 .count();
 
-        if (uniqueLottoNumSize != LOTTO_NUM_SIZE) {
+        if (uniqueLottoNumSize != LOTTO_NUM_SIZE.getValue()) {
             throw new LottoDuplicateNumException();
         }
     }
@@ -43,6 +43,6 @@ public class LottoValidator {
     }
 
     private static boolean isValidRange(Integer num) {
-        return num >= LOTTO_NUM_MIN && num <= LOTTO_NUM_MAX;
+        return num >= LOTTO_NUM_MIN.getValue() && num <= LOTTO_NUM_MAX.getValue();
     }
 }

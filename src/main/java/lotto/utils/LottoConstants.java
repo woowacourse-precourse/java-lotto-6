@@ -1,12 +1,18 @@
 package lotto.utils;
 
-public class LottoConstants {
-    public static final int LOTTO_PRICE = 1_000;
-    public static final int LOTTO_NUM_SIZE = 6;
-    public static final int LOTTO_NUM_MIN = 1;
-    public static final int LOTTO_NUM_MAX = 45;
+public enum LottoConstants {
+    LOTTO_PRICE(1_000),
+    LOTTO_NUM_SIZE(6),
+    LOTTO_NUM_MIN(1),
+    LOTTO_NUM_MAX(45);
 
-    private LottoConstants() {
+    private final int value;
 
+    LottoConstants(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

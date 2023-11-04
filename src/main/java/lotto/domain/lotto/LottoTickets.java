@@ -28,11 +28,12 @@ public class LottoTickets {
     }
 
     private int getNumberOfTickets(PurchasePrice price) {
-        return price.getPrice() / LOTTO_PRICE;
+        return price.getPrice() / LOTTO_PRICE.getValue();
     }
 
     private Lotto createNewLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MAX, LOTTO_NUM_MAX, LOTTO_NUM_SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MAX.getValue(), LOTTO_NUM_MAX.getValue(),
+                LOTTO_NUM_SIZE.getValue());
         return new Lotto(numbers);
     }
 

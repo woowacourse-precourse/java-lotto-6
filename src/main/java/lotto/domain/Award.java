@@ -16,4 +16,8 @@ public enum Award {
         this.reward = reward;
     }
 
+    public int getReward(){
+        return this.reward;
+    }
+
 }

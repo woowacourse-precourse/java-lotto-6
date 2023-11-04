@@ -178,7 +178,7 @@ public class Lotto {
   * 로또 당첨 내역에 관한 데이터 관리
     * 맞힌 번호의 개수에 따른 등수와 상금 처리
 <BR><BR>
-### 5. PerchaseLotto
+### 5. PurchaseLotto
 *: 사용자가 구매한 로또 번호를 자동으로 생성하고 저장해 주는 클래스*
 * [x] LottoMachine 클래스를 통해 구매 수량만큼의 로또 생성
 * [x] 생성한 로또 저장

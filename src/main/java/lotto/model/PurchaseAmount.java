@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class PurchaseAmount {
-    private static final String NON_NUMERIC_INPUT_MESSAGE = "[ERROR] 숫자를 입력해주세요";
+    private static final String NON_NUMERIC_INPUT_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
     private final int purchaseAmount;
 
     public PurchaseAmount(String inputMoney) {
@@ -16,5 +16,5 @@ public class PurchaseAmount {
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
-    
+
 }

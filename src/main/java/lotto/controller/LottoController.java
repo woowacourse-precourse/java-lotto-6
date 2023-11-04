@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.Amount;
 import lotto.model.Lotto;
 import lotto.model.WinningList;
@@ -21,7 +19,6 @@ public class LottoController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-
 
 
     public List<Lotto> buyLotto(Amount amount) {
@@ -51,10 +48,6 @@ public class LottoController {
 
     public ProfitRate calculateProfitRate(WinningList winningList, AmountRecord amountRecord) {
         return winningList.calculateProfitRate(amountRecord);
-    }
-
-    public String printProfitRate(ProfitRate profitRate) {
-        return profitRate.printProfitRate();
     }
 
     public void run() {

@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.model.PurchaseAmount;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -12,9 +13,13 @@ public class LottoIssuer {
     private final Integer lottoTicket;
     private final NumberGenerator<List<Integer>> generator;
 
-    public LottoIssuer(Integer lottoTicket, NumberGenerator<List<Integer>> generator) {
+    private LottoIssuer(Integer lottoTicket, NumberGenerator<List<Integer>> generator) {
         this.lottoTicket = lottoTicket;
         this.generator = generator;
+    }
+
+    public static LottoIssuer of(PurchaseAmount purchaseAmount) {
+        return new LottoIssuer(purchaseAmount.exchangeLottoTicket(), new LottoGenerator());
     }
 
     public List<Lotto> issueLotto() {

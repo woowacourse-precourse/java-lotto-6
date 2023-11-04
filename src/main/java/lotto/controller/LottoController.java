@@ -9,9 +9,7 @@ import lotto.model.PurchaseAmount;
 import lotto.model.Result;
 import lotto.model.WinningLotto;
 import lotto.service.Calculator;
-import lotto.service.LottoGenerator;
 import lotto.service.LottoIssuer;
-import lotto.service.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,9 +31,7 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount amount = readPurchaseAmount();
-        Integer lottoTicket = exchangeLottoTicket(amount);
-        NumberGenerator<List<Integer>> generator = new LottoGenerator();
-        LottoIssuer lottoIssuer = new LottoIssuer(lottoTicket, generator); //TODO: 아예 issuer에 purchaseAmount 넘겨줘보기
+        LottoIssuer lottoIssuer = LottoIssuer.of(amount);
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
         Lotto lotto = readWinningNumbers();
@@ -91,9 +87,5 @@ public class LottoController {
             outputView.printErrorMessage(e.getMessage());
             return readPurchaseAmount();
         }
-    }
-
-    private Integer exchangeLottoTicket(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.exchangeLottoTicket();
     }
 }

@@ -50,4 +50,8 @@ public class LottoAdmin {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean isContain(Integer number) {
+        return winningNumber.isContain(number);
+    }
 }

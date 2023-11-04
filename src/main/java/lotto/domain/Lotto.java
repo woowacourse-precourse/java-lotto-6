@@ -51,4 +51,13 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchLottoNumber(LottoAdmin lottoAdmin) {
+        return (int) numbers.stream()
+                .filter(lottoAdmin::isContain)
+                .count();
+    }
 }

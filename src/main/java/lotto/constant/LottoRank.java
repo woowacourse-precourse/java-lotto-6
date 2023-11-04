@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constant;
 
 public enum LottoRank {
     OUT_RANK(0),

@@ -8,6 +8,9 @@ import static lotto.util.Utils.ChangeStringToInt;
 
 public class Controller {
 
+    public void playGame(){
+        buyLotto();
+    }
     public void buyLotto(){
         inputMessage.buyMessage();
         String price = readLine();

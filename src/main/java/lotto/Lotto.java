@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");
         }
     }
 
@@ -32,7 +32,7 @@ public class Lotto {
                 .filter(number -> number < 1 || number > 45)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해주세요.");
+                    throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
                 });
     }
 }

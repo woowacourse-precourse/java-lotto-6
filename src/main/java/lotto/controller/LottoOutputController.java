@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.dto.LottoGameInfo;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.Lottos;
 import lotto.dto.LottoResult;
@@ -36,7 +35,7 @@ public class LottoOutputController {
 
 
     private Map<LottoRank, Long> printResult(Lottos lottos, LottoResult lottoResult) {
-        Map<LottoRank, Long> lottoRankCountMap = lottos.setLottoRankCountMap(lottoResult);
+        Map<LottoRank, Long> lottoRankCountMap = lottos.getLottoRankCountMap(lottoResult);
         printStartResultMessage();
         lottoResultOutputView.printLottoAllMatch(lottoRankCountMap);
 

@@ -15,7 +15,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    public Map<LottoRank, Long> setLottoRankCountMap(LottoResult lottoResult) {
+    public Map<LottoRank, Long> getLottoRankCountMap(LottoResult lottoResult) {
         EnumMap<LottoRank, Long> lottoRankCountMap = initializeLottoRankCountMap();
         setLottoRankCountMap(lottoResult, lottoRankCountMap);
 

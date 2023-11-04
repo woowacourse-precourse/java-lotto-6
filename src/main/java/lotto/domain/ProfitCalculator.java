@@ -13,15 +13,14 @@ public class ProfitCalculator {
     }
 
     private double calculateTotalInvestment(PurchasedLottos purchasedLottos) {
-        return (double)purchasedLottos.getLottos().size() * Values.LOTTO_PURCHASE_UNIT;
+        return (double) purchasedLottos.getLottos().size() * Values.LOTTO_PURCHASE_UNIT;
     }
 
     public String getProfitPercentage() {
         double profitRate = calculateProfitRate();
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
+        DecimalFormat decimalFormat = new DecimalFormat(Values.PROFIT_DECIMAL_FORMAT);
         String formattedPercentage = decimalFormat.format(profitRate);
-        formattedPercentage += "%";
-
+        formattedPercentage += Values.PROFIT_SYMBOL;
         return formattedPercentage;
     }
 
@@ -31,6 +30,4 @@ public class ProfitCalculator {
         profitRate = Math.round(profitRate * 100.0) / 100.0;
         return profitRate;
     }
-
-
 }

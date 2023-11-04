@@ -39,4 +39,8 @@ public class Budget {
             throw new IllegalArgumentException(String.format(MINIMUM_PRICE_EXCEPTION_MESSAGE, LOTTO_UNIT_PRICE));
         }
     }
+
+    public int getCountOfLottoLines(){
+        return budget % LOTTO_UNIT_PRICE;
+    }
 }

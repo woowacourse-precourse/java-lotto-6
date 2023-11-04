@@ -6,15 +6,32 @@ public class Winning {
     private final List<Integer> numbers;
     private final int bonus;
 
+    private static final int start = 1;
+    private static final int end = 45;
+
     public Winning(List<Integer> numbers, int bonus) {
-        checkWinningNumberLength(numbers);
+        checkNumberLength(numbers);
+        checkNumberRange(numbers);
         this.numbers = numbers;
         this.bonus = bonus;
     }
 
-    private void checkWinningNumberLength(List<Integer> numbers) {
+    private void checkNumberLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
+    private void checkNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            checkRange(number);
+        }
+    }
+
+    private void checkRange(int num) {
+        if ((num < start) || (num > end)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

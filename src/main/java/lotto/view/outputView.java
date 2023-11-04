@@ -29,7 +29,6 @@ public class outputView {
     public void outputWinningStatistics() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        // Enum을 통한 상수 값 호출 추가
 
     }
 

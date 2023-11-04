@@ -44,6 +44,7 @@ public class InputValidator {
         validateEmpty(inputBonusNumber);
         validateContainBlank(inputBonusNumber);
         int bonusNumber = convertStringToInteger(inputBonusNumber);
+        validateNumberRange(bonusNumber);
         return bonusNumber;
     }
 

@@ -51,3 +51,11 @@
 ### LottoResult
 
 - 당첨 통계 양식 나타내는 Enum 배열 
+
+### LottoStatistics
+
+- 당첨 통계 출력해주는 클래스
+
+### LottoRateOfReturn
+
+- 당첨 수익률을 출력해주는 클래스 

@@ -2,6 +2,7 @@ package lotto.model.dto;
 
 import static lotto.constants.ExceptionMessages.CATCH_ERROR;
 import static lotto.constants.ExceptionMessages.DUPLICATED_NUMBER;
+import static lotto.constants.ExceptionMessages.DUPLICATED_WITH_WINNING_NUM;
 import static lotto.constants.ExceptionMessages.INPUT_EMPTY;
 import static lotto.constants.ExceptionMessages.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessages.INVALID_RANGE;
@@ -18,8 +19,8 @@ public class WinningNumDTO {
     private static final int TOTAL_NUM = 6;
     private static final int MIN_NUM = 1;
     private static final int MAX_NUM = 45;
-    private List<Integer> winningNums;
-    private int bonus;
+    private final List<Integer> winningNums;
+    private final int bonus;
     private WinningNumDTO(List<Integer> winningNums, int bonus) {
         this.winningNums = winningNums;
         this.bonus = bonus;
@@ -28,6 +29,7 @@ public class WinningNumDTO {
     public static WinningNumDTO of(String winText, String bonusText) {
         List<Integer> winningNums = validateWinningNums(winText);
         int bonusNum = validateBonus(bonusText);
+        checkOverlappingWithWinningNums(winningNums, bonusNum);
         return new WinningNumDTO(winningNums, bonusNum);
     }
 
@@ -36,6 +38,12 @@ public class WinningNumDTO {
         int bonusNum = toInteger(bonus);
         checkRange(bonusNum);
         return bonusNum;
+    }
+
+    private static void checkOverlappingWithWinningNums(List<Integer> winningNums, int bonusNum) {
+        if(winningNums.contains(bonusNum)) {
+            throw new IllegalArgumentException(CATCH_ERROR + DUPLICATED_WITH_WINNING_NUM);
+        }
     }
 
     private static List<Integer> validateWinningNums(String winNums) {

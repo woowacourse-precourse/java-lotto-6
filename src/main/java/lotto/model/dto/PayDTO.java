@@ -17,6 +17,10 @@ public class PayDTO {
         return new PayDTO(payment);
     }
 
+    public int getNumberOfLotto(){
+        return payment / PRICE_OF_LOTTO;
+    }
+
     private static int validatePayment(String text) {
         checkNull(text);
         int payment = toInt(text);
@@ -39,7 +43,7 @@ public class PayDTO {
     }
 
     private static boolean isDividedByLottoPrice(int payment){
-        return payment % PRICE_OF_LOTTO == 0;
+        return payment % PRICE_OF_LOTTO != 0;
     }
 
     private static void checkNull(String text) {

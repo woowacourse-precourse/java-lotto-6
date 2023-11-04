@@ -44,6 +44,15 @@ public class LottoInputViewTest {
         assertThat(result).isEqualTo(input);
     }
 
+    @Test
+    void getBonusNumber_테스트() {
+        String input = "40";
+        provideInput(input);
+
+        String result = inputView.getBonusNumber();
+        assertThat(result).isEqualTo(input);
+    }
+
     void provideInput(String input) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);

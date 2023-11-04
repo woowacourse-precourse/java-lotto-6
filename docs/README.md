@@ -43,7 +43,7 @@
     - 정수 리스트를 인수로 받아 중복된 값이 있는지 검사한다.
 
 ## 보너스 번호 입력 기능
-- [ ] `LottoInputView::getBonusNumber`
+- [x] `LottoInputView::getBonusNumber`
   - 보너스 번호를 입력받는다.
 - [ ] `validateBonusNumber` 메서드
   - 입력받은 보너스 번호를 검증한다.
@@ -51,7 +51,7 @@
     - 1~45 값이 아니라면 `IllegalArgumentException` 발생
 
 ## 로또 발행 기능
-- [ ] `generateLottoNumbers` 메서드
+- [ ] `LottoNumberGenerator::generateLottoNumbers` 메서드
   - 랜덤한 로또 번호를 생성한다.
 
 ## 로또 발행 결과 출력 기능

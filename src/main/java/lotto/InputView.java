@@ -24,4 +24,12 @@ public class InputView {
 
         return input;
     }
+
+    public int validateZero(int input) {
+        if (input == 0) {
+            throw new IllegalArgumentException("[ERROR] 0은 입력받을 수 없습니다.");
+        }
+
+        return input;
+    }
 }

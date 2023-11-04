@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.text.DecimalFormat;
 
 public class Application {
     public static int lottoBought;
@@ -59,14 +60,14 @@ public class Application {
                 }
 
                 if (userNum.startsWith(",") || userNum.endsWith(",")) {
-                    throw new IllegalArgumentException("콤마(,)로 시작하거나 끝날 수 없습니다.");
+                    throw new IllegalArgumentException("당첨 번호는 콤마(,)로 시작하거나 끝날 수 없습니다.");
                 }
                 if (userNumListInt.length != 6) {
-                    throw new IllegalArgumentException("6개의 숫자를 입력해 주세요.");
+                    throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
                 }
                 for (int i = 0; i < userNumListInt.length; i++) {
                     if (userNumListInt[i] < 1 || userNumListInt[i] > 45) {
-                        throw new IllegalArgumentException("숫자는 1~45까지 입력할 수 있습니다.");
+                        throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
                     }
                 }
                 break;
@@ -97,6 +98,8 @@ public class Application {
         int winner2nd = 0;
         int winner1st = 0;
 
+        int prize = 0;
+
         for (int i = 0; i < lottoNum; i++) {
             int lottoCount = 0;
             int lottoBonusCount = 0;
@@ -112,18 +115,23 @@ public class Application {
 
             if (lottoCount == 3) {
                 winner5th++;
+                prize += 5000;
             }
             else if (lottoCount == 4) {
                 winner4th++;
+                prize += 50000;
             }
             else if (lottoCount == 5) {
                 winner3rd++;
+                prize += 1500000;
             }
             else if (lottoCount == 5 && lottoBonusCount == 1) {
                 winner2nd++;
+                prize += 30000000;
             }
             else if (lottoCount == 6) {
                 winner1st++;
+                prize += 2000000000;
             }
         }
 
@@ -138,7 +146,14 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - " + winner1st + "개");
 
         // TODO: 수익률 계산
+        double rateOfReturn = ((double) prize / lottoBought) * 100.0;
+        System.out.println(prize);
+        System.out.println(rateOfReturn);
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0%");
+        String formattedRateOfReturn = decimalFormat.format(rateOfReturn / 100.0);
 
         // TODO: 수익률 출력
+        System.out.println("총 수익률은 " + formattedRateOfReturn + "입니다.");
     }
 }

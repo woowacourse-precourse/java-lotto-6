@@ -9,14 +9,22 @@ public class User {
     private static final int ZERO = 0;
     private static final int LOTTOVALUE = 1000;
 
+    private Integer money;
+
     private List<Lotto> lottos;
 
-    public Integer inputMoney(){
+    public void inputMoney(){
         String moneyStr = Console.readLine();
         validateFormat(moneyStr);
         Integer money = Integer.parseInt(moneyStr);
         validateValue(money);
-        return money;
+        this.money = money;
+        LottoGenerater lottoGenerater = new LottoGenerater();
+        lottos = lottoGenerater.generateLottos(money);
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
     }
 
     private void validateValue(Integer money){

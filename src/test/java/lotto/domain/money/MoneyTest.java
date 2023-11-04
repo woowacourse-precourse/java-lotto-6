@@ -68,8 +68,8 @@ final class MoneyTest {
         final Money price2 = Money.from(amount);
 
         // when
-        money1.spend(price1);
-        money2.spend(price2);
+        money1.decreased(price1);
+        money2.decreased(price2);
 
         // then
         assertThat(money1)
@@ -88,7 +88,7 @@ final class MoneyTest {
         // when
         // then
         assertThatThrownBy(() ->
-                money.spend(price))
+                money.decreased(price))
                 .isInstanceOf(InvalidMoneyAmountException.class)
                 .hasMessage(InvalidMoneyAmountException.INVALID_MONEY_AMOUNT_EXCEPTION_MESSAGE);
     }

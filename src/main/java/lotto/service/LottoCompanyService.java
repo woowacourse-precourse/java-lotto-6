@@ -31,25 +31,39 @@ public class LottoCompanyService {
 
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
-        for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
-            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
-            Prize prize = Prize.findByMatch(match);
-            PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchLottos.size());
-            results.add(prizeResult);
-        }
-
-        PrizeResult secondPrizeResult = evaluateLottosWithBonus();
-        results.add(secondPrizeResult);
+        results.addAll(evaluateLottosWithBonus());
+        results.addAll(evaluateLottosExceptBonus());
 
         Collections.sort(results);
+
         return results;
     }
 
-    private PrizeResult evaluateLottosWithBonus() {
-        Prize secondPrize = Prize.SECOND;
-        int matchSize = secondPrize.getMatch();
-        List<Lotto> secondPrizeLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, matchSize);
+    private List<PrizeResult> evaluateLottosWithBonus() {
+        List<PrizeResult> results = new ArrayList<>();
+        for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
+            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, match);
+            storeAllPrizeResults(match, matchLottos.size(), results);
+        }
+        return results;
+    }
 
-        return PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());
+    private List<PrizeResult> evaluateLottosExceptBonus() {
+        List<PrizeResult> results = new ArrayList<>();
+        for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
+            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
+            storeAllPrizeResults(match, matchLottos.size(), results);
+        }
+        return results;
+    }
+
+    private static void storeAllPrizeResults(final int match, final int matchSize, final List<PrizeResult> results) {
+        Prize.findByMatchExceptBonus(match)
+                .ifPresent(prize -> savePrizeResult(prize, matchSize, results));
+    }
+
+    private static void savePrizeResult(final Prize prize, final int matchSize, final List<PrizeResult> results) {
+        PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchSize);
+        results.add(prizeResult);
     }
 }

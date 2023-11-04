@@ -43,7 +43,7 @@ public class Lotto {
     }
 
     private boolean hasCorrectRange(List<Integer> numbers) {
-        return numbers.stream().noneMatch(number -> number < 0 || number > 45);
+        return numbers.stream().noneMatch(number -> number < 1 || number > 45);
     }
 
     public void printNumbers() {

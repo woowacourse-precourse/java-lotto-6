@@ -12,9 +12,9 @@ public class RandomNumberGenerator implements NumberGenerator {
     @Override
     public List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(
-                MIN_RANDOM_NUMBER.getValue(),
-                MAX_RANDOM_NUMBER.getValue(),
-                LOTTO_NUMBERS.getValue()
-        );
+                        MIN_RANDOM_NUMBER.getValue(),
+                        MAX_RANDOM_NUMBER.getValue(),
+                        LOTTO_NUMBERS.getValue())
+                .stream().sorted().toList();
     }
 }

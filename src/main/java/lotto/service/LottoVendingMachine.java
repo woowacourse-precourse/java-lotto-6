@@ -9,6 +9,17 @@ import lotto.domain.wrapper.PurchaseAmout;
 import lotto.utils.LottoConstant;
 
 public class LottoVendingMachine {
+    private static final int START_COUNT = 0;
+    public Lottos buyLottos(PurchaseAmout purchaseAmout) {
+        int lottoCount = purchaseAmout.getLottoCount();
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = START_COUNT; count < lottoCount; count++) {
+            Lotto lotto = createLotto();
+            lottos.add(lotto);
+        }
+        return new Lottos(lottos);
+    }
+
     private Lotto createLotto() {
         List<Integer> randomNumbers = new ArrayList<>();
         while (randomNumbers.size() != LottoConstant.LOTTO_NUMBERS_LENGTH.getNumber()) {

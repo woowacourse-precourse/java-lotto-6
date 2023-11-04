@@ -6,7 +6,7 @@ import lotto.util.Converter;
 import java.util.List;
 
 public class InputView extends Message{
-    public int buyPriceInput() {
+    public int purchaseAmountInput() {
         System.out.println(INPUT_PRICE_MESSAGE);
         String input = Console.readLine();
         // validate code required

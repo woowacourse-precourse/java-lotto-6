@@ -1,5 +1,7 @@
 package controller;
 
+import domain.Lotto;
+
 import service.LottoService;
 
 import view.GameView;
@@ -22,8 +24,8 @@ public class GameController {
         gameView.printLottoList(lottoService.addLotto(count));
     }
 
-    public void winningLottoAdd(List<Integer> numbers) {
-        // TODO: 인자로 받은 번호 당첨 번호 생성
+    public void winningLottoAdd(Lotto winningLotto) {
+        lottoService.addWinningLotto(winningLotto);
     }
 
     public void BonusLottoAdd(int number) {

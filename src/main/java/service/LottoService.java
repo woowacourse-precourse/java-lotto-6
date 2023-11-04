@@ -2,6 +2,7 @@ package service;
 
 import static util.LottoUtil.*;
 
+import domain.Lotto;
 import VO.UserLottoVO;
 import domain.WinningLotto;
 
@@ -23,5 +24,9 @@ public class LottoService {
     public String addLotto(int count) {
         userLottoVO.setLottoList(makeLottoList(count));
         return userLottoVO.toString();
+    }
+
+    public void addWinningLotto(Lotto numbers) {
+        winningLotto.setNumbers(numbers);
     }
 }

@@ -11,12 +11,15 @@
 - [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
   - [x] 로또 번호는 오름차순으로 정렬한다.
 - [x] 당첨번호를 입력받는다. - InputView | inputWinningNumber()
-  - [] 번호는 쉼표(,)를 기준으로 구분한다.
-  - [] (예외)쉼표가 5개가 아닐경우
-  - [] (예외)숫자 6개를 입력받지 못했을 경우 - Lotto | validate()
-  - [] (예외)숫자가 아닐경우
-  - [] (예외)1~45의 범위를 벗어날 경우
+  - [x] 번호는 쉼표(,)를 기준으로 구분하는가? - InpuValidator | checkCommaDelimiter() // 테스트 코드 (o)
+  - [x] (예외)쉼표가 5개가 아닐경우 - InputValidator | checkSixDigits()
+  - [x] (예외)숫자 6개를 입력받지 못했을 경우 - InputValidator | checkSixDigits()
+  - [x] (예외)숫자가 아닐경우 - InputValidator | isNumber() // // 테스트 코드 (o)
+  - [x] (예외)1~45의 범위를 벗어날 경우 - InputValidator | isValidRangeNumber
+  - [] (예외) 각 자리수는 서로 다른가? - InputValidator | 
 - [x] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
+  - [] (예외) 숫자가 아닐경우
+  - [] (예외)1~45의 범위를 벗어날 경우
 - [] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [] 당첨 내역을 출력한다. - OutputView | printLottoWinningResult()
 - [] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()

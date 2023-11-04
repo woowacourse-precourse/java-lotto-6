@@ -48,5 +48,10 @@ public class Constant {
 
     public static final String COUNT = "개";
 
+    public static final int FIRST_STRIKE_COUNT = 6;
+    public static final int SECOND_THIRD_STRIKE_COUNT = 5;
+    public static final int FOURTH_STRIKE_COUNT = 4;
+    public static final int FIFTH_STRIKE_COUNT = 3;
+
 
 }

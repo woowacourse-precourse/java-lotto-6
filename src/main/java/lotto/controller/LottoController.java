@@ -1,16 +1,23 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Mapper.LottoTicketsDtoMapper;
+import lotto.dto.LottoTicketsDto;
 import lotto.model.LottoTickets;
 import lotto.model.Money;
 import lotto.model.WinningLotto;
 import lotto.util.RandomLottoGenerator;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class LottoController {
     public void start() {
         Money money = getMoney();
+
         LottoTickets lottoTickets = getLottoTickets(money);
+        LottoTicketsDto lottoTicketsDto = LottoTicketsDtoMapper.from(lottoTickets);
+        Output.printLottoTickets(lottoTicketsDto);
+
         WinningLotto winningLotto = getWinningLotto();
     }
 

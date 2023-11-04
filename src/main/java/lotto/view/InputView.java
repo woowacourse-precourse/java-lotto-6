@@ -10,6 +10,10 @@ public class InputView {
     private static final String INPUT_WIN_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_WIN_LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String PURCHASE_NUMBER_ERROR_MESSAGE = "구매 금액에 숫자를 입력해야 합니다.";
+    private static final String LOTTO_NUMBER_ERROR_MESSAGE = "로또 번호에 숫자를 입력해야 합니다.";
+    private static final String BONUS_NUMBER_ERROR_MESSAGE = "보너스 번호에 숫자를 입력해야 합니다.";
+    private static final String DELIMITER_WRONG_MESSAGE = "로또 번호 구분자로 콤마(,) 를 사용해 주세요";
+    private static final String DELIMITER_FOR_LOTTO_NUMBER = ",";
 
     public int inputPurchaseMoney() {
         System.out.println(INPUT_PURCHASE_MONEY_MESSAGE);
@@ -25,13 +29,26 @@ public class InputView {
         System.out.println(INPUT_WIN_LOTTO_NUMBER_MESSAGE);
         try {
             String input = Console.readLine();
-            String[] split = input.split(",");
+            checkLottoNumberDelimiter(input);
+            String[] split = input.split(DELIMITER_FOR_LOTTO_NUMBER);
             return Arrays.stream(split)
+                    .map(this::removeSpace)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PURCHASE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE);
         }
+    }
+
+    private String removeSpace(String number) {
+        return number.replaceAll(" ", "");
+    }
+
+    private void checkLottoNumberDelimiter(String input) {
+        if (input.contains(DELIMITER_FOR_LOTTO_NUMBER)) {
+            return;
+        }
+        throw new IllegalArgumentException(DELIMITER_WRONG_MESSAGE);
     }
 
     public int inputBonusNumber() {
@@ -40,7 +57,7 @@ public class InputView {
             String input = Console.readLine();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(BONUS_NUMBER_ERROR_MESSAGE);
         }
     }
 }

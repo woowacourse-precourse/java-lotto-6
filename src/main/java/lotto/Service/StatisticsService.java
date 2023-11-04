@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,10 @@ public class StatisticsService {
         if (formattedPercent.endsWith("0")) {
             formattedPercent = formattedPercent.substring(0, formattedPercent.length() - 1);
         }
+
+        //천 단위로 콤마 찍기
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        formattedPercent = numberFormat.format(Double.parseDouble(formattedPercent));
 
         return formattedPercent;
     }

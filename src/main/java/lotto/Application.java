@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.domain.LottoPurchase;
+import lotto.manager.LottoManager;
 
 public class Application {
     public static void main(String[] args) {
-        LottoPurchase lottoPurchase = new LottoPurchase();
-        lottoPurchase.lottoPurchaseManager();
+        LottoManager lottoManager = new LottoManager();
+        lottoManager.excute();
     }
 }

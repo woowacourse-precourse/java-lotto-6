@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +34,9 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500a", "천 원", "1장"})
     void createPurchaseAmountByNaN(String amount) {
-        assertThatThrownBy(() -> LottoPurchase.setLottoPurchase(amount))
+        LottoPurchase lottoPurchase = new LottoPurchase();
+
+        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 숫자여야 합니다.");
     }
@@ -42,7 +45,9 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500", "1900", "1000.4", "-1000.4"})
     void createPurchaseAmountIndivisibleBy1000(String amount) {
-        assertThatThrownBy(() -> LottoPurchase.setLottoPurchase(amount))
+        LottoPurchase lottoPurchase = new LottoPurchase();
+
+        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
@@ -51,7 +56,9 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1000", "-4000"})
     void createPurchaseAmountNonPositiveInteger(String amount) {
-        assertThatThrownBy(() -> LottoPurchase.setLottoPurchase(amount))
+        LottoPurchase lottoPurchase = new LottoPurchase();
+
+        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최소 구입 금액은 1,000원입니다.");
     }

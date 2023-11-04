@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -42,5 +43,14 @@ class LottoTest {
         int expectedSameNumbers = 5;
 
         assertThat(lotto.countSameNumbers(winningLotto)).isEqualTo(expectedSameNumbers);
+    }
+
+    @Test
+    @DisplayName("보너스 번호 일치 기능 테스트")
+    void countSameBonusNumberTest() {
+        int bonusNumber = 30;
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,30));
+
+        assertTrue(lotto.countSameBonusNumber(bonusNumber));
     }
 }

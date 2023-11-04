@@ -58,13 +58,11 @@
 * printMyLotto
 
 당첨 번호 설정: assignLotto
-* getLotto
-* getBonusNumber
+* assignLottoNumbers
+* assignBonusNumber
 
-로또 결과 계산: calculateGameResult
+게임 결과 출력: showGameResult
 * calculateMatchingNumbers
 * calculateRateOfReturn
-
-로또 결과 출력: printGameResult
 * printWinningDetails
 * printRateOfReturn

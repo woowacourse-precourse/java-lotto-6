@@ -2,7 +2,6 @@ package view;
 
 import Model.Lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class OutputView {

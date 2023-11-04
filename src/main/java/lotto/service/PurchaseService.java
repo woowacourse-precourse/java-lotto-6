@@ -20,11 +20,12 @@ public class PurchaseService {
 
 
 
-    public void getInputPurchase(){
+    public LottoPurchase getInputPurchase(){
         String purchase = inputView.getInputWithMessage(InputMessage.INPUT_PURCHASE.getMessage());
         lottoPurchase.LottoPurchaseCreat(validationUtil.validatePurchase(purchase));
         printPurchaseLotto(lottoPurchase.getAmount());
         generateLotto(lottoPurchase.getAmount());
+        return lottoPurchase;
     }
 
     public void printPurchaseLotto(int amount){

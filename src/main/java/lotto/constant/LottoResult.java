@@ -7,17 +7,17 @@ public enum LottoResult {
     , FIVE_COUNT_WITH_BONUS(50, 30_000_000)
     , SIX_COUNT(6, 2_000_000_000);
 
-    private final int prizeNumber;
+    private final int prizeCount;
 
     private final int prizeMoney;
 
     LottoResult(int number, int price) {
-        this.prizeNumber = number;
+        this.prizeCount = number;
         this.prizeMoney = price;
     }
 
-    public int getPrizeNumber() {
-        return prizeNumber;
+    public int getPrizeCount() {
+        return prizeCount;
     }
 
     public int getPrizeMoney() {

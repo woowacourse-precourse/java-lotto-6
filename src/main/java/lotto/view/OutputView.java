@@ -5,6 +5,7 @@ import static lotto.constant.message.OutputMessage.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
+import lotto.constant.message.OutputMessage;
 
 public class OutputView {
     public void printPurchaseAmount(int amount) {
@@ -16,11 +17,16 @@ public class OutputView {
         System.out.println(formattedLotto);
     }
 
-    public static String listToString(List<Integer> list) {
+    public String listToString(List<Integer> list) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int number : list) {
             joiner.add(Integer.toString(number));
         }
         return joiner.toString();
     }
+
+    public void outputWinningResult(){
+        System.out.println(OutputMessage.RESULT_START);
+    }
+
 }

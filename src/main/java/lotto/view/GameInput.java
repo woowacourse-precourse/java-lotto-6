@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-public class Input {
+public class GameInput {
     public String enterPurchaseAmout() {
         return readLine();
     }

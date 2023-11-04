@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.code.Rank;
+import lotto.domain.Rank;
 
-public class Output {
+public class GameOutput {
     public void enterPurchaseAmoutMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }

@@ -1,7 +1,10 @@
 package lotto;
 
+import util.RandomNumbers;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        System.out.println(RandomNumbers.makeLottoNumbers());
     }
 }

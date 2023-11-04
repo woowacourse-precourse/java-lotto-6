@@ -3,6 +3,8 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class CustomerTest {
@@ -46,5 +48,17 @@ class CustomerTest {
         Integer result = customer.calculateLottoNum();
 
         assertThat(result).isEqualTo(10);
+    }
+
+    @DisplayName("구매 가능한 갯수만큼 실제로 로또를 구매한다.")
+    @Test
+    void buyLottoByCashInHand() {
+        Customer customer = new Customer("10000");
+
+        customer.buyLottos();
+
+        List<Lotto> lottos = customer.getLottos();
+
+        assertThat(lottos.size()).isEqualTo(10);
     }
 }

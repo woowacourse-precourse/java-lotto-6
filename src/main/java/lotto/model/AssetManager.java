@@ -5,7 +5,6 @@ import lotto.ErrorMessages;
 public class AssetManager {
     private static final int LOTTO_PRICE = 1000;
     private static final int ZERO = 0;
-
     private final Integer budget;
     private int lottoTickets;
 

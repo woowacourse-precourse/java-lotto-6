@@ -8,7 +8,6 @@ import lotto.model.LottoCount;
 import lotto.model.Profit;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningDetails;
-import lotto.model.WinningNumber;
 import lotto.utils.GeneratedLottoNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,7 +16,7 @@ public class GameController {
 
     private static List<Lotto> lottos;
     private static PurchaseMoney purchaseMoney;
-    private static WinningNumber winningNumbers;
+    private static Lotto winningNumbers;
     private static BonusNumber bonusNumber;
     private static WinningDetails winningDetails;
     private static Profit profit;
@@ -42,13 +41,8 @@ public class GameController {
         System.out.println();
     }
 
-    private static void calculateProfit(){
-        profit = new Profit(winningDetails.getRank());
-        OutputView.earningRate(profit.getTotalEarningRate(purchaseMoney.getValue()));
-    }
-
     private static void setWinningNumbers(){
-        winningNumbers = new WinningNumber(inputWinningNumber()); // 당첨 번호 입력
+        winningNumbers = new Lotto(inputWinningNumber()); // 당첨 번호 입력
         System.out.println();
     }
 
@@ -58,27 +52,17 @@ public class GameController {
     }
 
     private static void checkWinningDetails(){
-        winningDetails = new WinningDetails(lottos,winningNumbers.getValue(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
+        winningDetails = new WinningDetails(lottos,winningNumbers.getNumbers(),purchaseMoney.getValue(),bonusNumber.getValue()); //당첨 내역
         OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
+    }
+
+    private static void calculateProfit(){
+        profit = new Profit(winningDetails.getRank());
+        OutputView.earningRate(profit.getTotalEarningRate(purchaseMoney.getValue()));
     }
 
     private static String inputPurchaseMoney(){
         return InputView.purchaseMoney();
-    }
-
-    private static void outputLottoCount(int lottoCount) {
-        OutputView.purchaseLotto(lottoCount);
-    }
-
-    private static void generateLottos(int lottoCount){
-        lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(GeneratedLottoNumber.getRandomNumber());
-        }
-    }
-
-    private static void outputLottos(){
-        OutputView.showEachLotto(lottos);
     }
 
     private static String inputWinningNumber(){
@@ -87,5 +71,20 @@ public class GameController {
 
     private static String inputBonusNumber(){
         return InputView.bonusNumber();
+    }
+
+    private static void outputLottoCount(int lottoCount) {
+        OutputView.purchaseLotto(lottoCount);
+    }
+
+    private static void outputLottos(){
+        OutputView.showEachLotto(lottos);
+    }
+
+    private static void generateLottos(int lottoCount){
+        lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(new Lotto(GeneratedLottoNumber.getRandomNumber()));
+        }
     }
 }

@@ -8,7 +8,7 @@ public class BonusNumber {
 
     private final int value;
 
-    public BonusNumber(final String number, WinningNumber lotto){
+    public BonusNumber(final String number, Lotto lotto){
         validate(number.replace(" ",""),lotto);
         value = Integer.parseInt(number);
     }
@@ -17,7 +17,7 @@ public class BonusNumber {
         return value;
     }
 
-    private void validate(String number, WinningNumber lotto){
+    private void validate(String number, Lotto lotto){
         if(isEmpty(number)){
             throw new IllegalArgumentException();
         }
@@ -55,7 +55,7 @@ public class BonusNumber {
         return Integer.parseInt(number) >= MIN_INCLUSIVE && Integer.parseInt(number) <= MAX_INCLUSIVE;
     }
 
-    private boolean isDuplicatedWinningLottoNumber(WinningNumber winningLotto, String number){
-        return winningLotto.getValue().contains(Integer.parseInt(number));
+    private boolean isDuplicatedWinningLottoNumber(Lotto winningLotto, String number){
+        return winningLotto.getNumbers().contains(Integer.parseInt(number));
     }
 }

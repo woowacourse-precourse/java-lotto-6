@@ -34,7 +34,7 @@ public class WinningDetails {
 
     private int getMatchWinningNumber(Lotto lotto){
         int matchNumers = 0;
-        List<Integer> lottoNumbers = lotto.getValue();
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
         for (Integer number: lottoNumbers) {
             if(winningNumbers.contains(number)) matchNumers++;

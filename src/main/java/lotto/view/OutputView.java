@@ -37,7 +37,7 @@ public class OutputView {
 
     public static void showEachLotto(List<Lotto> lottos) {
         for(Lotto lotto : lottos){
-            System.out.println(lotto.getValue());
+            System.out.println(lotto.getNumbers());
         }
     }
 

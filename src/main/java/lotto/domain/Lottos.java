@@ -22,5 +22,7 @@ public class Lottos {
                 .collect(Collectors.toList());
     }
 
-
+    public Prizes createPrizes(List<Prize> prizes) {
+        return new Prizes(prizes);
+    }
 }

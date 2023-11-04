@@ -1,11 +1,12 @@
 package lotto.service;
 
-import static camp.nextstep.edu.missionutils.Randoms.*;
-import static lotto.settings.LottoRange.*;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.settings.LottoRange.MAX_VALUE;
+import static lotto.settings.LottoRange.MIN_VALUE;
+import static lotto.settings.LottoRange.SIZE;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.settings.LottoRange;
+import lotto.view.View;
 
 public class LottoService {
 
@@ -18,5 +19,13 @@ public class LottoService {
             System.out.println("["+join+"]");
             purchaseCount --;
         }
+    }
+
+    public static void createWinningNumber(int purchaseCount){
+        View.requestWinningNumber();
+        InputService.winningNumber();
+
+        View.requestBonusNumber();
+        InputService.purchaseAmount();
     }
 }

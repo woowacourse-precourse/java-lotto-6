@@ -2,6 +2,7 @@ package lotto;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,9 @@ public class User {
 
     public Integer getPurchaseAmount() {
         String input = getUserInput("구입금액을 입력해 주세요.");
-        return validatePurchaseAmount(input);
+        Integer amount = validatePurchaseAmount(input);
+        System.out.println(amount + "개를 구매했습니다.");
+        return amount;
     }
 
     public List<Integer> getWinningNumbers() {
@@ -41,7 +44,7 @@ public class User {
         if (tmp % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위여야 합니다.");
         }
-        return tmp;
+        return tmp / 1000;
     }
 
     private List<Integer> splitWinningNumbers(String input) {

@@ -3,18 +3,28 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                count++;
+            }
         }
+        return count;
     }
 
-    // TODO: 추가 기능 구현
+    public int checkBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return 1;
+        }
+        return 0;
+
+    }
 }

@@ -1,3 +1,7 @@
+## 설계
+
+![Screenshot 2023-11-05 at 3 17 50 AM](https://github.com/seungmin-park/algorithm-study/assets/78605779/8a80b687-af85-47d7-9276-c55efedd6430)
+
 ## 기능 구현
 
 - [ ] 로또 구입 금액 안내 메세지를 출력한다.

@@ -19,7 +19,7 @@ public class LottoCreator {
 
     public List<List<Integer>> getCreatedLottos() {
         return lottos.stream()
-                .map(Lotto::getLottoNumber)
+                .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
     }
 }

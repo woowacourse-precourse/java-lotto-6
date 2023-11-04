@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -38,6 +39,23 @@ public class Application {
         for (int i = 0; i < buyLottoCount; i++) {
             Lotto lotto = new Lotto(makeLotto());
             lotties.add(lotto);
+        }
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winNumber = Console.readLine();
+
+        if (winNumber.isBlank()) {
+            throw new IllegalStateException("[ERROR] 아무 것도 입력되지 않았습니다.");
+        }
+
+        if (winNumber.charAt(0) == ',' || winNumber.charAt(winNumber.length()) == ',') {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 숫자입니다.");
+        }
+
+        int[] winNumbers = Stream.of(winNumber.split(",")).mapToInt(Integer::parseInt).toArray();
+
+        if (winNumbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
 
     }

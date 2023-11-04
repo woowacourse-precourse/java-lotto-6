@@ -29,6 +29,7 @@ public class LottoGame {
 
     public void generateLottoNumbers() {
         this.lottogame = new ArrayList<>();
+        System.out.println(this.gameCount+"개를 구매했습니다.");
         for (int i = 0; i < this.gameCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBERS_COUNT);
             Collections.sort(numbers);

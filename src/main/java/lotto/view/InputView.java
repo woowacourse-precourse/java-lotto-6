@@ -7,8 +7,8 @@ import java.util.List;
 public class InputView {
     private final InputValidator inputValidator;
 
-    public InputView(InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
+    public InputView() {
+        this.inputValidator = new InputValidator();
     }
 
     public int getPurchaseAmount() {

@@ -1,14 +1,15 @@
 package lotto.view;
 
+import lotto.Lotto;
 import lotto.common.Message;
 
 import java.util.List;
 
 public class OutputView {
 
-    public void printLotto(List<Integer> lotto) {
+    public void printLotto(Lotto lotto) {
         StringBuilder output = new StringBuilder("[");
-        for (Integer number : lotto) {
+        for (Integer number : lotto.getNumbers()) {
             output.append(lotto).append(", ");
         }
         output.replace(output.length() - 2, output.length(), "]");

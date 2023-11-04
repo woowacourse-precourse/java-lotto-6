@@ -13,9 +13,11 @@ public enum Message {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - cond_3개",
             "3개 일치 (2,000,000,000원) - cond4개",
             "총 수익률은 cond5%입니다.")),
-    ERROR_LOTTO_NUMBER(String.format("[ERROR] 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.",
-            Range.START.getValue(), Range.END.getValue())),
-    ERROR_PURCHASE_AMOUNT("[ERROR] 구입 금액은 0원 이상이어야 합니다.");
+    ERROR_LOTTO_NUMBER(String.format("[ERROR] 로또 번호는 %d부터 %d 사이의 숫자 %d개 입니다.",
+            Range.START.getValue(), Range.END.getValue(), Range.SIZE.getValue())),
+    ERROR_PURCHASE_AMOUNT("[ERROR] 구입 금액은 0원 이상이어야 합니다."),
+    ERROR_BONUS_NUMBER(String.format("[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 %d부터 %d 사이의 숫자입니다.",
+            Range.START.getValue(), Range.END.getValue()));
 
     private String message;
 

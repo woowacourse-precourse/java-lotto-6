@@ -18,7 +18,7 @@ public class InputValidator {
     public List<Integer> checkLottoNumber(String input) {
         String[] splitNumbers = input.split(",");
 
-        if (splitNumbers.length != Range.Size.getValue()) {
+        if (splitNumbers.length != Range.SIZE.getValue()) {
             throw new IllegalArgumentException();
         }
         return getNumbers(splitNumbers);

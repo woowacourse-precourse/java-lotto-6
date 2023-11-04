@@ -34,6 +34,13 @@ public class LottoGame {
             Collections.sort(numbers);
             lottogame.add(numbers);
         }
+        printLotto();
+    }
+
+    public void printLotto() {
+        for (List<Integer> numbers : this.lottogame){
+            System.out.println(numbers.toString());
+        }
     }
 
 }

@@ -18,7 +18,7 @@
 - [v] 로또 구입 금액만큼 로또 생성 : generateLottoNumbers()
 - [v] 로또 번호 입력 -> 쉼표(,)를 기준으로 구분, 숫자범위 중 중복되지 않는 숫자 6개 : setLottoWinNumbers()
 - [v] 보너스 번호 입력 -> 로또 번호와 중복되지 않아야함 : setWinBonusnumber() 
-- [ ] 발행된 로또 출력 -> 로또 수량 및 번호 출력, 로또 번호는 오름차순으로 정렬 : printLottoGame()
+- [v] 발행된 로또 출력 -> 로또 수량 및 번호 출력, 로또 번호는 오름차순으로 정렬 : printLottoGame()
 - [ ] 당첨 내역 출력 -> 실행결과와 같이 출력 : printLottoResult()
 - [ ] 수익률 출력 -> 소수점 둘째 자리에서 반올림 : getEarningRate()
 - [ ] 로또 번호 에러 출력 -> 에러 문구는 "[ERROR]"로 시작할 것 (ex. "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")

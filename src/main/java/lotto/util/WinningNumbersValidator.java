@@ -1,8 +1,9 @@
 package lotto.util;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static lotto.util.LottoInformation.NUMBER_OF_NUMBERS
+import static lotto.util.LottoInformation.NUMBER_OF_NUMBERS;
 
 public class WinningNumbersValidator {
     public static void validateWinningNumbers(List<String> numbers) {
@@ -13,9 +14,19 @@ public class WinningNumbersValidator {
         if (!isSixNumbers(numbers)) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IS_NOT_SIX.getMessage());
         }
+
+        if (isDuplicateNumbers(numbers)) {
+            throw new IllegalArgumentException(NumberErrorMessage.DUPLICATE_NUMBERS.getMessage());
+        }
+
     }
 
     private static boolean isSixNumbers(List<String> numbers) {
         return numbers.size() == NUMBER_OF_NUMBERS;
+    }
+
+    private static boolean isDuplicateNumbers(List<String> numbers) {
+        List<String> distinctNumbers = numbers.stream().distinct().collect(Collectors.toList());
+        return distinctNumbers.size() != numbers.size();
     }
 }

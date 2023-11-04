@@ -18,4 +18,12 @@ public class OutputView {
                 .forEach(number -> stringJoiner.add(number.toString()));
         System.out.println(stringJoiner);
     }
+
+    public static void printLottoCount(int lottoCount) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+        stringBuilder.append(lottoCount);
+        stringBuilder.append(PURCHASE_MESSAGE);
+        System.out.println(stringBuilder);
+    }
 }

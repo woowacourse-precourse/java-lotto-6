@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class StateController {
 
     private static final int LOTTO_PRICE = 1000;
+    private Lottos lottos;
     private int money;
 
     public void run() {
@@ -34,20 +36,16 @@ public class StateController {
     }
 
     private void purchaseLotto(int money) {
-        List<Lotto> lotto = IntStream
-                .range(0, calculateMoney(money))
+        lottos = new Lottos(IntStream
+                .range(0, lottoCount(money))
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
-                .toList();
-
-        Lottos lottos = new Lottos(lotto);
-
-        List<Lotto> lottos1 = lottos.getLottos();
-        for (Lotto lotto1 : lottos1) {
-            OutputView.printLotto(lotto1.getNumbers());
-        }
+                .toList());
+        OutputView.printLottoCount(lottoCount(money));
+        lottos.getLotto()
+                .forEach( lotto -> OutputView.printLotto(lotto.getNumbers()));
     }
 
-    private int calculateMoney(int money) {
+    private int lottoCount(int money) {
         return money/LOTTO_PRICE;
     }
 

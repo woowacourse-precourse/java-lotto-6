@@ -9,7 +9,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLotto() {
         return lottos;
     }
 }

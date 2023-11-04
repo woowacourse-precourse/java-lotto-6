@@ -5,15 +5,15 @@ import lotto.common.consts.ErrorMessage;
 
 public class InputView {
 
-    public static int nextInt(){
+    public static int nextInt() {
         return parseInt(Console.readLine());
     }
 
-    public static int[] nextIntArray(){
-        String[] inputs=Console.readLine().split(",");
-        int[] StringToInteger=new int[inputs.length];
-        for(int i=0;i<inputs.length;i++){
-            StringToInteger[i]=parseInt(inputs[i]);
+    public static int[] nextIntArray() {
+        String[] inputs = Console.readLine().split(",");
+        int[] StringToInteger = new int[inputs.length];
+        for (int i = 0; i < inputs.length; i++) {
+            StringToInteger[i] = parseInt(inputs[i]);
         }
         return StringToInteger;
     }
@@ -21,12 +21,11 @@ public class InputView {
     private static int parseInt(String input) {
         try {
             return Integer.parseInt(input);
-        }catch(NumberFormatException e){
-            OutputView.printError(ErrorMessage.NumberFormatErrorMessage);
+        } catch (NumberFormatException e) {
+            OutputView.printError(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
-
 
 
 }

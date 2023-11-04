@@ -1,13 +1,16 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
+class LottoTest extends NsTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -29,5 +32,26 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 56)))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @DisplayName("로또 번호는 오름차순 정렬된다.")
+    @Test
+    void sortLottoNumbers() {
+        final List<Integer> numbers = new ArrayList<>();
+        numbers.add(7);
+        numbers.add(5);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(4);
+        numbers.add(3);
+        final Lotto newLotto = new Lotto(numbers);
+        System.out.println(newLotto.toString());
+
+        assertThat(output()).contains("[1, 2, 3, 4, 5, 7]");
+    }
+
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
     }
 }

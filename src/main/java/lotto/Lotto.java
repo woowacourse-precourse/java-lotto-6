@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class Lotto {
         validateNumbersSize(numbers);
         validDuplicateNumber(numbers);
         validNumbersBoundary(numbers);
+        numbers.sort(Comparator.comparingInt(s -> s));
         this.numbers = numbers;
     }
 

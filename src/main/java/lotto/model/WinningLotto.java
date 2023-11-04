@@ -1,7 +1,8 @@
 package lotto.model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningLotto {
@@ -50,12 +51,9 @@ public class WinningLotto {
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
-        List<Integer> checkNumbers = new ArrayList<>();
-        for (Integer number : numbers) {
-            if (checkNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또의 각 번호는 중복될 수 없습니다.");
-            }
-            checkNumbers.add(number);
+        Set<Integer> checkNumbers = new HashSet<>();
+        if (numbers.stream().anyMatch(number -> !checkNumbers.add(number))) {
+            throw new IllegalArgumentException("[ERROR] 로또의 각 번호는 중복될 수 없습니다.");
         }
     }
 }

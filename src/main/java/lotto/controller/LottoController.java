@@ -34,8 +34,7 @@ public class LottoController {
         LottoIssuer lottoIssuer = LottoIssuer.of(amount);
         List<Lotto> boughtLotto = lottoIssuer.issueLotto();
         outputView.printBoughtLotto(boughtLotto);
-        Lotto lotto = readWinningNumbers();
-        WinningLotto winningLotto = getWinningLotto(lotto);
+        WinningLotto winningLotto = readWinningLottoAndBonus();
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto bought : boughtLotto) {
             lottoPrizes.add(winningLotto.from(bought));
@@ -47,13 +46,18 @@ public class LottoController {
         outputView.printTotalReturn(totalReturn);
     }
 
-    private WinningLotto getWinningLotto(Lotto lotto) {
-        Bonus bonusNumber = readBonusNumber();
+    private WinningLotto readWinningLottoAndBonus() {
+        Lotto lotto = readWinningNumbers();
+        return readWinning(lotto);
+    }
+
+    private WinningLotto readWinning(Lotto lotto) {
         try {
-            return new WinningLotto(lotto, bonusNumber);
+            Bonus bonus = readBonusNumber();
+            return new WinningLotto(lotto, bonus);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getWinningLotto(lotto);
+            return readWinning(lotto);
         }
     }
 

@@ -5,8 +5,8 @@ import lotto.domain.Money;
 import lotto.validator.InputValidator;
 
 public class InputView {
-    public String readMoneyToBuyLotto() {
+    public Money readMoneyToBuyLotto() {
         String input = Console.readLine();
-        return input;
+        return new Money(Integer.parseInt(input));
     }
 }

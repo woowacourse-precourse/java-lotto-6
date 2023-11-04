@@ -10,6 +10,6 @@ public class LottoMarket {
 
     public void enter() {
         outputView.printInputMoneyMessage();
-        String money = inputView.readMoneyToBuyLotto();
+        Money money = inputView.readMoneyToBuyLotto();
     }
 }

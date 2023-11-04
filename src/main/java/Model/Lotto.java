@@ -1,6 +1,8 @@
 package Model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,4 +20,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+    private void duplicatedNumberValidate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>();
+        if(numbers.stream().anyMatch(element -> !set.add(element))) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

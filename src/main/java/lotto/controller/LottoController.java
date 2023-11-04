@@ -15,7 +15,7 @@ public class LottoController {
 
     private void purchase() {
         try {
-            int purchase = Conversion.stringToInt(InputView.amount());
+            int purchase = Conversion.stringToInt(InputView.purchase());
             amount = new Amount(purchase);
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());

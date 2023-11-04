@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.Optional;
-import lotto.domain.lotto.dto.LottoDrawingResult;
+import lotto.domain.lotto.dto.LottosDrawingResult;
 
 /**
  * 로또 추첨을 해주는 클래스
@@ -21,11 +21,11 @@ public final class LottoDrawingMachine {
     /**
      * 입력된 모든 로또를 추첨한 결과 반환
      */
-    public LottoDrawingResult draw(final Lottos lottos) {
+    public LottosDrawingResult draw(final Lottos lottos) {
         final LottoDrawingData data = new LottoDrawingData();
         _draw(data, lottos);
 
-        return data.intoLottoDrawingResult();
+        return data.toLottoDrawingResult();
     }
 
     /**

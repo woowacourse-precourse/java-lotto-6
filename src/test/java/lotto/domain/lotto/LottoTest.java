@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.boxed.LottoNumber;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
 import lotto.domain.lotto.exception.InvalidLottoNumberException;

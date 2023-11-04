@@ -8,6 +8,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validate(int amount) {
         validateIsAmountZero(amount);
         validateAmountUnit(amount);

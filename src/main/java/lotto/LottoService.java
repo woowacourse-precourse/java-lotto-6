@@ -14,10 +14,13 @@ public class LottoService {
     private static final String BUY_MONEY_TYPE_EXCEPTION_MESSAGE = "[ERROR] 구입 금액은 자연수를 입력해야 합니다.";
     private static final String INPUT_NUMBER_BLANK_EXCEPTION_MESSAGE = "[ERROR] 공백 없이 숫자를 입력해야 합니다.";
     private static final String INPUT_PLAYER_LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE = "[ERROR] 1 ~ 45의 자연수를 입력해야 합니다.";
+    private static final String INPUT_PLAYER_LOTTO_NUMBER_SIZE_EXCEPTION_MESSAGE = "[ERROR] 당첨번호는 6자리를 입력해야 합니다.";
+    private static final String DUPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호와 다른 보너스 번호를 입력해야 합니다.";
     private static final Pattern NUMBER_MATCH = Pattern.compile("^[0-9]*$");
     private static final int LOTTO_PRICE = 1000;
     private static final int ZERO = 0;
     private final List<List<Integer>> lottoNumberStore = new ArrayList<>();
+    private final List<Integer> winningNumberStore = new ArrayList<>();
     private final Player player = new Player();
 
     public int calculateLottoTicket(String inputMoney) {
@@ -40,6 +43,28 @@ public class LottoService {
         return lottoNumberStore;
     }
 
+    public List<Integer> createWinningNumber(String inputWinningNumber) {
+        String[] winningNumber = inputWinningNumber.split(",");
+        for (String number : winningNumber) {
+            validateWinningNumber(number);
+            winningNumberStore.add(toInt(number));
+        }
+        return winningNumberStore;
+    }
+
+    public void settingWinningNumber(List<Integer> inputWinningNumber) {
+        player.settingWinningNumbers(inputWinningNumber);
+    }
+
+    public int createBonusNumber(String inputBonusNumber) {
+        validateBonusNumber(inputBonusNumber);
+        return toInt(inputBonusNumber);
+    }
+
+    public void settingBonusNumber(int inputBonusNumber) {
+        player.settingBonusNumber(inputBonusNumber);
+    }
+
     public void validateBuyMoney(String inputMoney) {
         validateInputNumberBlank(inputMoney);
         validateBuyMoneyType(inputMoney);
@@ -50,6 +75,11 @@ public class LottoService {
     public void validateWinningNumber(String inputWinningNumber) {
         validateInputNumberBlank(inputWinningNumber);
         validateInputPlayerLottoNumberRange(toInt(inputWinningNumber));
+    }
+
+    public void validateBonusNumber(String inputBonusNumber) {
+        validateInputNumberBlank(inputBonusNumber);
+        validateInputPlayerLottoNumberRange(toInt(inputBonusNumber));
     }
 
     private void validateBuyMoneyType(String inputMoney) {

@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+    private static final int PRICE = 1000;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +18,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static int purchaseCount(int pay) {
+        if (pay % PRICE != 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return pay / PRICE;
+    }
 }

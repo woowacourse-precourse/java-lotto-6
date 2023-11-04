@@ -7,6 +7,7 @@ public class InputValidator {
     private static final String MIN_PRICE_1000_MESSAGE = "로또 금액은 1000원 이상이어야 합니다";
     private static final String UNIT_OF_1000_REQUIRED_MESSAGE = "로또 금액은 1000원 단위로 입력되어야 합니다";
     private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
+    private static final String WINNING_NUMBERS_RANGE_ERROR = "당첨 번호는 1~45 사이 숫자여야합니다";
     private static final String NUMBER_REGEX = "[0-9]+";
 
     public void validatePrice(String inputPrice) {
@@ -52,6 +53,16 @@ public class InputValidator {
     public void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_6_REQUIRED);
+        }
+
+        validateNumberRanges(winningNumbers);
+    }
+
+    private void validateNumberRanges(List<Integer> winningNumbers) {
+        for (Integer number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
+            }
         }
     }
 }

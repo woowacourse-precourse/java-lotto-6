@@ -80,7 +80,7 @@ public class LottoController {
     public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {
         long totalSum = 0;
         for (LottoRanks key : enumMap.keySet()) {
-            totalSum += (long) key.getWinnings() *enumMap.get(key);
+            totalSum += (long) key.getWinnings()*enumMap.get(key);
         }
         return (double)(totalSum*100)/cost;
     }

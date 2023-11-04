@@ -1,9 +1,13 @@
 package lotto;
 
+import lotto.global.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.global.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,11 +19,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_LENGTH_IS_NOT_SIX.getMessage());
         }
 
         if (isDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 

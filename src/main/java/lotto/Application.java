@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.LottoNumberConstant.LOTTO_NUMBER_MAX;
+import static lotto.LottoNumberConstant.LOTTO_NUMBER_MIN;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -22,7 +25,7 @@ public class Application {
             throw new IllegalArgumentException("보너스 번호는 정수만 가능합니다.");
         }
         int bonusNumber = Integer.parseInt(input);
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException("로또 번호는 1~45값만 가능합니다.");
         }
     }

@@ -2,9 +2,10 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.LottoNumberConstant.LOTTO_NUMBER_MAX;
+import static lotto.LottoNumberConstant.LOTTO_NUMBER_MIN;
+
 public class Lotto {
-    public static final int LOTTO_NUMBER_MIN = 1;
-    public static final int LOTTO_NUMBER_MAX = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

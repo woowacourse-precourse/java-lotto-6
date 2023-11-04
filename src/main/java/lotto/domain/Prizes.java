@@ -34,8 +34,8 @@ public class Prizes {
     }
 
 
-    public Integer countTotalPrice() {
-        Integer totalPrice = 0;
+    public Double countTotalPrice() {
+        Double totalPrice = 0.0;
         for (Prize prize : prizes.keySet()) {
             Integer count = prizes.get(prize);
             totalPrice += prize.getReward() * count;
@@ -45,12 +45,12 @@ public class Prizes {
     }
 
     public Double calculateBenefit(Integer totalSeed) {
-        Integer totalReward = countTotalPrice();
+        Double totalReward = countTotalPrice();
         if (totalReward == 0) {
             return 0.0;
         }
 
-        Double benefit = ((double) totalReward / (double) totalSeed * 100.0);
+        Double benefit = (totalReward / totalSeed * 100.0);
         return benefit;
 
     }

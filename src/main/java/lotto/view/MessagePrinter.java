@@ -50,7 +50,7 @@ public class MessagePrinter {
 
     public void printEarningsRate(final WinningResult winningResult, final LottoGame lottoGame) {
         double earningsRate = winningResult.calculateEarningsRate(lottoGame);
-        String formattedString = String.format(EARNINGS_RATE_RESULT, earningsRate);
-        System.out.println(formattedString);
+        String formattedText = String.format(EARNINGS_RATE_RESULT, earningsRate);
+        System.out.println(formattedText);
     }
 }

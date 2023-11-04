@@ -8,7 +8,7 @@ public class YieldManager {
 
     public static float makeYield(List<Award> prizes){
         float beforeMoney = prizes.size() * 1000;
-        float afterMoney = 0;
+        float afterMoney = beforeMoney;
         for(Award award: prizes){
             afterMoney += award.getReward();
         }

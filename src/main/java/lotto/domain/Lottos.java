@@ -8,16 +8,16 @@ import java.util.stream.IntStream;
 
 public class Lottos {
 
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Numbers> lottoValues = new ArrayList<>();
 
     public void saveLottos(LottoPurchasePrice purchasePrice) {
         Integer lottosAmount = purchasePrice.getLottosAmount();
 
         IntStream.range(0, lottosAmount)
-                .forEach(i -> lottos.add(getLotto()));
+                .forEach(i -> lottoValues.add(getLotto()));
     }
 
-    private Lotto getLotto() {
-        return new Lotto(LottoRandomNumbers.getRandomNumbers());
+    private Numbers getLotto() {
+        return new Numbers(LottoRandomNumbers.getRandomNumbers());
     }
 }

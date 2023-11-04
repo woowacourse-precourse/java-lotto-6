@@ -50,13 +50,13 @@ public class Lotto {
     }
 
 
-    public Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
+    private Integer compareWithWinnerNumbers(List<Integer> winnerNumbers) {
         return Math.toIntExact(numbers.stream()
                 .filter(number -> winnerNumbers.contains(number))
                 .count());
     }
 
-    public Boolean compareWithBonusNumber(Integer bonusNumber) {
+    private Boolean compareWithBonusNumber(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

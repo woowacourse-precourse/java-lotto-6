@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -200,5 +201,46 @@ class ApplicationTest extends NsTest {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
         }
         return split;
+    }
+
+    @Test
+    @DisplayName("쉼표(,) 긴준으로 나누어진 당첨번호가 숫자인지 검증한다.")
+    void inputWinningNumberValidation_정상케이스() {
+        String[] winningNumberSplit = {"1","2","3","4","5","6"};
+        assertThatCode(() -> inputWinningNumberValidation(winningNumberSplit))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("쉼표(,) 긴준으로 나누어진 당첨번호가 숫자가 아닌지 검증한다")
+    void inputWinningNumberValidation_예외케이스() {
+        String[] winningNumberSplit = {"1","a","b","4","c","6"};
+        assertThatThrownBy(() ->  inputWinningNumberValidation(winningNumberSplit))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호를 숫자만 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("숫자인지 검증이 완료되면 오름차순 정렬하여 List에 저장한다.")
+    void inputWinningNumberValidation_정상케이스_오름차순정렬() {
+        String[] winningNumberSplit = {"5","1","6","2","4","3"};
+        List<Integer> winningNumber = inputWinningNumberValidation(winningNumberSplit);
+
+        assertThat(winningNumber).containsExactly(1,2,3,4,5,6);
+    }
+
+    @DisplayName("쉼표(,) 기준으로 나누어진 당첨번호가 숫자인지 검증하는 메서드")
+    public List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
+        try {
+            List<Integer> winningNumber = new ArrayList<>();
+            for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
+                int number = Integer.parseInt(inputWinningNumberSplit[i]);
+                winningNumber.add(number);
+            }
+            Collections.sort(winningNumber);
+            return winningNumber;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자만 입력해주세요.");
+        }
     }
 }

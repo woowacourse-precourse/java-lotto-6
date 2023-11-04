@@ -8,7 +8,13 @@ public class LottoResult {
     private final HashMap<WinningCriteria, Integer> result;
 
     public LottoResult() {
-        this.result = new HashMap<>();
+        this.result = new HashMap<>(){{
+            put(WinningCriteria.FIRST, 0);
+            put(WinningCriteria.SECOND, 0);
+            put(WinningCriteria.THIRD, 0);
+            put(WinningCriteria.FOURTH, 0);
+            put(WinningCriteria.FIFTH, 0);
+        }};
     }
 
     public HashMap<WinningCriteria, Integer> getResult() {

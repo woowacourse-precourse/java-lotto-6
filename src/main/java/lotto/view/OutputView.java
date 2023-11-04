@@ -5,7 +5,6 @@ import static lotto.domain.WinningCriteria.SECOND;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
 import lotto.domain.WinningCriteria;
 
 public class OutputView {
@@ -25,13 +24,13 @@ public class OutputView {
         }
     }
 
-    public static void printStatics(LottoResult lottoResult) {
+    public static void printStatics(HashMap<WinningCriteria, Integer> result) {
         System.out.println(START_WINNING_STATICS_MESSAGE);
 
-        HashMap<WinningCriteria, Integer> result = lottoResult.getResult();
-        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
-            System.out.println(getStaticsMessage(winningCriteria.getMatchCount(), winningCriteria.getPrize(),
-                    result.get(winningCriteria)));
+        WinningCriteria[] winningCriteria = WinningCriteria.values();
+        for (int i = winningCriteria.length - 2; i >= 0; i--) {
+            System.out.println(getStaticsMessage(winningCriteria[i].getMatchCount(), winningCriteria[i].getPrize(),
+                    result.get(winningCriteria[i])));
         }
     }
 

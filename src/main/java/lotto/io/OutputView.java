@@ -16,4 +16,12 @@ public class OutputView {
     public void printLottoResult(LottoResultFormatter lottoResultFormatter) {
         System.out.println(lottoResultFormatter.toResultLottoMessage());
     }
+
+    public void printWinningNumbers() {
+        System.out.println(ProgressMessage.INPUT_WINNING_NUMBERS_MESSAGE);
+    }
+
+    public void printBonusNumber() {
+        System.out.println(ProgressMessage.INPUT_BONUS_NUMBER_MESSAGE);
+    }
 }

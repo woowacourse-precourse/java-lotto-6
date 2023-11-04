@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.LottoPurchasePrice;
+import lotto.domain.WinningLotto;
 import lotto.io.InputManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
@@ -19,6 +22,7 @@ public class LottoController {
 
     public void run() {
         purchaseLottos();
+        inputWinningLotto();
     }
 
     private void purchaseLottos() {
@@ -27,4 +31,17 @@ public class LottoController {
         lottoService.saveLottos(lottoPurchasePrice);
         outputView.printLottoResult(lottoService.getLottos());
     }
+
+    private void inputWinningLotto() {
+        outputView.printWinningNumbers();
+        Lotto lotto = inputManager.inputWinningNumbers();
+
+        outputView.printBonusNumber();
+        BonusNumber bonusNumber = inputManager.inputBonusNumber(lotto);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+
+        lottoService.saveWinningLotto(winningLotto);
+    }
+
+
 }

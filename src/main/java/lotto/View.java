@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class View {
@@ -24,11 +25,18 @@ public class View {
         System.out.println(numbers);
     }
 
-    public static void printPrize(Rank rank, Integer rankCount) {
-        System.out.println(rank.getMatchingCount() + "개 일치 (" + rank.getPrize() + ") - " + rankCount +"개");
+    public static void printPrize(Rank rank, Integer rankCount, DecimalFormat df) {
+        Integer rankPrize = rank.getPrize();
+        System.out.println(rank.getMatchingCount() + "개 일치 (" + df.format(rankPrize) + "원) - " + rankCount + "개");
     }
 
-    public static void print2ndRankPrize(Rank rank, Integer rankCount) {
-        System.out.println(rank.getMatchingCount() + "개 일치, 보너스 볼 일치 (" + rank.getPrize() + ") - " + rankCount +"개");
+    public static void print2ndRankPrize(Rank rank, Integer rankCount, DecimalFormat df) {
+        Integer rankPrize = rank.getPrize();
+        System.out.println(rank.getMatchingCount() + "개 일치, 보너스 볼 일치 (" + df.format(rankPrize) + "원) - " + rankCount + "개");
+    }
+
+    public static void printPricePrizeRatio(Double pricePrizeRatio) {
+        String roundedPricePrizeRatio = String.format("%.1f", pricePrizeRatio);
+        System.out.println("총 수익률은 " + roundedPricePrizeRatio + "%입니다.");
     }
 }

@@ -2,10 +2,9 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.message.ErrorMessage;
+import lotto.util.Validation;
 
 public class WinningNumber {
 
@@ -15,30 +14,16 @@ public class WinningNumber {
     private final List<Integer> numbers;
 
     private WinningNumber(List<Integer> numbers) {
-        if (!hasCorrectSize(numbers)) {
+        if (!Validation.hasCorrectSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage(winningNumberCount));
         }
-        if (!hasCorrectRange(numbers)) {
+        if (!Validation.hasCorrectRange(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
-        if (hasDuplicateNumbers(numbers)) {
+        if (Validation.hasDuplicate(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_EXIST.getMessage());
         }
         this.numbers = Collections.unmodifiableList(numbers);
-    }
-
-    private boolean hasDuplicateNumbers(List<Integer> numbers) {
-        Set<Integer> numbersWithoutDuplicates = new HashSet<Integer>(numbers);
-
-        return numbersWithoutDuplicates.size() != numbers.size();
-    }
-
-    private boolean hasCorrectRange(List<Integer> numbers) {
-        return numbers.stream().noneMatch(number -> number < 1 || number > 45);
-    }
-
-    private boolean hasCorrectSize(List<Integer> numbers) {
-        return numbers.size() == winningNumberCount;
     }
 
     public static WinningNumber fromString(String input) {

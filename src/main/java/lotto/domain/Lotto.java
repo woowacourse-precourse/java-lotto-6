@@ -3,14 +3,14 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.message.ErrorMessage;
+import lotto.util.Validation;
 
 public class Lotto {
 
     private static final int lottoNumberCount = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -27,29 +27,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (!hasCorrectSize(numbers)) {
+        if (!Validation.hasCorrectSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage(lottoNumberCount));
         }
-        if (hasDuplicate(numbers)) {
+        if (Validation.hasDuplicate(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_EXIST.getMessage());
         }
-        if (!hasCorrectRange(numbers)) {
+        if (!Validation.hasCorrectRange(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
-    }
-
-    private boolean hasCorrectSize(List<Integer> numbers) {
-        return numbers.size() == 6;
-    }
-
-    private boolean hasDuplicate(List<Integer> numbers) {
-        Set<Integer> numbersWithoutDuplicate = new HashSet<>(numbers);
-
-        return numbersWithoutDuplicate.size() != numbers.size();
-    }
-
-    private boolean hasCorrectRange(List<Integer> numbers) {
-        return numbers.stream().noneMatch(number -> number < 1 || number > 45);
     }
 
     public void printNumbers() {

@@ -8,28 +8,36 @@ import lotto.service.LottoService;
 import lotto.service.ValidationService;
 import lotto.utils.ParseUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class Controller {
 
-    ParseUtils parseUtils = new ParseUtils();
-
     LottoService lottoService = new LottoService();
     ValidationService validationService = new ValidationService();
 
-    List<Lotto> userLotto = new ArrayList<>();
+    ParseUtils parseUtils = new ParseUtils();
 
     public void run() {
         createUserLottos();
+        showUserLottos();
     }
 
+    private void showUserLottos() {
+        int userLottoCount = lottoService.getUserLottoCount();
+        System.out.println("\n" + userLottoCount + Message.USER_LOTTOS_COUNT_MESSAGE);
+        List<Lotto> userLottos = lottoService.getUserLottos();
 
-    private void createUserLottos() {
+        for (Lotto lotto : userLottos) {
+            System.out.println(lotto.toString());
+        }
+    }
+
+    public void createUserLottos() {
         int lottoAmount = getAmount();
-        this.userLotto = lottoService.createUserLottos(lottoAmount);
+        lottoService.createUserLottos(lottoAmount);
     }
+
 
     public int getAmount() {
         System.out.println(Message.AMOUNT_REQUEST_MESSAGE);
@@ -42,6 +50,7 @@ public class Controller {
                 return amount;
             }
         }
+
     }
 
     public Integer amountValidationProcess(String inputAmount) {

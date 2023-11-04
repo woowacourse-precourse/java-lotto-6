@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.constants.Value;
 import lotto.domain.Lotto;
+import lotto.utils.ParseUtils;
 import lotto.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -11,10 +12,19 @@ import java.util.stream.IntStream;
 
 public class LottoService {
 
+    ParseUtils parseUtils = new ParseUtils();
     RandomUtils randomUtils = new RandomUtils();
 
-    public List<Lotto> createUserLottos(int lottoCount) {
-        return IntStream.range(0, lottoCount / Value.LOTTO_TICKET_PRICE)
+    ValidationService validationService = new ValidationService();
+
+    List<Lotto> userLottos = new ArrayList<>();
+
+    public int getUserLottoCount() {
+        return userLottos.size();
+    }
+
+    public void createUserLottos(int lottoCount) {
+        this.userLottos = IntStream.range(0, lottoCount / Value.LOTTO_TICKET_PRICE)
                 .mapToObj(i -> createSingleLotto())
                 .collect(Collectors.toList());
     }
@@ -23,4 +33,7 @@ public class LottoService {
         return new Lotto(randomUtils.sixUniqueRandomNumber());
     }
 
+    public List<Lotto> getUserLottos() {
+        return userLottos;
+    }
 }

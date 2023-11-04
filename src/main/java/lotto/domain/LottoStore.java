@@ -36,22 +36,22 @@ public class LottoStore {
         return lottos;
     }
 
-    public String getLottoHistory() {
-        List<Lotto> lottos = lottoStore.getLotto();
-        StringBuilder sb = new StringBuilder();
-
-        for (Lotto lotto : lottos) {
-            sb.append(lotto.getNumbers().toString()+"\n");
-        }
-
-        return String.valueOf(sb);
-    }
-
     public void getCollectLottoNumber(Map<Statistics, Integer> countForRate) {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int count = compareLotto(lottoNumbers);
+            checkBonus(count);
         }
+    }
+
+    private void checkBonus(int count) {
+        if (count == 4) {
+            checkAddBonusCount();
+        }
+    }
+
+    private void checkAddBonusCount() {
+
     }
 
 

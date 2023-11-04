@@ -19,16 +19,31 @@ public class LottoController {
 
     private void lottoInit() {
 
+        purchasePriceInputLogic();
+
+        lottoService.repeatPurchase(lottoCount);
+
+        purchaseLottoNumberOutputLogic();
+
+    }
+
+    private void purchasePriceInputLogic() {
+
         OutputValue.purchaseMessage();
         lottoCount = InputValue.getPurchasePrice() / 1000;
 
+        OutputValue.changeLine();
+    }
+
+    private void purchaseLottoNumberOutputLogic() {
+
         OutputValue.lottoCountMessage(lottoCount);
-        lottoService.repeatPurchase(lottoCount);
 
         for(Lotto lotto : lottoService.getPurchaseLotto()){
             OutputValue.purchaseLottoMessage(lotto.getLotto());
         }
 
+        OutputValue.changeLine();
     }
 
     private void lottoProcess() {

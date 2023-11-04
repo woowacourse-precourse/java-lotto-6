@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.dto.PurchaseAmountDto;
+import lotto.validator.PurchaseAmountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -36,9 +37,9 @@ class PurchaseAmountTest {
             // when
             // then
             assertThatThrownBy(() -> new PurchaseAmountDto(amount1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PurchaseAmountDto.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
+                    .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
             assertThatThrownBy(() -> new PurchaseAmountDto(amount2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PurchaseAmountDto.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
+                    .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
         }
     }
 }

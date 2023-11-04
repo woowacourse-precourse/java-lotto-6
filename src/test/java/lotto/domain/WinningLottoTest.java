@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.validator.LottoValidator;
+import lotto.validator.WinningLottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -34,9 +36,9 @@ class WinningLottoTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(LottoValidator.INVALID_LOTTO_SIZE_MESSAGE);
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Lotto.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(LottoValidator.INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
 
@@ -65,9 +67,9 @@ class WinningLottoTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningLotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(WinningLottoValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningLotto.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(WinningLottoValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
         }
     }
 
@@ -97,9 +99,9 @@ class WinningLottoTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(LottoValidator.DUPLICATE_NUMBERS_MESSAGE);
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Lotto.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(LottoValidator.DUPLICATE_NUMBERS_MESSAGE);
         }
     }
 }

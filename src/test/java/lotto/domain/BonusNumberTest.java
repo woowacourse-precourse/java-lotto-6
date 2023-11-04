@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.validator.BonusNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -36,11 +37,11 @@ class BonusNumberTest {
             // when
             // then
             assertThatThrownBy(() -> new BonusNumber(number1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BonusNumber.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
             assertThatThrownBy(() -> new BonusNumber(number2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BonusNumber.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
             assertThatThrownBy(() -> new BonusNumber(number3)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BonusNumber.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
         }
     }
 }

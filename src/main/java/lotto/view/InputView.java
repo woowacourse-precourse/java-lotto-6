@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BuyAmount;
+import lotto.validator.Validator;
 
 public class InputView {
 
@@ -13,6 +14,7 @@ public class InputView {
     public static BuyAmount getBuyAmountFromInput() {
         try {
             String buyAmount = read();
+            Validator.validateEmpty(buyAmount);
             return new BuyAmount(Long.parseLong(buyAmount));
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);

@@ -18,5 +18,6 @@ public class Game {
         if (purchaseAmount < 1000) {
             throw new IllegalArgumentException("구입금액은 1000원 보다 커야합니다.");
         }
+        int lottoNum = (int) (Math.round(purchaseAmount / 1000));
     }
 }

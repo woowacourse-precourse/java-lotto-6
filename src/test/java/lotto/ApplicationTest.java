@@ -147,4 +147,20 @@ class ApplicationTest extends NsTest {
         }
         return lottos;
     }
+
+    @Test
+    @DisplayName("생성된 로또의 번호를 구매자에게 뵤여준다.")
+    void purchaseLottoNumbersDisplay() {
+        List<Lotto> lottos = createLottos(5);
+        purchaseLottoNumbersDisplay(lottos);
+    }
+
+    @DisplayName("생성된 로또의 번호를 구매자에게 보여주는 메서드")
+    private void purchaseLottoNumbersDisplay(List<Lotto> lottos){
+        int lottoQuantity = lottos.size();
+        System.out.println(lottoQuantity+"개를 구매했습니다.");
+        for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
+            lottos.get(quantity-1).lottoNumberDisplay();
+        }
+    }
 }

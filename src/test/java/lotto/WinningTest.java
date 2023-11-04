@@ -44,4 +44,17 @@ public class WinningTest {
         Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6), 1);
     }
 
+    @DisplayName("보너스 번호 범위가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void checkBonusRangeMinTest() {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 45), 0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 범위가 45보다 작으면 예외가 발생한다.")
+    @Test
+    void checkBonusRangeMaxTest() {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 45), 46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

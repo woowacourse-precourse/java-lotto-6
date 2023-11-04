@@ -46,12 +46,7 @@ public class OutputView {
         DecimalFormat df = new DecimalFormat(AMOUNT_FORMAT);
 
         for (LottoMatch lottoMatch : lottoResultCount) {
-            if (lottoMatchMap.containsKey(lottoMatch)) {
-                lottoMatchMap.put(lottoMatch, lottoMatchMap.get(lottoMatch) + 1);
-            }
-            if (!lottoMatchMap.containsKey(lottoMatch)) {
-                lottoMatchMap.put(lottoMatch, 1);
-            }
+            lottoMatchMap.put(lottoMatch, lottoMatchMap.getOrDefault(lottoMatch, 0) + 1);
         }
 
         for (LottoMatch lottoMatch : LottoMatch.values()) {

@@ -1,13 +1,29 @@
 package lotto.ui;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+import lotto.Lotto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 public class LottoMachineTest {
     private final TestInputReader testInputReader = new TestInputReader();
     private final LottoMachine lottoMachine = new LottoMachine(testInputReader);
+
+    @Test
+    void 로또_생성_갯수_테스트() {
+        testInputReader.setInput("3000");
+        lottoMachine.insertMoney();
+        List<Lotto> lottos = lottoMachine.generateLottos();
+        assertThat(lottos.size()).isEqualTo(3);
+    }
+
+    @Test
+    void 로또_생성_갯수_테스트_돈이_없는_상태() {
+        assertThrows(IllegalStateException.class, () -> lottoMachine.generateLottos());
+    }
 
     @Nested
     class 사용자_구입_금액_테스트 {

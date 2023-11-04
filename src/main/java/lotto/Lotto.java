@@ -1,13 +1,26 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final Integer LOTTO_PRICE = 1_000;
+
+    public static List<Lotto> createLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = NumberGenerator.generateNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

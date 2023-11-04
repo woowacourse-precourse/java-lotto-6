@@ -1,7 +1,8 @@
 package lotto.ui;
 
+import static lotto.Lotto.LOTTO_PRICE;
+
 public record UserInputMoney(Integer amount) {
-    private static final Integer LOTTO_PRICE = 1_000;
 
     public UserInputMoney {
         validatePositiveAmount(amount);
@@ -29,5 +30,9 @@ public record UserInputMoney(Integer amount) {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public boolean isLessThan(int value) {
+        return amount < value;
     }
 }

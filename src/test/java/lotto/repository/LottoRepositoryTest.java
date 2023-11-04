@@ -73,4 +73,23 @@ class LottoRepositoryTest {
         }
     }
 
+    @Nested
+    @DisplayName("삭제 테스트")
+    class clearTest {
+
+        @Test
+        @DisplayName("성공적으로 데이터베이스를 삭제 해야 한다")
+        public void 성공적으로_데이터베이스를_삭제_해야_한다() {
+            LottoRepository lottoRepository = new LottoRepository();
+            Lotto lotto = mock(Lotto.class);
+            Lotto otherLotto = mock(Lotto.class);
+
+            lottoRepository.saveAll(List.of(lotto, otherLotto));
+            lottoRepository.clear();
+            List<Lotto> lottos = lottoRepository.findAll();
+
+            assertThat(lottos).isEmpty();
+        }
+    }
+
 }

@@ -48,4 +48,10 @@ public class Lotto {
 
         return 0;
     }
+
+    public int countWinningNumbers(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
 }

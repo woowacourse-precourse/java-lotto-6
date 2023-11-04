@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResult {
@@ -23,9 +24,10 @@ public class LottoResult {
     }
 
     public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
+        List<WinningLotto> winningLottos = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            List<Integer> result = comparator.compareLotto(winningNumbers, bonus, lotto);
-            saveResult(result);
+            winningLottos.add(comparator.compareLotto(winningNumbers, bonus, lotto));
+//            saveResult(result);
         }
         calculateRateOfReturn(lottos.size());
         return this;

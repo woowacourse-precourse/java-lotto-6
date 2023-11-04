@@ -79,4 +79,12 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
     }
+
+    @DisplayName("당첨 번호와 보너스 번호는 중복되어선 안 된다.")
+    @Test
+    void plusBonusByDuplicateNumber() {
+        assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("1")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }

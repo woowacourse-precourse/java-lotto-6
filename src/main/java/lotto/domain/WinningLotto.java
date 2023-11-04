@@ -18,5 +18,6 @@ public class WinningLotto {
 
     public void plusBonusNumber(List<String> bonus) {
         inputValidate(bonus);
+        int number = Integer.parseInt(bonus.get(0));
     }
 }

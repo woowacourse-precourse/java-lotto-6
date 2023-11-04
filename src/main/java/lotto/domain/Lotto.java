@@ -5,7 +5,11 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException{
         validate(numbers);
         validateNumberSize(numbers);
         validateRepetition(numbers);
@@ -37,9 +41,5 @@ public class Lotto {
         if(validatedSize != numbers.size()) {
             throw new IllegalArgumentException("[ERROR]: 중복이 되지 않는 숫자로 입력해주세요!");
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

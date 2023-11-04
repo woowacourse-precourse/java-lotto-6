@@ -27,6 +27,10 @@ public final class Lotto implements LottoTicket {
     /**
      * 편의를 위해 Lotto 생성 시, 로또 번호를 List<Integer> 타입으로 받습니다. 이 메소드 내에서 List<Integer>가 List<LottoNumber>로 변환되며, LottoNumber에
      * 대한 검증은 각 자리가 LottoNumber로 변환되는 과정에서 자동으로 이루어집니다.
+     * <p>
+     * 로또 용지 자체에 오름차순으로 로또 번호가 기재되어 있기 때문에, 로또 용지가 생성될 때부터 오름차순이어야 유효한 데이터라고 생각이 됩니다.
+     * <p>
+     * 그래서 생성할 때, 여기서 오름차순 정렬을 해줍니다.
      */
     private static List<LottoNumber> intoLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
@@ -34,7 +38,6 @@ public final class Lotto implements LottoTicket {
                 .map(LottoNumber::new)
                 .toList();
     }
-
 
     /**
      * 로또 번호 포함 여부

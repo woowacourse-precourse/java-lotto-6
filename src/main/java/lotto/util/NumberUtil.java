@@ -10,6 +10,7 @@ public class NumberUtil {
 		if (strNum == null) {
 			return false;
 		}
+
 		return NUMBER_PATTERN.matcher(strNum).matches();
 	}
 }

@@ -12,4 +12,12 @@ public class LottoAmount {
     private int validatePurchasePrice(String money) {
 
     }
+
+    private void checkValidInteger(String money) {
+        try {
+            Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NON_INTEGER_MONEY.getMessage());
+        }
+    }
 }

@@ -19,13 +19,19 @@ public class LottoNumberComparator {
     public List<LottoMatch> calculateMatches(List<Lotto> lottoList) {
         return lottoList.stream()
                 .map(Lotto::getNumbers)
-                .map(lottoNumbers -> {
-                    long count = lottoNumbers.stream()
-                            .filter(winningLotto.getNumbers()::contains)
-                            .count();
-                    boolean hasBonusNumber = lottoNumbers.contains(bonusNumber.getBonusNumber());
-                    return LottoMatch.collect((int) count, hasBonusNumber);
-                })
+                .map(this::calculateMatchForSingleLotto)
                 .collect(Collectors.toList());
+    }
+
+    private LottoMatch calculateMatchForSingleLotto(List<Integer> lottoNumbers) {
+        long count = countMatchingNumbers(lottoNumbers);
+        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber.getBonusNumber());
+        return LottoMatch.collect((int) count, hasBonusNumber);
+    }
+
+    private long countMatchingNumbers(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
     }
 }

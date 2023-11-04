@@ -21,6 +21,11 @@ public class Play {
         return uniqueLotto.size();
     }
 
+    public static boolean compareLottoAndBonus(List<Integer> lotto, int bonus) {
+        Set<Integer> uniqueLotto = new HashSet<>(lotto);
+        return uniqueLotto.contains(bonus);
+    }
+
 
 
 }

@@ -14,12 +14,13 @@ public class Application {
         // TODO: 프로그램 구현
 
         List<Lotto> lottos;
-
         User user = new User();
+
+        Output.printPurchase();
         user.purchaseLotto();
 
         // 4. 로또 번호 출력
-        Computer.printLottos(lottos);
+        Computer.printLottos(user.lottos);
 
         // 5. 당첨 번호 입력
         Lotto winningLotto = Computer.createWinningLotto();

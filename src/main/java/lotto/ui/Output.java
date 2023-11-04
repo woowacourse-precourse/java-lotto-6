@@ -3,6 +3,9 @@ package lotto.ui;
 import java.util.List;
 
 public class Output {
+    public static void printPurchase(){
+        System.out.println("구입금액을 입력해 주세요.");
+    }
 
     public static void printResult(List<Integer> lottoResult, Double earningRate) {
         System.out.println("당첨 통계");

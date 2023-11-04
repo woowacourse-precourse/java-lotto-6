@@ -17,6 +17,9 @@ public class InputView {
         while (true) {
             try {
                 int amount = Integer.parseInt(Console.readLine());
+                if (amount < 1000) {
+                    throw new IllegalArgumentException("[ERROR] 최소 구매 가능 금액은 1,000원입니다.");
+                }
                 if (amount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
                 }

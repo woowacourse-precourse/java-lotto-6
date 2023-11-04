@@ -39,7 +39,7 @@ public class LottoServiceTest {
 
         // then
         WinningNumbersDto winningNumbersDto = lottoService.getWinningNumbersDto();
-        assertEquals(winningNumbersInput, winningNumbersDto.getWinningNumbers());
-        assertEquals(bonusNumber, winningNumbersDto.getBonusNumber());
+        assertEquals(winningNumbersInput, winningNumbersDto.winningNumbers());
+        assertEquals(bonusNumber, winningNumbersDto.bonusNumber());
     }
 }

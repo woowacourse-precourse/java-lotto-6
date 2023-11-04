@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.contents.ContentNumbers;
@@ -22,7 +21,7 @@ public class LottoMachineTest {
         // when
         Lotto lotto = lottoMachine.generateLotto();
         LottoDto lottoDto = lotto.toDTO();
-        Set<Integer> numbers = lottoDto.getNumbers().stream().collect(Collectors.toSet());
+        Set<Integer> numbers = lottoDto.numbers().stream().collect(Collectors.toSet());
 
         // then
         assertEquals(ContentNumbers.LOTTO_NUMBERS_COUNT.getNumber(), numbers.size());

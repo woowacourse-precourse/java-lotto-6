@@ -1,8 +1,8 @@
 package lotto.application;
 
-import java.util.Map;
+import static lotto.contents.ContentNumbers.PERCENTAGE;
+
 import lotto.domain.LottoResult;
-import lotto.domain.Prize;
 
 public class LottoStatistics {
     private final LottoResult lottoResult;
@@ -13,19 +13,16 @@ public class LottoStatistics {
         this.totalSpent = totalSpent;
     }
 
-    public Map<Prize, Integer> getPrizeCount() {
-        return lottoResult.getPrizeCount();
+    public double calculateEarningsRate() {
+        double totalEarnings = calculateTotalEarnings();
+        return (totalEarnings / totalSpent) * PERCENTAGE.getNumber();
     }
 
-    public double calculateTotalEarnings() {
+    private double calculateTotalEarnings() {
         long totalEarnings = lottoResult.getPrizeCount().entrySet().stream()
                 .mapToLong(prize -> (long) prize.getKey().getPrizeMoney() * prize.getValue())
                 .sum();
         return totalEarnings;
     }
 
-    public double calculateEarningsRate() {
-        double totalEarnings = calculateTotalEarnings();
-        return totalEarnings / totalSpent;
-    }
 }

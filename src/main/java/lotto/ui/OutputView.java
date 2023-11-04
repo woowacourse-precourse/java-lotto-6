@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     private void printLottoNumbers(LottoDto lotto) {
-        List<Integer> sortedNumbers = lotto.getNumbers().stream()
+        List<Integer> sortedNumbers = lotto.numbers().stream()
                 .sorted()
                 .toList();
         System.out.println(sortedNumbers);
@@ -46,7 +46,7 @@ public class OutputView {
 
     public static void printEarningsRate(double earningsRate) {
         System.out.println(OUTPUT_RATE_PREFIX.getValue() +
-                String.format(PERCENTAGE_FORMAT.getValue(), earningsRate * PERCENTAGE.getNumber()) +
+                String.format(PERCENTAGE_FORMAT.getValue(), earningsRate) +
                 OUTPUT_RATE_SUFFIX.getValue());
     }
 }

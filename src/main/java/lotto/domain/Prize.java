@@ -43,7 +43,4 @@ public enum Prize {
         return NONE;
     }
 
-    public long calculateTotalPrize(int count) {
-        return (long) this.prizeMoney * count;
-    }
 }

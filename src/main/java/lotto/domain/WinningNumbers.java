@@ -7,9 +7,7 @@ import lotto.utils.ValidationUtil;
 import java.util.List;
 
 public class WinningNumbers {
-    /**
-     * 입력받은 당첨 번호를 갖고있는 Domain
-     */
+
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 

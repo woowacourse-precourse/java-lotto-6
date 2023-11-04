@@ -30,8 +30,8 @@ public class LottoResult {
     }
 
     private Prize determinePrizeForLotto(LottoDto lottoDto, WinningNumbersDto winningNumbersDto) {
-        int matchCount = countMatches(lottoDto.getNumbers(), winningNumbersDto.getWinningNumbers());
-        boolean hasBonus = lottoDto.getNumbers().contains(winningNumbersDto.getBonusNumber());
+        int matchCount = countMatches(lottoDto.numbers(), winningNumbersDto.winningNumbers());
+        boolean hasBonus = lottoDto.numbers().contains(winningNumbersDto.bonusNumber());
         return Prize.valueOf(matchCount, hasBonus);
     }
 
@@ -43,26 +43,6 @@ public class LottoResult {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
-    }
-
-    public String formatPrizeResults() {
-        StringBuilder resultBuilder = new StringBuilder();
-
-        for (Prize prize : Prize.values()) {
-            if (prize != Prize.NONE) {
-                int count = prizeCount.getOrDefault(prize, 0);
-                resultBuilder.append(String.format("%d개 일치 (%s원) - %d개\n",
-                        prize.getMatchCount(),
-                        formatPrizeMoney(prize.getPrizeMoney()),
-                        count));
-            }
-        }
-
-        return resultBuilder.toString();
-    }
-
-    private String formatPrizeMoney(int prizeMoney) {
-        return String.format("%,d", prizeMoney); // 숫자를 3자리마다 쉼표를 찍어서 포맷팅
     }
 
     public Map<Prize, Integer> getPrizeCount() {

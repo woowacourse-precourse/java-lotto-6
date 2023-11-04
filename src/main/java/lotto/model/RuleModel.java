@@ -1,6 +1,6 @@
 package lotto.model;
 
-public enum Rule {
+public enum RuleModel {
 
     MIN_NUMBER(1),
     MAX_NUMBER(45),
@@ -8,7 +8,7 @@ public enum Rule {
 
     private final int value;
 
-    Rule(int number) {
+    RuleModel(int number) {
         this.value = number;
     }
 

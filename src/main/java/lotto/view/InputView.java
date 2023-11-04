@@ -1,28 +1,24 @@
-package lotto.controller;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputController {
+public class InputView {
     private static final String ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String ENTER_SIX_DIGITS_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private final InputValidatorController inputValidatorController;
 
-    public InputController() {
-        this.inputValidatorController = new InputValidatorController();
-    }
-    public String purchaseAmount() {
+    public String budget() {
         System.out.println(ENTER_PURCHASE_AMOUNT);
-        String purchaseAmount = Console.readLine();
-        inputValidatorController.blank(purchaseAmount);
+        String budget = Console.readLine();
+        validateBlank(budget);
 
-        return purchaseAmount;
+        return budget;
     }
 
     public String numbers() {
         System.out.println(ENTER_SIX_DIGITS_NUMBERS);
         String numbers = Console.readLine();
-        inputValidatorController.blank(numbers);
+        validateBlank(numbers);
 
         return numbers;
     }
@@ -30,8 +26,14 @@ public class InputController {
     public String bonusNumber() {
         System.out.println(ENTER_BONUS_NUMBER);
         String bonusNumber = Console.readLine();
-        inputValidatorController.blank(bonusNumber);
+        validateBlank(bonusNumber);
 
         return bonusNumber;
+    }
+
+    public void validateBlank(String purchaseAmount) throws IllegalArgumentException  {
+        if (purchaseAmount.isBlank()) {
+            throw new IllegalArgumentException();
+        }
     }
 }

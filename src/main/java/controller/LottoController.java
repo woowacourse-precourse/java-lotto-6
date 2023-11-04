@@ -60,11 +60,11 @@ public class LottoController {
         String inputBonusNumber = inputView.read();
         try {
             validator.validateBonusNumber(numbers, inputBonusNumber);
+            return Integer.parseInt(inputBonusNumber);
         } catch (IllegalArgumentException exception) {
             outputView.showErrorMessage(exception.getMessage());
-            getValidBonusNumber(numbers);
+            return getValidBonusNumber(numbers);
         }
-        return Integer.parseInt(inputBonusNumber);
     }
 
     private List<Integer> getValidAnswerNumbers() {
@@ -72,15 +72,14 @@ public class LottoController {
         AnswerLottoNumbers answerNumbers = new AnswerLottoNumbers(inputView.read());
         try {
             validator.validateAnswerNumbers(answerNumbers);
+            return answerNumbers.divideNumbers()
+                .stream()
+                .map(Integer::parseInt)
+                .toList();
         } catch (IllegalArgumentException exception) {
             outputView.showErrorMessage(exception.getMessage());
-            getValidAnswerNumbers();
+            return getValidAnswerNumbers();
         }
-
-        return answerNumbers.divideNumbers()
-            .stream()
-            .map(Integer::parseInt)
-            .toList();
     }
 
     private void informLottos() {
@@ -99,10 +98,10 @@ public class LottoController {
         String inputPurchase = inputView.read();
         try {
             validator.validatePurchase(inputPurchase);
+            return Integer.parseInt(inputPurchase);
         } catch (IllegalArgumentException exception) {
             outputView.showErrorMessage(exception.getMessage());
-            askValidPurchaseAmount();
+            return askValidPurchaseAmount();
         }
-        return Integer.parseInt(inputPurchase);
     }
 }

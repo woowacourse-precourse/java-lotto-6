@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lottos {
 
@@ -13,13 +14,10 @@ public class Lottos {
 
     private List<Lotto> generateLottos(int lottoQuantity) {
         RandomLottoNumberGenerator randomLottoNumberGenerator = new RandomLottoNumberGenerator();
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < lottoQuantity; i++) {
-            List<Integer> generatedNumbers = randomLottoNumberGenerator.generateRandomNumbers();
-            Lotto lotto = new Lotto(generatedNumbers);
-            lottoNumbers.add(lotto);
-        }
-        return lottoNumbers;
+
+        return IntStream.range(0, lottoQuantity)
+                .mapToObj(lotto -> new Lotto(randomLottoNumberGenerator.generateRandomNumbers()))
+                .collect(Collectors.toList());
     }
 
     public List<Lotto> getMyLottos() {

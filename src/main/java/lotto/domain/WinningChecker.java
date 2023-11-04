@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WinningChecker {
 
@@ -15,17 +16,17 @@ public class WinningChecker {
     }
 
     public List<Integer> countWinningLottos() {
-        List<Integer> matchedNumberCounts = new ArrayList<>();
-        for (Lotto lotto : myLottos) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            int matchedNumCount = countMatchedNumber(lottoNumbers);
-            matchedNumCount = countMatchedBonusNumber(lottoNumbers, matchedNumCount);
-
-            if (matchedNumCount >= Constants.WINNING_COUNT) {
-                matchedNumberCounts.add(matchedNumCount);
-            }
-        }
+        List<Integer> matchedNumberCounts =
+                myLottos.stream()
+                        .map(lotto -> countMatchedNumbers(lotto))
+                        .filter(matchedNumbersCount -> matchedNumbersCount >= Constants.WINNING_COUNT)
+                        .collect(Collectors.toList());
         return countRanks(matchedNumberCounts);
+    }
+
+    private int countMatchedNumbers(Lotto lotto) {
+        int matchedNumCount = countMatchedNumber(lotto.getNumbers());
+        return countMatchedBonusNumber(lotto.getNumbers(), matchedNumCount);
     }
 
     private int countMatchedNumber(List<Integer> lottoNumbers) {
@@ -38,7 +39,7 @@ public class WinningChecker {
     private int countMatchedBonusNumber(List<Integer> lottoNumbers, int matchedNumCount) {
         if (matchedNumCount == Rank.THIRD.getMatchedCount()) {
             if (lottoNumbers.contains(bonusNumber)) {
-                matchedNumCount += Rank.SECOND.getIdentifier();
+                return matchedNumCount + Rank.SECOND.getIdentifier();
             }
         }
         return matchedNumCount;
@@ -46,30 +47,23 @@ public class WinningChecker {
 
     private List<Integer> countRanks(List<Integer> matchedNumberCounts) {
         List<Integer> rankCounts = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
-        for (int count : matchedNumberCounts) {
-            checkAndPlusCount(count, rankCounts);
-        }
+        matchedNumberCounts.forEach(matchedCount -> checkAndPlusCount(matchedCount, rankCounts));
         return rankCounts;
     }
 
-    private void checkAndPlusCount(int count, List<Integer> rankCounts) {
-        Map<Integer, Integer> rankMapping = createRankMapping();
-        int rank = rankMapping.get(count);
-        plusOneCountOnRank(rank, rankCounts);
+    private void checkAndPlusCount(int matchedCount, List<Integer> rankCounts) {
+        Map<Integer, Integer> matchedNumberWithRankIndex = matchingCountAndRankIndex();
+        int rankIndex = matchedNumberWithRankIndex.get(matchedCount);
+        plusOneCountOnRank(rankIndex, rankCounts);
     }
 
-    private Map<Integer, Integer> createRankMapping() {
-        Map<Integer, Integer> rankWithMatchedCount = new HashMap<>();
-        rankWithMatchedCount.put(Rank.FIRST.getMatchedCount(), Rank.FIRST.getRankIndex());
-        rankWithMatchedCount.put(Rank.SECOND.getMatchedCount(), Rank.SECOND.getRankIndex());
-        rankWithMatchedCount.put(Rank.THIRD.getMatchedCount(), Rank.THIRD.getRankIndex());
-        rankWithMatchedCount.put(Rank.FOURTH.getMatchedCount(), Rank.FOURTH.getRankIndex());
-        rankWithMatchedCount.put(Rank.FIFTH.getMatchedCount(), Rank.FIFTH.getRankIndex());
-        return rankWithMatchedCount;
+    private Map<Integer, Integer> matchingCountAndRankIndex() {
+        return Arrays.stream(Rank.values())
+                .collect(Collectors.toMap(Rank::getMatchedCount, Rank::getRankIndex));
     }
 
-    private void plusOneCountOnRank(int rank, List<Integer> rankCounts) {
-        int count = rankCounts.get(rank);
-        rankCounts.set(rank, ++count);
+    private void plusOneCountOnRank(int rankIndex, List<Integer> rankCounts) {
+        int count = rankCounts.get(rankIndex);
+        rankCounts.set(rankIndex, ++count);
     }
 }

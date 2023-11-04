@@ -13,6 +13,7 @@ import domain.Money;
 import domain.RateOfReturn;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import view.InputView;
@@ -110,7 +111,19 @@ public class LottoController {
         }
 
         OutputView.printStatistics(rankCountsMap);
-        RateOfReturn rateOfReturn = new RateOfReturn(rankCountsMap, money.getMoney());
+        long totalIncome = getTotalIncome(rankCountsMap);
+        RateOfReturn rateOfReturn = new RateOfReturn(totalIncome, money.getMoney());
         OutputView.printRateOfReturn(rateOfReturn.getRate());
+    }
+
+    private static long getTotalIncome(HashMap<Rank, Integer> rankCountsMap) {
+        long totalIncome = 0;
+        for (Entry<Rank, Integer> entry : rankCountsMap.entrySet()) {
+            if (entry.getValue() != 0) {
+                Rank rank = entry.getKey();
+                totalIncome += (long) rank.getPrize() * entry.getValue();
+            }
+        }
+        return totalIncome;
     }
 }

@@ -17,6 +17,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateWinningNumbers(final String winningNumbers) {
+        if (winningNumbers.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void validateBonusNumber(final String bonusNumber) {
         if (bonusNumber.isEmpty()) {
             throw new IllegalArgumentException();

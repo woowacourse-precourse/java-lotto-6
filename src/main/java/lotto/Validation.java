@@ -8,17 +8,17 @@ import java.util.Set;
 public class Validation {
     static void emptyCheck(String raw) {
         if (raw == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 비어있지 않아야 합니다.");
         }
     }
 
     static void naturalNumberCheck(String raw) {
         try {
             if (Integer.parseInt(raw) <= 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 구입금액은 자연수여야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
     }
 
@@ -26,17 +26,17 @@ public class Validation {
         try {
             Integer.parseInt(raw);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
     }
 
     static void devide1000Check(String raw) {
         try {
             if (Integer.parseInt(raw) % 1000 != 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 구입금액은 1000 단위의 숫자여야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
     }
 
@@ -55,32 +55,32 @@ public class Validation {
         Integer numbersSize = numbers.size();
         Integer setSize = set.size();
         if (numbersSize != setSize) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
     static void commaCheck(String raw) {
         if (!raw.contains(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분되야 합니다.");
         }
         if (raw.contains(",,")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 하나의 쉼표(,)로 구분되야 합니다.");
         }
         if (raw.startsWith(",") || raw.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분되야 합니다.");
         }
     }
 
     static void split6Check(String raw) {
         if (raw.split(",").length != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
         }
     }
 
     static void range1to45Check(String raw) {
         for (String number : raw.split(",")) {
             if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -97,7 +97,7 @@ public class Validation {
         Integer bonusNumber = Integer.parseInt(raw);
         List<Integer> winnerTicketNumbers = winnerTicket.toList();
         if (winnerTicketNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않아야 합니다.");
         }
     }
 

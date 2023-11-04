@@ -3,6 +3,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -56,11 +57,13 @@ public class GameManager {
         System.out.println("6개 일치 (2,000,000,000원)" + " - " + Optional.ofNullable(lottoByWinningCount.get(6)).stream().count()  + "개");
     }
 
-    public double getProfitRate(List<Lotto> lottos, int payment) {
+    public String getProfitRate(List<Lotto> lottos, int payment) {
         int winningMoney = 0;
         for (Lotto lotto : lottos) {
             winningMoney += lotto.getWinningMoney();
         }
-        return (double) winningMoney / payment;
+        Double profit = (double) winningMoney / payment * 100;
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+        return decimalFormat.format(profit);
     }
 }

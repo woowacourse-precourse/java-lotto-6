@@ -7,7 +7,9 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         GameManager gameManager = new GameManager();
-        int lottoAmount = gameManager.getPaymentForLottoByRead();
+        Consumer consumer = new Consumer();
+
+        int lottoAmount = gameManager.getPaymentForLottoByRead(consumer);
         List<Lotto> lottos = new ArrayList<>();
 
         List<Integer> winningNumbers = gameManager.getWinningLottoNumberByRead();
@@ -19,8 +21,9 @@ public class Application {
             lottos.add(lotto);
         }
 
-        System.out.println(lottoAmount+"개를 구매했습니다.");
+        System.out.println(lottoAmount + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
         gameManager.printWinning(lottos);
+        System.out.println("총 수익률은 " + gameManager.getProfitRate(lottos, consumer.getPayment()) + "%입니다.");
     }
 }

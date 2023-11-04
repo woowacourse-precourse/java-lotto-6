@@ -20,6 +20,10 @@ public class OutputView {
         System.out.println(lottoes.getLottoesNumber());
     }
 
+    public void printWinningNumberMessage() {
+        System.out.println(OutputMessage.READ_WINNING_NUMBER.getMessage());
+    }
+
     public void printNewLine() {
         System.out.println();
     }

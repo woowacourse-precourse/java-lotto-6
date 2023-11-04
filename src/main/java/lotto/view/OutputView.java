@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.LottoMatch;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final StringBuilder stringBuilder = new StringBuilder();
-    private static final String AMOUNT_FORMAT = "###,###";
 
     public static void displayPurchaseGuide() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -43,22 +41,25 @@ public class OutputView {
 
     public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
         Map<LottoMatch, Integer> lottoMatchMap = new HashMap<>();
-        DecimalFormat df = new DecimalFormat(AMOUNT_FORMAT);
 
         for (LottoMatch lottoMatch : lottoResultCount) {
             lottoMatchMap.put(lottoMatch, lottoMatchMap.getOrDefault(lottoMatch, 0) + 1);
         }
 
         for (LottoMatch lottoMatch : LottoMatch.values()) {
-            if (lottoMatch.equals(LottoMatch.NOTHING)) {
+            if (lottoMatch == LottoMatch.NOTHING) {
                 continue;
             }
-            stringBuilder.append(lottoMatch.getMatching()).append("개 일치");
+            String MatchingBonusBall = "";
             if (lottoMatch.equals(LottoMatch.FIVE_AND_BONUS)) {
-                stringBuilder.append(", 보너스 볼 일치");
+                MatchingBonusBall = ", 보너스 볼 일치";
             }
-            stringBuilder.append(" (").append(df.format(lottoMatch.getAmount())).append("원) - ")
-                    .append(getMatchCount(lottoMatchMap.get(lottoMatch))).append("개").append("\n");
+
+            stringBuilder.append(String.format("%d개 일치%s(%,d원) - %d개",
+                    lottoMatch.getMatching(),
+                    MatchingBonusBall,
+                    lottoMatch.getAmount(),
+                    getMatchCount(lottoMatchMap.get(lottoMatch)))).append("\n");
         }
     }
 

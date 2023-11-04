@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
@@ -15,6 +16,7 @@ public class LottoController {
     private List<Lotto> myLottoNumbers = new ArrayList<>();
     private Lotto winningLottoNumbers;
     private BonusNumber winningBonusNumber;
+    private List<Integer> matchingCounts;
 
     public void buyMyLotto() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.getPurchaseAmount());
@@ -43,8 +45,12 @@ public class LottoController {
     }
 
     public void calculateMatchingNumbers() {
-        for (int i = 0; i <= lottoAmount; i++) {
-
+        matchingCounts = new ArrayList<>(Collections.nCopies(7, 0));
+        for (int i = 0; i < lottoAmount; i++) {
+            Lotto myLotto = myLottoNumbers.get(i);
+            int matchingCount = myLotto.howManySameNumbers(winningLottoNumbers);
+            int newValue = matchingCounts.get(matchingCount) + 1;
+            matchingCounts.set(matchingCount, newValue);
         }
     }
 

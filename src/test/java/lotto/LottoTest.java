@@ -42,4 +42,16 @@ class LottoTest {
 
         assertThat(actualLotto).isEqualTo(expectedLotto);
     }
+
+    @DisplayName("두 로또의 일치하는 숫자 개수 계산")
+    @Test
+    void calculateSameNumberCounts() {
+        Lotto lotto1 = new Lotto(List.of(1, 5, 13, 20, 36, 45));
+        Lotto lotto2 = new Lotto(List.of(1, 9, 13, 33, 35, 45));
+
+        int actualCounts = lotto1.howManySameNumbers(lotto2);
+        int expectedCounts = 3;
+
+        assertThat(actualCounts).isEqualTo(expectedCounts);
+    }
 }

@@ -61,6 +61,14 @@ public class Lotto {
         return inputNumbers;
     }
 
+    public int howManySameNumbers(Lotto lotto) {
+        long sameNumberCount = numbers.stream()
+                .filter(lotto.numbers::contains)
+                .count();
+
+        return (int) sameNumberCount;
+    }
+
     public int getSize() {
         return numbers.size();
     }

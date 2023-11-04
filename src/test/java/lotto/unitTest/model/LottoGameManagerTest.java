@@ -3,8 +3,8 @@ package lotto.unitTest.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.common.config.LottoGameRule;
 import lotto.model.Lotto;
+import lotto.model.LottoBucket;
 import lotto.model.LottoGameManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -28,32 +28,28 @@ class LottoGameManagerTest {
         @ValueSource(strings = {" ", "", "\n", "\r", "\t"})
         @ParameterizedTest
         void 비었거나_공백이라면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.createLottoBucket(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ValueSource(strings = {"1.23", "-1000", "테스트"})
         @ParameterizedTest
         void 정수가_아니면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.createLottoBucket(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ValueSource(strings = {"1", "10", "100", "0", "00", "000"})
         @ParameterizedTest
         void 천원으로_나누어_떨어지지_않으면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.createLottoBucket(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ValueSource(strings = {"1000", "1000000"})
         @ParameterizedTest
-        void 정상적인_값이면_발행할_로또_개수를_반환한다(String inputLottoCost) {
-            int lottoAmount = Integer.parseInt(inputLottoCost) / LottoGameRule.LOTTO_COST_UNIT.constant();
-
-            int calculatedLottoAmount = lottoGameManager.calculateLottoAmount(inputLottoCost);
-
-            assertThat(calculatedLottoAmount).isEqualTo(lottoAmount);
+        void 정상적인_값이면_로또_바구니를_생성한다(String inputLottoCost) {
+            assertThat(lottoGameManager.createLottoBucket(inputLottoCost)).isInstanceOf(LottoBucket.class);
         }
     }
 

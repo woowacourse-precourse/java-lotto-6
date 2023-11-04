@@ -17,7 +17,12 @@ public class LottoGameManager {
         LottoCostValidator.validateNumeric(userInput);
     }
 
-    public int calculateLottoAmount(String userInputLottoCost) {
+    //LottoBucket 만드는 메서드
+    public LottoBucket createLottoBucket(String userInputLottoCost) {
+        return new LottoBucket(calculateLottoAmount(userInputLottoCost));
+    }
+
+    private int calculateLottoAmount(String userInputLottoCost) {
         validateCommon(userInputLottoCost);
 
         int lottoCost = Integer.parseInt(userInputLottoCost);
@@ -25,8 +30,9 @@ public class LottoGameManager {
         return lottoCost / LottoGameRule.LOTTO_COST_UNIT.constant();
     }
 
-    private List<String> splitWinningNumbers(String userInputWinningNumbers) {
-        return List.of(userInputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()));
+    //보너스 번호 없는 당첨 로또만 만드는 메서드
+    public Lotto createWinningLotto(String userInputWinningNumbers) {
+        return LottoCreator.createManualLotto(parsingWinningNumbers(userInputWinningNumbers));
     }
 
     private List<Integer> parsingWinningNumbers(String userInputWinningNumbers) {
@@ -41,16 +47,12 @@ public class LottoGameManager {
         return parsedWinningNumbers;
     }
 
-    public Lotto createWinningLotto(String userInputWinningNumbers) {
-        return LottoCreator.createManualLotto(parsingWinningNumbers(userInputWinningNumbers));
+    private List<String> splitWinningNumbers(String userInputWinningNumbers) {
+        return List.of(userInputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.value()));
     }
 
+    //보너스 번호와 당첨 로또를 주는 메서드
     public LottoRanking createWinningLottoAddBonusNumber(Lotto lotto, String userInputBonusNumber) {
         return new LottoRanking(lotto, userInputBonusNumber);
     }
-
-    public LottoBucket createLottoBucket(int lottoAmount) {
-        return new LottoBucket(lottoAmount);
-    }
-
 }

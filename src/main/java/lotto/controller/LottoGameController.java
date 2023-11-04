@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoBucket;
 import lotto.model.LottoGameManager;
 import lotto.model.LottoRanking;
 import lotto.view.InputView;
@@ -12,7 +13,7 @@ public class LottoGameController {
     private final LottoGameManager lottoGameManager;
 
     private Lotto winningLotto;
-    private int lottoAmount;
+    private LottoBucket lottoBucket;
 
     public LottoGameController(InputView inputView, LottoGameManager lottoGameManager) {
         this.inputView = inputView;
@@ -20,17 +21,17 @@ public class LottoGameController {
     }
 
     public void gameStart() {
-        getLottoAmount();
+        getLottoBucket();
         getWiningLotto();
         getWiningLottoAddBonusNumber();
     }
 
-    private void getLottoAmount() {
+    private void getLottoBucket() {
         while (true) {
             try {
                 OutputView.writeLine(OutputMessage.REQUEST_LOTTO_COST.message());
                 String userInputLottoCost = inputView.readLine();
-                lottoAmount = lottoGameManager.calculateLottoAmount(userInputLottoCost);
+                lottoBucket = lottoGameManager.createLottoBucket(userInputLottoCost);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.writeLine(e.getMessage());

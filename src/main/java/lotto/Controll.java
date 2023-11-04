@@ -3,6 +3,9 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -22,6 +25,15 @@ public class Controll {
                 this.sameNumber = 0;
             }
             this.sameNumber = sameNumber;
+        }
+
+        static SameNumber fromInt(int value) {
+            for (SameNumber number : SameNumber.values()) {
+                if (number.sameNumber == value) {
+                    return number;
+                }
+            }
+            return SAME0;
         }
     }
 
@@ -49,5 +61,15 @@ public class Controll {
 
     Integer ticketsForMoney(Integer money) {
         return money / 1000;
+    }
+
+    SameNumber compareTicket(Lotto winner, Lotto ticket) {
+        Integer count = (int) Stream.concat(winner.toList().stream(), ticket.toList().stream())
+                .filter(num -> winner.toList().contains(num) && ticket.toList().contains(num))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .count();
+        return SameNumber.fromInt(count);
     }
 }

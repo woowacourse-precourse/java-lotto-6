@@ -24,12 +24,6 @@ public class Lotto {
         }
     }
 
-    private void checkNumberInRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
-        }
-    }
-
     private void checkNumbersCountSix(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 숫자를 여섯개 입력해 주세요.");
@@ -40,6 +34,12 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복이 아닌 숫자를 입력해 주세요.");
+        }
+    }
+
+    private void checkNumberInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
         }
     }
 }

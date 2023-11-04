@@ -21,6 +21,12 @@ public class GameController {
         this.outputView = outputView;
     }
 
-
+    public void play() {
+        // 구입 금액 입력
+        // 발행 로또 내역 출력
+        // 당첨 번호 입력
+        // 보너스 번호 입력
+        // 당첨 통계 출력
+    }
 
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,11 +25,13 @@ class LottoResultTest {
 
         LottoResult lottoResult = LottoResult.createLottoResult(winningLotto, lottos);
 
-        List<LottoPrize> winningResult = lottoResult.getLottoPrizes();
+        Map<LottoPrize, Integer> lottoPrizes = lottoResult.getLottoPrizesHistory();
 
-        assertThat(winningResult.get(0)).isEqualTo(LottoPrize.FIRST);
-        assertThat(winningResult.get(1)).isEqualTo(LottoPrize.SECOND);
-        assertThat(winningResult.get(2)).isEqualTo(LottoPrize.LOSING);
+        assertThat(lottoPrizes.size()).isEqualTo(LottoPrize.values().length - 1);
+        assertThat(lottoPrizes.get(LottoPrize.FIRST)).isEqualTo(1);
+        assertThat(lottoPrizes.get(LottoPrize.SECOND)).isEqualTo(1);
+        assertThat(lottoPrizes.get(LottoPrize.FORTH)).isEqualTo(0);
+        assertThat(lottoPrizes.get(LottoPrize.LOSING)).isEqualTo(null);
     }
 
     @DisplayName("로또의 수익률을 반환한다. 100% 이상")

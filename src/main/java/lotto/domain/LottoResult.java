@@ -2,8 +2,11 @@ package lotto.domain;
 
 import lotto.domain.constant.LottoPrize;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LottoResult {
@@ -26,8 +29,17 @@ public class LottoResult {
         return new LottoResult(lottoPrizes);
     }
 
-    public List<LottoPrize> getLottoPrizes() {
-        return lottoPrizes;
+    public Map<LottoPrize, Integer> getLottoPrizesHistory() {
+        Map<LottoPrize, Integer> lottoPrizesHistory = Arrays.stream(LottoPrize.values())
+                .filter(lottoPrize -> lottoPrize != LottoPrize.LOSING)
+                .collect(Collectors.toMap(Function.identity(), i -> 0));
+
+        this.lottoPrizes.stream()
+                .filter(lottoPrize -> lottoPrize != LottoPrize.LOSING)
+                .forEach(lottoPrize ->
+                        lottoPrizesHistory.put(lottoPrize, lottoPrizesHistory.get(lottoPrize) + 1));
+
+        return lottoPrizesHistory;
     }
 
     public double calculateProfitOnInvestment(Money money) {

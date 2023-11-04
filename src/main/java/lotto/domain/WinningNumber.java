@@ -16,7 +16,7 @@ public class WinningNumber {
         winningNumber = validateWinningNumber(numbers);
     }
 
-    public List<Integer> validateWinningNumber(List<String> numbers) {
+    private List<Integer> validateWinningNumber(List<String> numbers) {
         checkValidInteger(numbers);
         checkNumbersLength(numbers);
         checkNumbersRange(numbers);

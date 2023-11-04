@@ -1,17 +1,34 @@
 package lotto.model;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseLottoTest {
 
+    PurchaseLotto purchaseLotto;
+    @BeforeEach
+    void beforeEach() {
+        this.purchaseLotto = new PurchaseLotto();
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"8000원", "800 0", "8000!", "8,000"})
     void 숫자가_아닌_금액_입력(String input) {
-        PurchaseLotto purchaseLotto = new PurchaseLotto();
-        Assertions.assertThatThrownBy(() -> purchaseLotto.purchase(input))
+        assertThatThrownBy(() -> purchaseLotto.purchase(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자만 입력 가능합니다.");
+    }
+
+    @Test
+    void 천원보다_적은_금액_입력() {
+
+        assertThatCode(() -> purchaseLotto.purchase("1000")).doesNotThrowAnyException();
+        assertThatThrownBy(() -> purchaseLotto.purchase("999"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 최소 구매 금액은 1,000원 입니다.");
     }
 }

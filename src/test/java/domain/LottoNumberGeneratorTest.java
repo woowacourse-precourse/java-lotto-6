@@ -1,6 +1,6 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +18,6 @@ class LottoNumberGeneratorTest {
         List<Integer> distinctNumber = numbers.stream()
                 .distinct()
                 .collect(Collectors.toList());
-        Assertions.assertThat(numbers.size()).isEqualTo(distinctNumber.size());
+        Assertions.assertEquals(numbers.size(),distinctNumber.size());
     }
 }

@@ -16,7 +16,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from(final List<String> numbers) {
+    public static Lotto fromStringList(final List<String> numbers) {
         validate(numbers);
 
         List<Number> number = numbers.stream()
@@ -26,25 +26,35 @@ public class Lotto {
         return new Lotto(number);
     }
 
-    private static void validate(final List<String> numbers) {
+    public static Lotto fromIntegerList(final List<Integer> numbers) {
+        validate(numbers);
+
+        List<Number> number = numbers.stream()
+                .map(Number::from)
+                .toList();
+
+        return new Lotto(number);
+    }
+
+    private static void validate(final List<?> numbers) {
         validateSize(numbers);
         validateDuplicates(numbers);
     }
 
-    private static void validateSize(final List<String> numbers) {
+    private static void validateSize(final List<?> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new InvalidSizeException();
         }
     }
 
-    private static void validateDuplicates(final List<String> numbers) {
+    private static void validateDuplicates(final List<?> numbers) {
         if (hasDuplicates(numbers)) {
             throw new DuplicateNumbersException();
         }
     }
 
-    private static boolean hasDuplicates(final List<String> numbers) {
-        Set<String> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() != numbers.size();
+    private static boolean hasDuplicates(final List<?> numbers) {
+        Set<?> duplicates = new HashSet<>(numbers);
+        return duplicates.size() != numbers.size();
     }
 }

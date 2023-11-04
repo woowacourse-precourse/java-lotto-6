@@ -22,6 +22,11 @@ public class Number {
         return new Number(value);
     }
 
+    public static Number from(final int number) {
+        validateRange(number);
+        return new Number(number);
+    }
+
     private static void validateNumericValue(final String value) {
         if (!isNumeric(value)) {
             throw new NonPositiveIntException();
@@ -29,9 +34,10 @@ public class Number {
     }
 
     private static boolean isNumeric(final String value) {
-        if (value == null || value.isEmpty()) {
+        if (value.isEmpty()) {
             return false;
         }
+
         return value.chars()
                 .allMatch(Character::isDigit);
     }

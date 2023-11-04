@@ -29,9 +29,6 @@ public class Money {
     }
 
     private static boolean isNumeric(final String value) {
-        if (value == null || value.isEmpty()) {
-            return false;
-        }
         return value.chars()
                 .allMatch(Character::isDigit);
     }

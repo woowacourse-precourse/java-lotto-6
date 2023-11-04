@@ -25,7 +25,7 @@ public class WinningLotto {
     }
 
     private static WinningLotto createWinningLotto(final List<String> lottoNumbers, final String bonusNumber) {
-        Lotto lotto = Lotto.from(lottoNumbers);
+        Lotto lotto = Lotto.fromStringList(lottoNumbers);
         Number number = Number.from(bonusNumber);
         return new WinningLotto(lotto, number);
     }

@@ -11,7 +11,7 @@ public class Number {
 
     private final int number;
 
-    private Number(int number) {
+    private Number(final int number) {
         this.number = number;
     }
 

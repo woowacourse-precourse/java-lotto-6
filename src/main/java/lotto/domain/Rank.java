@@ -49,4 +49,8 @@ public enum Rank {
     public String getPriceMessage() {
         return priceMessage;
     }
+
+    public boolean isNotBoom() {
+        return this != BOOM;
+    }
 }

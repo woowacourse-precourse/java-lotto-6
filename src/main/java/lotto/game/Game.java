@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.domain.Numbers;
 import lotto.domain.Ticket;
 import lotto.type.ErrorCode;
 
@@ -23,27 +24,18 @@ public class Game {
             System.out.println(ErrorCode.INVALID_MONEY_TO_BUY.getDescription());
             totalTicketCount = buyTicket();
         }
+        Numbers numbers = new Numbers();
 
         showTickets(totalTicketCount);
+        pickLuckyNumbers(numbers);
 
-        pickLuckyNumbers();
-
+        pickBonusNumber(numbers);
     }
 
-    private void pickLuckyNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<String> numberInput = stream(Console.readLine().split(",")).toList();
-        validateLuckyNumbers(numberInput);
-        List<Integer> luckyNumbers = new ArrayList<>();
-        for (String num : numberInput) {
-            luckyNumbers.add(Integer.parseInt(num));
-        }
-    }
-
-    void validateLuckyNumbers(List<String> numberInput) {
-        if (numberInput.size() != 6 || numberInput.size() != numberInput.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LUCKY_NUMBERS.getDescription());
-        }
+    private void pickBonusNumber(Numbers numbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        numbers.setBonusNumber(bonusNumber);
     }
 
     private int buyTicket() {
@@ -68,6 +60,22 @@ public class Game {
             tickets.add(new Lotto(numbers));
         }
         return tickets;
+    }
+
+    private void pickLuckyNumbers(Numbers numbers) {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<String> numberInput = stream(Console.readLine().split(",")).toList();
+        validateLuckyNumbers(numberInput);
+        List<Integer> luckyNumbers = new ArrayList<>();
+        for (String num : numberInput) {
+            luckyNumbers.add(Integer.parseInt(num));
+        }
+        numbers.setLuckyNumbers(luckyNumbers);
+    }
+    void validateLuckyNumbers(List<String> numberInput) {
+        if (numberInput.size() != 6 || numberInput.size() != numberInput.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_LUCKY_NUMBERS.getDescription());
+        }
     }
 
 }

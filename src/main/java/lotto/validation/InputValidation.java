@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class InputValidation {
     public int validatePurchaseAmount(String input) {
         validateInputIsNumeric(input);
@@ -10,6 +13,19 @@ public class InputValidation {
         validatePurchaseAmountUnit(purchaseAmount);
 
         return purchaseAmount;
+    }
+
+    public List<Integer> validateWinnerNumbers(String input) {
+        validateInputUseCorrectSeperator(input);
+        validateWinnerNumbersNumeric(input);
+        validateWinnerNumbersPositive(input);
+        List<Integer> winnerNumbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        validateWinnerNumbersOutOfRange(winnerNumbers);
+        validateDuplicateWinnerNumbers(winnerNumbers);
+
+        return winnerNumbers;
     }
 
     public void validateInputIsNumeric(String input) {

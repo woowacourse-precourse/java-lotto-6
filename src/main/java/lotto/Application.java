@@ -12,6 +12,7 @@ public class Application {
 
         Lotto winningLotto = new Lotto(inputWinningNumbers());
         int bonusNumber = inputBonusNumber();
+        
 
     }
     // 입력받고 로또 생성
@@ -63,7 +64,7 @@ public class Application {
     }
 
     // 결과 계산
-    public enum WinningPrize {
+    private enum WinningPrize {
         MATCH_3(3, 5000),
         MATCH_4(4, 50000),
         MATCH_5(5, 1500000),
@@ -104,7 +105,7 @@ public class Application {
         return resultMap;
     }
 
-    private long getPrizeMoney(Map<String, Integer>resultMap){
+    private static long getPrizeMoney(Map<String, Integer>resultMap){
         long totalPrizeMoney = 0;
         for(WinningPrize prize : WinningPrize.values()){
             boolean bonusMatch = false;
@@ -116,11 +117,11 @@ public class Application {
         return totalPrizeMoney;
     }
 
-    private double calculateEarningsRate(int purchaseAmount, long totalPrizeMoney){
+    private static double calculateEarningsRate(int purchaseAmount, long totalPrizeMoney){
         return (double) totalPrizeMoney / purchaseAmount * 100;
     }
 
-    public void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount){
+    private static void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount){
         Map<String, Integer> resultMap = calculateResult(lottos, winningLotto, bonusNumber);
 
         long totalPrizeMoney = getPrizeMoney(resultMap);
@@ -130,10 +131,10 @@ public class Application {
         printEarningsRate(earningsRate);
     }
 
-    private void printLottoTickets(List<Lotto> lottos){
+    private static void printLottoTickets(List<Lotto> lottos){
 
     }
-    private void printLottoResult(Map<String, Integer> resultMap){
+    private static void printLottoResult(Map<String, Integer> resultMap){
 
         for(WinningPrize prize : WinningPrize.values()){
             boolean bonusMatch = false;
@@ -145,7 +146,7 @@ public class Application {
         }
     }
 
-    private void printEarningsRate(double earningsRate){
+    private static void printEarningsRate(double earningsRate){
         System.out.printf("총 수익률은 %.1ㄹ%%dlqslek.\n", earningsRate);
     }
 

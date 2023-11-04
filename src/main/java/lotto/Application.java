@@ -135,6 +135,14 @@ public class Application {
     }
     private void printLottoResult(Map<String, Integer> resultMap){
 
+        for(WinningPrize prize : WinningPrize.values()){
+            boolean bonusMatch = false;
+            if(prize == WinningPrize.MATCH_5_BONUS)
+                bonusMatch = true;
+            String key = getKey(prize.getMatchCount(), bonusMatch);
+
+            System.out.printf("%s (%d원) - %d개\n", key, prize.getPrizeMoney(), resultMap.getOrDefault(key, 0));
+        }
     }
 
     private void printEarningsRate(double earningsRate){

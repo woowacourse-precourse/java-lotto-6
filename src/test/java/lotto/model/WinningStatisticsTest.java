@@ -5,10 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,12 +30,12 @@ public class WinningStatisticsTest {
     @DisplayName("구입 로또, 당첨 로또, 보너스 번호가 주어졌을 때, 당첨 결과가 제대로 초기화 되는지 확인")
     @Test
     void setWinningResult() {
-        Map<WinningPrize, Integer> expectedResult = new HashMap<>(){{
-            put(WinningPrize.FIRST_PRIZE,1);
-            put(WinningPrize.SECOND_PRIZE,1);
-            put(WinningPrize.THIRD_PRIZE,1);
-            put(WinningPrize.FOURTH_PRIZE,1);
-            put(WinningPrize.FIFTH_PRIZE,1);
+        Map<WinningPrize, Integer> expectedResult = new LinkedHashMap<>(){{
+            put(WinningPrize.FIFTH_PRIZE, 1);
+            put(WinningPrize.FOURTH_PRIZE, 1);
+            put(WinningPrize.THIRD_PRIZE, 1);
+            put(WinningPrize.SECOND_PRIZE, 1);
+            put(WinningPrize.FIRST_PRIZE, 1);
         }};
         assertThat(winningStatistics.getWinningResult()).isEqualTo(expectedResult);
     }

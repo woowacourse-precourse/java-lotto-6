@@ -57,3 +57,7 @@
 
 - `OutputView`
     - [x] 알맞은 형식을 출력한다.
+
+- `WiningResultCalculator`
+    - [x] 당첨된 결과를 Map으로 담아서 리턴
+    - [x] 수익율을 계산해줌

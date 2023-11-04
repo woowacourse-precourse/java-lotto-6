@@ -7,6 +7,10 @@ public class Application {
 
     private static void startLotto() {
         User user = new User();
+        Global global = new Global();
+
         int money = user.inputAmountOfMoney();
+        int lottoCount = global.getLottoCount(money);
+        global.getIssuedLottoList(lottoCount);
     }
 }

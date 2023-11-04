@@ -1,10 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import lotto.exception.InvalidInput;
 
 public class Cost {
     private final int cost;
-    private static final int UNIT = 10000;
+    private static final int UNIT = 1000;
     public Cost(int cost) {
         validate(cost);
         this.cost = cost;

@@ -20,6 +20,16 @@ public class GameController {
 
         LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(lottoVendingMachine.getLottos());
         lottoAnalyzer.addWinningNumbers(InputView.inputWinningNumbers());
-        lottoAnalyzer.addBonusNumber(InputView.inputBonusNumber());
+        addBonusNumber(lottoAnalyzer);
+    }
+
+    private static void addBonusNumber(LottoAnalyzer lottoAnalyzer) {
+        int bonusNumber = InputView.inputBonusNumber();
+        try {
+            lottoAnalyzer.addBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            addBonusNumber(lottoAnalyzer);
+        }
     }
 }

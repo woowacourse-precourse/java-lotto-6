@@ -41,5 +41,5 @@
 
 ### 예외처리 공통 조건
 
-- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고,
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고,
   "[ERROR]"로 시작하는 에러 메시지를 출력 후 `그 부분부터 입력을 다시 받는다.`

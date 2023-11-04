@@ -7,7 +7,7 @@ import lotto.controller.dto.PurchasedLottoResponse;
 import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.Money;
-import lotto.model.WinningNumber;
+import lotto.model.WinningNumbers;
 import lotto.util.Converter;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
@@ -27,15 +27,15 @@ public class Controller {
         outputView.printMoneyRequestMessage();
         Money money = getMoney();
         Lottos lottos = getLottos(money.getMoney());
-        showPurchasedLotto(lottos);
-        WinningNumber winningNumber = getWinningNumber();
+        showPurchasedLottos(lottos);
+        WinningNumbers winningNumbers = getWinningNumbers();
         BonusNumber bonusNumber = getBonusNumber();
-        showWinningStatistics(lottos, winningNumber.getNumbers(), bonusNumber.getNumber());
-        long totalPrize = getTotalPrize(lottos, winningNumber.getNumbers(), bonusNumber.getNumber());
+        showWinningStatistics(lottos, winningNumbers.getNumbers(), bonusNumber.getNumber());
+        long totalPrize = getTotalPrize(lottos, winningNumbers.getNumbers(), bonusNumber.getNumber());
         showTotalProfit(totalPrize, money.getMoney());
     }
 
-    private void showPurchasedLotto(final Lottos lottos) {
+    private void showPurchasedLottos(final Lottos lottos) {
         PurchasedLottoResponse purchasedLottoResponse = PurchasedLottoResponse.from(lottos.getLottos());
         outputView.printPurchasedLottos(purchasedLottoResponse.getLottos());
     }
@@ -49,10 +49,10 @@ public class Controller {
         return Lottos.createWith(money, new RandomNumbersGenerator());
     }
 
-    private WinningNumber getWinningNumber() {
+    private WinningNumbers getWinningNumbers() {
         outputView.printWinningNumberRequestMessage();
         String winningNumber = inputView.readLine();
-        return new WinningNumber(Converter.splitWithCommaAndConvertToIntegerList(winningNumber));
+        return new WinningNumbers(Converter.splitWithCommaAndConvertToIntegerList(winningNumber));
     }
 
     private BonusNumber getBonusNumber() {
@@ -77,5 +77,4 @@ public class Controller {
     private void showTotalProfit(final long totalPrize, final long money) {
         outputView.printTotalProfit(totalPrize, money);
     }
-
 }

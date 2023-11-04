@@ -7,11 +7,11 @@ import java.util.List;
 import lotto.exception.lotto.ExistDuplicatedNumberException;
 import lotto.exception.lotto.InvalidLottoNumberException;
 
-public class WinningNumber {
+public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumber(final List<Integer> numbers) {
+    public WinningNumbers(final List<Integer> numbers) {
         validateSixNumbers(numbers);
         validateDuplicateNumbers(numbers);
         this.numbers = numbers;

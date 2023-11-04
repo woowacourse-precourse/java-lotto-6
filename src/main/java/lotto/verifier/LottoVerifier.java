@@ -3,7 +3,7 @@ package lotto.verifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinnerNumberVerifier implements Verifier {
+public class LottoVerifier implements Verifier {
     @Override
     public void check(String input) {
         checkNumberCount(input);

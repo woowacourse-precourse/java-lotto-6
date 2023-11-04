@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.verifier.BonusNumberVerifier;
 import lotto.verifier.MoneyVerifier;
 import lotto.verifier.Verifier;
-import lotto.verifier.WinnerNumberVerifier;
+import lotto.verifier.LottoVerifier;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,7 @@ public final class InputHandler {
 
     private static final Verifier moneyVerifier = new MoneyVerifier();
     private static final Verifier bonusNumVerifier = new BonusNumberVerifier();
-    private static final Verifier winnerNumberVerifier = new WinnerNumberVerifier();
+    private static final Verifier winnerNumberVerifier = new LottoVerifier();
 
     private InputHandler() {
 

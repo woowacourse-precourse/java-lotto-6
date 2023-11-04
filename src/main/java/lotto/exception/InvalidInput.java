@@ -1,15 +1,15 @@
 package lotto.exception;
 
+import static lotto.constant.CostConstant.UNIT;
+import static lotto.constant.LottoConstant.ALLOW_DUPLICATE_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
+
 import java.util.Collections;
 import java.util.List;
 
 public class InvalidInput {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int ALLOW_DUPLICATE_NUMBER_COUNT = 1;
-    private static final int LOTTO_SIZE = 6;
-    private static final int UNIT = 1000;
-
     private static String message;
 
     public void duplicateNumberException(List<Integer> numbers) {
@@ -40,7 +40,7 @@ public class InvalidInput {
     public void sizeExceededException(List<Integer> numbers) {
         message = ExceptionMessage.EXCEEDED_LOTTO_SIZE.getMessage();
 
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -48,19 +48,19 @@ public class InvalidInput {
     public void notThousandUnitException(int cost) {
         message = ExceptionMessage.NOT_THOUSAND_UNIT.getMessage();
 
-        if (cost % UNIT != 0) {
+        if (cost % UNIT.getValue() != 0) {
             throw new IllegalArgumentException(message);
         }
     }
 
     private static void isDuplicate(List<Integer> numbers, int number) {
-        if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT) {
+        if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(message);
         }
     }
 
     private static void isBetweenInRange(int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(message);
         }
     }

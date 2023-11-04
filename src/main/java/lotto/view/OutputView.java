@@ -1,7 +1,11 @@
 package lotto.view;
 
+import lotto.domain.LottoResult;
+import lotto.domain.OutputLottoResult;
+
+import java.util.List;
+
 public class OutputView {
-    public static void printStat(){
 
     public static void printStat(OutputLottoResult outputLottoResult) {
         System.out.println("당첨 통계\n" +
@@ -14,7 +18,7 @@ public class OutputView {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", outputLottoResult.getMatch6());
     }
 
-    public static void printRateOfReturn(){
-
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println(Math.round(rateOfReturn));
     }
 }

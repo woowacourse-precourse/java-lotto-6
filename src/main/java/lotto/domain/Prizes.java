@@ -51,7 +51,7 @@ public class Prizes {
         }
 
         Double benefit = (totalReward / totalSeed * 100.0);
-        return benefit;
+        return Math.round(benefit * 1000) / 100.0;
 
     }
 

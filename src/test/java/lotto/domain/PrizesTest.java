@@ -25,6 +25,8 @@ class PrizesTest {
     }
 
 
+
+
     static Stream<Arguments> countTotalPriceSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(
@@ -42,6 +44,18 @@ class PrizesTest {
                                 List.of(LAST_PLACE, FIRST_PLACE, SECOND_PLACE, FIRST_PLACE, LAST_PLACE)
                         ),
                         430_000_000.0)
+        );
+    }
+
+    static Stream<Arguments> calculateBenefitSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments(
+                        new Prizes(
+                                List.of(FIFTH_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
+                        ),
+                        8000,
+                        62.5
+                )
         );
     }
 }

@@ -239,7 +239,7 @@ private DrawLottosDtoBuilder inputLottoNumbers(final DrawLottosDtoBuilder builde
         builder.lottoNumbers(readLine());
     } catch (final Exception e) {
         // 예외 발생 시, 메세지 출력
-        System.out.println("[ERROR] 유효하지 않은 로또 번호입니다.\n다시 입력 해주세요.");
+        System.out.println("[ERROR] 유효하지 않은 로또 번호입니다.");
         // 그리고 재입력을 받음
         return inputLottoNumbers(builder);
     }
@@ -257,7 +257,7 @@ private DrawLottosDtoBuilder inputBonusNumber(final DrawLottosDtoBuilder builder
         builder.bonusNumber(readLine());
     } catch (final Exception e) {
         // 예외 발생 시, 메세지 출력
-        System.out.println("[ERROR] 유효하지 않은 보너스 번호입니다.\n다시 입력 해주세요.");
+        System.out.println("[ERROR] 유효하지 않은 보너스 번호입니다.");
         // 그리고 재입력을 받음
         return inputBonusNumber(builder);
     }

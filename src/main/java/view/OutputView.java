@@ -8,7 +8,7 @@ public class OutputView {
 
     public static void printMyLotto(List<Lotto> lottoNumbers) {
         int length = lottoNumbers.size();
-        System.out.println(length + "개를 구매했습니다.");
+        System.out.println("\n" + length + "개를 구매했습니다.");
         for (Lotto lotto : lottoNumbers) {
             printNumbers(lotto);
         }
@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public static void printWinningDetails(List<Integer> matchingCounts) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         List<String> prizeDescriptions = List.of(
@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        String message = String.format("총 수익률은 %.2f%%입니다.", rateOfReturn);
+        String message = String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
         System.out.println(message);
     }
 }

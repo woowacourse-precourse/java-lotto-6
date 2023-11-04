@@ -22,8 +22,8 @@ public class LottoController {
 
     public void buyMyLotto() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.getPurchaseAmount());
-        publishMyLotto(purchaseAmount);
         lottoAmount = (purchaseAmount.get()) / 1000;
+        publishMyLotto(purchaseAmount);
 
         OutputView.printMyLotto(myLottoNumbers);
     }

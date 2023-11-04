@@ -27,13 +27,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static Stream<List<Integer>> createLottoByUnderMinNumber() {
-        return Stream.of(
-                List.of(0, 1, 2, 3, 4, 5),
-                List.of(1, 2, 3, 4, 5, 46)
-        );
-    }
-
     @DisplayName("로또 번호에 1보다 작거나 45보다 큰 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource
@@ -42,10 +35,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static Stream<List<Integer>> createLotto() {
+    private static Stream<List<Integer>> createLottoByUnderMinNumber() {
         return Stream.of(
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(40, 41, 42, 43, 44, 45)
+                List.of(0, 1, 2, 3, 4, 5),
+                List.of(1, 2, 3, 4, 5, 46)
         );
     }
 
@@ -60,5 +53,12 @@ class LottoTest {
 
         Object actual = numbersField.get(lotto);
         assertThat(actual).isEqualTo(List.copyOf(numbers));
+    }
+
+    private static Stream<List<Integer>> createLotto() {
+        return Stream.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(40, 41, 42, 43, 44, 45)
+        );
     }
 }

@@ -12,9 +12,11 @@ public class InputView {
     public static int getPurchaseLottoPrice() {
         String cost = Console.readLine();
         return costConvertToInt(cost);
+        return convertToInt(cost);
+    }
     }
 
-    private static int costConvertToInt(String cost) {
+    private static int convertToInt(String cost) {
         try {
             return Integer.parseInt(cost);
         } catch (NumberFormatException e) {

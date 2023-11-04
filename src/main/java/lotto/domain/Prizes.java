@@ -35,6 +35,14 @@ public class Prizes {
     }
 
 
+    public Integer countTotalPrice() {
+        Integer totalPrice = 0;
+        for (Prize prize : prizes.keySet()) {
+            Integer count = prizes.get(prize);
+            totalPrice += prize.getReward() * count;
+        }
 
+        return totalPrice;
+    }
 
 }

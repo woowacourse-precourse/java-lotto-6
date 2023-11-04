@@ -9,8 +9,13 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String inputWinLotto() {
-        System.out.println(InputMessage.INPUT_WIN_LOTTO_MESSAGE.getMessage());
+    public String inputLottoWin() {
+        System.out.println(InputMessage.INPUT_LOTTO_WIN_MESSAGE.getMessage());
+        return Console.readLine();
+    }
+
+    public String inputLottoBonus() {
+        System.out.println(InputMessage.INPUT_LOTTO_BONUS_MESSAGE.getMessage());
         return Console.readLine();
     }
 }

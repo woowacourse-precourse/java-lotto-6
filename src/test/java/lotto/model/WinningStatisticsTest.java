@@ -30,23 +30,6 @@ public class WinningStatisticsTest {
         assertThat(prizeCounter).isEqualTo(expected);
     }
 
-    @DisplayName("당첨 상금의 합이 예상과 다르면 테스트에 실패한다.")
-    @Test
-    void calculateSumOfPrizeTest() {
-        // given
-        WinningStatistics winningStatistics = getWinningStatistics();
-        Long expected = LottoPrize.FIRST.getPrize()
-                + LottoPrize.THIRD.getPrize()
-                + LottoPrize.FOURTH.getPrize()
-                + LottoPrize.FIFTH.getPrize() * 3;
-
-        // when
-        Long actual = winningStatistics.calculateSumOfPrize();
-
-        // then
-        assertThat(actual).isEqualTo(expected);
-    }
-
     private static WinningStatistics getWinningStatistics() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;

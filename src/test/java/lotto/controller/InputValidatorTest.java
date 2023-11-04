@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.controller.userIO.InputValidator;
 import lotto.model.Lotto;
+import lotto.view.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -92,7 +92,7 @@ public class InputValidatorTest {
     void 보너스_번호_validateIntegerExceptionTest(String bonusNumber) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         InputValidator inputValidator = new InputValidator();
-        assertThatCode(() -> inputValidator.validateBonusNumberInput(lotto, bonusNumber))
+        assertThatCode(() -> inputValidator.validateBonusNumberInput(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -102,17 +102,7 @@ public class InputValidatorTest {
     void 보너스_번호_validateNumberInRangeExceptionTest(String bonusNumber) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         InputValidator inputValidator = new InputValidator();
-        assertThatCode(() -> inputValidator.validateBonusNumberInput(lotto, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("사용자가 입력한 보너스 번호가 당첨 번호와 중복되는 값이 들어왔을 때 예외를 발생시키지 않으면 테스트는 실패한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
-    void 보너스_번호_validateDuplicationExceptionTest(String bonusNumber) {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        InputValidator inputValidator = new InputValidator();
-        assertThatCode(() -> inputValidator.validateBonusNumberInput(lotto, bonusNumber))
+        assertThatCode(() -> inputValidator.validateBonusNumberInput(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

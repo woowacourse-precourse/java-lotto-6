@@ -1,7 +1,9 @@
 package Model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Service {
     private final Domain domain = Domain.getInstance();
@@ -30,4 +32,10 @@ public class Service {
         Domain.price = 1;
     }
 
+    public int numberFrequencyCount(List<Integer> list) {
+        Set<Integer> set = new HashSet<>(domain.NUMBERS);
+        return (int) list.stream()
+                .filter(set::contains)
+                .count();
+    }
 }

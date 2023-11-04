@@ -1,9 +1,30 @@
 package lotto.controller;
 
-public class LottoController {
-    //TODO 1. 로또 구매
+import lotto.constance.PrintConst;
+import lotto.exceptionhandler.ExceptionHandler;
+import lotto.exceptionhandler.RetryExceptionHandler;
+import lotto.model.Lottos;
+import lotto.ui.Reader;
+import lotto.ui.Writer;
+import lotto.util.lottogenerator.LottoGenerator;
+import lotto.util.lottogenerator.RandomLottoGenerator;
 
-    //TODO 2. 로또 생성
+public class LottoController {
+
+    ExceptionHandler retryHandler = new RetryExceptionHandler();
+    LottoGenerator lottoGenerator = new RandomLottoGenerator();
+
+    //TODO 1. 로또 구매
+    public void purchaseLotto() {
+        int money = retryHandler.getResult(
+                () -> {
+                    Writer.printGuide(PrintConst.GUIDE_PURCHASE);
+                    return Reader.getMoney();
+                });
+
+        Lottos lottos = lottoGenerator.purchase(money);
+        Writer.printModelsInList(lottos.getLottosDTO());
+    }
 
     //TODO 3. 로또 6자리 입력
 

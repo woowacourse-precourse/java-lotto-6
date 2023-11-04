@@ -30,27 +30,15 @@ class LottosRepositoryTest {
     @Test
     void saveWinningNumber() {
         // given
-        Lotto winningLotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningLotto winningLotto = WinningLotto.createFrom(lottoNumbers, bonusNumber);
 
         // when
-        lottosRepository.saveWiningLotto(winningLotto);
-        Lotto findWinningLotto = lottosRepository.findWinningLotto().get();
+        lottosRepository.saveWinningLotto(winningLotto);
+        WinningLotto findWinningLotto = lottosRepository.findWinningLotto().get();
 
         // then
         assertThat(findWinningLotto).isEqualTo(winningLotto);
-    }
-
-    @DisplayName("")
-    @Test
-    void saveBonusNumber() {
-        // given
-        int bonusNumber = 1;
-
-        // when
-        lottosRepository.saveBonusNumber(bonusNumber);
-        int findBonusNumber = lottosRepository.findBonusNumber().get();
-
-        // then
-        assertThat(findBonusNumber).isEqualTo(bonusNumber);
     }
 }

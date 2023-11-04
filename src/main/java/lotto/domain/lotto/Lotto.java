@@ -12,7 +12,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from(final List<Integer> numbers) {
+    public static Lotto createFrom(final List<Integer> numbers) {
         LottoNumbersValidator.validate(numbers);
         return new Lotto(numbers);
     }

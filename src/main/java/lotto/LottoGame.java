@@ -1,14 +1,13 @@
 package lotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.LottoMachine;
 import lotto.dto.BuyingResults;
 import lotto.dto.WinningResults;
 import lotto.exception.ExceptionResolver;
 import lotto.generator.RandomLottoNumberGenerator;
 import lotto.generator.WinningResultMessageGenerator;
-import lotto.validator.InputCommonValidator;
+import lotto.validator.input.InputCommonValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +25,7 @@ public class LottoGame {
 
     public void startGame() {
         ExceptionResolver.resolveProcess(this::buyLottos);
-        inputWinningNumbers();
+        ExceptionResolver.resolveProcess(this::inputWinningLotto);
         printWinningResult();
     }
 
@@ -42,22 +41,22 @@ public class LottoGame {
         return Integer.parseInt(inputPrice);
     }
 
-    private void inputWinningNumbers() {
-        ExceptionResolver.resolveProcess(this::inputLottoNumbers);
-        ExceptionResolver.resolveProcess(this::inputBonusNumber);
+    private void inputWinningLotto() {
+        List<Integer> winningNumbers = ExceptionResolver.resolveInput(this::inputLottoNumbers);
+        int bonusNumber = ExceptionResolver.resolveInput(this::inputBonusNumber);
+        ExceptionResolver.resolveProcess(() -> lottoMachine.addWinningLotto(winningNumbers, bonusNumber));
     }
 
-    private void inputLottoNumbers() {
+    private List<Integer> inputLottoNumbers() {
         List<String> inputNumbers = inputView.inputLottoNumbers();
         InputCommonValidator.validateMultiple(inputNumbers);
-        List<Integer> lottoNumbers = convertToNumbers(inputNumbers);
-        lottoMachine.addLottoNumbers(lottoNumbers);
+        return convertToNumbers(inputNumbers);
     }
 
-    private void inputBonusNumber() {
+    private int inputBonusNumber() {
         String inputNumber = inputView.inputBonusNumber();
         InputCommonValidator.validateSingle(inputNumber);
-        lottoMachine.addBonusNumber(Integer.parseInt(inputNumber));
+        return Integer.parseInt(inputNumber);
     }
 
     private void printWinningResult() {
@@ -74,6 +73,6 @@ public class LottoGame {
 
     private void printBuyingResults() {
         BuyingResults buyingResults = lottoMachine.createBuyingResults();
-        outputView.printBuyingResults(buyingResults.getCount(), buyingResults.createResultMessage());
+        outputView.printBuyingResults(buyingResults.getBuyingCount(), buyingResults.createResultMessage());
     }
 }

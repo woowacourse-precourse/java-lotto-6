@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.validator.input;
 
 import java.util.List;
 

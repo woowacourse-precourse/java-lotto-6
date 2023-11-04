@@ -1,9 +1,8 @@
 package lotto.domain.lotto;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,19 +12,18 @@ class LottoRewardConditionTest {
     @Test
     void getCompareResult() {
         // given
-        Lotto lotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lottoToCompare1 = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 7));
-        Lotto lottoToCompare2 = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
+        int secondWinningCount = 5;
+        int firstWinningCount = 6;
 
         // when
-        LottoRewardCondition compareResult1 = LottoRewardCondition.getCompareResult(lotto, lottoToCompare1, 6);
-        LottoRewardCondition compareResult2 = LottoRewardCondition.getCompareResult(lotto, lottoToCompare2, 7);
+        LottoRewardCondition reward1 = LottoRewardCondition.findLottoReward(firstWinningCount, false);
+        LottoRewardCondition reward2 = LottoRewardCondition.findLottoReward(secondWinningCount, true);
 
         // then
 
         assertAll(
-                () -> assertThat(compareResult1).isEqualTo(LottoRewardCondition.SECOND_WINNER),
-                () -> assertThat(compareResult2).isEqualTo(LottoRewardCondition.FIRST_WINNER)
+                () -> assertThat(reward1).isEqualTo(LottoRewardCondition.FIRST_WINNER),
+                () -> assertThat(reward2).isEqualTo(LottoRewardCondition.SECOND_WINNER)
         );
     }
 }

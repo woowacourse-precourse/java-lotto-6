@@ -9,6 +9,7 @@ public record LottoMoney(int value) {
         return new LottoMoney(value);
     }
 
+    // TODO 분리
     private static void validate(final int value) {
         if (LottoMoneyCondition.isInvalidValue(value)) {
             throw new IllegalArgumentException(INVALID_MONEY_VALUE);

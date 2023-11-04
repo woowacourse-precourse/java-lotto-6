@@ -4,20 +4,18 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoCondition;
 import lotto.domain.lotto.LottoRewardCondition;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.LottosRepository;
+import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.LottoMoney;
 import lotto.dto.BuyingResults;
 import lotto.dto.WinningResults;
 
+// todo 기능 분리 시도
 public class LottoMachine {
 
     private static final String NOT_FOUND_LOTTO = "[ERROR] 로또 번호가 존재하지 않습니다.";
-    private static final String DUPLICATES_BONUS_NUMBER = "[ERROR] 당첨 번호와 중복된 보너스 번호를 입력할 수 없습니다.";
-    private static final String OUT_OF_RANGE_NUMBER = "[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.";
-    public static final String NOT_FOUNT_BONUS_NUMBER = "[ERROR] 보너스 숫자를 찾을 수 없습니다.";
 
     private final LottosRepository lottosRepository;
 
@@ -37,30 +35,23 @@ public class LottoMachine {
         return BuyingResults.createFrom(userLottos);
     }
 
-    public void addLottoNumbers(final List<Integer> numbers) {
-        Lotto winningNumber = Lotto.from(numbers);
-        lottosRepository.saveWinningNumber(winningNumber);
-    }
-
-    public void addBonusNumber(final int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        lottosRepository.saveBonusNumber(bonusNumber);
+    public void addWinningLotto(final List<Integer> winningNumbers, final int bonusNumber) {
+        WinningLotto winningLotto = WinningLotto.createFrom(winningNumbers, bonusNumber);
+        lottosRepository.saveWinningLotto(winningLotto);
     }
 
     public WinningResults createWinningResult() {
         Lottos userLottos = findUserLottosObject();
-        Lotto winningLotto = findWinningLottoObject();
-        int bonusNumber = findBonusNumber();
+        WinningLotto winningLotto = findWinningLottoObject();
 
-        List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto, bonusNumber);
+        List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto);
         return WinningResults.from(compareResults);
     }
 
-    private List<Lotto> createLottos(final Supplier<List<Integer>> randomLottoSupplier,
-                                            final LottoMoney lottoMoney) {
+    private List<Lotto> createLottos(final Supplier<List<Integer>> randomLottoSupplier, final LottoMoney lottoMoney) {
         return Stream.generate(randomLottoSupplier)
                 .limit(lottoMoney.createBuyingCount())
-                .map(Lotto::from)
+                .map(Lotto::createFrom)
                 .toList();
     }
 
@@ -69,31 +60,8 @@ public class LottoMachine {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LOTTO));
     }
 
-    private Lotto findWinningLottoObject() {
+    private WinningLotto findWinningLottoObject() {
         return lottosRepository.findWinningLotto()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LOTTO));
-    }
-
-    private void validateBonusNumber(final int bonusNumber) {
-        validateRange(bonusNumber);
-        validateDuplicates(bonusNumber);
-    }
-
-    private void validateRange(final int bonusNumber) {
-        if (LottoCondition.isNotInRange(bonusNumber)) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER);
-        }
-    }
-
-    private void validateDuplicates(final int bonusNumber) {
-        Lotto winningLotto = findWinningLottoObject();
-        if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATES_BONUS_NUMBER);
-        }
-    }
-
-    private int findBonusNumber() {
-        return lottosRepository.findBonusNumber()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUNT_BONUS_NUMBER));
     }
 }

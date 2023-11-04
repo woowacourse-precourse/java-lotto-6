@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -14,12 +14,14 @@ class LottosTest {
         // given
         Lotto lotto1 = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 7));
         Lotto lotto2 = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = Lotto.createFrom(List.of(1, 2, 3, 4, 5, 7));
-        int bonusNumber = 6;
         Lottos lottos = new Lottos(List.of(lotto1, lotto2));
 
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
+        int bonusNumber = 6;
+        WinningLotto winningLotto = WinningLotto.createFrom(winningNumbers, bonusNumber);
+
         // when
-        List<LottoRewardCondition> compareResults = lottos.createCompareResults(winningLotto, bonusNumber);
+        List<LottoRewardCondition> compareResults = lottos.createCompareResults(winningLotto);
 
         // then
         assertThat(compareResults).containsExactly(LottoRewardCondition.FIRST_WINNER, LottoRewardCondition.SECOND_WINNER);

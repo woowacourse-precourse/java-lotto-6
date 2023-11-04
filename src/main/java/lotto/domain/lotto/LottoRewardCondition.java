@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import java.util.Arrays;
 
-// TODO 단위테스트 작성
 public enum LottoRewardCondition {
 
     FAIL(0, 0),
@@ -28,23 +27,18 @@ public enum LottoRewardCondition {
         return this != FAIL;
     }
 
-    public static LottoRewardCondition getCompareResult(final Lotto userLotto, final Lotto winningLotto,
-                                                        final int bonusNumber) {
-        int winningCount = userLotto.extractSameCount(winningLotto);
-        if (winningCount == SECOND_WINNER.winningCount) {
-            return compareLottoWithBonus(userLotto, bonusNumber);
-        }
-        return findLottoReward(winningCount);
-    }
-
-    private static LottoRewardCondition compareLottoWithBonus(final Lotto userLotto, final int bonusNumber) {
-        if (userLotto.contains(bonusNumber)) {
+    public static LottoRewardCondition findLottoReward(final int winningCount, final boolean hasBonusNumber) {
+        if (isSecondWinning(winningCount, hasBonusNumber)) {
             return SECOND_WINNER;
         }
-        return THIRD_WINNER;
+        return compareWithoutBonus(winningCount);
     }
 
-    private static LottoRewardCondition findLottoReward(final int winningCount) {
+    private static boolean isSecondWinning(final int winningCount, final boolean hasBonusNumber) {
+        return hasBonusNumber && winningCount == SECOND_WINNER.winningCount;
+    }
+
+    private static LottoRewardCondition compareWithoutBonus(final int winningCount) {
         return Arrays.stream(values())
                 .filter(reward -> reward.isSameWinningCount(winningCount) && reward != SECOND_WINNER)
                 .findAny()

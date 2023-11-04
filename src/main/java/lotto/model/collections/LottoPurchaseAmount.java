@@ -4,11 +4,15 @@ public class LottoPurchaseAmount {
     private final int amount;
 
     public LottoPurchaseAmount(String amount) {
-        //검증 로직
+        validate(amount);
         this.amount = Integer.parseInt(amount);
     }
 
-    public int getAmount(){
+    private void validate(String amount) {
+        //검증 로직
+    }
+
+    public int getAmount() {
         return amount;
     }
 }

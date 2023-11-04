@@ -51,4 +51,16 @@ public enum LottoNumberRule {
             }
         }
     }
+
+    public int getMinLottoNumber() {
+        return minLottoNumber;
+    }
+
+    public int getMaxLottoNumber() {
+        return maxLottoNumber;
+    }
+
+    public int getLottoNumberSize() {
+        return lottoNumberSize;
+    }
 }

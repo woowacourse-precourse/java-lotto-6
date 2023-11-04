@@ -8,10 +8,17 @@ public class LottoMachine {
     public static final int lottoCost = 1000;
     public static final String ERROR_MESSAGE_NOT_FIT_COST = "금액은 " + lottoCost + "단위입니다.";
 
-    private final List<Lotto> lottos = new ArrayList<>();
+    public List<Lotto> purchaseLottos(int money) {
+        List<Lotto> lottos = new ArrayList<>();
+        if (money % lottoCost != 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_FIT_COST);
+        }
 
-    public void purchaseLottos(int money) {
-
+        int lottoCount = money / lottoCost;
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(publishRandomLotto());
+        }
+        return lottos;
     }
 
     public Lotto publishRandomLotto() {

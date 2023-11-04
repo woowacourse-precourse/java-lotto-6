@@ -9,7 +9,18 @@ public class Numbers {
     }
 
     public String putCommaInNumber(long price) {
-        return null;
+        final String numberStr = Long.toString(price);
+        StringBuilder result = new StringBuilder();
+        int maxIndex = numberStr.length();
+
+        for (int i = 0; i < maxIndex; i++) {
+            result.append(numberStr.charAt(i));
+            if ((maxIndex - i) % 3 == 1 && i != maxIndex - 1) {
+                result.append(",");
+            }
+        }
+
+        return result.toString();
     }
 
     public float rateOfReturn(int inputPrice, long outputPrice) {

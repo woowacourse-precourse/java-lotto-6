@@ -21,11 +21,29 @@ public final class Lottos {
         this.lottos = new ArrayDeque<>(lottos);
     }
 
+    /**
+     * ArrayDeque<Lotto>에 들어 있는 Lotto를 순차적으로 하나씩 빼서 반환합니다.
+     */
     public Optional<Lotto> nextLotto() {
         return Optional.ofNullable(lottos.poll());
     }
 
+    /**
+     * 원본 Lottos와 하위 멤버들을 새로이 deepcopy하여 새로운 객체를 반환합니다.
+     */
+    public Lottos clone() {
+        final List<Lotto> nextLottos = this.lottos.stream()
+                .map(Lotto::clone)
+                .toList();
+
+        return new Lottos(nextLottos);
+    }
+
     public int size() {
         return lottos.size();
+    }
+
+    public boolean isNotEmpty() {
+        return !lottos.isEmpty();
     }
 }

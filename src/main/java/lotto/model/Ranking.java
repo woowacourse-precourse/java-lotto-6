@@ -40,7 +40,7 @@ public enum Ranking {
     }
 
     @Override
-    public String makeSentence() {
+    public String toString() {
         StringBuilder output = new StringBuilder();
         output.append(String.format("%d개 일치", count));
         if (bonus) {

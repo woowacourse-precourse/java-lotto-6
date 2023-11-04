@@ -64,7 +64,7 @@ public class Lotto {
     }
 
     @Override
-    public String makeSentence(){
+    public String toString(){
         return numbers.toString();
     }
 }

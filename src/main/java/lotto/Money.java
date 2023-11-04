@@ -3,12 +3,11 @@ package lotto;
 public class Money {
 
     private final Integer money;
-    private final static Integer MIN_UNIT_MONEY = 1000;
-    private final static Integer ZERO = 0;
+    private final static Integer MINIMUM_AMOUNT = 1000;
 
     private Money(Integer money) {
         validateRemainMoney(money);
-        validateZeroMoney(money);
+        validateMinimumAmount(money);
         this.money = money;
     }
 
@@ -16,14 +15,14 @@ public class Money {
         return new Money(money);
     }
 
-    private void validateZeroMoney(Integer money) {
-        if (isZero(money)) {
+    private void validateMinimumAmount(Integer money) {
+        if (isMin(money)) {
             throw new IllegalArgumentException("천원 단위로 입력해주세요.");
         }
     }
 
-    private boolean isZero(Integer money) {
-        return money.equals(ZERO);
+    private boolean isMin(Integer money) {
+        return money < MINIMUM_AMOUNT;
     }
 
     private void validateRemainMoney(Integer money) {
@@ -33,6 +32,6 @@ public class Money {
     }
 
     private boolean hasRemain(Integer money) {
-        return money % MIN_UNIT_MONEY != 0;
+        return money % MINIMUM_AMOUNT != 0;
     }
 }

@@ -22,4 +22,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.of(0)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 800, 900, -1000})
+    @DisplayName("1000원이하 입력시 예외가 발생한다.")
+    public void createByMinThousandWon(Integer money) {
+        assertThatThrownBy(() -> Money.of(money)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

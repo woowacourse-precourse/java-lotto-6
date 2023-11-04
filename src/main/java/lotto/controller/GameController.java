@@ -1,9 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasePrice;
+import lotto.dto.PurchaseResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
 
@@ -19,7 +23,12 @@ public class GameController {
 
     public void gameStart() {
         PurchasePrice money = inputView.getMoney();
-        inputView.getLottoTicket();
+        int purchaseLottoAmount = money.getPurchaseLottoAmount();
+        List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(purchaseLottoAmount);
+
+
+        WinningNumbers winningNumbers = inputView.getWinningNumbers();
+
     }
 
 }

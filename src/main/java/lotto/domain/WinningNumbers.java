@@ -1,10 +1,10 @@
 package lotto.domain;
 
-public class LottoTicket {
+public class WinningNumbers {
 
     private final Lotto ticket;
 
-    public LottoTicket(Lotto ticket) {
+    public WinningNumbers(Lotto ticket) {
         this.ticket = ticket;
     }
 }

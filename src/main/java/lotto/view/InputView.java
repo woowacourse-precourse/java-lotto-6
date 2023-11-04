@@ -2,9 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasePrice;
-import lotto.util.ExceptionMessage;
 import lotto.util.TypeConvertor;
 
 import java.util.List;
@@ -32,15 +31,15 @@ public class InputView {
         }
     }
 
-    public LottoTicket getLottoTicket() {
+    public WinningNumbers getWinningNumbers() {
         try {
             System.out.println(Message.PICK_LOTTO_TICKET_NUMBER.message);
             String input = Console.readLine();
             List<Integer> integers = TypeConvertor.stringToStringList(input);
-            return new LottoTicket(Lotto.of(integers));
+            return new WinningNumbers(Lotto.of(integers));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLottoTicket();
+            return getWinningNumbers();
         }
     }
 

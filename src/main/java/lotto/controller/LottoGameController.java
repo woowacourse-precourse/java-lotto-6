@@ -66,7 +66,7 @@ public class LottoGameController {
     }
 
     public int createQuantity(int budget) {
-        int quantity = budget / LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET;
+        int quantity = calculateQuantityByBudget(budget);
         outputView.printLottoTicketsCount(quantity);
         return quantity;
     }
@@ -75,5 +75,9 @@ public class LottoGameController {
         List<Lotto> lottoTickets = lottoGenerator.generateLottoTickets(quantity);
         outputView.printLottoTickets(lottoTickets);
         return lottoTickets;
+    }
+
+    public int calculateQuantityByBudget(int budget) {
+        return budget / LottoConstants.THE_PRICE_OF_ONE_LOTTO_TICKET;
     }
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 import lotto.common.LottoRank;
 import lotto.dto.LottoGameResponse;
 import lotto.service.LottoGameService;
+import lotto.domain.Money;
 import lotto.view.InputOutputView;
 
 public class LottoGame {
@@ -15,8 +16,8 @@ public class LottoGame {
         this.inputOutputView = new InputOutputView();
     }
 
-    public void start() {
-        int money = inputOutputView.inputMoney();
+    public void start() throws IllegalArgumentException {
+        Money money = inputOutputView.inputMoney();
         LottoGameResponse lottoGameResponse = lottoGameService.buy(money);
 
         inputOutputView.printBuyLottos(lottoGameResponse);

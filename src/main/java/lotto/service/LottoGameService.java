@@ -8,15 +8,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.dto.LottoGameResponse;
 import lotto.utils.NumberGenerator;
 
 public class LottoGameService {
     private List<Lotto> buyLottos;
 
-    public LottoGameResponse buy(int money) {
+    public LottoGameResponse buy(Money money) {
         buyLottos = new ArrayList<>();
-        int count = money / 1000;
+        int count = money.getDividedThousandWonCount();
 
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(NumberGenerator.createInRangeNumber(1, 45, 6));

@@ -4,11 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
 import lotto.common.LottoRank;
 import lotto.dto.LottoGameResponse;
+import lotto.domain.Money;
 
 public class InputOutputView {
-    public int inputMoney() {
+    public Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while(true) {
+            try {
+                String money = Console.readLine();
+                return new Money(money);
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String inputWinningNumbers() {

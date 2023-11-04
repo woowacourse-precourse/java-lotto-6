@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,5 +19,12 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int compare(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        return (int) IntStream.range(0, 6)
+                .filter(i -> this.numbers.get(i) == numbers.get(i))
+                .count();
     }
 }

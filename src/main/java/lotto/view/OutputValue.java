@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputValue {
 
     private static final String PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
@@ -13,6 +15,10 @@ public class OutputValue {
 
     public static void lottoCountMessage(int lottoCount) {
         System.out.println(lottoCount + LOTTO_COUNT_MESSAGE);
+    }
+
+    public static void purchaseLottoMessage(List<Integer> numbers) {
+        System.out.println(numbers.toString());
     }
 
 }

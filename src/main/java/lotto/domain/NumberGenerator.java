@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
 
 public class NumberGenerator {
 
@@ -19,6 +18,7 @@ public class NumberGenerator {
         try {
             validator.validateNumbersDuplicate(numbers);
         } catch (IllegalArgumentException e){
+            e.printStackTrace();
             createNumbers();
         }
         return numbers;

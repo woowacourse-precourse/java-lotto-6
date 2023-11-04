@@ -132,4 +132,9 @@ public class LottoService {
         }
         return totalReward;
     }
+
+    public static double calculateRateOfReturn(HashMap<Integer, Integer> finalResult, int money){
+        int totalReward= calculateTotalReward(finalResult);
+        return (totalReward/money)*100;
+    }
 }

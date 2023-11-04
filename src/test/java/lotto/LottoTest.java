@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.WinningNumber;
@@ -93,5 +94,18 @@ class LottoTest {
         assertThatThrownBy(() -> winningNumber.setWinningNumber("0,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
+    @Test
+    void createBonusNumberByMatchingWinningNumber() {
+        WinningNumber winningNumber = new WinningNumber();
+        BonusNumber bonusNumber = new BonusNumber();
+
+        winningNumber.setWinningNumber("1,2,3,4,5,6");
+
+        assertThatThrownBy(() -> bonusNumber.setBonusNumber("3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
 }

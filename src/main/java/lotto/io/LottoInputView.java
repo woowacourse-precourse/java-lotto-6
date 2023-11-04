@@ -13,4 +13,9 @@ public class LottoInputView {
         System.out.println("\n" + "당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
+
+    public String readBonusNumber() {
+        System.out.println("\n" + "보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }

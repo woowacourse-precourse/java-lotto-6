@@ -3,7 +3,6 @@ package lotto.ui;
 import java.util.List;
 import lotto.domain.Computer;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
 
 public class Output {
     public static void printPurchase(){

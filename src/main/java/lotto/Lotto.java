@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,7 +21,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
@@ -36,6 +36,4 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE_NUMBER.getMessage());
         }
     }
-
-
 }

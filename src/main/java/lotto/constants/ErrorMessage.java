@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum ErrorMessage {
     INVALID_NEGATIVE_PURCHASE("[ERROR] 음수는 입력할 수 없습니다."),

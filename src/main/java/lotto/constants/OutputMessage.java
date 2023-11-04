@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public enum OutputMessage {
     LOTTO_STATISTICS("당첨 통계"),

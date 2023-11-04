@@ -55,3 +55,10 @@
 1. LottoController
    - [x] 로또 게임시작
    - [] 게임 종료
+
+### Validation
+1. InputValidation
+   - [] 구입금액의 데이터 검사
+     - [] 빈문자열 검사
+     - [] 숫자 판별 검사
+     - [] 0이하 검사

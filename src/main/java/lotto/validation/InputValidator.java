@@ -1,8 +1,8 @@
 package lotto.validation;
 
-import static constant.ErrorMessage.CHARACTER_INPUT_ERROR_MESSAGE;
-import static constant.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
-import static constant.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.CHARACTER_INPUT_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
 
 public class InputValidator {
 

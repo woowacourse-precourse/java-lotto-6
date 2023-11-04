@@ -20,5 +20,6 @@ public class GameController {
 
         LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(lottoVendingMachine.getLottos());
         lottoAnalyzer.addWinningNumbers(InputView.inputWinningNumbers());
+        lottoAnalyzer.addBonusNumber(InputView.inputBonusNumber());
     }
 }

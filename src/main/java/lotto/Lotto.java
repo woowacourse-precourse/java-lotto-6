@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    public static final int MIN_LOTTE_NUMBER = 1;
-    public static final int MAX_LOTTE_NUMBER = 45;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int LOTTO_LENGTH = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSixNumberCount(numbers);
         validateOverlapNumber(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -39,6 +41,16 @@ public class Lotto {
             if (!uniqueNumbers.add(number)) {
                 throw new IllegalArgumentException("중복된 번호를 입력 하였습니다.");
             }
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        numbers.forEach(this::validateSingleNumberRange);
+    }
+
+    private void validateSingleNumberRange(Integer number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
         }
     }
 }

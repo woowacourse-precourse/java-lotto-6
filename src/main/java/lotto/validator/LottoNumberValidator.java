@@ -10,7 +10,6 @@ public class LottoNumberValidator {
 
     public static void validateBonusNumber(String bonusNumber) {
         Validator.isPrimeNumber(bonusNumber);
-        validateNumberRange(Integer.parseInt(bonusNumber));
     }
 
 

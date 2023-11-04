@@ -23,6 +23,7 @@ public class BonusNumber {
     }
 
     private void validator(int number) {
+        LottoNumberValidator.validateNumberRange(number);
         LottoNumberValidator.validateDuplication(number,WinningNumber.getWinningNumbers());
     }
 

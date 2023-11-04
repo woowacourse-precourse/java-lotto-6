@@ -27,6 +27,7 @@ public class OutputView {
             print(rank.getMessage());
             print(rank.getCount(ranks));
             print("개");
+            System.out.println();
         }
 
     }

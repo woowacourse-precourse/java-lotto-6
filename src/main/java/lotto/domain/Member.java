@@ -9,7 +9,7 @@ public class Member {
     private List<Lotto> purchasedLottos;
 
     public Member(final int purchasedCount, final List<Lotto> purchasedLottos) {
-        this.purchasedCount = purchasedCount;
+        this.purchasedCount = purchasedCount / 1000;
         this.purchasedLottos = purchasedLottos;
     }
     public List<Lotto> getLottos() {

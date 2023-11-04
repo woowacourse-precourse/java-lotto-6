@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Parser;
 
 import java.util.List;
 
@@ -19,8 +20,7 @@ public class InputView {
         print(WINNING_NUMBERS_INPUT);
 
         String winningNumbers = Console.readLine();
-        return List.of(1,2,3);
-        // TODO: 파서 미구현으로 인해 대체
+        return Parser.parse(winningNumbers);
     }
     public static int getBonusNumberInput() {
         print(WINNING_BONUS_NUMBER_INPUT);

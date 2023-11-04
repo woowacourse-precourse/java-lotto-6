@@ -28,7 +28,7 @@ public class LottoController {
         WinningNumber winningNumber = new WinningNumber(winnerLotto, bonusNumber);
 
         List<Rank> awardsResult = awards(member, winningNumber);
-
+        OutputView.gameResult(awardsResult);
 
     }
 

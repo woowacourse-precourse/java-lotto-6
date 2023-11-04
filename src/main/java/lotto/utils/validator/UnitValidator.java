@@ -1,11 +1,9 @@
-package lotto.view.validator;
+package lotto.utils.validator;
 
 
-import static lotto.Const.Const.LOTTO_PURCHASED_UNIT;
+import static lotto.Const.Const.*;
 
 public class UnitValidator {
-    public static int LOTTO_MIN_UNIT = 1;
-    public static int LOTTO_MAX_UNIT = 45;
     public static void validUnitCheck(int money) {
         if (unitMinCheck(money)) {
             throw new IllegalArgumentException("1000원 이상으로 입력해주세요.");

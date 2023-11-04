@@ -1,4 +1,4 @@
-package lotto.view.validator;
+package lotto.utils.validator;
 
 public class InputValidator {
     public static void validMoneyType(String money) throws IllegalArgumentException {

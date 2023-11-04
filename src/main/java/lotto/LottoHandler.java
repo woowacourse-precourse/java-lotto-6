@@ -12,7 +12,7 @@ public class LottoHandler {
         }
 
         if (purchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_PRICE + "원 단위로만 입력해 주세요.");
         }
         return purchasePrice / LOTTO_PRICE;
     }

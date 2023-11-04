@@ -9,12 +9,15 @@ public final class LottoGenerator {
     private final static int MAX_LOTTO_NUMBER = 45;
 
     private LottoGenerator() {
-
     }
 
     public static Lotto autoGenerate() {
         List<Integer> randomNumbers = generateRandomNumbers();
         return new Lotto(randomNumbers);
+    }
+
+    public static Lotto manualGenerate(List<Integer> numbers){
+        return new Lotto(numbers);
     }
 
     private static List<Integer> generateRandomNumbers() {

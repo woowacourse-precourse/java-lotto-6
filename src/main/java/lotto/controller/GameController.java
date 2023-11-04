@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.LottoGameCalculator;
 import lotto.domain.LottoGenerator;
 import lotto.domain.MoneyConverter;
+import lotto.domain.WinLottoNumbers;
 import lotto.util.Status;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,8 +13,8 @@ public class GameController {
     OutputView outputView;
     MoneyConverter moneyConverter;
     LottoGenerator lottoGenerator;
+    WinLottoNumbers winLottoNumbers;
     LottoGameCalculator lottoGameManager;
-
 
 
     public GameController() {
@@ -22,11 +23,12 @@ public class GameController {
         GameInit();
     }
 
-    public void GameInit(){
+    public void GameInit() {
         moneyConvertLotto();
         showChances();
         setLottoGenerator();
         showGeneratedLotto();
+        setWinLottoNumbers();
     }
 
     public void moneyConvertLotto() {
@@ -36,19 +38,24 @@ public class GameController {
             try {
                 moneyConverter = new MoneyConverter(inputView.inputMoney());
                 status = Status.SUCCESS;
-            }catch (IllegalArgumentException ignored){}
+            } catch (IllegalArgumentException ignored) {
+            }
         }
     }
 
-    public void showChances(){
-        outputView.printChances(moneyConverter.getChance());
-    }
-
-    public void setLottoGenerator(){
+    public void setLottoGenerator() {
         lottoGenerator = new LottoGenerator(moneyConverter.getChance());
     }
 
-    public void showGeneratedLotto(){
+    public void showChances() {
+        outputView.printChances(moneyConverter.getChance());
+    }
+
+    public void showGeneratedLotto() {
         outputView.printLotto(lottoGenerator.getMyLotto());
+    }
+
+    public void setWinLottoNumbers(){
+        winLottoNumbers = new WinLottoNumbers(inputView.inputWinLotto());
     }
 }

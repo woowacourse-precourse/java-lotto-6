@@ -48,27 +48,32 @@ public class LottoGenerator {
         return bonusNumber;
     }
 
+    public  static List<Integer> parseInput(List<String> userInputs){
+
+        List<Integer> inputNumber = new ArrayList<>();
+
+        for (String userInput : userInputs) {
+            Validator.checkNumber(userInput);
+            Validator.checkZero(userInput);
+
+            Integer lottoNumber = Integer.parseInt(userInput);
+            Validator.checkRange(lottoNumber);
+
+            inputNumber.add(Integer.parseInt(userInput));
+        }
+        return  inputNumber;
+
+    }
+    public static List<String> splitInput(String userInput){
+        return Arrays.asList(Computer.getInput().split(","));
+    }
     public static Lotto createWinningLotto() {
         boolean isRunning = true;
         Lotto winningLotto = null;
         while (isRunning) {
             try {
 
-                List<String> userInputs = Arrays.asList(Computer.getInput().split(","));
-
-                List<Integer> inputNumber = new ArrayList<>();
-
-                for (String userInput : userInputs) {
-                    Validator.checkNumber(userInput);
-                    Validator.checkZero(userInput);
-
-                    Integer lottoNumber = Integer.parseInt(userInput);
-                    Validator.checkRange(lottoNumber);
-
-                    inputNumber.add(Integer.parseInt(userInput));
-                }
-
-                winningLotto = new Lotto(inputNumber);
+                winningLotto = new Lotto(parseInput(splitInput(Computer.getInput())));
 
                 isRunning = false;
 

@@ -22,8 +22,8 @@ public class InputView {
 
 	public static int inputBonusNumber() {
 		System.out.println(INPUT_BONUS_NUMBER);
-
-		return 0;
+		int bonusNumber = Integer.parseInt(Console.readLine());
+		return bonusNumber;
 	}
 
 }

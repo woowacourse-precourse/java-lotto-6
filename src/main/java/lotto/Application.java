@@ -34,6 +34,12 @@ public class Application {
 
         int buyLottoCount = parseMoney / lottoPrice;
 
+        List<Lotto> lotties = new ArrayList<>();
+        for (int i = 0; i < buyLottoCount; i++) {
+            Lotto lotto = new Lotto(makeLotto());
+            lotties.add(lotto);
+        }
+
     }
 
     public static List<Integer> makeLotto() {

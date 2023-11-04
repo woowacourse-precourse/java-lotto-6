@@ -1,7 +1,5 @@
 package lotto.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -50,18 +48,5 @@ public class Validator {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
-    }
-
-    public static List<String> convertStringToList(String input) {
-        List<String> numbers = new ArrayList<>(Arrays.asList(input.split(",")));
-        return numbers;
-    }
-
-    public static List<Integer> convertStringToInt(List<String> input) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String num : input) {
-            numbers.add(Integer.parseInt(num));
-        }
-        return numbers;
     }
 }

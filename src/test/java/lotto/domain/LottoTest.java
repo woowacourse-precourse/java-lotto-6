@@ -3,7 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.controller.LottoController;
+import lotto.controller.InputController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ class LottoTest {
     @DisplayName("로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다.")
     @Test
     void createLottoByString() {
-        LottoController controller = new LottoController();
+        InputController controller = new InputController();
         assertThatThrownBy(() -> new Lotto(controller.transformInputNumber("1,2,3,4, ,6")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자로만 이루어진 값을 입력해주세요.");

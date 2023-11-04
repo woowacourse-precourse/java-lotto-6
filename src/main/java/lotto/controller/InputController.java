@@ -1,0 +1,60 @@
+package lotto.controller;
+
+import static lotto.util.Validator.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
+import lotto.view.InputView;
+
+public class InputController {
+    public String getQuantityInput() {
+        return checkQuantity(InputView.inputAmount());
+    }
+
+    private String checkQuantity(String input) {
+        try {
+            PurchaseAmount purchaseAmount = new PurchaseAmount(input);
+            return purchaseAmount.getAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getQuantityInput();
+        }
+    }
+
+    public Lotto getWinningNumbersInput() {
+        return checkWinningNumbers(InputView.inputWinningNumbers());
+    }
+
+    private Lotto checkWinningNumbers(String input) {
+        try {
+            List<Integer> numbers = transformInputNumber(input);
+            Lotto lotto = new Lotto(numbers);
+            return lotto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbersInput();
+        }
+    }
+
+    public List<Integer> transformInputNumber(String input) {
+        List<String> numbers = convertStringToList(input);
+        validateNonNumericNumbers(numbers);
+        return convertStringToInt(numbers);
+    }
+
+    private List<String> convertStringToList(String input) {
+        List<String> numbers = new ArrayList<>(Arrays.asList(input.split(",")));
+        return numbers;
+    }
+
+    private List<Integer> convertStringToInt(List<String> input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String num : input) {
+            numbers.add(Integer.parseInt(num));
+        }
+        return numbers;
+    }
+}

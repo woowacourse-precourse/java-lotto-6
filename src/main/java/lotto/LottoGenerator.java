@@ -22,14 +22,10 @@ public class LottoGenerator {
     }
 
     public Lotto generateLotto(List<Integer> numbers) {
-//        Collections.sort(numbers);
-//        numbers.sort(null);
         return new Lotto(numbers);
     }
 
     public List<Integer> generateNumbers() {
-        //        numbers.sort(null);
-//        Collections.sort(numbers);
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

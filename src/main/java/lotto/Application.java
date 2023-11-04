@@ -15,13 +15,22 @@ public class Application {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
-                if (!input.matches("\\d+")) {
+
+                if (!input.matches("[1-9]\\d*")) {   //자릿수로 1~9사이의 수를 가지는 금액
+                    if (input.matches("[-]\\d+")) {
+                        throw new IllegalArgumentException("[ERROR] 음수는 입력할 수 없습니다.");
+                    } else if (input.matches("0+")) {
+                        throw new IllegalArgumentException("[ERROR] 0은 입력할 수 없습니다.");
+                    }
                     throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
                 }
+
                 purchase = Integer.parseInt(input);
+
                 if (purchase % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해주세요.");
                 }
+
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

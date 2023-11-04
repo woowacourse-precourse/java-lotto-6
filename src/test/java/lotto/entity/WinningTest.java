@@ -1,7 +1,10 @@
 package lotto.entity;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -33,5 +36,17 @@ public class WinningTest {
             }
                 ).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(errorPrefix);
+    }
+
+    @Test
+    void Winning_생성_유효한_값_테스트(){
+        //given
+        String winningNumbersString = "1,2,3,4,5,6";
+        String bonusNumber = "7";
+        List<Integer> targetNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        Winning winning = new Winning(winningNumbersString, bonusNumber);
+        List<Integer> winningNumbers = winning.getWinningNumbers();
+        assertThat(winningNumbers).isEqualTo(targetNumbers);
     }
 }

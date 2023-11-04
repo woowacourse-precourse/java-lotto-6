@@ -12,15 +12,17 @@ public class ResultService {
     public ResultService(LottoResultCount lottoResultCount, int amount) {
         this.lottoResultCount = lottoResultCount;
         this.amount = amount;
+        lottoResult();
     }
 
     public void lottoResult() {
-        outputView.outputWinningResult(lottoResultCount);
+        outputView.outputWinningResult(lottoResultCount,lottoProfitRate());
     }
 
-//    private double lottoProfitRate(){
-//        long total = totalWinningProfit();
-//    }
+    private Double lottoProfitRate(){
+        long total = totalWinningProfit();
+        return calculateRate(total, amount);
+    }
 
     private long totalWinningProfit(){
         return (long) lottoResultCount.getThreeCount() * THREE_COUNT.getPrizeMoney()
@@ -30,4 +32,11 @@ public class ResultService {
                 + (long) lottoResultCount.getSixCount() * SIX_COUNT.getPrizeMoney();
     }
 
+    private double calculateRate(long totalMoney, int amount) {
+        if (amount == 0) {
+            return 0.0;
+        }
+        double rate = (double) totalMoney / amount;
+        return Math.round(rate * 100.0) / 100.0;
+    }
 }

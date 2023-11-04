@@ -28,9 +28,10 @@ public class OutputView {
         return joiner.toString();
     }
 
-    public void outputWinningResult(LottoResultCount lottoResultCount){
+    public void outputWinningResult(LottoResultCount lottoResultCount, double rate){
         System.out.println(OutputMessage.RESULT_START);
         winningResultOutput(lottoResultCount);
+        System.out.printf(PROFIT_RATE.getMessage(),rate);
     }
 
     public void winningResultOutput(LottoResultCount lottoResultCount){

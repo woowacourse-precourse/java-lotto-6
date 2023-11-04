@@ -5,12 +5,18 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private final static String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
+    private final static String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+
 
     public int askPrice() {
         askHowManyPurchase();
         String input = Console.readLine();
         validateBlankAndEmptyInteger(input);
         return validateNegativeIntegerAndZero(validateInteger(input));
+    }
+
+    public void askWinningNumber() {
+        System.out.println(ASK_WINNING_NUMBER_MESSAGE);
     }
 
     private void askHowManyPurchase() {

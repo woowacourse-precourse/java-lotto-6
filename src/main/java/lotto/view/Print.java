@@ -41,15 +41,15 @@ public class Print {
             }
             sb.append(rank.getCorrectNum()).append("개 일치 (").append(rank.getPrize())
                             .append("원) - ").append(count).append("개\n");
+            count = 0;
         }
         System.out.println(sb);
     }
 
-    public static void printStatistics() {
 
-    }
-
-    public static void printMean(float mean) {
-        System.out.println("총 수익률은 " + mean + "%입니다.");
+    public static void printMean(double mean) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("총 수익률은 ").append(String.format("%.1f",mean)).append("%입니다.");
+        System.out.println(sb.toString());
     }
 }

@@ -1,12 +1,26 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.exception.ExceptionMessage;
 
 public class UserMoney {
+    public static final int UNIT_VALUE = 1000;
+    public static final int NO_REMAIN = 0;
     private final int userMoneyValue;
 
     private UserMoney(int userMoneyValue) {
+        validateMoney(userMoneyValue);
         this.userMoneyValue = userMoneyValue;
+    }
+
+    private void validateMoney(int userMoneyValue) {
+        if (!isDividedByUnit(userMoneyValue)) { // NOT_UNIT 네이밍 다시 생각하기
+            throw new IllegalArgumentException(ExceptionMessage.NOT_UNIT.getErrorDescription());
+        }
+    }
+
+    private boolean isDividedByUnit(int userMoneyValue) {
+        return (userMoneyValue % UNIT_VALUE) == NO_REMAIN;
     }
 
     public static UserMoney from(int userMoneyValue) {

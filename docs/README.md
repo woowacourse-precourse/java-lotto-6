@@ -50,6 +50,12 @@
 - [x] 로또 번호를 전달하기 위한 DTO - LottoDto
 - [x] 로또의 총 개수를 반환하기 - LottoDto
 - [x] 로또 결과와 총 상금을 전달하기 위한 DTO - LottoResultsDto
+- ### Util
+- [x] 컨트롤러에서 뷰로 모델을 전달하기 위해 모델을 저장함 - ModelAndViewConverter
+- [x] LottoBundleDto 를 통해 로또 개수 데이터를 int 형으로 반환  - ModelAndViewConverter
+- [x] LottoBundleDto 를 통해 로또들의 데이터를 List<String> 형으로 반환  - ModelAndViewConverter
+- [x] LottoResultDto 를 통해 로또 당첨 통계 데이터를 Map<LottoResult, Integer> 형으로 반환  - ModelAndViewConverter
+- [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
 
 # View
 - [ ] 로또 구입 금액 입력 - InputView

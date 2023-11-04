@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
+import lotto.domain.lotto.exception.DuplicateBonusNumberException;
 import lotto.domain.lotto.exception.DuplicateLottoNumberException;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
 import lotto.domain.lotto.exception.InvalidLottoNumberException;
-import lotto.exception.DuplicateBonusNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -180,5 +180,5 @@ final class WinningLottoTest {
         assertThat(lottoPrize8).isEqualTo(LottoPrize.NONE);
     }
 
-   
+
 }

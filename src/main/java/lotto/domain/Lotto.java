@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
+import lotto.utility.vo.LottoResponse;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +18,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void sortIncreasingOrder() {
+        Collections.sort(numbers);
+    }
+
+    public LottoResponse convertToResponse() {
+        sortIncreasingOrder();
+        return new LottoResponse(numbers);
+    }
 }

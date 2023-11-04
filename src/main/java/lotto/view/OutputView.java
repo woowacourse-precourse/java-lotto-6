@@ -42,10 +42,11 @@ public class OutputView {
             System.out.println();
         }
 
-        System.out.printf("총 수익률은 %.2f" + "%입니다.",
-                prizes.calculateBenefit(cash
-                        .getSeed())
-        );
+
+        String prefix = String.format("총 수익률은 %.2f", prizes.calculateBenefit(cash
+                .getSeed()));
+
+        System.out.println(prefix + "%입니다.");
     }
 
 

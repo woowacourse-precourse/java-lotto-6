@@ -35,6 +35,21 @@ class LottoRepositoryTest {
             lottoRepository.clear();
         }
 
+        @Test
+        @DisplayName("성공적으로 다수의 Lotto를 저장해야 한다")
+        public void 성공적으로_다수의_Lotto를_저장해야_한다() {
+            LottoRepository lottoRepository = new LottoRepository();
+            Lotto lotto = mock(Lotto.class);
+            Lotto otherLotto = mock(Lotto.class);
+
+            lottoRepository.saveAll(List.of(lotto, otherLotto));
+            List<Lotto> lottos = lottoRepository.findAll();
+
+            assertThat(lottos).hasSize(2);
+
+            lottoRepository.clear();
+        }
+
     }
 
 }

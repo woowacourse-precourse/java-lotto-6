@@ -15,11 +15,11 @@ class LottoWinNumbersTest {
             try {
                 new LottoWinNumbers("fail");
                 status = Status.SUCCESS;
-            }catch (IllegalArgumentException ignored){ }
-            finally {
+            } catch (IllegalArgumentException ignored) {
+            } finally {
                 attempt++;
             }
-            if(attempt==3){
+            if (attempt == 3) {
                 break;
             }
         }
@@ -27,12 +27,12 @@ class LottoWinNumbersTest {
     }
 
     @Test
-    public void validTest(){
+    public void validTest() {
         assertDoesNotThrow(() -> new LottoWinNumbers("1,2,3,4,5,6"));
     }
 
     @Test
-    public void typeTest(){
+    public void typeTest() {
         assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,a,3,4,b,6"));
     }
 

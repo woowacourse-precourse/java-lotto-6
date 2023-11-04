@@ -25,7 +25,7 @@ public class LottoWinNumbers {
         if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.WIN_LOTTO_RANGE_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class LottoWinNumbers {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.WIN_LOTTO_STRING_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class LottoWinNumbers {
         if(lottoWinNumbers.size()!=6){
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.WIN_LOTTO_SIZE_ERROR.getMessage());
+                            + ErrorMessage.LOTTO_WIN_SIZE_ERROR.getMessage());
         }
     }
 }

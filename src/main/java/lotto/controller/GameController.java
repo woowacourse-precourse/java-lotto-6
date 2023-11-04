@@ -57,10 +57,11 @@ public class GameController {
 
         while (status == Status.FAIL) {
             try {
-                lottoWinNumbers = new LottoWinNumbers(inputView.inputWinLotto());
+                lottoWinNumbers = new LottoWinNumbers(inputView.inputLottoWin());
                 status = Status.SUCCESS;
             } catch (IllegalArgumentException ignored) {
             }
         }
     }
+
 }

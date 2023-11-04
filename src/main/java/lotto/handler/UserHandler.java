@@ -54,13 +54,15 @@ public class UserHandler {
 
     }
 
-    public static String getWinningNumberFromUser() {
+    public static List<String> getWinningNumberFromUser() {
+        ResultView.printNewLine();
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumberInput = Console.readLine();
+
         return validateWinningNumberInput(winningNumberInput);
     }
 
-    private static String validateWinningNumberInput(String winningNumberInput) {
+    private static List<String> validateWinningNumberInput(String winningNumberInput) {
         return null;
     }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.config.LottoConfig;
+import lotto.config.WinningPrize;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +19,35 @@ public class Lotto {
         validateDuplicates(numbers);
         validateRange(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean checkDuplicates(int target) {
+        return numbers.contains(target);
+    }
+
+    public WinningPrize compareWithAnswer(Lotto numbers, int bonus) {
+        WinningPrize result = compareWithLotto(numbers);
+        if (result == WinningPrize.THIRD_PLACE) {
+            return checkBonus(bonus);
+        }
+        return result;
+    }
+
+    private WinningPrize compareWithLotto(Lotto target) {
+        int match = 0;
+        for (int number : target.numbers) {
+            if (checkDuplicates(number)) {
+                match++;
+            }
+        }
+        return WinningPrize.getPrizeWithMatch(match);
+    }
+
+    private WinningPrize checkBonus(int bonus) {
+        if (checkDuplicates(bonus)) {
+            return WinningPrize.SECOND_PLACE;
+        }
+        return WinningPrize.THIRD_PLACE;
     }
 
     private void validate(List<Integer> numbers) {

@@ -24,4 +24,8 @@ public class InputView {
         return InputConvertUtil.lottoNumberToIntegerList(lottoNumbers);
     }
 
+    public int inputBonusNumber(){
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
+    }
 }

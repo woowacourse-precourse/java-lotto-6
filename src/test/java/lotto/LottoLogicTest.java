@@ -34,7 +34,7 @@ public class LottoLogicTest {
     @DisplayName("구매 금액에 맞게 lotto 개수를 생성한다.")
     void createNumberOfLottoPurchasedByPurchasedAmount() {
         assertThat(new LottoLogic(new LottoPurchaseInfo(BigDecimal.valueOf(321000), Lotto.PRICE),
-                new LottoNumbersInfo(List.of(), 1, new Lotto(List.of(1, 2, 3, 4, 5, 6)))).getNumberOfLottoPurchased()
+                new LottoNumbersInfo(List.of(), 1)).getNumberOfLottoPurchased()
                 .compareTo(BigDecimal.valueOf(321)))
                 .isEqualTo(0);
     }

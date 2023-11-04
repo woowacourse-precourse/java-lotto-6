@@ -1,0 +1,18 @@
+package lotto.domain;
+
+import lotto.Lotto;
+
+public class WinningLotto {
+
+    private final Lotto winningLotto;
+    private final BonusNumber bonusNumber;
+
+    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
+    }
+
+    public boolean isContain(int number) {
+        return winningLotto.isContain(number);
+    }
+}

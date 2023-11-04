@@ -5,8 +5,7 @@ import lotto.Lotto;
 import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Lottoes {
 
@@ -25,6 +24,24 @@ public class Lottoes {
             elements.add(new Lotto(numbers));
         }
     }
+
+    public void calculateRanking(WinningLotto winningLotto) {
+        for (Lotto lotto: elements) {
+            int matchCount = calculateMatchCount(lotto, winningLotto);
+        }
+    }
+
+    private int calculateMatchCount(Lotto lotto, WinningLotto winningLotto) {
+        int count = 0;
+        for (int i = 0; i < LottoConstant.COUNT.getValue(); i++) {
+            int number = lotto.getNumberByIndex(i);
+            if (winningLotto.isContain(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 
     public String getLottoesNumber() {
         StringBuilder stringBuilder = new StringBuilder();

@@ -23,6 +23,14 @@ public class Lotto {
         }
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getNumberByIndex(int index) {
+        return numbers.get(index);
+    }
+
     public String getNumbers() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(START_MESSAGE);

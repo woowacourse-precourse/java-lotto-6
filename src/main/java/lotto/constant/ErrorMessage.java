@@ -1,28 +1,33 @@
 package lotto.constant;
 
+import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoInfo.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoInfo.LOTTO_SIZE;
+import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+
 public enum ErrorMessage {
 
     ERROR_SIGNATURE("[ERROR]"),
 
     LOTTO_MIN_PRICE_ERROR_MESSAGE(String.format("%s 로또는 %s원 이상부터 구매 가능합니다",
             ERROR_SIGNATURE,
-            LottoInfo.ONE_LOTTO_PRICE.getValue())),
+            ONE_LOTTO_PRICE)),
 
     REMAINING_CHANGE_ERROR_MESSAGE(String.format("%s 로또는 %s원 단위로 구입이 가능합니다.",
             ERROR_SIGNATURE,
-            LottoInfo.ONE_LOTTO_PRICE.getValue())),
+            ONE_LOTTO_PRICE)),
 
     LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 로또 번호는 %s보다 같거나 작아야 합니다.",
             ERROR_SIGNATURE,
-            LottoInfo.LOTTO_MAX_NUMBER.getValue())),
+            LOTTO_MAX_NUMBER)),
 
     LOWER_THAN_MIN_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 로또 번호는 %s 보다 같거나 커야 합니다.",
             ERROR_SIGNATURE,
-            LottoInfo.LOTTO_MIN_NUMBER.getValue())),
+            LOTTO_MIN_NUMBER)),
 
     INVALID_LOTTO_SIZE_ERROR_MESSAGE(String.format("%s 로또 번호는 %s개 입력 하셔야 합니다.",
             ERROR_SIGNATURE,
-            LottoInfo.LOTTO_SIZE.getValue())),
+            LOTTO_SIZE)),
 
     DUPLICATE_LOTTO_NUMBER_ERROR_MESSAGE(String.format("%s 중복된 번호가 존재합니다.",
             ERROR_SIGNATURE)),
@@ -46,6 +51,11 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public String toString() {
         return message;
     }
 }

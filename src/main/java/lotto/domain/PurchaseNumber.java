@@ -13,7 +13,7 @@ public class PurchaseNumber {
     }
 
     private void validate(Integer purchasePrice) {
-        if(purchasePrice % MONEY_UNIT == 0) {
+        if(purchasePrice % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }

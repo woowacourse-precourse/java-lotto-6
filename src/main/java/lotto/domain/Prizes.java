@@ -12,25 +12,24 @@ public class Prizes {
 
     public Prizes(List<Prize> prizeDummy) {
         this.prizes = new HashMap<>();
-        createPrizeMap(prizeDummy);
+        initPrizes();
+        updatePrizeDummy(prizeDummy);
     }
 
-    private void createPrizeMap(List<Prize> prizeDummy) {
+    private void initPrizes() {
+        for (Prize prize : Prize.values()) {
+            prizes.put(prize, 0);
+        }
+    }
+
+    private void updatePrizeDummy(List<Prize> prizeDummy) {
         for (Prize prize : prizeDummy) {
-            if (prizes.containsKey(prize)) {
-                prizes.put(prize, prizes.get(prize)+1);
-            } else {
-                prizes.put(prize, 1);
-            }
+            prizes.put(prize, prizes.get(prize)+1);
         }
     }
 
     public Integer countPrize(Prize prize) {
-        if (prizes.containsKey(prize)) {
-            return prizes.get(prize);
-        } else {
-            return 0;
-        }
+        return prizes.get(prize);
     }
 
 

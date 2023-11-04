@@ -3,10 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Casher;
 import lotto.utils.Code;
+import lotto.utils.Message;
 
 public class InputView {
     private final String INPUT_PRICE = "구입금액을 입력해 주세요.";
-    private final String NOT_NUMBER = "유효한 숫자 형식이 아닙니다. 다시 입력해 주세요.";
 
     public void inputLottoPrice() {
         System.out.println(INPUT_PRICE);
@@ -35,7 +35,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER);
+            throw new IllegalArgumentException(Message.NOT_NUMBER.getMessage());
         }
     }
 }

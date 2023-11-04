@@ -4,11 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.utils.Code;
+import lotto.utils.Message;
 
 public class Winning {
-    private final String LACK_NUMBER_COUNT = "숫자는 6개여야 합니다.";
-    private final String NUMBER_NOT_INRANGE = "번호는 1부터 45 사이의 숫자여야 합니다.";
-    private final String NOT_DUPLICATED = "모든 숫자는 중복되지 않아야 합니다.";
     private final List<Integer> numbers;
     private final int bonusNumber;
 
@@ -25,26 +23,26 @@ public class Winning {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LACK_NUMBER_COUNT);
+            throw new IllegalArgumentException(Message.LACK_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateNumberInRange(int number, String code) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(code + NUMBER_NOT_INRANGE);
+            throw new IllegalArgumentException(code + Message.NUMBER_NOT_INRANGE.getMessage());
         }
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException(NOT_DUPLICATED);
+            throw new IllegalArgumentException(Message.NOT_DUPLICATED.getMessage());
         }
     }
 
     private void validateDuplicatedWinningAndBonus(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(NOT_DUPLICATED);
+            throw new IllegalArgumentException(Message.NOT_DUPLICATED.getMessage());
         }
     }
 }

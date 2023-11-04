@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,11 +13,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         countNumbers(numbers);
+        duplicateNumbers(numbers);
     }
 
     private void countNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void duplicateNumbers(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (Objects.equals(numbers.get(i), numbers.get(i + 1))) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

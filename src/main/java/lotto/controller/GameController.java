@@ -22,12 +22,15 @@ public class GameController {
     private static Profit profit;
 
     public static void start(){
-
-        purchaseLotto();
-        setWinningNumbers();
-        setBonusNumbers();
-        checkWinningDetails();
-        calculateProfit();
+        try{
+            purchaseLotto();
+            setWinningNumbers();
+            setBonusNumbers();
+            checkWinningDetails();
+            calculateProfit();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void purchaseLotto(){

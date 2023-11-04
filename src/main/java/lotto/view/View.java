@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.stream.Collectors;
+
 public class View {
 
     private static final String OPEN_SQUARE_BRACKETS = "[";
@@ -15,5 +17,13 @@ public class View {
         System.out.println();
     }
 
+    public void printIssuedLottoNumbers(List<IssuedLottosDto> lottos) {
+        for (IssuedLottosDto lotto : lottos) {
+            String message = lotto.getNumbers.stream()
+                    .map(IssuedLottosDto::getLottoNumbers)
+                    .collect(Collectors.joining(", "));
+            System.out.println(OPEN_SQUARE_BRACKETS + message + CLOSE_SQUARE_BRACKETS);
+        }
+    }
 
 }

@@ -62,10 +62,10 @@ GameEngine
    - [ ] 수익률을 반환한다.
 
 GameEngineValidator
- -[ ] 가격을 검증한다
-   - [ ] 가격이 숫자가 아닌경우, IllegalArgumentException을 반환한다
-   - [ ] 가격이 양수가 아니면 IllegalArgumentException을 반환한다
-   - [ ] 가격이 천원단위가 아닌경우, IllegalArgumentException을 반환한다
+ -[x] 가격을 검증한다
+   - [x] 가격이 숫자가 아닌경우, IllegalArgumentException을 반환한다
+   - [x] 가격이 양수가 아니면 IllegalArgumentException을 반환한다
+   - [x] 가격이 천원단위가 아닌경우, IllegalArgumentException을 반환한다
  -[ ] 로또 번호를 검증한다.
    - [ ] 숫자가 아닌경우, IllegalArgumentException을 반환한다
    - [ ] 로또 숫자가 6개가 아니면, IllegalException을 반환한다.

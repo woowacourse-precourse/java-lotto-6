@@ -1,10 +1,14 @@
 package lotto;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoRank;
 import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,27 +54,43 @@ class LottoTest {
                 .hasMessage(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
     }
 
-//    @Test
-//    @DisplayName("로또의 번호들을 하나의 문자열로 반환할 수 있다.")
-//    public void lottoNumbersAsString() {
-//        // given
-//        String result = "[8, 21, 23, 41, 42, 43]";
-//        Lotto lotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
-//        // when
-//        String numbersAsString = lotto.lottoNumbersAsString();
-//        // then
-//        assertThat(result).isEqualTo(numbersAsString);
-//    }
-//
-//    @Test
-//    @DisplayName("당첨된 로또와 비교해서 맞춘 개수를 반환할 수 있다.")
-//    public void lottoMatchValue() {
-//        // given
-//        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-//        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-//        // when
-//        int count = lotto.calculateLottoMatch(winningLotto);
-//        // then
-//        assertThat(count).isEqualTo(3);
-//    }
+
+    @Test
+    @DisplayName("당첨된 로또와 비교해서 로또의 순위를 얻을 수 있다.")
+    public void determineLottoRank() {
+        // given
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        int bonus = 45;
+        // when
+        LottoRank lottoRank = lotto.determineLottoRank(winningLotto, bonus);
+        // then
+        assertThat(lottoRank).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @DisplayName("당첨된 로또와 비교한 개수가 5개인 경우 보너스 번호를 통해서 순위가 결정된다")
+    @TestFactory
+    Collection<DynamicTest> determineLottoRankWithBonus() {
+        // given
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        return List.of(
+                DynamicTest.dynamicTest("보너스 번호가 포함된 경우 순위는 2등이다.", () -> {
+                    //given
+                    int bonus = 9;
+                    //when
+                    LottoRank lottoRank = lotto.determineLottoRank(winningLotto, bonus);
+                    // then
+                    assertThat(lottoRank).isEqualTo(LottoRank.SECOND);
+                }),
+                DynamicTest.dynamicTest("보너스 번호가 포함되지 않은 경우 순위는 3등이다.", () -> {
+                    //given
+                    int notBonus = 45;
+                    //when
+                    LottoRank lottoRank = lotto.determineLottoRank(winningLotto, notBonus);
+                    // then
+                    assertThat(lottoRank).isEqualTo(LottoRank.THIRD);
+                })
+        );
+    }
 }

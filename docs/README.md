@@ -26,8 +26,9 @@
   - [] IllegalArgumentException 발생
   - [] "[ERROR]"로 시작하는 에러 메시지 출력
   - [] 오류 부분부터 다시 입력 받기
-7. **LottoGenerator**
-   - [x] 장수만큼 Lotto 랜덤 생성
+7. **LottoPurchaser**
+   - [x] 금액만큼 로또 판매
+     - [x] 장수만큼 Lotto 랜덤 생성
 8. **MatchCount**
   - [x] 매칭 등수 구분 및 보상 금액 표기
     - [x] 1등 : 6개 일치
@@ -43,7 +44,7 @@
 10. **OutputView**
     - [x] 당첨 통계 출력 하기
 - [] 추가적인 예외 처리시 명확한 유형을 처리
-
+----
 ## 확인 목록
 - [] 하드 코딩 하지 않기
 - [] enum 클래스 사용

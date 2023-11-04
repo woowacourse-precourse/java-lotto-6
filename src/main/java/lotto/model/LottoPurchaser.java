@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.Constants;
 
-public class LottoGenerator {
+public class LottoPurchaser {
+
+    public List<Lotto> purchase(Budget budget) {
+        int lottoCount = budget.inputMoney() / Constants.LOTTO_PRICE;
+        return generateRandomLottos(lottoCount);
+    }
 
 
-    public List<Lotto> generateRandomLottos(int lottoCount) {
+    private List<Lotto> generateRandomLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(generateRandomLotto());

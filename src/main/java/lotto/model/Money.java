@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.exception.InputException.NUMBER_FORMAT_EXCEPTION;
+
 public class Money {
 
     private static final int DEFAULT_VALUE = 0;
@@ -24,7 +26,7 @@ public class Money {
         try {
             return Integer.parseInt(moneyInput);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 

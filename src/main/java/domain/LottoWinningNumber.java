@@ -1,6 +1,5 @@
 package domain;
 
-import util.CreateRandomNumberUtil;
 import util.InputUtil;
 import util.MessageUtil;
 import util.ValidationUtil;
@@ -12,11 +11,10 @@ public class LottoWinningNumber {
     private final ValidationUtil validationUtil = new ValidationUtil();
     private final MessageUtil messageUtil = new MessageUtil();
 
-//    private List<Lotto> lottos;
     public LottoWinningNumber getLottoWinningNumInfo(){
         messageUtil.printWinningNum();
         String winningNumber = inputUtil.userInput();
-        String[] winningNumbers = validationUtil.validWinningNumber(winningNumber);
+        String[] validWinningNumber = validationUtil.validWinningNumber(winningNumber);
 //        for (String number : winningNumbers) {
 //            System.out.print(number + " "); // 각 숫자와 공백을 함께 출력
 //        }

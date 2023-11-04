@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
 public class OutputView {
-    private static final String COUNT_OF_USER_LOTTOS_MESSAGE = "%d개를 구매했습니다.";
+    private static final String COUNT_OF_USER_LOTTOS_MESSAGE = "\n%d개를 구매했습니다.";
 
     public static void printUserLottos(Lottos lottos, Budget budget) {
         printCountOfUserLottos(budget);

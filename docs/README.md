@@ -65,7 +65,7 @@
         <td>사용자의 출력을 처리하는 view 클래스입니다.</td>
     </tr>
     <tr>
-        <td rowspan="2">Utils</td>
+        <td rowspan="3">Utils</td>
         <td>ErrorMessage</td>
         <td>에러 메시지를 담고있는 Enum입니다.</td>
     </tr>

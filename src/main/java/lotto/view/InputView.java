@@ -32,11 +32,11 @@ public class InputView {
         String userInput = readLine();
 
         return Arrays.stream(userInput.split(STANDARD_OF_SPLIT))
-                .map(InputView::parsingWinningNumbers)
+                .map(InputView::parsingLottoNumbers)
                 .toList();
     }
 
-    private static int parsingWinningNumbers(String userInput) {
+    private static int parsingLottoNumbers(String userInput) {
         if (!userInput.matches(VALIDATE_NUMBER_CODE)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다. 다시 입력해주세요.");
         }

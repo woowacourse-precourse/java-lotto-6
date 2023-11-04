@@ -38,6 +38,8 @@ public class LottoGameController {
         LottoMachine lottoMachine = LottoMachine.of(lottoGroup, winningTicket);
         TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
         outputView.printTotalPrize(totalPrize);
+        double totalProfit = totalPrize.calculateTotalProfit(lottoCount);
+        outputView.printTotalProfit(totalProfit);
 
     }
 

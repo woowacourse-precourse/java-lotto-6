@@ -53,6 +53,12 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printTotalProfit(double totalProfit) {
+        String formattedTotalProfit = String.format("%,.1f", totalProfit);
+        String message = String.format("총 수익률은 %s%%입니다.", formattedTotalProfit);
+        println(message);
+    }
+
     public void printTotalPrize(TotalPrize totalPrize) {
         System.out.println("당첨 통계\n---");
         Map<LottoPrize, Long> prizeSummary = totalPrize.getPrizeSummary();

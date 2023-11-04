@@ -25,6 +25,10 @@ public final class LottoCount {
         return new LottoCount(purchaseLottoCount);
     }
 
+    public int calculateUserMoney() {
+        return LottoPrice.STANDARD_PRICE.multiply(count);
+    }
+
     public int getCount() {
         return count;
     }

@@ -42,6 +42,13 @@ public enum LottoPrize {
                 .orElse(NOTHING);
     }
 
+    public long calculateWinningMoney(Long value) {
+        if (value == null) {
+            return 0;
+        }
+        return prizeAmount * value;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
@@ -53,4 +60,5 @@ public enum LottoPrize {
     public boolean isMatchBonus() {
         return matchBonus;
     }
+
 }

@@ -23,6 +23,10 @@ public enum LottoPrice {
         return userMoney % price != NO_REMAINDER;
     }
 
+    public int multiply(int count) {
+        return price * count;
+    }
+
     public int calculateLottoCount(UserMoney userMoney) {
         return userMoney.calculateLottoPurchaseCount(price);
     }

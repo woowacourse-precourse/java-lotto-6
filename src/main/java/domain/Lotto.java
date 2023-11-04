@@ -5,18 +5,25 @@ import view.ExceptionMessage;
 import java.util.*;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateRange(numbers);
-        validateUniqueValue(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateUniqueValue(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers){
+        if (numbers.size() != LOTTO_SIZE) {
             ExceptionMessage.sizeException();
             throw new IllegalArgumentException();
         }
@@ -24,7 +31,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int value : numbers){
-            if (value >= 1 && value <= 45){
+            if (value >= MIN_LOTTO_NUMBER && value <= MAX_LOTTO_NUMBER){
                 continue;
             }
             ExceptionMessage.rangeException();

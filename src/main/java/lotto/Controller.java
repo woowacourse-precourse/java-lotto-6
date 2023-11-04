@@ -57,5 +57,9 @@ public class Controller {
         return converterNumber.convert(inputBonus);
     }
 
-
+    private void outputResult(Result result) {
+        outputView outputview = new outputView();
+        outputview.outputWinningStatistics(result);
+        outputview.outputReturn(result.rateOfReturn());
+    }
 }

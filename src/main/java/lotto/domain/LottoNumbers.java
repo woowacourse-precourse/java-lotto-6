@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.utils.Utils;
 
 public class LottoNumbers {
-    private final static String DELIMITER = ",";
-    private final static String PATTERN_ONLY_INTEGERS = "\\d+";
+    private static final String DELIMITER = ",";
+    private static final String PATTERN_ONLY_INTEGERS = "\\d+";
     private final int TOTAL_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
@@ -15,6 +15,10 @@ public class LottoNumbers {
         this.numbers = lottoNumbers;
     }
 
+    public List<Integer> getLottoNumbers() {
+        return this.numbers;
+    }
+    
     private List<Integer> convertStringsToIntegers(List<String> numbers) {
         validateHasOnlyIntegers(numbers);
         return numbers.stream()

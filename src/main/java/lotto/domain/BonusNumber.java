@@ -10,6 +10,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean hasBonus(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
+
     private void validateOutOfRange(int bonusNumber) {
         if (isOutOfRange(bonusNumber)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);

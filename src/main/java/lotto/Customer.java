@@ -70,7 +70,7 @@ public class Customer {
 
         for (int i = 0; i < lottos.size(); i++) {
 
-            winLotto.compareLotto(lottos.get(i));
+            int rank = winLotto.compareLotto(lottos.get(i));
         }
     }
 }

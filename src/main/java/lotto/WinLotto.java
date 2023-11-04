@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinLotto {
 
@@ -75,13 +77,11 @@ public class WinLotto {
 
     private void validateDuplicate(String[] checkNums) {
 
-        List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
         for (String str : checkNums) {
 
             int num = Integer.parseInt(str);
-
-            list.add(num);
-            if (list.contains(num)) {
+            if (!set.add(num)) {
 
                 throw new IllegalArgumentException();
             }

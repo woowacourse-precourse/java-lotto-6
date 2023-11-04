@@ -1,7 +1,9 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class WinLottoTest {
@@ -68,5 +70,15 @@ public class WinLottoTest {
 
         assertThatThrownBy(() -> new WinLotto("1,2,3,4,5,6", "1"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void compareLottoTest() {
+
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinLotto winLotto = new WinLotto("1,2,3,4,5,6", "7");
+
+        int rank = winLotto.compareLotto(lotto);
+        assertEquals(6, rank);
     }
 }

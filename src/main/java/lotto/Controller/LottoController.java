@@ -13,7 +13,10 @@ public class LottoController {
     public void run() {
         OutputView.displayPurchaseGuide();
         final Amount amount = inputLottoAmount();
-        final List<Lotto> lottoList = LottoGameManager.buyLotto(LottoGameManager.calculateLottoCount(amount));
+        final int lottoCount = LottoGameManager.calculateLottoCount(amount);
+        OutputView.displayLottoCount(lottoCount);
+
+        final List<Lotto> lottoList = LottoGameManager.buyLotto(lottoCount);
         OutputView.displayLottoNumbers(lottoList);
 
         OutputView.displayWinningNumberGuide();

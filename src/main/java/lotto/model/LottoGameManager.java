@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +14,6 @@ public class LottoGameManager {
     }
 
     public static List<Lotto> buyLotto(int lottoCount) {
-        OutputView.displayLottoCount(lottoCount);
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .collect(Collectors.toList());

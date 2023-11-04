@@ -50,6 +50,7 @@ public class Lottos {
                         r.getKey().getPrize(),
                         r.getValue().intValue()
                 ));
+        OutputUtils.printWinningRateOfReturnMessage(calculateRateOfReturn(number * PRICE_PER_TICKET));
     }
 
     private float calculateRateOfReturn(int money) {

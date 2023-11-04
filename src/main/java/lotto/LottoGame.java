@@ -57,8 +57,7 @@ public class LottoGame {
 	public Lottos createLottos(Money money) {
 		outputView.printBuyedLottoNumberMessage(money.getBuyedCount());
 
-		lottoService.setMoney(money);
-		Lottos lottos = lottoService.createLottos();
+		Lottos lottos = lottoService.createLottos(money);
 
 		outputView.printLottoNumbers(lottos.getFormattedLottoNumbers());
 

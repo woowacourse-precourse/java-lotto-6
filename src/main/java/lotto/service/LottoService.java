@@ -19,15 +19,12 @@ import lotto.util.message.WinningStatisticsMessage;
 public class LottoService {
 
 	private static final LottosGenerator LOTTOS_GENERATOR = new LottosGenerator();
-	private static final LottoCalculator LOTTO_calculator = new LottoCalculator();
-	private static final String DELIMITER = System.lineSeparator();
+	private static final LottoCalculator LOTTO_CALCULATOR = new LottoCalculator();
+	private static final String NEW_LINE = System.lineSeparator();
 
-	public Lottos createLottos() {
-		return new Lottos(LOTTOS_GENERATOR.generate());
-	}
-
-	public void setMoney(Money money) {
+	public Lottos createLottos(Money money) {
 		LOTTOS_GENERATOR.setMoney(money);
+		return new Lottos(LOTTOS_GENERATOR.generate());
 	}
 
 	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber) {
@@ -35,19 +32,19 @@ public class LottoService {
 	}
 
 	public int calculateLottoPriceSum(Lottos lottos, AnswerLotto answerLotto) {
-		EnumMap<LottoRank, Integer> lottRankCounter = countLottoRank(lottos, answerLotto);
-		return LOTTO_calculator.calculateSum(lottRankCounter);
+		EnumMap<LottoRank, Integer> lottoRankCounter = countLottoRank(lottos, answerLotto);
+		return LOTTO_CALCULATOR.calculateSum(lottoRankCounter);
 	}
 
 	public double calculateTotalReturn(int money, int priceSum) {
-		return LOTTO_calculator.calculateTotalReturn(money, priceSum);
+		return LOTTO_CALCULATOR.calculateTotalReturn(money, priceSum);
 	}
 
 	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {
-		StringJoiner strJoiner = new StringJoiner(DELIMITER);
-		Set<Entry<LottoRank, Integer>> lottRankCounter = countLottoRank(lottos, answerLotto).entrySet();
+		StringJoiner strJoiner = new StringJoiner(NEW_LINE);
+		Set<Entry<LottoRank, Integer>> lottoRankCounter = countLottoRank(lottos, answerLotto).entrySet();
 
-		for (Map.Entry<LottoRank, Integer> entry : lottRankCounter) {
+		for (Map.Entry<LottoRank, Integer> entry : lottoRankCounter) {
 			LottoRank key = entry.getKey();
 			int value = entry.getValue();
 			boolean isBonusNumber = key.getisBonusNumber();

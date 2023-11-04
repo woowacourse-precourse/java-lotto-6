@@ -3,7 +3,9 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -81,5 +83,23 @@ public class Controll {
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .count();
+    }
+
+    Map<SameNumber, Integer> countSameNumber(Lotto winner, Integer bonus, Lotto... tickets) {
+        Map<SameNumber, Integer> sameNumberCount = new HashMap<>();
+        for (Lotto ticket : tickets) {
+            SameNumber sameNumber = compareTicket(winner, ticket);
+            Integer bonusNumber = compareBonus(ticket, bonus);
+            if (sameNumber == SameNumber.SAME5 && bonusNumber == 1) {
+                sameNumber = SameNumber.SAME5BONUS;
+            }
+            if (sameNumberCount.containsKey(sameNumber)) {
+                Integer count = sameNumberCount.get(sameNumber);
+                sameNumberCount.replace(sameNumber, count + 1);
+                continue;
+            }
+            sameNumberCount.put(sameNumber, 1);
+        }
+        return sameNumberCount;
     }
 }

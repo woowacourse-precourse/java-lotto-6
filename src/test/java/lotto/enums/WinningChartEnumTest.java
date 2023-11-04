@@ -1,8 +1,7 @@
 package lotto.enums;
 
 import static lotto.enums.WinningChartEnum.FIVE_MATCH;
-import static lotto.enums.WinningChartEnum.FIVE_MATCH_PLUS_BONUS;
-import static lotto.enums.WinningChartEnum.FOUR_MATCH;
+import static lotto.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
 import static lotto.enums.WinningChartEnum.THREE_MATCH;
 
 import org.assertj.core.api.Assertions;
@@ -18,7 +17,7 @@ class WinningChartEnumTest {
     void valueOfWhen5CountBonus() {
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(FIVE_MATCH.getMatchCount(), BONUS);
         String name = winningChartEnum.name();
-        Assertions.assertThat(name).isEqualTo(FIVE_MATCH_PLUS_BONUS.name());
+        Assertions.assertThat(name).isEqualTo(FIVE_AND_BONUS_MATCH.name());
     }
 
     @DisplayName("5개가 일치하고, bonus 가 거짓이면, FIVE_MATCH 가 된다.")

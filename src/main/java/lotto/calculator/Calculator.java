@@ -30,7 +30,7 @@ public class Calculator {
             ScratchedLottoTicket scratchedLottoTicket = this.calculateWinner(winningNumbers, bonusNumber,lottoTicket);
             scratchedLottoTickets.add(scratchedLottoTicket);
         }
-        return new LottoTicketResult(scratchedLottoTickets);
+        return LottoTicketResult.createLottoResult(scratchedLottoTickets);
     }
 
 }

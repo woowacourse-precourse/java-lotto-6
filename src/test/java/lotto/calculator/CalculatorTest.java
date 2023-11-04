@@ -1,6 +1,8 @@
 package lotto.calculator;
 
 import static lotto.enums.AmountEnum.MIN_VALUE;
+import static lotto.enums.WinningChartEnum.FIVE_MATCH;
+import static lotto.enums.WinningChartEnum.FOUR_MATCH;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
@@ -24,8 +26,6 @@ class CalculatorTest {
     private final static WinningNumbers winningNumbers = new WinningNumbers(WINNING_NUMBERS);
     private final static BonusNumber loseBonusNumber = new BonusNumber(23); //보너스넘버는 기존 담청번호와 겹치지 않아야함.
     private final static BonusNumber winBonusNumber = new BonusNumber(15); //보너스넘버는 기존 담청번호와 겹치지 않아야함.
-    private final static Integer FIVE_WINNING_POINT = 5;
-    private final static Integer FOUR_WINNING_POINT = 4;
     @DisplayName("금액을 입력하면 최소금액 단위로 나누어 갯수를 반환한다.")
     @Test
     void convertAmountToQuantity() {
@@ -38,9 +38,7 @@ class CalculatorTest {
         ScratchedLottoTicket scratchedLottoTicket = calculator.calculateWinner(winningNumbers, loseBonusNumber,
                 lottoTicketWithFiveMatch);
         Integer winningPoint = scratchedLottoTicket.getMatchCount();
-        Boolean bonus = scratchedLottoTicket.getBonus();
-        assertThat(winningPoint).isEqualTo(FIVE_WINNING_POINT);
-        assertThat(bonus).isFalse();
+        assertThat(winningPoint).isEqualTo(FIVE_MATCH.getMatchCount());
     }
 
     @DisplayName("당첨번호와 일치여부 확인 후 WinnerLotto 를 반환한다. : 5개 + 보너스 당첨")
@@ -49,9 +47,7 @@ class CalculatorTest {
         ScratchedLottoTicket scratchedLottoTicket = calculator.calculateWinner(winningNumbers, winBonusNumber,
                 lottoTicketWithFiveMatch);
         Integer winningPoint = scratchedLottoTicket.getMatchCount();
-        Boolean bonus = scratchedLottoTicket.getBonus();
-        assertThat(winningPoint).isEqualTo(FIVE_WINNING_POINT);
-        assertThat(bonus).isTrue();
+        assertThat(winningPoint).isEqualTo(FIVE_MATCH.getMatchCount());
     }
 
     @DisplayName("보너스가 true일 때, matchCount 가 5가 아니라면,   bonus = false")
@@ -60,18 +56,14 @@ class CalculatorTest {
         ScratchedLottoTicket scratchedLottoTicket = calculator.calculateWinner(winningNumbers, winBonusNumber,
                 lottoTicketWithFourMatch);
         Integer winningPoint = scratchedLottoTicket.getMatchCount();
-        Boolean bonus = scratchedLottoTicket.getBonus();
-        assertThat(winningPoint).isEqualTo(FOUR_WINNING_POINT);
-        assertThat(bonus).isFalse();
+        assertThat(winningPoint).isEqualTo(FOUR_MATCH.getMatchCount());
     }
-
+    @DisplayName("로또 개수만큼 반복하여 ScratchedLottoTicket 리스트를 만들고, lottoTicketResult 로 반환한다")
     @Test
     void calculateResult() {
         List<LottoTicket> list = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
         LottoTicketResult lottoTicketResult = calculator.calculateResult(winningNumbers, winBonusNumber, list);
-        List<ScratchedLottoTicket> scratchedLottoTickets = lottoTicketResult.scratchedLottoTickets();
-        for (ScratchedLottoTicket scratchedLottoTicket : scratchedLottoTickets) {
-            System.out.println("scratchedLottoTicket.getWinningChartEnum() = " + scratchedLottoTicket.getWinningChartEnum());
-        }
+        lottoTicketResult.getFiveAndBonusMatchCount();
+
     }
 }

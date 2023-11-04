@@ -4,17 +4,8 @@ import java.util.List;
 
 public class OutputView {
 
-    // 구입 금액 입력
-    private static final String ENTER_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-
     // 구매 확정 메시지
     private static final String BUY_MESSAGE = "개를 구매했습니다.";
-
-    // 당첨 번호 입력 메시지
-    private static final String ENTER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    // 보너스 번호 입력 메시지
-    private static final String ENTER_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
-
     // 당첨 통계 메시지
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DIVISION_MESSAGE = "---";
@@ -29,10 +20,6 @@ public class OutputView {
     private static final String TOTAL_RETURN_FIRST_MESSAGE = "총 수익률은 ";
     private static final String TOTAL_RETURN_LAST_MESSAGE = "입니다.";
 
-    public static void enterPurchaseAmountMessage() {
-        System.out.println(ENTER_PURCHASE_AMOUNT_MESSAGE);
-    }
-
     public static void purchaseConfirmationMessage(int numberOfLottoPurchased) {
         System.out.println(numberOfLottoPurchased + BUY_MESSAGE);
     }
@@ -43,14 +30,6 @@ public class OutputView {
         }
     }
 
-    public static void enterWinningNumbersMessage() {
-        System.out.println(ENTER_WINNING_NUMBERS_MESSAGE);
-    }
-
-    public static void enterBonusNumberMessage() {
-        System.out.println(ENTER_BONUS_NUMBERS_MESSAGE);
-    }
-
     public static void winningStaticsMessage(List<Integer> agreementCounts) {
         int agreementThreeCount = agreementCounts.get(0);
         int agreementFourCount = agreementCounts.get(1);
@@ -58,6 +37,7 @@ public class OutputView {
         int agreementFiveAndBonusCount = agreementCounts.get(3);
         int agreementSixCount = agreementCounts.get(4);
 
+        System.out.println();
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DIVISION_MESSAGE);
         System.out.println(AGREEMENT_THREE_NUMBERS_MESSAGE + agreementThreeCount + COUNT_MESSAGE);

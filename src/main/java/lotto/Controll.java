@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -71,5 +72,14 @@ public class Controll {
                 .filter(entry -> entry.getValue() > 1)
                 .count();
         return SameNumber.fromInt(count);
+    }
+
+    Integer compareBonus(Lotto ticket, Integer bonus) {
+        return (int) Stream.concat(Arrays.asList(bonus).stream(), ticket.toList().stream())
+                .filter(num -> Arrays.asList(bonus).contains(num) && ticket.toList().contains(num))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .count();
     }
 }

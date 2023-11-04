@@ -19,6 +19,7 @@ public class StateController {
 
     private Lottos lottos;
     private int money;
+    private int lottoCount;
     private Lotto answerLotto;
     private int bonus;
 
@@ -35,6 +36,7 @@ public class StateController {
         try {
             validateMoney(money);
             this.money = money;
+            this.lottoCount = money/LOTTO_PRICE;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             enterMoney();
@@ -43,10 +45,10 @@ public class StateController {
 
     private void purchaseLotto() {
         lottos = new Lottos(IntStream
-                .range(0, calculateLotto(money))
+                .range(0, lottoCount)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList());
-        OutputView.printLottoCount(calculateLotto(money));
+        OutputView.printLottoCount(lottoCount);
         lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
     }
 
@@ -65,10 +67,6 @@ public class StateController {
 
     private void enterBonus() {
         this.bonus = Integer.parseInt(InputView.readBonus());
-    }
-
-    private int calculateLotto(int money) {
-        return money/LOTTO_PRICE;
     }
 
     private void validateMoney(int money) {

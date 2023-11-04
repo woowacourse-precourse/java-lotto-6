@@ -1,8 +1,16 @@
 package lotto.domain;
 
+import static lotto.error.ExceptionCode.NEGATIVE_MONEY_AMOUNT;
+
+import lotto.error.LottoException;
+
 public class Money {
 
     public static final Money ZERO = new Money(0L);
+
+    private static final Long THOUSAND = 1000L;
+
+    private static final Long ZERO_AMOUNT = 0L;
 
     private final Long amount;
 
@@ -12,13 +20,29 @@ public class Money {
     }
 
     private void validateNotNegative(final Long amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException();
+        if (amount < ZERO_AMOUNT) {
+            throw new LottoException(NEGATIVE_MONEY_AMOUNT);
         }
     }
 
     public Money add(final Money money) {
         return new Money(amount + money.amount);
+    }
+
+    public Money multiply(final long multiplier) {
+        return new Money(amount * multiplier);
+    }
+
+    public Long divide(final Money divider) {
+        return amount / divider.amount;
+    }
+
+    public boolean greaterThan(final Money money) {
+        return amount > money.amount;
+    }
+
+    public boolean isThousandUnit() {
+        return (amount % THOUSAND) == ZERO_AMOUNT;
     }
 
     public float getRate(final Money money) {

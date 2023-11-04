@@ -20,7 +20,7 @@ class LottosTest {
     }
 
     @Test
-    @DisplayName("로또 순위를 Key로 받을 수 있다.")
+    @DisplayName("로또의 모든 순위를 Enum에 정의한 순서로 받을 수 있다.")
     public void lottoRanksKey() {
         // given
         Lottos lottos = getLottos();
@@ -30,8 +30,15 @@ class LottosTest {
         Map<LottoRank, Long> lottoRankMap = lottos.countLottoRanks(winningLotto, bonus);
         // then
         Set<LottoRank> lottoRanks = lottoRankMap.keySet();
-        assertThat(lottoRanks).hasSize(2)
-                .contains(LottoRank.SECOND, LottoRank.THIRD);
+        assertThat(lottoRanks).hasSize(LottoRank.values().length)
+                .containsExactly(
+                        LottoRank.NO_RANK,
+                        LottoRank.FIFTH,
+                        LottoRank.FOURTH,
+                        LottoRank.THIRD,
+                        LottoRank.SECOND,
+                        LottoRank.FIRST
+                );
     }
 
     @Test

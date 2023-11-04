@@ -27,9 +27,7 @@ public class LottoController {
     }
 
     public List<Lotto> printLotto(List<Lotto> lottos) {
-        List<String> lottoList = lottos.stream()
-                .map(Lotto::makeLottoNumberString)
-                .toList();
+        List<String> lottoList = lottos.stream().map(Lotto::makeLottoNumberString).toList();
         outputView.printLottoList(lottos.size(), lottoList);
         return lottos;
     }
@@ -50,13 +48,26 @@ public class LottoController {
     }
 
     public void run() {
-        Amount amount = new Amount(inputView.inputAmount());
-        AmountRecord amountRecord = amount.toRecord();
-        List<Lotto> lottos = printLotto(buyLotto(amount));
-        WinningList winningList = printWinningList(calculateWinning(lottos));
-        ProfitRate profitRate = calculateProfitRate(winningList, amountRecord);
-        String printProfitRate = profitRate.printProfitRate();
-        outputView.printProfitRate(printProfitRate);
+        boolean validInput = false;
+        while (!validInput) {
+            validInput = isValidInput(validInput);
+        }
+    }
+
+    private boolean isValidInput(boolean validInput) {
+        try {
+            Amount amount = new Amount(inputView.inputAmount());
+            AmountRecord amountRecord = amount.toRecord();
+            List<Lotto> lottos = printLotto(buyLotto(amount));
+            WinningList winningList = printWinningList(calculateWinning(lottos));
+            ProfitRate profitRate = calculateProfitRate(winningList, amountRecord);
+            String printProfitRate = profitRate.printProfitRate();
+            outputView.printProfitRate(printProfitRate);
+            validInput = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return validInput;
     }
 
 }

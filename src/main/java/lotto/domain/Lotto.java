@@ -28,9 +28,10 @@ public class Lotto {
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
-        if (numbers.stream().allMatch(
-                number -> number >= LOWEST_NUMBER
-                        || number <= HIGHEST_NUMBER)) {
+        if (numbers.stream().anyMatch(
+                number -> number < LOWEST_NUMBER
+                        || number > HIGHEST_NUMBER
+        )) {
             throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE);
         }
     }

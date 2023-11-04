@@ -5,6 +5,7 @@ import static lotto.util.Validator.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.view.InputView;
@@ -56,5 +57,19 @@ public class InputController {
             numbers.add(Integer.parseInt(num));
         }
         return numbers;
+    }
+
+    public int getBonusNumberInput(Lotto lotto) {
+        return checkBonusNumber(InputView.inputBonusNumber(), lotto);
+    }
+
+    private int checkBonusNumber(String input, Lotto lotto) {
+        try {
+            BonusNumber bonusNumber = new BonusNumber(input, lotto);
+            return Integer.parseInt(bonusNumber.getBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumberInput(lotto);
+        }
     }
 }

@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private static int amount;
     private static Lotto winningNumbers;
+    private static int bonusNumber;
     InputController inputController = new InputController();
 
     public void startGame() {
@@ -38,5 +39,6 @@ public class LottoController {
 
     private void setWinningNumbers() {
         winningNumbers = inputController.getWinningNumbersInput();
+        bonusNumber = inputController.getBonusNumberInput(winningNumbers);
     }
 }

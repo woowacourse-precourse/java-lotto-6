@@ -48,4 +48,8 @@ public class OutputView {
     public void informRateOfReturn(final double rateOfReturn) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
+
+    public void showErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

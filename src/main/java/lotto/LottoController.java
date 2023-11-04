@@ -9,7 +9,7 @@ public class LottoController {
     private LottoGame lg;
     private Validator validator = new Validator();
     private int price = 0;
-    private List<Lotto> lottoList;
+    private List<Lotto> myLotto;
     private Lotto winningNumber;
     private int bonusNumber;
     private int fifth = 0;
@@ -28,25 +28,16 @@ public class LottoController {
         return true;
     }
     public List<Integer> lottoMaker(){
-        List<Integer> lotto = new ArrayList<>();
-        for(int i = 0; i < 6; i++){
-            int random = Randoms.pickNumberInRange(1,45);
-            if(lotto.contains(random)){
-                i--;
-                continue;
-            }
-            lotto.add(random);
-        }
-        return lotto;
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
     public String buyLotto(){
-        lottoList = new ArrayList<>();
+        myLotto = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int times = price/1000;
         sb.append(times).append("개를 구매했습니다.");
         for(int i = 0; i < times; i++){
             Lotto lotto = new Lotto(lottoMaker());
-            lottoList.add(lotto);
+            myLotto.add(lotto);
             sb.append(lotto.toString());
             sb.append("\n");
         }
@@ -54,15 +45,15 @@ public class LottoController {
     }
 
     public boolean pickWinningNumber(String number){
-        List<Integer> list = new ArrayList<>();
+        List<Integer> winningNumber = new ArrayList<>();
         boolean isValidated = validator.validateWinningNumber(number, lg);
         if(isValidated) {
             StringTokenizer st = new StringTokenizer(number, ",");
             while(st.hasMoreElements()){
                 int lottoNumber = Integer.parseInt(st.nextToken());
-                list.add(lottoNumber);
+                winningNumber.add(lottoNumber);
             }
-            winningNumber = new Lotto(list);
+            this.winningNumber = new Lotto(winningNumber);
             return true;
         }
         return false;
@@ -88,7 +79,7 @@ public class LottoController {
         return sb.toString();
     }
     public void prizeTimes(){
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : myLotto) {
             int prize = checkResult(lotto);
             if(prize == 5) fifth++;
             if(prize == 4) fourth++;

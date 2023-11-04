@@ -14,7 +14,7 @@ public class Validator {
     private static final int DIVISOR = 1000;
 
 
-    private void isValidPurchaseAmount(int amount) {
+    public void isValidPurchaseAmount(int amount) {
         isMultipleNumber(amount);
     }
 

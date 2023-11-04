@@ -17,7 +17,9 @@ public class Money {
         return money;
     }
 
-
+    public int getPurchaseLottoCount() {
+        return money / CURRENT_UNIT;
+    }
 
     private void isPositiveNumber(String target) {
         if (!target.matches(POSITIVE_NUMBER_PATTERN)) {

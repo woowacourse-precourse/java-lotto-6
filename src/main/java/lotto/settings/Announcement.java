@@ -1,6 +1,6 @@
 package lotto.settings;
 
-public enum Message {
+public enum Announcement {
     PURCHASE_AMOUNT_REQUEST("구입금액을 입력해 주세요."),
     PURCHASE_NUMBER("%d개를 구매했습니다."),
     LOTTO_WINNING_NUMBERS_REQUEST("당첨 번호를 입력해 주세요."),
@@ -12,7 +12,7 @@ public enum Message {
 
     private final String print;
 
-    Message(String print) {
+    Announcement(String print) {
         this.print = print;
     }
 

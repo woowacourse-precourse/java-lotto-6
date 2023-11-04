@@ -1,11 +1,20 @@
 package lotto.controller;
 
+import lotto.service.LottoPublishService;
 import lotto.utils.ExceptionMessage;
 
 public class LottoController {
 
+    private final LottoPublishService lottoPublishService;
+
+    public LottoController(LottoPublishService lottoPublishService) {
+        this.lottoPublishService = lottoPublishService;
+    }
+
     public void publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
-        validatePurchaseAmountType(inputPurchaseAmount);
+        int purchaseAmount = validatePurchaseAmountType(inputPurchaseAmount);
+        lottoPublishService.publish(purchaseAmount);
+
     }
 
     private int validatePurchaseAmountType(String inputPurchaseAmount) {

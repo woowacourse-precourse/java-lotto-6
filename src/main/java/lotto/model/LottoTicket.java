@@ -19,4 +19,8 @@ public class LottoTicket {
         }
         return matchCount;
     }
+
+    public boolean isMatchWithBonusNumber(int bonusNumber) {
+        return lottoTicket.contains(bonusNumber);
+    }
 }

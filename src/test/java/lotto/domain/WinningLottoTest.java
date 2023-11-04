@@ -13,6 +13,6 @@ class WinningLottoTest {
     void createWinningLottoByNotNumber() {
         assertThatThrownBy(() -> new WinningLotto(List.of("199388020895830204", "테스트", "111", "403", "3", "9")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자 1~45까지의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
     }
 }

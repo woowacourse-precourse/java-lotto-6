@@ -2,6 +2,8 @@ package lotto.exception;
 
 import java.util.List;
 
+import static lotto.exception.ErrorMessage.*;
+
 public class InputNumberException {
     private InputNumberException() {
     }
@@ -15,7 +17,7 @@ public class InputNumberException {
                     try {
                         Integer.parseInt(number);
                     } catch (NumberFormatException exception) {
-                        throw new IllegalArgumentException();
+                        throw new IllegalArgumentException(ERROR.getMessage() + NUMBER_RANGE.getMessage());
                     }
                 });
     }

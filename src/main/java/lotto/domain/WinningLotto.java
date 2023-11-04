@@ -9,7 +9,7 @@ public class WinningLotto {
     public WinningLotto() {
         winningLotto = makeWinningLotto();
     }
-    public Lotto makeWinningLotto(){
+    private Lotto makeWinningLotto(){
         return new Lotto(InputHandler.readWinnerNumber());
     }
 

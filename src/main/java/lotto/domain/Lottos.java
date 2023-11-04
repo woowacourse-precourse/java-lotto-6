@@ -56,6 +56,8 @@ public class Lottos {
     private void printResult() {
         winningStatics.entrySet().stream()
                 .filter(r -> r.getKey() != Ranking.NONE)
+                .sorted((entry1, entry2) ->
+                        Integer.compare(entry2.getKey().ordinal(), entry1.getKey().ordinal()))
                 .forEach(r -> OutputUtils.printWinningDetail(
                         r.getKey().getDescription(),
                         r.getKey().getPrize(),

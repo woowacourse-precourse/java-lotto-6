@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.LottoNumberConstants;
 import lotto.exception.ErrorMessage;
 import org.junit.platform.commons.util.StringUtils;
 
@@ -8,12 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constants.LottoNumberConstants.*;
+
 public class WinningNumbers {
     private static final String NUMBERS_DELIMITER = ",";
-    private static final int NUMBERS_SIZE = 6;
-    private static final int MINIMUM_RANGE = 1;
-    private static final int MAXIMUM_RANGE = 45;
-
     private final List<Integer> numbers;
 
     private WinningNumbers(String input) {
@@ -49,23 +48,23 @@ public class WinningNumbers {
     private List<Integer> parseWinningNumbersInput(String input) {
         return Arrays.stream(input.split(NUMBERS_DELIMITER))
                 .map(this::safeParseInt)
-                .filter(this::isValidRange)
                 .toList();
     }
 
     private Integer safeParseInt(String input) {
         try {
-            return Integer.parseInt(input);
+            int number = Integer.parseInt(input);
+            validateRange(number);
+            return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());
         }
     }
 
-    private boolean isValidRange(Integer number) {
+    private void validateRange(Integer number) {
         if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_INVALID_RANGE.getMessage());
         }
-        return true;
     }
 
     private static void validateDuplicates(List<Integer> numbers) {

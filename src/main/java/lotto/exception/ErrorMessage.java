@@ -11,7 +11,11 @@ public enum ErrorMessage {
     WINNING_NUMBERS_NOT_NUMERIC("[ERROR] 당첨번호로 6개의 숫자를 입력해주세요."),
     WINNING_NUMBERS_INVALID_RANGE("[ERROR] 당첨번호의 각 숫자는 1 이상 45 이하여야 합니다."),
     WINNING_NUMBERS_DUPLICATED("[ERROR] 당첨번호로 서로 다른 6개 숫자를 입력해주세요."),
-    WINNING_NUMBERS_INVALID_SIZE("[ERROR] 당첨번호로 6개의 서로 다른 숫자를 입력해주세요.");
+    WINNING_NUMBERS_INVALID_SIZE("[ERROR] 당첨번호로 6개의 서로 다른 숫자를 입력해주세요."),
+    //보너스 넘버
+    BONUS_NUMBER_NOT_NUMERIC("[ERROR] 보너스 넘버로 숫자를 입력해주세요."),
+    BONUS_NUMBER_INVALID_RANGE("[ERROR] 보너스 넘버로 1 이상 45 이하의 숫자를 입력해주세요."),
+    BONUS_NUMBER_DUPLICATED("[ERROR] 보너스 넘버는 당첨번호와 중복되지 않는 숫자로 입력해주세요.");
 
 
     private String message;

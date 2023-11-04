@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoPurchaseManager;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,6 +20,10 @@ public class GameController {
         Lottos lottos = lottoPurchaseManager.createLottos(purchaseAmountInput);
         printLottos(lottos);
         String winningNumbersInput = inputView.printAskWinningNumbers();
+        WinningNumbers winningNumbers = WinningNumbers.create(winningNumbersInput);
+        String bonusNumberInput = inputView.printAskBonusNumber();
+        BonusNumber bonusNumber = BonusNumber.create(bonusNumberInput);
+        LottoResultCalculator lottoResultCalculator = LottoResultCalculator.create(winningNumbers, bonusNumber);
 
     }
 

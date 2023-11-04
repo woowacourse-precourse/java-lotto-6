@@ -17,17 +17,23 @@ public class User {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
-                int money = Integer.parseInt(Console.readLine());
+                String money = Console.readLine();
                 validateInputMoney(money);
-                return money;
+                return Integer.parseInt(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void validateInputMoney(int money) {
-        if (money % 1000 != 0) {
+    private void validateInputMoney(String money) {
+        if (!money.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+        if (!money.matches("^[1-9][0-9]*$")) {
+            throw new IllegalArgumentException("[ERROR] 금액은 0으로 시작할 수 없습니다.  (ex) 5000");
+        }
+        if (Integer.parseInt(money) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또는 1장당 1000원입니다. 1000원 단위로 구매를 진행해주세요.");
         }
     }
@@ -106,7 +112,7 @@ public class User {
         if (1 > Integer.parseInt(bonusNumber) || Integer.parseInt(bonusNumber) > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-        if (sixLottoNumbers.contains(bonusNumber)){
+        if (sixLottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 입력한 6개의 로또 당첨 번호와 중복됩니다. 다시 입력해주세요.");
         }
     }

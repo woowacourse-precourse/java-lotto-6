@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Comparator;
 import lotto.domain.Convertor;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
@@ -17,6 +18,7 @@ public class Game {
         OutputView.printPurchaseResult(lottos);
         Lotto winnerNumbers = createWinnerNumbers();
         int bonusNumber = createBonusNumber();
+        Comparator comparator = new Comparator();
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {

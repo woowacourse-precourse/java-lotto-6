@@ -17,6 +17,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static List<Integer> issueLotto() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return lotto;
@@ -45,4 +49,5 @@ public class Lotto {
                 .distinct().count();
         return result != numbers.size();
     }
+
 }

@@ -12,6 +12,9 @@ public class LottoSystem {
 
     public void run() {
         initialize();
+        SettlementSystem settlementSystem = new SettlementSystem();
+        settlementSystem.makeResult(winningLotto,userLotto,bonusNumber);
+        settlementSystem.renderResult();
     }
 
     private void initialize(){

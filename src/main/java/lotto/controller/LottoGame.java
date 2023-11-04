@@ -23,18 +23,22 @@ public class LottoGame {
     }
 
     private static int getPaymentAndValidate() {
-        String payment = null;
-
+        String paymentString;
+        int payment;
         try {
             OutputView.printInputPurchaseAmount();
-            payment = InputView.receiveUserInput();
-            Validator.validatePurchaseAmount(payment);
+            paymentString = InputView.receiveUserInput();
+
+            Validator.isPrimeNumber(paymentString);
+            Validator.isPositiveNumber(paymentString);
+            Validator.isUnitsOfLottoPrice(paymentString);
+            payment = Integer.parseInt(paymentString);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getPaymentAndValidate();
+            payment = getPaymentAndValidate();
         }
 
-        return (Integer.parseInt(payment));
+        return payment;
     }
 
 

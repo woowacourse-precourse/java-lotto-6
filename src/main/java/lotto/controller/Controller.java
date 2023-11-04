@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.util.Utils;
 import lotto.view.inputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -13,9 +14,18 @@ public class Controller {
     }
     public void buyLotto(){
         inputMessage.priceMessage();
-        String price = readLine();
-        Buyer buyer = new Buyer(ChangeStringToInt(price));
+        int price = ChangeStringToInt(readLine());
+        Buyer buyer = new Buyer(price);
+    }
 
+    public int getPrizeNumber(){
+        inputMessage.prizeMessage();
+        return Utils.ChangeStringToInt(readLine());
+    }
+
+    public int getBonusNumber(){
+        inputMessage.bonusMessage();
+        return Utils.ChangeStringToInt(readLine());
     }
 
 }

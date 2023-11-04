@@ -18,14 +18,16 @@ public class StateController {
     private static final int LOTTO_PRICE = 1000;
 
     private Lottos lottos;
-    private Lotto answerLotto;
     private int money;
+    private Lotto answerLotto;
+    private int bonus;
 
 
     public void run() {
         enterMoney();
         purchaseLotto();
         enterAnswer();
+        enterBonus();
     }
 
     private void enterMoney() {
@@ -41,10 +43,10 @@ public class StateController {
 
     private void purchaseLotto() {
         lottos = new Lottos(IntStream
-                .range(0, calculateLottoCount(money))
+                .range(0, calculateLotto(money))
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList());
-        OutputView.printLottoCount(calculateLottoCount(money));
+        OutputView.printLottoCount(calculateLotto(money));
         lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
     }
 
@@ -61,7 +63,11 @@ public class StateController {
         }
     }
 
-    private int calculateLottoCount(int money) {
+    private void enterBonus() {
+        this.bonus = Integer.parseInt(InputView.readBonus());
+    }
+
+    private int calculateLotto(int money) {
         return money/LOTTO_PRICE;
     }
 

@@ -15,4 +15,9 @@ public class InputView {
         OutputView.printAnswer();
         return readLine();
     }
+
+    public static String readBonus() {
+        OutputView.printBonus();
+        return readLine();
+    }
 }

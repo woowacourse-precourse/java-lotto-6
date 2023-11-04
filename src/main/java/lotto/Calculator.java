@@ -51,8 +51,8 @@ public class Calculator {
     }
 
     public String calculateEarningRate(int purchaseAmount) {
-        int totalPrize = (5000 * fifthPrize) + (50000 * fourthPrize) + (1500000 * thirdPrize)
-                + (30000000 * secondPrize) + (2000000000 * firstPrize);
+        double totalPrize = (5000.0 * fifthPrize) + (50000.0 * fourthPrize) + (1500000.0 * thirdPrize)
+                + (30000000.0 * secondPrize) + (2000000000.0 * firstPrize);
 
         double earningRate = totalPrize / purchaseAmount * 100;
 

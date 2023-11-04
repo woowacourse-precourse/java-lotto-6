@@ -43,5 +43,8 @@ public class Lotto {
             .filter(numbers::contains)
             .count();
     }
-    
+
+    public boolean countSameBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

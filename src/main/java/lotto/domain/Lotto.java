@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,7 @@ public class Lotto {
 
 
     public String toString() {
+        Collections.sort(numbers);
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("[");

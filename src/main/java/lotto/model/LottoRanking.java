@@ -2,11 +2,11 @@ package lotto.model;
 
 import lotto.model.validator.LottoNumbersValidator;
 
-public class WinningLotto {
+public class LottoRanking {
     private final int bonusNumber;
     private final Lotto lotto;
 
-    public WinningLotto(Lotto lotto, String userInputBonusNumber) {
+    public LottoRanking(Lotto lotto, String userInputBonusNumber) {
         LottoNumbersValidator.validateBlank(userInputBonusNumber);
         LottoNumbersValidator.validateNumeric(userInputBonusNumber);
 

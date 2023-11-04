@@ -42,14 +42,14 @@ public class LottoGameManager {
     }
 
     public Lotto createWinningLotto(String userInputWinningNumbers) {
-        return new Lotto(parsingWinningNumbers(userInputWinningNumbers));
+        return LottoMaker.makeManualLotto(parsingWinningNumbers(userInputWinningNumbers));
     }
 
-    public WinningLotto createWinningLottoAddBonusNumber(Lotto lotto, String userInputBonusNumber) {
-        return new WinningLotto(lotto, userInputBonusNumber);
+    public LottoRanking createWinningLottoAddBonusNumber(Lotto lotto, String userInputBonusNumber) {
+        return new LottoRanking(lotto, userInputBonusNumber);
     }
 
-    public List<Lotto> createLottoBucket() {
+    public List<Lotto> createLottoBucket(int lottoAmount) {
         return null;
     }
     public void saveLottoBucket() {

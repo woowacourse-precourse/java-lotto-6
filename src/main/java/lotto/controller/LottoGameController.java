@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGameManager;
-import lotto.model.WinningLotto;
+import lotto.model.LottoRanking;
 import lotto.view.InputView;
 import lotto.view.OutputMessage;
 import lotto.view.OutputView;
@@ -51,7 +51,7 @@ public class LottoGameController {
         }
     }
 
-    private WinningLotto getWiningLottoAddBonusNumber() {
+    private LottoRanking getWiningLottoAddBonusNumber() {
         while (true) {
             try {
                 OutputView.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.message());

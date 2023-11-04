@@ -33,7 +33,7 @@ public class LottoNumbersValidator extends InputValidator {
     }
 
     public static void validateContainLottoNumbers(int bonusNumber, Lotto lotto) {
-        if (lotto.containBonusNumber(bonusNumber)) {
+        if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.CONTAIN_LOTTO_NUMBERS.message());
         }
     }

@@ -12,7 +12,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public boolean containBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

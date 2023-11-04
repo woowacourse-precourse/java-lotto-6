@@ -12,6 +12,12 @@ class InputValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    void 인풋_중복_테스트() {
+        assertThatThrownBy(() -> new InputValidator().validateLottoDuplication(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 인풋_범위_테스트() {
         assertThatThrownBy(() -> new InputValidator().validateLottoNumberRange(List.of(-1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);

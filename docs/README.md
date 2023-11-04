@@ -7,11 +7,6 @@
   자바 Collection에서 리스트에 데이터를 추가한 뒤 이 리스트의 변경을 막기 위한 클래스 타입이다.
   나도 Car 객체를 선언한 뒤, 컨트롤러에서 Cars 리스트를 사용했었는데 이것을 좀 더 안전하게 사용할 수 있는 방법같다.
   이번에도 로또 과제에서 여러 로또 리스트를 다뤄야 할 일이 있을 것 같으므로 이 unmodifiableList를 사용해볼 예정이다.
-- factory
-  팩토리 메소드 패턴은 자바 디자인 패턴 중 하나이다. 요약하자면 객체 생성을 대신해주는 공장이라고 할 수 있다.
-  나도 코드 내에서 다른 클래스를 사용할 때마다 객체를 생성하고 사용하는 것이 지저분해보인다고 생각했었는데,
-  이번 2주차 과제인 레이싱 게임 리뷰를 하다보니 그것을 깔끔하게 할 수 있는 팩토리 메소드 패턴에 대해 알 수 있었다.
-  이번에는 이 팩토리 메소드 패턴을 사용해서 과제를 진행해 볼 예정이다.
 
 ## 유저 시나리오
 출력 : 구입금액을 입력해 주세요.  
@@ -36,15 +31,12 @@
 
 ## 클래스 분류
 1. view - InputView, OutputView  
-2. domain - Winning(checkLotto), Lotto, Lottos, Amount  
+2. domain - Winning, Lotto, Lottos, Amount
 3. controller - Controller 
 4. utilities - Parse
-5. factory - LottoFactory 
-6. exception 
-7. service -  CalculateEarningRate  
-8. validation - CommonValidation, AmountValidation
-9. system - SystemMessage, ExceptionMessage
-10. dto - AmountDto, LottoDto, LottosDto
+5. validation - StringValidation, AmountValidation, WinningValidation
+6. system - SystemMessage, ExceptionMessage, Constant
+7. dto - AmountDto, LottoDto, LottosDto, WinningDto
 
 ## 기능 정리
 Controller
@@ -68,6 +60,6 @@ Controller
        - 1~45인지, 숫자인지 검증 - WinningValidation
         
 - 4. 당첨 통계 출력 - outputResult()
-       - 로또가 당첨번호랑 맞는지 확인 - Winning checkLotto
+       - 로또가 당첨번호랑 맞는지 확인 - Winning getRankCount
        - 당첨 개수 출력 - OutputView
-       - 총 수익률 계산 - CalculateEarningRate
+       - 총 수익률 출력

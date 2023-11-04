@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.view.InputView;
@@ -15,6 +16,9 @@ public class Application {
 
         String winningNumber = InputView.winningNumber();
         String bonusNumber = InputView.bonusNumber();
-        lottoController.matchWinningNumber(lottery, winningNumber, bonusNumber);
+        Map<Integer, Integer> resultCount = lottoController.matchWinningNumber(lottery, winningNumber,
+                bonusNumber);
+
+        OutputView.printLotteryResult(resultCount, purchasePrice);
     }
 }

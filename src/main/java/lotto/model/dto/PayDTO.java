@@ -5,6 +5,8 @@ import static lotto.constants.ExceptionMessages.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessages.INVALID_PAYMENT;
 
 import lotto.constants.ExceptionMessages;
+import lotto.model.validator.PaymentValidator;
+
 public class PayDTO {
     private static final int PRICE_OF_LOTTO = 1000;
     private int payment;
@@ -13,42 +15,14 @@ public class PayDTO {
     }
 
     public static PayDTO from(String text){
-        int payment = validatePayment(text);
-        return new PayDTO(payment);
+        return new PayDTO(Integer.parseInt(text));
     }
 
     public int getNumberOfLotto(){
         return payment / PRICE_OF_LOTTO;
     }
 
-    private static int validatePayment(String text) {
-        checkNull(text);
-        int payment = toInt(text);
-        checkFollowRule(payment);
-        return payment;
-    }
 
-    private static int toInt(String text) {
-        try{
-            return Integer.parseInt(text);
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException(CATCH_ERROR + INVALID_NUMBER);
-        }
-    }
-
-    private static void checkFollowRule(int payment) {
-       if(isDividedByLottoPrice(payment)){
-           throw new IllegalArgumentException(CATCH_ERROR + INVALID_PAYMENT);
-       }
-    }
-
-    private static boolean isDividedByLottoPrice(int payment){
-        return payment % PRICE_OF_LOTTO != 0;
-    }
-
-    private static void checkNull(String text) {
-        if(text == null || text.isEmpty()) throw new IllegalArgumentException(CATCH_ERROR + INPUT_EMPTY);
-    }
 
     public int getPayment() {
         return payment;

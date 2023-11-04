@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.dto.PayDTO;
 import lotto.model.dto.WinningNumDTO;
+import lotto.model.validator.PaymentValidator;
+import lotto.model.validator.WinningNumValidator;
 
 public class InputView {
     private static final String REQEUST_PAYMENT= "구입금액을 입력해 주세요.";
@@ -12,10 +14,9 @@ public class InputView {
         System.out.println(REQEUST_PAYMENT);
         while(true){
             try {
-                String pay = Console.readLine();
-                return PayDTO.from(pay);
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
+                String inputPayment = Console.readLine();
+                PaymentValidator.validate(inputPayment);
+                return PayDTO.from(inputPayment);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -24,11 +25,11 @@ public class InputView {
 
     public static WinningNumDTO readWinningNums() {
         System.out.println(REQUEST_WINNING_NUMS);
-        String win;
+        String inputWinningNums;
         while(true) {
             try {
-                win = Console.readLine();
-                WinningNumDTO.validateWinningNums(win);
+                inputWinningNums = Console.readLine();
+                WinningNumValidator.validateWinningNums(inputWinningNums);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -37,8 +38,9 @@ public class InputView {
         System.out.println(REQUEST_BONUS_NUM);
         while(true) {
             try {
-                String bonus = Console.readLine();
-                return WinningNumDTO.of(win, bonus);
+                String inputBonus = Console.readLine();
+                WinningNumValidator.validateBonus(inputBonus, inputWinningNums);
+                return WinningNumDTO.of(inputWinningNums, inputBonus);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

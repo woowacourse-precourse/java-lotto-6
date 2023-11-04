@@ -8,5 +8,6 @@ public class ExceptionMessages {
     public static final String INVALID_RANGE = "1~45 사이의 수를 입력해주세요.";
     public static final String DUPLICATED_NUMBER = "중복된 숫자가 입력되었습니다.";
     public static final String DUPLICATED_WITH_WINNING_NUM = "당첨 번호와 중복된 숫자 입니다.";
+    public static final String INVALID_TOTAL_NUMBER = "6개의 숫자를 입력해주세요.";
 
 }

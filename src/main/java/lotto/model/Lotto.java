@@ -21,12 +21,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if (isDuplicate(numbers)) {
+        if (isDuplicated(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isDuplicate(List<Integer> numbers) {
+    private boolean isDuplicated(List<Integer> numbers) {
         return numbers.stream().distinct().count() < numbers.size();
     }
 

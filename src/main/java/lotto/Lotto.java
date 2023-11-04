@@ -1,9 +1,11 @@
 package lotto;
 
+import static lotto.message.LottoGameErrorMessage.NOT_ABLE_TO_PARSE_INT_MESSAGE;
 import static lotto.message.LottoGameErrorMessage.NUMBERS_ARE_DUPLICATED;
 import static lotto.message.LottoGameErrorMessage.NUMBERS_NOT_IN_RANGE;
 import static lotto.message.LottoGameErrorMessage.SIZE_IS_NOT_EXACT;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.assertj.core.util.VisibleForTesting;
@@ -15,7 +17,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateList(numbers);
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    public Lotto(String input) {
+        List<Integer> numbers = convertInputAsIntegerList(input);
+        validate(numbers);
         this.numbers = numbers;
     }
 
@@ -23,7 +31,18 @@ public class Lotto {
         return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
 
-    private void validateList(List<Integer> numbers) {
+    @VisibleForTesting
+    protected static List<Integer> convertInputAsIntegerList(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_ABLE_TO_PARSE_INT_MESSAGE.getMessage());
+        }
+    }
+
+    private void validate(List<Integer> numbers) {
         if (!isListSizeExact(numbers)) {
             throw new IllegalArgumentException(SIZE_IS_NOT_EXACT.getMessage());
         }

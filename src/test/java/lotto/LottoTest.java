@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.stream.IntStream;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.message.LottoGameErrorMessage.NOT_ABLE_TO_PARSE_INT_MESSAGE;
 import static lotto.message.LottoGameErrorMessage.NUMBERS_ARE_DUPLICATED;
 import static lotto.message.LottoGameErrorMessage.NUMBERS_NOT_IN_RANGE;
 import static lotto.message.LottoGameErrorMessage.SIZE_IS_NOT_EXACT;
@@ -41,6 +43,47 @@ class LottoTest {
                 assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)));
         exception.hasMessage(NUMBERS_NOT_IN_RANGE.getMessage());
         exception.isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void constructor_string_input() {
+        // given
+        String text = "1,2,3,4,5,6";
+
+        // when
+        Lotto lotto = new Lotto(text);
+        String result = lotto.getLottoNumbersAsFormat();
+
+        // then
+        assertEquals(result, "[1, 2, 3, 4, 5, 6]");
+    }
+
+    @Test
+    void constructor_notInteger_throw_exception() {
+        AbstractThrowableAssert<?, ? extends Throwable> exception =
+                assertThatThrownBy(() -> new Lotto("a, 2, 3, 4, 5, 6"));
+        exception.hasMessage(NOT_ABLE_TO_PARSE_INT_MESSAGE.getMessage());
+        exception.isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void convertInputAsIntegerListThrowTest() {
+        AbstractThrowableAssert<?, ? extends Throwable> exception =
+                assertThatThrownBy(() -> Lotto.convertInputAsIntegerList("1,2,a"));
+        exception.hasMessage(NOT_ABLE_TO_PARSE_INT_MESSAGE.getMessage());
+        exception.isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void convertInputAsIntegerListTest() {
+        // given
+        String text = "1,2,3,4,5,6";
+
+        // when
+        List<Integer> numbers = Lotto.convertInputAsIntegerList(text);
+
+        // then
+        IntStream.rangeClosed(1, 6).forEach(i -> assertTrue(numbers.contains(i)));
     }
 
     @Test

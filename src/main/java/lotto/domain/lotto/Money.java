@@ -52,7 +52,11 @@ public class Money {
         return Money.fromRemainingMoney(money - LOTTO_PRICE);
     }
 
-    public int getMoney() {
-        return money;
+    public boolean isNotEnough() {
+        return money < LOTTO_PRICE;
+    }
+
+    public boolean isEnough() {
+        return money >= LOTTO_PRICE;
     }
 }

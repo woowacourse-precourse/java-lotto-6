@@ -16,4 +16,12 @@ public class InputView {
 
         return Integer.parseInt(input);
     }
+
+    public int validateNegativeInteger(int input) {
+        if (input < 0) {
+            throw new IllegalArgumentException("[ERROR] 음수는 입력받을 수 없습니다.");
+        }
+
+        return input;
+    }
 }

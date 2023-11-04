@@ -16,6 +16,15 @@ public enum LottoRank {
         this.prizeMoney = prizeMoney;
     }
 
+    public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.matchCount == matchCount && (!bonusMatch || rank == SECOND)) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }

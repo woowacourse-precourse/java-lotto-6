@@ -2,18 +2,26 @@ package lotto.model;
 
 public class LottoNumber {
 
-    private final static int LOTTO_NUMBER_MIN_RANGE = 1;
-    private final static int LOTTO_NUMBER_MAX_RANGE = 45;
+    private static final int LOTTO_NUMBER_MIN_RANGE = 1;
+    private static final int LOTTO_NUMBER_MAX_RANGE = 45;
 
-    private final int winningNumber;
+    private final int winningLottoNumber;
 
-    public LottoNumber(int winningNumber) {
-        validateWinningNumberRange(winningNumber);
-        this.winningNumber = winningNumber;
+    public LottoNumber(int winningLottoNumber) {
+        validateWinningNumberRange(winningLottoNumber);
+        this.winningLottoNumber = winningLottoNumber;
     }
 
     public int getWinningNumber() {
-        return winningNumber;
+        return winningLottoNumber;
+    }
+
+    public static int getLottoNumberMinRange() {
+        return LOTTO_NUMBER_MIN_RANGE;
+    }
+
+    public static int getLottoNumberMaxRange() {
+        return LOTTO_NUMBER_MAX_RANGE;
     }
 
     private void validateWinningNumberRange(int number) {

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private final static int LOTTO_SIZE = 6;
+    private static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> lottoNumbers;
 
@@ -16,6 +16,10 @@ public class Lotto {
         this.lottoNumbers = numbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
+    }
+
+    public static int getLottoSize() {
+        return LOTTO_SIZE;
     }
 
     public List<LottoNumber> getNumbers() {

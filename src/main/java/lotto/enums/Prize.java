@@ -10,7 +10,6 @@ public enum Prize {
     FOURTH_RANK(4,50_000,4),
     FIFTH_RANK(5,5_000,3);
 
-
     private final int rank;
     private final int money;
     private final int matchNumbers;

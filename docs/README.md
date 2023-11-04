@@ -70,6 +70,10 @@
         <td>에러 메시지를 담고있는 Enum입니다.</td>
     </tr>
     <tr>
+        <td>GameMessage</td>
+        <td>게임에서 사용되는 메시지들을 담고있는 Enum입니다.</td>
+    </tr>
+    <tr>
         <td>CustomException</td>
         <td>로또 게임에 사용되는 커스텀 에러 클래스입니다.</td>
     </tr>

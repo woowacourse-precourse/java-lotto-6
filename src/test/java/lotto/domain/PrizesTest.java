@@ -39,7 +39,7 @@ class PrizesTest {
                         new Prizes(
                                 List.of(LAST_PLACE, FIRST_PLACE, SECOND_PLACE, LAST_PLACE, LAST_PLACE)
                         ),
-                        230_000_000.0),
+                        2_030_000_000.0),
                 Arguments.arguments(
                         new Prizes(
                                 List.of(LAST_PLACE, SECOND_PLACE, LAST_PLACE, SECOND_PLACE)
@@ -49,7 +49,7 @@ class PrizesTest {
                         new Prizes(
                                 List.of(LAST_PLACE, FIRST_PLACE, SECOND_PLACE, FIRST_PLACE, LAST_PLACE)
                         ),
-                        430_000_000.0)
+                        4_030_000_000.0)
         );
     }
 
@@ -74,7 +74,7 @@ class PrizesTest {
                                 List.of(FIRST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
                         ),
                         8000,
-                        2500000.0
+                        25000000.0
                 )
         );
     }

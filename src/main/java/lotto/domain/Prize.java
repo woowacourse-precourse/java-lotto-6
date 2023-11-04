@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 public enum Prize {
 
-    LAST_PLACE(0, false, 0),
-    FIFTH_PLACE(3, false, 5_000),
-    FOURTH_PLACE(4, false, 50_000),
-    THIRD_PLACE(5, false, 1_500_000),
-    SECOND_PLACE(5, true, 30_000_000),
-    FIRST_PLACE(6, false, 200_000_000);
+    LAST_PLACE(0, false, 0.0),
+    FIFTH_PLACE(3, false, 5_000.0),
+    FOURTH_PLACE(4, false, 50_000.0),
+    THIRD_PLACE(5, false, 1_500_000.0),
+    SECOND_PLACE(5, true, 30_000_000.0),
+    FIRST_PLACE(6, false, 2_000_000_000.0);
 
     private final Integer countOfSameNumbers;
     private final Boolean checkBonus;
-    private final Integer reward;
+    private final Double reward;
 
-    Prize(Integer countOfSameNumbers, Boolean checkBonus, Integer reward) {
+    Prize(Integer countOfSameNumbers, Boolean checkBonus, Double reward) {
         this.countOfSameNumbers = countOfSameNumbers;
         this.checkBonus = checkBonus;
         this.reward = reward;
@@ -36,7 +36,7 @@ public enum Prize {
         return checkBonus;
     }
 
-    public Integer getReward() {
+    public Double getReward() {
         return reward;
     }
 }

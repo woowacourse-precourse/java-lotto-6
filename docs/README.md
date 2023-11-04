@@ -2,7 +2,6 @@
 
 1. 로또 구입 금액 입력 받기
     - 1000원 단위 -> 1000원으로 나누어 떨어지지 않는 경우
-    - 숫자가 아닌 경우
 
    → IllegalArgumentException -> [ERROR]
 

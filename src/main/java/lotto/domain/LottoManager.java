@@ -2,25 +2,25 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.LottoConstants;
 
 public class LottoManager {
     private static List<Lotto> lottos;
     private static Generator generator = new LottoGenerator();
     private static int lottoCount;
+    private Money money;
 
-    private LottoManager(int money) {
-        buyLottos(money);
+    private LottoManager(Money money) {
+        this.money = money;
+        buyLottos();
     }
 
     public static LottoManager from(int money) {
-        return new LottoManager(money);
+        return new LottoManager(Money.from(money));
     }
 
-    public void buyLottos(int money) {
-        validateMoney(money);
+    public void buyLottos() {
         lottos = new ArrayList<>();
-        lottoCount = calculateMoney(money);
+        lottoCount = money.requestLottoCount();
         while (checkMoneyRemain(lottoCount)) {
             lottos.add(getNewLotto());
         }
@@ -28,15 +28,6 @@ public class LottoManager {
 
     public List<Lotto> getLottos() {
         return lottos;
-    }
-
-    private void validateMoney(int money) {
-        if (isDividedByPrice(money)) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 구입 금액은 %d원 단위입니다.", LottoConstants.PRICE));
-        }
-        if (isInMinMoney(money)) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 최소 구입 금액은 %d원 입니다.", LottoConstants.PRICE));
-        }
     }
 
     private Lotto getNewLotto() {
@@ -48,15 +39,4 @@ public class LottoManager {
         return lottoCount != 0;
     }
 
-    private int calculateMoney(int money) {
-        return money / LottoConstants.PRICE.getConstants();
-    }
-
-    private boolean isDividedByPrice(int money) {
-        return money % LottoConstants.PRICE.getConstants() != 0;
-    }
-
-    private boolean isInMinMoney(int money) {
-        return money < LottoConstants.PRICE.getConstants();
-    }
 }

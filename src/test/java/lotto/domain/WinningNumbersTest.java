@@ -11,7 +11,7 @@ class WinningNumbersTest {
     @Nested
     @DisplayName("validateLottoSize 메소드 test")
     class ValidateLottoSize {
-        @DisplayName("숫자 개수가 " + Lotto.LOTTO_SIZE + "와 일치하면 검증 통과")
+        @DisplayName("숫자 개수가 " + Lotto.SIZE + "와 일치하면 검증 통과")
         @Test
         void Match_lotto_size() {
             // given
@@ -24,7 +24,7 @@ class WinningNumbersTest {
             WinningNumbers winningNumbers2 = new WinningNumbers(numbers2);
         }
 
-        @DisplayName("숫자 개수가 " + Lotto.LOTTO_SIZE + "와 일치하지 않으면 예외 발생")
+        @DisplayName("숫자 개수가 " + Lotto.SIZE + "와 일치하지 않으면 예외 발생")
         @Test
         void Unmatch_lotto_size() {
             // given

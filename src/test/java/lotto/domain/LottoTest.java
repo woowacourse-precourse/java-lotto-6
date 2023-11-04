@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,35 +15,39 @@ class LottoTest {
     @MethodSource("generateTestLottoInput")
     void 로또를_생성한다(List<Integer> input) {
         // when
-        Lotto result = new Lotto(input);
+        Lotto result = Lotto.from(input);
         // then
         assertThat(result).isInstanceOf(Lotto.class);
     }
 
     @Test
     void 로또번호_6개_초과로_주면_예외를반환() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 로또번호_6개_미만으로_주면_예외를반환() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+    void 로또번호에_중복된숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또번호의_번호가_1_45이내가_아니라면_예외가_발생한다() {
+        assertThatThrownBy(() -> Lotto.from(List.of(100, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
 
     @ParameterizedTest
     @MethodSource("generateTestLottoInput")
-    void createAutoLottoNumbers는_로또를생성한다(List<Integer> input) {
+    void createAutoLottoNumbers는_자동으로_로또를생성한다(List<Integer> input) {
         // given
         Generator generator = () -> input;
         // when

@@ -43,6 +43,9 @@ public class GameController {
         outputView.printPurchasedLottos(lottos);
     }
 
+    private void createWinnerLotto() {
+        winnerLotto = inputView.inputWinnerLotto();
+    }
 
 
 

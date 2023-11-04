@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.Lotto;
 
@@ -7,6 +8,7 @@ public class OutputView {
     public static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_TITLE = "당첨 통계";
     private static final String SEPARATOR = "---";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
 
 
     public void displayLottoCount(long lottoCount) {
@@ -23,5 +25,9 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_TITLE);
         System.out.println(SEPARATOR);
         System.out.println(winnerStatistics);
+    }
+
+    public void displayRateOfReturn(BigDecimal yield) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE, yield);
     }
 }

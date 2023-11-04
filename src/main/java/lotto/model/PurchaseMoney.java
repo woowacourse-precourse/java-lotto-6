@@ -25,6 +25,10 @@ public class PurchaseMoney {
             throw new IllegalArgumentException();
         }
 
+        if(isLessThanOneThousand(money)){
+            throw new IllegalArgumentException();
+        }
+
         if(!isDividedByOneThousand(money)){
             throw new IllegalArgumentException();
         }
@@ -44,5 +48,9 @@ public class PurchaseMoney {
 
     private boolean isDividedByOneThousand(String money){
         return Integer.valueOf(money) % ONE_THOUSAND == 0;
+    }
+
+    private boolean isLessThanOneThousand(String money){
+        return Integer.valueOf(money) < ONE_THOUSAND;
     }
 }

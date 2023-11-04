@@ -8,6 +8,7 @@ public enum ErrorMessage {
     NOT_ENOUGH_PURCHASE_AMOUNT("로또를 구입하기에 부족한 금액입니다"),
     INVALID_PURCHASE_AMOUNT("금액은 로또 가격의 배수로 입력해야 합니다"),
     INVALID_TYPE("잘못된 타입입니다"),
+    BONUS_NUMBER_CONFLICT("보너스 번호가 당첨 번호와 중복됩니다"),
     ;
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";

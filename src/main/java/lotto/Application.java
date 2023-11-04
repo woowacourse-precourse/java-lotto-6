@@ -106,7 +106,7 @@ public class Application {
             }
         }
 
-        List<Integer> goodLuck = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        List<Integer> lucky = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (int i = 0; i < lottoTicket; i++) {
             int sameNumberCount = 0;
             for (int number : lottoNumbers) {
@@ -116,41 +116,45 @@ public class Application {
             }
 
             if (sameNumberCount == 3) {
-                goodLuck.set(0, goodLuck.get(0) + 1);
+                lucky.set(0, lucky
+                        .get(0) + 1);
             }
             if (sameNumberCount == 4) {
-                goodLuck.set(1, goodLuck.get(1) + 1);
+                lucky.set(1, lucky
+                        .get(1) + 1);
             }
             if (sameNumberCount == 5) {
                 if (!allLotto.get(i).contains(bonusNumber)) {
-                    goodLuck.set(2, goodLuck.get(2) + 1);
+                    lucky.set(2, lucky
+                            .get(2) + 1);
                 } else {
-                    goodLuck.set(3, goodLuck.get(3) + 1);
+                    lucky.set(3, lucky
+                            .get(3) + 1);
                 }
             }
             if (sameNumberCount == 6) {
-                goodLuck.set(4, goodLuck.get(4) + 1);
+                lucky.set(4, lucky
+                        .get(4) + 1);
             }
         }
         double sumPrize = 0;
-        sumPrize += 5000 * goodLuck.get(0);
-        sumPrize += 50000 * goodLuck.get(1);
-        sumPrize += 1500000 * goodLuck.get(2);
-        sumPrize += 30000000 * goodLuck.get(3);
-        sumPrize += 2000000000 * goodLuck.get(4);
+        sumPrize += 5000 * lucky.get(0);
+        sumPrize += 50000 * lucky.get(1);
+        sumPrize += 1500000 * lucky.get(2);
+        sumPrize += 30000000 * lucky.get(3);
+        sumPrize += 2000000000 * lucky.get(4);
 
         double beforeRate = sumPrize / purchase * 100;
         double rate = Math.round(beforeRate * 10.0) / 10.0;
 
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(OutputMessage.LOTTO_STATISTICS.getMessage());
+        System.out.println(OutputMessage.LINE_SEPARATOR.getMessage());
 
-        System.out.println("3개 일치 (5,000원) - " + goodLuck.get(0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + goodLuck.get(1) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + goodLuck.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + goodLuck.get(3) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + goodLuck.get(4) + "개");
-        System.out.println("총 수익률은 " + rate + "%입니다.");
+        for (int i = 0; i < lucky.size(); i++) {
+            System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), lucky.get(i)));
+        }
+        System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
+
     }
 }

@@ -1,9 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.BonusNumber;
+import java.util.List;
 import lotto.domain.BuyAmount;
-import lotto.domain.WinningNumber;
 import lotto.utils.converter.Converter;
 import lotto.utils.validator.Validator;
 
@@ -28,22 +27,22 @@ public class InputView {
         }
     }
 
-    public static WinningNumber getWinningNumberFromInput() {
+    public static List<Integer> getWinningNumberFromInput() {
         try {
             System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
             String winningNumber = read();
-            return new WinningNumber(Converter.convertStringToList(winningNumber));
+            return Converter.convertStringToList(winningNumber);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);
         }
     }
 
-    public static BonusNumber getBonusNumberFromInput() {
+    public static int getBonusNumberFromInput() {
         try {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             String bonusNumber = read();
             Validator.validateEmpty(bonusNumber);
-            return new BonusNumber(Integer.parseInt(bonusNumber));
+            return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);
         }

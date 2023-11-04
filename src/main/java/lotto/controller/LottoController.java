@@ -2,13 +2,12 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.BonusNumber;
 import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.LottosDTO;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,8 +21,9 @@ public class LottoController {
     }
 
     public void drawLotto() {
-        WinningNumber winningNumber = InputView.getWinningNumberFromInput();
-        BonusNumber bonusNumber = InputView.getBonusNumberFromInput();
+        List<Integer> winningNumber = InputView.getWinningNumberFromInput();
+        int bonusNumber = InputView.getBonusNumberFromInput();
+        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
     }
 
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {

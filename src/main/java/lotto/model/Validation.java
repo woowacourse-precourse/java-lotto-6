@@ -16,7 +16,7 @@ public class Validation {
         }
     }
 
-    public static int validatePurchaseAmoutDivisible(String input) {
+    public static int validatePurchaseAmountDivisible(String input) {
         int purchaseAmount = Integer.parseInt(input);
 
         if (purchaseAmount % 1000 != 0) {

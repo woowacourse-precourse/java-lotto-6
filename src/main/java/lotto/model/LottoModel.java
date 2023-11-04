@@ -5,36 +5,36 @@ import java.util.List;
 
 public class LottoModel {
     private List<List<Integer>> lottoTickets;
-    private List<Integer> LottoNumbers;
+    private List<Integer> winningNumbers;
     private int bonusNumber;
-    private List<Integer> lucky;
+    private List<Integer> result;
 
-    public LottoModel(List<List<Integer>> lottoTickets, List<Integer> LottoNumbers, int bonusNumber) {
+    public LottoModel(List<List<Integer>> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
         this.lottoTickets = lottoTickets;
-        this.LottoNumbers = LottoNumbers;
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        this.lucky = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        this.result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
     }
 
     public void lottoPlaying() {
         for (int i = 0; i < lottoTickets.size(); i++) {
-            int sameNumberCount = countSameNumbers(LottoNumbers, lottoTickets.get(i));
+            int sameNumberCount = countSameNumbers(winningNumbers, lottoTickets.get(i));
 
             if (sameNumberCount >= 3 && sameNumberCount != 5) {
-                lucky.set(sameNumberCount - 3, lucky.get(sameNumberCount - 3) + 1);
+                result.set(sameNumberCount - 3, result.get(sameNumberCount - 3) + 1);
             }
             if (sameNumberCount == 5 && !lottoTickets.get(i).contains(bonusNumber)) {
-                lucky.set(2, lucky.get(2) + 1);
+                result.set(2, result.get(2) + 1);
             }
             if (sameNumberCount == 5 && lottoTickets.get(i).contains(bonusNumber)) {
-                lucky.set(3, lucky.get(4) + 1);
+                result.set(3, result.get(4) + 1);
             }
         }
     }
 
-    private int countSameNumbers(List<Integer> userNumbers, List<Integer> ticketNumbers) {
+    private int countSameNumbers(List<Integer> winningNumbers, List<Integer> ticketNumbers) {
         int count = 0;
-        for (int number : userNumbers) {
+        for (int number : winningNumbers) {
             if (ticketNumbers.contains(number)) {
                 count++;
             }
@@ -42,7 +42,7 @@ public class LottoModel {
         return count;
     }
 
-    public List<Integer> getLucky() {
-        return lucky;
+    public List<Integer> getResult() {
+        return result;
     }
 }

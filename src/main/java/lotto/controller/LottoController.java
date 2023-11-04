@@ -15,30 +15,41 @@ public class LottoController {
         int purchaseAmount = InputView.getUserPurchaseAmount();
         int lottoTicketCount = purchaseAmount / Constants.LOTTO_PRICE.getConstants();
         OutputView.printLottoTicketCount(lottoTicketCount);
-
-        List<List<Integer>> lottoTickets = generateLottoTickets(lottoTicketCount);
+        List<List<Integer>> lottoTickets = generateAllLottoTickets(lottoTicketCount);
         System.out.println();
-        List<Integer> lottoNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber(lottoNumbers);
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
+        play(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);
+    }
 
-        LottoModel model = new LottoModel(lottoTickets, lottoNumbers, bonusNumber);
+    private static void play(List<List<Integer>> lottoTickets, List<Integer> winningNumbers, int bonusNumber,
+                             int purchaseAmount) {
+        LottoModel model = new LottoModel(lottoTickets, winningNumbers, bonusNumber);
         model.lottoPlaying();
 
+        displayLottoStatistics(model.getResult(), purchaseAmount);
+    }
+
+    private static void displayLottoStatistics(List<Integer> result, int purchaseAmount) {
         System.out.println();
-        Caculation caculation = new Caculation(model.getLucky(), purchaseAmount);
+        Caculation caculation = new Caculation(result, purchaseAmount);
         caculation.displayStatistics();
     }
 
-    private static List<List<Integer>> generateLottoTickets(int ticketCount) {
+    private static List<Integer> generateOneLottoTicket() {
+        List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Constants.MIN_NUMBER.getConstants(),
+                Constants.MAX_NUMBER.getConstants(),
+                Constants.NUMBER_COUNT.getConstants()));
+        Collections.sort(oneLotto);
+        OutputView.printLottoTickets(oneLotto);
+        return oneLotto;
+    }
+
+    private static List<List<Integer>> generateAllLottoTickets(int ticketCount) {
         List<List<Integer>> allLotto = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-                    Constants.MIN_NUMBER.getConstants(),
-                    Constants.MAX_NUMBER.getConstants(),
-                    Constants.NUMBER_COUNT.getConstants()));
-            Collections.sort(oneLotto);
-            OutputView.printLottoTickets(oneLotto);
-            allLotto.add(oneLotto);
+            allLotto.add(generateOneLottoTicket());
         }
         return allLotto;
     }

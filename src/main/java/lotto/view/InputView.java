@@ -16,7 +16,7 @@ public class InputView {
                 System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
                 String input = Console.readLine();
                 Validation.validatePurchaseAmount(input);
-                purchaseAmount = Validation.validatePurchaseAmoutDivisible(input);
+                purchaseAmount = Validation.validatePurchaseAmountDivisible(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

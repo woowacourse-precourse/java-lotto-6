@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import java.text.DecimalFormat;
 import java.util.List;

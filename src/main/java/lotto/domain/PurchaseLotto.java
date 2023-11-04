@@ -1,0 +1,40 @@
+package lotto.domain;
+
+public class PurchaseLotto {
+    public static void validator(String amount){
+        validateSpace(amount);
+        validateNumber(amount);
+        validateMultipleOf1000(amount);
+        validateMaxPurchase(amount);
+    }
+
+    private static void validateSpace(String amount) {
+        if(amount.contains(" ")){
+            throw new IllegalArgumentException("[ERROR] 입력값 안에 공백이 포함돼 있습니다.");
+        }
+    }
+
+    private static void validateNumber(String amount) {
+        if (!isNumeric(amount)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+    }
+
+    private static boolean isNumeric(String str) {
+        return str.matches("\\d+");
+    }
+
+    private static void validateMultipleOf1000(String amount) {
+        int amountNum = Integer.parseInt(amount);
+        if(amountNum % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 입력값이 1000원 단위가 아닙니다.");
+        }
+    }
+
+    private static void validateMaxPurchase(String amount) {
+        int amountNum = Integer.parseInt(amount);
+        if(amountNum > 100000){
+            throw new IllegalArgumentException("[ERROR] 로또 최대 구매 금액을 초과했습니다.");
+        }
+    }
+}

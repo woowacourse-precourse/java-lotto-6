@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.message.ErrorMessage.LOTTO_IS_NOT_6DIGITS;
+import static lotto.message.ErrorMessage.LOTTO_IS_NOT_SIX_DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +16,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_IS_NOT_6DIGITS.getMessage());
+                .hasMessageContaining(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")

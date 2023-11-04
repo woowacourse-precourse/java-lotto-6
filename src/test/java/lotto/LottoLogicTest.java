@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WN_UNITS;
+import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigDecimal;
@@ -14,6 +14,6 @@ public class LottoLogicTest {
     void lottoAmountIsNotInThousandWonUnits() {
         assertThatThrownBy(() -> new LottoLogic(BigDecimal.valueOf(2002), 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(AMOUNT_IS_NOT_IN_THOUSAND_WN_UNITS.getMessage());
+                .hasMessageContaining(AMOUNT_IS_NOT_IN_THOUSAND_WON_UNITS.getMessage());
     }
 }

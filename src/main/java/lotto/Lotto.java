@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.message.ErrorMessage.LOTTO_IS_NOT_6DIGITS;
+import static lotto.message.ErrorMessage.LOTTO_IS_NOT_SIX_DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_IS_NOT_6DIGITS.getMessage());
+            throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
         }
         numbers.forEach(LottoUtil::validateLottoNum);
         validateDuplication(numbers);

@@ -1,9 +1,6 @@
 package lotto.utils;
 
-import static lotto.message.ErrorMessage.AMOUNT_IS_NOT_IN_THOUSAND_WN_UNITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
-
-import java.math.BigDecimal;
 
 public class LottoUtil {
     public static void validateLottoNum(int num) {

@@ -11,7 +11,7 @@ public class PurchaseAmountTest {
 
     @ParameterizedTest
     @DisplayName("input이 1000의 배수가 아닌 경우에 에러 발생")
-    @ValueSource(strings = {"dk", "", " ", "-1", "0"})
+    @ValueSource(strings = {"dk", "", " ", "0.2", "-1", "0"})
     public void 입력값이_숫자가_아닌_경우(String input) {
         //when + then
         assertThatThrownBy(() -> {

@@ -8,6 +8,7 @@ public class PurchaseAmount {
 
     private PurchaseAmount(String input) {
         Integer parsedInput = toInteger(input);
+        checkIfPositive(parsedInput);
     }
 
     public static PurchaseAmount create(String input) {
@@ -21,4 +22,11 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
         }
     }
+
+    private void checkIfPositive(Integer parsedInput) {
+        if (parsedInput <= 0) {
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
+        }
+    }
+
 }

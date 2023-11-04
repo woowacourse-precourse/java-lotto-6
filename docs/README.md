@@ -17,7 +17,7 @@
 
 - [x] **구입 금액을 입력받는다.** - View
     - [x] 숫자가 아닐 경우 예외를 발생시키고 다시 입력받는다. - PurchaseAmount
-    - [ ] 양수가 아닐 경우 예외를 발생시키고 다시 입력받는다. - PurchaseAmount
+    - [x] 양수가 아닐 경우 예외를 발생시키고 다시 입력받는다. - PurchaseAmount
     - [ ] 1000 단위가 아닐 경우 예외를 발생시키고 다시 입력받는다. - PurchaseAmount<br/>
 
 

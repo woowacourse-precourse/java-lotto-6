@@ -12,8 +12,10 @@ public class LottoJudgment {
 
     private List<Lotto> lottoList = new LinkedList<>();
     private LottoResult lottoResult = new LottoResult();
+    private int price;
 
     public LottoJudgment(int price) {
+        this.price = price;
         int lottoCount = price / LOTTO_PRICE.getValue();
 
         System.out.printf(PURCHASE_AMOUNT.getMessage() , lottoCount);
@@ -44,7 +46,7 @@ public class LottoJudgment {
             lottoResult.checkRanking(match , bonus);
         }
 
-        lottoResult.printLottoResult();
+        lottoResult.printLottoResult(price);
     }
 
 }

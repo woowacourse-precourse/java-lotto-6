@@ -18,6 +18,8 @@ public class Messages {
             ERROR_PREFIX + "숫자를 입력해 주세요.";
     public static final String ERROR_AMOUNT_LESS_THAN_UNIT =
             ERROR_PREFIX + "로또구매금액은 " + Values.LOTTO_PURCHASE_UNIT + "원 이상이어야 합니다.";
+    public static final String ERROR_AMOUNT_MAX_RANGE =
+            ERROR_PREFIX + "로또구매금액은 " + Values.LOTTO_MAX_PURCHASE_AMOUNT + "원 이하여야 합니다.";
     public static final String ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT =
             ERROR_PREFIX + "로또구매금액은 " + Values.LOTTO_PURCHASE_UNIT + "원 단위로 입력해야 합니다.";
     public static final String ERROR_DUPLICATE_BONUS_NUMBER =

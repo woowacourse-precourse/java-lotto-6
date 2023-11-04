@@ -27,6 +27,9 @@ public class PurchasedLottos {
         if (isAmountLessThanUnit(purchaseAmount)) {
             throw new IllegalArgumentException(Messages.ERROR_AMOUNT_LESS_THAN_UNIT);
         }
+        if (isAmountMoreThanUnit(purchaseAmount)) {
+            throw new IllegalArgumentException(Messages.ERROR_AMOUNT_MAX_RANGE);
+        }
         if (isNotMultipleOfLottoPurchaseUnit(purchaseAmount)) {
             throw new IllegalArgumentException(Messages.ERROR_AMOUNT_NOT_MULTIPLE_OF_UNIT);
         }
@@ -34,6 +37,10 @@ public class PurchasedLottos {
 
     private boolean isAmountLessThanUnit(int purchaseAmount) {
         return purchaseAmount < Values.LOTTO_PURCHASE_UNIT;
+    }
+
+    private boolean isAmountMoreThanUnit(int purchaseAmount) {
+        return purchaseAmount > Values.LOTTO_MAX_PURCHASE_AMOUNT;
     }
 
     private boolean isNotMultipleOfLottoPurchaseUnit(int purchaseAmount) {

@@ -47,8 +47,8 @@ public class Application {
     private static List<Integer> inputWinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        String[] numberStrings = input.split(",");
-        List<Integer> winningNumbers = Arrays.stream(numberStrings)
+        String[] numbers = input.split(",");
+        List<Integer> winningNumbers = Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
@@ -104,7 +104,7 @@ public class Application {
         return resultMap;
     }
 
-    private double getPrizeMoney(Map<String, Integer>result){
+    private double getPrizeMoney(Map<String, Integer>resultMap){
         double totalPrizeMoney = 0;
         for(WinningPrize prize : WinningPrize.values()){
             boolean bonusMatch = false;

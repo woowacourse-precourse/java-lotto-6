@@ -13,8 +13,7 @@ public class OutputView {
         System.out.println("");
     }
 
-    public void outputTotalResult() {
-        Judgement judgement = new Judgement();
+    public void outputTotalResult(Judgement judgement) {
         judgement.outputResult();
     }
 }

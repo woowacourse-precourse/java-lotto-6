@@ -1,11 +1,13 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
     public List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> result = Randoms.pickUniqueNumbersInRange(1,45,6);
+        return result;
     }
 
     public String putCommaInNumber(long price) {
@@ -23,7 +25,8 @@ public class Numbers {
         return result.toString();
     }
 
-    public float rateOfReturn(int inputPrice, long outputPrice) {
-        return 0;
+    public double rateOfReturn(long outputPrice, long inputPrice) {
+        double result = (double) outputPrice / inputPrice * 100;
+        return Math.round(result*10)/10.0;
     }
 }

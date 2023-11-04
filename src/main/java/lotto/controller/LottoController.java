@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.BuyLotto;
+import lotto.domain.Judgement;
 import lotto.domain.Validate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -75,7 +76,7 @@ public class LottoController {
         outputView.outputLottosNumbers(lottos);
     }
 
-    public void outputTotalResult() {
-        outputView.outputTotalResult();
+    public void outputTotalResult(Judgement judgement) {
+        outputView.outputTotalResult(judgement);
     }
 }

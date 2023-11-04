@@ -18,6 +18,8 @@ public class Judgement {
     private final int REWARD_CORRECT_SIX = 2000000000;
     private final int MIN_CORRECT_AMOUNT = 3;
     private final int MAX_CORRECT_AMOUNT = 6;
+    private int amountOfCorrect;
+
 
     private final Map<Integer, Integer> reward;
     private static Map<Integer, Integer> amountReward;
@@ -25,6 +27,10 @@ public class Judgement {
     public Judgement() {
         this.reward = resetReward();
         this.amountReward = resetAmountReward();
+    }
+
+    public void setCorrectNumber(int amountOfCorrect) {
+        this.amountOfCorrect = amountOfCorrect;
     }
 
     private Map<Integer, Integer> resetReward() {
@@ -75,11 +81,12 @@ public class Judgement {
                 System.out.println("");
             }
 
-            System.out.printf(OutputMessage.OUTPUT_MESSAGE_RESULT.toString(), i);
+            System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_RESULT), i);
             System.out.printf(String.valueOf(OutputMessage.OUTPUT_MESSAGE_MONEY),
                     numbers.putCommaInNumber(reward.get(i)),
                     amountReward.get(reward.get(i)));
             System.out.println("");
         }
     }
+
 }

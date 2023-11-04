@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        findSameNum(numbers);
         this.numbers = upperSort(numbers);
     }
 
@@ -16,16 +17,32 @@ public class Lotto {
         }
     }
 
+    private void findSameNum(List<Integer> numbers) {
+        int test = 0;
+        for (int num : numbers) {
+            test = numbers.stream().filter(i -> i == num).toList().size();
+            if (test >= 2) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     private List<Integer> upperSort(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
     }
 
-    public int compareLottoToWinnerNumbers(List<Integer> winnerNumbers) {
+    public int compareLottoToWinnerNumbers(List<Integer> winnerNumbers, int bonusNumber) {
         int result = 0;
 
         for (int winnerNumber : winnerNumbers) {
             if (hasNumber(winnerNumber)) {
                 result++;
+            }
+        }
+
+        if (result == 5) {
+            if (hasNumber(bonusNumber)) {
+                return 999;
             }
         }
 

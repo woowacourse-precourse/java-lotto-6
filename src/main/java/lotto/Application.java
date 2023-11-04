@@ -3,8 +3,8 @@ package lotto;
 import java.util.List;
 import lotto.Service.BuyLottoService;
 import lotto.Service.CompareService;
+import lotto.Service.InputNumberService;
 import lotto.Service.InputPurchasePriceService;
-import lotto.Service.InputService;
 import lotto.Service.StatisticsService;
 import lotto.controller.BuyLottoController;
 import lotto.controller.CompareController;
@@ -38,8 +38,8 @@ public class Application {
         BuyLottoService buyLottoService = new BuyLottoService(outputView);
         BuyLottoController buyLottoController = new BuyLottoController(buyLottoService);
 
-        InputService inputService = new InputService(inputView, outputView);
-        InputNumberController inputNumberController = new InputNumberController(inputService);
+        InputNumberService inputNumberService = new InputNumberService(inputView, outputView);
+        InputNumberController inputNumberController = new InputNumberController(inputNumberService);
 
         CompareService compareService = new CompareService();
         CompareController compareController = new CompareController(compareService);

@@ -10,6 +10,7 @@ import static lotto.constant.PrintOutMessage.PRINT_WINNING_STATISTICS;
 import java.util.Map;
 import lotto.constant.PrintOutMessage;
 import lotto.model.Lotto;
+import lotto.model.Statistics;
 
 public class OutputView {
     public void printInputPurchasePrice() {
@@ -36,12 +37,18 @@ public class OutputView {
         System.out.println(PRINT_WINNING_STATISTICS.message);
     }
 
-    public void printMatchingCount(Map<Integer, Integer> matchingCount) {
-        System.out.println(PrintOutMessage.THREE_MATCH.message + matchingCount.getOrDefault(3, 0) + "개");
-        System.out.println(PrintOutMessage.FOUR_MATCH.message + matchingCount.getOrDefault(4, 0) + "개");
-        System.out.println(PrintOutMessage.FIVE_MATCH.message + matchingCount.getOrDefault(5, 0) + "개");
-        System.out.println(PrintOutMessage.FIVE_AND_BONUS_MATCH.message + matchingCount.getOrDefault(5, 0) + "개");
-        System.out.println(PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(6, 0) + "개");
+    public void printMatchingCount(Map<Statistics, Integer> matchingCount) {
+        System.out.println(
+                PrintOutMessage.THREE_MATCH.message + matchingCount.getOrDefault(new Statistics(3, false), 0) + "개");
+        System.out.println(
+                PrintOutMessage.FOUR_MATCH.message + matchingCount.getOrDefault(new Statistics(4, false), 0) + "개");
+        System.out.println(
+                PrintOutMessage.FIVE_MATCH.message + matchingCount.getOrDefault(new Statistics(5, false), 0) + "개");
+        System.out.println(
+                PrintOutMessage.FIVE_AND_BONUS_MATCH.message + matchingCount.getOrDefault(new Statistics(5, true), 0)
+                        + "개");
+        System.out.println(
+                PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(new Statistics(6, false), 0) + "개");
     }
 
     public void printEarningPercent(int earningMoney, int purchasePrice) {

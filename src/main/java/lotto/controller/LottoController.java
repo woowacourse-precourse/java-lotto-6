@@ -9,7 +9,7 @@ public class LottoController {
 
     public void run(){
         View.requestPurchaseAmount();
-        PurchaseAmount purchaseAmount = PurchaseAmount.from(InputService.purchaseAmount());
+        PurchaseAmount purchaseAmount = PurchaseAmount.from(InputService.number());
 
         int purchaseCount = purchaseAmount.calculateCount();
         View.purchaseCount(purchaseCount);

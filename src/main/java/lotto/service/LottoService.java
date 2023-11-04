@@ -23,9 +23,9 @@ public class LottoService {
 
     public static void createWinningNumber(int purchaseCount){
         View.requestWinningNumber();
-        InputService.winningNumber();
+        InputService.winningNumbers();
 
         View.requestBonusNumber();
-        InputService.purchaseAmount();
+        InputService.number();
     }
 }

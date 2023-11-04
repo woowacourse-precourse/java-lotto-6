@@ -7,14 +7,14 @@ import java.util.Arrays;
 
 public class InputService {
 
-    public static Integer purchaseAmount(){
+    public static Integer number(){
         String input = readLine();
         validateTrim(input);
         validateNumber(input);
         return Integer.parseInt(input);
     }
 
-    public static Integer[] winningNumber(){
+    public static Integer[] winningNumbers(){
         String input = readLine();
         String[] inputs = input.split(",", -1);
         validateTrim(inputs);

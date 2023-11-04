@@ -2,7 +2,7 @@ package lotto.utils;
 
 public class NumberUtil {
 
-    private static final String STRING_VALID_LOG = "숫자만 입력해주세요.";
+    public static final String STRING_VALID_LOG = "숫자만 입력해주세요.";
 
     public static int parseInt(final String argument) {
         try {

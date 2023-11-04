@@ -9,15 +9,17 @@ import java.util.stream.Collectors;
 
 public class Input {
 
+    private static final String ERROR_ONLY_NUMBER = "하나의 숫자만 입력 가능합니다.";
     private static final String MESSAGE_INPUT_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String MESSAGE_INPUT_MAIN_LOTTO = "당첨 범호를 입력해 주세요.";
+    private static final String MESSAGE_INPUT_MAIN_LOTTO = "당첨 번호를 입력해 주세요.";
+    private static final String MESSAGE_INPUT_BONUS_LOTTO = "보너스 번호를 입력해 주세요.";
 
     public int getPurchaseAmount() {
         System.out.println(MESSAGE_INPUT_AMOUNT);
         try {
             return Integer.parseInt(Console.readLine());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBER);
         }
     }
 
@@ -30,14 +32,20 @@ public class Input {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBER);
 
         }
     }
 
-    //public int getBonusNumber(){
+    public int getBonusNumber(){
+        System.out.println(MESSAGE_INPUT_BONUS_LOTTO);
 
-    //}
+        try{
+            return Integer.parseInt(Console.readLine());
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBER);
+        }
+    }
 
 
 }

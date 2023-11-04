@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Output {
@@ -19,6 +20,7 @@ public class Output {
    }
 
    public static void printPurchasedLottoList(List<Integer> lotto){
+       Collections.sort(lotto);
        System.out.println(lotto);
 
    }

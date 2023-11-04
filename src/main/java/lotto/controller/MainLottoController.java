@@ -14,7 +14,9 @@ public class MainLottoController {
         RandomLotto randomLotto = makeRandomLotto(inPutMoney()); //분리해야될듯 money가 갹체가 되어야하
         sendRandomLottoDataToView(randomLotto.getRandomLottoNumbers());
 
-        makeUserLotto();
+        UserLotto userLotto = makeUserLotto();
+        System.out.println(userLotto.getMainLottoNumber());
+        System.out.println(userLotto.getBonusNumber());
         /////// UserLotto userlotto = new UserLotto(Lotto,int)
         //아니면 그냥 UserLotto를 밚롼
 
@@ -54,9 +56,8 @@ public class MainLottoController {
 
     private UserLotto makeUserLotto() {
         Lotto mainNumber = inputMainLottoNumber();
-
-        int bonusNumber;
-        return new UserLotto();
+        int bonusNumber = inputBonusLottoNumber(mainNumber);
+        return new UserLotto(mainNumber,bonusNumber);
     }
 
     private Lotto inputMainLottoNumber() {
@@ -67,7 +68,19 @@ public class MainLottoController {
             return inputMainLottoNumber();
         }
     }
-    //private int inputBonusNumber(){
 
-    //}
+    private int inputBonusLottoNumber(Lotto mainLotto) {
+        List<Integer> mainLottoNumber = mainLotto.getNumbers();
+        int bonusNumber = input.getBonusNumber();
+        try {
+            if (mainLottoNumber.contains(bonusNumber)) {
+                throw new IllegalArgumentException("6개의 로또 번호와 중복되는 숫자입니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return inputBonusLottoNumber(mainLotto);
+        }
+        return bonusNumber;
+    }
+
 }

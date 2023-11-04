@@ -21,9 +21,9 @@ public class RandomLottoMachine {
         List<Lotto> randomNumbers = new ArrayList<>();
 
         for (int i = 0; i < purchasedLottoCount; i++) {
-            List<Integer> randomNumberForSort =
-                    Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randomNumberForSort);
+            List<Integer> randomNumberForSort = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            //Collections.sort(randomNumberForSort);
 
             randomNumbers.add(new Lotto(randomNumberForSort));
         }

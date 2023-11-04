@@ -8,32 +8,40 @@ public class Lotto {
     private static final int MAX_SIZE = 6;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        checkNumbersSize(numbers);
-        checkNumberRange(numbers);
-        duplicateNumber(numbers);
+    public boolean contains(final int number) {
+        return numbers.contains(number);
     }
 
-    private static void checkNumbersSize(final List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private static void validateSize(final List<Integer> numbers) {
         if (numbers.size() != MAX_SIZE) {
             throw new IllegalArgumentException("로또 번호는 6개의 숫자여야 합니다.");
         }
     }
 
-    private void checkNumberRange(final List<Integer> numbers) {
+    private void validateRange(final List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+            checkRange(number);
         }
     }
 
-    private static void duplicateNumber(final List<Integer> numbers) {
+    private static void checkRange(final Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static void validateDuplicate(final List<Integer> numbers) {
         Set<Integer> duplicateLotto = new HashSet<>();
         numbers.forEach(number -> checkDuplicate(number, duplicateLotto));
     }
@@ -42,5 +50,15 @@ public class Lotto {
         if (!duplicateLotto.add(number)) {
             throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
         }
+    }
+
+    private static List<Integer> sort(List<Integer> list) {
+        return list.stream()
+                .sorted()
+                .toList();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

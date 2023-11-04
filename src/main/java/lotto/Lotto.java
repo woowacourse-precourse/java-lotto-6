@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,10 @@ public class Lotto {
         validate(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean contains(Object obj) {
+        return numbers.contains(obj);
     }
 
     private void validate(List<Integer> numbers) {

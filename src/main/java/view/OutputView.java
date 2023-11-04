@@ -13,4 +13,9 @@ public class OutputView {
         String message = ConstantStringManager.LOTTO_NUMBER_NOTIFY.getMessage();
         System.out.printf(message, number);
     }
+
+    public void printWinningNumberInputNotify() {
+        String message = ConstantStringManager.WINNING_NUMBER_INPUT_NOTIFY.getMessage();
+        System.out.println(message);
+    }
 }

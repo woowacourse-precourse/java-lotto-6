@@ -2,5 +2,5 @@ package lotto.view;
 
 public interface InputView {
 
-    void readLine();
+    String readLine();
 }

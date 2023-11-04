@@ -6,10 +6,10 @@ import lotto.exception.console_input.BlankInputException;
 public class ConsoleInputView implements InputView {
 
     @Override
-    public void readLine() {
+    public String readLine() {
         String input = Console.readLine();
         validateInput(input);
-
+        return input;
     }
 
     private void validateInput(final String input) {

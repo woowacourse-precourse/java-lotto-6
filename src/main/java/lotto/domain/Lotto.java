@@ -17,8 +17,8 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         ListValidator.of(numbers)
                 .shouldHaveSize(LottoConstant.LOTTO_NUMBERS_COUNT, ErrorMessage.WRONG_LOTTO_NUMBERS_COUNT)
-                .shouldNotHaveDuplicates(ErrorMessage.LOTTO_NUMBERS_DUPLICATE)
-                .shouldAllMatch(this::validateLottoNumberInRange);
+                .shouldAllMatch(this::validateLottoNumberInRange)
+                .shouldNotHaveDuplicates(ErrorMessage.LOTTO_NUMBERS_DUPLICATE);
     }
 
     private void validateLottoNumberInRange(int number) {

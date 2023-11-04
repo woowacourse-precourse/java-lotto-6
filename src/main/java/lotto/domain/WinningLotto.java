@@ -24,7 +24,8 @@ public class WinningLotto {
         NumberValidator.of(bonusNumber)
                 .shouldInRange(
                         LottoConstant.LOTTO_NUMBER_MIN, LottoConstant.LOTTO_NUMBER_MAX,
-                        ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE)
+                        ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE
+                )
                 .shouldNotContainedIn(
                         winningNumbers.getNumbers(),
                         ErrorMessage.LOTTO_NUMBERS_DUPLICATE

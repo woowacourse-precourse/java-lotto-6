@@ -23,7 +23,7 @@ public class InputUtil {
         String[] parts = input.split(regex, -1);
         return Arrays.stream(parts)
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(InputUtil::parseInputToInt)
                 .toList();
     }
 

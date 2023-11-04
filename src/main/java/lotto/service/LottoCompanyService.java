@@ -35,13 +35,18 @@ public class LottoCompanyService {
             PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchLottos.size());
             results.add(prizeResult);
         }
-        List<Lotto> secondPrizeLottos = lottoCompany.calculateLottosWithSizeIncludeBonus(lottos, SECOND_PRIZE_MATCH.getValue());
-        Prize secondPrize = Prize.SECOND;
-        PrizeResult secondPrizeResult = PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());
 
+        PrizeResult secondPrizeResult = evaluateLottosWithBonus();
         results.add(secondPrizeResult);
 
         Collections.sort(results);
         return results;
+    }
+
+    private PrizeResult evaluateLottosWithBonus() {
+        List<Lotto> secondPrizeLottos = lottoCompany.calculateLottosWithSizeIncludeBonus(lottos, SECOND_PRIZE_MATCH.getValue());
+        Prize secondPrize = Prize.SECOND;
+
+        return PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());
     }
 }

@@ -2,11 +2,27 @@ package lotto.validator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidatorTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    void 인풋_범위_테스트() {
+        assertThatThrownBy(() -> new InputValidator().validateLottoNumberRange(List.of(-1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new InputValidator().validateLottoNumberRange(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatNoException().isThrownBy(() -> new InputValidator()
+                .validateLottoNumberRange(List.of(1, 2, 3, 4, 5, 6)));
+
+    }
 
     @Test
     void 인풋_단위_테스트() {

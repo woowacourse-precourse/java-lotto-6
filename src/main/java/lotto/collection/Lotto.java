@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.collection;
 
 import lotto.constants.GameNumberConstants;
 import lotto.validator.LottoNumberValidator;
@@ -13,18 +13,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoNumberValidator.validateLottoNumber(numbers);
         this.numbers = numbers;
     }
-
-    private void validate(List<Integer> numbers) {
-        LottoNumberValidator.validateNumbersSize(numbers);
-        LottoNumberValidator.validateDuplication(numbers);
-        numbers.stream()
-                .forEach((number) -> validateNumberRange(number));
-    }
-
-
 
     public List<Integer> getNumbers() {
         return numbers;

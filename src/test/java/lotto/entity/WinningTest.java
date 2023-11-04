@@ -44,9 +44,27 @@ public class WinningTest {
         String winningNumbersString = "1,2,3,4,5,6";
         String bonusNumber = "7";
         List<Integer> targetNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
-
+        //when
         Winning winning = new Winning(winningNumbersString, bonusNumber);
         List<Integer> winningNumbers = winning.getWinningNumbers();
+
+        //then
         assertThat(winningNumbers).isEqualTo(targetNumbers);
+    }
+
+    @Test
+    void Winning_생성_반환_값_리스트_추가_에러_테스트(){
+        //given
+        String winningNumbersString = "1,2,3,4,5,6";
+        String bonusNumber = "7";
+
+        //when
+        Winning winning = new Winning(winningNumbersString, bonusNumber);
+        List<Integer> winningNumbers = winning.getWinningNumbers();
+        //then
+        assertThatThrownBy(()->{
+                winningNumbers.add(8);
+            }
+                ).isInstanceOf(UnsupportedOperationException.class);
     }
 }

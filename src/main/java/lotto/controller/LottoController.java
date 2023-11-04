@@ -9,6 +9,6 @@ public class LottoController {
     public void play() {
         lottoMarket.enter();
         Lottos lottos = lottoMarket.goOut();
-        lottoCompareSite.access();
+        lottoCompareSite.access(lottos);
     }
 }

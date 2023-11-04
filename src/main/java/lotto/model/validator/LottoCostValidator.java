@@ -1,16 +1,20 @@
 package lotto.model.validator;
 
-import java.util.regex.Pattern;
-import lotto.common.config.UserRule;
+import lotto.common.config.LottoGameRule;
 import lotto.common.exception.ErrorMessage;
 
 public class LottoCostValidator extends InputValidator {
-    private static final Pattern THOUSAND_UNIT_PATTERN = Pattern.compile(
-            String.format("^[1-9]\\d*%s$", UserRule.LOTTO_COST_UNIT.value()));
-
-    public static void validateThousandUnit(String userInputLottoCost) {
-        if (!THOUSAND_UNIT_PATTERN.matcher(userInputLottoCost).matches()) {
+    public static void validateLottoCostUnit(int lottoCost) {
+        if (!(overMinLottoCost(lottoCost) && isLottoCostUnit(lottoCost))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_THOUNSAND_UNIT_INPUT.message());
         }
+    }
+
+    private static boolean overMinLottoCost(int lottoCost) {
+        return lottoCost >= LottoGameRule.LOTTO_COST_UNIT.constant();
+    }
+
+    private static boolean isLottoCostUnit(int lottoCost) {
+        return (lottoCost / LottoGameRule.LOTTO_COST_UNIT.constant()) == 0;
     }
 }

@@ -12,7 +12,7 @@ public class LottoGameController {
     private final LottoGameManager lottoGameManager;
 
     private Lotto winningLotto;
-    private int lottoCost;
+    private int lottoAmount;
 
     public LottoGameController(InputView inputView, LottoGameManager lottoGameManager) {
         this.inputView = inputView;
@@ -20,17 +20,17 @@ public class LottoGameController {
     }
 
     public void gameStart() {
-        getLottoCost();
+        getLottoAmount();
         getWiningLotto();
         getWiningLottoAddBonusNumber();
     }
 
-    private void getLottoCost() {
+    private void getLottoAmount() {
         while (true) {
             try {
                 OutputView.writeLine(OutputMessage.REQUEST_LOTTO_COST.message());
                 String userInputLottoCost = inputView.readLine();
-                lottoCost = lottoGameManager.parsingLottoCost(userInputLottoCost);
+                lottoAmount = lottoGameManager.calculateLottoAmount(userInputLottoCost);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.writeLine(e.getMessage());

@@ -26,21 +26,21 @@ class LottoGameManagerTest {
         @ValueSource(strings = {" ", "", "\n", "\r", "\t"})
         @ParameterizedTest
         void 비었거나_공백이라면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.parsingLottoCost(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ValueSource(strings = {"1.23", "-1000", "테스트"})
         @ParameterizedTest
         void 정수가_아니면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.parsingLottoCost(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ValueSource(strings = {"1", "10", "100", "0", "00", "000"})
         @ParameterizedTest
         void 천원으로_나누어_떨어지지_않으면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> lottoGameManager.parsingLottoCost(inputLottoCost))
+            assertThatThrownBy(() -> lottoGameManager.calculateLottoAmount(inputLottoCost))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

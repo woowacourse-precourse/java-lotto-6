@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.common.config.LottoGameRule;
 import lotto.common.config.UserRule;
 import lotto.model.validator.LottoCostValidator;
 import lotto.model.validator.LottoNumbersValidator;
@@ -16,10 +17,12 @@ public class LottoGameManager {
         LottoCostValidator.validateNumeric(userInput);
     }
 
-    public int parsingLottoCost(String userInputLottoCost) {
+    public int calculateLottoAmount(String userInputLottoCost) {
         validateCommon(userInputLottoCost);
-        LottoCostValidator.validateThousandUnit(userInputLottoCost);
-        return Integer.parseInt(userInputLottoCost);
+
+        int lottoCost = Integer.parseInt(userInputLottoCost);
+        LottoCostValidator.validateLottoCostUnit(lottoCost);
+        return lottoCost / LottoGameRule.LOTTO_COST_UNIT.constant();
     }
 
     private List<String> splitWinningNumbers(String userInputWinningNumbers) {
@@ -30,6 +33,7 @@ public class LottoGameManager {
         List<Integer> parsedWinningNumbers = new ArrayList<>();
         for (String lottoNumber : splitWinningNumbers(userInputWinningNumbers)) {
             validateCommon(lottoNumber);
+
             int parsedNumber = Integer.parseInt(lottoNumber.trim());
             LottoNumbersValidator.validateLottoNumberRange(parsedNumber);
             parsedWinningNumbers.add(parsedNumber);
@@ -43,5 +47,12 @@ public class LottoGameManager {
 
     public WinningLotto createWinningLottoAddBonusNumber(Lotto lotto, String userInputBonusNumber) {
         return new WinningLotto(lotto, userInputBonusNumber);
+    }
+
+    public List<Lotto> createLottoBucket() {
+        return null;
+    }
+    public void saveLottoBucket() {
+
     }
 }

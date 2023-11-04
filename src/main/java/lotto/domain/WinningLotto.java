@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public class WinningLotto {
 
     private final Lotto winningLotto;
@@ -9,6 +12,14 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
         validateNoDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private Map<WinningStatistics, Integer> initMapWinningStatistics() {
+        Map<WinningStatistics, Integer> statistics = new EnumMap<>(WinningStatistics.class);
+        for (WinningStatistics value : WinningStatistics.values()) {
+            statistics.put(value, 0);
+        }
+        return statistics;
     }
 
     private void validateNoDuplicate(BonusNumber bonusNumber) {

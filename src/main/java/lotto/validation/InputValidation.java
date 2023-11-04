@@ -22,7 +22,7 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하인 양수로 입력해야 합니다.");
         }
     }
 
@@ -46,7 +46,14 @@ public class InputValidation {
 
     public void validateInputIsNull(String input) {
         if (input == null || input.equals("")) {
-            throw new NullPointerException("[ERROR] 로또 구입 금액을 입력하세요.");
+            throw new NullPointerException("[ERROR] 입력값을 확인하세요.");
+        }
+    }
+
+    public void validateInputCorrectSeperator(String input) {
+        String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,]", "");
+        if (!deleteAllWords.isEmpty()) {
+           throw new IllegalArgumentException("[ERROR] 쉼표(,)를 구분하여 입력하세요.");
         }
     }
 }

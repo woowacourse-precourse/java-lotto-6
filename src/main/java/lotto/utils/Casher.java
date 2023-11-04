@@ -6,14 +6,12 @@ public class Casher {
     private final String NOT_LOTTO_UNIT = "로또 금액 단위로 입력해야 합니다. 입력단위 : ";
 
     public int getLottoCount(int price) {
-        int lottoCount = price % LOTTO_PRICE;
-
         if (price < LOTTO_PRICE) {
             throw new IllegalArgumentException(NOT_ENOUGH_PRICE + LOTTO_PRICE);
         }
-        if (lottoCount != 0) {
+        if (price % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_LOTTO_UNIT + LOTTO_PRICE);
         }
-        return lottoCount;
+        return price / LOTTO_PRICE;
     }
 }

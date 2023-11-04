@@ -8,10 +8,10 @@ import lotto.constant.LottoInfo;
 public record BonusNumber(Integer number) {
 
     public BonusNumber {
-        validate(number);
+        validateNumber(number);
     }
 
-    private void validate(Integer number) {
+    private void validateNumber(Integer number) {
         if (isLargerThanMaxNumber(number)) {
             throw new IllegalArgumentException(LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
         }

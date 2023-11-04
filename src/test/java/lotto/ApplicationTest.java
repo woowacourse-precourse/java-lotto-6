@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -63,15 +64,42 @@ class ApplicationTest extends NsTest {
 
 
     @Test
+    @DisplayName("구매자에게 구매금액을 입력받는다.")
     void inputPurchaseAmount() {
         String inputPurchaseAmount = inputPurchaseAmount("10000");
         assertThat(inputPurchaseAmount).isEqualTo("10000");
     }
 
+    @DisplayName("구매자에게 구매금액을 입력받는 메서드.")
     private String inputPurchaseAmount(String input){
         System.out.println("구입금액을 입력해 주세요.");
         Scanner in = new Scanner(input);
         input = in.next();
         return input;
+    }
+
+    @Test
+    @DisplayName("입력한 값이 숫자인지 검증한다.")
+    void inputPurchaseAmountValidation_정상케이스() {
+        assertThatCode(() -> inputPurchaseAmountValidation("12000"))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("입력한 값이 숫자인지 검증한다.")
+    void inputPurchaseAmountValidation_예외케이스() {
+        assertThatThrownBy(() -> inputPurchaseAmountValidation("테스트"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000");
+    }
+
+    @DisplayName("구매자에게 구매금액을 입력받는 메서드.")
+    private  int inputPurchaseAmountValidation(String inputPurchaseAmount){
+        try {
+            int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+            return purchaseAmount;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000");
+        }
     }
 }

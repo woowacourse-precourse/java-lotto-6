@@ -18,16 +18,17 @@ public class Input {
         List<Integer> inputNumber = new ArrayList<>();
 
         for (String userInput : userInputs) {
-            Validator.checkNumber(userInput);
-            Validator.checkZero(userInput);
-
-            Integer lottoNumber = Integer.parseInt(userInput);
-            Validator.checkRange(lottoNumber);
-
+            checkLotto(userInput);
             inputNumber.add(Integer.parseInt(userInput));
         }
 
         return inputNumber;
+    }
+
+    public static void checkLotto(String userInput) {
+        Validator.checkNumber(userInput);
+        Validator.checkZero(userInput);
+        Validator.checkRange(Integer.parseInt(userInput));
     }
 
     public static List<String> split(String userInput) {

@@ -10,6 +10,7 @@ public class LottoApplication {
 
     public void run() {
         String money = getMoneyFromUserInput();
+        storeMoneyOf(money);
     }
 
     private String getMoneyFromUserInput() {

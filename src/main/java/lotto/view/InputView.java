@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.request.BonusNumberDto;
-import lotto.dto.request.UserMoneyDto;
+import lotto.dto.request.InvestMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.util.BlankValidator;
 import lotto.util.DigitsOnlyValidator;
 import lotto.util.DigitsWithCommaSeparatedValidator;
 
 public class InputView {
-    private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INVEST_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자(정수)형태의 문자열만 숫자로 변환할 수 있습니다.";
     private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -24,13 +24,13 @@ public class InputView {
         return LazyHolder.INSTANCE;
     }
 
-    public UserMoneyDto readUserMoney() {
-        println(MONEY_INPUT_MESSAGE);
-        String rawUserMoney = Console.readLine();
+    public InvestMoneyDto readInvestMoney() {
+        println(INVEST_MONEY_INPUT_MESSAGE);
+        String rawInvestMoney = Console.readLine();
         printEmptyLine();
-        validateUserMoney(rawUserMoney);
-        int userMoney = convertToInt(rawUserMoney);
-        return new UserMoneyDto(userMoney);
+        validateInvestMoney(rawInvestMoney);
+        int investMoney = convertToInt(rawInvestMoney);
+        return new InvestMoneyDto(investMoney);
     }
 
     private void println(String message) {
@@ -41,9 +41,9 @@ public class InputView {
         System.out.println();
     }
 
-    private void validateUserMoney(String rawMoney) {
-        BlankValidator.validate(rawMoney);
-        DigitsOnlyValidator.validate(rawMoney);
+    private void validateInvestMoney(String rawInvestMoney) {
+        BlankValidator.validate(rawInvestMoney);
+        DigitsOnlyValidator.validate(rawInvestMoney);
     }
 
     private int convertToInt(String input) {

@@ -1,18 +1,19 @@
 package lotto.controller;
 
 import lotto.dto.request.BonusNumberDto;
-import lotto.dto.request.UserMoneyDto;
+import lotto.dto.request.InvestMoneyDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.model.InvestMoney;
 import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.LottoGroup;
 import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
+import lotto.model.LottoPrice;
 import lotto.model.NumberGenerator;
 import lotto.model.TotalPrize;
 import lotto.model.TotalProfit;
-import lotto.model.UserMoney;
 import lotto.model.WinningTicket;
 import lotto.util.RetryUtil;
 import lotto.view.InputView;
@@ -30,8 +31,8 @@ public class LottoGameController {
     }
 
     public void run() {
-        UserMoney userMoney = RetryUtil.retryOnFail(this::createUserMoney);
-        LottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, userMoney);
+        InvestMoney investMoney = RetryUtil.retryOnFail(this::createInvestMoney);
+        LottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investMoney);
         LottoGroup lottoGroup = LottoGroup.create(lottoCount, numberGenerator);
         printLottoGroup(lottoGroup);
 
@@ -41,7 +42,7 @@ public class LottoGameController {
 
         TotalPrize totalPrize = lottoMachine.calculateTotalPrize();
         printTotalPrize(totalPrize);
-        TotalProfit totalProfit = totalPrize.calculateTotalProfit(userMoney);
+        TotalProfit totalProfit = totalPrize.calculateTotalProfit(investMoney);
         outputView.printTotalProfit(totalProfit);
 
     }
@@ -50,13 +51,14 @@ public class LottoGameController {
         outputView.printTotalPrize(totalPrize);
     }
 
-    private LottoCount createLottoCount(UserMoney userMoney) {
-        return LottoCount.from(userMoney);
+    private LottoCount createLottoCount(InvestMoney investMoney) {
+        return LottoCount.from(investMoney);
     }
 
-    private UserMoney createUserMoney() {
-        UserMoneyDto userMoneyDto = RetryUtil.retryOnFail(inputView::readUserMoney);
-        return UserMoney.from(userMoneyDto.getMoney());
+    private InvestMoney createInvestMoney() {
+        InvestMoneyDto investMoneyDto = RetryUtil.retryOnFail(inputView::readInvestMoney);
+        int investMoney = investMoneyDto.getInvestMoney();
+        return InvestMoney.of(investMoney, LottoPrice.STANDARD_PRICE);
     }
 
     private void printLottoGroup(LottoGroup lottoGroup) {

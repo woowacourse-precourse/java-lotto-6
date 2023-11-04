@@ -14,10 +14,10 @@ public final class TotalPrize {
         return new TotalPrize(prizeSummary);
     }
 
-    public TotalProfit calculateTotalProfit(UserMoney userMoney) {
+    public TotalProfit calculateTotalProfit(InvestMoney investMoney) {
         long totalWinningMoney = calculateTotalWinningMoney();
         TotalWinningMoney winningMoney = TotalWinningMoney.from(totalWinningMoney);
-        double totalProfit = userMoney.calculateProfitPercentage(winningMoney);
+        double totalProfit = investMoney.calculateProfitPercentage(winningMoney);
 
         return TotalProfit.from(totalProfit);
     }

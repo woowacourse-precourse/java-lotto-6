@@ -12,8 +12,8 @@ public class OutputView {
     private static final String LOTTO_GROUP_SIZE_FORMAT = "%d개를 구매했습니다.";
     private static final String TOTAL_PRIZE_RESULT_MESSAGE = "당첨 통계\n---";
     private static final String PRIZE_AMOUNT_FORMAT = "%,d";
-    private static final String NORMAL_PRIZE_MESSAGE_FORMAT = "%d개 일치 (%s) - %d개";
-    private static final String SECOND_PRIZE_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s) - %d개";
+    private static final String NORMAL_PRIZE_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
+    private static final String SECOND_PRIZE_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String TOTAL_PROFIT_FORMAT = "%,.1f";
     private static final String TOTAL_PROFIT_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
 

@@ -20,8 +20,8 @@ public final class LottoCount {
         }
     }
 
-    public static LottoCount from(UserMoney userMoney) {
-        int purchaseLottoCount = LottoPrice.STANDARD_PRICE.calculateLottoCount(userMoney);
+    public static LottoCount from(InvestMoney investMoney) {
+        int purchaseLottoCount = LottoPrice.STANDARD_PRICE.calculateLottoCount(investMoney);
         return new LottoCount(purchaseLottoCount);
     }
 

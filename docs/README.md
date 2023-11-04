@@ -12,7 +12,7 @@
     - 중복되지 않는 숫자 6개와 보너스 번호 1개여야 한다. - BroadCastingStation#validateDuplicate
 
 
-- [ ] 당첨 결과를 확인하는 기능 - Calculator#checkWinning
+- [x] 당첨 결과를 확인하는 기능 - Calculator#checkWinning
 
 
 - [ ] 수익률을 계산하는 기능 - Calculator#returnRate

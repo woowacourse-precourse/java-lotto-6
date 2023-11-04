@@ -3,15 +3,15 @@ package lotto.Model;
 import static lotto.Utils.toInt;
 
 public class Price {
-    int price;
+    int purchasePrice;
 
     public Price(String input) {
         validate(input);
-        this.price = Integer.parseInt(input);
+        this.purchasePrice = toInt(input);
     }
 
-    public int divideWithOneThousands(Price price1) {
-        return price1.price / 1000;
+    public int divideWithOneThousands(Price price) {
+        return price.purchasePrice / 1000;
     }
 
     private void validate(String input) {

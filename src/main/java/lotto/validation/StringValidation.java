@@ -6,7 +6,6 @@ public class StringValidation {
 	public static void isStringCorrect(String str) {
 		isStringBlank(str);
 		isStringNumber(str);
-		isMaxInt(str);
 	}
 	
 	public static void isStringArrayCorrect(String[] stringArray) {
@@ -32,12 +31,6 @@ public class StringValidation {
 	
 	private static void isCharacterNumber(char c) {
 		if (!Character.isDigit(c)) {
-			throw new IllegalArgumentException(COMMON_VALIDATION_ERROR_MESSAGE.getMessage());
-		}
-	}
-	
-	private static void isMaxInt(String str) {
-		if (str.length()>=10) {
 			throw new IllegalArgumentException(COMMON_VALIDATION_ERROR_MESSAGE.getMessage());
 		}
 	}

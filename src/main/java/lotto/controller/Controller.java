@@ -10,15 +10,12 @@ public class Controller {
 	AmountDto amount;
 	LottosDto lottos;
 	WinningDto winning;
-	
-	public Controller() {
-		
-	}
  	
 	public void run() {
 		inputAmount();
 		outputLotto();
 		inputWinning();
+		inputBonus();
 		outputResult();
 	}
 	
@@ -54,9 +51,19 @@ public class Controller {
 			System.out.println(e);
 			inputWinning();
 		}
+	} 
+	
+	private void inputBonus() {
+		try {
+			OutputView.printInputBonus();
+			this.winning.setBonus(InputView.askBonus());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
+			inputBonus();
+		}
 	}
 	
 	private void outputResult() {
-		
+		OutputView.printResult();
 	}
 }

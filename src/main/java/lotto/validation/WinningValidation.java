@@ -40,4 +40,11 @@ public class WinningValidation {
 			throw new IllegalArgumentException(WINNING_VALIDATION_ERROR_MESSAGE.getMessage());
 		}
 	}
+	
+	public static void isBonusCorrect(int bonus, List<Integer> winning) {
+		checkRange(bonus);
+		Set<Integer> uniqueNumbers = new HashSet<Integer>();
+		uniqueNumbers.addAll(winning);
+		checkDuplicate(bonus, uniqueNumbers);
+	}
 }

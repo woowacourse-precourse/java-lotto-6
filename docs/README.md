@@ -73,12 +73,12 @@
 - [x] 수익률 출력 - OutputView
 
 # Controller
-- [ ] 로또 구입 금액 입력받아 Player 생성 - LottoController
-- [ ] LottoPurchaseService 통해 로또 구입 - LottoController
-- [ ] 구입한 로또 출력 - LottoController
-- [ ] 로또 당첨번호, 보너스 번호 입력받아 WinLotto 생성 - LottoController
-- [ ] 당첨 내역 및 수익률 계산해 출력하기 - LottoController
-- [ ] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - LottoController
+- [x] 로또 구입 금액 입력받아 Player 생성 - LottoController
+- [x] LottoPurchaseService 통해 로또 구입 - LottoController
+- [x] 구입한 로또 출력 - LottoController
+- [x] 로또 당첨번호, 보너스 번호 입력받아 WinLotto 생성 - LottoController
+- [x] 당첨 내역 및 수익률 계산해 출력하기 - LottoController
+- [x] 입력값에 오류 발생시 메시지 출력 후 입력 재실행 - LottoController
 
 # 에러 상황
 - [ ] 구입 금액을 1000단위로 입력하지 않음 - PlayerWallet

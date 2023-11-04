@@ -2,6 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Application {
     public static int lottoBought;
@@ -25,6 +28,17 @@ public class Application {
         }
 
         // TODO: 로또 번호 출력
+        int lottoNum = lottoBought / 1000;
+
+        // stream.Collectors 사용하기
+        List<List<Integer>> allLottoList = IntStream.range(0, lottoNum)
+                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                        .stream()
+                        .sorted()
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
+        System.out.println(allLottoList);
 
         // TODO: 당첨 번호 입력 받기
 

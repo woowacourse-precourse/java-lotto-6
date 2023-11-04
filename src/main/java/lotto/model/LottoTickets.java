@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,15 @@ public class LottoTickets {
 
     public LottoTickets(List<LottoTicket> tickets) {
         this.tickets = tickets;
+    }
+
+    public static LottoTickets generateTickets(int count) {
+        List<LottoTicket> tickets = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            tickets.add(new LottoTicket(getRandomTicket()));
+        }
+        return new LottoTickets(tickets);
     }
 
     private static List<Number> getRandomTicket() {

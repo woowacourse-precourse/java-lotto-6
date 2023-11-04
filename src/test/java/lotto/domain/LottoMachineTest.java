@@ -73,4 +73,21 @@ class LottoMachineTest {
                 "1,이,3,15,30,45"
         );
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "10", "20", "30", "40", "45"})
+    @DisplayName("1~45 사이의 보너스 번호를 저장한다.")
+    void registerBonusNumber(String bonusNumber) {
+        // given // when // then
+        lottoMachine.registerBonusNumber(bonusNumber);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "일", "a", " ", ".", "?"})
+    @DisplayName("1~45 사이의 보너스 번호가 아니면 예외가 발생한다.")
+    void registerBonusNumberException(String bonusNumber) {
+        // given // when // then
+        assertThatThrownBy(() -> lottoMachine.registerBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

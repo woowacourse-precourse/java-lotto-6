@@ -54,7 +54,44 @@ class LottoMachineValidationHandlerTest {
         return Stream.of(
                 List.of("1", "a", "30", "42", "5"),
                 List.of("1", ".", "30", "42", "5"),
-                List.of("1", "칠", "30", "42", "5")
+                List.of("1", "칠", "30", "42", "5"),
+                List.of("1", " ", "30", "42", "5")
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "2", "10", "100"})
+    @DisplayName("보너스 번호가 숫자이면 예외가 발생하지 않는다.")
+    void validationNumeric(String bonusNumber) {
+        // given // when // then
+        LottoMachineValidationHandler.validationNumeric(bonusNumber);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"칠", "a", ".", " "})
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    void validationNumericException(String bonusNumber) {
+        // given // when // then
+        assertThatThrownBy(() -> LottoMachineValidationHandler.validationNumeric(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 10, 20, 30, 40, 45})
+    @DisplayName("보너스 번호가 1~45 사이의 숫자이면 예외가 발생하지 않는다.")
+    void validationNumbersRange(Integer bonusNumber) {
+        // given // when // then
+        LottoMachineValidationHandler.validationNumbersRange(bonusNumber);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    void validationNumericException(Integer bonusNumber) {
+        // given // when // then
+        assertThatThrownBy(() -> LottoMachineValidationHandler.validationNumbersRange(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoMachineValidationHandler.INVALID_LOTTO_BONUS_NUMBER_RANGE);
     }
 }

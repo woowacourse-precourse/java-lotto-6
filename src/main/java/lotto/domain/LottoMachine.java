@@ -14,6 +14,7 @@ import lotto.util.StringUtils;
 
 public class LottoMachine {
     private List<Integer> winningNumbers;
+    private Integer bonusNumber;
 
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
@@ -55,5 +56,15 @@ public class LottoMachine {
         LottoValidationHandler.validationNumbersSize(winningNumbers);
         LottoValidationHandler.validateDuplicatedNumbers(winningNumbers);
         LottoValidationHandler.validationNumbersRange(winningNumbers);
+    }
+
+    public Integer registerBonusNumber(String bonusNumber) {
+        validationBonusNumber(bonusNumber);
+        return this.bonusNumber = Integer.parseInt(bonusNumber);
+    }
+
+    private void validationBonusNumber(String bonusNumber) {
+        LottoMachineValidationHandler.validationNumeric(bonusNumber);
+        LottoMachineValidationHandler.validationNumbersRange(Integer.parseInt(bonusNumber));
     }
 }

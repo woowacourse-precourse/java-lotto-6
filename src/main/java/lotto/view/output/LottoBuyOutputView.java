@@ -5,6 +5,8 @@ import lotto.domain.lotto.Lottos;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.joining;
+
 public class LottoBuyOutputView {
 
     private final String PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT = "%s개를 구매했습니다.";
@@ -22,8 +24,16 @@ public class LottoBuyOutputView {
     }
     private List<String> allLottoNumbersAsString(List<Lotto> lottos) {
         return lottos.stream()
-                .map(LottoNumberPresentation::getLottoNumbersAsString)
+                .map(this::getLottoNumbersAsString)
                 .toList();
+    }
+
+    private String getLottoNumbersAsString(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(joining(",", "[", "]"));
     }
 
     private void printLottoNumbers(String lottoNumbers) {

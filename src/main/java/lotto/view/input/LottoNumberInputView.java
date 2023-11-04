@@ -31,7 +31,7 @@ public class LottoNumberInputView extends Input{
     }
 
     private List<Integer> getNumbers() {
-        return Arrays.stream(readLine().split(LottoBuyMessage.REGEX.getMassage()))
+        return Arrays.stream(readLine().split(","))
                 .map(inputValidator::parseInt)
                 .toList();
     }

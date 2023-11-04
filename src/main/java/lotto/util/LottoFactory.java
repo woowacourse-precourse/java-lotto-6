@@ -2,6 +2,7 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.lotto.Lotto;
+import lotto.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,12 +22,20 @@ public class LottoFactory {
         return new Lotto(sortedAscending(lottoNumbers));
     }
 
+    private static List<Integer> getLottoNumbers(){
+        return Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_LIMIT_VALUE);
+    }
+
     private static List<Integer> sortedAscending(List<Integer> numbers) {
         List<Integer> sortedNumber = getSortedNumber(numbers);
-        if (!sortedNumber.equals(numbers)) {
+        if (isNotSort(numbers, sortedNumber)) {
             return sortedNumber;
         }
         return numbers;
+    }
+
+    private static boolean isNotSort(List<Integer> numbers, List<Integer> sortedNumber) {
+        return !sortedNumber.equals(numbers);
     }
 
     private static List<Integer> getSortedNumber(List<Integer> numbers) {
@@ -37,10 +46,15 @@ public class LottoFactory {
     }
 
     public static Lotto getLotto(List<Integer> numbers){
+        validateSortedAscending(numbers);
         return new Lotto(numbers);
     }
 
-    private static List<Integer> getLottoNumbers(){
-        return Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_LIMIT_VALUE);
+    private static void validateSortedAscending(List<Integer> numbers) {
+        List<Integer> sortedNumber = getSortedNumber(numbers);
+        if (isNotSort(numbers,sortedNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+        }
     }
+
 }

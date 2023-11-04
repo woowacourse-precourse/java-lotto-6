@@ -70,7 +70,7 @@ public class myApplicationTest {
             // when
             user = GameUtility.buyLotties(payment);
             // then
-            assertEquals(user.getLottiesImpl().getLotties().size(), lottoAmount);
+            assertEquals(user.getLotties().size(), lottoAmount);
         }
 
         @Test
@@ -85,7 +85,7 @@ public class myApplicationTest {
                     () -> {
                         User user;
                         user = GameUtility.buyLotties(1000);
-                        assertEquals(user.getLottiesImpl().getLotties().get(0).getNumbers(),LottoNumbers);
+                        assertEquals(user.getLotties().get(0).getNumbers(),LottoNumbers);
                     },
                     Arrays.asList(43, 41, 42, 23, 21, 8)
             );

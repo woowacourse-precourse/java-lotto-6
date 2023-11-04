@@ -2,7 +2,6 @@ package lotto.utility;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.GameNumberConstants;
-import lotto.domain.Lotties;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 
@@ -19,13 +18,13 @@ public class GameUtility {
         return new User(generateLottoNumberRepeatNTimes(purchaseLottoAmount),payment);
     }
 
-    public static Lotties generateLottoNumberRepeatNTimes(int repeatNumber) {
+    public static List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
         List<Lotto> lotties = new ArrayList<>();
         for (int i = 0; i < repeatNumber; i++) {
             lotties.add(new Lotto(generateLottoNumber()));
         }
 
-        return new Lotties(lotties);
+        return lotties;
     }
 
     public static List<Integer> generateLottoNumber() {

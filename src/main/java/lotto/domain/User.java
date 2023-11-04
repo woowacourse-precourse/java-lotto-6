@@ -1,15 +1,17 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class User {
-    private Lotties lotties;
+    private List<Lotto> lotties;
     private int payment;
 
-    public User(Lotties lotties, int payment) {
+    public User(List<Lotto> lotties, int payment) {
         this.lotties = lotties;
         this.payment = payment;
     }
 
-    public Lotties getLottiesImpl() {
+    public List<Lotto> getLotties() {
         return lotties;
     }
 

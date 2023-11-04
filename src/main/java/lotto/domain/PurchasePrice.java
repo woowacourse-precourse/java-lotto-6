@@ -3,21 +3,22 @@ package lotto.domain;
 import lotto.utils.ValidationException;
 
 public class PurchasePrice {
-    private int purchasePrice;
+    private final int purchasePrice;
 
     public PurchasePrice(String purchasePrice) {
         isPurchasePriceValid(purchasePrice);
         this.purchasePrice = parsingStringToInt(purchasePrice);
     }
 
-    private void isPurchasePriceValid(String purchasePrice) {
+    private void isPurchasePriceValid(String price) {
         ValidationException validation = new ValidationException();
 
-        validation.isNullOrEmpty(purchasePrice);
-        validation.isInteger(purchasePrice);
+        validation.isNullOrEmpty(price);
+        validation.isInteger(price);
 
-        int parsingPurchasePrice = parsingStringToInt(purchasePrice);
-        validation.isDivideByPriceUnit(parsingPurchasePrice);
+        int parsingPrice = parsingStringToInt(price);
+
+        validation.isDivideByPriceUnit(parsingPrice);
     }
 
     private int parsingStringToInt(String purchasePrice) {

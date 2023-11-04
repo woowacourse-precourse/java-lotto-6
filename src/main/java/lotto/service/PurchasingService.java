@@ -56,9 +56,9 @@ public class PurchasingService {
     }
 
     private void issueLotto() {
-        LottoService lottoService = new LottoService();
+        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
         for (int i = ZERO; i < buyerPurchaseQuantity; i++) {
-            buyerLottoTickets.add(lottoService.createLotto());
+            buyerLottoTickets.add(lottoGeneratorService.createLotto());
         }
     }
 

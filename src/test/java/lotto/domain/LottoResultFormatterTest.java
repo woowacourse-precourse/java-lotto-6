@@ -16,12 +16,12 @@ class LottoResultFormatterTest {
     @ParameterizedTest
     @MethodSource("lottosResources")
     @DisplayName("로또 결과에 따라 출력 형태를 얻는다.")
-    void Given_CreateLottoResultDto_When_toResultLottoMessage_Then_EqualType(List<Numbers> values) {
+    void Given_CreateLottoResultFormatter_When_toResultLottoMessage_Then_EqualType(List<Numbers> values) {
         //given
-        LottoResultFormatter lottoResultDto = new LottoResultFormatter(values);
+        LottoResultFormatter lottoResultFormatter = new LottoResultFormatter(values);
 
         //when
-        String resultLottoMessage = lottoResultDto.toResultLottoMessage();
+        String resultLottoMessage = lottoResultFormatter.toResultLottoMessage();
 
         //then
         assertThat(resultLottoMessage).isEqualTo(

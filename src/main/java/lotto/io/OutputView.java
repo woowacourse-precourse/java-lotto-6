@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(ProgressMessage.INPUT_LOTTO_PURCHASE_PRICE_MESSAGE);
     }
 
-    public void printLottoResult(LottoResultFormatter lottoResultDto) {
-        System.out.println(lottoResultDto.toResultLottoMessage());
+    public void printLottoResult(LottoResultFormatter lottoResultFormatter) {
+        System.out.println(lottoResultFormatter.toResultLottoMessage());
     }
 }

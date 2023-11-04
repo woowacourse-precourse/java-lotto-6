@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.NumberUtil;
+
 public class Price {
 
     public static final String PRICE_UNIT_VALID_LOG = "1,000원 단위로 입력해주세요.";
@@ -9,6 +11,10 @@ public class Price {
     public Price(final int price) {
         validateUnit(price);
         this.price = price;
+    }
+
+    public Price(final String price) {
+        this(NumberUtil.parseInt(price));
     }
 
     private void validateUnit(final int price) {

@@ -7,7 +7,7 @@ public class GetLottoCountDto {
         this.count = count;
     }
 
-    public int getBuyMoney() {
+    public int getCount() {
         return count;
     }
 

@@ -1,7 +1,9 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +14,15 @@ class StoreTest {
         Integer money = 10000;
         Store store = new Store();
         List<Lotto> lottos = store.sellLottos(money);
-        Assertions.assertThat(lottos.size()).isEqualTo(10);
+        assertThat(lottos.size()).isEqualTo(10);
+    }
+
+    @Test
+    void inputNotDividedMoneyByThousand() {
+        Store store = new Store();
+        assertThatThrownBy(() -> {
+            store.sellLottos(9500);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1000으로 가격이 나누어 떨어져야 합니다.");
     }
 }

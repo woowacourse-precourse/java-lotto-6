@@ -5,7 +5,7 @@
 #### 비즈니스 기능
 
 - [x] 금액에 맞는 로또를 발행하는 기능 - Store#sellLottos
-    - [] 가격이 나누어 떨어지는 지 판단하는 기능 - Store#validateDividedByPrice
+    - [x] 가격이 나누어 떨어지는 지 판단하는 기능 - Store#validateDividedByPrice
 
 
 - [ ] 로또 추첨을 받는 기능 - BroadCastingStation#drawLotto

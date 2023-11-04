@@ -9,7 +9,7 @@ public final class InputView {
     private InputView() {
     }
 
-    public static int inputPurchaseAmount() {
+    public static int inputNumber() {
         return Utils.convertStringToInt(Console.readLine());
     }
 

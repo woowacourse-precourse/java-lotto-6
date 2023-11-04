@@ -3,18 +3,17 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.domain.Validator;
+import lotto.domain.Player;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class InputView {
     public static final String SPLIT_DELIMETER = ",";
 
-    public static int inputCash() {
-        int input = Integer.parseInt(Console.readLine());
-        Validator.validateCash(input);
-        return input;
+    public static Player inputCash() {
+        int cash = Integer.parseInt(Console.readLine());
+        Player player = new Player(cash);
+        return player;
     }
 
     public static Lotto inputLotto() {

@@ -86,6 +86,14 @@ class LottoTest {
         assertEquals(expected.getCheckBonus(), result.getCheckBonus());
     }
 
+    @DisplayName("로또 번호 문자열로 표현하는 기능 테스트")
+    @ParameterizedTest
+    @MethodSource("toStringSuccessDummy")
+    void toStringSuccessTest(Lotto lotto, String expected) {
+        String result = lotto.toString();
+        assertThat(result.equals(expected)).isTrue();
+    }
+
 
 
 
@@ -131,29 +139,43 @@ class LottoTest {
     static Stream<Arguments> compareWinnerLottoSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(new Lotto(
-                                            List.of(1, 2, 3, 4, 5, 6)
-                                    ),
-                                    List.of(1, 2, 3, 8, 9, 10),
-                                    7,
-                                    new LottoResult(3, false)
+                                List.of(1, 2, 3, 4, 5, 6)
+                        ),
+                        List.of(1, 2, 3, 8, 9, 10),
+                        7,
+                        new LottoResult(3, false)
                 ),
                 Arguments.arguments(new Lotto(
-                                            List.of(1, 2, 3, 4, 5, 6)
-                                    ),
-                                    List.of(1, 2, 15, 8, 9, 10),
-                                    3,
-                                    new LottoResult(2, true)
+                                List.of(1, 2, 3, 4, 5, 6)
+                        ),
+                        List.of(1, 2, 15, 8, 9, 10),
+                        3,
+                        new LottoResult(2, true)
                 ),
                 Arguments.arguments(new Lotto(
-                                            List.of(1, 2, 3, 4, 5, 8)
-                                    ),
-                                    List.of(1, 2, 5, 8, 9, 10),
-                                    3,
-                                    new LottoResult(4, true)
+                                List.of(1, 2, 3, 4, 5, 8)
+                        ),
+                        List.of(1, 2, 5, 8, 9, 10),
+                        3,
+                        new LottoResult(4, true)
+                )
+        );
+
+    }
+    static Stream<Arguments> toStringSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments(
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                        "[1, 2, 3, 4, 5, 6]"
+                ),
+                Arguments.arguments(
+                        new Lotto(List.of(1, 2, 3, 7, 5, 6)),
+                        "[1, 2, 3, 7, 5, 6]"
+                ),
+                Arguments.arguments(
+                        new Lotto(List.of(1, 2, 3, 4, 15, 6)),
+                        "[1, 2, 3, 4, 15, 6]"
                 )
         );
     }
-
-
-
 }

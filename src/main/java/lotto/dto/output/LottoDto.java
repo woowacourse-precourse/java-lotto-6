@@ -2,9 +2,14 @@ package lotto.dto.output;
 
 import java.util.List;
 import lotto.domain.lotto.Lotto;
+import lotto.dto.LottoNumberDto;
 
-public record LottoDto(List<Integer> lottoNumbers) {
+public record LottoDto(List<LottoNumberDto> lottoNumbers) {
     public static LottoDto toLottoDto(Lotto lotto) {
-        return new LottoDto(lotto.getNumbers());
+        List<Integer> numbers = lotto.getNumbers();
+        List<LottoNumberDto> lottoNumbers = numbers.stream()
+                .map(LottoNumberDto::new)
+                .toList();
+        return new LottoDto(lottoNumbers);
     }
 }

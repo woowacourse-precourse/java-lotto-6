@@ -65,7 +65,7 @@ Controller
 - 3. 당첨 번호 입력 - inputWinning()
        - 입력 메시지 - OutputView
        - 당첨번호 6개 + 보너스 1개 입력 받기 - InputView
-       - 1~45인지, 숫자인지 검증 - InputValidation
+       - 1~45인지, 숫자인지 검증 - WinningValidation
         
 - 4. 당첨 통계 출력 - outputResult()
        - 로또가 당첨번호랑 맞는지 확인 - Winning checkLotto

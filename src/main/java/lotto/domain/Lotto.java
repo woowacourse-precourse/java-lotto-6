@@ -14,10 +14,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateLottoNumberCount(numbers);
-        validateNumberValidate(numbers);
+        validateUniqueNumberValidate(numbers);
     }
 
-    private void validateNumberValidate(List<Integer> numbers) {
+    private void validateUniqueNumberValidate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {

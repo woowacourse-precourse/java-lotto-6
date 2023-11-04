@@ -7,27 +7,17 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        while(true){
-            try{
 
-                int purchaseAmount = inputPurchaseAmount();
-                List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
+        int purchaseAmount = inputPurchaseAmount();
+        List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
 
-                printLottoTickets(lottos);
+        printLottoTickets(lottos);
 
-                Lotto winningLotto = new Lotto(inputWinningNumbers());
-                int bonusNumber = inputBonusNumber();
+        Lotto winningLotto = new Lotto(inputWinningNumbers());
+        int bonusNumber = inputBonusNumber();
 
-                printResult(lottos, winningLotto, bonusNumber, purchaseAmount);
+        printResult(lottos, winningLotto, bonusNumber, purchaseAmount);
 
-            }
-            catch(IllegalArgumentException e){
-
-                System.out.println(e.getMessage());
-                System.out.println();
-
-            }
-        }
     }
     // 입력받고 로또 생성
     private static int inputPurchaseAmount(){
@@ -70,23 +60,30 @@ public class Application {
 
     // 당첨 로또 생성
     private static List<Integer> inputWinningNumbers() {
+        while(true){
+            try{
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                System.out.println();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        System.out.println();
+                String[] numbers = input.split(",");
 
-        String[] numbers = input.split(",");
+                List<Integer> winningNumbers = Arrays.stream(numbers)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
 
-        List<Integer> winningNumbers = Arrays.stream(numbers)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                Lotto winningLotto = new Lotto(winningNumbers);
+                return winningNumbers;
+            }
+            catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
 
-        return winningNumbers;
 
     }
-
-
-
+    
     private static int inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber =  Integer.parseInt(Console.readLine());

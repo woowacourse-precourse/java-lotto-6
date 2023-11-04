@@ -12,14 +12,14 @@ class LottoManagerTest {
 
     @DisplayName("숫자가 아닌 값이 들어오면 예외가 발생한다.")
     @Test
-    void notIntegerInput() {
+    void notIntegerPrice() {
         assertThatThrownBy(() -> LottoManager.priceInput("string"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("설정한 금액 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
-    void notDivide() {
+    void notDividePrice() {
         assertThatThrownBy(() -> LottoManager.priceInput("1500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -32,14 +32,14 @@ class LottoManagerTest {
 
     @DisplayName("금액에 맞는 로또의 개수를 알 수 있다.")
     @Test
-    void getLottos() {
-        User user = new User(8000);
-        assertThat(user.getLottos().size()).isEqualTo(8);
+    void lottoCount() {
+        int price = LottoManager.priceInput("8000");
+        assertThat(price / Const.priceUnit).isEqualTo(8);
     }
 
     @DisplayName("숫자가 아닌 로또번호 입력시 예외가 발생한다.")
     @Test
-    void numbersFormatValidate() {
+    void notIntegerNumbers() {
         String[] wrongNumbers = {"a", "1", "2", "3", "4", "5"};
 
         assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
@@ -47,7 +47,7 @@ class LottoManagerTest {
 
     @DisplayName("1~45의 범위를 벗어나면 예외가 발생한다.")
     @Test
-    void arrangeValidate() {
+    void outOfRangeNumbers() {
         String[] wrongNumbers = {"46", "0", "2", "3", "4", "5"};
 
         assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
@@ -55,7 +55,7 @@ class LottoManagerTest {
 
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
     @Test
-    void countValidate() {
+    void incorrectCount() {
         String[] wrongNumbers = {"2", "3", "4", "5"};
 
         assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
@@ -63,19 +63,27 @@ class LottoManagerTest {
 
     @DisplayName("중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void duplicateValidate() {
+    void duplicateNumber() {
         String[] wrongNumbers = {"1", "1", "2", "3", "4", "5"};
 
         assertThatThrownBy(() -> LottoManager.createUserNumbers(wrongNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("숫자가 아닌 보너스 번호 입력시 예외가 발생한다.")
+    @Test
+    void notIntegerBonusNumber() {
+        assertThatThrownBy(() -> LottoManager.bonusNumberInput("aaa", List.of(1, 2, 3, 4, 5, 6))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("범위를 벗어난 보너스 번호 입력시 예외가 발생한다.")
+    @Test
+    void outOfRangeBonusNumber() {
+        assertThatThrownBy(() -> LottoManager.bonusNumberInput("70", List.of(1, 2, 3, 4, 5, 6))).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호와 당첨 번호가 중복되면 예외가 발생한다.")
     @Test
     void duplicateWithLotto() {
-        LottoManager manager = new LottoManager();
-        User user = new User(1000);
-        user.setUserLotto(Lotto.createUserNumbers(List.of(1, 2, 3, 4, 5, 6)));
-
-        assertThatThrownBy(() -> manager.createBonusNumber("1", user)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoManager.bonusNumberInput("1", List.of(1, 2, 3, 4, 5, 6))).isInstanceOf(IllegalArgumentException.class);
     }
 }

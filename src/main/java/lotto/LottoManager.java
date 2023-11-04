@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,33 +49,15 @@ public class LottoManager {
         }
     }
 
-    public void bonusNumberInput(User user) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
+    public static int bonusNumberInput(String input, List<Integer> userCreatedLotto) {
+        int bonusNumber = numberFormatValidate(input);
+        arrangeValidate(bonusNumber);
 
-        try {
-            createBonusNumber(input, user);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            bonusNumberInput(user);
-        }
-
-    }
-
-    public void createBonusNumber(String input, User user) {
-        int number = numberFormatValidate(input);
-        duplicateWithLotto(number, user);
-        arrangeValidate(number);
-        user.setBonusNumber(number);
-    }
-
-    private void duplicateWithLotto(int number, User user) {
-        List<Integer> numbers = user.getUserLotto().getNumbers();
-
-        if (numbers.contains(number)) {
+        if (userCreatedLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않은 숫자여야 합니다.");
         }
+
+        return bonusNumber;
     }
 
     public void printWinningResult(User user) {

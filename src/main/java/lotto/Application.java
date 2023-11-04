@@ -19,7 +19,9 @@ public class Application {
 
         user.setUserLotto(lotto);
 
-        lottoManager.bonusNumberInput(user);
+        int bonusNumber = readBonusNumber(lotto.getNumbers());
+
+        user.setBonusNumber(bonusNumber);
 
         lottoManager.printWinningResult(user);
 
@@ -73,6 +75,27 @@ public class Application {
 
             if (!errorFlag) {
                 return userCreatedLotto;
+            }
+        }
+    }
+
+    private static int readBonusNumber(List<Integer> userCreatedLotto) {
+        int bonusNumber = 0;
+        boolean errorFlag = true;
+
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                bonusNumber = LottoManager.bonusNumberInput(input, userCreatedLotto);
+                errorFlag = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+            if (!errorFlag) {
+                return bonusNumber;
             }
         }
     }

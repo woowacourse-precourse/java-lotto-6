@@ -10,18 +10,20 @@ public class AssetManager {
     private int lottoTickets;
 
     public AssetManager(int budget) {
+        validateBudget(budget);
         this.budget = budget;
     }
 
     private void buyLotto() {
+        this.lottoTickets = this.budget / LOTTO_PRICE;
     }
 
-    private void validateBudget() throws IllegalArgumentException {
-        if (this.budget % LOTTO_PRICE != ZERO) {
+    private void validateBudget(int budget) throws IllegalArgumentException {
+        if (budget % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(ErrorMessages.NOT_ALLOW_REMAINDER.toString());
         }
 
-        if (this.budget < LOTTO_PRICE) {
+        if (budget < LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessages.TOO_LOW_BUDGET.toString());
         }
     }

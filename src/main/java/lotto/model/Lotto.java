@@ -21,10 +21,10 @@ public class Lotto {
     }
 
     public static Lotto createWith(final NumbersGenerator numbersGenerator) {
-        List<Integer> generate = numbersGenerator.generate();
-        validateSixNumbers(generate);
-        validateDuplicateNumbers(generate);
-        return new Lotto(generate);
+        List<Integer> numbers = numbersGenerator.generate();
+        validateSixNumbers(numbers);
+        validateDuplicateNumbers(numbers);
+        return new Lotto(numbers);
     }
 
     private static void validateSixNumbers(final List<Integer> numbers) {

@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.*;
 
 import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
 
 public class OutputView {
 
@@ -25,12 +27,13 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Prize prize : Prize.values()) {
+            if (prize == Prize.LAST_PLACE) continue;
             if (!prize.getCheckBonus()) {
                 System.out.printf("%d개 일치 (%s) - %d개",
                         prize.getCountOfSameNumbers(),
                         formatter.format(prize.getReward()),
                         prizes.countPrize(prize));
-            } else {
+            } else if (prize.getCheckBonus()){
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개",
                         prize.getCountOfSameNumbers(),
                         formatter.format(prize.getReward()),

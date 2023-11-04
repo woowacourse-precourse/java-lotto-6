@@ -5,6 +5,9 @@ import lotto.domain.Lotto;
 
 public class OutputView {
     public static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";
+    private static final String WINNING_STATISTICS_TITLE = "당첨 통계";
+    private static final String SEPARATOR = "---";
+
 
     public void displayLottoCount(long lottoCount) {
         System.out.println(lottoCount + LOTTO_PURCHASE_MESSAGE);
@@ -17,8 +20,8 @@ public class OutputView {
     }
 
     public void displayWinningLotto(String winnerStatistics) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS_TITLE);
+        System.out.println(SEPARATOR);
         System.out.println(winnerStatistics);
     }
 }

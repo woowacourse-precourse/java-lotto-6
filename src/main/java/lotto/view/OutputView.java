@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.view.constants.PrintMessage;
 
-public final class OutputView{
+public class OutputView{
     private OutputView() {
     }
 

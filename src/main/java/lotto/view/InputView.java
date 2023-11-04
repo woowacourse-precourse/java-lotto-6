@@ -3,18 +3,18 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.LottoException;
 
-import static lotto.exception.ErrorMessage.PURCHASE_PRICE_NOT_INTEGER;
+import static lotto.exception.ErrorMessage.PAYMENT_NOT_INTEGER;
 
-public final class InputView {
+public class InputView {
     private InputView() {
     }
 
-    public static int readPurchasePrice() {
+    public static int readPayment() {
         try {
             final String input = Console.readLine();
             return convertStringToInt(input);
         } catch (LottoException exception) {
-            return readPurchasePrice();
+            return readPayment();
         }
     }
 
@@ -22,7 +22,7 @@ public final class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw LottoException.of(PURCHASE_PRICE_NOT_INTEGER, exception);
+            throw LottoException.of(PAYMENT_NOT_INTEGER, exception);
         }
     }
 }

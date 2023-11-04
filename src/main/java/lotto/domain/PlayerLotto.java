@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,8 +10,8 @@ public class PlayerLotto {
 
     private final List<Lotto> playerNumbers;
 
-    public PlayerLotto(List<Lotto> playerNumbers) {
-        this.playerNumbers = playerNumbers;
+    public PlayerLotto() {
+        this.playerNumbers = new ArrayList<>();
     }
 
     public List<Integer> generateSixNumbers() {
@@ -19,8 +20,8 @@ public class PlayerLotto {
         Collections.sort(sixNumbers);
         return sixNumbers;
     }
-    public List<Lotto> generatePlayerNumbers(int purchasePrice) {
-        int buyingCount = Unit.getPurchaseNumber(purchasePrice);
+
+    public List<Lotto> generatePlayerNumbers(int buyingCount) {
         for (int i = 0; i < buyingCount; i++) {
             playerNumbers.add(new Lotto(generateSixNumbers()));
         }

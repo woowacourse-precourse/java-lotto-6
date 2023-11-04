@@ -12,4 +12,7 @@ public class InputView {
         return Console.readLine();
     }
 
+    public String inputBonusNumber() {
+        return Console.readLine();
+    }
 }

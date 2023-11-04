@@ -18,4 +18,9 @@ public class OutputView {
         String message = ConstantStringManager.WINNING_NUMBER_INPUT_NOTIFY.getMessage();
         System.out.println(message);
     }
+
+    public void printBonusNumberInputNotify() {
+        String message = ConstantStringManager.BONUS_NUMBER_INPUT_NOTIFY.getMessage();
+        System.out.println(message);
+    }
 }

@@ -20,7 +20,7 @@ public class Application {
         user.purchaseLotto();
 
         // 4. 로또 번호 출력
-        Computer.printLottos(user.lottos);
+        Output.printLottos(user.lottos);
 
         // 5. 당첨 번호 입력
         Lotto winningLotto = LottoGenerator.createWinningLotto();

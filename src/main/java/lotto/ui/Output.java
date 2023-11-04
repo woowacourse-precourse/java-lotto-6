@@ -1,12 +1,22 @@
 package lotto.ui;
 
 import java.util.List;
+import lotto.domain.Computer;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 
 public class Output {
     public static void printPurchase(){
         System.out.println("구입금액을 입력해 주세요.");
     }
+    public  static void printLottos(List<Lotto> lottos){
+        List<Lotto> sortedLottos = Computer.sortLottos(lottos);
+        for (Lotto sortedLotto : sortedLottos) {
+            System.out.println(sortedLotto.getNumbers());
 
+        }
+
+    }
     public static void printResult(List<Integer> lottoResult, Double earningRate) {
         System.out.println("당첨 통계");
         System.out.println("---");

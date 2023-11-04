@@ -39,7 +39,7 @@ public class Lotto {
 
     private void checkInBound(Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OVERBOUND.getMessage());
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_BOUND.getMessage());
         }
     }
 

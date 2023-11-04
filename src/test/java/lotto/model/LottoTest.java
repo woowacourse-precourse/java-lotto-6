@@ -31,7 +31,7 @@ class LottoTest {
     public void createLottoByOverBoundNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.LOTTO_NUMBER_OVERBOUND.getMessage());
+                .hasMessage(Error.LOTTO_NUMBER_OUT_OF_BOUND.getMessage());
     }
 
     @DisplayName("로또 번호가 서로 다른 6자리 숫자이면 Lotto가 생성된다.")

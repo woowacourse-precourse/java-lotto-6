@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import lotto.dto.LottosDto;
 import lotto.service.LottoService;
 import lotto.service.ResultService;
 import lotto.service.UserService;
-import lotto.view.View;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Game {
     private final UserService userService = new UserService();
@@ -14,17 +16,15 @@ public class Game {
 
         boolean isValidPurchaseAmount = false;
         while (!isValidPurchaseAmount) {
-            String purchaseAmountInput = View.inputPurchaseAmount();
+            String purchaseAmountInput = InputView.inputPurchaseAmount();
             try {
                 userService.validatePurchaseAmount(purchaseAmountInput);
                 isValidPurchaseAmount = true;
             } catch (IllegalArgumentException e) {
-                View.printMessage(e.getMessage());
+                OutputView.printMessage(e.getMessage());
             }
         }
-
-        userService.purchaseLottos();
-
-
+        LottosDto createdLottos = userService.purchaseLottos();
+        OutputView.printLottos(createdLottos);
     }
 }

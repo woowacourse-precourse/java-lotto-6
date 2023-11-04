@@ -1,9 +1,9 @@
 package lotto.domain;
 
 public class Money {
-    private int money;
+    private final int money;
     public Money(int money) {
-        if(!validate(money)) throw new IllegalArgumentException("[Error]: 단위는 1000단위로 떨어져야 합니다.");
+        validate(money);
         this.money = money;
     }
 
@@ -11,7 +11,9 @@ public class Money {
         return money;
     }
 
-    private boolean validate(int money) {
-        return money % ValidationConstants.STANDARD_UNIT == 0;
+    private void validate(int money) {
+        if(money % ValidationConstants.STANDARD_UNIT != 0) {
+            throw new IllegalArgumentException("[Error]: 단위는 1000단위로 떨어져야 합니다.");
+        }
     }
 }

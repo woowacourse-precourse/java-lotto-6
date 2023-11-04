@@ -59,24 +59,4 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-
-    public String toString() {
-        Collections.sort(numbers);
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("[");
-        for (Integer number : numbers) {
-            stringBuilder.append(number);
-            stringBuilder.append(",");
-            stringBuilder.append(" ");
-        }
-
-//        stringBuilder.replace(
-//                stringBuilder.length()-2,
-//                     stringBuilder.length(),
-//                    "]");
-
-        String lottoNumbers = stringBuilder.toString();
-        return lottoNumbers;
-    }
 }

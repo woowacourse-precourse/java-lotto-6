@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.utils.validator.ErrorMessageConstants.DUPLICATE_ERROR;
+import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.utils.validator.ErrorMessageConstants.RANGE_ERROR;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +35,13 @@ public class WinningNumbers {
 
     private void validateNumberRange() {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException("1부터 45");
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+RANGE_ERROR);
         }
     }
 
     private void validateDuplicate() {
         if(mainNumbers.getNumbers().contains(bonusNumber)){
-            throw new IllegalArgumentException("중복");
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+DUPLICATE_ERROR);
         }
     }
 

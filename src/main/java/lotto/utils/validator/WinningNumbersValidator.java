@@ -1,5 +1,9 @@
 package lotto.utils.validator;
 
+import static lotto.utils.validator.ErrorMessageConstants.COMMA_POSITION_ERROR_MESSAGE;
+import static lotto.utils.validator.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.utils.validator.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +19,7 @@ public class WinningNumbersValidator {
 
     private static void validateCommaPosition(String inputValue) {
         if (inputValue.startsWith(",") || inputValue.endsWith(",")) {
-            throw new IllegalArgumentException("콤마 위치");
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+COMMA_POSITION_ERROR_MESSAGE);
         }
     }
 
@@ -24,7 +28,7 @@ public class WinningNumbersValidator {
         try {
             stringToInt(numbers);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("숫자");
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+NUMBER_FORMAT_ERROR_MESSAGE);
         }
 
     }

@@ -6,7 +6,12 @@ public enum OutputMessage {
     NUMBER_DELIMITER(", "),
     NEW_LINE("\n"),
     READ_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
-    READ_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+    READ_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    MATCH_COUNT("%d개 일치"),
+    BONUS_MATCH(", 보너스 볼 일치"),
+    PRIZE_AMOUNT(" (%,d원) - "),
+    WINNING_NUMBER("%d개\n");
+
 
     private final String message;
 

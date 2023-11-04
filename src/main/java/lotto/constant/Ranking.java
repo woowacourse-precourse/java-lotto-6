@@ -28,4 +28,16 @@ public enum Ranking {
                 .findAny()
                 .orElse(Ranking.NONE);
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean isSecond() {
+        return this == Ranking.SECOND;
+    }
 }

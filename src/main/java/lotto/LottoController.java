@@ -1,12 +1,22 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     static final int MONEY_UNIT = 1000;
+    static final int LOTTERY_COST = 1000;
+
+    LotteryService lotteryService = new LotteryService();
     public void run(){
         try{
-            int userMoney= getMoney();
+            int userMoney = getMoney();
+            int lotteryCount = userMoney / LOTTERY_COST;
+            List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
+
         } catch(IllegalArgumentException e){
 
         }

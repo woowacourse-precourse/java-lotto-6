@@ -43,8 +43,12 @@ public class WinningNumber {
     }
 
     private void validateWinningNumbersContainsBonusNumber(BonusNumber bonus) {
-        if (numbers.contains(bonus.getNumber())) {
+        if (bonusNumberAlreadyIncluded(bonus)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED_WITH_WINNING.toString());
         }
+    }
+
+    private boolean bonusNumberAlreadyIncluded(BonusNumber bonus) {
+        return numbers.contains(bonus.getNumber());
     }
 }

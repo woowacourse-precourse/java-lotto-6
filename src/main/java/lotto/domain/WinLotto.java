@@ -18,4 +18,8 @@ public class WinLotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int getBonus_num() {
+        return bonus_num;
+    }
 }

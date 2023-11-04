@@ -42,10 +42,21 @@ public class GameController {
         winLotto.setBonus_num(bonus_num);
 
         //6) 당첨에 대한 통계 기능
+        judgePrizeLotto(winLotto, lotto_list, winLottoResult);
+        printResultLottoPrize(winLottoResult);
+
+        //7) 수익률 계산 기능
+
+    }
+
+    /**
+     * 6. 당첨에 대한 통계 기능
+     */
+    static void judgePrizeLotto(WinLotto winLotto, List<Lotto> lottoList, WinLottoResult winLottoResult) {
         Map<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < lotto_count; i++) {
-            int count = countWithNum(lotto_list.get(i), winLotto);
-            boolean flag = isBunus(lotto_list.get(i), bonus_num);
+        for (int i = 0; i < lottoList.size(); i++) {
+            int count = countWithNum(lottoList.get(i), winLotto);
+            boolean flag = isBunus(lottoList.get(i), winLotto.getBonus_num());
 
             if (count == 3) {
                 map.put("three", map.getOrDefault("three", 0) + 1);
@@ -71,16 +82,8 @@ public class GameController {
                 }
             }
         }
-
-        printResultLottoPrize(winLottoResult);
-
-        //7) 수익률 계산 기능
-
     }
 
-    /**
-     * 6. 당첨에 대한 통계 기능
-     */
     static boolean isBunus(Lotto lotto, int bonus) {
         List<Integer> list = lotto.getNumbers();
         if (list.contains(bonus)) {
@@ -108,34 +111,27 @@ public class GameController {
     /**
      * 결과 출력
      */
-
-
-    static double printResultLottoPrize(WinLottoResult winLottoResult) {
-        double totalSumPrice = 0;
+    static void printResultLottoPrize(WinLottoResult winLottoResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
 
         for (WinLottoResult ans : winLottoResult.values()) {
             if (ans.getName().equals("three")) {
-                totalSumPrice += (5000 * ans.getCount());
                 System.out.println("3개 일치 (5,000원) - " + ans.getCount() + "개");
             }
             if (ans.getName().equals("four")) {
-                totalSumPrice += (50000 * ans.getCount());
                 System.out.println("4개 일치 (50,000원) - " + ans.getCount() + "개");
             }
             if (ans.getName().equals("five")) {
-                totalSumPrice += (1500000 * ans.getCount());
                 System.out.println("5개 일치 (1,500,000원) - " + ans.getCount() + "개");
             }
             if (ans.getName().equals("six")) {
-                totalSumPrice += (2000000000 * ans.getCount());
                 System.out.println("6개 일치 (2,000,000,000원) - " + ans.getCount() + "개");
             }
             if (ans.getName().equals("five_bonus")) {
-                totalSumPrice += (30000000 * ans.getCount());
                 System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ans.getCount() + "개");
             }
         }
-        return totalSumPrice;
     }
 
 

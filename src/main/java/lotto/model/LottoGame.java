@@ -24,4 +24,12 @@ public class LottoGame {
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    private boolean containBonusNumber(BonusNumber bonusNumber, List<Integer> playerNumbers) {
+        Integer number = bonusNumber.number();
+        if (playerNumbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
 }

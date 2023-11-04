@@ -52,4 +52,10 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_IN_RANGE);
         }
     }
+
+    public static void isSixItems(String[] input) {
+        if (input.length != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_SIX_ITEMS);
+        }
+    }
 }

@@ -24,6 +24,8 @@ public class ConsoleInput implements Input {
         String inputWinningNumbers = Console.readLine();
         List<Integer> winningNumbers = SplitNumber.splitNumber(inputWinningNumbers);
 
+        inputValidator.validateWinningNumbers(winningNumbers);
+
         return winningNumbers;
     }
 

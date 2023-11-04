@@ -3,15 +3,15 @@ package lotto.dto;
 import lotto.domain.lotto.Lottos;
 
 public class LottoGameInfo {
-    private final int amount;
+    private final long amount;
     private final Lottos lottos;
 
-    public LottoGameInfo(int amount, Lottos lottos) {
+    public LottoGameInfo(long amount, Lottos lottos) {
         this.amount = amount;
         this.lottos = lottos;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 

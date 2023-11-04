@@ -26,7 +26,7 @@ public class LottoResultOutputView {
                 .forEach(lottoRank -> lottoRank.accept(lottoRankCountMap.get(lottoRank)));
     }
 
-    public void printTotalProfitRate(int amount, Map<LottoRank, Long> lottoRankCountMap) {
+    public void printTotalProfitRate(long amount, Map<LottoRank, Long> lottoRankCountMap) {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
         long totalAmount = lottoRanks.stream()
                 .mapToLong(lottoRank -> lottoRank.calculate(lottoRankCountMap.get(lottoRank)))

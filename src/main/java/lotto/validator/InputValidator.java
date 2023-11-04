@@ -10,20 +10,14 @@ public class InputValidator {
     private static final int END_LOTTO_NUMBER = 45;
     private static final int LOTTO_LIMIT_VALUE = 6;
 
-    public void validateLottoAmount(int amount) {
-        if (isPositiveNumber(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
+    public long parseLong(String requestNumber) {
+        long number;
+        try {
+            number = Long.parseLong(requestNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_FORMAT.getMessage());
         }
-    }
-
-    private boolean isPositiveNumber(int number) {
-        return number <= 0;
-    }
-
-    public void validateMultipleOfDenomination(int amount, int denomination) {
-        if (amount % denomination != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
-        }
+        return number;
     }
 
     public int parseInt(String requestNumber) {
@@ -31,21 +25,25 @@ public class InputValidator {
         try {
             number = Integer.parseInt(requestNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
         return number;
     }
 
+    public void validatePositiveNumber(long number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
+        }
+    }
+
     public void validateLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (isLottoNumberRange(number)) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-            }
+            validateLottoNumberRange(number);
         }
     }
 
     public void validateLottoNumberRange(int number) {
-        if (isPositiveNumber(number)) {
+        if (isLottoNumberRange(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }

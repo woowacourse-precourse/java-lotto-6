@@ -4,6 +4,7 @@ import lotto.dto.LottoGameInfo;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.dto.LottoResult;
+import lotto.util.LottoShop;
 import lotto.view.input.LottoNumberInputView;
 import lotto.view.input.LottoShopInput;
 
@@ -18,8 +19,8 @@ public class LottoInputController {
     }
 
     public LottoGameInfo createLottoGame() {
-        int amount = lottoShopInput.requestLottoPurchaseAmount();
-        Lottos lottos = lottoShopInput.buyLottos(amount);
+        long amount = lottoShopInput.requestLottoPurchaseAmount();
+        Lottos lottos = LottoShop.buyLottos(amount);
         return new LottoGameInfo(amount, lottos);
     }
 

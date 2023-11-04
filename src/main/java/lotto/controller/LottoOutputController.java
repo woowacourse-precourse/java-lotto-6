@@ -52,7 +52,7 @@ public class LottoOutputController {
         lottoResultOutputView.printDashLine();
     }
 
-    private void printTotalProfitRate(int amount, Map<LottoRank, Long> lottoRankCountMap) {
+    private void printTotalProfitRate(long amount, Map<LottoRank, Long> lottoRankCountMap) {
         lottoResultOutputView.printTotalProfitRate(amount, lottoRankCountMap);
     }
 }

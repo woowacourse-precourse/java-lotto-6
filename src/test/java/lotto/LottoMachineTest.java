@@ -32,16 +32,21 @@ public class LottoMachineTest {
     @ParameterizedTest
     @MethodSource("generateData")
     public void issueLotto(List<Integer> randomNumbers) {
+        // when
         List<Integer> issuedLotto = lottoMachine.issueLotto(() -> randomNumbers);
 
+        // then
         assertTrue(issuedLotto.size() == 6);
+        assertTrue(lottoMachine.getIssuedLottos().size() == 1);
     }
 
     @DisplayName("발행한 복권을 저장한다.")
     @Test
     public void issuedLottos() {
+        // given & when
         List<Integer> issuedLotto1 = lottoMachine.issueLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6));
 
+        // then
         List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
         issuedLottos.stream().forEach(lotto ->
                 assertThat(lotto.getNumbers()).isEqualTo(issuedLotto1));
@@ -50,8 +55,10 @@ public class LottoMachineTest {
     @DisplayName("발행한 복권은 오름차순으로 저장된다.")
     @Test
     public void issuedLottosSort() {
+        // given & when
         lottoMachine.issueLotto(() -> Arrays.asList(6, 5, 4, 3, 2, 1));
 
+        // then
         List<Lotto> issuedLottos = lottoMachine.getIssuedLottos();
         issuedLottos.stream().forEach(lotto ->
                 assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6)));

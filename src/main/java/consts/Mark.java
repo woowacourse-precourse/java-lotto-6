@@ -12,4 +12,8 @@ public enum Mark {
     Mark(final String mark) {
         this.mark = mark;
     }
+
+    public String mark() {
+        return mark;
+    }
 }

@@ -1,10 +1,15 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 import lotto.service.LottoService;
 import lotto.view.Input;
 import lotto.view.Output;
+
+/*
+ *   사용자와 로또게임 사이의 흐름을 담당
+ * */
 
 public class LottoController {
 
@@ -24,21 +29,41 @@ public class LottoController {
 
     public void run() {
         Player player = start();    //가독성이 나쁘지는 않을까? start를 통해서 player가 생성된다는 의미가 전달되나?
+        output.purchaseLotts(player);
+        play(player);
     }
 
     private Player start() {
         output.requestPurchasePrice();
-        String input = this.input.purchasePrice();
-        PurchasePrice purchasePrice = lottoService.createPurchasePrice(input);
+        PurchasePrice purchasePrice = createPurchasePrice();
         output.purchaseCount(purchasePrice);
         return lottoService.createPlayer(purchasePrice);
     }
 
-    private void play() {
-
+    private PurchasePrice createPurchasePrice() {
+        try {
+            return PurchasePrice.from(input.purchasePrice());
+        } catch (IllegalArgumentException e) {
+            return createPurchasePrice();
+        }
     }
 
-    private void showGameResult() {
+    private void play(Player player) {
+        output.requestWinningNumbers();
+        Lotto lotteryResult = createLotteryResult();
+        System.out.println(lotteryResult.getNumbers());
+    }
 
+    private Lotto createLotteryResult() {
+        return createWinningNumbers();
+//        createBonusNumber();
+    }
+
+    private Lotto createWinningNumbers() {
+        try {
+            return new Lotto(input.winningNumbers());
+        } catch (IllegalArgumentException e) {
+            return createWinningNumbers();
+        }
     }
 }

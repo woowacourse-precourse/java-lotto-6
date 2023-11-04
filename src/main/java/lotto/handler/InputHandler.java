@@ -27,19 +27,16 @@ public class InputHandler {
     }
 
     public List<Integer> handleWinningNumbers(String winningNumbersInput) {
-        String[] numbersInput = winningNumbersInput.split(COMMA);
-
         List<Integer> winningNumbers = new ArrayList<>();
+        String[] numbersInput = winningNumbersInput.split(COMMA);
         for (String numberInput : numbersInput) {
             validateNull(numberInput);
 
             int winningBall = parseInteger(numberInput);
             validateBall(winningBall);
-
             winningNumbers.add(winningBall);
         }
         validateWinningNumbers(winningNumbers);
-
         return winningNumbers;
     }
 

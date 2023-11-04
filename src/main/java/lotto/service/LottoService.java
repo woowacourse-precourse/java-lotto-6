@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class LottoService {
     public static final int LOTTO_PRICE = 1000;
-    public static final int DEFAULT_COUNT = 0;
+    public static final int DEFAULT_WINNING_COUNT = 0;
 
     private final LottoWinningStrategy lottoWinningStrategy;
     private final NumberGenerator numberGenerator;
@@ -34,11 +34,11 @@ public class LottoService {
     }
 
     public WinningStatistics getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusBall) {
-        List<Result> results = matchLotto(lottos, winningNumbers, bonusBall);
+        List<Result> results = matchLottos(lottos, winningNumbers, bonusBall);
 
         Map<Rank, Integer> winningCount = new HashMap<>();
         for (Result result : results) {
-            winningCount.put(result.getRank(), winningCount.getOrDefault(result.getRank(), DEFAULT_COUNT) + 1);
+            winningCount.put(result.getRank(), winningCount.getOrDefault(result.getRank(), DEFAULT_WINNING_COUNT) + 1);
         }
 
         double profitRate = calculateProfitRate(results.size(), winningCount);
@@ -52,7 +52,7 @@ public class LottoService {
         return new Lotto(generatedNumbers);
     }
 
-    private List<Result> matchLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusBall) {
+    private List<Result> matchLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusBall) {
         List<Result> results = lottos.stream()
                 .map(lotto -> lotto.determineResult(lottoWinningStrategy, winningNumbers, bonusBall))
                 .toList();

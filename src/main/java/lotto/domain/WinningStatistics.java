@@ -7,7 +7,7 @@ public class WinningStatistics {
     private final double profitRate;
 
     public WinningStatistics(Map<Rank, Integer> winningCount, double profitRate) {
-        this.winningCount = Map.copyOf(winningCount);
+        this.winningCount = winningCount;
         this.profitRate = profitRate;
     }
 

@@ -60,11 +60,12 @@
 
 ### Numbers
 - [x] 생성된 각 로또를 저장한다.
+  - [x] 각 로또들은 오름차순으로 정렬한다.
 
 ### Number
 - [x] 로또의 번호를 저장한다.
 
-### LottosResultDto
+### LottosResultFormatter
 - [x] 생성된 로또들을 출력 형태에 맞게 전달해준다.
 
 ### LottoStatistics

@@ -5,7 +5,9 @@ import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -20,8 +22,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicateNumber(numbers);
+    }
+
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.COUNT.getValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_NUMBER.getMessage());
+        }
+    }
+
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
+        if (notDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 

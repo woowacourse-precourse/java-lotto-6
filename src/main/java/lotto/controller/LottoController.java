@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
@@ -20,13 +21,12 @@ public class LottoController {
 
     private Lottos buyLotto(){
         Budget budget = Budget.from(InputView.getBudgetInput());
-        Lottos userMultipleLottos = Lottos.from(lottoGenerator.generateMultipleLottoByBudget(budget));
+        Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
         OutputView.printUserLottos(userMultipleLottos, budget);
         return userMultipleLottos;
     }
 
     private WinningLotto drawLotto(){
-        String input = Console.readLine();
         Lotto lotto = lottoGenerator.generateWinningLotto();
     }
 }

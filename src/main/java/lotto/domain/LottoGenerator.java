@@ -19,12 +19,12 @@ public class LottoGenerator {
         return new Lotto(LottoParser.parseWinningInputs(Console.readLine()));
     }
 
-    public List<Lotto> generateMultipleLottoByBudget(Budget budget){
+    public Lottos generateLottosByBudget(Budget budget){
         int countOfLottoLine = budget.getCountOfLottoLines();
         List<Lotto> lottos = new ArrayList<>();
         for(int i=0; i< countOfLottoLine; i++){
             lottos.add(generateUserLotto());
         }
-        return lottos;
+        return Lottos.from(lottos);
     }
 }

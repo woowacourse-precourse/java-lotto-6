@@ -19,7 +19,7 @@ public class LottoTicketService {
         return new LottoTicketCount(ticketCountValue);
     }
 
-    public Lotto generateLottoNumbers(LottoTicketCount lottoTicketCount) {
+    public Lotto generateSingleLottoNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
         return new Lotto(lottoNumbers);
     }

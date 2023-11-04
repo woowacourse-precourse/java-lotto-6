@@ -92,11 +92,11 @@ public class Application {
         }
 
         // TODO: 로또 번호와 당첨 번호 비교
-        int winner5th = 0;
-        int winner4th = 0;
-        int winner3rd = 0;
-        int winner2nd = 0;
-        int winner1st = 0;
+        int rank5th = 0;
+        int rank4th = 0;
+        int rank3rd = 0;
+        int rank2nd = 0;
+        int rank1st = 0;
 
         int prize = 0;
 
@@ -114,23 +114,23 @@ public class Application {
             }
 
             if (lottoCount == 3) {
-                winner5th++;
+                rank5th++;
                 prize += 5000;
             }
             else if (lottoCount == 4) {
-                winner4th++;
+                rank4th++;
                 prize += 50000;
             }
             else if (lottoCount == 5) {
-                winner3rd++;
+                rank3rd++;
                 prize += 1500000;
             }
             else if (lottoCount == 5 && lottoBonusCount == 1) {
-                winner2nd++;
+                rank2nd++;
                 prize += 30000000;
             }
             else if (lottoCount == 6) {
-                winner1st++;
+                rank1st++;
                 prize += 2000000000;
             }
         }
@@ -139,11 +139,11 @@ public class Application {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + winner5th + "개");
-        System.out.println("4개 일치 (50,000원) - " + winner4th + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winner3rd + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner2nd + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winner1st + "개");
+        System.out.println("3개 일치 (5,000원) - " + rank5th + "개");
+        System.out.println("4개 일치 (50,000원) - " + rank4th + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rank3rd + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank2nd + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rank1st + "개");
 
         // TODO: 수익률 계산
         double rateOfReturn = ((double) prize / lottoBought) * 100.0;

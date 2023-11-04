@@ -2,6 +2,17 @@ package lotto.domain;
 
 public class PurchaseAmount {
 
+    private final int purchaseAmount;
+
+    private PurchaseAmount(String purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
+        this.purchaseAmount = Integer.parseInt(purchaseAmount);
+    }
+
+    public static PurchaseAmount from(String purchaseAmount) {
+        return new PurchaseAmount(purchaseAmount);
+    }
+
     public void validatePurchaseAmount(String purchaseAmount) {
         validatePurchaseAmountNotNumber(purchaseAmount);
         validatePurchaseAmountUnderThousand(Integer.parseInt(purchaseAmount));

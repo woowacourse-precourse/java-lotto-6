@@ -62,6 +62,7 @@ public class InputView {
         List<Integer> winnerNumbers = convertStrToInt(inputWinnerNumbers);
         validateDuplicatedNumber(winnerNumbers);
         validateNumbersRange(winnerNumbers);
+        System.out.println();
         return winnerNumbers;
     }
 
@@ -72,6 +73,7 @@ public class InputView {
         validateNumber(input);
         Integer number = parseStrToInt(input);
         validateNumberRange(number);
+        System.out.println();
         return number;
     }
 

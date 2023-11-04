@@ -73,6 +73,15 @@ public class UnitTest extends NsTest {
         assertThat(result).isEqualTo(expectedOutput);
     }
 
+    @Test
+    void testGetRevenueRate() {
+        int input1 = 5000;
+        int input2 = 8000;
+        double expectedOutput = 62.5;
+        double result = getRevenueRate(input1, input2);
+        assertThat(result).isEqualTo(expectedOutput);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

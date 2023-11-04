@@ -8,4 +8,6 @@ public class Seller {
         System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
     }
+
+
 }

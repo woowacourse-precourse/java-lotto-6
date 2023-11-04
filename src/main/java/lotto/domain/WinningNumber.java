@@ -27,8 +27,8 @@ public class WinningNumber {
         validateBonusNumber();
     }
 
-    public List<LottoResult> compareWithLottos(LottoTickets lottoTickets) {
-        return lottoTickets.getCompareResult(winningNumber, bonusNumber);
+    public LottoResults compareWithLottos(LottoTickets lottoTickets) {
+        return lottoTickets.getLottoResults(winningNumber, bonusNumber);
     }
 
     private void validateBonusNumber() {

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.view.constant.Message.NOTICE_STATS_SUBJECT;
+
 import lotto.view.constant.Message;
 
 public class ConsoleOutputView implements OutputView {
@@ -20,5 +22,10 @@ public class ConsoleOutputView implements OutputView {
 
     public void printEmptyLine() {
         System.out.println();
+    }
+
+    public void printResult(String message) {
+        printMessage(NOTICE_STATS_SUBJECT);
+        System.out.print(message);
     }
 }

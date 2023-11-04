@@ -31,14 +31,15 @@ public class LottoTickets {
 
     public List<String> getLottoNumbers() {
         return lottos.stream()
-                .map(Lotto::getLottoNumber)
+                .map(Lotto::toString)
                 .collect(Collectors.toList());
     }
 
-    public List<LottoResult> getCompareResult(Lotto winningNumber, int bonusNumber) {
-        return lottos.stream()
-                    .map(lotto -> calculateMatchResult(lotto, winningNumber, bonusNumber))
-                    .collect(Collectors.toList());
+    public LottoResults getLottoResults(Lotto winningNumber, int bonusNumber) {
+        List<LottoResult> lottoResults = lottos.stream()
+                .map(lotto -> calculateMatchResult(lotto, winningNumber, bonusNumber))
+                .collect(Collectors.toList());
+        return new LottoResults(lottoResults);
     }
 
     private LottoResult calculateMatchResult(Lotto lotto, Lotto winningNumber, int bonusNumber) {

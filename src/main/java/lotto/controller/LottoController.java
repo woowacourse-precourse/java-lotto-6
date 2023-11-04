@@ -2,11 +2,10 @@ package lotto.controller;
 
 import static lotto.view.constant.Message.NOTICE_PURCHASE_QUANTITY;
 
-import java.util.List;
 import java.util.Objects;
-import lotto.domain.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.domain.LottoResults;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningNumber;
 
@@ -27,7 +26,7 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         getBonusNumber(winningNumber);
 
-        List<LottoResult> results = winningNumber.compareWithLottos(lottoTickets);
+        printLottoResult(lottoTickets, winningNumber);
     }
 
     private LottoTickets getLottoTickets() {
@@ -54,5 +53,10 @@ public class LottoController {
 
     private void printLottoNumbers(LottoTickets lottoTickets) {
         outputView.printIterableMessage(lottoTickets.getLottoNumbers());
+    }
+
+    private void printLottoResult(LottoTickets lottoTickets, WinningNumber winningNumber) {
+        LottoResults results = winningNumber.compareWithLottos(lottoTickets);
+        outputView.printResult(results.toString());
     }
 }

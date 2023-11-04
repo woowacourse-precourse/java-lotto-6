@@ -9,4 +9,5 @@ public interface OutputView {
     public void printMessage(Message message);
     public void printDynamicMessage(Message message, Object... args);
     public void printIterableMessage(Iterable<?> iterable);
+    public void printResult(String message);
 }

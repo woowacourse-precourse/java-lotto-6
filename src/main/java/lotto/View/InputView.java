@@ -1,4 +1,4 @@
-package View;
+package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 
 import static lotto.Constants.*;

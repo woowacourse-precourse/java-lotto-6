@@ -24,7 +24,26 @@ public class Game {
             totalTicketCount = buyTicket();
         }
 
-        System.out.println(totalTicketCount + "개를 구매했습니다.");
+        showTickets(totalTicketCount);
+
+        pickLuckyNumbers();
+
+    }
+
+    private void pickLuckyNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<String> numberInput = stream(Console.readLine().split(",")).toList();
+        validateLuckyNumbers(numberInput);
+        List<Integer> luckyNumbers = new ArrayList<>();
+        for (String num : numberInput) {
+            luckyNumbers.add(Integer.parseInt(num));
+        }
+    }
+
+    void validateLuckyNumbers(List<String> numberInput) {
+        if (numberInput.size() != 6 || numberInput.size() != numberInput.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_LUCKY_NUMBERS.getDescription());
+        }
     }
 
     private int buyTicket() {

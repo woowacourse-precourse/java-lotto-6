@@ -14,6 +14,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateLottoLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 번호는 6개가 되야합니다.");
+        }
+    }
+
     public static void validateIsLottoNumber(int number) {
         if (number < 0 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 0에서 45사이의 숫자여야 합니다.");

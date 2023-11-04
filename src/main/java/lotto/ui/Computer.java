@@ -2,7 +2,6 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
 import lotto.Lotto;
 
 public class Computer {
@@ -21,7 +20,7 @@ public class Computer {
         return lottoCount;
     }
 
-    public Lotto calculateLottoNumber() {
+    public static Lotto calculateLottoNumber() {
 
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 

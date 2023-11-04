@@ -9,6 +9,16 @@ import lotto.ui.Computer;
 
 public class Application {
 
+
+    public static List<Lotto> createLottos(Integer lottoCount){
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(Computer.calculateLottoNumber());
+        }
+        return lottos;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -19,9 +29,7 @@ public class Application {
         user.purchaseLotto();
 
         // 로또 개수 만큼 번호 계산
-        for (int i = 0; i < user.lottoCount; i++) {
-            lottos.add(computer.calculateLottoNumber());
-        }
+        Application.createLottos(user.lottoCount);
 
         // 4. 로또 번호 출력
         for (Lotto lotto : lottos) {

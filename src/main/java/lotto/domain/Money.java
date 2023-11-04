@@ -7,6 +7,10 @@ public class Money {
         this.money = money;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private boolean validate(int money) {
         return money % ValidationConstants.STANDARD_UNIT == 0;
     }

@@ -25,6 +25,10 @@ public enum LottoGameException {
         this.exceptionMessage = message;
     }
 
+    public String getExceptionMessage() {
+        return exceptionMessage;
+    }
+
     public IllegalArgumentException makeException(){
         return new IllegalArgumentException(this.exceptionMessage);
     }

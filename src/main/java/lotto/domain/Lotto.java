@@ -2,8 +2,13 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Config;
 
 public class Lotto {
+
+    private static final int LOTTO_LENGTH = Config.LOTTO_LENGTH;
+    private static final int MIN_VALUE = Config.MIN_VALUE;
+    private static final int MAX_VALUE = Config.MAX_VALUE;
 
     private final List<Integer> numbers;
 
@@ -18,8 +23,9 @@ public class Lotto {
         validateRange(numbers);
     }
 
+
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
         }
     }
@@ -36,7 +42,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_VALUE || number > MAX_VALUE) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45 범위의 숫자만 가능합니다.");
             }
         }

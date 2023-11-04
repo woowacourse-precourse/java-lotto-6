@@ -15,13 +15,13 @@ public class ReturnCalculator {
         rateOfReturn *= 10;
         rateOfReturn = Math.round(rateOfReturn);
 
-        return rateOfReturn/10;
+        return rateOfReturn / 10;
     }
 
     private static int sumPrice(Map<WinningStatus, Integer> statusAndCount) {
         int returnMoney = 0;
         for (WinningStatus status : statusAndCount.keySet()) {
-            returnMoney += (statusAndCount.get(status) * status.getPrice());
+            returnMoney += (statusAndCount.get(status) * status.getPrize());
         }
 
         return returnMoney;

@@ -24,8 +24,12 @@ public enum WinningStatus {
         return this.matchCount;
     }
 
-    public int getPrice() {
+    public int getPrize() {
         return this.prize;
+    }
+
+    public int getMatchCount() {
+        return this.matchCount;
     }
 
     private static final Map<Integer, WinningStatus> BY_MATCHCOUNT =
@@ -36,6 +40,12 @@ public enum WinningStatus {
             return MATCH5_WITH_BONUS;
         }
 
-        return BY_MATCHCOUNT.get(matchCount);
+        for (WinningStatus status : values()) {
+            if (status.getMatchCount() == matchCount) {
+                return status;
+            }
+        }
+
+        return null;
     }
 }

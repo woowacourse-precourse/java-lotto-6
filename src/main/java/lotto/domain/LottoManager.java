@@ -85,6 +85,8 @@ public class LottoManager {
 
     public void getWinningStatus(List<Lotto> lottos) {
         Map<WinningStatus, Integer> winningStatus = winningNumbersManager.getWinningStatus(lottos);
-        double returnOfLotto = ReturnCalculator.calculate(winningStatus, lottos.size());
+        double rateOfReturn = ReturnCalculator.calculate(winningStatus, lottos.size());
+
+        output.printWinningStatus(winningStatus);
     }
 }

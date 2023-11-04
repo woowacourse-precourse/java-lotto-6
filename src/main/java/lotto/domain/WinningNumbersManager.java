@@ -31,7 +31,9 @@ public class WinningNumbersManager {
 
         for (Lotto lotto : lottos) {
             WinningStatus status = getWinningStatus(lotto);
-            winningStatus.put(status, winningStatus.get(status) + 1);
+            if (status != null) {
+                winningStatus.put(status, winningStatus.get(status) + 1);
+            }
         }
 
         return winningStatus;

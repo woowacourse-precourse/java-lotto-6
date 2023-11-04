@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.exception.Constant;
 
 public class LottoTickets {
@@ -11,6 +12,12 @@ public class LottoTickets {
 
     public LottoTickets(List<LottoTicket> tickets) {
         this.tickets = tickets;
+    }
+
+    private static List<Number> getRandomTicket() {
+        return generateRandomTicket().stream()
+                .map(Number::of)
+                .collect(Collectors.toList());
     }
 
     private static List<Integer> generateRandomTicket() {

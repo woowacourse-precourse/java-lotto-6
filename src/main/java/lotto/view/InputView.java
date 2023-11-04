@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.PurchasePrice;
 import lotto.util.TypeConvertor;
 
 public class InputView {
@@ -14,15 +15,15 @@ public class InputView {
     private InputView() {
     }
 
-    public Integer getMoney() {
+    public PurchasePrice getMoney() {
         System.out.println(Message.INPUT_MONEY.message);
         String input = Console.readLine();
-        return TypeConvertor.stringToInt(input);
+        Integer convertInput = TypeConvertor.stringToInt(input);
+        return PurchasePrice.of(convertInput);
     }
 
     private enum Message {
-        INPUT_MONEY("구입금액을 입력해 주세요."),
-        INPUT_MOVE_COUNT("시도할 회수는 몇회인가요?");
+        INPUT_MONEY("구입금액을 입력해 주세요.");
 
         private final String message;
 

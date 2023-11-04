@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.PurchasePrice;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,5 +17,9 @@ public class GameController {
         this.outputView = outputView;
     }
 
+    public void gameStart() {
+        PurchasePrice money = inputView.getMoney();
+
+    }
 
 }

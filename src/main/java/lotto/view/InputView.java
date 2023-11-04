@@ -31,8 +31,13 @@ public class InputView {
         return new Lotto(winningNumbers);
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningLotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String userBonusNumber = Console.readLine();
+        InputViewException.checkBonusTypeException(userBonusNumber);
+        int bonusNumber = Integer.parseInt(userBonusNumber.trim());
+        InputViewException.checkBonusNumberRangeException(userBonusNumber);
+        InputViewException.checkBonusNumberDuplicationException(winningLotto, bonusNumber);
+        return bonusNumber;
     }
 }

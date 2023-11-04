@@ -17,6 +17,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
     private void validate(List<LottoNumber> numbers) {
         validateLength(numbers);
         validateUnique(numbers);

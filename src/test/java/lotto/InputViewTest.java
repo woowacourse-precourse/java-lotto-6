@@ -1,7 +1,9 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class InputViewTest {
@@ -28,5 +30,11 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.inputPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 숫자로만 구성됩니다.");
+    }
+
+    @Test
+    void 당첨_번호_입력_테스트() {
+        List<Integer> prizeNumber = inputView.inputPrizeNumber("1,2,3,4,5,6");
+        assertThat(prizeNumber).hasSize(6);
     }
 }

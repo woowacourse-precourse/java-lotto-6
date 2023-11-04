@@ -1,10 +1,13 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.util.Converter;
 import lotto.util.NumberGenerator;
@@ -26,7 +29,9 @@ public class LottoController {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         Lottos lottos = generateLottos(money, numberGenerator);
         WinningLotto winningLotto = makeWinningLotto();
-        compareLotto(winningLotto, lottos);
+        Map<Rank, Integer> winningStatus = getWinningStatus(winningLotto, lottos);
+        double revenue = getRevenue(winningStatus, money);
+        printResult(winningStatus, revenue);
     }
 
     private Money getMoney() {
@@ -60,7 +65,33 @@ public class LottoController {
         return WinningLotto.of(lotto, bonusNumber);
     }
 
-    private void compareLotto(final WinningLotto winningLotto, final Lottos lottos) {
+    private Map<Rank, Integer> getWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
+        Map<Rank, Integer> ranks = new HashMap<>();
+        List<Lotto> lottoss = lottos.getLottos();
+        lottoss.forEach(lotto -> {
+            int sameCount = winningLotto.getSameCount(lotto.getNumbers());
+            boolean matchBonus = winningLotto.isMatchBonus(lotto.getNumbers());
+            Rank rank = Rank.getRank(sameCount, matchBonus);
+            ranks.put(rank, ranks.getOrDefault(rank, 0) + 1);
+        });
+        return ranks;
+    }
+
+    public double getRevenue(final Map<Rank, Integer> status, final Money money) {
+        long sumOfPrice = sumOfPrice(status);
+        return money.calculateRevenue(sumOfPrice);
+    }
+
+    private long sumOfPrice(final Map<Rank, Integer> status) {
+        return status.entrySet().stream()
+                .map(entry -> {
+                    Rank rank = entry.getKey();
+                    return rank.getPrice() * entry.getValue();
+                })
+                .reduce(0L, Long::sum);
+    }
+
+    private void printResult(final Map<Rank, Integer> status, final double revenue) {
 
     }
 }

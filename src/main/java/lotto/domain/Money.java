@@ -43,6 +43,14 @@ public class Money {
         return value % LOTTO_COST != ZERO_VALUE || value < LOTTO_COST;
     }
 
+    public int buyLotto() {
+        return amount / LOTTO_COST;
+    }
+
+    public double calculateRevenue(final long sumOfPrice) {
+        return ((double) amount / sumOfPrice) * 100;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -58,9 +66,5 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
-    }
-
-    public int buyLotto() {
-        return amount / LOTTO_COST;
     }
 }

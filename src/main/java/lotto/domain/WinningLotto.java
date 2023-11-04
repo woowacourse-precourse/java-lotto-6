@@ -30,6 +30,10 @@ public class WinningLotto {
         return new WinningLotto(lotto, number);
     }
 
+    public boolean isMatchBonus(final List<Number> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
+    }
+
     public int getSameCount(final List<Number> lottoNumbers) {
         return lotto.getSameCount(lottoNumbers);
     }

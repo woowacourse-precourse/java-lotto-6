@@ -5,10 +5,11 @@ import lotto.domain.Computer;
 import lotto.domain.Lotto;
 
 public class Output {
-    public static void printPurchase(){
+    public static void printPurchase() {
         System.out.println("구입금액을 입력해 주세요.");
     }
-    public  static void printLottos(List<Lotto> lottos){
+
+    public static void printLottos(List<Lotto> lottos) {
         List<Lotto> sortedLottos = Computer.sortLottos(lottos);
         for (Lotto sortedLotto : sortedLottos) {
             System.out.println(sortedLotto.getNumbers());
@@ -16,6 +17,11 @@ public class Output {
         }
 
     }
+
+    public static void printWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
     public static void printResult(List<Integer> lottoResult, Double earningRate) {
         System.out.println("당첨 통계");
         System.out.println("---");

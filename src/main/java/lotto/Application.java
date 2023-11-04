@@ -23,6 +23,7 @@ public class Application {
         Output.printLottos(user.lottos);
 
         // 5. 당첨 번호 입력
+        Output.printWinningNumber();
         Lotto winningLotto = LottoGenerator.createWinningLotto();
 
         // 6. 보너스 번호 입력

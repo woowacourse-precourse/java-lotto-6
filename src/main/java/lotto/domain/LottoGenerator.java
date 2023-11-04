@@ -52,7 +52,7 @@ public class LottoGenerator {
         Lotto winningLotto = null;
         while (isRunning) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+
                 List<String> userInputs = Arrays.asList(Computer.getInput().split(","));
 
                 List<Integer> inputNumber = new ArrayList<>();
@@ -66,7 +66,7 @@ public class LottoGenerator {
 
                     inputNumber.add(Integer.parseInt(userInput));
                 }
-                System.out.println(inputNumber);
+                System.out.println(inputNumber); // 테스트
                 winningLotto = new Lotto(inputNumber);
 
                 isRunning = false;

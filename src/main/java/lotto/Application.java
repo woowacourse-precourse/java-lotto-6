@@ -41,8 +41,8 @@ public class Application {
                 List<Integer> inputNumber = new ArrayList<>();
 
                 for (String userInput : userInputs) {
-                    computer.checkNumber(userInput);
-                    computer.checkZero(userInput);
+                    Validator.checkNumber(userInput);
+                    Validator.checkZero(userInput);
 
                     Integer lottoNumber = Integer.parseInt(userInput);
                     computer.checkRange(lottoNumber);
@@ -51,7 +51,6 @@ public class Application {
                 }
                 System.out.println(inputNumber);
                 winningLotto = new Lotto(inputNumber);
-
 
                 isRunning = false;
 
@@ -68,8 +67,8 @@ public class Application {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String userInput = computer.getInput();
 
-                computer.checkNumber(userInput);
-                computer.checkZero(userInput);
+                Validator.checkNumber(userInput);
+                Validator.checkZero(userInput);
 
                 bonusNumber = Integer.parseInt(userInput);
                 computer.checkRange(bonusNumber);

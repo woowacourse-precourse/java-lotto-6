@@ -16,7 +16,7 @@ public class GameManager {
         this.messageReceiver = messageReceiver;
     }
 
-    public void startGame() {
+    public void runGame() {
         LottoGame lottoGame = prepareLottoGame();
         WinningLotto winningLotto = prepareWinningLotto();
         WinningResult winningResult = playGame(lottoGame, winningLotto);

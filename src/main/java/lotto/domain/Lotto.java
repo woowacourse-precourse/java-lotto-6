@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+
+    private static final String NO_DUPLICATE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +17,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (hasDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException(NO_DUPLICATE_ERROR_MESSAGE);
+        }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasDuplicateNumber(List<Integer> numbers) {
+        return new HashSet<>(numbers).size() != 6;
+    }
 }

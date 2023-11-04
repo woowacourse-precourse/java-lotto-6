@@ -14,12 +14,12 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private static final int LOTTO_PRICE = 1000;
-    private int purchaseAmount;
     private Lotto winnerLotto;
     private List<Lotto> userLottos;
-    private int bonusNumber;
     private Map<Rank, Integer> result;
     private Calculator calculator;
+    private int purchaseAmount;
+    private int bonusNumber;
 
     public LottoController() {
         this.userLottos = new ArrayList<>();

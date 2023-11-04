@@ -166,7 +166,7 @@ List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 - [ ] `Lotto`의 패키지 변경은 가능하다.
 
 ```java
-public class Lotto {
+public class Lotto {-4
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -188,7 +188,7 @@ public class Lotto {
 ## 구현할 기능 list
 
 #### 입력
-- [ ] 돈을 입력 받음
+- [ ] 로또 구입 금액 입력 받음
   - [ ] 정수가 아닌 경우를 예외 발생
   - [ ] 1000으로 나누어 떨어지지 않거나 0 이하인 경우 예외 발생 <br>
 
@@ -226,7 +226,8 @@ public class Lotto {
   - lotto 번호 생성<br>
 
 ### View
-
+- input View
+  - 구매할 금액 입력
 
 ### Controller
 

@@ -47,6 +47,7 @@ public class LottoManager {
         winningNumbersManager.inputWinningNumbers(winningNumbers);
 
         Integer bonusNumber = getBonusNumber();
+        winningNumbersManager.inputBonusNumber(bonusNumber);
     }
 
     private Integer getBonusNumber() {
@@ -55,7 +56,9 @@ public class LottoManager {
 
         while (bonusNumber == null) {
             try {
-                bonusNumber = input.getBonusNumbers();
+                Integer invalidBonusNumber = input.getBonusNumbers();
+                winningNumbersManager.validateBonusNumber(invalidBonusNumber);
+                bonusNumber = invalidBonusNumber;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }

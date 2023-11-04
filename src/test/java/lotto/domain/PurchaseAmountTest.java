@@ -26,7 +26,7 @@ class PurchaseAmountTest {
 	}
 
 	@Test
-	@DisplayName("구매금액이 공백인 경우 IllegalArgumentException 이 발생한다.")
+	@DisplayName("구매금액 입력시 공백을 입력할 경우 IllegalArgumentException 이 발생한다.")
 	void testValidate_WhenBlank() {
 		String type_blank = "";
 
@@ -46,7 +46,7 @@ class PurchaseAmountTest {
 	}
 
 	@Test
-	@DisplayName("구매금액이 정수가 아닌 문자일 경우 IllegalArgumentException 이 발생한다.")
+	@DisplayName("구매금액 입력시 숫자가 아닌 문자일 경우 IllegalArgumentException 이 발생한다.")
 	void testValidate_WhenNonNumeric() {
 		String type_string = "이천원";
 
@@ -56,7 +56,7 @@ class PurchaseAmountTest {
 	}
 
 	@Test
-	@DisplayName("구매금액이 1,000원 단위가 아닐 경우 IllegalArgumentException 이 발생한다.")
+	@DisplayName("구매금액 입력시 1,000원 단위가 아닐 경우 IllegalArgumentException 이 발생한다.")
 	void testValidate_WhenNotMultipleOfThousand() {
 		String type_not_multiple_of_thousand = "1500";
 

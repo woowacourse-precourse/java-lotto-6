@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
+import lotto.domain.Lottos;
 import lotto.domain.Ticket;
 import lotto.io.InputManager;
 import lotto.io.OutputView;
@@ -22,7 +23,8 @@ public class LottoController {
     public void run() {
         outputView.printPurchaseAmountRequset();
         final Amount amount = inputManager.readPurchaseAmount();
-        Ticket ticket = lottoService.calculateTicketFromAmonut(amount);
+        final Ticket ticket = lottoService.calculateTicketFromAmonut(amount);
         outputView.printNumberOfTicket(ticket);
+        final Lottos lottos = lottoService.saveLottos(ticket);
     }
 }

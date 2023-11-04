@@ -8,6 +8,7 @@ import lotto.io.InputView;
 import lotto.io.OutputFommatter;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
+import lotto.utils.RandomNumberGenerator;
 
 public class ComponentFactory {
 
@@ -40,6 +41,10 @@ public class ComponentFactory {
     }
 
     private LottoService lottoService() {
-        return new LottoService();
+        return new LottoService(randomNumberGenerator());
+    }
+
+    private RandomNumberGenerator randomNumberGenerator() {
+        return new RandomNumberGenerator();
     }
 }

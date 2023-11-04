@@ -6,6 +6,6 @@ import lotto.domain.Ticket;
 public class OutputFommatter {
 
     public String toNumberOfTicket(final Ticket ticket) {
-        return String.format(ProcessMessage.NUMBER_OF_LOTTO_TICKET.toValue(), ticket.tovalue());
+        return String.format(ProcessMessage.NUMBER_OF_LOTTO_TICKET.toValue(), ticket.toValue());
     }
 }

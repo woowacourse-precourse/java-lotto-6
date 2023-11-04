@@ -8,7 +8,7 @@ public class Ticket {
         this.value = value;
     }
 
-    public Integer tovalue() {
+    public Integer toValue() {
         return value;
     }
 }

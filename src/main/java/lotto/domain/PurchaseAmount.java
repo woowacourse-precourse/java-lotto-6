@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class PurchaseAmount {
     private static final int MIN_PRICE = 1000;
+    private static final int ONE_LOTTO_TICKET = 1000;
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchaseAmount) {
@@ -16,13 +17,13 @@ public class PurchaseAmount {
     }
 
     public static void validatePositive(int purchaseAmount) {
-        if (purchaseAmount < 1000) {
-            throw new IllegalArgumentException();
+        if (purchaseAmount < MIN_PRICE) {
+            throw new IllegalArgumentException("");
         }
     }
 
     public static void validateMultipleOfThousand(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % ONE_LOTTO_TICKET != 0) {
             throw new IllegalArgumentException();
         }
     }

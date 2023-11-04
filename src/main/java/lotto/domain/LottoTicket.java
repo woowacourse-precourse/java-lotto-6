@@ -17,11 +17,7 @@ public class LottoTicket {
         LottoNumberGenerator lottoNumberGenerator = new RandomNumberGenerator();
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> lotto = lottoNumberGenerator.generateLottoNumbers();
-            try {
-                lottoTicket.add(new Lotto(lotto));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            lottoTicket.add(new Lotto(lotto));
         }
     }
 

@@ -4,10 +4,11 @@ import util.ErrorMessage;
 
 public class PriceFormatValidator {
 
-    public void checkPriceFormat(String input) {
+    public int checkPriceFormat(String input) {
         isPriceEmpty(input);
         int price = isPriceContainsOnlyNumber(input);
         isPricePositive(price);
+        return price;
     }
 
     private void isPriceEmpty(String input) {

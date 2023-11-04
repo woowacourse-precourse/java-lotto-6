@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.MarksAndConstants.COMMA;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.util.Validation;
@@ -14,7 +16,7 @@ public class WinningNumbers {
     }
 
     public Lotto getLotto(String input) {
-        for (String token : input.split(",")) {
+        for (String token : input.split(COMMA)) {
             int oneNum = validate(token);
             numbers.add(oneNum);
         }

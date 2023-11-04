@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constants.MarksAndConstants.ONE_HUNDRED;
+
 import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNum;
@@ -82,6 +84,6 @@ public class LottoController {
         for (LottoRanks key : enumMap.keySet()) {
             totalSum += (long) key.getWinnings()*enumMap.get(key);
         }
-        return (double)(totalSum*100)/cost;
+        return (double)(totalSum*ONE_HUNDRED)/cost;
     }
 }

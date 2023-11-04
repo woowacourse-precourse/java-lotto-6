@@ -7,6 +7,11 @@ import static lotto.constants.LottoIOMessage.SAME_NUMBER_COUNT_FORMAT;
 import static lotto.constants.LottoIOMessage.TOTAL_RETURN_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_MONEY_FORMAT;
 import static lotto.constants.LottoIOMessage.WINNING_RESULT_MSG;
+import static lotto.constants.MarksAndConstants.COMMA;
+import static lotto.constants.MarksAndConstants.LEFT_BRACKET;
+import static lotto.constants.MarksAndConstants.RIGHT_BRACKET;
+import static lotto.constants.MarksAndConstants.SPACE;
+import static lotto.constants.MarksAndConstants.START_INDEX;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
@@ -28,12 +33,12 @@ public class OutputView {
         System.out.println(convertLottoNumToString(oneLotto));
     }
     public String convertLottoNumToString(List<Integer> oneLotto) {
-        StringBuilder lottoNum = new StringBuilder("[" + oneLotto.get(0));
-        for (int i = 1; i < oneLotto.size(); i++) {
-            lottoNum.append(", ");
+        StringBuilder lottoNum = new StringBuilder(LEFT_BRACKET + oneLotto.get(START_INDEX));
+        for (int i = START_INDEX+1; i < oneLotto.size(); i++) {
+            lottoNum.append(COMMA+SPACE);
             lottoNum.append(oneLotto.get(i));
         }
-        lottoNum.append("]");
+        lottoNum.append(RIGHT_BRACKET);
         return lottoNum.toString();
     }
 

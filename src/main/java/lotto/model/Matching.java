@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static javax.sound.midi.ShortMessage.START;
+import static lotto.constants.MarksAndConstants.FIVE_SAME_NUM;
+import static lotto.constants.MarksAndConstants.START_INDEX;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,17 +24,17 @@ public class Matching {
     }
 
     public void compareToWinningNumbers(int bonusNum) {
-        for (int i = 0; i < purchasedLotto.size(); i++) {
+        for (int i = START_INDEX; i < purchasedLotto.size(); i++) {
             List<Integer> singleLotto = purchasedLotto.get(i);
             matchedLottoNum.set(i, winningNum.countSameNumber(singleLotto));
-            if (matchedLottoNum.get(i) == 5 && singleLotto.contains(bonusNum)) {
+            if (matchedLottoNum.get(i) == FIVE_SAME_NUM && singleLotto.contains(bonusNum)) {
                 matchedBonusNum.set(i, true);
             }
         }
     }
     public Map<LottoRanks, Integer> countLottoWinningResult(int quantity) {
         Map<LottoRanks, Integer> result = LottoRanks.getEnumMap();
-        for (int i = 0; i < quantity; i++) {
+        for (int i = START_INDEX; i < quantity; i++) {
             LottoRanks key = LottoRanks.findKey(matchedLottoNum.get(i), matchedBonusNum.get(i));
             result.put(key, result.get(key)+1);
         }

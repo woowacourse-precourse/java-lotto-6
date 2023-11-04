@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.MarksAndConstants.START_INDEX;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +25,7 @@ public class Lotto {
     }
     public static List<List<Integer>> getManyLotto(int count) {
         List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = START_INDEX; i < count; i++) {
             result.add(getSingleLotto());
         }
         return result;

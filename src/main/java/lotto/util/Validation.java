@@ -8,6 +8,11 @@ import static lotto.constants.ExceptionMessage.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessage.NOT_INTEGER;
 import static lotto.constants.ExceptionMessage.NOT_POSITIVE;
 import static lotto.constants.ExceptionMessage.NOT_SIX_NUMBERS;
+import static lotto.constants.MarksAndConstants.COMMA;
+import static lotto.constants.MarksAndConstants.MAX_LOTTO_NUM;
+import static lotto.constants.MarksAndConstants.MIN_LOTTO_NUM;
+import static lotto.constants.MarksAndConstants.NEEDED_LOTTO_NUM_COUNT;
+import static lotto.constants.MarksAndConstants.SINGLE_LOTTO_PRICE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +40,7 @@ public class Validation {
     }
 
     private static void validateDivisible(int input) {
-        if (input % 1000 != 0) {
+        if (input % SINGLE_LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INDIVISIBLE_TO_THOUSAND+input));
         }
     }
@@ -44,7 +49,7 @@ public class Validation {
         validateNumberRange(input);
     }
     public static void validateNumberRange(int input) {
-        if (input < 1 || input > 45) {
+        if (input < MIN_LOTTO_NUM || input > MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_NUMBER+input));
         }
     }
@@ -54,7 +59,7 @@ public class Validation {
         }
     }
     public static void validateSixLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NEEDED_LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, NOT_SIX_NUMBERS));
         }
     }
@@ -71,18 +76,18 @@ public class Validation {
         validateContinuousComma(input);
     }
     private static void validateNotIncludedComma(String input) {
-        if (!input.contains(",")) {
+        if (!input.contains(COMMA)) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
         }
     }
     private static void validateFirstOrLastComma(String input) {
         int lastIndex = input.length()-1;
-        if (input.charAt(0) == ',' || input.charAt(lastIndex) == ',') {
+        if (input.charAt(0) == COMMA.charAt(0) || input.charAt(lastIndex) == COMMA.charAt(0)) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
         }
     }
     private static void validateContinuousComma(String input) {
-        if (input.contains(",,")) {
+        if (input.contains(COMMA+COMMA)) {
             throw new IllegalArgumentException(String.format(ERROR_FORMAT, INVALID_COMMA+input));
         }
     }

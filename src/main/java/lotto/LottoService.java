@@ -45,6 +45,7 @@ public class LottoService {
 
     public List<Integer> createWinningNumber(String inputWinningNumber) {
         String[] winningNumber = inputWinningNumber.split(",");
+        validateWinningNumberSize(winningNumber);
         for (String number : winningNumber) {
             validateWinningNumber(number);
             winningNumberStore.add(toInt(number));
@@ -80,6 +81,7 @@ public class LottoService {
     public void validateBonusNumber(String inputBonusNumber) {
         validateInputNumberBlank(inputBonusNumber);
         validateInputPlayerLottoNumberRange(toInt(inputBonusNumber));
+        validateWinningNumberDuplicateBonusNumber(winningNumberStore, inputBonusNumber);
     }
 
     private void validateBuyMoneyType(String inputMoney) {
@@ -105,6 +107,16 @@ public class LottoService {
     private void validateInputPlayerLottoNumberRange(int inputLottoNumber) {
         if (!(inputLottoNumber >= LOTTO_START_NUMBER && inputLottoNumber <= LOTTO_END_NUMBER))
             throw new IllegalArgumentException(INPUT_PLAYER_LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE);
+    }
+
+    private void validateWinningNumberSize(String[] inputWinningNumber) {
+        if (inputWinningNumber.length != LOTTO_NUMBER_STORE_SIZE)
+            throw new IllegalArgumentException(INPUT_PLAYER_LOTTO_NUMBER_SIZE_EXCEPTION_MESSAGE);
+    }
+
+    private void validateWinningNumberDuplicateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        if (winningNumbers.stream().anyMatch(winningNumber -> winningNumber == toInt(bonusNumber)))
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_EXCEPTION_MESSAGE);
     }
 
     private int toInt(String inputMoney) {

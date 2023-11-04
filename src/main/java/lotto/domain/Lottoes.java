@@ -12,6 +12,7 @@ public class Lottoes {
 
     private static final int THIRD_RANKING_NUMBER = 5;
     private final List<Lotto> elements = new ArrayList<>();
+    private final LottoResult result = new LottoResult();
 
     public Lottoes(int ticketCounts) {
         createLottoes(ticketCounts);
@@ -32,6 +33,7 @@ public class Lottoes {
             int matchCount = calculateMatchCount(lotto, winningLotto);
             boolean isMatchBonusNumber = hasBonusNumber(lotto, winningLotto.getBonusNumber(), matchCount);
             Ranking ranking = Ranking.getRanking(matchCount, isMatchBonusNumber);
+            result.increaseCount(ranking);
         }
     }
 

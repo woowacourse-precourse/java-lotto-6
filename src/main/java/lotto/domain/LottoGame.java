@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.NumberConstant.BUYING_PRICE_UNIT;
+import static lotto.constant.NumberConstant.MIN_BUYING_AMOUNT;
 
 public final class LottoGame {
 
@@ -21,7 +22,7 @@ public final class LottoGame {
         List<Lotto> lottos = new ArrayList<>();
         int buyingAmount = buyingPrice / BUYING_PRICE_UNIT;
 
-        for (int i = 0; i < buyingAmount; i++) {
+        for (int i = MIN_BUYING_AMOUNT; i < buyingAmount; i++) {
             List<Integer> numbers = Lotto.pickUniqueNumbersInRange();
             Lotto lotto = Lotto.createLotto(numbers);
             lottos.add(lotto);

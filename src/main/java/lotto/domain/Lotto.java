@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 
+import static lotto.constant.NumberConstant.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
         validateDuplication(numbers);
@@ -26,9 +28,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public static List<Integer> pickUniqueNumbersInRange() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE);
     }
 
     public static Lotto createLotto(final List<Integer> numbers) {
@@ -38,7 +39,7 @@ public class Lotto {
     }
 
     public int calculateCorrectAmount(final WinningLotto winningLotto) {
-        int correctAmount = 0;
+        int correctAmount = MIN_ACCOUNT_AMOUNT;
         for (int number : numbers) {
             if (isCorrect(winningLotto, number)) {
                 correctAmount++;

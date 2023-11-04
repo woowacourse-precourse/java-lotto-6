@@ -18,7 +18,7 @@ public class ViewValidator {
     }
 
     public void validateWinningNumberSize(final List<String> winningNumbersText) {
-        if (winningNumbersText.size() != WINNING_NUMBER_SIZE) {
+        if (winningNumbersText.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(WINNING_NUMBER_SIZE_EXCEPTION);
         }
     }
@@ -34,7 +34,7 @@ public class ViewValidator {
     }
 
     public void validateMod(final int buyingPrice) {
-        if (buyingPrice % BUYING_PRICE_UNIT != ZERO) {
+        if (buyingPrice % BUYING_PRICE_UNIT != ZERO_REMAINDER) {
             throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION);
         }
     }

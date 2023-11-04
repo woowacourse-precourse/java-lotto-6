@@ -7,6 +7,22 @@ import org.junit.jupiter.api.Test;
 class InputValidatorTest {
 
     @Test
+    void 로또_번호가_1에서_45가_아니면_예외() {
+        int number = 46;
+
+        assertThatThrownBy(() -> InputValidator.validateIsLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 숫자는 0에서 45사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 로또_번호_1에서_45_() {
+        int number = 33;
+
+        assertThatCode(() -> InputValidator.validateIsLottoNumber(number)).doesNotThrowAnyException();
+    }
+
+    @Test
     void 입력이_숫자면_아무일_없음() {
         String input = "10000";
 

@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputValidator {
     private static final String INVALID_NUMBER_FORMAT_MESSAGE = "숫자 형식 입력이 아닙니다.";
     private static final String INVALID_EMPTY_INPUT_MESSAGE = "입력이 빈칸입니다.";
@@ -25,9 +29,17 @@ public class InputValidator {
         return buyAmount;
     }
 
-    public static void validateWinningNumbers(String inputWinningNumbers) {
+    public static List<Integer> validateWinningNumbers(String inputWinningNumbers) {
         validateEmpty(inputWinningNumbers);
         validateContainBlank(inputWinningNumbers);
+        List<Integer> winningNumbers = splitWinningNumbersByComma(inputWinningNumbers);
+        return winningNumbers;
+    }
+
+    private static List<Integer> splitWinningNumbersByComma(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(COMMA))
+                .map(InputValidator::convertStringToInteger)
+                .collect(Collectors.toList());
     }
 
     private static int convertStringToInteger(String input) {

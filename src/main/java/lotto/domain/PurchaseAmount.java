@@ -18,13 +18,14 @@ public class PurchaseAmount {
 
     public static void validatePositive(int purchaseAmount) {
         if (purchaseAmount < MIN_PRICE) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("최소 금액 미만의 금액 입력은 불가 하다");
         }
     }
 
     public static void validateMultipleOfThousand(int purchaseAmount) {
         if (purchaseAmount % ONE_LOTTO_TICKET != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 금액의 배수가 아닌 금액 입력은 불가 하다 ");
         }
     }
 }
+

@@ -45,7 +45,7 @@ public class Controller {
         return totalPrize;
     }
 
-    public static Double calculatePricePrizeRatio(Integer totalPrize, Integer lotteryCount) {
-        return (double) totalPrize / lotteryCount;
+    public static Double calculatePricePrizeRatio(Integer totalPrize, Integer price) {
+        return (double) totalPrize / price * 100;
     }
 }

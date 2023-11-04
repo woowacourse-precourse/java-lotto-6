@@ -61,8 +61,9 @@
 - [ ] 로또 구입 금액 입력 - InputView
 - [ ] 당첨번호 입력 - InputView
 - [ ] 보너스 번호 입력 - InputView 
-- [ ] 당첨 내역 출력 - OutputView
-- [ ] 수익률 출력 - OutputView
+- [x] 로또 출력 - OutputView
+- [x] 당첨 내역 출력 - OutputView
+- [x] 수익률 출력 - OutputView
 
 # Controller
 - [ ] 로또 구입 금액 입력받아 Player 생성 - GameController

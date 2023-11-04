@@ -21,4 +21,12 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
     }
+
+    @Test
+    void 구입_금액_숫자_구성_예외_테스트() {
+        String purchaseAmount = "1000a";
+        assertThatThrownBy(() -> inputView.inputPurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 숫자로만 구성됩니다.");
+    }
 }

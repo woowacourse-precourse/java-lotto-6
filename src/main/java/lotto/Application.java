@@ -9,6 +9,7 @@ public class Application {
     static int price = 1000;
 
     public static int inputLottoAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         validateAmount(amount);
         return amount;
@@ -21,6 +22,7 @@ public class Application {
     }
 
     public static Lotto inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<String> originalNums = new ArrayList<>(Arrays.asList(Console.readLine().split(",")));
         return new Lotto(convertStringToInt(originalNums));
     }
@@ -56,23 +58,30 @@ public class Application {
         }
     }
 
-    public static List<Integer> compareLottos(List<Lotto> allLotto, Lotto winningLotto) {
+    public static List<Integer> getResult(List<Lotto> allLotto, Lotto winningLotto, int bonus) {
         List<Integer> result = new ArrayList<>();
         for (Lotto lotto: allLotto) {
-            result.add(lotto.countMatchingNumbers(winningLotto));
+            result.add(lotto.countMatchingNumbers(winningLotto, bonus));
         }
         return result;
     }
 
+    public static void printStatistic(List<Integer> result) {
+        System.out.println("당첨 통계\n---");
+
+    }
+
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
         int amount = inputLottoAmount();
-        System.out.println("당첨 번호를 입력해 주세요.");
         Lotto winningLotto = inputWinningNumbers();
+
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
+
         List<Lotto> allLotto = generateLottos(amount/price);
         printLottos(allLotto, amount/price);
-        List<Integer> result = compareLottos(allLotto, winningLotto);
+
+        List<Integer> result = getResult(allLotto, winningLotto, bonus);
+        System.out.println(result);
     }
 }

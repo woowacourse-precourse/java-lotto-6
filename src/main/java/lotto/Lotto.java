@@ -32,13 +32,17 @@ public class Lotto {
         System.out.println(this.numbers);
     }
 
-    public int countMatchingNumbers(Lotto winningLotto) {
+    public int countMatchingNumbers(Lotto winningLotto, int bonus) {
         int count = 0;
+        boolean isBonus = false;
         for (int num: this.numbers) {
             if (winningLotto.numbers.contains(num)){
                 count++;
             }
         }
-        return count;
+        if (count == 5 && this.numbers.contains(bonus)) {
+            isBonus = true;
+        }
+        return Statistic.getRank(count, isBonus);
     }
 }

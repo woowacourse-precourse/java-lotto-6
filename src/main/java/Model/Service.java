@@ -19,4 +19,8 @@ public class Service {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
+
+    public int numberGenerator() {
+        return Randoms.pickNumberInRange(1, 45);
+    }
 }

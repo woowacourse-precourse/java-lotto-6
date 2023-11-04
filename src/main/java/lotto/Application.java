@@ -16,7 +16,9 @@ public class Application {
         return purchaseAmount;
     }
     private static void validPurchaseAmount(int amount){
-        
+        if(amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 
 }

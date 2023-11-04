@@ -5,7 +5,7 @@ public class Money {
     private static final int LOTTO_PRICE = 1000;
     private int value;
 
-    Money(int value) {
+    public Money(int value) {
         validate(value);
         this.value = value;
     }

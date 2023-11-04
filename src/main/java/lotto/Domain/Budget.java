@@ -1,5 +1,6 @@
 package lotto.Domain;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,5 +35,14 @@ public class Budget {
 
     public int calculateLottoCount() {
         return budgetAmount / LOTTO_PRICE;
+    }
+
+    public double calculateReturnRate(Map<Rank, Integer> rankCount) {
+        int money = 0;
+        for (Rank rank : Rank.values()) {
+            money += rank.getPrizeAmount() * rankCount.getOrDefault(rank, 0);
+        }
+        double returnRate = ((double) money / budgetAmount) * 100;
+        return Math.round(returnRate * 10.0) / 10.0;
     }
 }

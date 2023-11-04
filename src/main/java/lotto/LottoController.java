@@ -17,9 +17,9 @@ public class LottoController {
             int lotteryCount = userMoney / LOTTERY_COST;
             List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
             printLotteryList(totalLottery);
-
+            Lotto winningNumber = getWinningNumber();
         } catch(IllegalArgumentException e){
-
+            throw new IllegalArgumentException(e);
         }
 
     }
@@ -39,8 +39,27 @@ public class LottoController {
     }
 
     private void printLotteryList(List<Lotto> totalLottery){
+        System.out.println();
+        System.out.println(totalLottery.size() + "개를 구매했습니다.");
         for(Lotto lottery : totalLottery){
-            lottery.printLotteryNumber(totalLottery.size());
+            lottery.printLotteryNumber();
+        }
+    }
+
+    private Lotto getWinningNumber() throws IllegalArgumentException{
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+
+        List<Integer> number = new ArrayList<>();
+        String[] inputWinningNumber = Console.readLine().split(",");
+        for (String eachNumber : inputWinningNumber) {
+            number.add(Integer.parseInt(eachNumber));
+        }
+
+        try{
+            return new Lotto(number);
+        } catch(IllegalArgumentException e){
+            throw new IllegalArgumentException(e);
         }
     }
 }

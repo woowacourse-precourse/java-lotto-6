@@ -12,7 +12,25 @@ public class LottoNumbers {
 
     private StringBuilder sb = new StringBuilder();
 
+    private Lotto lotto;
+
     LottoNumberValidation lottoNumberValidation = new LottoNumberValidation();
+
+    PrintUtil printUtil = new PrintUtil();
+
+    public void pickLottoNumbers(int numberOfLotto) {
+        printUtil.printNumberOfLotto(numberOfLotto);
+
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (int count = 0; count < numberOfLotto; count++) {
+            lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+            Collections.sort(lottoNumbers);
+            if(isDuplicateLottoNumbers(lottoNumbers)) count--;
+        }
+
+        printUtil.printLottoNumbers(sb);
+    }
 
     public boolean isDuplicateLottoNumbers(List<Integer> lottoNumbers) {
         try {

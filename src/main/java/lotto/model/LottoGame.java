@@ -26,6 +26,16 @@ public class LottoGame {
     return matchedNumbers;
   }
 
+  public List<Integer> checkWinningStatus(List<List<Integer>> lottos, List<Integer> numbers, int bonusNumber) {
+    List<Integer> rank = Lotto.createRank();
+    for (List<Integer> lotto : lottos) {
+      int matchedNumbers = countMatchingNumbers(lotto, numbers);
+      matchedNumbers = matchingBonusNumber(lotto, bonusNumber, matchedNumbers);
+      updateRank(rank, matchedNumbers);
+    }
+    return rank;
+  }
+
   private void updateRank(List<Integer> rank, int matchedNumbers) {
     if (matchedNumbers == -1) {
       int currentCount = rank.get(0);

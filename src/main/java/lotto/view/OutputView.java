@@ -31,10 +31,12 @@ public final class OutputView {
     }
 
     public static void printWinningNumbersMessage() {
+        printEmptyLine();
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
     public static void printBonusNumberMessage() {
+        printEmptyLine();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 

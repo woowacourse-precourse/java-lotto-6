@@ -13,7 +13,7 @@ public class PurchaseAmount {
         purchaseAmount = parsedInput;
     }
 
-    public static PurchaseAmount validate(String input) {
+    public static PurchaseAmount create(String input) {
         return new PurchaseAmount(input);
     }
 
@@ -32,7 +32,7 @@ public class PurchaseAmount {
     }
 
     private void checkThousandMultiple(Integer parsedInput) {
-        if (parsedInput % 1000 != 0) {
+        if (parsedInput % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION_ERROR.getMessage());
         }
     }

@@ -1,9 +1,10 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
+    public static final Integer PRICE = 1000;
+    
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

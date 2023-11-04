@@ -16,12 +16,14 @@ public class Game {
         while (!isValidPurchaseAmount) {
             String purchaseAmountInput = View.inputPurchaseAmount();
             try {
-                userService.purchaseLottos(purchaseAmountInput);
+                userService.validatePurchaseAmount(purchaseAmountInput);
                 isValidPurchaseAmount = true;
             } catch (IllegalArgumentException e) {
                 View.printMessage(e.getMessage());
             }
         }
+
+        userService.purchaseLottos();
 
 
     }

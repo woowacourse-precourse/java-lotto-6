@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.EnumMap;
-import lotto.domain.lotto.dto.LottoDrawingResult;
+import lotto.domain.lotto.dto.LottosDrawingResult;
 import lotto.domain.money.Money;
 
 /**
@@ -56,8 +56,8 @@ public final class LottoDrawingData {
     /**
      * 중간 결과가 담긴 EnumMap을 최종적으로 DTO로 변환
      */
-    public LottoDrawingResult intoLottoDrawingResult() {
-        return new LottoDrawingResult(
+    public LottosDrawingResult toLottoDrawingResult() {
+        return new LottosDrawingResult(
                 data.get(LottoPrize.FIRST),
                 data.get(LottoPrize.SECOND),
                 data.get(LottoPrize.THIRD),
@@ -73,7 +73,7 @@ public final class LottoDrawingData {
      * Math.round는 소수점 첫째 자리에서 반올림 하기 때문에, 10을 곱하여 둘째 자리를 첫째 자리로 이동시키고 둘째 자리에서 반올림 한 뒤, 다시 10을 나눠서 1의 자리를 첫째 자리로 돌려줌
      */
     private double calculateReturnOfRate() {
-        final double avg = totalEarning.toDouble() / totalCost.toDouble();
+        final double avg = totalEarning.toDouble() / totalCost.toDouble() * 100;
         return Math.round(avg * 10.0) / 10.0;
     }
 

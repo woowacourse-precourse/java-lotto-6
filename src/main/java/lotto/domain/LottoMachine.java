@@ -31,6 +31,27 @@ public class LottoMachine {
         return new Lotto(numbers);
     }
 
+    public WinnerLotto generateWinnerLotto() {
+        List<Integer> winnerNumber = generateWinnerNumbers();
+        Integer bonusNumber = generateBonusNumber(winnerNumber);
+
+        return new WinnerLotto(winnerNumber, bonusNumber);
+    }
+
+    private List<Integer> generateWinnerNumbers() {
+        List<Integer> winnerNumbers = numberGenerator.generateNumbers();
+        return winnerNumbers;
+    }
+
+    private Integer generateBonusNumber(List<Integer> numbers) {
+        Integer bonusNumber = numberGenerator.generateNumber();
+        while (numbers.contains(bonusNumber)) {
+            bonusNumber = numberGenerator.generateNumber();
+        }
+
+        return bonusNumber;
+    }
+
 
 
 }

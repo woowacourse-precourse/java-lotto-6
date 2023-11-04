@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
@@ -57,4 +58,8 @@ public class OutputView {
         }
     }
 
+    public void printProfitRate(double profitRate) {
+        DecimalFormat profitFormat = new DecimalFormat("#.##");
+        System.out.printf("총 수익률은 %s%%입니다.\n", profitFormat.format(profitRate));
+    }
 }

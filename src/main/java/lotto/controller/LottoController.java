@@ -4,6 +4,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoResultCalculator;
+import lotto.domain.ProfitCalculator;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
@@ -37,7 +38,9 @@ public class LottoController {
         Map<Rank, Integer> results = resultCalculator.calculateResults(lottos);
         outputView.printResults(results);
 
-
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        double profitRate = profitCalculator.calculateProfitRate(purchaseAmount, results);
+        outputView.printProfitRate(profitRate);
     }
 
     private List<Lotto> buyLottos(int purchaseAmount) {

@@ -32,17 +32,17 @@ public class LottoValidator {
     }
 
     public static void validateRangeOfNumber(Integer bonusNumber) {
-        if (!isValidRange(bonusNumber)) {
+        if (isInvalidRange(bonusNumber)) {
             throw new LottoNumRangeException();
         }
     }
 
     private static boolean hasInvalidRangeNumber(List<Integer> winningNumbers) {
-        return !winningNumbers.stream()
-                .allMatch(num -> isValidRange(num));
+        return winningNumbers.stream()
+                .anyMatch(num -> isInvalidRange(num));
     }
 
-    private static boolean isValidRange(Integer num) {
-        return num >= LOTTO_NUM_MIN.getValue() && num <= LOTTO_NUM_MAX.getValue();
+    private static boolean isInvalidRange(Integer num) {
+        return num < LOTTO_NUM_MIN.getValue() || num > LOTTO_NUM_MAX.getValue();
     }
 }

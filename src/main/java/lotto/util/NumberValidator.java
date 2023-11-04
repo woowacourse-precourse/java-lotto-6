@@ -31,6 +31,10 @@ public class NumberValidator {
         if (bonusNumber.isEmpty()) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
         }
+
+        if (!isNumeric(bonusNumber)) {
+            throw new IllegalArgumentException(NumberErrorMessage.NOT_A_NUMBER.getMessage());
+        }
     }
 
     private static boolean isNumeric(String number) {

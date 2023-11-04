@@ -73,8 +73,54 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
         }
 
-        if(parseWinNumbers.contains(parseBounusNumber)){
+        if (parseWinNumbers.contains(parseBounusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 다른 번호를 입력해주세요.");
+        }
+
+        int correctCount = 0;
+        int threeCorrect = 0;
+        int fourCorrect = 0;
+        int fiveCorrect = 0;
+        int fiveBonusCorrect = 0;
+        int sixCorrect = 0;
+        int earnMoney = 0;
+        boolean hasBonusNumber = false;
+        for (int i = 0; i < lotties.size(); i++) {
+            Lotto lotto = lotties.get(i);
+            for (int j = 0; j < lotto.getLotto().size(); j++) {
+                if (lotto.getLotto().contains(parseWinNumbers.get(j))) {
+                    correctCount++;
+                }
+
+                if (lotto.getLotto().contains(parseBounusNumber)) {
+                    hasBonusNumber = true;
+                }
+            }
+
+            if (correctCount == 3) {
+                threeCorrect++;
+                earnMoney += 5000;
+            }
+
+            if (correctCount == 4) {
+                fourCorrect++;
+                earnMoney += 50000;
+            }
+
+            if (correctCount == 5) {
+                fiveCorrect++;
+                earnMoney += 1500000;
+            }
+
+            if (correctCount == 5 && hasBonusNumber) {
+                fiveBonusCorrect++;
+                earnMoney += 30000000;
+            }
+
+            if (correctCount == 6) {
+                sixCorrect++;
+                earnMoney += 2000000000;
+            }
         }
 
     }

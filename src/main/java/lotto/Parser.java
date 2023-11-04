@@ -9,11 +9,6 @@ import lotto.Validator.Validator;
 public class Parser {
     private static final String DELIMITER = ",";
 
-    private static List<String> parseStringSplitComma(String input) {
-        List<String> parseString = Arrays.asList(input.split(DELIMITER));
-        return parseString;
-    }
-
     public static int parsePurchaseAmount(String input) {
         int purchaseAmount = Validator.validateParseInt(input);
         return purchaseAmount;
@@ -27,6 +22,10 @@ public class Parser {
         return strings;
     }
 
+    public static List<Integer> parseWinningNumbers(String input) {
+        return parseStringToInteger(parseStringSplitComma(input));
+    }
+
     private static List<Integer> parseStringToInteger(List<String> strings) {
         List<Integer> numbers = new ArrayList<>();
         for (String string : strings) {
@@ -34,8 +33,9 @@ public class Parser {
         }
         return numbers;
     }
-
-    public static List<Integer> parseWinningNumbers(String input) {
-        return parseStringToInteger(parseStringSplitComma(input));
+    
+    private static List<String> parseStringSplitComma(String input) {
+        List<String> parseString = Arrays.asList(input.split(DELIMITER));
+        return parseString;
     }
 }

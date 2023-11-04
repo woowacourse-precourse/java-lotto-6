@@ -11,42 +11,44 @@ import java.util.List;
 
 public class LottoController {
     public void run() {
-        OutputView.displayPurchaseGuide();
-        final Amount amount = inputLottoAmount();
-        final int lottoCount = LottoGameManager.calculateLottoCount(amount);
-        OutputView.displayLottoCount(lottoCount);
-
-        final List<Lotto> lottoList = LottoGameManager.buyLotto(lottoCount);
-        OutputView.displayLottoNumbers(lottoList);
-
-        OutputView.displayWinningNumberGuide();
+        final Amount amount = getAmountFromUser();
+        final List<Lotto> lottoList = purchaseLottoByAmount(amount);
         decideWinningNumbers();
-
         final List<LottoMatch> winningResults = LottoGameManager.getWinningResults(lottoList);
-
-        OutputView.displayWinningStatisticsGuide();
-        OutputView.displayWinningStatistics(winningResults);
-
-        OutputView.displayYield(LottoGameManager.calculateYield(winningResults, amount));
+        displayWinningStatisticsAndYield(winningResults, amount);
     }
 
-    private Amount inputLottoAmount() {
+    private Amount getAmountFromUser() {
+        OutputView.displayPurchaseGuide();
         while (true) {
             try {
-                return Amount.create(InputView.inputPurchaseAmount());
+                return getValidatedAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private Amount getValidatedAmount() {
+        return Amount.create(InputView.inputPurchaseAmount());
+    }
+
+    private List<Lotto> purchaseLottoByAmount(Amount amount) {
+        int lottoCount = LottoGameManager.calculateLottoCount(amount);
+        OutputView.displayLottoCount(lottoCount);
+        List<Lotto> purchasedLottoList = LottoGameManager.buyLotto(lottoCount);
+        OutputView.displayLottoNumbers(purchasedLottoList);
+        return purchasedLottoList;
+    }
+
     private void decideWinningNumbers() {
-        List<String> numbersStr = inputWinningNumbers();
+        OutputView.displayWinningNumberGuide();
+        List<String> winningNumbers = getValidWinningNumbers();
         OutputView.displayBonusNumberGuide();
         while (true) {
             try {
-                String bonusNumberStr = InputView.inputBonusNumber();
-                LottoGameManager.generateWinningNumbers(numbersStr, bonusNumberStr);
+                String bonusNumber = InputView.inputBonusNumber();
+                LottoGameManager.generateWinningNumbers(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -54,7 +56,7 @@ public class LottoController {
         }
     }
 
-    private List<String> inputWinningNumbers() {
+    private List<String> getValidWinningNumbers() {
         while (true) {
             try {
                 return InputView.inputWinningNumbers();
@@ -62,5 +64,11 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void displayWinningStatisticsAndYield(List<LottoMatch> winningResults, Amount amount) {
+        OutputView.displayWinningStatisticsGuide();
+        OutputView.displayWinningStatistics(winningResults);
+        OutputView.displayYield(LottoGameManager.calculateYield(winningResults, amount));
     }
 }

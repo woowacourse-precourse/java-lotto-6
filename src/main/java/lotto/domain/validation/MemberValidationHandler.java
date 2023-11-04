@@ -1,12 +1,11 @@
 package lotto.domain.validation;
 
+import static lotto.domain.constant.LottoConstant.LOTTO_PURCHASE_UNIT;
+import static lotto.domain.constant.LottoConstant.MAX_LOTTO_PURCHASE_COUNT;
+import static lotto.domain.constant.LottoConstant.MIN_LOTTO_PURCHASE_COUNT;
 import static lotto.domain.validation.DefaultValidationMessage.*;
 
 public class MemberValidationHandler {
-
-    public static final int LOTTO_PURCHASE_UNIT = 1000;
-    public static final int MAX_LOTTO_PURCHASE_COUNT = 100;
-    public static final int MIN_LOTTO_PURCHASE_COUNT = 1;
     public static final String INVALID_LOTTO_PURCHASE_UNIT_MESSAGE = ERROR.getMessage() + " 1,000원 단위로 구매금액을 입력해주세요.";
     public static final String INVALID_RANGE_LOTTO_PURCHASE_COUNT_MESSAGE = ERROR.getMessage() + " 최소 1장 최대 100장까지 구매 가능합니다.";
 

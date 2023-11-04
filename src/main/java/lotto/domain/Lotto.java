@@ -1,6 +1,11 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.domain.validation.LottoValidationHandler;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +16,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidationHandler.validationNumbersSize(numbers);
+        LottoValidationHandler.validationNumbersRange(numbers);
+        LottoValidationHandler.validateDuplicatedNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

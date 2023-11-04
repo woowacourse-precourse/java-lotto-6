@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoConstant.LOTTO_PURCHASE_UNIT;
+
 import lotto.domain.validation.MemberValidationHandler;
 
 public class Member {
@@ -16,7 +18,7 @@ public class Member {
     }
 
     private int computedLottoCount(int lottoPurchaseAmount) {
-        return Math.floorDiv(lottoPurchaseAmount, MemberValidationHandler.LOTTO_PURCHASE_UNIT);
+        return Math.floorDiv(lottoPurchaseAmount, LOTTO_PURCHASE_UNIT);
     }
 
     public int getLottoCount() {

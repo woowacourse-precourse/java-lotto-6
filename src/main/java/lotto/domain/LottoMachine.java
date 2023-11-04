@@ -1,23 +1,23 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoConstant.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.constant.LottoConstant;
 import lotto.domain.validation.LottoMachineValidationHandler;
 
 public class LottoMachine {
 
-    private static final int START_LOTTO_NUMBER = 1;
-    private static final int END_LOTTO_NUMBER = 45;
-    private static final int RANGE_LOTTO_NUMBER = 6;
 
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
         final List<Lotto> lottos = new ArrayList<>();
         for(int count = 0; count < purchaseLottoCount; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, RANGE_LOTTO_NUMBER);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE);
             lottos.add(new Lotto(numbers));
         }
 

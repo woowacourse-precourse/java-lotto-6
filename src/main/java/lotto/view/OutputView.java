@@ -11,11 +11,12 @@ import java.util.List;
  */
 public class OutputView {
     public static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
+        System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", numberOfTickets);
     }
 
-    public static void printPurchasedLottoNumbers(List<Integer> lottoNumbers) {
-        // TODO : [8, 21, 23, 41, 42, 43] 형식으로 출
+    public static void printPurchasedLottoNumbers(List<Lotto> lottoTickets) {
+        lottoTickets.forEach(lotto -> System.out.println(lotto.toString()));
     }
 
     public static void printWinningResults(WinningResult winningResult) {

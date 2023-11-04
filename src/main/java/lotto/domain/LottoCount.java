@@ -31,15 +31,19 @@ public class LottoCount {
     public void addThreeCount() {
         this.threeCount += ADD_COUNT;
     }
+
     public void addFourCount() {
         this.fourCount += ADD_COUNT;
     }
+
     public void addFiveCount() {
         this.fiveCount += ADD_COUNT;
     }
+
     public void addFiveWithBonusCount() {
         this.fiveWithBonusCount += ADD_COUNT;
     }
+
     public void addSixCount() {
         this.sixCount += ADD_COUNT;
     }

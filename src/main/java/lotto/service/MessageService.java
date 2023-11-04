@@ -53,8 +53,9 @@ public class MessageService {
                 resultCount);
         System.out.println(message);
     }
-    public void outputLottoReturnRate(double lottoReturn){
-        String message = String.format(OutputMessage.OUTPUT_LOTTO_RETURN_RATE_MESSAGE.getMessage(),lottoReturn);
+
+    public void outputLottoReturnRate(double lottoReturn) {
+        String message = String.format(OutputMessage.OUTPUT_LOTTO_RETURN_RATE_MESSAGE.getMessage(), lottoReturn);
         System.out.println(message);
     }
 }

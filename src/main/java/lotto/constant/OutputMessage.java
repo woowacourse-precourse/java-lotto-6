@@ -5,8 +5,7 @@ public enum OutputMessage {
     RESULT_MESSAGE("당첨 통계\n---"),
     OUTPUT_LOTTO_STATUS_MESSAGE("%d개 일치 (%s원) - %d개"),
     OUTPUT_LOTTO_WITH_BONUS_STATUS_MESSAGE("%d개 일치, 보너스 볼 일치 %s원) - %d개"),
-    OUTPUT_LOTTO_RETURN_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
-    ;
+    OUTPUT_LOTTO_RETURN_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");;
 
     private final String Message;
 

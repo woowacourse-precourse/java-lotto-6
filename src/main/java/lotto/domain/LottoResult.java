@@ -28,7 +28,7 @@ public class LottoResult {
 
     public void getLottoReturnRate(int purchasePrice) {
         int lottoReturn = getLottoReturn();
-        if (lottoReturn == 0){
+        if (lottoReturn == 0) {
             messageService.outputLottoReturnRate(ZERO);
             return;
         }

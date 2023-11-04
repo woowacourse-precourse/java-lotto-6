@@ -20,6 +20,10 @@ public class Lotto {
         return new LottoResponseDto(numbers);
     }
 
+    public boolean isContain(int lottoNumber){
+        return numbers.contains(lottoNumber);
+    }
+
     private void sort(){
         Collections.sort(numbers);
     }

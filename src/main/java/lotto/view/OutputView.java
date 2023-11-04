@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.Lotto;
 import lotto.domain.Member;
 
-public class Output {
+public class OutputView {
     public static final String PURCHASE_RESULT_OUTPUT = "개를 구매했습니다.";
     public static final String STATISTIC_RESULT_OUTPUT = "당첨 통계";
     public static final String NEXT_LINE_OUTPUT = "---";
@@ -13,7 +13,7 @@ public class Output {
         print(purchasedCount + PURCHASE_RESULT_OUTPUT);
 
         member.getLottos().stream()
-                .forEach(Output::printLotto);
+                .forEach(OutputView::printLotto);
     }
     public void gameResult() {
         print(STATISTIC_RESULT_OUTPUT);

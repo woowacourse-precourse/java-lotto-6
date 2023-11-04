@@ -10,6 +10,7 @@ public class LottoController {
 
     public void startLotto() {
         requestPurchaseAmount();
+        OutputView.printNextLine();
     }
 
     public void requestPurchaseAmount() {

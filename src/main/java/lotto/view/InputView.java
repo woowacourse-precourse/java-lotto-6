@@ -10,5 +10,14 @@ public class InputView {
     }
 
     public void validatePurchaseAmount(String purchaseAmount) {
+        validateStringToInt(purchaseAmount);
+    }
+
+    public void validateStringToInt(String purchaseAmount) {
+        try {
+            Integer.parseInt(purchaseAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+        }
     }
 }

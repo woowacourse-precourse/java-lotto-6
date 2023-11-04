@@ -39,21 +39,7 @@ class LottoValidationTest {
             lottoNumber.add(numbers[i]);
         }
 
-        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber, bonusNumber);
-
-        assertEquals(notDuplicate, false);
-    }
-
-    @DisplayName("로또 번호와 보너스 번호 중복일 경우 예외")
-    @Test
-    void checkDuplicateBonusNumberTest() {
-        int[] numbers = {1, 2, 3, 4, 5, 6};
-        int bonusNumber = 5;
-        for (int i = 0; i < numbers.length; i++) {
-            lottoNumber.add(numbers[i]);
-        }
-
-        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber, bonusNumber);
+        boolean notDuplicate = lottoValidation.checkDuplicateLottoNumber(lottoNumber);
 
         assertEquals(notDuplicate, false);
     }

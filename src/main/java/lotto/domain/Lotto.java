@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.constant.ExceptionMessage;
 
 public class Lotto {
@@ -23,6 +25,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateRange(numbers);
+        validateUniqueness(numbers);
     }
 
     private void validateRange(List<Integer> numbers) {
@@ -32,6 +35,17 @@ public class Lotto {
                 .ifPresent(num -> {
                     throw new IllegalArgumentException(ExceptionMessage.INPUT_CORRECT_RANGE.getMessage());
                 });
+    }
+
+    private void validateUniqueness(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() < numbers.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBERS.getMessage());
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
 }

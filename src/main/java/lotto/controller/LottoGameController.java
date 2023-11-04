@@ -30,10 +30,15 @@ public class LottoGameController {
     }
 
     private WinningNumber generateWinningNumber() {
-        OutputView.printLottoNumbersInput();
-        List<String> lottoNumbers = Arrays.asList(InputView.getUserInput().split(","));
-        WinningNumber winningNumber = new WinningNumber(lottoNumbers);
-        return null;
+        while (true) {
+            try {
+                OutputView.printLottoNumbersInput();
+                List<String> lottoNumbers = Arrays.asList(InputView.getUserInput().split(","));
+                return new WinningNumber(lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
 }

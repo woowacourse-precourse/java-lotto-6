@@ -11,6 +11,10 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
         }
 
+        if (!isNumeric(numbers)) {
+            throw new IllegalArgumentException(NumberErrorMessage.NOT_A_NUMBER.getMessage());
+        }
+
         if (!isSixNumbers(numbers)) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IS_NOT_SIX.getMessage());
         }
@@ -19,6 +23,17 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException(NumberErrorMessage.DUPLICATE_NUMBERS.getMessage());
         }
 
+    }
+
+    private static boolean isNumeric(List<String> numbers) {
+        for (String numberAsString : numbers) {
+            try {
+                Integer.parseInt(numberAsString);
+            }catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static boolean isSixNumbers(List<String> numbers) {

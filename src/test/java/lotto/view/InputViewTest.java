@@ -89,19 +89,43 @@ class InputViewTest extends IOTest{
         );
     }
 
-    static Stream<Arguments> createWinnerLottoByInputSuccessDummy() {
-        return Stream.of(
-                Arguments.arguments(
-                        "1,2,3,4,5,6",
-                        "7"),
-                Arguments.arguments(
-                        "11,2,17,41,5,16",
-                        "18"),
-                Arguments.arguments(
-                        "1,2,33,4,42,6",
-                        "27")
-        );
+    @DisplayName("보너스 번호 생성 성공 테스트")
+    @ParameterizedTest()
+    @ValueSource(strings = {"11", "21", "23", "41", "15"})
+    void createWinnerBonusNumberByInputSuccessTest(String inputBonusNumber) {
+        assertDoesNotThrow(() -> {
+            systemIn(inputBonusNumber);
+            inputView.inputBonusNumber();
+        });
+
     }
+
+    @DisplayName("숫자 이외의 값 입력시 예외 발생")
+    @ParameterizedTest()
+    @ValueSource(strings = {"1z", "hi", "ㅋㅋ", "호호호", "15%"})
+    void createWinnerBonusNumberByNotNumberInputSuccessTest(String inputWrongBonusNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(inputWrongBonusNumber);
+                    inputView.inputBonusNumber();
+                }
+        );
+
+    }
+
+    @DisplayName("공백 입력시 예외 발생")
+    @ParameterizedTest()
+    @ValueSource(strings = {" "})
+    void createWinnerBonusNumberByBlankInputSuccessTest(String inputWrongBonusNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(inputWrongBonusNumber);
+                    inputView.inputBonusNumber();
+                }
+        );
+
+    }
+
 
 
 

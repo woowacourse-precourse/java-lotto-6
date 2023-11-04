@@ -51,8 +51,14 @@ public class LottoController {
 
     public void setLottoNumber() {
         List<List<Integer>> userLottos = this.lottoService.setLottoNumbers();
+        printTicketsCount(userLottos.size());
+
         for (List<Integer> userLotto : userLottos) {
             System.out.println(userLotto);
         }
+    }
+
+    public void printTicketsCount(int ticketsCount) {
+        System.out.println(ticketsCount + "개를 구매했습니다.");
     }
 }

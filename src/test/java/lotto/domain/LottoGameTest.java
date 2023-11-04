@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import lotto.generator.MockedRandomGenerator;
@@ -10,10 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class LottoGameTest {
     private LottoGame lottoGame = new LottoGame();
-
-    public static int generateRandomNumberInRange(int startInclusive, int endInclusive) {
-        return Randoms.pickNumberInRange(startInclusive, endInclusive);
-    }
 
     @Test
     void 로또_번호_조건_만족_여부_검증() {

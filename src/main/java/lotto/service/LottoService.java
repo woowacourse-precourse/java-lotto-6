@@ -21,7 +21,7 @@ public class LottoService {
     }
 
     public Lottos saveLottos(Ticket ticket) {
-        List<Lotto> elements = Stream.generate(() -> new Lotto(randomNumberGenerator.generateUniqueNumbers()))
+        List<Lotto> elements = Stream.generate(() -> new Lotto(randomNumberGenerator.generateUniqueSortedNumbers()))
                 .limit(ticket.toValue())
                 .toList();
         return new Lottos(elements);

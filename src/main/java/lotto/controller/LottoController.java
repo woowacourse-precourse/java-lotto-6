@@ -26,5 +26,6 @@ public class LottoController {
         final Ticket ticket = lottoService.calculateTicketFromAmonut(amount);
         outputView.printNumberOfTicket(ticket);
         final Lottos lottos = lottoService.saveLottos(ticket);
+        outputView.printNumberOfLottos(lottos);
     }
 }

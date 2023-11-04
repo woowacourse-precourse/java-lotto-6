@@ -9,4 +9,8 @@ public class Lottos {
     public Lottos(List<Lotto> elements) {
         this.elements = List.copyOf(elements);
     }
+
+    public List<Lotto> toElements() {
+        return elements;
+    }
 }

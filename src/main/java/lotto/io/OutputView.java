@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.constant.ProcessMessage;
+import lotto.domain.Lottos;
 import lotto.domain.Ticket;
 
 public class OutputView {
@@ -17,5 +18,9 @@ public class OutputView {
 
     public void printNumberOfTicket(final Ticket ticket) {
         System.out.println(ProcessMessage.NEW_LINE.toValue() + outputFommatter.toNumberOfTicket(ticket));
+    }
+
+    public void printNumberOfLottos(final Lottos lottos) {
+        System.out.println(outputFommatter.toLottos(lottos));
     }
 }

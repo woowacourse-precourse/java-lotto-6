@@ -14,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private static boolean isLengthSix(List<Integer> numbers) {
+    private boolean isLengthSix(List<Integer> numbers) {
         return numbers.size() != 6;
     }
 
@@ -33,5 +33,9 @@ public class Lotto {
     private boolean isHaveDuplicateNumber(List<Integer> numbers) {
         Set<Integer> values = new HashSet<>(numbers);
         return values.size() < numbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

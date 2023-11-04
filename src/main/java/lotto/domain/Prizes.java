@@ -26,6 +26,14 @@ public class Prizes {
         }
     }
 
+    public Integer countPrize(Prize prize) {
+        if (prizes.containsKey(prize)) {
+            return prizes.get(prize);
+        } else {
+            return 0;
+        }
+    }
+
 
 
 

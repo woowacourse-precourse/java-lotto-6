@@ -1,7 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.view.View;
 
 public interface Controller {
-    View process(String input);
+    View process(List<String> input);
 }

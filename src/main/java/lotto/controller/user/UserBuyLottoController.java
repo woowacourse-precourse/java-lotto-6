@@ -1,5 +1,6 @@
 package lotto.controller.user;
 
+import java.util.List;
 import lotto.controller.Controller;
 import lotto.service.UserService;
 import lotto.view.BasicView;
@@ -14,7 +15,7 @@ public class UserBuyLottoController implements Controller {
     }
 
     @Override
-    public View process(String input) {
+    public View process(List<String> input) {
         int buyCount = userService.buyLotto();
         return new LottoBuyCountView(buyCount);
     }

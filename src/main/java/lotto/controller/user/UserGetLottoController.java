@@ -16,7 +16,7 @@ public class UserGetLottoController implements Controller {
     }
 
     @Override
-    public View process(String input) {
+    public View process(List<String> input) {
         List<Lotto> lottos = userService.findLottosOfUser();
         return new LottoOfUserView(lottos);
     }

@@ -1,6 +1,7 @@
 package lotto.request;
 
-import lotto.controller.Command;
+import java.util.List;
+import lotto.command.Command;
 import lotto.controller.FrontController;
 
 public class NonAskRequest extends Request {
@@ -10,7 +11,7 @@ public class NonAskRequest extends Request {
     }
 
     @Override
-    protected String askAndInput() {
+    protected List<String> askAndInput() {
         return null;
     }
 }

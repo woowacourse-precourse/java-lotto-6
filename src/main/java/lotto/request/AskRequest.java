@@ -1,7 +1,8 @@
 package lotto.request;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.Command;
+import java.util.List;
+import lotto.command.Command;
 import lotto.controller.FrontController;
 
 public class AskRequest extends Request {
@@ -11,8 +12,12 @@ public class AskRequest extends Request {
     }
 
     @Override
-    protected String askAndInput() {
+    protected List<String> askAndInput() {
         System.out.println(command.getMessage());
-        return Console.readLine();
+        String input = Console.readLine();
+
+        command.validate(input);
+
+        return List.of(input);
     }
 }

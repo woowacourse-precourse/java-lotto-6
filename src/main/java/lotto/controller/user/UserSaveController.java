@@ -1,5 +1,6 @@
 package lotto.controller.user;
 
+import java.util.List;
 import lotto.controller.Controller;
 import lotto.service.UserService;
 import lotto.view.BasicView;
@@ -13,8 +14,8 @@ public class UserSaveController implements Controller {
     }
 
     @Override
-    public View process(String input) {
-        int amount = Integer.parseInt(input);
+    public View process(List<String> input) {
+        int amount = Integer.parseInt(input.get(0));
         userService.saveUser(amount);
         return new BasicView();
     }

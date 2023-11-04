@@ -13,7 +13,7 @@ public class LottoOfUserView implements View {
 
     @Override
     public void render() {
-        System.out.print(calculateOutput());
+        System.out.println(calculateOutput()+"\n");
     }
 
     private String calculateOutput() {

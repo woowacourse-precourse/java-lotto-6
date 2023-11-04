@@ -24,6 +24,4 @@ public class Lotto {
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
-
-    // TODO: 추가 기능 구현
 }

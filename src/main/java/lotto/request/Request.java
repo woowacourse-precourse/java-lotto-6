@@ -1,6 +1,7 @@
 package lotto.request;
 
-import lotto.controller.Command;
+import java.util.List;
+import lotto.command.Command;
 import lotto.controller.FrontController;
 
 public abstract class Request {
@@ -16,5 +17,5 @@ public abstract class Request {
         frontController.service(command, askAndInput());
     }
 
-    protected abstract String askAndInput();
+    protected abstract List<String> askAndInput();
 }

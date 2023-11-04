@@ -43,7 +43,8 @@ public class LottoCompanyService {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, match);
-            storeAllPrizeResults(match, matchLottos.size(), results);
+            Prize.findByMatchWithBonus(match)
+                    .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
         }
         return results;
     }
@@ -52,14 +53,10 @@ public class LottoCompanyService {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
             List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
-            storeAllPrizeResults(match, matchLottos.size(), results);
+            Prize.findByMatchExceptBonus(match)
+                    .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
         }
         return results;
-    }
-
-    private static void storeAllPrizeResults(final int match, final int matchSize, final List<PrizeResult> results) {
-        Prize.findByMatchExceptBonus(match)
-                .ifPresent(prize -> savePrizeResult(prize, matchSize, results));
     }
 
     private static void savePrizeResult(final Prize prize, final int matchSize, final List<PrizeResult> results) {

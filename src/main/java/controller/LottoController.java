@@ -22,7 +22,9 @@ public class LottoController {
         lottoService.revealLottery(lottos, lottoSystem);
     }
     private Lottos makeLottos(){
-        return new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));
+        Lottos lottos = new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));
+        LottoView.printLottoList(lottos);
+        return lottos;
     }
     private LottoSystem makeLottoSystem(){
         List<Integer> winningNumber = parser.parseWinningNumber(getWinningNumberByUserInput());
@@ -73,7 +75,9 @@ public class LottoController {
     }
 
     private int NumberOfLotto(String input){
-        return parser.parseInteger(input)/LOTTO_PRICE;
+        int lottoNum = parser.parseInteger(input)/LOTTO_PRICE;
+        LottoView.printBuyResult(lottoNum);
+        return lottoNum;
     }
 }
 

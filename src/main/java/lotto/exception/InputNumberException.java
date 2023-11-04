@@ -30,7 +30,7 @@ public class InputNumberException {
                 .count();
 
         if (count != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR.getMessage() + NUMBER_RANGE.getMessage());
         }
     }
 }

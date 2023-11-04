@@ -3,36 +3,14 @@ package lotto.domain;
 import lotto.constant.NumberConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.NumberConstants.*;
+import static lotto.domain.LottoRank.NO_RANK;
 
 public class LotteryChecker {
 
-    public void prizeCheck(List<Lotto> lottoList, List<Integer> winningNumbers) {
-        List<Integer> winningNum = winningNumbers.subList(0, WINNING_NUMBER_TOTAL.getValue());
-        Integer bonusNum = winningNumbers.get(WINNING_NUMBER_TOTAL.getValue());
 
-        countSameNumber(lottoList, winningNum, bonusNum);
-
-        for (Lotto lotto : lottoList) {
-            if (lotto.getMatchNumberCount() == SECOND_PRIZE_MATCH_COUNT.getValue() && lotto.isMatchBonusCount()) {
-                lotto.setPrize(2);
-            }
-            if (lotto.getMatchNumberCount() == FIRST_PRIZE_MATCH_COUNT.getValue()) {
-                lotto.setPrize(1);
-            }
-            if (lotto.getMatchNumberCount() == THIRD_PRIZE_MATCH_COUNT.getValue() && !lotto.isMatchBonusCount()) {
-                lotto.setPrize(3);
-            }
-            if (lotto.getMatchNumberCount() == FOURTH_PRIZE_MATCH_COUNT.getValue()) {
-                lotto.setPrize(4);
-            }
-            if (lotto.getMatchNumberCount() == FIFTH_PRIZE_MATCH_COUNT.getValue()) {
-                lotto.setPrize(5);
-            }
-        }
-    }
 
     private static void countSameNumber(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNum) {
         for (Lotto lotto : lottoList) {

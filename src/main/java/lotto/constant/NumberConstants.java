@@ -1,20 +1,19 @@
 package lotto.constant;
 
 public class NumberConstants {
-    public static int LOTTO_PRICE = 1000;
-    public static int WINNING_NUMBER = 6;
-    public static int BONUS_NUMBER = 1;
-    public static int NUMBER_RANGE_MIN = 1;
-    public static int NUMBER_RANGE_MAX = 45;
-    public static int FIRST_PRIZE = 6;
-    public static int SECOND_PRIZE = 5;
-    public static int THIRD_PRIZE = 5;
-    public static int FOURTH_PRIZE = 4;
-    public static int FIFTH_PRIZE = 3;
-    public static int FIRST_PRIZE_MONEY = 200000000;
-    public static int SECOND_PRIZE_MONEY = 30000000;
-    public static int THIRD_PRIZE_MONEY = 1500000;
-    public static int FORTH_PRIZE_MONEY = 50000;
-    public static int FIFTH_PRIZE_MONEY = 5000;
-
+    public static final int LOTTO_PRICE = 1000;
+    public static final int WINNING_NUMBER = 6;
+    public static final int BONUS_NUMBER = 1;
+    public static final int NUMBER_RANGE_MIN = 1;
+    public static final int NUMBER_RANGE_MAX = 45;
+    public static final int FIRST_RANK_MATCH = 6;
+    public static final int SECOND_RANK_MATCH = 5;
+    public static final int THIRD_RANK_MATCH = 5;
+    public static final int FOURTH_RANK_MATCH = 4;
+    public static final int FIFTH_RANK_MATCH = 3;
+    public static final int FIRST_PRIZE_MONEY = 2_000_000_000;
+    public static final int SECOND_PRIZE_MONEY = 30_000_000;
+    public static final int THIRD_PRIZE_MONEY = 1_500_000;
+    public static final int FORTH_PRIZE_MONEY = 50_000;
+    public static final int FIFTH_PRIZE_MONEY = 5_000;
 }

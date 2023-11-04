@@ -2,21 +2,21 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Screen {
     static public int inputPurchasingAmount() {
-        String puchasingAmount = Console.readLine();
+        String purchasingAmount = Console.readLine();
 
         try {
-            checkPurchasingAmount(puchasingAmount);
+            checkPurchasingAmount(purchasingAmount);
         }
         catch (IllegalArgumentException exception) {
             printErrorMessage(exception.getMessage());
             inputPurchasingAmount();
         }
-        return Integer.parseInt(puchasingAmount);
+        return Integer.parseInt(purchasingAmount);
     }
 
     static private void checkPurchasingAmount(String purchasingAmount) {
@@ -28,7 +28,7 @@ public class Screen {
         return purchasingAmount.matches("^[1-9]\\d*000$");
     }
 
-    static public void printPurchasingAmount() {
+    static public void printAskingPurchasingAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
@@ -44,7 +44,6 @@ public class Screen {
         Lotto lotto = null;
 
         try {
-            checkWinningNumbers(splitNumbers);
             lotto = new Lotto(convertNumbersType(List.of(splitNumbers)));
         }
         catch (IllegalArgumentException exception) {
@@ -54,26 +53,25 @@ public class Screen {
         return lotto;
     }
 
-    static private void checkWinningNumbers(String[] winningNumbers) {
-        int idx = 0;
+    static private List<Integer> convertNumbersType(List<String> winningNumbers) {
+        List<Integer> convertNumbers = new ArrayList<>();
 
-        while (idx < winningNumbers.length) {
-            checkValidNumber(winningNumbers[idx]);
-            idx++;
+        for (String number : winningNumbers) {
+            convertNumbers.add(convertType(number));
         }
+        return convertNumbers;
     }
 
-    static private void checkValidNumber(String number) {
-        if (!isNumber(number))
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    }
+    static private int convertType(String number) {
+        int convertNumber;
 
-    static private boolean isNumber(String number) {
-        return number.matches("\\d+");
-    }
-
-    static private List<Integer> convertNumbersType(List<String> numbers) {
-        return numbers.stream().map(Integer::parseInt).collect(Collectors.toList());
+        try {
+            convertNumber = Integer.parseInt(number);
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return convertNumber;
     }
 
     static public void printAskingWinningNumbersMessage() {
@@ -94,11 +92,12 @@ public class Screen {
     }
 
     static private void checkBonusNumber(String bonusNumber, Lotto winningLotto) {
-        int number;
+        int checkingNumber;
+
         try {
-            number = Integer.parseInt(bonusNumber);
-            checkRange(number);
-            checkInWinningLotto(number, winningLotto);
+            checkingNumber = Integer.parseInt(bonusNumber);
+            checkRange(checkingNumber);
+            checkInWinningLotto(checkingNumber, winningLotto);
         }
         catch (IllegalArgumentException exception) {
             throw new IllegalArgumentException(exception.getMessage());
@@ -122,5 +121,4 @@ public class Screen {
     static private void printErrorMessage(String message) {
         System.out.println(message);
     }
-
 }

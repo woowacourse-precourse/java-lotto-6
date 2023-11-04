@@ -3,7 +3,8 @@ package lotto.constants;
 import java.util.regex.Pattern;
 
 public enum InputPattern {
-    NUMERIC_PATTERN(Pattern.compile("^\\d*$"));
+    NUMERIC_PATTERN(Pattern.compile("^\\d*$")),
+    DIVISION_COMMA_PATTERN(Pattern.compile("^\\w+[?:,\\w+]*$"));
 
     private final Pattern pattern;
 
@@ -11,9 +12,14 @@ public enum InputPattern {
         this.pattern = pattern;
     }
 
-    public static boolean isNotNumeric(String attemptNumber) {
+    public static boolean isNotNumeric(String purchasePrice) {
         Pattern pattern = NUMERIC_PATTERN.pattern;
-        return !pattern.matcher(attemptNumber).matches();
+        return !pattern.matcher(purchasePrice).matches();
+    }
+
+    public static boolean isNotDivisionComma(String winningNumbers) {
+        Pattern pattern = DIVISION_COMMA_PATTERN.pattern;
+        return !pattern.matcher(winningNumbers).matches();
     }
 
 }

@@ -119,7 +119,28 @@ public class Application {
     private double calculateEarningsRate(int purchaseAmount, double totalPrizeMoney){
         return (double) totalPrizeMoney / purchaseAmount * 100;
     }
-    
+
+    public void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount){
+        Map<String, Integer> resultMap = calculateResult(lottos, winningLotto, bonusNumber);
+
+        double totalPrizeMoney = getPrizeMoney(resultMap);
+        double earningsRate = calculateEarningsRate(purchaseAmount, totalPrizeMoney);
+
+        printLottoResult(resultMap);
+        printEarningsRate(earningsRate);
+    }
+
+    private void printLottoTickets(List<Lotto> lottos){
+
+    }
+    private void printLottoResult(Map<String, Integer> resultMap){
+
+    }
+
+    private void printEarningsRate(double earningsRate){
+
+    }
+
     private static String getKey(int matchCount, boolean bonusMatch){
         if(matchCount == 5 && bonusMatch){
             return "5개 일치, 보너스 볼 일치";

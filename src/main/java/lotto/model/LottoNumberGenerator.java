@@ -15,3 +15,4 @@ public class LottoNumberGenerator {
         return new ArrayList<>(generatedNumbers);
     }
 }
+

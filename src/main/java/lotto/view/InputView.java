@@ -10,6 +10,8 @@ public class InputView {
     public int readPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_INPUT_PROMPT);
         int purchaseAmount = readLineAndParseInt();
+        InputValidator.greaterThanThousand(purchaseAmount);
+        InputValidator.divisibleByThousand(purchaseAmount);
         return purchaseAmount;
     }
 

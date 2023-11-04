@@ -1,12 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    public List<Paper> papers;
     public List<Integer> matchingNumbers;
     public float rateOfReturn=0;
 
@@ -14,7 +12,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        papers=new ArrayList<>();
         matchingNumbers=new ArrayList<>();
         for(int i=0;i<5;i++){
             matchingNumbers.add(0);
@@ -27,17 +24,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    public void createPapers(int n,int bonusNumber){
-        for(int i = 0; i<n;i++){
-            Paper paper=new Paper();
-            paper.checkCorrespondNum(numbers,bonusNumber);
-            paper.checkWinMoney();
-            papers.add(paper);
-        }
-    }
-
-    public void saveMatchingNumbers(){
+    public void saveMatchingNumbers(List<Paper> papers){
         for(Paper i : papers){
             if(i.getCorrespondNum()==3){
                 matchingNumbers.set(0,matchingNumbers.get(0)+1);
@@ -57,19 +44,13 @@ public class Lotto {
         }
     }
 
-    public void saveRateOfReturn(int inputMoney){
+    public void saveRateOfReturn(List<Paper> papers,int inputMoney){
         int totalMoney=0;
         for(Paper i : papers){
             totalMoney+=i.getWinMoney();
         }
         rateOfReturn= (float) totalMoney/inputMoney*100;
         rateOfReturn= (float) Math.round(rateOfReturn * 100) /100;
-    }
-
-    public void printPapers(){
-        for(Paper i : papers){
-            System.out.println(i.getNumber());
-        }
     }
 
     public void printMatchingNumbers(){
@@ -80,5 +61,9 @@ public class Lotto {
 
     public void printRateOfReturn(){
         System.out.println(rateOfReturn);
+    }
+
+    public List<Integer> getLottoNumbers(){
+        return numbers;
     }
 }

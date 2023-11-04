@@ -6,12 +6,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateBlank(numbers);
+        validateSize(numbers);
         validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
@@ -23,10 +24,21 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
     private boolean isDuplicated(List<Integer> numbers){
         return numbers.size() != duplicatedSize(numbers);
     }
     private Long duplicatedSize(List<Integer> numbers){
         return numbers.stream().distinct().count();
     }
+    private void validateBlank(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new NullPointerException();
+        }
+        if (numbers.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.utils.LottoNumbersGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,9 +12,9 @@ public class LottoTickets {
 
     public LottoTickets(int numberOfTickets) {
         validateNumberOfTickets(numberOfTickets);
+
         lottoTickets = IntStream.range(0, numberOfTickets)
-                // TODO: 랜던 유니크 생성 적용 하기
-                .mapToObj(i -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .mapToObj(i -> new Lotto(LottoNumbersGenerator.generate()))
                 .collect(Collectors.toList());
     }
 

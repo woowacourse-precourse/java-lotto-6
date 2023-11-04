@@ -3,6 +3,7 @@ package lotto.controller;
 
 import lotto.View.ErrorMessageView;
 import lotto.View.InputView;
+import lotto.View.OutputView;
 import lotto.model.LottoAmount;
 import lotto.model.LottoTickets;
 
@@ -26,5 +27,7 @@ public class LottoController {
     private void buyLotto(LottoAmount amount) {
         amount.getLottoCount();
         LottoTickets lottoTickets = new LottoTickets(amount.getLottoCount());
+        OutputView.printLottoCount(amount.getLottoCount());
+        OutputView.printLottoTickets(lottoTickets);
     }
 }

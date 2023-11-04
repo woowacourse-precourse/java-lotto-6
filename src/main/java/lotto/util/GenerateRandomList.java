@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class GenerateRandomList {
-    private final static Integer MIN_NUMBER = 1;
-    private final static Integer MAX_NUMBER = 45;
-    private final static Integer NUMBER_SIZE = 6;
+    private static final Integer MIN_NUMBER = 1;
+    private static final Integer MAX_NUMBER = 45;
+    private static final Integer NUMBER_SIZE = 6;
 
     private GenerateRandomList() {
     }

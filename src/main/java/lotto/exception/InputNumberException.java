@@ -5,6 +5,9 @@ import java.util.List;
 import static lotto.exception.ErrorMessage.*;
 
 public class InputNumberException {
+    private static final Integer MIN_NUM = 1;
+    private static final Integer MAX_NUM = 45;
+
     private InputNumberException() {
     }
 
@@ -26,7 +29,7 @@ public class InputNumberException {
     private static void numberRangeValidate(List<String> numbers) {
         long count = numbers.stream()
                 .map(Integer::valueOf)
-                .filter((Integer num) -> 1 <= num && num <= 45)
+                .filter((Integer num) -> MIN_NUM <= num && num <= MAX_NUM)
                 .count();
 
         if (count != numbers.size()) {

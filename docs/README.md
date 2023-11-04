@@ -62,7 +62,6 @@
 
 로또 결과 계산: calculateGameResult
 * calculateMatchingNumbers
-* isContainBonusNumber
 * calculateRateOfReturn
 
 로또 결과 출력: printGameResult

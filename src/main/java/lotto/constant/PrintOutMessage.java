@@ -11,6 +11,7 @@ public enum PrintOutMessage {
     FIVE_MATCH("5개 일치 (1,500,000원) - "),
     FIVE_AND_BONUS_MATCH("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     SIX_MATCH("6개 일치 (2,000,000,000원) - "),
+    COUNT_SUFFIX("개"),
     PRINT_EARNING_PERCENT("총 수익률은 ");
 
     public final String message;

@@ -1,9 +1,9 @@
 package lotto.view.output;
 
+import static lotto.constant.PrintOutMessage.COUNT_SUFFIX;
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_BONUS_NUMBER;
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_PURCHASE_PRICE;
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_WINNER_NUMBER;
-import static lotto.constant.PrintOutMessage.PRINT_EARNING_PERCENT;
 import static lotto.constant.PrintOutMessage.PRINT_LOTTO_COUNT;
 import static lotto.constant.PrintOutMessage.PRINT_WINNING_STATISTICS;
 
@@ -39,20 +39,23 @@ public class OutputView {
 
     public void printMatchingCount(Map<Statistics, Integer> matchingCount) {
         System.out.println(
-                PrintOutMessage.THREE_MATCH.message + matchingCount.getOrDefault(new Statistics(3, false), 0) + "개");
+                PrintOutMessage.THREE_MATCH.message + matchingCount.getOrDefault(new Statistics(3, false), 0)
+                        + COUNT_SUFFIX.message);
         System.out.println(
-                PrintOutMessage.FOUR_MATCH.message + matchingCount.getOrDefault(new Statistics(4, false), 0) + "개");
+                PrintOutMessage.FOUR_MATCH.message + matchingCount.getOrDefault(new Statistics(4, false), 0)
+                        + COUNT_SUFFIX.message);
         System.out.println(
-                PrintOutMessage.FIVE_MATCH.message + matchingCount.getOrDefault(new Statistics(5, false), 0) + "개");
+                PrintOutMessage.FIVE_MATCH.message + matchingCount.getOrDefault(new Statistics(5, false), 0)
+                        + COUNT_SUFFIX.message);
         System.out.println(
                 PrintOutMessage.FIVE_AND_BONUS_MATCH.message + matchingCount.getOrDefault(new Statistics(5, true), 0)
-                        + "개");
+                        + COUNT_SUFFIX.message);
         System.out.println(
-                PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(new Statistics(6, false), 0) + "개");
+                PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(new Statistics(6, false), 0)
+                        + COUNT_SUFFIX.message);
     }
 
-    public void printEarningPercent(int earningMoney, int purchasePrice) {
-        double earningPercent = Math.round((double) earningMoney / purchasePrice * 100 * 100) / 100.0;
-        System.out.println(PRINT_EARNING_PERCENT.message + earningPercent + "%입니다.");
+    public void printEarningPercent(String formattedPercent) {
+        System.out.println(String.format("총 수익률은 %s%%입니다.", formattedPercent));
     }
 }

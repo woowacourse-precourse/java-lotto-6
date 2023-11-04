@@ -14,7 +14,7 @@ public class LottoValidator {
 
     public void validateAnswerNumbers(final AnswerLottoNumbers answerNumbers) {
         List<String> numbers = answerNumbers.divideNumbers();
-        validateEachDigit(numbers);
+        numbers.forEach(this::validateDigit);
 
         List<Integer> convertedNumbers = numbers.stream()
             .map(Integer::parseInt)
@@ -22,10 +22,6 @@ public class LottoValidator {
         validateSize(convertedNumbers);
         validateDuplicate(convertedNumbers);
         convertedNumbers.forEach(this::validateRange);
-    }
-
-    private void validateEachDigit(final List<String> numbers) {
-        numbers.forEach(this::validateDigit);
     }
 
     public void validateBonusNumber(final List<Integer> numbers, final String inputBonusNumber) {
@@ -41,12 +37,12 @@ public class LottoValidator {
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
-    private void validateRange(final int number) throws IllegalArgumentException {
+    private void validateRange(final int number) {
         boolean condition = number <= 45 && number >= 1;
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
-    private void validateDuplicate(final List<Integer> numbers) throws IllegalArgumentException {
+    private void validateDuplicate(final List<Integer> numbers) {
         long distinctSize = numbers.stream()
             .distinct()
             .count();
@@ -54,18 +50,18 @@ public class LottoValidator {
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
-    private void validateSize(final List<Integer> numbers) throws IllegalArgumentException {
+    private void validateSize(final List<Integer> numbers) {
         boolean condition = numbers.size() <= 6;
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
-    private void validateDivided(final String inputPurchase) throws IllegalArgumentException {
+    private void validateDivided(final String inputPurchase) {
         int purchase = Integer.parseInt(inputPurchase);
         boolean condition = purchase % 1000 == 0;
         throwExceptionByCondition(condition, ERROR_MSG);
     }
 
-    private void validateDigit(final String inputPurchase) throws IllegalArgumentException {
+    private void validateDigit(final String inputPurchase) {
         boolean condition = inputPurchase.chars()
             .allMatch(Character::isDigit);
         throwExceptionByCondition(condition, ERROR_MSG);

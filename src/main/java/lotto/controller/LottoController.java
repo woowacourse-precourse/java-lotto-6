@@ -18,6 +18,7 @@ import lotto.model.judge.BonusNumberJudge;
 import lotto.model.judge.GoalNumberJudge;
 import lotto.model.judge.LottoJudge;
 import lotto.service.InvestorService;
+import lotto.service.LottoCompanyService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 import java.util.List;
@@ -39,7 +40,7 @@ public class LottoController {
 
         printLottoValues(lottos);
 
-        LottoCompany lottoCompany = initLottoCompany();
+        LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
 
         LottoJudge goalJudge = initGoalNumberJudge();
         LottoJudge bonusJudge = initBonusNumberJudge();
@@ -64,11 +65,12 @@ public class LottoController {
         outputView.printProfitRate(investorService.calculateProfitRate());
     }
 
-    private LottoCompany initLottoCompany() {
+    private LottoCompanyService initLottoCompanyService(final List<Lotto> lottos) {
         GoalNumbers goalNumbers = initGoalNumbers();
         BonusNumber bonusNumber = initBonusNumber();
+        LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
 
-        return LottoCompany.of(goalNumbers, bonusNumber);
+        return LottoCompanyService.of(lottoCompany, lottos);
     }
 
     private GoalNumbers initGoalNumbers() {

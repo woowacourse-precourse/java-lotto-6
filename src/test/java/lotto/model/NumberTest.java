@@ -14,7 +14,7 @@ class NumberTest {
         assertThatThrownBy(() -> {
             Number.of(-1);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
+                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.get());
 
     }
 
@@ -24,7 +24,7 @@ class NumberTest {
         assertThatThrownBy(() -> {
             Number.of(46);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
+                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.get());
 
     }
 }

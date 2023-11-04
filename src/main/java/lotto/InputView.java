@@ -2,16 +2,21 @@ package lotto;
 
 public class InputView {
 
+    private final static String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
+
     public void askPrice(String input) {
-        validateInteger(input);
+        askHowManyPurchase(ASK_PURCHASE_MESSAGE);
     }
 
+    private void askHowManyPurchase(String askPurchaseMessage) {
+        System.out.println(askPurchaseMessage);
+    }
 
     public int validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 정수 외에는 입력받을 수 없습니다.");
+            askHowManyPurchase("[ERROR] 정수 외에는 입력받을 수 없습니다.");
         }
 
         return Integer.parseInt(input);

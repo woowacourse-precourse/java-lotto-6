@@ -2,6 +2,9 @@ package lotto.domain;
 
 import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PurchaseNumber {
     private static final int MONEY_UNIT = 1000;
 
@@ -20,5 +23,12 @@ public class PurchaseNumber {
 
     private Integer convertToPurchaseNumber(Integer purchasePrice) {
         return purchasePrice / MONEY_UNIT;
+    }
+
+    public boolean lessThanPurchaseNumber(Integer number) {
+        if(number.compareTo(this.number) < 0) {
+            return true;
+        }
+        return false;
     }
 }

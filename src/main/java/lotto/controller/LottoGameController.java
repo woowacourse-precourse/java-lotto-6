@@ -30,13 +30,7 @@ public class LottoGameController {
         PurchasePrice purchasePrice = new PurchasePrice(inputView.inputPurchasePrice());
         outputView.printLottoCount(purchasePrice.getCount());
 
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < purchasePrice.getCount(); i++) {
-            Lotto lotto = new Lotto(createLottoNumbers());
-            outputView.printLottoNumber(lotto);
-            lottos.add(lotto);
-        }
+        List<Lotto> lottos = buyLotto(purchasePrice);
 
         // 당첨 번호 입력
         outputView.printWinnerNumber();
@@ -46,37 +40,60 @@ public class LottoGameController {
         outputView.printBonusNumber();
         BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
 
+        //당첨 번호 & 로또 번호 비교
+        List<Statistics> result = calculateMatching(lottos, winnerNumber, bonusNumber);
+
         //로또 통계
-        Map<Integer, Integer> matchingCount = new HashMap<>();
-        List<Statistics> result = new ArrayList<>();
+        Map<Statistics, Integer> matchingCount = new HashMap<>();
         PrizeMoney prizeMoney = new PrizeMoney();
+
+        int earningMoney = calculateStatistics(result, matchingCount, prizeMoney);
+
+        outputView.printWinningStatistics();
+        outputView.printMatchingCount(matchingCount);
+        outputView.printEarningPercent(earningMoney, purchasePrice.getPurchasePrice());
+    }
+
+    private List<Lotto> buyLotto(PurchasePrice purchasePrice) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < purchasePrice.getCount(); i++) {
+            Lotto lotto = new Lotto(createLottoNumbers());
+            outputView.printLottoNumber(lotto);
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
+
+    private List<Integer> createLottoNumbers() {
+        return pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private int calculateStatistics(List<Statistics> result, Map<Statistics, Integer> matchingCount,
+                                           PrizeMoney prizeMoney) {
         int earningMoney = 0;
 
-        for (int i = 3; i <= 6; i++) {
-            matchingCount.put(i, 0);
-        }
+        for (Statistics statistics : result) {
+            Statistics matchCount = new Statistics(statistics.getMatchCount(), statistics.isMatchBonus());
+            int currentCount = matchingCount.getOrDefault(matchCount, 0);
+            matchingCount.put(matchCount, currentCount + 1);
 
-        //당첨 번호 & 로또 번호 비교 - 통계 계산 전으로 옮겨야할듯....
+            earningMoney += prizeMoney.getPrizeMoney(matchCount.getMatchCount());
+            if (matchCount.getMatchCount() == 5 && statistics.isMatchBonus()) {
+                earningMoney += 1500000;
+            }
+        }
+        return earningMoney;
+    }
+
+    private List<Statistics> calculateMatching(List<Lotto> lottos, WinnerNumber winnerNumber, BonusNumber bonusNumber) {
+        List<Statistics> result = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int matchCount = countMatchingNumbers(lotto.getNumbers(), winnerNumber.getWinnerNumbers());
             boolean matchBonus = isMatchingBonusNumber(lotto.getNumbers(), bonusNumber.getBonusNumber());
             result.add(new Statistics(matchCount, matchBonus));
         }
-
-        for (Statistics statistics : result) {
-            int matchCount = statistics.getMatchCount();
-            int currentCount = matchingCount.getOrDefault(matchCount, 0);
-            matchingCount.put(matchCount, currentCount + 1);
-
-            earningMoney += prizeMoney.getPrizeMoney(matchCount);
-            if (matchCount == 5 && statistics.isMatchBonus()) {
-                earningMoney += 1500000;
-            }
-        }
-
-        outputView.printWinningStatistics();
-        outputView.printMatchingCount(matchingCount);
-        outputView.printEarningPercent(earningMoney, purchasePrice.getPurchasePrice());
+        return result;
     }
 
     private boolean isMatchingBonusNumber(List<Integer> lotto, int bonusNumber) {
@@ -89,9 +106,7 @@ public class LottoGameController {
     }
 
 
-    private List<Integer> createLottoNumbers() {
-        return pickUniqueNumbersInRange(1, 45, 6);
-    }
+
 
 
     private int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winnerNumbers) {
@@ -103,5 +118,4 @@ public class LottoGameController {
         }
         return count;
     }
-
 }

@@ -1,10 +1,12 @@
 package lotto;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +26,29 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    class TestUser {
+        public int inputLottoCount() {
+            return 5000;
+        }
+
+        public int[] inputWinningLottoNumber() {
+            return new int[]{1, 2, 3, 4, 5, 6};
+        }
+
+        public int inputBonusNumber() {
+            return 7;
+        }
+    }
+
+    @Test
+    void inputLottoCountTest() {
+        // given
+        TestUser testUser = new TestUser();
+        // when
+        int result = testUser.inputLottoCount();
+
+        // then
+        assertThat(result).isEqualTo(5000);
+    }
 }
+

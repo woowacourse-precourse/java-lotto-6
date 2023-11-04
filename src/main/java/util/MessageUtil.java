@@ -39,4 +39,5 @@ public class MessageUtil {
         System.out.println(lottoNum.toString());
 //        for(List)
     }
+
 }

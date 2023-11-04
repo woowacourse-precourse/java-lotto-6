@@ -16,13 +16,11 @@ public class LottoRun {
 //    private final LottoResultCompute lottoResultCompute = new LottoResultCompute();
     public void run(){
         messageUtil.printPurchaseAmount();
-//        getLottoPurchaseInfo
         LottoPurchase purchaseInfo = lottoPurchase.getLottoPurchaseInfo();
         LottoWinningNumber winningNumInfo = lottoWinningNumber.getLottoWinningNumInfo();
         LottoBonusNumber bonusNumInfo = lottoBonusNumber.getLottoBonusNumInfo();
         LottoResultCompute resultCompute = new LottoResultCompute(winningNumInfo, bonusNumInfo);
         resultCompute.getLottoResultComputeInfo(purchaseInfo.getUserLottos(), purchaseInfo.getUserLottoAmount());
-
     }
 
 }

@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] : 로또 개수는 6개여야 합니다");
         }
     }
 }

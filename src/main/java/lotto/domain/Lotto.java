@@ -2,12 +2,13 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -17,11 +18,22 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    public static Lotto generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Integer::compareTo);
+    public static Lotto of (List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static Lotto generateRandomLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            .stream()
+            .sorted()
+            .toList();
+        return Lotto.of(numbers);
+    }
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String toString() {

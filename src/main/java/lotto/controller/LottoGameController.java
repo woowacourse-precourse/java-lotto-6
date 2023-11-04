@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Tickets;
+import lotto.domain.UserNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,12 +15,39 @@ public class LottoGameController {
 
         String purchaseAmount = inputView.inputPurchaseAmount();
 
-        Tickets tickets = Tickets.of(purchaseAmount);
+        int userMoney = parseStringToUnsignedInt(purchaseAmount);
 
-        OutputView.printPurchaseNumber(tickets.getNumberOfTickets());
+        Tickets tickets = Tickets.of(userMoney);
 
-        for(int i = 0; i < tickets.getNumberOfTickets(); i++) {
-            System.out.println(Lotto.generateLottoNumbers());
+        OutputView.printPurchaseNumber(tickets.getNumberTickets());
+
+        //
+        Lottos lottos = Lottos.of(tickets.getNumberTickets());
+
+        lottos.getLottos().stream()
+            .map(Lotto::toString)
+            .forEach(System.out::println);
+
+        String winningNumber = inputView.inputWinningNumber();
+        UserNumbers userNumbers = UserNumbers.of(winningNumber);
+
+        String bonusNumber = inputView.inputBonusNumber();
+        UserNumbers bonus = UserNumbers.of(bonusNumber);
+
+//        Result result = Result.getLottoResult(lottos, userNumbers, bonus);
+//
+//        outputView.printWinningStatistics();
+//
+//        result.
+
+    }
+
+    private int parseStringToUnsignedInt(String input) {
+        try {
+            return Integer.parseUnsignedInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("0이상의 숫자만 입력가능합니다");
         }
     }
+
 }

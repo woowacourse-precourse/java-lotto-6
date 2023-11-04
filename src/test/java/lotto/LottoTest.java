@@ -24,5 +24,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 정상적으로 생성된다.")
+    @Test
+    void createLotto() {
+
+    }
+
     // 아래에 추가 테스트 작성 가능
 }

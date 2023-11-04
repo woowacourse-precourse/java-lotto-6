@@ -12,7 +12,7 @@ public class LottoStoreTest {
     @Test
     void testThreeLottoIssueWhenThreeThousandWon() {
         int purchaseAmount = 3000;
-        int purchasedLottoAmount = lottoStore.calculatePurchasedLottoCount(purchaseAmount);
+        int purchasedLottoAmount = lottoStore.calculatePurchasedLottoAmount(purchaseAmount);
 
         assertThat(purchasedLottoAmount).isEqualTo(3);
     }
@@ -21,7 +21,7 @@ public class LottoStoreTest {
     @Test
     void testTenLottoIssueWhenTenThousandWon() {
         int purchaseAmount = 10000;
-        int purchasedLottoAmount = lottoStore.calculatePurchasedLottoCount(purchaseAmount);
+        int purchasedLottoAmount = lottoStore.calculatePurchasedLottoAmount(purchaseAmount);
 
         assertThat(purchasedLottoAmount).isEqualTo(10);
     }

@@ -16,10 +16,10 @@ public class WinningNumbersValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {" ", "   ", "\t", "\n"})
     void testWhenWinningNumbersIsNullOrBlank(String winningNumbers) {
-        IllegalArgumentException winningNumbersError =
+        IllegalArgumentException winningNumbersException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> winningNumbersValidator.validate(winningNumbers));
-        assertThat(winningNumbersError.getMessage()).contains("[ERROR]");
+        assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("당첨 번호로 유효하지 않은 패턴으로 입력 시 예외가 발생한다.")
@@ -27,10 +27,10 @@ public class WinningNumbersValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {"1,two,3,4,5,6", "10/12/23/34/45/16", "11, 22, 33, 44, 25, 26"})
     void testWhenWinningNumbersIsInvalidPattern(String winningNumbers) {
-        IllegalArgumentException winningNumbersError =
+        IllegalArgumentException winningNumbersException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> winningNumbersValidator.validate(winningNumbers));
-        assertThat(winningNumbersError.getMessage()).contains("[ERROR]");
+        assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("당첨 번호로 범위 밖의 숫자 입력 시 예외가 발생한다.")
@@ -38,10 +38,10 @@ public class WinningNumbersValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {"0,1,2,3,4,5", "12,24,36,40,44,46"})
     void testWhenInvalidRangeNumberInWinningNumbers(String winningNumbers) {
-        IllegalArgumentException winningNumbersError =
+        IllegalArgumentException winningNumbersException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> winningNumbersValidator.validate(winningNumbers));
-        assertThat(winningNumbersError.getMessage()).contains("[ERROR]");
+        assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("당첨 번호로 중복된 숫자 입력 시 예외가 발생한다.")
@@ -49,10 +49,10 @@ public class WinningNumbersValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {"1,2,3,4,6,6", "11,11,22,22,33,33"})
     void testWhenDuplicatedNumbersInWinningNumbers(String winningNumbers) {
-        IllegalArgumentException winningNumbersError =
+        IllegalArgumentException winningNumbersException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> winningNumbersValidator.validate(winningNumbers));
-        assertThat(winningNumbersError.getMessage()).contains("[ERROR]");
+        assertThat(winningNumbersException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("적절한 당첨 번호 입력 시 예외가 발생하지 않는다.")

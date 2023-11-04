@@ -15,10 +15,10 @@ public class BonusNumberValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {" ", "   ", "\t", "\n"})
     void testWhenBonusNumberIsNullOrBlank(String bonusNumber) {
-        IllegalArgumentException bonusNumberError =
+        IllegalArgumentException bonusNumberException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> bonusNumberValidator.validate(bonusNumber));
-        assertThat(bonusNumberError.getMessage()).contains("[ERROR]");
+        assertThat(bonusNumberException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("보너스 번호로 숫자가 아닌 값 입력 시 예외가 발생한다.")
@@ -26,10 +26,10 @@ public class BonusNumberValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {"오", "five", "@"})
     void testWhenBonusNumberIsNotDigit(String bonusNumber) {
-        IllegalArgumentException bonusNumberError =
+        IllegalArgumentException bonusNumberException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> bonusNumberValidator.validate(bonusNumber));
-        assertThat(bonusNumberError.getMessage()).contains("[ERROR]");
+        assertThat(bonusNumberException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("보너스 번호로 범위 밖의 값 입력 시 예외가 발생한다.")
@@ -37,10 +37,10 @@ public class BonusNumberValidatorTest {
     @NullAndEmptySource
     @ValueSource(strings = {"0", "46", "100"})
     void testWhenBonusNumberIsInvalidRange(String bonusNumber) {
-        IllegalArgumentException bonusNumberError =
+        IllegalArgumentException bonusNumberException =
                 Assertions.assertThrows(IllegalArgumentException.class,
                         () -> bonusNumberValidator.validate(bonusNumber));
-        assertThat(bonusNumberError.getMessage()).contains("[ERROR]");
+        assertThat(bonusNumberException.getMessage()).contains("[ERROR]");
     }
 
     @DisplayName("적절한 보너스 번호 입력 시 예외가 발생하지 않는다.")

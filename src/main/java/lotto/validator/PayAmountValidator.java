@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class PurchaseAmountValidator {
+public class PayAmountValidator {
     public void validate(String purchaseAmount) {
         isBlank(purchaseAmount);
         isNotNumeric(purchaseAmount);

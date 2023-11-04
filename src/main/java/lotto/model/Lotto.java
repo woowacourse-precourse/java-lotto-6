@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,7 +9,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -28,8 +28,14 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public boolean contains(int targetNumber) {
+        return numbers.contains(targetNumber);
+    }
+
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> clonedNumbers = new ArrayList<>(numbers);
+        sortNumbers(clonedNumbers);
+        return clonedNumbers.toString();
     }
 }

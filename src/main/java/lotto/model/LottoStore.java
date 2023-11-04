@@ -1,13 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoStore {
     private static final int lottoPrice = 1000;
 
-    public int calculatePurchasedLottoCount(int purchaseAmount) {
+    public int calculatePurchasedLottoAmount(int purchaseAmount) {
         return purchaseAmount / lottoPrice;
     }
 

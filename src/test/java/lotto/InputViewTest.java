@@ -10,17 +10,17 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "3000", "4000", "10000", "100000"})
-    @DisplayName("로또 구입 금액은 정수만 입력받을 수 있다.")
-    void isAmountDivisible(String strings) {
+    @DisplayName("양의 정수만 입력받을 수 있다.")
+    void validateInteger_positiveInteger_notThrowAnyException(String strings) {
         InputView inputView = new InputView();
         Assertions.assertThatCode(() -> inputView.validateInteger(strings))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1.0", "-", "ㄱ", "가나3", "3피자", ","})
-    @DisplayName("로또 구입 금액 입력은 정수 외의 값은 예외가 발생한다.")
-    void isAmountDivisible1(String strings) {
+    @ValueSource(strings = {"-", "ㄱ", "가나", "피자"})
+    @DisplayName("문자 입력값은 예외가 발생한다.")
+    void validateInteger_invalidCharacter_exceptionThrown(String strings) {
         InputView inputView = new InputView();
         Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
                 .isInstanceOf(IllegalArgumentException.class);

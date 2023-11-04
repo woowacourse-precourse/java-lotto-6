@@ -18,6 +18,11 @@ public class LottoNumbers {
         return this.numbers;
     }
 
+    public int compareNumbersWithLotto(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return (int) lottoNumbers.stream().filter(numbers::contains).count();
+    }
+
     private List<Integer> convertStringsToIntegers(List<String> numbers) {
         return numbers.stream()
                 .map(Utils::convertStringToInteger)

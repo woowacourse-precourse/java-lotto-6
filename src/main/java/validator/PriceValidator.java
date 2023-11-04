@@ -5,9 +5,17 @@ import util.ErrorMessage;
 public class PriceValidator {
 
     public void checkPriceValidate(String input) {
+        isPriceEmpty(input);
         int price = isPriceContainsOnlyNumber(input);
         isPricePositive(price);
         isMultipleOfThousandWon(price);
+    }
+
+    private void isPriceEmpty(String input) {
+        if(input.isEmpty()) {
+            System.out.println(ErrorMessage.PRICE_DOESNT_ENTER);
+            throw new IllegalArgumentException();
+        }
     }
 
     private int isPriceContainsOnlyNumber(String input) {

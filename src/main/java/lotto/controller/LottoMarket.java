@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Money;
+import lotto.domain.RandomNumbersGenerator;
 import lotto.service.LottoMarketService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,7 +17,7 @@ public class LottoMarket {
     }
 
     private void buy(Money money) {
-        LottoMarketService service = new LottoMarketService(money);
+        LottoMarketService service = new LottoMarketService(money, new RandomNumbersGenerator());
         outputView.printPurchasedLottoCount(service.getPurchasedCount());
     }
 }

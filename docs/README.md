@@ -45,7 +45,7 @@
 ## 보너스 번호 입력 기능
 - [x] `LottoInputView::getBonusNumber`
   - 보너스 번호를 입력받는다.
-- [ ] `validateBonusNumber` 메서드
+- [x] `Application::validateBonusNumber` 메서드
   - 입력받은 보너스 번호를 검증한다.
     - 정수가 아니라면 `IllegalArgumentException` 발생
     - 1~45 값이 아니라면 `IllegalArgumentException` 발생

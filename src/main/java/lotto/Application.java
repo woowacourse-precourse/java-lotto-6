@@ -16,4 +16,14 @@ public class Application {
             throw new IllegalArgumentException("구매가격은 1000의 배수만 가능합니다.");
         }
     }
+
+    public static void validateBonusNumber(String input) {
+        if (!LottoUtil.isInteger(input)) {
+            throw new IllegalArgumentException("보너스 번호는 정수만 가능합니다.");
+        }
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("로또 번호는 1~45값만 가능합니다.");
+        }
+    }
 }

@@ -33,4 +33,8 @@ public class Result {
         }
         return total;
     }
+
+    public double calculateRate(int money) {
+        return (calculateResult() / money) * 100;
+    }
 }

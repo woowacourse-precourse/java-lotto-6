@@ -49,14 +49,14 @@ public class LottoController {
     }
 
     private void showLottoResult(Player player, Prize prize) {
+        OutputView.printPrizeResult();
         Result result = Result.of(player.getLotto(), prize);
         for (Rank rank : Rank.values()) {
             if (!rank.equals(Rank.NONE)) {
                 int count = result.getResultCount(rank);
-                System.out.println(rank.formatMessage(count));
+                OutputView.printPrizeLotto(rank.formatMessage(count));
             }
         }
-        double rate = (result.calculateResult() / player.getMoney()) * 100;
-        System.out.println(String.format("%.1f", rate));
+        System.out.println(String.format("%.1f", result.calculateRate(player.getMoney())));
     }
 }

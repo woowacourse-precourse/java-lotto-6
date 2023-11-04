@@ -23,4 +23,8 @@ public class View {
     public void printIssuedLotto(String lotto) {
         System.out.println(lotto);
     }
+
+    public void printWinningNumbersInputMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

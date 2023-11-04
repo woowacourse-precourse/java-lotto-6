@@ -45,7 +45,7 @@ class CustomerTest {
     void possibleBuyLottoByCashInHand() {
         Customer customer = new Customer("10000");
 
-        Integer result = customer.calculateLottoNum();
+        int result = customer.calculateLottoNum();
 
         assertThat(result).isEqualTo(10);
     }
@@ -55,7 +55,7 @@ class CustomerTest {
     void buyLottoByCashInHand() {
         Customer customer = new Customer("10000");
 
-        customer.buyLottos();
+        customer.buyNewLotto();
 
         List<Lotto> lottos = customer.getLottos();
 

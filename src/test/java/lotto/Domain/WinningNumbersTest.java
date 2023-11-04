@@ -35,14 +35,7 @@ public class WinningNumbersTest {
     @DisplayName("로또 등수별 개수 구하는 기능 테스트")
     public void getRankCountTest() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), "7");
-        List<Lotto> lottoTicket = List.of(
-            new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-            new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-            new Lotto(List.of(1, 2, 3, 4, 5, 15)),
-            new Lotto(List.of(1, 2, 3, 4, 15, 25)),
-            new Lotto(List.of(1, 2, 3, 15, 25, 35)),
-            new Lotto(List.of(1, 2, 15, 25, 35, 45))
-        );
+        List<Lotto> lottoTicket = buyLottoTicket();
 
         Map<Rank,Integer> rankCount = winningNumbers.getRankCount(lottoTicket);
 
@@ -51,6 +44,20 @@ public class WinningNumbersTest {
         assertEquals(rankCount.get(Rank.THIRD),1);
         assertEquals(rankCount.get(Rank.FOURTH),1);
         assertEquals(rankCount.get(Rank.FIFTH),1);
-        assertEquals(rankCount.get(Rank.LOSE),1);
+        assertEquals(rankCount.get(Rank.LOSE),3);
+    }
+
+    private static List<Lotto> buyLottoTicket() {
+        List<Lotto> lottoTicket = List.of(
+            new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+            new Lotto(List.of(1, 2, 3, 4, 5, 15)),
+            new Lotto(List.of(1, 2, 3, 4, 15, 25)),
+            new Lotto(List.of(1, 2, 3, 15, 25, 35)),
+            new Lotto(List.of(1, 2, 15, 25, 35, 45)),
+            new Lotto(List.of(1, 10, 15, 25, 35, 45)),
+            new Lotto(List.of(7, 10, 15, 25, 35, 45))
+        );
+        return lottoTicket;
     }
 }

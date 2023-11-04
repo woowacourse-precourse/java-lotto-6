@@ -19,6 +19,10 @@ public class ConsoleInput implements Input {
         return parseNumber(inputPrice);
     }
 
+    private static int parseNumber(String inputPrice) {
+        return Integer.parseInt(inputPrice);
+    }
+
     @Override
     public List<Integer> getWinningNumbers() {
         String inputWinningNumbers = Console.readLine();
@@ -29,7 +33,10 @@ public class ConsoleInput implements Input {
         return winningNumbers;
     }
 
-    private static int parseNumber(String inputPrice) {
-        return Integer.parseInt(inputPrice);
+    @Override
+    public Integer getBonusNumbers() {
+        String inputBonusNumber = Console.readLine();
+
+        return Integer.parseInt(inputBonusNumber);
     }
 }

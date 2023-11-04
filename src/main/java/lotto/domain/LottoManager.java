@@ -45,6 +45,23 @@ public class LottoManager {
     public void inputWinningNumbers() {
         List<Integer> winningNumbers = getWinningNumbers();
         winningNumbersManager.inputWinningNumbers(winningNumbers);
+
+        Integer bonusNumber = getBonusNumber();
+    }
+
+    private Integer getBonusNumber() {
+        output.printBonusNumberRequest();
+        Integer bonusNumber = null;
+
+        while (bonusNumber == null) {
+            try {
+                bonusNumber = input.getBonusNumbers();
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
+
+        return 0;
     }
 
     private List<Integer> getWinningNumbers() {

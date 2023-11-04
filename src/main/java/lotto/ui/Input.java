@@ -6,4 +6,6 @@ public interface Input {
     int getPrice();
 
     List<Integer> getWinningNumbers();
+
+    Integer getBonusNumbers();
 }

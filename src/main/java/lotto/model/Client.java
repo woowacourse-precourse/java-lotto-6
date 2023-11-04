@@ -1,11 +1,12 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
-    public Client(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public void addLotto(Lotto lotto) {
+        lottos.add(lotto);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Client;
+import lotto.model.Lotto;
 import lotto.model.LottoStore;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.view.View;
@@ -11,7 +12,7 @@ public class LottoController {
     PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
 
     public void run() {
-        int purchaseAmount = payAmount();
+        Client client = purchaseLotto(payAmount());
     }
 
     private int payAmount() {
@@ -27,7 +28,15 @@ public class LottoController {
         }
     }
 
-    private Client issueLotto(int purchaseAmount) {
-        return new Client(lottoStore.issueLotto(purchaseAmount));
+    private Client purchaseLotto(int purchaseAmount) {
+        Client client = new Client();
+        int purchasedLottoAmount = lottoStore.calculatePurchasedLottoCount(purchaseAmount);
+        view.printPurchaseLottoAmount(purchasedLottoAmount);
+        for (double issuedLottoCount = 1; issuedLottoCount <= purchasedLottoAmount; issuedLottoCount++) {
+            Lotto lotto = lottoStore.createRandomLotto();
+            view.printIssuedLotto(lotto.toString());
+            client.addLotto(lotto);
+        }
+        return client;
     }
 }

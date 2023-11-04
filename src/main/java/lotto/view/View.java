@@ -14,4 +14,13 @@ public class View {
     public void printExceptionMessage(Exception e) {
         System.out.println(e.getMessage());
     }
+
+    public void printPurchaseLottoAmount(int purchasedLottoAmount) {
+        System.out.println();
+        System.out.println(purchasedLottoAmount + "개를 구매했습니다.");
+    }
+
+    public void printIssuedLotto(String lotto) {
+        System.out.println(lotto);
+    }
 }

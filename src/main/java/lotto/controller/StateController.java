@@ -6,18 +6,26 @@ import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class StateController {
 
     private static final int LOTTO_PRICE = 1000;
+
+    private List<Integer> answerLotto;
     private Lottos lottos;
     private int money;
+
 
     public void run() {
         enterMoney();
         purchaseLotto();
+        enterAnswer();
     }
 
     private void enterMoney() {
@@ -38,6 +46,13 @@ public class StateController {
                 .toList());
         OutputView.printLottoCount(lottos.getLottoCount());
         lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
+    }
+
+    private void enterAnswer() {
+        this.answerLotto = Stream
+                .of(InputView.readAnswer().split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private void validateMoney(int money) {

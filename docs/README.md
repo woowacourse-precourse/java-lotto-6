@@ -7,7 +7,7 @@
   - [X] 로또 번호 출력 기능 (오름차순)
     - [X] 1~45 범위의 중복 없는 랜덤 번호 6 개 선택 기능
     **camp.nextstep.edu.missionutils.Randoms pickUniqueNumbersInRange()**
-- [ ] 당첨 번호 입력 기능 (쉼표로 구분)
+- [X] 당첨 번호 입력 기능 (쉼표로 구분)
 - [ ] 보너스 번호 입력 기능
 **camp.nextstep.edu.missionutils.Console readLine()**
   - [ ] 로또 번호가 1~45 범위 밖이라면 예외 발생

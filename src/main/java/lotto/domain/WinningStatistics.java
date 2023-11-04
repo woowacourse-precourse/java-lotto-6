@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum WinningStatistics {
     FIRST(6, 0, 2000000000),
     SECOND(5, 1, 30000000),
@@ -16,5 +18,12 @@ public enum WinningStatistics {
         this.matchCount = matchCount;
         this.matchBonusCount = matchBonusCount;
         this.reward = reward;
+    }
+
+    public static WinningStatistics of(int matchCount, int matchBonusCount) {
+        return Arrays.stream(WinningStatistics.values())
+                .filter(value -> value.matchCount == matchCount && value.matchBonusCount == matchBonusCount)
+                .findFirst()
+                .orElse(MISS);
     }
 }

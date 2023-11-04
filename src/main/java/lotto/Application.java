@@ -60,12 +60,14 @@ public class Application {
 
     private static int setMoney(String s){
         int res;
+
         res = myParseInt(s);
         if (res == -1 || res%1000 != 0) {
             System.err.println(res + ErrorType.MONEY.getName());
             res = -1;
         }
         System.out.println();
+        
         return res;
     }
 

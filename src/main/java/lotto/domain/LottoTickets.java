@@ -5,6 +5,7 @@ import lotto.config.LottoRank;
 import lotto.validation.LottoValidator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
@@ -44,13 +45,14 @@ public class LottoTickets {
         return new Result(result);
     }
 
-    @Override
-    public String toString() {
-        String result = "";
+    public List<String> getTickets() {
+        ArrayList<String> tickets = new ArrayList<>();
+
         for (Lotto lottoTicket : lottoTickets) {
-            result += lottoTicket.toString()+'\n';
+            String lotto = lottoTicket.getLotto();
+            tickets.add(lotto);
         }
 
-        return result;
+        return Collections.unmodifiableList(tickets);
     }
 }

@@ -5,6 +5,8 @@ import lotto.config.LottoErrorMessage;
 import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -32,8 +34,7 @@ public class Lotto {
         return numbers.contains(num);
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public String getLotto() {
+        return Arrays.toString(numbers.toArray());
     }
 }

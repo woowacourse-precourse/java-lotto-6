@@ -6,6 +6,7 @@ import lotto.domain.LottoTickets;
 import lotto.domain.Result;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class OutputView {
     private static DecimalFormat df = new DecimalFormat("#,###");
@@ -19,7 +20,11 @@ public class OutputView {
     }
 
     public static void printLotto(LottoTickets lottoTickets) {
-        printView(lottoTickets.toString());
+        List<String> tickets = lottoTickets.getTickets();
+
+        for (String ticket : tickets) {
+            printView(ticket);
+        }
     }
 
     public static void winningMessage() {

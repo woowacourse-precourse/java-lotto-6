@@ -10,10 +10,6 @@ public class Validator {
 
     private Validator() {}
 
-    public static void validatePurchaseAmount(String input) {
-
-    }
-
     public static void areAllPrimeNumber(List<String> inputs) {
         inputs.stream().forEach(Validator::isPrimeNumber);
     }

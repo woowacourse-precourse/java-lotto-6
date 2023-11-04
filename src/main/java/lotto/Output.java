@@ -86,4 +86,9 @@ public class Output {
         format.setRoundingMode(RoundingMode.CEILING);
         return format.format(number);
     }
+
+    private static String formatComma(Integer number) {
+        DecimalFormat format = new DecimalFormat("#,###");
+        return format.format(number);
+    }
 }

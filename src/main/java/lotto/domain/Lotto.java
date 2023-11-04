@@ -8,9 +8,9 @@ public class Lotto {
     public static final String LENGTH_VALID_LOG = "6개의 번호를 입력해주세요.";
     public static final String DUPLICATE_VALID_LOG = "중복 없이 입력해주세요.";
     public static final String NUMBER_RANGE_VALID_LOG = "1 부터 45 사이의 숫자만 입력해주세요.";
-    public static final int LOTTO_SIZE_NUMBER = 6;
-    public static final int LOTTO_START_RANGE = 1;
-    public static final int LOTTO_END_RANGE = 45;
+    private static final int LOTTO_SIZE_NUMBER = 6;
+    private static final int LOTTO_START_RANGE = 1;
+    private static final int LOTTO_END_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {

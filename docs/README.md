@@ -43,7 +43,7 @@
 - [X] 당첨 번호에 중복 숫자가 있는지 확인: Lotto.*validateNotEqual*
 - [X] 보너스 번호 입력: InputView.*getBonusNumber*
 - [X] 보너스 번호가 1~45 사이의 숫자인지 확인: BonusNumber.*validate1to45*
-- [] 보너스 번호가 당첨 번호에 이미 있는지 확인: Bonus.*validate*
+- [X] 보너스 번호가 당첨 번호에 이미 있는지 확인: Bonus.*validateAlreadyExist*
 - [] 보너스 번호가 1개인지 확인: Bonus.*validate*
 - [] 발행 로또 번호와 당첨 번호 사이에 일치하는 번호 개수 계산: LottoController.*calculateMatchingNumbers*
 - [] 발행 로또 번호에 보너스 볼이 있는지 확인: LottoController.*isContainBonusNumber*

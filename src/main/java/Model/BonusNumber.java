@@ -13,4 +13,12 @@ public class BonusNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateAlreadyExist(Lotto lotto) {
+        for (int i = 0; i < lotto.getSize(); i++) {
+            if (bonusNumber == lotto.getItem(i)) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

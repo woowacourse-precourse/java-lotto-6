@@ -25,6 +25,7 @@ public class LottoController {
     public void assignLotto() {
         winningLottoNumbers = new Lotto(InputView.getLotto());
         winningBonusNumber = new BonusNumber(InputView.getBonusNumber());
+        winningBonusNumber.validateAlreadyExist(winningLottoNumbers);
     }
 
     public void publishMyLotto(PurchaseAmount purchaseAmount) {

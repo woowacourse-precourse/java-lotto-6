@@ -9,8 +9,8 @@ public class PurchaseMoney {
     private int value;
 
     public PurchaseMoney(String money){
-        money = money.replaceAll(" ","");
         validate(money);
+        money = money.replaceAll(" ","");
         this.value = Integer.valueOf(money);
     }
 
@@ -40,7 +40,7 @@ public class PurchaseMoney {
     }
 
     private boolean isEmpty(final String money){
-        return money.isBlank() || money == null;
+        return money == null || money.isBlank();
     }
 
     private boolean isDigit(String money){

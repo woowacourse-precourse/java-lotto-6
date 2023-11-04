@@ -9,7 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinningNumberValidator {
+public class WinningNumber {
+
+    public void setWinningNumber() {
+
+    }
+
     public List<Integer> validateWinningNumber(List<String> numbers) {
         checkValidInteger(numbers);
         checkNumbersLength(numbers);

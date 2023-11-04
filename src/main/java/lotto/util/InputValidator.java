@@ -42,4 +42,9 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
         }
     }
+
+    public static void validateBonusNumber(String bonusNumber) {
+        validateNotEmpty(bonusNumber);
+        validateIntegerType(bonusNumber);
+    }
 }

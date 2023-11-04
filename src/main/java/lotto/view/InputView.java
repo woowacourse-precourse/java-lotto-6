@@ -26,6 +26,7 @@ public class InputView {
 
     public int inputBonusNumber(){
         String bonusNumber = Console.readLine();
+        InputValidator.validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 }

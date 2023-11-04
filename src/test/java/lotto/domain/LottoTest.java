@@ -31,10 +31,10 @@ class LottoTest {
     static Stream<Arguments> countParameters() {
         return Stream.of(
                 Arguments.of("5개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(2, 3, 4, 5, 6, 7)), 5),
-                Arguments.of("6개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(3, 4, 5, 6, 7, 8)), 4),
-                Arguments.of("7개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(4, 5, 6, 7, 8, 9)), 3),
-                Arguments.of("8개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(5, 6, 7, 8, 9, 10)), 2),
-                Arguments.of("9개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 7, 8, 9, 10, 11)), 1)
+                Arguments.of("4개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(3, 4, 5, 6, 7, 8)), 4),
+                Arguments.of("3개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(4, 5, 6, 7, 8, 9)), 3),
+                Arguments.of("2개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(5, 6, 7, 8, 9, 10)), 2),
+                Arguments.of("1개 일치할 경우", new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 7, 8, 9, 10, 11)), 1)
         );
     }
 

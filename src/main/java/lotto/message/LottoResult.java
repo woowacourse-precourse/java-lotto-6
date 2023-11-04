@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum Result {
+public enum LottoResult {
     FIRST(2_000_000_000),
     SECOND(30_000_000),
     THIRD(1_500_000),
@@ -9,11 +9,11 @@ public enum Result {
     NONE(0);
     private final int prize;
 
-    Result(int prize) {
+    LottoResult(int prize) {
         this.prize = prize;
     }
 
-    public static Result of(int matchCount, boolean isBonusNumberMatched) {
+    public static LottoResult of(int matchCount, boolean isBonusNumberMatched) {
         if (matchCount == 6) {
             return FIRST;
         }

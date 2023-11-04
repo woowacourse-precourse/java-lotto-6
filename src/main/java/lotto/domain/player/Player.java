@@ -24,11 +24,12 @@ public class Player {
         lottoTicket = lottoTicket.changeAllTicketToLotto(randomLotto, lottoBundle);
     }
 
-    public int getTicketNumber() {
-        return lottoTicket.getLottoTicket();
-    }
-
     public Profit getProfit(LottoResultsDto lottoResultsDto) {
         return  playerWallet.calculateProfit(lottoResultsDto);
+    }
+
+    // 테스트를 위한 코드
+    int getTicketNumber() {
+        return lottoTicket.getLottoTicket();
     }
 }

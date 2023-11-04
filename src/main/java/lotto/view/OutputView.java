@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.Lotto;
+import lotto.domain.Judgement;
 
 public class OutputView {
     public void outputLottosNumbers(List<Lotto> inputLotto) {
@@ -10,5 +11,10 @@ public class OutputView {
             System.out.println(lotto);
         }
         System.out.println("");
+    }
+
+    public void outputTotalResult() {
+        Judgement judgement = new Judgement();
+        judgement.outputResult();
     }
 }

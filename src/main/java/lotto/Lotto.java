@@ -20,6 +20,26 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
+    public int compareLottoToWinnerNumbers(List<Integer> winnerNumbers) {
+        int result = 0;
+
+        for (int winnerNumber : winnerNumbers) {
+            if (hasNumber(winnerNumber)) {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    private boolean hasNumber(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(numbers);

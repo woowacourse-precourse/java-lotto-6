@@ -10,6 +10,11 @@ import lotto.view.OutputView;
 public class LottoController {
     private final int ERROR_NUMBER = -1;
     private final int MIN_PRICE = 1000;
+    private static int correctThree = 0;
+    private static int correctFour = 0;
+    private static int correctFive = 0;
+    private static int correctFiveWithBonus = 0;
+    private static int correctSix = 0;
     Validate validate = new Validate();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -68,5 +73,9 @@ public class LottoController {
 
     public void outputLottosNumber(List<Lotto> lottos) {
         outputView.outputLottosNumbers(lottos);
+    }
+
+    public void outputTotalResult() {
+        outputView.outputTotalResult();
     }
 }

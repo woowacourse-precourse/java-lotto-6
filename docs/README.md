@@ -15,7 +15,7 @@
     - [x] : 입력 받은 로또 구입 금액이 1,000원 단위인지 확인한다. Validate#checkInputPrice()
     - [x] : 입력 받은 로또 금액에 맞는 로또 수량을 발행한다.BuyLotto#buyLotto()
     - [x] : 중복되지 않는 숫자 6개를 뽑는다. Numbers#creatRandomNumbers()
-    - [ ] : 발행한 로또와 입력 받은 당첨 번호를 비교한다.Judgment#
+    - [x] : 발행한 로또와 입력 받은 당첨 번호를 비교한다.Lotto#compareLottoToWinnerNumber()
     - [ ] : 당첨 번호로 등수를 결정한다.
     - [x] : 숫자의 3자리마다 콤마(,)를 찍어서 반환해준다 Numbers#putCommaInNumber()
 

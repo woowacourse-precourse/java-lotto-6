@@ -15,5 +15,7 @@ public class Application {
         final List<Integer> WINNER_NUMBERS = lottoController.inputWinnerNumbers();
         final int BONUS_NUMBER = lottoController.bonusNumbers(WINNER_NUMBERS);
 
+        lottoController.outputTotalResult();
+
     }
 }

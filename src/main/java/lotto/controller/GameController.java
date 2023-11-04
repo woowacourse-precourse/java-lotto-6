@@ -1,12 +1,22 @@
 package lotto.controller;
 
 import lotto.domain.PurchaseAmount;
-import lotto.service.InputService;
+import lotto.view.InputView;
 
 public class GameController {
 
-    InputService inputService = new InputService();
+    InputView inputView = new InputView();
     public void init() {
-        PurchaseAmount.from(inputService.readPurchaseAMount());
+        PurchaseAmount purchaseAmount = getPurchaseAmount();
+    }
+
+    public PurchaseAmount getPurchaseAmount() {
+        while (true) {
+            try {
+                return PurchaseAmount.from(inputView.readPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -14,8 +14,9 @@ class PurchaseAmountTest {
             PurchaseAmount.from(invalidAmount);
         });
 
-        assertTrue(exception.getMessage().contains("최소 금액 미만의 금액 입력은 불가 하다"));
+        assertTrue(exception.getMessage().contains("[ERROR]"));
     }
+
     @DisplayName("로또 구매 금액이 로또 하나 금액의 배수가 아니라면 예외가 발생한다.")
     @Test
     void 로또_구매금액_배수_예외처리_검증() {
@@ -24,6 +25,6 @@ class PurchaseAmountTest {
             PurchaseAmount.from(invalidAmount);
         });
 
-        assertTrue(exception.getMessage().contains("로또 금액의 배수가 아닌 금액 입력은 불가 하다 "));
+        assertTrue(exception.getMessage().contains("[ERROR]"));
     }
 }

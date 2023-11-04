@@ -1,13 +1,11 @@
-package lotto.service;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputService {
-    private int purchaseAmount;
-
-    public int readPurchaseAMount() {
+public class InputView {
+    public int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        this.purchaseAmount = Integer.parseInt(Console.readLine());
+        int purchaseAmount = Integer.parseInt(Console.readLine());
         return purchaseAmount;
     }
 }

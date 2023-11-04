@@ -9,10 +9,14 @@ import lotto.view.OutputView;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningNumber;
+import lotto.exception.LottoException;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private LottoTickets lottoTickets;
+    private WinningNumber winningNumber;
+    private LottoResults lottoResults;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = Objects.requireNonNull(inputView);
@@ -20,49 +24,69 @@ public class LottoController {
     }
 
     public void run() {
-        LottoTickets lottoTickets = getLottoTickets();
-        printLottoTicketQuantity(lottoTickets);
-        printLottoNumbers(lottoTickets);
+            getLottoTickets();
+            printLottoNumbers();
 
-        WinningNumber winningNumber = getWinningNumber();
-        getBonusNumber(winningNumber);
+            getWinningNumber();
+            getBonusNumber();
 
-        LottoResults results = winningNumber.compareWithLottos(lottoTickets);
-        printLottoResult(results);
-        printTotalProfit(results);
+            printLottoResult();
+            printTotalProfit();
     }
 
-    private LottoTickets getLottoTickets() {
-        String input = inputView.requestPurchaseMoney();
-        return LottoTickets.purchase(input);
+    private void getLottoTickets() {
+        try {
+            String input = inputView.requestPurchaseMoney();
+            lottoTickets = LottoTickets.purchase(input);
+            printLottoTicketQuantity();
+        } catch (LottoException e) {
+            outputView.printErrorMessage(e);
+            getLottoTickets();
+        }
     }
 
-    private WinningNumber getWinningNumber() {
-        String input = inputView.requestWinningNumber();
-        return WinningNumber.create(input);
+    private void getWinningNumber() {
+        try {
+            String input = inputView.requestWinningNumber();
+            winningNumber = WinningNumber.create(input);
+        } catch (LottoException e) {
+            outputView.printErrorMessage(e);
+            getWinningNumber();
+        }
     }
 
-    private void getBonusNumber(WinningNumber winningNumber) {
-        String input = inputView.requestBonusNumber();
-        winningNumber.createBonusNumber(input);
+    private void getBonusNumber() {
+        try {
+            String input = inputView.requestBonusNumber();
+            winningNumber.createBonusNumber(input);
+        } catch (LottoException e) {
+            outputView.printErrorMessage(e);
+            getBonusNumber();
+        }
     }
 
-    private void printLottoTicketQuantity(LottoTickets lottoTickets) {
-        outputView.printDynamicMessage(
-                NOTICE_PURCHASE_QUANTITY,
-                lottoTickets.getLottoTicketQuantity()
-        );
+    private void printLottoTicketQuantity() {
+        try {
+            outputView.printDynamicMessage(
+                    NOTICE_PURCHASE_QUANTITY,
+                    lottoTickets.getLottoTicketQuantity()
+            );
+        } catch (LottoException e) {
+            outputView.printErrorMessage(e);
+            getLottoTickets();
+        }
     }
 
-    private void printLottoNumbers(LottoTickets lottoTickets) {
+    private void printLottoNumbers() {
         outputView.printIterableMessage(lottoTickets.getLottoNumbers());
     }
 
-    private void printLottoResult(LottoResults results) {
-        outputView.printResult(results.toString());
+    private void printLottoResult() {
+        lottoResults = winningNumber.compareWithLottos(lottoTickets);
+        outputView.printResult(lottoResults.toString());
     }
 
-    private void printTotalProfit(LottoResults results) {
-        outputView.printDynamicMessage(NOTICE_TOTAL_PROFIT, results.getTotalProfit());
+    private void printTotalProfit() {
+        outputView.printDynamicMessage(NOTICE_TOTAL_PROFIT, lottoResults.getTotalProfit());
     }
 }

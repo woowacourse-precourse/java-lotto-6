@@ -28,7 +28,7 @@ public class Parser {
         return bonusNumber;
     }
 
-    private static int stringParseInt(String input) {
+    private static int stringParseInt(String input) throws LottoException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

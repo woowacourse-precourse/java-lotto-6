@@ -52,7 +52,7 @@ public class LottoTickets {
         return LottoResult.create(matchCount, matchBonusNumber);
     }
 
-    private int moneyToTicket() {
+    private int moneyToTicket() throws LottoException {
         // TODO: 매직넘버 상수화하기
         if (purchaseMoney % 1_000 > 0) {
             throw new LottoException(INDIVISIBLE);

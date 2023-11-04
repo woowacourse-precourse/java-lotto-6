@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.exception.ExceptionMessage;
+import lotto.exception.LottoException;
 import lotto.view.constant.Message;
 
 public interface OutputView {
@@ -10,4 +12,5 @@ public interface OutputView {
     public void printDynamicMessage(Message message, Object... args);
     public void printIterableMessage(Iterable<?> iterable);
     public void printResult(String message);
+    public void printErrorMessage(LottoException message);
 }

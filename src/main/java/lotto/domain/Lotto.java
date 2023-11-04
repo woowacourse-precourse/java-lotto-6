@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Lotto {
 
+    private static final int NUMBERS_LENGTH = 6;
+    private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,8 +15,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateNumbersSize(numbers);
+    }
+
+    private static void validateNumbersSize(final List<Integer> numbers) {
+        if (numbers.size() != NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
     }
 

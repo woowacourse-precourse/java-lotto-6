@@ -57,6 +57,6 @@ public class LottoController {
                 OutputView.printPrizeLotto(rank.formatMessage(count));
             }
         }
-        System.out.println(String.format("%.1f", result.calculateRate(player.getMoney())));
+        OutputView.printPrizeRate(result.calculateRate(player.getMoney()));
     }
 }

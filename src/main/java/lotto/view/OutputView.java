@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.Phrase.OUTPUT_LOTTO_AMOUNT;
+import static lotto.constants.Phrase.OUTPUT_LOTTO_RATE;
 import static lotto.constants.Phrase.OUTPUT_LOTTO_RESULT;
 
 public class OutputView {
@@ -18,5 +19,9 @@ public class OutputView {
 
     public static void printPrizeLotto(String message) {
         System.out.println(message);
+    }
+
+    public static void printPrizeRate(double rate) {
+        System.out.println(OUTPUT_LOTTO_RATE.formatRate(rate));
     }
 }

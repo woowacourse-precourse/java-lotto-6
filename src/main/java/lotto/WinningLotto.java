@@ -28,4 +28,7 @@ public enum WinningLotto {
         return function.apply(matchCount, bonusCount);
     }
 
+    public long getPrice() {
+        return price;
+    }
 }

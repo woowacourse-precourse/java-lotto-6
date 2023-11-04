@@ -24,12 +24,14 @@ public class LottoResult {
     }
 
     public LottoResult showLottoResult(List<Integer> winningNumbers, Integer bonus, List<Lotto> lottos) {
-        List<WinningLotto> winningLottos = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            winningLottos.add(comparator.compareLotto(winningNumbers, bonus, lotto));
-//            saveResult(result);
-        }
-        calculateRateOfReturn(lottos.size());
+        List<WinningLotto> winningLottos = lottos.stream()
+                .map(lotto -> comparator.compareLotto(winningNumbers, bonus, lotto))
+                .toList();
+
+        long sumOfPrice = winningLottos.stream()
+                .mapToLong(WinningLotto::getPrice)
+                .sum();
+
         return this;
     }
 

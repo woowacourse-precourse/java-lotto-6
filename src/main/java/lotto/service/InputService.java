@@ -6,16 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static java.lang.Long.parseLong;
 import static lotto.domain.constant.StringConstant.*;
 
 public class InputService {
-    public static Long readExpense() {
+    public static long readExpense() {
         String input = readLine();
 
         validateNumberType(input);
         validateExpenseValue(input);
         
-        return Long.parseLong(input);
+        return parseLong(input);
     }
 
     // 리팩토링 필요 !!!
@@ -27,7 +28,7 @@ public class InputService {
     
     private static void validateNumberType(String input) {
         try {
-            Long.parseLong(input);
+            parseLong(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

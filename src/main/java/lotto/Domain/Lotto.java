@@ -17,4 +17,27 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public int calculateLottoResults(List<Integer> lottoWinningNumbers) {
+        int result = 0;
+        for (int number : lottoWinningNumbers) {
+            result += containCheck(number);
+        }
+        return result;
+    }
+
+    private int containCheck(int number) {
+        if (isContain(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean bonusNumberCheck(int bonusNumber) {
+        return isContain(bonusNumber);
+    }
 }

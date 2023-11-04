@@ -7,8 +7,19 @@ import static lotto.constant.message.ErrorMessage.NON_INTEGER_WINNING_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinningNumberValidator {
+    public List<Integer> validateWinningNumber(List<String> numbers) {
+        checkValidInteger(numbers);
+        checkNumbersLength(numbers);
+        checkNumbersRange(numbers);
+        checkNumbersDuplicate(numbers);
+
+        return numbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 
     private void checkValidInteger(List<String> numbers) {
         for (String number : numbers) {

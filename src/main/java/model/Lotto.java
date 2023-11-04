@@ -1,15 +1,15 @@
 package model;
 
+import static consts.NumericConfig.END_INCLUSIVE;
+import static consts.NumericConfig.LOTTO_COUNT;
+import static consts.NumericConfig.START_INCLUSIVE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
-    private static final int NUMBER_COUNT_IN_LOTTO = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -26,8 +26,8 @@ public class Lotto {
     }
 
     private static List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
-            NUMBER_COUNT_IN_LOTTO);
+        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE.number(), END_INCLUSIVE.number(),
+            LOTTO_COUNT.number());
     }
 
     private static void validate(final List<Integer> numbers) {
@@ -36,7 +36,7 @@ public class Lotto {
     }
 
     private static void validateSize(final List<Integer> numbers) {
-        if (numbers.size() > NUMBER_COUNT_IN_LOTTO) {
+        if (numbers.size() > LOTTO_COUNT.number()) {
             throw new IllegalArgumentException();
         }
     }
@@ -60,7 +60,7 @@ public class Lotto {
 
     private static LottoNumber pickNewNumber() {
         return new LottoNumber(
-            Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE));
+            Randoms.pickNumberInRange(START_INCLUSIVE.number(), END_INCLUSIVE.number()));
     }
 
     public boolean isContainNumber(final LottoNumber number) {

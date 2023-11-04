@@ -1,5 +1,8 @@
 package view;
 
+import static consts.Mark.AMOUNT_REGEX;
+import static consts.Mark.AMOUNT_SEPARATOR;
+
 import java.util.List;
 import model.dto.LottoResponse;
 import model.dto.LottoResult;
@@ -40,7 +43,7 @@ public class OutputView {
                 sb.append(", 보너스 볼 일치");
             }
             sb.append(String.format(" (%d원) - %d개\n", result.reward(), result.count())
-                .replaceAll("\\B(?=(\\d{3})+(?!\\d))", ","));
+                .replaceAll(AMOUNT_REGEX.mark(), AMOUNT_SEPARATOR.mark()));
         });
         System.out.print(sb);
     }

@@ -1,5 +1,7 @@
 package service;
 
+import static consts.NumericConfig.LOTTO_PRICE;
+
 import java.util.List;
 import model.FinanceManager;
 import model.GameManager;
@@ -18,7 +20,7 @@ public class LottoService {
 
     public static LottoService from(final int purchase) {
         return new LottoService(FinanceManager.from(purchase),
-            GameManager.from(purchase / 1000));
+            GameManager.from(purchase / LOTTO_PRICE.number()));
     }
 
     public int getLottoCount() {

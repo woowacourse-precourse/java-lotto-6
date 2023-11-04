@@ -1,13 +1,13 @@
 package model.dto;
 
+import static consts.Mark.OUTPUT_JOINER;
+
 import java.util.List;
 import model.Lotto;
 import model.LottoNumber;
 import model.LottoWithBonus;
 
 public record LottoResponse(List<String> lottoResponse) {
-
-    private static final String DELIMITER = ", ";
 
     public static LottoResponse from(final LottoWithBonus lottoWithBonus) {
         Lotto lotto = lottoWithBonus.getLotto();
@@ -22,6 +22,6 @@ public record LottoResponse(List<String> lottoResponse) {
     }
 
     public String getJoinedNumbers() {
-        return String.join(DELIMITER, lottoResponse);
+        return String.join(OUTPUT_JOINER.mark(), lottoResponse);
     }
 }

@@ -1,19 +1,30 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class NumberTest {
 
-    @DisplayName("1~45 숫자 범위를 벗어나는 경우 예외 발생 테스트")
+    @DisplayName("최소 숫자 범위를 벗어나는 경우 예외 발생 테스트")
     @Test
-    void of() {
-        int validNumber_min = -1;
-        int validNumber_max = 46;
-        assertThrows(IllegalArgumentException.class, () -> Number.of(validNumber_min));
-        assertThrows(IllegalArgumentException.class, () -> Number.of(validNumber_max));
+    void validMinimumRangeNumber() {
+        assertThatThrownBy(() -> {
+            Number.of(-1);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
+
+    }
+
+    @DisplayName("최대 숫자 범위를 벗어나는 경우 예외 발생 테스트")
+    @Test
+    void validMaximumRangeNumber() {
+        assertThatThrownBy(() -> {
+            Number.of(46);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
 
     }
 }

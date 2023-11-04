@@ -17,14 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("현금")
 class CashTest {
-
-    @DisplayName("생성 성공 테스트")
-    @ParameterizedTest()
-    @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
-    void createCashSuccessTest(int amount) {
-        assertDoesNotThrow(() -> new Cash(amount));
-    }
-
     @DisplayName("1000원 보다 작은 금액 입력시 예외 발생")
     @ParameterizedTest()
     @ValueSource(ints = {100, 200, 300, 400, 500})
@@ -42,6 +34,15 @@ class CashTest {
                 () -> new Cash(amount)
         );
     }
+
+    @DisplayName("생성 성공 테스트")
+    @ParameterizedTest()
+    @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
+    void createCashSuccessTest(int amount) {
+
+        assertDoesNotThrow(() -> new Cash(amount));
+    }
+
 
     @DisplayName("지불 기능 성공 테스트")
     @ParameterizedTest

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -58,6 +59,13 @@ class LottoTest {
                 () -> new Lotto(duplicatedNumbers));
     }
 
+    @DisplayName("생성 성공 테스트")
+    @ParameterizedTest()
+    @MethodSource("lottoNumbersDummy")
+    void createLottoSuccessTest(List<Integer> lottoNumbers) {
+        assertDoesNotThrow(() -> new Lotto(lottoNumbers));
+    }
+
     static Stream<Arguments> numbersOverSizeDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(1, 2, 3, 4, 5, 6, 7)),
@@ -79,6 +87,14 @@ class LottoTest {
                 Arguments.arguments(List.of(1, 1, 2, 3, 4, 5)),
                 Arguments.arguments(List.of(1, 2, 2, 3, 4, 5)),
                 Arguments.arguments(List.of(1, 2, 3, 3, 4, 5))
+        );
+    }
+
+    static Stream<Arguments> lottoNumbersDummy() {
+        return Stream.of(
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6)),
+                Arguments.arguments(List.of(1, 2, 3, 9, 12, 30)),
+                Arguments.arguments(List.of(1, 2, 3, 19, 20, 42))
         );
     }
 

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.Validator;
-import lotto.ui.Computer;
 
 public class User {
     private Integer money;
@@ -24,7 +23,7 @@ public class User {
 
                 Validator.checkRemainder(money);
 
-                lottoCount = computer.calculateLotto(money);
+                lottoCount = Seller.calculateLottoCount(money);
 
                 isPurchasing = false;
 

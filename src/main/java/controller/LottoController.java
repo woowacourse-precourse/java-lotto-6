@@ -31,7 +31,11 @@ public class LottoController {
         String input = Console.readLine();
         return CheckValidateWinningNumberInput(input);
     }
-
+    private String getBonusNumberByUserInput(){
+        LottoView.printAskInputBonusNumber();
+        String input = Console.readLine();
+        return CheckValidateBonusNumberInput(input);
+    }
     private String CheckValidateMoneyInput(String input){
         try {
             validate.CheckMoneyInput(input);
@@ -41,7 +45,6 @@ public class LottoController {
             return  getTotalMoneyByUserInput();
         }
     }
-
     private String CheckValidateWinningNumberInput(String input){
         try{
             validate.CheckWinningNumber(input);
@@ -49,6 +52,15 @@ public class LottoController {
         } catch (IllegalArgumentException e){
             LottoView.printException(e.getMessage());
             return getWinningNumberByUserInput();
+        }
+    }
+    private String CheckValidateBonusNumberInput(String input){
+        try{
+            validate.CheckBonusNumber(input);
+            return input;
+        } catch (IllegalArgumentException e){
+            LottoView.printException(e.getMessage());
+            return getBonusNumberByUserInput();
         }
     }
 

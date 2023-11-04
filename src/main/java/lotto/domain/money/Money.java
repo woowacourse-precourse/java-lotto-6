@@ -19,7 +19,7 @@ public class Money {
 
     private void validateIsAmountZero(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("[ERROR] 0원은 입력할 수 없습니다.");
         }
     }
 

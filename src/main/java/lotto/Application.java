@@ -29,12 +29,15 @@ public class Application {
         List<Lotto> lottos = lottoMachine.purchaseLottos(money);
 
         outputView.println(lottoMessageConverter.convertLottoNumberMessage(lottos));
-
-
     }
 
     private static Money inputMoneyAmount() {
-        int amount = inputView.readLottoPurchaseMoney();
-        return new Money(amount);
+        try {
+            int amount = inputView.readLottoPurchaseMoney();
+            return new Money(amount);
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            return inputMoneyAmount();
+        }
     }
 }

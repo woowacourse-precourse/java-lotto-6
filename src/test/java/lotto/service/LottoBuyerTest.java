@@ -10,7 +10,7 @@ import lotto.domain.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoCheckerUnitTest {
+public class LottoBuyerTest {
     LottoBuyer lottoBuyer;
     Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     int bonus = 7;
@@ -21,13 +21,12 @@ public class LottoCheckerUnitTest {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets);
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        assertThat(map.size()).isEqualTo(1);
         assertThat(map.get(Rank.SECOND)).isEqualTo(1);
     }
 
@@ -37,13 +36,12 @@ public class LottoCheckerUnitTest {
         //given
         Lotto lotto = new Lotto(List.of(2, 3, 4, 5, 6, 10));
         List<Lotto> tickets = List.of(lotto);
-        lottoBuyer = new LottoBuyer(tickets, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets);
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        assertThat(map.size()).isEqualTo(1);
         assertThat(map.get(Rank.THIRD)).isEqualTo(1);
     }
 
@@ -54,13 +52,12 @@ public class LottoCheckerUnitTest {
         Lotto lotto1 = new Lotto(List.of(3, 4, 5, 6, 7, 11));
         Lotto lotto2 = new Lotto(List.of(3, 4, 5, 6, 11, 12));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets);
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        assertThat(map.size()).isEqualTo(1);
         assertThat(map.get(Rank.FORTH)).isEqualTo(2);
     }
 
@@ -71,13 +68,12 @@ public class LottoCheckerUnitTest {
         Lotto lotto1 = new Lotto(List.of(3, 4, 5, 7, 11, 12));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 11, 12, 13));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets);
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
-        assertThat(map.size()).isEqualTo(1);
         assertThat(map.get(Rank.FIFTH)).isEqualTo(2);
     }
 
@@ -88,10 +84,10 @@ public class LottoCheckerUnitTest {
         Lotto lotto1 = new Lotto(List.of(1, 2, 7, 10, 11, 12));
         Lotto lotto2 = new Lotto(List.of(1, 2, 30, 11, 12, 13));
         List<Lotto> tickets = List.of(lotto1, lotto2);
-        lottoBuyer = new LottoBuyer(tickets, target, bonus);
+        lottoBuyer = new LottoBuyer(tickets);
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         //then
         assertThat(map.size()).isEqualTo(1);

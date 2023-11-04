@@ -6,6 +6,7 @@ import lotto.config.AppConfig;
 
 public class Lotto {
     private final List<Integer> numbers;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validate(distinct(numbers));
@@ -45,7 +46,7 @@ public class Lotto {
     }
 
     private boolean checkBonusIfUsable(int count, int bonus) {
-        if(count == Rank.THIRD.matchedCount) {
+        if (count == Rank.THIRD.matchedCount) {
             return numbers.contains(bonus);
         }
         return false;
@@ -59,7 +60,7 @@ public class Lotto {
                 .orElse(Rank.FAIL);
     }
 
-    public boolean contains(int num){
+    public boolean contains(int num) {
         return numbers.contains(num);
     }
 

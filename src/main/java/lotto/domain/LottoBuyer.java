@@ -7,28 +7,18 @@ import java.util.Map;
 
 public class LottoBuyer {
     private List<Lotto> lottoTickets;
-    private Lotto target;
-    private int bonus;
 
-    public LottoBuyer(List<Lotto> lottoTickets, Lotto target, int bonus) {
+    public LottoBuyer(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
-        this.target = target;
-        this.bonus = bonus;
     }
 
-    public Lotto getLotto(int index) {
-        return lottoTickets.get(index);
-    }
-
-    public int size() {
-        return lottoTickets.size();
-    }
-
-    public Map<Rank, Integer> checkAllLotto() {
+    public Map<Rank, Integer> checkAllLotto(Lotto target, int bonus) {
         Map<Rank, Integer> result = initMap();
         lottoTickets.forEach(lotto -> {
             Rank rank = lotto.checkResult(target, bonus);
-            if (rank.equals(Rank.FAIL)){
+
+            // 꽝은 매핑하지 않는다.
+            if (rank.equals(Rank.FAIL)) {
                 return;
             }
             Integer savedNum = result.get(rank);
@@ -37,11 +27,15 @@ public class LottoBuyer {
         return result;
     }
 
-    private Map<Rank,Integer> initMap() {
+    private Map<Rank, Integer> initMap() {
         Map<Rank, Integer> map = new LinkedHashMap<>();
         Arrays.stream(Rank.values())
-                .filter(winResult -> !winResult.equals(Rank.FAIL))
-                .forEach(winResult -> map.put(winResult,0));
+                .filter(winResult -> !winResult.equals(Rank.FAIL)) // 꽝은 매핑하지 않는다.
+                .forEach(winResult -> map.put(winResult, 0));
         return map;
+    }
+
+    public int size() {
+        return lottoTickets.size();
     }
 }

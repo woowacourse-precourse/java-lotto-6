@@ -6,7 +6,7 @@ public enum Rank {
     THIRD(5, false, 3, 1500000),
     SECOND(5, true, 2, 30000000),
     FIRST(6, false, 1, 2000000000),
-    FAIL(-1,false,6,0);
+    FAIL(-1, false, 6, 0);
 
     public int matchedCount;
     public boolean bonus;

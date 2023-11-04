@@ -27,7 +27,7 @@ public class LottoView {
             StringBuilder builder = new StringBuilder();
             builder.append(winResult.matchedCount).append("개 일치 ");
             if (winResult.equals(Rank.SECOND)) {
-                builder.deleteCharAt(builder.length()-1);
+                builder.deleteCharAt(builder.length() - 1);
                 builder.append(", 보너스 볼 일치 ");
             }
             String reward = String.format("%,d원", winResult.reward);
@@ -36,7 +36,8 @@ public class LottoView {
             System.out.println(builder.toString());
         });
     }
-    public String printRate(double rate){
-        return String.format("총 수익률은 %,.1f%%입니다.",rate);
+
+    public String printRate(double rate) {
+        return String.format("총 수익률은 %,.1f%%입니다.", rate);
     }
 }

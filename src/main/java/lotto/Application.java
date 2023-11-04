@@ -1,8 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoMachine;
-import lotto.input.PriceInputHandler;
 
 public class Application {
     public static void main(String[] args) {

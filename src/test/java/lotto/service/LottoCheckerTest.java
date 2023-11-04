@@ -27,19 +27,20 @@ public class LottoCheckerTest {
     @BeforeEach
     void 생성자주입() {
         List<Lotto> lottos = List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8);
-        lottoBuyer = new LottoBuyer(lottos,target,bonus);
+        lottoBuyer = new LottoBuyer(lottos);
     }
 
     @Test
-    @DisplayName("실패 3개, 각 등수마다 1개씩")
+    @DisplayName("실패는 모두 매핑되지않고, 각 등수마다 1개씩")
     void 로또체커_통합_테스트() {
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto();
+        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
         assertThat(map.get(Rank.FIRST)).isEqualTo(1);
         assertThat(map.get(Rank.SECOND)).isEqualTo(1);
         assertThat(map.get(Rank.THIRD)).isEqualTo(1);
         assertThat(map.get(Rank.FORTH)).isEqualTo(1);
         assertThat(map.get(Rank.FIFTH)).isEqualTo(1);
-        assertThat(map.get(Rank.FAIL)).isEqualTo(0);
+
+        assertThat(map.size()).isEqualTo(5);
     }
 }

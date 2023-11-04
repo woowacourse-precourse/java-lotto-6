@@ -1,15 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BuyAmount;
 
 public class InputView {
 
     private InputView() {
     }
 
-    public static long getBuyAmountFromInput() {
+    public static BuyAmount getBuyAmountFromInput() {
         String buyAmount = read();
-        return Integer.parseInt(buyAmount);
+        return new BuyAmount(Long.parseLong(buyAmount));
     }
 
     private static String read() {

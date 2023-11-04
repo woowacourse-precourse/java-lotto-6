@@ -16,6 +16,7 @@ public class LottoController {
             int userMoney = getMoney();
             int lotteryCount = userMoney / LOTTERY_COST;
             List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
+            printLotteryList(totalLottery);
 
         } catch(IllegalArgumentException e){
 
@@ -35,5 +36,11 @@ public class LottoController {
         }
 
         return money;
+    }
+
+    private void printLotteryList(List<Lotto> totalLottery){
+        for(Lotto lottery : totalLottery){
+            lottery.printLotteryNumber();
+        }
     }
 }

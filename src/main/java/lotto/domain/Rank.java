@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public enum Rank {
     _1ST(6, false, 2_000_000_000L, "6개 일치 (2,000,000,000원) - "),
@@ -11,22 +12,34 @@ public enum Rank {
     BLANK(0, false, 0L, "");
 
     private final int correctCount;
-    private final boolean isBonusNumber;
+    private final boolean isBonus;
     private final long prizeMoney;
     private final String showPrizeMoney;
 
-    Rank(int correctCount, boolean isBonusNumber, long prizeMoney, String showPrizeMoney) {
+    Rank(int correctCount, boolean isBonus, long prizeMoney, String showPrizeMoney) {
         this.correctCount = correctCount;
-        this.isBonusNumber = isBonusNumber;
+        this.isBonus = isBonus;
         this.prizeMoney = prizeMoney;
         this.showPrizeMoney = showPrizeMoney;
     }
 
-    public static Rank findByRank(int correctCount) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank.hasCorrectCount(correctCount))
+    public static Rank findByRank(int correctCount, boolean isBonus) {
+        Stream<Rank> ranks = Arrays.stream(Rank.values());
+
+        if (correctCount == Rank._2ND.correctCount) {
+            return ranks.filter(rank -> rank.hasCorrectCount(correctCount)
+                            && rank.isCorrectBonus(isBonus))
+                    .findAny()
+                    .orElse(BLANK);
+        }
+
+        return ranks.filter(rank -> rank.hasCorrectCount(correctCount))
                 .findAny()
                 .orElse(BLANK);
+    }
+
+    private boolean isCorrectBonus(boolean isBonus) {
+        return this.isBonus == isBonus;
     }
 
     private boolean hasCorrectCount(int correctCount) {

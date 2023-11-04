@@ -66,15 +66,15 @@ public class LottoController {
         return InvestorService.createDefault(investorInput);
     }
 
+    private void printLottoValues(final List<Lotto> lottos) {
+        List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
+        outputView.printEachLottoNumbers(lottoResponses);
+    }
+
     private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {
         return lottos.stream()
                 .map(lotto -> LottoResponse.from(lotto.getNumbers()))
                 .toList();
-    }
-
-    private void printLottoValues(final List<Lotto> lottos) {
-        List<LottoResponse> lottoResponses = convertLottoResponses(lottos);
-        outputView.printEachLottoNumbers(lottoResponses);
     }
 
     private GoalNumberJudge initGoalNumberJudge() {

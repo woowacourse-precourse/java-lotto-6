@@ -16,14 +16,14 @@ public class InputView {
 
 	public static String inputWinningNumber() {
 		System.out.println(INPUT_WINNING_NUMBER);
-		String winnigNumber = Console.readLine();
-		return winnigNumber;
+
+		return null;
 	}
 
 	public static int inputBonusNumber() {
 		System.out.println(INPUT_BONUS_NUMBER);
-		int bonusNumber = Integer.parseInt(Console.readLine());
-		return bonusNumber;
+
+		return 0;
 	}
 
 }

@@ -10,8 +10,17 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
-        validateNoDuplicate(bonusNumber);
+        validateDuplicateWinningLottoNumberAndBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public LottoResult calculateStatistics(BuyerLotto buyerLotto) {
+        Map<WinningStatistics, Integer> statistics = initMapWinningStatistics();
+        for (Lotto lottoNumber : buyerLotto.getBuyerLotto()) {
+            WinningStatistics winningStatistics = lottoNumber.containsLotto(winningLotto, bonusNumber);
+            statistics.put(winningStatistics, statistics.getOrDefault(winningStatistics, 0) + 1);
+        }
+        return new LottoResult(statistics);
     }
 
     private Map<WinningStatistics, Integer> initMapWinningStatistics() {
@@ -22,7 +31,7 @@ public class WinningLotto {
         return statistics;
     }
 
-    private void validateNoDuplicate(BonusNumber bonusNumber) {
+    private void validateDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
         if (isDuplicateWinningLottoNumberAndBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복되었습니다.");
         }

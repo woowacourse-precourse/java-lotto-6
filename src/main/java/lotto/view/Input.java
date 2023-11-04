@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Input {
     private static final String INPUT_MONEY_GUIDE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_LOTTO_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
 
     private Input() {}
 
@@ -27,6 +28,12 @@ public class Input {
         return Arrays.stream(winningLotto.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_GUIDE);
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
     }
 
     private static void validateBlank(String input) {

@@ -25,6 +25,7 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
         List<Integer> winningLotto = Input.inputWinningLotto();
-        return new WinningLotto(winningLotto);
+        int bonusNumber = Input.inputBonusNumber();
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 }

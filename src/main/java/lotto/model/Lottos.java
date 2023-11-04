@@ -1,9 +1,7 @@
 package lotto.model;
 
-import static lotto.util.Constant.FIVE;
-import static lotto.util.Constant.FOUR;
-import static lotto.util.Constant.SIX;
-import static lotto.util.Constant.THREE;
+import static lotto.model.LottoPrize.*;
+import static lotto.util.Constant.LOTTO_PRICE;
 import static lotto.util.Constant.ZERO;
 
 import java.util.List;
@@ -18,7 +16,8 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos createWith(final int lottoTicketCount, final NumbersGenerator numbersGenerator) {
+    public static Lottos createWith(final int money, final NumbersGenerator numbersGenerator) {
+        int lottoTicketCount = money / LOTTO_PRICE.getValue();
         return new Lottos(createLottos(lottoTicketCount, numbersGenerator));
     }
 
@@ -30,60 +29,46 @@ public class Lottos {
 
     public int countFirstPrizeWinners(final List<Integer> winningNumbers) {
         return (int) lottos.stream()
-                .filter(lotto -> isFirstPrizeWinner(lotto.getNumbers(), winningNumbers))
+                .filter(lotto -> lotto.isFirstPrizeWinner(winningNumbers))
                 .count();
-    }
-
-    private boolean isFirstPrizeWinner(final List<Integer> lottoNumbers, final List<Integer> winningNumbers) {
-        return countMatchingNumbers(lottoNumbers, winningNumbers) == SIX.getValue();
     }
 
     public int countSecondPrizeWinners(final List<Integer> winningNumbers, final int bonusNumber) {
         return (int) lottos.stream()
-                .filter(lotto -> isSecondPrizeWinner(lotto.getNumbers(), winningNumbers, bonusNumber))
+                .filter(lotto -> lotto.isSecondPrizeWinner(winningNumbers, bonusNumber))
                 .count();
     }
 
-    private boolean isSecondPrizeWinner(final List<Integer> lottoNumbers, final List<Integer> winningNumbers,
-                                        final int bonusNumber) {
-        return countMatchingNumbers(lottoNumbers, winningNumbers) == FIVE.getValue() && lottoNumbers.contains(
-                bonusNumber);
-    }
 
     public int countThirdPrizeWinners(final List<Integer> winningNumbers) {
         return (int) lottos.stream()
-                .filter(lotto -> isThirdPrizeWinner(lotto.getNumbers(), winningNumbers))
+                .filter(lotto -> lotto.isThirdPrizeWinner(winningNumbers))
                 .count();
-    }
-
-    private boolean isThirdPrizeWinner(final List<Integer> lottoNumbers, final List<Integer> winningNumbers) {
-        return countMatchingNumbers(lottoNumbers, winningNumbers) == FIVE.getValue();
     }
 
     public int countFourthPrizeWinners(final List<Integer> winningNumbers) {
         return (int) lottos.stream()
-                .filter(lotto -> isFourthPrizeWinner(lotto.getNumbers(), winningNumbers))
+                .filter(lotto -> lotto.isFourthPrizeWinner(winningNumbers))
                 .count();
-    }
-
-    private boolean isFourthPrizeWinner(final List<Integer> lottoNumbers, final List<Integer> winningNumbers) {
-        return countMatchingNumbers(lottoNumbers, winningNumbers) == FOUR.getValue();
     }
 
     public int countFifthPrizeWinners(final List<Integer> winningNumbers) {
         return (int) lottos.stream()
-                .filter(lotto -> isFifthPrizeWinner(lotto.getNumbers(), winningNumbers))
+                .filter(lotto -> lotto.isFifthPrizeWinner(winningNumbers))
                 .count();
     }
 
-    private boolean isFifthPrizeWinner(final List<Integer> lottoNumbers, final List<Integer> winningNumbers) {
-        return countMatchingNumbers(lottoNumbers, winningNumbers) == THREE.getValue();
+    public long calculateWinningTotalPrize(final List<Integer> winningNumbers, final int bonusNumber) {
+        return calculateWinningPrize(FIRST_PRIZE, countFirstPrizeWinners(winningNumbers)) +
+                calculateWinningPrize(SECOND_PRIZE, countSecondPrizeWinners(winningNumbers, bonusNumber)) +
+                calculateWinningPrize(THIRD_PRIZE, countThirdPrizeWinners(winningNumbers)) +
+                calculateWinningPrize(FOURTH_PRIZE, countFourthPrizeWinners(winningNumbers)) +
+                calculateWinningPrize(FIFTH_PRIZE, countFifthPrizeWinners(winningNumbers));
     }
 
-
-    private int countMatchingNumbers(final List<Integer> lottoNumbers, final List<Integer> winningNumbers) {
-        return (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
+    public List<List<Integer>> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
     }
 }

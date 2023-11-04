@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.util.NumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +13,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ONLY_SIX_NUMBER.toString());
-        }
+        NumberValidator.validateSizeSix(numbers);
+        NumberValidator.validateNumbersRange(numbers);
+        NumberValidator.validateDuplicates(numbers);
     }
 
     public List<Integer> getNumbers() {

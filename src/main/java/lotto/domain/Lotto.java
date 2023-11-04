@@ -9,7 +9,7 @@ import lotto.exception.ExceptionMessage;
 public class Lotto {
     public static final int MAX_VALUE = 45;
     public static final int MIN_VALUE = 1;
-    private static final int STANDARD_SIZE = 6;
+    public static final int STANDARD_SIZE = 6;
     private final List<Integer> numbers; // 필드 고정, private 도 고정
 
     private Lotto(List<Integer> numbers) {

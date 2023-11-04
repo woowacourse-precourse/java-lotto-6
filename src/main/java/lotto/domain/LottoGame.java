@@ -7,15 +7,11 @@ import java.util.List;
 import lotto.generator.RandomStrategy;
 
 public class LottoGame {
-    public static final int STANDARD_SIZE = 6;
-    public static final int START_INCLUSIVE = 1;
-    public static final int END_INCLUSIVE = 45;
-
     public Lotto generateLotto(RandomStrategy randomGenerator) {
         List<Integer> lotto = new ArrayList<>();
-        while (!hasStandardSize(lotto, STANDARD_SIZE)) {
+        while (!hasStandardSize(lotto, Lotto.STANDARD_SIZE)) {
             addAlternativeNumber(lotto, randomGenerator.generate(
-                    () -> Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE))
+                    () -> Randoms.pickNumberInRange(Lotto.MIN_VALUE, Lotto.MAX_VALUE))
             );
         }
         Collections.sort(lotto);

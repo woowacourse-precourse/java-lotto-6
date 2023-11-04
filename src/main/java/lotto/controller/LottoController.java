@@ -21,7 +21,7 @@ public class LottoController {
             lotteries.add(issueLotto());
         }
 
-        showLotteries(lotteries);
+        OutputView.showLotteries(lotteries);
     }
 
     public int buyLotto() {
@@ -53,12 +53,6 @@ public class LottoController {
             System.out.println(e);
 
             return this.issueLotto();
-        }
-    }
-
-    public void showLotteries(List<Lotto> lotteries) {
-        for (Lotto lotto : lotteries) {
-            lotto.showNumbers();
         }
     }
 }

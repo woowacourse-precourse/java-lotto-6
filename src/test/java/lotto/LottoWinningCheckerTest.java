@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,13 @@ public class LottoWinningCheckerTest {
     @BeforeEach
     void createLottoChecker() {
         checker = new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6), 7);
+    }
+
+    @DisplayName("당첨 번호 갯수 6개 아닐 때")
+    @Test
+    void createLottoWinningChecker() {
+        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5), 7))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1등 로또 확인")

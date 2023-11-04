@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.util.InputConvertUtil;
 
 public class InputView {
 
@@ -11,6 +13,12 @@ public class InputView {
         validateNotEmpty(purchaseAmount);
         validateIntegerType(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
+    }
+
+    public List<Integer> inputLottoNumber(){
+        String lottoInput = Console.readLine();
+        List<String> lottoNumbers = InputConvertUtil.lottoNumberToLottoList(lottoInput);
+        return InputConvertUtil.lottoNumberToIntegerList(lottoNumbers);
     }
 
     private static void validateIntegerType(String purchaseAmount) {

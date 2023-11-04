@@ -14,7 +14,7 @@ public class MyLotto {
     private final List<List<Integer>> myLottos;
 
     public MyLotto(int cost) {
-        this.quantity = cost / UNIT.getValue();
+        this.quantity = cost/ UNIT.getValue();
         this.myLottos = IntStream.range(0, quantity)
                 .mapToObj(q -> generateLottoNumber())
                 .toList();
@@ -22,6 +22,9 @@ public class MyLotto {
 
     public int getQuantity(){
         return quantity;
+    }
+    public List<List<Integer>> getMyLottos(){
+        return myLottos;
     }
 
     private List<Integer> generateLottoNumber() {

@@ -11,6 +11,11 @@ public class Cost {
         validate(cost);
         this.cost = cost;
     }
+
+    public int getCost() {
+        return cost;
+    }
+
     private void validate(int cost){
         InvalidInput invalidInput = new InvalidInput();
         invalidInput.notThousandUnitException(cost);

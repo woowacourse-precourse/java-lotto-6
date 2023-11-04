@@ -25,7 +25,7 @@ public class WinningLotto {
 		return winningNumbers;
 	}
 
-	private BonusNumber getBonusNumber() {
+	public BonusNumber getBonusNumber() {
 		return bonusNumber;
 	}
 

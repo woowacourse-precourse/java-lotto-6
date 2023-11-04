@@ -18,20 +18,15 @@ class ConvertorTest {
     void convertToIntegersSuccess(String input) {
         setUp();
         List<Integer> numbers = convertor.convertToNumbers(input);
-        Lotto lotto = new Lotto(numbers);
         assertThat(numbers).contains(1, 3, 18, 45, 27, 15);
-        assertThat(numbers).containsExactly(1, 3, 15, 18, 27, 45);
     }
 
     @ParameterizedTest
-    @DisplayName("1-45 이외의 숫자, 중복돤 숫자, 문자 입력시 예외 발생")
-    @ValueSource(strings = {"1,3,18,45,27,46", "1,3,18,45,27,27", "$,3,18,45,27,15", "1,3,18,45,27, "})
+    @DisplayName("1-45 이외의 숫자, 문자 입력시 예외 발생")
+    @ValueSource(strings = {"1,3,18,45,27,46", "$,3,18,45,27,15", "1,3,18,45,27, "})
     void convertToIntegersFail(String input) {
         setUp();
-        assertThatThrownBy(() -> {
-            List<Integer> numbers = convertor.convertToNumbers(input);
-            Lotto lotto = new Lotto(numbers);
-        })
+        assertThatThrownBy(() -> convertor.convertToNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

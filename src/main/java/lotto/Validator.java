@@ -16,5 +16,12 @@ public class Validator {
         throw new IllegalArgumentException("[ERROR]");
     }
 
+    void isMultipleOfThousand(int input) {
+        if ((input % 1000) == 0) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
 
 }

@@ -11,23 +11,23 @@ import java.util.List;
 
 public class LottoController {
 
-    public void run() {
+    public List<Lotto> run() {
         int countOfLotto = buyLotto();
+        List<Lotto> lotteries = new ArrayList<>();
+
 
         OutputView.showCountOfLotto(countOfLotto);
-        List<Lotto> lotteries = new ArrayList<>();
 
         for (int i = 0; i < countOfLotto; i++) {
             lotteries.add(issueLotto());
         }
 
         OutputView.showLotteries(lotteries);
+
+        return lotteries;
     }
 
-    public int buyLotto() {
-        boolean existInputFlag = false;
-        boolean numericInputFlag = false;
-
+    private int buyLotto() {
         String inputValue = InputView.inputMoney();
 
         try {
@@ -43,7 +43,7 @@ public class LottoController {
         }
     }
 
-    public Lotto issueLotto() {
+    private Lotto issueLotto() {
         try {
             Lotto lotto = new Lotto(SixNumberGenerator.getRandomSixNumbers());
 
@@ -54,4 +54,5 @@ public class LottoController {
             return this.issueLotto();
         }
     }
+
 }

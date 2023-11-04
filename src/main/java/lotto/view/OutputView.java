@@ -1,10 +1,18 @@
 package lotto.view;
 
+import static lotto.domain.WinningCriteria.SECOND;
+
+import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.WinningCriteria;
 
 public class OutputView {
-    private final static String LOTTO_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String LOTTO_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String START_WINNING_STATICS_MESSAGE = "당첨 통계\n---";
+    private static final String LOTTO_RESULT = "%d개 일치 (%,d원) - %d개";
+    private static final String LOTTO_SECOND_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
 
     public static void printNumberOfLottoPurchase(int quantity) {
         System.out.println();
@@ -15,5 +23,22 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    public static void printStatics(LottoResult lottoResult) {
+        System.out.println(START_WINNING_STATICS_MESSAGE);
+
+        HashMap<WinningCriteria, Integer> result = lottoResult.getResult();
+        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
+            System.out.println(getStaticsMessage(winningCriteria.getMatchCount(), winningCriteria.getPrize(),
+                    result.get(winningCriteria)));
+        }
+    }
+
+    public static String getStaticsMessage(int matchCount, int prize, int count) {
+        if (prize == SECOND.getPrize()) {
+            return String.format(LOTTO_SECOND_RESULT, matchCount, prize, count);
+        }
+        return String.format(LOTTO_RESULT, matchCount, prize, count);
     }
 }

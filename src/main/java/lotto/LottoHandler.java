@@ -27,8 +27,14 @@ public class LottoHandler {
     public List<List<Integer>> issueLottoNumbers(int lottoTicket) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoTicket; i++) {
-            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoNumbers.add(pickNumbersOrderByAsc());
         }
         return lottoNumbers;
+    }
+
+    private List<Integer> pickNumbersOrderByAsc() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
     }
 }

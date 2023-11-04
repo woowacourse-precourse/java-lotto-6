@@ -21,7 +21,7 @@ public class LottoPurchaseManager {
 
     private void validatePurchaseAmount(long money) {
         validatePositive(money);
-        validateMultipleOfThousand(money);
+        validateMultipleOfLottoPrice(money);
     }
 
     private void validatePositive(long money) {
@@ -30,9 +30,9 @@ public class LottoPurchaseManager {
         }
     }
 
-    private void validateMultipleOfThousand(long money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+    private void validateMultipleOfLottoPrice(long money) {
+        if (money % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }
     }
 }

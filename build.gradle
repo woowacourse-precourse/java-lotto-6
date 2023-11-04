@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.1.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
 }
 
 java {

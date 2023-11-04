@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
+    private final int MIN_INCLUSIVE = 1;
+    private final int MAX_INCLUSIVE = 45;
 
     private final List<Integer> numbers;
 
@@ -32,6 +34,10 @@ public class Lotto {
         if(!isSixNumbers(numbers)){
             throw new IllegalArgumentException();
         }
+
+        if(!isBetweenOneAndFortyFive(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> makeNumbers(final String numbers){
@@ -48,5 +54,9 @@ public class Lotto {
 
     private boolean isSixNumbers(final String numbers){
         return numbers.split(",").length == LOTTO_NUMBER_SIZE;
+    }
+
+    private boolean isBetweenOneAndFortyFive(final String numbers){
+        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE && number <= MAX_INCLUSIVE);
     }
 }

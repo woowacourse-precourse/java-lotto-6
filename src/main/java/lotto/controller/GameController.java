@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoBonusNumber;
-import lotto.domain.LottoGenerator;
-import lotto.domain.MoneyConverter;
-import lotto.domain.LottoWinNumbers;
+import lotto.domain.*;
 import lotto.util.Status;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,6 +12,7 @@ public class GameController {
     LottoGenerator lottoGenerator;
     LottoWinNumbers lottoWinNumbers;
     LottoBonusNumber lottoBonusNumber;
+    LottoCountCalculator lottoCountCalculator;
 
     public GameController() {
         inputView = new InputView();
@@ -29,6 +27,7 @@ public class GameController {
         showGeneratedLotto();
         setWinLottoNumbers();
         setLottoBonusNumber();
+        setLottoCountCalculator();
     }
 
     public void moneyConvertLotto() {
@@ -38,7 +37,8 @@ public class GameController {
             try {
                 moneyConverter = new MoneyConverter(inputView.inputMoney());
                 status = Status.SUCCESS;
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -62,7 +62,8 @@ public class GameController {
             try {
                 lottoWinNumbers = new LottoWinNumbers(inputView.inputLottoWin());
                 status = Status.SUCCESS;
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -74,9 +75,17 @@ public class GameController {
             try {
                 lottoBonusNumber = new LottoBonusNumber(inputView.inputLottoWin());
                 status = Status.SUCCESS;
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
+    public void setLottoCountCalculator(){
+        lottoCountCalculator.setLottoResult(
+                lottoGenerator.getMyLotto(),
+                lottoWinNumbers.getLottoWinNumbers(),
+                lottoBonusNumber.getBonusNumber()
+        );
+    }
 }

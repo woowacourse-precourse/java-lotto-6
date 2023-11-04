@@ -1,5 +1,6 @@
 package lotto.domain.constant;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum LottoPrize {
@@ -63,5 +64,19 @@ public enum LottoPrize {
                 .filter(lottoPrize -> lottoPrize.hasBonus == isBonus)
                 .findFirst()
                 .orElse(LottoPrize.LOSING);
+    }
+
+    public String toMessage() {
+        String prizeMoneyWithDelimiter = NumberFormat
+                .getNumberInstance()
+                .format(prizeMoney);
+
+        if (!hasBonus) {
+            return matchCount + "개 일치 "
+                    + "(" + prizeMoneyWithDelimiter + "원)";
+        }
+
+        return matchCount + "개 일치, " + "보너스 볼 일치 "
+                + "(" + prizeMoneyWithDelimiter + "원)";
     }
 }

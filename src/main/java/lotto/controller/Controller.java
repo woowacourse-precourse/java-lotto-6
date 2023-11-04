@@ -3,7 +3,7 @@ package lotto.controller;
 import static lotto.util.Converter.convertStringToInt;
 
 import java.util.List;
-import lotto.model.dto.PurchasedLottoResponse;
+import lotto.controller.dto.PurchasedLottoResponse;
 import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.Money;

@@ -1,8 +1,7 @@
-package lotto.model.dto;
+package lotto.controller.dto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import lotto.model.Lotto;
 
 public class PurchasedLottoResponse {

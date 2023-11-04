@@ -57,4 +57,10 @@ public class Lotto {
         Set<?> duplicates = new HashSet<>(numbers);
         return duplicates.size() != numbers.size();
     }
+
+    public int getSameCount(final List<Number> lottoNumber) {
+        return (int) lottoNumber.stream()
+                .filter(numbers::contains)
+                .count();
+    }
 }

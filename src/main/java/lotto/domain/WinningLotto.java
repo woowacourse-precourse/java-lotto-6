@@ -29,4 +29,8 @@ public class WinningLotto {
         Number number = Number.from(bonusNumber);
         return new WinningLotto(lotto, number);
     }
+
+    public int getSameCount(final List<Number> lottoNumbers) {
+        return lotto.getSameCount(lottoNumbers);
+    }
 }

@@ -30,12 +30,20 @@ public class GameController {
 
     public void play() {
         createCashAndLottoMachine();
+        purchaseLottos();
     }
 
     private void createCashAndLottoMachine() {
         cash = inputView.InputCash();
         lottoMachine = new LottoMachine(numberGenerator, cash);
     }
+
+    private void purchaseLottos() {
+        lottos = lottoMachine.purchaseLottos();
+        outputView.printPurchasedLottos(lottos);
+    }
+
+
 
 
 

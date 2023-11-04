@@ -1,6 +1,7 @@
 package lotto.repository;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,19 +10,21 @@ import java.util.Map;
 
 public class LottoRepository {
     private Long id = 0L;
-    private final Map<Long, Lotto> lotteries = new HashMap<>();
+    private final ArrayList<Lotto> lotteries = new ArrayList<>();
 
-    public Long save(Lotto lotto) {
-        lotteries.put(id, lotto);
-        id += 1;
-        return id;
+    public void save(Lotto lotto) {
+        lotteries.add(lotto);
     }
 
-    public Lotto findById(Long id) {
-        return lotteries.get(id);
+    public ArrayList<Lotto> getLotteries() {
+        return lotteries;
     }
 
-    public List<Lotto> findAll() {
-        return new ArrayList<>(lotteries.values());
-    }
+    //    public Lotto findById(Long id) {
+//        return lotteries.get(id);
+//    }
+
+//    public ArrayList<Lotto> findAll() {
+//        return new ArrayList<>(lotteries.values());
+//    }
 }

@@ -8,7 +8,7 @@ public enum ErrorMessage {
     /**
      * Client issue
      */
-    PAYMENT_NOT_INTEGER("구입 비용(Payment)은 정수가 입력되어야 합니다."),
+    PAYMENT_NOT_INTEGER("구입 비용(Buyer)은 정수가 입력되어야 합니다."),
     NUMBER_OUT_OF_RANGE(
             String.format(
                     "로또 번호는 %d에서 %d사이의 숫자여야 합니다.",
@@ -17,7 +17,7 @@ public enum ErrorMessage {
     ),
     PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE(
             String.format(
-                    "구입 비용(Payment)은 %d원 단위로 입력되어야 합니다.",
+                    "구입 비용(Buyer)은 %d원 단위로 입력되어야 합니다.",
                     UNIT_PRICE.getValue())
     ),
 

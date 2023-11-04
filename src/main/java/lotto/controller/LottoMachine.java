@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.LottoCalculator;
 import lotto.domain.lottery.Lottos;
 import lotto.exception.LottoException;
@@ -11,14 +12,15 @@ import static lotto.view.constants.PrintMessage.PRINT_REQUEST_PURCHASE_PAYMENT;
 public class LottoMachine {
     public Lottos purchase() {
         OutputView.printMessage(PRINT_REQUEST_PURCHASE_PAYMENT);
-        final int ticketCount = readPayment();
+        Buyer buyer = readPayment();
 
-        return Lottos.create(ticketCount);
+        return Lottos.create(buyer.getTicketCount());
     }
 
-    private static String readPayment() {
+    private static Buyer readPayment() {
         try {
-            return InputView.readLine();
+            String paymentInput = InputView.readLine();
+            return Buyer.from(paymentInput);
         } catch (LottoException exception) {
             OutputView.println(exception.getMessage());
             return readPayment();

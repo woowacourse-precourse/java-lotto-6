@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import lotto.constants.GameMessages;
 import lotto.domain.BonusNumber;
 import lotto.domain.GameResult;
-import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.UserNumbers;
 import lotto.util.comparer.impl.LottoComparer;
-import lotto.util.generator.impl.NumberGenerator;
+import lotto.util.generator.impl.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.impl.InputViewImpl;
@@ -18,8 +17,8 @@ public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoComparer lottoComparer;
-    private final NumberGenerator numberGenerator;
-    private Lotto lotto;
+    private final LottoGenerator lottoGenerator;
+    private Lottos lottos;
     private UserNumbers userNumbers;
     private BonusNumber bonusNumber;
     private GameResult gameResult;
@@ -29,11 +28,12 @@ public class LottoGameController {
         this.inputView = new InputViewImpl();
         this.outputView = new OutputViewImpl();
         this.lottoComparer = new LottoComparer();
-        this.numberGenerator = new NumberGenerator();
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public void run() {
         initMoney();
+        generateLotto();
     }
 
     public void initMoney() {
@@ -44,5 +44,9 @@ public class LottoGameController {
             outputView.printErrorMessage(e.getMessage());
             initMoney();
         }
+    }
+
+    public void generateLotto() {
+        lottos = new Lottos(lottoGenerator.generate(money.getLottoCount()));
     }
 }

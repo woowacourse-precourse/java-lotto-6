@@ -1,7 +1,8 @@
 package lotto.util.generator;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public interface Generator {
-    List<Integer> generate();
+    List<Lotto> generate(int lottoCount);
 }

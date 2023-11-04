@@ -1,12 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
@@ -53,7 +56,14 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
+    @Test
+    void 로또가_몇_개_맞았는지_확인(){
+        LottoService lottoService=new LottoService();
+        Lotto lotto1=new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto2=new Lotto(List.of(7,8,9,3,10,1));
+        int result=lottoService.compare(lotto1,lotto2);
+        assertThat(result).isEqualTo(2);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

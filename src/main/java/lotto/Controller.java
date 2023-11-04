@@ -1,10 +1,12 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Controller {
 
     private static final Integer LOTTERY_PRICE = 1_000;
+
     public static Integer calculateLotteryCount(Integer budget) {
         return budget / LOTTERY_PRICE;
     }
@@ -32,5 +34,18 @@ public class Controller {
         if (bonusFlag) {
             rankList.set(index, Rank.SECOND);
         }
+    }
+
+    public static Integer calculateTotalPrize(List<Rank> rankList) {
+        Integer totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            int rankFrequency = Collections.frequency(rankList, rank);
+            totalPrize += rank.calculatePrizeByRank(rankFrequency);
+        }
+        return totalPrize;
+    }
+
+    public static Double calculatePricePrizeRatio(Integer totalPrize, Integer lotteryCount) {
+        return (double) totalPrize / lotteryCount;
     }
 }

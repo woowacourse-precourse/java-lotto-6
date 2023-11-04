@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.lang.ref.PhantomReference;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.constant.LottoPrice;
@@ -11,6 +10,8 @@ public class LottoResult {
     private final LottoWinningNumbers lottoWinningNumbers;
     private LottoCount lottoCount = new LottoCount();
     private static final int BONUS_CHECK_COUNT = 10;
+    private static final double ZERO = 0;
+    private static final double HUNDRED = 100;
 
     public LottoResult(LottoWinningNumbers lottoWinningNumbers) {
         this.lottoWinningNumbers = lottoWinningNumbers;
@@ -23,6 +24,24 @@ public class LottoResult {
             lottoCount = getCount(matchCount);
         }
         outputLottoResult(lottoCount);
+    }
+
+    public void getLottoReturnRate(int purchasePrice) {
+        int lottoReturn = getLottoReturn();
+        if (lottoReturn == 0){
+            messageService.outputLottoReturnRate(ZERO);
+            return;
+        }
+        double returnRate = (double) (lottoReturn - purchasePrice) / purchasePrice * HUNDRED;
+        messageService.outputLottoReturnRate(returnRate + HUNDRED);
+    }
+
+    private int getLottoReturn() {
+        return (lottoCount.getSixCount() * LottoPrice.FIRST.getPrice()
+                + lottoCount.getFiveWithBonusCount() * LottoPrice.SECOND.getPrice()
+                + lottoCount.getFiveCount() * LottoPrice.THIRD.getPrice()
+                + lottoCount.getFourCount() * LottoPrice.FOURTH.getPrice()
+                + lottoCount.getThreeCount() * LottoPrice.FIFTH.getPrice());
     }
 
     private int getLottoMatchCount(List<Integer> lottoNumbers) {
@@ -69,5 +88,6 @@ public class LottoResult {
         }
         return matchCount;
     }
+
 
 }

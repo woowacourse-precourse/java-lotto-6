@@ -17,5 +17,6 @@ public class LottoGame {
         messageService.outputResultMessage();
         LottoResult lottoResult = new LottoResult(winningNumbersInfo);
         lottoResult.getLottoStatus(purchaseNumbers);
+        lottoResult.getLottoReturnRate(lottoPurchase.getPurchasePrice());
     }
 }

@@ -23,7 +23,7 @@ public class LottoPurchase {
         messageService.inputPurchasePrice();
         while (true) {
             try {
-                int purchasePrice = validateService.validateNumber(inputService.inputValue());
+                purchasePrice = validateService.validateNumber(inputService.inputValue());
                 validateService.validatePurchasePriceAll(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
@@ -36,8 +36,8 @@ public class LottoPurchase {
         return inputPurchasePrice() / LottoNumber.LOTTO_PRICE.getNumber();
     }
 
-    public List<Lotto> purchaseLottoNumbers(int purchaseAmount){
-        for(int i = 0; i < purchaseAmount; i++){
+    public List<Lotto> purchaseLottoNumbers(int purchaseAmount) {
+        for (int i = 0; i < purchaseAmount; i++) {
             purchaseLotto.add(generateLottoNumbers());
         }
         return purchaseLotto;
@@ -50,7 +50,7 @@ public class LottoPurchase {
         return new Lotto(lottoNumbers);
     }
 
-    public int getPurchasePrice(){
+    public int getPurchasePrice() {
         return purchasePrice;
     }
 }

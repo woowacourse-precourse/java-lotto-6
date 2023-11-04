@@ -7,26 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoWinNumbersTest {
     @Test
-    public void setWinLottoLoopTest() {
-        Status status = Status.FAIL;
-        int attempt = 0;
-
-        while (status == Status.FAIL) {
-            try {
-                new LottoWinNumbers("fail");
-                status = Status.SUCCESS;
-            } catch (IllegalArgumentException ignored) {
-            } finally {
-                attempt++;
-            }
-            if (attempt == 3) {
-                break;
-            }
-        }
-        assertEquals(attempt, 3);
-    }
-
-    @Test
     public void validTest() {
         assertDoesNotThrow(() -> new LottoWinNumbers("1,2,3,4,5,6"));
     }
@@ -51,4 +31,23 @@ class LottoWinNumbersTest {
         assertThrows(IllegalArgumentException.class, () -> new LottoWinNumbers("1,2,3,4,5,5"));
     }
 
+    @Test
+    public void setLottoWinLoopTest() {
+        Status status = Status.FAIL;
+        int attempt = 0;
+
+        while (status == Status.FAIL) {
+            try {
+                new LottoWinNumbers("fail");
+                status = Status.SUCCESS;
+            } catch (IllegalArgumentException ignored) {
+            } finally {
+                attempt++;
+            }
+            if (attempt == 3) {
+                break;
+            }
+        }
+        assertEquals(attempt, 3);
+    }
 }

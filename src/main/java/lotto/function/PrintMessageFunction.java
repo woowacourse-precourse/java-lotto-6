@@ -22,10 +22,9 @@ public class PrintMessageFunction {
         System.out.println(buyResult + ProgressMessage.BUY_RESULT);
     }
 
-    public void printLottoNumbers(List<Integer> lottoNumbers, int buyResult) {
-        for(int i=0;i<buyResult;i++){
-            System.out.println(lottoNumbers);
-        }
+    public void printLottoNumbers(List<Integer> lottoNumbers) {
+        System.out.println(lottoNumbers);
+
     }
 
     public void printWinningResult() {

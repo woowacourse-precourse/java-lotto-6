@@ -9,6 +9,8 @@ import java.util.Set;
 import lotto.message.ErrorMessage;
 
 public class Lotto {
+
+    private static final int lottoNumberCount = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +28,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!hasCorrectSize(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage("6"));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage(lottoNumberCount));
         }
         if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_EXIST.getMessage());

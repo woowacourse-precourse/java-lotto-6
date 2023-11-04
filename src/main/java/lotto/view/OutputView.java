@@ -7,7 +7,7 @@ import lotto.message.OutputMessage;
 public class OutputView {
 
     public static void printIssueResults(List<Lotto> lottos) {
-        OutputMessage.ISSUED_LOTTO_COUNT.print(String.valueOf(lottos.size()));
+        OutputMessage.ISSUED_LOTTO_COUNT.print(lottos.size());
         lottos.forEach(Lotto::printNumbers);
     }
 }

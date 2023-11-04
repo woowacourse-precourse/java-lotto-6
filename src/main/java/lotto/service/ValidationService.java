@@ -5,6 +5,7 @@ import lotto.constants.Value;
 import lotto.domain.Lotto;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ValidationService {
@@ -33,6 +34,22 @@ public class ValidationService {
         Set<Integer> lottoNumbers = new HashSet<>(winningLotto.getNumbers());
         if (lottoNumbers.size() != winningLotto.getNumbers().size()) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void bonusNumberValidation(int bonusNumber, Lotto winningLotto) {
+
+        if (bonusNumber < Value.LOTTO_START_NUMBER || bonusNumber > Value.LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+
+
+        List<Integer> winningNumber = winningLotto.getNumbers();
+
+        for (int number : winningNumber) {
+            if (bonusNumber == number) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

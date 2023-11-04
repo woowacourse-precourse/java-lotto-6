@@ -20,6 +20,11 @@ public class LottoService {
     List<Lotto> userLottos = new ArrayList<>();
 
     Lotto winningLotto;
+    int bonusNumber;
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
 
     public void setWinningLotto(Lotto winningLotto) {
         this.winningLotto = winningLotto;
@@ -41,5 +46,9 @@ public class LottoService {
 
     public List<Lotto> getUserLottos() {
         return userLottos;
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 }

@@ -23,7 +23,31 @@ public class Controller {
         createUserLottos();
         showUserLottos();
         createWinningLotto();
+        createBonusLotto();
     }
+
+    private void createBonusLotto() {
+        int bonusNumber = inputBonusNumber();
+        lottoService.setBonusNumber(bonusNumber);
+    }
+
+    private int inputBonusNumber() {
+        System.out.println("\n" + Message.BONUS_NUMBER_REQUEST_MESSAGE);
+
+        while (true) {
+            String inputBonusNumber = Console.readLine();
+            try {
+                int bonusNumber = parseUtils.parseStringToInt(inputBonusNumber);
+                Lotto winningLotto = lottoService.getWinningLotto();
+                validationService.bonusNumberValidation(bonusNumber, winningLotto);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.BONUS_NUMBER_FORMAT.getMessage());
+            }
+        }
+    }
+
+
 
     private void createWinningLotto() {
         Lotto winningLotto = inputWinningLotto();

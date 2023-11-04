@@ -2,17 +2,17 @@ package lotto.exceptionhandler;
 
 import java.util.function.Supplier;
 
-public class RetryExceptionHandler implements ExceptionHandler{
+public class RetryExceptionHandler implements ExceptionHandler {
 
     @Override
     public void run(Runnable runnable) {
-        while(true){
-            try{
+        while (true) {
+            try {
                 runnable.run();
                 return;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }finally {
+            } finally {
                 System.out.println();
             }
         }
@@ -20,12 +20,12 @@ public class RetryExceptionHandler implements ExceptionHandler{
 
     @Override
     public <T> T getResult(Supplier<T> supplier) {
-        while(true){
-            try{
+        while (true) {
+            try {
                 return supplier.get();
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }finally {
+            } finally {
                 System.out.println();
             }
         }

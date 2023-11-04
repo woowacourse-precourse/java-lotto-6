@@ -15,15 +15,15 @@ public class Reader {
     }
 
     private static int parseInt(String input) {
-        try{
+        try {
             return Integer.parseInt(input);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해 주세요");
         }
     }
 
     private static void validateMoneyUnit(int money) {
-        if(money % 1000 != 0){
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력해 주세요");
         }
     }

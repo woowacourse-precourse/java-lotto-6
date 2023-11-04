@@ -6,8 +6,8 @@ import lotto.exceptionhandler.RetryExceptionHandler;
 import lotto.model.Lottos;
 import lotto.ui.Reader;
 import lotto.ui.Writer;
-import lotto.util.LottoGenerator;
-import lotto.util.RandomLottoGenerator;
+import lotto.util.lottogenerator.LottoGenerator;
+import lotto.util.lottogenerator.RandomLottoGenerator;
 
 public class LottoController {
 
@@ -15,9 +15,9 @@ public class LottoController {
     LottoGenerator lottoGenerator = new RandomLottoGenerator();
 
     //TODO 1. 로또 구매
-    public void purchaseLotto(){
+    public void purchaseLotto() {
         int money = retryHandler.getResult(
-                ()->{
+                () -> {
                     Writer.printGuide(PrintConst.GUIDE_PURCHASE);
                     return Reader.getMoney();
                 });

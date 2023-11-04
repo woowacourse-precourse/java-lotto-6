@@ -1,7 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
 import lotto.service.LottoService;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LottoController {
@@ -10,6 +14,7 @@ public class LottoController {
 
     public void run() {
         inputLottoAmount();
+        inputLottoNumber();
     }
 
     public void inputLottoAmount() {
@@ -23,6 +28,26 @@ public class LottoController {
 
                 exceptionCheck = false;
 
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void inputLottoNumber() {
+        boolean exceptionCheck = true;
+        while (exceptionCheck) {
+            try {
+                System.out.println("당첨 번호를 입력하세요.");
+                String inputLotto = Console.readLine();
+
+                List<Integer> lottoNumbers = Arrays.stream(inputLotto.split(","))
+                        .map(Integer::parseInt)
+                        .toList();
+
+                this.lottoService.initLottoNumber(lottoNumbers);
+
+                exceptionCheck = false;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

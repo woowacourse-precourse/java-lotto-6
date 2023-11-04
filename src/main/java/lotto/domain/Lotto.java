@@ -1,15 +1,14 @@
-package lotto;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.view.InputView;
+package lotto.domain;
 
 import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumber();
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,18 +17,19 @@ public class Lotto {
         }
     }
 
-    public String toString(){
+    public String toString() {
         String lottoNumber = String.join(", ", String.valueOf(numbers));
         return lottoNumber;
     }
 
-    public int[] toIntegerArr(){
+    public int[] toIntegerArr() {
         int[] lottoNumber = new int[6];
-        for(int i=0;i<numbers.size();i++){
+        for (int i = 0; i < numbers.size(); i++) {
             lottoNumber[i] = numbers.get(i);
         }
         return lottoNumber;
     }
+
     public Set<Integer> toSet() {
         Set<Integer> lotto = new HashSet<>();
         for (int i = 0; i < numbers.size(); i++) {
@@ -37,7 +37,8 @@ public class Lotto {
         }
         return lotto;
     }
-    public void sortNumber(){
+
+    public void sortNumber() {
         Collections.sort(this.numbers);
     }
     // TODO: 추가 기능 구현

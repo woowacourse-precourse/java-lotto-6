@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
 
 import java.util.HashSet;
@@ -34,13 +34,13 @@ public class InputException {
     public String[] checkExceptionWinningNumber(String[] numbers) {
         try {
             checkNumberCount(numbers);
-            for(int i=0;i<6;i++){
+            for (int i = 0; i < 6; i++) {
                 int number = toInt(numbers[i]);
                 checkNotLottoNumber(number);
             }
             checkSameNumber(numbers);
             return numbers;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new InputView().winningNumber();
         }
@@ -51,35 +51,37 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] 1에서 45사이 값을 입력해 주세요.");
         }
     }
-    public void checkNumberCount(String[] numbers){
-        if(numbers.length != 6){
+
+    public void checkNumberCount(String[] numbers) {
+        if (numbers.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해 주세요.");
         }
     }
 
-    public int checkExceptionBonusNumber(String bonusNumber, Lotto winningLotto){
+    public int checkExceptionBonusNumber(String bonusNumber, Lotto winningLotto) {
         try {
             int number = toInt(bonusNumber);
             checkNotLottoNumber(number);
             checkContainsBonusNumber(winningLotto, number);
             return number;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new InputView().bonusNumber(winningLotto);
         }
     }
 
-    public void checkSameNumber(String[] number){
+    public void checkSameNumber(String[] number) {
         Set<Integer> numbers = new HashSet<>();
-        for(int i=0;i<number.length;i++){
+        for (int i = 0; i < number.length; i++) {
             numbers.add(Integer.parseInt(number[i]));
         }
-        if(numbers.size() != 6){
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException("서로 다른 6개의 숫자를 입력하세요.");
         }
     }
-    public void checkContainsBonusNumber(Lotto lotto, int bonusNumber){
-        if(lotto.toSet().contains(bonusNumber)){
+
+    public void checkContainsBonusNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.toSet().contains(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호와 다른 번호를 입력해 주세요.");
         }
     }

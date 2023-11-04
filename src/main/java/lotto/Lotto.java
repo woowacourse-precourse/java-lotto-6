@@ -27,4 +27,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean isMatch(int number){
+        return numbers.contains(number);
+    }
 }

@@ -53,5 +53,5 @@
 
 ### Controller
 1. LottoController
-   - [] 로또 게임시작
+   - [x] 로또 게임시작
    - [] 게임 종료

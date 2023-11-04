@@ -15,7 +15,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> issueLotto() {
+    public static List<Integer> issueLotto() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

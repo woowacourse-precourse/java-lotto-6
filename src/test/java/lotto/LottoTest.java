@@ -41,4 +41,20 @@ class LottoTest {
     void createLottoWithNormalCondition() {
         assertThatNoException().isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
+
+    @DisplayName("로또 번호는 정렬되어 생성된다.")
+    @Test
+    void createLottoWithSorted() {
+        Lotto lotto = new Lotto(List.of(1, 4, 2, 5, 3, 6));
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @DisplayName("toString이 list를 보여준다.")
+    @Test
+    void toStringTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

@@ -30,10 +30,6 @@ public class LottoMachine {
         return new Lotto(lottoNumbers);
     }
 
-    public void printLottos() {
-
-    }
-
     public LottoResult drawLotto(Lotto winningNumber, int bonusNumber) {
         return null;
     }

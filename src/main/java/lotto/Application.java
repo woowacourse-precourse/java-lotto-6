@@ -29,6 +29,7 @@ public class Application {
         }
     }
 
+    // domain - 어디로?
     public static Lotto createWinningLotto(){
         boolean isRunning = true;
         Lotto winningLotto = null;
@@ -60,6 +61,31 @@ public class Application {
         return winningLotto;
     }
 
+    // domain - createWinningLotto()와 같은 곳으로
+    public static Integer createBonusNumber(Lotto winningLotto){
+        boolean isRunning = true;
+        Integer bonusNumber = null;
+        while (isRunning) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String userInput = Computer.getInput();
+
+                Validator.checkNumber(userInput);
+                Validator.checkZero(userInput);
+
+                bonusNumber = Integer.parseInt(userInput);
+                Validator.checkRange(bonusNumber);
+                winningLotto.checkInclusion(bonusNumber);
+
+                isRunning = false;
+
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -79,26 +105,7 @@ public class Application {
         Lotto winningLotto = createWinningLotto();
 
         // 6. 보너스 번호 입력
-        isRunning = true;
-        Integer bonusNumber = null;
-        while (isRunning) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String userInput = computer.getInput();
-
-                Validator.checkNumber(userInput);
-                Validator.checkZero(userInput);
-
-                bonusNumber = Integer.parseInt(userInput);
-                Validator.checkRange(bonusNumber);
-                winningLotto.checkInclusion(bonusNumber);
-
-                isRunning = false;
-
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+        Integer bonusNumber = createBonusNumber(winningLotto);
 
         // 7. 당첨 내역 계산 로직
         int count;

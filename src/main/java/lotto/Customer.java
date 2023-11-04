@@ -15,8 +15,29 @@ public class Customer {
 
     public Customer(String wallet) {
 
-        this.wallet = Integer.parseInt(wallet);
+        this.wallet = validateWallet(wallet);
         buyLottos();
+    }
+
+    private int validateWallet(String wallet) {
+
+        try {
+
+            int money = Integer.parseInt(wallet);
+            validateWalletIsDivisible(money);
+            return money;
+        } catch (NumberFormatException e) {
+
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateWalletIsDivisible(int wallet) {
+
+        if (wallet % 1000 != 0) {
+
+            throw new IllegalArgumentException();
+        }
     }
 
     private void buyLottos() {
@@ -46,5 +67,6 @@ public class Customer {
     }
 
     public void compareWinLotto(WinLotto winLotto) {
+
     }
 }

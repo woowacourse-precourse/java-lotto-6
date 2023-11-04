@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,13 @@ public class CustomerTest {
     public void setUp() {
 
         customer = new Customer("5000");
+    }
+
+    @Test
+    void validateWalletTest() {
+
+        assertThatThrownBy(() -> new Customer("aaaa"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

@@ -36,7 +36,7 @@ public class LottoGameController {
         generateLotto();
     }
 
-    public void initMoney() {
+    void initMoney() {
         try {
             money = new Money(inputView.inputMoney());
         }
@@ -46,7 +46,12 @@ public class LottoGameController {
         }
     }
 
-    public void generateLotto() {
+    void generateLotto() {
         lottos = new Lottos(lottoGenerator.generate(money.getLottoCount()));
+        printLottos();
+    }
+
+    void printLottos() {
+        outputView.printLottos(lottos);
     }
 }

@@ -19,7 +19,9 @@ public class LottoGenerator implements Generator {
     }
 
     public List<Integer> generateLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            .stream().sorted()
+            .collect(Collectors.toList());
     }
 
 }

@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.constants.ErrorMessages;
+import lotto.domain.Lottos;
 
 public interface OutputView {
-    void printLottoNumbers();
+    void printLottos(Lottos lottos);
     void printGameResult();
     void printProfit();
     void printErrorMessage(String message);

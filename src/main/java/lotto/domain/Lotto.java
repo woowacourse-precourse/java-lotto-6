@@ -36,4 +36,8 @@ public class Lotto {
     private boolean isDuplicateWinningNumbers(){
         return true;
     }
+
+    public boolean hasSameNumber(int number) {
+        return numbers.contains(number);
+    }
 }

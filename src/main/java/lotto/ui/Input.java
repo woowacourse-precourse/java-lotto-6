@@ -9,12 +9,12 @@ import lotto.domain.Computer;
 
 public class Input {
 
-    public static String getInput() {
+    public static String get() {
         return Console.readLine();
     }
 
     // 자료형 조작
-    public static List<Integer> parseInput(List<String> userInputs) {
+    public static List<Integer> parseNumbers(List<String> userInputs) {
         List<Integer> inputNumber = new ArrayList<>();
 
         for (String userInput : userInputs) {
@@ -30,7 +30,7 @@ public class Input {
         return inputNumber;
     }
 
-    public static List<String> splitInput(String userInput) {
+    public static List<String> split(String userInput) {
         return Arrays.asList(Computer.getInput().split(","));
     }
 }

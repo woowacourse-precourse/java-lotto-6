@@ -17,5 +17,9 @@ public class LottoPurchase {
 		return number;
 
 	}
-
+	
+	public void printButLotto() {
+		
+		System.out.println(numberaCount() + "개를 구매했습니다.");
+}
 }

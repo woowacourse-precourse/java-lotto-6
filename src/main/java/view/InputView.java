@@ -6,7 +6,13 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int input;
+        try {
+            input = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String getLotto() {

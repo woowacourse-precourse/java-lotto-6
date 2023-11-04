@@ -29,6 +29,11 @@ public class Lotto {
                 .count() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+DUPLICATE_ERROR);
         }
+        if(numbers.stream()
+                .filter((number)->number>45||number<1)
+                .count()>0){
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+RANGE_ERROR);
+        }
     }
     // TODO: 추가 기능 구현
 

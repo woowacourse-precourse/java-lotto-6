@@ -29,15 +29,23 @@ public class LottoGame {
 
         WinningNumbers winningNumbers = settingWinningNumbers();
 
-        Map<Ranking,Integer> result = getRankingResult(consumerLottos,winningNumbers);
-        OutView.printResult(result,ticketQuantity);
-        float returnOfRate = Calculator.caculateReturnOfRate(result,ticketQuantity);
+        Map<Ranking, Integer> result = getRankingResult(consumerLottos, winningNumbers);
+        OutView.printResult(result, ticketQuantity);
+        float returnOfRate = Calculator.caculateReturnOfRate(result, ticketQuantity);
         OutView.printRateOfReturn(returnOfRate);
     }
 
     private int settingTicketQuantity() {
-        String inputPurchaseAmount = InputView.getPurchaseAmount();
-        int ticketQuantity = getTicketQuantity(inputPurchaseAmount);
+        int ticketQuantity;
+        while (true) {
+            try {
+                String inputPurchaseAmount = InputView.getPurchaseAmount();
+                ticketQuantity = getTicketQuantity(inputPurchaseAmount);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         return ticketQuantity;
     }
 
@@ -59,22 +67,58 @@ public class LottoGame {
     }
 
     private static WinningNumbers settingWinningNumbers() {
-        String inputWinningNumbers = InputView.getWinningNumbers();
-        WinningNumbersValidator.validate(inputWinningNumbers);
-        Lotto winningLotto = Converter.stringToLotto(inputWinningNumbers);
+        Lotto winningLotto = settingMainNumbers();
 
-        String inputBonusNumber = InputView.getBonusNumber();
-        BonusNumberValidator.validate(inputBonusNumber);
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        WinningNumbers winningNumbers = getBonusNumber(winningLotto);
 
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto,bonusNumber);
         return winningNumbers;
     }
 
-    private Map<Ranking,Integer> getRankingResult(ArrayList<Lotto> consumerLottos, WinningNumbers winningNumbers ){
-        Map<Ranking,Integer> result = new TreeMap<>();
-        for(Lotto lotto : consumerLottos){
-            Ranking rank = Calculator.caculateRanking(lotto,winningNumbers);
+    private static WinningNumbers getBonusNumber(Lotto winningLotto) {
+        WinningNumbers winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                int bonusNumber = settingBonusNumber();
+                winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    private static int settingBonusNumber() {
+        int bonusNumber = 0;
+        while (bonusNumber == 0) {
+            try {
+                String inputBonusNumber = InputView.getBonusNumber();
+                BonusNumberValidator.validate(inputBonusNumber);
+                bonusNumber = Integer.parseInt(inputBonusNumber);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private static Lotto settingMainNumbers() {
+        Lotto winningLotto = null;
+        while (winningLotto == null) {
+            try {
+                String inputWinningNumbers = InputView.getWinningNumbers();
+                WinningNumbersValidator.validate(inputWinningNumbers);
+                winningLotto = Converter.stringToLotto(inputWinningNumbers);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return winningLotto;
+    }
+
+    private Map<Ranking, Integer> getRankingResult(ArrayList<Lotto> consumerLottos, WinningNumbers winningNumbers) {
+        Map<Ranking, Integer> result = new TreeMap<>();
+        for (Lotto lotto : consumerLottos) {
+            Ranking rank = Calculator.caculateRanking(lotto, winningNumbers);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         preventNullPointMap(result);
@@ -83,8 +127,8 @@ public class LottoGame {
 
     private void preventNullPointMap(Map<Ranking, Integer> result) {
         Arrays.stream(Ranking.values())
-                .filter((rank)->!result.containsKey(rank))
-                .forEach((rank)->result.put(rank,0));
+                .filter((rank) -> !result.containsKey(rank))
+                .forEach((rank) -> result.put(rank, 0));
     }
 
 }

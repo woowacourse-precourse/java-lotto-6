@@ -8,7 +8,7 @@ public class LottoNumbersGenerator {
     private static final int LOTTO_END_NUMBER = 45;
     private static final int LOTTO_NUMBERS = 6;
 
-    public static List<Integer> generateRandomNumbers() {
+    public List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBERS);
     }
 }

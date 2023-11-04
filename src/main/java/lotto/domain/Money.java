@@ -31,8 +31,8 @@ public class Money {
         return money < LottoConstants.PRICE.getConstants();
     }
 
-    public int requestLottoCount() {
-        return money / LottoConstants.PRICE.getConstants();
+    public int requestLottoCount(int money) {
+        return (int) (money / LottoConstants.PRICE.getConstants());
     }
 
 }

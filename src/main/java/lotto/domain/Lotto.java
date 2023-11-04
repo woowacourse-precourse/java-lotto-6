@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import lotto.io.OutputHandler;
+import lotto.verifier.LottoVerifier;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,9 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        String forCheck = String.join(",", numbers.stream().map(Object::toString).collect(Collectors.toList()));
+        new LottoVerifier().check(forCheck);
     }
 
     public boolean contains(int number){

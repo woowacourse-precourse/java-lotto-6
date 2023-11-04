@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import static lotto.exception.ErrorMessage.NUMBER_DUPLICATE;
 import static lotto.exception.ErrorMessage.NUMBER_MISS;
 import static lotto.exception.ErrorMessage.SIZE_MISS;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,7 +25,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(LottoException.class)
                 .hasMessageContaining(NUMBER_DUPLICATE.getMessage());
@@ -32,9 +33,40 @@ class LottoTest {
     @DisplayName("로또 번호의 숫자가 규정 크기보다 크거나 작으면 예외가 발생한다.")
     @Test
     void createLottoByMinimumOrMaximumNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 90)))
                 .isInstanceOf(LottoException.class)
                 .hasMessageContaining(NUMBER_MISS.getMessage());
+    }
+
+    @DisplayName("같은 번호 수 만큼 개수 반환한다.")
+    @Test
+    void testCountSameNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        Lotto answer = new Lotto(List.of(1, 32, 33, 34, 5, 10));
+
+        Integer bonus = 9;
+
+        //when
+        Integer count = lotto.countSameNumber(answer, bonus);
+
+        //then
+        assertThat(count).isEqualTo(1);
+    }
+
+    @DisplayName("같은 번호 수가 5개이며 보너스 넘버 포함시 key값이 증가되 반환한다.")
+    @Test
+    void testBonusNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 34, 5, 10));
+
+        Integer bonus = 4;
+
+        //when
+        Integer count = lotto.countSameNumber(answer, bonus);
+
+        //then
+        assertThat(count).isEqualTo(4);
     }
 }

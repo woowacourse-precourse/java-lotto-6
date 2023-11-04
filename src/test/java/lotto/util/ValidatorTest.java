@@ -8,7 +8,6 @@ import static lotto.exception.ErrorMessage.NUMBER_DUPLICATE;
 import static lotto.exception.ErrorMessage.NUMBER_MISS;
 import static lotto.exception.ErrorMessage.SIZE_MISS;
 import static lotto.util.Validator.*;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;

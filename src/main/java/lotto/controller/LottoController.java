@@ -8,12 +8,15 @@ import static lotto.util.Validator.*;
 import static lotto.view.OutputView.*;
 import static lotto.view.InputView.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.exception.LottoException;
+import lotto.model.LottoResult;
 import lotto.model.Money;
 import lotto.model.RandomLottoNumbers;
-import lotto.util.Validator;
 
 public class LottoController {
     public void run() {
@@ -28,6 +31,9 @@ public class LottoController {
 
         printMessage(INPUT_BONUS_NUMBER.getMessage());
         Integer bonusNumber = initBonusNumber(answerLotto);
+
+        LottoResult lottoResult = LottoResult.of(randomLotto.checkResult(answerLotto, bonusNumber));
+        printLottoResult(lottoResult);
     }
 
     private Money initMoney() {
@@ -69,18 +75,29 @@ public class LottoController {
         Integer bonusNumber = 0;
 
         try {
-            validateIsInteger(inputBonusNumber);
-            validateHasSpace(inputBonusNumber);
+            bonusNumber = validateBonusNumber(inputBonusNumber);
 
-            bonusNumber = Integer.parseInt(inputBonusNumber);
-
-            validateNumberMinimumOrMaximum(bonusNumber);
-            lotto.checkBonusNumber(bonusNumber);
+            lotto.checkDuplicateBonusNumber(bonusNumber);
         } catch (LottoException lottoException) {
             printMessage(lottoException.getMessage());
             initBonusNumber(lotto);
         }
 
         return bonusNumber;
+    }
+
+    private Integer validateBonusNumber (String inputBonusNumber) {
+        validateIsInteger(inputBonusNumber);
+        validateHasSpace(inputBonusNumber);
+
+        Integer bonusNumber = Integer.parseInt(inputBonusNumber);
+
+        validateNumberMinimumOrMaximum(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private void checkResultAndReturn() {
+
     }
 }

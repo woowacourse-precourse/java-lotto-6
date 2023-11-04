@@ -1,12 +1,20 @@
 package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
+import static lotto.util.ConstantNumbers.LOTTO_FIFTH_QUANTITY;
+import static lotto.util.ConstantNumbers.LOTTO_FIRST_QUANTITY;
+import static lotto.util.ConstantNumbers.LOTTO_GRADE_QUANTITY;
 import static lotto.util.ConstantNumbers.LOTTO_NUMBER_QUANTITY;
 import static lotto.util.ConstantNumbers.MAXIMUM_Lotto_NUMBER;
 import static lotto.util.ConstantNumbers.MINIMUM_Lotto_NUMBER;
+import static lotto.util.ConstantNumbers.RESET_INTEGER_NUMBER;
+import static lotto.util.ConstantNumbers.RESET_INTEGER_ONE;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 import lotto.Lotto;
 
 public class RandomLottoNumbers {
@@ -28,7 +36,7 @@ public class RandomLottoNumbers {
     private List<Lotto> createRandomLottoNumbers (Integer count) {
         List<Lotto> lottoTickets = new ArrayList<>();
 
-        for (int i=0; i < count; i++) {
+        for (int i = RESET_INTEGER_NUMBER.getConstant(); i < count; i++) {
             Lotto lotto = new Lotto(pickUniqueNumbersInRange(
                     MINIMUM_Lotto_NUMBER.getConstant(),
                     MAXIMUM_Lotto_NUMBER.getConstant(),
@@ -40,6 +48,27 @@ public class RandomLottoNumbers {
         }
 
         return lottoTickets;
+    }
+
+    public Map<Integer, Integer> checkResult (Lotto answerLotto, Integer bonusNumber) {
+        Map<Integer, Integer> countResult = IntStream.rangeClosed(
+                        RESET_INTEGER_ONE.getConstant(), LOTTO_GRADE_QUANTITY.getConstant())
+                .boxed()
+                .collect(HashMap::new, (map, key) -> map.put(key, 0), Map::putAll);
+
+        for (Lotto lotto : randomLottoTickets) {
+            Integer key = lotto.countSameNumber(answerLotto, bonusNumber);
+
+            if (key < RESET_INTEGER_ONE.getConstant()) {
+                continue;
+            }
+
+            Integer value = countResult.get(key) + 1;
+
+            countResult.put(key, value);
+        }
+
+        return countResult;
     }
 
     @Override

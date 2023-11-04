@@ -44,7 +44,7 @@
 + [X] [Controller] 당첨 내역을 사용자에게 출력한다.
 
     * [LottoResult] 컨트롤러에게 사용자 입력 번호와 로또 번호 리스트를 입력 받아 결과를 계산한다. 
-    * [OutputView] 컨트롤러에게 [LottoResult]의 결과를(LottoResult.toString()) 받아 출력한다.
+    * [OutputView] 컨트롤러에게 [LottoResult]의 결과를 받아 출력한다.
 
 + [X] [Controller] 수익률을 출력한다.
 

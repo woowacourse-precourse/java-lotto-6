@@ -39,9 +39,9 @@ public class Application {
         printLottoNumbers(lottos);
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        //int[] winningNumbers = receiveWinningNumbers(Console.readLine());
+        int[] winningNumbers = receiveWinningNumbers(Console.readLine());
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        //int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
 
         //HashMap<LottoRank, Integer> matchCountByRank = getMatchCountByRank(lottos, winningNumbers, bonusNumber);
     }
@@ -77,6 +77,16 @@ public class Application {
                 .mapToInt(Integer::parseInt)
                 .toArray();
         return winningNumbers;
+    }
+
+    public static HashMap<LottoRank, Integer> getMatchCountByRank(ArrayList<Lotto> lottos, int[] winningNumbers, int bonusNumber) {
+        HashMap<LottoRank, Integer> matchCountByRank = new HashMap<>();
+        matchCountByRank.put(LottoRank.FIFTH, lottos.stream().filter(lotto -> lotto.matchCount(winningNumbers) == 3).toArray().length);
+        matchCountByRank.put(LottoRank.FOURTH, lottos.stream().filter(lotto -> lotto.matchCount(winningNumbers) == 4).toArray().length);
+        matchCountByRank.put(LottoRank.THIRD, lottos.stream().filter(lotto -> lotto.matchCount(winningNumbers) == 5).toArray().length);
+        matchCountByRank.put(LottoRank.SECOND, lottos.stream().filter(lotto -> lotto.matchCount(winningNumbers) == 5 && lotto.matchBonusNumber(bonusNumber)).toArray().length);
+        matchCountByRank.put(LottoRank.FIRST, lottos.stream().filter(lotto -> lotto.matchCount(winningNumbers) == 6).toArray().length);
+        return matchCountByRank;
     }
 
     public static void printLottoNumbers(ArrayList<Lotto> lottos) {

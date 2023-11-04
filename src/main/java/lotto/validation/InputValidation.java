@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class InputValidation {
     public int validatePurchaseAmount(String input) {
         validateInputIsNumeric(input);
-        validateCheckRangeOfInput(input);
+        validateCheckRangeOfPurchaseAmountInput(input);
         int purchaseAmount = Integer.parseInt(input);
         validatePurchaseAmountIsPositive(purchaseAmount);
         validatePurchaseAmountOutOfRange(purchaseAmount);
@@ -43,7 +43,7 @@ public class InputValidation {
         }
     }
 
-    public void validateCheckRangeOfInput(String input) {
+    public void validateCheckRangeOfPurchaseAmountInput(String input) {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {

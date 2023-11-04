@@ -32,8 +32,8 @@ public class Application {
         return lottos;
     }
     private static List<Integer> generateRandomNumbers(){
-        List<Integer> numbers = new ArrayList<>();
-
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        
         return numbers;
     }
 

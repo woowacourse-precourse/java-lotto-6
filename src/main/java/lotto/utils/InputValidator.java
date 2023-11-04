@@ -11,6 +11,7 @@ public class InputValidator {
     private static final String INVALID_PRICE = "1000원 단위의 수를 입력해주세요.";
     private static final String INVALID_SIZE = "6개의 로또 번호를 입력해주세요.";
     private static final String INVALID_RANGE = "1부터 45까지의 번호만 입력해주세요.";
+    private static final String DUPLICATED = "중복된 숫자가 존재합니다.";
 
     private static final int PRICE = 1000;
     private static final int SIZE = 6;
@@ -45,6 +46,12 @@ public class InputValidator {
     public static void checkLottoIsInRange(List<Integer> input) {
         if (input.stream().anyMatch(number -> number < MIN_NUM || number > MAX_NUM)) {
             throw new IllegalArgumentException(ERROR + INVALID_RANGE);
+        }
+    }
+
+    public static void checkLottoNumberIsDuplicated(List<Integer> input) {
+        if (input.stream().distinct().findAny().isEmpty()) {
+            throw new IllegalArgumentException(ERROR + DUPLICATED);
         }
     }
 

@@ -36,7 +36,7 @@ public class InvalidInput {
     public void sizeExceededException(List<Integer> numbers) {
         message = ExceptionMessage.EXCEEDED_LOTTO_SIZE.getMessage();
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(message);
         }
     }
 

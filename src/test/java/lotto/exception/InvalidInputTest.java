@@ -52,4 +52,19 @@ class InvalidInputTest {
                 .hasMessage("[ERROR] 번호와 금액은 정수여야 합니다.");
     }
 
+    @DisplayName("로또가 6개의 숫자로 이루어져 있지 않으면 예외가 발생한다.")
+    @Test
+    void sizeExceededException(){
+        //given
+        InvalidInput invalidInput = new InvalidInput();
+        List<Integer> numbers = new ArrayList<>();
+
+        numbers.addAll(List.of(1, 2, 3, 4, 5, 6, 7));
+
+        //when //then
+        assertThatThrownBy(() -> invalidInput.sizeExceededException(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또는 6개의 숫자여야 합니다.");
+    }
+
 }

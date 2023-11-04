@@ -1,20 +1,24 @@
-package lotto.domain;
+package lotto.domain.store;
 
+import lotto.domain.lotto.Lottos;
+import lotto.domain.generator.LottoAutoGenerator;
+import lotto.domain.generator.LottoManualGenerator;
+import lotto.exception.LottoException;
 import lotto.exception.MarketException;
 
 import static lotto.contant.LottoConstants.LOTTO_PRICE;
 import static lotto.contant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
-public class Market {
+public class LottoStore {
     private final LottoAutoGenerator lottoAutoGenerator;
     private final LottoManualGenerator lottoManualGenerator;
 
-    public Market(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
+    public LottoStore(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
         this.lottoAutoGenerator = lottoAutoGenerator;
         this.lottoManualGenerator = lottoManualGenerator;
     }
 
-    public Lottos purchaseAutoLottos(int userMoney) {
+    public Lottos purchaseAutoLottos(int userMoney) throws LottoException {
         validate(userMoney);
         int lottoCount = userMoney / LOTTO_PRICE.getValue();
         return lottoAutoGenerator.generate(lottoCount);

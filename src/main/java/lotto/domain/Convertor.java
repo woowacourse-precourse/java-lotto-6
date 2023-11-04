@@ -8,19 +8,11 @@ import java.util.stream.Collectors;
 public class Convertor {
     private static final String DELIMITER = ",";
 
-    public List<Integer> convertToIntegers(String input) {
-        List<Integer> numbers = convertToNumbers(input).stream()
-                .map(Number::getNumber)
-                .sorted()
-                .collect(Collectors.toList());
-        return numbers;
-    }
-
-    private List<Number> convertToNumbers(String input) {
-        List<Number> numbers = stream(separate(input))
+    private List<Integer> convertToNumbers(String input) {
+        return stream(separate(input))
                 .map(number -> new Number(number.trim()))
+                .map(Number::getNumber)
                 .collect(Collectors.toList());
-        return numbers;
     }
 
     private String[] separate(String input) {

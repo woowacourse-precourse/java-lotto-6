@@ -13,6 +13,7 @@ public class Game {
         int purchaseQuantity = InputView.askPurchaseAmount() / THOUSAND_UNIT;
         List<Lotto> lottos = issueLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
+
     }
 
     private List<Lotto> issueLottos(int purchaseQuantity) {

@@ -13,12 +13,12 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     public static List<Integer> issueLotto() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto);
         return lotto;
     }
 

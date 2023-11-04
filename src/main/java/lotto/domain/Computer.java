@@ -10,12 +10,8 @@ import lotto.Validator;
 
 public class Computer {
 
-    // 입력 받기
-    public static String getInput() {
-        return Console.readLine();
-    }
 
-    // 출력 담당 컴퓨터
+
     public static List<Lotto> sortLottos(List<Lotto> lottos) {
         List<Lotto> sortedLottos = new ArrayList<>();
         for (Lotto lotto : lottos) {
@@ -73,26 +69,7 @@ public class Computer {
         return ((double) sum / (lottoCount * 1000)) * 100;
 
     }
-    // 자료형 조작
-    public static List<Integer> parseInput(List<String> userInputs) {
-        List<Integer> inputNumber = new ArrayList<>();
 
-        for (String userInput : userInputs) {
-            Validator.checkNumber(userInput);
-            Validator.checkZero(userInput);
-
-            Integer lottoNumber = Integer.parseInt(userInput);
-            Validator.checkRange(lottoNumber);
-
-            inputNumber.add(Integer.parseInt(userInput));
-        }
-
-        return inputNumber;
-    }
-
-    public static List<String> splitInput(String userInput) {
-        return Arrays.asList(Computer.getInput().split(","));
-    }
 
 
 

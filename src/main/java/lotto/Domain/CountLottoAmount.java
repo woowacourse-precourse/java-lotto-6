@@ -10,5 +10,4 @@ public class CountLottoAmount {
 
         return purchaseAmount;
     }
-
 }

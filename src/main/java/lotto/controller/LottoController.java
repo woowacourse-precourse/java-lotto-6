@@ -1,7 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.WinLotto;
 import lotto.domain.lottoresult.LottoResultsRepository;
@@ -15,6 +17,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final String BONUS_NUMBER_DUPLICATE_ERROR = "보너스 넘버와 당첨 번호는 동일할 수 없습니다.";
     private final OutputView outputView;
     private final ModelAndViewConverter modelAndViewConverter;
     private final InputView inputView;
@@ -52,9 +55,21 @@ public class LottoController {
     }
 
     private WinLotto makeWinLotto() {
-        List<Integer> winLottoNumber = repeat(inputView::inputWinLottoNumber, modelAndViewConverter);
-        Integer winBonusNumber = repeat(inputView::inputBonusNumber, modelAndViewConverter);
-        return repeat(() -> new WinLotto(winLottoNumber, winBonusNumber), modelAndViewConverter);
+        Lotto lotto = repeat(this::makeLotto, modelAndViewConverter);
+        BonusNumber bonusNumber = repeat(this::makeBonusNumber,lotto, modelAndViewConverter);
+        return new WinLotto(lotto, bonusNumber);
+    }
+
+    private Lotto makeLotto() {
+        return new Lotto(inputView.inputWinLottoNumber());
+    }
+
+    private BonusNumber makeBonusNumber(Lotto lotto) {
+        BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+        if (bonusNumber.checkLottoContainBonusNumber(lotto)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR);
+        }
+        return bonusNumber;
     }
 
     private void checkAndPrintWinning(LottoPurchaseService lottoPurchaseService,
@@ -78,6 +93,16 @@ public class LottoController {
             modelAndViewConverter.addComponent(e);
             outputView.printError(modelAndViewConverter);
             return repeat(something, modelAndViewConverter);
+        }
+    }
+
+    private <T, R> R repeat(Function<T, R> something, T input, ModelAndViewConverter modelAndViewConverter) {
+        try {
+            return something.apply(input);
+        } catch (IllegalArgumentException e) {
+            modelAndViewConverter.addComponent(e);
+            outputView.printError(modelAndViewConverter);
+            return repeat(something,input, modelAndViewConverter);
         }
     }
 }

@@ -26,6 +26,9 @@ public class InputUtils {
     }
 
     private static void validateInputMoney(String money) {
+        if (isNull(money)) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+        }
         if (!isNumeric(money)) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }

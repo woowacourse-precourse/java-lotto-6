@@ -115,6 +115,10 @@ public class Application {
         }
         return totalPrizeMoney;
     }
+
+    private double calculateEarningsRate(int purchaseAmount, double totalPrizeMoney){
+        return (double) totalPrizeMoney / purchaseAmount * 100;
+    }
     
     private static String getKey(int matchCount, boolean bonusMatch){
         if(matchCount == 5 && bonusMatch){

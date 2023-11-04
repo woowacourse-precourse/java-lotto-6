@@ -101,8 +101,10 @@
   - [x] 특정 자릿숫의 추첨 번호와 추측하는 번호가 같은지 확인한다. WinLottoNum#isSame
 
 - [x] 당첨 번호와 보너스 번호들의 모임 클래스 LottoNumResults
-  - [x] 당첨 번호 추첨 번호가 같은지 확인한다. isSamePickNum
-  - [x] 보너스 번호가 같은지 확인한다. isSameBonusNum
+  - [x] 당첨 번호 추첨 번호들과, 보너스 번호들을 같은지 확인한다.
+    - [x] 당첨 번호 추첨 번호가 같은지 확인한다. isSamePickNum
+    - [x] 보너스 번호가 같은지 확인한다. isSameBonusNum
+  
 
 
 

@@ -12,10 +12,19 @@ import java.util.List;
 public class LottoNumResults {
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
+    private Boolean isSame;
 
     public LottoNumResults(WinLottoNums winLottoNums, BonusLottoNum bonusLottoNum) {
         this.winLottoNums = winLottoNums;
         this.bonusLottoNum = bonusLottoNum;
+        isSame = false;
+    }
+
+    public Boolean isSame(Integer targetNum, Integer indexOfSpecial) {
+        isSame = isSamePickNum(targetNum, indexOfSpecial);
+        isSame = isSameBonusNum(targetNum, indexOfSpecial);
+
+        return null;
     }
 
     /**
@@ -25,9 +34,8 @@ public class LottoNumResults {
      * @return
      */
     public Boolean isSamePickNum(Integer targetNum, Integer indexOfSpecial) {
-        Boolean isSame = false;
 
-        if (indexOfSpecial >= 0 && indexOfSpecial <= 4) {
+        if (indexOfSpecial >= 0 && indexOfSpecial <= 5) {
             return winLottoNums.isSame(targetNum, indexOfSpecial);
         }
 
@@ -40,7 +48,11 @@ public class LottoNumResults {
      * @param targetNum
      * @return
      */
-    public Boolean isSameBonusNum(Integer targetNum) {
-        return bonusLottoNum.isSame(targetNum);
+    public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
+        if (Utii.isSameInt(indexOfSpecial, 6)) {
+            return bonusLottoNum.isSame(targetNum);
+        }
+        
+        return false;
     }
 }

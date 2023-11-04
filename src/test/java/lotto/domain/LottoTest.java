@@ -59,6 +59,15 @@ class LottoTest {
                 () -> new Lotto(duplicatedNumbers));
     }
 
+    @DisplayName("로또 번호에 허용 범위를 벗어난 숫자가 있으면 예외 발생")
+    @ParameterizedTest
+    @MethodSource("overRangeNumbersDummy")
+    void createLottoByOverRangeNumbersTest(List<Integer> overRangeNumbers) {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(overRangeNumbers));
+    }
+
+
     @DisplayName("생성 성공 테스트")
     @ParameterizedTest()
     @MethodSource("lottoNumbersDummy")
@@ -66,6 +75,13 @@ class LottoTest {
         assertDoesNotThrow(() -> new Lotto(lottoNumbers));
     }
 
+    static Stream<Arguments> overRangeNumbersDummy() {
+        return Stream.of(
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 49)),
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 100)),
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 50))
+        );
+    }
     static Stream<Arguments> numbersOverSizeDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(1, 2, 3, 4, 5, 6, 7)),

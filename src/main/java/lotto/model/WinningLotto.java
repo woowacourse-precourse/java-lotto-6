@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinningLotto {
 
@@ -27,12 +28,10 @@ public class WinningLotto {
     }
 
     private List<Integer> validateNotNumber(List<String> numbersStr) {
-        List<Integer> numbers = new ArrayList<>();
         try {
-            for (int i = 0; i < numbersStr.size(); i++) {
-                numbers.add(Integer.parseInt(numbersStr.get(i)));
-            }
-            return numbers;
+            return numbersStr.stream()
+                    .map(numberStr -> Integer.parseInt(numberStr))
+                    .collect(Collectors.toList());
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
@@ -45,10 +44,8 @@ public class WinningLotto {
     }
 
     private void validateInvalidLottoNumberRange(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이의 수여야 합니다.");
-            }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이의 수여야 합니다.");
         }
     }
 

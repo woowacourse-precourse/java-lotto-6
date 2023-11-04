@@ -2,75 +2,53 @@ package lotto;
 
 import java.util.List;
 import lotto.model.Bonus;
-import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.LottoResultChecker;
+import lotto.model.Ranking;
+import lotto.model.Statistics;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
-    static int isMatchedThree = 0;
-    static int isMatchedFour = 0;
-    static int isMatchedFive = 0;
-    static int isMatchedFiveAndBonus = 0;
-    static int isMatchedSix = 0;
-
     public static void main(String[] args) {
-
+        //1. 구입 가격을 입력받는다.
         InputView inputView = new InputView();
         int answer = inputView.requestPrice();
 
+        //2. 로또 구매 개수를 출력한다.
         OutputView outputView = new OutputView();
         int boughtLotto = outputView.printPurchases(answer);
 
+        //3. 갯수만큼 로또 번호를 출력한다.
         LottoMachine lottoMachine = new LottoMachine(boughtLotto);
         lottoMachine.issueTickets();
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
 
+        //4. 당첨 번호를 입력받는다.
         String winningNumbers = inputView.requestWinningNumber();
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
 
+        //5. 보너스 번호를 입력받는다.
         int bonusNumber = inputView.requestBonusNumber();
-        Bonus bonus = new Bonus(bonusNumber);
+        winningLotto.addBonus(new Bonus(bonusNumber));
 
-        System.out.println();
-        System.out.println("당첨 통계\n---");
+        LottoResultChecker checker =
+            new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto);
 
-        for(Lotto lotto : lottoMachine.getIssuedLotto()) {
-            List<Integer> issuedNumbers = lotto.getNumbers();
-            boolean isMatchedBonusNumber = false;
-            if(issuedNumbers.contains(bonus.getNumber())) {
-                isMatchedBonusNumber = true;
-            }
-            issuedNumbers.retainAll(winningLotto.getNumbers());
-            calculateResult(issuedNumbers.size(), isMatchedBonusNumber);
-        }
+        //발행된 각각의 로또에 대한 랭킹이 담긴 리스트
+        List<Ranking> rankings = checker.checkResult();
+        Statistics statistics = new Statistics();
+        statistics.makeResultBoard();
+        statistics.createData(rankings);
 
-        System.out.printf("3개 일치 (5,000원) - %d개\n", isMatchedThree);
-        System.out.printf("4개 일치 (50,000원) - %d개\n", isMatchedFour);
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", isMatchedFive);
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", isMatchedFiveAndBonus);
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", isMatchedSix);
+        //당첨 통계를 각각 출력한다.
+        outputView.printLotteryStatistics();
+        outputView.printStatisticsResult(statistics.getResults());
 
-        float revenue = (5000 * isMatchedThree) + (50000 * isMatchedFour)
-            + (1500000 * isMatchedFive) + (30000000 * isMatchedFiveAndBonus) + (2000000000 * isMatchedSix);
+        float revenue = statistics.getRateOfReturn();
         float result = (revenue / answer) * 100 ;
 
-        System.out.println();
-        System.out.printf("총 수익률은 %.1f%%입니다.", result);
-    }
-
-    private static void calculateResult(int size, boolean isMatchedWithBonus) {
-        if (size == 3) {
-            isMatchedThree++;
-        } else if (size == 4) {
-            isMatchedFour++;
-        } else if (size == 5 && !isMatchedWithBonus) {
-            isMatchedFive++;
-        } else if (size == 5) {
-            isMatchedFiveAndBonus++;
-        } else if (size == 6) {
-            isMatchedSix++;
-        }
+        outputView.printRateOfReturn(result);
     }
 }

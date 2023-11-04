@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import lotto.dto.LottoNumberDto;
 import lotto.dto.output.LottoDto;
-import lotto.dto.output.LottoTicketsDto;
+import lotto.dto.output.LottosDto;
 import lotto.io.output.StdWriter;
 
 public class OutputView {
@@ -16,8 +16,8 @@ public class OutputView {
         this.writer = writer;
     }
 
-    public void printLottoTickets(LottoTicketsDto lottoTicketsDto) {
-        List<LottoDto> lottoTickets = lottoTicketsDto.lottoTickets();
+    public void printLottoTickets(LottosDto lottosDto) {
+        List<LottoDto> lottoTickets = lottosDto.lottos();
         printLottoTicketsCount(lottoTickets);
         printLottoTicketsByNaturalOrder(lottoTickets);
     }
@@ -27,22 +27,20 @@ public class OutputView {
         writer.writeLine(message);
     }
 
+    // fix
     // ref. 오름차순 정렬
     // imp. View는 데이터를 렌더링하고 사용자에게 보여준다...
     //  StringBuilder가 있어도 괜찮은 걸까?
     private void printLottoTicketsByNaturalOrder(List<LottoDto> lottoTickets) {
-        StringJoiner joiner = new StringJoiner(NEM_LINE);
-
-        for (LottoDto lottoTicket : lottoTickets) {
-            String lottoTicketFormat = lottoTicket.lottoNumbers()
-                    .stream()
-                    .sorted(Comparator.comparingInt(Integer::intValue))
-                    .map(String::valueOf)
+        for (LottoDto lotto : lottoTickets) {
+            List<LottoNumberDto> lottoNumbers = lotto.lottoNumbers();
+            String lottoTicketFormat = lottoNumbers.stream()
+                    .sorted((Comparator.comparingInt(LottoNumberDto::number)))
+                    .map(lottoNumber -> String.valueOf(lottoNumber.number()))
                     .collect(Collectors.joining(", ", "[", "]"));
 
-            joiner.add(lottoTicketFormat);
+            writer.writeLine(lottoTicketFormat);
         }
-
-        writer.writeLine(joiner.toString());
+        writer.write(NEM_LINE);
     }
 }

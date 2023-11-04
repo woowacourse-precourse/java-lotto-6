@@ -1,43 +1,29 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoManager {
-    private static List<Lotto> lottos;
+    private static AutoLottos autoLottos;
     private static Generator generator = new LottoGenerator();
     private static int lottoCount;
     private Money money;
 
     private LottoManager(Money money) {
         this.money = money;
-        buyLottos();
+        autoLottos = AutoLottos.from();
+        buyAutoLottos();
     }
 
     public static LottoManager from(int money) {
         return new LottoManager(Money.from(money));
     }
 
-    public void buyLottos() {
-        lottos = new ArrayList<>();
+    private void buyAutoLottos() {
         lottoCount = money.requestLottoCount();
-        while (checkMoneyRemain(lottoCount)) {
-            lottos.add(getNewLotto());
-        }
+        autoLottos.createAutoLottos(lottoCount, generator);
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<Lotto> getAutoLottos() {
+        return autoLottos.getLottos();
     }
-
-    private Lotto getNewLotto() {
-        lottoCount -= 1;
-        return Lotto.createAutoLottoNumbers(generator);
-    }
-
-    private boolean checkMoneyRemain(int lottoCount) {
-        return lottoCount != 0;
-    }
-
 }

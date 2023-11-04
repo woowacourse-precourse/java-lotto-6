@@ -19,7 +19,7 @@
 - inputView class
   + [0] 로또 구입 금액을 입력 받는 기능
   + [0] 로또 당첨 번호를 입력 받는 기능
-  + [ ] 보너스 번호를 입력 받는 기능
+  + [0] 보너스 번호를 입력 받는 기능
 
 ### model package
 - validation class

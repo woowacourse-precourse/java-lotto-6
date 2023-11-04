@@ -11,4 +11,8 @@ public class InputView {
     public String lottoWinningNumberInput() {
         return Console.readLine();
     }
+
+    public String bonusNumberInput() {
+        return Console.readLine();
+    }
 }

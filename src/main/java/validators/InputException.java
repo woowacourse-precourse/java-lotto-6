@@ -10,8 +10,8 @@ public class InputException {
 		}
 	}
 
-	public static void checkRightAmount(int buyAmount) {
-		int rest = buyAmount%1000;
+	public static void checkRightAmount(int buyAmount, int lottoPrice) {
+		int rest = buyAmount%lottoPrice;
 		if(rest != 0) {
 			throw new IllegalArgumentException(Error.WRONG_AMOUNT.getMessage());
 		}

@@ -2,18 +2,25 @@ package controller;
 
 import java.util.List;
 
-import model.BuyAmount;
-import model.Lotto;
+import model.BuyLotto;
+import model.BuyLottoNumber;
 import view.InputView;
+import view.OutputView;
 
 public class LottoController {
+	
 	public void buyLotto() {
-		BuyAmount buyAmount = new BuyAmount(InputView.getBuyAmount());
-		getLottoNumber(buyAmount);
+		BuyLotto buyLotto = new BuyLotto(InputView.getBuyAmount());
+		showLottoList(buyLotto.getNumberList());
+		getNumberList(InputView.getNumberListText());
 	}
 
-	private void getLottoNumber(BuyAmount buyAmount) {
-		List<Integer> numbers = Lotto.getRandomNumberList(buyAmount.getLottoPage());
-		Lotto lotto = new Lotto(numbers);
+	private void showLottoList(List<BuyLottoNumber> buyLottoNumberList) {
+		System.out.println();
+		OutputView.showBuyLottoList(buyLottoNumberList);
+	}
+	
+	private void getNumberList(String numberListText) {
+		
 	}
 }

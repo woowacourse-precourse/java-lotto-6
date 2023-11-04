@@ -9,4 +9,10 @@ public class InputView {
 		System.out.println(Input.BUY_AMOUNT.getInput());
 		return Console.readLine();
 	}
+	
+	public static String getNumberListText() {
+		System.out.println();
+		System.out.println(Input.WINNING_NUMBER.getInput());
+		return Console.readLine();
+	}
 }

@@ -2,7 +2,7 @@ package enums;
 
 public enum Output {
 
-	YOUR_LOTTO("개를 구입하셨습니다."),
+	YOUR_LOTTO("개를 구입했습니다."),
 	STATS("당첨통계"),
 	SIX_MATCHES("6개 일치 (2,000,000,000원) - "),
 	FIVE_bONUS_MATCHES("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
@@ -16,7 +16,7 @@ public enum Output {
 		this.output = output;
 	}
 	
-	String getOutput() {
+	public String getOutput() {
 		return output;
 	}
 }

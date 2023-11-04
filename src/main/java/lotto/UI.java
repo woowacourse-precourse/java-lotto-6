@@ -2,7 +2,9 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UI {
     public String inputMoney() {
@@ -31,4 +33,15 @@ public class UI {
         }
         System.out.print("]");
     }
+
+    public List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
+        String line = readLine();
+        System.out.println();
+        String[] split = line.split(",");
+        List<Integer> numbers = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
+        return numbers;
+    }
+
+
 }

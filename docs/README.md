@@ -28,7 +28,7 @@
 
 - [x] 구입 금액을 입력받는다. - UI#inputMoney
 - [x] 구매 내역을 보여준다. - UI#printPurchases
-- [ ] 당첨 번호를 입력받는다. - UI#inputWinningNumbers
+- [x] 당첨 번호를 입력받는다. - UI#inputWinningNumbers
 - [ ] 보너스 번호를 입력받는다. - UI#inputBonusNumber
 - [ ] 당첨 통계를 보여준다. - UI#printWinningStats
 - [ ] 수익률을 보여준다. - UI#printReturnRates

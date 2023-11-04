@@ -1,10 +1,10 @@
 package controller;
 
+import model.BuyAmount;
 import view.InputView;
-import view.OutputView;
 
 public class LottoController {
-	public void buyLotto(InputView inputView, OutputView outputView) {
-		inputView.getBuyAmount();
+	public void buyLotto() {
+		BuyAmount buyAmount = new BuyAmount(InputView.getBuyAmount());
 	}
 }

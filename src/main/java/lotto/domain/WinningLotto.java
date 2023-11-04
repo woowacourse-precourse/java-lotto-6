@@ -15,4 +15,8 @@ public class WinningLotto {
                 .toList();
         lottoValidate(numbers);
     }
+
+    public void plusBonusNumber(List<String> bonus) {
+        inputValidate(bonus);
+    }
 }

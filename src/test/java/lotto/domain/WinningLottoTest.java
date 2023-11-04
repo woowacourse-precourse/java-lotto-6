@@ -53,7 +53,7 @@ class WinningLottoTest {
     void plusBonusByNotNumber() {
         WinningLotto lotto = new WinningLotto(List.of("1", "2", "3", "4", "5", "6"));
 
-        assertThatThrownBy(() -> lotto.plusBonusNumeber("테스트!"))
+        assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("테스트!")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1~45까지의 숫자를 입력해주세요.");
     }

@@ -1,6 +1,14 @@
 package lotto.controller;
 
+import lotto.view.InputView;
+
 public class GameController {
-    public GameController() {}
-    public void startGame() {}
+    private final InputView inputView;
+    public GameController(InputView inputView) {
+        this.inputView = inputView;
+    }
+    public void startGame() {
+        String answer = inputView.readPurchaseAmount();
+        System.out.println(answer);
+    }
 }

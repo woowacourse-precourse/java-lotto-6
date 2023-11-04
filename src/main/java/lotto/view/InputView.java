@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.ErrorMessages;
 
-public class Input {
+public class InputView {
     public int inputUserPayment() {
         String payment = Console.readLine();
+        return paymentToInteger(payment);
+    }
 
+    public int paymentToInteger(String payment) {
         try {
             return Integer.parseInt(payment);
         } catch (NumberFormatException e) {
@@ -20,15 +23,15 @@ public class Input {
 
     public List<Integer> inputWinningNumbers() {
         String winningNumbers = Console.readLine();
-        List<String> splittedNumbers = splitNumbers(winningNumbers);
-        return numbersToInteger(splittedNumbers);
+        List<String> splitNumbers = splitNumbersByComma(winningNumbers);
+        return winningNumbersToInteger(splitNumbers);
     }
 
-    public List<String> splitNumbers(String winningNumbers) {
-        return List.of(winningNumbers.split(","));
+    public List<String> splitNumbersByComma(String splitNumbers) {
+        return List.of(splitNumbers.split(","));
     }
 
-    public List<Integer> numbersToInteger(List<String> winningNumbers) {
+    public List<Integer> winningNumbersToInteger(List<String> winningNumbers) {
         List<Integer> integerWinningNumbers = new ArrayList<>();
 
         for (String number : winningNumbers) {

@@ -4,8 +4,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.lotto.Lotto;
+import lotto.lotto.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -27,6 +30,14 @@ class LottoTest {
     @Test
     void createLottoByWrongRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 46, 1, 2, 3, 4)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 숫자가 아닌 문자를 입력하면 예외가 발생한다.")
+    @ValueSource(strings = {"1,2,a,4,5,6", "1,2, ,4,5,6", "1,2,!,4,5,6"})
+    @ParameterizedTest
+    void createWinningLottoByNotNumber(String numbers) {
+        assertThatThrownBy(() -> new WinningLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

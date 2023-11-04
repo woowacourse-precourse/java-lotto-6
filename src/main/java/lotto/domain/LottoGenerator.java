@@ -13,7 +13,7 @@ public class LottoGenerator {
         return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, RANGE));
     }
 
-    public void generateWinningLotto(){
+    public void generateWinningLotto(String input){
         // TODO: 당첨 구현 로또 생성
     }
 

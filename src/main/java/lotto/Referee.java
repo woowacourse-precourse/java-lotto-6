@@ -1,4 +1,2 @@
-package lotto;
-
-public class Referee {
+package lotto;public class Referee {
 }

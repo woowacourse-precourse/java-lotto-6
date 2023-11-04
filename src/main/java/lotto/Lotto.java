@@ -8,6 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
     public List<Paper> papers;
     public List<Integer> matchingNumbers;
+    public float rateOfReturn=0;
 
 
     public Lotto(List<Integer> numbers) {
@@ -56,6 +57,15 @@ public class Lotto {
         }
     }
 
+    public void saveRateOfReturn(int inputMoney){
+        int totalMoney=0;
+        for(Paper i : papers){
+            totalMoney+=i.getWinMoney();
+        }
+        rateOfReturn= (float) totalMoney/inputMoney*100;
+        rateOfReturn= (float) Math.round(rateOfReturn * 100) /100;
+    }
+
     public void printPapers(){
         for(Paper i : papers){
             System.out.println(i.getNumber());
@@ -66,5 +76,9 @@ public class Lotto {
         for(int i : matchingNumbers){
             System.out.println(i);
         }
+    }
+
+    public void printRateOfReturn(){
+        System.out.println(rateOfReturn);
     }
 }

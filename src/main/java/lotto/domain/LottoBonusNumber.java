@@ -18,13 +18,15 @@ public class LottoBonusNumber {
         this(NumberUtil.parseInt(bonusNumber));
     }
 
-    public static void validateLottoNumDuplicate(final Lotto lotto, final int lottoBonusNumber) {
+    public static LottoBonusNumber validateLottoNumDuplicate(final Lotto lotto,
+                                                             final LottoBonusNumber lottoBonusNumber) {
         Set<Integer> allNumbers = new HashSet<>(lotto.getNumbers());
-        allNumbers.add(lottoBonusNumber);
+        allNumbers.add(lottoBonusNumber.getBonusNumber());
 
         if (allNumbers.size() < lotto.getNumbers().size() + DUPLICATE_FLAG_NUMBER) {
             throw new IllegalArgumentException(BONUS_NUMBER_VALID_LOG);
         }
+        return lottoBonusNumber;
     }
 
     public int getBonusNumber() {

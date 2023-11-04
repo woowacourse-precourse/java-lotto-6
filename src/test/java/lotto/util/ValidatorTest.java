@@ -3,7 +3,11 @@ package lotto.util;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 class ValidatorTest {
     @ParameterizedTest
@@ -50,5 +54,22 @@ class ValidatorTest {
         Assertions.assertThatThrownBy(() -> Validator.isValidCommaSeparator(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.SEPARATOR_CHECK);
+    }
+
+    private static Stream<Arguments> provideDuplicateWinNumberTestCases() {
+        return Stream.of(
+                Arguments.of((Object) new String[]{"1", "1", "3", "4", "5", "6"}),
+                Arguments.of((Object) new String[]{"1", "2", "3", "4", "6", "6"}),
+                Arguments.of((Object) new String[]{"1", "2", "2", "2", "6", "12"})
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("중복된 당첨 숫자를 입력한 경우 예외 테스트")
+    @MethodSource("provideDuplicateWinNumberTestCases")
+    void invalidInputsTest5(String[] input) {
+        Assertions.assertThatThrownBy(() -> Validator.isDuplicateWinNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INPUT_NON_DUPLICATE_WIN_NUMBER);
     }
 }

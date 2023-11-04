@@ -7,6 +7,7 @@ public class OutputView {
     private static final String PURCHASE_PRICE_INPUT_TEXT = "구입금액을 입력해 주세요.\n";
     private static final String TICKET_NUMBER_TEXT = "%d개를 구매했습니다.\n";
     private static final String LOTTO_NUMBERS_TEXT = "[%s]\n";
+    private static final String LOTTO_NUMBERS_INPUT_TEXT = "당첨 번호를 입력해 주세요.\n";
 
     private OutputView() {
     }
@@ -25,4 +26,7 @@ public class OutputView {
         System.out.printf(TICKET_NUMBER_TEXT, ticketNumber);
     }
 
+    public static void printLottoNumbersInput () {
+        System.out.print(LOTTO_NUMBERS_INPUT_TEXT);
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoOwner;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -8,7 +9,7 @@ public class LottoGameController {
     public void play() {
         LottoOwner lottoOwner = new LottoOwner();
         purchaseLottoByOwner(lottoOwner);
-
+        WinningNumber winningNumber = generateWinningNumber();
     }
 
     private void purchaseLottoByOwner(LottoOwner lottoOwner) {
@@ -17,6 +18,7 @@ public class LottoGameController {
                 OutputView.printPurchasePriceInputText();
                 int ticketNumber = lottoOwner.purchaseLotto(InputView.getUserInput());
                 OutputView.printTicketNumber(ticketNumber);
+                OutputView.printLottoNumbers(lottoOwner.getLottoNumbers());
                 return;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
@@ -24,5 +26,9 @@ public class LottoGameController {
         }
     }
 
+    private WinningNumber generateWinningNumber() {
+        OutputView.printLottoNumbersInput();
+        return null;
+    }
 
 }

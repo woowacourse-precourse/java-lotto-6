@@ -22,4 +22,13 @@ public class PurchaseAmountValidator {
             throw new IllegalArgumentException(message.getMessage());
         }
     }
+
+    private static void validateMinAmount(int amount) {
+        GameConfig lottoPrice = GameConfig.LOTTO_PRICE;
+
+        if (amount < lottoPrice.getValue()) {
+            ExceptionMessage message = ExceptionMessage.MIN_PURCHASE_AMOUNT_EXCEPTION;
+            throw new IllegalArgumentException(message.getMessage());
+        }
+    }
 }

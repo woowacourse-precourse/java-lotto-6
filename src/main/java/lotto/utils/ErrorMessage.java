@@ -15,7 +15,11 @@ public enum ErrorMessage {
     public String getMessage() {
         return ERROR_PREFIX + message;
     }
-    public String getFormattedMessage(int... formatNumbers) {
-        return ERROR_PREFIX + String.format(message, formatNumbers);
+
+    public String getFormattedMessage(int number) {
+        return ERROR_PREFIX + String.format(message, number);
+    }
+    public String getFormattedMessage(int minNumber, int maxNumber) {
+        return ERROR_PREFIX + String.format(message, minNumber, maxNumber);
     }
 }

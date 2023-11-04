@@ -34,9 +34,13 @@ class LottoNumber {
     }
 
     private static void checkNumberRange(Integer number) {
-        if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
+        if (isOutOfRange(number)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_MESSAGE);
         }
+    }
+
+    private static boolean isOutOfRange(Integer number) {
+        return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
     }
 
     @Override

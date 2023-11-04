@@ -30,7 +30,6 @@ public class WinningList {
     public String printWinningListString() {
         StringBuilder sb = new StringBuilder();
         sb.append(WINNING_STRING_FIRST);
-        Map<Rank, Integer> sortedWinningList = sortMap();
         winningList.forEach((key, value) -> sb.append(key.getRankString(value)));
         return sb.toString();
     }

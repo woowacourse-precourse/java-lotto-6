@@ -2,7 +2,7 @@ package component.output;
 
 import component.Component;
 import component.Composable;
-import lotto.controller.dto.LottosBuyingResult;
+import lotto.controller.dto.output.LottosBuyingResult;
 
 /**
  * 로또를 몇 개 구매했는지 보여주는 메세지를 렌더링하는 Component입니다.
@@ -11,7 +11,7 @@ public final class BoughtLottosCountComponent implements Component, Composable {
     /**
      * 메세지 템플릿
      */
-    private static final String BOUGHT_LOTTOS_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
+    private static final String BOUGHT_LOTTOS_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
 
     /**
      * 구매한 로또 개수,

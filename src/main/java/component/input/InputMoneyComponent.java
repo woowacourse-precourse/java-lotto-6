@@ -3,7 +3,7 @@ package component.input;
 import component.Component;
 
 public final class InputMoneyComponent implements Component {
-    private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.\n";
+    private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
 
     @Override
     public String render() {

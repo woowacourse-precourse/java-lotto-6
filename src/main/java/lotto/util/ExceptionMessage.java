@@ -8,4 +8,5 @@ public class ExceptionMessage {
     public static final String DUPLICATE_EXISTS = "[ERROR] 로또 번호에 중복된 숫자가 존재합니다.";
     public static final String OUT_OF_RANGE = "[ERROR] 1부터 45 사이의 범위를 초과하였습니다.";
     public static final String SEPARATOR_CHECK = "[ERROR] 쉼표(,) 구분자를 확인해주세요";
+    public static final String INPUT_NON_DUPLICATE_WIN_NUMBER = "[ERROR] 중복되지 않는 당첨 번호를 입력해 주세요";
 }

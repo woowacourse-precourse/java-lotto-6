@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -31,6 +33,16 @@ public class Validator {
     public static void isValidCommaSeparator(String input) {
         if (!Pattern.matches(Constants.VALID_COMMA_SEPARATOR_REGEX, input)) {
             throw new IllegalArgumentException(ExceptionMessage.SEPARATOR_CHECK);
+        }
+    }
+
+    public static void isDuplicateWinNumber(String[] inputs) {
+        List<String> numbers = new ArrayList<>();
+        for (String input : inputs) {
+            if (numbers.contains(input)) {
+                throw new IllegalArgumentException(ExceptionMessage.INPUT_NON_DUPLICATE_WIN_NUMBER);
+            }
+            numbers.add(input);
         }
     }
 }

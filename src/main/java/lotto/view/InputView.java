@@ -12,18 +12,21 @@ public class InputView {
     public static int readPayMoney() {
         System.out.println(ViewConstraints.INPUT_MONEY.getMessage());
         String input = Console.readLine();
+        System.out.println();
         return Integer.parseInt(input);
     }
 
     public static List<Integer> readWinningNumbers() {
         System.out.println(ViewConstraints.INPUT_WINNING_NUMBERS.getMessage());
         String input = Console.readLine();
+        System.out.println();
         return Arrays.stream(input.split(DELIMITER)).map(Integer::parseInt).toList();
     }
 
     public static int readBonusNumber() {
         System.out.println(ViewConstraints.INPUT_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
+        System.out.println();
         return Integer.parseInt(input);
     }
 }

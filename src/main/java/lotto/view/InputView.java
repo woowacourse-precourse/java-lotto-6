@@ -10,6 +10,7 @@ import java.util.List;
 
 public class InputView {
     private static final Integer MONEY_ERROR_CODE = -1;
+    private static final Integer BONUS_NUMBER_ERROR_CODE = -1;
     private static final Lotto SIX_NUMBERS_ERROR_CODE = null;
 
     public Integer inputMoney(){
@@ -44,7 +45,20 @@ public class InputView {
         }
     }
 
-    public void inputBonusNumber(){}
+    public Integer inputBonusNumber(Lotto lotto){
+        String input = Console.readLine();
+        List<Integer> numbers = lotto.getNumbers();
+        try{
+            InputValidator.isNumericValidator(input);
+            Integer bonusNumber = Integer.parseInt(input);
+            InputValidator.isInRangeValidator(bonusNumber);
+            InputValidator.isNotOverlapBonusValidator(numbers, bonusNumber);
+            return bonusNumber;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return BONUS_NUMBER_ERROR_CODE;
+        }
+    }
 
     private List<String> parseNumbersFromInput(String input){
         String[] numbers = input.split(",", -1);

@@ -1,5 +1,6 @@
-package lotto;
+package domain;
 
+import domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 음수가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByNumberNegative() {
+
+    }
+
+    @DisplayName("로또 번호가 1~45에 속해있지않으면 예외가 발생한다.")
+    @Test
+    void createLottoOutOfRange() {
+
+    }
+
+    @DisplayName("보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void duplicateBonusNumber() {
+
+    }
+
+    @DisplayName("로또 번호가 오름차순되어 출력되지 않으면 예외가 발생한다.")
+    @Test
+    void LottoNumbersInAscendingOrder() {
+
+    }
 }

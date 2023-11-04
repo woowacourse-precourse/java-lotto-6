@@ -26,8 +26,8 @@ public class Application {
                 System.out.println("[ERROR] 1-45까지의 우승 번호와 중복되지 않는 숫자 1개를 입력헤주세요.");
             }
         }
-
         numbers_list_count();
+        output_winning();
 
 
     }

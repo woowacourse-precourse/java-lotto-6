@@ -13,13 +13,15 @@ public class Input {
     public static int lotto_count = 0;
     public static List<Integer> winner = new ArrayList<>();
     public static int bonus_num = 0;
+    public static int input_price = 0;
 
     public static void input_price(){
         try{
             lotto_count = 0;
+            input_price = 0;
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
-            int input_price = Integer.parseInt(input);
+            input_price = Integer.parseInt(input);
             if(input_price % 1000 != 0 || input_price == 0){
                 throw new IllegalArgumentException();
             }

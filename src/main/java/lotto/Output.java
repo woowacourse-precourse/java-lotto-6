@@ -27,6 +27,17 @@ public class Output {
     }
 
     public static void output_winning(){
+        int total_price = 0;
+        for(Winner_Rank w : total_winner.keySet()){
+            if(w != Winner_Rank.ZERO){
+                Integer getCount = (Integer) total_winner.get(w);
+                System.out.println(w.label() + " - " + getCount+"개");
+                total_price += getCount * w.price();
+            }
+        }
+        System.out.println("총 금액 : " + total_price);
+        double final_price = Math.round(((double)total_price/(double)input_price)*100.0)/100.0;
+        System.out.println("총 수익률은 " + final_price * 100.0 +"%입니다.");
 
     }
 
@@ -38,7 +49,6 @@ public class Output {
             Winner_Rank rank = Rank_Is(win_count, bonus_count);
             total_winner.put(rank, total_winner.getOrDefault(rank, 0) + 1);
         }
-        System.out.println(total_winner.toString());
     }
 
     public static Winner_Rank Rank_Is(int win_count, int bonus_count){//win_count 수를 바탕으로 TwoOrThree()를 실행시키거나 랭크값을 반환

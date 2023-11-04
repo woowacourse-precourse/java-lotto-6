@@ -1,12 +1,9 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.Set;
-import lotto.model.Lotto;
-import lotto.model.LottoNumberGenerator;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -30,37 +27,80 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
     @Test
-    @DisplayName("생성기는 1부터 45까지의 랜덤한 숫자를 반환한다")
-    void 로또숫자생성기_테스트() {
+    @DisplayName("모든 숫자가 맞아야 한다.")
+    void 등수확인1(){
         //given
-        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        Set<Integer> createdNumbers = new HashSet<Integer>();
-        int count = 0;
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        int bonus = 7;
 
         //when
-        while (createdNumbers.size() < 45 && count < 1000) {
-            List<Integer> lottoNumbers = lottoNumberGenerator.generate();
-            lottoNumbers.forEach(num->createdNumbers.add(num));
-            count++;
-        }
+        Rank rank = lotto.checkResult(target, bonus);
 
         //then
-        Assertions.assertThat(createdNumbers).contains(1,45);
-        Assertions.assertThat(createdNumbers.size()).isEqualTo(45);
+        Assertions.assertThat(rank).isEqualTo(Rank.FIRST);
     }
 
-    @DisplayName("생성기는 중복 숫자를 생성하지 않는다")
-    @RepeatedTest(1000)
-    void 로또숫자생성기_테스트2(){
+    @Test
+    @DisplayName("5개의 숫자와 보너스 숫자가 맞아야한다.")
+    void 등수확인2(){
         //given
-        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        List<Integer> lottoNumbers = lottoNumberGenerator.generate();
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
+        int bonus = 7;
 
         //when
-        long count = lottoNumbers.stream().distinct().count();
+        Rank rank = lotto.checkResult(target, bonus);
 
         //then
-        Assertions.assertThat(count).isEqualTo(lottoNumbers.size());
+        Assertions.assertThat(rank).isEqualTo(Rank.SECOND);
+    }
+
+    @Test
+    @DisplayName("5개의 숫자가 맞아야한다. 보너스는 틀려야한다.")
+    void 등수확인3(){
+        //given
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,10));
+        int bonus = 7;
+
+        //when
+        Rank rank = lotto.checkResult(target, bonus);
+
+        //then
+        Assertions.assertThat(rank).isEqualTo(Rank.THIRD);
+    }
+    @Test
+    @DisplayName("4개의 숫자가 맞아야한다. 보너스는 무시한다.")
+    void 등수확인4(){
+        //given
+        Lotto lotto1 = new Lotto(List.of(1,2,3,4,12,13));
+        Lotto lotto2 = new Lotto(List.of(1,2,3,4,7,11));
+        int bonus = 7;
+
+        //when
+        Rank rank1 = lotto1.checkResult(target, bonus);
+        Rank rank2 = lotto2.checkResult(target, bonus);
+
+        //then
+        Assertions.assertThat(rank1).isEqualTo(Rank.FORTH);
+        Assertions.assertThat(rank2).isEqualTo(Rank.FORTH);
+    }
+    @Test
+    @DisplayName("3개의 숫자가 맞아야한다. 보너스는 무시한다.")
+    void 등수확인5(){
+        //given
+        Lotto lotto1 = new Lotto(List.of(1,2,3,11,12,13));
+        Lotto lotto2 = new Lotto(List.of(1,2,3,7,11,12));
+        int bonus = 7;
+
+        //when
+        Rank rank1 = lotto1.checkResult(target, bonus);
+        Rank rank2 = lotto2.checkResult(target, bonus);
+
+        //then
+        Assertions.assertThat(rank1).isEqualTo(Rank.FIFTH);
+        Assertions.assertThat(rank2).isEqualTo(Rank.FIFTH);
     }
 }

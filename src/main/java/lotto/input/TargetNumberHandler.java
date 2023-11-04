@@ -3,15 +3,13 @@ package lotto.input;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.IntStream;
 import lotto.config.AppConfig;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 public class TargetNumberHandler {
     private static final String INPUT_DELIMITER = ",";
 
-    public static List<Integer> validateTargetNumber(String input){
+    public static Lotto validateTargetNumber(String input){
         try {
             String[] split = input.split(INPUT_DELIMITER, AppConfig.LOTTO_SIZE);
 
@@ -21,8 +19,8 @@ public class TargetNumberHandler {
                     .boxed()
                     .toList();
 
-            Lotto targetNumbersCanBeLotto = new Lotto(target);
-            return target;
+            return new Lotto(target);
+
 
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 유효한 로또 정답 입력이 아닙니다.");

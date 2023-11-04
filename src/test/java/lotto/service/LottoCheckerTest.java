@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.LottoBuyer;
-import lotto.model.win.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,6 +40,6 @@ public class LottoCheckerTest {
         assertThat(map.get(Rank.THIRD)).isEqualTo(1);
         assertThat(map.get(Rank.FORTH)).isEqualTo(1);
         assertThat(map.get(Rank.FIFTH)).isEqualTo(1);
-        assertThat(map.get(Rank.FAIL)).isEqualTo(3);
+        assertThat(map.get(Rank.FAIL)).isEqualTo(0);
     }
 }

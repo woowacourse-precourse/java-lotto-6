@@ -2,9 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.LottoBuyer;
-import lotto.model.win.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class LottoView {
 

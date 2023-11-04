@@ -6,9 +6,9 @@ import java.util.Map;
 import lotto.config.AppConfig;
 import lotto.input.PriceInputHandler;
 import lotto.input.TargetNumberHandler;
-import lotto.model.Lotto;
-import lotto.model.LottoBuyer;
-import lotto.model.win.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
+import lotto.domain.Rank;
 import lotto.service.Calculator;
 import lotto.service.LottoShop;
 import lotto.view.LottoView;
@@ -19,8 +19,7 @@ public class LottoMachine {
 
     public void run() {
         int amount = getTicketAmount();
-        LottoShop lottoShop = new LottoShop(amount);
-        List<Lotto> lottoTickets = lottoShop.sell();
+        List<Lotto> lottoTickets = LottoShop.sell(amount);
         lottoView.printLotto(lottoTickets);
 
         Lotto target = getTargetLotto();
@@ -48,7 +47,6 @@ public class LottoMachine {
     private Lotto getTargetLotto() {
         System.out.println("정답인 6개의 로또번호를 입력해주세요.");
         String targetInput = Console.readLine();
-        List<Integer> target = TargetNumberHandler.validateTargetNumber(targetInput);
-        return new Lotto(target);
+        return TargetNumberHandler.validateTargetNumber(targetInput);
     }
 }

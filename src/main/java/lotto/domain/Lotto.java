@@ -1,9 +1,8 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.config.AppConfig;
-import lotto.model.win.Rank;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -36,7 +35,7 @@ public class Lotto {
         int count = checkWithTarget(target);
         boolean canBeSecond = checkBonusIfUsable(count, bonus);
 
-        return getWinResult(count, canBeSecond);
+        return mappingWithRank(count, canBeSecond);
     }
 
     private int checkWithTarget(List<Integer> target) {
@@ -52,7 +51,7 @@ public class Lotto {
         return false;
     }
 
-    private Rank getWinResult(int count, boolean canBeSecond) {
+    private Rank mappingWithRank(int count, boolean canBeSecond) {
         return Arrays.stream(Rank.values())
                 .filter(winResult -> winResult.matchedCount == count)
                 .filter(winResult -> winResult.bonus == canBeSecond)

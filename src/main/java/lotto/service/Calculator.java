@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.model.win.Rank;
+import lotto.domain.Rank;
 
 public class Calculator {
 

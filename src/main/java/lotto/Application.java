@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static lotto.message.InputGuideMessage.*;
+
 public class Application {
     static final String REGEX_FOR_INPUT_LOTTO_PAYMENT = "^[0-9]+$";
     static final String REGEX_FOR_LOTTO_NUMBER_RANGE = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^[4]{1}[0-5]{1}$";
@@ -21,19 +23,19 @@ public class Application {
     static ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
 
     public static void main(String[] args) {
-        System.out.println(InputGuideMessage.PLEASE_ENTER_LOTTO_PAYMENT_MESSAGE.getMessage());
+        System.out.println(PLEASE_ENTER_LOTTO_PAYMENT_MESSAGE.getMessage());
         int desiredPurchaseAmount = validateEnteredLottoPayment();
         int numberOfLotto = desiredPurchaseAmount / 1000;
 
-        System.out.println(InputGuideMessage.PLEASE_ENTER_WINNING_NUMBERS_MESSAGE.getMessage());
+        System.out.println(PLEASE_ENTER_WINNING_NUMBERS_MESSAGE.getMessage());
         List<Integer> lottoWinningNumbers = validateEnteredLottoNumbers();
 
-        System.out.println(InputGuideMessage.PLEASE_ENTER_BONUS_NUMBER_MESSAGE.getMessage());
+        System.out.println(PLEASE_ENTER_BONUS_NUMBER_MESSAGE.getMessage());
         int bonusNumber = validateEnteredBonusNumber(lottoWinningNumbers);
 
         createNewLottos(numberOfLotto);
 
-        System.out.printf(InputGuideMessage.INFORM_HOW_MANY_LOTTOS_WERE_PURCHASED_MESSAGE.getMessage(), numberOfLotto);
+        System.out.printf(INFORM_HOW_MANY_LOTTOS_WERE_PURCHASED_MESSAGE.getMessage(), numberOfLotto);
         for (Lotto lotto : lottos)
             lotto.printNumber();
 

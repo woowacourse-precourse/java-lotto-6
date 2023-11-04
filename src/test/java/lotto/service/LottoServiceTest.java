@@ -38,7 +38,15 @@ public class LottoServiceTest {
 		assertEquals(lottoPriceSum, expect);
 	}
 
-	
+	@DisplayName("총 수익률을 확인한다.")
+	@MethodSource("createCheckTotalReturnMethodParameter")
+	@ParameterizedTest()
+	void checkTotalReturn(AnswerLotto answerLotto, Lottos lottos, double expect) {
+		lottoPriceSum = lottoService.calculateLottoPriceSum(lottos, answerLotto);
+		totalReturn = lottoService.calculateTotalReturn(money, lottoPriceSum);
+
+		assertEquals(totalReturn, expect);
+	}
 
 	static Stream<Arguments> createCheckLottoPriceSumMethodParameter() {
 		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
@@ -48,5 +56,11 @@ public class LottoServiceTest {
 		return Stream.of(Arguments.of(answerLotto, lottos, 55000));
 	}
 
-	
+	static Stream<Arguments> createCheckTotalReturnMethodParameter() {
+		AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
+				new Lotto(List.of(1, 2, 10, 11, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
+		
+		return Stream.of(Arguments.of(answerLotto, lottos, 125));
+	}
 }

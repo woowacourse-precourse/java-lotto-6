@@ -28,14 +28,14 @@ public class LottoCompany {
         }
     }
 
-    public List<Lotto> calculateLottosWithSizeExceptBonus(final List<Lotto> lottos, final int matchSize) {
+    public List<Lotto> collectLottosWithSizeExceptBonus(final List<Lotto> lottos, final int matchSize) {
         return lottos.stream()
                 .filter(lotto -> lotto.isContainsNumbersWithSize(goalNumbers.getNumbers(), matchSize))
                 .filter(lotto -> !lotto.isContainsNumber(bonusNumber.getNumber()))
                 .toList();
     }
 
-    public List<Lotto> calculateLottosWithSizeIncludeBonus(final List<Lotto> lottos, final int matchSize) {
+    public List<Lotto> collectLottosWithSizeIncludeBonus(final List<Lotto> lottos, final int matchSize) {
         return lottos.stream()
                 .filter(lotto -> lotto.isContainsNumbersWithSize(goalNumbers.getNumbers(), matchSize))
                 .filter(lotto -> lotto.isContainsNumber(bonusNumber.getNumber()))

@@ -33,7 +33,7 @@ public class LottoCompanyService {
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = FIFTH_PRIZE_MATCH.getValue(); match <= FIRST_PRIZE_MATCH.getValue(); match++) {
-            List<Lotto> matchLottos = lottoCompany.calculateLottosWithSizeExceptBonus(lottos, match);
+            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
             Prize prize = Prize.findByMatch(match);
             PrizeResult prizeResult = PrizeResult.of(prize.getCondition(), prize.getMoney(), matchLottos.size());
             results.add(prizeResult);
@@ -48,7 +48,7 @@ public class LottoCompanyService {
 
     private PrizeResult evaluateLottosWithBonus() {
         int bonusMatchSize = SECOND_PRIZE_MATCH.getValue();
-        List<Lotto> secondPrizeLottos = lottoCompany.calculateLottosWithSizeIncludeBonus(lottos, bonusMatchSize);
+        List<Lotto> secondPrizeLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, bonusMatchSize);
         Prize secondPrize = Prize.SECOND;
 
         return PrizeResult.of(secondPrize.getCondition(), secondPrize.getMoney(), secondPrizeLottos.size());

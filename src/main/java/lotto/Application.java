@@ -14,8 +14,8 @@ public class Application {
         int money = getLottoPurchasePrice();
         System.out.println("\n" + money / 1000 + "개를 구매했습니다.");
 
-        //ArrayList<Lotto> lottos = makeLottery(money);
-        //printLottoNumbers(lottos);
+        ArrayList<Lotto> lottos = makeLottery(money);
+        printLottoNumbers(lottos);
     }
 
     public static int getLottoPurchasePrice() {
@@ -42,5 +42,13 @@ public class Application {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    public static void printLottoNumbers(ArrayList<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = Arrays.asList(lotto.getNumbers().toArray(new Integer[0]));
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
     }
 }

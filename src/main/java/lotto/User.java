@@ -57,6 +57,13 @@ class User {
         return count;
     }
 
+    public boolean checkBonusNumber(List<Integer> singleLotto, int bonusNumber){
+        if(singleLotto.contains(bonusNumber)){
+            return true;
+        }
+        return false;
+    }
+
     public List<Integer> countAllLottoMatchNumbers(List<List<Integer>> allLotto, List<Integer> winningNumbers){
         int count = 0;
         List<Integer> lottoMatchingCount = new ArrayList<>();

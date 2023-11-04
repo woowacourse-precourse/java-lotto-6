@@ -11,7 +11,13 @@ public interface LottoGenerator {
     static final int LOTTO_SIZE = 6;
     static final int LOTTO_PRICE = 1000;
 
-    Lotto generate();
+    List<Integer> generateNumbers();
+
+    default Lotto generate(){
+        List<Integer> lottoNumbers = generateNumbers();
+        lottoNumbers.sort(Integer::compareTo);
+        return new Lotto(lottoNumbers);
+    }
 
     default Lottos purchase(int money){
         List<Lotto> lottos = new ArrayList<>();

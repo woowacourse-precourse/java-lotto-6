@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 public class RetryExceptionHandler implements ExceptionHandler{
 
-
     @Override
     public void run(Runnable runnable) {
         while(true){
@@ -17,7 +16,6 @@ public class RetryExceptionHandler implements ExceptionHandler{
                 System.out.println();
             }
         }
-
     }
 
     @Override

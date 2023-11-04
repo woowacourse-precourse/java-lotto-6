@@ -34,6 +34,12 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    private static void isEmpty(String inputNumber) {
+        if (inputNumber.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_NULL.get());
+        }
+    }
+
     private void validateNumbersLength(List<Number> numbers) {
         if (numbers.size() != Constant.LOTTO_NUMBERS_MAX_LENGTH.getIntValue()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_NUMBERS_LENGTH.get());

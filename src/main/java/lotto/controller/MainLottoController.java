@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.domain.RandomLotto;
 import lotto.domain.RandomLottoMachine;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -36,9 +38,10 @@ public class MainLottoController {
 
         RandomLottoMachine randomLottoMachine =
                 new RandomLottoMachine(purchasedLottoCount);
-        for(List<Integer> randomLotto : randomLottoMachine.getRandomLottoList()){
 
-        }
+        randomLottoMachine.getRandomLottoList();
+
+
 
     }
 }

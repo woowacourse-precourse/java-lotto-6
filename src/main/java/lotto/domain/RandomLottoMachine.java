@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomLottoMachine {
@@ -12,14 +13,22 @@ public class RandomLottoMachine {
 
     private int purchasedLottoCount;
 
-    public RandomLottoMachine(int purchasedLottoCount) {
-        this.purchasedLottoCount = purchasedLottoCount;
+    public RandomLottoMachine(int purchasedLotto) {
+        purchasedLottoCount = purchasedLotto/1000;
     }
 
-    public List<List<Integer>> getRandomLottoList(){
-        List<List<Integer>> randomNumbers = new ArrayList<>();
+    public List<Lotto> getRandomLottoList(){
+        List<Integer> randomNumberForSort;
+        List<Lotto> randomNumbers = new ArrayList<>();
+
         for(int i = 0; i<purchasedLottoCount; i++){
-            randomNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            randomNumberForSort =
+                    Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(randomNumberForSort);
+
+            Lotto lotto =
+                    new Lotto((randomNumberForSort));
+            randomNumbers.add(lotto);
         }
         return randomNumbers;
     }

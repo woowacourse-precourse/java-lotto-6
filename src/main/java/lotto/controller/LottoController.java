@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.constance.PrintConst;
 import lotto.exceptionhandler.ExceptionHandler;
 import lotto.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
+import lotto.model.domain.LottoAnswer;
+import lotto.model.lottogenerator.AnswerGenerator;
 import lotto.ui.Reader;
 import lotto.ui.Writer;
 import lotto.model.lottogenerator.RandomLottoGenerator;
@@ -15,7 +18,7 @@ public class LottoController {
     private LottoStore store = new LottoStore(new RandomLottoGenerator());
 
     //TODO 1. 로또 구매
-    public void purchaseLotto() {
+    public Lottos purchaseLotto() {
         int money = retryHandler.getResult(
                 () -> {
                     Writer.printGuide(PrintConst.GUIDE_PURCHASE);
@@ -24,13 +27,21 @@ public class LottoController {
 
         Lottos lottos = store.purchase(money);
         Writer.printModelsInList(lottos.getLottosDTO());
+
+        return lottos;
     }
 
-    public void getAnswer(){
-        retryHandler.run(()-> {
+    public LottoAnswer getAnswer(){
+        LottoAnswer lottoAnswer = (LottoAnswer) retryHandler.getResult(()-> {
             Writer.printGuide(PrintConst.GUIDE_LOTTO_NUMBERS);
-
+            List<Integer> answers = Reader.getAnswerNumbers();
+            Writer.printGuide(PrintConst.GUIDE_BONUS_NUMBERS);
+            Integer bonusNumber = Reader.getBonusNumber();
+            AnswerGenerator answerGenerator = new AnswerGenerator(answers, bonusNumber);
+            return answerGenerator.generate();
         });
+
+        return lottoAnswer;
     }
 
     //TODO 4. 보너스 번호 입력

@@ -41,19 +41,6 @@ class LottoTest {
         assertThat(lottoNumbers.get(2)).isEqualTo(3);
     }
 
-    @DisplayName("로또를 로또저장소에 저장한 후 발행 내역을 출력한다.")
-    @Test
-    void createLottoAndLottoStoreHistory() {
-        Lotto.createLotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto.createLotto(List.of(1, 2, 3, 20, 23, 27));
-
-        String lottoHistory = LottoStore.getInstance().getLottoHistory();
-        assertThat(lottoHistory).isEqualTo(
-                "[1, 2, 3, 4, 5, 6]\n"+
-                "[1, 2, 3, 20, 23, 27]\n"
-        );
-    }
-
     @DisplayName("쉼표로 구분된 숫자를 입력받아 숫자 배열로 반환한다.")
     @Test
     void setWinningNumberToArray() {

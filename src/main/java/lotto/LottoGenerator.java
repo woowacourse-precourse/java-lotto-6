@@ -10,16 +10,16 @@ public class LottoGenerator {
     public static final int MAX_NUMBER = 45;
     public static final int NUMBERS_TO_PICK = 6;
 
-    public static List<List<Integer>> buyLottoTickets(int lottoPurchaseAmount){
-        List<List<Integer>> lottoTickets = new ArrayList<>();
+    public static List<Lotto> buyLottoTickets(int lottoPurchaseAmount){
+        List<Lotto> lottoTickets = new ArrayList<>();
         for(int i=0;i<lottoPurchaseAmount;i++){
-            List<Integer> lottoNumber = generateLottoNumbers();
-            lottoTickets.add(lottoNumber);
+            lottoTickets.add(generateLottoNumbers());
         }
         return lottoTickets;
     }
 
-    public static List<Integer> generateLottoNumbers(){
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_TO_PICK);
+    public static Lotto generateLottoNumbers(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_TO_PICK);
+        return new Lotto(numbers);
     }
 }

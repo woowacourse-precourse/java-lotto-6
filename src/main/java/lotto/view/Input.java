@@ -16,4 +16,9 @@ public class Input {
 		System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
 		return Console.readLine();
 	}
+	
+	public int bonusNumber() {
+		System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+		return Integer.parseInt(Console.readLine());
+	}
 }

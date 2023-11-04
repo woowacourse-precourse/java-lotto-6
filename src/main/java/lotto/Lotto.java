@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
     	sizeValidate(numbers);
     	distinctValidate(numbers);
+    	rangeValidate(numbers);
         this.numbers = numbers;
     }
 
@@ -24,5 +26,12 @@ public class Lotto {
     		throw new IllegalArgumentException();
 		}
     }
-    // TODO: 추가 기능 구현
+    
+    private void rangeValidate(List<Integer> numbers) {
+		for (Integer number : numbers) {
+			if (number < 1 || number > 45) {
+				throw new IllegalArgumentException();
+			}
+		}
+	}
 }

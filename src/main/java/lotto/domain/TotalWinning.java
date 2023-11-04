@@ -7,9 +7,13 @@ public class TotalWinning {
 
     public TotalWinning(List<Integer> ranking) {
         int total = 0;
-        for(int rank : ranking) {
+        for (int rank : ranking) {
             total += rank;
         }
         this.amount = total;
+    }
+
+    public double getTotalReturn(LottoPurchase lottoPurchase) {
+        return ((double) this.amount / lottoPurchase.getAmount()) * 100;
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +15,16 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getMatchNumber(ArrayList<Integer> lottoNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(number -> numbers.contains(number))
+                .count();
+    }
+
+    public boolean isContain(int lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
     @Override

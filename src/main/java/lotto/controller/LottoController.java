@@ -13,11 +13,11 @@ public class LottoController {
 
         LottoJudgment lottoJudgment = new LottoJudgment(purchaseAmount);
 
-        ArrayList<Integer> winningNumbers = inputWinningNumber();
+        ArrayList<Integer> lottoNumbers = inputWinningNumber();
 
-        int bonusNumber = inputBonusNumber(winningNumbers);
+        int bonusNumber = inputBonusNumber(lottoNumbers);
 
-        System.out.println("구매 가격 : " + purchaseAmount + " 구매 번호 : " + winningNumbers + " 보너스 번호 : " + bonusNumber);
+        lottoJudgment.confirmWinningLotto(lottoNumbers , bonusNumber);
     }
 
 }

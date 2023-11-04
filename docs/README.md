@@ -38,7 +38,7 @@
 
 ### Model
 - Lotto: 로또 한 장을 추상화한 클래스
-  - [ ] 로또 한 장의 번호를 반환한다. 
+  - [x] 로또 한 장의 번호를 반환한다. 
   - 유효성 검증
     - [x] 로또가 6자리가 아니라면 IllegalArgumentException을 발생시킨다.
 - LottoAmount: 로또 구매 금액을 추상화한 클래스

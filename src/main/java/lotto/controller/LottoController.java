@@ -9,8 +9,10 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -29,6 +31,18 @@ public class LottoController {
 
         WinningCondition winningCondition = makeWinningCondition();
         Map<Lotto, WinningRank> winningRankByLotto = winningCondition.findWinningRankByLotto(lottoTickets);
+        Map<WinningRank, Integer> winningResult = makeWinningResult(winningRankByLotto);
+    }
+
+    private Map<WinningRank, Integer> makeWinningResult(Map<Lotto, WinningRank> winningRankByLotto) {
+        Map<WinningRank, Integer> winningResult = Arrays.stream(WinningRank.values())
+                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+
+        for (WinningRank rank : winningRankByLotto.values()) {
+            winningResult.put(rank, winningResult.get(rank) + 1);
+        }
+
+        return winningResult;
     }
 
     private WinningCondition makeWinningCondition() {

@@ -38,7 +38,12 @@ public class OutputView {
     public void printProfit(double profit) {
         System.out.printf(OutputMessage.PROFIT.getMessage(), profit);
     }
+
     public void printNewLine() {
         System.out.println();
+    }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 }

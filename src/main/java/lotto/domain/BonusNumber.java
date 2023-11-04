@@ -2,11 +2,15 @@ package lotto.domain;
 
 public class BonusNumber {
 
-    private final int number;
+    private final int bonusNumber;
 
     public BonusNumber(int number) {
         validateNumberRange(number);
-        this.number = number;
+        this.bonusNumber = number;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
     }
 
     public void validateNumberRange(int number) {

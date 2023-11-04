@@ -27,7 +27,7 @@ class LottosTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
         int bonus = 6;
         // when
-        Map<LottoRank, Long> lottoRankMap = lottos.countLottoRanks(winningLotto, bonus);
+        Map<LottoRank, Long> lottoRankMap = lottos.setLottoRankCountMap(winningLotto, bonus);
         // then
         Set<LottoRank> lottoRanks = lottoRankMap.keySet();
         assertThat(lottoRanks).hasSize(LottoRank.values().length)
@@ -49,7 +49,7 @@ class LottosTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
         int bonus = 6;
         // when
-        Map<LottoRank, Long> lottoRankMap = lottos.countLottoRanks(winningLotto, bonus);
+        Map<LottoRank, Long> lottoRankMap = lottos.setLottoRankCountMap(winningLotto, bonus);
         // then
         Long secondCount = lottoRankMap.get(LottoRank.SECOND);
         Long thirdCount = lottoRankMap.get(LottoRank.THIRD);

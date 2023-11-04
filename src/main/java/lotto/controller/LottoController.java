@@ -10,7 +10,6 @@ import lotto.view.output.LottoResultOutputView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public class LottoController {
@@ -54,7 +53,7 @@ public class LottoController {
     }
 
     public void printResult(Lottos lottos, Lotto winningLotto, int bonus) {
-        Map<LottoRank, Long> lottoRankCountMap = lottos.countLottoRanks(winningLotto, bonus);
+        Map<LottoRank, Long> lottoRankCountMap = lottos.setLottoRankCountMap(winningLotto, bonus);
         lottoResultOutputView.printLottoAllMatch(lottoRankCountMap);
     }
 

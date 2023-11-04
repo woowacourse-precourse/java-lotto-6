@@ -13,6 +13,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateNumbersLength(numbers);
         validateDuplicateNumber(numbers);
+        validateWrongRangeNumber(numbers);
     }
 
     private void validateNumbersLength(List<Integer> numbers) {
@@ -31,6 +32,16 @@ public class Lotto {
 
     private boolean isDuplicated(List<Integer> numbers) {
         return numbers.stream().distinct().toList().size() != numbers.size();
+    }
+
+    private void validateWrongRangeNumber(List<Integer> numbers) {
+        numbers.forEach(this::checkWrongRangeNumber);
+    }
+
+    private void checkWrongRangeNumber(Integer number) {
+        if (number < LottoConstants.MIN_LOTTO_NUMBER || number > LottoConstants.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(LottoConstants.WRONG_RANGE_NUMBER);
+        }
     }
 
     @Override

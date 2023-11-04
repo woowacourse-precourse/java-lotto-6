@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Application {
     public static int lottoBought;
+    public static int[] userNumListInt;
+    public static int userBonusNum;
 
     public static void main(String[] args) {
         // TODO: 로또 구입 금액 입력 받기
@@ -51,7 +53,7 @@ public class Application {
 
                 String[] userNumListStr = userNum.split(",");
 
-                int[] userNumListInt = new int[userNumListStr.length];
+                userNumListInt = new int[userNumListStr.length];
                 for (int i = 0; i < userNumListStr.length; i++) {
                     userNumListInt[i] = Integer.parseInt(userNumListStr[i]);
                 }
@@ -80,7 +82,7 @@ public class Application {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String userBonusStr = Console.readLine();
 
-                int userBonusNum = Integer.parseInt(userBonusStr);
+                userBonusNum = Integer.parseInt(userBonusStr);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -89,6 +91,43 @@ public class Application {
         }
 
         // TODO: 로또 번호와 당첨 번호 비교
+        int winner5th = 0;
+        int winner4th = 0;
+        int winner3rd = 0;
+        int winner2nd = 0;
+        int winner1st = 0;
+
+        for (int i = 0; i < lottoNum; i++) {
+            int lottoCount = 0;
+            int lottoBonusCount = 0;
+
+            for (int j = 0; j < 6; j++) {
+                if (allLottoList.get(i).contains(userNumListInt[j])) {
+                    lottoCount++;
+                }
+                if (allLottoList.get(i).contains(userBonusNum)) {
+                    lottoBonusCount++;
+                }
+            }
+            System.out.println("숫자 " + lottoCount + " " + lottoBonusCount);
+            System.out.println("---------");
+
+            if (lottoCount == 3) {
+                winner5th++;
+            }
+            else if (lottoCount == 4) {
+                winner4th++;
+            }
+            else if (lottoCount == 5) {
+                winner3rd++;
+            }
+            else if (lottoCount == 5 && lottoBonusCount == 1) {
+                winner2nd++;
+            }
+            else if (lottoCount == 6) {
+                winner1st++;
+            }
+        }
 
         // TODO: 당첨 통계 출력
 

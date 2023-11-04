@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.constants.GameNumberConstants.*;
+import static lotto.validator.LottoNumberValidator.validateNumberRange;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +18,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoNumberValidator.validateNumbers(numbers);
+        LottoNumberValidator.validateNumbersSize(numbers);
+        LottoNumberValidator.validateDuplication(numbers);
+        numbers.stream()
+                .forEach((number) -> validateNumberRange(number));
     }
 
 

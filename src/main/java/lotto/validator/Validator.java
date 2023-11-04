@@ -9,12 +9,10 @@ public class Validator {
     private Validator() {}
 
     public static void validatePurchaseAmount(String input) {
-        isPrimeNumber(input);
-        isPositiveNumber(input);
-        isUnitsOfLottoPrice(input);
+
     }
 
-    private static void isPrimeNumber(String input) {
+    public static void isPrimeNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -22,13 +20,13 @@ public class Validator {
         }
     }
 
-    private static void isPositiveNumber(String input) {
+    public static void isPositiveNumber(String input) {
         if (Integer.parseInt(input) <= 0) {
             throw new IllegalArgumentException(INPUT_IS_NOT_POSITIVE_NUMBER.getValue());
         }
     }
 
-    private static void isUnitsOfLottoPrice(String input) {
+    public static void isUnitsOfLottoPrice(String input) {
         if (Integer.parseInt(input) % 1000 == 0) {
             return;
         }
@@ -36,4 +34,12 @@ public class Validator {
                 INPUT_IS_NOT_IN_UNITS_OF_LOTTO_PRICE.getValue(),
                 GameNumberConstants.LOTTO_PRICE.getValue()));
     }
+
+    public static void checkWinningNumberForm(String winningNumber) {
+        String regularExpForInput = "[^,]+,(?:[^,]+,)*[^,]+";
+        if (!winningNumber.matches(regularExpForInput)) {
+            throw new IllegalArgumentException(WINNING_NUMBER_FORM_IS_WRONG.getValue());
+        }
+    }
+
 }

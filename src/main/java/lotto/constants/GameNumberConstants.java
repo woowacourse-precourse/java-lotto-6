@@ -1,7 +1,10 @@
 package lotto.constants;
 
 public enum GameNumberConstants {
-    LOTTO_PRICE(1000);
+    LOTTO_PRICE(1000),
+    MAX_LOTTO_NUMBER(45),
+    MIN_LOTTO_NUMBER(1),
+    NUMBER_OF_NUMBERS_TO_MATCH(6);
 
     private final int value;
 

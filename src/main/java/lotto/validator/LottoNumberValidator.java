@@ -4,43 +4,36 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.constants.GameNumberConstants.*;
+import static lotto.constants.ValidatorConstants.*;
 
 public class LottoNumberValidator {
 
-    public static void validateNumbers(List<Integer> numbers) {
-        validateNumbersSize(numbers);
-        validateDuplication(numbers);
-        validateNumberRange(numbers);
-    }
 
-    private static void validateNumbersSize(List<Integer> numbers) {
+    public static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format(
+                    LOTTO_INPUT_SHOULD_BE_N.getValue(),
+                    NUMBER_OF_NUMBERS_TO_MATCH.getValue())
+            );
         }
     }
 
-    private static void validateDuplication(List<Integer> numbers) {
+    public static void validateDuplication(List<Integer> numbers) {
         List<Integer> deduplicatedNumbers = numbers.stream()
                 .distinct()
                 .collect(Collectors.toList());
         if (deduplicatedNumbers.size() == numbers.size()) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE.getValue());
     }
 
-    private static void validateNumberRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (isNotInRange(number)) {
-                throw new IllegalArgumentException();
-            }
+    public static void validateNumberRange(int number) {
+        if ((number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue())) {
+            throw new IllegalArgumentException(String.format(
+                    SHOULD_BE_IN_LOTTO_NUMBER_RANGE.getValue(),
+                    MIN_LOTTO_NUMBER,
+                    MAX_LOTTO_NUMBER));
         }
-    }
-
-    private static boolean isNotInRange(int number) {
-        if ((number <= MIN_LOTTO_NUMBER.getValue()) || (number >= MAX_LOTTO_NUMBER.getValue())) {
-            return true;
-        }
-        return false;
     }
 }

@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -15,8 +16,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        Set<Integer> temp = new HashSet<>(numbers);
+        if (temp.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 중복되지 않은 숫자를 입력해주세요.");
         }
     }
 

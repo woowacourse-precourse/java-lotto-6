@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import exception.CustomException;
@@ -7,13 +7,14 @@ import exception.ErrorCode;
 public class LottoPurchase {
 
     public int inputLottoPurchase() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String userPurchase = Console.readLine();
-            return isDivisibleBy1000(validateNumber(userPurchase));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return inputLottoPurchase();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String userPurchase = Console.readLine();
+                return isDivisibleBy1000(validateNumber(userPurchase));
+            } catch (CustomException customException) {
+                System.out.println(customException.getMessage());
+            }
         }
     }
 

@@ -5,8 +5,7 @@ import lotto.domain.Lotto;
 import lotto.utils.ParseUtils;
 import lotto.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -41,14 +40,13 @@ public class LottoService {
     }
 
     private Lotto createSingleLotto() {
-        return new Lotto(randomUtils.sixUniqueRandomNumber());
+        List<Integer> numbers = randomUtils.sixUniqueRandomNumber();
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
     public List<Lotto> getUserLottos() {
         return userLottos;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
 }

@@ -30,6 +30,8 @@ public class Application {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        System.out.println(winningNumber);
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int BonusNumber = Integer.parseInt(Console.readLine());
+
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain.lotto.dto;
 
-public record LottoDrawingResult(
+public record LottosDrawingResult(
         int firstCount,
         int secondCount,
         int thirdCount,

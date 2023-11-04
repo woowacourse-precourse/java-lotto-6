@@ -24,20 +24,14 @@ public class LottoModel {
         for (int i = 0; i < lottoTickets.size(); i++) {
             int sameNumberCount = countSameNumbers(userLottoNumbers, lottoTickets.get(i));
 
-            if (sameNumberCount == 3) {
-                lucky.set(0, lucky.get(0) + 1);
-            }
-            if (sameNumberCount == 4) {
-                lucky.set(1, lucky.get(1) + 1);
+            if (sameNumberCount >= 3 && sameNumberCount != 5) {
+                lucky.set(sameNumberCount - 3, lucky.get(sameNumberCount - 3) + 1);
             }
             if (sameNumberCount == 5 && !lottoTickets.get(i).contains(bonusNumber)) {
                 lucky.set(2, lucky.get(2) + 1);
             }
             if (sameNumberCount == 5 && lottoTickets.get(i).contains(bonusNumber)) {
-                lucky.set(3, lucky.get(3) + 1);
-            }
-            if (sameNumberCount == 6) {
-                lucky.set(4, lucky.get(4) + 1);
+                lucky.set(3, lucky.get(4) + 1);
             }
         }
     }
@@ -64,8 +58,8 @@ public class LottoModel {
         sumPrize += 5000 * lucky.get(0);
         sumPrize += 50000 * lucky.get(1);
         sumPrize += 1500000 * lucky.get(2);
-        sumPrize += 30000000 * lucky.get(3);
-        sumPrize += 2000000000 * lucky.get(4);
+        sumPrize += 30000000 * lucky.get(4);
+        sumPrize += 2000000000 * lucky.get(3);
         return sumPrize;
     }
 }

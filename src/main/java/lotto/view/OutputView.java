@@ -11,23 +11,19 @@ public class OutputView {
     }
 
     public static void printLottoTickets(List<Integer> numbers) {
-        System.out.print("[");
-        for (int j = 0; j < numbers.size(); j++) {
-            if (j == numbers.size() - 1) {
-                System.out.println(numbers.get(j) + "]");
-                break;
-            }
-            System.out.print(numbers.get(j) + ", ");
-        }
+        System.out.println(numbers);
     }
 
     public static void displayStatistics(List<Integer> lucky, double rate) {
-        System.out.println(OutputMessage.LOTTO_STATISTICS.getMessage());
-        System.out.println(OutputMessage.LINE_SEPARATOR.getMessage());
-
+        displayStatisticsHeader();
         for (int i = 0; i < lucky.size(); i++) {
             System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), lucky.get(i)));
         }
         System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
+    }
+
+    private static void displayStatisticsHeader() {
+        System.out.println(OutputMessage.LOTTO_STATISTICS.getMessage());
+        System.out.println(OutputMessage.LINE_SEPARATOR.getMessage());
     }
 }

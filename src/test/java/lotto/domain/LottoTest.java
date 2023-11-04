@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,6 +26,12 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-
-
+    @DisplayName("로또 발행 개수에 따른 로또 객체 생성.")
+    @Test
+    void 로또_발행_개수_확인() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        LottoCount lottoCount = LottoCount.from(PurchaseAmount.from(5000));
+        List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
+        assertThat(autoLottoTickets.size()).isEqualTo(5);
+    }
 }

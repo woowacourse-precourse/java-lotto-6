@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -31,6 +32,13 @@ public class GoalNumbers {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean isNumbersSameWithSize(final List<Integer> otherNumbers, final int expectedSize) {
+        List<Integer> intersection = new ArrayList<>(numbers);
+        intersection.retainAll(otherNumbers);
+
+        return intersection.size() == expectedSize;
     }
 
     public List<Integer> getNumbers() {

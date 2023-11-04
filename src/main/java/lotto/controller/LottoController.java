@@ -1,22 +1,11 @@
 package lotto.controller;
 
-import static lotto.model.LottoConstant.FIFTH_PRIZE_MATCH;
-import static lotto.model.LottoConstant.FIRST_PRIZE_MATCH;
-import static lotto.model.LottoConstant.GOAL_MATCH_POINT;
-import static lotto.model.LottoConstant.LOTTO_NUMBERS_SIZE;
-import static lotto.model.LottoConstant.SECOND_PRIZE_MATCH;
-import static lotto.model.Point.FIRST_POINT;
-import static lotto.model.Point.SECOND_POINT;
-
 import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.LottoCompany;
-import lotto.model.Prize;
 import lotto.model.dto.LottoResponse;
-import lotto.model.judge.BonusNumberJudge;
-import lotto.model.judge.GoalNumberJudge;
-import lotto.model.judge.LottoJudge;
+import lotto.model.dto.PrizeResult;
 import lotto.service.InvestorService;
 import lotto.service.LottoCompanyService;
 import lotto.view.input.InputView;
@@ -37,31 +26,13 @@ public class LottoController {
         InvestorService investorService = initInvestorService();
         List<Lotto> lottos = investorService.buyLottos();
         outputView.printBoughtLottoSize(lottos.size());
-
         printLottoValues(lottos);
 
         LottoCompanyService lottoCompanyService = initLottoCompanyService(lottos);
+        List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
+        addPrizeMoney(investorService, prizeResults);
 
-        LottoJudge goalJudge = initGoalNumberJudge();
-        LottoJudge bonusJudge = initBonusNumberJudge();
-        for (int i = FIFTH_PRIZE_MATCH.getValue(); i < FIRST_PRIZE_MATCH.getValue(); i++) {
-            List<Lotto> matchLotto = goalJudge.collectLottoWithMatchSize(lottos, i);
-            Prize prize = Prize.findByPoint(i * GOAL_MATCH_POINT.getValue());
-            investorService.addProfit(prize.getMoney() * matchLotto.size());
-            outputView.printEachPrize(prize.getCondition(), prize.getMoney(), matchLotto.size());
-        }
-
-        List<Lotto> secondMatchLotto = bonusJudge.collectLottoWithMatchSize(lottos, SECOND_PRIZE_MATCH.getValue());
-        List<Lotto> secondResultLotto = goalJudge.collectLottoWithMatchSize(secondMatchLotto, SECOND_PRIZE_MATCH.getValue());
-        Prize secondPrize = Prize.findByPoint(SECOND_POINT.getPoint());
-        investorService.addProfit(secondPrize.getMoney() * secondResultLotto.size());
-        outputView.printEachPrize(secondPrize.getCondition(), secondPrize.getMoney(), secondResultLotto.size());
-
-        List<Lotto> firstLotto = goalJudge.collectLottoWithMatchSize(lottos, LOTTO_NUMBERS_SIZE.getValue());
-        Prize prize = Prize.findByPoint(FIRST_POINT.getPoint());
-        investorService.addProfit(prize.getMoney() * firstLotto.size());
-        outputView.printEachPrize(prize.getCondition(), prize.getMoney(), firstLotto.size());
-
+        printPrizeResults(prizeResults);
         outputView.printProfitRate(investorService.calculateProfitRate());
     }
 
@@ -103,15 +74,15 @@ public class LottoController {
                 .toList();
     }
 
-    private GoalNumberJudge initGoalNumberJudge() {
-        outputView.askGoalNumbers();
-        String goalNumbersInput = inputView.readLine();
-        return GoalNumberJudge.from(goalNumbersInput);
+    private void printPrizeResults(final List<PrizeResult> results) {
+        for (PrizeResult result : results) {
+            outputView.printEachPrize(result.condition(), result.prize(), result.size());
+        }
     }
 
-    private BonusNumberJudge initBonusNumberJudge() {
-        outputView.askBonusNumber();
-        String bonusNumberInput = inputView.readLine();
-        return BonusNumberJudge.from(bonusNumberInput);
+    private void addPrizeMoney(final InvestorService investorService, final List<PrizeResult> results) {
+        for (PrizeResult result : results) {
+            investorService.addProfit(result.prize() * result.size());
+        }
     }
 }

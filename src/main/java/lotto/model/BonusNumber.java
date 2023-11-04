@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public class BonusNumber {
 
     private final int number;
@@ -19,6 +21,10 @@ public class BonusNumber {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean isNumbersContainBonus(final List<Integer> numbers) {
+        return numbers.contains(number);
     }
 
     public int getNumber() {

@@ -24,7 +24,13 @@ class PrizesTest {
         assertEquals(expected, totalPrice);
     }
 
-
+    @DisplayName("수익률 계산 성공 테스트")
+    @ParameterizedTest()
+    @MethodSource("calculateBenefitSuccessDummy")
+    void calculateBenefitSuccessTest(Prizes prizes, Integer totalSeed, Double expected) {
+        Double result = prizes.calculateBenefit(totalSeed);
+        assertEquals(expected, result);
+    }
 
 
     static Stream<Arguments> countTotalPriceSuccessDummy() {
@@ -55,6 +61,20 @@ class PrizesTest {
                         ),
                         8000,
                         62.5
+                ),
+                Arguments.arguments(
+                        new Prizes(
+                                List.of(FIFTH_PLACE, FIFTH_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
+                        ),
+                        8000,
+                        125.0
+                ),
+                Arguments.arguments(
+                        new Prizes(
+                                List.of(FIRST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
+                        ),
+                        8000,
+                        2500000.0
                 )
         );
     }

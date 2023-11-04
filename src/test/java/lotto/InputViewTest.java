@@ -36,6 +36,15 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"1.1", "1.2", "1.3", "1.000", "2.0000"})
+    @DisplayName("실수 값은 예외가 발생한다.")
+    void validateInteger_floating_point_number_exceptionThrown(String strings) {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.validateInteger(strings))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"/", ".", ",", "$", "#"})
     @DisplayName("특수문자 입력값은 예외가 발생한다.")
     void validateInteger_special_character_exceptionThrown(String strings) {

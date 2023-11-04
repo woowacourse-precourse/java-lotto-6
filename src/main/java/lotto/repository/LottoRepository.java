@@ -26,4 +26,9 @@ public class LottoRepository {
                 .toList();
     }
 
+    public void clear() {
+        lottoDatabase.clear();
+        lottoId = 0L;
+    }
+
 }

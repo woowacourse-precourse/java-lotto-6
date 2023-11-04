@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.controller.dto.PurchasedLottoResponse;
-import lotto.model.BonusNumber;
+import lotto.model.LottoNumber;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
@@ -47,7 +47,7 @@ public class Controller {
 
     private WinningNumbers getWinningNumbers() {
         WinningNumber winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber();
+        LottoNumber bonusNumber = getBonusNumber();
         return new WinningNumbers(winningNumber, bonusNumber);
     }
 
@@ -57,10 +57,10 @@ public class Controller {
         return WinningNumber.createWith(winningNumber);
     }
 
-    private BonusNumber getBonusNumber() {
+    private LottoNumber getBonusNumber() {
         outputView.printBonusNumberRequestMessage();
         String bonusNumber = inputView.readLine();
-        return BonusNumber.createWith(bonusNumber);
+        return LottoNumber.createWith(bonusNumber);
     }
 
 

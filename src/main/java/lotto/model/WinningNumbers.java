@@ -6,9 +6,9 @@ import lotto.exception.ExistDuplicatedNumberException;
 public class WinningNumbers {
 
     private final WinningNumber winningNumber;
-    private final BonusNumber bonusNumber;
+    private final LottoNumber bonusNumber;
 
-    public WinningNumbers(final WinningNumber winningNumber, final BonusNumber bonusNumber) {
+    public WinningNumbers(final WinningNumber winningNumber, final LottoNumber bonusNumber) {
         validateDuplicate(winningNumber.getNumbers(), bonusNumber.getNumber());
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;

@@ -16,14 +16,21 @@ public class Input {
 
     private void validateUserInput(String userInput) {
         validateOnlyNumbers(userInput);
+        validateAboveOrEqualThousand(userInput);
         validateDivisibleByThousand(userInput);
     }
 
     private void validateOnlyNumbers(String userInput) {
         for (int i = 0; i < userInput.length(); i++) {
             if(!Character.isDigit(userInput.charAt(i))){
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.\n");
+                throw new IllegalArgumentException("[ERROR] 1000원 이상 숫자만 입력해 주세요.\n");
             }
+        }
+    }
+
+    private void validateAboveOrEqualThousand(String userInput) {
+        if (Integer.parseInt(userInput) < 1000) {
+            throw new IllegalArgumentException("[ERROR] 1000원 이상 입력해 주세요.\n");
         }
     }
 

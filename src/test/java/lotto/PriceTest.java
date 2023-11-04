@@ -63,7 +63,7 @@ public class PriceTest {
     void divideWithOneThousands() {
         price1 = new Price("5000");
 
-        Assertions.assertThat(price1.divideWithOneThousands(price1)).isEqualTo(5);
+        Assertions.assertThat(price1.divideWithOneThousands()).isEqualTo(5);
 
     }
 }

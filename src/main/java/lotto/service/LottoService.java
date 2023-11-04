@@ -1,31 +1,67 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.WiningRank;
 
 public class LottoService {
 
-    private static final int MIN_RANDOMNUMBER = 1;
-    private static final int MAX_RANDOMNUMBER = 45;
-    private static final int MAX_LOTTO_NUMBER_SIZE = 6;
+    private static final int DEFAULT_COUNT = 0;
+    private static final int ADD_COUNT = 1;
 
-    public Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
-        Collections.sort(numbers);
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
+    private HashMap<WiningRank, Integer> winingDetails =new HashMap<>();
+    private List<Integer> macthNumbers = new ArrayList<>();
+    private List<Integer> notMacthNumbers = new ArrayList<>();
+    private boolean bonusMatch;
+
+    public LottoService() {
+        winingDetails.put(WiningRank.FIRST, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.SECOND, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.THIRD, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.FOURTH, DEFAULT_COUNT);
+        winingDetails.put(WiningRank.FIFTH, DEFAULT_COUNT);
+        bonusMatch = false;
     }
 
-    private Set<Integer> generateLottoNumbers() {
-        Set<Integer> numbers = new HashSet<>();
-        do {
-            numbers.add(Randoms.pickNumberInRange(MIN_RANDOMNUMBER, MAX_RANDOMNUMBER));
-        } while (!(numbers.size() == MAX_LOTTO_NUMBER_SIZE));
-        return numbers;
+    public void compareLottoNumber(Buyer buyer, LottoNumber lottoNumber) {
+        for (Lotto lotto : buyer.getLottoTickets()) {
+            setMacthNumbers(lotto, lottoNumber);
+            setNotMacthNumbers(lotto, lottoNumber);
+            confrimMatchBonusNumber(lottoNumber);
+            applyWiningResult();
+
+        }
     }
+
+    private void setMacthNumbers(Lotto lotto, LottoNumber lottoNumber) {
+        macthNumbers = lotto.getNumbers().stream()
+                .filter(n -> lottoNumber.getWinningNumbers().contains(n))
+                .collect(Collectors.toList());
+    }
+
+    private void setNotMacthNumbers(Lotto lotto, LottoNumber lottoNumber) {
+        notMacthNumbers = lotto.getNumbers().stream()
+                .filter(n -> !(lottoNumber.getWinningNumbers().contains(n)))
+                .collect(Collectors.toList());
+    }
+
+    private void confrimMatchBonusNumber(LottoNumber lottoNumber) {
+        if (notMacthNumbers.size() == 1) {
+            bonusMatch = notMacthNumbers.contains(lottoNumber.getBonusNumber());
+        }
+    }
+
+    private void applyWiningResult() {
+        for (WiningRank rank : winingDetails.keySet()) {
+            if (macthNumbers.size() == rank.getMatchCount() && bonusMatch == rank.isBonusMatch()) {
+                winingDetails.put(rank, winingDetails.get(rank) + ADD_COUNT);
+            }
+        }
+    }
+
 }

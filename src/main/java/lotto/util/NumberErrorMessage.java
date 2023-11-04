@@ -1,4 +1,4 @@
-package util;
+package lotto.util;
 
 public enum NumberErrorMessage {
     NUMBER_IN_EMPTY("아무것도 입력하지 않았습니다."),

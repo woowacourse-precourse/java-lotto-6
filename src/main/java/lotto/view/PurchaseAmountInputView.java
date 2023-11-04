@@ -1,7 +1,7 @@
-package view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import util.NumberValidator;
+import lotto.util.NumberValidator;
 
 public class PurchaseAmountInputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";

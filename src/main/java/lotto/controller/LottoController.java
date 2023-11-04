@@ -10,10 +10,16 @@ import java.util.List;
 
 public class LottoController {
 
-    private final LottoInputView lottoInputView = new LottoInputView();
-    private final LottoOutputView lottoOutputView = new LottoOutputView();
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
 
-    private final LottoService lottoService = new LottoService();
+    private final LottoService lottoService;
+
+    public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView, LottoService lottoService) {
+        this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
+        this.lottoService = lottoService;
+    }
 
     public void run() {
         buyLottoTicketProcess();

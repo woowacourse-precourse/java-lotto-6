@@ -4,20 +4,22 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
+    private final OutputView outputView = new OutputView();
+
     public String inputPurchaseAmount(){
-        OutputView.requestInputAmountMessage();
+        outputView.requestInputAmountMessage();
         String userInput = readLine();
         return userInput;
     }
 
     public String inputWinningNumbers(){
-        OutputView.requestInputWinningNumbersMessage();
+        outputView.requestInputWinningNumbersMessage();
         String userInput = readLine();
         return userInput;
     }
 
     public String inputBonusNumber(){
-        OutputView.requestInputBonusNumberMessage();
+        outputView.requestInputBonusNumberMessage();
         String userInput = readLine();
         return userInput;
     }

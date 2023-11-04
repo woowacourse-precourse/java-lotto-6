@@ -15,10 +15,13 @@ public class UserTest {
     }
 
     @Test
-    @DisplayName("구입한 금액에 문자열이 입력되면 예외가 발생한다.")
-    public void 구입_금액_문자열_테스트() throws Exception {
+    @DisplayName("구입한 금액에 정수가 아닌 값이 입력되면 예외가 발생한다.")
+    public void 구입_금액_정수_테스트() throws Exception {
         assertThrows(IllegalArgumentException.class, () -> {
             new User().purchaseLotto("aaa");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new User().purchaseLotto("123.45");
         });
     }
 

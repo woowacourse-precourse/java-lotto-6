@@ -50,4 +50,18 @@ class ValidationTest {
         // 예외가 발생해야 하는 경우
         assertThrows(IllegalArgumentException.class, () -> Validation.validateStringToInteger("123 a"));
     }
+
+    @Test
+    @DisplayName("숫자 범위 검증")
+    void 숫자_범위_검증() {
+        // 정상적인 경우, 예외가 발생하지 않아야 함
+        assertDoesNotThrow(() -> Validation.validateNumberInRange(1, 1, 10));
+    }
+
+    @Test
+    @DisplayName("숫자 범위 검증 실패")
+    void 숫자_범위_검증_실패() {
+        // 예외가 발생해야 하는 경우
+        assertThrows(IllegalArgumentException.class, () -> Validation.validateNumberInRange(11, 1, 10));
+    }
 }

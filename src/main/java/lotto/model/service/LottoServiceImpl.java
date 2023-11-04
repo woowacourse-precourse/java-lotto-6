@@ -21,13 +21,14 @@ public class LottoServiceImpl implements LottoService {
     public Map<LottoCount, Integer> compareLottoToWinningAndBonus(List<List<Integer>> createdLottos,
                                                                   List<Integer> winningNumbers,
                                                                   int bonusNumber) {
-        Map<LottoCount, Integer> resultTable = new HashMap<>();
+        Map<LottoCount, Integer> resultTable = getInitializedMap();
         for (List<Integer> createdLotto : createdLottos) {
             LottoCount lottoCount = findLottoCount(createdLotto, winningNumbers, bonusNumber);
 
-            Integer duplicatedValue = resultTable.getOrDefault(lottoCount, 0);
+            Integer duplicatedValue = resultTable.get(lottoCount);
             resultTable.put(lottoCount, duplicatedValue + 1);
         }
+
         return Collections.unmodifiableMap(resultTable);
     }
 
@@ -43,5 +44,13 @@ public class LottoServiceImpl implements LottoService {
             return LottoCount.BONUS;
         }
         return LottoCount.findByCount(duplicatedCount);
+    }
+
+    private Map<LottoCount, Integer> getInitializedMap() {
+        Map<LottoCount, Integer> resultTable = new HashMap<>();
+        for (LottoCount lottoCount : LottoCount.values()) {
+            resultTable.put(lottoCount, 0);
+        }
+        return resultTable;
     }
 }

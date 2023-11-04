@@ -5,4 +5,9 @@ public class Writer implements StdWriter {
     public void writeLine(String message) {
         System.out.println(message);
     }
+
+    @Override
+    public void write(String message) {
+        System.out.print(message);
+    }
 }

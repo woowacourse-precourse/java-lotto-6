@@ -20,5 +20,9 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(INVALID_UNIT_FORMAT.getMessage());
         }
     }
+
+    public int calculateCount(){
+        return amount/PRICE.getNumber();
+    }
 }
 

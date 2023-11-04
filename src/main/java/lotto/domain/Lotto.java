@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -20,9 +21,19 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public static Lotto makeAutoLotto() {
+
+    public static Lotto makeAutoLottoTicket() {
         List<Integer> lottoTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoTicket);
     }
 
+    public static List<Lotto> getAutoLottoTickets(LottoCount lottoCount) {
+        int count = lottoCount.getLottoCount();
+        List<Lotto> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            lottoTickets.add(makeAutoLottoTicket());
+        }
+        return lottoTickets;
+    }
 }

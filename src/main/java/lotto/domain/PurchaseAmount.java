@@ -16,13 +16,13 @@ public class PurchaseAmount {
         return new PurchaseAmount(purchaseAmount);
     }
 
-    public static void validatePositive(int purchaseAmount) {
+    private static void validatePositive(int purchaseAmount) {
         if (purchaseAmount < MIN_PRICE) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    public static void validateMultipleOfLottoPrice(int purchaseAmount) {
+    private static void validateMultipleOfLottoPrice(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR]");
         }

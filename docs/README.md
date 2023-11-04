@@ -15,14 +15,14 @@
 
 - [ ] 사용자 클래스 User
 
-  - [ ] 로또를 산다. User#buyLotterys
-  - [ ] 로또를 보여준다. User#showLotterys
+  - [ ] 로또를 산다. User#buyLottos
+  - [ ] 로또를 보여준다. User#showLottos
   - [ ] 로또결과의 당첨에 대한 통계를 한다. User#doStatisticLottoResult
   - [ ] 로또결과의 당첨에 대한 총 수익률을 계산한다. User#calculateTotalRate
 
 - [ ] 사용자의 당첨 판단 클래스. Judgment
 
-  - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. Judgment#compareLotterys
+  - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. Judgment#compareLottos
 
     - [ ] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
 
@@ -38,7 +38,7 @@
 
       (3개 일치 (5,000원) - 1개)
 
-- [ ] 사용자의 당첨된 복권들 클래스 SuccessLotterys
+- [ ] 사용자의 당첨된 복권들 클래스 SuccessLottoEnvelop
 
 - [ ] 사용자의 수익률 클래스 RateResult
 
@@ -63,44 +63,38 @@
 
 
 
-- [ ] 로또 판매자 클래스 LotterySeller
-  - [ ] 로또를 판다. LotterySeller#sell
-    - [ ] 사용자가 입력한 만큼 로또를 발행한다.
-  - [ ] 로또 봉투을 생성한다.  LotterySeller#createLottoryEnvelope
+- [ ] 로또 판매자 클래스 LottoSeller
+  - [ ] 로또를 판다. LottoSeller#sell
+    - [ ] 사용자에게 로또 봉투판다.
+  - [ ] 로또 봉투을 만든다.  LottoSeller#makeLottoEnvelope
 
-- [ ] 로또 클래스 Lottery
-  - [ ] 로또 1장의 가격은 1,000원이다.
-  - [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
-  - [ ] 로또 번호의 숫자 범위는 1~45까지이다.
-  - [ ] 중복되지 않는 보너스 번호 1개를 뽑는다
-
-- [ ] 로또 봉투 클래스 LottoryEnvelop
+- [ ] 로또 봉투 클래스 LottoEnvelop
 
 
 
-- [ ] 로또 진행자 클래스 LottoryHost
-  - [ ] 당첨 번호 추첨을 뽑는다. LottoryHost#pickWinNum
-  - [ ] 보너스 번호를 뽑는다. LottoryHost#pickBonusNum
-  - [ ] 중복되는 당첨 번호가 있는지 확인한다. Lottory#checkDuplicateWinNum
-  - [ ] 중복되는 보너스 번호가 있는지 확인한다. Lottory#checkDulicateBonusNum
+- [ ] 로또 진행자 클래스 LottoHost
+  - [ ] 당첨 번호 추첨을 뽑는다. LottoHost#pickWinNum
+  - [ ] 보너스 번호를 뽑는다. LottoHost#pickBonusNum
+  - [ ] 중복되는 당첨 번호가 있는지 확인한다. Lotto#checkDuplicateWinNum
+  - [ ] 중복되는 보너스 번호가 있는지 확인한다. Lotto#checkDulicateBonusNum
 
-- [ ] 보너스 번호 클래스 BonusLottoryNum
+- [ ] 보너스 번호 클래스 BonusLottoNum
   - [ ] 보너스 번호가 같은지 확인한다. BonusNum#isSame
 
-- [ ] 당첨 번호 클래스 WinLottoryNum
-  - [ ] 당첨 번호 추첨 번호가 같은지 확인한다. WinLottoryNum#isSame
+- [ ] 당첨 번호 클래스 WinLottoNum
+  - [ ] 당첨 번호 추첨 번호가 같은지 확인한다. WinLottoNum#isSame
 
-- [ ] 당첨 번호와 보너스 번호들의 모임 클래스 LotteryNumResults
+- [ ] 당첨 번호와 보너스 번호들의 모임 클래스 LottoNumResults
   - [ ] 당첨 번호 추첨 번호가 같은지 확인한다. isSamePickNum
   - [ ] 보너스 번호가 같은지 확인한다. isSameBonusNum
 
 
 
 - [ ] 진행 클래스 Process
-  - [ ] 로또를 산다. Process#buyLottery
+  - [ ] 로또를 산다. Process#buyLotto
     - [ ] 유저가 로또를 산다. 
     - [ ] 로또 판매자가 로또를 판다.
-  - [ ] 로또를 보여준다. Process#showLottery
+  - [ ] 로또를 보여준다. Process#showLotto
     - [ ] 유저가 로또를 보여준다.
   - [ ] 당첨 번호를 뽑는다. Process#pickNum
     - [ ] 로또진행자가 당첨 번호를 뽑는다.

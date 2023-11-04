@@ -12,10 +12,10 @@ public class ChangeNumberTypeTest {
     @Test
     void testValidateNumber() {
         // 유효한 구입금액
-        assertDoesNotThrow(() -> new Purchase(1000));
-        assertDoesNotThrow(() -> new Purchase(5000));
+        assertDoesNotThrow(() -> ChangeNumberType.changeNumberType("1000"));
+        assertDoesNotThrow(() -> ChangeNumberType.changeNumberType("5000"));
 
         // 문자열인 경우 예외 발생
-        assertThrows(IllegalArgumentException.class, () -> new Purchase(Integer.parseInt("abc")));
+        assertThrows(IllegalArgumentException.class, () -> ChangeNumberType.changeNumberType("abc"));
     }
 }

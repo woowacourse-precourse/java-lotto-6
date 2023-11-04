@@ -47,8 +47,7 @@ public class OutputView {
         for (LottoRanks key : result.keySet()) {
             if (key == LottoRanks.NONE)
                 continue;
-            System.out.printf(appendFormat(key), key.getSameNumber(), convertWinningMoneyToString(key.getWinnings()));
-            System.out.printf(GET_REWARDED_LOTTO_COUNT, result.get(key));
+            System.out.printf(appendFormat(key), key.getSameNumber(), key.getWinnings(), result.get(key));
         }
     }
     public String appendFormat(LottoRanks key) {
@@ -57,11 +56,8 @@ public class OutputView {
             result.append(SAME_BONUS_NUM);
         }
         result.append(WINNING_MONEY_FORMAT);
+        result.append(GET_REWARDED_LOTTO_COUNT);
         return result.toString();
-    }
-    public String convertWinningMoneyToString(int winningMoney) {
-        DecimalFormat temp = new DecimalFormat("###,###");
-        return temp.format(winningMoney);
     }
 
     public void printTotalReturnRate(double returnRate) {

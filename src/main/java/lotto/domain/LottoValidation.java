@@ -18,4 +18,20 @@ public class LottoValidation {
         }
         return true;
     }
+
+    public boolean checkBonusNumberRange(int bonusNumber, int min, int max) {
+        if (bonusNumber < min || bonusNumber > max) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkDuplicateBonusNumber(List<Integer> lottoNumber, int bonusNubmber) {
+        for (int nowNumber : lottoNumber) {
+            if (nowNumber == bonusNubmber) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

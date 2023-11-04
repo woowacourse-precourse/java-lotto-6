@@ -40,7 +40,7 @@ public class Application {
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
 
-        System.out.println(allLottoList);
+        allLottoList.forEach(System.out::println);
         System.out.println();
 
         // TODO: 당첨 번호 입력 받기

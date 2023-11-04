@@ -1,8 +1,13 @@
 package validators;
 
+import java.util.List;
+
 import enums.Error;
 
 public class InputException {
+	
+	private static final int MIN = 1;
+	private static final int MAX = 45;
 
 	public static void checkNumber(String buyAmountText) {
 		if(!buyAmountText.matches("[0-9]+")) {
@@ -15,6 +20,22 @@ public class InputException {
 		if(rest != 0) {
 			throw new IllegalArgumentException(Error.WRONG_AMOUNT.getMessage());
 		}
+	}
+
+	public static void checkNumberRange(List<Integer> numbers) {
+		for(int number : numbers) {
+			if(number < MIN && number > MAX) {
+				throw new IllegalArgumentException(Error.WRONG_NUMBER.getMessage());
+			}
+		}
+	}
+	
+	public static void checkOverlap(List<Integer> numbers) {
+		for(int i = 0; i < numbers.size() - 1; i++) {
+    		if(numbers.get(i) == numbers.get(i + 1)) {
+    			throw new IllegalArgumentException(Error.NUMBER_OVERLAP.getMessage());
+    		}
+    	}
 	}
 
 }

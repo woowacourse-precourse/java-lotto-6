@@ -20,11 +20,12 @@ public class LottoGameController {
 
     public void run() {
         TicketQuantity ticketQuantity = initTicketQuantity();
-
         Player player = initPlayer(ticketQuantity);
+
         showPlayerLottoNumber(player);
 
         LottoGame lottoGame = initLottoGame(player);
+
     }
 
     private void showPlayerLottoNumber(Player player) {

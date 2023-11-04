@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.List;
 import lotto.vo.BonusNumber;
 
 public class LottoGame {
@@ -16,5 +17,11 @@ public class LottoGame {
 
     public static LottoGame createGame(final Player player, final Lotto lotto, final BonusNumber bonusNumber) {
         return new LottoGame(player, lotto, bonusNumber);
+    }
+
+    private int countMatchedNumber(List<Integer> winningNumbers, List<Integer> playerNumbers) {
+        return (int) playerNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 }

@@ -23,7 +23,7 @@ public enum Rank {
         this.priceMessage = priceMessage;
     }
 
-    public static Rank getRank(final int sameCount, final boolean sameBonus) {
+    public static Rank of(final int sameCount, final boolean sameBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.isMatchingRank(sameCount, sameBonus))
                 .findAny()

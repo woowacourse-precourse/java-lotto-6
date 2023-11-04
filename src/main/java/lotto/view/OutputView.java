@@ -1,8 +1,8 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoResult;
+import lotto.controller.dto.WinningResult;
 
 public class OutputView {
 
@@ -23,13 +23,17 @@ public class OutputView {
         System.out.println(count + LOTTO_PURCHASE_MESSAGE);
     }
 
-    public void printLotto(final List<Integer> lotto) {
-        System.out.println(lotto);
+    public void printError(final IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
     }
 
-    public void printResult(final LottoResult lottoResult, final double revenue) {
+    public void printLotto(final LottoResult lotto) {
+        System.out.println(lotto.getLotto());
+    }
+
+    public void printResult(final WinningResult winningResult, final double revenue) {
         printWinningStatisticsHeader();
-        printRankCounts(lottoResult);
+        printRankCounts(winningResult);
         printRevenue(revenue);
     }
 
@@ -38,8 +42,8 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_SEPARATOR);
     }
 
-    private void printRankCounts(final LottoResult lottoResult) {
-        Map<String, Integer> rankCounts = lottoResult.getResult();
+    private void printRankCounts(final WinningResult winningResult) {
+        Map<String, Integer> rankCounts = winningResult.getResult();
         rankCounts.forEach(this::printRankCount);
     }
 

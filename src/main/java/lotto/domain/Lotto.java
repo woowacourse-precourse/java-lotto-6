@@ -59,6 +59,10 @@ public class Lotto {
         return duplicates.size() != numbers.size();
     }
 
+    public boolean contains(final Number number) {
+        return numbers.contains(number);
+    }
+
     public int getSameCount(final List<Number> lottoNumber) {
         return (int) lottoNumber.stream()
                 .filter(numbers::contains)

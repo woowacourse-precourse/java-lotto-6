@@ -47,7 +47,7 @@ public class Money {
         return amount / LOTTO_COST;
     }
 
-    public double calculateRevenue(final long sumOfPrice) {
+    public double calculateReturnRate(final long sumOfPrice) {
         return ((double) sumOfPrice / amount) * 100;
     }
 

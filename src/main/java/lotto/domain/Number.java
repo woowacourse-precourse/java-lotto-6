@@ -9,10 +9,10 @@ public class Number {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    private final int number;
+    private final int value;
 
-    private Number(final int number) {
-        this.number = number;
+    private Number(final int value) {
+        this.value = value;
     }
 
     public static Number from(final String number) {
@@ -61,11 +61,15 @@ public class Number {
             return false;
         }
         Number number1 = (Number) o;
-        return number == number1.number;
+        return value == number1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(value);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

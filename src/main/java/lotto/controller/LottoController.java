@@ -1,13 +1,14 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoResult;
+import lotto.controller.dto.WinningResult;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Number;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.util.Converter;
@@ -29,47 +30,61 @@ public class LottoController {
     public void start() {
         Money money = getMoney();
         Lottos lottos = generateLottos(money, new RandomNumberGenerator());
-        WinningLotto winningLotto = makeWinningLotto();
+        printLottos(lottos);
+        WinningLotto winningLotto = generateWinningLotto();
         Map<Rank, Integer> winningStatus = calculateWinningStatus(winningLotto, lottos);
-        double revenue = getRevenue(winningStatus, money);
+        double revenue = getReturnRate(winningStatus, money);
         printResult(winningStatus, revenue);
     }
 
     private Money getMoney() {
-        outputView.printPurchaseMessage();
-        String input = inputView.readInput();
-        return Money.from(input);
+        try {
+            outputView.printPurchaseMessage();
+            String input = inputView.readInput();
+            return Money.from(input);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return getMoney();
+        }
     }
 
     private Lottos generateLottos(final Money money, final NumberGenerator numberGenerator) {
         int buyCount = money.buyLotto();
         outputView.printBuyLotto(buyCount);
-        List<Lotto> generatedLottos = createLottos(buyCount, numberGenerator);
-        return new Lottos(generatedLottos);
+        return Lottos.of(buyCount, numberGenerator);
     }
 
-    private List<Lotto> createLottos(final int buyCount, final NumberGenerator numberGenerator) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int count = 0; count < buyCount; count++) {
-            List<Integer> randomNumbers = numberGenerator.generateSortedList();
-            Lotto lotto = createLotto(randomNumbers);
-            lottos.add(lotto);
+    private void printLottos(final Lottos lottos) {
+        for (final Lotto lotto : lottos.getLottos()) {
+            outputView.printLotto(LottoResult.from(lotto.getNumbers()));
         }
-
-        return lottos;
     }
 
-    private Lotto createLotto(final List<Integer> numbers) {
-        outputView.printLotto(numbers);
-        return Lotto.fromIntegerList(numbers);
+    private WinningLotto generateWinningLotto() {
+        Lotto lotto = generateWinningLottoNumbers();
+        Number bonusNumber = generateBonusNumber();
+        return new WinningLotto(lotto, bonusNumber);
     }
 
-    private WinningLotto makeWinningLotto() {
-        String lottoNumbers = inputView.readInput();
-        String bonusNumber = inputView.readInput();
-        List<String> lotto = Converter.convertCommaSeparatedStringToList(lottoNumbers);
-        return WinningLotto.of(lotto, bonusNumber);
+    private Lotto generateWinningLottoNumbers() {
+        try {
+            String input = inputView.readInput();
+            List<String> lotto = Converter.convertCommaSeparatedStringToList(input);
+            return Lotto.fromStringList(lotto);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return generateWinningLottoNumbers();
+        }
+    }
+
+    private Number generateBonusNumber() {
+        try {
+            String input = inputView.readInput();
+            return Number.from(input);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return generateBonusNumber();
+        }
     }
 
     private Map<Rank, Integer> calculateWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
@@ -85,14 +100,14 @@ public class LottoController {
     }
 
     private Rank calculateRank(final WinningLotto winningLotto, final Lotto lotto) {
-        int sameCount = winningLotto.getSameCount(lotto.getNumbers());
-        boolean matchBonus = winningLotto.isMatchBonus(lotto.getNumbers());
-        return Rank.getRank(sameCount, matchBonus);
+        int sameCount = winningLotto.countMatchingNumbers(lotto.getNumbers());
+        boolean matchBonus = winningLotto.hasMatchingBonus(lotto.getNumbers());
+        return Rank.of(sameCount, matchBonus);
     }
 
-    public double getRevenue(final Map<Rank, Integer> status, final Money money) {
+    public double getReturnRate(final Map<Rank, Integer> status, final Money money) {
         long sumOfPrice = calculateSumOfPrice(status);
-        return money.calculateRevenue(sumOfPrice);
+        return money.calculateReturnRate(sumOfPrice);
     }
 
     private long calculateSumOfPrice(final Map<Rank, Integer> status) {
@@ -103,6 +118,6 @@ public class LottoController {
     }
 
     private void printResult(final Map<Rank, Integer> status, final double revenue) {
-        outputView.printResult(LottoResult.from(status), revenue);
+        outputView.printResult(WinningResult.from(status), revenue);
     }
 }

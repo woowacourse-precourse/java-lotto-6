@@ -33,4 +33,7 @@ public class LottoService {
     public void addBonusNumber(Integer bonusNumber) throws IllegalArgumentException {
         winningLotto.setBonusNumber(bonusNumber);
     }
+    public int[] findWinResult() {
+        return countWinLotto(winningLotto, userLottoVO);
+    }
 }

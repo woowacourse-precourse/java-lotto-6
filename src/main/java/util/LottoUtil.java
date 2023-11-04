@@ -1,5 +1,16 @@
 package util;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import config.CountMessage;
+import domain.Lotto;
+import VO.UserLottoVO;
+import domain.WinningLotto;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottoUtil {
 
     // 금액 계산기
@@ -17,5 +28,14 @@ public class LottoUtil {
             lottoList.add(new Lotto(numbers));
         }
         return lottoList;
+    }
+
+    // 당첨금 정산
+    public static int[] countWinLotto(WinningLotto winningLotto, UserLottoVO userLottoVO) {
+        int[] winCountArr = new int[8]; // TODO: 상수처리 필요
+        for(Lotto lotto : userLottoVO.getLottoList()) {
+            winCountArr[winningLotto.countWinNumber(lotto)]++;
+        }
+        return winCountArr;
     }
 }

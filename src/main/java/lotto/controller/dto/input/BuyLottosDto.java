@@ -1,6 +1,6 @@
 package lotto.controller.dto.input;
 
-import lotto.controller.exception.NumericInputValidationException;
+import parser.StrictInputParser;
 
 /**
  * 첫 번째 입력인 로또를 구매하기 위해 사용자가 입력한 '구입 금액'을 저장하는 Input Dto
@@ -13,8 +13,7 @@ public final class BuyLottosDto {
     private final long amount;
 
     private BuyLottosDto(final String input) {
-        validateInput(input);
-        this.amount = Long.parseLong(input);
+        this.amount = StrictInputParser.mustParseToLong(input);
     }
 
     /**
@@ -24,19 +23,6 @@ public final class BuyLottosDto {
      */
     public static BuyLottosDto from(final String input) {
         return new BuyLottosDto(input);
-    }
-
-    /**
-     * 숫자로 이루어진 입력이 아니라면 예외 발생.
-     */
-    private static void validateInput(final String input) {
-        final char[] chars = input.toCharArray();
-
-        for (final char ch : chars) {
-            if (!Character.isDigit(ch)) {
-                throw new NumericInputValidationException();
-            }
-        }
     }
 
     /**

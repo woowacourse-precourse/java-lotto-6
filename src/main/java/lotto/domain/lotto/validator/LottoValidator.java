@@ -3,9 +3,9 @@ package lotto.domain.lotto.validator;
 import static lotto.domain.lotto.Lotto.LOTTO_NUMBERS_LENGTH;
 
 import java.util.List;
+import lotto.domain.lotto.exception.DuplicateBonusNumberException;
 import lotto.domain.lotto.exception.DuplicateLottoNumberException;
 import lotto.domain.lotto.exception.InvalidLottoLengthException;
-import lotto.exception.DuplicateBonusNumberException;
 
 public final class LottoValidator {
 

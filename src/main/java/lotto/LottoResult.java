@@ -29,4 +29,11 @@ public class LottoResult {
         }
         return 0;
     }
+
+    public boolean hasBonusNumber(List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
 }

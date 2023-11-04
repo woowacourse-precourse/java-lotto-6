@@ -21,4 +21,8 @@ public class OutputValue {
         System.out.println(numbers.toString());
     }
 
+    public static void changeLine() {
+        System.out.println();
+    }
+
 }

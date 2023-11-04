@@ -14,6 +14,10 @@ public class GenerateLotteries {
         }
     }
 
+    public List<Lotto> getLotteries() {
+        return this.lotteries;
+    }
+
     private Lotto generateRandomNumbers() {
         Lotto numbers = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return numbers;

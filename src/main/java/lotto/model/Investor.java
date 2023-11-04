@@ -19,7 +19,7 @@ public class Investor {
     }
 
     public List<Lotto> buyLottosFromShop(final Shop shop) {
-        return shop.createLottosAsPaid(investMoney.getMoney());
+        return shop.createLottos();
     }
 
     public void addProfitMoney(final int money) {

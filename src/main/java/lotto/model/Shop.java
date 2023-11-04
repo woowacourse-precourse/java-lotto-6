@@ -21,7 +21,7 @@ public class Shop {
         return new Shop(money);
     }
 
-    public List<Lotto> createLottosAsPaid(final int money) {
+    public List<Lotto> createLottos() {
         int lottoSize = calculateBuyLottoSize(money);
 
         List<Lotto> lottos = new ArrayList<>();

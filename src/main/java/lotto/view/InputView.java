@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.InvalidInput;
 
 public class InputView {
     private final String INPUT_BUYING_COST_MESSAGE = "구입금액을 입력해 주세요.";
@@ -11,10 +12,11 @@ public class InputView {
     private final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private final String COMMA = ",";
 
-    public String inputBuyingCost(){
+    public int inputBuyingCost(){
+        InvalidInput invalidInput = new InvalidInput();
         System.out.println(INPUT_BUYING_COST_MESSAGE);
 
-        return readLine();
+        return invalidInput.notIntegerValueException(readLine());
     }
 
     public List<String> inputWinningNumbers(){
@@ -24,9 +26,10 @@ public class InputView {
         return Arrays.stream(inputNumbers).toList();
     }
 
-    public String inputBonusNumber(){
+    public int inputBonusNumber(){
+        InvalidInput invalidInput = new InvalidInput();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
-        return readLine();
+        return invalidInput.notIntegerValueException(readLine());
     }
 }

@@ -12,11 +12,6 @@ public class StringConverter {
                 .toList();
     }
 
-    public int parseInt(String number) {
-        validateNumber(number);
-        return Integer.parseInt(number);
-    }
-
     private void validateList(List<String> numbers) {
         numbers.forEach(this::validateNumber);
     }

@@ -24,10 +24,10 @@ public class InvalidInput {
             isBetweenInRange(number);
         }
     }
-    public void notIntegerValueException(String number) {
+    public int notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
         try {
-            Integer.parseInt(number);
+            return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(message);
         }
@@ -39,6 +39,8 @@ public class InvalidInput {
             throw new IllegalArgumentException(message);
         }
     }
+
+
 
     private static void isDuplicate(List<Integer> numbers, Integer number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT) {

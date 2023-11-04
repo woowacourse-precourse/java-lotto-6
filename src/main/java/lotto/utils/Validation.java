@@ -9,4 +9,10 @@ public class Validation {
             ExceptionMessages.STRING_TO_INTEGER.throwException();
         }
     }
+
+    public static void validateNumberInRange(int number, int min, int max) {
+        if (number < min || number > max) {
+            ExceptionMessages.NUMBER_IN_RANGE.throwException(min,max);
+        }
+    }
 }

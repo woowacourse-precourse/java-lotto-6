@@ -2,16 +2,15 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Purchase;
-import lotto.utility.PurchaseErrorMessage;
+import lotto.utility.ChangeNumberType;
 
 public class InputValue {
     public static int inputPurchase() {
         while (true) {
             try {
                 System.out.println(InputMessage.PURCHASE.getMessage());
-                String input = Console.readLine();
-                int purchaseAmount = Integer.parseInt(input);
-                Purchase purchase = new Purchase(purchaseAmount); // Purchase 클래스에서 유효성 검증 수행
+                int purchaseAmount = ChangeNumberType.changeNumberType(Console.readLine());
+                Purchase purchase = new Purchase(purchaseAmount);
                 return purchase.getAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

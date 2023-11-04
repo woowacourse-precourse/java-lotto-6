@@ -28,7 +28,7 @@ public class WinningNumbers {
 
     private void validateLottoRange(int number) {
         if (!(1 <= number && number <= 45)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MET_WINNING_NUMBERS_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_RANGE.getMessage());
         }
     }
 

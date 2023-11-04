@@ -7,6 +7,7 @@ import lotto.global.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
+    private static final int LOTTO_UNIT = 1000;
     @Test
     void create_구매_금액이_정상_케이스() {
         //given
@@ -17,7 +18,7 @@ public class UserTest {
         User user = User.create(createUserDto);
         //then
         assertThat(user.getPurchaseAmount()).isEqualTo(purchaseAmount);
-        assertThat(user.getQuantity()).isEqualTo(50);
+        assertThat(user.getQuantity()).isEqualTo(inputValue/LOTTO_UNIT);
     }
 
     @Test

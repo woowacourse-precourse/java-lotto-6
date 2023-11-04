@@ -10,10 +10,9 @@ public class LottoTicket {
     private static final int TICKET_PRICE = 1000;
     int ticketNumber;
 
-    public LottoTicket(String input) {
-        validateIsNumber(input);
+    public LottoTicket(int input) {
         validateIsDivided(input);
-        ticketNumber = Integer.parseInt(input) / TICKET_PRICE;
+        ticketNumber = input / TICKET_PRICE;
     }
 
     public List<Lotto> generateLottos() {
@@ -27,15 +26,7 @@ public class LottoTicket {
         return ticketNumber;
     }
 
-    private void validateIsNumber(String input) {
-        if (input.matches("\\d*")) {
-            return;
-        }
-        throw new IllegalArgumentException("숫자를 입력하세요.");
-    }
-
-    private void validateIsDivided(String input) {
-        int paid = Integer.parseInt(input);
+    private void validateIsDivided(int paid) {
         if (paid % TICKET_PRICE == 0) {
             return;
         }

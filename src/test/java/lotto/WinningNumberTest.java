@@ -9,20 +9,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberTest {
-    @ParameterizedTest
-    @ValueSource(strings = {"1 d 3 4 5 _", "10.1 3 2"})
-    void 당첨번호_숫자가_아닌_입력_예외처리_테스트(String input) {
-        List<String> inputs = Arrays.asList(input.split(" "));
-        assertThatThrownBy(() -> new WinningNumber(inputs, "30")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"10 50 100", "0 10"})
-    void 당첨번호_범위에_벗어난_입력_예외처리_테스트(String input) {
-        List<String> inputs = Arrays.asList(input.split(" "));
-        assertThatThrownBy(() -> new WinningNumber(inputs, "30")).isInstanceOf(IllegalArgumentException.class);
+    @Test
+    void 보너스번호_당첨번호_중복_예외처리_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(2);
+        assertThat(lotto.contains(bonusNumber)).isTrue();
+        assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber)).isInstanceOf(IllegalArgumentException.class);
     }
 }

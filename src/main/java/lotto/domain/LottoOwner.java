@@ -7,7 +7,7 @@ import java.util.List;
 public class LottoOwner {
     List<Lotto> lottos;
 
-    public int purchaseLotto(String money) {
+    public int purchaseLotto(int money) {
         LottoTicket lottoTicket = new LottoTicket(money);
         lottos = lottoTicket.generateLottos();
         return lottoTicket.getTicketNumber();

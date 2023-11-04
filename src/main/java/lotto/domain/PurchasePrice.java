@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.utils.ValidationException;
-
 public class PurchasePrice {
     private final int purchasePrice;
 

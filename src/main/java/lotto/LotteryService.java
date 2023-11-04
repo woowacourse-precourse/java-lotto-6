@@ -1,8 +1,17 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LotteryService {
     private int totalLottoAmount;
+    List<Lotto> buyLottoSet = new ArrayList<Lotto>();
     Validation validator = new Validation();
+
+    public LotteryService(){
+        this.totalLottoAmount = 0;
+    }
+
     public void purchaseLotto(){
         DataInput inputPurchasePayment = new DataInput();
         DataOutput outputMessage = new DataOutput();
@@ -16,9 +25,5 @@ public class LotteryService {
         }
 
         this.totalLottoAmount = totalPurchasePayment / 1000;
-    }
-
-    public LotteryService(){
-        this.totalLottoAmount = 0;
     }
 }

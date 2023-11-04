@@ -7,21 +7,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Output {
-    enum Reward {
-        NONE(0),
-        SAME3(5000),
-        SAME4(50000),
-        SAME5(1500000),
-        SAME5BONUS(30000000),
-        SAME6(2000000);
-
-        private Integer reward;
-
-        Reward(Integer reward) {
-            this.reward = reward;
-        }
-    }
-
     void printInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
     }

@@ -1,31 +1,57 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
+@DisplayName("로또 테스트")
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(
-                List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3), LottoNumber.from(4),
-                        LottoNumber.from(5), LottoNumber.from(6), LottoNumber.from(7))))
+    void testOverSizeLottoValidation() {
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(LottoNumber.from(1));
+        lottoNumbers.add(LottoNumber.from(2));
+        lottoNumbers.add(LottoNumber.from(3));
+        lottoNumbers.add(LottoNumber.from(4));
+        lottoNumbers.add(LottoNumber.from(5));
+        lottoNumbers.add(LottoNumber.from(6));
+        lottoNumbers.add(LottoNumber.from(7));
+
+        assertThatThrownBy(() -> Lotto.from(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(
-                List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3), LottoNumber.from(4),
-                        LottoNumber.from(5), LottoNumber.from(5))))
+    void testDuplicatedLottoValidation() {
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(LottoNumber.from(1));
+        lottoNumbers.add(LottoNumber.from(2));
+        lottoNumbers.add(LottoNumber.from(3));
+        lottoNumbers.add(LottoNumber.from(4));
+        lottoNumbers.add(LottoNumber.from(5));
+        lottoNumbers.add(LottoNumber.from(5));
+
+        assertThatThrownBy(() -> Lotto.from(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("조건에 맞는 로또는 검증을 통과한다.")
+    @Test
+    void testCreateLottoWithProperValues() {
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(LottoNumber.from(1));
+        lottoNumbers.add(LottoNumber.from(2));
+        lottoNumbers.add(LottoNumber.from(3));
+        lottoNumbers.add(LottoNumber.from(4));
+        lottoNumbers.add(LottoNumber.from(5));
+        lottoNumbers.add(LottoNumber.from(6));
+
+        assertThatNoException().isThrownBy(() -> Lotto.from(lottoNumbers));
+    }
 }

@@ -1,8 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
 import lotto.exception.InputNumberException;
+
+import java.util.List;
 
 public class InputView {
     public static LottoMoney showMoney() {
@@ -26,5 +29,13 @@ public class InputView {
         if (num % 1000 != 0) {
             throw new InputNumberException();
         }
+    }
+
+    public static void viewNumber(LottoMoney lottoMoney) {
+        System.out.println();
+        for (List<Integer> number : lottoMoney.getNumbers()) {
+            System.out.println(number);
+        }
+        System.out.println();
     }
 }

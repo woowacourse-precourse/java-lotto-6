@@ -11,6 +11,6 @@
       * getRandomLotto() : 
         * Randoms.pickUniqueNumbersInRange()를 이용해 6개의 임의의 수를 리스트로 받음.
         * sort()를 이용하여 정렬 시켜준 뒤 리스트 반환.
+    * 로또 번호 출력 : InputView.viewNumber()
       * 이렇게 받은 리스트를 돌면서 한 줄의 당첨 번호들을 출력.
-    * 
 

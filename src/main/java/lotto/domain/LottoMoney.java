@@ -15,19 +15,18 @@ public class LottoMoney {
         this.count = count;
     }
 
+    public List<List<Integer>> getNumbers() {
+        return numbers;
+    }
+
     public int getInputMoney() {
         return inputMoney;
     }
 
     public void setNumbers() {
-        System.out.println();
         for (int i = 0; i < count; i++) {
             numbers.add(getRandomLotto());
         }
-        for (List<Integer> number : numbers) {
-            System.out.println(number);
-        }
-        System.out.println();
     }
 
     private List<Integer> getRandomLotto() {

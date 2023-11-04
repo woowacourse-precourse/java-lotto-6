@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -22,7 +23,7 @@ public class Application {
     }
 
     public static Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<String> originalNums = new ArrayList<>(Arrays.asList(Console.readLine().split(",")));
         return new Lotto(convertStringToInt(originalNums));
     }
@@ -52,7 +53,7 @@ public class Application {
     }
 
     public static void printLottos(List<Lotto> allLotto, int quantity) {
-        System.out.printf("%d개를 구매했습니다.\n", quantity);
+        System.out.printf("\n%d개를 구매했습니다.\n", quantity);
         for (Lotto lotto: allLotto){
             lotto.printNumbers();
         }
@@ -66,22 +67,47 @@ public class Application {
         return result;
     }
 
-    public static void printStatistic(List<Integer> result) {
-        System.out.println("당첨 통계\n---");
+    public static void printStatistic(List<Integer> result, int amount) {
+        System.out.println("\n당첨 통계\n---");
+        List<Integer> rankNumber = countRank(result);
+        System.out.printf("3개 일치 (5,000원) - %d개\n", rankNumber.get(4));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", rankNumber.get(3));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", rankNumber.get(2));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", rankNumber.get(1));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", rankNumber.get(0));
+        printRateOfReturn(rankNumber, amount);
+    }
 
+    public static List<Integer> countRank(List<Integer> result) {
+        List<Integer> rankNumber = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+            rankNumber.add(Collections.frequency(result, i));
+        }
+        return rankNumber;
+    }
+
+    public static void printRateOfReturn(List<Integer> rankNumber, int amount) {
+        List<Integer> allPrize = Statistic.getPrize();
+        int total = 0;
+        for (int i = 0; i < 5; i++) {
+            total += allPrize.get(i) * rankNumber.get(i);
+        }
+        double rateOfReturn = (double)total/(double)amount*100.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
 
     public static void main(String[] args) {
         int amount = inputLottoAmount();
-        Lotto winningLotto = inputWinningNumbers();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine());
 
         List<Lotto> allLotto = generateLottos(amount/price);
         printLottos(allLotto, amount/price);
 
+        Lotto winningLotto = inputWinningNumbers();
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonus = Integer.parseInt(Console.readLine());
+
         List<Integer> result = getResult(allLotto, winningLotto, bonus);
-        System.out.println(result);
+        printStatistic(result, amount);
     }
 }

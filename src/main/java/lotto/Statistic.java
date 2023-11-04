@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Statistic {
     FIRST(6, false, 1, 2000000000),
     SECOND(5, true, 2, 30000000),
@@ -19,13 +22,22 @@ public enum Statistic {
         this.prize = prize;
     }
 
-    public static int getRank(int matchingNum, boolean isBonus) {
+    public static int getRank(int numberOfMatch, boolean isBonus) {
         Statistic[] values = Statistic.values();
         for (Statistic value: values) {
-            if (matchingNum == value.matchingNumbers && isBonus == value.bonus){
+            if (numberOfMatch == value.matchingNumbers && isBonus == value.bonus){
                 return value.rank;
             }
         }
         return 0;
+    }
+
+    public static List<Integer> getPrize() {
+        List<Integer> allPrize = new ArrayList<>();
+        Statistic[] values = Statistic.values();
+        for (Statistic value: values) {
+             allPrize.add(value.prize);
+        }
+        return allPrize;
     }
 }

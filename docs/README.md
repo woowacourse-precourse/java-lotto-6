@@ -1,37 +1,41 @@
 # 🚀 기능 명세서
 
-- [ ] 로또 구입 금액 입력 - InputView#inputPurchaseAmount 
-  - [ ] "구입 금액을 입력해주세요."
+- [ ] 로또 구입 금액 입력 
+  - [ ] "구입 금액을 입력해주세요." - InputView#inputPurchasePrice()
     - 로또 1장의 가격 = 1000원
-  - [ ] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리
-- [ ] 로또 발행 - OutputView#outputIssuedLotto
-  - [ ] 입력받은 금액만큼 로또 발행
-    - [ ] "0개를 구매했습니다."
-    - [ ] "[0, 0, 0, 0, 0, 0]"
+  - [ ] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Price#validate()
+- [ ] 로또 발행 
+  - [ ] 입력받은 금액만큼 로또 발행 - Lotto#issueLotto()
+    - [ ] "0개를 구매했습니다." - OutputView#outputIssuedLotto()
+    - [ ] "[0, 0, 0, 0, 0, 0]" - OutputView#outputIssuedLotto()
     - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
     - 중복되지 않는 랜덤 6개 숫자
     - 오름차순 정렬
-- [ ] 당첨 번호 입력 - InputView#inputWinningNumber()
-  - [ ] "당첨 번호를 입력해 주세요."
-    - 1~45 사이의 중복되지 않는 로또 당첨 번호 6개 (쉼표로 구분)
-- [ ] 보너스 번호 입력 - InputView#inputBonusNumber()
-  - [ ] "보너스 번호를 입력해 주세요."
-    - 1~45 사이의 보너스 번호 1개
+- [ ] 당첨 번호 입력 
+  - [ ] "당첨 번호를 입력해 주세요." - InputView#inputWinningNumber()
+    - [ ] 1~45 사이의 중복되지 않는 로또 당첨 번호 6개 (쉼표로 구분) - Lotto#validate()
+- [ ] 보너스 번호 입력 
+  - [ ] "보너스 번호를 입력해 주세요." - InputView#inputBonusNumber()
+    - 1~45 사이의 보너스 번호 1개 - Bonus#validate()
+- [ ] 당첨 판단 - Lotto#determineWinnings()
+  - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
+    - 1등: 6개 번호 일치 / 2,000,000,000원
+    - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
+    - 3등: 5개 번호 일치 / 1,500,000원
+    - 4등: 4개 번호 일치 / 50,000원
+    - 5등: 3개 번호 일치 / 5,000원
+  - 당첨 번호와 같은 숫자가 있는지 판별 - Lotto#countSameNumber()
 - [ ] 당첨 내역 출력 - OutputView#outputWinningResult
   - [ ] "3개 일치 (5,000원) - 1개\
     4개 일치 (50,000원) - 0개\
     5개 일치 (1,500,000원) - 0개\
     5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\
     6개 일치 (2,000,000,000원) - 0개"
-    - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
-       - 1등: 6개 번호 일치 / 2,000,000,000원
-       - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-       - 3등: 5개 번호 일치 / 1,500,000원
-       - 4등: 4개 번호 일치 / 50,000원
-       - 5등: 3개 번호 일치 / 5,000원
-- [ ] 수익률 출력 OutputView#outputEarningRate()
-  - [ ] "총 수익률은 00.0%입니다."
-    - 소수점 둘째 자리에서 반올림
+- [ ] 수익률 계산 - Price#calculateEarningRate()
+  - 소수점 둘째 자리에서 반올림
+- [ ] 수익률 출력 - OutputView#outputEarningRate()
+  - [ ] "총 수익률은 00.0%입니다." 
+
 
 
 ## ⚠️구현 요구 사항

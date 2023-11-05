@@ -28,7 +28,7 @@ public class Lotto {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        return this.numbers == ((Lotto) o).numbers;
+        return this.numbers.equals(((Lotto) o).numbers);
     }
 
     @Override

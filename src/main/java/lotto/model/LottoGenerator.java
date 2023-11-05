@@ -1,8 +1,10 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.util.ErrorCode;
 
 public class LottoGenerator {
@@ -12,17 +14,15 @@ public class LottoGenerator {
     private static final int MAX = 45;
 
     public static Lotto generateRandomLotto() {
-        List<Integer> randomlyPicked = Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE);
-        Collections.sort(randomlyPicked);
-        return new Lotto(randomlyPicked);
+        List<Integer> randomlyPicked = pickUniqueNumbersInRange(MIN, MAX, SIZE);
+        return new Lotto(randomlyPicked.stream().sorted().collect(Collectors.toList()));
     }
 
     public static Lotto generateAnswerLotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+        return new Lotto(numbers.stream().sorted().collect(Collectors.toList()));
     }
 
 

@@ -38,4 +38,14 @@ class LottoTest {
         assertThat(result).isEqualTo(true);
         assertThat(result2).isEqualTo(false);
     }
+
+    @DisplayName("객체 일치 확인")
+    @Test
+    void sameObject() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto1).isEqualTo(lotto2);
+        assertThat(lotto1).hasSameHashCodeAs(lotto2);
+    }
 }

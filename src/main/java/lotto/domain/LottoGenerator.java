@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +12,9 @@ public class LottoGenerator {
     private static final int LOTTO_MAX_NUM = 45;
     private static final int LOTTO_LEN = 6;
 
-    public static List<Lotto> generateLottoList(int lottoCount) {
+    public static List<Lotto> generateLottoList(BigDecimal lottoCount) {
         List<Lotto> list = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
+        for (BigDecimal i = BigDecimal.ZERO; i.compareTo(lottoCount) < 0; i = i.add(BigDecimal.ONE)) {
             //랜덤 값 자동 생성 및 세팅
             list.add(new Lotto(getRandomNumList()));
         }

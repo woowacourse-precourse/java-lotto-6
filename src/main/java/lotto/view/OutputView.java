@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class OutputView {
     /**
      * 백분위 수익률 출력
      */
-    public static void printPrizePercentResult(double out) {
+    public static void printPrizePercentResult(BigDecimal out) {
         System.out.print("총 수익률은 " + out + "%" + "입니다.");
     }
 

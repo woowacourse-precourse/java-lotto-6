@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import lotto.validator.BonusNumberValidator;
@@ -15,7 +16,7 @@ public class InputView {
     private static final String WINNING_NUMBER_DELIMETER = ",";
 
     //가격 입력받아서 가격을 리턴하고 구매할 로또
-    public static int readLottoPrice() {
+    public static BigDecimal readLottoPrice() {
         System.out.println(READ_LOTTO_PRICE_MESSAGE);
         String input = Console.readLine();
 
@@ -26,7 +27,7 @@ public class InputView {
             return readLottoPrice();
         }
 
-        return Integer.parseInt(input);
+        return new BigDecimal(input);
     }
 
     public static List<Integer> readWinningNumber() {

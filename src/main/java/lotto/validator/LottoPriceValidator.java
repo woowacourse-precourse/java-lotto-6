@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import java.math.BigDecimal;
+
 public class LottoPriceValidator {
 
     private static final int LOTTO_ONE_PRICE = 1000;
@@ -16,7 +18,8 @@ public class LottoPriceValidator {
     }
 
     private static void validateLottoPriceNotDivided(String input) throws IllegalArgumentException {
-        if (Integer.parseInt(input) % LOTTO_ONE_PRICE != 0) {
+        BigDecimal num = new BigDecimal(input);
+        if (!num.remainder(BigDecimal.valueOf(LOTTO_ONE_PRICE)).equals(BigDecimal.ZERO)) {
             throw new IllegalArgumentException("[ERROR} 구매 금액은 1000원 단위로 작성되어야 합니다.");
         }
     }

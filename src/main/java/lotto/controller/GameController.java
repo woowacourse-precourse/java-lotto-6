@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.GameResultJudge;
@@ -14,7 +15,7 @@ import lotto.vo.WinLotto;
 public class GameController {
     private static final int LOTTO_PRICE = 1000;
 
-    private int buyPrice;
+    private BigDecimal buyPrice;
 
     //전체 게임 여기서 컨트롤
     public void start() {
@@ -28,7 +29,7 @@ public class GameController {
     private List<Lotto> buyLottos() {
         //1) 구매 금액 입력받기
         buyPrice = InputView.readLottoPrice();
-        int lottoCount = getLottoCount(buyPrice);
+        BigDecimal lottoCount = getLottoCount(buyPrice);
 
         //2) 구매 가능한 로또 개수만큼 로또 자동 발급 기능
         List<Lotto> lottos = LottoGenerator.generateLottoList(lottoCount);
@@ -38,8 +39,8 @@ public class GameController {
         return lottos;
     }
 
-    private int getLottoCount(int price) {
-        return price / LOTTO_PRICE;
+    private BigDecimal getLottoCount(BigDecimal price) {
+        return price.divide(BigDecimal.valueOf(LOTTO_PRICE));
     }
 
     // 번호 추첨 (당첨번호 입력)
@@ -63,7 +64,7 @@ public class GameController {
 
     // 수익률
     private void returnRate(Map<Rank, Integer> rankCountMap) {
-        double out = GameReturnRateCalculator.getReturnRate(rankCountMap, buyPrice);
+        BigDecimal out = GameReturnRateCalculator.getReturnRate(rankCountMap, buyPrice);
         OutputView.printPrizePercentResult(out);
     }
 

@@ -1,36 +1,39 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 public class GameReturnRateCalculator {
+    private static final int DECIMAL_SCALE_BASE = 1;
 
-    public static double getReturnRate(Map<Rank, Integer> rankIntegerMap, int inPrice) {
-        int totalReturn = getLottoTotalPrizePrice(rankIntegerMap);
-        return getPercentPrize(inPrice, totalReturn);
+    public static BigDecimal getReturnRate(Map<Rank, Integer> rankIntegerMap, BigDecimal buyPrice) {
+        BigDecimal totalReturn = getLottoTotalPrizePrice(rankIntegerMap);
+        return getPercentPrize(buyPrice, totalReturn);
     }
 
     /**
      * 수익률 계산 기능
      */
-    private static int getLottoTotalPrizePrice(Map<Rank, Integer> rankIntegerMap) {
-        int lottoPrizePrice = 0;
+    private static BigDecimal getLottoTotalPrizePrice(Map<Rank, Integer> rankIntegerMap) {
+        BigDecimal lottoPrizePrice = BigDecimal.ZERO;
 
         for (Rank rank : rankIntegerMap.keySet()) {
             if (rank == Rank.UNRANK) {
                 continue;
             }
 
-            lottoPrizePrice += rank.getPrize() * rankIntegerMap.get(rank);
+            BigDecimal count = BigDecimal.valueOf(rankIntegerMap.get(rank));
+            BigDecimal prizePrice = BigDecimal.valueOf(rank.getPrize());
+
+            lottoPrizePrice = lottoPrizePrice.add(prizePrice.multiply(count));
         }
         return lottoPrizePrice;
     }
 
-    private static double getPercentPrize(int inPrice, int outPrice) {
-        double inVal = inPrice + 0.0;
-        double outVal = outPrice + 0.0;
-
-        double result = outVal / inVal * 100;
-        result = Math.round(result * 100) / 100.0; //소수점 둘째 자리에서 반올림하고,
-        return result;
+    private static BigDecimal getPercentPrize(BigDecimal buyPrice, BigDecimal returnPrice) {
+        return returnPrice.divide(buyPrice)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(DECIMAL_SCALE_BASE, RoundingMode.HALF_UP);
     }
 }

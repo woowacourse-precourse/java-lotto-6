@@ -34,31 +34,6 @@ class InputViewTest {
         Console.close();
     }
 
-    @Test
-    @DisplayName("구매금액 입력 확인")
-    void 구매금액_입력_확인() {
-        provideInput("3000\n");
-        int purchaseAmount = inputView.getPurchaseAmount();
-        assertThat(purchaseAmount).isEqualTo(3000);
-    }
-
-    @Test
-    @DisplayName("구매금액이 1000원 단위 아닐 경우 예외 확인")
-    void 구매금액_단위_예외_확인() {
-        provideInput("3500\n");
-        assertThatThrownBy(() ->  inputView.getPurchaseAmount())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_HEAD_MESSAGE);
-    }
-
-    @Test
-    @DisplayName("구매금액이 음수일 경우 예외 확인")
-    void 구매금액_음수일_경우_예외_확인() {
-        provideInput("-3500\n");
-        assertThatThrownBy(() ->  inputView.getPurchaseAmount())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_HEAD_MESSAGE);
-    }
 
     @Test
     @DisplayName("당첨번호 입력 확인")

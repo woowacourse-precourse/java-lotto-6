@@ -5,6 +5,7 @@ import lotto.model.exception.InputViewException;
 import lotto.model.Lotto;
 import lotto.model.LottoProcess;
 import lotto.model.WinningLotto;
+import lotto.model.exception.LottoProcessException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -30,8 +31,12 @@ public class LottoController {
     private int getValidPurchaseAmount() {
         while (true) {
             try {
-                return inputView.getPurchaseAmount();
-            } catch (IllegalArgumentException e) {
+                String userPurchaseAmount = inputView.getPurchaseAmount();
+                LottoProcessException.checkLottoPriceTypeException(userPurchaseAmount);
+                int purchaseAmount = Integer.parseInt(userPurchaseAmount);
+                LottoProcessException.checkLottoPriceException(purchaseAmount);
+                return purchaseAmount;
+            } catch (LottoProcessException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -27,10 +27,18 @@ class LottoProcessTest {
         assertThat(lottoProcess.purchaseLotto(money).size()).isEqualTo(money / LOTTO_PRICE.getNumber());
     }
 
-    @DisplayName("구매 단위가 1000원이 아닌 경우 예외 확인")
+    @DisplayName("구매 단위가 1000원 단위가 아닌 경우 예외 확인")
     @Test
-    void 구매_단위_1000원_아닌_경우_예외_확인() {
+    void 구매_단위_1000원_단위_아닌_경우_예외_확인() {
         int money = 3500;
+        assertThatThrownBy(() -> lottoProcess.purchaseLotto(money))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("구매금액이 음수일 경우 예외 확인")
+    void 구매금액_음수일_경우_예외_확인() {
+        int money = -3000;
         assertThatThrownBy(() -> lottoProcess.purchaseLotto(money))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE);
     }

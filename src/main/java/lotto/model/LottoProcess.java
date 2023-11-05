@@ -11,8 +11,11 @@ import java.util.List;
 import lotto.model.exception.LottoProcessException;
 
 public class LottoProcess {
+    public LottoProcess() {
+    }
+
     public List<Lotto> purchaseLotto(int money) {
-        LottoProcessException.checkPurchaseMoney(money);
+        LottoProcessException.checkLottoPriceException(money);
         int numberOfLotto = money / LOTTO_PRICE.getNumber();
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {

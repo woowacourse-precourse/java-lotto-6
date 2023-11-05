@@ -3,7 +3,7 @@ package lotto.model;
 import lotto.record.LottoNumberRecord;
 
 public class Lotto {
-    private final LottoNumbers numbers; // TODO : NumbersList 일급 컬렉션 구현
+    private final LottoNumbers numbers;
 
     public Lotto(LottoNumbers numbers) {
         this.numbers = numbers;

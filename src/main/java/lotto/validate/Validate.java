@@ -3,14 +3,14 @@ package lotto.validate;
 import lotto.constants.ErrorMessage;
 
 public class Validate {
-    public void errorInputBuyPrice(String inputPrice) {
-        errorBlank(inputPrice);
+    public void buyPriceValidate(String inputPrice) {
+        inBlank(inputPrice);
         notNumber(inputPrice);
         underThousand(inputPrice);
         notThousandUnit(inputPrice);
     }
 
-    private void errorBlank(String inputString) {
+    private void inBlank(String inputString) {
         if (inputString.isBlank()) {
             System.out.println(ErrorMessage.ERROR_BLANK_MESSAGE.getMessage());
             throw new IllegalArgumentException();

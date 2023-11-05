@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Price;
+import lotto.domain.Buy;
 import lotto.view.View;
 
 public class LottoController {
@@ -10,6 +10,7 @@ public class LottoController {
 
     private void buyLotto() {
         View view = new View();
-        view.buyPrice();
+        Buy buy = new Buy(view.buyPrice());
+        view.buyTicketCount(buy.getBuy());
     }
 }

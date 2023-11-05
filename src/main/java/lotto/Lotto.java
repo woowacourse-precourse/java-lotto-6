@@ -60,4 +60,13 @@ public class Lotto {
     public int hashCode() {
         return Objects.hash(numbers);
     }
+
+    /**
+     * 로또 번호를 출력한다.
+     * ex) [1, 2, 3, 4, 5, 6]
+     */
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

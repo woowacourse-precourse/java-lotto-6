@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RateResultTest {
     private RateResult rateResult;
@@ -21,7 +20,7 @@ class RateResultTest {
         Integer totalWinMoney = 5000;
 
         // when
-        Double result = rateResult.calculate(useMoney, totalWinMoney);
+        Double result = rateResult.calculateRate(useMoney, totalWinMoney);
 
         // than
         assertThat(result).isEqualTo(62.5);

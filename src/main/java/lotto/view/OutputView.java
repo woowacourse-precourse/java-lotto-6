@@ -7,15 +7,20 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String NUMBER_OF_LOTTOS_MESSAGE_FORMAT = "%d개를 구매했습니다.";
     private static final String NEWLINE = System.lineSeparator();
+    private static final String NUMBER_OF_LOTTOS_MESSAGE_FORMAT = "%d개를 구매했습니다." + NEWLINE;
 
     public void printLottos(List<LottoDto> lottos) {
-        printNumberOfLottos(lottos.size());
+        newLine();
+        printLottoCount(lottos.size());
         printLottoNumbers(lottos);
     }
 
-    private void printNumberOfLottos(int size) {
+    private void newLine() {
+        System.out.println();
+    }
+
+    private void printLottoCount(int size) {
         System.out.printf(NUMBER_OF_LOTTOS_MESSAGE_FORMAT, size);
     }
 
@@ -31,6 +36,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics(LottoResultDto lottoResultDto) {
+        newLine();
         System.out.println("당첨 통계" + NEWLINE + "---");
 
         Map<String, Integer> result = lottoResultDto.getResult();

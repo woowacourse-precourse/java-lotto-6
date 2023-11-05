@@ -1,15 +1,18 @@
 package lotto.controller;
 
 import lotto.domain.LotteryMessageBuilder;
-import lotto.domain.lottery.Lotto;
-import lotto.domain.lottery.LottoNumberGenerator;
-import lotto.domain.lottery.Lottos;
+import lotto.domain.lottery.*;
 import lotto.view.OutputView;
 import lotto.view.InputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
 
 public class LotteryGameController {
+
+    private final static String SPLIT_SYMBOL = ",";
 
     private final InputView inputView = new InputView();
     private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
@@ -17,6 +20,8 @@ public class LotteryGameController {
     private final Lottos purchasedLotto = new Lottos();
 
     private int lottoAmount;
+    private WinningLotto winningLotto;
+    private BonusNumber bonusNumber;
 
     public void run() {
         OutputView.requestPurchaseAmountMessage();
@@ -26,11 +31,35 @@ public class LotteryGameController {
         OutputView.returnLottery(lottoAmount,
                 lotteryMessageBuilder.returnLottoList(purchasedLotto.getLottos()));
 
-        OutputView.requestWinningNumberMessage();
-
-        OutputView.requestBonusNumberMessage();
+        requestWinningNumber();
+        requestBonusNumber();
 
         OutputView.returnWinningStats();
+    }
+
+    private void requestBonusNumber() {
+        OutputView.requestBonusNumberMessage();
+        String input = inputView.returnInput();
+        bonusNumber = new BonusNumber(Integer.parseInt(input));
+    }
+
+    private void requestWinningNumber() {
+        OutputView.requestWinningNumberMessage();
+
+        winningLotto = new WinningLotto(inputWinningNumber());
+    }
+
+    private List<Integer> inputWinningNumber() {
+        OutputView.requestWinningNumberMessage();
+        String input = inputView.returnInput();
+        String[] numberStrings = input.split(SPLIT_SYMBOL);
+
+        List<Integer> numbers = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            numbers.add(Integer.parseInt(numberString));
+        }
+
+        return numbers;
     }
 
     private void purchaseLotto(int purchaseAmount) {

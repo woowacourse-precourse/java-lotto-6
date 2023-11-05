@@ -5,6 +5,7 @@ import lotto.exception.Validation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class WinningLotto {
 
@@ -25,15 +26,17 @@ public class WinningLotto {
         return bonusLottoNumber;
     }
 
-    public LottoResult compareWithWinningNumbers(List<Integer> lottoNumbers) {
+    public LottoResult compareWithWinningNumbers(List<LottoNumber> lottoNumbers) {
 
-        Set<Integer> lottoNumbersSet = new HashSet<>(lottoNumbers);
+        Set<Integer> lottoNumbersSet = lottoNumbers.stream()
+                .map(LottoNumber::getWinningNumber)
+                .collect(Collectors.toSet());
 
         long matchCount = lottoNumbers.stream()
-                .filter(lottoNumbersSet::contains)
+                .filter(lottoNumber -> lottoNumbersSet.contains(lottoNumber.getWinningNumber()))
                 .count();
 
-        boolean matchBonus = lottoNumbersSet.contains(bonusLottoNumber);
+        boolean matchBonus = lottoNumbersSet.contains(bonusLottoNumber.getWinningNumber());
 
         return LottoResult.findResult((int) matchCount, matchBonus);
     }

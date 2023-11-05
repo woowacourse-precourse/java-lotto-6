@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -38,5 +39,9 @@ public class Lotto {
             .ifPresent(number -> {
                 throw new IllegalArgumentException(NOT_CORRECT_NUMBER_RANGE_ERROR_MESSAGE);
             });
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

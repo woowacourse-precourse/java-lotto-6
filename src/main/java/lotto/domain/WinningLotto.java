@@ -49,4 +49,14 @@ public class WinningLotto {
 
 		return new Lotto(winningNumbers);
 	}
+
+	public int calculateMatchCount(Lotto lotto) {
+		return (int) lotto.getNumbers().stream()
+			.filter(winningNumbers.getNumbers()::contains)
+			.count();
+	}
+
+	public boolean isBonusMatch(Lotto lotto) {
+		return lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+	}
 }

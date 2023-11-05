@@ -30,6 +30,12 @@ public class Game {
 
         while (!isValidWinningNumber) {
             String winningNumbers = InputView.inputWinningNumber();
+            try {
+                lottoService.validateWinningNumber(winningNumbers);
+                isValidWinningNumber = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
         }
 
     }

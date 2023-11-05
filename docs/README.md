@@ -33,7 +33,7 @@
 
 
 - [x] **당첨 번호 숫자를 입력받는다.** - InputView
-    - [ ] 쉼표를 기준으로 번호를 구분한다. - CommaDelimiterParser
+    - [x] 쉼표를 기준으로 번호를 구분한다. - CommaDelimiterParser
     - [ ] 숫자가 6개가 아닌경우 예외를 발생시키고 다시 입력받는다.
     - [ ] 숫자가 아닌 문자가 포함되어 있을 경우 예외를 발생시키고 다시 입력받는다. - WinningNumber
     - [ ] 중복된 숫자가 포함된 경우 예외를 발생시키고 다시 입력받는다. - WinningNumber<br/>

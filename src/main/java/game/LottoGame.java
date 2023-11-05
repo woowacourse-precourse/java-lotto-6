@@ -10,6 +10,7 @@ import lottoResult.UserLottoNumbers;
 import lottoTicketPurchase.LottoTicketPurchase;
 import lottoTicketPurchase.LottoTicketQuantity;
 import lottoWinningNumber.BonusNumberInput;
+import lottoWinningNumber.Lotto;
 import lottoWinningNumber.WinningNumberInput;
 
 public class LottoGame {
@@ -48,6 +49,9 @@ public class LottoGame {
         String winningNumbers = winningNumberInput.receiveWinningNumbers();
         String[] winningNumberStringList = winningNumberInput.makeWinningNumberStringList(winningNumbers, converter);
         winningNumberInput.getWinningNumbers(winningNumberStringList, winningNumberList, converter);
+
+        // Lotto클래스 검증용으로 활용
+        Lotto lotto = new Lotto(winningNumberList);
 
         //BonusNumberInput
         System.out.println();

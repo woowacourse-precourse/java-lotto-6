@@ -1,4 +1,4 @@
-package lotto;
+package lottoWinningNumber;
 
 import static constant.ErrorMessage.INVALID_NUMBER_COUNT;
 

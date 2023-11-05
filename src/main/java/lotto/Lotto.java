@@ -1,20 +1,57 @@
 package lotto;
 
+import static lotto.exception.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.exception.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.exception.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.exception.LottoGameException;
 
 public class Lotto {
+    protected static final int NUMBER_START = 1;
+    protected static final int NUMBER_END = 45;
+    private static final int VALID_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumberRange(numbers);
+        validateNumberNotDuplicate(numbers);
+
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != VALID_NUMBER_COUNT) {
+            throw LottoGameException.of(INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 
-    // TODO: 추가 기능 구현
+
+    private void validateNumberRange(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if (number < NUMBER_START) {
+                throw LottoGameException.of(INVALID_LOTTO_NUMBER_RANGE);
+            }
+            if (number > NUMBER_END) {
+                throw LottoGameException.of(INVALID_LOTTO_NUMBER_RANGE);
+            }
+        });
+    }
+
+    private void validateNumberNotDuplicate(List<Integer> numbers) {
+        HashSet<Integer> numberSet = new HashSet<>(numbers);
+
+        if (numberSet.size() != VALID_NUMBER_COUNT) {
+            throw LottoGameException.of(DUPLICATE_LOTTO_NUMBER);
+        }
+    }
+
+    public String getNumberString() {
+        return numbers.stream()
+                .map(number -> Integer.toString(number))
+                .collect(Collectors.joining(","));
+    }
 }

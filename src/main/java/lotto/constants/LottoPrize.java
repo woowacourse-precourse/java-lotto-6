@@ -1,5 +1,8 @@
 package lotto.constants;
 
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 public enum LottoPrize {
 
     FIRST_PRIZE(6, 2000000000, false),
@@ -18,15 +21,17 @@ public enum LottoPrize {
         this.isBonusNumberMatch = isBonusNumberMatch;
     }
 
-    public Integer getMatchedNumberCount() {
-        return matchedNumberCount;
-    }
+    public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
+        if (hasBonusNumber && countMatchNumber == 5) {
+            return SECOND_PRIZE;
+        }
 
-    public Integer getPrizeMoney() {
-        return prizeMoney;
-    }
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (Objects.equals(countMatchNumber, lottoPrize.matchedNumberCount)) {
+                return lottoPrize;
+            }
+        }
 
-    public Boolean getBonusNumberMatch() {
-        return isBonusNumberMatch;
+        throw new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다.");
     }
 }

@@ -12,17 +12,12 @@ import lotto.exception.LottoGameException;
 
 
 public class InputView {
-    public static final String NUMBER_REGEX = "\\D+";
+    public static final String NUMBER_REGEX = "\\d+";
     public static final String LOTTO_NUMBER_STRING_REGEX = "((\\d)+,)*\\d+";
     public static final String LOTTO_NUMBER_DELIMITER = ",";
 
     public static int inputMoney() {
-        String inputString = readLine();
-
-        validateInputString(inputString);
-        validateInputStringIsNumber(inputString);
-
-        return Integer.parseInt(inputString);
+        return inputNumber();
     }
 
     public static List<Integer> inputWinningLottoNumber() {
@@ -34,6 +29,19 @@ public class InputView {
         return Arrays.stream(inputString.split(LOTTO_NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public static int inputBonusNumber() {
+        return inputNumber();
+    }
+
+    private static int inputNumber() {
+        String inputString = readLine();
+
+        validateInputString(inputString);
+        validateInputStringIsNumber(inputString);
+
+        return Integer.parseInt(inputString);
     }
 
     private static void validateInputString(String inputString) {
@@ -54,7 +62,7 @@ public class InputView {
     }
 
     private static void validateInputStringIsNumber(String inputString) {
-        if (inputString.matches(NUMBER_REGEX)) {
+        if (!inputString.matches(NUMBER_REGEX)) {
             throw LottoGameException.of(INPUT_STRING_NOT_NUMBER);
         }
     }

@@ -39,4 +39,8 @@ public class Payment {
         }
     }
 
+    public double calculateYield(final long totalReward) {
+        return Math.round((double) totalReward / amount * 1000) / 10.0;
+    }
+
 }

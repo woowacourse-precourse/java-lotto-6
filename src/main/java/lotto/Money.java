@@ -2,6 +2,9 @@ package lotto;
 
 
 public class Money {
+    private static final int LOTTO_MIN_MONEY = 1000;
+    private static final int ZERO_NUMBER = 0;
+
     private final int money;
 
     public Money(String inputMoney) {
@@ -31,4 +34,15 @@ public class Money {
         return amount;
     }
 
+    private void validateMoney(int amount) {
+        validatePositive(amount);
+    }
+
+    private void validatePositive(int amount) {
+        if (amount <= ZERO_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRemainder
 }

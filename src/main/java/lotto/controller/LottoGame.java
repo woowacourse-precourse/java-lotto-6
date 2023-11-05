@@ -41,9 +41,20 @@ public class LottoGame {
         winningLotto = new WinningLotto(lotto, bonus);
     }
 
+    private Long lottoPayment() {
+        return payment = Long.parseLong(amountValidation(InputUtil.inputStringWithTrim()));
+    }
+
+    private String amountValidation(String amount) {
+        Validation.checkIsNumber(amount);
+        Validation.checkIsNatural(Integer.parseInt(amount));
+        Validation.checkIsDivideByThousand(amount);
+        return amount;
+    }
+
     private void buyLotto() {
         InputView.inputPrise();
-        buyer = new Buyer(InputUtil.inputStringWithTrim());
+        buyer = new Buyer(lottoPayment());
         buyer.showLottos();
     }
 }

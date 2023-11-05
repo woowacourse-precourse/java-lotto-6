@@ -9,17 +9,15 @@ import lotto.view.OutputView;
 public class Buyer {
     private final List<Lotto> lottos;
 
-    public Buyer(String prise) {
-        validation(prise);
+    public Buyer(Long prise) {
         this.lottos = generateLottos(LottoUtils.getLottoAmout(prise));
         OutputView.buyAmount(lottos.size());
     }
 
-    private void validation(String prise) {
-        Validation.checkIsNumber(prise);
-        Validation.checkIsNatural(Integer.parseInt(prise));
-        Validation.checkIsDivideByThousand(prise);
+    public List<Lotto> getLottos() {
+        return lottos;
     }
+
 
     private List<Lotto> generateLottos(final long amout) {
         List<Lotto> autoGenerateLottos = new ArrayList<>();

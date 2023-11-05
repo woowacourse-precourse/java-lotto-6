@@ -50,7 +50,7 @@ public class WinningLotto {
         }
     }
 
-    private int compareLotto(List<Integer> lottoNumbers) {
+    public int compareLotto(List<Integer> lottoNumbers) {
         count = 0;
         winningLotto.stream().forEach(
                 winningNumber -> checkLotto(lottoNumbers, winningNumber));

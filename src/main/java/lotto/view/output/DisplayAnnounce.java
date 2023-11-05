@@ -34,18 +34,19 @@ public class DisplayAnnounce extends DisplayView {
     }
 
     private void buildCountsString(List<Integer> counts) {
+        String[][] stringsList = new String[][]{
+                {"3개 일치", "5,000", counts.get(4).toString()},
+                {"4개 일치", "50,000", counts.get(3).toString()},
+                {"5개 일치", "1,500,000", counts.get(2).toString()},
+                {"5개 일치, 보너스 볼 일치", "30,000,000", counts.get(1).toString()},
+                {"6개 일치", "2,000,000,000", counts.get(0).toString()}
+        };
+
         addToCache(Templates.RESULT_MESSAGE);
-        String fifthRankMessage = Templates.PRIZING_MESSAGE.format("3개 일치", "5,000", counts.get(4));
-        String fourthRankMessage = Templates.PRIZING_MESSAGE.format("4개 일치", "50,000", counts.get(3));
-        String thirdRankMessage = Templates.PRIZING_MESSAGE.format("5개 일치", "1,500,000", counts.get(2));
-        String secondRankMessage = Templates.PRIZING_MESSAGE.format("5개 일치, 보너스 볼 일치", "30,000,000",
-                counts.get(1));
-        String firstRankMessage = Templates.PRIZING_MESSAGE.format("6개 일치", "2,000,000,000", counts.get(0));
-        addToCache(fifthRankMessage);
-        addToCache(fourthRankMessage);
-        addToCache(thirdRankMessage);
-        addToCache(secondRankMessage);
-        addToCache(firstRankMessage);
+        for (String[] strings : stringsList) {
+            String message = Templates.PRIZING_MESSAGE.format(strings[0], strings[1], strings[2]);
+            addToCache(message);
+        }
     }
 
     private void buildProfitString(double profitRatio) {

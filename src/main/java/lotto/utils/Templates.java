@@ -6,7 +6,7 @@ public enum Templates {
     GET_BONUS_NUMBER_MESSAGE("\n보너스 번호를 입력해 주세요.\n"),
     BOUGHT_MESSAGE("\n%d개를 구매했습니다.\n"),
     RESULT_MESSAGE("\n당첨 통계\n---\n"),
-    PRIZING_MESSAGE("%s (%s원) - %d개\n"),
+    PRIZING_MESSAGE("%s (%s원) - %s개\n"),
     PROFIT_RATIO_MESSAGE("총 수익률은 %.1f%%입니다.\n"),
     BUY_ERROR_MESSAGE("[ERROR] 금액은 1000원 단위이며, 1장부터 구매할 수 있습니다.\n"),
     PRIZING_ERROR_MESSAGE("[ERROR] 1~45까지의 중복되지 않는 수 6개를 입력해 주세요.\n[ERROR] 각 숫자는 콤마(,)로 구분해 주세요. 공백은 허용하지 않습니다.\n"),

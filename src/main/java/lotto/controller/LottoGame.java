@@ -40,8 +40,8 @@ public class LottoGame implements Game {
         return new Lotto(InputView.winningLottoNumbersInput());
     }
 
-    private String getBonusWinningNumber() {
-        return InputView.winningLottoBonusNumberInput();
+    private LottoNumber getBonusWinningNumber() {
+        return new LottoNumber(InputView.winningLottoBonusNumberInput());
     }
 }
 

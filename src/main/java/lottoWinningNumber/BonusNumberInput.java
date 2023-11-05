@@ -1,6 +1,6 @@
 package lottoWinningNumber;
 
-import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
+import static constant.Message.BONUS_NUMBER_REQUEST_MESSAGE;
 
 import base.Converter;
 import camp.nextstep.edu.missionutils.Console;

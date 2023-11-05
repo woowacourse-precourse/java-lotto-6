@@ -1,8 +1,8 @@
-package lotteryProfit;
+package lottoProfit;
 
 import lottoResult.LottoResultDisplay;
 
-public class OutputResult {
+public class OutputProfitResult {
     public void outputProfitResult(ProfitCalculator calculator, LottoResultDisplay lottoResult, int purchaseAmount) {
         int totalReward = calculator.getTotalReward(lottoResult);
         double result = calculator.roundUpProfit(totalReward, purchaseAmount);

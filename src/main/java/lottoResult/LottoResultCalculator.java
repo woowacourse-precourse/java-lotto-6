@@ -1,8 +1,8 @@
 package lottoResult;
 
-import static constant.ConstantNumber.NUMBER_INITIALIZATION;
+import static constant.Number.NUMBER_INITIALIZATION;
 
-import constant.ConstantNumber;
+import constant.Number;
 import game.LottoRank;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class LottoResultCalculator {
             if (score == LottoRank.THIRD_RANK.getMatchCount()) {
                 fiveSuccess++;
             }
-            if (score == LottoRank.SECOND_RANK.getMatchCount() && bonusScore == ConstantNumber.BONUS_CRITERIA) {
+            if (score == LottoRank.SECOND_RANK.getMatchCount() && bonusScore == Number.BONUS_CRITERIA) {
                 fiveAndBonusSuccess++;
             }
             if (score == LottoRank.FIRST_RANK.getMatchCount()) {

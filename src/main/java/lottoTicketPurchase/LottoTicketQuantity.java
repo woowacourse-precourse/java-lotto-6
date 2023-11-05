@@ -1,7 +1,7 @@
 package lottoTicketPurchase;
 
-import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
-import static constant.ConstantNumber.PURCHASE_UNIT;
+import static constant.Message.PURCHASE_QUANTITY_PRINT_MESSAGE;
+import static constant.Number.PURCHASE_UNIT;
 
 public class LottoTicketQuantity {
     public int getPurchaseQuantity(int purchaseAmount) {

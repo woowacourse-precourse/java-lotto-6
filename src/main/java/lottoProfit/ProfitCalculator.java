@@ -1,6 +1,6 @@
-package lotteryProfit;
+package lottoProfit;
 
-import static constant.ConstantNumber.NUMBER_INITIALIZATION;
+import static constant.Number.NUMBER_INITIALIZATION;
 import static game.LottoRank.FIFTH_RANK;
 import static game.LottoRank.FIRST_RANK;
 import static game.LottoRank.FOURTH_RANK;

@@ -9,12 +9,24 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final StringBuilder stringBuilder = new StringBuilder();
 
+    private static final String PURCHASE_INPUT_GUIDE = "구입금액을 입력해 주세요.";
+    private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final int RESET_LENGTH = 0;
+    private static final String WINNING_NUMBER_INPUT_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_GUIDE = "\n" + "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS_INFO = "당첨 통계";
+    private static final String THREE_DASHES = "---";
+    private static final String EMPTY_MESSAGE = "";
+    private static final String BONUS_BALL_MATCH_MESSAGE = ", 보너스 볼 일치";
+    private static final String LOTTO_MATCH_FORMAT = "%d개 일치%s (%,d원) - %d개";
+    private static final String YIELD_FORMAT = "총 수익률은 %.1f%%입니다.";
+
     public static void displayPurchaseGuide() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_INPUT_GUIDE);
     }
 
     public static void displayLottoCount(final int lottoCount) {
-        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+        System.out.println("\n" + lottoCount + LOTTO_COUNT_MESSAGE);
     }
 
     public static void displayLottoNumbers(final List<Lotto> lottoList) {
@@ -22,22 +34,22 @@ public class OutputView {
                 .map(lotto -> lotto.getNumbers() + "\n")
                 .collect(Collectors.joining()));
         System.out.println(stringBuilder);
-        stringBuilder.setLength(0);
+        stringBuilder.setLength(RESET_LENGTH);
     }
 
     public static void displayWinningNumberGuide() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_INPUT_GUIDE);
     }
 
     public static void displayBonusNumberGuide() {
-        System.out.println("\n" + "보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_INPUT_GUIDE);
     }
 
     public static void displayWinningStatisticsGuide() {
         stringBuilder.append("\n")
-                .append("당첨 통계")
+                .append(WINNING_STATISTICS_INFO)
                 .append("\n")
-                .append("---")
+                .append(THREE_DASHES)
                 .append("\n");
     }
 
@@ -46,26 +58,25 @@ public class OutputView {
             if (lottoMatch == LottoMatch.NOTHING) {
                 continue;
             }
-            String MatchingBonusBall = "";
+            String bonusBallMessage = EMPTY_MESSAGE;
             if (lottoMatch == LottoMatch.FIVE_AND_BONUS) {
-                MatchingBonusBall = ", 보너스 볼 일치";
+                bonusBallMessage = BONUS_BALL_MATCH_MESSAGE;
             }
 
             long matchCount = lottoResultCount.stream()
                     .filter(match -> match == lottoMatch)
                     .count();
 
-            stringBuilder.append(String.format("%d개 일치%s (%,d원) - %d개",
+            stringBuilder.append(String.format(LOTTO_MATCH_FORMAT,
                     lottoMatch.getMatching(),
-                    MatchingBonusBall,
+                    bonusBallMessage,
                     lottoMatch.getAmount(),
                     matchCount)).append("\n");
         }
     }
 
     public static void displayYield(final double yield) {
-        stringBuilder.append(String.format("총 수익률은 %.1f%%입니다.", yield));
-        System.out.println(stringBuilder);
-        stringBuilder.setLength(0);
+        stringBuilder.append(String.format(YIELD_FORMAT, yield));
+        System.out.print(stringBuilder);
     }
 }

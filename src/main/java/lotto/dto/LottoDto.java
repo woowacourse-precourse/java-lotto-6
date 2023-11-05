@@ -1,5 +1,6 @@
 package lotto.dto;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 
@@ -7,7 +8,7 @@ public class LottoDto {
 
     private final List<Integer> numbers;
 
-    private LottoDto(List<Integer> numbers) {
+    private LottoDto(final List<Integer> numbers) {
         this.numbers = numbers;
     }
 
@@ -19,6 +20,7 @@ public class LottoDto {
 
     private static LottoDto from(final Lotto playerLotto) {
         List<Integer> playerNumbers = playerLotto.getNumbers();
+        Collections.unmodifiableList(playerNumbers);
         return new LottoDto(playerNumbers);
     }
 

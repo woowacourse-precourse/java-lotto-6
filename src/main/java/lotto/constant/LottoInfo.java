@@ -7,9 +7,9 @@ public enum LottoInfo {
     LOTTO_MAX_NUMBER(45),
     LOTTO_SIZE(6);
 
-    private Integer value;
+    private final Integer value;
 
-    LottoInfo(Integer value) {
+    LottoInfo(final Integer value) {
         this.value = value;
     }
 

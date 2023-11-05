@@ -36,7 +36,7 @@ public class LottoController {
 
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         LottoResult result = LottoResult.of(lottos, winningLotto);
-        result.getResult();
+        output.printResult(result);
     }
 
     private Money parseIntToMoney() {

@@ -17,15 +17,10 @@ public class Lotto {
         }
     }
 
-    //FIXME: REFACTORING POINT
-    public int countMatches(final Lotto otherLotto) {
-        int count = 0;
-        for (Integer number : numbers) {
-            if (otherLotto.numbers.contains(number)) {
-                count++;
-            }
-        }
-        return count;
+    public int countMatches(final Lotto winningLotto) {
+        return Math.toIntExact(this.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count());
     }
 
     public boolean contains(BonusNumber bonusNumber) {

@@ -16,7 +16,7 @@ public class WinningLotto {
     }
 
     public Prize rankPrize(final Lotto lotto) {
-        int matches = lotto.countMatches(lotto);
+        int matches = this.lotto.countMatches(lotto);
         boolean hasBonusNumber = lotto.contains(bonusNumber);
         return Prize.of(matches, hasBonusNumber);
     }

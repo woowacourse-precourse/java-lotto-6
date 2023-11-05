@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static common.ErrorCode.AMOUNT_INVALID_UNIT;
 import static common.ErrorCode.AMOUNT_LESS_THAN_MINIMUM;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -20,6 +21,18 @@ class AmountTest {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(AMOUNT_LESS_THAN_MINIMUM.getMessage());
+    }
+
+    @Test
+    void 로또_구입_금액_1000원_나누어_떨어지지_않는_예외() {
+        // given
+        int amount = 1001;
+
+        // when
+        // then
+        assertThatThrownBy(() -> new Amount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(AMOUNT_INVALID_UNIT.getMessage());
     }
 
     @Test

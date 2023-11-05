@@ -5,5 +5,9 @@ public interface InputValidator {
         return input.matches("\\d+");
     }
 
+    default boolean isBiggerThan(int number, int n) {
+        return number > n;
+    }
+
     boolean isDivisibleBy1000(int input);
 }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoIssuer;
@@ -23,8 +24,26 @@ public class LottoController {
         final int bonusNumber = getBonusNumber(winningNumber);
         lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
         Map<LottoResult, Integer> result = lottoGame.getResult();
-        OutputView.printGameResult(result);
+        OutputView.printGameResult(result, getYieldRate(result, lottos.size()));
+
         // TODO - 이후 기능 구현
+    }
+
+    private double getYieldRate(Map<LottoResult, Integer> result, int purchaseQuantity) {
+        int purchasePrice = purchaseQuantity * 1000;
+        int totalYield = getTotalYield(result);
+
+        return ((double) totalYield) / purchasePrice * 100;
+    }
+
+    private int getTotalYield(Map<LottoResult, Integer> result) {
+        int totalYield = 0;
+
+        Set<LottoResult> keys = result.keySet();
+        for (LottoResult lottoResult : keys) {
+            totalYield += lottoResult.yield(result.get(lottoResult));
+        }
+        return totalYield;
     }
 
     private int getBonusNumber(WinningNumber winningNumber) {

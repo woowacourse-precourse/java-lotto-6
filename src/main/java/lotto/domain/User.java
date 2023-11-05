@@ -25,4 +25,8 @@ public class User {
     public void setLottoResult(LottoResult lottoResult) {
         this.lottoResult = lottoResult;
     }
+
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
 }

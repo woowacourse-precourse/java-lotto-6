@@ -140,4 +140,18 @@ public class InputViewTest {
         assertEquals(false, info.isValidate());
         assertEquals(ExceptionCode.INVALID_INPUT_INTEGER.getMessage(), info.getExceptionMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "0", "46" })
+    void 보너스_번호가_1_부터_45_까지_폐구간_정수가_아닌_경우_예외처리(String testCase) {
+        // given
+        String userInput = testCase;
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+        // when
+        InputInfo info = inputView.inputBonusNumber();
+        // then
+        assertEquals(false, info.isValidate());
+        assertEquals(ExceptionCode.INVALID_INPUT_RANGE.getMessage(), info.getExceptionMessage());
+    }
 }

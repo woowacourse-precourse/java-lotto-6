@@ -43,4 +43,8 @@ public class Budget {
     public int getCountOfLottoLines(){
         return budget / LOTTO_UNIT_PRICE;
     }
+
+    public int getBudget() {
+        return budget;
+    }
 }

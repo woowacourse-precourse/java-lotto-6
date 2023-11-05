@@ -8,22 +8,22 @@ import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningResult;
 import lotto.domain.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private Budget budget;
 
     public void runMachine(){
         Lottos userLottos = buyLotto();
         WinningLotto winningLotto = drawLotto();
-        WinningResult winningResult = makeResult(userLottos, winningLotto);
+        WinningStatistics winningStatistics = makeStatistics(userLottos, winningLotto);
     }
 
     private Lottos buyLotto(){
-        Budget budget = Budget.from(InputView.getBudgetInput());
+        budget = Budget.from(InputView.getBudgetInput());
         Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
         OutputView.printUserLottos(userMultipleLottos, budget);
         return userMultipleLottos;
@@ -37,6 +37,6 @@ public class LottoController {
     }
 
     private WinningStatistics makeStatistics(Lottos userLottos, WinningLotto winningLotto){
-        return WinningStatistics.from(userLottos, winningLotto);
+        return WinningStatistics.from(userLottos, winningLotto, budget);
     }
 }

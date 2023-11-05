@@ -15,6 +15,7 @@ public class InputValidatorTest {
     private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해주세요.";
     private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자를 적으면 안 됩니다.";
+    private static final String NOT_BLANK_ERROR_MESSAGE = "당첨 번호를 입력해주세요.";
     private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해주세요.";
     private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해주세요.";
     private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해주세요.";
@@ -59,6 +60,14 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR+DIVISION_ERROR_MESSAGE);
+    }
+
+    @Test
+    void 당첨_번호_미입력_처리_테스트(){
+        String input = "";
+        assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR+NOT_BLANK_ERROR_MESSAGE);
     }
 
     @Test

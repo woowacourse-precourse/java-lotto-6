@@ -15,13 +15,17 @@ public class Money {
         return new Money(money);
     }
 
-    public static Money of(String money){
+    public static Money of(String money) {
         validateNumeric(money);
         return of(Integer.valueOf(money.trim()));
     }
 
+    public Integer calcBillCount() {
+        return money / MINIMUM_AMOUNT;
+    }
+
     private static void validateNumeric(String money) {
-        if(isNotNumeric(money.trim())){
+        if (isNotNumeric(money.trim())) {
             throw new IllegalArgumentException("숫자만 입력해주세요");
         }
     }

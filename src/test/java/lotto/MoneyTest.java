@@ -29,4 +29,13 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.of(money)).isInstanceOf(IllegalArgumentException.class);
     }
 
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 10000, 100000000, 2000})
+    @DisplayName("지폐의 개수를 반환한다")
+    public void returnBllCount(Integer input) {
+        Money money = Money.of(input);
+
+        assertThat(money.calcBillCount()).isEqualTo(input / 1000);
+    }
 }

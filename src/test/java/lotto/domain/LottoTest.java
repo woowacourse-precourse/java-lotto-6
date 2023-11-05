@@ -49,4 +49,16 @@ class LottoTest {
         assertThatCode(() -> new Lotto(List.copyOf(givenNumbers)))
                 .doesNotThrowAnyException();
     }
+    
+    @DisplayName("로또 번호에 중복된 숫자가 없으면 예외가 발생하지 않는다.")
+    @Test
+    void createLottoByNonDuplicatedNumber() {
+        // given
+        List<Integer> givenNumbers = List.of(1, 2, 3, 4, 5, 6);
+        // when
+
+        // then
+        assertThatCode(() -> new Lotto(List.copyOf(givenNumbers)))
+                .doesNotThrowAnyException();
+    }
 }

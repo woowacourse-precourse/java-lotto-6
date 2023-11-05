@@ -1,12 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.PurchaseAmountValidator;
 
 public class InputView {
 
-  public int inputMoney() {
+  public static int inputMoney() {
     OutputView.printInputMoneyMessage();
     String money = Console.readLine();
+    PurchaseAmountValidator.validateAllIntegers(money);
     return Integer.parseInt(money);
   }
 

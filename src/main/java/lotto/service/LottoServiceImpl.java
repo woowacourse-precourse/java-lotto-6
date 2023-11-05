@@ -1,28 +1,27 @@
 package lotto.service;
 
 import static java.util.Collections.nCopies;
-import static lotto.constant.LottoConstant.LOTTO_SIZE;
-import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MAX_SCORE;
-import static lotto.constant.LottoConstant.MIN_NUMBER;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import lotto.StringConverter;
+import lotto.constant.PrizeConstant;
 import lotto.domain.Cost;
 import lotto.domain.Lotto;
+import lotto.domain.MyLotto;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoServiceImpl implements LottoService{
-    private static final int START = 0;
     private final static int INIT = 0;
 
     @Override
     public List<List<Integer>> buyLotto() {
         int quantity = payMoney();
-        List<List<Integer>> myLottoNumbers = getMyLotto(quantity);
+
+        List<List<Integer>> myLottoNumbers = new MyLotto(quantity).getMyLottoNumbers();
 
         OutputView outputView = new OutputView();
         outputView.printLotto(quantity, myLottoNumbers);
@@ -31,54 +30,46 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public List<Integer> getResult(List<List<Integer>> myLottoNumbers, List<Integer> numbers, int bonusNumber) {
-        Lotto lotto = new Lotto(numbers);
+    public List<Integer> getResult(List<List<Integer>> myLottoNumbers, WinningLotto winningLotto) {
         List<Integer> statistics = new ArrayList<>(nCopies(MAX_SCORE.getValue() + 1, INIT));
 
         for (List<Integer> myLottoNumber : myLottoNumbers) {
-            int sameCount = lotto.getSameNumberCount(myLottoNumber);
-            int score = getScore(bonusNumber, myLottoNumber, sameCount);
+            int score = winningLotto.getScore(myLottoNumber);
             statistics.set(score, statistics.get(score) + 1);
         }
 
         return statistics;
     }
 
-    private int getScore(int bonusNumber, List<Integer> myLottoNumber, int sameCount) {
-        int score = sameCount;
+    @Override
+    public WinningLotto settingWinningLotto() {
+        StringConverter stringConverter = new StringConverter();
+        InputView inputView = new InputView();
 
-        if (hasBonusNumber(bonusNumber, myLottoNumber) && score == 5 || score == 6) {
-            score++;
-        }
+        List<Integer> winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
+        Lotto winningLottoNumbers = new Lotto(winningNumbers);
+        int bonusNumber = inputView.inputBonusNumber();
 
-        return score;
+        return new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
-    private Boolean hasBonusNumber(int bonusNumber, List<Integer> myLottoNumber) {
-        if (myLottoNumber.contains(bonusNumber)) {//보너스 볼 일치
-            return true;
+    @Override
+    public float getProfitability(List<Integer> result) {
+        int totalReward = 0;
+        for(int i = 0; i<result.size(); i++){
+            int reward = PrizeConstant.getRewardByScore(i);
+            int count = result.get(i);
+            totalReward += reward * count;
         }
 
-        return false;
+        return totalReward;
     }
-
 
     private int payMoney() {
         InputView inputView = new InputView();
         Cost cost = new Cost(inputView.inputBuyingCost());
 
         return cost.getQuantity();
-    }
-
-    private List<List<Integer>> getMyLotto(int quantity){
-        return IntStream.range(START, quantity)
-                .mapToObj(q -> generateLottoNumber())
-                .toList();
-    }
-
-    private List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(
-                MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
     }
 
 }

@@ -11,12 +11,12 @@ public class OutputView {
     private static final String PER = "개";
     private static final int START = 3;
 
-    public void printLotto(int quantity, List<List<Integer>> lottos) {
+    public void printLotto(int quantity, List<List<Integer>> myLottoNumbers) {
         StringBuilder sb = new StringBuilder();
-        sb.append(quantity + PURCHASE_MESSAGE);
+        sb.append(NEW_LINE + quantity + PURCHASE_MESSAGE + NEW_LINE);
 
-        for (List<Integer> lotto : lottos) {
-            sb.append(NEW_LINE).append(lotto);
+        for (List<Integer> myLottoNumber : myLottoNumbers) {
+            sb.append(myLottoNumber + NEW_LINE);
         }
 
         System.out.println(sb);
@@ -24,7 +24,7 @@ public class OutputView {
 
     public void printStatistics(List<Integer> statistics) {
         StringBuilder sb = new StringBuilder();
-        sb.append(STATISTIC_MESSAGE).append(NEW_LINE).append(SPLIT_LINE);
+        sb.append(NEW_LINE + STATISTIC_MESSAGE).append(NEW_LINE).append(SPLIT_LINE);
 
         for (int i = START; i < statistics.size(); i++) {
             String message = PrizeConstant.getMessageByScore(i);

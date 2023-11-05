@@ -11,9 +11,21 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void validateBonusNumber(int bonusNumber) {
         InvalidInput invalidInput = new InvalidInput();
         invalidInput.duplicateNumberException(numbers, bonusNumber);
+    }
+
+    public int getSameNumberCount(List<Integer> myLottoNumbers) {
+        long sameNumberCount = myLottoNumbers.stream()
+                .filter(numbers::contains)
+                .count();
+
+        return (int)sameNumberCount;
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,11 +36,4 @@ public class Lotto {
         invalidInput.outOfRangeException(numbers);
     }
 
-    public int getSameNumberCount(List<Integer> myLottoNumber) {
-        long sameNumberCount = myLottoNumber.stream()
-                .filter(numbers::contains)
-                .count();
-
-        return (int)sameNumberCount;
-    }
 }

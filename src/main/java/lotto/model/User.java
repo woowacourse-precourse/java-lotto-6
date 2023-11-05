@@ -1,15 +1,21 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.InputValidator;
 
 public class User {
 
-    private int bonus;
-    private Lotto userLotto;
+    private String bonus;
+    private UserLotto userLotto;
 
-    public User(List<Integer> numbers, int bonus) {
-        this.userLotto = new Lotto(numbers);
+    public User(List<Integer> numbers, String bonus) {
+        validate(numbers, bonus);
+        this.userLotto = new UserLotto(numbers);
         this.bonus = bonus;
+    }
+
+    private void validate(List<Integer> numbers, String bonus) {
+        InputValidator.checkBonusNumber(numbers, bonus);
     }
 
 }

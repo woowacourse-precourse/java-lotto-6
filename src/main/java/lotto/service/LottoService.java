@@ -50,11 +50,12 @@ public class LottoService {
                 }
             }
             if (new HashSet<>(winningNum).size() != 6) {
-                System.out.println("[ERROR] 로또 번호는 중복되지 않는 숫자 6개여야 합니다.");
+                System.out.println("[ERROR] 로또 번호는 중복 되지 않는 숫자 6개여야 합니다.");
             }
             if (winningNum.size() == 6) {
                 break;
             }
+            System.out.println("[ERROR] 로또 번호는 숫자 6개여야 합니다.");
         }
     }
 }

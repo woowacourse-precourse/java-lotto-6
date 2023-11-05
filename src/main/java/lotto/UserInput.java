@@ -8,6 +8,8 @@ public class UserInput {
     private boolean repeatPurchase = true;
     private boolean repeatWinningNumber = true;
 
+    private boolean repearBonusNumber = true;
+
     //구매 금액 입력
     public int getPurchaseAmount() {
         int purchaseAmount = Integer.parseInt(Console.readLine());
@@ -84,6 +86,18 @@ public class UserInput {
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         return bonusNumber;
+    }
+
+
+    //보너스 번호 중복 확인 => while문 입력값 다시 받기
+    public void overlapWithNumber(List<Integer> winningNumbers, int bonusNumber){
+
+        for(var winningNumber : winningNumbers){
+            if(winningNumber == bonusNumber){
+                throw new IllegalArgumentException("당첨 번호dhk 다른 숫자를 입력해주세요.");
+            }
+        }
+        repearBonusNumber = false;
     }
 
 

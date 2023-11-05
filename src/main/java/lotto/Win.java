@@ -12,10 +12,10 @@ public class Win {
     }
 
     public void setWinningLotto(String winningNumbers) {
-        this.winningLotto = new Lotto(toList(winningNumbers));
+        this.winningLotto = new Lotto(StringtoList(winningNumbers));
     }
 
-    private List<Integer> toList(String winningNumbers) {
+    private List<Integer> StringtoList(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed()

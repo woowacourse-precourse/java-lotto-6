@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.util.Parser;
-import lotto.validator.InputOnlyNumberValidator;
+import lotto.validator.OnlyNumberValidator;
 import lotto.validator.InputUnitValidator;
 
 public class Money {
@@ -15,8 +15,8 @@ public class Money {
     }
 
     private void validateOnlyNumber(String playerInput) {
-        InputOnlyNumberValidator inputOnlyNumberValidator = new InputOnlyNumberValidator();
-        inputOnlyNumberValidator.validate(playerInput);
+        OnlyNumberValidator onlyNumberValidator = new OnlyNumberValidator();
+        onlyNumberValidator.validate(playerInput);
     }
 
     private void validateNumberUnit(int inputMoney) {

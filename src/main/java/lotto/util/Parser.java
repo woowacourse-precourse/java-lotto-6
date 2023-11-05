@@ -6,12 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-    private List<String> inputToStringList(String playerInput) {
+    public List<String> inputToStringList(String playerInput) {
         return Arrays.stream(playerInput.split(CharacterSetting.INPUT_DELIMITER.getCharacter())).toList();
     }
 
-    public List<Integer> stringListToNumberList(String playerInput) {
-        return inputToStringList(playerInput).stream()
+    public List<Integer> stringListToNumberList(List<String> inputValues) {
+        return inputValues.stream()
                 .mapToInt(Integer::parseInt)
                 .boxed().toList();
     }

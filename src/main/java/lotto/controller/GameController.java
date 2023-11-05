@@ -56,10 +56,17 @@ public class GameController {
         return inputView.getBonusNumberInput();
     }
 
-    public void setWinningNumber() {
-        String inputNumbers = getWinningNumbersInput();
-        winningNumberController.setInputToWinningNumbers(winningNumbers, inputNumbers);
+    public void setWinningNumbers() {
+        try {
+            String inputNumbers = getWinningNumbersInput();
+            winningNumberController.setInputToWinningNumbers(winningNumbers, inputNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            setWinningNumbers();
+        }
+    }
 
+    public void setBonusNumber() {
         String inputNumber = getBonusNumberInput();
         winningNumberController.setInputToBonusNumber(bonusNumber, inputNumber);
     }
@@ -79,7 +86,8 @@ public class GameController {
         getMoney();
         Lottos lottos = purchaseLottos();
 
-        setWinningNumber();
+        setWinningNumbers();
+        setBonusNumber();
 
         lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
         getWinningStatistics(lottos);

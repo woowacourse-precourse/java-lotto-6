@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InputView {
 
-    public Integer inputInteger() {
+    public int inputInteger() {
         return Integer.parseInt(Console.readLine());
     }
 

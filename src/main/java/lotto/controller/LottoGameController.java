@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.model.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +21,8 @@ public class LottoGameController {
         outputView.printRequestAmount();
         LottoGame lottoGame = new LottoGame(inputView.inputInteger());
         outputView.printIssuanceLotto(lottoGame.getUser().getIssuanceLotto());
-
+        outputView.printRequestWinNumbers();
+        WinLotto winLotto = new WinLotto(new Lotto(inputView.inputWinNumbers()), inputView.inputInteger());
+        outputView.printRequestAmount();
     }
 }

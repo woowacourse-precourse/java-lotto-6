@@ -5,9 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 로또 번호를 생성하는 클래스
- */
+
 public class BundleGenerator {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;

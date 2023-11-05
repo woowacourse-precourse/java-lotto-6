@@ -1,16 +1,15 @@
 package lotto.util.validators;
 
+import static lotto.util.Constants.THOUSAND;
+import static lotto.util.Constants.ZERO;
+
 import lotto.util.exception.input.NumbersCannotEmpty;
 import lotto.util.exception.operation.AmountDivisionException;
 import lotto.util.exception.operation.AmountLessThanZeroException;
 import lotto.util.exception.operation.AmountParseException;
 
-/**
- * 로또 구매 금액 입력을 검증하는 검사기
- */
+
 public class PurchaseValidator {
-    private final static int THOUSAND = 1000;
-    private final static int ZERO = 0;
 
     public static void validatePurchase(String amount) {
         validateEmpty(amount);

@@ -1,11 +1,12 @@
 package lotto.util.validators;
 
+import static lotto.util.Constants.LOTTO_LENGTH;
+import static lotto.util.Constants.ZERO;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.model.WinningNumbers;
 import lotto.util.Parser;
-import lotto.util.exception.input.BonusNumberNotUniqueException;
 import lotto.util.exception.input.DuplicationNumberException;
 import lotto.util.exception.input.NumberGreaterException;
 import lotto.util.exception.input.NumbersCannotEmpty;
@@ -13,12 +14,9 @@ import lotto.util.exception.input.NumbersCannotNegative;
 import lotto.util.exception.input.NumbersCannotNull;
 import lotto.util.exception.input.WinningNumbersLengthNotMatchException;
 
-/**
- * 당첨 번호 입력을 검증하는 검사기
- */
+
 public class WinningNumbersValidator {
-    private static final int MAX_WINNING_NUMBERS = 6;
-    private static final int ZERO = 0;
+    private static final int MAX_NUMBER = 45;
 
     public static void validateWinningNumbers(String winningNumbers) {
         validateNull(winningNumbers);
@@ -33,7 +31,7 @@ public class WinningNumbersValidator {
     private static void validateMaxNumber(final List<String> parseWinningNumbers) {
         if (parseWinningNumbers.stream()
                 .map(Integer::valueOf)
-                .anyMatch(num -> num > 45)) {
+                .anyMatch(num -> num > MAX_NUMBER)) {
             throw new NumberGreaterException();
         }
     }
@@ -43,7 +41,7 @@ public class WinningNumbersValidator {
     }
 
     private static void lengthCheck(List<String> parseWinningNumbers) {
-        if (parseWinningNumbers.size() != MAX_WINNING_NUMBERS) {
+        if (parseWinningNumbers.size() != LOTTO_LENGTH) {
             throw new WinningNumbersLengthNotMatchException();
         }
     }

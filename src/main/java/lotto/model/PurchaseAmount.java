@@ -1,10 +1,10 @@
 package lotto.model;
 
+import static lotto.util.Constants.THOUSAND;
 import static lotto.util.validators.PurchaseValidator.validatePurchase;
 
 
 public class PurchaseAmount {
-    private static final Integer THOUSAND = 1000;
     private final Integer amount;
 
     public PurchaseAmount(String amount) {

@@ -1,5 +1,7 @@
 package lotto.util.validators;
 
+import static lotto.util.Constants.ZERO;
+
 import lotto.model.WinningNumbers;
 import lotto.util.exception.input.BonusNumberNotUniqueException;
 import lotto.util.exception.input.NumberGreaterException;
@@ -8,8 +10,6 @@ import lotto.util.exception.input.NumbersCannotNegative;
 import lotto.util.exception.input.NumbersCannotNull;
 
 public class BonusNumberValidator {
-    private static final int ZERO = 0;
-
     public static void validateBonusNumber(String bonusNumbers, WinningNumbers winningNumbers) {
         validateNotNullAndNotEmpty(bonusNumbers);
         validateBonusNumberContains(bonusNumbers, winningNumbers);

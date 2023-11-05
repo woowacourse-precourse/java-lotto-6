@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.util.Constants.LINE;
+
 import lotto.model.PurchaseAmount;
 
 public class OutputView {
@@ -9,7 +11,6 @@ public class OutputView {
     private static final String PURCHASE = "%d개를 구매했습니다.";
     private static final String COUNT = "개";
     private static final String HYPHEN = " - ";
-    private static final char LINE = '\n';
 
     public static void getPurchase(final PurchaseAmount amount) {
         System.out.println(LINE + formatPurchase(amount));

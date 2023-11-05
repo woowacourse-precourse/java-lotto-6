@@ -4,9 +4,7 @@ import static lotto.util.enums.LottoResult.*;
 
 import java.util.Optional;
 
-/**
- * 로또 번호와 당첨 번호를 비교하는 클래스
- */
+
 public class ResultComparator {
     private static final int MATCH_5 = 5;
 

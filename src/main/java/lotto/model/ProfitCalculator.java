@@ -1,8 +1,6 @@
 package lotto.model;
 
-/**
- * 수익률을 계산하는 클래스
- */
+
 public class ProfitCalculator {
     private static final double ROUNDING_SCALE = 10.0;
     private static final int THOUSAND = 1000;

@@ -1,5 +1,7 @@
 package lotto.util.validators;
 
+import static lotto.util.Constants.LOTTO_LENGTH;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,8 +9,6 @@ import lotto.util.exception.input.DuplicationNumberException;
 import lotto.util.exception.input.LengthGreaterThanSixException;
 
 public class LottoValidator {
-    private static final int LOTTO_LENGTH = 6;
-
     public static void validateLotto(List<Integer> numbers) {
         lengthGreaterThanSix(numbers);
         NumberDuplicates(numbers);

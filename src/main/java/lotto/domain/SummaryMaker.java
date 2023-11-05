@@ -11,7 +11,7 @@ public class SummaryMaker {
 
 	private Map<String, Integer> summary;
 
-	public Map<String, Integer> summarizeHit(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
+	public void summarizeHit(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
 
 		make();
 
@@ -20,7 +20,6 @@ public class SummaryMaker {
 			summary.computeIfPresent(hitResult, (String k, Integer v) -> ++v);
 		}
 
-		return summary;
 	}
 
 	private void make() {
@@ -35,4 +34,19 @@ public class SummaryMaker {
 
 	}
 
+	public double calculateYield(int purchaseAmount) {
+
+		long winPirze = 0;
+
+		for (Prize prize : Prize.values()) {
+			int count = summary.get(prize.getHitResult());
+			winPirze += prize.getMoney() * count;
+		}
+
+		return winPirze / (double)purchaseAmount;
+	}
+
+	public Map<String, Integer> getSummary() {
+		return this.summary;
+	}
 }

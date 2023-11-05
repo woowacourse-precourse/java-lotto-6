@@ -2,12 +2,13 @@ package lotto.domain;
 
 import static java.util.Arrays.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,26 +17,22 @@ import lotto.Prize;
 
 public class SummaryMakerTest {
 
-	private static List<Lotto> lottos;
-	private static List<Integer> winningNumber;
-	private static int bonusNumber;
-
-	SummaryMaker summaryMaker = new SummaryMaker();
+	SummaryMaker summaryMaker;
+	private List<Lotto> lottos;
+	private List<Integer> winningNumber;
+	private int bonusNumber;
 
 	//given
-	@BeforeAll
-	static void setUp() {
-		lottos = asList(
-			new Lotto(asList(43, 44, 45, 3, 2, 1)),
-			new Lotto(asList(43, 44, 45, 3, 2, 1)),
-			new Lotto(asList(7, 5, 4, 3, 2, 1)),
-			new Lotto(asList(6, 5, 4, 3, 2, 1)),
-			new Lotto(asList(45, 44, 43, 42, 41, 40)),
-			new Lotto(asList(1, 2, 3, 4, 5, 45))
-		);
+	@BeforeEach
+	void setUp() {
+		lottos = asList(new Lotto(asList(43, 44, 45, 3, 2, 1)), new Lotto(asList(43, 44, 45, 3, 2, 1)),
+			new Lotto(asList(7, 5, 4, 3, 2, 1)), new Lotto(asList(6, 5, 4, 3, 2, 1)),
+			new Lotto(asList(45, 44, 43, 42, 41, 40)), new Lotto(asList(1, 2, 3, 4, 5, 45)));
 
 		winningNumber = asList(1, 2, 3, 4, 5, 6);
 		bonusNumber = 7;
+
+		summaryMaker = new SummaryMaker();
 
 	}
 
@@ -44,7 +41,8 @@ public class SummaryMakerTest {
 	void summarizeHitTest() {
 
 		//when
-		Map<String, Integer> actualResult = summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
+		summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
+		Map<String, Integer> actualResult = summaryMaker.getSummary();
 
 		//then
 		Map<String, Integer> expectedResult = new HashMap<>();
@@ -54,11 +52,27 @@ public class SummaryMakerTest {
 		expectedResult.put(Prize.SECOND.getHitResult(), 1);
 		expectedResult.put(Prize.FIRST.getHitResult(), 1);
 
-		assertThat(actualResult)
-			.containsEntry(Prize.FIFTH.getHitResult(), 2)
+		assertThat(actualResult).containsEntry(Prize.FIFTH.getHitResult(), 2)
 			.containsAllEntriesOf(expectedResult)
 			.containsExactlyEntriesOf(expectedResult);
 
 	}
 
+	@DisplayName("수익률 계산 기능 확인")
+	@Test
+	void calculateYieldTest() {
+		//given
+		summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
+		int purchaseAmount = 6000;
+
+		//when
+		double actualYield = summaryMaker.calculateYield(purchaseAmount);
+
+		//then
+		double expectedYield =
+			(Prize.FIFTH.getMoney() * 2 + Prize.THIRD.getMoney() + Prize.SECOND.getMoney() + Prize.FIRST.getMoney())
+				/ (double)purchaseAmount;
+
+		assertEquals(expectedYield, actualYield);
+	}
 }

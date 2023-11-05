@@ -21,6 +21,10 @@ public enum LottoRank {
         this.winningMoney = winningMoney;
     }
 
+    public int getWinningMoney() {
+        return winningMoney;
+    }
+
     public static Optional<LottoRank> calculateRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.isMatch(rank, matchCount, matchBonus))

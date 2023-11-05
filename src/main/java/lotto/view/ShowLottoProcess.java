@@ -16,4 +16,8 @@ public class ShowLottoProcess {
         System.out.println();
     }
 
+    public void printNumberBuyLotto() {
+        System.out.println(process.tellNumberLotto());
+    }
+
 }

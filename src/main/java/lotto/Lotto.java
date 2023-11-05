@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final String PRINT_MATCHING_THREE = "3개 일치 (5,000원) - ";
+    private static final String PRINT_MATCHING_FOUR = "4개 일치 (50,000원) - ";
+    private static final String PRINT_MATCHING_FIVE = "5개 일치 (1,500,000원) - ";
+    private static final String PRINT_MATCHING_FIVEBONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    private static final String PRINT_MATCHING_SIX = "6개 일치 (2,000,000,000원) - ";
     private final List<Integer> numbers;
     public List<Integer> matchingNumbers;
     public List<String> matchingComment;
@@ -28,11 +33,11 @@ public class Lotto {
     }
     public void insertComment(){
         matchingComment=new ArrayList<>();
-        matchingComment.add("3개 일치 (5,000원) - ");
-        matchingComment.add("4개 일치 (50,000원) - ");
-        matchingComment.add("5개 일치 (1,500,000원) - ");
-        matchingComment.add("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        matchingComment.add("6개 일치 (2,000,000,000원) - ");
+        matchingComment.add(PRINT_MATCHING_THREE);
+        matchingComment.add(PRINT_MATCHING_FOUR);
+        matchingComment.add(PRINT_MATCHING_FIVE);
+        matchingComment.add(PRINT_MATCHING_FIVEBONUS);
+        matchingComment.add(PRINT_MATCHING_SIX);
     }
 
     private void validate(List<Integer> numbers) {

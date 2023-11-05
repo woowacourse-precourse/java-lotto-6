@@ -1,6 +1,8 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import validation.LottoValidation;
 import view.InputView;
 import view.OutputMessage;
@@ -16,7 +18,7 @@ public class UserController {
             try {
                 inputView.showInputPriceToUser();
                 purchasePrice = Console.readLine();
-                if (isInteger(purchasePrice)) {
+                if (lottoValidation.isPriceInteger(purchasePrice)) {
                     validationInputPrice(purchasePrice);
                 }
                 isValidInput = true;
@@ -37,12 +39,39 @@ public class UserController {
         }
     }
 
-    private boolean isInteger(String inputPrice) {
-        try {
-            Integer.parseInt(inputPrice);
-            return true;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR]" + OutputMessage.OUTPUT_ERROR_PRICE_NUMBER.getMessage());
+
+
+    public List<Integer> generateUserLottoNumber() {
+        boolean isValidInput = false;
+        List<Integer> winningLottoNumbers = new ArrayList<>();
+        while (!isValidInput) {
+            try{
+                inputView.showInputLottoNumberToUser();
+                String[] lottoNumbersByUser = Console.readLine().split(",");
+                lottoValidation.lottoNumberCount(lottoNumbersByUser);
+                for (String lottoNumber : lottoNumbersByUser) {
+                    int validLottoNumber = 0;
+                    if (lottoValidation.isLottoNubmerInteger(lottoNumber)) {
+                        validLottoNumber = Integer.parseInt(lottoNumber);
+                        validationLottoNumberInputByUser(validLottoNumber);
+                    }
+                    winningLottoNumbers.add(validLottoNumber);
+                }
+                lottoValidation.lottoNumberOverlap(winningLottoNumbers);
+                isValidInput = true;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+        return winningLottoNumbers;
+    }
+
+    private void validationLottoNumberInputByUser(int lottoNumber) {
+        if (!lottoValidation.validateLottoNumber(lottoNumber)) {
+            throw new IllegalArgumentException("[ERROR]" + OutputMessage.OUTPUT_ERROR_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
+
+
 }

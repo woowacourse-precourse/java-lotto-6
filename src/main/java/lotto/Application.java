@@ -21,5 +21,7 @@ public class Application {
         int lottoMount = lottoController.calculatelottoMount(purchasePrice);
         List<Lotto> generatedLottos = lottoController.generateLottos(lottoMount);
         OutputView.showGeneratedLotto(lottoMount, generatedLottos);
+
+        List<Integer> whatIsUserLottoNumbers = userController.generateUserLottoNumber();
     }
 }

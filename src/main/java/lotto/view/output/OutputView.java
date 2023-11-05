@@ -1,5 +1,7 @@
 package lotto.view.output;
 
+import lotto.domain.Game;
+
 import java.util.List;
 
 public interface OutputView {
@@ -9,4 +11,6 @@ public interface OutputView {
     void printLotto(List<Integer> lotto);
     void printWinnerNumberMessage();
     void printBonusNumberMessage();
+    void printGameResult(Game game);
+    void printGameInterestRate(double interestRate);
 }

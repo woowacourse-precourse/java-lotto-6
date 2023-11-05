@@ -32,7 +32,7 @@ public class Computer {
 
         setWinningStats(winningStats);
         for (Lotto lotto : purchasedLotto.getLottos()) {
-            int matchedNumbers = countMatchedNumbers(lotto, winningLotto, bonusNumber);
+            int matchedNumbers = countMatchedNumbers(lotto, winningLotto);
             updateWinningStats(winningStats, matchedNumbers, lotto, bonusNumber);
         }
     }
@@ -49,7 +49,7 @@ public class Computer {
     }
 
 
-    private int countMatchedNumbers(Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
+    private int countMatchedNumbers(Lotto lotto, WinningLotto winningLotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 

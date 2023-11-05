@@ -124,6 +124,8 @@
 
 ### 출력 명세
 
+- [x] OutputView : 인터페이스
+    - [x] Model(Map<String,Object>)를 가지고, view를 구현한다.
 - [x] LottoBuyOutputView : 로또 구매에 대한 출력
     - [x] `구입금액을 입력해 주세요.`를 출력한다.
     - [x] 총 구입한 로또에 대해 출력한다.

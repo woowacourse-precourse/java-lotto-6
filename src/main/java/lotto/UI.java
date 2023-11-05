@@ -63,19 +63,25 @@ public class UI {
 
     private static Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Map<Grade, Integer> winningFrequency = new HashMap<>();
+        initializeWinningFrequency(winningFrequency);
 
+        for (Lotto lotto : lottos) {
+            Grade grade = Calculator.checkWinning(lotto, lottoDrawResult);
+            if (grade == Grade.NONE) {
+                continue;
+            }
+            Integer frequency = winningFrequency.get(grade);
+            winningFrequency.put(grade, frequency + 1);
+        }
+        return winningFrequency;
+    }
+
+    private static void initializeWinningFrequency(Map<Grade, Integer> winningFrequency) {
         winningFrequency.put(Grade.FIRST, 0);
         winningFrequency.put(Grade.SECOND, 0);
         winningFrequency.put(Grade.THIRD, 0);
         winningFrequency.put(Grade.FOURTH, 0);
         winningFrequency.put(Grade.FIFTH, 0);
-
-        for (Lotto lotto : lottos) {
-            Grade grade = Calculator.checkWinning(lotto, lottoDrawResult);
-            Integer frequency = winningFrequency.get(grade);
-            winningFrequency.put(grade, frequency + 1);
-        }
-        return winningFrequency;
     }
 
     private static void printWinningFrequency(Map<Grade, Integer> winningFrequency) {

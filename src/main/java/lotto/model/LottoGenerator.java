@@ -4,7 +4,6 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.util.ErrorCode;
 
 public class LottoGenerator {
@@ -15,14 +14,14 @@ public class LottoGenerator {
 
     public static Lotto generateRandomLotto() {
         List<Integer> randomlyPicked = pickUniqueNumbersInRange(MIN, MAX, SIZE);
-        return new Lotto(randomlyPicked.stream().sorted().collect(Collectors.toList()));
+        return new Lotto(randomlyPicked.stream().sorted().toList());
     }
 
     public static Lotto generateAnswerLotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        return new Lotto(numbers.stream().sorted().collect(Collectors.toList()));
+        return new Lotto(numbers.stream().sorted().toList());
     }
 
 

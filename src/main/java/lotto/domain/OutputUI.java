@@ -9,7 +9,7 @@ public class OutputUI {
 
     private Rewards rewards;
 
-    public void rate(double winningRate) {
+    public void rate(String winningRate) {
         System.out.println("총 수익률은 " + winningRate + "%입니다.");
     }
 

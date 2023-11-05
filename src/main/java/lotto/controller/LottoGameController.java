@@ -35,8 +35,14 @@ public class LottoGameController {
     }
 
     private BonusNumber initBonusNumber() {
-        String bonusNumberInput = requestBonusNumber();
-        return new BonusNumber(bonusNumberInput);
+        while (true) {
+            try {
+                String bonusNumberInput = requestBonusNumber();
+                return new BonusNumber(bonusNumberInput);
+            } catch (IllegalArgumentException exception) {
+                outputView.output(exception.getMessage());
+            }
+        }
     }
 
     private String requestBonusNumber() {

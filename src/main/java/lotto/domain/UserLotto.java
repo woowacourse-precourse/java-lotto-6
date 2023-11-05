@@ -7,27 +7,28 @@ import java.util.List;
 
 public class UserLotto {
 
-    private static final String PURCHASE_PRICE_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
+    private static final String PURCHASE_PRICE_ERROR_MESSAGE = "[ERROR] 구입 금액은 " + LottoInfo.LOTTO_PRICE+ "원 단위로 입력해야 합니다.";
     private final List<Lotto> lottos = new ArrayList<>();
     private final int purchasePrice;
     private final int lottoCount;
+    private final NumberGenerator numberGenerator = NumberGenerator.getInstance();
 
     public UserLotto(int purchasePrice) {
         validate(purchasePrice);
         this.purchasePrice = purchasePrice;
-        this.lottoCount = purchasePrice / 1000;
+        this.lottoCount = purchasePrice / LottoInfo.LOTTO_PRICE;
         generateLottos(lottoCount);
     }
 
     private void validate(int purchasePrice) {
-        if (purchasePrice % 1000 != 0) {
+        if (purchasePrice % LottoInfo.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(PURCHASE_PRICE_ERROR_MESSAGE);
         }
     }
 
     private void generateLottos(int lottoCount) {
         while (lottos.size() < lottoCount) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottos.add(new Lotto(numberGenerator.generateRandomNumbers()));
         }
     }
 

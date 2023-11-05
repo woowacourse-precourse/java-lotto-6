@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AnswerLotto {
 
-    private static final String ANSWER_LOTTO_LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개이어야 합니다.";
+    private static final String ANSWER_LOTTO_LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 " + LottoInfo.COUNT + "개이어야 합니다.";
     private static final String ANSWER_LOTTO_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 보너스 볼은 로또 번호와 중복될 수 없습니다.";
     private final Lotto lotto;
@@ -18,7 +18,7 @@ public class AnswerLotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoInfo.COUNT) {
             throw new IllegalArgumentException(ANSWER_LOTTO_LENGTH_ERROR_MESSAGE);
         }
     }

@@ -122,6 +122,7 @@ public class Play {
 
                 isCount(arrayString);
                 isValidLotto(num);
+                isDuplicateLotto(num);
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -156,6 +157,19 @@ public class Play {
         check=false;
     }
 
+    public void isDuplicateLotto(int[] numbers){
+        if(check){
+            return;
+        }
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                check=true;
+                throw new IllegalArgumentException(ERROR_LOTTODUPLICATENUMBER);
+            }
+        }
+        check= false;
+    }
 
     public void playLotto(){
 

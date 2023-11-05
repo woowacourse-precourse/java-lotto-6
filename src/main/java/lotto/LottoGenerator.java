@@ -15,8 +15,7 @@ public class LottoGenerator {
     }
 
     private List<Integer> randomNumbersGenerate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_INCLUSIVE,
+        return Randoms.pickUniqueNumbersInRange(LOTTO_START_INCLUSIVE,
                 LOTTO_END_INCLUSIVE, LOTTO_STANDARD_COUNT);
-        return numbers;
     }
 }

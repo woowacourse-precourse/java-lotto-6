@@ -18,7 +18,7 @@ public class LottoResultFactory {
     }
 
     public LottoResult getResult(Lotto lotto, LottoAnswer lottoAnswer) {
-        LottoCompareResult lottoCompareResult = lotto.compareLotto(lottoAnswer);
+        LottoCompareResult lottoCompareResult = lottoAnswer.compareLotto(lotto);
         return results.getOrDefault(lottoCompareResult, LottoResult.LOSE);
     }
 }

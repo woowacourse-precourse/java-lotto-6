@@ -58,18 +58,10 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+
     public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);
-        if (isCompareFinish(lotto, collectNumber)) {
-            return new LottoCompareResult(collectNumber, false);
-        }
-        boolean collectBonus = isCollectBonus((LottoAnswer) lotto);
-        return new LottoCompareResult(collectNumber, collectBonus);
-    }
-
-    private boolean isCompareFinish(Lotto lotto, int collectNumber) {
-        return lotto.getClass() != LottoAnswer.class ||
-                collectNumber != GameConst.BONUS_CHECK_NECESSARY;
+        return new LottoCompareResult(collectNumber, false);
     }
 
     private int collectNumber(Lotto lotto) {
@@ -77,10 +69,5 @@ public class Lotto {
                 .stream()
                 .filter(this.numbers::contains)
                 .count();
-    }
-
-    private boolean isCollectBonus(LottoAnswer answer) {
-        int bonusNumber = answer.getBonusNumber();
-        return this.numbers.contains(bonusNumber);
     }
 }

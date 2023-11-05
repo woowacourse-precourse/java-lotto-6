@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Collections;
@@ -18,5 +19,17 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> lottoMachine.purchaseLotto(purchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 구매 금액은 1,000원 단위여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
+    void 로또_구매_금액은_1000원_단위여야_한다(int money) {
+        // given
+        Money purchaseMoney = new Money(money);
+        LottoMachine lottoMachine = new LottoMachine((min, max, length) -> Collections.emptyList());
+
+        // when & then
+        assertThatCode(() -> lottoMachine.purchaseLotto(purchaseMoney))
+                .doesNotThrowAnyException();
     }
 }

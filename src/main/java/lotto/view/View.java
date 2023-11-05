@@ -1,11 +1,13 @@
 package lotto.view;
 
+import static lotto.view.viewMessage.ViewMessage.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class View {
     public void printPayAmountInputMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PAY_AMOUNT_INPUT.message());
     }
 
     public String inputValue() {
@@ -18,7 +20,7 @@ public class View {
 
     public void printPurchaseLottoAmount(int purchasedLottoAmount) {
         System.out.println();
-        System.out.println(purchasedLottoAmount + "개를 구매했습니다.");
+        System.out.printf((PURCHASE_LOTTO.message()), purchasedLottoAmount);
     }
 
     public void printIssuedLotto(String lotto) {
@@ -26,28 +28,23 @@ public class View {
     }
 
     public void printWinningNumbersInputMessage() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_INPUT.message());
     }
 
     public void printBonusNumberInputMessage() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_INPUT.message());
     }
 
     public void printLottoResult(List<Integer> lottoResult) {
-        System.out.println();
-        System.out.printf("당첨 통계\n"
-                + "---\n"
-                + "3개 일치 (5,000원) - %d개\n"
-                + "4개 일치 (50,000원) - %d개\n"
-                + "5개 일치 (1,500,000원) - %d개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"
-                + "6개 일치 (2,000,000,000원) - %d개\n",lottoResult.get(5),lottoResult.get(4),lottoResult.get(3),
-                lottoResult.get(2),lottoResult.get(1));
+        System.out.println(LOTTO_RESULT.message());
+        System.out.printf(FIFTH_PRIZE.message(), lottoResult.get(5));
+        System.out.printf(FORTH_PRIZE.message(), lottoResult.get(4));
+        System.out.printf(THIRD_PRIZE.message(), lottoResult.get(3));
+        System.out.printf(SECOND_PRIZE.message(), lottoResult.get(2));
+        System.out.printf(FIRST_PRIZE.message(), lottoResult.get(1));
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
+        System.out.printf(RATE_OF_RETURN.message(), rateOfReturn);
     }
 }

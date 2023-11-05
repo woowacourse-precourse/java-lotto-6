@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.system.ExceptionMessage;
@@ -16,6 +17,11 @@ public class Lotto {
 
     public static Lotto of(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public Lotto createAuto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumberConstant.MIN.getValue(),
+                LottoNumberConstant.MAX.getValue(), LottoNumberConstant.LENGTH.getValue()));
     }
 
     private void validate(List<Integer> numbers) {

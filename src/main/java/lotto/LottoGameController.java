@@ -1,8 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoGameController {
@@ -16,6 +19,31 @@ public class LottoGameController {
     public void start() throws IOException {
 
         setUser();
+        setLotto();
+    }
+
+    private void setLotto() {
+
+        int lottoAmount = user.getAmountLotto();
+        List<List<Integer>> allLottos = makeLottoNumbers(lottoAmount);
+        
+        for (List<Integer> numbers: allLottos){
+
+            Lotto lotto = new Lotto(numbers);
+        }
+
+    }
+
+    private List<List<Integer>> makeLottoNumbers(int lottoAmount) {
+
+        List<List<Integer>> allNumbers = new ArrayList<>();
+
+        for(int i = 0; i< lottoAmount;i++){
+
+            allNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        }
+
+        return allNumbers;
     }
 
     private void setUser() throws IOException {

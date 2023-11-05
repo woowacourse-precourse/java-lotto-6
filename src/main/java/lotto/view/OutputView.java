@@ -1,9 +1,7 @@
 package lotto.view;
 
 public class OutputView {
-
-    private static final String EXCEPTION_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String NEW_LINE = "\n";
+    private static final String EXCEPTION_MESSAGE_FORMAT = "[ERROR] %s\n";
 
     public void printExceptionMessage(Exception exception) {
         String message = makeExceptionView(exception);
@@ -11,9 +9,7 @@ public class OutputView {
     }
 
     private String makeExceptionView(Exception exception) {
-        return EXCEPTION_MESSAGE_PREFIX
-                .concat(exception.getMessage())
-                .concat(NEW_LINE);
+        return EXCEPTION_MESSAGE_FORMAT.formatted(exception.getMessage());
     }
 
     private void print(String message) {

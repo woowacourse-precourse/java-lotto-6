@@ -20,7 +20,7 @@ class MoneyTest {
     @DisplayName("구입 금액이 1,000 미만이거나 100,000,000,000 초과일 경우 Money를 생성할 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(longs = {999L, 100_000_000_001L})
-    void createMoneyByInvalidRange(Long input) {
+    void createMoneyByInvalidRange(long input) {
         assertThatThrownBy(() -> new Money(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
@@ -28,7 +28,7 @@ class MoneyTest {
     @DisplayName("구입 금액이 1,000 단위가 아닐 경우 Money를 생성할 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(longs = {1_100L, 10_000_000_001L})
-    void createMoneyByInvalidUnit(Long input) {
+    void createMoneyByInvalidUnit(long input) {
         assertThatThrownBy(() -> new Money(input))
             .isInstanceOf(IllegalArgumentException.class);
     }

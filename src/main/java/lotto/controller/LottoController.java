@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.controller.readPurchaseLottoModules;
-import lotto.domain.inputPurchaseAmount;
 import lotto.views.InputViews;
-import lotto.views.Exceptions;
 
 public class LottoController {
     int purchaseAmount;

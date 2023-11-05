@@ -2,6 +2,7 @@ package lotto.constants;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import lotto.model.Lotto;
 
 public enum LottoPrize {
 
@@ -24,6 +25,10 @@ public enum LottoPrize {
     public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
         if (hasBonusNumber && countMatchNumber == 5) {
             return SECOND_PRIZE;
+        }
+
+        if (!hasBonusNumber && countMatchNumber == 5) {
+            return THIRD_PRIZE;
         }
 
         for (LottoPrize lottoPrize : LottoPrize.values()) {

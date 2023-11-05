@@ -5,7 +5,7 @@ import java.util.List;
 
 public class IssuingMachine {
 
-    private static final int LOTTO_PRICE=1000;
+    private static final int LOTTO_PRICE = 1000;
     private int money;
     private List<Lotto> lottos = new ArrayList<>();
 
@@ -19,27 +19,28 @@ public class IssuingMachine {
 
     public int calculateCount() {
         validateMoney();
-        return money/LOTTO_PRICE;
+        return money / LOTTO_PRICE;
     }
 
-    public void operate(){
-        int count=calculateCount();
-        while(count>0){
-            Lotto lotto=createLotto();
+    public void operate() {
+        int count = calculateCount();
+        while (count > 0) {
+            Lotto lotto = createLotto();
             lottos.add(lotto);
             count--;
         }
     }
 
     public Lotto createLotto() {
-        return null;
+        Lotto lotto = new Lotto(Random.makeNumber());
+        return lotto;
     }
 
     public List<Lotto> issueLotto() {
         return null;
     }
 
-    public void validateMoney(){
+    public void validateMoney() {
 
     }
 }

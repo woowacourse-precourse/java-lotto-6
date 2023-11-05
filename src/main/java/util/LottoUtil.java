@@ -29,10 +29,8 @@ public class LottoUtil {
     public static List<Lotto> makeLottoList(int count) {
         List<Lotto> lottoList = new ArrayList<>();
         while(count-- > 0) {
-            List<Integer> numbers = new ArrayList<>(
-                    Randoms.pickUniqueNumbersInRange(
-                            RANGE_START.getNumber(), RANGE_END.getNumber(), LOTTO_SIZE.getNumber()));
-            Collections.sort(numbers);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                    RANGE_START.getNumber(), RANGE_END.getNumber(), LOTTO_SIZE.getNumber());
             lottoList.add(new Lotto(numbers));
         }
         return lottoList;

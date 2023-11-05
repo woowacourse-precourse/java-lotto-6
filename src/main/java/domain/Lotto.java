@@ -5,18 +5,17 @@ import exception.InputException;
 import static config.ErrorMessage.*;
 import static config.LottoConst.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        numbers = Removeduplication(numbers);
         validateInRange(numbers);
-        validateSize(Removeduplication(numbers));
+        validateSize(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

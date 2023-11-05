@@ -14,4 +14,14 @@ public enum PrizeConstant {
         this.score = score;
         this.message = message;
     }
+
+    public static String getMessageByScore(int score) {
+        for (PrizeConstant prize : PrizeConstant.values()) {
+            if (prize.score == score) {
+                return prize.message;
+            }
+        }
+
+        return "일치하는 메시지가 없습니다.";
+    }
 }

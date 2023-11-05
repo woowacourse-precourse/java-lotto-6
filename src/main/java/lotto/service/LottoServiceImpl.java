@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Cost;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,12 +18,21 @@ public class LottoServiceImpl implements LottoService{
     @Override
     public List<List<Integer>> buyLotto() {
         int quantity = payMoney();
-        List<List<Integer>> myLottos = getMyLotto(quantity);
+        List<List<Integer>> myLottoNumbers = getMyLotto(quantity);
 
         OutputView outputView = new OutputView();
-        outputView.printLotto(quantity, myLottos);
+        outputView.printLotto(quantity, myLottoNumbers);
 
-        return myLottos;
+        return myLottoNumbers;
+    }
+
+    @Override
+    public void checkResult(List<List<Integer>> myLottoNumbers, List<Integer> numbers, int bonusNumber) {
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> statistics = lotto.winningStatistics(bonusNumber, myLottoNumbers);
+
+        OutputView outputView = new OutputView();
+        outputView.printStatistics(statistics);
     }
 
     private int payMoney() {

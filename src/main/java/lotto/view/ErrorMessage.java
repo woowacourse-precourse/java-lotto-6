@@ -11,6 +11,6 @@ public enum ErrorMessage {
     }
 
     protected void println() {
-        System.err.println(errorMessage);
+        System.out.println(errorMessage);
     }
 }

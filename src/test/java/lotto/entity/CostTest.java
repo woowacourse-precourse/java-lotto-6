@@ -31,7 +31,7 @@ public class CostTest {
 
         //when
         Cost cost = new Cost(inputPurchaseCost);
-        Long purchaseCost = cost.getFieldValue(MethodProperty.PURCHASE_COST);
+        Long purchaseCost = cost.getPurchaseCost();
 
         //then
         assertThat(purchaseCost).isEqualTo(targetCost);

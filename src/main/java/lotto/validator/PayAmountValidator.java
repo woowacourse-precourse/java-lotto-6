@@ -8,7 +8,9 @@ public class PayAmountValidator {
     public void validate(String payAmount) {
         isBlank(payAmount);
         isNotNumeric(payAmount);
+        isInvalidDigits(payAmount);
         cannotDivideOneThousand(payAmount);
+        isInvalidRange(payAmount);
     }
 
     private void isBlank(String payAmount) {
@@ -23,9 +25,22 @@ public class PayAmountValidator {
         }
     }
 
+    private void isInvalidDigits(String payAmount) {
+        if (payAmount.length() > MAX_NUMBER_DIGIT.criteria()) {
+            throw new IllegalArgumentException(PAY_AMOUNT_DIGIT_EROOR.message());
+        }
+    }
+
     private void cannotDivideOneThousand(String payAmount) {
         if (!payAmount.matches(DIVIDE_ONE_THOUSAND.pattern())) {
             throw new IllegalArgumentException(PAY_AMOUNT_ONE_THOUSAND_UNIT_ERROR.message());
+        }
+    }
+
+    private void isInvalidRange(String payAmount) {
+        long amount = Long.parseLong(payAmount);
+        if (amount > MAX_PAY_AMOUNT.criteria()) {
+            throw new IllegalArgumentException(PAY_AMOUNT_RANGE_ERROR.message());
         }
     }
 }

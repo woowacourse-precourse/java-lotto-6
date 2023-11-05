@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoChecker;
 import lotto.domain.LottoConstant;
 import lotto.domain.LottoNumberGenerator;
 import lotto.validator.InputBonusNumberValidator;
@@ -43,7 +44,11 @@ public class LottoController {
         outputView.printLottoNumbers(lottos);
 
         List<Integer> winningLotteryNumbers = getValidatedWinningLotteryNumbers();
+
         int bonusNumber = getValidatedBonusNumber(winningLotteryNumbers);
+
+        LottoChecker lottoChecker = new LottoChecker(lottos, winningLotteryNumbers, bonusNumber);
+        lottoChecker.checkResults();
     }
 
     private int getValidatedPurchaseAmount() {

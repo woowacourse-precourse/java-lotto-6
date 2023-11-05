@@ -4,6 +4,7 @@ import lotto.io.OutputHandler;
 import lotto.system.Constant;
 import lotto.verifier.LottoVerifier;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.model.Lotto;
 import lotto.model.Price;
 
 import java.util.List;
@@ -20,17 +21,18 @@ public class OutputView {
     }
 
     public static void printLottoCount(int lottoCount) {
-        stringBuilder.append("\n");
-        stringBuilder.append(lottoCount);
-        stringBuilder.append(COUNT_MESSAGE);
-        System.out.println(stringBuilder);
+        String formattedString = String.format("\n%d%s", lottoCount, COUNT_MESSAGE);
+        System.out.println(formattedString);
         stringBuilder.setLength(0);
     }
 
     public static void printLotto(List<Integer> lotto) {
         StringJoiner stringJoiner = new StringJoiner(", ","[","]");
-        lotto.forEach(number -> stringJoiner.add(number.toString()));
+        for (int number: lotto) {
+            stringJoiner.add(String.valueOf(number));
+        }
         System.out.println(stringJoiner);
+        stringBuilder.setLength(0);
     }
 
     public static void printAnswer() {
@@ -42,14 +44,8 @@ public class OutputView {
     }
 
     public static void printPrice(String result, String price, int count) {
-        stringBuilder.append(result);
-        stringBuilder.append("(");
-        stringBuilder.append(price);
-        stringBuilder.append(")");
-        stringBuilder.append(" - ");
-        stringBuilder.append(count);
-        stringBuilder.append("개");
-        System.out.println(stringBuilder);
+        String formattedString = String.format("%s(%s) - %d개", result, price, count);
+        System.out.println(formattedString);
         stringBuilder.setLength(0);
     }
 

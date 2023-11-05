@@ -3,7 +3,9 @@ package lotto.verifier;
 import lotto.system.Constant;
 import lotto.system.ExceptionMessage;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoVerifier implements Verifier {
@@ -17,18 +19,16 @@ public class LottoVerifier implements Verifier {
 
     private void checkEachNumeric(String input) {
         String[] numbers = input.split(",");
-        for (String number : numbers) {
-            try {
-                Integer.parseInt(number);
-            } catch (Exception e) {
-                throw new IllegalArgumentException(ExceptionMessage.EACH_NOT_NUMERIC);
-            }
+        try {
+            Arrays.stream(numbers).forEach(BigInteger::new);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ExceptionMessage.EACH_NOT_NUMERIC);
         }
     }
 
     private void checkNumberCount(String input) {
         String[] numbers = input.split(",");
-        if (numbers.length != Constant.LOTTO_SIZE ){
+        if (numbers.length != Constant.LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.COUNT_NOT_EQUAL);
         }
     }
@@ -43,10 +43,10 @@ public class LottoVerifier implements Verifier {
         }
     }
 
-    private void checkDistinct(String input){
+    private void checkDistinct(String input) {
         List<Integer> winnerNumbers = new ArrayList<>();
         String[] numbers = input.split(",");
-        for(String number : numbers){
+        for (String number : numbers) {
             int numberInt = Integer.parseInt(number);
             if (winnerNumbers.contains(numberInt)) {
                 throw new IllegalArgumentException(ExceptionMessage.NUMBER_NOT_DISTINCT);

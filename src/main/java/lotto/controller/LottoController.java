@@ -1,30 +1,26 @@
 package lotto.controller;
 
-import lotto.domain.generator.SixNumberGenerator;
-import lotto.domain.model.Lotto;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.generator.WinningNumberGenerator;
+import lotto.domain.model.Lotteries;
+import lotto.domain.model.WinningNumber;
 import lotto.domain.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LottoController {
+    static final LottoGenerator LOTTO_GENERATOR = new LottoGenerator();
+    static final WinningNumberGenerator WINNING_NUMBER_GENERATOR = new WinningNumberGenerator();
 
-    public List<Lotto> run() {
+    public void run() {
         int countOfLotto = buyLotto();
-        List<Lotto> lotteries = new ArrayList<>();
-
-
         OutputView.showCountOfLotto(countOfLotto);
 
-        for (int i = 0; i < countOfLotto; i++) {
-            lotteries.add(issueLotto());
-        }
-
+        Lotteries lotteries = LOTTO_GENERATOR.run(countOfLotto);
         OutputView.showLotteries(lotteries);
 
-        return lotteries;
+        WinningNumber winningNumber = WINNING_NUMBER_GENERATOR.run();
+
     }
 
     private int buyLotto() {
@@ -40,18 +36,6 @@ public class LottoController {
             System.out.println(e.getMessage());
 
             return this.buyLotto();
-        }
-    }
-
-    private Lotto issueLotto() {
-        try {
-            Lotto lotto = new Lotto(SixNumberGenerator.getRandomSixNumbers());
-
-            return lotto;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return this.issueLotto();
         }
     }
 

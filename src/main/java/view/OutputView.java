@@ -3,8 +3,7 @@ package view;
 import lotto.domain.LottoPack;
 import util.Printer.IPrinter;
 
-import static lotto.constant.OutputMessage.BOUGHT_LOTTO_PACK;
-import static lotto.constant.OutputMessage.GET_MONEY_MESSAGE;
+import static lotto.constant.OutputMessage.*;
 
 public class OutputView {
 
@@ -29,6 +28,10 @@ public class OutputView {
 
     private String buildLottoPackMessage(LottoPack lottoPack) {
         return String.format(BOUGHT_LOTTO_PACK.getMessage(), lottoPack.size());
+    }
+
+    public void printGetWinningNumbers() {
+        printer.println(GET_WINNING_NUMBERS.getMessage());
     }
 
     public void printException(Exception exception) {

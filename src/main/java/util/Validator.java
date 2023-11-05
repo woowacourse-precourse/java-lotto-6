@@ -68,7 +68,7 @@ public class Validator {
     }
 
     private void checkZeroInteger(int each_input) {
-        if(49 != each_input) {
+        if(48 != each_input) {
             throwThousandException();
         }
     }

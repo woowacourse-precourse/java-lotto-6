@@ -35,10 +35,10 @@ public class Application {
 		final int bonus = validate.validateBonus(readLine(), winningNumbers);
 
 		List<Result> results = lottos.stream().map(lotto -> lotto.checkRank(winningNumbers, bonus)).toList();
+
 		int total = results.stream().mapToInt(Result::getPrize).sum();
 
 		double profitRate = ((double) (total * 100) / (count * 1000));
-		profitRate = Math.round(profitRate * 100.0) / 100.0;
 
 		List<Result> first = results.stream().filter(result -> result.getRank() == RankEnum.FIRST).toList();
 		List<Result> second = results.stream().filter(result -> result.getRank() == RankEnum.SECOND).toList();

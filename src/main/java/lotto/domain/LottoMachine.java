@@ -7,7 +7,9 @@ import static lotto.domain.constant.LottoConstant.MIN_RANGE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.validation.LottoMachineValidationHandler;
 import lotto.domain.validation.LottoValidationHandler;
 import lotto.util.StringUtils;
@@ -16,7 +18,8 @@ public class LottoMachine {
     private static final int ROUNDING_VALUE = 100;
     private static final double ROUNDING_DOUBLE_VALUE = 100.0;
     private static final double PERCENTAGE = 100.0;
-
+    private static final int MATCHED_LOTTO_DEFAULT_VALUE = 0;
+    private static final int MATCHED_LOTTO_INCREASE_VALUE = 1;
 
     public List<Lotto> generateLottos(int purchaseLottoCount) {
         validationLottoCount(purchaseLottoCount);
@@ -70,20 +73,21 @@ public class LottoMachine {
         LottoMachineValidationHandler.validationNumbersRange(Integer.parseInt(bonusNumber));
     }
 
-    public List<LottoRank> computedLottoRanking(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
+    public Map<LottoRank, Integer> computedLottoRanking(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
         boolean containBonusNumber = isContainBonusNumber(lottos, bonusNumber);
         return getLottoRanks(lottos, winningNumbers, containBonusNumber);
     }
 
-    private List<LottoRank> getLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, boolean containBonusNumber) {
-        List<LottoRank> lottoRanks = new ArrayList<>();
+    private Map<LottoRank, Integer> getLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, boolean containBonusNumber) {
+        Map<LottoRank, Integer> lottoRanks = new EnumMap<>(LottoRank.class);
         for(Lotto lotto : lottos) {
             int matchLottoNumber = getMatchLottoNumber(winningNumbers, lotto);
             LottoRank lottoRank = LottoRank.getLottoRank(matchLottoNumber, containBonusNumber);
-            lottoRanks.add(lottoRank);
+            lottoRanks.put(lottoRank, lottoRanks.getOrDefault(lottoRank,
+                    MATCHED_LOTTO_DEFAULT_VALUE) + MATCHED_LOTTO_INCREASE_VALUE);
         }
 
-        return Collections.unmodifiableList(lottoRanks);
+        return Collections.unmodifiableMap(lottoRanks);
     }
 
     private int getMatchLottoNumber(List<Integer> winningNumbers, Lotto lotto) {

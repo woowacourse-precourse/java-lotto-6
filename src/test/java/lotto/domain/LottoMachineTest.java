@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Stream;
 import lotto.domain.validation.LottoMachineValidationHandler;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +19,6 @@ import static org.assertj.core.api.Assertions.*;
 class LottoMachineTest {
 
     LottoMachine lottoMachine = new LottoMachine();
-    static Integer bonusNumber = 45;
 
     @ParameterizedTest
     @CsvSource(value = {"1:1","2:2","5:5", "10:10", "100:100"}, delimiter = ':')
@@ -93,49 +93,34 @@ class LottoMachineTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @MethodSource("validLottoNumbers")
-    @DisplayName("로또 번호와 보너스 번호 당첨 번호를 이용해서 로또 등수를 계산한다.")
-    void computedLottoRanking(ComputedRankDto computedRankDto) {
+    @Test
+    @DisplayName("로또 번호와 보너스 번호 당첨 번호를 이용해서 로또 당첨 내역을 계산한다.")
+    void computedLottoRanking() {
         // given
-        Lotto lotto = new Lotto(computedRankDto.lottoNumbers);
+        List<Lotto> lottos = getLottos();
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
 
         // when
-        LottoRank lottoRank = lottoMachine.computedLottoRanking(List.of(lotto), winningNumbers, bonusNumber)
-                .stream().findAny().get();
+        Map<LottoRank, Integer> ranking = lottoMachine.computedLottoRanking(lottos, winningNumbers, bonusNumber);
 
         // then
-        assertThat(lottoRank).isEqualTo(computedRankDto.lottoRank);
+        assertThat(ranking).hasSize(2)
+                .containsEntry(LottoRank.FIFTH_PRIZE, 1)
+                .containsEntry(LottoRank.NONE_PRIZE, 7);
     }
 
-    private static Stream<ComputedRankDto> validLottoNumbers() {
-        return Stream.of(
-                new ComputedRankDto(List.of(1,2,3,4,5,6), LottoRank.FIRST_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,4,5,6), LottoRank.FIRST_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,4,5,bonusNumber), LottoRank.SECOND_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,4,5,8), LottoRank.THIRD_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,4,7,bonusNumber), LottoRank.FOURTH_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,4,7,8), LottoRank.FOURTH_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,7,8,bonusNumber), LottoRank.FIFTH_PRIZE),
-                new ComputedRankDto(List.of(1,2,3,7,8,9), LottoRank.FIFTH_PRIZE),
-                new ComputedRankDto(List.of(1,2,7,8,9,bonusNumber), LottoRank.NONE_PRIZE),
-                new ComputedRankDto(List.of(1,2,7,8,9,10), LottoRank.NONE_PRIZE),
-                new ComputedRankDto(List.of(1,7,8,9,10,bonusNumber), LottoRank.NONE_PRIZE),
-                new ComputedRankDto(List.of(1,7,8,9,10,11), LottoRank.NONE_PRIZE),
-                new ComputedRankDto(List.of(7,8,9,10,11,bonusNumber), LottoRank.NONE_PRIZE),
-                new ComputedRankDto(List.of(7,8,9,10,11,12), LottoRank.NONE_PRIZE)
-        );
-    }
+    private static List<Lotto> getLottos() {
+        Lotto lotto1 = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+        Lotto lotto2 = new Lotto(List.of(3, 5, 11, 16, 32, 38));
+        Lotto lotto3 = new Lotto(List.of(7, 11, 16, 35, 36, 44));
+        Lotto lotto4 = new Lotto(List.of(1, 8, 11, 31, 41, 42));
+        Lotto lotto5 = new Lotto(List.of(13, 14, 16, 38, 42, 45));
+        Lotto lotto6 = new Lotto(List.of(7, 11, 30, 40, 42, 43));
+        Lotto lotto7 = new Lotto(List.of(2, 13, 22, 32, 38, 45));
+        Lotto lotto8 = new Lotto(List.of(1, 3, 5, 14, 22, 45));
 
-    static class ComputedRankDto {
-        List<Integer> lottoNumbers;
-        LottoRank lottoRank;
-
-        public ComputedRankDto(List<Integer> lottoNumbers, LottoRank lottoRank) {
-            this.lottoNumbers = lottoNumbers;
-            this.lottoRank = lottoRank;
-        }
+        return List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8);
     }
 
     @Test

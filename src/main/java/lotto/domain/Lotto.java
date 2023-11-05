@@ -1,61 +1,60 @@
 package lotto.domain;
 
 import static lotto.constants.Error.DUPLICATE_INVALID;
-import static lotto.constants.Error.RANGE_INVALID;
 import static lotto.constants.Error.SIZE_INVALID;
 import static lotto.constants.Rule.LOTTO_SIZE;
-import static lotto.constants.Rule.MAX_LOTTO;
-import static lotto.constants.Rule.MIN_LOTTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
-        this.numbers = sortedLottoNumber(numbers);
+        this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        validateRange(numbers);
+    private void validate(List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
     }
 
-    private static void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> !isValidNumber(number))) {
-            throw new IllegalArgumentException(RANGE_INVALID.getMessage());
-        }
-    }
-
-    private static boolean isValidNumber(int number) {
-        return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
-    }
-
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(SIZE_INVALID.getMessage());
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(List<LottoNumber> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
     }
 
-    private static List<Integer> sortedLottoNumber(List<Integer> numbers) {
-        return numbers.stream().sorted().collect(Collectors.toList());
+    public int countMatchNumbers(Prize prize) {
+        return (int) numbers.stream().filter(prize.getLotto()::isMatchNumber).count();
     }
 
-    public int countMatchNumbers(Lotto prizeLottoNumbers) {
-        return (int) numbers.stream().filter(prizeLottoNumbers::isMatchNumber).count();
+    public boolean isMatchNumber(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
-    public boolean isMatchNumber(int number) {
-        return numbers.contains(number);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 
     @Override

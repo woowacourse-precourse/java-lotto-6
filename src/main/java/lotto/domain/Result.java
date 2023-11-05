@@ -11,7 +11,7 @@ public class Result {
 
     private Result(List<Lotto> playerLotto, Prize prize) {
         for (Lotto lotto : playerLotto) {
-            Rank rank = Rank.valueOf(lotto.countMatchNumbers(prize.getLotto()), lotto.isMatchNumber(prize.getBonus()));
+            Rank rank = Rank.valueOf(lotto.countMatchNumbers(prize), lotto.isMatchNumber(prize.getBonus()));
             add(rank);
         }
     }
@@ -39,5 +39,16 @@ public class Result {
     public double calculateRate(int amount) {
         int money = amount * MIN_MONEY.getValue();
         return (calculateResult() / money) * 100;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Result:\n");
+
+        for (Rank rank : result.keySet()) {
+            sb.append(rank.getPrizeMoney()).append(": ").append(getResultCount(rank)).append("\n");
+        }
+        return sb.toString();
     }
 }

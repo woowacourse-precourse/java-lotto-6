@@ -19,4 +19,20 @@ public class LottoNumber {
             );
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof LottoNumber lottoNumber) {
+            return this.number == lottoNumber.number;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return number;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 
 public class LottoService {
 
@@ -38,9 +39,9 @@ public class LottoService {
     private int matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
         int result = 0;
         boolean matchBonusNumber = false;
-        for (Integer lottoNumber : lotto.getNumbers()) {
+        for (LottoNumber lottoNumber : lotto.getNumbers()) {
             for (Integer winningNumber : winningNumbers) {
-                if (lottoNumber.equals(winningNumber)) {
+                if (lottoNumber.getLottoNumber().equals(winningNumber)) {
                     result++;
                 }
             }

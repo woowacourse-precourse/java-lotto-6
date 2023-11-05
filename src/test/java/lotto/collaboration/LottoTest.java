@@ -1,12 +1,12 @@
-package lotto;
+package lotto.collaboration;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.collaboration.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+// COMMENT : 이 코드를 참고하라고 했지 변경하지 말라고는 안했으니까 변경해도 되겠지?
 class LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")

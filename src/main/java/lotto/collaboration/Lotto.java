@@ -22,8 +22,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        occurExceptionIfNotSix(numbers);
+        occurExceptionIfDuplicated(numbers);
+    }
+
+    private void occurExceptionIfNotSix(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void occurExceptionIfDuplicated(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
         }
     }
 

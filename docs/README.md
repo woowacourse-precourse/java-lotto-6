@@ -38,7 +38,7 @@
 
 ### 로또 발행
 - [x] 랜덤 숫자를 생성하는 기능
-- [ ] 하나의 로또 번호를 발행하는 기능
+- [x] 하나의 로또 번호를 발행하는 기능
   - [x] 발행한 각 로또 번호가 1~45의 숫자가 아니면 `IllegalArgumentException` 예외처리 
   - [x] 발행한 로또 번호가 6자리 숫자가 아니면 `IllegalArgumentException` 예외처리
   - [x] 발행한 로또 번호가 중복이 있다면 `IllegalStateException` 예외처리

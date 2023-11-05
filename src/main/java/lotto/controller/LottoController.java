@@ -37,8 +37,8 @@ public class LottoController {
     private void initPurchaseAmount() {
         while (true) {
             try {
-                int input = InputView.readPurchaseAmount();
-                purchaseAmount = new PurchaseAmount(input);
+                int inputPurchaseAmount = InputView.readPurchaseAmount();
+                purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -70,8 +70,8 @@ public class LottoController {
     private void initBonusNumber() {
         while (true) {
             try {
-                int input = InputView.readBonusNumber();
-                bonusNumber = new BonusNumber(winnerLotto, input);
+                int inputBonusNumber = InputView.readBonusNumber();
+                bonusNumber = new BonusNumber(winnerLotto, inputBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

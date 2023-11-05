@@ -30,11 +30,11 @@ public class Calculator {
     }
 
     public float calculateRateOfReturn(Map<Rank, Integer> result) {
-        long sumOfPrize = 0;
+        long totalPrize = 0;
         for (Rank rank : Rank.values()) {
-            sumOfPrize += result.getOrDefault(rank, 0) * rank.getPrize();
+            totalPrize += result.getOrDefault(rank, 0) * rank.getPrize();
         }
-        return (float) sumOfPrize / userLottos.size() / Constants.LOTTO_PRICE * PERCENTAGE;
+        return (float) totalPrize / userLottos.size() / Constants.LOTTO_PRICE * PERCENTAGE;
     }
 
 }

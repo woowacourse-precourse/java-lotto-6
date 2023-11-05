@@ -5,12 +5,10 @@ import java.util.*;
 public class WinningNumbers {
     private final int LOWER_BOUND_NUMBER = 1;
     private final int UPPER_BOUND_NUMBER = 45;
-    private final int LOTTO_SIZE = 6;
     private final List<Integer> winningNumbers;
 
     private WinningNumbers(List<Integer> winningNumbers) {
         validateRange(winningNumbers);
-        validateDuplicated(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
@@ -42,15 +40,6 @@ public class WinningNumbers {
                 .allMatch(n -> n >= LOWER_BOUND_NUMBER && n <= UPPER_BOUND_NUMBER);
 
         if (!isInRange) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-
-    private void validateDuplicated(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        boolean isUnique = numbers.stream().allMatch(n -> uniqueNumbers.add(n));
-
-        if (!isUnique) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }

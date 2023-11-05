@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,8 +14,10 @@ public class GameController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoCount lottoCount = LottoCount.from(purchaseAmount);
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
+
         outputView.displayLottoTickets(lottoCount, autoLottoTickets);
-        Lotto winningNumbers = getWinningNumbers();
+        BonusNumber bonusNumber = getBonusNumber();
+        System.out.println(bonusNumber.getBonusNumber());
     }
 
     public PurchaseAmount getPurchaseAmount() {
@@ -35,7 +34,19 @@ public class GameController {
     public Lotto getWinningNumbers() {
         while (true) {
             try {
-                return Lotto.makeWinningNumbers(inputView.readWinningNumber());
+                return Lotto.makeWinningNumbers(inputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
+    public BonusNumber getBonusNumber() {
+        while (true) {
+            try {
+                WinningNumbers winningNumbers = WinningNumbers.from(inputView.readBonusNumber());
+                return new BonusNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

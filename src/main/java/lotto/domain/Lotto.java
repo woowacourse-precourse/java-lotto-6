@@ -12,11 +12,21 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        boolean isUnique = numbers.stream().allMatch(n -> uniqueNumbers.add(n));
+
+        if (!isUnique) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }

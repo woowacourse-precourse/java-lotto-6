@@ -6,11 +6,11 @@ import java.util.List;
 
 public class InputView {
 
-    public static String readPurchaseAmount() {
+    public static int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine().trim();
         validateIsNumeric(purchaseAmount);
-        return purchaseAmount;
+        return Integer.parseInt(purchaseAmount);
     }
 
     private static void validateIsNumeric(String input) {

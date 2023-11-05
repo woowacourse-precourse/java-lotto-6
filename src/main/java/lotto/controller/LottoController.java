@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.model.dto.BuyInfo;
+import lotto.model.dto.Lotto;
+import lotto.model.dto.LottoBonus;
 import lotto.model.vo.SeasonLottoResultVO;
 import lotto.service.domain.lotto.LottoIoService;
 import lotto.service.domain.lotto.LottoService;
@@ -20,13 +22,18 @@ public class LottoController {
         // 구매한 금액 만큼 티켓을 만들어 줌
         return lottoService.numberOfLottoPurchases(pick);
     }
-
     public void showAutoLottoTicks(int cycle,List<SeasonLottoResultVO> tickets){
         // 구매 횟수와 티켓 정보를 입력 받아서 List-Println 해줌
         //음의 기대값 이라 반복 중에 같은 것이 있는지 확인은 나중에 해도 괜찮을 듯
         outputPrint.autoLottoTickMaker(cycle,tickets);
     }
+    public Lotto userInputMasterLottoNumbers(){
+        return lottoIoService.userPickMasterLottoNumbers();
+    }
 
+    public LottoBonus userInputMasterLottoBonusNumber(Lotto lotto){
+        return lottoIoService.userPickMasterBonusNumberOne(lotto);
+    }
 
 
 

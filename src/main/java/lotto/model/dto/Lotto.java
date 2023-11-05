@@ -39,6 +39,9 @@ public class Lotto {
               (LottoErrorMessage.ERROR_LOTTO_OVER_POSITION_NUMBER_MESSAGE);
         }
     }
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
     @Override
     public String toString() {
         return numbers.stream()

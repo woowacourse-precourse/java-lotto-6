@@ -29,11 +29,18 @@ public class Application {
     /*    Lotto lottoMasterNumber = new Lotto();
         LottoBonus lottoMasterBonusNumber = new LottoBonus();*/
 
-        Lotto userLottoNumber = lottoController
+        //유저가 입력받은 값을 받아서 Lotto에 저장하는 구문
+        Lotto userLottoNumbers = lottoController
                                 .userInputMasterLottoNumbers();
+        System.out.println(userLottoNumbers);
+        LottoBonus userLottoBonusNumber;
 
+        //유저 보너스 번호 입력하는 구간
+        LottoBonus lottoBonus = lottoController
+                                .userInputMasterLottoBonusNumber(userLottoNumbers);
+        System.out.println(lottoBonus);
 
-
+        // 번호들 출력되는 구문
         lottoController.showAutoLottoTicks(buyNumber,autoLottoTicket);
 
 

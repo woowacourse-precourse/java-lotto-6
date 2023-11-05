@@ -3,6 +3,7 @@ package lotto.service.domain.lotto;
 import lotto.io.LottoInputReader;
 import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
+import lotto.model.dto.LottoBonus;
 import lotto.service.convert.ConvertService;
 import lotto.service.exceptionhandler.LottoErrorMessage;
 import lotto.view.LottoOutputPrint;
@@ -48,7 +49,7 @@ public class LottoIoService {
         int LottoValueSize = 6;
         Lotto userLottoNumber;
         Loop:
-        while(true) {
+        while (true) {
             try {
                 masterNumberString
                   = input.readerLottoMasterNumbers();
@@ -77,5 +78,36 @@ public class LottoIoService {
         return userLottoNumber;
     }
 
-
+    public LottoBonus userPickMasterBonusNumberOne(Lotto lotto) {
+        String bonusString;
+        List<Integer> bonusList;
+        LottoBonus lottoBonus;
+        int LottoBonusValueSize = 1;
+        Loop:
+        while (true) {
+            try {
+                bonusString = input.readerChoiceLottoBonusNumber();
+                if (bonusString == null) {
+                    throw new IllegalArgumentException
+                      (LottoErrorMessage.ERROR_LOTTO_NULL_POINT_MESSAGE);
+                }
+                bonusList = convert.ConvertStringToNumbers(bonusString, LottoBonusValueSize);
+                lottoBonus = new LottoBonus(bonusList);
+                int checkPoint = 0;
+                for (int i = 0; i < lotto.getNumbers().size(); i++) {
+                    if (lotto.getNumbers().get(i).equals(lottoBonus.getNumber().get(0))) {
+                        checkPoint++;
+                    }
+                }
+                if (checkPoint == 1) {
+                    throw new IllegalArgumentException
+                      (LottoErrorMessage.ERROR_LOTTO_OVERLAP_NUMBER_MESSAGE);
+                }
+                return lottoBonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue Loop;
+            }
+        }
+    }
 }

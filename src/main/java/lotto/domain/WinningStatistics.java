@@ -68,4 +68,12 @@ public class WinningStatistics {
         BigDecimal rate = totalAmounts.divide(counts, 3, BigDecimal.ROUND_HALF_EVEN);
         return rate.multiply(new BigDecimal("100"));
     }
+
+    public Map<WinningRank, Integer> getWinningStatistics() {
+        return winningStatistics;
+    }
+
+    public BigDecimal getRevenueRate() {
+        return revenueRate;
+    }
 }

@@ -23,4 +23,8 @@ public class Lottos {
         List<LottoResult> arr =this.lottos.stream().map(i->i.matchUp(answerLotto,bonusNumber)).toList();
         return new LottosResult(arr);
     }
+
+    public List<Lotto> getLottosForMessage() {
+        return lottos;
+    }
 }

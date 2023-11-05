@@ -13,13 +13,16 @@ public class LottoResult {
     public LottoResult() {
         result = new HashMap<>();
         Arrays.stream(MatchCount.values())
+            .filter(matchCount -> matchCount != MatchCount.DEFAULT_NONE)
             .forEach(matchCount -> {
                 result.put(matchCount, 0);
             });
     }
 
     public void addResult(final MatchCount matchCount) {
-        result.put(matchCount, result.get(matchCount) + 1);
+        if (matchCount != MatchCount.DEFAULT_NONE) {
+            result.put(matchCount, result.get(matchCount) + 1);
+        }
     }
 
     public int getCount(final MatchCount matchCount) {

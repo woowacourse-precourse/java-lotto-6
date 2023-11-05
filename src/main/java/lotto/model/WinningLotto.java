@@ -57,7 +57,7 @@ public class WinningLotto {
         return Arrays.stream(MatchCount.values())
             .filter(matchCount -> matchCount.getMatchCount() == matchedCount)
             .findFirst()
-            .orElseThrow(IllegalStateException::new);
+            .orElse(MatchCount.DEFAULT_NONE);
     }
 
 }

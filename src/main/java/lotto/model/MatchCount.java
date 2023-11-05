@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.utils.Constants;
 
 public enum MatchCount {
+    DEFAULT_NONE(Constants.ZERO, false, Constants.ZERO),
     THREE_MATCH(3, false, Constants.FIFTH_PRIZE_MONEY),
     FOUR_MATCH(4, false, Constants.FOURTH_PRIZE_MONEY),
     FIVE_MATCH(5, false, Constants.THIRD_PRIZE_MONEY),

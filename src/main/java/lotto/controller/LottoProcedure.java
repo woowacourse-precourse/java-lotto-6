@@ -30,7 +30,7 @@ public class LottoProcedure {
         getBonusNumber();
         Output.printWinningStatisticsMessage();
         checkRank();
-        Output.printStatistics(user.numberOfWin());
+        Output.printStatistics(user.winningNumberCount());
         double sum = calculateYeild();
         System.out.println("총 수익률은 " + String.format("%.1f",sum/user.payment() * 100) +"%입니다.");
     }
@@ -79,8 +79,8 @@ public class LottoProcedure {
 
     public double calculateYeild() {
         double sum = 0;
-        for (int i=MINIMUM_NUMBER_OF_SAME;i<user.numberOfWin().size();i++) {
-            if (user.numberOfWin().get(i) != 0) {
+        for (int i=MINIMUM_NUMBER_OF_SAME;i<user.winningNumberCount().size();i++) {
+            if (user.winningNumberCount().get(i) != 0) {
                 sum += this.amount.get(i);
             }
         }

@@ -15,4 +15,10 @@ public class InputView {
         int winningNumber = Integer.parseInt(Console.readLine());
         return winningNumber;
     }
+
+    public int inputBonusNumber(){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        return bonusNumber;
+    }
 }

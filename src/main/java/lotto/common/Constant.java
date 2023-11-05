@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.common;
 
 public enum Constant {
 
@@ -6,10 +6,10 @@ public enum Constant {
     LOTTO_NUMBER_MAX(45),
     LOTTO_NUMBERS_MAX_LENGTH(6),
     COMMA(","),
-    BLANK(" ");
+    BLANK(" "),
+    LOTTO_TICKET_PRICE(1000);
 
     private final Object value;
-
 
     Constant(Object value) {
         this.value = value;

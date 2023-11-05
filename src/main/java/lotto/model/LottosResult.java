@@ -17,12 +17,12 @@ public class LottosResult {
             if(!result.equals(LottoResult.UNDER_THREE)) this.resultCounts.put(result, this.resultCounts.getOrDefault(result,0) + 1);
         }
     }
-    public void countProfitable(int money) {
+    public void countProfitable(Money money) {
         int totalPrize = 0;
         for (Map.Entry<LottoResult, Integer> entry : resultCounts.entrySet()) {
             totalPrize += entry.getKey().getPrizeAmount() * entry.getValue();
         }
-        this.totalProfit = (totalPrize) / (double) money * 100;
+        this.totalProfit = money.countPrize(totalPrize);
     }
 
     public String getBallCountMessage() {

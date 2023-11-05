@@ -11,6 +11,12 @@ public final class LottoInput implements InputPort{
     private static final String delimiter = ",";
 
     @Override
+    public Integer receiveMoney() {
+        String input = Console.readLine();
+        return mapToInt(input);
+    }
+
+    @Override
     public List<Integer> receiveLottos() {
         String input = Console.readLine();
         return Arrays.stream(input.split(delimiter, -1))

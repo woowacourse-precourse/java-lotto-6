@@ -7,14 +7,16 @@ import static lotto.enumerate.Message.PROFIT_RATE_IS;
 import lotto.util.ExceptionCodeThrow;
 
 public record ProfitRate(double originalRate, double roundedRate) {
+    private static final int PERCENT = 100;
+    private static final int DECIMAL_PLACE = 1;
     public ProfitRate {
-        if (originalRate * 100 != roundedRate) {
+        if (originalRate * PERCENT != roundedRate) {
             ExceptionCodeThrow.exceptionCodeThrow(PROFIT_RATE_NOT_ROUNDED);
         }
-        String formattedValue = String.format("%.1f", roundedRate);
-        int decimalPlaces = formattedValue.length() - formattedValue.indexOf('.') - 1;
+        String formattedValue = String.format("%%.%df".formatted(DECIMAL_PLACE), roundedRate);
+        int decimalPlaces = formattedValue.length() - formattedValue.indexOf('.') - DECIMAL_PLACE;
 
-        if (decimalPlaces > 1) {
+        if (decimalPlaces > DECIMAL_PLACE) {
             ExceptionCodeThrow.exceptionCodeThrow(PROFIT_RATE_DECIMAL_NOT_ONE);
         }
     }

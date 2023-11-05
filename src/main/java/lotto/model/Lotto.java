@@ -10,7 +10,9 @@ import lotto.record.LottoNumberRecord;
 
 public class Lotto {
     private final List<Integer> numbers;
-
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -34,7 +36,7 @@ public class Lotto {
     }
 
     private void lottoNumberUnderOverValidate(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER)) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

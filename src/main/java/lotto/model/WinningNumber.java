@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 import lotto.record.LottoNumberRecord;
 
 public class WinningNumber {
+    private static final String REPLACE_TARGET = " ";
+    private static final String REPLACE_REPLACEMENT = "";
+    private static final String SPLIT_REGEX = ",";
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
     private final List<Integer> numbers;
     private final int bonusNumber;
 
@@ -33,6 +38,10 @@ public class WinningNumber {
         return 0;
     }
 
+    private static String[] getSplit(String numbers) {
+        return numbers.replace(REPLACE_TARGET, REPLACE_REPLACEMENT).split(SPLIT_REGEX);
+    }
+
     private List<Integer> convert(String numbers) {
         numberValid(numbers);
         return Arrays.stream(getSplit(numbers)).mapToInt(Integer::parseInt).boxed()
@@ -43,10 +52,6 @@ public class WinningNumber {
         if (Arrays.stream(getSplit(numbers)).anyMatch(this::notInt)) {
             exceptionCodeThrow(WINNING_NUMBER_IS_NOT_INTEGER);
         }
-    }
-
-    private static String[] getSplit(String numbers) {
-        return numbers.replace(" ", "").split(",");
     }
 
     private boolean notInt(String number) {
@@ -61,9 +66,14 @@ public class WinningNumber {
     public int countMatchingNumbers(LottoNumberRecord lottoNumberRecord) {
         int matches = 0;
         for (int number : lottoNumberRecord.numbers()) {
-            if (numbers.contains(number)) {
-                matches++;
-            }
+            matches = getMatches(number, matches);
+        }
+        return matches;
+    }
+
+    private int getMatches(int number, int matches) {
+        if (numbers.contains(number)) {
+            matches++;
         }
         return matches;
     }
@@ -78,7 +88,7 @@ public class WinningNumber {
     }
 
     private void bonusNumberUnderOverValidate(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

@@ -25,10 +25,14 @@ public class Lotto {
         for (int i = 0; i < count; i++) {
             List<Integer> number = RandomNumber.generate();
             Collections.sort(number);
-            
+
             result.add(new Lotto(number));
         }
         return result;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

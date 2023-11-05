@@ -26,8 +26,7 @@ public class OutputView {
                 +lottoList);
     }
 
-    public static String returnWinningStats() {
-        // 일치 개수 + 수익률
-        return "";
+    public static void returnWinningStats(String winningLottoList) {
+        System.out.println(PrintMessage.RETURN_LOTTO_STATS + winningLottoList);
     }
 }

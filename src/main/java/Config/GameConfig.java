@@ -35,10 +35,6 @@ public class GameConfig {
             return rank;
         }
 
-        public String getMatch(){
-            return match;
-        }
-
         public String getMatchAmount(){
             return matchAmount;
         }

@@ -34,7 +34,7 @@ public class InputView {
             int lottoPurchaseAmount = Integer.parseInt(Console.readLine().trim());
             validateLottoPurchaseAmount(lottoPurchaseAmount);
             return lottoPurchaseAmount;
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(INVALID_INPUT_FORMAT, "숫자"));
         }
     }

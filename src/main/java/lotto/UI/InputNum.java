@@ -4,36 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Input {
-    public int inputPrice() {
-        int price = -1;
-        while (price < 0) {
-            System.out.println("구입금액을 입력해 주세요.");
-            try {
-                price = checkPrice(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return price;
-    }
-    private int checkPrice(String inputPrice) {
-        int price = checkPriceToInt(inputPrice);
-        checkPriceUnit(price);
-        return price;
-    }
-    private int checkPriceToInt(String inputPrice) {
-        try {
-            return Integer.parseInt(inputPrice);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해주세요.");
-        }
-    }
-    private void checkPriceUnit(int inputPrice) {
-        if (inputPrice % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해주세요.");
-        }
-    }
+public class InputNum {
     public List<Integer> inputLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>();
         while (true) {
@@ -94,25 +65,4 @@ public class Input {
             }
         }
     }
-    public int inputBonusNumber() {
-        int bonusNumber = -1;
-        while (bonusNumber > 0) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            try {
-//                checkBonusNumber(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return bonusNumber;
-    }
-//    private int checkBonusNumber(String inputBonusNumber) {
-//        int bonusNumber = checkBonusNumberToInt(inputBonusNumber);
-//        checkBonusNumberRange(bonusNumber);
-//        return bonusNumber;
-//    }
-//
-//    private int checkBonusNumberToInt(inputBonusNumber) {
-//
-//    }
 }

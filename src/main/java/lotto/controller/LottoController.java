@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.domain.generator.BonusNumberGenerator;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.generator.WinningNumberGenerator;
+import lotto.domain.model.BonusNumber;
 import lotto.domain.model.Lotteries;
 import lotto.domain.model.WinningNumber;
 import lotto.domain.validator.Validator;
@@ -11,6 +13,7 @@ import lotto.view.OutputView;
 public class LottoController {
     static final LottoGenerator LOTTO_GENERATOR = new LottoGenerator();
     static final WinningNumberGenerator WINNING_NUMBER_GENERATOR = new WinningNumberGenerator();
+    static final BonusNumberGenerator BONUS_NUMBER_GENERATOR = new BonusNumberGenerator();
 
     public void run() {
         int countOfLotto = buyLotto();
@@ -20,6 +23,7 @@ public class LottoController {
         OutputView.showLotteries(lotteries);
 
         WinningNumber winningNumber = WINNING_NUMBER_GENERATOR.run();
+        BonusNumber bonusNumber = BONUS_NUMBER_GENERATOR.run(winningNumber);
 
     }
 

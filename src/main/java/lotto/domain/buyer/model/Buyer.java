@@ -1,20 +1,21 @@
 package lotto.domain.buyer.model;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
 import java.util.List;
 
 public class Buyer {
 
-    private final List<Lotto> lottos;
+    private List<Lotto> lottos;
 
-    public Buyer(List<Lotto> lottos) {
+    public void setLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
     public void tryBuy() {
 
-        //TODO 판매처에서 로또를 구매
+        //TODO 구매할 로또 금액 입력
     }
 
     public void tryCheck() {

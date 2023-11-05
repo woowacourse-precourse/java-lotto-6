@@ -99,7 +99,7 @@ public class LottoMatcherTest {
         Assertions.assertThat(allCorrectCount).isEqualTo(5);
     }
 
-    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 0개인지 검증한다.")
+    @DisplayName("로또 번호 하나와 당첨 번호 1개 일치지만, 보너스 번호 0개 일치를 검증한다.")
     @Test
     void calculateNotAllCorrectWinning() {
         //given
@@ -110,12 +110,14 @@ public class LottoMatcherTest {
         //when
         LottoMatcher lottoMatcher = new LottoMatcher();
         long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
+        boolean correctBonus = lottoMatcher.calculateCorrectBonus(userNumbers, bonusNumber);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(0);
+        Assertions.assertThat(correctBonus).isEqualTo(true);
     }
 
-    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 1개인지 검증한다.")
+    @DisplayName("로또 번호 하나와 당첨 번호 0개 일치지만, 보너스 번호 1개 일치를 검증한다.")
     @Test
     void calculateAllCorrectWinning() {
         //given
@@ -126,12 +128,14 @@ public class LottoMatcherTest {
         //when
         LottoMatcher lottoMatcher = new LottoMatcher();
         long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
+        boolean correctBonus = lottoMatcher.calculateCorrectBonus(userNumbers, bonusNumber);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(0);
+        Assertions.assertThat(correctBonus).isEqualTo(false);
     }
 
-    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 2개인지 검증한다.")
+    @DisplayName("로또 번호 하나와 당첨 번호 1개 일치이고, 보너스 번호 1개 일치를 검증한다.")
     @Test
     void calculateAllCorrectWinningWithBonusNumber() {
         //given
@@ -169,7 +173,7 @@ public class LottoMatcherTest {
 
         //then
         Assertions.assertThat(correctWinningsCount.get(0)).isEqualTo(1);
-        Assertions.assertThat(correctWinningsCount.get(1)).isEqualTo(2);
+        Assertions.assertThat(correctWinningsCount.get(1)).isEqualTo(1);
         Assertions.assertThat(correctBonuses.get(0)).isEqualTo(false);
         Assertions.assertThat(correctBonuses.get(1)).isEqualTo(true);
     }

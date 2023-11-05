@@ -50,7 +50,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
         }
         int number = Integer.parseInt(input);
         if (!((number % 1000) == 0))
@@ -61,7 +61,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
         int number = Integer.parseInt(input);
         if (number > 45 || number < 1)

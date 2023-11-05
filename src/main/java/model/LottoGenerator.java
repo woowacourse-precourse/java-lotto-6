@@ -11,21 +11,16 @@ public class LottoGenerator {
     private LottoGenerator() {
     }
 
-    private final static int USER_TIME = 1;
-
-    public static List<Lotto> generateLotto(int times)
-    {
+    public static List<Lotto> generateLotto(int times, Numbergeneratable numberGenerator) {
         List<Lotto> lotto = new ArrayList<>();
-
-        for(int i = 0; i < times; i++)
-        {
-           lotto.add(NumberGenerator.generateNumbers());
+        for (int i = 0; i < times; i++) {
+            Lotto newLotto = new Lotto(numberGenerator.generateNumbers());
+            lotto.add(newLotto);
         }
         return lotto;
     }
 
-    public static Lotto generateLotto(Integer[] userNumbers)
-    {
+    public static Lotto generateLotto(Integer[] userNumbers) {
         Set<Integer> forDuplication = new HashSet<>(Arrays.asList(userNumbers));
         return new Lotto(new ArrayList<>(forDuplication));
     }

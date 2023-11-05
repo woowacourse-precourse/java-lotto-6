@@ -16,12 +16,12 @@ class InputHelperController {
         this.requester = requester;
     }
 
-    public <T> Integer checkAndRetryMoneyInput() {
+    public Integer checkAndRetryMoneyInput() {
         requester.requestHowMany();
         return ExceptionHandler.handleException(inputMan::receiveMoney);
     }
 
-    private <T> Integer[] checkAndRetryNumbersInput() {
+    private Integer[] checkAndRetryNumbersInput() {
         requester.requestNumbers();
         return ExceptionHandler.handleException(inputMan::receiveNumbers);
     }

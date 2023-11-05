@@ -1,12 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lotto.Lotto;
 
-public class MainModel implements LottoJudge{
+public class MainModel implements LottoJudge {
     private List<Lotto> computerLottos;
     private final static int RANK_INDEX = 5;
 
@@ -26,39 +28,31 @@ public class MainModel implements LottoJudge{
         return temp;
     }
 
-    public int[] judgeLotto(Lotto userLotto, int bonusNumber) {
-        int[] result = new int[RANK_INDEX];
+    public EnumMap<Rank, Integer> judgeLotto(Lotto userLotto, int bonusNumber) {
+        EnumMap<Rank, Integer> result = new EnumMap<>(Rank.class);
 
         for (Lotto computerLotto : computerLottos) {
-            addRank(result, compareNumbers(new LinkedHashSet<>(computerLotto.getNumbers()),
-                    new LinkedHashSet<>(userLotto.getNumbers()),
-                    bonusNumber));
+            Rank rank = compareNumbers(result, computerLotto.getNumbers(), userLotto.getNumbers(),
+                    bonusNumber);
+            if(rank != null)
+            {
+                result.put(rank, result.getOrDefault(rank, 0) +1);
+            }
         }
         return result;
     }
 
-    private void addRank(int[] result, Rank rank) {
-        if(rank != null) {
-            switch (rank) {
-                case FIRST -> result[4]++;
-                case SECOND -> result[3]++;
-                case THIRD -> result[2]++;
-                case FOURTH -> result[1]++;
-                case FIFTH -> result[0]++;
-            }
-        }
-    }
-
-    private Rank compareNumbers(Set<Integer> computerNumbers, Set<Integer> userNumbers,
+    private Rank compareNumbers(Map<Rank, Integer> result, List<Integer> computerNumbers,
+                                List<Integer> userNumbers,
                                 int bonusNumber) {
-        computerNumbers.retainAll(userNumbers);
-        return getRank(computerNumbers.size(), computerNumbers.contains(bonusNumber));
+        userNumbers.retainAll(computerNumbers);
+        return getRank(userNumbers.size(), computerNumbers.contains(bonusNumber));
     }
 
     private Rank getRank(int countOfMatch, boolean matchBonus) {
         Rank rank = Rank.valueOf(countOfMatch);
-        if (rank == Rank.SECOND && !matchBonus) {
-            return Rank.THIRD;
+        if (rank == Rank.THIRD && matchBonus) {
+            return Rank.SECOND;
         }
         return rank;
     }

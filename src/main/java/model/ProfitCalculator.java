@@ -1,6 +1,7 @@
 package model;
 
 import java.text.DecimalFormat;
+import java.util.EnumMap;
 
 public class ProfitCalculator implements ProfitCalculable {
     private final static int[] MONEY_OF_WINNING = {5000, 50000, 1500000,
@@ -16,12 +17,12 @@ public class ProfitCalculator implements ProfitCalculable {
         return formatted;
     }
 
-    public int calculateProfit(int[] result)
+    public int calculateProfit(EnumMap<Rank, Integer> result)
     {
         int profit = 0;
-        for(int i = 0; i < result.length; i++)
-        {
-            profit += (MONEY_OF_WINNING[i]*result[i]);
+        int count = 0;
+        for(Rank rank : result.keySet()) {
+            profit += (MONEY_OF_WINNING[count++] * result.getOrDefault(rank,0));
         }
         return profit;
     }

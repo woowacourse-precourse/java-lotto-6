@@ -1,8 +1,10 @@
 package controller;
 
+import java.util.EnumMap;
 import lotto.Lotto;
 import model.ProfitCalculable;
 import model.LottoJudge;
+import model.Rank;
 import view.LottoResultPrinter;
 import view.Mainview;
 
@@ -13,14 +15,14 @@ class ResultHelperController {
         this.resultPrinter = resultPrinter;
     }
 
-    private int[] processResult(LottoJudge judgeMan, Lotto userLotto, int bonusNumber) {
-        int[] result = judgeMan.judgeLotto(userLotto, bonusNumber);
+    private EnumMap<Rank, Integer> processResult(LottoJudge judgeMan, Lotto userLotto, int bonusNumber) {
+        EnumMap<Rank, Integer> result = judgeMan.judgeLotto(userLotto, bonusNumber);
         resultPrinter.printHowManyAndLottos(judgeMan.getComputerLottos());
         resultPrinter.printresult(result);
         return result;
     }
 
-    private int getProfit(ProfitCalculable profitCalculateMan, int[] result) {
+    private int getProfit(ProfitCalculable profitCalculateMan, EnumMap<Rank, Integer> result) {
         return profitCalculateMan.calculateProfit(result);
     }
 
@@ -30,7 +32,7 @@ class ResultHelperController {
     }
 
     void processLottoGame(ProcessLottoGameParameters parameters) {
-        int[] result = processResult(parameters.judgeMan(),
+        EnumMap<Rank,Integer> result = processResult(parameters.judgeMan(),
                 parameters.userLotto(), parameters.bonusNumber());
         processRateofProfit(parameters.rateCalculateMan(), parameters.money(),
                 getProfit(parameters.rateCalculateMan(), result));

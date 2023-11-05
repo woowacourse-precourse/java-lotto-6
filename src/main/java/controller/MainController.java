@@ -3,6 +3,7 @@ package controller;
 import lotto.Lotto;
 import model.LottoGenerator;
 import model.MainModel;
+import model.NumberGenerator;
 import model.ProfitCalculator;
 import validation.ValidationMan;
 import view.Mainview;
@@ -28,7 +29,7 @@ public class MainController {
 
     private void leadGame() {
         int money = inputHelperController.checkAndRetryMoneyInput();
-        MainModel mainModel = new MainModel(LottoGenerator.generateLotto(money / STANDARD_MONEY));
+        MainModel mainModel = new MainModel(LottoGenerator.generateLotto(money / STANDARD_MONEY, new NumberGenerator()));
         Lotto userLotto = inputHelperController.proceedtoMakingLotto();
         int bonusNumber = inputHelperController.checkAndRetryBonusNumberInput(userLotto);
         resultHelperController.processLottoGame(new ProcessLottoGameParameters

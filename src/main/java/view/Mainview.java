@@ -1,7 +1,9 @@
 package view;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import model.Rank;
 
 public class Mainview implements LotoInputRequester,LottoResultPrinter{
 
@@ -27,20 +29,12 @@ public class Mainview implements LotoInputRequester,LottoResultPrinter{
         System.out.println(REQUEST_BONUS_NUMBER);
     }
 
-    public void printresult(int[] result) {
+    public void printresult(EnumMap<Rank, Integer> result) {
         System.out.println(PRINT_RESULT);
-        for (int i = 0; i < result.length; i++) {
-            if(i <= 2) {
-                System.out.println(3 + i + "개 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
-            }
-            else if(i == 3)
-            {
-                System.out.println(5+ "개 일치, 보너스 볼 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
-            }
-            else if(i == result.length-1)
-            {
-                System.out.println(6+ "개 일치 (" + MONEY_OF_WINNING[i] + ") - " + result[i] + "개");
-            }
+        for(Rank rank : Rank.values())
+        {
+            System.out.println(rank.getCountOfMatch() + rank.getMessage() +rank.getWinningMoney()
+            +result.getOrDefault(rank,0)+"개");
         }
     }
 

@@ -3,16 +3,22 @@ package model;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6),
-    SECOND(5),
-    THIRD(5),
-    FOURTH(4),
-    FIFTH(3);
+    FIFTH(3,"개 일치"," (5,000원) - "),
+    FOURTH(4,"개 일치"," (50,000원) - "),
+    THIRD(5,"개 일치"," (1,500,000원) - "),
+    SECOND(5,"개 일치, 보너스 볼 일치"," (30,000,000원) - "),
 
-    private int countOfMatch;
+    FIRST(6,"개 일치"," (2,000,000,000원) - ");
 
-    Rank(int countOfMatch) {
+
+    private final int countOfMatch;
+    private final String message;
+    private final String winningMoney;
+
+    Rank(int countOfMatch, String message, String winningMoney) {
         this.countOfMatch = countOfMatch;
+        this.message = message;
+        this.winningMoney = winningMoney;
     }
 
     public static Rank valueOf(int countOfMatch) {
@@ -21,6 +27,18 @@ public enum Rank {
                 .filter(rank -> rank.countOfMatch == countOfMatch)
                 .findAny()
                 .orElse(null);
+    }
+
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getWinningMoney() {
+        return winningMoney;
     }
 }
 

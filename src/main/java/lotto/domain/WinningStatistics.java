@@ -22,6 +22,8 @@ public class WinningStatistics {
     }
 
 
+    public long showRevenue() {
 
+    }
 
 }

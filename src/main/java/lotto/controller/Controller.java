@@ -45,4 +45,8 @@ public class Controller {
         List<Integer> winNumbers = inputView.inputWinNumber();
         return new Lotto(winNumbers);
     }
+
+    public int getBonusLottoNumber(Lotto winNumber) {
+        return inputView.inputBonusNumber(winNumber);
+    }
 }

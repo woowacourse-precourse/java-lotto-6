@@ -17,8 +17,6 @@ public class Validator {
             return true;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -35,11 +33,24 @@ public class Validator {
         return false;
     }
 
+    public static boolean verifyBonusNumber(Lotto winNumber, String input) {
+        try {
+            verifyEmptyOrBlankExist(input);
+            verifyCharExist(input);
+            verifyDuplicateWithWinNumber(winNumber, Integer.parseInt(input));
+            verifyNumericRange(Integer.parseInt(input));
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     private static void verifyComposedOfNumbers(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ErrorMessage.INPUT_NOT_COMPOSED_OF_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_COMPOSED_OF_NUMBER.getMessage());
         }
     }
 
@@ -67,6 +78,26 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_CHARACTER.getMessage());
         }
+    }
+
+    private static void verifyEmptyOrBlankExist(String input) {
+        if (input.equals(EMPTY) || input.equals(SPACE)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EMPTY_OR_BLANK.getMessage());
+        }
+    }
+
+    private static void verifyDuplicateWithWinNumber(Lotto winNumber, int input) {
+        if (winNumber.contains(input)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_WIN_NUMBER.getMessage());
+        }
+    }
+
+    private static void verifyNumericRange(int input) {
+            if (input < LottoPolicy.MIN_LOTTO_NUMBER.getValue()
+                    || input > LottoPolicy.MAX_LOTTO_NUMBER.getValue()
+            ) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
     }
 
     private Validator() {

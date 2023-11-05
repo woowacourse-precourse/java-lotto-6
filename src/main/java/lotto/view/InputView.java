@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.util.InputParser;
 import lotto.util.Validator;
 import lotto.view.message.PrintMessage;
@@ -32,5 +33,18 @@ public class InputView {
         }
         System.out.println();
         return InputParser.parseIntegerList(input);
+    }
+
+    public int inputBonusNumber(Lotto winNumber) {
+        String input;
+        while (true) {
+            System.out.println(PrintMessage.BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+            input = Console.readLine();
+            if (Validator.verifyBonusNumber(winNumber, input)) {
+                break;
+            }
+        }
+        System.out.println();
+        return Integer.parseInt(input);
     }
 }

@@ -54,7 +54,7 @@ public class LottoService {
         int bonusNumber = lotteryNumbers.getBonusNumber();
         int sameCount = lotto.findSameCount(winningLotto);
         LotteryResult result = LotteryResult.values()[sameCount];
-        if ((result.equals(THIRD)) && (winningLotto.contains(bonusNumber))) {
+        if ((result.equals(THIRD)) && (lotto.contains(bonusNumber))) {
             return SECOND;
         }
         return result;

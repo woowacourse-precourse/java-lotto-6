@@ -25,11 +25,11 @@ public class Result {
     public String getNumOfRanks() {
         StringBuilder sb = new StringBuilder();
         for (Ranking ranking : Ranking.values()) {
-            if (ranking.getCondition().isEmpty()) {
+            if (ranking == Ranking.FAIL) {
                 continue;
             }
             int cnt = (int) rankings.stream().filter(r -> r == ranking).count();
-            sb.append(ranking.getCondition() + cnt + UNIT);
+            sb.append(ranking.getCondition()).append(cnt).append(UNIT);
         }
         return sb.toString();
     }

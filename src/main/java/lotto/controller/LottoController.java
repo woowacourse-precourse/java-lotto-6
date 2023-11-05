@@ -14,30 +14,27 @@ public class LottoController {
     private final LottoSystem lottoSystem = new LottoSystem(new Buyer(), new WinningLotto());
 
     public void start() {
-        buyLotto();
-        generateWinningLotto();
+        repeatExecutionOnFailure(this::buyLotto);
+        repeatExecutionOnFailure(this::generateWinningLotto);
     }
 
     private void buyLotto() {
-        do {
-            try {
-                int purchaseAmount = InputView.enterLottoPurchaseAmount();
-                lottoSystem.buyLotto(purchaseAmount);
-                break;
-            } catch (IllegalArgumentException exception) {
-                exception.printStackTrace(System.out);
-            }
-        } while (true);
+        int purchaseAmount = InputView.enterLottoPurchaseAmount();
+        lottoSystem.buyLotto(purchaseAmount);
 
         PurchasedLotto purchasedLotto = lottoSystem.getPurchasedLotto();
         OutputView.printPurchasedLotto(purchasedLotto);
     }
 
     private void generateWinningLotto() {
+        List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
+        lottoSystem.generateWinningLotto(winningLottoNumbers);
+    }
+
+    private void repeatExecutionOnFailure(Runnable runnable) {
         do {
             try {
-                List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
-                lottoSystem.generateWinningLotto(winningLottoNumbers);
+                runnable.run();
                 break;
             } catch (IllegalArgumentException exception) {
                 exception.printStackTrace(System.out);

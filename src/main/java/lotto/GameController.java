@@ -26,7 +26,7 @@ public class GameController {
         inputView.printBonusNumber();
         int playerBonusNumber = getValidInput(() -> inputView.insertBonusNumber());
 
-        Player playerLotto = new Player(new Lotto(playerLottoNumbers), playerBonusNumber);
+        Player playerLotto = getValidInput(() -> new Player(new Lotto(playerLottoNumbers), playerBonusNumber));
 
         List<Integer> gameResult = gameRule.calculateResult(cpu, playerLotto);
         String totalProfit = gameRule.calculateProfit(money, gameResult);

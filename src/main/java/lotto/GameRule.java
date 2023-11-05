@@ -17,7 +17,7 @@ public class GameRule {
             int result = lottoCounter.countElement(cpuSixNumber.getNumbers(), playerNumber.getNumbers());
             lottoCounter.hitThree(resultList, result);
             lottoCounter.hitFour(resultList, result);
-            lottoCounter.hitFive(resultList, result);
+            lottoCounter.hitFive(resultList, result, cpuSixNumber.getNumbers(), playerLotto.getBonusNumber());
             lottoCounter.hitFiveBonus(resultList, result, cpuSixNumber.getNumbers(), playerLotto.getBonusNumber());
             lottoCounter.hitSix(resultList, result);
         }

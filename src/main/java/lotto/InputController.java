@@ -13,6 +13,11 @@ interface InputSupplierList {
     List<Integer> get();
 }
 
+@FunctionalInterface
+interface InputSupplierPlayer {
+    Player get();
+}
+
 public class InputController {
 
     public static int getValidInput(InputSupplierInt inputSupplierInt) {
@@ -29,6 +34,16 @@ public class InputController {
         while (true) {
             try {
                 return inputSupplierList.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Player getValidInput(InputSupplierPlayer inputSupplierPlayer) {
+        while (true) {
+            try {
+                return inputSupplierPlayer.get();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

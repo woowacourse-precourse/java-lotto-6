@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
 
 public class Buyer {
     public int takeLottoPurchaseAmountFromBuyer() {
@@ -18,5 +21,17 @@ public class Buyer {
             return money;
         }
         throw new IllegalArgumentException("천원단위로 입력해주세요.");
+    }
+
+    public List<Integer> getLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public int getBonusNumber(List<Integer> LottoNumbers) {
+        int bonusNumber;
+        do {
+            bonusNumber = Randoms.pickNumberInRange(1, 45);
+        } while (LottoNumbers.contains(bonusNumber));
+        return bonusNumber;
     }
 }

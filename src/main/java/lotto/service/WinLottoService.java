@@ -22,8 +22,8 @@ public class WinLottoService {
         List<Integer> winLottoNums = winLotto.getNumbers();
         int matches = 0;
 
-        for(int winLottoNum : winLottoNums) {
-            if(lotto.isContainNum(winLottoNum)) {
+        for (int winLottoNum : winLottoNums) {
+            if (lotto.isContainNum(winLottoNum)) {
                 matches++;
             }
         }
@@ -31,21 +31,19 @@ public class WinLottoService {
         return matches;
     }
 
-    public Match convertMatch(Lotto lotto) {
-        int matches = matchWinLottoCheck(lotto);
-        boolean matchBonusNum = matchBonusNumCheck(lotto);
-
-        if(matches == 5) {
-            if(matchBonusNum) return Match.SECOND;
+    public Match convertMatch(int matches, boolean matchBonusNum) {
+        if (matches == 5) {
+            if (matchBonusNum) {
+                return Match.SECOND;
+            }
             return Match.THIRD;
         }
-
-        for(Match match : Match.values()) {
-            if(match.getNumOfMatches() == matches) {
+        for (Match match : Match.values()) {
+            if (match.getNumOfMatches() == matches) {
                 return match;
             }
         }
-
+        
         return null;
     }
 }

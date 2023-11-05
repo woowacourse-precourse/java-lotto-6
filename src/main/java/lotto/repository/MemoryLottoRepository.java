@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MemoryLottoRepository implements LottoRepository{
+public class MemoryLottoRepository implements LottoRepository {
 
     private Map<Lotto, Match> lottoStore = new HashMap<>();
 
@@ -23,11 +23,11 @@ public class MemoryLottoRepository implements LottoRepository{
     }
 
     @Override
-    public int findByMatch(Match match) {
+    public int findMatchCount(Match match) {
         int count = 0;
 
-        for (Match value : lottoStore.values()) {
-            if(value == match) {
+        for (Match lottoMatch : lottoStore.values()) {
+            if (lottoMatch == match) {
                 count++;
             }
         }

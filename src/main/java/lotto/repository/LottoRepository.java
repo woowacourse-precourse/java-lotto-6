@@ -8,7 +8,10 @@ import java.util.List;
 public interface LottoRepository {
 
     void save(List<Integer> lottoNumbers);
+
     List<Lotto> findAll();
-    int findByMatch(Match match);
+
+    int findMatchCount(Match match);
+
     void update(Lotto lotto, Match match);
 }

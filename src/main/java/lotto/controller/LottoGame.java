@@ -22,16 +22,23 @@ public class LottoGame {
     private long reward;
     public void run() {
         buyLotto();
-        initWinningLotto();
+        initWinningLotto(inputWinningLotto(), inputBonusNumber());
 //        matchLottos();
 //        showResult();
     }
 
-    private void initWinningLotto() {
+    private List<Integer> inputWinningLotto() {
         InputView.inputNumbers();
-        List<Integer> inputNumbers = LottoUtils.stringToList(InputUtil.inputStringWithTrim());
+        return LottoUtils.stringToList(InputUtil.inputStringWithTrim());
+    }
+
+    private String inputBonusNumber() {
         InputView.inputBonusNumber();
-        winningLotto = new WinningLotto(inputNumbers, InputUtil.inputStringWithTrim());
+        return InputUtil.inputStringWithTrim();
+    }
+
+    private void initWinningLotto(List<Integer> lotto, String bonus) {
+        winningLotto = new WinningLotto(lotto, bonus);
     }
 
     private void buyLotto() {

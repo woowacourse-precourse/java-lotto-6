@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.winning.WinningRanking;
+import lotto.domain.winning.LottoWinningRanking;
 
 public enum OutputMessage {
     REQUEST_PURCHASE_AMOUNT("구입금액을 입력해 주세요.\n"),
@@ -10,11 +10,11 @@ public enum OutputMessage {
     RESPONSE_USER_NUMBERS_SET("%s\n"),
     RESPONSE_WINNING_STATISTICS_HEADER("당첨 통계\n---\n"),
     RESPONSE_WINNING_STATISTICS_BODY(
-            WinningRanking.FIFTH.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", WinningRanking.FIFTH.getWinningAmount()) + "원) - %d개\n" +
-            WinningRanking.FOURTH.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", WinningRanking.FOURTH.getWinningAmount()) + "원) - %d개\n" +
-            WinningRanking.THIRD.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", WinningRanking.THIRD.getWinningAmount()) + "원) - %d개\n" +
-            WinningRanking.SECOND.getMatchedNumberCount() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", WinningRanking.SECOND.getWinningAmount()) + "원) - %d개\n" +
-            WinningRanking.FIRST.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", WinningRanking.FIRST.getWinningAmount()) + "원) - %d개\n"
+            LottoWinningRanking.FIFTH.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", LottoWinningRanking.FIFTH.getWinningAmount()) + "원) - %d개\n" +
+            LottoWinningRanking.FOURTH.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", LottoWinningRanking.FOURTH.getWinningAmount()) + "원) - %d개\n" +
+            LottoWinningRanking.THIRD.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", LottoWinningRanking.THIRD.getWinningAmount()) + "원) - %d개\n" +
+            LottoWinningRanking.SECOND.getMatchedNumberCount() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", LottoWinningRanking.SECOND.getWinningAmount()) + "원) - %d개\n" +
+            LottoWinningRanking.FIRST.getMatchedNumberCount() + "개 일치 (" + String.format("%,d", LottoWinningRanking.FIRST.getWinningAmount()) + "원) - %d개\n"
     ),
     RESPONSE_TOTAL_RETURN("총 수익률은 %,.1f%%입니다.\n");
 

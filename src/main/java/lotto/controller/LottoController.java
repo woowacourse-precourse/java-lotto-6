@@ -5,9 +5,9 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.profit.LottoProfitCalculator;
 import lotto.domain.store.LottoStore;
-import lotto.domain.winning.WinningRanking;
-import lotto.domain.winning.WinningRankingCalculator;
-import lotto.domain.winning.WinningNumbers;
+import lotto.domain.winning.LottoWinningRanking;
+import lotto.domain.winning.LottoWinningRankingCalculator;
+import lotto.domain.winning.LottoWinningNumbers;
 import lotto.dto.LottoDto;
 import lotto.exception.InvalidNumberFormatException;
 import lotto.exception.LottoException;
@@ -23,14 +23,14 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoStore lottoStore;
-    private final WinningRankingCalculator winningRankingCalculator;
+    private final LottoWinningRankingCalculator lottoWinningRankingCalculator;
     private final LottoProfitCalculator lottoProfitCalculator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoStore lottoStore, WinningRankingCalculator winningRankingCalculator, LottoProfitCalculator lottoProfitCalculator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoStore lottoStore, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculator lottoProfitCalculator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoStore = lottoStore;
-        this.winningRankingCalculator = winningRankingCalculator;
+        this.lottoWinningRankingCalculator = lottoWinningRankingCalculator;
         this.lottoProfitCalculator = lottoProfitCalculator;
     }
 
@@ -43,7 +43,7 @@ public class LottoController {
         Lotto winningLotto = processLottoWinningNumbersPickTransaction();
         BonusNumber bonusNumber = processLottoBonusNumberTransaction(winningLotto);
 
-        EnumMap<WinningRanking, Integer> winningRankingCountMap = processWinningRankingCalculationTransaction(userLottos, winningLotto, bonusNumber);
+        EnumMap<LottoWinningRanking, Integer> winningRankingCountMap = processWinningRankingCalculationTransaction(userLottos, winningLotto, bonusNumber);
         displayWinningRankingCount(winningRankingCountMap);
 
         double profit = processUserProfitCalculationTransaction(userLottos, winningRankingCountMap);
@@ -54,7 +54,7 @@ public class LottoController {
         outputView.responseTotalReturn(profit);
     }
 
-    private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<WinningRanking, Integer> winningRankingCountMap) {
+    private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         return lottoProfitCalculator.calculateProfit(winningRankingCountMap, userLottos.getSize());
     }
 
@@ -126,12 +126,12 @@ public class LottoController {
         return new BonusNumber(Integer.parseInt(input));
     }
 
-    private EnumMap<WinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, BonusNumber bonusNumber) {
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
-        return winningRankingCalculator.countWinningRankings(userLottos, winningNumbers);
+    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, BonusNumber bonusNumber) {
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, bonusNumber);
+        return lottoWinningRankingCalculator.countWinningRankings(userLottos, lottoWinningNumbers);
     }
 
-    private void displayWinningRankingCount(EnumMap<WinningRanking, Integer> winningRankingCountMap) {
+    private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         outputView.responseWinningStatisticsHeader();
         outputView.responseWinningStatisticsBody(winningRankingCountMap);
     }

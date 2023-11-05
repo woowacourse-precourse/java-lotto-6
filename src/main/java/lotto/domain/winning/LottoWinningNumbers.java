@@ -3,11 +3,11 @@ package lotto.domain.winning;
 import lotto.domain.lotto.Lotto;
 import lotto.vo.BonusNumber;
 
-public class WinningNumbers {
+public class LottoWinningNumbers {
     private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(final Lotto lotto, final BonusNumber bonusNumber) {
+    public LottoWinningNumbers(final Lotto lotto, final BonusNumber bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }

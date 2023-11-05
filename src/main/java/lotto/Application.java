@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.domain.generator.LottoAutoGenerator;
 import lotto.domain.profit.LottoProfitCalculator;
-import lotto.domain.winning.WinningRankingCalculator;
+import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.generator.LottoManualGenerator;
 import lotto.domain.store.LottoStore;
 import lotto.view.InputView;
@@ -16,10 +16,10 @@ public class Application {
         LottoAutoGenerator lottoAutoGenerator = new LottoAutoGenerator();
         LottoManualGenerator lottoManualGenerator = new LottoManualGenerator();
         LottoStore lottoStore = new LottoStore(lottoAutoGenerator, lottoManualGenerator);
-        WinningRankingCalculator winningRankingCalculator = new WinningRankingCalculator();
+        LottoWinningRankingCalculator lottoWinningRankingCalculator = new LottoWinningRankingCalculator();
         LottoProfitCalculator lottoProfitCalculator = new LottoProfitCalculator();
 
-        LottoController lottoController = new LottoController(inputView, outputView, lottoStore, winningRankingCalculator, lottoProfitCalculator);
+        LottoController lottoController = new LottoController(inputView, outputView, lottoStore, lottoWinningRankingCalculator, lottoProfitCalculator);
         lottoController.run();
     }
 }

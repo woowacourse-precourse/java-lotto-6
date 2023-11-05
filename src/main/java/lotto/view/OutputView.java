@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.winning.WinningRanking;
+import lotto.domain.winning.LottoWinningRanking;
 import lotto.dto.LottoDto;
 
 import java.util.ArrayList;
@@ -34,10 +34,10 @@ public class OutputView {
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_HEADER);
     }
 
-    public void responseWinningStatisticsBody(final EnumMap<WinningRanking, Integer> rankingCountMap) {
+    public void responseWinningStatisticsBody(final EnumMap<LottoWinningRanking, Integer> rankingCountMap) {
         List<Integer> list = new ArrayList<>();
-        for (WinningRanking ranking : WinningRanking.values()) {
-            if (ranking == WinningRanking.NONE) {
+        for (LottoWinningRanking ranking : LottoWinningRanking.values()) {
+            if (ranking == LottoWinningRanking.NONE) {
                 continue;
             }
             Integer count = rankingCountMap.getOrDefault(ranking, 0);

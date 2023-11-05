@@ -60,4 +60,16 @@ public class Lotto {
 
         }
     }
+
+    public static int compareMatch(List<Integer> issueNumbers, List<Integer> winNumbers) {
+        int matchCount = 0;
+
+        for (int number : issueNumbers) {
+            if (winNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
 }

@@ -9,7 +9,7 @@ public class Money {
 
     public void inputMoney(String input) {
         Integer inputNumber = inputNumberNumericValidate(input);
-        if (inputNumber < 1) {
+        if (inputNumber < 1000) {
             throw new IllegalArgumentException(Message.EXCPTION_LESS_THAN_THOUSNAD);
         }
         if (inputNumber % UNIT != 0) {

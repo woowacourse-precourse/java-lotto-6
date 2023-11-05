@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,5 +38,10 @@ public class Parser {
     private static List<String> parseStringSplitComma(String input) {
         List<String> parseString = Arrays.asList(input.split(DELIMITER));
         return parseString;
+    }
+
+    public static String parseProfitRateFormat(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        return decimalFormat.format(profitRate);
     }
 }

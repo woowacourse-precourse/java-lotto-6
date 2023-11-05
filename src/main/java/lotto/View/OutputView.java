@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
 	private static final String PRINT_LOTTO_QUANTITY = "%d개를 구매했습니다.\n";
 	private static final String PRINT_RESULT_HEAD = "\n당첨 통계\n---";
-	private static final String PRINT_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
+	private static final String PRINT_PROFIT_RATE = "총 수익률은 %s%%입니다.";
 	
     public static void printPurchaseLottoAmount(int input) {
     	System.out.println();
@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println(printString + count + "개");
     }
 
-    public static void printProfitRate(double profitRate) {
+    public static void printProfitRate(String profitRate) {
         System.out.printf(PRINT_PROFIT_RATE, profitRate);
     }
 

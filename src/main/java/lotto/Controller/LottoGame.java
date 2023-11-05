@@ -27,7 +27,7 @@ public class LottoGame {
         OutputView.printResultHead();
         transmitOutput(resultCount);
         double profitRate = user.calculateProfitRate(resultCount);
-        OutputView.printProfitRate(profitRate);
+        OutputView.printProfitRate(Parser.parseProfitRateFormat(profitRate));
     }
 
     private int findLottoQuantity() {
@@ -107,7 +107,7 @@ public class LottoGame {
         while (true) {
             try {
                 List<Integer> lottoWinningNumbers = findWinningNumbers();
-                int bonusNumber = findBonusNumber();
+                int bonusNumber = findBonusNumber(lottoWinningNumbers);
                 ResultNumbers resultNumbers = new ResultNumbers(lottoWinningNumbers, bonusNumber);
                 return resultNumbers;
             } catch (IllegalArgumentException e) {
@@ -122,6 +122,9 @@ public class LottoGame {
                 String input = InputView.requestWinningNumbers();
                 Validator.validateLastComma(input);
                 List<Integer> lottoWinningNumbers = Parser.parseWinningNumbers(input);
+                Validator.valiateDuplicateNums(lottoWinningNumbers);
+                Validator.validateSize(lottoWinningNumbers);
+                Validator.validateNumbersRange(lottoWinningNumbers);
                 return lottoWinningNumbers;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());
@@ -129,11 +132,13 @@ public class LottoGame {
         }
     }
 
-    private int findBonusNumber() {
+    private int findBonusNumber(List<Integer> lottoWinningNumbers) {
         while (true) {
             try {
                 String bonusInput = InputView.requestBonusNumber();
                 int bonusNumber = Validator.validateParseInt(bonusInput);
+                Validator.validateNumberRange(bonusNumber);
+                Validator.validateContainWinningNumbers(lottoWinningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());

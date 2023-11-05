@@ -1,4 +1,4 @@
-package lotto.util.wrapper;
+package lotto.model;
 
 
 import static lotto.util.validators.BonusNumberValidator.validateBonusNumber;

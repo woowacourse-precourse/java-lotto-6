@@ -22,8 +22,8 @@ public class Purchase {
         return amount / LOTTO_PRICE_UNIT;
     }
 
-    private void validate(Integer price) {
-        if (price < LOTTO_PRICE_UNIT || price % LOTTO_PRICE_UNIT != ZERO) {
+    private void validate(Integer amount) {
+        if (amount < LOTTO_PRICE_UNIT || amount % LOTTO_PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR.getMessage());
         }
     }

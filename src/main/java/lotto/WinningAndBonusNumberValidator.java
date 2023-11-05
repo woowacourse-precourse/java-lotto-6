@@ -3,9 +3,11 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
+import lotto.util.SortedRandomNumberGenerator;
 
 public class WinningAndBonusNumberValidator {
-    public Lotto validateWinningNumber(List<Integer> winningNumber) {
+    public static Lotto validateWinningNumber(List<Integer> winningNumber) {
         for (int number : winningNumber) {
             validateNumberRange(number);
         }
@@ -13,26 +15,26 @@ public class WinningAndBonusNumberValidator {
         return new Lotto(winningNumber);
     }
 
-    public int validateBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+    public static int validateBonusNumber(List<Integer> winningNumber, int bonusNumber) {
         validateNumberRange(bonusNumber);
         validateDuplicate(winningNumber, bonusNumber);
         return bonusNumber;
     }
 
-    private void validateNumberRange(int number) {
+    private static void validateNumberRange(int number) {
         if (number < SortedRandomNumberGenerator.START_RANGE || number > SortedRandomNumberGenerator.END_RANGE) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers, int number) {
+    private static void validateDuplicate(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException();
         }

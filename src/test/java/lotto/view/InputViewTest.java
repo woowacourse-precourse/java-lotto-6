@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.validator.InputValidator;
+import lotto.validator.MoneyValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +11,6 @@ import static org.assertj.core.api.Assertions.*;
 class InputViewTest {
 
     private final InputValidator inputValidator = new InputValidator();
-
     @Test
     @DisplayName("입력 값이 빈 값일 때 예외 처리 테스트")
     void input_validate_when_blank() {

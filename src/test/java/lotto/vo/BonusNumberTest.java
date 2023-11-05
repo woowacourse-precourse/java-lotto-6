@@ -1,12 +1,34 @@
 package lotto.vo;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {
+
+    @DisplayName("유효한 값으로 BonusNumber를 생성할 경우 예외가 발생하지 않는다.")
+    @Test
+    public void valid_bonusNumber_init_test() {
+        // when
+        Integer validNumber = 10;
+
+        // then
+        assertDoesNotThrow(() -> new BonusNumber(validNumber));
+    }
+
+    @DisplayName("유효하지 않은 값으로 BonusNumber를 생성할 경우 예외가 발생한다.")
+    @Test
+    public void testInvalidBonusNumber() {
+        // when
+        Integer invalidNumber = 50;
+
+        // then
+        assertThrows(IllegalArgumentException.class, () -> new BonusNumber(invalidNumber));
+    }
 
     @DisplayName("BonusNumber는 필드 값을 포장해야 한다.")
     @Test

@@ -4,9 +4,14 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+
+    private static final int MAX_NUMBER_RANGE = 45;
+    private static final int MIN_NUMBER_RANGE = 1;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        checkLottoNumbersRange(numbers);
         checkDuplicateNumber(numbers);
         validate(numbers);
         this.numbers = numbers;
@@ -24,5 +29,14 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] ");
         }
+    }
+
+    private void checkLottoNumbersRange(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number > MAX_NUMBER_RANGE || number < MIN_NUMBER_RANGE)
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException("[ERROR] ");
+                });
     }
 }

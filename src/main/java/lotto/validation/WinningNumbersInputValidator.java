@@ -64,4 +64,11 @@ public class WinningNumbersInputValidator {
         String[] numbers = input.split(SPLIT_MESSAGE.getMessage());
         return numbers.length != COUNT_NUMBERS.getNumber();
     }
+
+    public void validateWinningNumbers(String input) {
+        validateNumberRange(input);
+        validateCommaSeparatedNumbers(input);
+        validateNumberDuplication(input);
+        validateNumbersCount(input);
+    }
 }

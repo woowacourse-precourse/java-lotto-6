@@ -2,12 +2,13 @@ package lotto.domain;
 
 import lotto.util.Constants;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoCountCalculator {
 
-    private Map<Integer, Integer> lottoResult;
+    private final Map<Integer, Integer> lottoResult = new HashMap<>();
 
     public LottoCountCalculator(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
         setLottoResult(lotto, winLotto, bonus);
@@ -17,13 +18,13 @@ public class LottoCountCalculator {
         return lottoResult;
     }
 
-    public void setLottoResult(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
+    private void setLottoResult(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
         for (Lotto ticket : lotto) {
             countLotto(countMatches(ticket, winLotto), isBonus(winLotto, bonus));
         }
     }
 
-    public void countLotto(int matches, boolean bonus) {
+    private void countLotto(int matches, boolean bonus) {
         if (matches >= Constants.LOTTO_MIN_COUNT) {
             int key = matches;
             if (matches == Constants.LOTTO_BONUS_WINNER_COUNT && bonus) {

@@ -44,7 +44,7 @@ public class Lotto {
         }
     }
 
-    public void sort(){
+    private void sort(){
         Collections.sort(this.numbers);
     }
 }

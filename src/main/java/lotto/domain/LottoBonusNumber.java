@@ -28,7 +28,7 @@ public class LottoBonusNumber {
         }
     }
 
-    public void rangeCheck() {
+    private void rangeCheck() {
         if (lottoBonusNumber < 1 || lottoBonusNumber > 45) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR_INFO
@@ -36,7 +36,7 @@ public class LottoBonusNumber {
         }
     }
 
-    public int StringToInt(String input) {
+    private int StringToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

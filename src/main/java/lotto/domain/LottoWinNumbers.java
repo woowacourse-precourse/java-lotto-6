@@ -3,15 +3,12 @@ package lotto.domain;
 import lotto.util.Constants;
 import lotto.util.ErrorMessage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class LottoWinNumbers {
-    List<Integer> lottoWinNumbers;
+    List<Integer> lottoWinNumbers = new ArrayList<>();
 
     public List<Integer> getLottoWinNumbers() {
         return lottoWinNumbers;

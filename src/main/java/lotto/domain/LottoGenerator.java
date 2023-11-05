@@ -14,7 +14,7 @@ public class LottoGenerator {
         setMyLotto(chance);
     }
 
-    public void setMyLotto(int chance) {
+    private void setMyLotto(int chance) {
         IntStream.range(0, chance)
                 .mapToObj(i -> new Lotto(generateRandomLottoNumbers()))
                 .forEach(myLotto::add);

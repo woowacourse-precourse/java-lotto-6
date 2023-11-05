@@ -33,4 +33,15 @@ class InputValidatorTest {
                 .withMessageContaining("값을 입력해 주세요.");
     }
 
+    @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"1:2:3:4:5:6", "일,이,삼,사,오,육", "1000원", "1000won", "1000원!", "1, 2, 3, 4, 5, 6"})
+    @DisplayName("입력 공통 예외 처리: 숫자와 쉼표 외 다른 문자가 입력된 경우")
+    void givenUnmatchedInput_whenValidate_thenThrowException(String input) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputValidator.validate(input))
+                .withMessageStartingWith(error)
+                .withMessageContaining("숫자와 구분자 쉼표(,)만 입력할 수 있습니다.");
+    }
+
 }

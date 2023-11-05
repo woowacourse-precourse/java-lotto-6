@@ -30,7 +30,7 @@ public class WinResult {
     }
 
     private boolean isOverTwo(int sameNumberCount) {
-        return true;
+        return sameNumberCount >= 2;
     }
 
     private boolean isFiveSame(int sameNumberCount) {

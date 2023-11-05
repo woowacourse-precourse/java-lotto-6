@@ -2,6 +2,8 @@ package lotto.View;
 
 import static lotto.Exception.ExceptionMessage.TYPE_ERROR;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
     private static final String INPUT_LOTTO_AMOUNT = "구입금액을 입력해 주세요.";
@@ -19,11 +21,15 @@ public class InputView {
         }
     }
 
-    private static int stringToInt(String input) {
+    public static List<Integer> inputWinningNumbers(){
         try {
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(TYPE_ERROR.getExceptionMessage());
+            System.out.println(INPUT_WINNING_NUMBERS);
+            return Arrays.stream((Console.readLine().split(",")))
+                    .map(Integer::parseInt).toList();
+        }catch (IllegalArgumentException e){
+            System.out.println("\n" + TYPE_ERROR.getExceptionMessage());
+            return inputWinningNumbers();
         }
     }
+
 }

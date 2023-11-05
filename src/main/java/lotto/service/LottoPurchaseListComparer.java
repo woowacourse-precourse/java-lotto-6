@@ -37,19 +37,12 @@ public class LottoPurchaseListComparer {
                 match++;
             }
         }
-        // 이건 보너스 번호 일치하는 2등 케이스
-        if (match == 5 && purchaseUnit.contains(bonus)) {
-            return match + 1;
-        }
-        // 이건 전부 다 일치하는 1등 케이스
-        if (match == 6) {
+        // 이건 보너스 번호 일치하는 2등 케이스와 전부 다 일치하는 1등 케이스
+        if ((match == 5 && purchaseUnit.contains(bonus)) || match == 6) {
             return match + 1;
         }
         // 어차피 1개 일치하나 2개 일치하나 무슨 상관이야. 3개 이상으로 리턴
-        if (match >= 3) {
-            return match;
-        }
-        return 0;
+        return match;
     }
 
 }

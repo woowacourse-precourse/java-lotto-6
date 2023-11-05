@@ -26,9 +26,11 @@ public class LottoController {
         purchaseList = PurchaseListPrinter.getPurchaseList();
         lotto = getInputLotto();
         bonus = getInputBonus();
+        // 임시(나중에 메소드화시킬것)
         LottoPurchaseListComparer test = new LottoPurchaseListComparer();
         test.compareBundle(purchaseList, lotto, bonus);
         System.out.println(test.getResultList());
+        // 여기까지? 혹은 마지막 통계까지?
     }
 
     // 구입 금액 입력

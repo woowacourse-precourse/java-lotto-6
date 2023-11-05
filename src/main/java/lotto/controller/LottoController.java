@@ -51,7 +51,7 @@ public class LottoController {
     }
 
     private void displayProfit(double profit) {
-        outputView.responseTotalReturn(profit);
+        outputView.responseProfit(profit);
     }
 
     private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {

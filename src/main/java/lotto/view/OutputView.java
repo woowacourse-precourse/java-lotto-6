@@ -46,7 +46,7 @@ public class OutputView {
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, list.toArray());
     }
 
-    public void responseTotalReturn(final double profit) {
+    public void responseProfit(final double profit) {
         display(OutputMessage.RESPONSE_TOTAL_RETURN, profit);
     }
 

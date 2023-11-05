@@ -14,7 +14,7 @@ public class WinningNumber {
     }
 
     private void validateContainsBonusNumber(Lotto lottoNumber, int bonusNumber) {
-        if (lottoNumber.sortLottoNumber().contains(bonusNumber)) {
+        if (lottoNumber.getSortLottoNumber().contains(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getExceptionMessage());
         }
     }

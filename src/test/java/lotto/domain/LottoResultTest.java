@@ -27,6 +27,7 @@ class LottoResultTest {
         Assertions.assertEquals(1, lotto);
     }
 
+
     @Test
     @DisplayName("플레이어의 수익률을 반환후 기대값과 일치하면 통과")
     void testCalculateUserProfit() {

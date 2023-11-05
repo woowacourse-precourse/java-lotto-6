@@ -27,7 +27,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호를 오름차순으로 정렬한다.")
     void sortedLottoNumbers() {
-        List<java.lang.Integer> sortedLottoNumber = new Lotto(List.of(6, 5, 4, 3, 2, 1)).sortLottoNumber();
+        List<java.lang.Integer> sortedLottoNumber = new Lotto(List.of(6, 5, 4, 3, 2, 1)).getSortLottoNumber();
         Assertions.assertEquals(sortedLottoNumber, Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 

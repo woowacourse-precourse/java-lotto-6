@@ -16,13 +16,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> sortLottoNumber() {
+    public List<Integer> getSortLottoNumber() {
         return numbers.stream().sorted().toList();
     }
 
     public int getMatchCount(Lotto lotto) {
         List<Integer> myLottoNumbers = new ArrayList<>(this.numbers);
-        myLottoNumbers.retainAll(lotto.sortLottoNumber());
+        myLottoNumbers.retainAll(lotto.getSortLottoNumber());
         return myLottoNumbers.size();
     }
 

@@ -19,21 +19,33 @@ public class Lotto {
     }
 
     private void validateInRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(i -> 1 <= i && i <= 45)){
+        if (notInRange(numbers)) {
             throw new IllegalArgumentException("1~45사이의 값만 입력해주세요.");
         }
     }
 
+    private static boolean notInRange(List<Integer> numbers) {
+        return !numbers.stream().allMatch(LottoConstraint::inRange);
+    }
+
     private void validateSameItem(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != numbers.size()) {
+        if (hasSameItem(numbers)) {
             throw new IllegalArgumentException("중복된 값을 입력하지 마세요.");
         }
     }
 
+    private static boolean hasSameItem(List<Integer> numbers) {
+        return numbers.stream().distinct().count() != numbers.size();
+    }
+
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (isUnsuitableSize(numbers)) {
             throw new IllegalArgumentException("숫자 6개를 입력해주세요");
         }
+    }
+
+    private static boolean isUnsuitableSize(List<Integer> numbers) {
+        return !LottoConstraint.checkSize(numbers.size());
     }
 
 }

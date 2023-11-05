@@ -2,14 +2,12 @@ package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.LottoConstraint;
 
 public class RandomNumberGenerator {
 
-    public static final int MIN = 1;
-    public static final int MAX = 45;
-    public static final int COUNT = 6;
-
     public static List<Integer> generateUniqueNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoConstraint.MIN.getConstraint(),
+                LottoConstraint.MAX.getConstraint(), LottoConstraint.COUNT.getConstraint());
     }
 }

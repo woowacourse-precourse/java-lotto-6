@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomNumberGenerator {
@@ -11,7 +12,14 @@ public class RandomNumberGenerator {
 
 
     public List<Integer> generateUniqueAndRandomSixNumber() {
-        return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
+        return sortNumbers(numbers);
     }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
+    }
+
 
 }

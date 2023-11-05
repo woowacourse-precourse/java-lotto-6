@@ -1,6 +1,6 @@
 package lotto.game;
 
-import lotto.collaboration.Lottos;
+import lotto.collaboration.lottos.Lottos;
 
 public class LottoGame {
 

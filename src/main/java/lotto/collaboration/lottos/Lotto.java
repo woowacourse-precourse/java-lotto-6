@@ -1,4 +1,4 @@
-package lotto.collaboration;
+package lotto.collaboration.lottos;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -15,7 +15,6 @@ public class Lotto {
      */
     private final List<Integer> numbers;
 
-    // COMMENT : 접근제한자 수정 이야기는 없는데 private으로 바꿔도 되는거겠지?
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

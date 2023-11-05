@@ -1,4 +1,4 @@
-package lotto.collaboration;
+package lotto.collaboration.lottos;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

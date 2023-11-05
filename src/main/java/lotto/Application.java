@@ -7,8 +7,8 @@ import domain.PaymentCalculator;
 import domain.WinningNumbers;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class Application {
     public static void main(String[] args) {
@@ -33,5 +33,14 @@ public class Application {
 
         LottoGameResult result = calculateResult(ticket, winningNumbersObj);
         printResult(result);
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] numberStrings = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            numbers.add(Integer.parseInt(numberString));
+        }
+        return numbers;
     }
 }

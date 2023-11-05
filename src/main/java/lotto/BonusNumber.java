@@ -32,7 +32,7 @@ public class BonusNumber {
     }
 
     private void validateInRange(int bonusNumber) {
-        if (checkBonusNumberInRange(bonusNumber)) {
+        if (!checkBonusNumberInRange(bonusNumber)) {
             throw new IllegalArgumentException(String.format(ErrorMessage.BONUS_NUMBER_RANGE_ERROR.getMessage(),
                     NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
         }

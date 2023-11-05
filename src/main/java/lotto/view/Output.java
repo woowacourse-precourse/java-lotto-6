@@ -16,6 +16,7 @@ public class Output {
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String DIVIDER = "---";
     private static final String WINNING_RANK_COUNT_FORMAT = " - %d개";
+    private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %f%%입니다.";
 
     public void showMoneyInputMessage() {
         System.out.println(MONEY_INPUT_MESSAGE);
@@ -46,11 +47,12 @@ public class Output {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
-    public void showWinningStats(Map<Rank, Integer> winningResult) {
+    public void showWinningStats(Map<Rank, Integer> winningResult, double totalReturn) {
         lineBreak();
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDER);
         showWinningResult(winningResult);
+        showTotalReturn(totalReturn);
     }
 
     private void showWinningResult(Map<Rank, Integer> winningResult) {
@@ -59,6 +61,10 @@ public class Output {
                 .sorted(Comparator.comparingInt(e -> -e.getKey().getRanking()))
                 .filter(entry -> !entry.getKey().equals(Rank.NONE))
                 .forEach(entry -> System.out.println(entry.getKey() + String.format(WINNING_RANK_COUNT_FORMAT, entry.getValue())));
+    }
+
+    private void showTotalReturn(double totalReturn) {
+        System.out.printf(TOTAL_RETURN_FORMAT, totalReturn);
     }
 
     private void lineBreak() {

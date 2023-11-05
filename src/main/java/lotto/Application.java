@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.config.Config;
+import lotto.view.ShowLottoProcess;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ShowLottoProcess showLottoProcess = Config.showLottoProcess();
+        showLottoProcess.run();
     }
 }

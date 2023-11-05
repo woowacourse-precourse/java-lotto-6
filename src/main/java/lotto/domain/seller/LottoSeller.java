@@ -20,7 +20,8 @@ public class LottoSeller {
      *
      * @return
      */
-    public LottoEnvelop sell() {
+    public LottoEnvelop sell(Integer money) {
+        makeLottoEnvelope(money);
         return lottoEnvelop;
     }
 
@@ -37,5 +38,9 @@ public class LottoSeller {
             lotto = Config.lotto();
             lottoEnvelop.add(lotto);
         }
+    }
+
+    public String tellNumberLotto() {
+        return lottoEnvelop.size() + "개를 구매했습니다.";
     }
 }

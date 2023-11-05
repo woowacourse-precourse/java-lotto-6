@@ -1,13 +1,28 @@
 package lotto.domain.host;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 
-public class LottoryHost {
-    private LottoTargetNumResults lottoTargetNumResults;
+public class LottoHost {
+    private String winNumbers;
+    private String bonusNumbers;
 
-    public void pickNum(String strOfPickWinNum, String strOfPickBonusNum) {
-        this.lottoTargetNumResults = Config.lottoNumResults(strOfPickWinNum, strOfPickBonusNum);
+    public String pickWinNumbers() {
+        // TODO: 11/5/23 입력 체크.
+        winNumbers = Console.readLine();
+        return winNumbers;
+    }
+
+    public String pickBonusNumber() {
+        // TODO: 11/5/23 입력 체크.
+        bonusNumbers = Console.readLine();
+        return bonusNumbers;
+    }
+
+
+    public LottoTargetNumResults giveLottoTargetNumResults() {
+        return Config.lottoTargetNumResults(winNumbers, bonusNumbers);
     }
 
     /**

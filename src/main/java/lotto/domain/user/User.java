@@ -2,11 +2,8 @@ package lotto.domain.user;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
-
-import java.util.List;
 
 /**
  * 사용자 클래스
@@ -17,14 +14,18 @@ public class User {
     private Integer useMoney;
     private Integer totalWinMoney;
     private RateResult rateResult;
+    private LottoTargetNumResults lottoTargetNumResults;
 
-    public User(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
-        this.lottoEnvelop = lottoEnvelop;
-        this.statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
+    public User() {
+        this.lottoEnvelop = null;
+        this.statistic = null;
         this.useMoney = 0;
         this.totalWinMoney = 0;
         this.rateResult = Config.rateResult();
+    }
 
+    public void takeTargetNumResults(LottoTargetNumResults lottoTargetNumResults) {
+        this.lottoTargetNumResults = lottoTargetNumResults;
     }
 
     /**
@@ -32,12 +33,12 @@ public class User {
      *
      * @return
      */
-    public String payMoney() {
+    public Integer payMoney() {
         // TODO: 11/5/23 Utill로 빼기
         String money = Console.readLine();
         useMoney = Integer.valueOf(money);
 
-        return money;
+        return useMoney;
     }
 
     /**
@@ -64,7 +65,10 @@ public class User {
      *
      * @return
      */
-    public StringBuilder showStatisticLottoResult() {
+    public StringBuilder showStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
+        takeTargetNumResults(lottoTargetNumResults);
+        statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
+
         return statistic.show();
     }
 
@@ -73,9 +77,9 @@ public class User {
      *
      * @return
      */
-    public Double calculateTotalRate() {
+    public StringBuilder calculateTotalRate() {
         totalWinMoney = statistic.getTotalWinMoney();
 
-        return rateResult.calculate(useMoney, totalWinMoney);
+        return rateResult.showRate(useMoney, totalWinMoney);
     }
 }

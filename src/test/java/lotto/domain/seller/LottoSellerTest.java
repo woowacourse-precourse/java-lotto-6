@@ -22,15 +22,14 @@ class LottoSellerTest {
         lottoSeller = new LottoSeller();
     }
 
-    @DisplayName("돈을 받고 로또 봉투를 만든다.")
+    @DisplayName("돈을 받고 로또 봉투를 만든고 판다.")
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 3000, 4000, 5000, 6000})
     void makeLottoEnvelope(Integer money) {
         LottoEnvelop lottoEnvelop = null;
 
         // when
-        lottoSeller.makeLottoEnvelope(money);
-        lottoEnvelop = lottoSeller.sell();
+        lottoEnvelop = lottoSeller.sell(money);
 
         int result = lottoEnvelop.size();
         int targetSizeEnvelop = (money / 1000);

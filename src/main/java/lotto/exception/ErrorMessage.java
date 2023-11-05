@@ -12,7 +12,12 @@ public enum ErrorMessage {
 
     // Lotto Machine Validation
     LESSER_THAN_MINIMUM_MONEY("구입 금액은 0원 이상이여야 합니다."),
-    INVALID_INPUT_MONEY_UNIT("구입 금액은 1000원 단위여야 합니다.");
+    INVALID_INPUT_MONEY_UNIT("구입 금액은 1000원 단위여야 합니다."),
+
+    // Input View Validation
+    EMPTY_STRING_EXCEPTION("입력 값이 없습니다."),
+    BLANK_STRING_EXCEPTION("입력 값이 비어 있습니다."),
+    INPUT_STRING_NOT_NUMBER("숫자만 입력할 수 있습니다.");
 
 
     private final String message;

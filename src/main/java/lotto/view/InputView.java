@@ -1,0 +1,46 @@
+package lotto.view;
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.exception.ErrorMessage.BLANK_STRING_EXCEPTION;
+import static lotto.exception.ErrorMessage.EMPTY_STRING_EXCEPTION;
+import static lotto.exception.ErrorMessage.INPUT_STRING_NOT_NUMBER;
+
+import lotto.exception.LottoGameException;
+
+
+public class InputView {
+    public static final String NUMBER_REGEX = "\\D+";
+
+    public static int inputMoney() {
+        String inputString = readLine();
+
+        validateInputString(inputString);
+        validateInputStringIsNumber(inputString);
+
+        return Integer.parseInt(inputString);
+    }
+
+    private static void validateInputString(String inputString) {
+        validateInputStringNotEmpty(inputString);
+        validateInputStringNotBlank(inputString);
+    }
+
+    private static void validateInputStringNotEmpty(String inputString) {
+        if (inputString.isEmpty()) {
+            throw LottoGameException.of(EMPTY_STRING_EXCEPTION);
+        }
+    }
+
+    private static void validateInputStringNotBlank(String inputString) {
+        if (inputString.isBlank()) {
+            throw LottoGameException.of(BLANK_STRING_EXCEPTION);
+        }
+    }
+
+    private static void validateInputStringIsNumber(String inputString) {
+        if (inputString.matches(NUMBER_REGEX)) {
+            throw LottoGameException.of(INPUT_STRING_NOT_NUMBER);
+        }
+    }
+
+}

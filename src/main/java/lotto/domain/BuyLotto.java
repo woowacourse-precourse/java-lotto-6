@@ -3,18 +3,18 @@ package lotto.domain;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BuyLotto {
-    public static int inputMoney(){
+    public static void inputMoney(){
         //로또 구입 금액 입력
         //1000원으로 나누어떨어지지 않는 경우 에러 처리
         int inputPurchaseMoney;
 
         while(true){
-            System.out.println("구입 금액을 입력해주세요");
+            System.out.println("구입금액을 입력해 주세요.");
             inputPurchaseMoney = Integer.valueOf(readLine());
             try{
                 if(inputPurchaseMoney % 1000 == 0){
-                    int quantityLotto = inputPurchaseMoney / 1000;
-                    return quantityLotto;
+                    quantityLotto(inputPurchaseMoney);
+                    break;
                 }else if(inputPurchaseMoney % 1000 != 0){
                     throw new IllegalArgumentException();
                 }
@@ -24,13 +24,15 @@ public class BuyLotto {
         }
     }
 
-    public static int quantityLotto() {
+    public static void quantityLotto(int inputPurchaseMoney) {
         //발행한 로또 수량 출력
-
-        return 0;
+        int buyingQuantityLotto = inputPurchaseMoney / 1000;
+        System.out.println();
+        System.out.println(buyingQuantityLotto + "개를 구매했습니다.");
     }
 
     public static void numberLotto(){
         //로또 번호(오름차순, 중복 X) 출력
+
     }
 }

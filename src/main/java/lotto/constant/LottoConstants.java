@@ -1,4 +1,4 @@
-package lotto.contant;
+package lotto.constant;
 
 public enum LottoConstants {
     LOTTO_SIZE(6),         // 로또 번호 개수

@@ -1,7 +1,7 @@
 package lotto.vo;
 
 
-import lotto.contant.LottoConstants;
+import lotto.constant.LottoConstants;
 import lotto.exception.LottoException;
 
 import java.util.Objects;

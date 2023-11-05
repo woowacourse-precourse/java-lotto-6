@@ -1,9 +1,9 @@
 package lotto.exception;
 
 
-import lotto.contant.ErrorMessageConstants;
+import lotto.constant.ErrorMessageConstants;
 
-import static lotto.contant.LottoConstants.LOTTO_PRICE;
+import static lotto.constant.LottoConstants.LOTTO_PRICE;
 
 public class LottoException extends IllegalArgumentException {
     public enum ErrorMessage {

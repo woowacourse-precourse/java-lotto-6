@@ -1,9 +1,9 @@
 package lotto.exception;
 
-import lotto.contant.ErrorMessageConstants;
+import lotto.constant.ErrorMessageConstants;
 
-import static lotto.contant.LottoConstants.LOTTO_PRICE;
-import static lotto.contant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
+import static lotto.constant.LottoConstants.LOTTO_PRICE;
+import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
 public class MarketException extends RuntimeException {
     public enum ErrorMessage {

@@ -1,6 +1,6 @@
 package lotto.domain.profit;
 
-import lotto.contant.LottoConstants;
+import lotto.constant.LottoConstants;
 import lotto.domain.winning.LottoWinningRanking;
 
 import java.util.EnumMap;

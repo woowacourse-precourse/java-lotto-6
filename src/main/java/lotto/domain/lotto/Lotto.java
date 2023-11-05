@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import lotto.contant.LottoConstants;
+import lotto.constant.LottoConstants;
 import lotto.exception.LottoException;
 import lotto.vo.BonusNumber;
 import lotto.vo.LottoNumber;

@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.contant.ErrorMessageConstants;
+import lotto.constant.ErrorMessageConstants;
 
 public class InvalidNumberFormatException extends NumberFormatException {
     public enum ErrorMessage {

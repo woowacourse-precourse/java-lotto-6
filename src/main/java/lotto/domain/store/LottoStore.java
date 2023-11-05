@@ -6,8 +6,8 @@ import lotto.domain.generator.LottoManualGenerator;
 import lotto.exception.LottoException;
 import lotto.exception.MarketException;
 
-import static lotto.contant.LottoConstants.LOTTO_PRICE;
-import static lotto.contant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
+import static lotto.constant.LottoConstants.LOTTO_PRICE;
+import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
 public class LottoStore {
     private final LottoAutoGenerator lottoAutoGenerator;

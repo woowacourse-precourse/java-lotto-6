@@ -7,7 +7,7 @@ import lotto.exception.LottoException;
 
 import java.util.*;
 
-import static lotto.contant.LottoConstants.*;
+import static lotto.constant.LottoConstants.*;
 
 public class LottoAutoGenerator {
     public Lottos generate(int count) throws LottoException {

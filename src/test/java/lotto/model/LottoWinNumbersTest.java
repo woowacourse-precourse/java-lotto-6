@@ -25,16 +25,25 @@ public class LottoWinNumbersTest {
         String winNumber = input;
         Assertions.assertThatThrownBy(() -> new LottoWinNumbers(winNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자연수가 아닌 문자");
+                .hasMessageContaining("숫자가 아닌 문자");
     }
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3456,7,8,9", "0,-1,-1000,10000,3,5"})
+    @ValueSource(strings = {"1,2,3456,7,8,9"})
     @DisplayName("잘못된 숫자 범위 검증")
     public void 잘못된_숫자_범위(String input) {
         String winNumber = input;
         Assertions.assertThatThrownBy(() -> new LottoWinNumbers(winNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1이상 45이하");
+    }
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3.5,33.3,4,5","0,-1,-1000,10000,3,5"})
+    @DisplayName("실수 검증")
+    public void 실수_확인(String input) {
+        String winNumber = input;
+        Assertions.assertThatThrownBy(() -> new LottoWinNumbers(winNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정수");
     }
     @ParameterizedTest
     @ValueSource(strings = {"1,2,2,3,4,5", "6,6,6,6,6,6"})

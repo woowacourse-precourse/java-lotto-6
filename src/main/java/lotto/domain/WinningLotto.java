@@ -1,21 +1,32 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import lotto.validator.WinningLottoValidator;
 
 public class WinningLotto {
-    Lotto lotto;
-    BonusLottoNum bonusLottoNum;
+    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
-    public WinningLotto(Lotto lotto, BonusLottoNum bonusLottoNum) {
-        this.lotto = lotto;
+    private Lotto winLotto;
+    private int bonusLottoNum;
+
+    public WinningLotto(Lotto winLotto) {
+        this.winLotto = winLotto;
+    }
+
+    public void setBonusLottoNum(int bonusLottoNum) {
+        validateBonusLottoNum(winLotto, bonusLottoNum);
         this.bonusLottoNum = bonusLottoNum;
     }
 
-    public int matchNumberNum(Lotto userLotto) {
-        return 0;
+    private void validateBonusLottoNum(Lotto winLotto, int bonusLottoNum) {
+        winningLottoValidator.checkRange(bonusLottoNum);
+        winningLottoValidator.checkDuplicateWinningNumbers(winLotto, bonusLottoNum);
+    }
+
+    public int matchSameNumberNum(Lotto userLotto) {
+        return winLotto.matchSameNumberNum(userLotto);
     }
 
     public boolean isBonusNumContain(Lotto userLotto) {
-        return true;
+        return userLotto.hasSameNumber(bonusLottoNum);
     }
 }

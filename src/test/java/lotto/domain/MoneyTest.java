@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import lotto.error.LottoException;
 import org.junit.jupiter.api.DisplayName;
@@ -86,18 +85,26 @@ public class MoneyTest {
     @Test
     void isThousandUnit() {
         // given
-        final Money money1 = new Money(5000L);
-        final Money money2 = new Money(5001L);
+        final Money money = new Money(5000L);
 
         // when
-        final boolean actual1 = money1.isThousandUnit();
-        final boolean actual2 = money2.isThousandUnit();
+        final boolean actual = money.isThousandUnit();
 
         // then
-        assertAll(() -> {
-            assertThat(actual1).isTrue();
-            assertThat(actual2).isFalse();
-        });
+        assertThat(actual).isTrue();
+    }
+
+    @DisplayName("1,000원 단위가 아니라면 false를 반환한다.")
+    @Test
+    void isNotThousandUnit() {
+        // given
+        final Money money = new Money(5001L);
+
+        // when
+        final boolean actual = money.isThousandUnit();
+
+        // then
+        assertThat(actual).isFalse();
     }
 
     @DisplayName("금액의 비율을 계산한다.")
@@ -122,19 +129,29 @@ public class MoneyTest {
     void equals() {
         // given
         final Long amount = 5000L;
-        final Long notSameAmount = 15000L;
         final Money money1 = new Money(amount);
         final Money money2 = new Money(amount);
-        final Money money3 = new Money(notSameAmount);
 
         // when
         final boolean actual = money1.equals(money2);
-        final boolean falseActual = money1.equals(money3);
 
         // then
-        assertAll(() -> {
-            assertThat(actual).isTrue();
-            assertThat(falseActual).isFalse();
-        });
+        assertThat(actual).isTrue();
+    }
+
+    @DisplayName("동일한 금액이 아니라면 false를 반환한다.")
+    @Test
+    void notEquals() {
+        // given
+        final Long amount = 5000L;
+        final Long notSameAmount = 15000L;
+        final Money money1 = new Money(amount);
+        final Money money2 = new Money(notSameAmount);
+
+        // when
+        final boolean actual = money1.equals(money2);
+
+        // then
+        assertThat(actual).isFalse();
     }
 }

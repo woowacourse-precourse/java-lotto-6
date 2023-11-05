@@ -12,6 +12,7 @@ import lotto.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class MainController {
     private final InputView inputView;
@@ -25,10 +26,10 @@ public class MainController {
     }
 
     public void run() {
-        List<Lotto> userLottos = buyLottos();
+        List<Lotto> userLottos = repeatTemplate(this::buyLottos);
         outputView.printLottos(toDto(userLottos));
 
-        WinningLotto winningLotto = initializeWinningLotto();
+        WinningLotto winningLotto = repeatTemplate(this::initializeWinningLotto);
 
         LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
         showLottoResult(lottoResult);
@@ -43,9 +44,9 @@ public class MainController {
     }
 
     private WinningLotto initializeWinningLotto() {
-        String winningNumbers = inputView.inputWinningNumbers();
+        String winningNumbers = repeatTemplate(inputView::inputWinningNumbers);
         List<Integer> numbers = convertToList(winningNumbers);
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = repeatTemplate(inputView::inputBonusNumber);
 
         return new WinningLotto(numbers, bonusNumber);
     }
@@ -70,5 +71,14 @@ public class MainController {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private <T> T repeatTemplate(Supplier<T> inputReader) {
+        try {
+            return inputReader.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return repeatTemplate(inputReader);
+        }
     }
 }

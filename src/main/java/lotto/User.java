@@ -31,46 +31,4 @@ class User {
         int number = Integer.parseInt(input);
         return number;
     }
-
-    public List<Integer> getLottoNumbers (){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
-    }
-
-    public List<List<Integer>> getLottoAsMuchAsVolume(int volume){
-        List<List<Integer>> lottoPapers = new ArrayList<>();
-        for(int i=0; i<volume; i++){
-            List<Integer> lottoNumbers = getLottoNumbers();
-            Collections.sort(lottoNumbers);
-            lottoPapers.add(lottoNumbers);
-        }
-        return lottoPapers;
-    }
-
-    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
-        int count = 0;
-        for(int lottoNum : lottoNumbers){
-            if(winningNumbers.contains(lottoNum)){
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public boolean checkBonusNumber(List<Integer> singleLotto, int bonusNumber){
-        if(singleLotto.contains(bonusNumber)){
-            return true;
-        }
-        return false;
-    }
-
-    public List<Integer> countAllLottoMatchingNumbers(List<List<Integer>> allLotto, List<Integer> winningNumbers){
-        int count = 0;
-        List<Integer> lottoMatchingCount = new ArrayList<>();
-        for(List<Integer> singleLotto : allLotto){
-            count = countSingleLottoMatchingNumbers(singleLotto, winningNumbers);
-            lottoMatchingCount.add(count);
-        }
-        return lottoMatchingCount;
-    }
 }

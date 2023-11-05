@@ -12,6 +12,8 @@ public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE_MESSAGE = "---";
+    private static final int MIN_MATCHING_COUNT = 3;
+    private static final int MAX_MATCHING_COUNT = 6;
 
     public static void printLottoAmount(int purchasedAmount) {
 
@@ -26,33 +28,36 @@ public class OutputView {
         }
     }
 
-    public static void printMatchingCounts(int[] matchingCounts, boolean hasBonus) {
+    public static void printMatchingCounts(int[] matchCounts) {
         System.out.println(WINNING_RESULT_MESSAGE);
         System.out.println(LINE_MESSAGE);
 
-        for (int i = 3; i <= 6; i++) {
-            String winningResult = matchingCountResult(i, hasBonus);
-            int count = matchingCounts[i];
-            System.out.printf("%s 일치 (%d개)%n", winningResult, count);
+        boolean hasBonus = matchCounts[MAX_MATCHING_COUNT] > 0;
+
+        for (int i = MIN_MATCHING_COUNT; i <= MAX_MATCHING_COUNT; i++) {
+            int matchCount = matchCounts[i];
+            String prizeDescription = getPrizeDescription(i, hasBonus);
+            System.out.println(prizeDescription + " - " + matchCount + "개");
         }
     }
 
-    private static String matchingCountResult(int matchingCount, boolean hasBonus) {
+    private static String getPrizeDescription(int matchingCount, boolean hasBonus) {
+        String prizeDescription = "";
 
-        if (matchingCount == 6) {
-            return "6개";
-        } else if (matchingCount == 5 && hasBonus) {
-            return "5개 일치, 보너스 볼 일치";
-        } else if (matchingCount == 5) {
-            return "5개";
+        if (matchingCount == 3) {
+            prizeDescription = "3개 일치 (5,000원)";
         } else if (matchingCount == 4) {
-            return "4개";
-        } else if (matchingCount == 3) {
-            return "3개";
+            prizeDescription = "4개 일치 (50,000원)";
+        } else if (matchingCount == 5) {
+            prizeDescription = "5개 일치 (1,500,000원)";
+        } else if (matchingCount == 5 && hasBonus) {
+            prizeDescription = "5개 일치, 보너스 볼 일치 (30,000,000원)";
+        } else if (matchingCount == 6) {
+            prizeDescription = "6개 일치 (2,000,000,000원)";
         }
-        return "";
-
+        return prizeDescription;
     }
+
     public static void printProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.2f입니다.%n", profitRate);
     }

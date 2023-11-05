@@ -13,7 +13,7 @@ import lotto.View.OutputView;
 public class LottoGame {
 
     private static List<Lotto> lottoList;
-    private static Lotto winningNumbers;
+    private static List<Integer> winningNumbers;
     private static int bonusNumber;
 
     public static void LottoGameRun()
@@ -21,22 +21,22 @@ public class LottoGame {
         int purchaseAmount = CountLottoAmount.countLottoQuantity();
         lottoList = makeLottoList(purchaseAmount);
 
-        String lottoNumberInput = InputView.inputLottoNumbers();
-        winningNumbers = new Lotto(parseLottoNumbers(lottoNumberInput));
+        winningNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
 
         bonusNumber = InputView.inputBonusNumber();
 
         OutputView.printLottoAmount(purchaseAmount);
         OutputView.printPurchasedLottoList(lottoList);
 
-/*
-       int[] matchingCounts = CompareResults.compareLottoResults(lotto, winningNumbers, bonusNumber);
+        int[] matchingCounts = CompareResults.compareLottoResults(lottoList, winningNumbers, bonusNumber);
 
-        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
+        OutputView.printMatchingCounts(matchingCounts);
+
+/*        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
         double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);
 
-        OutputView.printProfitRate(profitRate);
-*/
+        OutputView.printProfitRate(profitRate);*/
+
 
 
     }
@@ -72,7 +72,4 @@ public class LottoGame {
         return lottoNumbers;
     }
 
-    public static Lotto WinningNumbers(List<Integer> lottoNumbers) {
-        return winningNumbers;
-    }
 }

@@ -6,20 +6,20 @@ import java.util.Set;
 
 public class CompareResults {
 
-    public static int[] compareLottoResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
-
+    public static int[] compareLottoResults(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
         int[] matchingCounts = new int[7];
 
-        for (Lotto lotto : purchasedLottos) {
-            int matchingCount = countMatchingNumbers(lotto, winningNumbers);
+        for (Lotto lotto : lottoList) {
+            int matchingCount = countMatchingNumber(lotto, winningNumbers);
             boolean bonusMatch = lotto.contains(bonusNumber);
+
+            matchingCounts = totalMatchingCounts(matchingCounts, matchingCount, bonusMatch);
         }
 
         return matchingCounts;
-
     }
 
-    private static int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
+    private static int countMatchingNumber(Lotto lotto, List<Integer> winningNumbers) {
         int count = 0;
         for (int number : lotto.getNumbers()) {
             if (winningNumbers.contains(number)) {
@@ -29,20 +29,17 @@ public class CompareResults {
         return count;
     }
 
-    private static int[] totalMatchingCounts(int[] matchingCounts, int matchingCount) {
-
-        for (int i = 0; i < 7; i++) {
-
-            if (matchingCount == i)
-            {
-                matchingCounts[i]++;
-            }
+    private static int[] totalMatchingCounts(int[] matchingCounts, int matchingCount, boolean bonusMatch) {
+        if (matchingCount >= 0 && matchingCount < 6) {
+            matchingCounts[matchingCount]++;
         }
-
+        if (bonusMatch) {
+            matchingCounts[6]++;
+        }
         return matchingCounts;
     }
 
-    public static long calculatePrizeAmount(int[] matchingCounts) {
+   /* public static long calculatePrizeAmount(int[] matchingCounts) {
         long prizeAmount = 0;
 
         if (matchingCounts[6] > 0) {
@@ -61,7 +58,7 @@ public class CompareResults {
             prizeAmount += matchingCounts[3] * 5_000L;
         }
         return prizeAmount;
-    }
+    }*/
 
     public static double calculateProfitRate(long totalPrizeAmount, long totalPurchaseAmount) {
         return (double) totalPrizeAmount / totalPurchaseAmount;

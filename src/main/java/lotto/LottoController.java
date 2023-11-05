@@ -11,6 +11,17 @@ public class LottoController {
     }
 
     public void run() {
+        Money money = inputMoney();
+
+        LottoMachine lottoMachine = new LottoMachine(money);
+
+        displayLottos(lottoMachine);
+
+        WinningCalculator winningCalculator = new WinningCalculator(lottoMachine.getLottos(),
+                inputWinningLottoWithBonus());
+
+        ioManager.displayWinningResult(winningCalculator.calculate());
+        ioManager.displayProfitRate(winningCalculator.getProfitRate());
     }
 
     private WinningLottoWithBonus inputWinningLottoWithBonus() {
@@ -41,6 +52,12 @@ public class LottoController {
             System.out.println(illegalArgumentException.getMessage());
         }
         return inputBonus();
+    }
+
+    private void displayLottos(LottoMachine lottoMachine) {
+        Lottos lottos = lottoMachine.getLottos();
+        ioManager.displayLottosCnt(lottos.getLottos().size());
+        ioManager.displayLottos(lottos);
     }
 
     private Money inputMoney() {

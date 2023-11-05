@@ -4,7 +4,10 @@ public class LottoManager {
     public static final int PURCHASE_AMOUNT_UNIT = 1_000;
 
     public int calculateNumberOfLottos(int money) {
-        return 0;
+        validatePurchaseAmount(money);
+        int LottosAmount = money / PURCHASE_AMOUNT_UNIT;
+
+        return LottosAmount;
     }
 
     public void validatePurchaseAmount(int money) {

@@ -1,6 +1,6 @@
 ## 기능 목록
 
-- [ ] 구입 금액으로 로또 몇장을 구입할 수 있는지 계산한다.(로또 1장당 1,000원) - LottoManager#calculateNumberOfLottos()
+- [x] 구입 금액으로 로또 몇장을 구입할 수 있는지 계산한다.(로또 1장당 1,000원) - LottoManager#calculateNumberOfLottos()
   - [x] 구입 금액이 1,000원단위로 나누어 떨어지는지 검사한다. - LottoManager#validatePurchaseAmount()
 - [ ] 매개변수로 들어온 장수만큼 로또를 생성한다. - Lottos#createLottos()
 - [ ] 1 ~ 45까지의 난수를 생성한다. - NumberGenerator#generateRandomNumber()

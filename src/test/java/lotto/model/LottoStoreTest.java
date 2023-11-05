@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.model.domain.Lottos;
+import lotto.model.domain.Money;
 import lotto.model.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ class LottoStoreTest {
     @DisplayName("인당 구매 제한 금액은 10만원 입니다.")
     public void 구매_제한_금액_테스트() {
         Assertions.assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoStore.purchase(101_000));
+                .isThrownBy(() -> lottoStore.purchase(new Money(101_000)));
     }
 
     @ParameterizedTest
@@ -24,7 +25,7 @@ class LottoStoreTest {
     public void 입력한_값_만큼_로또를_판매한다(int money) {
         //given
         //when
-        Lottos lottos = lottoStore.purchase(money);
+        Lottos lottos = lottoStore.purchase(new Money(money));
 
         //then
         Assertions.assertThat(lottos.getLottosDTO().size())

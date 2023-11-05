@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.domain.Lottos;
+import lotto.model.domain.Money;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
 import lotto.model.domain.Results;
@@ -28,18 +29,19 @@ public class LottoController {
     }
 
     public void run() {
-        int money = getMoney();
+        Money money = getMoney();
+        Money initialMoney = money.snapShot();
         Lottos lottos = purchaseLotto(money);
         LottoAnswer answer = createAnswer();
         Results results = computeResult(lottos, answer);
-        computeRevenue(money, results);
+        computeRevenue(initialMoney, results);
     }
 
-    private int getMoney() {
+    private Money getMoney() {
         return handler.getResult(ui::getMoney);
     }
 
-    private Lottos purchaseLotto(int money) {
+    private Lottos purchaseLotto(Money money) {
         Lottos lottos = store.purchase(money);
         List<Lotto> purchasedLottos = lottos.getLottosDTO();
         ui.printPurchasedLottos(purchasedLottos);
@@ -61,7 +63,7 @@ public class LottoController {
         return results;
     }
 
-    private void computeRevenue(int money, Results results) {
+    private void computeRevenue(Money money, Results results) {
         long prize = results.getResults()
                 .stream()
                 .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())

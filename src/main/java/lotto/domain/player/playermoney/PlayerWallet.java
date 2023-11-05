@@ -28,7 +28,7 @@ public class PlayerWallet {
         return usedMoney.calculateProfit(lottoPrizeMoney);
     }
 
-    public Profit calculateProfit(LottoResultsRepository lottoResultsRepository) {
-        return usedMoney.calculateProfit(lottoResultsRepository);
+    public LottoTicket issueLottoTicket() {
+        return usedMoney.issueLottoTicket();
     }
 }

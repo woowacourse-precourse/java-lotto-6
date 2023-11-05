@@ -51,4 +51,29 @@ public class GameControllerTest {
             List.of(1, 8, 11, 31, 41, 42)
         );
     }
+
+    @Test
+    void 수익률은_소수점_둘째_자리에서_반올림() {
+        // given
+        int price = 9000;
+        // when & then
+        assertRandomUniqueNumbersInRangeTest(
+            () -> {
+                game.purchaseLotto(price);
+                game.setWinningLotto(List.of(7, 8, 9, 10, 11, 12), 13);
+                assertThat(game.getLottoWinningResult()).contains(
+                    "총 수익률은 55.6%입니다."
+                );
+            },
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 9, 8, 7)
+        );
+    }
 }

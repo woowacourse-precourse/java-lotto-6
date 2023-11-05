@@ -1,17 +1,15 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public enum Winner {
 
-    //    1등: 6개 번호 일치 / 2,000,000,000원
-    FRIST(6, false, 2000000000),
-    //    2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-    SECOND(5, true, 30000000),
-    //    3등: 5개 번호 일치 / 1,500,000원
-    THIRD(5, false, 1500000),
-    //    4등: 4개 번호 일치 / 50,000원
+    FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
-    //    5등: 3개 번호 일치 / 5,000원
-    FIFTH(3, false, 5000);
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FRIST(6, false, 2000000000);
 
     private int sameCount;
     private boolean isSameBonusNumber;
@@ -21,6 +19,24 @@ public enum Winner {
         this.sameCount = sameCount;
         this.isSameBonusNumber = isSameBonusNumber;
         this.winningMoney = winningMoney;
+    }
+
+    public static Winner of(int sameCount, boolean isSameBonusNumber) {
+        Winner findWinner;
+        for (Winner winner : Winner.values()) {
+            findWinner = getWinner(sameCount, isSameBonusNumber, winner);
+            if (findWinner != null) {
+                return findWinner;
+            }
+        }
+        return null;
+    }
+
+    private static Winner getWinner(int sameCount, boolean isSameBonusNumber, Winner winner) {
+        if (winner.sameCount == sameCount && (!winner.isSameBonusNumber || isSameBonusNumber)) {
+            return winner;
+        }
+        return null;
     }
 
     public int getSameCount() {
@@ -33,5 +49,13 @@ public enum Winner {
 
     public int getWinningMoney() {
         return winningMoney;
+    }
+
+    @Override
+    public String toString() {
+        NumberFormat format = NumberFormat.getNumberInstance(Locale.KOREA);
+        String formattedNumber = format.format(winningMoney) + "원";
+        return sameCount + "개 일치 " +
+                "(" + formattedNumber + ")";
     }
 }

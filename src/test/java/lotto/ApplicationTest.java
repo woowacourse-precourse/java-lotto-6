@@ -283,4 +283,30 @@ class ApplicationTest extends NsTest {
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
         }
     }
+
+    @Test
+    @DisplayName("보너스 번호가 1~45 사이의 숫자인지 검증한다.")
+    void inputBonusNumberRangeValidation_정상케이스() {
+        assertThatCode(() -> inputBonusNumberRangeValidation(1))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아닌지 검증한다.")
+    void inputBonusNumberRangeValidation_예외케이스() {
+        assertThatThrownBy(() -> inputBonusNumberRangeValidation(46))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("보너스 번호가 1~45 사이의 숫자인지 검증하는 메서드")
+    private int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
+
+        if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
+        }
+        return inputBonusNumberValidation;
+    }
+
+
 }

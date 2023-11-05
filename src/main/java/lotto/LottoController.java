@@ -1,18 +1,11 @@
 package lotto;
 
 public class LottoController {
-    public void buyLotto(int money) {
-
+    public BaseResponse buyLotto(int money) {
+        return BaseResponse.okWithData(money / 1000 + "개를 구매했습니다.", new LottosResponseDto());
     }
 
-    public void saveAnswerNumber() {
-
-    }
-
-    public void saveBonusNumber() {
-
-    }
-
-    public void getStatistics() {
+    public BaseResponse getStatistics(AnswerNumberRequestDto answerNumberRequestDto) {
+        return BaseResponse.okWithData("당첨 통계", new StatisticsResponseDto());
     }
 }

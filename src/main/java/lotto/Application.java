@@ -8,7 +8,8 @@ public class Application {
     private static final Input input = new Input();
     public static void main(String[] args) {
         Log.println("구입금액을 입력해 주세요.");
-        lottoController.buyLotto(input.buyMoney());
+        BaseResponse baseResponse = lottoController.buyLotto(input.buyMoney());
+        Log.println(baseResponse.message());
 
         Log.println("당첨 번호를 입력해 주세요.");
         AnswerNumberRequestDto answerNumberRequestDto = input.answerNumber();
@@ -16,6 +17,7 @@ public class Application {
         Log.println("보너스 번호를 입력해주세요.");
         input.bonusNumber(answerNumberRequestDto);
 
-        lottoController.getStatistics();
+        baseResponse = lottoController.getStatistics(answerNumberRequestDto);
+        Log.println(baseResponse.message());
     }
 }

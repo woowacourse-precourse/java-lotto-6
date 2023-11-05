@@ -26,4 +26,19 @@ public enum Rank {
     public boolean matchesCondition(long match, boolean hasBonusNumber) {
         return rankCondition.apply(match, hasBonusNumber);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder rankDetails = new StringBuilder();
+        rankDetails.append(String.format("%d개 일치", match));
+        if (hasBonusNumber) {
+            rankDetails.append(", 보너스 볼 일치");
+        }
+        rankDetails.append(String.format(" (%,d원)", reward));
+        return rankDetails.toString();
+    }
+
+    public long getReward() {
+        return reward;
+    }
 }

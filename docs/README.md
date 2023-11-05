@@ -30,7 +30,7 @@
 
 ### OutputView
 - [x] 발행한 로또 수량 및 번호를 출력한다. `void printIssuedLottoDetails(int lottoQuantity, List<String> lottos)`
-- [x] 당첨 내역을 출력한다. `void printWinningDetails(List<String> rankDetails, List<Integer> winningCounts)`
+- [x] 당첨 내역을 출력한다. `void printWinningDetails(String WinningDetails)`
 - [x] 수익률을 출력한다. `void printProfitRate(double profitRate)`
     - 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%)
 

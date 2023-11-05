@@ -15,4 +15,8 @@ public class LottoManager {
             winningDetails.addRank(winningNumbers.determineRank(lotto));
         }
     }
+
+    public String getWinningDetailsToString() {
+        return winningDetails.toString();
+    }
 }

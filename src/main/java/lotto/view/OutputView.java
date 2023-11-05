@@ -12,12 +12,10 @@ public class OutputView {
         lottos.forEach(System.out::println);
     }
 
-    public static void printWinningDetails(List<String> rankDetails, List<Integer> winningCounts) {
+    public static void printWinningDetails(String winningDetails) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (int i = 0; i < rankDetails.size(); i++) {
-            System.out.printf("%s - %d개%n", rankDetails.get(i), winningCounts.get(i));
-        }
+        System.out.println(winningDetails);
     }
 
     public static void printProfitRate(double profitRate) {

@@ -7,7 +7,6 @@ import java.util.*;
 
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
-import static lotto.controller.RandNumber.*;
 import static lotto.controller.Statistic.*;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
@@ -16,18 +15,15 @@ import static lotto.view.Print.*;
 
 public class Play {
 
-    private static final int lottoPrice = 1000;
-    private static final int size = 6;
-    //public static HashMap<Rank, Integer> result;
-    public static List<Lotto> lottery;
+    public static boolean flag  = false;
     public Play() {
         HashMap<Rank, Integer> result = new HashMap<>();
         int price = createPrice();
-        int count = calLottoCount(price, lottoPrice);
+        System.out.println(price);
+        int count = calLottoCount(price);
         printBoughtLottoCount(count);
-        lottery = rotateLotteryCount(count);
+        List<Lotto> lottery = rotateLotteryCount(count);
         printLottoRotate(lottery);
-        System.out.println();
         List<Integer> winningNumbers = createWinningNumber();
 
         System.out.println();
@@ -47,15 +43,16 @@ public class Play {
     }
 
     public static int createPrice() {
-        messageAboutPrice();
-        String tmpPrice = inputPrice();
         int price = 0;
-        try {
-            price = convertPrice(tmpPrice);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
-            createPrice();
-            //e.getMessage();
+        while(true) {
+            messageAboutPrice();
+            String tmpPrice = inputPrice();
+            try {
+                price = convertPrice(tmpPrice);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
         }
         return price;
     }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         isWithinRange(numbers);
+        hasDuplicateNum(numbers);
         this.numbers = numbers;
     }
 
@@ -26,6 +28,12 @@ public class Lotto {
             if (!(num >= lottoRangeFirstNum && num <= lottoRangeLastNum)) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    private void hasDuplicateNum(List<Integer> numbers) {
+        if (Set.copyOf(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException();
         }
     }
 }

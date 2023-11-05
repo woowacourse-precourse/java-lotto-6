@@ -13,13 +13,13 @@ public class LottoDB {
         userLottoCount = 0;
     }
 
-    public void setUserLottoCount(int count) throws IllegalArgumentException {
-        int countMod = count % 1000;
-        if (countMod != 0) {
-            throw new IllegalArgumentException("[ERROR] : 입력된 값이 1,000단위가 아닙니다.");
-        }
-        userLottoCount += count / 1000;
-        System.out.println(userLottoCount);
+    public void setUserLottoCount(int userLottoCount) throws IllegalArgumentException {
+        this.userLottoCount = userLottoCount / 1000;
     }
+
+    public int getUserLottoCount() {
+        return userLottoCount;
+    }
+
 
 }

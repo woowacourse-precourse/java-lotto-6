@@ -1,4 +1,4 @@
-package lotto.domain.generator;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.lotto.Lotto;
@@ -12,7 +12,15 @@ import java.util.Set;
 
 import static lotto.constant.LottoConstants.*;
 
-public class LottoAutoGenerator {
+public class LottoAutoGenerateService {
+    private static final LottoAutoGenerateService instance = new LottoAutoGenerateService();
+
+    private LottoAutoGenerateService() {}
+
+    public static LottoAutoGenerateService getInstance() {
+        return instance;
+    }
+
     public Lottos generate(int count) throws LottoException {
         // Lotto 는 List<LottoNumber> 가지고 있고, LottoNumber 는 Integer 를 가지고 있다.
         // 따라서 Set<Lotto> 는  LottoNumber 6개 모두가 중복되지 않는 로또들을 의미한다.

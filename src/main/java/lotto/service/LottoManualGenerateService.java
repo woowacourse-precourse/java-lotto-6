@@ -1,4 +1,4 @@
-package lotto.domain.generator;
+package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.exception.LottoException;
@@ -8,7 +8,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class LottoManualGenerator {
+public class LottoManualGenerateService {
+    private static final LottoManualGenerateService instance = new LottoManualGenerateService();
+
+    private LottoManualGenerateService() {}
+
+    public static LottoManualGenerateService getInstance() {
+        return instance;
+    }
+
     public Lotto generate(List<String> list) throws LottoException {
         try {
             Set<Integer> uniqueNumbers = list.stream()

@@ -9,7 +9,7 @@ public class LottoChecker {
         int count = 0;
 
         for (int i = 0; i < 6; i++) {
-            if (purchaseLotto.getNumbers().get(i) == winningLotto.getNumbers().get(i)) {
+            if (purchaseLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
                 count++;
             }
         }

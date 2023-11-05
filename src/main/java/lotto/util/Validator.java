@@ -12,7 +12,6 @@ public class Validator {
             verifyDivisibilityByThousand(Integer.parseInt(input));
             return true;
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

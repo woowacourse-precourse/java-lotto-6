@@ -27,4 +27,12 @@ public enum LottoResult {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] : 당첨된 로또가 한개도 없습니다."));
     }
+
+    public int getMatchingNumbers() {
+        return matchingNumbers;
+    }
+
+    public String getPrizeAmount() {
+        return prizeAmount;
+    }
 }

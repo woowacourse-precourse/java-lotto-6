@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
@@ -23,6 +24,21 @@ public class WinningLottoTest {
         return Stream.of(
                 Arguments.of(Arrays.asList(1,2,3,4,5,6), 1),
                 Arguments.of(Arrays.asList(40,41,42,43,44,45), 45)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("uniqueNumber")
+    @DisplayName("당첨 번호, 보너스 번호 유일성 테스트")
+    void uniqueNumberTest(List<Integer> winningLotto, int bonusNumber) {
+        assertDoesNotThrow(
+                () -> new WinningLotto(new Lotto(winningLotto), new BonusNumber(bonusNumber)));
+    }
+
+    static Stream<Arguments> uniqueNumber() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5,6), 7),
+                Arguments.of(Arrays.asList(40,41,42,43,44,45), 30)
         );
     }
 }

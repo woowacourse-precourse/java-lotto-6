@@ -1,8 +1,8 @@
 package lotto.domain.lotto.converter;
 
 import java.util.List;
-import java.util.Map;
 import java.util.StringJoiner;
+import lotto.domain.GameResult;
 import lotto.domain.Rank;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
@@ -26,11 +26,11 @@ public class LottoMessageConverter {
         return lottoNumberMessage.toString();
     }
 
-    public static String convertLottoResultMessage(Map<Rank, Integer> result, double profitPercentage) {
+    public static String convertLottoResultMessage(GameResult result, double profitPercentage) {
         StringBuilder resultMessage = new StringBuilder();
         resultMessage.append("\n당첨 통계\n---\n");
         for (Rank rank : Rank.values()) {
-            String rankResultMessage = String.format(rank.getWinningMessage(), result.get(rank));
+            String rankResultMessage = String.format(rank.getWinningMessage(), result.getCountOfRank(rank));
             resultMessage.append(rankResultMessage);
         }
         resultMessage.append(String.format("총 수익률은 %.1f%%입니다.", profitPercentage));

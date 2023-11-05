@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.GameResult;
 import lotto.domain.Rank;
 import lotto.domain.lotto.converter.LottoMessageConverter;
 import lotto.domain.money.Money;
@@ -28,22 +29,15 @@ public class LottoGame {
         Lotto winningLotto = createWinningLotto();
         LottoNumber bonusNumber = createBonusNumber(winningLotto);
 
-        Map<Rank, Integer> gameResult = calculateGameResult(winningLotto, bonusNumber, lottos);
+        GameResult result = calculateGameResult(winningLotto, bonusNumber, lottos);
 
-        double profitPercentage = calculateProfitPercentage(calculateProfit(gameResult), money);
-        printResult(gameResult, profitPercentage);
+        double profitPercentage = calculateProfitPercentage(result.calculateProfit(), money);
+        printResult(result, profitPercentage);
     }
 
-    private int calculateProfit(Map<Rank, Integer> gameResult) {
-        int profit = 0;
-        for (Rank rank : Rank.values()) {
-            profit += rank.getPrizeMoney() * gameResult.get(rank);
-        }
-        return profit;
-    }
 
-    private Map<Rank, Integer> calculateGameResult(Lotto winningLotto, LottoNumber bonusNumber, List<Lotto> lottos) {
-        Map<Rank, Integer> gameResult = initLottoResult();
+    private GameResult calculateGameResult(Lotto winningLotto, LottoNumber bonusNumber, List<Lotto> lottos) {
+        Map<Rank, Integer> result = initLottoResult();
         List<LottoNumber> winningNumbers = winningLotto.getNumbers();
 
         for (Lotto lotto : lottos) {
@@ -54,14 +48,14 @@ public class LottoGame {
             boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);
 
             Rank rank = Rank.calcualteBy(matchCount, isBonusNumberMatched);
-            gameResult.put(rank, gameResult.get(rank) + 1);
+            result.put(rank, result.get(rank) + 1);
         }
 
-        return gameResult;
+        return new GameResult(result);
     }
 
-    private void printResult(Map<Rank, Integer> gameResult, double profitPercentage) {
-        String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(gameResult, profitPercentage);
+    private void printResult(GameResult result, double profitPercentage) {
+        String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(result, profitPercentage);
         outputView.println(lottoResultMessage);
     }
 

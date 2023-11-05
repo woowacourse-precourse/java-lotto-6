@@ -22,6 +22,8 @@ public class LottoTicket {
         return lottos.size();
     }
 
+    public List<Lotto> getLottoTicket() {return lottos;}
+
     public List<String> getLottoString() {
         return lottos.stream()
             .map(lotto -> lotto.toString())

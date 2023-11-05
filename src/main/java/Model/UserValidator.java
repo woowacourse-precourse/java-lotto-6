@@ -1,6 +1,8 @@
 package Model;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserValidator {
 
@@ -11,6 +13,11 @@ public class UserValidator {
     private static final int MIN_LOTTO_NUMBER = 1;
     private  static final int MAX_LOTTO_NUMBER = 45;
 
+    void validateEmptyInput(String userInput) {
+        if (userInput.isEmpty() || userInput.isBlank()) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     void validateMoneyLength(String money) {
         if (money.length() > MONEY_MAX_LENGTH) {

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserLottosTest {
-    UserLottos userLottos;
+class UserLottoTest {
+    UserLotto userLotto;
 
     @BeforeEach
     void setUp() {
@@ -20,7 +20,7 @@ class UserLottosTest {
         List<Integer> fourth = List.of(2, 4, 5, 6, 24, 41);
         List<Integer> fifth = List.of(3, 4, 5, 33, 39, 43);
 
-        userLottos = new UserLottos(List.of(
+        userLotto = new UserLotto(List.of(
                 new Lotto(first),
                 new Lotto(second),
                 new Lotto(third),
@@ -38,17 +38,17 @@ class UserLottosTest {
         WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
 
         // 예상 결과 : 모든 당첨 케이스가 1번씩 있어야 함
-        Map<LottoPrizes, Integer> expectedPrizes = Map.of(
-                LottoPrizes.THREE_NUMBERS_MATCHED, 1,
-                LottoPrizes.FOUR_NUMBERS_MATCHED, 1,
-                LottoPrizes.FIVE_NUMBER_MATCHED, 1,
-                LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED, 1,
-                LottoPrizes.SIX_NUMBER_MATCHED, 1
+        Map<LottoPrizes, Long> expectedPrizes = Map.of(
+                LottoPrizes.THREE_NUMBERS_MATCHED, 1L,
+                LottoPrizes.FOUR_NUMBERS_MATCHED, 1L,
+                LottoPrizes.FIVE_NUMBER_MATCHED, 1L,
+                LottoPrizes.FIVE_NUMBER_AND_BONUS_MATCHED, 1L,
+                LottoPrizes.SIX_NUMBER_MATCHED, 1L
         );
 
         LottoResult expectedResult = new LottoResult(expectedPrizes);
 
-        LottoResult actual = userLottos.compareAllLotto(winningLotto);
+        LottoResult actual = userLotto.compareAllLotto(winningLotto);
         assertThat(actual).isEqualTo(expectedResult);
     }
 
@@ -62,6 +62,6 @@ class UserLottosTest {
                 [2, 4, 5, 6, 24, 41]
                 [3, 4, 5, 33, 39, 43]""";
 
-        assertThat(userLottos.displayAllLotto()).isEqualTo(expected);
+        assertThat(userLotto.displayAllLotto()).isEqualTo(expected);
     }
 }

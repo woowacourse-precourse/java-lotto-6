@@ -3,7 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputView {
     public static final int MIN_LOTTO_NUMBER = 1;
@@ -43,6 +45,8 @@ public class InputView {
         validateInputAnswer(inputAnswer);
 
         List<Integer> answerNumber = validateAnswerNumber(inputAnswer);
+        validateAnswerNumberRange(answerNumber);
+
         return answerNumber;
     }
 
@@ -73,6 +77,16 @@ public class InputView {
                 throw new IllegalArgumentException(VALIDATE_STRING_TO_INT_MESSAGE);
             }
         }
+
         return numbers;
+    }
+
+    public void validateAnswerNumberRange(List<Integer> answerNumber) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int number : answerNumber) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
+            }
+        }
     }
 }

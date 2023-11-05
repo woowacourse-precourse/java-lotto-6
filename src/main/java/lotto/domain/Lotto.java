@@ -44,4 +44,8 @@ public class Lotto {
                 .sorted().map(Objects::toString)
                 .collect(Collectors.joining(SPLIT_CHAR));
     }
+
+    public boolean isContain(int bonusNumber){
+        return numbers.contains(bonusNumber);
+    }
 }

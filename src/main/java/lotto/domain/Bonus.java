@@ -30,4 +30,8 @@ public class Bonus {
             throw new IllegalArgumentException(NUMBER_PARSE_EXCEPTION_MESSAGE);
         }
     }
+
+    public int getBonus() {
+        return bonus;
+    }
 }

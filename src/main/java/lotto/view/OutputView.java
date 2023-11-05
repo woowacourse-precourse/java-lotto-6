@@ -10,7 +10,7 @@ public class OutputView {
     private static final String LOTTO_RESULT_TITLE = "\n당첨 통계";
     private static final String LOTTO_PURCHASED_MESSAGE = "개를 구매했습니다.";
     private static final String BONUSBALL_MATCHING_MESSAGE = ", 보너스 볼 일치";
-    private static final String LOTTO_WINNING_RESULT_MESSAGE = "%d개 일치 (%s원)%s - %d개";
+    private static final String LOTTO_WINNING_RESULT_MESSAGE = "%d개 일치%s (%s원) - %d개";
     private static final String LOTTO_TOTAL_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final int LOTTO_RESULT_CHARACTER_REPEAT_COUNT = 3;
     private static final int LOTTO_ONE_PRICE = 1_000;
@@ -47,7 +47,8 @@ public class OutputView {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String winningAmount = numberFormat.format(prize.getWinningAmount());
 
-        System.out.printf(LOTTO_WINNING_RESULT_MESSAGE, prize.getMatchingCount(), winningAmount, bonusballMessage, count);
+        System.out.printf(LOTTO_WINNING_RESULT_MESSAGE, prize.getMatchingCount(), bonusballMessage, winningAmount,
+                count);
         System.out.println();
     }
 
@@ -64,9 +65,14 @@ public class OutputView {
     }
 
     private static void printIssuedLotto(IssuedLottoResponse lottoResponse) {
-        System.out.print(OPEN_SQUARE_BRACKETS);
-        lottoResponse.getLottoNumbers().forEach(number -> System.out.print(number + " "));
-        System.out.print(CLOSE_SQUARE_BRACKETS);
-        System.out.println();
+        String output = OPEN_SQUARE_BRACKETS;
+
+        for (int number : lottoResponse.getLottoNumbers()) {
+            output += (number + ", ");
+        }
+        output = output.substring(0, output.length() - 2);
+
+        output += CLOSE_SQUARE_BRACKETS;
+        System.out.println(output);
     }
 }

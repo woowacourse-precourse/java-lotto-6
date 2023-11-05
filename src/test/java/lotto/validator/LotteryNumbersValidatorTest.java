@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.Lotto;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,10 +17,11 @@ public class LotteryNumbersValidatorTest {
     @MethodSource
     void 보너스_번호가_당첨_번호와_중복된_숫자가_존재할때_예외처리(List<Integer> lottoNumbers, int bonusNumber) {
         //given
+        Lotto lotto = new Lotto(lottoNumbers);
         //when
         Throwable result = catchThrowable(
                 () -> {
-                    LotteryResultValidator.bonusNumberDuplicated(lottoNumbers, bonusNumber);
+                    LotteryResultValidator.bonusNumberDuplicated(lotto, bonusNumber);
                 });
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);

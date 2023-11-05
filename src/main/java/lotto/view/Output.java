@@ -5,7 +5,8 @@ import static lotto.constant.OutputMessage.REQUEST_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.OutputMessage.REQUEST_PURCHASE_PRICE_MESSAGE;
 import static lotto.constant.OutputMessage.REQUEST_WINNING_NUMBER_MESSAGE;
 
-import lotto.domain.Lottos;
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 
@@ -33,9 +34,8 @@ public class Output {
     }
 
     public void purchasedLotts(Player player) {
-        Lottos lottos = player.getLottos();
-        lottos.getLottos()
-                .forEach((lotto -> System.out.println(lotto.getNumbers())));
+        List<Lotto> lottos = player.getLottos();
+        lottos.forEach((lotto -> System.out.println(lotto.getNumbers())));
         System.out.println();
     }
 }

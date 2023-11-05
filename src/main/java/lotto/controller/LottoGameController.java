@@ -59,7 +59,7 @@ public class LottoGameController {
     private LottoStore initLottoStore(PurchaseCount purchaseCount) {
         List<Lotto> lottos = lottoGameService.purchase(purchaseCount);
         outputView.output(
-                format(PURCHASE_COUNT.getMessage(), purchaseCount)
+                format(PURCHASE_COUNT.getMessage(), lottos.size())
         );
         lottos.forEach(lotto -> outputView.output(lotto.toString()));
         return new LottoStore(lottos);

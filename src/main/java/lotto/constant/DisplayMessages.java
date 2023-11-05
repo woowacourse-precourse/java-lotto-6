@@ -9,18 +9,7 @@ public enum DisplayMessages {
     PRIZE_STATISTICS("\n당첨 통계"),
     MATCH_COUNT("%d개 일치 (%,d원) - %,d개"),
     MATCH_COUNT_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %,d개"),
-    TOTAL_RETURN("총 수익률은 %,.1f%%입니다."),
-    FIRST_PRIZE_MATCH_COUNT("6"),
-    FIRST_PRIZE_MONEY("2,000,000,000"),
-    SECOND_PRIZE_MATCH_COUNT("5"),
-    SECOND_PRIZE_MONEY("30,000,000"),
-    THIRD_PRIZE_MATCH_COUNT("5"),
-    THIRD_PRIZE_MONEY("1,500,000"),
-    FOURTH_PRIZE_MATCH_COUNT("4"),
-    FOURTH_PRIZE_MONEY("50,000"),
-    FIFTH_PRIZE_MATCH_COUNT("3"),
-    FIFTH_PRIZE_MONEY("5,000")
-    ;
+    TOTAL_RETURN("총 수익률은 %,.1f%%입니다.");
 
     private final String message;
 

@@ -1,11 +1,7 @@
 package lotto.domain;
 
-import lotto.constant.NumberConstants;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static lotto.domain.LottoRank.NO_RANK;
 
 public class LotteryChecker {
 
@@ -26,7 +22,7 @@ public class LotteryChecker {
     public LottoRank calculateMatchCount(Lotto lotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
         List<Integer> winNum = winningNumber.getWinningNumber();
         int matchCount = lotto.calculateMatchNumber(winNum);
-        return LottoRank.checkRank(matchCount,
-                lotto.getNumbers().contains(bonusNumber.getBonusNumber()));
+        boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+        return LottoRank.checkRank(matchCount, hasBonusNumber);
     }
 }

@@ -33,7 +33,7 @@ public enum LottoRank {
         if (rank.matchCount != matchCount) {
             return false;
         }
-        if (THIRD_RANK.matchCount == matchCount) {
+        if (SECOND_RANK_MATCH == matchCount) {
             return rank.isMatchBonus == isMatchBonus;
         }
         return true;
@@ -47,7 +47,7 @@ public enum LottoRank {
         return prizeMoney;
     }
 
-    public boolean isMatchBonus() {
-        return isMatchBonus;
-    }
+//    public boolean isMatchBonus() {
+//        return isMatchBonus;
+//    }
 }

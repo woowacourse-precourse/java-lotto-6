@@ -1,10 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.NumberConstants;
-
-import java.util.*;
-
-import static lotto.constant.NumberConstants.*;
 
 public class ProfitCalculator {
     public int calculateProfit(LottoResult lottoResult) {

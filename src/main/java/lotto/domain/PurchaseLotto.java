@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessages;
-import lotto.constant.NumberConstants;
 
 import static lotto.constant.NumberConstants.*;
 

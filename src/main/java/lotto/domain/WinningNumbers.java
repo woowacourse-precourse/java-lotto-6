@@ -5,23 +5,30 @@ import lotto.validator.LottoNumberValidator;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static lotto.constants.LottoNumberConstants.*;
 
 public class WinningNumbers {
     private static final String NUMBERS_DELIMITER = ",";
     private final List<Integer> numbers;
+    private BonusNumber bonusNumber;
 
     private WinningNumbers(String input) {
-        List<Integer> winningNumbers = validate(input);
-        this.numbers = winningNumbers;
+        this.numbers = validate(input);
     }
 
     public static WinningNumbers create(String winningNumbersInput) {
         return new WinningNumbers(winningNumbersInput);
+    }
+
+    public void assignBonusNumber(BonusNumber bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumber(BonusNumber bonusNumber) {
+        if (numbers.contains(bonusNumber.getNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED.getMessage());
+        }
     }
 
     private List<Integer> validate(String input) {

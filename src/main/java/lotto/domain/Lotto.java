@@ -24,14 +24,20 @@ public class Lotto {
         LottoNumberValidator.validateNumbersInRange(numbers);
     }
 
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
+    public PrizeCondition getPrizeCondition(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        int countMatchingNumbers = countMatchingNumbers(winningNumbers);
+        boolean containsBonusNumber = containsBonusNumber(bonusNumber);
+        return PrizeCondition.findPrizeCondition(countMatchingNumbers, containsBonusNumber);
     }
 
-    public int countMatchingNumbers(List<Integer> comparingNumbers) {
+    private int countMatchingNumbers(WinningNumbers comparingNumbers) {
         return (int) numbers.stream()
-                .filter(comparingNumbers::contains)
+                .filter(number -> comparingNumbers.getNumbers().contains(number))
                 .count();
+    }
+
+    private boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getNumber());
     }
 
     @Override

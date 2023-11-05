@@ -23,7 +23,10 @@ public class GameController {
         WinningNumbers winningNumbers = WinningNumbers.create(winningNumbersInput);
         String bonusNumberInput = inputView.printAskBonusNumber();
         BonusNumber bonusNumber = BonusNumber.create(bonusNumberInput);
-        LottoResultCalculator lottoResultCalculator = LottoResultCalculator.create(winningNumbers, bonusNumber);
+        winningNumbers.assignBonusNumber(bonusNumber);
+
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
+        lottoResultGenerator.computePrizeFrequencies(lottos);
 
     }
 

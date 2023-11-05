@@ -13,6 +13,12 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<PrizeCondition> providePrizeConditions(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.getPrizeCondition(winningNumbers, bonusNumber))
+                .toList();
+    }
+
     public List<Lotto> getLottos() {
         return List.copyOf(lottos);
     }

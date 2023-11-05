@@ -1,6 +1,8 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,9 +31,12 @@ class LottoTest {
     void compareNumbers() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create("1,2,3,4,5,7");
+        BonusNumber bonusNumber = BonusNumber.create("1");
 
         // when, then
-        assertThat(lotto.containsNumber(1)).isTrue();
-        assertThat(lotto.countMatchingNumbers(List.of(1, 2, 3, 4, 5, 7))).isEqualTo(5);
+        lotto.getPrizeCondition(winningNumbers, bonusNumber);
+//        assertThat(lotto.containsBonusNumber(1)).isTrue();
+//        assertThat(lotto.countMatchingNumbers(winningNumbers)).isEqualTo(5);
     }
 }

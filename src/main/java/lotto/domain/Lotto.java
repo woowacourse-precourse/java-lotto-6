@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,6 +21,12 @@ public class Lotto {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해 주세요.");
         }
+    }
+
+    public static void checkLottoNumber(String lottoNumber) {
+        Validator.checkNumber(lottoNumber);
+        Validator.checkZero(lottoNumber);
+        Validator.checkRange(Integer.parseInt(lottoNumber));
     }
 
 

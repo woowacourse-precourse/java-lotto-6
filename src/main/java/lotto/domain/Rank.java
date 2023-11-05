@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Rank {
+    CORRECT_ZERO(0, 0L),
+    CORRECT_ONE(1, 0L),
+    CORRECT_TWO(2, 0L),
     CORRECT_THREE(3, 5000L),
     CORRECT_FOUR(4, 50000L),
     CORRECT_FIVE(5, 1500000L),

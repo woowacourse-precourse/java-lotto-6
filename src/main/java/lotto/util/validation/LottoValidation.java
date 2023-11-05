@@ -5,25 +5,26 @@ import lotto.util.ErrorThrower;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.config.ErrorMessage.LOTTO_DISTINCT_ERROR;
-import static lotto.config.ErrorMessage.ONLY_NUMBER_ERROR;
+import static lotto.config.ErrorMessage.*;
 
 public class LottoValidation {
 
-    public void validatorOnlyNumber(String input) {
+    public void validatorDuplicatedNumber(List<Integer> lottoNumber) {
 
-        if (!input.matches("[0-9]+")) {
-            ErrorThrower.throwIllegalArgumentException(ONLY_NUMBER_ERROR.getMessage());
+        lottoNumber = lottoNumber.stream().distinct().collect(Collectors.toList());
+
+        if (lottoNumber.size() != 6) {
+            ErrorThrower.throwIllegalArgumentException(LOTTO_DISTINCT_ERROR.getMessage());
         }
 
     }
 
-    public void validatorDuplicatedNumber(List<Integer> lottoNumbers) {
+    public void validatorExceededRange(List<Integer> lottoNumber) {
 
-        lottoNumbers = lottoNumbers.stream().distinct().collect(Collectors.toList());
-
-        if (lottoNumbers.size() != 6) {
-            ErrorThrower.throwIllegalArgumentException(LOTTO_DISTINCT_ERROR.getMessage());
+        for (int number : lottoNumber) {
+            if (number < 1 || number > 45) {
+                ErrorThrower.throwIllegalArgumentException(LOTTO_EXCEED_RANGE_ERROR.getMessage());
+            }
         }
 
     }

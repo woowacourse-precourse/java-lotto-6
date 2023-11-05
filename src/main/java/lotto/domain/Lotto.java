@@ -24,6 +24,7 @@ public class Lotto {
         }
 
         lottoValidation.validatorDuplicatedNumber(numbers);
+        lottoValidation.validatorExceededRange(numbers);
     }
 
     // TODO: 추가 기능 구현

@@ -1,14 +1,11 @@
-package lotto.controller;
+package lotto;
 
 import lotto.domain.common.Money;
 import lotto.domain.lotto.LottoFactory;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.player.Player;
-import lotto.mapper.Mapper;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
-public class Controller {
+class Controller {
 
     private final LottoMachine lottoMachine;
 

@@ -1,10 +1,10 @@
-package lotto.mapper;
+package lotto;
 
 import lotto.domain.common.Money;
 
 import java.util.Objects;
 
-public class Mapper {
+class Mapper {
 
     private static final String UNKNOWN_INPUT_MESSAGE = "알 수 없는 입력입니다.";
     private static final String INVALID_NUMBER_FORMAT_MESSAGE = "숫자 형식으로 입력해주세요.";

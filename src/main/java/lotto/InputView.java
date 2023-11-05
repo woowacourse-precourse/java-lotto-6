@@ -1,8 +1,8 @@
-package lotto.view;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputView {
+class InputView {
 
     private static final String READ_PLAYER_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
 

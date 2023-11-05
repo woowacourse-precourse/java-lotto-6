@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoFactory;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Configuration {
+class Configuration {
 
     public static LottoFactory lottoFactory() {
         return simpleLottoFactory();

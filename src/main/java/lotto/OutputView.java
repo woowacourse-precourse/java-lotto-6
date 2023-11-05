@@ -1,8 +1,8 @@
-package lotto.view;
+package lotto;
 
 import java.util.List;
 
-public class OutputView {
+class OutputView {
 
     private static final String PRINT_ISSUANCE_RESULT_FORMAT = "%n%d개를 구매했습니다.%n";
 

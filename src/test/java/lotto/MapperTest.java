@@ -1,4 +1,4 @@
-package lotto.mapper;
+package lotto;
 
 import lotto.domain.common.Money;
 import org.junit.jupiter.api.DisplayName;

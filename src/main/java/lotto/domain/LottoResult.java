@@ -45,7 +45,7 @@ public class LottoResult {
     }
 
     public double calculateRateOfReturn(int amount) {
-        int totalPrize = calculateTotalPrize();
+        double totalPrize = calculateTotalPrize();
         return (totalPrize / amount) * 100;
     }
 }

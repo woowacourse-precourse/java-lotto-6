@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.offset;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,6 @@ public class LottoResultTest {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateNumberOfWins(lottos, lotto, bonus);
-        assertThat(lottoResult.calculateRateOfReturn(amount)).isEqualTo(833.3);
+        assertThat(lottoResult.calculateRateOfReturn(amount)).isCloseTo(833.3, offset(0.05d));
     }
 }

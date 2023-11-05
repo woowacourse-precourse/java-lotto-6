@@ -7,6 +7,11 @@ public class ValidateService {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_SIZE = 6;
     private static final int LOTTO_PRICE = 1000;
+    public static void validateNumber(String number){
+        if(!number.matches("\\d+")){
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.errorMessage);
+        }
+    }
     public static void validateAuthorizedLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(

@@ -7,7 +7,8 @@ public enum ProgressMessage {
     BONUS_NUMBER_REQUEST("\n보너스 번호를 입력해 주세요."),
     RESULT_STATISTICS("\n당첨 통계\n---"),
     WINNING_RESULT("%d개 일치 (%,d원) - %d개"),
-    BONUS_NUMBER_ALREADY_EXISTS("보너스 번호가 이미 당첨 번호에 존재합니다.");
+    BONUS_NUMBER_ALREADY_EXISTS("보너스 번호가 이미 당첨 번호에 존재합니다."),
+    EARNING_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

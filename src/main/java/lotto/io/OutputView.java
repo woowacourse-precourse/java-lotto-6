@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.constant.ProgressMessage;
+import lotto.domain.EarningRate;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
 import lotto.formatter.OutputFormatter;
@@ -38,5 +39,10 @@ public class OutputView {
 
     public void printWinningResult(final WinningResult winningResult) {
         System.out.println(outputFormatter.formatWinningResult(winningResult));
+    }
+
+    public void printEarningRate(final EarningRate earningRate) {
+        System.out.println(
+                String.format(ProgressMessage.EARNING_RATE.toValue(), earningRate.toValue()));
     }
 }

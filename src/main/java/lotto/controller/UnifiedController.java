@@ -114,7 +114,8 @@ public class UnifiedController {
         for (Rank rank : Rank.values()) {
             totalPrizeAmount += winningLottos.get(rank) * rank.getPrizeMoney();
         }
-        double gainPercentage = Math.round(((double) totalPrizeAmount / Register.money.getAmount() * 10) / 10.0);
+        double gainPercentage = Math.round(
+                ((double) totalPrizeAmount / Register.money.getAmount() * 100 * 10)) / 10.0;
         OutputView.printGainPercentage(gainPercentage);
 
     }

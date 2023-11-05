@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningNumbersManager {
+    private static final String WINNING_NUMBERS_SIZE_6_REQUIRED = "당첨 번호는 6개여야합니다";
+    private static final String WINNING_NUMBERS_RANGE_ERROR = "당첨 번호는 1~45 사이의 숫자여야합니다";
     private static final String BONUS_NUMBER_NOT_OVERLAP_WITH_WINNING_NUMBERS = "보너스 번호는 당첨 번호와 중복되면 안됩니다";
     private static final String BONUS_NUMBERS_RANGE_ERROR = "보너스 번호는 1~45 사이의 숫자여야합니다";
 
@@ -66,5 +68,32 @@ public class WinningNumbersManager {
         }
 
         return winningStatus;
+    }
+
+    public void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_6_REQUIRED);
+        }
+
+        validateNumberRange(winningNumbers);
+
+        if (hasDuplicateNumber(winningNumbers)) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> winningNumbers) {
+        for (Integer number : winningNumbers) {
+            validateNumberRange(number);
+        }
+    }
+
+    private boolean hasDuplicateNumber(List<Integer> winningNumbers) {
+        long removeDuplicatedSize = winningNumbers.stream().distinct().count();
+        if (winningNumbers.size() != removeDuplicatedSize) {
+            return true;
+        }
+
+        return false;
     }
 }

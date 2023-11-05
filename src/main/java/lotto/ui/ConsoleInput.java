@@ -12,11 +12,20 @@ public class ConsoleInput implements Input {
         inputValidator = new InputValidator();
     }
 
+    @Override
     public int getPrice() {
         String inputPrice = Console.readLine();
         inputValidator.validateIsNumber(inputPrice);
 
         return parseNumber(inputPrice);
+    }
+
+    @Override
+    public Integer getBonusNumbers() {
+        String inputBonusNumber = Console.readLine();
+        inputValidator.validateIsNumber(inputBonusNumber);
+
+        return parseNumber(inputBonusNumber);
     }
 
     private static int parseNumber(String inputPrice) {
@@ -28,16 +37,6 @@ public class ConsoleInput implements Input {
         String inputWinningNumbers = Console.readLine();
         List<Integer> winningNumbers = SplitNumber.splitNumber(inputWinningNumbers);
 
-        inputValidator.validateWinningNumbers(winningNumbers);
-
         return winningNumbers;
-    }
-
-    @Override
-    public Integer getBonusNumbers() {
-        String inputBonusNumber = Console.readLine();
-        inputValidator.validateIsNumber(inputBonusNumber);
-
-        return parseNumber(inputBonusNumber);
     }
 }

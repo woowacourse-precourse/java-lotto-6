@@ -33,8 +33,6 @@ public class UserInput {
     public static void bonusNumber() {
         String userInput = Console.readLine();
         Integer bonusNumber = Integer.parseInt(userInput);
-        List<Integer> totalNumber = new ArrayList<>(User.getWinningNumbers());
-        totalNumber.add(bonusNumber);
-        User.setWinningNumbers(totalNumber);
+        User.setBonusNumber(bonusNumber);
     }
 }

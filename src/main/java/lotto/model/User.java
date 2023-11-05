@@ -10,6 +10,7 @@ import java.util.List;
 
 public class User {
     private static List<Integer> winningNumbers;
+    private static Integer bonusNumber;
     private Integer purchaseAmount;
     private Integer purchaseLottoNumber;
     private List<Lotto> lottos;
@@ -23,6 +24,14 @@ public class User {
 
     public static List<Integer> getWinningNumbers() {
         return User.winningNumbers;
+    }
+
+    public static void setBonusNumber(Integer bonusNumber) {
+        User.bonusNumber = bonusNumber;
+    }
+
+    public static Integer getBonusNumber() {
+        return User.bonusNumber;
     }
 
     public Integer getPurchaseAmount() {

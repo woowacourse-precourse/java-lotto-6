@@ -58,4 +58,8 @@ public class Screen {
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
+
+    public static void displayWinningResult(Result result) {
+        System.out.print(result.getResult());
+    }
 }

@@ -21,4 +21,13 @@ public class Result {
         if (ranking != null)
           count.put(ranking, count.get(ranking) + 1);
     }
+
+    public String getResult() {
+        StringBuilder result = new StringBuilder();
+
+        for (Ranking ranking : Ranking.values()) {
+            result.append(ranking.getResult(count.get(ranking)));
+        }
+        return result.toString();
+    }
 }

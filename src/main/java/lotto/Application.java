@@ -12,7 +12,7 @@ public class Application {
         Integer price = UIController.makePurchasePrice();
         List<Lotto> lottos = UIController.makeLotto(price);
         UIController.makeLottoStatus(lottos);
-
+        List<Integer> winningNumbers = UIController.makeWinningNumbers();
         // TODO : makeWinningNumbers , makeBonusNumber , makeStatistics
 
 

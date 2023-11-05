@@ -59,4 +59,29 @@ public class UIController {
         UIView.printLottoCount(lottos);
         UIView.printLottoNumbers(lottos);
     }
+
+
+    public static List<Integer> makeWinningNumbers() {
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                UIView.printWinningNumberInstruction();
+                winningNumbers = getWinningNumber();
+                // TODO : 당첨번호 검증
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 당첨번호는 숫자 여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 당첨번호는 1~45의 중복되지 않는 6개의 숫자 여야 합니다.");
+            }
+        }
+        return winningNumbers;
+    }
+
+
+    private static List<Integer> getWinningNumber() {
+        String[] line = Console.readLine().split(",");
+
+        return null;
+    }
 }

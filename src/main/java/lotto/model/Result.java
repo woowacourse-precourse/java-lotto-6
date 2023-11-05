@@ -28,7 +28,7 @@ public class Result {
             if (ranking.getCondition().isEmpty()) {
                 continue;
             }
-            int cnt = (int) rankings.stream().filter(r -> r.name().equals(ranking.name())).count();
+            int cnt = (int) rankings.stream().filter(r -> r == ranking).count();
             sb.append(ranking.getCondition() + cnt + UNIT);
         }
         return sb.toString();

@@ -39,6 +39,9 @@ public class WinningNumbers implements Askable {
             if (!isNoDuplicate.test(convertedInput)) {
                 throw new IllegalArgumentException(duplicateNumbersError);
             }
+            if (!isCorrectAmount.test(convertedInput)) {
+                throw new IllegalArgumentException(WinningNumberAmountError);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             corretInput = false;
@@ -60,4 +63,6 @@ public class WinningNumbers implements Askable {
 
     private final Predicate<List<Integer>> isNoDuplicate = input ->
             input.stream().distinct().count() == input.size();
+
+    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == 6;
 }

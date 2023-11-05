@@ -116,6 +116,14 @@ public class Application {
 		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + second + "개");
 		System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
 
+		// 수익률을 출력하는 기능
+		int sum = first * Rank.FIRST.getPrize() 
+				+ second * Rank.SECOND.getPrize() 
+				+ third * Rank.THIRD.getPrize()
+				+ fourth * Rank.FOURTH.getPrize() 
+				+ fifth * Rank.FIFTH.getPrize();
+		double rate = (double) sum / price * 100;
+		System.out.printf("총 수익률은 %.1f%%입니다.", rate);
 	}
 
 	// 1000원으로 나누어 떨어지는지 확인하는 메소드

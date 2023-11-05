@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import static lotto.util.ConstantUtils.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.ConstantUtils;
 
 public class WinningLotto {
+
     private static final int WINNING_LOTTO_SIZE_CRITERION = 7;
     private List<Number> winningNumbers;
     private Number bonusNumber;
@@ -18,10 +16,16 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getMatchCount(List<Number> numbers) {
+        return (int) numbers.stream()
+            .filter(winningNumbers::contains)
+            .count();
+    }
+
     private void validateNoDuplicatedWinningNumbers(List<Number> winningNumbers,
         Number bonusNumber) {
-        winningNumbers.add(bonusNumber);
         Set<Number> set = new HashSet<>(winningNumbers);
+        set.add(bonusNumber);
         if (set.size() != WINNING_LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }

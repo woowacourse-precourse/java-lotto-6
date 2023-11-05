@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.stream.IntStream;
+import lotto.domain.Lotto;
+
 public class OutputView {
 
     private final static String PURCHASE_QUANTITY = "%d개를 구매했습니다.";
@@ -15,6 +19,12 @@ public class OutputView {
 
     public void printPurchaseQuantity(int quantity) {
         System.out.println(String.format(PURCHASE_QUANTITY, quantity));
+    }
+
+    public void printRandomLottos(List<Lotto> lottos) {
+        IntStream.range(0, lottos.size())
+                .mapToObj(index -> lottos.get(index).getNumbers())
+                .forEach(System.out::println);
     }
 
     public void printWinningStatistics() {

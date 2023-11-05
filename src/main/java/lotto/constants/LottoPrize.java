@@ -2,7 +2,6 @@ package lotto.constants;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import lotto.model.Lotto;
 
 public enum LottoPrize {
 

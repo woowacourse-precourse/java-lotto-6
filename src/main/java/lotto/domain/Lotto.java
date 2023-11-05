@@ -65,14 +65,13 @@ public class Lotto {
                 .filter(winNumbers::contains)
                 .count();
 
-        if (matchCount == BONUS_MATCH_COUNT && isBonusMatch(randomNumbers, bonusNum)) {
+        if (isBonusMatch(randomNumbers, bonusNum, matchCount))
             return MatchResult.BONUS;
-        }
 
         return MatchResult.fromCount(matchCount);
     }
 
-    private static boolean isBonusMatch(List<Integer> randomNumbers, int bonusNum) {
-        return randomNumbers.contains(bonusNum);
+    private static boolean isBonusMatch(List<Integer> randomNumbers, int bonusNum, int matchCount) {
+        return matchCount == BONUS_MATCH_COUNT && randomNumbers.contains(bonusNum);
     }
 }

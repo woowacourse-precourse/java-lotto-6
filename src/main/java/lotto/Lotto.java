@@ -1,5 +1,7 @@
 package lotto;
 
+import static util.ErrorMessage.LOTTO_COUNT_LIMIT;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_COUNT_LIMIT.getErrorMessage());
         }
     }
 

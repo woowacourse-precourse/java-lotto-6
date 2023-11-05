@@ -149,7 +149,7 @@ public class UIController {
     public static void makeStatistics(List<Lotto> lottos, List<Integer> winningNumbers,
             Integer bonusNumber, Integer price) {
         LottoMachine.countStatistics(lottos, winningNumbers, bonusNumber);
-
+        UIView.printStatisticsDetail();
         // TODO : 통계상세 출력 , 수익률
 
     }

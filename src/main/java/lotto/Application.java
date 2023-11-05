@@ -21,5 +21,6 @@ public class Application {
 
         System.out.println(Constant.result);
         statistics.getRank();
+        statistics.getRevenue();
     }
 }

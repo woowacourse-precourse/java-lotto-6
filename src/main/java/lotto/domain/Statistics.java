@@ -56,4 +56,17 @@ public class Statistics {
         System.out.printf("%s%d개\n", Constant.secondWithBonus, rank[7]);
         System.out.printf("%s%d개\n", Constant.first, rank[6]);
     }
+
+    public double countRevenue() {
+        return (double) (rank[3] * 5000
+                + rank[4] * 50000
+                + rank[5] * 1500000
+                + rank[6] * 2000000000
+                + rank[7] * 30000000) / (
+                purchasedLotto.getAmount() * 10);
+    }
+
+    public void getRevenue() {
+        System.out.printf("총 수익률은 %.1f%%입니다.", countRevenue());
+    }
 }

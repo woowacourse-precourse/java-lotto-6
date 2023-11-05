@@ -18,11 +18,7 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers() {
         String input = getInput(EMPTY_LOTTO_NUMBER_ERROR);
-        try {
-            return parseNumbers(input);
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(NOT_INTEGER_LOTTO_NUMBER_ERROR);
-        }
+        return parseNumbers(input);
     }
 
     public static String inputBonusNumber() {
@@ -38,9 +34,13 @@ public class InputView {
     }
 
     private static List<Integer> parseNumbers(String input) {
-        return List.of(input.split(COMMA_SEPARATOR))
-                .stream()
-                .map(numberStr -> Integer.parseInt(numberStr))
-                .collect(Collectors.toList());
+        try {
+            return List.of(input.split(COMMA_SEPARATOR))
+                    .stream()
+                    .map(numberStr -> Integer.parseInt(numberStr))
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(NOT_INTEGER_LOTTO_NUMBER_ERROR);
+        }
     }
 }

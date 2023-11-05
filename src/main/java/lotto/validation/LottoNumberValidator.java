@@ -13,9 +13,23 @@ public class LottoNumberValidator {
         validateRange(numbers);
     }
 
+    public static void validateBonusNumber(int bonusNumber) {
+        validateRange(bonusNumber);
+    }
+
     public static void validateDuplicateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             ExceptionMessage message = ExceptionMessage.DUPLICATE_BONUS_NUMBER_EXCEPTION;
+            throw new IllegalArgumentException(message.getMessage());
+        }
+    }
+
+    private static void validateRange(int number) {
+        GameConfig minNumber = GameConfig.MIN_LOTTO_NUMBER;
+        GameConfig maxNumber = GameConfig.MAX_LOTTO_NUMBER;
+
+        if (number < minNumber.getValue() || number > maxNumber.getValue()) {
+            ExceptionMessage message = ExceptionMessage.OUT_OF_RANGE_NUMBER_EXCEPTION;
             throw new IllegalArgumentException(message.getMessage());
         }
     }

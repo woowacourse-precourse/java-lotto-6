@@ -18,6 +18,10 @@ public final class Money {
         }
     }
 
+    public boolean canPurchase(int price) {
+        return money % price == 0 && money >= price;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

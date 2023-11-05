@@ -18,6 +18,8 @@ public class Game {
         inputView.purchaseAmountView();
         AMOUNT = purchaseAmountInput();
 
+        outputView.purchasesNumberView(AMOUNT);
+        
     }
 
     public int purchaseAmountInput(){

@@ -13,7 +13,7 @@ public class WinningNumber {
         List<String> seperatedNumbers = split(candidateWinningNumber);
         checkOversize(seperatedNumbers);
         List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
-        checkOutOfBound(candidateWinningNumbers);
+        checkOutOfRange(candidateWinningNumbers);
         checkDuplicate(candidateWinningNumbers);
         this.winningNumbers = candidateWinningNumbers;
     }
@@ -42,13 +42,13 @@ public class WinningNumber {
         }
     }
 
-    private void checkOutOfBound(List<Integer> candidateWinningNumbers) {
-        candidateWinningNumbers.forEach(this::checkInRange);
+    private void checkOutOfRange(List<Integer> candidateWinningNumbers) {
+        candidateWinningNumbers.forEach(this::checkOutOfRange);
     }
 
-    private void checkInRange(Integer lottoNumber) {
+    private void checkOutOfRange(Integer lottoNumber) {
         if (lottoNumber < Lotto.MIN_NUMBER || lottoNumber > Lotto.MAX_NUMBER) {
-            throw new IllegalArgumentException(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 

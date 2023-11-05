@@ -27,4 +27,15 @@ public class BonusNumberTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.BONUS_NUMBER_NOT_INTEGER.getMessage());
     }
+
+    @DisplayName("보너스 번호가 1에서 45 사이의 정수가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"-2", "0", "46"})
+    public void 범위를_벗어난_경우_예외처리(String input) {
+        //when+then
+        assertThatThrownBy(() -> {
+            BonusNumber.create(input, winningNumber);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+    }
 }

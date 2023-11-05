@@ -48,7 +48,7 @@ public class OutputViewTest {
                 Arguments.arguments(Error.PURCHASE_AMOUNT_VALIDATION.getMessage()),
                 Arguments.arguments(Error.LOTTO_NUMBER_OVERSIZE.getMessage()),
                 Arguments.arguments(Error.LOTTO_NUMBER_DUPLICATE.getMessage()),
-                Arguments.arguments(Error.LOTTO_NUMBER_OUT_OF_BOUND.getMessage()));
+                Arguments.arguments(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage()));
     }
 
     @DisplayName("로또 생성 결과 출력 테스트")

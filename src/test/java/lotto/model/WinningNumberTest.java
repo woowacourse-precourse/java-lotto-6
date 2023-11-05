@@ -42,7 +42,7 @@ public class WinningNumberTest {
         assertThatThrownBy(() -> {
             WinningNumber.create(input);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
+                .hasMessage(Error.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있을 경우 에러를 발생시킨다.")

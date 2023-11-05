@@ -31,4 +31,11 @@ public enum Rank {
         return (long) prize*count;
     }
 
+    public long showPrize() {
+        return prize;
+    }
+
+    public int showMatchCount() {
+        return count;
+    }
 }

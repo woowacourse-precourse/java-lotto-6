@@ -7,6 +7,7 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
 import lotto.view.ConsoleMessageView;
+import lotto.view.LottoStaticsOutputView;
 import lotto.view.MoneyInputView;
 import lotto.view.PurchasedLottoOutputView;
 import lotto.view.WinningLottoInputView;
@@ -32,6 +33,7 @@ public class LottoApplication {
         WinningLotto winningLotto = createWinningLottoFrom(winningLottoNumbers, bonusNumber);
 
         WinningStatistics statistics = lottoStore.calculateStatisticsWith(winningLotto);
+        printFrom(statistics);
 
     }
 
@@ -58,6 +60,10 @@ public class LottoApplication {
     public WinningLotto createWinningLottoFrom(List<String> winningLottoNumbers, String BonusNumber) {
         return new WinningLotto(winningLottoNumbers, BonusNumber);
         
+    }
+
+    private void printFrom(WinningStatistics winningStatistics) {
+        LottoStaticsOutputView.outputFrom(winningStatistics);
     }
     
 }

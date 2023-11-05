@@ -1,6 +1,9 @@
 package lotto.output;
 
 public final class OutputManager {
+    private OutputManager() {
+    }
+
     public static void print(Object outPutContents) {
         System.out.println(outPutContents);
     }

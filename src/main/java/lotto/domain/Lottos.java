@@ -6,21 +6,24 @@ import lotto.controller.dto.LottoResponseDto;
 import lotto.controller.dto.LottoResponseDtos;
 
 public class Lottos {
+
     private List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public Lotto get(int index){
+    public Lotto get(int index) {
         return lottos.get(index);
     }
-    public int size(){
+
+    public int size() {
         return lottos.size();
     }
 
-    public LottoResponseDtos toResponseDto(){
-        return new LottoResponseDtos(mapToLottoResponseDto());
+    public LottoResponseDtos toResponseDtos() {
+        List<LottoResponseDto> dtos = mapToLottoResponseDto();
+        return new LottoResponseDtos(dtos);
     }
 
     private List<LottoResponseDto> mapToLottoResponseDto() {
@@ -28,4 +31,5 @@ public class Lottos {
                 .map(Lotto::toResponseDto)
                 .collect(Collectors.toList());
     }
+
 }

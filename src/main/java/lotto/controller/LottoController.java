@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.controller.dto.LottoResponseDtos;
+import lotto.controller.dto.ResultResponseDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
@@ -42,6 +44,13 @@ public class LottoController {
         }
     }
 
+    private double calculatePriceRate(PurchasePrice price, List<ResultResponseDto> dtos) {
+        int sum = 0;
+        for (ResultResponseDto dto : dtos) {
+            int temp = dto.getTotalCount() * dto.getWinnerPrice();
+            sum = sum + temp;
+        }
+        return price.getReturnRate(sum);
     }
 
     private static int getUserBonusNumber() {

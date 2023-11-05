@@ -15,7 +15,12 @@ public class PurchasePrice {
         return price / LOTTO_PRICE;
     }
 
-    private void validate() {
+    public double getReturnRate(int profit){
+        return Math.round(((double) profit / this.price) * 10000) / 100.0f;
+    }
+
+
+    private void validatePriceFormat() {
         if (price % LOTTO_PRICE != 0) {
             throw new IllegalStateException(PRICE_IS_NOT_FORMATTED_MESSAGE);
         }

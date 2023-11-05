@@ -1,13 +1,12 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.LottoGenerator;
 import lotto.controller.dto.ResultResponseDto;
 import lotto.domain.Lotto;
-import lotto.LottoGenerator;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 

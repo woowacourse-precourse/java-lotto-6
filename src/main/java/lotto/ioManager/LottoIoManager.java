@@ -8,8 +8,9 @@ import java.util.Map.Entry;
 import lotto.Lotto;
 import lotto.Lottos;
 import lotto.Rank;
+import lotto.exception.ExceptionManager;
 
-public class LottoIoManager implements IoManager{
+public class LottoIoManager implements IoManager {
 
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -18,7 +19,7 @@ public class LottoIoManager implements IoManager{
 
     public void displayLottosCnt(int cnt) {
         System.out.println();
-        System.out.println(cnt+"개를 구매했습니다.");
+        System.out.println(cnt + "개를 구매했습니다.");
     }
 
     public void displayLottos(Lottos lottos) {
@@ -51,15 +52,20 @@ public class LottoIoManager implements IoManager{
             if (entry.getKey().equals(Rank.NOPE)) {
                 continue;
             }
-            System.out.println(Rank.getMsg(entry.getKey()) + " - " + entry.getValue()+"개");
+            System.out.println(Rank.getMsg(entry.getKey()) + " - " + entry.getValue() + "개");
         }
+    }
+
+    public void displayProfitRate(String profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 
     private int stringToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("숫자를 입력해야 합니다.");
+            ExceptionManager.throwIllegalArgumentExceptionWithMsg("숫자를 입력해야 합니다.");
+            return -1;
         }
     }
 

@@ -13,7 +13,7 @@ class MoneyTest {
 	
 	private final InputMoney money=new InputMoney();
 	
-	private static final String VALID_INPUT="50, 00 0.0 W ";
+	private static final String VALID_INPUT="50, 00 0.0  ";
 	private static final String EMPTY_INPUT="";
 	private static final String NAN_INPUT="not a number";
 	private static final String WITH_CHANGES="500120";

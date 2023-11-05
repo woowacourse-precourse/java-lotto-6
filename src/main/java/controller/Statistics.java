@@ -16,7 +16,7 @@ public class Statistics {
 		this.lottery_list=lottery_list;
 		this.winning_nums=winning_nums;
 		this.bonus=bonus;
-		System.out.println("당첨 통계\n---\n");
+		System.out.println("당첨 통계\n---");
 		getStatistics();
 	}
 	
@@ -36,8 +36,8 @@ public class Statistics {
 	}
 	
 	private void getRateOfReturn(int winnings) {
-		double rate=winnings*100/(lottery_list.size()*UNIT_AMOUNT);
-		System.out.println("총 수익률은 "+String.format("%.1f", rate)+"%입니다");
+		double rate=winnings*100.0/(lottery_list.size()*UNIT_AMOUNT);
+		System.out.println("총 수익률은 "+String.format("%,.1f", rate)+"%입니다.");
 	}
 	
 	private int getProfitAmount() {

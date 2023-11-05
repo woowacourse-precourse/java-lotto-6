@@ -31,6 +31,7 @@ public class RunGame {
 	
 	private void purchaseGuide() {
 		System.out.println("구입금액을 입력해 주세요.");
+		
 		lotto_count=money_in.purchase_lotto()/UNIT_AMOUNT;
 		System.out.println("\n"+lotto_count+"개를 구매했습니다.");
 	}
@@ -43,7 +44,7 @@ public class RunGame {
 	
 	private void issueTickets() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-		Collections.sort(numbers);
+		//Collections.sort(numbers);
 		
 		lottery_list.add(numbers);
 		System.out.println(numbers);
@@ -52,6 +53,7 @@ public class RunGame {
 	private void numbersGuide() {
 		System.out.println("당첨 번호를 입력해 주세요.");
 		winning_nums=numbers_in.select_numbers();
+		
 		System.out.println("\n보너스 번호를 입력해 주세요.");
 		bonus=numbers_in.select_bonus();
 	}

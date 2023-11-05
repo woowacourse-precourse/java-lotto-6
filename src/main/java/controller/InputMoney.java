@@ -34,7 +34,7 @@ public class InputMoney {
 		String result;
 		result=flexibleAcceptance(purchase_amount);
 		notEmpty(result);
-		result=removeCurrencyUnit(result);
+		//result=removeCurrencyUnit(result);
 		naN(result);
 		
 		noChanges();
@@ -63,6 +63,7 @@ public class InputMoney {
 	private void notEmpty(String purchase_amount) {
 		if(purchase_amount==null||purchase_amount.equals("")) {
 			//treatEmpty();
+			System.out.println("[ERROR] 구입금액을 반드시 입력해주세요");
 			throw new IllegalArgumentException("[ERROR] 구입금액을 반드시 입력해주세요");
 		}
 	}
@@ -80,6 +81,7 @@ public class InputMoney {
 			purchase_amount_refined=Integer.parseInt(purchase_amount);
 		} catch(NumberFormatException e) {
 			//treatNaN();
+			System.out.println("[ERROR] 구입금액은 반드시 숫자여야합니다");
 			throw new IllegalArgumentException("[ERROR] 구입금액은 반드시 숫자여야합니다");
 		}
 	}
@@ -95,6 +97,7 @@ public class InputMoney {
 	private void noChanges() {
 		if(purchase_amount_refined%UNIT_AMOUNT!=0) {
 			//treatChanges();
+			System.out.println("[ERROR] 거스름돈은 받을 수 없습니다");
 			throw new IllegalArgumentException("[ERROR] 거스름돈은 받을 수 없습니다");
 		}
 	}

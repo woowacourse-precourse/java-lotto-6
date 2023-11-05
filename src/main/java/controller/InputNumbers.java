@@ -41,10 +41,12 @@ public class InputNumbers {
     
     public void forTest(List<Integer> test_input) {
     	if (test_input.size() != 6) {
+    		System.out.println("[ERROR] 6개의 번호만 유효합니다");
             throw new IllegalArgumentException("[ERROR] 6개의 번호만 유효합니다");
         }
     	for(int num:test_input) {
     		if(test_input.indexOf(num)!=test_input.lastIndexOf(num)) {
+    			System.out.println("[ERROR] 중복된 번호는 유효하지 않습니다");
         		throw new IllegalArgumentException("[ERROR] 중복된 번호는 유효하지 않습니다");
         	}
     		valueOutOfBoundary(num);
@@ -83,6 +85,7 @@ public class InputNumbers {
 
     private void correctlySixElements() {
     	if (numbers_refined.size() != 6) {
+    		System.out.println("[ERROR] 6개의 번호만 유효합니다");
             throw new IllegalArgumentException("[ERROR] 6개의 번호만 유효합니다");
         }
     }
@@ -96,6 +99,7 @@ public class InputNumbers {
     
     private void checkDuplicatedElements(int num) {
     	if(numbers_refined.indexOf(num)!=numbers_refined.lastIndexOf(num)) {
+    		System.out.println("[ERROR] 중복된 번호는 유효하지 않습니다");
     		throw new IllegalArgumentException("[ERROR] 중복된 번호는 유효하지 않습니다");
     	}
     }
@@ -105,6 +109,7 @@ public class InputNumbers {
     	try {
     		num=Integer.parseInt(str);
     	} catch(NumberFormatException e) {
+    		System.out.println("[ERROR] 번호는 정수인 숫자만 유효합니다(공백 불가)");
     		throw new IllegalArgumentException("[ERROR] 번호는 정수인 숫자만 유효합니다(공백 불가)");
     	}
     	return num;
@@ -112,6 +117,7 @@ public class InputNumbers {
     
     private void valueOutOfBoundary(int num) {
     	if(num<1||num>45) {
+    		System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     		throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     	}
     }

@@ -21,7 +21,6 @@ class RandomNumberGeneratorTest {
 
         // then
         Assertions.assertEquals(numbers.size(), 6);
-        Assertions.assertEquals(numbers.size(), 6);
 
         Integer min = LottoInfo.LOTTO_MIN_NUMBER.getValue();
         Integer max = LottoInfo.LOTTO_MAX_NUMBER.getValue();

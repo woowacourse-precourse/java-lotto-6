@@ -54,6 +54,18 @@ class WinningNumbersTest {
                 .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
 
+    @Test
+    @DisplayName("숫자 문자열이 쉼표로 끝날 때 예외를 발생시킨다.")
+    void process_EndingComma_ThrowsException() {
+        // given
+        String numbersWithEndingComma = "1, 2, 3, 4, 5, 6,";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithEndingComma))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+    }
+
 
 }
 

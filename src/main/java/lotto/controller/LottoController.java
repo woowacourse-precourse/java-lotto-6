@@ -33,7 +33,8 @@ public class LottoController {
         bonusNumber = getBonusNumber();
         // 당첨 통계 계산 & 당첨 통계, 수익률 출력
         Rank rank = getRank(lottos);
-        showWinningDetail(rank);
+        OutputHandler.showWinningDetails(rank.getRank(1), rank.getRank(2), rank.getRank(3), rank.getRank(4),
+                rank.getRank(5));
         showRateOfReturn(rank, paymentPrice);
     }
 
@@ -116,11 +117,6 @@ public class LottoController {
             }
         }
         return rank;
-    }
-
-    void showWinningDetail(Rank rank) {
-        OutputHandler.printWinningDetails(rank.getRank(1), rank.getRank(2), rank.getRank(3), rank.getRank(4),
-                rank.getRank(5));
     }
 
     void showRateOfReturn(Rank rank, int paymentPrice) {

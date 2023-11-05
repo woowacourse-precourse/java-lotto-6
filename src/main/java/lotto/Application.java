@@ -8,6 +8,13 @@ import java.util.stream.Collectors;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
+
+    private static int sixMatchPrize;
+    private static int fiveMatchWithBonusPrize;
+    private static int fiveMatchPrize;
+    private static int fourMatchPrize;
+    private static int threeMatchPrize;
+
     public static void main(String[] args) {
 
         System.out.println("구입금액을 입력해 주세요.");
@@ -22,10 +29,16 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = readLine();
         List<Integer> pickWinnerNumber = inputWinningNumberVerification(inputWinningNumber(numbers));
+
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = readLine();
-        List<Integer> bonusNum = inputBounsNumber(pickWinnerNumber, bonusNumber);
+        Integer bonusNum = inputBounsNumber(pickWinnerNumber, bonusNumber);
         System.out.println("bonusNum = " + bonusNum);
+
+        Map<Integer, Integer> matches = numberMatches(userCountRandomLotto, pickWinnerNumber);
+        System.out.println("matches : "+matches);
+        determinePrizeRank(userCountRandomLotto, matches, bonusNum);
+        printWinningStatistics();
 
 
     } // main
@@ -42,6 +55,7 @@ public class Application {
         while (true) {
             try {
                 Integer userMoney = convertStringToInt(money);
+                moneyDiscrimination(userMoney);
                 return userMoney; // 유효한 입력이면 반환하고 메서드 종료
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("[ERROR] 유효하지 않은 숫자입니다. 다시 시도하세요.");
@@ -54,11 +68,10 @@ public class Application {
 
 
 
-    public static Integer moneyDiscrimination(Integer money){ // 입력한 돈이 맞게 들어왔는지 검증하는 메소드
+    public static void moneyDiscrimination(Integer money){ // 입력한 돈이 맞게 들어왔는지 검증하는 메소드
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 잘못된 금액을 투입하셨습니다. 다시 시도하세요.");
         }
-        return money;
     } // pickUniqueNumber
 
     public static int moneyReplaceCount(int money){ // 입력된 돈을 횟수로 치환하는 메소드
@@ -92,7 +105,6 @@ public class Application {
             String[] strNumbers = numbers.split(",");
             boolean isValidInput = checkWinningNumberValidity(strNumbers, intNumbers);
 
-
             if(isValidInput){
                 break;
             }
@@ -119,15 +131,17 @@ public class Application {
         return isValidInput;
     } // checkWinningNumberValidity
 
-    public static List<Integer> inputWinningNumberVerification(List<Integer> inputWinningNumber){ // 사용자가 입력하는 당첨금액이 맞게 입력했는지 검증하는 메소드
+    public static List<Integer> inputWinningNumberVerification(List<Integer> inputWinningNumber){ // 사용자가 입력하는 당첨번호에 맞게 입력했는지 검증하는 메소드
         Lotto lotto = null;
 
         while(true) {
             try {
                 lotto = new Lotto(inputWinningNumber);
                 return lotto.getNumbers();
-            } catch (IllegalArgumentException | NullPointerException e) {
-                System.out.println("[ERROR] 1~45까지 중 6자리를 입력해주세요");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch(NullPointerException e){
+                System.out.println("[ERROR] 유효하지 않은 숫자입니다. 다시 시도하세요.");
             }
 
             String str = readLine();
@@ -136,25 +150,31 @@ public class Application {
 
     } // inputWinningNumberVerification
 
-    public static List<Integer> inputBounsNumber(List<Integer> winnerNumber, String bonusNumber){ // 보너스 번호 입력
+    public static Integer inputBounsNumber(List<Integer> winnerNumber, String bonusNumber){ // 보너스 번호 입력
         while(true) {
             try {
                 int bonusNum = convertStringToInt(bonusNumber);
-                if (!userInputNumber(bonusNum)) {
-                    throw new IllegalArgumentException();
-                }
-                winnerNumber.add(bonusNum);
-                return winnerNumber;
+                addBonusNumber(winnerNumber, bonusNum);
+                return bonusNum;
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("[ERROR] 유효하지 않은 숫자입니다. 다시 시도하세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1~45까지 중 6자리를 입력해주세요");
+                System.out.println(e.getMessage());
             }
             String str = readLine();
             bonusNumber = str;
         }
     } // inputBounsNumber
-    
+
+    public static void addBonusNumber(List<Integer> winnerNumber, int bonusNum){ // 입력한 보너스 번호를 추가하는 메소드
+        if (!userInputNumber(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 1~45까지 중 에서 입력해주세요");
+        }
+        if (winnerNumber.contains(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 이미 추가된 번호입니다. 다시 시도하세요.");
+        }
+    } // addBonusNumber
+
     public static boolean userInputNumber(Integer num){ // 당첨번호, 보너스 번호가 1 ~ 45만 입력했는지 검증 메소드
 
         if(num <= 0 || num > 45){
@@ -162,5 +182,63 @@ public class Application {
         }
         return true;
     } // userInputNumber
+
+    public static void printWinningStatistics(){ // 당첨 통계 UI
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+threeMatchPrize+" 개");
+        System.out.println("4개 일치 (50,000원) - "+fourMatchPrize+" 개");
+        System.out.println("5개 일치 (1,500,000원) - "+fiveMatchPrize+" 개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+fiveMatchWithBonusPrize+" 개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+sixMatchPrize+" 개");
+        System.out.println("총 수익률은 "+statistics()+"입니다.");
+    } // printWinningStatistics
+
+    public static Map<Integer, Integer> numberMatches(Map<Integer, List<Integer>> userCountRandomLotto, List<Integer> pickWinnerNumber){ // 각 랜덤 복권들과 당첨번호가 서로 몇개 맞는지 검증하는 메소드
+        Map<Integer, Integer> countPerList = new HashMap<>();
+
+        for (Map.Entry<Integer, List<Integer>> entry : userCountRandomLotto.entrySet()) {
+            int count = (int) entry.getValue().stream().filter(pickWinnerNumber::contains).count();
+            countPerList.put(entry.getKey(), count);
+        }
+
+        return countPerList;
+    } // numberMatches
+
+    public static boolean containsBonusNumber(Map<Integer, List<Integer>> userCountRandomLotto, Integer bonusNumber){
+
+        for(List<Integer> list : userCountRandomLotto.values()){
+            if(list.contains(bonusNumber)){
+                return true;
+            }
+        }
+        return false;
+    } // containsBonusNumber
+
+    public static void determinePrizeRank(Map<Integer, List<Integer>> userCountRandomLotto, Map<Integer, Integer> matches, Integer bonusNumber){
+        for(Integer value : matches.values()){
+            if(value == PrizeCategory.MATCHES_SIX.getNumberOfMatches()){
+                sixMatchPrize++;
+            }
+            if(value == PrizeCategory.MATCHES_FIVE_BONUS.getNumberOfMatches() && containsBonusNumber(userCountRandomLotto, bonusNumber)){
+                fiveMatchWithBonusPrize++;
+            }
+            if(value == PrizeCategory.MATCHES_FIVE.getNumberOfMatches()){
+                fiveMatchPrize++;
+            }
+            if(value == PrizeCategory.MATCHES_FOUR.getNumberOfMatches()){
+                fourMatchPrize++;
+            }
+            if(value == PrizeCategory.MATCHES_THREE.getNumberOfMatches()){
+                threeMatchPrize++;
+            }
+        }
+    } // determinePrizeRank
+
+    public static double statistics(){
+        double prizeSum = sixMatchPrize + fiveMatchWithBonusPrize + fiveMatchPrize + fourMatchPrize + threeMatchPrize;
+        double prizeAvg = (prizeSum / 5.0) * 100;
+        return Math.round(prizeAvg * 100) / 100;
+    }
 
 }

@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.constance.PrintConst;
 import lotto.exceptionhandler.ExceptionHandler;
 import lotto.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
+import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoAnswer;
 import lotto.model.domain.Results;
 import lotto.model.domain.result.ResultFactory;
@@ -42,7 +45,9 @@ public class LottoController {
 
     private Lottos purchaseLotto(int money) {
         Lottos lottos = store.purchase(money);
-        Writer.printModelsInList(lottos.getLottosDTO());
+        List<Lotto> purchasedLottos = lottos.getLottosDTO();
+        Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, purchasedLottos.size());
+        Writer.printModelsInList(purchasedLottos);
         return lottos;
     }
 
@@ -66,7 +71,9 @@ public class LottoController {
                 .stream()
                 .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
                 .sum();
-        double revenue = prize / (double) money;
+        System.out.println("prize = " + prize);
+        System.out.println("money = " + money);
+        double revenue = (prize * 100) / (double) money;
         ui.printRevenue(revenue);
     }
 

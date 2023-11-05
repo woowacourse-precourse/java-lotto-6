@@ -9,8 +9,8 @@ import lotto.constance.GameConst;
 import lotto.util.LottoGameException;
 
 public class Reader {
-    private static Pattern answerPattern = Pattern.compile(
-            String.format("^([\\d]+%s){5}+[\\d]$", GameConst.DELIMITER));
+    private static Pattern answerPattern =
+            Pattern.compile(String.format("^([\\d]*+%s){5}+[\\d]*$", GameConst.DELIMITER));
 
     public static int getMoney() {
         String inputMoney = Console.readLine();
@@ -21,7 +21,7 @@ public class Reader {
     }
 
     public static List<Integer> getAnswerNumbers() {
-        String input = Console.readLine();
+        String input = Console.readLine().replaceAll(" ", "");
         validateAnswersFormat(input);
         return Arrays.stream(input.split(GameConst.DELIMITER))
                 .map(Integer::parseInt)
@@ -40,7 +40,6 @@ public class Reader {
     }
 
     public static void validateAnswersFormat(String answerNumbers) {
-        answerNumbers = answerNumbers.replaceAll(" ", "");
         Matcher matcher = answerPattern.matcher(answerNumbers);
         if(!matcher.matches()){
             throw LottoGameException.WRONG_ANSWERS_FORMAT.makeException();

@@ -14,7 +14,7 @@ public class Parser {
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .collect(Collectors.toList());
-
+        ParserValidator.countValid(integers);
         UnitValidator.validNumberUnitCheck(integers);
 
         return integers;

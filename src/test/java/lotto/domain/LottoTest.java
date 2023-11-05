@@ -47,6 +47,13 @@ class LottoTest {
     }
 
     @Test
+    void 번호_5개_및_보너스_번호_일치할_때_가격_30000000원() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Ranking ranking = lotto.getRanking(List.of(1, 2, 3, 4, 5, 8), 6);
+        assertEquals("30,000,000", ranking.getPrize());
+    }
+
+    @Test
     void 문자열_생성_테스트() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());

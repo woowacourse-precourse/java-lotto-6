@@ -1,19 +1,18 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
-    public static final int MIN_RANGE = 1;
-    public static final int MAX_RANGE = 45;
-    private final List<Integer> numbers;
+public record Lotto(List<Integer> numbers) {
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -37,5 +36,9 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public List<Integer> numbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

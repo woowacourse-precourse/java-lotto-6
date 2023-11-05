@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain.constant;
 
 public class DomainConstant {
     public static final long ONE_LOTTO_PRICE = 1000L;

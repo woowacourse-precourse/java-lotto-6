@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.DomainConstant.ZERO;
+import static lotto.domain.constant.DomainConstant.ZERO;
 
 import java.util.EnumMap;
 import java.util.Map;

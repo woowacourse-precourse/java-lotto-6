@@ -1,7 +1,7 @@
 package lotto.domain.money;
 
 import java.text.DecimalFormat;
-import lotto.constant.DomainConstant;
+import lotto.domain.constant.DomainConstant;
 
 public record Money(long amount) {
     public static final Money ZERO = new Money(0);

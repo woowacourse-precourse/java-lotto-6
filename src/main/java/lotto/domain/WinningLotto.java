@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.constant.DomainConstant.FIVE;
-import static lotto.constant.DomainConstant.FOUR;
-import static lotto.constant.DomainConstant.SIX;
-import static lotto.constant.DomainConstant.THREE;
+import static lotto.domain.constant.DomainConstant.FIVE;
+import static lotto.domain.constant.DomainConstant.FOUR;
+import static lotto.domain.constant.DomainConstant.SIX;
+import static lotto.domain.constant.DomainConstant.THREE;
 
 import java.util.List;
 

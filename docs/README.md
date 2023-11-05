@@ -33,6 +33,11 @@
 - 1~45 사이의 숫자로 이루어진 중복되지 않는 6개의 로또 번호를 생성 - **createLottoNumbers**
 - 입력된 금액에 따라 로또를 발행 - **purchaseLotto**
 
+## 금액 - PurchaseAmount
+
+- 입력된 금액 콤마 제거 (있을 경우) - **removeComma**
+- 입력된 금액 띄어쓰기 제거 (있을 경우) - **removeEmpty**
+
 ## 당첨 - Match
 
 - 사용자의 로또 번호와 당첨 번호를 비교하여 일치하는 번호 개수를 반환 (HashSet) - **checkMatchingNumbers**

@@ -16,7 +16,11 @@ public class BonusNumber {
     }
 
     private int validateBonusNumber(String number, List<Integer> winningNumbers) {
+        checkValidInteger(number);
+        checkDuplicateWithWinningNumber(number, winningNumbers);
+        checkNumberRange(number);
 
+        return Integer.parseInt(number);
     }
 
     private void checkValidInteger(String number) {

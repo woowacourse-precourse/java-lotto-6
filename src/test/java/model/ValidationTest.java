@@ -40,4 +40,18 @@ class ValidationTest {
         //then
         assertThat(result).isEqualTo(List.of(1, 0, 1, 1, 1));
     }
+
+    @Test
+    void 수익률_정상출력_테스트() {
+        //given
+        int payment = 8000;
+        int bonusNumber = 8;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningStaticsResult = List.of(1, 0, 0, 0, 0);
+        //when
+        Validation validation = new Validation(winningNumbers, bonusNumber);
+        double result = validation.totalReturnCalculate(winningStaticsResult, payment);
+        //then
+        assertThat(result).isEqualTo(62.5);
+    }
 }

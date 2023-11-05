@@ -10,5 +10,9 @@ public class ConstantNumbersManager {
     public static final int THIRD_INDEX = 3;
     public static final int FORTH_INDEX = 4;
     public static final int FIFTH_INDEX = 5;
-
+    public static final int FIRST_REWARD = 2000000000;
+    public static final int SECOND_REWARD = 30000000;
+    public static final int THIRD_REWARD = 1500000;
+    public static final int FORTH_REWARD = 50000;
+    public static final int FIFTH_REWARD = 5000;
 }

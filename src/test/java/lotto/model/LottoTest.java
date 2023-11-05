@@ -45,4 +45,13 @@ public class LottoTest {
         assertThatThrownBy(() -> lotto.getNumbers().remove(45))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
+
+    @DisplayName("같은 번호 개수 반환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateSameNumbersTest() {
+        Lotto testLotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45));
+        Lotto testLotto2 = new Lotto(Arrays.asList(5, 6, 7, 8, 9, 45));
+        int expectedResult = 2;
+        assertThat(testLotto1.calculateSameNumbers(testLotto2)).isEqualTo(expectedResult);
+    }
 }

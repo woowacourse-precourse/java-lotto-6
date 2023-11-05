@@ -8,5 +8,6 @@ public class Application {
         Controller controller = new Controller();
 
         controller.inputPurchaseAmount();
+        controller.outputPurchasedLotto();
     }
 }

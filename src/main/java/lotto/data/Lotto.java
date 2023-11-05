@@ -1,4 +1,4 @@
-package lotto;
+package lotto.data;
 
 import java.util.List;
 
@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // TODO: 추가 기능 구현 toString적극 활용.
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

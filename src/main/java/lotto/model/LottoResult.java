@@ -1,32 +1,96 @@
 package lotto.model;
 
-public enum LottoResult {
-    FIRST_PRIZE(1, 2_000_000_000),
-    SECOND_PRIZE(2, 30_000_000),
-    THIRD_PRIZE(3, 1_500_000),
-    FORTH_PRIZE(4, 50_000),
-    FIFTH_PRIZE(5, 5_000),
-    NO_PRIZE(0, 0);
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.model.constans.LottoResultConstants;
+import lotto.validator.BonusNumberValidator;
+import lotto.validator.WinningNumbersValidator;
 
+public class LottoResult {
+    private final List<Integer> winningNumbers;
+    private int bonusNumber;
+    private static final WinningNumbersValidator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
+    private static final BonusNumberValidator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
 
-    private final int rank;
-    private final long prize;
-
-    LottoResult(int rank, long prize) {
-        this.rank = rank;
-        this.prize = prize;
+    private LottoResult(String winningNumbers) {
+        this.winningNumbers = splitWinningNumbers(winningNumbers);
     }
 
-    public int getRank() {
-        return rank;
+    private List<Integer> splitWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
-    public static long getPrizeByRank(int rank) {
-        for (LottoResult result : values()) {
-            if (result.rank == rank) {
-                return result.prize;
+    public static LottoResult from(String winningNumbers) {
+        WINNING_NUMBERS_VALIDATOR.validate(winningNumbers);
+        return new LottoResult(winningNumbers);
+    }
+
+    public void createBonusNumber(String bonusNumber) {
+        BONUS_NUMBER_VALIDATOR.validate(bonusNumber);
+        checkBonusNumberDuplicateWinningNumbers(bonusNumber);
+        setBonusNumber(bonusNumber);
+    }
+
+    private void setBonusNumber(String bonusNumber) {
+        this.bonusNumber = Integer.parseInt(bonusNumber);
+    }
+
+    public void checkBonusNumberDuplicateWinningNumbers(String bonusNumber) {
+        if (winningNumbers.contains(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    public List<Integer> showLottoResults(List<Lotto> lottos) {
+        List<Integer> lottoResults = new ArrayList<>(Collections.nCopies(6, 0));
+        for(Lotto lotto : lottos) {
+            int rank = calculateLottoResult(lotto).getRank();
+            int currentValue = lottoResults.get(rank);
+            lottoResults.set(rank, currentValue+1);
+        }
+        return lottoResults;
+    }
+
+    private LottoResultConstants calculateLottoResult(Lotto lotto) {
+        int matchingWinningNumberCount = countMatchingNumbers(lotto);
+        if (matchingWinningNumberCount == 5) {
+            if (containsBonusNumber(lotto)) {
+                return LottoResultConstants.SECOND_PRIZE;
+            }
+            return LottoResultConstants.THIRD_PRIZE;
+        }
+        return determineRank(matchingWinningNumberCount);
+    }
+
+    private int countMatchingNumbers(Lotto lotto) {
+        int matchingWinningNumberCount = 0;
+        for(int winningNumber : winningNumbers) {
+            if (lotto.contains(winningNumber)) {
+                matchingWinningNumberCount++;
             }
         }
-        throw new IllegalArgumentException("존재하지 않는 등수입니다.");
+        return matchingWinningNumberCount;
+    }
+
+    private boolean containsBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
+
+    private LottoResultConstants determineRank(int matchingWinningNumberCount) {
+        if (matchingWinningNumberCount == 6) {
+            return LottoResultConstants.FIRST_PRIZE;
+        }
+        if (matchingWinningNumberCount == 4) {
+            return LottoResultConstants.FORTH_PRIZE;
+        }
+        if (matchingWinningNumberCount == 3) {
+            return LottoResultConstants.FIFTH_PRIZE;
+        }
+        return LottoResultConstants.NO_PRIZE;
     }
 }

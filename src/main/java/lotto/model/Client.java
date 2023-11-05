@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.constans.LottoResultConstants;
 import lotto.validator.PayAmountValidator;
 
 public class Client {
@@ -35,7 +36,7 @@ public class Client {
     private long calculateWinningPrize(List<Integer> lottoResults) {
         long winningPrize = 0;
         for (int rank = 0; rank < lottoResults.size(); rank++) {
-            winningPrize += lottoResults.get(rank) * LottoResult.getPrizeByRank(rank);
+            winningPrize += lottoResults.get(rank) * LottoResultConstants.getPrizeByRank(rank);
         }
         return winningPrize;
     }

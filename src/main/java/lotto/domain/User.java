@@ -31,4 +31,8 @@ public class User {
     public int getLottoCount() {
         return lottoCount;
     }
+
+    public int getBalance() {
+        return balance;
+    }
 }

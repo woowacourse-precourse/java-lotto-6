@@ -23,6 +23,7 @@ public class LottoController {
         Lottos lottos = pickRandomLottos(user.getLottoCount());
         WinningLotto winningLotto = pickWinningLotto();
         long prizeAmount = checkLottoResult(lottos, winningLotto);
+        OutputView.printRateOfReturn(user.getBalance(), prizeAmount);
     }
 
     private long checkLottoResult(Lottos lottos, WinningLotto winningLotto) {
@@ -39,7 +40,7 @@ public class LottoController {
 
     private Lottos pickRandomLottos(int lottoCount) {
         Lottos lottos = lottoService.generateLottos(lottoCount);
-        OutputView.printPurchaseResult(lottoCount,lottos);
+        OutputView.printPurchaseResult(lottoCount, lottos);
         return lottos;
     }
 

@@ -17,6 +17,7 @@ public class LottoService {
     private final LottoGame lottoGame = new LottoGame();
 
     private List<Integer> winnerLottoNumber = new ArrayList<>();
+    private int bonusNumber;
 
     public int getLottoCount(String inputPurchaseMoney) {
         int purchaseMoney = StringToInt(inputPurchaseMoney);
@@ -35,6 +36,11 @@ public class LottoService {
         List<Integer> winnerNumber = StringToIntegerList(inputWinnerNumber);
         Lotto lotto = new Lotto(winnerNumber);
         winnerLottoNumber = lotto.getNumbers();
+    }
+
+    public void setBonusNumber(String inputBonusNumber) {
+        int bonusNumber = StringToInt(inputBonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void setPurchaseLottoNumbers(List<List<Integer>> purchaseLottoNumbers) {

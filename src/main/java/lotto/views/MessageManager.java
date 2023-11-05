@@ -9,4 +9,10 @@ public class MessageManager {
         System.out.println(messages.getString("purchaseAmountPrompt.message"));
     }
 
+
+    //Exception Messages
+    public static String getValidateNonIntegerMessage() {
+        return exceptionMessages.getString("validateNonInteger.message");
+    }
+
 }

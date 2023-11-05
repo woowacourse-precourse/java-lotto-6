@@ -1,12 +1,14 @@
 package lotto.domain;
 
-public class UserBalance {
+public class User {
 
     private int balance;
+    private int lottoCount;
 
-    public UserBalance(int balance) {
+    public User(int balance) {
         validateBalance(balance);
         this.balance = balance;
+        this.lottoCount = balance / 1000;
     }
 
     private void validateBalance(int balance) {
@@ -24,5 +26,9 @@ public class UserBalance {
         if(balance % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] : 구입 금액은 1000원 단위여야 합니다");
         }
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
     }
 }

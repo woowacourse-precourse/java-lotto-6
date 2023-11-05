@@ -1,20 +1,29 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 import lotto.domain.LottoIssuer;
 import lotto.domain.WinningNumber;
 import lotto.message.Error;
+import lotto.message.LottoResult;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private LottoIssuer lottoIssuer = new LottoIssuer();
 
     public void play() {
+        LottoGame lottoGame;
+
         List<Lotto> lottos = getLottos();
         WinningNumber winningNumber = getWinningNumber();
         final int bonusNumber = getBonusNumber(winningNumber);
+        lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
+        Map<LottoResult, Integer> result = lottoGame.getResult();
+        OutputView.printGameResult(result);
         // TODO - 이후 기능 구현
     }
 

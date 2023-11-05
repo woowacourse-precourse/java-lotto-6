@@ -43,7 +43,6 @@ public class LottoController {
 
         while (loop) {
             List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(Config.SPLIT_SYMBOL));
-            System.out.println(inputWinningNumbers);
             try {
                 isNumber(inputWinningNumbers);
                 lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());

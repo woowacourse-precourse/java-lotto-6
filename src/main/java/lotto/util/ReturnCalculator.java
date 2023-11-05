@@ -4,9 +4,9 @@ import lotto.domain.WinningStatus;
 
 public class ReturnCalculator {
     public static double calculate(WinningStatus winningStatus, int lottoCount) {
-        int returnMoney = winningStatus.getSum();
+        double returnMoney = winningStatus.getSum();
         int lottoPrice = lottoCount * 1000;
-        double rateOfReturn = ((double) returnMoney / lottoPrice) * 100;
+        double rateOfReturn = (returnMoney / lottoPrice) * 100;
 
         return roundFrom2Digit(rateOfReturn);
     }

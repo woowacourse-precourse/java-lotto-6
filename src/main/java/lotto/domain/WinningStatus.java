@@ -20,8 +20,8 @@ public class WinningStatus {
         }
     }
 
-    public int getSum() {
-        int returnMoney = 0;
+    public double getSum() {
+        double returnMoney = 0;
         for (PrizeType prizeType : prizeTypeWithCount.keySet()) {
             returnMoney += getSum(prizeType);
         }
@@ -29,7 +29,7 @@ public class WinningStatus {
         return returnMoney;
     }
 
-    public int getSum(PrizeType prizeType) {
-        return prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
+    public double getSum(PrizeType prizeType) {
+        return (double)prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
     }
 }

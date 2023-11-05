@@ -27,7 +27,6 @@ public class Output {
     }
 
     public void printInputBonusNumberMessage() {
-        System.out.println();
         System.out.println(Constants.INPUT_BONUS_NUMBER);
     }
 

@@ -2,7 +2,6 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +23,7 @@ public class Input {
     private void validateOnlyNumber(String userInput) {
         for (int i = 0; i < userInput.length(); i++) {
             if(!Character.isDigit(userInput.charAt(i))){
-                throw new IllegalArgumentException("[ERROR] 0 이상 숫자만 입력해 주세요.\n");
+                throw new IllegalArgumentException("[ERROR] 1000원 이상 숫자만 입력해 주세요.\n");
             }
         }
     }
@@ -99,8 +98,16 @@ public class Input {
     }
 
     private void validateBonusNumber(String userInput) {
-        validateOnlyNumber(userInput);
+        validateOnlyOneNumber(userInput);
         validateBonusNumberRange(userInput);
+    }
+
+    private void validateOnlyOneNumber(String userInput) {
+        for (int i = 0; i < userInput.length(); i++) {
+            if(!Character.isDigit(userInput.charAt(i))){
+                throw new IllegalArgumentException("[ERROR] 0 이상 숫자 하나만 입력해 주세요.");
+            }
+        }
     }
 
     private void validateBonusNumberRange(String userInput) {

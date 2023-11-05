@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public enum WinningRanking {
+public enum WinningRank {
 
     FIRST(2_000_000_000, 6),
     SECOND(30_000_000, 5, true),
@@ -11,7 +11,7 @@ public enum WinningRanking {
     FIFTH(5_000, 3),
     NOTHING(0, 0);
 
-    private static final List<WinningRanking> RANKINGS_ORDERED_BY_PRICE
+    private static final List<WinningRank> RANKS_ORDERED_BY_PRICE
             = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, NOTHING);
     private static final int MIN_COUNT_OF_CORRECT = 0;
     private static final int MAX_COUNT_OF_CORRECT = 6;
@@ -20,27 +20,27 @@ public enum WinningRanking {
     private final int countOfCorrect;
     private final boolean isBonusCorrect;
 
-    WinningRanking(long price, int countOfCorrect, boolean isBonusCorrect) {
+    WinningRank(long price, int countOfCorrect, boolean isBonusCorrect) {
         this.price = price;
         this.countOfCorrect = countOfCorrect;
         this.isBonusCorrect = isBonusCorrect;
     }
 
-    WinningRanking(long price, int countOfCorrect) {
+    WinningRank(long price, int countOfCorrect) {
         this(price, countOfCorrect, false);
     }
 
-    public static WinningRanking from(int countOfCorrect, boolean isBonusCorrect) {
+    public static WinningRank from(int countOfCorrect, boolean isBonusCorrect) {
         validate(countOfCorrect);
 
-        return RANKINGS_ORDERED_BY_PRICE.stream()
+        return RANKS_ORDERED_BY_PRICE.stream()
                 .filter(rank -> rank.isReached(countOfCorrect, isBonusCorrect))
-                .findFirst().orElseThrow(WinningRanking::createNotExistRankingException);
+                .findFirst().orElseThrow(WinningRank::createNotExistRankException);
     }
 
     private static void validate(int countOfCorrect) {
         if (isOutOfRange(countOfCorrect)) {
-            throw createNotExistRankingException();
+            throw createNotExistRankException();
         }
     }
 
@@ -60,7 +60,7 @@ public enum WinningRanking {
         return !(this.isBonusCorrect && !isBonusCorrect);
     }
 
-    private static IllegalArgumentException createNotExistRankingException() {
+    private static IllegalArgumentException createNotExistRankException() {
         String exceptionMessage = "맞춘 숫자의 수는 %d 이상 %d 이하이어야 합니다"
                 .formatted(MIN_COUNT_OF_CORRECT, MAX_COUNT_OF_CORRECT);
         return new IllegalArgumentException(exceptionMessage);

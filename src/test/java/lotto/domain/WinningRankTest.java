@@ -7,15 +7,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class WinningRankingTest {
+class WinningRankTest {
 
     @ParameterizedTest(name = "맞춘 개수 : {0}, 보너스 일치 여부 {1}, 예상 등수 : {2}")
     @CsvSource({"6,false,FIRST", "5,true,SECOND", "5,false,THIRD", "4,true,FOURTH",
             "3,false,FIFTH", "2,true,NOTHING"})
     @DisplayName("맞춘 공의 횟수와 보너스 일치 여부를 통해 등수를 판단할 수 있다")
-    void fromTest(int countOfCorrect, boolean isBonusCorrect, WinningRanking expected) {
+    void fromTest(int countOfCorrect, boolean isBonusCorrect, WinningRank expected) {
 
-        WinningRanking actual = WinningRanking.from(countOfCorrect, isBonusCorrect);
+        WinningRank actual = WinningRank.from(countOfCorrect, isBonusCorrect);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -26,7 +26,7 @@ class WinningRankingTest {
     void fromTest_whenCountOfCorrectIsOutOfRange(int countOfCorrect) {
         boolean isBonusCorrect = false;
 
-        assertThatThrownBy(() -> WinningRanking.from(countOfCorrect, isBonusCorrect))
+        assertThatThrownBy(() -> WinningRank.from(countOfCorrect, isBonusCorrect))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("맞춘 숫자의 수는 0 이상 6 이하이어야 합니다");
     }

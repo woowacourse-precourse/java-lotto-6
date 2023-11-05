@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,8 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+
         List<String> lotto = lottoNumbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.toList());

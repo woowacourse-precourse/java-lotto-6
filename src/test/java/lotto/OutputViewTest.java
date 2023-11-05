@@ -12,7 +12,7 @@ public class OutputViewTest {
     @DisplayName("발행한 로또 수량 및 번호를 출력한다.")
     void printLottoNumbers() {
         OutputView.printPurchaseQuantityMessage(8);
-        OutputView.printLottoNumbers(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        OutputView.printLottoNumbers(new ArrayList<>(Arrays.asList(2, 1, 6, 4, 5, 3)));
     }
 
     @Test

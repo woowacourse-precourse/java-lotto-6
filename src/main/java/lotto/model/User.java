@@ -20,4 +20,19 @@ public class User {
         int numberOfLotto = purchaseAmount.divideByThousand();
         return new User(numberOfLotto);
     }
+
+    public String getAllLottoTicketsNumbers() {
+        String result = "";
+
+        for (Lotto lotto : lottos) {
+            result += lotto.getLottoNumbers();
+            result += "\n";
+        }
+
+        return result;
+    }
+
+    public int getNumberOfLottoTickets() {
+        return lottos.size();
+    }
 }

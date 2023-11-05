@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
@@ -30,8 +31,7 @@ public class LottoGameService {
     public int calculateLottoCountOnBuy(final LottoBuyer buyer) {
         outputView.requestPurchaseAmount();
         try {
-            int purchaseAmount = readPurchaseAmount();
-            buyer.pay(purchaseAmount);
+            buyer.pay(readPurchaseAmount());
             return buyer.getCountOfLotto();
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
@@ -51,14 +51,28 @@ public class LottoGameService {
         }
     }
 
-    public Lotto generateWinningLotto() {
+    public WinningLotto getWinningLotto() {
+        Lotto winningLottoNumbers = getWinningLottoNumbers();
+        return generateWinningLottoByBonusNumber(winningLottoNumbers);
+    }
+
+    private Lotto getWinningLottoNumbers() {
         outputView.requestWinningLottoNumbers();
         try {
-            List<Integer> winningLottoNumbers = readWinningLotto();
-            return new Lotto(winningLottoNumbers);
+            return new Lotto(readWinningLotto());
         } catch (IllegalArgumentException e) {
             handleIllegalArgumentException(e);
-            return generateWinningLotto();
+            return getWinningLottoNumbers();
+        }
+    }
+
+    private WinningLotto generateWinningLottoByBonusNumber(Lotto lotto) {
+        outputView.requestBonusLottoNumber();
+        try {
+            return new WinningLotto(lotto, readBonusNumber());
+        } catch (IllegalArgumentException e) {
+            handleIllegalArgumentException(e);
+            return generateWinningLottoByBonusNumber(lotto);
         }
     }
 
@@ -68,6 +82,10 @@ public class LottoGameService {
 
     private List<Integer> readWinningLotto() {
         return inputView.readWinningLotto();
+    }
+
+    private int readBonusNumber() {
+        return inputView.readBonusNumber();
     }
 
     private void handleIllegalArgumentException(IllegalArgumentException e) {

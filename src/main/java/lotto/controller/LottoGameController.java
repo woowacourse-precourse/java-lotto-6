@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import lotto.service.LottoGameService;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
@@ -24,11 +25,13 @@ public class LottoGameController {
     }
 
     public void run() {
-        final LottoSeller seller = lottoGameService.generateSeller();
-        final LottoBuyer buyer = lottoGameService.generateBuyer();
+        LottoSeller seller = lottoGameService.generateSeller();
+        LottoBuyer buyer = lottoGameService.generateBuyer();
         int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
-        final Lottos lottos = lottoGameService.generateLottosOnSell(seller, countOfLotto);
+
+        Lottos lottos = lottoGameService.generateLottosOnSell(seller, countOfLotto);
         lottoGameService.printLottoNumbersByCount(lottos);
-        final Lotto lotto = lottoGameService.generateWinningLotto();
+
+        WinningLotto winningLotto = lottoGameService.getWinningLotto();
     }
 }

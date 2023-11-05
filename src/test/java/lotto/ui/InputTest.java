@@ -163,4 +163,52 @@ public class InputTest {
             method.invoke(input, invalidNumber);
         });
     }
+
+    @Test
+    @DisplayName("보너스 수가 정수 형태가 아닐 경우, 예외가 발생한다.")
+    public void testBonusNotInteger() throws Exception {
+        // given
+        String invalidNumber = "43.4";
+
+        // when
+        Method method = Input.class.getDeclaredMethod("validBonusNumber", String.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidNumber);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 수가 로또 수 범위보다 클 경우, 예외가 발생한다.")
+    public void testBonusBiggerOutOfRange() throws Exception {
+        // given
+        String invalidNumber = "46";
+
+        // when
+        Method method = Input.class.getDeclaredMethod("validBonusNumber", String.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidNumber);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 수가 로또 수 범위보다 작을 경우, 예외가 발생한다.")
+    public void testBonusLessOutOfRange() throws Exception {
+        // given
+        String invalidNumber = "0";
+
+        // when
+        Method method = Input.class.getDeclaredMethod("validBonusNumber", String.class);
+        method.setAccessible(true);
+
+        //then
+        assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidNumber);
+        });
+    }
 }

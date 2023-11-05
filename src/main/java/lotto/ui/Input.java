@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class Input {
     private static final String PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
     private static final String USER_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String COMMA_SEPARATOR = ",";
     private static final String INVALID_NATURAL_NUMBER_ERROR = "[ERROR] 입력값은 자연수여야 합니다.";
     private static final String INVALID_LOTTO_NUMBER_ERROR = "[ERROR] 유효하지 않는 로또 번호입니다.";
@@ -90,6 +91,20 @@ public class Input {
         if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR);
         }
+    }
+
+    public static int getBonusNumber() {
+        System.out.println();
+        System.out.println(BONUS_NUMBER_INPUT);
+        String userInput = Console.readLine();
+        return validBonusNumber(userInput);
+    }
+
+    private static int validBonusNumber(String userInput) {
+        checkInteger(userInput);
+        int bonusNumber = StringToInt(userInput);
+        checkInRange(bonusNumber);
+        return bonusNumber;
     }
 
     private static int StringToInt(String userInput) {

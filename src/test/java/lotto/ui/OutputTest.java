@@ -52,7 +52,7 @@ public class OutputTest {
                 new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
         );
         LottoBundle lottoBundle = new LottoBundle(lottos);
-        String expectedOutput = "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]\n";
+        String expectedOutput = "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]\n\n";
 
         // when
         Output.printLottoBundle(lottoBundle);

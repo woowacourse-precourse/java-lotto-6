@@ -13,5 +13,6 @@ public class Game {
         LottoBundle lottoBundle = Store.generateLottoBundle(count);
         Output.printLottoBundle(lottoBundle);
         List<Integer> userNumbers = Input.getUserNumbers();
+        int bonusNumber = Input.getBonusNumber();
     }
 }

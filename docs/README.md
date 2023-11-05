@@ -58,4 +58,12 @@
     - [x] 4, "4개 일치", 50000
     - [x] 3, "3개 일치", 5000
 
+### Util
+
+- [x] parseIntOrThrow
+  - [x] 정수 형태로 변환할 수 있는지 확인
+  - [x] Integer 범위 내에서 변환할 수 있는지 확인
+- [ ] parseStringToIntList
+- [ ] formatAsCurrency
+
 ## 예외 사항

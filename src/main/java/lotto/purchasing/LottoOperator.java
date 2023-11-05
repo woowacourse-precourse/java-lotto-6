@@ -1,4 +1,4 @@
-package lotto;
+package lotto.purchasing;
 
 public class LottoOperator {
 }

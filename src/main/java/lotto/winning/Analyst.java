@@ -1,4 +1,4 @@
-package lotto;
+package lotto.winning;
 
 public class Analyst {
 }

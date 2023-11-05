@@ -29,4 +29,9 @@ public class OutputView {
         double result = (totalPrice * 100) / (Integer.valueOf(purchasePrice) * 1.0);
         System.out.println(String.format("%,.1f%%", result));
     }
+
+    public static void printRateOfReturn(Long totalPrice, String purchasePrice) {
+        double result = (totalPrice * 100) / (Integer.valueOf(purchasePrice) * 1.0);
+        System.out.println(String.format("%,.1f%%", result));
+    }
 }

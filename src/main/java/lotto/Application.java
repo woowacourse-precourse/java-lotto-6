@@ -21,6 +21,6 @@ public class Application {
         String bonusNumber = InputView.bonusNumber();
         Ranks ranks = lottoController.lottoResults(lottery, winningNumber, bonusNumber);
 
-//        OutputView.printLotteryResult(resultCount, purchasePrice);
+        OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);
     }
 }

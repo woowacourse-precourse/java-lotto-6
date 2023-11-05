@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoShop {
 
@@ -14,11 +15,10 @@ public class LottoShop {
     public List<Lotto> createByBuyerLotto(int price) {
         Amount amount = new Amount(price);
         int lottoCount = amount.getLottoCount();
-        List<Lotto> buyerLotto = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            buyerLotto.add(new Lotto(numberGenerator.generate()));
-        }
-        return buyerLotto;
+
+        return IntStream.range(0, lottoCount)
+                .mapToObj(count -> new Lotto(numberGenerator.generate()))
+                .collect(Collectors.toList());
     }
 
     public Lotto createByWinningLotto(List<Integer> inputLottoNumber) {

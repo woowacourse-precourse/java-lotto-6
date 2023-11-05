@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import lotto.config.GameConfig;
+import lotto.exception.LottoGameException;
+import lotto.exception.MoneyException;
 
 public record Money(int amount) {
 
@@ -15,13 +17,13 @@ public record Money(int amount) {
 
     private void validateRange(int amountOfMoney) {
         if (amountOfMoney < GameConfig.MONET_MIN_NUMBER) {
-            throw new IllegalArgumentException();  // TODO: custom 예외 만들기
+            throw new LottoGameException(MoneyException.INVALID_RANGE);
         }
     }
 
     private void validateUnit(int amountOfMoney) {
         if (amountOfMoney % GameConfig.LOTTO_PRICE_UNIT != 0) {
-            throw new IllegalArgumentException();  // TODO: custom 예외 만들기
+            throw new LottoGameException(MoneyException.INVALID_UNIT);
         }
     }
 

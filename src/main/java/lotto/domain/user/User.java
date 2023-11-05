@@ -1,6 +1,7 @@
 package lotto.domain.user;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoEnvelop;
 
 import java.util.List;
 
@@ -8,15 +9,17 @@ import java.util.List;
  * 사용자 클래스
  */
 public class User {
+    LottoEnvelop lottoEnvelop;
 
     /**
-     * 로또를 산다.
+     * 로또를 받는다.
      *
      * @param lottoEnvelop 로또들의 모임
      */
-    public void buyLottos(List<Lotto> lottoEnvelop) {
-
+    public void takeLottoEnvelop(LottoEnvelop lottoEnvelop) {
+        this.lottoEnvelop = lottoEnvelop;
     }
+
 
     /**
      * 로또를 보여준다.

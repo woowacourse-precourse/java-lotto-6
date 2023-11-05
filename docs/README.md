@@ -13,9 +13,9 @@
 
 # ✅ 기능 목록표
 
-- [ ] 사용자 클래스 User
+- [x] 사용자 클래스 User
 
-  - [ ] 로또를 산다. User#buyLottos
+  - [x] 로또를 받는다. 
   - [ ] 로또를 보여준다. User#showLottos
   - [ ] 로또결과의 당첨에 대한 통계를 한다. User#doStatisticLottoResult
   - [ ] 로또결과의 당첨에 대한 총 수익률을 계산한다. User#calculateTotalRate

@@ -39,4 +39,11 @@ public class PlayerLottoAmount {
         }
     }
 
+    private void validateDivisible(int amount) {
+        if (amount % LOTTO_MIN_AMOUNT != 0) {
+            ExceptionMessage.divisibleException();
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

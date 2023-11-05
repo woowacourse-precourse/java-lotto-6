@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.etc.Validate.validateNumber;
 
@@ -33,7 +33,7 @@ public class Lottos {
         }
     }
 
-    public int lottoCount(){
+    public int getLottoCount(){
         return lottos.size();
     }
     public List<Lotto> getLottos(){

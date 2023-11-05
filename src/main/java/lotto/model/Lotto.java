@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import lotto.validation.LottoNumberValidator;
+import lotto.view.OutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -9,6 +10,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numberSortWithAscendingOrder(numbers);
+    }
+
+    public void displayLottoNumbers() {
+        OutputView.printLottoNumbers(numbers);
     }
 
     private List<Integer> numberSortWithAscendingOrder(List<Integer> numbers) {

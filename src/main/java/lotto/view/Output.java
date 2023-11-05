@@ -1,16 +1,22 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.model.User;
 
 public class Output {
-    public static void printRequsetPayment() {
-        System.out.println(Messages
+    public static void printRequestPayment() {
+        System.out.println(PrintMessages
                 .REQUEST_PAYMENT
                 .getMessage());
     }
 
+    public static void printAboutPurchase(User user) {
+        printPurchaseNumber(user.purchaseNumber());
+        printPurchasedLottoNumbers(user.PurchasedLottoNumbers());
+    }
+
     public static void printPurchaseNumber(int purchaseNumber) {
-        System.out.println(purchaseNumber + Messages
+        System.out.println(purchaseNumber + PrintMessages
                 .PURCHASE_NUMBER
                 .getMessage());
     }
@@ -22,19 +28,19 @@ public class Output {
     }
 
     public static void printRequestWinningNumbers() {
-        System.out.println(Messages
+        System.out.println(PrintMessages
                 .REQUEST_WINNING_NUMBERS
                 .getMessage());
     }
 
     public static void printRequestBonusNumber() {
-        System.out.println(Messages
+        System.out.println(PrintMessages
                 .REQUEST_BONUS_NUMBER
                 .getMessage());
     }
 
     public static void printWinningStatisticsMessage() {
-        System.out.println(Messages
+        System.out.println(PrintMessages
                 .CHECK_WINNING_MESSAGE
                 .getMessage());
     }

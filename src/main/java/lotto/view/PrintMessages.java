@@ -1,6 +1,6 @@
 package lotto.view;
 
-enum Messages{
+enum PrintMessages {
     REQUEST_PAYMENT("구입금액을 입력해 주세요."),
     PURCHASE_NUMBER("개를 구매했습니다."),
     REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
@@ -10,7 +10,7 @@ enum Messages{
     MATCH_BONUS_NUMBER_MESSAGE("%d개 일치, 보너스 볼 일치 (30,000,000원) - %d개");
     private final String message;
 
-    Messages(String message){
+    PrintMessages(String message){
         this.message = message;
     }
 

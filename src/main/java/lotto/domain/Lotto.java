@@ -41,10 +41,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateEmpty(numbers);
         validateSize(numbers);
         validateDuplicatedNumber(numbers);
         validateNumbersRange(numbers);
     }
+
+    private void validateEmpty(List<Integer> numbers) {
+        if (numbers.size() == 0 || numbers == null) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);

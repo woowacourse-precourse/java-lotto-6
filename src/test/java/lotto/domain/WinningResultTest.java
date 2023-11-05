@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import lotto.enums.Rank;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -22,12 +24,7 @@ class WinningResultTest {
     }
 
     @Test
-    void match() {
-        assertThat(winningResult.getCount("1")).isEqualTo(1);
-    }
-
-    @Test
-    void createWinningResult() {
+    void studyMap() {
         Map<String, Integer> map = new HashMap<>();
         map.put("1", map.getOrDefault("1", 0) + 1);
         map.put("2", map.getOrDefault("2", 0) + 1);
@@ -38,5 +35,15 @@ class WinningResultTest {
         for(String key : map.keySet()) {
             System.out.println(key + " : " + map.get(key));
         }
+    }
+
+    @DisplayName("당첨된 로또 결과의 수 가져오는 함수")
+    @Test
+    void getCount() {
+        assertThat(winningResult.getCount(Rank.FIRST)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.SECOND)).isEqualTo(0);
+        assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(0);
+        assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(0);
+        assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(0);
     }
 }

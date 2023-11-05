@@ -24,8 +24,8 @@ public class OutputView {
         println(MONEY_INPUT_MESSAGE);
     }
 
-    public static void printBuyInfoMessage() {
-        println(BUY_INFO_MESSAGE);
+    public static void printBuyInfoMessage(long n) {
+        println(String.format(BUY_INFO_MESSAGE, n));
     }
 
     public static void printWinningNumbersInputMessage() {

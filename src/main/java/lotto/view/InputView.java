@@ -9,6 +9,10 @@ public class InputView {
         return parseInt(Console.readLine());
     }
 
+    public static long nextLong() {
+        return parseLong(Console.readLine());
+    }
+
     public static int[] nextIntArray() {
         String[] inputs = Console.readLine().split(",");
         int[] StringToInteger = new int[inputs.length];
@@ -27,5 +31,13 @@ public class InputView {
         }
     }
 
+    private static long parseLong(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            OutputView.printError(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
 
 }

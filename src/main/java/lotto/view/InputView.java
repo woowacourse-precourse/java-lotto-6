@@ -9,14 +9,14 @@ public class InputView {
     private static final String LOTTO_NUMBERS_DELIMITER = ",";
     private static final int DIVISOR = 1000;
 
-    private InputView() {
+    public InputView() {
     }
 
     public int getLottoCount() {
         //TODO "구입금액을 입력해 주세요." 출력
         int money = Validator.validateNumeric(Console.readLine());
         Validator.validateDivisibleBy(money, DIVISOR);
-        return money % DIVISOR;
+        return money / DIVISOR;
 
     }
 

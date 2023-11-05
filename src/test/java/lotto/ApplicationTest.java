@@ -299,6 +299,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_보너스번호_미입력() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6"," ");
+            assertThat(output())
+                    .contains(ERROR_MESSAGE)
+                    .contains(ErrorMessage.NOT_BLANK_NUMBER.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

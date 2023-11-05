@@ -39,4 +39,8 @@ public enum Rank {
     private static boolean isSame(int countOfMatch, Rank rank) {
         return rank != SECOND && rank.countOfMatch == countOfMatch;
     }
+
+    public long getLotteryWinnings() {
+        return lotteryWinnings;
+    }
 }

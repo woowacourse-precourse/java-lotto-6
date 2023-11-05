@@ -40,7 +40,6 @@ class LottoTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-//        new Lotto(List.of(1,2,3,4,5,6)).printLottoNumbers();
         lotto.printLottoNumbers();
         String result = outputStream.toString();
         String expected = "[1, 2, 3, 4, 5, 6]" + System.lineSeparator();

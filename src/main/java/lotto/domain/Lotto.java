@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import static lotto.exception.ExceptionMessage.NOT_SIX_NUMBER;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.LottoValidator;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new LottoException(NOT_SIX_NUMBER);
         }
         LottoValidator.validateNotDuplicate(numbers);
         validateInRangeEachNumber(numbers);

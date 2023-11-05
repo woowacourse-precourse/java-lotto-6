@@ -10,4 +10,9 @@ public class LottoResult {
         this.lottoResult = lottoResult;
     }
 
+    public int statusCount(LottoStatus lottoStatus) {
+        return (int) lottoResult.stream()
+                .filter(status -> status.equals(lottoStatus))
+                .count();
+    }
 }

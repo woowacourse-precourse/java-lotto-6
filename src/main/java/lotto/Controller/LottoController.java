@@ -25,7 +25,7 @@ public class LottoController {
             try {
                 return getValidatedAmount();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }
@@ -55,7 +55,7 @@ public class LottoController {
                 LottoGameManager.generateWinningNumbers(winningLotto, InputView.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }
@@ -65,7 +65,7 @@ public class LottoController {
             try {
                 return new Lotto(InputView.inputWinningNumbers());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayExceptionMessage(e.getMessage());
             }
         }
     }

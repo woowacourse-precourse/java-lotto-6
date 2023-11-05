@@ -1,7 +1,8 @@
 # 로또
 
 ## 기능 목록
-- [ ] 사용자로부터 로또 구매 금액을 입력받고, 구입 금액에 해당하는 만큼 로또를 발행한다.
+- [x] 사용자로부터 로또 구매 금액을 입력받고,
+  구입 금액에 해당하는 만큼 로또를 발행한다. - LottoService#purchaseLotto()
   - [x] 사용자로부터 로또 구매 금액을 입력받는다. - InputView#requestPurchaseOfLotto()
   - [x] 입력 금액 만큼 로또를 발행한다. - Seller#sellLotto()
 - [x] 로또를 발행한다. - Lotto#generate()

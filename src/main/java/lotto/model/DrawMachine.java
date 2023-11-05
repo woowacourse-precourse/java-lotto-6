@@ -7,17 +7,10 @@ import java.util.List;
 public class DrawMachine {
 
     public List<Integer> pickLottoNumbers() {
-        List<Integer> lottoNumbers = mainNumbers();
-        lottoNumbers.add(bonusNumber());
-
-        return lottoNumbers;
-    }
-
-    private List<Integer> mainNumbers() {
         return Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.LOTTO_NUMBERS_DIGITS.value());
     }
 
-    private Integer bonusNumber() {
-        return Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.BONUS_NUMBER_DIGITS.value()).get(0);
-    }
+//    private Integer bonusNumber() {
+//        return Randoms.pickUniqueNumbersInRange(Rule.MIN_NUMBER.value(), Rule.MAX_NUMBER.value(), Rule.BONUS_NUMBER_DIGITS.value()).get(0);
+//    }
 }

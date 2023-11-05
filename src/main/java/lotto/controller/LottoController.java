@@ -11,7 +11,7 @@ public class LottoController {
 
     public void run() {
         String purchaseAmount = inputView.budget();
-        String numbers = inputView.numbers();
+        String numbers = inputView.mainNumbers();
         String bonusNumber = inputView.bonusNumber();
 
 

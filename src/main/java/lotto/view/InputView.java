@@ -15,7 +15,7 @@ public class InputView {
         return budget;
     }
 
-    public String numbers() {
+    public String mainNumbers() {
         System.out.println(ENTER_SIX_DIGITS_NUMBERS);
         String numbers = Console.readLine();
         validateBlank(numbers);

@@ -5,5 +5,5 @@ import lotto.model.Number;
 
 public interface NumbersGenerator {
 
-  List<Number> generate();
+  List<Integer> generate();
 }

@@ -12,10 +12,9 @@ public class TestRandomNumbersGenerator implements NumbersGenerator {
   private static final int FIX_SIZE = 6;
 
   @Override
-  public List<Number> generate() {
-    return Randoms
-        .pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, FIX_SIZE).stream()
-        .map(Number::new)
-        .collect(Collectors.toList());
+  public List<Integer> generate() {
+    return Randoms.pickUniqueNumbersInRange(
+        MIN_RANGE, MAX_RANGE, FIX_SIZE
+    );
   }
 }

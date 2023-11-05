@@ -11,12 +11,12 @@ public class Validator {
     }
 
     public void validateNumberUnitIsThousand(Long money) {
-        try{
-            if(money % 1000 !=0)
-                throw new IllegalArgumentException();
-        }catch (IllegalArgumentException e){
+        if(money % 1000 !=0)
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다!");
-        }
+    }
 
+    public void validateNumberNegativeOrZero(Long money) {
+        if(money <= 0)
+            throw new IllegalArgumentException("[ERROR] 금액은 음수가 아니라 양수여야 합니다!");
     }
 }

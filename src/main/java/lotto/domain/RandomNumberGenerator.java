@@ -7,8 +7,12 @@ import java.util.List;
 
 public class RandomNumberGenerator{
 
+    private static final int STARTINCLUSIVE = 1;
+    private static final int ENDINCLUSIVE = 45;
+    private static final int COUNT = 6;
+
     public static List<Integer> createUniqueRandomNumbers(){
-        return sortRandomNumbers(pickUniqueNumbersInRange(1,45,6));
+    return sortRandomNumbers(pickUniqueNumbersInRange(STARTINCLUSIVE,ENDINCLUSIVE,COUNT));
     }
 
     private static List<Integer> sortRandomNumbers(List<Integer> randomNumbers){

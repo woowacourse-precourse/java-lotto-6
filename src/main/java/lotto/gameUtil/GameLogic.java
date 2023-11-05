@@ -129,6 +129,6 @@ public class GameLogic {
         prize += ranks.get(Rank.FORTH) * Rank.FORTH.getAmount();
         prize += ranks.get(Rank.FIFTH) * Rank.FIFTH.getAmount();
 
-        outputView.matchingMessage(ranks, (prize * 100) / amount);
+        outputView.matchingMessage(ranks, (prize / amount * 100));
     }
 }

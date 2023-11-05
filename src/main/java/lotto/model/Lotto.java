@@ -54,8 +54,13 @@ public class Lotto {
         }
     }
 
-    public void sort(){
+    public List<Integer> sort(){
         Collections.sort(numbers);
+        return numbers;
+    }
+
+    public static LottoDTO toLottoDTO(Lotto lotto){
+        return LottoDTO.of(lotto.sort());
     }
 
 }

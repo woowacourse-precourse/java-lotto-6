@@ -3,6 +3,9 @@ package lotto.domain;
 public class WinningLotto {
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
+    private static final String NUMBER_RANGE_ERROR_MESSAGE = "로또의 수는 1에서 45사이의 숫자 입니다.";
+    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "로또에 중복된 수가 있습니다.";
+
 
     private final Lotto lotto;
     private final int bonusNumber;
@@ -20,13 +23,13 @@ public class WinningLotto {
 
     private void validateNumberRange(int bonusNumber) {
         if (bonusNumber < MINIMUM_NUMBER || bonusNumber > MAXIMUM_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplicateNumber(Lotto winningLotto, int bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
 

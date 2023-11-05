@@ -69,6 +69,12 @@ public final class Validator {
         }
     }
 
+    public static void validateCountOfNumbers(List<Integer> numbers) {
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+        }
+    }
+
     public static int validateNumberInRange(int num) {
         if(num > 45 || num < 1){
             throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());

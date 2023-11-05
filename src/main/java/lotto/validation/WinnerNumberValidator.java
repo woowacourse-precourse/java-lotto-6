@@ -21,7 +21,7 @@ public class WinnerNumberValidator {
         }
     }
 
-    public List<Integer> isSizeEqualToSix(String winnerNumber) {
+    public List<Integer> isInteger(String winnerNumber) {
         String[] winnerNumberArray = winnerNumber.replace(" ", "").split(",");
 
         List<Integer> numbers = new ArrayList<>();

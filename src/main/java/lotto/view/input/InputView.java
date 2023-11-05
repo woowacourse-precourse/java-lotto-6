@@ -42,7 +42,7 @@ public class InputView {
     private List<Integer> winnerNumberValidate(String inputWinnerNumber) {
         winnerNumberValidator.isNullOrEmpty(inputWinnerNumber);
         winnerNumberValidator.validateErrorInput(inputWinnerNumber);
-        return winnerNumberValidator.isSizeEqualToSix(inputWinnerNumber);
+        return winnerNumberValidator.isInteger(inputWinnerNumber);
     }
 
     private int bonusNumberValidate(String inputBonusNumber) {

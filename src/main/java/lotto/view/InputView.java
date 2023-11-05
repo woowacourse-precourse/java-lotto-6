@@ -22,6 +22,39 @@ public class InputView {
         }
         return amount;
     }
+
+    public static String[] validateInputNumbers(){
+        String[] lottoNumbers;
+        while(true){
+            try{
+                String[] input = inputLottoNumber();
+                if(!validator.checkNumbers(input)){
+                    lottoNumbers=input;
+                    break;
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoNumbers;
+    }
+
+    public static String validateInputBonusNumber(){
+        String lottoNumber;
+        while(true){
+            try{
+                String input = inputBonusNumber();
+                if(!validator.checkNumber(input)){
+                    lottoNumber=input;
+                    break;
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoNumber;
+    }
+
     public static String inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();

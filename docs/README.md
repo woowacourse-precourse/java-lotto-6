@@ -35,8 +35,10 @@
   - 당첨 번호와 보너스 번호를 반환한다.
 - WinningConfirm
   - 로또 번호와 당첨 번호를 비교하여 각 등수의 당첨 횟수를 계산한다.
-  - 수익률을 계산한다.
   - 당첨 통계를 반환한다.
+- MarginCalculator
+  - 당첨 통계와 입력한 금액을 받아 수익률을 계산한다.
+  - 수익률을 반환한다.
 - LottoGameConstants
   - 로또 게임에 관련된 상수들을 가진다.
 - PrizeConstants

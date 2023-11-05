@@ -3,7 +3,6 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.LottoNumbersValidateEnum;
 import lotto.domain.LottoNumbersValidator;
 
 public class Lotto {

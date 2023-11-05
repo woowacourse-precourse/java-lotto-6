@@ -1,11 +1,12 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import domain.Lotto;
 import utility.Utility;
 import validator.Validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Service {
@@ -23,7 +24,7 @@ public class Service {
     public List<Lotto> generateLotto(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<Lotto>();
         for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = new Lotto(Utility.SortAscending(generateRandomNumbers()));
+            Lotto lotto = new Lotto(Utility.sortAscending(generateRandomNumbers()));
             lottos.add(lotto);
         }
         return lottos;
@@ -36,5 +37,18 @@ public class Service {
 
     public int calculateLottoAmount(int money) {
         return money / THOUSAND;
+    }
+
+    public List<Integer> getWinNumbersByUserInput(String input) {
+        validator.checkStartOrEndWithComma(input);
+        List<String> numbers = Arrays.stream(Utility.splitByComma(input)).toList();
+        validator.checkCount(numbers);
+        List<Integer> winNumbers = new ArrayList<Integer>();
+        for(String number : numbers){
+            validator.checkIsNumber(number);
+            winNumbers.add(Integer.parseInt(number));
+        }
+        validator.checkDuplicateNumber(winNumbers);
+        return winNumbers;
     }
 }

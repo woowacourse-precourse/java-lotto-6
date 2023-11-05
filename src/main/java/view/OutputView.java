@@ -1,8 +1,6 @@
 package view;
 
-import lotto.Lotto;
-
-import java.util.List;
+import domain.Lotto;
 
 public class OutputView {
     public static void printPurchaseAmount(int lottoAmount){

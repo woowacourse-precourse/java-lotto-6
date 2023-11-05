@@ -1,7 +1,7 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import domain.Lotto;
 import service.Service;
 import view.InputView;
 import view.OutputView;
@@ -11,32 +11,49 @@ import java.util.List;
 public class Controller {
     private final Service service;
 
-    public void run(){
+    public void run() {
         int money = getMoneyByUserInput();
         List<Lotto> lottos = purchaseLotto(money);
+        System.out.println(getWinNumbersByUserInput().toString());
     }
+
     public Controller(Service service) {
         this.service = service;
     }
-    public int getMoneyByUserInput(){
-        while(true){
+
+    public int getMoneyByUserInput() {
+        while (true) {
             try {
                 InputView.printAskForInputAmount();
                 String input = Console.readLine();
                 return service.getMoneyByUserInput(input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public List<Lotto> purchaseLotto(int money){
+    public List<Lotto> purchaseLotto(int money) {
         int lottoAmount = service.calculateLottoAmount(money);
         OutputView.printPurchaseAmount(lottoAmount);
-        List<Lotto> lottos =  service.generateLotto(lottoAmount);
-        for(Lotto lotto : lottos){
+        List<Lotto> lottos = service.generateLotto(lottoAmount);
+        for (Lotto lotto : lottos) {
             OutputView.printLotto(lotto);
         }
         return lottos;
     }
+
+    public List<Integer> getWinNumbersByUserInput() {
+        while (true) {
+            try {
+                InputView.printAskForInputWinNumber();
+                String input = Console.readLine();
+                return service.getWinNumbersByUserInput(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+
 }

@@ -10,38 +10,19 @@ public class LottoResult {
     private final LottoWinningNumbers lottoWinningNumbers;
     private LottoCount lottoCount = new LottoCount();
     private static final int BONUS_CHECK_COUNT = 10;
-    private static final double ZERO = 0;
-    private static final double HUNDRED = 100;
 
     public LottoResult(LottoWinningNumbers lottoWinningNumbers) {
         this.lottoWinningNumbers = lottoWinningNumbers;
     }
 
-    public void getLottoStatus(List<Lotto> purchaseLottoNumber) {
+    public LottoCount getLottoStatus(List<Lotto> purchaseLottoNumber) {
         for (Lotto purchaseNumber : purchaseLottoNumber) {
             List<Integer> lottoNumbers = purchaseNumber.getNumbers();
             int matchCount = BonusNumberCheck(getLottoMatchCount(lottoNumbers), lottoNumbers);
             lottoCount = getCount(matchCount);
         }
         outputLottoResult(lottoCount);
-    }
-
-    public void getLottoReturnRate(int purchasePrice) {
-        int lottoReturn = getLottoReturn();
-        if (lottoReturn == 0) {
-            messageService.outputLottoReturnRate(ZERO);
-            return;
-        }
-        double returnRate = (double) (lottoReturn - purchasePrice) / purchasePrice * HUNDRED;
-        messageService.outputLottoReturnRate(returnRate + HUNDRED);
-    }
-
-    private int getLottoReturn() {
-        return (lottoCount.getSixCount() * LottoPrice.FIRST.getPrice()
-                + lottoCount.getFiveWithBonusCount() * LottoPrice.SECOND.getPrice()
-                + lottoCount.getFiveCount() * LottoPrice.THIRD.getPrice()
-                + lottoCount.getFourCount() * LottoPrice.FOURTH.getPrice()
-                + lottoCount.getThreeCount() * LottoPrice.FIFTH.getPrice());
+        return lottoCount;
     }
 
     private int getLottoMatchCount(List<Integer> lottoNumbers) {

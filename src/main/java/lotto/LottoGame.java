@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoReturn;
 import lotto.domain.LottoWinningNumbers;
 import lotto.service.MessageService;
 
@@ -19,7 +20,7 @@ public class LottoGame {
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         messageService.outputResultMessage();
         LottoResult lottoResult = new LottoResult(winningNumbersInfo);
-        lottoResult.getLottoStatus(purchaseNumbers);
-        lottoResult.getLottoReturnRate(lottoPurchase.getPurchasePrice());
+        LottoReturn lottoReturn = new LottoReturn(lottoResult.getLottoStatus(purchaseNumbers));
+        lottoReturn.getLottoReturnRate(lottoPurchase.getPurchasePrice());
     }
 }

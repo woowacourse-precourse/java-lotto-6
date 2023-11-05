@@ -64,5 +64,10 @@ public class GameConfig {
                     .orElse(null);
         }
 
+        public static WINNING valueOfMaxMatch(){
+            return Arrays.stream(values())
+                    .max(Comparator.comparing(value -> value.match))
+                    .orElse(null);
+        }
     }
 }

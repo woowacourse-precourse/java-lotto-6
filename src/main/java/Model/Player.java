@@ -44,7 +44,7 @@ public class Player {
         List<Integer> winningRank = new ArrayList<>(Collections.nCopies(GameConfig.WINNING.values().length, 0));
         for (Lotto lotto : lottoBundle){
             int rank = lotto.getResult(winning, bonus);
-            if (rank != 0) {
+            if (rank >= GameConfig.WINNING.valueOfMaxMatch().getRank() && rank <= GameConfig.WINNING.valueOfMinMatch().getRank()) {
                 winningMoney += GameConfig.WINNING.valueOfRank(rank).getPrice();
                 winningRank.set(rank - 1, winningRank.get(rank - 1) + 1);
             }

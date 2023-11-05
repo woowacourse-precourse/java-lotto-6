@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoOwner;
-import lotto.domain.Rank;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +16,7 @@ public class LottoGameController {
         purchaseLottoByOwner(lottoOwner);
         WinningNumber winningNumber = generateWinningNumber();
         calculateLottoResult(lottoOwner, winningNumber);
+        calculateYieldRate(lottoOwner);
     }
 
     private void purchaseLottoByOwner(LottoOwner lottoOwner) {
@@ -85,5 +83,7 @@ public class LottoGameController {
         }
     }
 
-
+    private void calculateYieldRate(LottoOwner lottoOwner) {
+        YieldRate yieldRate = lottoOwner.calculateYieldRate();
+    }
 }

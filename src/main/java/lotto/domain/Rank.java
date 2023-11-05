@@ -46,4 +46,8 @@ public enum Rank {
     public String getPrizeText() {
         return this.prizeText;
     }
+
+    public int getPrize() {
+        return this.prize;
+    }
 }

@@ -5,9 +5,12 @@ import lotto.Lotto;
 import java.util.List;
 
 public class LottoOwner {
-    List<Lotto> lottos;
+    private List<Lotto> lottos;
+    private int spendMoney;
+    private int gainMoney;
 
     public int purchaseLotto(int money) {
+        spendMoney = money;
         LottoTicket lottoTicket = new LottoTicket(money);
         lottos = lottoTicket.generateLottos();
         return lottoTicket.getTicketNumber();
@@ -21,7 +24,12 @@ public class LottoOwner {
 
     public void calculateResult(WinningNumber winningNumber) {
         for (Lotto lotto : lottos) {
-            winningNumber.calculateRank(lotto);
+            Rank rank = winningNumber.calculateRank(lotto);
+            gainMoney += rank.getPrize();
         }
+    }
+
+    public YieldRate calculateYieldRate() {
+        return new YieldRate(spendMoney, gainMoney);
     }
 }

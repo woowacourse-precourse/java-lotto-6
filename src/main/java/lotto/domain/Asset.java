@@ -11,7 +11,7 @@ public class Asset {
     }
     private void validate(Float money) {
         if(money % 1000 != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("wrong money input");
         }
     }
 

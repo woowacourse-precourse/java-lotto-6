@@ -87,4 +87,19 @@ public class LottoTest {
                 Arguments.of(Arrays.asList(1,2,3,4,5,5))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("uniqueNumber")
+    @DisplayName("중복되지 않은 번호 테스트")
+    void uniqueNumberTest(List<Integer> uniqueNumber) {
+        assertDoesNotThrow(
+                () -> new Lotto(uniqueNumber));
+    }
+
+    static Stream<Arguments> uniqueNumber() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5,6)),
+                Arguments.of(Arrays.asList(40,41,42,43,44,45))
+        );
+    }
 }

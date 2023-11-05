@@ -12,11 +12,6 @@ public final class OutputView {
     private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String HORIZONTAL_LINE = "---";
-    private static final String THREE_MATCH_PRIZE_MESSAGE = "3개 일치 (5,000원) - %d개\n";
-    private static final String FOUR_MATCH_PRIZE_MESSAGE = "4개 일치 (50,000원) - %d개\n";
-    private static final String FIVE_MATCH_PRIZE_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
-    private static final String FIVE_MATCH_WITH_BONUS_PRIZE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
-    private static final String SIX_MATCH_PRIZE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private OutputView() {
@@ -53,11 +48,8 @@ public final class OutputView {
     }
 
     public static void printWinningStatistics(final ResultDetails resultDetails) {
-        System.out.printf(THREE_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FIFTH));
-        System.out.printf(FOUR_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FOURTH));
-        System.out.printf(FIVE_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.THIRD));
-        System.out.printf(FIVE_MATCH_WITH_BONUS_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.SECOND));
-        System.out.printf(SIX_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FIRST));
+        Rank.getRanks()
+                .forEach(rank -> System.out.printf(rank.getMessage(), resultDetails.getWinnerCountByRank(rank)));
     }
 
     public static void printExceptionMessage(final String exceptionMessage) {

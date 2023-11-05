@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 
 
 public class Application {
@@ -11,6 +12,7 @@ public class Application {
     final static int coinStandard = 1000; 
     static int inputCoin;
     static List<List<Integer>> lottoTotal = new ArrayList<>();
+    static List<Integer> winningLotto = new ArrayList<>();
 
     public static void CoinValidate(int inputCoin){
         if (inputCoin % coinStandard != 0)
@@ -32,6 +34,7 @@ public class Application {
                 computer.add(randomNumber);
             }
         }
+        Collections.sort(computer);
         return computer;
     }
 
@@ -50,5 +53,6 @@ public class Application {
         GetCoin();
         System.out.println();
         GetLottos();
+        System.out.println();
     }
 }

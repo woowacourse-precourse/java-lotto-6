@@ -3,13 +3,18 @@ package lotto.domain;
 import static lotto.constants.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_PRICE;
+import static lotto.constants.LottoRule.UNIT_PRICE;
 
 public class PurchaseAmount {
-    private int purchase;
+    private int purchaseAmount;
 
     public PurchaseAmount(String input) {
         validatePurchaseAmount(input);
-        this.purchase = convertToInt(input);
+        this.purchaseAmount = getUnitAmount(input);
+    }
+
+    private int getUnitAmount(String input) {
+        return convertToInt(input) / UNIT_PRICE.getValue();
     }
 
     private void validatePurchaseAmount(String input) {

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseAmount;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -19,6 +20,8 @@ public class LottoController {
 
     private void buyLotto() {
         String amount = inputView.printAskPurchase();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
+
         //TODO: 구입 금액을 입력받고, 구입 금액/1000 개수만큼 로또를 랜덤하게 생성
 
         //TODO: view를 통해 로또 정보 출력

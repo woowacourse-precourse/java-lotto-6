@@ -7,16 +7,19 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
+    private static final Integer ZERO = 0;
     private static final Integer LOTTO_LENGTH = 6;
     private static final Integer RANGE_START_NUMBER = 1;
     private static final Integer RANGE_END_NUMBER = 45;
     private final List<Integer> numbers;
+    private StringBuilder lottoBuilder;
 
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validateEachNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
+        this.lottoBuilder = new StringBuilder();
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -75,19 +78,22 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("[");
+        initLottoBuilder();
+        lottoBuilder.append("[");
         for (Integer number : numbers) {
-            stringBuilder.append(number);
-            stringBuilder.append(",");
-            stringBuilder.append(" ");
+            lottoBuilder.append(number);
+            lottoBuilder.append(",");
+            lottoBuilder.append(" ");
         }
 
-        stringBuilder.replace(stringBuilder.length()-2,
-                                stringBuilder.length(),
+        lottoBuilder.replace(lottoBuilder.length()-2,
+                lottoBuilder.length(),
                                 "]");
 
-        return stringBuilder.toString();
+        return lottoBuilder.toString();
+    }
+
+    private void initLottoBuilder() {
+        lottoBuilder.setLength(ZERO);
     }
 }

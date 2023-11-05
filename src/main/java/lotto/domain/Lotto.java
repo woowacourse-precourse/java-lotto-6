@@ -10,9 +10,9 @@ import lotto.util.ValidationUtils;
 
 public class Lotto {
 
-    private final List<Number> numbers;
+    private final List<Integer> numbers;
 
-    public Lotto(List<Number> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -23,20 +23,20 @@ public class Lotto {
         return LottoPrize.findLottoPrize(matchCount, isBonusMatched);
     }
 
-    private void validate(List<Number> numbers) {
+    private void validate(List<Integer> numbers) {
         ValidationUtils.validateNotNull(numbers);
         validateLottoNumbersSize(numbers);
         validateNoDuplicatedLottoNumbers(numbers);
     }
 
-    private void validateLottoNumbersSize(List<Number> numbers) {
+    private void validateLottoNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNoDuplicatedLottoNumbers(List<Number> numbers) {
-        Set<Number> set = new HashSet<>(numbers);
+    private void validateNoDuplicatedLottoNumbers(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }

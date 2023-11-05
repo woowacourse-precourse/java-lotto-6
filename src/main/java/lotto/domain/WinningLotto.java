@@ -1,36 +1,31 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WinningLotto {
 
-    private static final int WINNING_LOTTO_SIZE_CRITERION = 7;
-    private List<Number> winningNumbers;
-    private Number bonusNumber;
+    private List<Integer> winningNumbers;
+    private BonusNumber bonusNumber;
 
-    public WinningLotto(List<Number> winningNumbers, Number bonusNumber) {
+    public WinningLotto(List<Integer> winningNumbers, BonusNumber bonusNumber) {
         validateNoDuplicatedWinningNumbers(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public int getMatchCount(List<Number> numbers) {
+    public int getMatchCount(List<Integer> numbers) {
         return (int) numbers.stream()
             .filter(winningNumbers::contains)
             .count();
     }
 
-    public boolean isBonusMatched(List<Number> numbers) {
+    public boolean isBonusMatched(List<Integer> numbers) {
         return numbers.contains(bonusNumber);
     }
 
-    private void validateNoDuplicatedWinningNumbers(List<Number> winningNumbers,
-        Number bonusNumber) {
-        Set<Number> set = new HashSet<>(winningNumbers);
-        set.add(bonusNumber);
-        if (set.size() != WINNING_LOTTO_SIZE_CRITERION) {
+    private void validateNoDuplicatedWinningNumbers(List<Integer> winningNumbers,
+        BonusNumber bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

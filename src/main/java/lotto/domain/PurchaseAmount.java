@@ -27,6 +27,9 @@ public class PurchaseAmount {
         if (!canDivideByThousand(amount)) {
             ErrorMessage.PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS.throwIllegalArgumentException();
         }
+        if (isZero(amount)) {
+            ErrorMessage.PURCHASE_AMOUNT_IS_ZERO.throwIllegalArgumentException();
+        }
     }
 
     private int toInt(String amount) {
@@ -43,5 +46,9 @@ public class PurchaseAmount {
 
     private boolean canDivideByThousand(String amount) {
         return toInt(amount) % AMOUNT_UNIT == ZERO;
+    }
+
+    private boolean isZero(String amount) {
+        return toInt(amount) == ZERO;
     }
 }

@@ -11,7 +11,9 @@ public class LottoHost {
 
     public String pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        winNumbers = Console.readLine();
+        winNumbers = Utii.InputStringLine();
+
+
         return winNumbers;
     }
 
@@ -22,7 +24,7 @@ public class LottoHost {
     }
 
     private String inputBonusNumbers() {
-        String inputBonusNumber = Utii.InputStringLine();
+        String inputBonusNumber = Console.readLine();
 
         return inputBonusNumber;
     }

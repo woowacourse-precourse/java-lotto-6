@@ -1,6 +1,10 @@
 package lotto.view;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
+import lotto.constant.Prize;
+import lotto.domain.dto.WinningResult;
 
 public class OutputView {
     private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
@@ -11,7 +15,7 @@ public class OutputView {
     private static final String DASHED_LINE = "---";
     private static final String PRIZE_MESSAGE = "%d개 일치%s (%s원) - %d개";
     private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
-    private static final int PRICE_PER_LOTTO = 1000;
+    public static final String REWARD_FORMAT = "%,d";
 
 
     private static void printNewLine() {
@@ -42,5 +46,30 @@ public class OutputView {
     public static void notifyErrorMessage(String errorMessage) {
         String errorPhrase = "[ERROR] " + errorMessage;
         System.out.println(errorPhrase);
+    }
+
+    public static void notifyWinningResult(WinningResult winningResult) {
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(DASHED_LINE);
+
+        Stream<Prize> sortedKeyStream = winningResult.prizes()
+                .keySet()
+                .stream()
+                .sorted(Comparator.comparing(Prize::getBonusHit))
+                .sorted(Comparator.comparing(Prize::getWinningHit));
+
+        sortedKeyStream.forEach(prize ->
+        {
+            int winningCount = winningResult.prizes().get(prize);
+            System.out.println(generatePrizeMessage(prize, winningCount));
+        });
+    }
+
+    private static String generatePrizeMessage(Prize prize, int winningCount) {
+        int winningHit = prize.getWinningHit();
+        String message = prize.getMessage();
+        String reward = String.format(REWARD_FORMAT, prize.getReward());
+
+        return PRIZE_MESSAGE.formatted(winningHit, message, reward, winningCount);
     }
 }

@@ -12,7 +12,7 @@ public class PurchaseAmount {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public boolean notFullyIssued(int count) {
+    public boolean isNotFullyIssued(int count) {
         return purchaseAmount / LOTTO_PRICE != count;
     }
 

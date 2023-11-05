@@ -30,7 +30,7 @@ public class PurchaseAmountTest {
     void shouldReturnFalseWhenLottosAreNotFullyIssued() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
         int issuedCount = 5;
-        assertTrue(purchaseAmount.notFullyIssued(issuedCount));
+        assertTrue(purchaseAmount.isNotFullyIssued(issuedCount));
     }
 
 }

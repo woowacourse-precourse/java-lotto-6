@@ -48,7 +48,7 @@ public class LottoController {
 
     private void generateUserLottos() {
         int countIssued = 0;
-        while (purchaseAmount.notFullyIssued(countIssued)) {
+        while (purchaseAmount.isNotFullyIssued(countIssued)) {
             userLottos.add(Lotto.generateUserLotto());
             countIssued++;
         }
@@ -81,7 +81,7 @@ public class LottoController {
 
     private void generateResult() {
         calculator = new Calculator(winnerLotto, userLottos, bonusNumber.getBonusNumber());
-        result = calculator.getCalculateResult();
+        result = calculator.calculateResult();
     }
 
     private void displayResult() {

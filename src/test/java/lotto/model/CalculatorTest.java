@@ -20,11 +20,11 @@ public class CalculatorTest {
     int bonusNumber = 7;
 
     Calculator calculator = new Calculator(winnerLotto, userLottos, bonusNumber);
-    
+
     @DisplayName("추첨 결과는 등수가 key, 개수가 value인 Map에 들어간다")
     @Test
     void calculateResultTest() {
-        Map<Rank, Integer> rankResult = calculator.getCalculateResult();
+        Map<Rank, Integer> rankResult = calculator.calculateResult();
         assertEquals(1, rankResult.getOrDefault(Rank.FIRST, 0));
         assertEquals(0, rankResult.getOrDefault(Rank.SECOND, 0));
         assertEquals(1, rankResult.getOrDefault(Rank.NO_RANK, 0));
@@ -33,7 +33,7 @@ public class CalculatorTest {
     @DisplayName("수익률을 계산하는 메서드 테스트")
     @Test
     void calculateRateOfReturn() {
-        Map<Rank, Integer> rankResult = calculator.getCalculateResult();
+        Map<Rank, Integer> rankResult = calculator.calculateResult();
         assertEquals(100000000, calculator.calculateRateOfReturn(rankResult));
     }
 

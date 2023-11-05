@@ -22,7 +22,7 @@ public class LottoUtil {
                 .collect(Collectors.toList());
     }
 
-    public static String convertToDisplayFormat(List<Integer> numbers) {
+    public static String convertLottoToDisplayFormat(List<Integer> numbers) {
         return "[" + numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")) + "]";

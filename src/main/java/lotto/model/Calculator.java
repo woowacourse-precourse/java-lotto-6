@@ -21,7 +21,7 @@ public class Calculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Rank, Integer> getCalculateResult() {
+    public Map<Rank, Integer> calculateResult() {
         Map<Rank, Integer> calculateResult = new HashMap<>();
         for (Lotto userLotto : userLottos) {
             Rank rank = Rank.decideRank(winnerLotto.countMatchingNumber(userLotto), userLotto.contains(bonusNumber));

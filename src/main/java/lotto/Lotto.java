@@ -36,7 +36,7 @@ public class Lotto {
     }
 
     public String getDisplayFormat() {
-        return LottoUtil.convertToDisplayFormat(numbers);
+        return LottoUtil.convertLottoToDisplayFormat(numbers);
     }
 
 }

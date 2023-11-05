@@ -35,9 +35,9 @@ public class InputView {
 
     public static int readBonusNumber() {
         System.out.println(READ_BONUS_NUMBER_MESSAGE);
-        String number = Console.readLine();
+        String inputBonusNumber = Console.readLine();
         try {
-            return Integer.parseInt(number);
+            return Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_NUMBER.getMessage());
         }

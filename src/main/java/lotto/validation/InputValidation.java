@@ -9,7 +9,7 @@ public class InputValidation {
     private static final String ERROR = "[ERROR] ";
     private static final String IS_NULL_MESSAGE = "빈 문자열 입니다";
     private static final String IS_NOT_NUMBER_MESSAGE = "숫자가 아닙니다";
-    private static final String IS_EXCEED_NUMBER_RANGE_MESSAGE = "21억을 초과했습니다.";
+    private static final String IS_NOT_EXPRESS_NUMBER_RANGE_MESSAGE = "정수의 형태로 표현할 수 없습니다";
     private static final String IS_NOT_NUMBER_Range_MESSAGE = "0이하 입니다";
     private static final int MONEY_UNIT = 1000;
     private static final String IS_NOT_MONEY_UNIT_MESSAGE = MONEY_UNIT + "원 단위가 아닙니다";
@@ -62,7 +62,7 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR + IS_EXCEED_NUMBER_RANGE_MESSAGE);
+            throw new IllegalArgumentException(ERROR + IS_NOT_EXPRESS_NUMBER_RANGE_MESSAGE);
         }
     }
 

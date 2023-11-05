@@ -1,0 +1,45 @@
+package lotto.domain;
+
+import java.math.BigDecimal;
+import java.util.List;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+class FinalGradeTest {
+
+    @Nested
+    @DisplayName("사용자의 당첨 상금을 얻어오는 기능 테스트")
+    class PlayerTotalPrizeTest {
+        @Test
+        @DisplayName("각 등수를 1 번씩 했을 때의 상금은 2_031_555_000 이다.")
+        void oneTimeEachRank() {
+            // given
+            List<Rank> ranks = Lists.newArrayList(Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH);
+            FinalGrade finalGrade = new FinalGrade(ranks);
+            BigDecimal expectedTotalPrice = new BigDecimal(2031555000L);
+            // when
+            BigDecimal totalPrize = finalGrade.getPlayerTotalPrize();
+            // then
+            Assertions.assertThat(totalPrize).isEqualTo(expectedTotalPrice);
+        }
+
+        @Test
+        @DisplayName("1등을 10번 했을 때의 상금은 20_000_000_000 원 이다.")
+        void tenTimeFirstRank() {
+            // given
+            List<Rank> ranks = Lists.newArrayList(Rank.FIRST, Rank.FIRST, Rank.FIRST, Rank.FIRST, Rank.FIRST,
+                    Rank.FIRST,
+                    Rank.FIRST, Rank.FIRST, Rank.FIRST, Rank.FIRST);
+            FinalGrade finalGrade = new FinalGrade(ranks);
+            BigDecimal expectedTotalPrice = new BigDecimal(20_000_000_000L);
+            System.out.println(expectedTotalPrice);
+            // when
+            BigDecimal totalPrice = finalGrade.getPlayerTotalPrize();
+            // then
+            Assertions.assertThat(totalPrice).isEqualTo(expectedTotalPrice);
+        }
+    }
+}

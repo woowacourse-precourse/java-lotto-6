@@ -2,7 +2,8 @@ package lotto.constant;
 
 public enum ProgressMessage {
     PURCHASE_AMOUNT_REQUEST("구입금액을 입력해 주세요."),
-    PUBLISHED_NUM_OF_LOTTO("%s개를 구매했습니다.");
+    PUBLISHED_NUM_OF_LOTTO("%s개를 구매했습니다."),
+    WINNING_NUMBERS_REQUEST("\n당첨 번호를 입력해 주세요.");
 
     private final String message;
 

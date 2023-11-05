@@ -22,4 +22,8 @@ public class OutputView {
                         ProgressMessage.PUBLISHED_NUM_OF_LOTTO.toValue(), lottos.numOfElement()));
         System.out.println(outputFormatter.formatLottos(lottos));
     }
+
+    public void printWinningNumbersRequest() {
+        System.out.println(ProgressMessage.WINNING_NUMBERS_REQUEST.toValue());
+    }
 }

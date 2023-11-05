@@ -18,7 +18,7 @@ public class Parser {
         }
     }
 
-    public static Lotto parseToLotto(String input){
+    public static Lotto parseToLotto(String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
             .map(String::trim)
             .map(Integer::parseInt)
@@ -26,7 +26,7 @@ public class Parser {
         return new Lotto(numbers);
     }
 
-    public static Bonus parseToBonus(String input){
+    public static Bonus parseToBonus(String input) {
         int parsedInput = Integer.parseInt(input);
         return new Bonus(parsedInput);
     }

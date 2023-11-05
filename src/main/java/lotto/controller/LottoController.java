@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.Bonus;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchaser;

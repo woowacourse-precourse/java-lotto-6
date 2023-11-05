@@ -43,6 +43,10 @@ public enum LottoPrize {
         return prizeMoney;
     }
 
+    public Integer getMatchedNumberCount() {
+        return matchedNumberCount;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

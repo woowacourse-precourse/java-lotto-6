@@ -49,4 +49,45 @@ class LottoPrizeTest {
                 .hasMessage("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다.");
     }
 
+    @DisplayName("출력하는 문자열이 2등 당첨자라면 '보너스 불 일치'라는 문구 들어간다.")
+    @Test
+    void toStringSecondPrize() {
+        //given
+        LottoPrize lottoPrize = LottoPrize.SECOND_PRIZE;
+
+        //when
+        String secondPrizeString = lottoPrize.toString();
+
+        //then
+        assertThat(secondPrizeString).containsPattern("[보너스 불 일치]");
+    }
+
+    @DisplayName("출력하는 문자열이 2등 당첨자라면 '보너스 불 일치'라는 문구가 들어가지 않는다.")
+    @Test
+    void toStringNoSecondPrize() {
+        //given
+        LottoPrize lottoPrize = LottoPrize.THIRD_PRIZE;
+
+        //when
+        String lottoPrizeString = lottoPrize.toString();
+
+        //then
+        assertThat(lottoPrizeString).containsPattern("[^보너스 불 일치]");
+    }
+
+    @DisplayName("문자열은 상금, 일치 개수를 포함해야한다.")
+    @Test
+    void toStringContainsPrizeMoneyAndMatchCount() {
+        //given
+        LottoPrize lottoPrize = LottoPrize.THIRD_PRIZE;
+
+        //when
+        String lottoPrizeString = LottoPrize.THIRD_PRIZE.toString();
+
+        //then
+        assertThat(lottoPrizeString)
+                .contains(lottoPrize.getPrizeMoney().toString())
+                .contains(lottoPrize.getMatchedNumberCount().toString());
+    }
+
 }

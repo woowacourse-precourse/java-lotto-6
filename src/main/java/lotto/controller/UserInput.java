@@ -4,7 +4,6 @@ import static lotto.utility.Constants.COMMA;
 import static lotto.utility.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

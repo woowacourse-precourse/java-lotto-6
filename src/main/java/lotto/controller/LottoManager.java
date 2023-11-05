@@ -1,6 +1,4 @@
 package lotto.controller;
-import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.utility.Rank;
 import lotto.view.UserView;

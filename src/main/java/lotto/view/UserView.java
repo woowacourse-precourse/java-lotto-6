@@ -43,7 +43,7 @@ public class UserView {
         System.out.println();
         System.out.println(WINNING_STATISTIC);
         System.out.println(LINE.repeat(3));
-        // 당첨 통계 메시지 출력 코드 구현 예정
+        // 당첨 통계 출력
         System.out.println(Rank.FIFTH.getMessage() + user.getFifthRank() + COUNT_WORD);
         System.out.println(Rank.FOURTH.getMessage() + user.getFourthRank() + COUNT_WORD);
         System.out.println(Rank.THIRD.getMessage() + user.getThirdRank() + COUNT_WORD);

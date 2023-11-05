@@ -13,7 +13,7 @@ public class BonusNumber {
     }
 
     private void validate(Integer number) {
-        if(number < MINIMUM_VALUE || number > MAXIMUM_VALUE) {
+        if(number.compareTo(MINIMUM_VALUE) < 0 || number.compareTo(MAXIMUM_VALUE) > 0) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }

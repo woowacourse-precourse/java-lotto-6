@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PurchaseLotto {
@@ -18,8 +19,14 @@ public class PurchaseLotto {
         return new PurchaseLotto(autoLottos);
     }
 
-    public int getAmount(){
+    public int getAmount() {
         return this.lottos.size();
+    }
+
+    public List<Rank> getWinningRankResults(WinningLotto winningLotto) {
+        return this.lottos.stream()
+                .map(winningLotto::calcuateWinningRank)
+                .collect(Collectors.toList());
     }
 
 }

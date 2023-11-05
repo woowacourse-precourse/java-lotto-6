@@ -46,4 +46,18 @@ class LottoManagerTest {
         assertThatCode(() -> lottoManager.validatePurchaseAmount(money))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void calculateProfitRate() {
+        int money = 8_000;
+        Prizes prizes = Prizes.createPrizes();
+        prizes.increasePrizeAmount(Prize.FIFTH_PLACE);
+        int totalPrize = prizes.calculateTotalPrize();
+        double expectedRate = 62.5;
+
+        double profitRate = lottoManager.calculateProfitRate(money, totalPrize);
+
+        assertThat(profitRate).isEqualTo(expectedRate);
+    }
 }

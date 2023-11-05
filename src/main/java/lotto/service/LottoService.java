@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,14 +21,21 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public List<List<Integer>> generateRandomLottoNumbers(){
+    public List<List<Integer>> generateRandomLottoNumbers(Integer length) {
 
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-        for (int count = 0; count < 8; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER,LAST_NUMBER,COUNT);
+        for (double count = 0; count < length; count++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, COUNT);
             lottoNumbers.add(numbers);
         }
         return lottoNumbers;
+    }
+
+    public void compareMyLottoWithWinningLotto(List<Integer> winningLotto, List<Integer> myLotto) {
+
+        for (int j = 0; j < COUNT; j++) {
+            if (winningLotto.contains(myLotto.get(j))) ;
+        }
     }
 }

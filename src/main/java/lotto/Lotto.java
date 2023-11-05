@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return Collections.unmodifiableList(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {

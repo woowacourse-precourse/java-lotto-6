@@ -24,7 +24,7 @@ public class LottoProfitCalculator {
     }
 
     private void setTotalProfitPercentile(int totalProfit, int chance) {
-        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * 100;
+        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * Constants.PERCENTAGE_MULTIPLIER;
     }
 
     public String getTotalProfitPercentile() {

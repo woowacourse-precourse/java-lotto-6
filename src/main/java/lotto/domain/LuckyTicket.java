@@ -4,9 +4,7 @@ import lotto.Lotto;
 import lotto.domain.collections.LotteryResultCollection;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class LuckyTicket {
 
@@ -28,8 +26,8 @@ public class LuckyTicket {
         return new LuckyTicket(lotto, bonusNumber);
     }
 
-    public LotteryResultCollection matchWith(final User user) {
-        List<Lotto> userTickets = user.getTickets();
+    public LotteryResultCollection matchWith(final UserTicketCollection userTicketCollection) {
+        List<Lotto> userTickets = userTicketCollection.getTickets();
         List<LotteryResult> results = new ArrayList<>();
 
         for (Lotto userTicket : userTickets) {

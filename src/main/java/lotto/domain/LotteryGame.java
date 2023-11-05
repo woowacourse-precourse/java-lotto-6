@@ -19,15 +19,15 @@ public class LotteryGame {
 
     public void start() {
         // TODO: 로또게임 시작
-        User user = makeUserTicket();
+        UserTicketCollection userTicketCollection = makeUserTicket();
         LuckyTicket luckyTicket = makeLuckyTicket();
-        LotteryResultCollection lotteryResult = luckyTicket.matchWith(user);
+        LotteryResultCollection lotteryResult = luckyTicket.matchWith(userTicketCollection);
         printResultOf(lotteryResult);
     }
 
-    private User makeUserTicket() {
+    private UserTicketCollection makeUserTicket() {
         int price = getUserPrice();
-        return User.of(getUserLottoNumbers(price));
+        return UserTicketCollection.of(getUserLottoNumbers(price));
     }
 
     private List<Lotto> getUserLottoNumbers(int price) {

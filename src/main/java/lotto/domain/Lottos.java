@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import lotto.constant.WinningGrade;
+
 import java.util.List;
+import java.util.Optional;
 
 public final class Lottos {
 
@@ -16,5 +19,19 @@ public final class Lottos {
 
     public int numOfElement() {
         return elements.size();
+    }
+
+    public List<WinningGrade> compare(final Lotto lotto) {
+        return elements.stream()
+                .map(lotto::matchNum)
+                .map(WinningGrade::valueOfMatchNum)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    public List<Integer> getByIndex(final int index) {
+        final Lotto lotto = elements.get(index);
+        return lotto.toValue();
     }
 }

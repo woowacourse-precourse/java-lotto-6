@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Lotto {
@@ -20,5 +21,11 @@ public final class Lotto {
 
     public List<Integer> toValue() {
         return List.copyOf(numbers);
+    }
+
+    public int matchNum(final Lotto lotto) {
+        final List<Integer> values = new ArrayList<>(this.numbers);
+        values.retainAll(lotto.numbers);
+        return values.size();
     }
 }

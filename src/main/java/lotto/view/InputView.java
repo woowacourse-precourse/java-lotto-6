@@ -6,7 +6,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.view.Error.*;
 import static lotto.view.Message.*;
-import static lotto.view.Standard.*;
+import static lotto.view.InputStandard.*;
 
 public class InputView {
     public static int enterPurchaseAmounts() {

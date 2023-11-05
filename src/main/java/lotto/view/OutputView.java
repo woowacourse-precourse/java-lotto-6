@@ -9,7 +9,7 @@ public class OutputView {
         System.out.println(numberOfLottoPurchased + BUY.getMessage());
     }
 
-    public static void showLottoes(List<Integer> lottoes) {
+    public static void showLottoes(List<Integer> lottoes) { // 오름차순 기능 추가
         for (Integer lotto : lottoes) {
             System.out.println(lotto.toString());
         }

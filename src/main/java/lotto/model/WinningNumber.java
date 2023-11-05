@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.view.message.Error;
 
 public class WinningNumber {
@@ -12,6 +14,8 @@ public class WinningNumber {
         checkOversize(seperatedNumbers);
         List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
         checkOutOfBound(candidateWinningNumbers);
+        checkDuplicate(candidateWinningNumbers);
+        this.winningNumbers = candidateWinningNumbers;
     }
 
     public static WinningNumber create(String winningNumbers) {
@@ -48,5 +52,14 @@ public class WinningNumber {
         }
     }
 
+    private void checkDuplicate(List<Integer> candidateWinningNumbers) {
+        Set<Integer> uniqueWinningNumbers = new HashSet<>(candidateWinningNumbers);
+        if (candidateWinningNumbers.size() != uniqueWinningNumbers.size()) {
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_DUPLICATED.getMessage());
+        }
+    }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

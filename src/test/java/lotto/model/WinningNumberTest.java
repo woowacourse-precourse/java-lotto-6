@@ -1,7 +1,9 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import lotto.view.message.Error;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,5 +56,18 @@ public class WinningNumberTest {
             WinningNumber.create(duplicateWinningNumber);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.WINNING_NUMBER_DUPLICATED.getMessage());
+    }
+
+    @DisplayName("올바른 당첨번호 입력시 당첨번호 인스턴스를 생성한다.")
+    @Test
+    public void 올바른_당첨번호_입력() {
+        //given
+        String validWinningNumber = "3,5,13,43,22,42";
+
+        //when
+        WinningNumber winningNumber = WinningNumber.create(validWinningNumber);
+
+        //then
+        assertThat(winningNumber.getWinningNumbers()).isEqualTo(Arrays.asList(3, 5, 13, 43, 22, 42));
     }
 }

@@ -43,4 +43,18 @@ public class LottoValidatorTest {
                     .isLessThan(46);
         }
     }
+
+    @Test
+    @DisplayName("로또_번호_중복_테스트")
+    public void lottoNumberDuplicateTest() {
+        //given
+
+        //when
+
+        //then
+        assertThat(lotto.getLotto()
+                .stream().distinct()
+                .count())
+                .isEqualTo(LOTTO_NUMBERS_COUNT);
+    }
 }

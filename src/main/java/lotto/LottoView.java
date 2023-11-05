@@ -38,7 +38,7 @@ public class LottoView {
 		while (true) {
 			try {
 				System.out.printf("%n당첨번호를 입력해 주세요.%n");
-				String[] userInput = (readLine().trim()).split(","); // 사용자의 입력을 받는다 
+				String[] userInput = (readLine().trim()).split(","); // 사용자의 입력을 받는다
 				this.validateNumber(userInput); // 사용자의 입력값에 대한 유효성 검사를 실행한다
 				return userInput;
 			} catch (NumberFormatException e) {
@@ -60,7 +60,6 @@ public class LottoView {
 			int num;
 			num = Integer.parseInt(numStr);
 			if (num < 1 || num > 45 || !numbers.add(num)) {
-				System.out.println("중복" + numbers);
 				throw new IllegalStateException();
 			}
 		}
@@ -72,10 +71,19 @@ public class LottoView {
 			try {
 				System.out.printf("%n보너스 번호를 입력해 주세요.%n");
 				int userInput = Integer.parseInt(readLine().trim());
+				this.validateNumberRange(userInput);
 				return userInput;
 			} catch (NumberFormatException e) {
 				System.err.println("[ERROR] 번호는 숫자로 입력해주세요.");
+			} catch (IllegalStateException e) {
+				System.err.println("[ERROR] 번호는 1~45 사이의 숫자로 입력해주세요.");
 			}
+		}
+	}
+
+	private void validateNumberRange(int input) {
+		if (input < 1 || input > 45) {
+			throw new IllegalStateException();
 		}
 	}
 }

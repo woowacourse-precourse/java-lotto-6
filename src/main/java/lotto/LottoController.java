@@ -1,9 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -50,7 +48,7 @@ public class LottoController {
 		String[] winNumbers = LottoView.getWinLotto();
 		winLotto = this.setWinNumbers(winNumbers);
 		this.addBonusNumber();
-//		System.out.println(winLotto);
+		System.out.println(winLotto);
 	}
 
 	public void addBonusNumber() {

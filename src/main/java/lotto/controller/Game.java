@@ -13,8 +13,9 @@ public class Game {
     private final ResultService resultService = new ResultService();
 
     public void start() {
-
         boolean isValidPurchaseAmount = false;
+        boolean isValidWinningNumber = false;
+
         while (!isValidPurchaseAmount) {
             String purchaseAmountInput = InputView.inputPurchaseAmount();
             try {
@@ -26,5 +27,10 @@ public class Game {
         }
         LottosDto createdLottos = userService.purchaseLottos();
         OutputView.printLottos(createdLottos);
+
+        while (!isValidWinningNumber) {
+            String winningNumbers = InputView.inputWinningNumber();
+        }
+
     }
 }

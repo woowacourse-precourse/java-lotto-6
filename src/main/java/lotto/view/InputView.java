@@ -9,4 +9,9 @@ public class InputView {
         OutputView.printMessage(Prompt.PURCHASE_AMOUNT.getMessage());
         return readLine();
     }
+
+    public static String inputWinningNumber() {
+        OutputView.printMessage(Prompt.WINNING_NUMBER.getMessage());
+        return readLine();
+    }
 }

@@ -19,19 +19,19 @@ public class OutputView {
     }
 
     public static void printLottos(LottosDto lottosDto) {
-        printMessage(toString(lottosDto.getCountOfPurchase()));
+        printMessage(toMessage(lottosDto.getCountOfPurchase()));
         lottosDto.getLottoDtos().forEach(OutputView::printLottoNumbers);
     }
 
-    private static String toString(Integer numberOfPurchase) {
+    private static String toMessage(Integer numberOfPurchase) {
         return NEW_LINE + String.format(PURCHASE_COUNT_FORMAT, numberOfPurchase);
     }
 
     private static void printLottoNumbers(LottoDto lottoDto) {
-        String lottoNumbers = sortLottoNumbers(lottoDto.getLottoNumbers()).stream()
+        String lottoMessage = sortLottoNumbers(lottoDto.getLottoNumbers()).stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(COMMA_DELIMITER));
-        printMessage(LEFT_SQUARE_BRACKET + lottoNumbers + RIGHT_SQUARE_BRACKET);
+        printMessage(LEFT_SQUARE_BRACKET + lottoMessage + RIGHT_SQUARE_BRACKET);
     }
 
     private static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {

@@ -2,6 +2,7 @@ package lotto.validation;
 
 import static lotto.validation.enumType.AmountInput.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.enumType.AmountInput.ONE_LOTTO_PRICE;
+import static lotto.validation.enumType.AmountInput.POSITIVE_CHECK_NUMBER;
 import static lotto.validation.enumType.AmountInput.POSITIVE_MESSAGE;
 import static lotto.validation.enumType.AmountInput.VALUE_DIVIDE_MESSAGE;
 
@@ -25,7 +26,7 @@ public class AmountInputValidator {
     }
 
     private boolean isNotPositive(int amountInput) {
-        return amountInput < 1;
+        return amountInput < POSITIVE_CHECK_NUMBER.getNumber();
     }
 
     public void validateDivisibilityBy1000(String input) {

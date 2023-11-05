@@ -13,13 +13,13 @@ class PurchaseLottoTest {
     @Test
     void purchaseAutoLottoByCount() {
         //given
-        final int purchaseCount = 5;
+        final long lottoCount = 5;
 
         //when
-        PurchaseLotto purchaseLotto = PurchaseLotto.purchaseAutoLotto(purchaseCount);
+        PurchaseLotto purchaseLotto = PurchaseLotto.purchaseAutoLotto(lottoCount);
 
         //then
-        assertThat(purchaseLotto.getAmount()).isEqualTo(purchaseCount);
+        assertThat(purchaseLotto.getAmount()).isEqualTo(lottoCount);
     }
 
     @DisplayName("구매한 로또들을 당첨 로또와 비교하여 당첨 등수를 찾는다.")

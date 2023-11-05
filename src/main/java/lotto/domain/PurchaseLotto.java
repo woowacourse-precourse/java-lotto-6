@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class PurchaseLotto {
     private final List<Lotto> lottos;
@@ -11,8 +11,8 @@ public class PurchaseLotto {
         this.lottos = lottos;
     }
 
-    public static PurchaseLotto purchaseAutoLotto(int purchaseCount) {
-        List<Lotto> autoLottos = IntStream.rangeClosed(1, purchaseCount)
+    public static PurchaseLotto purchaseAutoLotto(long lottoCount) {
+        List<Lotto> autoLottos = LongStream.rangeClosed(1, lottoCount)
                 .mapToObj(c -> LottoGenerator.autoGenerate())
                 .toList();
 

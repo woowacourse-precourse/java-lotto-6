@@ -22,7 +22,7 @@ public class OutputView
     {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i = 0 ; i< RecordConstant.NUMBER_OF_RANKING ; i++)
+        for (int i = 0 ; i< RecordConstant.NUMBER_OF_RANKING ; i++)
         {
             System.out.print(RecordConstant.NameOfRanking.findByIndex(i).getDescription());
             System.out.println(resultRecord.get(i) + "개");

@@ -61,26 +61,26 @@ public class LottoServiceImp implements LottoService {
                 .filter(setOfWinningLotteryNumber::contains)
                 .count();
 
-        if(overlappedSize == RecordConstant.NameOfRanking.SIX_MATCH.getMatchNumber())
+        if (overlappedSize == RecordConstant.NameOfRanking.SIX_MATCH.getMatchNumber())
         {
             return RecordConstant.NameOfRanking.SIX_MATCH.getIndex();
         }
 
-        if(overlappedSize == RecordConstant.NameOfRanking.FIVE_MATCH.getMatchNumber())
+        if (overlappedSize == RecordConstant.NameOfRanking.FIVE_MATCH.getMatchNumber())
         {
-            if(lotto.contains(bonusNumber))
+            if (lotto.contains(bonusNumber))
             {
                 return RecordConstant.NameOfRanking.FIVE_BONUS_MATCH.getIndex();
             }
             return RecordConstant.NameOfRanking.FIVE_MATCH.getIndex();
         }
 
-        if(overlappedSize == RecordConstant.NameOfRanking.FOUR_MATCH.getMatchNumber())
+        if (overlappedSize == RecordConstant.NameOfRanking.FOUR_MATCH.getMatchNumber())
         {
             return RecordConstant.NameOfRanking.FOUR_MATCH.getIndex();
         }
 
-        if(overlappedSize == RecordConstant.NameOfRanking.THREE_MATCH.getMatchNumber())
+        if (overlappedSize == RecordConstant.NameOfRanking.THREE_MATCH.getMatchNumber())
         {
             return RecordConstant.NameOfRanking.THREE_MATCH.getIndex();
         }

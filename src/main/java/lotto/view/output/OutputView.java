@@ -7,6 +7,7 @@ import static lotto.constant.PrintOutMessage.PLZ_INPUT_WINNER_NUMBER;
 import static lotto.constant.PrintOutMessage.PRINT_LOTTO_COUNT;
 import static lotto.constant.PrintOutMessage.PRINT_WINNING_STATISTICS;
 
+import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.PrintOutMessage;
 import lotto.model.Lotto;
@@ -38,22 +39,34 @@ public class OutputView {
     }
 
     public void printMatchingCount(Map<Statistics, Integer> matchingCount) {
-        System.out.println(
-                PrintOutMessage.THREE_MATCH.message + matchingCount.getOrDefault(new Statistics(3, false), 0)
-                        + COUNT_SUFFIX.message);
-        System.out.println(
-                PrintOutMessage.FOUR_MATCH.message + matchingCount.getOrDefault(new Statistics(4, false), 0)
-                        + COUNT_SUFFIX.message);
-        System.out.println(
-                PrintOutMessage.FIVE_MATCH.message + matchingCount.getOrDefault(new Statistics(5, false), 0)
-                        + COUNT_SUFFIX.message);
-        System.out.println(
-                PrintOutMessage.FIVE_AND_BONUS_MATCH.message + matchingCount.getOrDefault(new Statistics(5, true), 0)
-                        + COUNT_SUFFIX.message);
-        System.out.println(
-                PrintOutMessage.SIX_MATCH.message + matchingCount.getOrDefault(new Statistics(6, false), 0)
-                        + COUNT_SUFFIX.message);
+        printMatchCountExceptFive(matchingCount);
+        printMatchCountForFive(matchingCount);
     }
+
+    private void printMatchCountExceptFive(Map<Statistics, Integer> matchingCount) {
+        Map<Integer, PrintOutMessage> matchNumberToMessage = new HashMap<>();
+        matchNumberToMessage.put(3, PrintOutMessage.THREE_MATCH);
+        matchNumberToMessage.put(4, PrintOutMessage.FOUR_MATCH);
+        matchNumberToMessage.put(6, PrintOutMessage.SIX_MATCH);
+
+        for (int i = 3; i <= 6; i++) {
+            if (i != 5) {
+                int count = matchingCount.getOrDefault(new Statistics(i, false), 0)
+                        + matchingCount.getOrDefault(new Statistics(i, true), 0);
+                System.out.println(matchNumberToMessage.get(i).message + count + COUNT_SUFFIX.message);
+            }
+        }
+    }
+
+    private void printMatchCountForFive(Map<Statistics, Integer> matchingCount) {
+        System.out.println(PrintOutMessage.FIVE_MATCH.message
+                + matchingCount.getOrDefault(new Statistics(5, false), 0)
+                + COUNT_SUFFIX.message);
+        System.out.println(PrintOutMessage.FIVE_AND_BONUS_MATCH.message
+                + matchingCount.getOrDefault(new Statistics(5, true), 0)
+                + COUNT_SUFFIX.message);
+    }
+
 
     public void printEarningPercent(String formattedPercent) {
         System.out.println(String.format("총 수익률은 %s%%입니다.", formattedPercent));

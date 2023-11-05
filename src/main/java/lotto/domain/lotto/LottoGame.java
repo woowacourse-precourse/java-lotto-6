@@ -75,4 +75,43 @@ public class LottoGame {
             return createBonusNumber(winningLotto);
         }
     }
+
+    private GameResult calculateGameResult(Lotto winningLotto, LottoNumber bonusNumber, List<Lotto> lottos) {
+        GameResult result = GameResult.create();
+        List<LottoNumber> winningNumbers = winningLotto.getNumbers();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = checkMatchCount(lotto, winningNumbers);
+            if (matchCount < 3) {
+                continue;
+            }
+            boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);
+
+            Rank rank = Rank.calcualteBy(matchCount, isBonusNumberMatched);
+            result.add(rank);
+        }
+
+        return result;
+    }
+
+    private void printResult(GameResult result, double profitPercentage) {
+        String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(result, profitPercentage);
+        outputView.println(lottoResultMessage);
+    }
+
+    private double calculateProfitPercentage(int profit, Money money) {
+        return (double) profit / money.getAmount() * 100;
+    }
+
+    private int checkMatchCount(Lotto lotto, List<LottoNumber> winningNumbers) {
+        int matchCount = 0;
+        for (LottoNumber winningNumber : winningNumbers) {
+            if (lotto.containsNumber(winningNumber)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+
 }

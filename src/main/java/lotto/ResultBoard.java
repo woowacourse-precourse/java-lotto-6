@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.purchasing.Generator;
 import lotto.purchasing.Printer;
 import lotto.purchasing.PurchaseAmount;
 import lotto.winning.Analyst;
@@ -20,15 +21,13 @@ public class ResultBoard implements Showable {
     PrizeRankChecker prizeRankChecker;
     Analyst analyst;
 
-    public ResultBoard(PurchaseAmount purchaseAmount, Printer printer,
-                       WinningNumbers winningNumbers,
-                       BonusNumber bonusNumber, PrizeRankChecker prizeRankChecker, Analyst analyst) {
+    public ResultBoard(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.printer = printer;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-        this.prizeRankChecker = prizeRankChecker;
-        this.analyst = analyst;
+        this.printer = new Printer(new Generator(purchaseAmount));
+        this.winningNumbers = new WinningNumbers();
+        this.bonusNumber = new BonusNumber();
+        this.prizeRankChecker = new PrizeRankChecker();
+        this.analyst = new Analyst();
     }
 
     @Override

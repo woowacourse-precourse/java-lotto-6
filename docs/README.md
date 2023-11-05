@@ -72,8 +72,8 @@
     - 변수명 : PURCHASE_AMOUNT_INPUT_MESSAGE
 - [x] 구매한 로또 수량을 출력하는 메시지
     - 변수명 : PURCHASED_LOTTO_QUANTITY_MESSAGE
-- [x] 구매한 로또 번호를 출력하는 메시지
-    - 변수명 : PURCHASED_LOTTO_NUMBERS_MESSAGE
+- [x] 로또 번호를 출력하는 메시지
+    - 변수명 : LOTTO_NUMBERS_OUTPUT_MESSAGE
 - [x] 당첨 번호를 입력하는 메시지
     - 변수명 : WINNING_NUMBERS_INPUT_MESSAGE
 - [x] 보너스 번호을 입력하는 메시지
@@ -202,7 +202,7 @@
 ### OutputView
 
 - [ ] 구입한 로또 수량을 출력한다.
-- [ ] 구입한 로또 번호를 출력한다.
+- [x] 로또 번호를 출력한다.
 - [ ] 당첨 통계를 출력한다.
 - [ ] 총 수익률을 출력한다.
 

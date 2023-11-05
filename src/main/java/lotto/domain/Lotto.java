@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.ErrorMassage.*;
 import static lotto.domain.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
@@ -15,9 +16,7 @@ public class Lotto {
 
     private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(
-                    String.format("로또 번호는 %d개여야 합니다.", LOTTO_COUNT.getValue())
-            );
+            throw new IllegalArgumentException(IS_NOT_LOTTO_COUNT.getMassage());
         }
     }
 
@@ -26,7 +25,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctCount != LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(IS_DUPLICATED_LOTTO_NUMBER.getMassage());
         }
     }
 }

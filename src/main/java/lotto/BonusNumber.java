@@ -17,6 +17,7 @@ public class BonusNumber {
 
     private void validateBonusNumber(int bonusNumber, AnswerLotto answerLotto) {
         validateBonusNumberInAnswerLotto(bonusNumber, answerLotto);
+        validateInRange(bonusNumber);
     }
 
     private void validateBonusNumberInAnswerLotto(int bonusNumber, AnswerLotto answerLotto) {
@@ -27,5 +28,16 @@ public class BonusNumber {
 
     private boolean checkBonusNumberInAnswerLotto(int bonusNumber, AnswerLotto answerLotto) {
         return answerLotto.hasNumber(bonusNumber);
+    }
+
+    private void validateInRange(int bonusNumber) {
+        if (checkBonusNumberInRange(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean checkBonusNumberInRange(int bonusNumber) {
+        return bonusNumber >= NumberType.MIN_LOTTO_NUMBER.getValue()
+                && bonusNumber <= NumberType.MAX_LOTTO_NUMBER.getValue();
     }
 }

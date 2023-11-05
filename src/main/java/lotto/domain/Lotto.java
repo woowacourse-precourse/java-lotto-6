@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -11,8 +8,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,13 +20,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
     @Override
     public String toString() {
-        return "[" + String.join(",", numbers
+        return "[" + String.join(", ", numbers
             .stream().map(Object::toString).toArray(String[]::new)) + "]";
     }
 

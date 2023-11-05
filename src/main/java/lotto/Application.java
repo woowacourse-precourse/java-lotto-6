@@ -20,11 +20,13 @@ public class Application {
         LottoStatistics lottoStatistics = new LottoStatistics();
 
         int userPurchase = lottoPurchase.inputLottoPurchase();
-        System.out.printf("\n%d개를 구매하셨습니다.\n", userPurchase);
+        System.out.printf("\n%d개를 구매했습니다.\n", userPurchase);
 
         List<Lotto> lottos = randomNumberGenerator.generateRandomNumber(userPurchase);
         Map<Lotto, Integer> winningLotto = winningNumberInput.inputWinningNumbers();
-        String winrate = lottoStatistics.calculateWinRate(userPurchase, lottos, winningLotto);
+        System.out.println("\n당첨 통계\n---");
+        String winRate = lottoStatistics.calculateWinRate(userPurchase, lottos, winningLotto);
+        System.out.println("총 수익률은 "+winRate+"%입니다.");
 
     }
 }

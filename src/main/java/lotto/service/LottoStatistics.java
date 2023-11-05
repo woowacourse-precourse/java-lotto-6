@@ -18,7 +18,7 @@ public class LottoStatistics {
         for (Lotto lotto : userLottos) {
             calculatePrize(resultPrize, lotto, winLotto, bonusNumber);
         }
-//        resultPrize.forEach((key, value) -> System.out.println(key + "," + value));
+        resultPrize.forEach((key, value) -> System.out.println(key.getResultMessage() + " - " + value+"개"));
 
         long totalPrize = calculateTotalPrize(resultPrize);
         return calculateWinningPercentage(userPurchase, totalPrize);
@@ -33,13 +33,13 @@ public class LottoStatistics {
         return formatDecimal(roundWinRate);
     }
 
-    private String formatDecimal(double winrate) {
-        if (winrate != (int) winrate) {
-            String result = Double.toString(winrate);
+    private String formatDecimal(double winRate) {
+        if (winRate != (int) winRate) {
+            String result = Double.toString(winRate);
             result = result.replaceAll("0*$", "");
             return result;
         }
-        return Double.toString(winrate);
+        return Double.toString(winRate);
     }
 
     private Map<Result, Integer> crateResultPrize() {

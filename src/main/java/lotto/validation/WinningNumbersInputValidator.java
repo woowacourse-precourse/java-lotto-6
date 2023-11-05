@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumbersValidator {
+public class WinningNumbersInputValidator {
 
     public void validateNumberRange(String input) {
         String[] numbers = input.split(SPLIT_MESSAGE.getMessage());

@@ -8,10 +8,10 @@ import lotto.domain.LottoScoreChecker;
 import lotto.domain.LottoSeller;
 import lotto.utils.StringChanger;
 
-public class LottoService {
+public class ResultService {
     private static final int NOTHING = 0;
     private static final int COUNT_ONE = 1;
-    private static final int TO_RATIO = 100;
+    private static final int TO_PERCENTAGE = 100;
 
     private final LottoSeller lottoSeller = new LottoSeller();
     private final LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
@@ -39,7 +39,7 @@ public class LottoService {
 
     public void checkScore(Lotto lotto) {
         Rank rank = lottoScoreChecker.getRank(lotto);
-        recordLottoBy(rank.getRank());
+        recordRankCountBy(rank.getRank());
         sumUpWinningsBy(rank.getAmount());
     }
 
@@ -52,10 +52,10 @@ public class LottoService {
     }
 
     public double getProfitRatio() {
-        return (double) winnings / lottoSeller.getAmount() * TO_RATIO;
+        return (double) winnings / lottoSeller.getAmount() * TO_PERCENTAGE;
     }
 
-    private void recordLottoBy(int rank) {
+    private void recordRankCountBy(int rank) {
         if (!rankCounts.containsKey(rank)) {
             rankCounts.put(rank, COUNT_ONE);
             return;

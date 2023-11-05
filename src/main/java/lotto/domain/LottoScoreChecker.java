@@ -24,13 +24,13 @@ public class LottoScoreChecker {
         return rank;
     }
 
-    public int compareToFirstRankNumber(Lotto lotto) {
+    private int compareToFirstRankNumber(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> firstRankNumbers = winningNumbers.getFirstRankLotto().getNumbers();
         return numbers.stream().filter(firstRankNumbers::contains).toList().size();
     }
 
-    public boolean compareToBonusNumber(Lotto lotto) {
+    private boolean compareToBonusNumber(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();
         return numbers.contains(bonusNumber);

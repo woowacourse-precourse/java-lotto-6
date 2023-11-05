@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.constants.Error;
 import lotto.constants.Rank;
 import lotto.domain.Lotto;
-import lotto.service.LottoService;
+import lotto.service.ResultService;
 import lotto.userInterface.InputViewer;
 import lotto.userInterface.OutputViewer;
 
@@ -14,11 +14,11 @@ public class LottoGame {
     private static final Error INVALID_FIRST_RANK_NUMBERS = Error.INVALID_FIRST_RANK_NUMBERS;
     private static final Error INVALID_BONUS_NUMBER = Error.INVALID_BONUS_NUMBER;
 
-    private LottoService lottoService;
+    private ResultService resultService;
     private List<Lotto> userLotteries;
 
     public void init() {
-        lottoService = new LottoService();
+        resultService = new ResultService();
         userLotteries = new ArrayList<>();
     }
 
@@ -48,7 +48,7 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputViewer.requestAmountInput();
-                lottoService.setAmount(userInput);
+                resultService.setAmount(userInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(INVALID_AMOUNT.getMessage());
@@ -57,7 +57,7 @@ public class LottoGame {
     }
 
     private void getUserLotteries() {
-        userLotteries = lottoService.getUserLotto();
+        userLotteries = resultService.getUserLotto();
     }
 
     private void printPurchasedLotteries() {
@@ -71,7 +71,7 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputViewer.requestFirstRankNumberInput();
-                lottoService.setFirstRankNumbers(userInput);
+                resultService.setFirstRankNumbers(userInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(INVALID_FIRST_RANK_NUMBERS.getMessage());
@@ -83,7 +83,7 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputViewer.requestBonusNumberInput();
-                lottoService.setBonusNumber(userInput);
+                resultService.setBonusNumber(userInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(INVALID_BONUS_NUMBER.getMessage());
@@ -93,14 +93,14 @@ public class LottoGame {
 
     private void checkAllLottoScore() {
         for (Lotto lotto : userLotteries) {
-            lottoService.checkScore(lotto);
+            resultService.checkScore(lotto);
         }
     }
 
     private void printResults() {
         OutputViewer.printPrefaceOfResult();
         printLottoScoresByRanks();
-        OutputViewer.printLastMessageWith(lottoService.getProfitRatio());
+        OutputViewer.printLastMessageWith(resultService.getProfitRatio());
     }
 
     private void printLottoScoresByRanks() {
@@ -110,7 +110,7 @@ public class LottoGame {
     }
 
     private void printScoreBy(Rank rank) {
-        int count = lottoService.getCountOf(rank);
+        int count = resultService.getCountOf(rank);
         OutputViewer.printLottoResultBy(rank, count);
     }
 }

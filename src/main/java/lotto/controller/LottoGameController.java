@@ -14,6 +14,7 @@ public class LottoGameController {
         LottoOwner lottoOwner = new LottoOwner();
         purchaseLottoByOwner(lottoOwner);
         WinningNumber winningNumber = generateWinningNumber();
+        calculateLottoResult(lottoOwner, winningNumber);
     }
 
     private void purchaseLottoByOwner(LottoOwner lottoOwner) {
@@ -29,6 +30,10 @@ public class LottoGameController {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void calculateLottoResult(LottoOwner lottoOwner, WinningNumber winningNumber) {
+        lottoOwner.calculateResult(winningNumber);
     }
 
     private WinningNumber generateWinningNumber() {
@@ -65,5 +70,6 @@ public class LottoGameController {
             }
         }
     }
+
 
 }

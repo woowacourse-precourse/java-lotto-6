@@ -18,4 +18,10 @@ public class LottoOwner {
                 .map(Lotto::toString)
                 .toList();
     }
+
+    public void calculateResult(WinningNumber winningNumber) {
+        for (Lotto lotto : lottos) {
+            winningNumber.calculateRank(lotto);
+        }
+    }
 }

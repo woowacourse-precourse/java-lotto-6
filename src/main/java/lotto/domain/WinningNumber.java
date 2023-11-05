@@ -14,6 +14,11 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank calculateRank(Lotto lotto) {
+        int matchCount = lotto.getMatchCount(lottoNumber);
+        boolean bonusMatched = lotto.contains(bonusNumber);
+        return Rank.findByMatchCount(matchCount, bonusMatched);
+    }
 
     private void validateLottoNumberContainBonusNumber(Lotto lottoNumber, BonusNumber bonusNumber) {
         if (lottoNumber.contains(bonusNumber)) throw new IllegalArgumentException("보너스 번호가 당첨 번호 6개 중에 포함되어있습니다.");

@@ -7,7 +7,7 @@ import lotto.domain.User;
 import java.util.List;
 
 public class UserService {
-    public User user;
+    private User user;
 
     public UserService() {
         this.user = new User();

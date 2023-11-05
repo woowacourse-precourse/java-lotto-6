@@ -20,4 +20,13 @@ public class LottoNumberValidator {
         }
         return true;
     }
+
+    public static boolean isInteger(String inputMessage){
+        try{
+            Integer.parseInt(inputMessage);
+        }catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
 }

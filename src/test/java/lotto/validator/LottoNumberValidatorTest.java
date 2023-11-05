@@ -38,4 +38,13 @@ public class LottoNumberValidatorTest {
 
         Assertions.assertThat(check).isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("입력 값이 숫자인지 확인합니다.")
+    void isIntegerTest(){
+        String input = "1,000";
+
+        Assertions.assertThatThrownBy(()->{
+            Integer.parseInt(input);
+        }).isInstanceOf(NumberFormatException.class);    }
 }

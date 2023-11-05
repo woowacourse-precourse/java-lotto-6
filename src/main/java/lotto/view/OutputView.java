@@ -20,5 +20,7 @@ public class OutputView {
         for (List<Integer> lottoNumbers : lottoAllNumbers) {
             System.out.println(lottoNumbers);
         }
+        System.out.println();
+        System.out.println(Comment.INPUT_WINNING_NUMBER.getComment());
     }
 }

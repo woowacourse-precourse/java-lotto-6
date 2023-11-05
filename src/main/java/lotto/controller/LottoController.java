@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.utils.Utills;
@@ -28,12 +29,19 @@ public class LottoController {
     private void beforeStart() {
         user = new User(getInputAmount());
         lottoService.buyLottoAll(user);
-        // TODO: 로또 구매 후 로또 번호 출력
+        printBuyLotto();
     }
 
     private int getInputAmount() {
         inputView.inputAmount();
         String userInput = readLine().trim();
         return Utills.stringToInteger(userInput);
+    }
+
+    private void printBuyLotto() {
+        outputView.printLottoCount(user.getPurchaseAmount() / 1_000);
+        for(Lotto lotto : user.getLottos()) {
+            outputView.printLottoNumbers(lotto.getNumbers());
+        }
     }
 }

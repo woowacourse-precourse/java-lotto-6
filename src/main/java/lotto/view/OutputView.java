@@ -22,4 +22,9 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
+
+    public void printWinningLotteryNumbersMessage() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
 }

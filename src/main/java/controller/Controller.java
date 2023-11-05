@@ -31,9 +31,9 @@ public class Controller {
     }
 
     public List<Lotto> purchaseLotto(int money){
-        int lottoAmount = service.exchangeMoneyForLotto(money);
+        int lottoAmount = service.calculateLottoAmount(money);
         OutputView.printPurchaseAmount(lottoAmount);
-        List<Lotto> lottos =  service.purchaseLotto(lottoAmount);
+        List<Lotto> lottos =  service.generateLotto(lottoAmount);
         for(Lotto lotto : lottos){
             OutputView.printLotto(lotto);
         }

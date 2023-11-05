@@ -20,7 +20,7 @@ public class Service {
         return money;
     }
 
-    public List<Lotto> purchaseLotto(int lottoAmount) {
+    public List<Lotto> generateLotto(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<Lotto>();
         for (int i = 0; i < lottoAmount; i++) {
             Lotto lotto = new Lotto(Utility.SortAscending(generateRandomNumbers()));
@@ -34,7 +34,7 @@ public class Service {
         return numbers;
     }
 
-    public int exchangeMoneyForLotto(int money) {
+    public int calculateLottoAmount(int money) {
         return money / THOUSAND;
     }
 }

@@ -7,8 +7,6 @@ import lotto.view.InputBuyLottoView;
 import lotto.view.InputLottoNumView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoStart {
     public void start() {
         Money money = getLottoMoney();
@@ -27,9 +25,15 @@ public class LottoStart {
     }
 
     private Money getLottoMoney() {
-        InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
-        int money = inputBuyLottoView.getValue();
-        return new Money(money);
+        while(true){
+            try {
+                InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
+                int money = inputBuyLottoView.getValue();
+                return new Money(money);
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     private Lottos getLottos(Money money) {
@@ -37,14 +41,28 @@ public class LottoStart {
         return new Lottos(lottoGenerator.generateLottoSet(money.getTicket()));
     }
 
+    private Lotto getInputLotto() {
+        while(true) {
+            try {
+                InputLottoNumView inputLottoNumView = new InputLottoNumView();
+                return new Lotto(inputLottoNumView.getValue());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
+    }
+
     private UserLottoNum getUserLotto() {
-        InputLottoNumView inputLottoNumView = new InputLottoNumView();
-        InputBonusNumView inputBonusNumView = new InputBonusNumView();
+        Lotto lotto = getInputLotto();
+        while(true) {
+            try {
+                InputBonusNumView inputBonusNumView = new InputBonusNumView();
+                return new UserLottoNum(lotto, inputBonusNumView.getValue());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
 
-        List<Integer> inputLottoNum = inputLottoNumView.getValue();
-        Integer bonusNum = inputBonusNumView.getValue();
-
-        return new UserLottoNum(inputLottoNum, bonusNum);
     }
 
     private BenefitRate getRate(Money money, RankResult rankResult) {

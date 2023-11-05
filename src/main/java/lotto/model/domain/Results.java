@@ -26,7 +26,7 @@ public class Results {
         map.put(result, map.get(result) + 1);
     }
 
-    public List<Entry> getResults() {
+    public List<Entry<LottoResult, Integer>> getResults() {
         return Collections.unmodifiableList(
                 map.entrySet()
                         .stream()

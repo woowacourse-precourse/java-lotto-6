@@ -27,4 +27,9 @@ public class Writer {
     public static void printException(IllegalArgumentException e){
         System.out.println(PrintConst.EXCEPTION_PREFIX + e.getMessage());
     }
+
+    public static void printUsingFormat(String format, Object... args){
+        System.out.printf(format, args);
+        System.out.println();
+    }
 }

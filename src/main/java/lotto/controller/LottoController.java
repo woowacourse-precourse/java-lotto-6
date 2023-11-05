@@ -19,9 +19,6 @@ public class LottoController {
     final private LottoStore store;
     final private LottoGameUI ui;
 
-    private Lottos lottos;
-    //private AnswerGenerator answerGenerator;
-    private LottoAnswer answer;
     ResultFactory factory = new ResultFactory();
     Results results = new Results();
 
@@ -32,30 +29,35 @@ public class LottoController {
     }
 
     public void run(){
-        purchaseLotto();
-        createAnswer();
+        int money = getMoney();
+        Lottos lottos = purchaseLotto(money);
+        LottoAnswer answer = createAnswer();
+        Results results = computeResult(lottos, answer);
     }
 
-    private void purchaseLotto() {
-        lottos = retryHandler.getResult(
-                () -> {
-                    int money = ui.getMoney();
-                    return store.purchase(money);
-                }); // vs inline code
+    private int getMoney() {
+        return retryHandler.getResult(ui::getMoney);
+    }
+
+    private Lottos purchaseLotto(int money) {
+        Lottos lottos = store.purchase(money);
         Writer.printModelsInList(lottos.getLottosDTO());
+        return lottos;
     }
 
-    private void createAnswer(){
+    private LottoAnswer createAnswer(){
         AnswerGenerator answerGenerator = retryHandler.getResult(
                 ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
-        answer = (LottoAnswer) answerGenerator.generate();
+        return (LottoAnswer) answerGenerator.generate();
     }
 
-    private void computeResult(){
+    private Results computeResult(Lottos lottos, LottoAnswer answer){
         lottos.getLottosDTO()
                 .stream()
                 .map((lotto) -> factory.getResult(lotto, answer))
                 .forEach(results::addResult);
+        ui.printResult(results.getResults());
+        return results;
     }
 
 

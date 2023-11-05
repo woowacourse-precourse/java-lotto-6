@@ -1,7 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import lotto.constance.PrintConst;
+import lotto.model.domain.result.LottoResult;
 import lotto.ui.Reader;
 import lotto.ui.Writer;
 import lotto.view.LottoGameUI;
@@ -24,4 +27,15 @@ public class TerminalUI implements LottoGameUI {
         Writer.printGuide(PrintConst.GUIDE_BONUS_NUMBERS);
         return Reader.getBonusNumber();
     }
+
+    @Override
+    public void printResult(List<Entry<LottoResult, Integer>> results) {
+        for(Map.Entry<LottoResult, Integer> result : results){
+            LottoResult lottoResult = result.getKey();
+            int count = result.getValue();
+            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, lottoResult, count);
+        }
+    }
+
+
 }

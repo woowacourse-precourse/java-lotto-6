@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerLotto {
@@ -8,4 +9,21 @@ public class PlayerLotto {
     public PlayerLotto(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public List<Rank> calculateResult(final Lotto winningNumber, final LottoNumber bonusNumber) {
+        List<Rank> results = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            int containCounts = lotto.countMatchingNumbers(winningNumber);
+            boolean isMatchBonus = false;
+
+            if (containCounts == Rank.SECOND.getMatchCounts()) {
+                isMatchBonus = lotto.isContains(bonusNumber);
+            }
+
+            Rank rank = Rank.calculateRank(containCounts, isMatchBonus);
+            results.add(rank);
+        }
+        return results;
+    }
+
 }

@@ -14,5 +14,6 @@ public class WinningLotto {
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
+        WinningLottoValidator.doValidate(winningNumbers, bonusNumber);
     }
 }

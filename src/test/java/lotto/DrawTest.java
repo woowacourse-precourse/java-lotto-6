@@ -3,6 +3,8 @@ package lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,5 +50,19 @@ public class DrawTest {
 
         //then
         assertThat(result).isEqualTo(45);
+    }
+
+    @Test
+    void 문자열배열을_Integer리스트로_변환() {
+
+        //given
+        String[] strings = {"1", "3", "15", "11", "33", "42"};
+
+        //when
+        List<Integer> result = draw.toIntList(strings);
+
+        //then
+        assertThat(result).isInstanceOf(List.class);
+        assertThat(result).contains(1, 3, 15, 11, 33, 42);
     }
 }

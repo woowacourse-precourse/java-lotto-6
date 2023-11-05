@@ -24,6 +24,6 @@
       
 ### 출력
 - [x] 발행한 로또 수량을 출력한다. - OutputView#showLottoAmount()
-- [ ] 발행한 로또 번호를 출력한다. - OutputView#showLottoNumbers()
+- [x] 발행한 로또 번호를 출력한다. - OutputView#showLottoNumbers()
 - [ ] 당첨 내역을 출력한다. - OutputView#showLottoResult()
 - [ ] 수익률을 출력한다. - OutputView#showProfitRate()

@@ -33,4 +33,10 @@ class LottoTest {
         OutputView.printPurchaseQuantityMessage(8);
         OutputView.printLottoNumbers(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
     }
+
+    @Test
+    @DisplayName("당첨내역을 출력한다.")
+    void printWinningStatistics() {
+        OutputView.printWinningStatistics(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 0, 0)));
+    }
 }

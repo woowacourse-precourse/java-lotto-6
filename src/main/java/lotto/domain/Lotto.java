@@ -17,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || !areUnique(numbers) || !areInRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
         }
     }
 

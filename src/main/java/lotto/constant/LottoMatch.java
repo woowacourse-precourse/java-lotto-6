@@ -18,4 +18,12 @@ public enum LottoMatch {
         this.matchCount = matchCount;
         this.description = description;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

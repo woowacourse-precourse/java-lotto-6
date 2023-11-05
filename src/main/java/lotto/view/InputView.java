@@ -7,4 +7,7 @@ public class InputView {
         return Console.readLine().trim();
     }
 
+    public static String inputWinnerNumbers(){
+        return Console.readLine().trim();
+    }
 }

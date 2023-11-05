@@ -8,13 +8,7 @@ public class LottoResult {
     private final HashMap<WinningCriteria, Integer> result;
 
     public LottoResult() {
-        this.result = new HashMap<>(){{
-            put(WinningCriteria.FIRST, 0);
-            put(WinningCriteria.SECOND, 0);
-            put(WinningCriteria.THIRD, 0);
-            put(WinningCriteria.FOURTH, 0);
-            put(WinningCriteria.FIFTH, 0);
-        }};
+        this.result = new HashMap<>();
     }
 
     public HashMap<WinningCriteria, Integer> getResult() {
@@ -51,11 +45,7 @@ public class LottoResult {
     }
 
     public double calculateRateOfReturn(int amount) {
-        double totalPrize = calculateTotalPrize();
-        return convertTwoDecimalPlaces((totalPrize / amount) * 100);
-    }
-
-    private double convertTwoDecimalPlaces(double rate) {
-        return Double.parseDouble(String.format("%.1f", rate));
+        int totalPrize = calculateTotalPrize();
+        return (totalPrize / amount) * 100;
     }
 }

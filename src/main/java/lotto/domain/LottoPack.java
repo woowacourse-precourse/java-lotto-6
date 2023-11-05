@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import util.NumberGenerator.INumberGenerator;
+import util.NumberGenerator.NumberGenerator;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -13,6 +14,10 @@ public class LottoPack {
         lottoPack = IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(numberGenerator.generateNumbers()))
                 .toList();
+    }
+
+    public static LottoPack createLottoPack(int count) {
+        return new LottoPack(count, new NumberGenerator());
     }
 
     public int size() {

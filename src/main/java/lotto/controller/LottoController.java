@@ -4,7 +4,6 @@ import lotto.domain.LottoPack;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
-import util.NumberGenerator.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -27,21 +26,17 @@ public class LottoController {
         outputView.newline();
 
         WinningNumbers winningNumbers = loop(this::getWinningNumbers);
+        outputView.newline();
         WinningNumber bonusNumber = loop(this::getBonusNumber);
 
     }
 
     private LottoPack buyLottoPack() {
-
         Money money = loop(this::getMoney);
-
         outputView.newline();
-
-        LottoPack lottoPack = getLottoPack(money);
+        LottoPack lottoPack = LottoPack.createLottoPack(money.count());
         outputView.printLottoPack(lottoPack);
-
         return lottoPack;
-
     }
 
     private <T> T loop(Supplier<T> function) {
@@ -57,10 +52,6 @@ public class LottoController {
     private Money getMoney() {
         outputView.printGetMoney();
         return new Money(inputView.getNumber());
-    }
-
-    private LottoPack getLottoPack(Money money) {
-        return new LottoPack(money.count(), new NumberGenerator());
     }
 
     private WinningNumbers getWinningNumbers() {

@@ -14,6 +14,17 @@ public class Lottos {
         purchaseAmount.buyLotto(purchaseAmount.calculateLottoCount());
     }
 
+    public WinningResult calculateWinningResult(WinningLotto winningLotto) {
+        WinningResult winningResult = new WinningResult();
+
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = lotto.calculateLottoRank(winningLotto);
+            winningResult.addLottoRank(lottoRank);
+        }
+
+        return winningResult;
+    }
+
     private void generateLottos(PurchaseAmount purchaseAmount) {
         int lottoCount = purchaseAmount.calculateLottoCount();
 

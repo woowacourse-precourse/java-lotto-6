@@ -14,7 +14,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(int numberOfLotto) {
+    public static Lottos buyLottos(int numberOfLotto) {
         List<Lotto> new_lottos = new ArrayList<>();
         IntStream.range(0, numberOfLotto).forEach(i -> new_lottos.add(createLotto()));
         return new Lottos(new_lottos);

@@ -12,7 +12,7 @@ public class LottoController {
 
     public LottoController() {
         PayDTO payDTO = InputView.readPayment();
-        this.lottos = Lottos.of(payDTO.getNumberOfLotto());
+        this.lottos = Lottos.buyLottos(payDTO.getNumberOfLotto());
         printPurchasedLottos(payDTO.getNumberOfLotto());
     }
 

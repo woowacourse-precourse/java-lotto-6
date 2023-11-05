@@ -1,26 +1,26 @@
 ## Precourse Week 3 : 🎫 로또
 ### 기능구현 목록
-- [ ] 구입금액을 입력 받는다.
-    - [ ] 구입금액을 입력 받기 전 안내 문구를 출력한다.
+- [x] 구입금액을 입력 받는다.
+    - [x] 구입금액을 입력 받기 전 안내 문구를 출력한다.
       ```
       구입금액을 입력해주세요.
       ```
-    - [ ] 사용자에게 로또 구입금액을 입력 받는다.
+    - [x] 사용자에게 로또 구입금액을 입력 받는다.
       ```
       8000
       ```
       ```
       14000
       ```
-        - [ ] `[Validation]` 아무 값도 입력하지 않은 경우, `IllegalStateException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 아무 값도 입력하지 않은 경우, `IllegalStateException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 아무 값도 입력하지 않았습니다.
           ```
-        - [ ] `[Validation]` 숫자를 입력하지 않은 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 숫자를 입력하지 않은 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 숫자를 입력해야 합니다.
           ```
-        - [ ] `[Validation]` 1000원 단위로 입력하지 않았을 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
+        - [x] `[Validation]` 1000원 단위로 입력하지 않았을 경우, `IllegalArgumentException`을 발생시킨 후 다시 입력 받는다.
           ```
           [ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.
           ```

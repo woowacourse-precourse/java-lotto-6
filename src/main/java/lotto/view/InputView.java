@@ -26,4 +26,13 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
+    public static List<Integer> numberList(String winningNumber) {
+        String[] result = winningNumber.split(",");
+        winningNumberList = new ArrayList<>();
+        for (int i = 0; i < result.length; i++) {
+            winningNumberList.add(conventToInt(result[i]));
+        }
+        return winningNumberList;
+    }
+
 }

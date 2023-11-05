@@ -37,4 +37,8 @@ public enum WinningGrade {
     public boolean equalValue(final WinningGrade winningGrade) {
         return this == winningGrade;
     }
+
+    public boolean isSecondWinner() {
+        return this == SECOND_GRADE;
+    }
 }

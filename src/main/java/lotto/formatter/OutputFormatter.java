@@ -1,12 +1,12 @@
 package lotto.formatter;
 
-import java.util.Arrays;
 import lotto.constant.ProgressMessage;
 import lotto.constant.WinningGrade;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
@@ -25,10 +25,17 @@ public class OutputFormatter {
                 .map(
                         winningGrade ->
                                 String.format(
-                                        ProgressMessage.WINNING_RESULT.toValue(),
+                                        defaultMessage(winningGrade),
                                         winningGrade.toMatchNum(),
                                         winningGrade.toPrize(),
                                         winningResult.numOfWinningGrade(winningGrade)))
                 .collect(Collectors.joining(NEW_LINE));
+    }
+
+    private String defaultMessage(final WinningGrade winningGrade) {
+        if (winningGrade.isSecondWinner()) {
+            return ProgressMessage.BONUS_RESULT.toValue();
+        }
+        return ProgressMessage.WINNING_RESULT.toValue();
     }
 }

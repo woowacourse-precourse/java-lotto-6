@@ -32,7 +32,6 @@ out/
 .vscode/
 
 # Package Files #
-*.DS_Store
 *.jar
 *.war
 *.nar
@@ -40,3 +39,11 @@ out/
 *.zip
 *.tar.gz
 *.rar
+
+# Compiled class file
+*.class
+*.log
+
+### MAC OS ###
+*.DS_Store
+~/*.DS_Store

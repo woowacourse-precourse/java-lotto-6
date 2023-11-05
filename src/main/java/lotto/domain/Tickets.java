@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
 import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
+import lotto.output.MessageType;
+import lotto.output.OutputMessage;
 
 public class Tickets {
     private final int wallet;
@@ -19,6 +21,9 @@ public class Tickets {
         validate(wallet);
         this.wallet = wallet;
         this.ticketCount = wallet / LottoConstant.PRICE_PER_TICKET;
+
+        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.wallet);
+        OutputMessage.printf(MessageType.INPUT_BUY_END, this.ticketCount);
     }
 
     public List<List<Integer>> getTickets() {
@@ -40,6 +45,10 @@ public class Tickets {
                 .mapToObj(i -> randomNumbers())
                 .map(this::ascendingNumber)
                 .collect(Collectors.toList());
+
+        for (List<Integer> ticket : tickets) {
+            OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, ticket);
+        }
     }
 
     private List<Integer> randomNumbers() {

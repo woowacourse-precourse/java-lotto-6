@@ -32,7 +32,7 @@ public class ConvertToList {
 
     private boolean isWhiteSpace(String[] values) {
         return Arrays.stream(values)
-                .anyMatch(value -> value.contains(""));
+                .anyMatch(value -> value.equals(""));
     }
 
     public List<Integer> getValue() {

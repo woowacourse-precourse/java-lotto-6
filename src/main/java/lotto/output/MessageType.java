@@ -8,6 +8,7 @@ public enum MessageType {
     INPUT_START_BONUS("\n보너스 번호를 입력해 주세요.\n"),
 
     INPUT_BUYER_FORMAT("%s\n"),
+    INPUT_ERROR("%s"),
 
     OUTPUT_MATCH_STATICS("\n담청 통계\n---\n"),
     MATCH_THREE_COUNT("3개 일치 (5,000원) - %d개\n"),

@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
+import lotto.output.MessageType;
+import lotto.output.OutputMessage;
 
 public class Bonus {
     private final int number;
@@ -10,6 +12,8 @@ public class Bonus {
     public Bonus(int number) {
         validate(number);
         this.number = number;
+
+        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.number);
     }
 
     private void validate(int number) {

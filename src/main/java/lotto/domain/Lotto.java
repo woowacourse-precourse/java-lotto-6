@@ -4,6 +4,8 @@ import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
+import lotto.output.MessageType;
+import lotto.output.OutputMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +13,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+
+        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.numbers);
     }
 
     private void validate(List<Integer> numbers) {

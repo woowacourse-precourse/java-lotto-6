@@ -4,6 +4,8 @@ import lotto.controller.LottoController;
 import lotto.domain.rule.PrizeAmount;
 import lotto.input.LottoBuyer;
 import lotto.input.LottoDrawer;
+import lotto.output.MessageType;
+import lotto.output.OutputMessage;
 
 public class ApplicationContext {
     private static LottoController lottoController;
@@ -30,12 +32,18 @@ public class ApplicationContext {
     }
 
     private static void inputProcess() {
+        OutputMessage.print(MessageType.INPUT_BUY_START);
         lottoBuyer.gernerateTicket();
+
+        OutputMessage.print(MessageType.INPUT_START_WIN_NUMBER);
         lottoDrawer.inputLotto();
+
+        OutputMessage.print(MessageType.INPUT_START_BONUS);
         lottoDrawer.inputBonus();
     }
 
     private static void outputProcess() {
+        OutputMessage.print(MessageType.OUTPUT_MATCH_STATICS);
         lottoBuyer.printWinRecord();
         lottoBuyer.printReturns();
     }

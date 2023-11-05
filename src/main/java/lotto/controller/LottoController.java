@@ -26,7 +26,6 @@ public class LottoController {
         this.bonus = new Bonus(number);
     }
 
-
     public void compareWinning() {
         List<List<Integer>> tickets = this.tickets.getTickets();
         List<Integer> lotto = this.lotto.getNumbers();

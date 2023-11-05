@@ -1,9 +1,9 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mockStatic;
 
 import camp.nextstep.edu.missionutils.Console;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +36,7 @@ class InputTest {
         String result = amountInput.readLine();
 
         // then
-        Assertions.assertThat(result).isEqualTo(amount);
+        assertThat(result).isEqualTo(amount);
     }
 
     @Test
@@ -51,7 +51,7 @@ class InputTest {
         String result = lottoAnswerInput.readLine();
 
         // then
-        Assertions.assertThat(result).isEqualTo(amount);
+        assertThat(result).isEqualTo(amount);
     }
 
     @Test
@@ -66,6 +66,23 @@ class InputTest {
         String result = numberInput.readLine();
 
         // then
-        Assertions.assertThat(result).isEqualTo(amount);
+        assertThat(result).isEqualTo(amount);
+    }
+
+    @Test
+    @DisplayName("올바른 입력이 들어올 때 까지 입력")
+    void readUntilValidInput() {
+        // given
+        String amount1 = "-1";
+        String amount2 = "99";
+        String amount3 = "33";
+        Input numberInput = new BonusNumberInput();
+
+        // when
+        console.when(Console::readLine).thenReturn(amount1).thenReturn(amount2).thenReturn(amount3);
+        String result = numberInput.readLine();
+
+        // then
+        assertThat(result).isEqualTo(amount3);
     }
 }

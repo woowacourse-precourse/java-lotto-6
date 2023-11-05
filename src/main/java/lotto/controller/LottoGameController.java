@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.LottoNumberGenerator.NormalLottoGenerator;
 import lotto.model.Game.Game;
+import lotto.model.Lotto.Lotto;
+import lotto.model.money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,6 +20,8 @@ public class LottoGameController {
         Money money = inputUserMoneyAmount();
         Game game = new Game(money.amountOfLotto());
         printLottoAmount(game);
+        generateLottoNumber(game);
+        printLottoNumber(game);
     }
 
     private Money inputUserMoneyAmount() {
@@ -26,5 +30,15 @@ public class LottoGameController {
 
     private void printLottoAmount(Game game) {
         outputView.printLottoAmount(game.getAmountOfLotto());
+    }
+
+    private void generateLottoNumber(Game game) {
+        game.generateLottoNumber(new NormalLottoGenerator());
+    }
+
+    private void printLottoNumber(Game game) {
+        for (Lotto lotto : game.getLottoNumbers()) {
+            outputView.printLottoNumbers(lotto.getNumbers());
+        }
     }
 }

@@ -10,6 +10,10 @@ public class OutputView {
         System.out.println(amountOfLotto + LOTTO_AMOUNT_MESSAGE);
     }
 
+    public void printLottoNumbers(List<Integer> numbers) {
+        System.out.println(numbers);
+    }
+
     private void printEmptyLine() {
         System.out.println();
     }

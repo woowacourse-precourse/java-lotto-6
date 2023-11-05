@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Price {
     FIRST(6, "6개 일치 ", 2000000000),
     SECOND(5, "5개 일치, 보너스 볼 일치 ", 30000000),
@@ -17,6 +19,13 @@ public enum Price {
         this.score = score;
     }
 
+    public static Price findByScore(int score) {
+        return Arrays.stream(Price.values())
+                .filter( type -> type.getScore() == score)
+                .findFirst()
+                .orElse(null);
+    }
+
     public String getGuideline() {
         return this.guideline;
     }
@@ -27,14 +36,5 @@ public enum Price {
 
     public int getScore() {
         return score;
-    }
-
-    public static Price findByScore(int score) {
-        for (Price type : Price.values()) {
-            if (type.getScore() == score) {
-                return type;
-            }
-        }
-        throw new IllegalArgumentException();
     }
 }

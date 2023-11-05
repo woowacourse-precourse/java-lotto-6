@@ -54,6 +54,7 @@ public class Money {
         long profit = winningStats.stream()
                 .map(WinningStat::getProfit)
                 .reduce(0L, Long::sum);
-        return (double) profit / value;
+        return (((double) profit / value) * SystemConstant.MULT_FACTOR.getValue())
+                / SystemConstant.DIV_FACTOR.getValue();
     }
 }

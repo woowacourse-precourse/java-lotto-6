@@ -14,7 +14,7 @@ public class LottoSeller {
     }
 
     public List<Lotto> sellLottos(Cash cash) {
-        Integer lottoCounts = cash.getAmount() / 1000;
+        Integer lottoCounts = cash.calculateNumberOfLottos();
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCounts; i++) {

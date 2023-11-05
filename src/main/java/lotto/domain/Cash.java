@@ -20,7 +20,7 @@ public class Cash {
         return amount % LOTTO_PRICE != 0;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer calculateNumberOfLottos() {
+        return amount / LOTTO_PRICE;
     }
 }

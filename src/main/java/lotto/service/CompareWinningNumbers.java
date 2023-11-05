@@ -3,10 +3,10 @@ package lotto.service;
 import lotto.Lotto;
 import lotto.readUserInput.WinningNumbers;
 
-public class compareWinningNumbers {
+public class CompareWinningNumbers {
     private Lotto lotto;
 
-    public compareWinningNumbers(Lotto lotto) {
+    public CompareWinningNumbers(Lotto lotto) {
         this.lotto = lotto;
     }
 

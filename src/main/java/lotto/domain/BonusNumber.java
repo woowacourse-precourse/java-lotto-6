@@ -14,11 +14,11 @@ public class BonusNumber {
     }
 
     private BonusNumber(Integer number) {
-        validateNumber(number);
+        validateRange(number);
         this.number = number;
     }
 
-    private void validateNumber(Integer number) {
+    private void validateRange(Integer number) {
         if (isNotInRange(number)) {
             throw new IllegalArgumentException(ExceptionMessage.CHECK_RANGE_BONUS_NUM.getMessage());
         }

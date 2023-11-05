@@ -39,7 +39,7 @@ public class LottoController {
 
         OutputValue.lottoCountMessage(lottoCount);
 
-        for(Lotto lotto : lottoService.getPurchaseLotto()){
+        for (Lotto lotto : lottoService.getPurchaseLotto()) {
             OutputValue.purchaseLottoMessage(lotto.getLotto());
         }
 
@@ -48,11 +48,19 @@ public class LottoController {
 
     private void lottoProcess() {
 
+        setWinLottoNumber();
+
+        setBonusNumber();
+    }
+
+    private void setWinLottoNumber() {
         OutputValue.winLottoNumberMessage();
-
         lottoService.setWinLotto(InputValue.getWinLottoNumbers());
+    }
 
+    private void setBonusNumber() {
         OutputValue.bonusNumberMessage();
+        lottoService.setBonusNumber(InputValue.getBonusNumber());
     }
 
     private void lottoEnd() {

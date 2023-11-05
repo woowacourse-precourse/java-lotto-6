@@ -15,6 +15,7 @@ public class LottoService {
 
     private List<Lotto> purchaseLotto = new ArrayList<>();
     private Lotto winLotto;
+    private Integer bonusNumber;
 
     public void repeatPurchase(int lottoCount) {
         for (int count = 0; count < lottoCount; count++) {
@@ -34,8 +35,17 @@ public class LottoService {
     }
 
     public void setWinLotto(List<Integer> winLottoNumbers) {
-
         winLotto = new Lotto(winLottoNumbers);
+    }
 
+    public void setBonusNumber(int bonusNumber) {
+
+        bonusNumberDuplicateCheck(bonusNumber);
+
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void bonusNumberDuplicateCheck(int bonusNumber) {
+        if(winLotto.getLotto().contains(bonusNumber)) throw new IllegalArgumentException();
     }
 }

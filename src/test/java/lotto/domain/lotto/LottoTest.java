@@ -31,9 +31,9 @@ class LottoTest {
     @Test
     void showInformation() {
         // when
-        StringBuilder result = lotto.showInformation();
+        StringBuilder result = lotto.giveInformation();
 
         // than
-        assertThat(result).contains("[6, 5, 4, 3, 2, 1]");
+        assertThat(result).contains("[1, 2, 3, 4, 5, 6]");
     }
 }

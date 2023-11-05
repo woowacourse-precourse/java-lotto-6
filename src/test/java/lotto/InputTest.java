@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputTest {
-    @DisplayName("구매 금액 입력 시 숫자가 아닌 값이 들어오면 예외가 발생한다.")
+    @DisplayName("숫자 입력 시 숫자가 아닌 값이 들어오면 예외가 발생한다.")
     @Test
     void stringValueToIntegerValue() {
         String input = "abcde";
@@ -22,4 +22,5 @@ class InputTest {
         int rest = Integer.parseInt(input) % 1000;
         assertThat(rest).isNotEqualTo(0);
     }
+
 }

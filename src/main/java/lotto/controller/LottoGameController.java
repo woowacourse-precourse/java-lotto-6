@@ -34,6 +34,7 @@ public class LottoGameController {
         lottoGameService.printLottoNumbersByCount(lottos);
 
         WinningLotto winningLotto = lottoGameService.generateWinningLotto();
+        lottoGameService.printWinningResult(winningLotto);
     }
 
     private LottoSeller generateSeller() {

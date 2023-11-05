@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.dto.LottoNumbersDTO;
+import lotto.dto.WinningLottoResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
@@ -45,6 +46,10 @@ public class LottoGameService {
     public WinningLotto generateWinningLotto() {
         Lotto winningLottoNumbers = getWinningLottoNumbers();
         return getWinningLottoByBonusNumber(winningLottoNumbers);
+    }
+
+    public void printWinningResult(final WinningLotto winningLotto) {
+        outputView.printWinningStatistics();
     }
 
     private Lotto getWinningLottoNumbers() {

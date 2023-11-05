@@ -31,4 +31,21 @@ public class Lotto {
         return organizeLotto;
     }
 
+    public StringBuilder showInformation() {
+        int sizeNumbers = numbers.size();
+        StringBuilder informationOfNumbers = new StringBuilder();
+        int num = 0;
+
+        informationOfNumbers.append("[");
+        for (int i = 0; i < sizeNumbers; i++) {
+            num = numbers.get(i);
+            informationOfNumbers.append(num);
+            if (i != sizeNumbers - 1) {
+                informationOfNumbers.append(", ");
+            }
+        }
+        informationOfNumbers.append("]");
+
+        return informationOfNumbers;
+    }
 }

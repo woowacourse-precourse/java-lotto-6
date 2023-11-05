@@ -11,19 +11,38 @@ public class UserController {
 
     public int inputPriceHowManyLottos() {
         boolean isValidInput = false;
-        int purchasePrice = 0;
+        String purchasePrice = "";
         while (!isValidInput) {
             try {
                 inputView.showInputPriceToUser();
-                purchasePrice = Integer.parseInt(Console.readLine());
-                if (!lottoValidation.validateInputPrice(purchasePrice)){
-                    throw new IllegalArgumentException("[ERROR] "+ OutputMessage.OUTPUT_ERROR_PRICE.getMessage());
+                purchasePrice = Console.readLine();
+                if (isInteger(purchasePrice)) {
+                    validationInputPrice(purchasePrice);
                 }
                 isValidInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return purchasePrice;
+        return Integer.parseInt(purchasePrice);
+    }
+
+    private void validationInputPrice(String purchasePrice) {
+        int price = Integer.parseInt(purchasePrice);
+
+        if (!lottoValidation.validateInputPrice(price)) {
+            throw new IllegalArgumentException("[ERROR] " + OutputMessage.OUTPUT_ERROR_PRICE_THOUSAND.getMessage());
+        } else if (!lottoValidation.isBiggerThanZero(price)) {
+            throw new IllegalArgumentException("[ERROR] " + OutputMessage.OUTPUT_ERROR_PRICE_ZERO.getMessage());
+        }
+    }
+
+    private boolean isInteger(String inputPrice) {
+        try {
+            Integer.parseInt(inputPrice);
+            return true;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR]" + OutputMessage.OUTPUT_ERROR_PRICE_NUMBER.getMessage());
+        }
     }
 }

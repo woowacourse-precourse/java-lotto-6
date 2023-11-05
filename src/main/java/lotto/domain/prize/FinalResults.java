@@ -1,20 +1,20 @@
 package lotto.domain.prize;
 
-import lotto.domain.prize.constants.PrizeRank;
+import lotto.domain.prize.constants.PrizeGrade;
 
 import java.util.EnumMap;
 import java.util.List;
 
 public class FinalResults {
-    private EnumMap<PrizeRank, Long> finalResults;
+    private EnumMap<PrizeGrade, Long> finalResults;
 
-    public FinalResults(List<MatchingResults> matchingResults) {
-        EnumMap<PrizeRank, Long> results = new EnumMap<>(PrizeRank.class);
+    public FinalResults(List<PrizeGrade> prizeRanks) {
+        EnumMap<PrizeGrade, Long> results = new EnumMap<>(PrizeGrade.class);
 
         this.finalResults = results;
     }
 
-    public FinalResults from(List<MatchingResults> matchingResults) {
-        return new FinalResults(matchingResults);
+    public static FinalResults from(List<PrizeGrade> prizeRanks) {
+        return new FinalResults(prizeRanks);
     }
 }

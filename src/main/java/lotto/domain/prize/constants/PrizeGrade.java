@@ -9,7 +9,7 @@ import java.util.function.UnaryOperator;
 
 import static lotto.domain.prize.constants.PrizeMatchingCount.*;
 
-public enum PrizeRank {
+public enum PrizeGrade {
     HIT_SIX(SIX, (always) -> true, 200_000_000),
     HIT_FIVE_AND_BONUS(FIVE, (positive) -> positive, 30_000_000),
     HIT_FIVE(FIVE, (negative) -> !negative, 1_500_000),
@@ -23,7 +23,7 @@ public enum PrizeRank {
     private final UnaryOperator<Boolean> matchingBonus;
     private final int prizeAmount;
 
-    PrizeRank(
+    PrizeGrade(
             PrizeMatchingCount prizeMatchingCount,
             UnaryOperator<Boolean> matchingBonus,
             int prizeAmount
@@ -33,8 +33,10 @@ public enum PrizeRank {
         this.prizeAmount = prizeAmount;
     }
 
-    public static PrizeRank findPrizeRank(final MatchingResult matchingResult) {
-        return Arrays.stream(PrizeRank.values())
+
+    //todo UnaryOperator 검증 메소드 추가
+    public static PrizeGrade findPrizeRank(final MatchingResult matchingResult) {
+        return Arrays.stream(PrizeGrade.values())
                 .filter(rank -> matchingResult.isSamePrizeMatchingCount(rank.prizeMatchingCount))
                 .findFirst()
                 .orElseThrow(() -> LottoException.from(ErrorMessage.SYSTEM_CRASHED));

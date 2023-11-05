@@ -1,8 +1,8 @@
 package lotto.domain.lottery;
 
 import lotto.domain.prize.MatchingResult;
-import lotto.domain.prize.MatchingResults;
 import lotto.domain.prize.Prize;
+import lotto.domain.prize.PrizeRank;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,11 +19,11 @@ public class Lottos {
         return new Lottos(buyer);
     }
 
-    public MatchingResults generatePrizeResult(Prize prize) {
+    public PrizeRank generatePrizeResult(Prize prize) {
         List<MatchingResult> results = lottoTickets.stream()
                 .map(lotto -> MatchingResult.of(lotto, prize))
                 .toList();
-        return MatchingResults.from(results);
+        return PrizeRank.from(results);
     }
 
     private List<Lotto> generateLottos(final int ticketCount) {

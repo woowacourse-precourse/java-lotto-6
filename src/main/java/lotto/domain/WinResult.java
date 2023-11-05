@@ -31,7 +31,7 @@ public class WinResult {
     }
 
     public boolean isOverTwo(int rankValue) {
-        return rankValue >= 2;
+        return rankValue > 2;
     }
 
     public boolean isFiveSame(int rankValue) {

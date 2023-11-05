@@ -8,7 +8,7 @@ public enum ErrorMessage {
     INVALID_NUMBER_FORMAT("[ERROR] 숫자를 입력해야 합니다."),
     INVALID_UNIT_FORMAT("[ERROR] 구입금액은 1,000원 단위여야 합니다"),
     CONTAIN_SPACE("[ERROR] 공백이 포함되어 있습니다."),
-    INVALID_COUNT(String.format("[ERROR] 로또번호는 %d개여야 합니다.", SIZE.getNumber())),
+    INVALID_COUNT(String.format("[ERROR] 로또번호는 %d개여야 합니다.", LOTTO_NUMBER_SIZE.getNumber())),
     INVALID_RANGE(String.format("[ERROR] 로또 번호는 %d ~ %d 사이여야합니다",MIN_VALUE.getNumber(), MAX_VALUE.getNumber())),
     DUPLICATE_NUM("[ERROR] 중복된 번호가 있습니다.");
 

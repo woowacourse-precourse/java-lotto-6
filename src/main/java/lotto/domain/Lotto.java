@@ -39,5 +39,16 @@ public class Lotto {
         }
     }
 
+    public int matching(Lotto buyLotto) {
+        int cnt=0;
+        List<Integer> buyNumbers = buyLotto.getNumbers();
+        for (Integer nuyNumber : buyNumbers) {
+            if (numbers.contains(nuyNumber)) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
     // TODO: 추가 기능 구현
 }

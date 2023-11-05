@@ -1,8 +1,5 @@
 package lotto.service;
 
-import static lotto.settings.LottoSettings.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -20,39 +17,22 @@ public class ResultService {
 //    총 수익률은 62.5%입니다.
     public static void play(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo){
         View.winningStatistics();
-        Lotto winningLotto = winningLottoRepo.getLotto();
         BonusNumber bonusNumber = winningLottoRepo.getBonusNumber();
 
         // 몇개맞았는지 저장
-        List<List<Integer>> result = new ArrayList<>();
+        LotteryTracker lotteryTracker = new LotteryTracker();
+        lotteryTracker.create();
+        int cnt =0;
+        List<List<Integer>> result = lotteryTracker.getResult();
 
-        createResult(buyLottoRepo, result, winningLotto, bonusNumber);
-        printResult(result);
-    }
-
-    private static void createResult(BuyLottoRepository buyLottoRepo, List<List<Integer>> result, Lotto winningLotto,
-                                  BonusNumber bonusNumber) {
-        int size = SIZE.getNumber(); // 복권숫자 크기:6
-
-        for(int i = 0; i<= size; i++){
-            result.add(new ArrayList<>());
-        }
-
-        for (Lotto lotto : buyLottoRepo.getLottos()) {
-            int cnt=0;
-            List<Integer> numbers = lotto.getNumbers();
-            List<Integer> winningNum = winningLotto.getNumbers();
-
-            for (Integer number : numbers) {
-                if(winningNum.contains(number)) cnt++;
-            }
-            //맞은 개수만큼 등수 지정
+        for (Lotto buyLotto : buyLottoRepo.getLottos()) {
+            cnt = winningLottoRepo.countMatchingNumber(buyLotto);
             if(cnt==3){
                 result.get(5).add(cnt);}
             else if(cnt==4){
                 result.get(4).add(cnt);}
             else if(cnt==5){
-                if(numbers.contains(bonusNumber.getNumber())){
+                if(buyLotto.getNumbers().contains(bonusNumber.getNumber())){
                     result.get(2).add(cnt);
                 }
                 result.get(3).add(cnt);
@@ -60,15 +40,16 @@ public class ResultService {
             else if(cnt==6){
                 result.get(1).add(cnt);}
         }
+        printResult(lotteryTracker);
     }
 
-    private static void printResult(List<List<Integer>> result) {
+    private static void printResult(LotteryTracker lotteryTracker) {
 
         RankingRepository.create();
 
         //등수별 결과 출력
-        for(int i=5; i>0;i--){
-            View.result(RankingRepository.getRank(i), result.get(i).size());
+        for(int rank=5; rank>0;rank--){
+            View.result(RankingRepository.getResultBy(rank), lotteryTracker.countLottoIn(rank));
         }
     }
 }

@@ -16,11 +16,11 @@ public class WinningLottoRepository {
         return new WinningLottoRepository(lotto,bonusNumber);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
     public BonusNumber getBonusNumber() {
         return bonusNumber;
+    }
+
+    public int countMatchingNumber(Lotto buyLotto) {
+        return lotto.matching(buyLotto);
     }
 }

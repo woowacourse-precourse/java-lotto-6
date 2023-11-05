@@ -3,7 +3,7 @@ package lotto.service;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.settings.LottoSettings.MAX_VALUE;
 import static lotto.settings.LottoSettings.MIN_VALUE;
-import static lotto.settings.LottoSettings.SIZE;
+import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
@@ -33,7 +33,7 @@ public class LottoService {
         return pickUniqueNumbersInRange(
                 MIN_VALUE.getNumber(),
                 MAX_VALUE.getNumber(),
-                SIZE.getNumber());
+                LOTTO_NUMBER_SIZE.getNumber());
     }
 
     public WinningLottoRepository createWinningNumber(){

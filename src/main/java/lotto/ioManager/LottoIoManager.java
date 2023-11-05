@@ -3,8 +3,11 @@ package lotto.ioManager;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import lotto.Lotto;
 import lotto.Lottos;
+import lotto.Rank;
 
 public class LottoIoManager implements IoManager{
 
@@ -14,6 +17,7 @@ public class LottoIoManager implements IoManager{
     }
 
     public void displayLottosCnt(int cnt) {
+        System.out.println();
         System.out.println(cnt+"개를 구매했습니다.");
     }
 
@@ -24,6 +28,7 @@ public class LottoIoManager implements IoManager{
     }
 
     public List<Integer> inputLotto() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = read().split(",");
         List<Integer> lottoNumbers = new ArrayList<>();
@@ -34,17 +39,25 @@ public class LottoIoManager implements IoManager{
     }
 
     public int inputBonus() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return stringToInt(read());
     }
 
-    public void displayWinningResult() {
-        System.out.println("결과");
+    public void displayWinningResult(Map<Rank, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Entry<Rank, Integer> entry : result.entrySet()) {
+            if (entry.getKey().equals(Rank.NOPE)) {
+                continue;
+            }
+            System.out.println(Rank.getMsg(entry.getKey()) + " - " + entry.getValue()+"개");
+        }
     }
 
     private int stringToInt(String input) {
         try {
-            return stringToInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.");
         }

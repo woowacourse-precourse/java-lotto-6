@@ -11,8 +11,12 @@ public class WinningNumbers {
     }
 
     private void validate(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        if (winningNumber.getNumbers().contains(bonusNumber.getNumber())) {
+        if (hasDuplicateNumber(winningNumber, bonusNumber)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean hasDuplicateNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return winningNumber.getNumbers().contains(bonusNumber.getNumber());
     }
 }

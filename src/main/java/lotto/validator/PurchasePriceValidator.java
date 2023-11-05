@@ -3,12 +3,14 @@ package lotto.validator;
 public class PurchasePriceValidator {
     private final int THOUSAND = 1000;
 
-    private boolean isOverMinPrice() {
-        return true;
+    private boolean isUnderMinPrice(int price) {
+        return price < THOUSAND;
     }
 
-    private void checkOverMinPrice() {
-
+    public void checkOverMinPrice(int price) {
+        if (isUnderMinPrice(price)) {
+            throw new IllegalArgumentException("[ERROR] 최소 구매 금액은 1000원입니다.");
+        }
     }
 
     private boolean isRemainderNotZero(int price) {

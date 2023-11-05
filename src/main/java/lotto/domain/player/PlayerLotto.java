@@ -114,4 +114,10 @@ class PlayerLotto {
     private long calculatePrizeReward(EnumMap<LottoPrize, Integer> statistics, LottoPrize prize) {
         return (long) prize.getReward() * statistics.get(prize);
     }
+
+    public List<List<Integer>> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }

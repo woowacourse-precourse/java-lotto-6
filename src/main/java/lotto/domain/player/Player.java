@@ -7,9 +7,10 @@ import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoPrize;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Objects;
 
-class Player {
+public class Player {
 
     private static final String UNKNOWN_LOTTO_MACHINE_MESSAGE = "알 수 없는 로또 기계로 플레이어를 생성할 수 없습니다.";
 
@@ -39,5 +40,9 @@ class Player {
 
     public EnumMap<LottoPrize, Integer> showStatistics(Lotto answer, LottoNumber bonus) {
         return lotto.generateStatistics(answer, bonus);
+    }
+
+    public List<List<Integer>> showLotto() {
+        return lotto.getLottos();
     }
 }

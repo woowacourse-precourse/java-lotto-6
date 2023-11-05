@@ -51,6 +51,10 @@ public class LottoNumber {
         return number > MAX_NUMBER_RANGE;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

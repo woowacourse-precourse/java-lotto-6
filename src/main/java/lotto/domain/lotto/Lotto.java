@@ -85,4 +85,10 @@ public class Lotto {
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
+    }
 }

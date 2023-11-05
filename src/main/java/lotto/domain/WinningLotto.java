@@ -4,12 +4,12 @@ public class WinningLotto {
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
 
-    private final Lotto winningLotto;
+    private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
-        validate(winningLotto, bonusNumber);
-        this.winningLotto = winningLotto;
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        validate(lotto, bonusNumber);
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -31,7 +31,7 @@ public class WinningLotto {
     }
 
     public boolean contains(Integer number) {
-        return winningLotto.contains(number);
+        return lotto.contains(number);
     }
 
     public int getBonusNumber() {

@@ -3,6 +3,7 @@ package lotto.utility;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.GameNumberConstants;
 import lotto.constants.Rank;
+import lotto.constants.WinningPrize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.ResultNumber;
@@ -17,9 +18,9 @@ public class GameUtility {
 
     private GameUtility() {}
 
-    public static User buyTickets(int payment) {
+    public static List<Lotto> buyTickets(int payment) {
         int ticketAmount = payment / GameNumberConstants.LOTTO_PRICE.getValue();
-        return new User(payment, generateLottoNumberRepeatNTimes(ticketAmount));
+        return generateLottoNumberRepeatNTimes(ticketAmount);
     }
 
     public static List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
@@ -48,7 +49,7 @@ public class GameUtility {
     }
 
     private static int findNumberOfCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        int[] array = new int[GameNumberConstants.MAX_LOTTO_NUMBER.getValue()]; //List에 존재하면 값에 해당하는 인덱스 +1된다.
+        int[] array = new int[GameNumberConstants.MAX_LOTTO_NUMBER.getValue() + 1]; //List에 존재하면 값에 해당하는 인덱스 +1된다.
         firstList.stream().forEach(number -> array[number]++);
         secondList.stream().forEach(number -> array[number]++);
         return (int) Arrays.stream(array).filter(number -> number == 2).count();
@@ -77,5 +78,21 @@ public class GameUtility {
             lottoResult.addFifth_place();
         }
     }
+
+    public static double calculateRateOfReturn(int winningPrize, int payment) {
+        return (double) winningPrize / (double) payment;
+    }
+
+    public static int calculateWinningPrize(User user) {
+        int winningPrize = 0;
+        LottoResult lottoResult = user.getLottoResult();
+        winningPrize += lottoResult.getFirst_place() * WinningPrize.FIRST_PLACE_RETURN.getValue();
+        winningPrize += lottoResult.getSecond_place() *WinningPrize.SECOND_PLACE_RETURN.getValue();
+        winningPrize += lottoResult.getThird_place() * WinningPrize.THIRD_PLACE_RETURN.getValue();
+        winningPrize += lottoResult.getForth_place() * WinningPrize.FORTH_PLACE_RETURN.getValue();
+        winningPrize += lottoResult.getFifth_place() * WinningPrize.FIFTH_PLACE_RETURN.getValue();
+        return winningPrize;
+    }
+
 
 }

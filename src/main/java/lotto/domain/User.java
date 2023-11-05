@@ -5,11 +5,12 @@ import java.util.List;
 public class User {
 
     private List<Lotto> lottoTickets;
-    private int payment;
+    private Payment payment;
+    private int winningPrize = 0;
 
     private LottoResult lottoResult = null;
 
-    public User(int payment, List<Lotto> lottoTickets) {
+    public User(Payment payment, List<Lotto> lottoTickets) {
         this.payment = payment;
         this.lottoTickets = lottoTickets;
     }
@@ -19,7 +20,7 @@ public class User {
     }
 
     public int getPayment() {
-        return payment;
+        return payment.getPayment();
     }
 
     public void setLottoResult(LottoResult lottoResult) {
@@ -29,4 +30,13 @@ public class User {
     public LottoResult getLottoResult() {
         return lottoResult;
     }
+
+    public int getWinningPrize() {
+        return winningPrize;
+    }
+
+    public void setWinningPrize(int winningPrize) {
+        this.winningPrize = winningPrize;
+    }
+
 }

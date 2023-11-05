@@ -17,7 +17,7 @@ public class LottoGame {
 
     public static void run() {
         Payment payment = getPaymentAndValidate();
-        User user = GameUtility.buyTickets(payment.getPayment());
+        User user = new User(payment,GameUtility.buyTickets(payment.getPayment()));
         OutputView.printLottoTickets(new LottoTicketsDTO(
                         user.getLottoTickets().size(),
                         user.getLottoTickets())
@@ -27,6 +27,8 @@ public class LottoGame {
         BonusNumber bonusNumber = getBonusNumberAndValidate();
         ResultNumber.create(winningNumber, bonusNumber);
         GameUtility.checkLottoWinning(user);
+        user.setWinningPrize(GameUtility.calculateWinningPrize(user));
+        double rateOfReturn = GameUtility.calculateRateOfReturn(user.getWinningPrize(),user.getPayment());
     }
 
     private static Payment getPaymentAndValidate() {

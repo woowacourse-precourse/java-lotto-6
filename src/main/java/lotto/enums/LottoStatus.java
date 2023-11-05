@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum Prize {
+public enum LottoStatus {
     FIRST(6,2000000000L),
     SECOND(5,30000000L),
     THIRD(5,1500000L),
@@ -10,7 +10,7 @@ public enum Prize {
     private final int collectCount;
     private final Long prize;
 
-    Prize(int collectCount, long prize) {
+    LottoStatus(int collectCount, long prize) {
         this.collectCount = collectCount;
         this.prize = prize;
     }

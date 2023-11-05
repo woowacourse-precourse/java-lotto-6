@@ -34,7 +34,7 @@ public class Lotto extends NumberChecker {
         return !Objects.equals(numbers.size(), LOTTO_PICK_COUNT.getValue());
     }
 
-    public int countSameNumberCount(Lotto lotto) {
+    public int countMatchingNumberCount(Lotto lotto) {
         List<Integer> comparableNumber = lotto.getNumbers();
 
         return (int) numbers.stream()

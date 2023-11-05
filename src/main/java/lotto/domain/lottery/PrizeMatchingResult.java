@@ -2,25 +2,25 @@ package lotto.domain.lottery;
 
 import java.util.List;
 
-public class LottoResult {
+public class PrizeMatchingResult {
     private final List<Integer> matchingCounts;
 
-    private LottoResult(
+    private PrizeMatchingResult(
             Lottos lottos,
             Prize prize
     ) {
         Lotto prizeNumbers = prize.getPrizeNumbers();
-        this.matchingCounts = lottos.generatePrizeResult(prizeNumbers);
+        this.matchingCounts = lottos.calculateMatchingCount(prizeNumbers);
     }
 
-    public static LottoResult of(
+    public static PrizeMatchingResult of(
             final Lottos lottos,
             final Prize prize
     ) {
-        return new LottoResult(lottos, prize);
+        return new PrizeMatchingResult(lottos, prize);
     }
 
-    public List<Integer> getSameNumberCounts() {
+    public List<Integer> getMatchingNumberCounts() {
         return matchingCounts;
     }
 }

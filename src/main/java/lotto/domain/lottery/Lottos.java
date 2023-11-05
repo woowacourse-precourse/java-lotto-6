@@ -25,9 +25,9 @@ public class Lottos {
                 .toList();
     }
 
-    public List<Integer> generatePrizeResult(Lotto comparableNumbers) {
+    public List<Integer> calculateMatchingCount(Lotto comparableNumbers) {
         return lottoTickets.stream()
-                .map(lotto -> lotto.countSameNumberCount(comparableNumbers))
+                .map(lotto -> lotto.countMatchingNumberCount(comparableNumbers))
                 .toList();
     }
 

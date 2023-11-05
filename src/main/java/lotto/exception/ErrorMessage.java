@@ -6,12 +6,13 @@ import lotto.domain.parser.constants.InputConstraint;
 import static java.lang.String.format;
 
 public enum ErrorMessage {
-    /**
-     * Client Input Error
-     */
+
     EMPTY_REQUEST("정상적으로 입력해주세요"),
     REQUEST_NOT_INTEGER("정수형으로 입력되어야 합니다."),
     CONTAIN_WHITESPACE("공백 없이 입력되어야 합니다."),
+    NUMBER_DUPLICATED("중복된 숫자가 입력되었습니다."),
+    BONUS_NUMBER_DUPLICATED("당첨 번호에 입력한 숫자가 보너스 번호에 입력되었습니다."),
+    SYSTEM_CRASHED("시스템 내부에서 예기치 않은 문제가 발생했습니다."),
 
     NOT_ENOUGH_PAYMENT(
             format(
@@ -43,11 +44,8 @@ public enum ErrorMessage {
             format(
                     "%d개의 숫자를 입력해야 합니다",
                     LottoConstraint.LOTTO_PICK_COUNT.getValue())
-    ),
-    NUMBER_DUPLICATED("중복된 숫자가 입력되었습니다."),
-    BONUS_NUMBER_DUPLICATED("당첨 번호에 입력한 숫자가 보너스 번호에 입력되었습니다..");
-
-
+    );
+    
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
 

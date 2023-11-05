@@ -36,10 +36,6 @@ public final class Prize extends NumberChecker {
         }
     }
 
-    public Integer countMatchingNumberCount(Lotto comparableNumbers) {
-        return comparableNumbers.countSameNumberCount(prizeNumbers);
-    }
-
     public Lotto getPrizeNumbers() {
         return prizeNumbers;
     }

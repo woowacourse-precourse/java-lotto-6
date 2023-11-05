@@ -74,4 +74,11 @@ public class LottoService {
     }
 
 
+    public Integer compareBonusNumberWithWinningLotto(boolean isTrue) {
+        if (isTrue) {
+            return BonusCount.PLUS_ONE.getWeight();
+        }
+        return BonusCount.PLUS_ZERO.getWeight();
+    }
+
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,8 +11,9 @@ public class View {
     private static final String PRINT_PURCHASE_AMOUNT = "%d개를 구매했습니다.\n";
     private static final String PRINT_PURCHASE_NUMBER = "[%s]\n";
     private static final String PRINT_WINNING_STAT = "당첨 통계\n---\n";
-    private static final String PRINT_MATCHES = "%d개 일치 (%d원) - %d개";
-    private static final String PRINT_YIELD_RATE = "총 수익률은 %.1f입니다.";
+    private static final String PRINT_MATCHES = "%d개 일치 (%s원) - %d개\n";
+    private static final String PRINT_BONUS_MATCHES = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String PRINT_YIELD_RATE = "총 수익률은 %.1f입니다.\n";
     private static final String PRINT_SEPARATOR = ", ";
 
     public String getAskPurchaseAmount() {
@@ -44,8 +46,13 @@ public class View {
         return PRINT_WINNING_STAT;
     }
 
-    public String getPrintMatches(Rank rank, int matchCount) {
-        return String.format(PRINT_MATCHES, rank.getHits(), (int)rank.getPrize(), matchCount);
+    public String getPrintMatches(Rank rank) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        String matchResult = String.format(PRINT_MATCHES, rank.getHits(), df.format(rank.getPrize()), rank.getMatchCount());
+        if (rank == Rank.SECOND) {
+            matchResult = String.format(PRINT_BONUS_MATCHES, rank.getHits(), df.format(rank.getPrize()), rank.getMatchCount());
+        }
+        return matchResult;
     }
 
     public String getPrintYieldRate(double yieldRate) {

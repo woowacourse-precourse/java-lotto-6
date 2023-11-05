@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -15,7 +16,7 @@ public class LottoPlay implements Play{
         List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
         Lotto winningLotto = readWinningNumber();
         int bonusNumber = readBonusNumber(winningLotto);
-        List<Rank> ranks = getWinningStat(myLotto, winningLotto, bonusNumber);
+        Rank[] ranks = getWinningStat(myLotto, winningLotto, bonusNumber);
         printWinningStat(ranks);
         printYieldRate();
     }
@@ -87,25 +88,28 @@ public class LottoPlay implements Play{
         return bonusNumber;
     }
 
-    private List<Rank> getWinningStat(List<Lotto> myLottos, Lotto winningLotto, int bonusNumber) {
+    private Rank[] getWinningStat(List<Lotto> myLottos, Lotto winningLotto, int bonusNumber) {
         int hits;
         boolean isMatchBonusNumber = false;
-        List<Rank> ranks = new ArrayList<>();
-
+        Rank[] ranks = Rank.values();
         for (Lotto myLotto : myLottos) {
             hits = getRank(myLotto, winningLotto);
             if (hits == 5) {
                 isMatchBonusNumber = getMatchBonusNumber(winningLotto, bonusNumber);
             }
-            ranks.add(Rank.findRank(hits, isMatchBonusNumber));
+            ranks[Rank.findRank(hits, isMatchBonusNumber).ordinal()].increaseMatchCount();
         }
 
         return ranks;
     }
 
-    private void printWinningStat(List<Rank> ranks) {
+    private void printWinningStat(Rank[] ranks) {
         System.out.println();
         System.out.print(view.getPrintWinningStat());
+        for (Rank rank : ranks) {
+            if (rank.getHits() == -1) continue;
+            System.out.print(view.getPrintMatches(rank));
+        }
     }
 
     private void printYieldRate() {

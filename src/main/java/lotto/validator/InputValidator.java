@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static lotto.constant.ErrorConstant.ERROR_PREFIX;
+import static lotto.util.TypeConversionUtil.StringToInt;
 import static lotto.util.TypeConversionUtil.StringToIntegerList;
 
 public class InputValidator {
@@ -37,6 +38,16 @@ public class InputValidator {
         }
     }
 
+    public void validateBonusNumber(String inputBonusNumber) {
+        if (isNotDigit(inputBonusNumber)) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "숫자로 이루어져야 합니다.");
+        }
+        int bonusNumber = StringToInt(inputBonusNumber);
+        if (isNotCorrectRange(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "1~45 사이의 값을 입력해 주세요.");
+        }
+    }
+
     private boolean isDuplicateWinningNumber(List<Integer> winnerNumber) {
         long distinctCountWinnerNumber = winnerNumber.stream()
                 .distinct()
@@ -51,6 +62,10 @@ public class InputValidator {
                 .count();
 
         return winningNumberCount != 6;
+    }
+
+    private boolean isNotCorrectRange(int number) {
+        return !(number >= 1 && number <= 45);
     }
 
     private boolean isNotCorrectSize(List<Integer> winnerNumber) {

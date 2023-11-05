@@ -18,8 +18,4 @@ public class LottoNumber {
     private boolean isValidRange() {
         return number >= MINIMUM && number <= MAXIMUM;
     }
-
-    public int getNumber() {
-        return this.number;
-    }
 }

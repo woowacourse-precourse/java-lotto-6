@@ -33,11 +33,23 @@ public class Lotto {
     }
 
 
-    public boolean hasIt(LottoNumber number) {
-        return numbers.contains(number.getNumber());
+    public boolean hasIt(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public Ranking getRanking(Lotto winningNumber, int bonusNumber) {
+        int count = 0;
+        boolean hasBonusNumber = hasIt(bonusNumber);
+
+        for (Integer number : numbers) {
+            if (winningNumber.hasIt(number)) {
+                count++;
+            }
+        }
+        return Ranking.find(count, hasBonusNumber);
     }
 }

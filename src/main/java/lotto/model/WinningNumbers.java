@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class WinningNumbers {
@@ -15,8 +17,8 @@ public class WinningNumbers {
         this.winningNumbers = parseAndValidateNumbers(numbers);
     }
 
-    public Set<Integer> getNumbers() {
-        return winningNumbers;
+    public List<Integer> getWinningNumbers() {
+        return new ArrayList<>(winningNumbers);
     }
 
     private Set<Integer> parseAndValidateNumbers(String[] numbers) {

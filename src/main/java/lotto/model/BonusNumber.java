@@ -14,7 +14,7 @@ public class BonusNumber {
         this.bonusNumber = checkingBonusNumber;
     }
 
-    public int getNumber() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 
@@ -42,7 +42,7 @@ public class BonusNumber {
     }
 
     private void validateBonusNumber(int number, WinningNumbers winningNumbers) {
-        if (winningNumbers.getNumbers().contains(number)) {
+        if (winningNumbers.getWinningNumbers().contains(number)) {
             throw new IllegalArgumentException(ERROR_DUPLICATED_WITH_WINNING_NUMBER);
         }
     }

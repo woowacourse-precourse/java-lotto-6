@@ -25,6 +25,10 @@ public class Purchase {
         return amount;
     }
 
+    public List<Lotto> getPurchasedLotto() {
+        return purchasedLotto;
+    }
+
     public void printPurchasedLotto() {
         for (int i = 0; i < purchasedLotto.size(); i++) {
             purchasedLotto.get(i).getLottoNumber();

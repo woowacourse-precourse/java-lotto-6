@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.Constant;
 import lotto.domain.Purchase;
+import lotto.domain.Statistics;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,5 +15,9 @@ public class Application {
 
         System.out.println(Constant.winningNumber);
         WinningLotto winningLotto = new WinningLotto();
+
+        Statistics statistics = new Statistics(purchase,winningLotto);
+        statistics.matchLotto();
+        statistics.getRank();
     }
 }

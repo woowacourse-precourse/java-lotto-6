@@ -11,7 +11,7 @@ public class PaymentValidator {
     public static int validate(String text) {
         checkNull(text);
         int payment = toInt(text);
-        checkFollowRule(payment);
+        checkDividedByLottoPrice(payment);
         return payment;
     }
 
@@ -23,14 +23,10 @@ public class PaymentValidator {
         }
     }
 
-    private static void checkFollowRule(int payment) {
-        if (isDividedByLottoPrice(payment)) {
+    private static void checkDividedByLottoPrice(int payment) {
+        if (payment % PRICE_OF_LOTTO != 0) {
             throw new IllegalArgumentException(CATCH_ERROR + INVALID_PAYMENT);
         }
-    }
-
-    private static boolean isDividedByLottoPrice(int payment) {
-        return payment % PRICE_OF_LOTTO != 0;
     }
 
     private static void checkNull(String text) {

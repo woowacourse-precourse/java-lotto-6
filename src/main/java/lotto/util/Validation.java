@@ -11,18 +11,10 @@ public class Validation {
     private static final int lottoNumberCount = 6;
 
     public static boolean isNumericValue(String input) {
-        char[] data = input.toCharArray();
-        int index = 0;
-
-        if (data[index] == '-') {
-            index++;
+        if (input.charAt(0) == '-') {
+            input = input.substring(1);
         }
-        for (int i = index; i < data.length; i++) {
-            if (!Character.isDigit(data[i])) {
-                return false;
-            }
-        }
-        return true;
+        return input.chars().allMatch(Character::isDigit);
     }
 
     public static boolean hasCorrectRange(int number) {
@@ -46,7 +38,6 @@ public class Validation {
 
         return numbersWithoutDuplicate.size() != numbers.size();
     }
-
 
     public static boolean hasCorrectFormat(String input) {
         for (char c : input.toCharArray()) {

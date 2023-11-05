@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -8,17 +8,15 @@ import java.util.List;
 public class LottoMachine {
 
     private final List<Lotto> issuedLotto;
-    private final int lottoTicket;
-
 
     public LottoMachine(int lottoTicket) {
         this.issuedLotto = new ArrayList<>();
-        this.lottoTicket = lottoTicket;
+        issueTickets(lottoTicket);
     }
 
-    public void issueTickets() {
+    public void issueTickets(int ticketCount) {
         int init = 1;
-        while(init <= lottoTicket) {
+        while(init <= ticketCount) {
             List<Integer> numbers =
                 new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
             Collections.sort(numbers);
@@ -29,9 +27,5 @@ public class LottoMachine {
 
     public List<Lotto> getIssuedLotto() {
         return this.issuedLotto;
-    }
-
-    public int getLottoPrice() {
-        return lottoTicket * 1000;
     }
 }

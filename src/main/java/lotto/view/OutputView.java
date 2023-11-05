@@ -4,15 +4,13 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.Ranking;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Ranking;
 
 public class OutputView {
 
-    public int printPurchases(int numberOfLotto) {
-        int number = numberOfLotto / 1000;
-        System.out.println(number + "개를 구매했습니다.");
-        return number;
+    public void printPurchases(int ticketCount) {
+        System.out.println(ticketCount + "개를 구매했습니다.");
     }
 
     public void printIssuedLotto(List<Lotto> issuedLotto) {

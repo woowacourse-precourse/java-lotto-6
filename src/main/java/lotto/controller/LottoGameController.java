@@ -1,10 +1,11 @@
 package lotto.controller;
 
-import lotto.model.Bonus;
-import lotto.model.LottoMachine;
-import lotto.model.LottoResultChecker;
-import lotto.model.Statistics;
-import lotto.model.WinningLotto;
+import lotto.model.domain.Bonus;
+import lotto.model.domain.LottoMachine;
+import lotto.model.domain.LottoResultChecker;
+import lotto.model.domain.Purchase;
+import lotto.model.domain.Statistics;
+import lotto.model.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,6 +14,7 @@ public class LottoGameController {
     private final OutputView outputView;
     private LottoMachine lottoMachine;
     private WinningLotto winningLotto;
+    private Purchase purchase;
 
     public LottoGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,20 +22,20 @@ public class LottoGameController {
     }
 
     public void playing() {
-        purchaseLottoTickets();
+        purchase = purchaseLottoTickets();
         getLottoTickets();
         enterWinningNumbersAndBonusNumber();
         getLotteryStatistics();
     }
 
-    private void purchaseLottoTickets() {
-        int price = inputView.requestPrice();
-        int tickets = outputView.printPurchases(price);
-        lottoMachine = new LottoMachine(tickets);
+    private Purchase purchaseLottoTickets() {
+        Purchase customerPurchase = new Purchase(inputView.requestPrice());
+        outputView.printPurchases(customerPurchase.getTicketCount());
+        lottoMachine = new LottoMachine(customerPurchase.getTicketCount());
+        return customerPurchase;
     }
 
     private void getLottoTickets() {
-        lottoMachine.issueTickets();
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
@@ -54,7 +56,7 @@ public class LottoGameController {
         outputView.printStatisticsResult(statistics.getResults());
 
         float revenue = statistics.getRateOfReturn();
-        float result = (revenue / lottoMachine.getLottoPrice()) * 100 ;
+        float result = (revenue / purchase.getPrice()) * 100 ;
 
         outputView.printRateOfReturn(result);
     }

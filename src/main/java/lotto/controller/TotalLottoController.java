@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
@@ -17,11 +18,24 @@ public class TotalLottoController {
         this.inputView = new InputView();
     }
 
+    public Lotto issueWinningLotto() {
+        Lotto lotto = null;
+        while (lotto == null) {
+            try {
+                outputView.enterYourNumber();
+                List<Integer> winningNumber = inputView.inputNumbers();
+                lotto = issueController.issueWinningLotto(winningNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.showErrorReason(e.getMessage());
+            }
+        }
+        return lotto;
+    }
+
     public List<Lotto> issueLottos() {
         List<Lotto> issueLottos = null;
         while (issueLottos == null) {
             try {
-                outputView.enterYourAmount();
                 int money = inputView.inputMoney();
                 issueLottos = issueController.issueLottos(money);
             } catch (IllegalArgumentException e) {
@@ -33,5 +47,18 @@ public class TotalLottoController {
 
     public void showLottoNumbers(List<Lotto> lottos) {
         outputView.showLottosNumber(lottos);
+    }
+
+    public WinningLotto issueLottoResult(Lotto winningLotto) {
+        WinningLotto lottoResult = null;
+        while (lottoResult == null) {
+            try {
+                int bonusNumber = inputView.inputBonusNumber();
+                lottoResult = issueController.issueLottoResult(winningLotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.showErrorReason(e.getMessage());
+            }
+        }
+        return lottoResult;
     }
 }

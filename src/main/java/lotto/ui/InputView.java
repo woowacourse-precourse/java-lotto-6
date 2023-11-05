@@ -6,8 +6,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+
+    private final OutputView outputView = new OutputView();
+
     public int inputMoney() {
-        return Integer.parseInt(Console.readLine());
+
+        outputView.enterYourAmount();
+        int money = Integer.parseInt(Console.readLine());
+        System.out.println();
+        return money;
+    }
+
+    public int inputBonusNumber() {
+        outputView.enterYourBonusNumber();
+        int money = Integer.parseInt(Console.readLine());
+        System.out.println();
+        return money;
     }
 
     public List<Integer> inputNumbers() {

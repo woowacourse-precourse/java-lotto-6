@@ -27,4 +27,8 @@ public class LottoIssueService {
     private List<Integer> getLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public Lotto issueWinningLotto(List<Integer> winningNumber) {
+        return new Lotto(winningNumber);
+    }
 }

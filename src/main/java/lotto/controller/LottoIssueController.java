@@ -27,18 +27,12 @@ public class LottoIssueController {
         return issueService.issueLottos(issueCount);
     }
 
-    public WinningLotto pickWinningLotto() {
-        WinningLotto winningLotto = null;
-        while (winningLotto == null) {
-            try {
-                List<Integer> lottoNumbers = input.inputNumbers();
-                Lotto lotto = new Lotto(lottoNumbers);
+    public Lotto issueWinningLotto(List<Integer> winningNumber) {
+        return issueService.issueWinningLotto(winningNumber);
+    }
 
-            } catch (IllegalArgumentException e) {
-                output.showErrorReason(e.getMessage());
-            }
-        }
-        return winningLotto;
+    public WinningLotto issueLottoResult(Lotto winningLotto, int bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     private int getIssueCount(final int money) {

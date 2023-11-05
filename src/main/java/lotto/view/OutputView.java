@@ -14,7 +14,7 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
 
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printLottoPurchases(List<Lotto> lottos) {
 //        String lottoList = lottos.stream()
 //                .map(lotto -> String.join(",", lotto
 //                        .getNumbers()
@@ -23,16 +23,15 @@ public class OutputView {
 //                        .toList()))
 //                .collect(Collectors.joining("\n"));
 
-        StringJoiner joiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
+        StringJoiner stringJoiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
         String lottoList = lottos.stream()
                 .map(lotto -> {
-                    lotto.getNumbers().forEach(number -> joiner.add(number.toString()));
-                    return joiner.toString();
+                    lotto.getNumbers().forEach(number -> stringJoiner.add(number.toString()));
+                    return stringJoiner.toString();
                 })
                 .collect(Collectors.joining(NEW_LINE));
 
         System.out.printf(BUY_SOME_AMOUNT_OF_LOTTO, lottos.size());
         System.out.println(lottoList);
     }
-
 }

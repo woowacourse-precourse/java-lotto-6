@@ -6,7 +6,8 @@ public enum Rule {
     MAX_NUMBER(45),
     LOTTO_NUMBERS_DIGITS(6),
     BONUS_NUMBER_DIGITS(1),
-    LOTTO_PRICE(1000);
+    LOTTO_PRICE(1000),
+    MINIMUM_NUMBER_TO_WIN(3);
 
     private final int value;
 

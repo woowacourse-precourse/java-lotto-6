@@ -7,8 +7,8 @@ import java.util.Map;
 import lotto.dto.LottoDto;
 import lotto.model.Lotteries;
 import lotto.model.Lotto;
-import lotto.model.LottoGame;
 import lotto.model.LottoRank;
+import lotto.model.LottoResult;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.View;
 import lotto.vo.BonusNumber;
@@ -29,8 +29,12 @@ public class LottoGameController {
 
         Lotteries lotteries = initLotteries(ticketCount);
         showLotteriesNumber(lotteries);
-        LottoGame lottoGame = initLottoGame(lotteries);
-        showResult(ticketCount, lottoGame);
+
+        Lotto winningLotto = initWinningLotto();
+        BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
+
+        LottoResult lottoResult = initLottoResult(lotteries, winningLotto, bonusNumber);
+        showResult(ticketCount, lottoResult);
     }
 
     private BuyAmount initBuyAmount() {
@@ -49,11 +53,9 @@ public class LottoGameController {
         return Lotteries.createLotteries(ticketCount, new RandomNumberGenerator());
     }
 
-    private LottoGame initLottoGame(final Lotteries lotteries) {
-        Lotto winningLotto = initWinningLotto();
-        BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
-
-        return LottoGame.createGame(lotteries, winningLotto, bonusNumber);
+    private LottoResult initLottoResult(final Lotteries lotteries, final Lotto winningLotto,
+                                        final BonusNumber bonusNumber) {
+        return LottoResult.from(lotteries, winningLotto, bonusNumber);
     }
 
     private Lotto initWinningLotto() {
@@ -68,8 +70,8 @@ public class LottoGameController {
         view.showLotteriesNumber(LottoDto.toDto(lotteries.getLotteries()));
     }
 
-    private void showResult(final TicketCount ticketCount, final LottoGame lottoGame) {
-        Map<LottoRank, Integer> result = lottoGame.calculateScore();
+    private void showResult(final TicketCount ticketCount, final LottoResult lottoResult) {
+        Map<LottoRank, Integer> result = lottoResult.getResult();
         view.showStatistics(result);
         view.showRateOfProfit(result, ticketCount);
     }

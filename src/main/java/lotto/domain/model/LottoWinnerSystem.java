@@ -30,6 +30,11 @@ public class LottoWinnerSystem {
         this.fifth = 0;
     }
 
+    public static int calculateProfitMoney() {
+        int profitMoney = 5000 * fifth + 50000 * fourth + 1500000 * third + 30000000 * second + 2000000000 * first;
+        return profitMoney;
+    }
+
     public void printLottoResult() {
         OutputView.printTotalResult(fifth, fourth, third, second, first);
     }

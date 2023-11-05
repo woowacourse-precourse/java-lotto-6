@@ -7,9 +7,14 @@ public class LottoOutputView {
 
     public static final String PLEASE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     public static final String NUMBER_OF_PURCHASES = "\n%d개를 구매했습니다.";
+    public static final String PLEASE_WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
 
     public static void printPurchaseAmount() {
         System.out.println(PLEASE_PURCHASE_AMOUNT);
+    }
+
+    public static void printWinningNumber() {
+        System.out.println(PLEASE_WINNING_NUMBER);
     }
 
     /**
@@ -26,5 +31,5 @@ public class LottoOutputView {
             System.out.println(lotto.getNumbers());
         }
     }
-    
+
 }

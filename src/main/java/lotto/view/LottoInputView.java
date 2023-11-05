@@ -12,4 +12,9 @@ public class LottoInputView {
     public static String getPurchaseAmount() {
         return Console.readLine();
     }
+
+    public static String getLottoWinningNumber() {
+        return Console.readLine();
+    }
+
 }

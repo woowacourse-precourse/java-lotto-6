@@ -1,18 +1,19 @@
 package lotto.domain;
 
+import lotto.enums.ErrorMessages;
+
 import java.util.List;
 
 public class WinningLotto {
     private final Lotto winningLotto;
-    private final int bonusNumber;
+    private final LottoNumber bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, String bonusNumber) {
-        this.winningLotto = winningLotto;
-        this.bonusNumber = Integer.parseInt(bonusNumber);
-    }
-
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+    public WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
+        validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+    }
+    private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
+
     }
 }

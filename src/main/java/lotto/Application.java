@@ -12,6 +12,7 @@ public class Application {
         OutputHandler.printLineBreak();
         OutputHandler.printMessage(numberOfLotto + "개를 구매했습니다.");
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
+        OutputHandler.printLottos(lottos);
     }
 
     private static int lottoCountForPurchasePrice() {

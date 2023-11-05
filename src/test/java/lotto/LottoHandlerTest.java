@@ -181,4 +181,28 @@ class LottoHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력해 주세요.");
     }
+
+    @DisplayName("입력 받은 보너스 번호가 1보다 작거나 45보다 크면 예외가 발생한다. 1보다 작은 경우")
+    @Test
+    void receiveBonusNumberByOutOfRangeNumberLessThan1() {
+        // given
+        String receivedBonusNumber = "0";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("입력 받은 보너스 번호가 1보다 작거나 45보다 크면 예외가 발생한다. 45보다 큰 경우")
+    @Test
+    void receiveBonusNumberByOutOfRangeNumberGreaterThan45() {
+        // given
+        String receivedBonusNumber = "46";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
 }

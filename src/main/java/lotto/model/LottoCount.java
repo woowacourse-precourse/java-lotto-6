@@ -22,6 +22,9 @@ public class LottoCount {
     }
 
     private void validateAmount(int amount) {
+        if (!isMinAmount(amount)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_MIN_TICKET_PRICE.get());
+        }
         if (!isDivisible(amount)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_ONE_TICKET_PRICE.get());
         }
@@ -33,6 +36,10 @@ public class LottoCount {
 
     private boolean isDivisible(int amount) {
         return ((amount % Constant.LOTTO_TICKET_PRICE.getIntValue()) == 0);
+    }
+
+    private boolean isMinAmount(int amount) {
+        return (amount > Constant.LOTTO_TICKET_PRICE.getIntValue());
     }
 
 }

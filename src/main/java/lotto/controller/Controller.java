@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.LottoTicket;
 import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
@@ -8,11 +9,11 @@ import lotto.view.OutputView;
 import lotto.model.Lotto;
 
 import java.util.List;
+import java.util.Set;
 
 public class Controller {
     InputView inputView;
     LottoService lottoService;
-    WinningNumbers winningNumbers;
 
     int ticketCount;
     private static final String ERROR = "[ERROR] ";
@@ -26,7 +27,8 @@ public class Controller {
         lottoTicketSetting();
         showTicketCount();
         lottoGameSetting();
-        winningNumberSetting();
+        WinningNumbers winningNumbers = winningNumberSetting();
+        BonusNumber bonusNumber = bonusNumberSetting(winningNumbers);
     }
 
     private void lottoTicketSetting() {
@@ -62,11 +64,15 @@ public class Controller {
         }
     }
 
-    private static String BonusNumberSetting() {
-        String bonusNumber;
+    private BonusNumber bonusNumberSetting(WinningNumbers winningNumbers) {
         while (true) {
-            bonusNumber = InputView.inputBonusNumber();
+            try {
+                String bonusNumberString = InputView.inputBonusNumber();
+                return new BonusNumber(bonusNumberString, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR + e.getMessage());
+                // 유효하지 않은 입력에 대한 처리
+            }
         }
-
     }
 }

@@ -50,4 +50,13 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(amount))
                 .isInstanceOf(NumberFormatException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - 입력된 숫자의 단위가 1,000이 아닐 경우")
+    void receiveNotDividedBy1000Test() {
+        String amount = "1500";
+
+        assertThatThrownBy(() -> new PurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

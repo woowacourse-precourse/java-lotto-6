@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,5 +61,17 @@ public class LottoResultTest {
         Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 10));
 
         assertThat(drawingLotto.compareWith(lotto)).isEqualTo(LottoResult.NONE);
+    }
+
+    @DisplayName("로또 수익률을 계산한다.")
+    @Test
+    void aggregateLottoResult() {
+        Map<LottoResult, Integer> result = Map.of(
+                LottoResult.FIFTH, 1
+        );
+        int income = 8000;
+
+        assertThat(LottoResult.calculateReturnRate(result, income))
+                .isEqualTo(62.5);
     }
 }

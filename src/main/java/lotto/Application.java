@@ -2,9 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -14,6 +13,9 @@ public class Application {
         List<Lotto> lottos = createLottos(count);
         DrawingLotto drawingLotto = createDrawingLottos(createDrawingNumbers());
         List<LottoResult> result = lottos.stream().map(drawingLotto::compareWith).toList();
+        Map<LottoResult, Integer> aggregatedResult = LottoResult.aggregate(result);
+        printResult(aggregatedResult);
+        printReturnRate(aggregatedResult, count * Lotto.PRICE);
     }
 
     private static int purchase() {
@@ -67,5 +69,22 @@ public class Application {
             System.out.println(e.getMessage());
             return createDrawingLottos(lotto);
         }
+    }
+
+    private static void printResult(Map<LottoResult, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        List<LottoResult> sequence = List.of(LottoResult.FIFTH, LottoResult.FOURTH, LottoResult.THIRD, LottoResult.SECOND, LottoResult.FIRST);
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+
+        for (LottoResult lottoResult : sequence) {
+            System.out.println(lottoResult.getDescription() + " (" + formatter.format(lottoResult.getPrize()) + "원) - " + result.getOrDefault(lottoResult, 0) + "개");
+        }
+    }
+
+    private static void printReturnRate(Map<LottoResult, Integer> aggregatedResult, int income) {
+        double returnRate = LottoResult.calculateReturnRate(aggregatedResult, income);
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 }

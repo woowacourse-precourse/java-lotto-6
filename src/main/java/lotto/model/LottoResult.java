@@ -20,6 +20,14 @@ public enum LottoResult {
         this.matchBonus = matchBonus;
     }
 
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
     public static LottoResult findResult(int matchCount, boolean matchBonus) {
         if (matchCount == 5 && matchBonus) {
             return MATCH_5_BONUS;

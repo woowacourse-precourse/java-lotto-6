@@ -10,20 +10,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요");
         int count = purchase();
-        System.out.println(count + "개를 구매했습니다.");
-
         List<Lotto> lottos = createLottos(count);
-
-        System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto drawingNumbers = createDrawingNumbers();
-        System.out.println("보너스 번호를 입력해 주세요");
-        DrawingLotto drawingLotto = createDrawingLottos(drawingNumbers);
+        DrawingLotto drawingLotto = createDrawingLottos(createDrawingNumbers());
     }
 
     private static int purchase() {
         try {
+            System.out.println("구입금액을 입력해 주세요");
             return Lotto.purchaseCount(Integer.parseInt(readLine()));
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 입력된 값이 숫자가 아닙니다.");
@@ -35,6 +29,7 @@ public class Application {
     }
 
     private static List<Lotto> createLottos(int count) {
+        System.out.println(count + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.LOWER_BOUND, Lotto.UPPER_BOUND, 6));
@@ -47,6 +42,7 @@ public class Application {
 
     private static Lotto createDrawingNumbers() {
         try {
+            System.out.println("당첨 번호를 입력해 주세요.");
             List<Integer> numbers = Arrays.stream(readLine().split(",")).map(Integer::parseInt).toList();
             return new Lotto(numbers);
         } catch (NumberFormatException e) {
@@ -60,6 +56,7 @@ public class Application {
 
     private static DrawingLotto createDrawingLottos(Lotto lotto) {
         try {
+            System.out.println("보너스 번호를 입력해 주세요");
             int bonusNumber = Integer.parseInt(readLine());
             return new DrawingLotto(lotto, bonusNumber);
         } catch (NumberFormatException e) {

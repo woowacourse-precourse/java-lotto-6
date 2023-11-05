@@ -2,9 +2,9 @@ package lotto.domain;
 
 public class WinningNumbers {
 
-    private final Lotto ticket;
+    private final Lotto winningNumbers;
 
-    public WinningNumbers(Lotto ticket) {
-        this.ticket = ticket;
+    public WinningNumbers(Lotto winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 }

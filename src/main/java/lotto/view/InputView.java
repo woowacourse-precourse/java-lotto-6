@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasePrice;
@@ -33,7 +34,7 @@ public class InputView {
 
     public WinningNumbers getWinningNumbers() {
         try {
-            System.out.println(Message.PICK_LOTTO_TICKET_NUMBER.message);
+            System.out.println(Message.PICK_NUMBER.message);
             String input = Console.readLine();
             List<Integer> integers = TypeConvertor.stringToStringList(input);
             return new WinningNumbers(Lotto.of(integers));
@@ -43,9 +44,22 @@ public class InputView {
         }
     }
 
+    public BonusNumber getBonusNumber() {
+        try {
+            System.out.println(Message.PICK_BONUS_NUMBER.message);
+            String input = Console.readLine();
+            Integer convertInput = TypeConvertor.stringToInt(input);
+            return BonusNumber.of(convertInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
     private enum Message {
         INPUT_MONEY("구입금액을 입력해 주세요."),
-        PICK_LOTTO_TICKET_NUMBER("당첨 번호를 입력해주세요.");
+        PICK_NUMBER("당첨 번호를 입력해 주세요."),
+        PICK_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
         private final String message;
 

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.OUT_OF_LOTTO_RANGE_MESSAGE;
+
 public class WinningNumber {
 
     private final int number;
@@ -11,7 +13,7 @@ public class WinningNumber {
 
     private void validateRange(int number) {
         if(number < 1 || 45 < number) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE_MESSAGE.getMessage());
         }
     }
 

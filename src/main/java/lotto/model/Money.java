@@ -15,21 +15,25 @@ public class Money {
     private final BigDecimal amount;
 
     private Money(final long amount) {
-        validate(amount);
+        validatePrize(amount);
+        validateDivisible(amount);
         this.amount = BigDecimal.valueOf(amount);
     }
 
-    private void validate(final long amount) {
+    private void validatePrize(final long amount) {
         if (isLessThenPrize(amount)) {
             throw new IllegalArgumentException(MONEY_LESS_THEN_PRIZE.getMessage());
-        }
-        if (!isDividedByPrize(amount)) {
-            throw new IllegalArgumentException(MONEY_CANT_DIVIDED_BY_PRIZE.getMessage());
         }
     }
 
     private boolean isLessThenPrize(final long amount) {
         return amount < LOTTO_PRIZE.longValue();
+    }
+
+    private void validateDivisible(final long amount) {
+        if (!isDividedByPrize(amount)) {
+            throw new IllegalArgumentException(MONEY_CANT_DIVIDED_BY_PRIZE.getMessage());
+        }
     }
 
     private boolean isDividedByPrize(final long amount) {

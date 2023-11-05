@@ -29,8 +29,17 @@ class PrizesTest {
         assertThat(prizeAmount).isEqualTo(expectedAmount);
     }
 
+    @DisplayName("등수별 총 상금 계산하는 기능 테스트")
     @Test
     void calculateTotalPrizeForRank() {
+        Prize prize = Prize.FIFTH_PLACE;
+        prizes.increasePrizeAmount(prize);
+        prizes.increasePrizeAmount(prize);
+        int expectedPrize = 10_000;
+
+        int totalPrizeForRank = prizes.calculateTotalPrizeForRank(prize);
+
+        assertThat(totalPrizeForRank).isEqualTo(expectedPrize);
     }
 
     @Test

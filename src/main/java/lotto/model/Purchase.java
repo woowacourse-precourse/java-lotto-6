@@ -16,6 +16,10 @@ public class Purchase {
         return new Purchase(lottos, new Money(money));
     }
 
+    public Integer getMoney() {
+        return money.getMoney();
+    }
+
     public List<Lotto> getLottos() {
         return lottos.getLottos();
     }

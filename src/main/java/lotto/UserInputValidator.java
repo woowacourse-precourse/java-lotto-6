@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.enums.LottoError;
 import lotto.enums.PriceInputError;
 
-public class UserInput {
+public class UserInputValidator {
 
 	public static int validateInputNumber(String input) {
 		try {

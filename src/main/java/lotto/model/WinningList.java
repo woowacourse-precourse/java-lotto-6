@@ -1,5 +1,13 @@
 package lotto.model;
 
+import static lotto.enumerate.ConfigInteger.FIRST_PLACE_MATCH;
+import static lotto.enumerate.ConfigInteger.FORTH_PLACE_MATCH;
+import static lotto.enumerate.ConfigInteger.LONG_ROUND_DIVIDE_NUMBER;
+import static lotto.enumerate.ConfigInteger.LONG_ROUND_NUMBER;
+import static lotto.enumerate.ConfigInteger.SECOND_PLACE_MATCH;
+import static lotto.enumerate.ConfigInteger.THIRD_PLACE_MATCH;
+import static lotto.enumerate.ConfigString.WINNING_STRING_FIRST;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -10,14 +18,7 @@ import lotto.record.LottoNumberRecord;
 import lotto.record.ProfitRate;
 
 public class WinningList {
-    private static final String WINNING_STRING_FIRST = "당첨 통계\n---\n";
-    private static final int LONG_ROUND_NUMBER = 1000;
-    private static final int LONG_ROUND_DIVIDE_NUMBER = 100;
 
-    private static final int FIRST_PLACE_MATCH = 6;
-    private static final int SECOND_PLACE_MATCH = 5;
-    private static final int THIRD_PLACE_MATCH = 4;
-    private static final int FORTH_PLACE_MATCH = 3;
 
     private final Map<Rank, Integer> winningList;
 
@@ -35,19 +36,19 @@ public class WinningList {
     }
 
     private static Rank getRank(int matchingNumbers, boolean hasMatchingBonusNumber) {
-        if (matchingNumbers == FIRST_PLACE_MATCH) {
+        if (matchingNumbers == FIRST_PLACE_MATCH.getInt()) {
             return Rank.FIRST_PLACE;
         }
-        if (matchingNumbers == SECOND_PLACE_MATCH && hasMatchingBonusNumber) {
+        if (matchingNumbers == SECOND_PLACE_MATCH.getInt() && hasMatchingBonusNumber) {
             return Rank.SECOND_PLACE;
         }
-        if (matchingNumbers == SECOND_PLACE_MATCH) {
+        if (matchingNumbers == SECOND_PLACE_MATCH.getInt()) {
             return Rank.THIRD_PLACE;
         }
-        if (matchingNumbers == THIRD_PLACE_MATCH) {
+        if (matchingNumbers == THIRD_PLACE_MATCH.getInt()) {
             return Rank.FOURTH_PLACE;
         }
-        if (matchingNumbers == FORTH_PLACE_MATCH) {
+        if (matchingNumbers == FORTH_PLACE_MATCH.getInt()) {
             return Rank.FIFTH_PLACE;
         }
         return null;
@@ -55,7 +56,7 @@ public class WinningList {
 
     public String printWinningListString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(WINNING_STRING_FIRST);
+        sb.append(WINNING_STRING_FIRST.getString());
         winningList.forEach((key, value) -> sb.append(key.getRankString(value)));
         return sb.toString();
     }
@@ -64,7 +65,7 @@ public class WinningList {
         long sum = winningList.entrySet().stream().mapToLong(this::calculateProfit).sum();
         double originalRate = (double) sum / amountRecord.amount();
         double roundedRate =
-                (double) Math.round(originalRate * LONG_ROUND_NUMBER) / LONG_ROUND_NUMBER * LONG_ROUND_DIVIDE_NUMBER;
+                (double) Math.round(originalRate * LONG_ROUND_NUMBER.getInt()) / LONG_ROUND_NUMBER.getInt() * LONG_ROUND_DIVIDE_NUMBER.getInt();
         return new ProfitRate(originalRate, roundedRate);
     }
 

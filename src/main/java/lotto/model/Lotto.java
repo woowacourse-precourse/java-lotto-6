@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
+import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_OVER_OR_UNDER_SIZE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
@@ -10,9 +12,6 @@ import lotto.record.LottoNumberRecord;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -36,7 +35,7 @@ public class Lotto {
     }
 
     private void lottoNumberUnderOverValidate(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER)) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER.getInt() || number > LOTTO_END_NUMBER.getInt())) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

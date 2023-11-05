@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
+import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
+import static lotto.enumerate.ConfigString.REPLACE_REPLACEMENT;
+import static lotto.enumerate.ConfigString.REPLACE_TARGET;
+import static lotto.enumerate.ConfigString.SPLIT_REGEX;
 import static lotto.enumerate.ErrorCode.BONUS_NUMBER_IS_NOT_INTEGER;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_BONUS_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
@@ -12,11 +17,7 @@ import java.util.stream.Collectors;
 import lotto.record.LottoNumberRecord;
 
 public class WinningNumber {
-    private static final String REPLACE_TARGET = " ";
-    private static final String REPLACE_REPLACEMENT = "";
-    private static final String SPLIT_REGEX = ",";
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
+
     private final List<Integer> numbers;
     private final int bonusNumber;
 
@@ -39,7 +40,7 @@ public class WinningNumber {
     }
 
     private static String[] getSplit(String numbers) {
-        return numbers.replace(REPLACE_TARGET, REPLACE_REPLACEMENT).split(SPLIT_REGEX);
+        return numbers.replace(REPLACE_TARGET.getString(), REPLACE_REPLACEMENT.getString()).split(SPLIT_REGEX.getString());
     }
 
     private List<Integer> convert(String numbers) {
@@ -88,7 +89,7 @@ public class WinningNumber {
     }
 
     private void bonusNumberUnderOverValidate(int bonusNumber) {
-        if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
+        if (bonusNumber < LOTTO_START_NUMBER.getInt() || bonusNumber > LOTTO_END_NUMBER.getInt()) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }

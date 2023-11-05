@@ -99,6 +99,13 @@ public class Application {
         }
     }
 
+    public int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
+        if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
+        }
+        return inputBonusNumberValidation;
+    }
+
 
 
 

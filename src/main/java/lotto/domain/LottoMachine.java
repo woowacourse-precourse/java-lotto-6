@@ -17,7 +17,7 @@ public class LottoMachine {
 
     public void createLotto(int amount) {
         for (int i = 0; i < amount; i++) {
-            List<Integer> randomSixNumbers = pickLottoNumber();
+            List<Integer> randomSixNumbers = new ArrayList<>(pickLottoNumber());
             Collections.sort(randomSixNumbers);
             lottoPapers.add(new Lotto(randomSixNumbers));
         }

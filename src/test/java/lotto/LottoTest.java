@@ -1,8 +1,10 @@
 package lotto;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,4 +26,22 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void setAndGetLottoRankTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lotto.setRank(Lotto.LottoRank.FIRST);
+        Lotto.LottoRank actual = lotto.getRank();
+        Lotto.LottoRank expected = Lotto.LottoRank.FIRST;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void initialLottoRankTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto.LottoRank actual = lotto.getRank();
+        Lotto.LottoRank expected = Lotto.LottoRank.NO_WIN;
+
+        Assertions.assertEquals(expected, actual);
+    }
 }

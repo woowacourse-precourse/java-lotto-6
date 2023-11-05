@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(DomainException.LOTTO_SIZE.getMessage());
         }
     }
 
@@ -28,7 +28,7 @@ public class Lotto {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (set.contains(number))
-                throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATION.getMessage());
+                throw new IllegalArgumentException(DomainException.LOTTO_DUPLICATION.getMessage());
             set.add(number);
         }
     }
@@ -36,7 +36,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if ((number < Constraint.MIN.getValue()) || (number > Constraint.MAX.getValue()))
-                throw new IllegalArgumentException(ExceptionMessage.LOTTO_RANGE.getMessage());
+                throw new IllegalArgumentException(DomainException.LOTTO_RANGE.getMessage());
         }
     }
 

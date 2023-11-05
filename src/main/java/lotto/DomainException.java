@@ -1,6 +1,6 @@
 package lotto;
 
-enum ExceptionMessage {
+enum DomainException {
     ERROR("[ERROR] "),
     LOTTO_RANGE(ERROR.message + "로또 번호는 1에서 45 사이 숫자여야 합니다."),
     LOTTO_SIZE(ERROR.message + "로또는 6개여야 합니다."),
@@ -9,7 +9,7 @@ enum ExceptionMessage {
 
     private final String message;
 
-    ExceptionMessage(String message) {
+    DomainException(String message) {
         this.message = message;
     }
 

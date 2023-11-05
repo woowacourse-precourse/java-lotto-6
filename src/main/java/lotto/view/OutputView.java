@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.Rank;
+
 import java.util.List;
 
 public class OutputView {
@@ -41,5 +43,9 @@ public class OutputView {
     public static void printLottoResultStartText () {
         System.out.print(LOTTO_RESULT_START_TEXT);
         System.out.print(BOUNDARY);
+    }
+
+    public static void printLottoResult(Rank rank) {
+        System.out.printf(rank.getPrizeText(), rank.getCount());
     }
 }

@@ -40,6 +40,9 @@ public class LottoGameController {
 
     private void printLottoResult() {
         OutputView.printLottoResultStartText();
+        for (Rank rank : Rank.values()) {
+            OutputView.printLottoResult(rank);
+        }
     }
 
     private WinningNumber generateWinningNumber() {

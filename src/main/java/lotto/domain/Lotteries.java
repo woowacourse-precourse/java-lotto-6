@@ -1,36 +1,25 @@
 package lotto.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
 public class Lotteries {
 
-    private int lotteries;
+    private final List<Lotto> lotteries;
 
-    private Lotteries(String userInput) {
-        this.lotteries = generateLotteries(userInput);
+    private Lotteries(List<Integer> lottoNumbers) {
+        this.lotteries = generateLotteries(lottoNumbers);
     }
 
-    public static Lotteries from(String userInput) {
-        return new Lotteries(userInput);
+    public static Lotteries from(List<Integer> lottoNumbers) {
+        return new Lotteries(lottoNumbers);
     }
 
-    private int generateLotteries(String userInput) {
-        int totalPrice = Integer.parseInt(userInput);
-        validateMultiplesOfThousand(totalPrice);
-        validateMinimumPrice(totalPrice);
-        return totalPrice / NumberConstant.LOTTO_PRICE.getNumber();
-    }
-
-    private void validateMultiplesOfThousand(int totalPrice) {
-        if (totalPrice / NumberConstant.LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_REMAINDER.getMessage());
-        }
-    }
-
-    private void validateMinimumPrice(int totalPrice) {
-        if (totalPrice < NumberConstant.LOTTO_PRICE.getNumber()) {
-            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_MIN_NUMBER.getMessage());
-        }
+    public List<Lotto> generateLotteries(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .map(numbers -> new Lotto(lottoNumbers))
+                .collect(Collectors.toList());
     }
 }

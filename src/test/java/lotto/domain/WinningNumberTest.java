@@ -1,10 +1,10 @@
-package lotto;
+package lotto.domain;
 
-import domain.lotto.WinningNumber;
+import lotto.domain.lotto.WinningNumber;
 import org.junit.jupiter.api.Test;
 
-import static global.NumberDefinition.END_INCLUSIVE;
-import static global.NumberDefinition.START_INCLUSIVE;
+import static lotto.global.constant.NumberDefinition.END_INCLUSIVE;
+import static lotto.global.constant.NumberDefinition.START_INCLUSIVE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

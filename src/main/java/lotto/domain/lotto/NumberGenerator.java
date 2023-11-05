@@ -1,11 +1,11 @@
-package domain.lotto;
+package lotto.domain.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Comparator;
 import java.util.List;
 
-import static global.NumberDefinition.*;
+import static lotto.global.constant.NumberDefinition.*;
 
 public class NumberGenerator implements NumberUtil {
 

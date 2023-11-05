@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import domain.lotto.Lotto;
-import domain.lotto.Lottos;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,6 @@ public class LottosTest {
 
     Lottos lottos;
     int lottoCnt = 3;
-    List<Lotto> lottoList;
 
     @BeforeEach
     void setUp() {
@@ -23,7 +22,9 @@ public class LottosTest {
 
     @Test
     void Lottos가_입력한_숫자만큼_로또를_생성하는지_확인하는_테스트() {
-        lottoList = this.lottos.generateLottos();
+        this.lottos.generateLottos();
+        List<Lotto> lottoList = this.lottos.getLottos();
+
         assertThat(lottoList.size())
                 .isEqualTo(lottoCnt);
     }
@@ -36,7 +37,9 @@ public class LottosTest {
 
     @Test
     void Lottos가_숫자를_잘_생성하는지_테스트() {
-        lottoList = this.lottos.generateLottos();
+        this.lottos.generateLottos();
+        List<Lotto> lottoList = this.lottos.getLottos();
+
         for (Lotto lotto : lottoList) {
             List<Integer> lottoNumbers = lotto.getNumbers();
 

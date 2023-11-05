@@ -1,4 +1,4 @@
-package global;
+package lotto.global.constant;
 
 public enum NumberDefinition {
     START_INCLUSIVE(1),

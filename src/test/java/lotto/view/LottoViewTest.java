@@ -9,9 +9,10 @@ import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
 import lotto.controller.dto.output.PurchasedLottosDto;
+import lotto.controller.dto.output.WinningLottoResultDto;
 import lotto.mock.MockReader;
 import lotto.mock.MockWriter;
-import lotto.view.constants.LottoMessage;
+import lotto.view.constants.Message;
 import org.junit.jupiter.api.Test;
 
 class LottoViewTest {
@@ -30,7 +31,7 @@ class LottoViewTest {
         LottoPurchaseAmountDto lottoPurchaseAmountDto = lottoView.inputLottoPurchaseAmount();
         //then
         assertThat(writer.getOutput()).isEqualTo(
-                LottoMessage.INPUT_LOTTO_PURCHASE_AMOUNT.getMessage() + LINE_SEPARATOR);
+                Message.INPUT_LOTTO_PURCHASE_AMOUNT.getValue() + LINE_SEPARATOR);
         assertThat(lottoPurchaseAmountDto.purchaseAmount()).isEqualTo(amount);
     }
 
@@ -62,7 +63,7 @@ class LottoViewTest {
         WinningLottoNumbersDto winningLottoNumbersDto = lottoView.inputWinningLottoNumbers();
         //then
         assertThat(writer.getOutput()).isEqualTo(
-                LottoMessage.INPUT_WINNING_LOTTO_NUMBERS.getMessage() + LINE_SEPARATOR);
+                Message.INPUT_WINNING_LOTTO_NUMBERS.getValue() + LINE_SEPARATOR);
         assertThat(winningLottoNumbersDto.winningLottoNumbers()).isEqualTo(winningLottoNumbers);
     }
 
@@ -75,7 +76,29 @@ class LottoViewTest {
         BonusBallDto bonusBallDto = lottoView.inputBonusBallNumber();
         //then
         assertThat(writer.getOutput()).isEqualTo(
-                LottoMessage.INPUT_BONUS_BALL_NUMBER.getMessage() + LINE_SEPARATOR);
+                Message.INPUT_BONUS_BALL_NUMBER.getValue() + LINE_SEPARATOR);
         assertThat(bonusBallDto.bonusBall()).isEqualTo(bonusBallNumber);
+    }
+
+    @Test
+    void 로또당첨결과_출력_테스트() {
+        //given
+        List<Integer> lottoCount = List.of(1, 0, 0, 0, 0);
+        float profitRate = 62.5f;
+        WinningLottoResultDto winningLottoResultDto = new WinningLottoResultDto(lottoCount, profitRate);
+        //when
+        lottoView.showWinningLottoResult(winningLottoResultDto);
+        //then
+        String expected = """
+                당첨 통계
+                ---
+                3개 일치 (5,000원) - 1개
+                4개 일치 (50,000원) - 0개
+                5개 일치 (1,500,000원) - 0개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+                6개 일치 (2,000,000,000원) - 0개
+                총 수익률은 62.5%입니다.
+                """;
+        assertThat(writer.getOutput()).isEqualTo(expected);
     }
 }

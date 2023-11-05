@@ -13,6 +13,10 @@ public class Money {
         this.money = amount;
     }
 
+    public int getTicketCount() {
+        return money / LOTTO_MIN_MONEY;
+    }
+
     private int validateNumber(String inputMoney) {
         inputBlank(inputMoney);
         return inputNumeric(inputMoney);

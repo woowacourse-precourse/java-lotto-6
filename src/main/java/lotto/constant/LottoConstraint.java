@@ -11,7 +11,7 @@ public enum LottoConstraint {
     MAX_LOTTO_NUMBER(45),
     ;
 
-    public final int value;
+    private final int value;
 
     LottoConstraint(int value) {
         this.value = value;

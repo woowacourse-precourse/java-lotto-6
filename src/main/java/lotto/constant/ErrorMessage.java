@@ -14,8 +14,13 @@ public enum ErrorMessage {
     )),
 
     INVALID_LOTTO_NUMBERS_SIZE(String.format(
-            "로또 번호의 개수는 %d개 이어야 합니다.",
+            "로또 번호의 개수는 %d개 여야 합니다.",
             LottoConstraint.LOTTO_NUMBER_COUNT.getValue()
+    )),
+    OUT_RANGE_LOTTO_NUMBER(String.format(
+            "로또 숫자는 %d 이상 %d 이하여야 합니다.",
+            LottoConstraint.MIN_LOTTO_NUMBER.getValue(),
+            LottoConstraint.MAX_LOTTO_NUMBER.getValue()
     )),
     ;
     private final String message;

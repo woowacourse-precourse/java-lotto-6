@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.ErrorMessage;
 
@@ -7,10 +9,14 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbersCount(numbers);
-        validateNumbersInRange(numbers);
-        validateDuplicatedNumber(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+
+        validateNumbersCount(sortedNumbers);
+        validateNumbersInRange(sortedNumbers);
+        validateDuplicatedNumber(sortedNumbers);
+
+        Collections.sort(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
@@ -59,5 +65,10 @@ public class Lotto {
 
     public boolean containsNumber(int number) {
         return this.numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

@@ -19,14 +19,12 @@ public class WinningNumber {
         }
     }
 
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
+    public boolean containsBonusNumber(Lotto lotto) {
+        return lotto.bonusNumberContains(bonusNumber);
     }
 
-    public int getTicketRank(Lotto lotto) {
-        int matchCount = lotto.getMatchCount(winningNumbers);
-        return matchCount;
+    public int getMatchCount(Lotto lotto) {
+        return lotto.getMatchCount(winningNumbers);
     }
-
 
 }

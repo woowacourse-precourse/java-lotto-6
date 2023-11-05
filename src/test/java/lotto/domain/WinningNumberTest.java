@@ -3,8 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,7 @@ class WinningNumberTest {
         Lotto myLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         WinningNumber winLotto = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
 
-        int matchCount = winLotto.getTicketRank(myLotto);
+        int matchCount = winLotto.getMatchCount(myLotto);
         Assertions.assertEquals(6, matchCount);
 
     }

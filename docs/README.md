@@ -52,7 +52,7 @@
 
 ## 4. 패키지 구분 
    - [ ] main
-     - [ ] controller
+     - [ ] lottoController
      - [ ] domain
      - [ ] dto
      - [ ] exception

@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class Controller {
+public class LottoController {
     public void run() {
         userInputMoney();
         // 구입금액에 따른 예외 처리 및 로또 티켓 구매

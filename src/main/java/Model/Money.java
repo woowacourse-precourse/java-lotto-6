@@ -6,6 +6,8 @@ import Config.GameConfig;
 public class Money {
 
     private final int money;
+    public final static int ROUND_DIGIT = 1;
+    public final static int MONEY_UNIT = 1_000;
 
     public Money(String inputMoney){
         int money = validateNumeric(inputMoney);
@@ -15,11 +17,11 @@ public class Money {
     }
 
     public int getLottoNumber(){
-        return money/GameConfig.MONEY_UNIT;
+        return money/MONEY_UNIT;
     }
 
     public String getYield(int winning){
-        String roundFormat = "%.".concat(Integer.toString(GameConfig.ROUND_DIGIT).concat("f"));
+        String roundFormat = "%.".concat(Integer.toString(ROUND_DIGIT).concat("f"));
         return String.format(roundFormat, (double)winning * 100 / money).concat("%");
     }
 
@@ -32,8 +34,8 @@ public class Money {
     }
 
     private void validateMultiple(int money){
-        if (money % GameConfig.MONEY_UNIT != 0){
-            throw new IllegalArgumentException(String.format(ErrorMessage.NON_MULTIPLE.getErrorMessage(), GameConfig.MONEY_UNIT));
+        if (money % MONEY_UNIT != 0){
+            throw new IllegalArgumentException(String.format(ErrorMessage.NON_MULTIPLE.getErrorMessage(), MONEY_UNIT));
         }
     }
 

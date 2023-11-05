@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private final List<Integer> numbers;
+    public final static String SEPARATOR_WITH_BLANK = ", ";
+    public final static String PRINTING_PREFIX = "[";
+    public final static String PRINTING_SUFFIX = "]";
+    public final static int MIN_MATCH = 3;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -20,17 +24,17 @@ public class Lotto {
     }
 
     public String getLotto(){
-        return GameConfig.PRINTING_PREFIX +
+        return PRINTING_PREFIX +
                 numbers.stream()
                 .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(GameConfig.SEPARATOR_WITH_BLANK)) +
-                GameConfig.PRINTING_SUFFIX;
+                .collect(Collectors.joining(SEPARATOR_WITH_BLANK)) +
+                PRINTING_SUFFIX;
     }
 
     public int getResult(Winning winnings, Bonus bonus){
         String match = winnings.countMatch(numbers);
-        if (Integer.parseInt(match) < GameConfig.MIN_MATCH){
+        if (Integer.parseInt(match) < MIN_MATCH){
             return 0;
         }
         int rank = GameConfig.WINNING.valueOfMatch(match).getRank();

@@ -45,4 +45,8 @@ public class Number {
         return number == otherNumber.number;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(number);
+    }
 }

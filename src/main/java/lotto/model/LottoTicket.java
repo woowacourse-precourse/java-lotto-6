@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoTicket {
 
@@ -12,6 +13,9 @@ public class LottoTicket {
 
     @Override
     public String toString() {
-        return ticket.toString();
+        return "[" + ticket.stream()
+                .map(Number::toString)
+                .collect(Collectors.joining(", ")) + "]";
     }
+
 }

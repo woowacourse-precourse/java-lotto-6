@@ -8,5 +8,6 @@ public class Application {
         Controller controller = new Controller();
         int purchaseAmount = controller.getPurchaseAmount();
         User user = controller.createUserLotto(purchaseAmount);
+        controller.listPurchaseLotto(user);
     }
 }

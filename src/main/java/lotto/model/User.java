@@ -8,4 +8,17 @@ public class User {
     public User(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            sb.append(lotto.toString() + "\n");
+        }
+        return sb.toString();
+    }
 }

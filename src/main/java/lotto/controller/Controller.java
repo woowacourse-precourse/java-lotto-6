@@ -7,12 +7,15 @@ import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.policy.LottoPolicy;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
     private final InputView inputView;
+    private final OutputView outputView;
 
     public Controller() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public int getPurchaseAmount() {
@@ -32,5 +35,9 @@ public class Controller {
             purchase -= lottoAmount;
         }
         return new User(lottos);
+    }
+
+    public void listPurchaseLotto(User user) {
+        outputView.printPurchaseLotto(user);
     }
 }

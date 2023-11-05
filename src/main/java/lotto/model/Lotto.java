@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.exception.ErrorMessage;
@@ -36,5 +37,11 @@ public class Lotto {
         if (new HashSet<>(numbers).size() != LottoPolicy.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        Collections.sort(numbers);
+        return numbers.toString();
     }
 }

@@ -78,7 +78,7 @@ class UserTest {
         user.takeTargetNumResults(lottoTargetNumResults);
 
         // when
-        StringBuilder result = user.showStatisticLottoResult();
+        StringBuilder result = user.showStatisticLottoResult(lottoTargetNumResults);
 
         // than
         Assertions.assertThat(result).contains(

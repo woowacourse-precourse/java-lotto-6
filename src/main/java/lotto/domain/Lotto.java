@@ -46,17 +46,17 @@ public class Lotto {
         return numbers.contains(lottoNumber);
     }
 
+    public int getSameCount(Lotto otherLotto) {
+        return numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .toList()
+                .size();
+    }
+
     public Prize getPrize(Lotto winningLotto, LottoNumber bonusNumber) {
         int sameCount = getSameCount(winningLotto);
         boolean hasBonusNumber = doesHaveBonusNumber(bonusNumber);
         return Prize.getPrizeRank(sameCount, hasBonusNumber);
-    }
-
-    private int getSameCount(Lotto winningLotto) {
-        return numbers.stream()
-                .filter(winningLotto.numbers::contains)
-                .toList()
-                .size();
     }
 
     private boolean doesHaveBonusNumber(LottoNumber bonusNumber) {

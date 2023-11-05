@@ -24,7 +24,7 @@
 ### model package
 - validation class
   + [0] 지불 금액에 따라 받을 로또 갯수를 구하는 기능
-  + [ ] 당첨 통계 값을 구하는 기능
+  + [0] 당첨 통계 값을 구하는 기능
   + [ ] 총 수익률을 구하는 기능
 - transform class
   + [ ] 랜덤한 6자리 숫자를 생성하는 기능 (중복 제어)
@@ -33,7 +33,7 @@
 ### controller package
   + [ ] model, view를 통해 로또 진행
 
-### contstants
+### constants package
   + [0] 상수 string을 enum으로 관리하는 기능 
   + [0] 수 관련 상수를 모아 관리하는 기능
 

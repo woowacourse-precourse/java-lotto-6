@@ -9,8 +9,5 @@ public class PrintMessages {
     public static final String MATCH_NUMBER = "%d개 일치 (%s원) - %d개";
     public static final String RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
 
-    public static final String ERROR_PRICE_UNIT = "[ERROR] 구입 금액은 %d원 단위로 입력해야 합니다.";
-    public static final String ERROR_INPUT_NUMBER = "[ERROR] 숫자만 입력 가능합니다.";
-
 }
 

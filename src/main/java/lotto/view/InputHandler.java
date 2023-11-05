@@ -18,13 +18,23 @@ public class InputHandler {
                 System.out.println(e.getMessage());
             }
         }
-
         return priceInput;
     }
 
     public static String winningNumber() {
         System.out.println(PrintMessages.INPUT_WINNING_NUMBER);
-        return Console.readLine();
+        String winnigNumberInput;
+
+        while (true) {
+            try {
+                winnigNumberInput = Console.readLine();
+                InputValidator.validateWinnigNumberInput(winnigNumberInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winnigNumberInput;
     }
 
     public static String bonusNumber() {

@@ -88,7 +88,7 @@
 - LottoTicketMaker : 로또를 발행하고 당첨내역 및 수익률을 생성하는 역할을 한다.
 - LottoNumberGenerator : 로또 번호를 생성하는 역할을 한다.
 - LottoRank : 로또 등수 정보를 가진다.
-- LottoPrizeDetails : 당첨 내역과 당첨 금액을 담는 값 객체
+- LottoPrizeBreakdown : 당첨 내역과 당첨 금액을 담는 값 객체
 - Lotto : 로또의 6개 숫자를 가지는 일급 컬렉션
 - Money : 금액의 값 객체
 - WinningNumbers : 당첨 번호와 보너스 번호를 담는 값 객체

@@ -1,30 +1,52 @@
 package lotto.view;
 
+
+import static lotto.validator.MoneyValidator.validateMoneyFormat;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String INPUT_PURCHASE = "구입금액을 입력해 주세요";
+    private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요";
     private static final String SPLIT_CONDITION = ",";
 
     public int purchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
-        return Integer.parseInt(purchaseAmount);
+        int purchaseAmount;
+
+        while (true) {
+            try {
+                System.out.println(INPUT_PURCHASE);
+                String input = Console.readLine();
+
+                validateMoneyFormat(input);
+
+                System.out.println();
+                purchaseAmount = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
     }
 
-    public List<Integer> lottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    public List<Integer> getLottoNumbers() {
+        System.out.println(INPUT_WINNING_NUMBER);
         String lottoNumbers = Console.readLine();
-
+        System.out.println();
         String[] numbers = splitNumbers(lottoNumbers);
         return saveLotto(numbers);
     }
 
-    public int bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요");
-        return Integer.parseInt(Console.readLine());
+    public int getBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return Integer.parseInt(bonusNumber);
     }
 
     private List<Integer> saveLotto(String[] numbers) {

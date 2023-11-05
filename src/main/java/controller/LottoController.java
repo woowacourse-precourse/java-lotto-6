@@ -8,6 +8,6 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        MessagePrinter.inputPrice();
+        MessagePrinter.inputAmount();
     }
 }

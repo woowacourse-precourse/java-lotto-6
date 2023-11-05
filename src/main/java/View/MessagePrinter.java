@@ -3,9 +3,9 @@ package View;
 import util.ProgressMessage;
 
 public class MessagePrinter {
-    static ProgressMessage inputPrice = ProgressMessage.INPUT_PRICE;
+    static ProgressMessage inputAmount = ProgressMessage.INPUT_AMOUNT;
 
-    public static void inputPrice(){
-        System.out.println(inputPrice.getProgressMessage());
+    public static void inputAmount(){
+        System.out.println(inputAmount.getProgressMessage());
     }
 }

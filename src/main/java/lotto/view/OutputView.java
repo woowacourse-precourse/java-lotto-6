@@ -7,6 +7,7 @@ public class OutputView {
     private final String boughtMessage = "\n%d개를 구매했습니다.\n";
     private final String prizingMessage = "\n당첨 통계\n---\n";
     private final String prizingMessageTemplate = "%s (%s원) - %d개\n";
+    private final String profitRatioMessage = "총 수익률은 %.1f%%입니다.";
 
 
     public void displayBoughtTickets(List<String> tickets) {
@@ -18,6 +19,14 @@ public class OutputView {
     public void displayRankCounts(List<Integer> counts) {
         initializaCache();
         buildCountsString(counts);
+        print();
+    }
+
+
+    public void displayProfitRatio(double profitRatio) {
+        initializaCache();
+        String string = String.format(profitRatioMessage, profitRatio);
+        addToCache(string);
         print();
     }
 

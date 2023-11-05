@@ -29,6 +29,8 @@ public class Controller {
         List<Integer> counts = prize.getPrizeCounts();
         output.displayRankCounts(counts);
 
+        double profitRatio = prize.getProfitRatio();
+        output.displayProfitRatio(profitRatio);
     }
 
 }

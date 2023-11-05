@@ -20,6 +20,10 @@ public class Lotto {
         this.numbers = lotto.numbers;
     }
 
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
+    }
+
     private void validate(List<Integer> numbers) {
         numbersSizeValidation(numbers);
         numbersDuplicateValidation(numbers);
@@ -48,10 +52,6 @@ public class Lotto {
         if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
-    }
-
-    private List<Integer> sortNumbers(List<Integer> numbers) {
-        return numbers.stream().sorted().toList();
     }
 
     boolean hasNumber(int number) {

@@ -18,7 +18,7 @@ public class BonusLottoTest {
                 .hasMessageContaining(LOTTO_RANGE_ERROR_MESSAGE.getMessage());
     }
 
-    @DisplayName("model_BonusLotto_45_초과가_입력_했을_때")
+    @DisplayName("model_BonusLotto_45_초과가_입력_했을_때_예외_처리")
     @Test
     public void model_BonusLotto_45_over_input() {
         int inputBonus = 46;

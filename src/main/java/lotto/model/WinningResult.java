@@ -17,4 +17,8 @@ public class WinningResult {
     public WinningResult() {
 
     }
+
+    public ConcurrentHashMap<List<String>, Integer> getWinngResult() {
+        return new ConcurrentHashMap<>(winngResult);
+    }
 }

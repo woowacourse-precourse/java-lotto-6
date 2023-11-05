@@ -29,15 +29,22 @@ public class UserLotto {
         do {
             randomNumbers.add(Randoms.pickNumberInRange(LOTTO_VALUE_MIN.getValue(), LOTTO_VALUE_MAX.getValue()));
 
-            List<Integer> distinctNumbers = randomNumbers.stream()
-                    .distinct()
-                    .toList();
-
-            if (distinctNumbers.size() != randomNumbers.size()) {
+            if (isDuplicate(randomNumbers)) {
                 randomNumbers.remove(randomNumbers.size() - ONE.getValue());
             }
         } while (randomNumbers.size() < LOTTO_VALUE_SIZE.getValue());
         return randomNumbers;
+    }
+
+    private boolean isDuplicate(List<Integer> randomNumbers) {
+        List<Integer> distinctNumbers = randomNumbers.stream()
+                .distinct()
+                .toList();
+
+        if (distinctNumbers.size() != randomNumbers.size()) {
+            return true;
+        }
+        return false;
     }
 
     public List<List<Integer>> getUserNumbers() {

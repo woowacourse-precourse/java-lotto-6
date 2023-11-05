@@ -48,6 +48,7 @@ public class LottoController {
     private void resultLottoStatistics() {
         outputView.printWinningStatistics();
         lottoService.calculateWinningStatistics();
+        lottoService.calculateTotalRate();
         outputView.printLottoStaticsResult(lottoService.getStatistics());
     }
 }

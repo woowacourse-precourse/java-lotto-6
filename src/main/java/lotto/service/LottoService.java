@@ -35,9 +35,11 @@ public class LottoService {
         lottoStatistics.calculateLottoMatch(lottos, winningLotto);
     }
 
-    public LottoStatisticsResultFormatter getStatistics() {
-        return new LottoStatisticsResultFormatter(lottoStatistics.getStatistics());
+    public void calculateTotalRate() {
+        lottoStatistics.calculateTotalRate(lottos);
     }
 
-
+    public LottoStatisticsResultFormatter getStatistics() {
+        return new LottoStatisticsResultFormatter(lottoStatistics.getStatistics(), lottoStatistics.getTotalRate());
+    }
 }

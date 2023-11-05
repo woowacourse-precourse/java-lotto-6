@@ -20,6 +20,7 @@ public class OutputView {
 
     public void printLottoStaticsResult(LottoStatisticsResultFormatter lottoStatisticsResultFormatter) {
         System.out.println(lottoStatisticsResultFormatter.toStatisticsResultMessage());
+        System.out.println(lottoStatisticsResultFormatter.toTotalRateMessage());
     }
 
     public void printWinningNumbers() {

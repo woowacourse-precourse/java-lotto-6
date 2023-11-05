@@ -31,7 +31,7 @@ class LottoTest {
         List<Integer> unsortedNumbers = List.of(5, 4, 3, 2, 1, 6);
         Lotto lotto = new Lotto(unsortedNumbers);
 
-        List<Integer> sortedNumbers = lotto.getNumbers();
+        List<Integer> sortedNumbers = lotto.numbers();
 
         assertThat(sortedNumbers)
                 .as("로또 번호가 정렬되어야 함")

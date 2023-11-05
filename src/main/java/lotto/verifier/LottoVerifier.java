@@ -4,9 +4,7 @@ import lotto.system.Constant;
 import lotto.system.ExceptionMessage;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class LottoVerifier implements Verifier {
     @Override
@@ -24,6 +22,7 @@ public class LottoVerifier implements Verifier {
             throw new IllegalArgumentException(ExceptionMessage.COUNT_NOT_EQUAL);
         }
     }
+
     private void checkEachNumeric(String input) {
         String[] numbers = input.split(",");
         try {
@@ -33,34 +32,36 @@ public class LottoVerifier implements Verifier {
         }
     }
 
-    private void checkEachTypeRange(String input){
+    private void checkEachTypeRange(String input) {
         String[] numbers = input.split(",");
-        try{
+        try {
             Arrays.stream(numbers).forEach(Long::parseLong);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
     }
+
     private void checkEachRange(String input) {
-        String[] inputs = input.split(",");
-        for (String num : inputs) {
-            int number = Integer.parseInt(num);
-            if (number < Constant.START_INCLUSIVE || number > Constant.END_INCLUSIVE) {
-                throw new IllegalArgumentException(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
-            }
+        String[] numbers = input.split(",");
+
+        if (Arrays.stream(numbers)
+                .anyMatch(num -> Long.parseLong(num) < Constant.START_INCLUSIVE ||
+                        Long.parseLong(num) > Constant.END_INCLUSIVE)
+        ) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
         }
+
     }
 
     private void checkDistinct(String input) {
-        List<Integer> winnerNumbers = new ArrayList<>();
-        String[] numbers = input.split(",");
-        for (String number : numbers) {
-            int numberInt = Integer.parseInt(number);
-            if (winnerNumbers.contains(numberInt)) {
-                throw new IllegalArgumentException(ExceptionMessage.NUMBER_NOT_DISTINCT);
-            }
-            winnerNumbers.add(numberInt);
-        }
+        int distinctCount = (int) Arrays.stream(input.split(","))
+                .distinct()
+                .count();
+
+        int inputCount = (int) Arrays.stream(input.split(","))
+                .count();
+        if (distinctCount != inputCount)
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_NOT_DISTINCT);
     }
 
 }

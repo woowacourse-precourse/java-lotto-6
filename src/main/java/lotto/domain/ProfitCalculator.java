@@ -12,11 +12,11 @@ public class ProfitCalculator {
         this.winningLottoCounts = winningLottoCounts;
     }
 
-    public double calculateProfit(int money) {
+    public double calculateProfit(Money money) {
         double sum = 0;
         for (Rank rank : Rank.values()) {
             sum += winningLottoCounts.get(rank.getRankIndex()) * rank.getPrize();
         }
-        return sum / money * PERCENTAGE;
+        return sum / money.getMoney() * PERCENTAGE;
     }
 }

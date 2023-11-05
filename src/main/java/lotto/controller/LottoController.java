@@ -6,8 +6,6 @@ import lotto.io.Output;
 
 import java.util.List;
 
-import static lotto.domain.Constants.*;
-
 public class LottoController {
 
     final Input input;
@@ -19,8 +17,9 @@ public class LottoController {
     }
 
     public void start() {
-        int money = getUserAmount();
-        int lottoQuantity = getLottoQuantity(money);
+        Money money = new Money(getUserAmount());
+        int lottoQuantity = money.getQuantity();
+        output.printPurchaseQuantity(lottoQuantity);
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
         List<Integer> winningNumbers = generateWinningNumbers();
@@ -28,7 +27,6 @@ public class LottoController {
 
         List<Integer> winningLottoCounts = getWinningLottosCount(myLottos, winningNumbers, bonusNumber);
         double profit = getLottoProfit(winningLottoCounts, money);
-
         output.printResult(winningLottoCounts, profit);
     }
 
@@ -44,11 +42,11 @@ public class LottoController {
         return money;
     }
 
-    private int getLottoQuantity(int money) {
-        int lottoQuantity = money / LOTTO_PRICE;
-        output.printPurchaseQuantity(lottoQuantity);
+    /*private int getLottoQuantity(int money) {
+        int lottoQuantity =
+
         return lottoQuantity;
-    }
+    }*/
 
     private List<Lotto> buyLottos(int lottoQuantity) {
         Lottos lottos = new Lottos(lottoQuantity);
@@ -87,7 +85,7 @@ public class LottoController {
         return winningChecker.countWinningLottos();
     }
 
-    private double getLottoProfit(List<Integer> winningLottoCounts, int money) {
+    private double getLottoProfit(List<Integer> winningLottoCounts, Money money) {
         ProfitCalculator profitCalculator = new ProfitCalculator(winningLottoCounts);
         double profit = profitCalculator.calculateProfit(money);
         return profit;

@@ -15,4 +15,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static List<Integer> inputLottoWinningNum() {
+        System.out.println(INPUT_LOTTO_WINNING);
+        return numberList(Console.readLine());
+    }
+
 }

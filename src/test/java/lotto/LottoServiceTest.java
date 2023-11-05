@@ -18,9 +18,10 @@ public class LottoServiceTest {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         Lotto lotto3 = new Lotto(List.of(9, 10, 11, 12, 13, 14));
-        Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3));
+        Lotto lotto4 = new Lotto(List.of(3, 4, 5, 6, 7, 8));
+        Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3, lotto4));
         assertThat(lottoService.checkMatchedStandardNumberWithoutBonusNumber(lottos, new WinningLotto(List.of(3, 4, 5, 6, 7, 8), 12)))
-                .contains(2, 4, 0);
+                .contains(4, 6);
 
 
     }

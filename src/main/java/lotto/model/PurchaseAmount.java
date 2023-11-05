@@ -5,14 +5,14 @@ import static lotto.util.validators.PurchaseValidator.validatePurchase;
 
 public class PurchaseAmount {
     private static final Integer THOUSAND = 1000;
-    private final Integer value;
+    private final Integer amount;
 
-    public PurchaseAmount(String value) {
-        validatePurchase(value);
-        this.value = Integer.valueOf(value);
+    public PurchaseAmount(String amount) {
+        validatePurchase(amount);
+        this.amount = Integer.valueOf(amount);
     }
 
     public Integer exchangeAmount() {
-        return this.value / THOUSAND;
+        return this.amount / THOUSAND;
     }
 }

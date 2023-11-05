@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.wrapper.BuyLottos;
 import lotto.domain.wrapper.Lotto;
+import lotto.domain.wrapper.LottoResult;
 import lotto.domain.wrapper.WinLottoWithBonus;
 import lotto.handler.LottoHandler;
 
@@ -26,7 +27,7 @@ public class LottoJudge {
         return new LottoJudge(buyLottos, winLottoWithBonus);
     }
 
-    public void matchLottoHandler() {
+    public LottoResult matchLottoHandler() {
         Map<LottoHandler, Integer> lottoResult = new HashMap<>();
 
         for (Lotto buyLotto : buyLottos.getBuyLottos()) {
@@ -40,6 +41,8 @@ public class LottoJudge {
 
             lottoResult.put(lottoHandler, lottoResult.getOrDefault(lottoHandler, 0) + 1);
         }
+
+        return LottoResult.create(lottoResult);
     }
 
     private int compareLotto(List<Integer> sortBuyLotto, List<Integer> winningLotto) {

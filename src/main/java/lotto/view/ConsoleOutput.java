@@ -1,9 +1,15 @@
 package lotto.view;
 
 import lotto.domain.wrapper.Lotto;
+import lotto.domain.wrapper.LottoResult;
+import lotto.handler.LottoHandler;
 import lotto.handler.OutputHandler;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
+
+import static lotto.handler.LottoHandler.OTHER;
 
 public class ConsoleOutput implements OutputHandler {
 
@@ -35,8 +41,21 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printLottoResult() {
+    public void printLottoResult(LottoResult lottoResult) {
+        DecimalFormat prizeFormat = new DecimalFormat("###,###");
+        Map<LottoHandler, Integer> result = lottoResult.getLottoResult();
 
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (LottoHandler lottoHandler : LottoHandler.values()) {
+            if (lottoHandler == OTHER) {
+                continue;
+            }
+
+            System.out.printf("%d개 일치%s (%s원) - %d개\n", lottoHandler.getCount(), lottoHandler.getMessage(), prizeFormat.format(lottoHandler.getPrize()), result.getOrDefault(lottoHandler, 0));
+        }
     }
 
     @Override

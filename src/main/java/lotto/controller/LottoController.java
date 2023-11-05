@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.LottoPrize;
+import lotto.domain.LottoResult;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.EnumMap;
 import java.util.List;
 
 public class LottoController {
@@ -22,7 +21,8 @@ public class LottoController {
 
     public void run() {
         User user = buyLottoTicket();
-        EnumMap<LottoPrize, Integer> lottoResult = calculateLottoResult(user);
+        LottoResult lottoResult = calculateLottoResult(user);
+        calculateReturnRate(user, lottoResult);
     }
 
     public User buyLottoTicket() {
@@ -32,11 +32,16 @@ public class LottoController {
         return user;
     }
 
-    public EnumMap<LottoPrize, Integer> calculateLottoResult(User user) {
+    public LottoResult calculateLottoResult(User user) {
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         int bonusNumber = inputView.inputBonusNumber();
-        EnumMap<LottoPrize, Integer> lottoResult = lottoService.calculateLottoResult(user, winningNumbers, bonusNumber);
-        outputView.printLottoResult(lottoResult);
+        LottoResult lottoResult = lottoService.calculateLottoResult(user, winningNumbers, bonusNumber);
+        outputView.printLottoResult(lottoResult.getLottoResult());
         return lottoResult;
+    }
+
+    public void calculateReturnRate(User user, LottoResult lottoResult) {
+        double returnRate = lottoService.calculateReturnRate(user, lottoResult);
+        outputView.printReturnRate(returnRate);
     }
 }

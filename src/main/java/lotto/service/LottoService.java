@@ -2,22 +2,24 @@ package lotto.service;
 
 import lotto.domain.*;
 
-import java.util.EnumMap;
 import java.util.List;
 
 public class LottoService {
     public User buyLottoTicket(int buyAmount) {
         Money money = new Money(buyAmount);
         LottoTicket lottoTicket = new LottoTicket(money.getNumberOfPurchase());
-        User user = new User(money, lottoTicket);
-        user.spendAllMoney();
-        return user;
+        return new User(money, lottoTicket);
     }
 
-    public EnumMap<LottoPrize, Integer> calculateLottoResult(User user, List<Integer> winningNumbers, int bonusNumber) {
+    public LottoResult calculateLottoResult(User user, List<Integer> winningNumbers, int bonusNumber) {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
         List<Lotto> userLottoTicket = user.getLottoTicket();
-        LottoResult lottoResult = new LottoResult(userLottoTicket, winningLottoNumbers);
-        return lottoResult.getLottoResult();
+        return new LottoResult(userLottoTicket, winningLottoNumbers);
+    }
+
+    public double calculateReturnRate(User user, LottoResult lottoResult) {
+        double totalPrize = lottoResult.calculateTotalPrize();
+        Money userBuyAmount = user.getBuyAmount();
+        return userBuyAmount.getReturnRate(totalPrize);
     }
 }

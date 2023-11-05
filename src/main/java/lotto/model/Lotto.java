@@ -37,7 +37,7 @@ public class Lotto {
         return false;
     }
 
-    public boolean isContained(LottoNo number) {
+    protected boolean contains(LottoNo number) {
         return numbers.contains(number);
     }
 }

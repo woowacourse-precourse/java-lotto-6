@@ -12,7 +12,7 @@ public class AnswerLotto extends Lotto {
     }
 
     private void validate(int bonusNo) {
-        if (super.isContained(new LottoNo(bonusNo))) {
+        if (super.contains(new LottoNo(bonusNo))) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
     }

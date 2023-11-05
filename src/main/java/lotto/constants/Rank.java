@@ -1,19 +1,19 @@
 package lotto.constants;
 
 public enum Rank {
-    FIRST(2000000000),
-    SECOND(30000000),
-    THIRD(1500000),
-    FOURTH(50000),
-    FIFTH(5000);
+    FIRST("(2,000,000,000원)"),
+    SECOND("(30,000,000원)"),
+    THIRD("(1,500,000원)"),
+    FOURTH("(50,000원)"),
+    FIFTH("(5,000원)");
 
-    private final int prize;
+    private final String prize;
 
-    Rank(int prize) {
+    Rank(String prize) {
         this.prize = prize;
     }
 
-    public int getPrize() {
+    public String getPrize() {
         return prize;
     }
 }

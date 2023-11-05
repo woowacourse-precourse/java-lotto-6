@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public String getLottoNumbersToPrint(){
+        return numbers.toString();
+    }
+
 }

@@ -18,15 +18,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNTER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
         if (!(isDuplicate(numbers))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복이 존재합니다.");
         }
 
         if (!(isBetweenTwoNumbers(numbers, START_NUMBER, END_NUMBER))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 정수여야 합니다.");
         }
     }
 
@@ -56,16 +56,6 @@ public class Lotto {
     List<Integer> getNumbers() {
         return numbers;
     }
-
-//    int[] getNumbersCounters() {
-//        int[] numbersCounters = new int[46]; // 번호 1 ~ 45, index 0은 사용 안 함
-//
-//        for (Integer number: numbers) {
-//            numbersCounters[number]++;
-//        }
-//
-//        return numbersCounters;
-//    }
 
     @Override
     public String toString() {

@@ -13,7 +13,7 @@ public class Ticket {
 
     private void validate(Lotto lotto, Bonus bonus) {
         if (lotto.getNumbers().contains(bonus.getNumber())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보너스 번호가 로또 번호에 이미 존재합니다.");
         }
     }
 

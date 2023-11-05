@@ -29,4 +29,7 @@ public class Output {
         System.out.printf("총 수익률은 %s%%입니다.%n", totalProfit);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }

@@ -12,7 +12,7 @@ public class Bonus {
 
     void validate(int number) {
         if (!(Lotto.isBetweenTwoNumbers(List.of(number), Lotto.START_NUMBER, Lotto.END_NUMBER))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보너스 번호는 1부터 45까지의 정수값 중 하나입니다.");
         }
     }
 

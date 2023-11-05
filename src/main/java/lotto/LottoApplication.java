@@ -20,28 +20,32 @@ public class LottoApplication {
     private static final BigDecimal[] WINNING_AMOUNT_BY_RANKING = {BigDecimal.valueOf(0), BigDecimal.valueOf(2000000000), BigDecimal.valueOf(30000000), BigDecimal.valueOf(1500000), BigDecimal.valueOf(50000), BigDecimal.valueOf(5000)};
 
     void execute() {
-        int receivedAmount = getReceivedAmount();
+        try {
+            int receivedAmount = getReceivedAmount();
 
-        List<Lotto> createdLottos = new ArrayList<>();
-        for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
-            createdLottos.add(drawLotto());
+            List<Lotto> createdLottos = new ArrayList<>();
+            for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
+                createdLottos.add(drawLotto());
+            }
+            Output.printCreatedLottos(createdLottos);
+
+            Lotto pickedNumbers = getPickedNumbers();
+            Bonus bonus = getBonusNumber();
+
+            Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
+
+            matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
+            List<Result> results = compareTicketAndLottos(ticket, createdLottos);
+
+            int[] rankingCounter = getRankingCounter(results);
+            Output.printWinningStatistic(rankingCounter);
+
+            BigDecimal totalWinningAmount = calculateTotalWinningAmount(rankingCounter);
+            BigDecimal totalProfit = calculateWinningProfit(BigDecimal.valueOf(receivedAmount), totalWinningAmount);
+            Output.printTotalProfit(String.valueOf(totalProfit));
+        } catch (IllegalArgumentException iae) {
+            Output.printErrorMessage(iae.getMessage());
         }
-        Output.printCreatedLottos(createdLottos);
-
-        Lotto pickedNumbers = getPickedNumbers();
-        Bonus bonus = getBonusNumber();
-
-        Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
-
-        matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
-        List<Result> results = compareTicketAndLottos(ticket, createdLottos);
-
-        int[] rankingCounter = getRankingCounter(results);
-        Output.printWinningStatistic(rankingCounter);
-
-        BigDecimal totalWinningAmount = calculateTotalWinningAmount(rankingCounter);
-        BigDecimal totalProfit = calculateWinningProfit(BigDecimal.valueOf(receivedAmount), totalWinningAmount);
-        Output.printTotalProfit(String.valueOf(totalProfit));
 
     }
 
@@ -52,15 +56,15 @@ public class LottoApplication {
             receivedAmount = Integer.parseInt(Input.readReceivedAmount());
             validateReceivedAmount(receivedAmount);
         } catch (NumberFormatException nfe) { // 정수값 입력하지 않았을 경우
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위입니다.");
         }
 
         return receivedAmount;
     }
 
     private void validateReceivedAmount(int receivedAmount) {
-        if (!(receivedAmount % LOTTO_PRICE == 0)) {
-            throw new IllegalArgumentException();
+        if ((receivedAmount <= 0) && !(receivedAmount % LOTTO_PRICE == 0)) {
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위입니다.");
         }
     }
 
@@ -72,7 +76,7 @@ public class LottoApplication {
 
             return new Lotto(pickedNumbers);
         } catch (NumberFormatException nfe) { // pickedNumbers 중 정수값이 없을 경우
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1부터 45까지의 정수 값만 입력할 수 있습니다.");
         }
 
     }
@@ -81,7 +85,7 @@ public class LottoApplication {
         try {
             return new Bonus(Integer.parseInt(Input.readBonusNumber()));
         } catch (NumberFormatException nfe) { // 정수값 입력하지 않았을 경우
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1부터 45까지의 정수 값만 입력할 수 있습니다.");
         }
     }
 
@@ -106,7 +110,7 @@ public class LottoApplication {
     private int[] getRankingCounter(List<Result> results) {
         int[] rankingCounter = new int[6]; // index 0은 사용 안 함
 
-        for (Result result: results) {
+        for (Result result : results) {
             rankingCounter[result.getRanking()]++;
         }
 
@@ -116,7 +120,7 @@ public class LottoApplication {
     private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {
         BigDecimal totalWinningAmount = BigDecimal.ZERO;
 
-        for (int i=1; i<rankingCounter.length; i++) {
+        for (int i = 1; i < rankingCounter.length; i++) {
             totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
         }
 
@@ -124,7 +128,7 @@ public class LottoApplication {
     }
 
     private BigDecimal calculateWinningProfit(BigDecimal receivedAmount, BigDecimal totalWinningAmount) {
-        BigDecimal percent = BigDecimal.valueOf(0);
+        BigDecimal percent = new BigDecimal(0);
         percent = totalWinningAmount.divide(receivedAmount, 3, RoundingMode.HALF_UP);
         percent = percent.multiply(BigDecimal.valueOf(100), new MathContext(3, RoundingMode.HALF_UP));
         return percent;

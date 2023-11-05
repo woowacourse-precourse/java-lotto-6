@@ -9,30 +9,31 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.view.constant.ConstantMessage;
 
 public class InputView {
-    public void inputAmountView(){
+    public static int inputAmountView(){
         printConstantMessage(INPUT_AMOUNT_MESSAGE);
-        Console.readLine();
+
+        return Integer.parseInt(Console.readLine());
     }
 
-    public void inputBonusNumberView(){
+    public static void inputBonusNumberView(){
         printConstantMessage(INPUT_BONUS_NUMBER_MESSAGE);
         printNewLine();
         Console.readLine();
     }
 
-    public void inputLottoNumberView(){
+    public static void inputLottoNumberView(){
         printConstantMessage(INPUT_LOTTO_NUMBER_MESSAGE);
         printNewLine();
         Console.readLine();
     }
 
-    private void printConstantMessage(ConstantMessage message){
+    private static void printConstantMessage(ConstantMessage message){
         System.out.print(message);
         printNewLine();
         Console.readLine();
     }
 
-    private void printNewLine(){
+    private static void printNewLine(){
         System.out.print("\n");
     }
 }

@@ -1,7 +1,6 @@
 package Model;
 
 import Config.ErrorMessage;
-import Config.GameConfig;
 
 public class Money {
 

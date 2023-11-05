@@ -39,9 +39,12 @@ public class LottoManager {
                     count++;
                 }
             }
-            Prize prize = Prize.rank(count, lotto.getNumbers().contains(bonusNumber));
 
-            lottoResult.replace(prize, lottoResult.get(prize) + 1);
+            if (count >= Prize.FIFTH.getMatchingNumber()) {
+                Prize prize = Prize.rank(count, lotto.getNumbers().contains(bonusNumber));
+                lottoResult.replace(prize, lottoResult.get(prize) + 1);
+            }
+
         }
 
         return lottoResult;

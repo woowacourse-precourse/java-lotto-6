@@ -81,10 +81,11 @@
 
 ## 🤔 클래스 설계
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 - domain: 각종 도메인이 있는 패키지
     - Lotto: Lotto 6자리를 검증을 하는 도메인 -> 유저 입력과 컴퓨터 생성 모두 사용이 된다.
+    - LottoTickets: 생성된 Lotto들을 감싸고 있는 일급 컬렉션. 불변성을 위해 사용이 된다.
     - WinningLotto: 유저가 입력한 Lotto + bonus 번호를 가지고 있는 당첨 로또 객체.
     - LottoResult: 로또의 결과를 반환하는 객체.
     - LottoPrize: 로또 상금에 대한 정보를 가지고 있는 객체. 맞춘 숫자의 개수와 보너스 번호를 맞췄는지 넣으면 등수와 상금을 가지고 있는 Enum 객체를 반환.
@@ -94,7 +95,8 @@
 
 - LottoService : 도메인을 조합해 컨트롤러가 필요한 값으로 응답한다.
 
-- LottoController: ui의 input을 service 계층에 로직 수행을 위임하고 service의 응답값을 ui로 보낸다. try-catch를 통해 에러 메시지를 출력하고, 프로그램을 정상적으로 종료시킨다.
+- LottoController: ui의 input을 service 계층에 로직 수행을 위임하고 service의 응답값을 ui로 보낸다. try-catch를 통해 에러 메시지를 출력하고, 프로그램을 정상적으로
+  종료시킨다.
 
 - ui
     - InputView: Input에 관한 메시지와 입력을 받는다.
@@ -113,6 +115,9 @@
     - [x] 유효성 검사를 한다.(중복 검사, 입력한 사이즈 검사, 범위 검사)
     - [x] 해당 번호가 포함 되어 있는지 반환한다.
     - [x] 로또끼리 몇 개의 숫자가 맞는지 개수를 반환한다.
+
+- [x] LottoTickets
+    - [x] Lotto들을 만들고 불변성을 보장한다.
 
 - [x] WinningLotto
     - [x] 사용자 입력을 Lotto와 Bonus 숫자로 나누어 상태로 가진다.

@@ -17,7 +17,7 @@ public class WinningLotto {
     public LottoResult calculateStatistics(BuyerLotto buyerLotto) {
         Map<WinningStatistics, Integer> statistics = initMapWinningStatistics();
         for (Lotto lottoNumber : buyerLotto.getBuyerLotto()) {
-            WinningStatistics winningStatistics = lottoNumber.containsLotto(winningLotto, bonusNumber);
+            WinningStatistics winningStatistics = lottoNumber.judgeLottoRank(winningLotto, bonusNumber);
             statistics.put(winningStatistics, statistics.getOrDefault(winningStatistics, 0) + 1);
         }
         return new LottoResult(statistics);

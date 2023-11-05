@@ -29,7 +29,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public WinningStatistics containsLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+    public WinningStatistics judgeLottoRank(Lotto winningLotto, BonusNumber bonusNumber) {
         int match = (int) winningLotto.numbers.stream()
                 .filter(numbers::contains)
                 .count();

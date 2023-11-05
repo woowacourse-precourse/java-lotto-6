@@ -3,8 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.dto.PayDTO;
 import lotto.model.dto.WinningNumDTO;
-import lotto.model.validator.PaymentValidator;
-import lotto.model.validator.WinningNumValidator;
+import lotto.validator.PaymentValidator;
+import lotto.validator.WinningNumValidator;
 
 public class InputView {
     private static final String REQEUST_PAYMENT = "구입금액을 입력해 주세요.";
@@ -24,24 +24,33 @@ public class InputView {
         }
     }
 
-    public static WinningNumDTO readWinningNums() {
+    public static WinningNumDTO readWinningNumsAndBonus() {
+        String inputWinningNums = readWinningNums();
+        String inputBonus = readBonus(inputWinningNums);
+        return WinningNumDTO.of(inputWinningNums, inputBonus);
+    }
+
+    private static String readBonus(String inputWinningNums) {
+        System.out.println(REQUEST_BONUS_NUM);
+        while (true) {
+            try {
+                String inputBonus = Console.readLine();
+                WinningNumValidator.validateBonus(inputBonus, inputWinningNums);
+                return inputBonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static String readWinningNums() {
         System.out.println(REQUEST_WINNING_NUMS);
         String inputWinningNums;
         while (true) {
             try {
                 inputWinningNums = Console.readLine();
                 WinningNumValidator.validateWinningNums(inputWinningNums);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println(REQUEST_BONUS_NUM);
-        while (true) {
-            try {
-                String inputBonus = Console.readLine();
-                WinningNumValidator.validateBonus(inputBonus, inputWinningNums);
-                return WinningNumDTO.of(inputWinningNums, inputBonus);
+                return inputWinningNums;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

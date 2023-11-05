@@ -22,12 +22,12 @@ public class LottoController {
     }
 
     public void checkResult() {
-        WinningNumDTO winningNumDTO = readWinningNums();
+        WinningNumDTO winningNumDTO = readWinningNumsAndBonus();
         Result result = lottoService.checkResult(winningNumDTO);
         OutputView.printResult(result);
     }
 
-    public WinningNumDTO readWinningNums() {
-        return InputView.readWinningNums();
+    public WinningNumDTO readWinningNumsAndBonus() {
+        return InputView.readWinningNumsAndBonus();
     }
 }

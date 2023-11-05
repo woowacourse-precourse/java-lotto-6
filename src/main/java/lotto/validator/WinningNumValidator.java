@@ -1,4 +1,4 @@
-package lotto.model.validator;
+package lotto.validator;
 
 import static lotto.constants.ExceptionMessages.CATCH_ERROR;
 import static lotto.constants.ExceptionMessages.DUPLICATED_NUMBER;

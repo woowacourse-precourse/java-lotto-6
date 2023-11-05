@@ -37,7 +37,7 @@ public class InputView {
         return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }
 
-    public BonusNumberDto inputBonusNumber() {가
+    public BonusNumberDto inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String input = readLine().trim();
         BonusNumberValidator.inputValidate(input);

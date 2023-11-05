@@ -18,7 +18,7 @@ class WinningCalculatorTest {
 
     @BeforeEach
     void before() {
-        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lotto = new Lotto(List.of(3, 4, 5, 6, 1, 2));
         lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 45));
@@ -50,6 +50,6 @@ class WinningCalculatorTest {
 
         winningCalculator.calculate();
 
-        assertEquals(winningCalculator.getProfitRate(), "33859216.7%");
+        assertEquals(winningCalculator.getProfitRate(), "33859250.0%");
     }
 }

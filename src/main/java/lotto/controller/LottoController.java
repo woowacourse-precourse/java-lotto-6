@@ -17,6 +17,16 @@ public class LottoController {
         lottoService.purchaseLotto();
         OutputView.displayLottos(lottoService.getLottoDtos());
         initWinningLotto();
+        initWinningNumbers();
+    }
+
+    private void initWinningNumbers() {
+        try {
+            lottoService.initWinningNumbers(InputView.inputBonusNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            initWinningNumbers();
+        }
     }
 
     private void initWinningLotto() {

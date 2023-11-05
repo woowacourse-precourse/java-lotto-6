@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.util.Converter;
 import lotto.util.RandomNumberGenerator;
 
@@ -12,6 +13,7 @@ public class LottoService {
     private PurchaseAmount purchaseAmount;
     private LottoTicket lottoTicket = new LottoTicket();
     private Lotto winningLotto;
+    private WinningNumbers winningNumbers;
 
     public void initPurchaseAmount(String inputMoney) {
         this.purchaseAmount = new PurchaseAmount(Converter.stringToInt(inputMoney));
@@ -28,6 +30,10 @@ public class LottoService {
 
     public void initWinningLotto(List<String> inputNumbers) {
         this.winningLotto = new Lotto(Converter.stringListToIntegers(inputNumbers));
+    }
+
+    public void initWinningNumbers(String inputBonusNumber) {
+        this.winningNumbers = new WinningNumbers(winningLotto, Converter.stringToInt(inputBonusNumber));
     }
 
 }

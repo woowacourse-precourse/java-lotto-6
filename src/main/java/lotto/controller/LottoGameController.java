@@ -6,6 +6,7 @@ import static lotto.constant.LottoOutputMessage.*;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
+import lotto.domain.PurchaseCount;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
@@ -24,7 +25,7 @@ public class LottoGameController {
     }
 
     public void run() {
-        Integer purchaseCount = initPurchaseAmount();
+        PurchaseCount purchaseCount = initPurchaseAmount();
         LottoStore lottoStore = initLottoStore(purchaseCount);
         initWinningNumber();
     }
@@ -39,11 +40,11 @@ public class LottoGameController {
         return inputView.requestWinningNumber();
     }
 
-    private Integer initPurchaseAmount() {
+    private PurchaseCount initPurchaseAmount() {
         while (true) {
             try {
                 String purchaseAmountInput = requestPurchaseAmount();
-                return lottoGameService.validatePurchaseAmount(purchaseAmountInput);
+                return new PurchaseCount(purchaseAmountInput);
             } catch (IllegalArgumentException exception) {
                 outputView.output(exception.getMessage());
             }
@@ -55,7 +56,7 @@ public class LottoGameController {
         return inputView.requestPurchaseAmount();
     }
 
-    private LottoStore initLottoStore(Integer purchaseCount) {
+    private LottoStore initLottoStore(PurchaseCount purchaseCount) {
         List<Lotto> lottos = lottoGameService.purchase(purchaseCount);
         outputView.output(
                 format(PURCHASE_COUNT.getMessage(), purchaseCount)

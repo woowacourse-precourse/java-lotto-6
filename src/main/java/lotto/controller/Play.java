@@ -9,6 +9,8 @@ import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.*;
 import static lotto.controller.Rank.getRank;
+import static lotto.controller.Statistic.calLottoCount;
+import static lotto.controller.Statistic.calSumPrize;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -24,7 +26,7 @@ public class Play {
         result = new HashMap<>();
         messageAboutPrice();
         createPrice();
-        int count = calLottoCount(price);
+        int count = calLottoCount(price, lottoPrice);
         printBoughtLottoCount(count);
         lottery = new ArrayList<>();
 
@@ -61,7 +63,7 @@ public class Play {
         }
         printResultRank(result);
 
-        int sumPrize = calSumPrize();
+        int sumPrize = calSumPrize(result);
         double rateMean = calRate(sumPrize, price);
         printMean(rateMean);
 
@@ -74,6 +76,7 @@ public class Play {
             price = convertPrice(tmpPrice);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]");
+            createPrice();
             e.getMessage();
         }
     }
@@ -111,10 +114,6 @@ public class Play {
     }
 
 
-    public static int calLottoCount(int price) {
-        return price / lottoPrice;
-    }
-
     public static int compareLottoAndWinning(List<Integer> lotto, List<Integer> winning) {
         Set<Integer> uniqueLotto = new HashSet<>(lotto);
         Set<Integer> uniqueWinning = new HashSet<>(winning);
@@ -142,14 +141,6 @@ public class Play {
             return Rank.SECOND;
         }
         return Rank.THIRD;
-    }
-
-    public static int calSumPrize() {
-        int sum = 0;
-        for (Rank rank : result.keySet()) {
-            sum += (rank.getPrize()*result.get(rank));
-        }
-        return sum;
     }
     public static double calRate(int resultSum, int price) {
         return ((double)resultSum/(price))*100;

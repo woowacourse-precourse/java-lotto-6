@@ -28,6 +28,6 @@ public class Money {
     }
 
     public double calculateIncomeRate(int prize) {
-        return (double) prize / givenMoney;
+        return (double) prize / givenMoney * 100;
     }
 }

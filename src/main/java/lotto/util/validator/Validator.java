@@ -51,7 +51,7 @@ public class Validator {
 		}
 	}
 
-	public static void validateNumbersOutOfRange(int number, int[] ranges, String message) {
+	public static void validateNumberOutOfRange(int number, int[] ranges, String message) {
 		if (isNumberOutOfRange(number, ranges)) {
 			throw new IllegalArgumentException(message);
 		}

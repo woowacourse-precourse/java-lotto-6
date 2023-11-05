@@ -3,7 +3,7 @@ package lotto.model.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import lotto.model.domain.exception.LottoGameConstants;
+import lotto.model.domain.constants.LottoGameConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

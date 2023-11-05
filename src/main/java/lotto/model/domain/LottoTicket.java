@@ -2,7 +2,7 @@ package lotto.model.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.model.domain.exception.LottoGameConstants;
+import lotto.model.domain.constants.LottoGameConstants;
 
 public class LottoTicket {
     private final List<Lotto> lottos;

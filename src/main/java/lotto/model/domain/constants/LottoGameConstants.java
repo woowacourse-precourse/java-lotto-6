@@ -1,4 +1,4 @@
-package lotto.model.domain.exception;
+package lotto.model.domain.constants;
 
 public enum LottoGameConstants {
 

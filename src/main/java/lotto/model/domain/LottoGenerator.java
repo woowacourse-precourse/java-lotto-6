@@ -2,7 +2,7 @@ package lotto.model.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.model.domain.exception.LottoGameConstants;
+import lotto.model.domain.constants.LottoGameConstants;
 
 public class LottoGenerator {
     private final int minNumber = LottoGameConstants.MIN_NUMBER.getValue();

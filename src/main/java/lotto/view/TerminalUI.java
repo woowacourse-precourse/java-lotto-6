@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.constance.PrintConst;
+import lotto.model.domain.Lotto;
 import lotto.model.domain.result.LottoResult;
 import lotto.ui.Reader;
 import lotto.ui.Writer;
@@ -14,6 +15,12 @@ public class TerminalUI implements LottoGameUI {
     public int getMoney() {
         Writer.printGuide(PrintConst.GUIDE_PURCHASE);
         return Reader.getMoney();
+    }
+
+    @Override
+    public void printPurchasedLottos(List<Lotto> lottosDTO) {
+        Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, lottosDTO.size());
+        Writer.printModelsInList(lottosDTO);
     }
 
     @Override

@@ -182,4 +182,14 @@ class LottoTest {
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구매 금액으로 구매한 로또 갯수를 계산한다.")
+    @Test
+    void ticketsForMoney() {
+        Control controller = new Control();
+        assertThat(controller.ticketsForMoney(1000L)).isEqualTo(1);
+        assertThat(controller.ticketsForMoney(10000L)).isEqualTo(10);
+        assertThat(controller.ticketsForMoney(100000L)).isEqualTo(100);
+        assertThat(controller.ticketsForMoney(2147483000L)).isEqualTo(2147483);
+    }
 }

@@ -13,5 +13,6 @@ public class StatisticsController {
             final Prize prize
     ) {
         MatchingResults matchingResults = lottos.generatePrizeResult(prize);
+        
     }
 }

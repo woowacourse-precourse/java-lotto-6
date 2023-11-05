@@ -24,7 +24,7 @@ public enum PrizeMatchingCount {
         return count;
     }
 
-    public static PrizeMatchingCount convert(final int matchingCount) {
+    public static PrizeMatchingCount from(final int matchingCount) {
         return Arrays.stream(PrizeMatchingCount.values())
                 .filter(rank -> rank.getCount() == matchingCount)
                 .findFirst()

@@ -15,6 +15,7 @@ public class WinningLotto {
         validateWinningLottoRange(winningLotto);
         validateWinningLottoUnique(winningLotto);
         validateWinningLottoLength(winningLotto);
+        validateBonusNumberRange(bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
@@ -37,6 +38,12 @@ public class WinningLotto {
     private void validateWinningLottoLength(List<Integer> winningLotto) {
         if (winningLotto.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("당첨 번호 6개를 입력해야 합니다.");
+        }
+    }
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        if (!isValidRange(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 1~45 사이만 입력 가능합니다.");
         }
     }
 

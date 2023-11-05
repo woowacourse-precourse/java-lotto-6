@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 
-public class LottoManager {
-    private static final LottoManager lottoManager = new LottoManager();
+public class LottoService {
+    private static final LottoService LOTTO_SERVICE = new LottoService();
     private static final int LOTTO_PRICE = 1000;
-
-    public LottoManager() {
-    }
-
-    public LottoManager getInstance() {
-        return lottoManager;
-    }
 
     public List<Lotto> purchaseLottos(int purchaseAmount) {
         int numberOfLottos = purchaseAmount / LOTTO_PRICE;

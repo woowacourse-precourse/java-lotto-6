@@ -39,4 +39,20 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    protected boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    protected int matching(Lotto lotto) {
+        int match = 0;
+
+        for (int number : lotto.numbers) {
+            if (this.contains(number)) {
+                match += 1;
+            }
+        }
+
+        return match;
+    }
 }

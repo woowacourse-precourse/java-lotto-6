@@ -40,35 +40,40 @@ public class LottoWinnerSystem {
         OutputView.printTotalResult(fifth, fourth, third, second, first);
     }
 
-    // 발행한 로또가 당첨인지 확인
+    // 발행한 로또를 1개씩 비교
     public void isWinnerLotto(List<Lotto> purchasedLotto, List<Integer> winNumber, List<Integer> bonusNumber) {
         for (int i = 0; i < purchasedLotto.size(); i++) {
             List<Integer> compareLotto = purchasedLotto.get(i).getLotto();
-            compareOneLotto(winNumber, bonusNumber, compareLotto);
+            int matchCount = getMatchNumberCount(compareLotto, winNumber);
+            if (matchCount >= 3) {
+                compareOneLotto(compareLotto, bonusNumber, matchCount);
+            }
         }
     }
 
-    private void compareOneLotto(List<Integer> winNumber, List<Integer> bonusNumber, List<Integer> compareLotto) {
-        int matchCount = getMatchNumberCount(compareLotto, winNumber);
-        if (matchCount >= 3) {
-            if (matchCount == 3) {
-                fifth += 1;
-                return;
-            }
-            if (matchCount == 4) {
-                fourth += 1;
-                return;
-            }
-            if (matchCount == 5) {
-                if (isContainBonusNumber(compareLotto, bonusNumber)) {
-                    second += 1;
-                    return;
-                }
-                third += 1;
-                return;
-            }
+    // 일치하는 번호 개수에 따라 당첨 통계 업데이트
+    private void compareOneLotto(List<Integer> compareLotto, List<Integer> bonusNumber, int matchCount) {
+        if (matchCount == 3) {
+            fifth += 1;
+        }
+        if (matchCount == 4) {
+            fourth += 1;
+        }
+        if (matchCount == 5) {
+            bonusCase(compareLotto, bonusNumber);
+        }
+        if (matchCount == 6) {
             first += 1;
         }
+    }
+
+    // 5개 일치할 때 보너스 번호에 따라 당첨 통계를 다르게 업데이트
+    private void bonusCase(List<Integer> compareLotto, List<Integer> bonusNumber) {
+        if (isContainBonusNumber(compareLotto, bonusNumber)) {
+            second += 1;
+            return;
+        }
+        third += 1;
     }
 
     // 보너스 번호만 검사 (5개 일치할 때만 실행)
@@ -90,6 +95,7 @@ public class LottoWinnerSystem {
         return matchCount;
     }
 
+    // 당첨 번호가 유효한지 검사
     public List<Integer> isValidWinNumber(String input) {
         try {
             List<Integer> numbers = convertIntegerList(input);
@@ -104,6 +110,7 @@ public class LottoWinnerSystem {
         }
     }
 
+    // 보너스 번호가 유효한지 검사
     public List<Integer> isValidBonusNumber(String input, List<Integer> winNumbers) {
         try {
             List<Integer> numbers = convertIntegerList(input);

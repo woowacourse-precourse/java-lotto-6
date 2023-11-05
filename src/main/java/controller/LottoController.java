@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import constant.Rank;
 import domain.BonusNumber;
 import domain.Lotto;
+import domain.LottoCount;
 import domain.Lottos;
 import domain.Money;
 import domain.RateOfReturn;
@@ -22,6 +23,7 @@ import view.OutputView;
 
 public class LottoController {
     private Money money;
+    private LottoCount lottoCount;
     private BonusNumber bonusNumber;
     private Lotto winningNumbers;
     private Lottos lottos;
@@ -45,28 +47,17 @@ public class LottoController {
         inputLottoMoney();
 
         // 2. 로또 개수 계산 및 출력
-        long ticketCount = OutputView.LottoTicketCount(money.getMoney());
+        lottoCount = new LottoCount(money.getMoney());
+        OutputView.LottoTicketCount(lottoCount.getLottoCount());
 
         // 3. 로또 생성
-        makeLottoLists(ticketCount);
+        makeLottoLists(lottoCount.getLottoCount());
 
         // 4. 로또 당첨 번호 및 보너스 번호 입력, 수익률 계산
         runLottoGame();
 
         // 5. 결과 출력
         result();
-    }
-
-    private void runLottoGame() {
-        getWinningNumbersAndBonusNumber();
-        calculateRankCount();
-        calculateRateOfReturn();
-    }
-
-    private void result() {
-        OutputView.resultStart();
-        OutputView.printStatistics(rankCountsMap);
-        OutputView.printRateOfReturn(rateOfReturn.getRate());
     }
 
     private void inputLottoMoney() {
@@ -91,6 +82,19 @@ public class LottoController {
         lottos = new Lottos(lottoList);
         System.out.println();
     }
+
+    private void runLottoGame() {
+        getWinningNumbersAndBonusNumber();
+        calculateRankCount();
+        calculateRateOfReturn();
+    }
+
+    private void result() {
+        OutputView.resultStart();
+        OutputView.printStatistics(rankCountsMap);
+        OutputView.printRateOfReturn(rateOfReturn.getRate());
+    }
+
 
     private List<Integer> chooseRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), LOTTO_SIZE.getNumber());

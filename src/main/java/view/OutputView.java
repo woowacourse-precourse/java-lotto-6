@@ -9,7 +9,6 @@ import static constant.ConstantMessage.SEPARATOR;
 import static constant.ConstantMessage.STATISTICS_START;
 import static constant.ConstantMessage.THIRD_MATCH;
 import static constant.ConstantMessage.TOTAL_RATE_OF_RETURN;
-import static constant.ConstantNumber.LOTTO_PRICE;
 
 import constant.Rank;
 import java.util.HashMap;
@@ -18,10 +17,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static long LottoTicketCount(long money) {
-        long ticketCount = money / LOTTO_PRICE.getNumber();
-        System.out.printf((PURCHASED.getMessage()) + "%n", ticketCount);
-        return ticketCount;
+    public static void LottoTicketCount(long lottoCount) {
+        System.out.printf((PURCHASED.getMessage()) + "%n", lottoCount);
     }
 
     public static void resultStart() {

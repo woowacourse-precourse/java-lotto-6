@@ -30,6 +30,8 @@ public class Application {
 
         outputView.println(messageConverter.convertLottoNumberMessage(lottos));
 
+        // 당첨 번호 입력
+        Lotto winningLotto = createWinningLotto();
     }
 
     private static Money inputMoneyAmount() {
@@ -44,5 +46,15 @@ public class Application {
 
     private static List<Lotto> purchaseLottos(LottoMachine lottoMachine, Money money) {
         return lottoMachine.purchaseLottos(money);
+    }
+
+    private static Lotto createWinningLotto() {
+        try {
+            List<Integer> winningNumbers = inputView.readWinningNumbers();
+            return new Lotto(winningNumbers);
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            return createWinningLotto();
+        }
     }
 }

@@ -49,7 +49,7 @@ class LottoValidatorTest {
 
     @DisplayName("로또 번호가 1에서 45 사이의 범위를 벗어나는 경우 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"1, 2, 40, 45, 34, 23", "50, 60, 70, 80, 90, 100"})
+    @ValueSource(strings = {"200,62,79,454,343,273", "50,60,900,80,90,100"})
     void should_Throw_Exception_When_Number_Is_Out_Of_Range(String str) {
         // given
         List<Integer> numbers = Arrays.stream(str.split(","))

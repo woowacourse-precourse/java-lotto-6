@@ -43,4 +43,8 @@ public enum LottoRank {
     public String getDescription() {
         return description;
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

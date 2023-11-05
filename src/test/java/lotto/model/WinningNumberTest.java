@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.view.message.Error;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -40,5 +41,18 @@ public class WinningNumberTest {
             WinningNumber.create(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있을 경우 에러를 발생시킨다.")
+    @Test
+    public void 중복된_당첨번호_예외처리() {
+        //given
+        String duplicateWinningNumber = "1,2,3,4,5,5";
+
+        //when+then
+        assertThatThrownBy(() -> {
+            WinningNumber.create(duplicateWinningNumber);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.WINNING_NUMBER_DUPLICATED.getMessage());
     }
 }

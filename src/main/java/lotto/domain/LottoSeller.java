@@ -25,11 +25,7 @@ public class LottoSeller {
     public Lottos buy(final Money money) {
         validateMoney(money);
         final Long count = money.divide(LOTTO_PRICE);
-        final List<Lotto> lottos = new ArrayList<>();
-        for (long index = 0L; index < count; ++index) {
-            final List<Integer> integers = numberGenerator.generate(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
-            lottos.add(new Lotto(integers));
-        }
+        final List<Lotto> lottos = generateLottos(count);
         return new Lottos(lottos);
     }
 
@@ -40,5 +36,14 @@ public class LottoSeller {
         if (money.greaterThan(LOTTO_PRICE.multiply(MAX_COUNT))) {
             throw new LottoException(EXCEED_BUY_COUNT);
         }
+    }
+
+    private List<Lotto> generateLottos(final Long count) {
+        final List<Lotto> lottos = new ArrayList<>();
+        for (long index = 0L; index < count; ++index) {
+            final List<Integer> integers = numberGenerator.generate(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+            lottos.add(new Lotto(integers));
+        }
+        return lottos;
     }
 }

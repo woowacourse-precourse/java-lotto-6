@@ -23,8 +23,8 @@ final class DrawLottosDtoBuilderTest {
                 .build();
 
         // then
-        for (int i = 1; i <= 6; i++) {
-            assertThat(dto.getLottoNumbers().get(i)).isEqualTo(i);
+        for (int i = 0; i < 6; i++) {
+            assertThat(dto.getLottoNumbers().get(i)).isEqualTo(i + 1);
         }
         assertThat(dto.getBonusNumber()).isEqualTo(7);
     }

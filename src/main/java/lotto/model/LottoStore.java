@@ -8,12 +8,14 @@ public class LottoStore {
 
     private static final Integer LOTTO_PRICE = 1000;
     private static final int ZERO_COUNT_VALUE = 0;
+    private NumberGenerator numberGenerator;
 
-    private LottoStore() {
+    private LottoStore(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
-    public static LottoStore of() {
-        return new LottoStore();
+    public static LottoStore of(NumberGenerator numberGenerator) {
+        return new LottoStore(numberGenerator);
     }
 
     public List<Lotto> sellLotto(int money) {
@@ -39,6 +41,6 @@ public class LottoStore {
     }
 
     private List<Integer> createLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numberGenerator.generate();
     }
 }

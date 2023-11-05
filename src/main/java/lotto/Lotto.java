@@ -27,4 +27,9 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

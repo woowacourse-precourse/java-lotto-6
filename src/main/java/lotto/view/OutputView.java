@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -10,6 +11,7 @@ import lotto.utils.enums.LottoCount;
 public class OutputView {
     private final String OUTPUT_FORMAT = "당첨 통계";
     private final String OUTPUT_LINE = "---";
+
     public void outputCreatedLottos(List<List<Integer>> lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         for (List<Integer> lotto : lottos) {
@@ -38,6 +40,11 @@ public class OutputView {
 
     public void outputWinningRate(long winningTotalPrice, int inputPrice) {
         double winningRate = (double) winningTotalPrice / inputPrice;
-        System.out.printf("총 수익률은 %.1f%%입니다.", winningRate * 100);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###.0%");
+        String rateFormat = decimalFormat.format(winningRate);
+        if (rateFormat.equals(".0%")) {
+            rateFormat = "0.0%";
+        }
+        System.out.printf("총 수익률은 %s입니다.", rateFormat);
     }
 }

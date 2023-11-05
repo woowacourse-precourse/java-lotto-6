@@ -34,13 +34,13 @@
     - 보너스 번호는 숫자 1개이다.
     - 숫자 범위는 1~45까지이다.
 
-- [] 로또 티켓 한 장의 번호와 당첨 번호를 비교해주는 기능 `WinningTickets`#`compareTicketNumbers`
+- [] 로또 티켓 한 장의 번호와 당첨 번호를 비교해주는 기능 `JudgeWinningTickets`#`compareTicketNumbers`
   - 일치하는 숫자의 개수를 반환(int)
 
-- [] 보너스 번호와 당첨 번호를 비교해주는 기능 `WinningTickets`#`compareBonusNumber`
+- [] 보너스 번호와 당첨 번호를 비교해주는 기능 `JudgeWinningTickets`#`compareBonusNumber`
   - 일치하는지 여부를 반환(boolean)
 
-- [] 일치하는 숫자의 개수별로 등수를 계산해주는 기능 `WinningTickets`#`ranking`
+- [] 일치하는 숫자의 개수별로 등수를 계산해주는 기능 `JudgeWinningTickets`#`ranking`
   - `compareTicketNumbers`와 `compareBonusNumber`를 호출하여 변수에 저장한다.
   - 6개 번호 일치 시 1등
   - 5개 번호 + 보너스 번호 일치 시 2등
@@ -49,7 +49,7 @@
   - 3개 번호 일치 시 5등
   - 티켓이 몇 등인지를 반환(int)
 
-- [] 등수별 티켓 당첨 개수를 계산해주는 기능 `WinningTickets`#`winningTickets`
+- [] 등수별 티켓 당첨 개수를 계산해주는 기능 `JudgeWinningTickets`#`winningTickets`
   - 구매한 로또 티켓 수량만큼 `ranking` 함수 호출 반복
   - 등수별로 당첨 티켓의 개수를 계산
   - Map 자료 구조를 이용하여 {등수, 당첨 티켓 개수} 반환

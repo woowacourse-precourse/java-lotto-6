@@ -13,13 +13,17 @@ public class Money {
     }
 
     public static Money from(int money) {
-        validate(money);
-        return new Money(money);
+        try {
+            validate(money);
+            return new Money(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return Money.from(InputView.inputMoney());
+        }
     }
 
     private static void validate(int money) {
         if (money % GameRules.MINIMUN_UNIT.getValue() != 0) {
-            InputView.inputMoney();
             throw new IllegalArgumentException(INVALID_AMOUNT_ERROR_MESSAGE);
         }
     }

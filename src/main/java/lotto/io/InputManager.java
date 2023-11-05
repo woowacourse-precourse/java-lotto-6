@@ -19,7 +19,7 @@ public class InputManager {
     public PurchaseAmount readPurchaseAmount() {
         return read(
                 () -> {
-                    final String input = inputView.readPurchaseAmount();
+                    final String input = inputView.readNumber();
                     return inputMapper.toPurchaseAmount(input);
                 });
     }
@@ -35,7 +35,7 @@ public class InputManager {
     public BonusNumber readBonusNumber() {
         return read(
                 () -> {
-                    final String input = inputView.readBonusNumber();
+                    final String input = inputView.readNumber();
                     return inputMapper.toBonusNumber(input);
                 });
     }

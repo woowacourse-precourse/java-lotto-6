@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-  public int inputMONEY() {
+  public int inputMoney() {
     OutputView.printInputMoneyMessage();
     String money = Console.readLine();
     return Integer.parseInt(money);
@@ -15,8 +15,9 @@ public class InputView {
     return Console.readLine();
   }
 
-  public String inputBonusNumber() {
+  public int inputBonusNumber() {
     OutputView.printInputBonusNumberMessage();
-    return Console.readLine();
+    String bonusNumber = Console.readLine();
+    return Integer.parseInt(bonusNumber);
   }
 }

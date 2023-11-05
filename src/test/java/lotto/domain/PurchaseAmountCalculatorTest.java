@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import static lotto.utils.constants.LottoConstants.LOTTO_TICKET_PRICE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -42,10 +43,10 @@ class PurchaseAmountCalculatorTest {
     @Test
     void 금액별_수량_확인_테스트(){
         //given
-        String purchaseAmount = String.valueOf(Randoms.pickNumberInRange(1,100)*1000);
+        String purchaseAmount = String.valueOf(Randoms.pickNumberInRange(1,100)*LOTTO_TICKET_PRICE);
         //when
         int ticketQuantity = purchaseAmountCalculator.getTicketQuantity(purchaseAmount);
         //then
-        Assertions.assertThat(ticketQuantity).isEqualTo(Integer.parseInt(purchaseAmount)/1000);
+        Assertions.assertThat(ticketQuantity).isEqualTo(Integer.parseInt(purchaseAmount)/LOTTO_TICKET_PRICE);
     }
 }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import lotto.domain.LottoNumbersGenerator;
@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 class LottoNumbersGeneratorTest {
 
-
+    LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator();
     @Test
     void 로또_번호_6개_생성_테스트() {
         //given
 
         //when
-        List<Integer> lottoNumbers = LottoNumbersGenerator.generateRandomNumbers();
+        List<Integer> lottoNumbers = lottoNumbersGenerator.generateRandomNumbers();
         //then
         Assertions.assertThat(lottoNumbers.size()).isEqualTo(6);
     }

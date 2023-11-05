@@ -16,5 +16,13 @@ public class Lotto {
         }
     }
 
+    public void countOverlappingNumber() {
+
+    }
+
+    public boolean isContainBonusNumber() {
+        return true;
+    }
+
     // TODO: 추가 기능 구현
 }

@@ -29,7 +29,7 @@ public class InputView {
     }
 
     public List<Integer> getNumbers() {
-        String string = scanner.toString();
+        String string = scanner.readLine();
         return convertNumbers(string);
     }
 

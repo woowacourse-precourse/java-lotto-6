@@ -12,4 +12,7 @@ public class OutputView {
     public static void printInputPurchaseAmountMsg() {
         System.out.print(INPUT_PURCHASE_AMOUNT_MSG);
     }
+    public static void printPurchaseMsg(int lottoCount) {
+        System.out.printf(PURCHASE_MSG, lottoCount);
+    }
 }

@@ -30,6 +30,14 @@ public class LottoWinnerSystem {
         this.fifth = 0;
     }
 
+    // 발행한 로또가 당첨인지 확인
+    public void isWinnerLotto(List<Lotto> purchasedLotto, List<Integer> winNumber, List<Integer> bonusNumber) {
+        for (int i = 0; i < purchasedLotto.size(); i++) {
+            List<Integer> compareLotto = purchasedLotto.get(i).getLotto();
+            compareOneLotto(winNumber, bonusNumber, compareLotto);
+        }
+    }
+
     private void compareOneLotto(List<Integer> winNumber, List<Integer> bonusNumber, List<Integer> compareLotto) {
         int matchCount = getMatchNumberCount(compareLotto, winNumber);
         if (matchCount >= 3) {

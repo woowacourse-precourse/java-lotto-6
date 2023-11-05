@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.PlayLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,5 +29,6 @@ public class LottoController {
 
     public void showLottoCount() {
         OutputView.printLottoCount(LottoCount);
+        PlayLotto.makeLottos(LottoCount);
     }
 }

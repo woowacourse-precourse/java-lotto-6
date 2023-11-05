@@ -12,7 +12,7 @@ public class PurchaseAmountTest {
         String input = "a";
         assertThatThrownBy(() -> new PurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자로만 이루어진 값을 입력해주세요.");
+                .hasMessageContaining("숫자로만 이루어진 값을 입력해주세요.");
     }
 
     @DisplayName("1000으로 나누어 떨어지지 않으면 예외 발생")

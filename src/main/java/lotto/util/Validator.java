@@ -8,13 +8,13 @@ public class Validator {
     private static final int LOTTO_PRICE = 1000;
     private static final int MIN_RANGE_NUM = 1;
     private static final int MAX_RANGE_NUM = 45;
-    private static final String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자로만 이루어진 값을 입력해주세요.";
+    private static final String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 1 이상의 숫자로만 이루어진 값을 입력해주세요.";
     private static final String WRONG_UNIT_ERROR_MESSAGE = "[ERROR] 입력 금액은 1,000원 단위여야 합니다.";
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 숫자가 포함되어 있습니다.";
 
     public static void validateNonNumeric(String input) {
-        String pattern = "^[0-9]*$";
+        String pattern = "^[1-9][0-9]*$";
         if (!Pattern.matches(pattern, input)) {
             throw new IllegalArgumentException(NON_NUMERIC_ERROR_MESSAGE);
         }

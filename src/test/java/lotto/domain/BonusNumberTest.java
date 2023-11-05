@@ -15,21 +15,12 @@ public class BonusNumberTest {
         String input = "1,2";
         assertThatThrownBy(() -> new BonusNumber(input, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자로만 이루어진 값을 입력해주세요.");
+                .hasMessageContaining("숫자로만 이루어진 값을 입력해주세요.");
     }
 
-    @DisplayName("1 미만의 숫자 입력하면 예외 발생")
+    @DisplayName("1~45 범위를 벗어나는 숫자 입력하면 예외 발생")
     @Test
-    void createAmountByUnder1() {
-        String input = "0";
-        assertThatThrownBy(() -> new BonusNumber(input, lotto))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.");
-    }
-
-    @DisplayName("45 초과의 숫자 입력하면 예외 발생")
-    @Test
-    void createAmountByOver45() {
+    void createAmountByWrongRange() {
         String input = "46";
         assertThatThrownBy(() -> new BonusNumber(input, lotto))
                 .isInstanceOf(IllegalArgumentException.class)

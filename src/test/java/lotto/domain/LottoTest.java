@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @DisplayName("로또 객체 생성을 테스트한다.")
@@ -44,7 +43,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto prize = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        int matchNumbers = lotto.countNumbers(prize);
+        int matchNumbers = lotto.countMatchNumbers(prize);
 
         assertThat(matchNumbers).isEqualTo(6);
     }
@@ -55,7 +54,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 3;
 
-        boolean matchBonus = lotto.containNumber(bonus);
+        boolean matchBonus = lotto.isMatchNumber(bonus);
 
         assertThat(matchBonus).isTrue();
     }

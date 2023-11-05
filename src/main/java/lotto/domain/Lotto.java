@@ -18,10 +18,6 @@ public class Lotto {
         this.numbers = sortedLottoNumber(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private void validate(List<Integer> numbers) {
         validateRange(numbers);
         validateSize(numbers);
@@ -54,11 +50,11 @@ public class Lotto {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 
-    public int countNumbers(Lotto prize) {
-        return (int) numbers.stream().filter(prize::containNumber).count();
+    public int countMatchNumbers(Lotto prizeLottoNumbers) {
+        return (int) numbers.stream().filter(prizeLottoNumbers::isMatchNumber).count();
     }
 
-    public boolean containNumber(int number) {
+    public boolean isMatchNumber(int number) {
         return numbers.contains(number);
     }
 

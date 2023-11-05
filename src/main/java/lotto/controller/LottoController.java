@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.Player;
+import lotto.domain.Prize;
+import lotto.domain.Rank;
+import lotto.domain.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +16,7 @@ public class LottoController {
         Player player = getPlayer();
         showPlayerLotto(player);
         Prize prize = getPrize(getPrizeLotto());
+        System.out.println(prize.toString());
         showLottoResult(player, prize);
     }
 
@@ -57,6 +62,6 @@ public class LottoController {
                 OutputView.printPrizeLotto(rank.formatMessage(count));
             }
         }
-        OutputView.printPrizeRate(result.calculateRate(player.getMoney()));
+        OutputView.printPrizeRate(result.calculateRate(player.getAmount()));
     }
 }

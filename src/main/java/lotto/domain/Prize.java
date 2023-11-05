@@ -33,7 +33,7 @@ public class Prize {
     }
 
     private static void validateDuplicate(Lotto lotto, int bonus) {
-        if (lotto.getNumbers().contains(bonus)) {
+        if (lotto.isMatchNumber(bonus)) {
             throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
         }
     }
@@ -52,7 +52,7 @@ public class Prize {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Prize\n");
-        sb.append("로또 당첨 번호: ").append(lotto.getNumbers()).append("\n");
+        sb.append("로또 당첨 번호: ").append(lotto).append("\n");
         sb.append("보너스 번호: ").append(bonus).append("\n");
         return sb.toString();
     }

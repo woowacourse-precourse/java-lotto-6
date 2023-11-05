@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Rule.MIN_MONEY;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +11,7 @@ public class Result {
 
     private Result(List<Lotto> playerLotto, Prize prize) {
         for (Lotto lotto : playerLotto) {
-            Rank rank = Rank.valueOf(lotto.countNumbers(prize.getLotto()), lotto.containNumber(prize.getBonus()));
+            Rank rank = Rank.valueOf(lotto.countMatchNumbers(prize.getLotto()), lotto.isMatchNumber(prize.getBonus()));
             add(rank);
         }
     }
@@ -34,7 +36,8 @@ public class Result {
         return total;
     }
 
-    public double calculateRate(int money) {
+    public double calculateRate(int amount) {
+        int money = amount * MIN_MONEY.getValue();
         return (calculateResult() / money) * 100;
     }
 }

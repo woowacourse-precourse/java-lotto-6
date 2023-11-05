@@ -20,10 +20,6 @@ public enum Rank {
         this.message = message;
     }
 
-    public int getCount() {
-        return count;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }

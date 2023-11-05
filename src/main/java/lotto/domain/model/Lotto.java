@@ -18,6 +18,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getLotto() {
+        return numbers;
+    }
+
     public static List<Integer> generateLottoNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;

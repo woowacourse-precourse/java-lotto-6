@@ -1,5 +1,6 @@
 package lotto.model.domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
@@ -7,7 +8,7 @@ public class User {
     private final int purchaseMoney;
     private final int havingLottosCount;
     private int moneyOfReturn;
-    private ArrayList<Integer> lottoRanks;
+    private int[] lottoRanks;
 
     public User(int purchaseMoney) {
         this.purchaseMoney = purchaseMoney;
@@ -27,7 +28,9 @@ public class User {
         this.moneyOfReturn += returnMoney;
     }
 
-    public ArrayList<Integer> getLottoRanks() {
+    public int[] getLottoRanks() {
         return this.lottoRanks;
     }
+
+
 }

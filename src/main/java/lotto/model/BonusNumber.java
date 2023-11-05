@@ -6,4 +6,14 @@ public class BonusNumber {
     public BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    private void validate(int input) {
+        validateInRange(input);
+    }
+
+    private static void validateInRange(int input) {
+        if (input < 1 || input > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
+        }
+    }
 }

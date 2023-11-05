@@ -10,7 +10,7 @@ public class PlayerLotto {
         this.lottos = lottos;
     }
 
-    public List<Rank> calculateResult(final Lotto winningNumber, final LottoNumber bonusNumber) {
+    public FinalGrade calculateFinalGrade(final Lotto winningNumber, final LottoNumber bonusNumber) {
         List<Rank> results = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int containCounts = lotto.countMatchingNumbers(winningNumber);
@@ -19,7 +19,6 @@ public class PlayerLotto {
             Rank rank = Rank.calculateRank(containCounts, isMatchBonus);
             results.add(rank);
         }
-        return results;
+        return new FinalGrade(results);
     }
-
 }

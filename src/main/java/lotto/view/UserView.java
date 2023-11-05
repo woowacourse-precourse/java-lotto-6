@@ -15,15 +15,19 @@ public class UserView {
     public UserView() {}
     public void printBuyMessageBefore() {
         System.out.println(BUY_MESSAGE_BEFORE);
+        System.out.println();
     }
     public void printBuyMessageAfter(Integer purchaseLottoNumber) {
         System.out.println(purchaseLottoNumber + BUY_MESSAGE_AFTER);
+        System.out.println();
     }
     public void printInputWinningNumbersMessage() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+        System.out.println();
     }
     public void printInputBonusNumberMessage() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println();
     }
     public void printWinningStatistic() {
         System.out.println(WINNING_STATISTIC);
@@ -34,5 +38,6 @@ public class UserView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getSortedNumbers());
         }
+        System.out.println();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.record.LottoNumberRecord;
+import lotto.record.LottoNumbers;
 
 public class Lotto {
     private final LottoNumbers numbers;
@@ -10,12 +11,12 @@ public class Lotto {
     }
 
     public LottoNumberRecord toRecord() {
-        return new LottoNumberRecord(numbers.getLottoNumbers());
+        return new LottoNumberRecord(numbers.lottoNumbers());
     }
 
     public String makeLottoNumberString() {
         return numbers
-                .getLottoNumbers().stream()
+                .lottoNumbers().stream()
                 .sorted()
                 .toList()
                 .toString();

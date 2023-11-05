@@ -7,6 +7,8 @@ import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_BONUS_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
+import lotto.record.LottoNumbers;
+
 public class BonusNumber {
     private final int bonusNumber;
 
@@ -37,7 +39,7 @@ public class BonusNumber {
     }
 
     private void bonusNumberWinningNumberDuplicateValidate(LottoNumbers numbers, int bonusNumber) {
-        if (numbers.getLottoNumbers().stream().anyMatch(number -> number == bonusNumber)) {
+        if (numbers.lottoNumbers().stream().anyMatch(number -> number == bonusNumber)) {
             exceptionCodeThrow(LOTTO_NUMBER_BONUS_DUPLICATE);
         }
     }

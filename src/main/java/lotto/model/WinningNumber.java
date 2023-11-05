@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.record.LottoNumberRecord;
+import lotto.record.LottoNumbers;
 
 public class WinningNumber {
 
@@ -59,7 +60,7 @@ public class WinningNumber {
     }
 
     private int getMatches(int number, int matches) {
-        if (numbers.getLottoNumbers().contains(number)) {
+        if (numbers.lottoNumbers().contains(number)) {
             matches++;
         }
         return matches;

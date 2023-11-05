@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.record;
 
 import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
 import static lotto.enumerate.ConfigInteger.LOTTO_NUMBER_COUNT;
@@ -10,12 +10,9 @@ import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
 import java.util.List;
 
-public class LottoNumbers {
-    private final List<Integer> lottoNumbers;
-
-    public LottoNumbers(List<Integer> lottoNumbers) {
+public record LottoNumbers(List<Integer> lottoNumbers) {
+    public LottoNumbers {
         validate(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -26,7 +23,8 @@ public class LottoNumbers {
 
 
     private void lottoNumberUnderOverValidate(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER.getInt() || number > LOTTO_END_NUMBER.getInt())) {
+        if (numbers.stream()
+                .anyMatch(number -> number < LOTTO_START_NUMBER.getInt() || number > LOTTO_END_NUMBER.getInt())) {
             exceptionCodeThrow(LOTTO_NUMBER_UNDER_OR_OVER);
         }
     }
@@ -41,9 +39,5 @@ public class LottoNumbers {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getInt()) {
             exceptionCodeThrow(LOTTO_NUMBER_OVER_OR_UNDER_SIZE);
         }
-    }
-
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
     }
 }

@@ -11,7 +11,8 @@ import java.util.List;
 import lotto.model.Amount;
 import lotto.model.Cash;
 import lotto.model.Lotto;
-import lotto.model.LottoNumbers;
+import lotto.record.LottoList;
+import lotto.record.LottoNumbers;
 import lotto.model.WinningInfo;
 import lotto.model.WinningList;
 import lotto.model.WinningNumber;
@@ -30,7 +31,7 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    private static void getLottoNumber(ArrayList<Lotto> list) {
+    private static void getLottoNumber(List<Lotto> list) {
         List<Integer> numbers = Randoms
                 .pickUniqueNumbersInRange(LOTTO_START_NUMBER.getInt(), LOTTO_END_NUMBER.getInt(),
                         LOTTO_NUMBER_COUNT.getInt());
@@ -44,14 +45,14 @@ public class LottoController {
         }
     }
 
-    private ArrayList<Lotto> getLottos(Cash amountCash) {
+    private LottoList getLottos(Cash amountCash) {
         ArrayList<Lotto> list = new ArrayList<>();
         long lottoVolume = amountCash.cash() / LOTTO_PRICE.getInt();
         getLottoList(lottoVolume, list);
-        return list;
+        return new LottoList(list);
     }
 
-    public List<Lotto> buyLotto(Cash amountCash) {
+    public LottoList buyLotto(Cash amountCash) {
         return getLottos(amountCash);
     }
 
@@ -60,7 +61,7 @@ public class LottoController {
         while (loop) {
             try {
                 Amount amount = inputAmount();
-                List<Lotto> lottos = buyLotto(amount.getAmountCash());
+                List<Lotto> lottos = buyLotto(amount.getAmountCash()).lottoList();
                 printLotto(lottos);
                 WinningList winningList = calculateWinning(lottos);
                 printWinningList(winningList);

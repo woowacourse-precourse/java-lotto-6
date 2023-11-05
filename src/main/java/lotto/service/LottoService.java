@@ -4,7 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.domain.Constant.*;
 
 public class LottoService {
 
@@ -19,13 +23,12 @@ public class LottoService {
     }
 
 
-    public static int validateMoney(String inputMoney){
+    public int validateMoney(String inputMoney){
         String REGEX = "[0-9]+";
         if(!inputMoney.matches(REGEX) || inputMoney.charAt(0) == '0')
             throw new IllegalArgumentException("[ERROR] 금액을 입력해 주세요.");
         return Integer.parseInt(inputMoney);
     }
-
 
 
     public List<Lotto> createLottoes(int times) {
@@ -43,7 +46,40 @@ public class LottoService {
     }
 
 
+    public Lotto convertToLotto(String inputWinningNum){
+        List<String> before = Arrays.stream(inputWinningNum.split(",")).toList();
 
+        validateUserWinningNum(before);
+
+        List<Integer> winningNums = before.stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList());
+        return new Lotto(winningNums);
+    }
+
+    public void validateUserWinningNum(List<String> numbers){
+        //6개 입력했는지
+        if(numbers.size() != MAX_LOTTOES_SIZE)
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개만 입력해 주세요.");
+
+        //중복 체크
+        if(numbers.stream().distinct().count() != MAX_LOTTOES_SIZE)
+            throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
+
+        //1부터 45인지 확인
+        for(String num : numbers){
+            if(validateInputUserNum(num)) continue;
+        }
+    }
+
+
+
+    public boolean validateInputUserNum(String inputNum){ //숫자 하나 확인
+        String REGEX = "[1-9]+";
+        if(inputNum.matches(REGEX) && (MIN <= Integer.parseInt(inputNum) && Integer.parseInt(inputNum) <= MAX))
+            return true;
+        throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45까지 입력해 주세요.");
+    }
 
 
 }

@@ -16,12 +16,12 @@ public class InputView {
 
 
     public static String inputWinningNum(){
-        System.out.println(INPUT_WINNING_NUM);
+        System.out.println("\n" + INPUT_WINNING_NUM);
         return Console.readLine();
     }
 
     public static String inputBonusNum(){
-        System.out.println(INPUT_BONUS_NUM);
+        System.out.println("\n" + INPUT_BONUS_NUM);
         return Console.readLine();
     }
 

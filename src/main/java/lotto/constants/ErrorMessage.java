@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public class ExceptionMessage {
+public class ErrorMessage {
 
     public static final String ERROR_FORMAT = "[ERROR] %s";
 

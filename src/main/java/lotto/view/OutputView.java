@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Result;
 
@@ -41,14 +42,14 @@ public class OutputView {
     public void printResult() {
         Result[] values = Result.values();
         for (Result value : values) {
-            System.out.printf("%d개 일치(%s), ");
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+            String formattedNum = decimalFormat.format(value.getMoney());
+            System.out.printf("%d개 일치(%s) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
         }
     }
-//    3개 일치 (5,000원) - 1개
-//4개 일치 (50,000원) - 0개
-//5개 일치 (1,500,000원) - 0개
-//5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-//6개 일치 (2,000,000,000원) - 0개
-//    총 수익률은 62.5%입니다.
+
+    public void printBeforeInputWinNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
 

@@ -5,6 +5,7 @@ import lotto.domain.LottoConstant;
 import lotto.domain.LottoNumberGenerator;
 import lotto.validator.InputBonusNumberValidator;
 import lotto.validator.InputPurchaseAmountValidator;
+import lotto.validator.InputWinningLotteryNumberValidator;
 import lotto.view.InputConverter;
 import lotto.view.InputPreprocessor;
 import lotto.view.InputView;
@@ -20,6 +21,7 @@ public class LottoController {
     private final InputPreprocessor preprocessor;
     private final InputConverter converter;
     private final LottoNumberGenerator lottoNumberGenerator;
+    private final InputWinningLotteryNumberValidator winningLotteryNumberValidator;
     private final InputBonusNumberValidator bonusNumberValidator;
 
     public LottoController() {
@@ -29,6 +31,7 @@ public class LottoController {
         this.preprocessor = new InputPreprocessor();
         this.converter = new InputConverter();
         this.lottoNumberGenerator = new LottoNumberGenerator();
+        this.winningLotteryNumberValidator = new InputWinningLotteryNumberValidator();
         this.bonusNumberValidator = new InputBonusNumberValidator();
     }
 
@@ -39,6 +42,7 @@ public class LottoController {
         List<Lotto> lottos = generateLottos(lottosCount);
         outputView.printLottoNumbers(lottos);
 
+        List<Integer> winningLotteryNumbers = getValidatedWinningLotteryNumbers();
         int bonusNumber = getValidatedBonusNumber();
     }
 
@@ -82,6 +86,42 @@ public class LottoController {
         return lottos;
     }
 
+    private List<Integer> getValidatedWinningLotteryNumbers() {
+        while (true) {
+            try {
+                String input = receiveWinningLotteryNumbers();
+                List<Integer> validatedNumbers = processAndValidateWinningLotteryNumbers(input);
+                return validatedNumbers;
+            } catch (IllegalArgumentException e) {
+                outputView.printInputErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private String receiveWinningLotteryNumbers() {
+        return inputView.receiveWinningLotteryNumbersInput();
+    }
+
+    private List<Integer> processAndValidateWinningLotteryNumbers(String input) {
+        String[] winningLotteryNumbers = splitInputByComma(input);
+        return validateAndCollectWinningLotteryNumbers(winningLotteryNumbers);
+    }
+
+    private String[] splitInputByComma(String input) {
+        return preprocessor.splitInputByComma(input);
+    }
+
+    private List<Integer> validateAndCollectWinningLotteryNumbers(String[] winningLotteryNumbers) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String winningLotteryNumber : winningLotteryNumbers) {
+            winningLotteryNumber = trimInput(winningLotteryNumber);
+            winningLotteryNumberValidator.validate(winningLotteryNumber);
+            winningNumbers.add(converter.convertToInteger(winningLotteryNumber));
+        }
+        winningLotteryNumberValidator.validateSizeAndDuplicatedNumbers(winningNumbers);
+        return winningNumbers;
+    }
+  
     private int getValidatedBonusNumber() {
         while (true) {
             try {
@@ -94,7 +134,7 @@ public class LottoController {
             }
         }
     }
-
+    
     private String receiveBonusNumber() {
         return inputView.receiveBonusNumberInput();
     }

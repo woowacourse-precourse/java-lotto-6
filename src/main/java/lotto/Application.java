@@ -17,16 +17,25 @@ public class Application {
         RandomNum randomNum = new RandomNum();
 
         int price = inputPrice.inputPrice();
+        System.out.println();
 
         List<List<Integer>> randomLottoNumbers = randomNum.buyLotto(price);
         output.printRandomLottoNumbers(randomLottoNumbers);
+        System.out.println();
 
         List<Integer> lottoNumbers = inputNum.inputLottoNumbers();
+        System.out.println();
+
         int bonusNumber = inputBonus.inputBonusNumber(lottoNumbers);
+        System.out.println();
 
         Lotto lotto = new Lotto(lottoNumbers);
+        List<List<Integer>> matchedNumer = lotto.getMatchedNumber(randomLottoNumbers, bonusNumber);
+        System.out.println();
 
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        output.printLottoResult(matchedNumer);
 
 
     }

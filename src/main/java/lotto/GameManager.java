@@ -9,16 +9,20 @@ import java.util.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class GameManager {
-    public List<Integer> createRandomNumber(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private final int RANDOM_NUMBER_START = 1;
+    private final int RANDOM_NUMBER_END = 45;
+    private final int RANDOM_NUMBER_COUNT = 6;
+
+    public List<Integer> createRandomNumber() {
+        return Randoms.pickUniqueNumbersInRange(RANDOM_NUMBER_START, RANDOM_NUMBER_END, RANDOM_NUMBER_COUNT);
     }
 
-    public List<Integer> getWinningLottoNumberByRead(){
+    public List<Integer> getWinningLottoNumberByRead() {
         String input = readLine();
         return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }
 
-    public Integer getBonusLottoNumberByRead(){
+    public Integer getBonusLottoNumberByRead() {
         String input = readLine();
         return Integer.parseInt(input);
     }

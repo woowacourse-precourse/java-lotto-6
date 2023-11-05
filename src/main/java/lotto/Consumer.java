@@ -4,6 +4,8 @@ package lotto;
 public class Consumer {
     private int payment = 0;
 
+    private final int LOTTO_PRICE = 1000;
+
     public int getPayment() {
         return payment;
     }
@@ -12,7 +14,7 @@ public class Consumer {
         try {
             int price = Integer.parseInt(readLine);
             assertPaymentForLotto(price);
-            int numberOfLotto = price / 1000;
+            int numberOfLotto = price / LOTTO_PRICE;
             payment = price;
             return numberOfLotto;
         } catch (NumberFormatException e) {
@@ -20,7 +22,7 @@ public class Consumer {
         }
     }
     private void assertPaymentForLotto(int price) {
-        if (price % 1000 != 0) {
+        if (price % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천원 단위로 입력해주세요.");
         }
     }

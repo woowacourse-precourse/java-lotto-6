@@ -8,6 +8,13 @@ public class Lotto {
     private Map<Integer, Boolean> winningNumbers = new HashMap<>();
     private int winningCount = 0;
     private int winningMoney = 0;
+    private final int LOTTO_SIZE = 6;
+
+    private final int THREE_NUMBER_WINNING_MONEY = 5000;
+    private final int FOUR_NUMBER_WINNING_MONEY = 50000;
+    private final int FIVE_NUMBER_WINNING_MONEY = 1500000;
+    private final int SIX_NUMBER_WINNING_MONEY = 2000000000;
+    private final int FIVE_NUMBER_WINNING_MONEY_WITH_BONUS_NUMBER = 30000000;
 
 
     public Lotto(List<Integer> numbers) {
@@ -24,22 +31,22 @@ public class Lotto {
     private void judgeWinning() {
         switch (getWinningCount()) {
             case 3:
-                winningMoney = 5000;
+                winningMoney = THREE_NUMBER_WINNING_MONEY;
                 break;
             case 4:
-                winningMoney = 50000;
+                winningMoney = FOUR_NUMBER_WINNING_MONEY;
                 break;
             case 5:
-                winningMoney = 1500000;
+                winningMoney = FIVE_NUMBER_WINNING_MONEY;
                 break;
             case 6:
-                winningMoney = 2000000000;
+                winningMoney = SIX_NUMBER_WINNING_MONEY;
                 break;
             default:
                 break;
         }
         if (isWinningCountWithBonusNumber()) {
-            winningMoney = 30000000;
+            winningMoney = FIVE_NUMBER_WINNING_MONEY_WITH_BONUS_NUMBER;
         }
     }
 
@@ -82,7 +89,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
         Set<Integer> uniqueNumbers = new HashSet<>();

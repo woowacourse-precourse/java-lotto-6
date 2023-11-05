@@ -26,20 +26,6 @@ public class myTest extends NsTest {
         // then
         assertThat(money).isEqualTo(1000);
     }
-
-    @DisplayName("돈 입력 매소드 테스트")
-    @Test
-    void moneySettingTest() {
-        // given
-        final Application myApp = new Application();
-        final String price = "1000";
-    
-        // when
-        final int money = myApp.setMoney(price);
-    
-        // then
-        assertThat(money).isEqualTo(1000);
-    }
     
     @Override
     public void runMain() {

@@ -3,14 +3,14 @@ package lotto.controller;
 import java.util.List;
 import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.model.LottoStore;
-import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.Money;
+import lotto.model.domain.Revenue;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
-import lotto.model.domain.result.LottoResults;
-import lotto.model.domain.Revenue;
-import lotto.model.domain.result.LottoResultFactory;
+import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.lotto.lottogenerator.AnswerGenerator;
+import lotto.model.domain.result.LottoResultFactory;
+import lotto.model.domain.result.LottoResults;
 import lotto.view.LottoGameUI;
 
 public class LottoController {

@@ -12,7 +12,9 @@ public class Revenue {
 
     @Override
     public String toString() {
-        return String.format(PrintConst.FORMAT_REVENUE,
-                new DecimalFormat(PrintConst.DECIMAL_FORMAT_REVENUE).format(revenue));
+        return String.format(
+                PrintConst.FORMAT_REVENUE,
+                new DecimalFormat(PrintConst.DECIMAL_FORMAT_REVENUE).format(revenue)
+        );
     }
 }

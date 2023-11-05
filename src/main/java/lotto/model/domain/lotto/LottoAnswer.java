@@ -2,7 +2,6 @@ package lotto.model.domain.lotto;
 
 import java.util.List;
 import lotto.exception.LottoGameException;
-import lotto.model.domain.lotto.Lotto;
 
 public class LottoAnswer extends Lotto {
     private final Integer bonusNumber;

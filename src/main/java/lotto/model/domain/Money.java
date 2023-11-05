@@ -12,14 +12,6 @@ public class Money {
         this.money = money;
     }
 
-    int getMoney() {
-        return money;
-    }
-
-    public Money snapShot(){
-        return new Money(this.money);
-    }
-
     private static void validateMoneyUnit(int money) {
         if (money % 1000 != 0) {
             throw LottoGameException.WRONG_MONEY_UNIT.makeException();
@@ -32,11 +24,19 @@ public class Money {
         }
     }
 
-    public boolean possibleToPurchaseLotto(){
+    int getMoney() {
+        return money;
+    }
+
+    public Money snapShot() {
+        return new Money(this.money);
+    }
+
+    public boolean possibleToPurchaseLotto() {
         return this.money >= GameConst.LOTTO_PRICE;
     }
 
-    public void purchaseLotto(){
+    public void purchaseLotto() {
         this.money -= GameConst.LOTTO_PRICE;
     }
 }

@@ -2,15 +2,12 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constance.GameConst;
-import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.Money;
 import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.lotto.lottogenerator.LottoGenerator;
 
 public class LottoStore {
-    private static final int LOTTO_PRICE = GameConst.LOTTO_PRICE;
-    private static final int PURCHASE_MAX = GameConst.LOTTO_PURCHASE_LIMIT;
 
     private final LottoGenerator lottoGenerator;
 
@@ -25,7 +22,6 @@ public class LottoStore {
             Lotto generatedLotto = lottoGenerator.generate();
             lottos.add(generatedLotto);
         }
-
         return new Lottos(lottos);
     }
 }

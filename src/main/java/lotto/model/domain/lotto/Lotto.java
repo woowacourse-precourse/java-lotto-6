@@ -3,8 +3,8 @@ package lotto.model.domain.lotto;
 import java.util.Collections;
 import java.util.List;
 import lotto.constance.GameConst;
-import lotto.model.domain.result.LottoCompareResult;
 import lotto.exception.LottoGameException;
+import lotto.model.domain.result.LottoCompareResult;
 
 public class Lotto {
     private static final int LOTTO_SIZE = GameConst.LOTTO_SIZE;
@@ -42,12 +42,15 @@ public class Lotto {
 
     private void validateNumbersRange(List<Integer> numbers) {
         long wrongNumberCount = numbers.stream()
-                .filter(number -> number > GameConst.LOTTO_RANGE_END ||
-                        number < GameConst.LOTTO_RANGE_START)
+                .filter(this::isOutOfRange)
                 .count();
         if (wrongNumberCount != 0) {
             throw LottoGameException.WRONG_LOTTO_RANGE.makeException();
         }
+    }
+
+    private boolean isOutOfRange(int number) {
+        return number > GameConst.LOTTO_RANGE_END || number < GameConst.LOTTO_RANGE_START;
     }
 
     //출력을 위한 사용

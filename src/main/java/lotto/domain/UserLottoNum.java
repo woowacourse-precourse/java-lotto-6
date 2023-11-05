@@ -13,10 +13,10 @@ public class UserLottoNum {
     private final Lotto userLotto;
     private final Integer bonusNum;
 
-    public UserLottoNum(List<Integer> userLotto, Integer bonusNum) {
-        this.userLotto = new Lotto(userLotto);
+    public UserLottoNum(Lotto userLotto, Integer bonusNum) {
+        this.userLotto = userLotto;
 
-        validateBonusNum(userLotto, bonusNum);
+        validateBonusNum(userLotto.getNum(), bonusNum);
         this.bonusNum = bonusNum;
     }
 
@@ -29,7 +29,7 @@ public class UserLottoNum {
         Set<Integer> nonDuplicateNum = new HashSet<>(userLotto);
         nonDuplicateNum.add(bonusNum);
         if(nonDuplicateNum.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력한 로또 번호 중에 보너스 번호가 중복되었습니다.");
         }
     }
 

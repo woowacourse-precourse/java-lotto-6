@@ -23,6 +23,7 @@ import java.util.List;
 
 public class LottoGame {
     public void run() {
+        // LottoTicketPurchase
         Converter converter = new Converter();
         System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
         String purchaseAmountString = Console.readLine();
@@ -30,6 +31,7 @@ public class LottoGame {
 
         System.out.println();
 
+        //LottoTicketDisplay
         int purchaseQuantity = purchaseAmount / PURCHASE_UNIT; // 8
         System.out.println(purchaseQuantity + PURCHASE_QUANTITY_PRINT_MESSAGE);
         List<List<Integer>> userLottoNumberCollection = new ArrayList<>(purchaseQuantity);
@@ -46,6 +48,7 @@ public class LottoGame {
 
         System.out.println();
 
+        //WinningNumberInput
         System.out.println(WINNING_NUMBER_REQUEST_MESSAGE);
         String luckyNumberString = Console.readLine();
 
@@ -65,6 +68,7 @@ public class LottoGame {
 
         System.out.println();
 
+        // LottoResultDisplay
         System.out.println(WINNING_STATISTICS_NOTICE_MESSAGE);
 
         int sixSuccess = NUMBER_INITIALIZATION;
@@ -122,4 +126,3 @@ public class LottoGame {
         System.out.printf("총 수익률은 %.1f%%입니다.", result);
     }
 }
-

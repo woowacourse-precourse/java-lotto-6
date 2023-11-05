@@ -18,6 +18,16 @@ public class WinningNumberTest {
             WinningNumber.create(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.WINNING_NUMBER_OVERSIZE.getMessage());
+    }
 
+    @DisplayName("당첨 번호가 정수가 아닌 문자가 포함된 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,c", "0.1,2,3,4,5,6", ",2,3,4,5,6", " ,2,3,4,5,6"})
+    public void 정수가_아닌_당첨번호_예외처리(String input) {
+        //when+then
+        assertThatThrownBy(() -> {
+            WinningNumber.create(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.WINNING_NUMBER_NOT_INTEGER.getMessage());
     }
 }

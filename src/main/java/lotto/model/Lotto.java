@@ -14,10 +14,6 @@ public class Lotto {
         LottoValidator.validate(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public boolean isContain(int number) {
         return numbers.contains(number);
     }

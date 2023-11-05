@@ -1,9 +1,10 @@
 package lotto.domain.model;
 
 import lotto.domain.validator.Validator;
-import lotto.enums.ErrorMessage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +12,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         Validator.validateDuplicateNumbers(numbers);
+
+        for (int num: numbers) {
+            Validator.validateNumberInRange(num);
+        }
 
         this.numbers = Collections.unmodifiableList(sortNumbers(numbers));
     }
@@ -29,7 +34,7 @@ public class Lotto {
         return sortedNumbers;
     }
 
-    public List<Integer> getNumbers() {
+    protected List<Integer> getNumbers() {
         return this.numbers;
     }
 

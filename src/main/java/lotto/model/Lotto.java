@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.Validation;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +27,4 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
-
-    // TODO: 추가 기능 구현
 }

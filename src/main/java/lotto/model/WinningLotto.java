@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.Validation;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

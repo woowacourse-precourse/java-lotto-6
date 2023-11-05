@@ -1,4 +1,7 @@
-package lotto.model;
+package lotto.exception;
+
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
 
 import java.util.List;
 

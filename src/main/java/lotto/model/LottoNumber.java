@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.Validation;
+
 public class LottoNumber {
 
     private static final int LOTTO_NUMBER_MIN_RANGE = 1;

@@ -1,10 +1,17 @@
 package model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import utility.Lotto;
 
 public class Transform {
+    private final List<List<Integer>> fullLottoValue = new ArrayList<>();
+
+    public List<List<Integer>> getFullLottoValue() {
+        return fullLottoValue;
+    }
+
     public List<Integer> generateRandomList() {
         List<Integer> randomList = null;
         while (randomList == null) {
@@ -16,5 +23,10 @@ public class Transform {
             }
         }
         return randomList;
+    }
+
+    public List<List<Integer>> fullLottoValue(List<Integer> randomList) {
+        fullLottoValue.add(randomList);
+        return fullLottoValue;
     }
 }

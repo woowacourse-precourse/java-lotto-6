@@ -32,6 +32,11 @@ public class Lotto {
         return numbersWithoutDuplication.size() != numbers.size();
     }
 
+
+    public boolean hasIt(Number number) {
+        return numbers.contains(number.getNumber());
+    }
+
     public List<Integer> getNumbers() {
         return this.numbers;
     }

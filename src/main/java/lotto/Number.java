@@ -19,4 +19,7 @@ public class Number {
         return number >= MINIMUM && number <= MAXIMUM;
     }
 
+    public int getNumber() {
+        return this.number;
+    }
 }

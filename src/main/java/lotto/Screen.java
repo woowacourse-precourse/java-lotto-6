@@ -40,48 +40,22 @@ public class Screen {
         }
     }
 
-    public static void printErrorMessage(String message) {
-        System.out.println(message);
+    static public void printAskingBonusNumberMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-
-    static public int inputBonusNumber(Lotto winningLotto) {
+    public static int inputBonusNumber() {
         String bonusNumber = Console.readLine();
 
         try {
-            checkBonusNumber(bonusNumber, winningLotto);
+            return Integer.parseInt(bonusNumber);
         }
-        catch (IllegalArgumentException exception) {
-            printErrorMessage(exception.getMessage());
-            inputBonusNumber(winningLotto);
-        }
-        return Integer.parseInt(bonusNumber);
-    }
-
-    static private void checkBonusNumber(String bonusNumber, Lotto winningLotto) {
-        int checkingNumber;
-
-        try {
-            checkingNumber = Integer.parseInt(bonusNumber);
-            checkRange(checkingNumber);
-            checkInWinningLotto(checkingNumber, winningLotto);
-        }
-        catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(exception.getMessage());
-        }
-    }
-
-    static private void checkRange(int number) {
-        if (number < 1 || number > 45)
+        catch (NumberFormatException exception) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
-    static private void checkInWinningLotto(int number, Lotto winningLotto) {
-        if (winningLotto.getNumbers().contains(number))
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 당첨 번호와 중복되어서는 안됩니다.");
-    }
-
-    static public void printAskingBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

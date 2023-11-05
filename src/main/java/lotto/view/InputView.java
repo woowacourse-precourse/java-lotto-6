@@ -1,8 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.wrapper.PurchaseAmout;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoConstant;
 
 public class InputView {
     public PurchaseAmout getPurchaseAmout() {
@@ -11,6 +15,16 @@ public class InputView {
         validateNotEmpty(input);
         validateParsedToInteger(input);
         return new PurchaseAmout(Integer.parseInt(input));
+    }
+
+    public List<Integer> getWinningNumbers() {
+        String input = Console.readLine();
+        validateNotNull(input);
+        validateNotEmpty(input);
+        return Arrays.stream(input.split(LottoConstant.DELIMITER.get()))
+                .peek(this::validateParsedToInteger)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private void validateNotNull(String input) {

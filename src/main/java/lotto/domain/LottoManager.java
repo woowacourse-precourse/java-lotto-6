@@ -1,12 +1,16 @@
 package lotto.domain;
 
 public class LottoManager {
-    public int calculateNumberOfLottos() {
+    public static final int PURCHASE_AMOUNT_UNIT = 1_000;
+
+    public int calculateNumberOfLottos(int money) {
         return 0;
     }
 
-    public void validatePurchaseAmount() {
-
+    public void validatePurchaseAmount(int money) {
+        if (money % PURCHASE_AMOUNT_UNIT != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 
     public double calculateProfitRate() {

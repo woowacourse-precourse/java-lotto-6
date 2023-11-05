@@ -12,16 +12,15 @@ import org.junit.jupiter.api.function.Executable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
 
     private Lotto lotto;
-    private Validation validation;
 
     @BeforeEach
     void setUp() {
-         validation = new Validation();
     }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -44,7 +43,7 @@ class LottoTest {
 
     @Test
     void testValidateDivided() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        int n = 12345;
+        Validation validation = new Validation();
         Method method = validation.getClass().getDeclaredMethod("privateValidateDivided", int.class);
         method.setAccessible(true);
         try{

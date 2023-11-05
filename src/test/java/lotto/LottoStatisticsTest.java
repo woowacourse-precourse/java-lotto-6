@@ -1,7 +1,6 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,14 +39,6 @@ class LottoStatisticsTest {
     void calculateWinsPerCategory() {
         List<Integer> winsPerCategory = lottoStatistics.calculateWinsPerCategory();
         assertThat(winsPerCategory).containsExactly(1, 1, 1, 1, 1, 0);
-    }
-
-    @Test
-    @DisplayName("당첨 복권에서 총 당첨 금액을 계산한다.")
-    void calculateTotalRevenue() {
-        long totalRevenue = lottoStatistics.calculateTotalRevenue();
-        assertEquals(2030505000,
-                totalRevenue); // The sum of the prize money for first, second, third, fourth, and fifth prizes.
     }
 
     @Test

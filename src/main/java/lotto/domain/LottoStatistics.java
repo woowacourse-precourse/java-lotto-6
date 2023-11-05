@@ -3,12 +3,15 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.util.Constants;
 
 public class LottoStatistics {
     private List<Lotto> userLottos;
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private LottoService lottoService;
+
+    private long totalRevenue = 0;
 
     public LottoStatistics(LottoService lottoService, List<Lotto> userLottos, List<Integer> winningNumbers,
                            int bonusNumber) {
@@ -23,6 +26,7 @@ public class LottoStatistics {
 
         for (Lotto lotto : userLottos) {
             LottoRank rank = lottoService.checkWinning(lotto.getNumbers(), winningNumbers, bonusNumber);
+            totalRevenue += rank.getPrize();
             wins[rank.ordinal()]++;
         }
 
@@ -34,14 +38,8 @@ public class LottoStatistics {
         return winsPerCategory;
     }
 
-    public long calculateTotalRevenue() {
-
-        return 0;
-    }
-
     public double calculateRateOfReturn() {
-
-        return 0;
+        double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
+        return Math.round((totalRevenue / purchaseAmount - 1) * 100) / 100.0;
     }
-
 }

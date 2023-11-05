@@ -1,5 +1,11 @@
 package lotto.ui;
 
+import static lotto.constants.Message.BONUS_NUMBER;
+import static lotto.constants.Message.PURCHASE_LOTTO;
+import static lotto.constants.Message.PURCHASE_MONEY;
+import static lotto.constants.Message.RESULT;
+import static lotto.constants.Message.WINNING_NUMBER;
+
 import java.util.List;
 import lotto.constants.Prize;
 import lotto.domain.LottoManager;
@@ -13,11 +19,11 @@ public class Output {
     }
 
     public static void printPurchase() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_MONEY.getMessage());
     }
 
     public static void printCount(Integer lottoCount){
-        System.out.println(lottoCount+"개를 구매했습니다.");
+        System.out.println(lottoCount+PURCHASE_LOTTO.getMessage());
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -30,16 +36,15 @@ public class Output {
     }
 
     public static void printWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER.getMessage());
     }
 
     public static void printBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER.getMessage());
     }
 
     public static void printResult(LottoResult lottoResult, Double earningRate) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT.getMessage());
 
         for (Prize prize : lottoResult.state.keySet()) {
             System.out.println(prize.getDescription() + lottoResult.state.get(prize) + "개");

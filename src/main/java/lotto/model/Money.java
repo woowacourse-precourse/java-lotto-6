@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.config.LottoConfig;
+import lotto.dto.request.PurchaseAmountDto;
 import lotto.util.Validator;
 
 public class Money {
@@ -11,9 +12,11 @@ public class Money {
         this.amount = amount;
     }
 
-    public static Money from(String input) {
+    public static Money from(PurchaseAmountDto purchaseAmountDto) {
+        String input = purchaseAmountDto.getAmount();
         int parsedAmount = Validator.validateAndParseInteger(input);
         validatePurchaseAmount(parsedAmount);
+
         return new Money(parsedAmount);
     }
 

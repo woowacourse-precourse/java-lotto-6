@@ -1,11 +1,11 @@
 package lotto.view;
 
 public enum ErrorMessage {
-    WRONG_TYPE("[ERROR] 올바르지 않은 입력입니다.(정수값을 입력하세요)"),
-    WRONG_AMOUNT("[ERROR] 올바르지 않은 입력입니다.(1000의 배수를 입력하세요)"),
-    WRONG_RANGE("[ERROR] 올바르지 않은 입력입니다.(1~45사이의 수를 입력하세요)"),
-    WRONG_LENGTH("[ERROR] 올바르지 않은 입력입니다.(6자리의 수를 입력하세요)"),
-    DUPLICATION("[ERROR] 올바르지 않은 입력입니다.(중복된 숫자가 존재합니다)");
+    WRONG_TYPE("[ERROR] 정수가 아닌 수가 포함되어 있습니다."),
+    WRONG_AMOUNT("[ERROR] 구입금액은 1000의 배수여야 합니다."),
+    WRONG_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    WRONG_LENGTH("[ERROR] 로또 번호는 6자리여야 합니다."),
+    DUPLICATION("[ERROR] 중복된 숫자가 존재합니다.");
 
     private final String errorMessage;
 

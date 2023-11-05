@@ -9,12 +9,12 @@ import java.util.Set;
 
 public class InputHandler {
 
-    public static final String COMMA = ",";
-    public static final int LOTTO_PRICE = 1000;
-    public static final int MIN_PURCHASE_AMOUNT = 0;
-    public static final int LOTTO_SIZE = 6;
-    public static final int MIN_RANGE = 1;
-    public static final int MAX_RANGE = 45;
+    private static final String COMMA = ",";
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MIN_PURCHASE_AMOUNT = 0;
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
 
     public int handlePurchaseAmount(String purchaseAmountInput) {
         validateNull(purchaseAmountInput);

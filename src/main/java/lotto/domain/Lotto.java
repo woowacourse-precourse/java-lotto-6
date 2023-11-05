@@ -7,9 +7,9 @@ import lotto.utils.LottoWinningStrategy;
 import java.util.*;
 
 public class Lotto {
-    public static final int DEFAULT_LOTTO_SIZE = 6;
-    public static final double MIN_RANGE = 1;
-    public static final double MAX_RANGE = 45;
+    private static final int DEFAULT_LOTTO_SIZE = 6;
+    private static final double MIN_RANGE = 1;
+    private static final double MAX_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

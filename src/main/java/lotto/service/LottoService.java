@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    public static final int LOTTO_PRICE = 1000;
-    public static final int DEFAULT_WINNING_COUNT = 0;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int DEFAULT_WINNING_COUNT = 0;
 
     private final LottoWinningStrategy lottoWinningStrategy;
     private final NumberGenerator numberGenerator;

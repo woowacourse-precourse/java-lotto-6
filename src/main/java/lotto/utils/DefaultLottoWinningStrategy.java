@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DefaultLottoWinningStrategy implements LottoWinningStrategy {
 
-    public static final int DEFAULT_COUNT = 0;
+    private static final int DEFAULT_COUNT = 0;
 
     @Override
     public Result determineResult(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusBall) {

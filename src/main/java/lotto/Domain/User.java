@@ -3,6 +3,7 @@ package lotto.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Domain.Validator.UserValidator;
 
 
 public class User {
@@ -16,7 +17,7 @@ public class User {
 
     }
     private void validate(int money, List<Lotto> lottos) {
-
+        UserValidator.doValidate(money, lottos);
     }
 
 }

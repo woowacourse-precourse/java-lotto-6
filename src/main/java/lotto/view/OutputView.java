@@ -1,12 +1,11 @@
 package lotto.view;
 
-import static lotto.util.ModelAndViewConverter.MODEL_AND_VIEW_CONVERTER;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.lottoresult.LottoResult;
+import lotto.util.ModelAndViewConverter;
 
 public class OutputView {
     private static final String NUMBER_OF_LOTTO_MESSAGE = "%d개를 구매했습니다.\n";
@@ -16,20 +15,25 @@ public class OutputView {
     private static final String STATISTICS_BONUS_BALL_MATCH = ", 보너스 볼 일치";
     private static final String PROFIT_MESSAGE = "총 수익률은 %,.1f%%입니다.";
     private static final String ERROR_START_MESSAGE = "[ERROR]";
+    private final ModelAndViewConverter modelAndViewConverter;
+
+    public OutputView(ModelAndViewConverter modelAndViewConverter) {
+        this.modelAndViewConverter = modelAndViewConverter;
+    }
 
     public void printTotalNumberOfLotto() {
-        System.out.printf(NUMBER_OF_LOTTO_MESSAGE, MODEL_AND_VIEW_CONVERTER.getNumberOfLottoBundle());
+        System.out.printf(NUMBER_OF_LOTTO_MESSAGE, modelAndViewConverter.getNumberOfLottoBundle());
     }
 
     public void printTotalLotto() {
-        for (String lottoMessage : MODEL_AND_VIEW_CONVERTER.getLottoMessages()) {
+        for (String lottoMessage : modelAndViewConverter.getLottoMessages()) {
             System.out.println(lottoMessage);
         }
     }
 
     public void printLottoResultsData() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        Map<LottoResult, Integer> lottoResultsData = MODEL_AND_VIEW_CONVERTER.getLottoResultsData();
+        Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();
         List<LottoResult> sortedLottoResultsByKey = getSortedLottoResultsWithoutNone(lottoResultsData);
         for (LottoResult lottoResult : sortedLottoResultsByKey) {
             int numberOfSame = lottoResult.getNumberOfSame();
@@ -61,12 +65,12 @@ public class OutputView {
     }
 
     public void printProfit() {
-        double profitMessage = MODEL_AND_VIEW_CONVERTER.getProfitMessage();
+        double profitMessage = modelAndViewConverter.getProfitMessage();
         System.out.printf(PROFIT_MESSAGE,profitMessage);
     }
 
     public void printError() {
-        String errorMessage = MODEL_AND_VIEW_CONVERTER.getErrorMessage();
+        String errorMessage = modelAndViewConverter.getErrorMessage();
         System.out.println(ERROR_START_MESSAGE + errorMessage);
     }
 }

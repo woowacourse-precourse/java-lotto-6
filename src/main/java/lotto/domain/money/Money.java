@@ -4,8 +4,6 @@ import lotto.domain.validator.MoneyValidator;
 
 public class Money {
     public static final int LOTTO_PRICE = 1_000;
-    private static final int POSITIVE_VALUE = 0;
-    private static final int MAX_MONEY = 10_0000;
     private final int money;
 
     private Money(int money) {
@@ -25,7 +23,7 @@ public class Money {
         MoneyValidator.verifyDivisibleBy(money);
         return new Money(money);
     }
-    
+
     public Money decremented() {
         return Money.fromRemainingMoney(money - LOTTO_PRICE);
     }

@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public enum WinningRank {
     FIFTH(3, "3개 일치 (%s원) - %d개", 5_000, 0),
@@ -21,7 +23,7 @@ public enum WinningRank {
         this.winCount = winCount;
     }
 
-    public void increaseWinCount() {
+    public void addWinCount() {
         this.winCount++;
     }
 
@@ -33,13 +35,25 @@ public enum WinningRank {
         return matchCount == this.matchCount;
     }
 
-    public String getMessage() {
+    public static String getWinningHistory() {
+        return Arrays.stream(values())
+                .map(WinningRank::getMessage)
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static double calculateTotalPrizeMoney() {
+        return Arrays.stream(values())
+                .mapToDouble(WinningRank::calculateIndividualPrizeMoney)
+                .sum();
+    }
+
+    private String getMessage() {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String formattedPrizeMoney = numberFormat.format(prizeMoney);
         return String.format(message, formattedPrizeMoney, winCount);
     }
 
-    public int getTotalPrizeMoney() {
+    private int calculateIndividualPrizeMoney() {
         return prizeMoney * winCount;
     }
 }

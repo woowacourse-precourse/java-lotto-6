@@ -43,8 +43,9 @@ public class LottoManager {
         Integer price = null;
         while (price == null) {
             try {
-                Integer invalidPrice = input.getPrice();
-                price = invalidPrice;
+                Integer inputPrice = input.getPrice();
+                PriceManager.validatePrice(inputPrice);
+                price = inputPrice;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }

@@ -14,7 +14,7 @@ public class ConsoleInput implements Input {
 
     public int getPrice() {
         String inputPrice = Console.readLine();
-        inputValidator.validatePrice(inputPrice);
+        inputValidator.validateIsNumber(inputPrice);
 
         return parseNumber(inputPrice);
     }

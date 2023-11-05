@@ -12,6 +12,11 @@ public class Lotto {
         this.numbers = convertToLottoNumber(numbers);
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(lottoNumber));
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_SIZE.getMessage());
@@ -37,5 +42,7 @@ public class Lotto {
                 .toList();
     }
 
-    // TODO: 추가 기능 구현
+    public List<LottoNumber> getNumbers(){
+        return numbers;
+    }
 }

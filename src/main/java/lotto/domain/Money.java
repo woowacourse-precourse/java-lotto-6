@@ -14,7 +14,6 @@ public class Money {
         }
     }
 
-    // 추가 메서드 구현
     public int getAmount() {
         return amount;
     }

@@ -18,13 +18,12 @@ public class Play {
     private static final int size = 6;
     public static HashMap<Rank, Integer> result;
     public static List<Lotto> lottery;
+    private static int price;
 
     public Play() {
         result = new HashMap<>();
         messageAboutPrice();
-        String tmpPrice = inputPrice();
-        int price = convertPrice(tmpPrice);
-
+        createPrice();
         int count = calLottoCount(price);
         printBoughtLottoCount(count);
         lottery = new ArrayList<>();
@@ -39,13 +38,11 @@ public class Play {
 
         System.out.println();
         messageAboutUserLottoNumber();
-        String tmpWinningNumbers = inputWinningNumbers();
-        List<Integer> winningNumbers = convertWinningNumber(tmpWinningNumbers);
+        List<Integer> winningNumbers = createWinningNumber();
 
         System.out.println();
         messageAboutUserBonusNumber();
-        String tmpBonusNumber = inputBonusNumber();
-        int bonus = convertBonusNumber(tmpBonusNumber);
+        int bonus = createBonusNumber();
 
         Winning winning = new Winning(winningNumbers, bonus);
         System.out.println();
@@ -68,6 +65,41 @@ public class Play {
         double rateMean = calRate(sumPrize, price);
         printMean(rateMean);
 
+    }
+
+    public static void createPrice() {
+        String tmpPrice = inputPrice();
+        price = 0;
+        try {
+            price = convertPrice(tmpPrice);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            e.getMessage();
+        }
+    }
+
+    public static List<Integer> createWinningNumber() {
+        List<Integer> winningNumbers = new ArrayList<>();
+        try {
+            String tmpWinningNumbers = inputWinningNumbers();
+            winningNumbers = convertWinningNumber(tmpWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            e.getMessage();
+        }
+        return winningNumbers;
+    }
+
+    public static int createBonusNumber() {
+        int bonus = 0;
+        try {
+            String tmpBonusNumber = inputBonusNumber();
+            bonus = convertBonusNumber(tmpBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+        }
+
+        return bonus;
     }
 
     public static Lotto makeLottery() {

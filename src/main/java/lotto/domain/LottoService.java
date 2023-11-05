@@ -1,7 +1,11 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.Rank;
 
 public class LottoService {
@@ -10,7 +14,7 @@ public class LottoService {
     public LottoService() {
     }
 
-    public List<Integer> checkMatchedStandardNumberWithoutBonusNumber(Lottos lottos, WinningLotto winningLotto) {
+    private  List<Integer> checkMatchedStandardNumberWithoutBonusNumber(Lottos lottos, WinningLotto winningLotto) {
         List<Integer> result = lottos.getLottoBundle().stream()
                 .map(x -> new ArrayList<>(x.getNumbers()))
                 .filter(x -> !x.contains(winningLotto.getSpecialNumber()))
@@ -22,7 +26,7 @@ public class LottoService {
         return result;
     }
 
-    public List<Integer> checkMatchedStandardNumberWithBonusNumber(Lottos lottos, WinningLotto winningLotto) {
+     private List<Integer> checkMatchedStandardNumberWithBonusNumber(Lottos lottos, WinningLotto winningLotto) {
         List<Integer> result = lottos.getLottoBundle().stream()
                 .map(x -> new ArrayList<>(x.getNumbers()))
                 .filter(x -> x.contains(winningLotto.getSpecialNumber()))
@@ -33,7 +37,20 @@ public class LottoService {
                 .toList();
         return result;
     }
-    public List<Rank> numberOfMatchedNumberToRank () {
-        return null;
+    public List<Rank> SendAnalyzedResult (Lottos lottos, WinningLotto winningLotto) {
+        List<Rank> withBonusNumber = checkMatchedStandardNumberWithBonusNumber(lottos, winningLotto).stream()
+                .map(x -> Rank.matchedNumberToRank(x, 1))
+                .flatMap(Optional::stream)
+                .toList();
+
+        List<Rank> withoutBonusNumber = checkMatchedStandardNumberWithoutBonusNumber(lottos, winningLotto).stream()
+                .map(x -> Rank.matchedNumberToRank(x, 0))
+                .flatMap(Optional::stream)
+                .toList();
+
+        return Stream.of(withBonusNumber, withoutBonusNumber)
+                .flatMap(Collection::stream)
+                .sorted()
+                .toList();
     }
 }

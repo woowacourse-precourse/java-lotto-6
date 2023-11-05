@@ -1,21 +1,27 @@
 package lotto.utils;
 
 public enum Prize {
-    FIRST(6),
-    SECOND(5),
-    THIRD(5),
-    FOURTH(4),
-    FIFTH(3),
-    NO_PRIZE(2);
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    NO_PRIZE(2, 0);
 
     private final int sameCount;
+    private final int prizeProfit;
 
-    Prize(int sameCount) {
+    Prize(int sameCount, int prizeProfit) {
         this.sameCount = sameCount;
+        this.prizeProfit = prizeProfit;
     }
 
     public int getSameCount() {
         return sameCount;
+    }
+
+    public int getPrizeProfit() {
+        return prizeProfit;
     }
 
     public static Prize getPrizeRank(int sameCount, boolean hasBonusNumber) {

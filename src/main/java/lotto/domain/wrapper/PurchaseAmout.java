@@ -12,10 +12,6 @@ public class PurchaseAmout {
         this.purchaseAmout = purchaseAmout;
     }
 
-    public int getLottoCount() {
-        return purchaseAmout / LottoConstantValue.LOTTO_PRICE.get();
-    }
-
     private void validate(int purchaseAmout) {
         validateMoreThanZero(purchaseAmout);
         validateChangeNoRemaining(purchaseAmout);
@@ -31,5 +27,13 @@ public class PurchaseAmout {
         if (purchaseAmout % LottoConstantValue.LOTTO_PRICE.get() != NO_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED.getMessage());
         }
+    }
+
+    public int getLottoCount() {
+        return purchaseAmout / LottoConstantValue.LOTTO_PRICE.get();
+    }
+
+    public double calculateProfitRate(long allPrizeProfit) {
+        return (allPrizeProfit / (double) purchaseAmout) * 100;
     }
 }

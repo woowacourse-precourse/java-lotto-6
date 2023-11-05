@@ -17,7 +17,7 @@ public class BonusTest {
 
     @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    void createBonusByDuplicateNumber() {
         assertThatThrownBy(() -> new Bonus(3, List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

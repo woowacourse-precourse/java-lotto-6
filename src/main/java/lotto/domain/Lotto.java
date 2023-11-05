@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.Exception.ExceptionMessage.*;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> sortLottoNumber(){
+    public List<Integer> sortLottoNumber() {
         return numbers.stream().sorted().toList();
     }
 
@@ -25,8 +24,8 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicationNumber(List<Integer> numbers){
-        if(new HashSet<>(numbers).size() != numbers.size()){
+    private void validateDuplicationNumber(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATION_LOTTO_NUMBER.getExceptionMessage());
         }
     }

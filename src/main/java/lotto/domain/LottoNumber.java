@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import static lotto.Exception.ExceptionMessage.RANGE_ERROR;
+import static lotto.Exception.ExceptionMessage.*;
+import static lotto.utils.Constance.*;
 
 public class LottoNumber {
-
-    private static int MIN_NUMBER = 1;
-    private static int MAN_NUMBER = 45;
 
     private final int number;
 
@@ -14,8 +12,8 @@ public class LottoNumber {
         this.number = number;
     }
 
-    private void validateNumberRange(int number){
-        if(number < MIN_NUMBER || number > MAN_NUMBER){
+    private void validateNumberRange(int number) {
+        if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(RANGE_ERROR.getExceptionMessage());
         }
     }

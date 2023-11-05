@@ -22,5 +22,18 @@ class ConsoleInputTest {
         Assertions.assertThatThrownBy(consoleInput::inputPurchaseAmount)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    
+    @DisplayName("숫자가 아닌 로또 당첨 번호를 입력할 경우 예외가 발생한다.")
+    @Test
+    void inputWinningNumbers() {
+        //given
+        String purchaseAmountInput = "1, 2, 3, a";
+        InputStream input = new ByteArrayInputStream(purchaseAmountInput.getBytes());
+        System.setIn(input);
+    
+        //when //then
+        Assertions.assertThatThrownBy(consoleInput::inputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

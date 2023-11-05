@@ -15,28 +15,48 @@ public class LottoController {
     }
 
     public void run() {
-        buyLottos(receiveMoney());
-        WinningLotto winningLotto = receiveWinningLotto();
-        BonusNumber bonusNumber = receiveBonusNumber();
+        List<Lotto> lottos = buyLottos(receiveMoney());
+        aggregateResult(lottos);
     }
 
-    private void buyLottos(Money money) {
+    private List<Lotto> buyLottos(Money money) {
         List<Lotto> lottos = lottoService.makeLottos(money);
         OutputView.buyLottos(money, lottos);
+        return lottos;
     }
 
     private Money receiveMoney() {
-        OutputView.inputMoney();
-        return InputView.getMoney();
+        try {
+            OutputView.inputMoney();
+            return InputView.getMoney();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            return receiveMoney();
+        }
     }
 
     private WinningLotto receiveWinningLotto() {
-        OutputView.inputWinningLotto();
-        return InputView.getWinnerLotto();
+        try {
+            OutputView.inputWinningLotto();
+            return InputView.getWinnerLotto();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            return receiveWinningLotto();
+        }
     }
 
     private BonusNumber receiveBonusNumber() {
-        OutputView.inputBonusNumber();
-        return InputView.getBonusNumber();
+        try {
+            OutputView.inputBonusNumber();
+            return InputView.getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            return receiveBonusNumber();
+        }
+    }
+
+    private void aggregateResult(List<Lotto> lottos) {
+        WinningLotto winningLotto = receiveWinningLotto();
+        BonusNumber bonusNumber = receiveBonusNumber();
     }
 }

@@ -1,7 +1,11 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LottoPrize;
 
 public class Player {
     private int budget;
@@ -23,7 +27,40 @@ public class Player {
     }
 
     public void calculateWinningLottoWithMine(WinningLotto winningLotto) {
-        winningStatistics = new WinningStatistics(winningLotto, lottoTickets, usedBudget);
+        winningStatistics = calculateWinningStatistics(winningLotto);
+    }
+
+    private WinningStatistics calculateWinningStatistics(WinningLotto winningLotto) {
+        Map<LottoPrize, Integer> prizeCounter = calculatePrizeCounter(winningLotto);
+        double rateOfReturn = calculateRateOfReturn(prizeCounter);
+        return new WinningStatistics(winningLotto, lottoTickets, prizeCounter, rateOfReturn);
+    }
+
+    private Map<LottoPrize, Integer> calculatePrizeCounter(WinningLotto winningLotto) {
+        Map<LottoPrize, Integer> prizeCounter = new HashMap<>() {{
+            Arrays.stream(LottoPrize.values())
+                    .forEach(lottoPrize -> put(lottoPrize, 0));
+        }};
+
+        for (Lotto lotto : lottoTickets) {
+            LottoPrize lottoPrize = winningLotto.compare(lotto);
+            prizeCounter.put(lottoPrize, prizeCounter.get(lottoPrize) + 1);
+        }
+        return prizeCounter;
+    }
+
+    private double calculateRateOfReturn(Map<LottoPrize, Integer> prizeCounter) {
+        return calculateSumOfPrize(prizeCounter) / (double) usedBudget * 100.0;
+    }
+
+    public Long calculateSumOfPrize(Map<LottoPrize, Integer> prizeCounter) {
+        long sum = 0L;
+        for (LottoPrize lottoPrize : prizeCounter.keySet()) {
+            Long count = Long.valueOf(prizeCounter.get(lottoPrize));
+            Long prize = lottoPrize.getPrize();
+            sum += prize * count;
+        }
+        return sum;
     }
 
     public void setBudget(int budget) {

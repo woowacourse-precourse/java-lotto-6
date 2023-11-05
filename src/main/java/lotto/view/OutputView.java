@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class OutputView {
     public static void printLotteryNumber(List<Lotto> lottery) {
@@ -15,7 +16,7 @@ public class OutputView {
         System.out.println(lottoNumberInfo);
     }
 
-    public static void printLotteryResult(Map<Integer, Integer> resultCount, String purchasePrice) {
+    public static void printLotteryResult(Map<Rank, Integer> resultCount, String purchasePrice) {
         System.out.println(String.format("%s개 일치 (5,000원) - %s개", 3, resultCount.getOrDefault(5, 0)));
         System.out.println(String.format("%s개 일치 (50,000원) - %s개", 4, resultCount.getOrDefault(4, 0)));
         System.out.println(String.format("%s개 일치 (1,500,000원) - %s개", 5, resultCount.getOrDefault(3, 0)));

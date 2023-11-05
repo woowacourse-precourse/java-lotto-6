@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.global.constant.LottoConstant.LOTTO_PURCHASE_UNIT;
+
 import lotto.global.constant.message.ErrorMessage;
 
 public class Money {
@@ -27,7 +29,7 @@ public class Money {
     }
 
     private void validateAmountUnit(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR);
         }
     }

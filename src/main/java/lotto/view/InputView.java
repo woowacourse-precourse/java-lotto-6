@@ -1,8 +1,11 @@
 package lotto.view;
 
+import static lotto.global.constant.LottoConstant.LOTTO_NUMBER_SEPARATOR;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.global.constant.message.LottoMessage;
 import lotto.global.util.Validator;
 
 public class InputView {
@@ -14,7 +17,7 @@ public class InputView {
 
 
     public int readLottoPurchaseMoney() {
-        outputView.println("구입금액을 입력해 주세요.");
+        outputView.printMessage(LottoMessage.INPUT_MONEY_AMOUNT);
         String amount = Console.readLine();
         Validator.validateIntFormat(amount);
 
@@ -22,8 +25,8 @@ public class InputView {
     }
 
     public List<Integer> readWinningNumbers() {
-        outputView.println("당첨 번호를 입력해 주세요.");
-        String[] winningNumbers = Console.readLine().split(",");
+        outputView.printMessage(LottoMessage.INPUT_WINNING_NUMBER);
+        String[] winningNumbers = Console.readLine().split(LOTTO_NUMBER_SEPARATOR);
         Validator.validateIntFormat(winningNumbers);
 
         return Arrays.stream(winningNumbers)
@@ -32,7 +35,7 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        outputView.println("\n보너스 번호를 입력해 주세요.");
+        outputView.printMessage(LottoMessage.INPUT_BONUS_NUMBER);
         String bonusNumber = Console.readLine();
         Validator.validateIntFormat(bonusNumber);
 

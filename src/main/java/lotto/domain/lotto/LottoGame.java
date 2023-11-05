@@ -66,13 +66,17 @@ public class LottoGame {
             int number = inputView.readBonusNumber();
             LottoNumber bonusNumber = new LottoNumber(number);
 
-            if (winningLotto.containsNumber(bonusNumber)) {
-                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR);
-            }
+            validateBonusNumberDuplication(winningLotto, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException error) {
             outputView.printErrorMessage(error);
             return createBonusNumber(winningLotto);
+        }
+    }
+
+    private void validateBonusNumberDuplication(Lotto winningLotto, LottoNumber bonusNumber) {
+        if (winningLotto.containsNumber(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR);
         }
     }
 

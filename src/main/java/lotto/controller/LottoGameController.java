@@ -5,7 +5,7 @@ import static lotto.constant.LottoOutputMessage.*;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
+import lotto.domain.LottoStore;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
@@ -25,7 +25,7 @@ public class LottoGameController {
 
     public void run() {
         Integer purchaseCount = initPurchaseAmount();
-        LottoGame lottoGame = initLottoGame(purchaseCount);
+        LottoStore lottoStore = initLottoStore(purchaseCount);
         initWinningNumber();
     }
 
@@ -55,12 +55,12 @@ public class LottoGameController {
         return inputView.requestPurchaseAmount();
     }
 
-    private LottoGame initLottoGame(Integer purchaseCount) {
+    private LottoStore initLottoStore(Integer purchaseCount) {
         List<Lotto> lottos = lottoGameService.purchase(purchaseCount);
         outputView.output(
                 format(PURCHASE_COUNT.getMessage(), purchaseCount)
         );
         lottos.forEach(lotto -> outputView.output(lotto.toString()));
-        return new LottoGame(lottos);
+        return new LottoStore(lottos);
     }
 }

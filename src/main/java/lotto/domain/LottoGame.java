@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import java.util.List;
-
 public class LottoGame {
-    private final List<Lotto> lottos;
+    private final LottoStore lottoStore;
 
-    public LottoGame(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public LottoGame(LottoStore lottoStore) {
+        this.lottoStore = lottoStore;
     }
 }

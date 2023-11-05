@@ -11,6 +11,7 @@ import lotto.domain.lottoresult.LottoResult;
 import lotto.domain.player.Profit;
 
 public class ModelAndViewConverter {
+    public static final ModelAndViewConverter MODEL_AND_VIEW_CONVERTER = new ModelAndViewConverter();
     private static final String REMOVE_FROM_METHOD_NAME = "get";
     private static final String BLANK = "";
     private final Map<String, Object> modelAndView;

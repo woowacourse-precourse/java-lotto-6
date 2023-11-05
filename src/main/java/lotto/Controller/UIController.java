@@ -9,7 +9,12 @@ import lotto.Model.Lotto;
 import lotto.View.UIView;
 
 public class UIController {
-
+    private static final String ERROR_PURCHASE_PRICE_IS_NUMBER = "[ERROR] 구입금액은 숫자여야 합니다.";
+    private static final String ERROR_ABLE_THOUSAND = "[ERROR] 1이상의 천단위 숫자만 가능합니다.";
+    private static final String ERROR_WINNING_NUMBER_HAS_TO_BE_NUMBER = "[ERROR] 당첨번호는 숫자 여야 합니다.";
+    private static final String ERROR_ONE_FOURTYFIVE_SIX = "[ERROR] 당첨번호는 1~45의 중복되지 않는 6개의 숫자 여야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_IS_NUMBER = "[ERROR] 보너스 번호는 숫자 여야 합니다.";
+    private static final String ERROR_ONE_FOURTYFIVE_NOT_DUPLICATED = "[ERROR] 보너스 번호는 1~45의 당첨번호와 중복되지 않는 숫자 여야 합니다.";
     public static Integer makePurchasePrice() {
         int price = 0;
         while (true) {
@@ -20,9 +25,9 @@ public class UIController {
 
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
+                System.out.println(ERROR_PURCHASE_PRICE_IS_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1이상의 천단위 숫자만 가능합니다.");
+                System.out.println(ERROR_ABLE_THOUSAND);
             }
         }
         return price;
@@ -36,13 +41,13 @@ public class UIController {
 
     private static void validatePurchasePrice(Integer price) {
         if (price <= 0) {
-            throw new IllegalArgumentException("1이상의 숫자만 가능합니다.");
+            throw new IllegalArgumentException();
         }
 
         if (price % 1000 == 0) {
             return;
         }
-        throw new IllegalArgumentException("천 단위의 숫자만 가능 합니다");
+        throw new IllegalArgumentException();
     }
 
     public static List<Lotto> makeLotto(Integer price) {
@@ -71,9 +76,9 @@ public class UIController {
                 validateWinningNumber(winningNumbers);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨번호는 숫자 여야 합니다.");
+                System.out.println(ERROR_WINNING_NUMBER_HAS_TO_BE_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨번호는 1~45의 중복되지 않는 6개의 숫자 여야 합니다.");
+                System.out.println(ERROR_ONE_FOURTYFIVE_SIX);
             }
         }
         return winningNumbers;
@@ -96,20 +101,20 @@ public class UIController {
 
     private static void lineLengthCheck(String[] line) {
         if (line.length != 6) {
-            throw new IllegalArgumentException("6개의 숫자만 입력 받을수 있습니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     private static void numberDupCheck(ArrayList<Integer> winningNumbers, Integer number) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("중복 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     private static void validateWinningNumber(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (winningNumber < 1 || winningNumber > 45) {
-                throw new IllegalArgumentException("당첨번호는 1~45 까지의 숫자만 허용합니다.");
+                throw new IllegalArgumentException();
             }
         }
     }
@@ -124,9 +129,9 @@ public class UIController {
                 validateBonusNumber(winningNumbers, BonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 보너스 번호는 숫자 여야 합니다.");
+                System.out.println(ERROR_BONUS_NUMBER_IS_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 보너스 번호는 1~45의 당첨번호와 중복되지 않는 숫자 여야 합니다.");
+                System.out.println(ERROR_ONE_FOURTYFIVE_NOT_DUPLICATED);
             }
         }
         return BonusNumber;
@@ -141,10 +146,10 @@ public class UIController {
 
     private static void validateBonusNumber(List<Integer> winningNumbers, Integer BonusNumber) {
         if (BonusNumber < 1 || BonusNumber > 45) {
-            throw new IllegalArgumentException("1~45의 숫자만 가능합니다.");
+            throw new IllegalArgumentException();
         }
         if (winningNumbers.contains(BonusNumber)) {
-            throw new IllegalArgumentException("당첨번호와 중복되지 않는 번호 이어야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 

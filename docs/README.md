@@ -14,8 +14,10 @@
         - view Package와 domain Package의 데이터를 전달하며 값을 출력하는 클래스
         - 프로그램을 실행하는 `run` 메서드
         - 티켓 개수를 불러오는 `loadTicket` 메서드
-        - 티켓 개수를 활용하여 구매한 로또 리스트를 구매하는 `buyLotto` 메서드
-            
+        - 티켓 개수를 활용하여 구매한 로또 리스트를 불러오고 출력하도록 하는 `buyLotto` 메서드
+        - 당첨 번호를 불러오는 `loadWinningLotto` 메서드
+        - 보너스 번호를 불러와 당첨번호와 비교하는 기능 구현 `loadBonusNumber` 메서드
+
 
 - [ ] domain Package
     - [ ] LottoJudge

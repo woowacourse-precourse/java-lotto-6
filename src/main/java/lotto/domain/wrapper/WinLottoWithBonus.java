@@ -12,11 +12,11 @@ public class WinLottoWithBonus {
     private final int bonusNumber;
 
     private WinLottoWithBonus(List<Integer> winningLotto, String bonusNumber) {
+        this.winningLotto = winningLotto;
         this.bonusNumber = validateType(bonusNumber);
+
         validateDuplicate(this.bonusNumber);
         validateRange(this.bonusNumber);
-
-        this.winningLotto = winningLotto;
     }
 
     public static WinLottoWithBonus create(List<Integer> winningLotto, String bonusNumber) {

@@ -39,10 +39,18 @@ public class InputView {
         ValidateThousandWonFormat.validate(inputMoney);
     }
 
-    public void inputWinningNumber() {
+    public String[] inputWinningNumber() {
         String inputWinnigNumber;
-        inputWinnigNumber = Console.readLine();
-        validateInputWinningNumber(inputWinnigNumber);
+        while (true) {
+            inputWinnigNumber = Console.readLine();
+            try {
+                validateInputWinningNumber(inputWinnigNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return inputWinnigNumber.split(",");
     }
 
     private void validateInputWinningNumber(String inputWinningNumber) {

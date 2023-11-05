@@ -1,7 +1,5 @@
 package lotto;
 
-import lotto.utils.ErrorMessage;
-
 import java.util.Objects;
 
 import static lotto.utils.ErrorMessage.INVALID_LOTTO_PAYMENT;

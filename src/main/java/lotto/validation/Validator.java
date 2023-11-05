@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.validation;
 
 import lotto.exception.LottoException;
 

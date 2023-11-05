@@ -25,8 +25,7 @@ public class InputValidator {
         }
     }
 
-    private static void isThousandUnit(String input) {
-        int amount = Integer.parseInt(input);
+    private static void isThousandUnit(int amount) {
         if (amount < 1000 || amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorConstants.THOUSAND_UNIT);
         }
@@ -50,10 +49,10 @@ public class InputValidator {
         }
     }
 
-    public static boolean validatePurchaseAmount(String input) {
-        isInteger(input);
-        isThousandUnit(input);
-        return true;
+    public static int validatePurchaseAmount(String input) {
+        int amount = isInteger(input);
+        isThousandUnit(amount);
+        return amount;
     }
 
     public static List<Integer> validateWinningNumbers(String input) {
@@ -64,11 +63,11 @@ public class InputValidator {
                 .collect(Collectors.toList());
     }
 
-    public static boolean validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+    public static int validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
         int bonus = isInteger(bonusNumber);
         isNumberInRange(bonus);
         containsNumber(bonus, winningNumbers);
-        return true;
+        return bonus;
     }
 
 }

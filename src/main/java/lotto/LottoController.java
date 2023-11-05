@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -49,15 +48,12 @@ public class LottoController {
 
     public void setUserLottoNumbers() {
         int numberOfLotto = lottoDB.getUserLottoCount();
-        List<Integer> lotto = new ArrayList<>();
         lottoView.printLottoNumberAnnouncement(numberOfLotto);
         for (int i = 0; i < numberOfLotto; i++) {
-            lotto.clear();
-            lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoView.printLottoNumber(lotto);
             lottoDB.storeLottoNumbers(lotto);
         }
     }
-
 
 }

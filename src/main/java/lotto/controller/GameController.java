@@ -12,15 +12,24 @@ public class GameController {
     }
 
     public static void game(){
-        int lottoPurchasePrice = inputLottoPurchasePrice();
+        int lottoPurchasePrice = setLottoPurchasePrice();
     }
 
-    private static int inputLottoPurchasePrice() {
+    private static int setLottoPurchasePrice() {
+        while (true) {
+            try {
+                String lottoPurchasePrice = inputLottoPurchasePrice();
+                InputValidator.validateIsNumber(lottoPurchasePrice);
+                return InputUtil.preprocessLottoPurchasePrice(lottoPurchasePrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static String inputLottoPurchasePrice() {
         OutputView.printMessage(INPUT_PURCHASE_PRICE);
-
         String lottoPurchasePrice = read();
-        InputValidator.validateIsNumber(lottoPurchasePrice);
-
-        return InputUtil.preprocessLottoPurchasePrice(lottoPurchasePrice);
+        return lottoPurchasePrice;
     }
 }

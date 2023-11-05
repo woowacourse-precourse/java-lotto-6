@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,7 +16,12 @@ import lotto.domain.Money;
 
 public class LottosGeneratorTest {
 
-	private final LottosGenerator lottosGenerator = new LottosGenerator();
+	private LottosGenerator lottosGenerator;
+
+	@BeforeEach
+	void setUp() {
+		lottosGenerator = new LottosGenerator();
+	}
 
 	@DisplayName("돈을 1000으로 나눈 몫만큼 Lotto가 생성되는 지 확인한다.")
 	@MethodSource("createGenerateMethodParameter")

@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import static lotto.util.TestUtil.ERROR_PREFACE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import lotto.model.LottoWinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,6 +69,39 @@ class LottoControllerTest extends NsTest {
         method.invoke(lottoController);
 
         assertThat(output()).contains(count + "개");
+    }
+
+    @DisplayName("1등 당첨 번호를 받아온다.")
+    @Test
+    void successGetLottoWinningNumbers()
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        run("1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoWinningNumbers");
+
+        LottoWinningNumbers winningNumbers = (LottoWinningNumbers) method.invoke(lottoController);
+        assertThat(winningNumbers).isNotNull();
+    }
+
+    @DisplayName("잘못된 값을 입력하면 다시 입력되면 오류를 발생한다.: 1,2,3")
+    @Test
+    void getLottoWinningNumbersThrowCase1()
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        run("1,2,3", "1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoWinningNumbers");
+
+        method.invoke(lottoController);
+        assertThat(output()).contains(ERROR_PREFACE);
+    }
+
+    @DisplayName("잘못된 값을 입력하면 다시 입력되면 오류를 발생한다.: 숫자 이외")
+    @Test
+    void getLottoWinningNumbersThrowCase2()
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        run("1,2,3,4,5,w", "1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoWinningNumbers");
+
+        method.invoke(lottoController);
+        assertThat(output()).contains(ERROR_PREFACE);
     }
 
     private Method getAccessibleMethod(String methodName, Class<?>... parameterTypes)

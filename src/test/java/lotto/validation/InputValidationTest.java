@@ -23,4 +23,12 @@ class InputValidationTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationMoney(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"3333333333", "43525234324"})
+    public void Integer_형변환_검사(String input) {
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationMoney(input));
+    }
 }

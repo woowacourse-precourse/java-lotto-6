@@ -1,10 +1,13 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import lotto.exception.NonVariableException;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoWinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +39,16 @@ class LottoWalletServiceTest extends NsTest {
         // then
         assertThat(winningField.get(lottoWalletService)).isEqualTo(lottoWinningNumbers);
         assertThat(bonusField.get(lottoWalletService)).isEqualTo(lottoBonusNumber);
+    }
+
+    @DisplayName("필요한 데이터가 없으면 예외가 발생한다.")
+    @Test
+    void readyCheckThrow() throws NoSuchMethodException {
+        Method method = getAccessibleMethod("readyCheck");
+
+        assertThatThrownBy(() -> method.invoke(lottoWalletService))
+                .isInstanceOf(InvocationTargetException.class)
+                .hasCauseInstanceOf(NonVariableException.class);
     }
 
     private Field getAccessibleField(String variableName) throws NoSuchFieldException {

@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.LottoRule.LOTTO_LENGTH;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
@@ -15,6 +16,12 @@ public class Lotto {
 
     public static Lotto from(List<LottoNumber> numbers) {
         return new Lotto(numbers);
+    }
+
+    public List<Integer> mapToIntegers() {
+        return numbers.stream()
+                .map(LottoNumber::getValue)
+                .collect(Collectors.toList());
     }
 
     public boolean contains(LottoNumber lottoNumber) {

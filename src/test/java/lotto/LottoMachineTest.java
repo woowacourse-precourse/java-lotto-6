@@ -11,7 +11,7 @@ public class LottoMachineTest {
     void issueLotto() {
         LottoMachine lottoMachine = new LottoMachine();
 
-        assertThat(lottoMachine.issueLottos(new Money(2000)).lottos.size())
+        assertThat(lottoMachine.issueLottos(new Money(2000)).lottoBundle.size())
                 .isEqualTo(2);
     }
 }

@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
+import lotto.util.LottoGenerator;
 import lotto.generator.MockedRandomGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;

@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import lotto.generator.MockedRandomGenerator;
+import lotto.util.LottoGenerator;
 import org.junit.jupiter.api.Test;
 
 public class LottoGeneratorTest {

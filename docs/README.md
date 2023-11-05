@@ -176,7 +176,7 @@
   - [x] UserBonusDTO를 형성하고 Bonus로 변환한다 
   - [x] 공통 예외에 대한 검증을 DTO에서 진행한다 (userMoneyDTO와 동일)
       
-9. LottoGenerator에서 생성한 로또 번호들과 비교한다 - LottoService (핵심 비즈니스 로직을 유지하는 곳 )
+9. LottoGenerator에서 생성한 로또 번호들과 비교한다 LottoService (핵심 비즈니스 로직을 유지하는 곳 )
   - 사용자의 구입 금액에 따라 로또 번호 리스트를 생성한다 
   - 사용자의 로또 번호 그리고 보너스 번호는 입력을 받아 LottoWithBonus로 변환
   - ~~Repository에 저장되어 있는 로또 번호 리스트 정보를 가지고 온다~~
@@ -186,7 +186,13 @@
 
 10. 당첨 통계를 생성한다
   - 일치한 숫자의 개수에 따른 인스턴스를 Enum으로 표현한다 LottoResult 
-    - 1개 부터 6개 까지의 인스턴스를 구분한다 
-    - 맞힌 숫자 개수, 당첨 금액을 가지고 있다
-    - 맞힌 숫자 개수를 활용해서 Enum을 조회할 수 있다 
-    
+    - [x] 0개 부터 6개 까지의 인스턴스를 구분한다 
+    - [x] 맞힌 숫자 개수, 당첨 금액을 가지고 있다
+    - [x] 맞힌 숫자 개수를 키로 대응되는 Enum을 조회할 수 있다
+
+11. 당첨 통계 그리고 각 통계별 개수를 담는, 출력을 위한 데이터를 형성한다 - LottoService 
+  - 구입한 금액에 따라 형성된 로또 리스트와 사용자의 LottoWithBonus를 비교한다
+    - [x] 로또 리스트를 형성한다 
+    - [x] 생성한 로또 리스트를 Repository에 저장해야 한다 
+  - 각 LottoResult의 개수를 확인한다 
+    - LottoFinalResultDTO EnumMap <Enum, 개수> 

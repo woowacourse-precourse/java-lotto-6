@@ -2,11 +2,8 @@ package lotto.domain.user;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
-
-import java.util.List;
 
 /**
  * 사용자 클래스
@@ -71,7 +68,7 @@ public class User {
     public StringBuilder showStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
         takeTargetNumResults(lottoTargetNumResults);
         statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
-        
+
         return statistic.show();
     }
 
@@ -80,9 +77,9 @@ public class User {
      *
      * @return
      */
-    public Double calculateTotalRate() {
+    public StringBuilder calculateTotalRate() {
         totalWinMoney = statistic.getTotalWinMoney();
 
-        return rateResult.calculate(useMoney, totalWinMoney);
+        return rateResult.showRate(useMoney, totalWinMoney);
     }
 }

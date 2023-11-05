@@ -65,4 +65,8 @@ public class Process {
         lottoTargetNumResults = lottoHost.giveLottoTargetNumResults();
         return user.showStatisticLottoResult(lottoTargetNumResults);
     }
+
+    public StringBuilder showRateResult() {
+        return user.calculateTotalRate();
+    }
 }

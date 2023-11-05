@@ -120,7 +120,7 @@
         - [x] 로또 진행자가 보너스 번호를 입력한다.
     - [x] 당첨의 결과를 보여준다. Process#showResult
         - [x] 유저가 결과를 통계한다.
-        - [ ] 유저가 수익률을 계산한다.
+        - [x] 유저가 수익률을 계산한다.
 
 
 - [ ] Input ( IllegalArgumentException 예외 정확하게)

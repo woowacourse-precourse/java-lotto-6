@@ -4,6 +4,7 @@ import View.Input;
 import View.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
     private int[] matchingNumbersCounter;
     private boolean bonusMatch;
+    private static final BigInteger[] WINNING_AMOUNT_BY_RANKING = {BigInteger.valueOf(0), BigInteger.valueOf(2000000000), BigInteger.valueOf(30000000), BigInteger.valueOf(1500000), BigInteger.valueOf(50000), BigInteger.valueOf(5000)};
 
     void execute() {
         int receivedAmount = getReceivedAmount();
@@ -29,9 +31,11 @@ public class LottoApplication {
 
         matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
         List<Result> results = compareTicketAndLottos(ticket, createdLottos);
-        Output.printWinningStatistic(getRankingCounter(results));
 
-//        calculatePrize();
+        int[] rankingCounter = getRankingCounter(results);
+        Output.printWinningStatistic(rankingCounter);
+
+        BigInteger totalWinningAmount = calculateWinningAmount(rankingCounter);
     }
 
     private int getReceivedAmount() {
@@ -92,7 +96,7 @@ public class LottoApplication {
         return results;
     }
 
-    public int[] getRankingCounter(List<Result> results) {
+    private int[] getRankingCounter(List<Result> results) {
         int[] rankingCounter = new int[6]; // index 0은 사용 안 함
 
         for (Result result: results) {
@@ -100,5 +104,15 @@ public class LottoApplication {
         }
 
         return rankingCounter;
+    }
+
+    private BigInteger calculateWinningAmount(int[] rankingCounter) {
+        BigInteger totalWinningAmount = BigInteger.ZERO;
+
+        for (int i=1; i<rankingCounter.length; i++) {
+            totalWinningAmount.add(BigInteger.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
+        }
+
+        return totalWinningAmount;
     }
 }

@@ -20,8 +20,8 @@ public class LottoResultsService {
 
     public void updateLottoResultRepository(LottoBundleDto lottoBundleDto, WinLotto winLotto) {
         List<Lotto> lottoBundleData = lottoBundleDto.getLottoBundleData();
-        for (Lotto lottoBundleDatum : lottoBundleData) {
-            LottoResult lottoResult = winLotto.getLottoResult(lottoBundleDatum);
+        for (Lotto lottoData : lottoBundleData) {
+            LottoResult lottoResult = winLotto.getLottoResult(lottoData);
             lottoResultsRepository.saveLottoResult(lottoResult);
         }
     }

@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import lotto.Control.Reward;
-import lotto.Control.SameNumber;
-
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 

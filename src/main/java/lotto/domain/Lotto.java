@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

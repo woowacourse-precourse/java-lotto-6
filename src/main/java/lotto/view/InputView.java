@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.util.InputConvertUtil.*;
 import static lotto.util.InputValidator.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -18,15 +19,16 @@ public class InputView {
         return Integer.parseInt(purchaseAmount);
     }
 
-    public List<Integer> inputLottoNumber(){
+    public static List<Integer> inputLottoNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String lottoInput = Console.readLine();
-        List<String> lottoNumbers = InputConvertUtil.lottoNumberToLottoList(lottoInput);
+        List<String> lottoNumbers = lottoNumberToLottoList(lottoInput);
         validateLottoNumber(lottoNumbers);
-        return InputConvertUtil.lottoNumberToIntegerList(lottoNumbers);
+        return lottoNumberToIntegerList(lottoNumbers);
     }
 
-    public int inputBonusNumber(){
+    public static int inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);

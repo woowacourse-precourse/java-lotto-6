@@ -21,7 +21,7 @@ public class BonusNumberInputValidator {
 
     private static void validateNumberRange(String input) {
         int bonusNumber = Integer.parseInt(input);
-        if (LottoNumber.isInRange(bonusNumber)) {
+        if (!LottoNumber.isInRange(bonusNumber)) {
             throw new IllegalArgumentException(INPUT_NOT_BETWEEN_ONE_AND_FORTY_FIVE);
         }
     }

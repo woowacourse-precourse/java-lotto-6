@@ -18,13 +18,13 @@ public class LottoValidator {
     }
 
     private static void validateNumberRange(Integer number) {
-        if (number < LottoNumber.MIN.getNumber() || number > LottoNumber.MAX.getNumber()) {
+        if (!LottoNumber.isInRange(number)) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void validateNumbersSize(List<Integer> numbers) {
-        if (LottoNumber.isInRange(numbers.size())) {
+        if (numbers.size() != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

@@ -9,7 +9,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateNumberRange(Integer number) {
-        if (LottoNumber.isInRange(number)) {
+        if (!LottoNumber.isInRange(number)) {
             throw new IllegalArgumentException();
         }
     }

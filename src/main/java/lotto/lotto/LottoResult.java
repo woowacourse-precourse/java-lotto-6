@@ -1,6 +1,6 @@
 package lotto.lotto;
 
-public enum LottoResult {
+enum LottoResult {
     PARTICIPATION_PRIZE(0, ""),
     FIFTH_PRIZE(5000, "3개 일치 (5,000원)"),
     FOURTH_PRIZE(50000, "4개 일치 (50,000원)"),

@@ -31,17 +31,7 @@ public class Application {
             this.name = name; 
         } 
     }
-
-    // 랜덤 번호 6개 뽑기(중첩 가능)
-    public static List<Integer> setRandomNumbers() {
-        List<Integer> box = new ArrayList<>();
-        while (box.size() != 6) {
-            int rd = Randoms.pickNumberInRange(1, 45);
-            box.add(rd);
-        }
-        return box;
-    }
-
+    
     public static int myParseInt(String s){
         int res;
 
@@ -76,7 +66,8 @@ public class Application {
         System.out.println(String.format("%d개를 구매했습니다.",ticketNum));
         List<Lotto> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
-            res.add(new Lotto(setRandomNumbers()));
+            res.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            System.out.println(res.get(index).getNumbers());
         }
         return res;
     }

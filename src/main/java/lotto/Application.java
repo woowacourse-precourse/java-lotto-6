@@ -6,7 +6,29 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println(InputMessage.purchaseAmount);
+        int result = inputPurchaseAmount();
+    }
+
+    public static int inputPurchaseAmount() {
         int result = validate(Console.readLine());
+        if (result == -1) {
+            inputPurchaseAmount();
+        }
+        return result;
+    }
+
+    public static int validate(String input) {
+        try {
+            checkNull(input);
+            checkEmpty(input);
+            int number = checkNumber(input);
+            checkZero(number);
+            checkUnit(number);
+            return number;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
     }
 
     public static void checkEmpty(String input) {
@@ -38,20 +60,6 @@ public class Application {
     public static void checkNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessage.NULL);
-        }
-    }
-
-    public static int validate(String input) {
-        try {
-            checkNull(input);
-            checkEmpty(input);
-            int number = checkNumber(input);
-            checkZero(number);
-            checkUnit(number);
-            return number;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return -1;
         }
     }
 }

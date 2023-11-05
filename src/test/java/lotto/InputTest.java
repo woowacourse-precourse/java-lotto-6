@@ -1,8 +1,11 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import java.io.ByteArrayInputStream;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -60,5 +63,15 @@ public class InputTest {
         int result = application.validate(purchaseAmount);
 
         assertThat(result).isEqualTo(8000);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" "})
+    void 구입_금액을_잘못_입력_시_다시_입력한다(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+         assertThatExceptionOfType(NoSuchElementException.class)
+                 .isThrownBy(() -> application.inputPurchaseAmount())
+                 .withMessage("No line found");
     }
 }

@@ -21,6 +21,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int getMatchedCount(final Lotto other) {
+        long matchedNumbersCount = IntStream.range(0, LOTTO_NUMBER_SIZE)
+                .filter(i -> matched(other, i))
+                .count();
+
+        if (matchedNumbersCount != (int) matchedNumbersCount) {
+            throw new IllegalStateException();
+        }
+
+        return (int) matchedNumbersCount;
+    }
+
     private void sortNumbers(final List<Integer> numbers) {
         Collections.sort(numbers);
     }
@@ -36,18 +48,6 @@ public class Lotto {
         if (distinctNumbers.size() != numbers.size()) {
             throw new InputException(DUPLICATED_LOTTO_NUMBER);
         }
-    }
-
-    public int getMatchedNumbersCount(final Lotto other) {
-        long matchedNumbersCount = IntStream.range(0, LOTTO_NUMBER_SIZE)
-                .filter(i -> matched(other, i))
-                .count();
-
-        if (matchedNumbersCount != (int) matchedNumbersCount) {
-            throw new IllegalStateException();
-        }
-
-        return (int) matchedNumbersCount;
     }
 
     @Override

@@ -20,19 +20,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.LongStream;
 import lotto.domain.Lotto;
-import lotto.domain.money.Money;
 import lotto.domain.WinningLotto;
+import lotto.domain.money.Money;
 
-public class LottoGenerator {
+public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
     private static final long START_ORDER = 1L;
-    private final LottoNumberGenerator lottoNumberGenerator;
 
     public LottoGenerator() {
         this(new LottoNumberGenerator());
-    }
-
-    public LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
-        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public WinningLotto createWinningLottoFromInput(String numbers, int bonusNumber) {
@@ -93,7 +88,7 @@ public class LottoGenerator {
         if (price.isLessThan(new Money(ONE_LOTTO_PRICE))) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
-        if (price.cantDivided(new Money(ONE_LOTTO_PRICE))) {
+        if (price.cantDividedBy(new Money(ONE_LOTTO_PRICE))) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }

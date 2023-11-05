@@ -26,7 +26,7 @@ public class LottoController {
     }
 
     public void play() {
-        UserLotto userLotto = receiveUserLottos();
+        UserLotto userLotto = receiveUserLotto();
         Money purchaseAmount = new Money(userLotto.getLottoCount() * ONE_LOTTO_PRICE);
         displayUserLotto(userLotto);
 
@@ -45,7 +45,7 @@ public class LottoController {
         outputView.printUserLotto(totalLotto, allLotto);
     }
 
-    private UserLotto receiveUserLottos() {
+    private UserLotto receiveUserLotto() {
         Money purchaseAmount = receivePurchaseAmount();
         List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
 

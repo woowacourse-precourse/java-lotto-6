@@ -5,13 +5,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import lotto.model.LottoBonusNumber;
 import lotto.model.LottoWinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoWalletServiceTest extends NsTest {
-    
+
     LottoWalletService lottoWalletService;
 
     @BeforeEach
@@ -25,13 +26,16 @@ class LottoWalletServiceTest extends NsTest {
         // given
         String numbers = "1,2,3,4,5,6";
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(numbers);
-        Field field = getAccessibleField("winningNumbers");
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber("6");
+        Field winningField = getAccessibleField("winningNumbers");
+        Field bonusField = getAccessibleField("bonusNumber");
 
         // when
-        lottoWalletService.saveRecentWinningNumbers(lottoWinningNumbers);
+        lottoWalletService.saveRecentWinningNumbers(lottoWinningNumbers, lottoBonusNumber);
 
         // then
-        assertThat(field.get(lottoWalletService)).isEqualTo(lottoWinningNumbers);
+        assertThat(winningField.get(lottoWalletService)).isEqualTo(lottoWinningNumbers);
+        assertThat(bonusField.get(lottoWalletService)).isEqualTo(lottoBonusNumber);
     }
 
     private Field getAccessibleField(String variableName) throws NoSuchFieldException {

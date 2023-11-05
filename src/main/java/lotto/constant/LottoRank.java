@@ -11,7 +11,6 @@ public enum LottoRank {
     THREE(5_000L, 3),
     NO_PRIZE(0L, 0);
 
-
     private final long winnings;
     private final int matchCount;
 
@@ -25,6 +24,10 @@ public enum LottoRank {
     }
 
     private boolean hasSameMatchCount(int matchCount) { return this.matchCount == matchCount; }
+
+    public static boolean isWinningRank(LottoRank lottoRank) { return lottoRank != NO_PRIZE; }
+
+    public static List<LottoRank> getWinningRanks() { return Arrays.stream(values()).filter(LottoRank::isWinningRank).toList(); }
 
     public static LottoRank getByBonusMatchWhenMatchCountIsFive(boolean isBonusMatched) {
         if (isBonusMatched) {

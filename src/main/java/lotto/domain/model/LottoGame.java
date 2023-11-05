@@ -31,11 +31,12 @@ public final class LottoGame {
         return getLottoRankByMatchCountAndBonusMatch(matchCount, isBonusMatched);
     }
 
-    public List<LottoRank> createLottoRanks() {
+    public List<LottoRank> createWinningLottoRanks() {
         List<Lotto> elements = purchasedLottos.getElements();
 
         return elements.stream()
                 .map(this::createLottoRank)
+                .filter(LottoRank::isWinningRank)
                 .toList();
     }
 }

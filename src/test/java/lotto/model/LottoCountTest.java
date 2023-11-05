@@ -17,5 +17,13 @@ class LottoCountTest {
         assertThat(lottoCount.getLottoCount()).isEqualTo(10);
     }
 
+    @DisplayName("구매 금액이 올바르지 않은 경우 수량 예외 발생 테스트")
+    @Test
+    void isDivisible() {
+        int amount = 10001;
+        assertThatThrownBy(() -> LottoCount.createLottoCount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.ERROR_LOTTO_TICKET_PRICE.get());
+    }
 
 }

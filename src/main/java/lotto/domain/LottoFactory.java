@@ -13,20 +13,18 @@ public class LottoFactory {
     private static final int MAX_LOTTO_NUMBER = 45;
 
 
-
     public Lotto createRandomLotto() {
-        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
 
     public List<Lotto> createRandomLottoUpto(int count) {
         return IntStream.range(0, count)
-                 .mapToObj(loopIndex -> createRandomLotto())
-                 .toList();
+                        .mapToObj(loopIndex -> createRandomLotto())
+                        .toList();
     }
-
-
 
 
 }

@@ -40,4 +40,5 @@ public class LotteryStore {
         return winningLotto.calculateStaticsFrom(lottos);
     }
 
+
 }

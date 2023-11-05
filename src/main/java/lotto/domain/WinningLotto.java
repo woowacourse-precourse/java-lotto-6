@@ -32,10 +32,15 @@ public class WinningLotto {
 
     public WinningStatistics calculateStaticsFrom(List<Lotto> lottos) {
         List<Rank> ranks = lottos.stream()
-                                .map(this::calculateRankWith)
-                                .toList();
+                                 .map(this::calculateRankWith)
+                                 .toList();
         return WinningStatistics.from(ranks);
     }
 
+    private void checkDuplication(List<LottoNumber> winningLotto) {
+        List<LottoNumber> distinctList = winningLotto.stream()
+                                             .distinct()
+                                             .toList();
+    }
 
 }

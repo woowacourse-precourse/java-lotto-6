@@ -28,7 +28,7 @@ public class LottoService {
 
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-        for (double count = 0; count < length; count++) {
+        for (Integer count = 0; count < length; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, COUNT);
             lottoNumbers.add(numbers);
         }

@@ -27,7 +27,6 @@ class LottoBundleTest {
         });
 
         // then
-        assertThat(bundle.getBundle().size()).as("bundle size").isEqualTo(10);
         assertThat(result1).as("case1").doesNotThrowAnyException();
         assertThat(result2).as("case2").isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);

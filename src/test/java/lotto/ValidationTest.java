@@ -40,17 +40,16 @@ class ValidationTest {
         int case1 = 1000;
         int case2 = 0;
         int case3 = -300;
-        int min = 0;
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            Validation.isOver(case1, min);
+            Validation.isNumeric(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            Validation.isOver(case2, min);
+            Validation.isNumeric(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            Validation.isOver(case3, min);
+            Validation.isNumeric(case3);
         });
 
         // then

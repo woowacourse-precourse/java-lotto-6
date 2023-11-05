@@ -53,8 +53,8 @@ class LottoTest {
         int case2 = 45;
 
         // when
-        boolean result1 = lotto.contains(case1);
-        boolean result2 = lotto.contains(case2);
+        boolean result1 = lotto.hasBonusNumber(case1);
+        boolean result2 = lotto.hasBonusNumber(case2);
 
         // then
         assertThat(result1).as("case1").isEqualTo(true);

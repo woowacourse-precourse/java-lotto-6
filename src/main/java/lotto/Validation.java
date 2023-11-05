@@ -18,15 +18,14 @@ public class Validation {
     }
 
     /**
-     * 최솟값보다 큰 수인지 검사한다.
+     * 숫자가 양수인지 검사한다.
      *
      * @param number : 검사할 숫자
-     * @param min    : 최솟값
-     * @throws IllegalArgumentException : 최솟값 보다 작은 경우
+     * @throws IllegalArgumentException : 양수가 아닌 경우
      */
-    public static void isOver(int number, int min) throws IllegalArgumentException {
-        if (number <= min) {
-            throw new IllegalArgumentException("[ERROR] " + min + " 보다 큰 수를 입력해야 합니다.");
+    public static void isNumeric(int number) throws IllegalArgumentException {
+        if (number <= 0) {
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해야 합니다.");
         }
     }
 
@@ -50,7 +49,7 @@ public class Validation {
      * @throws IllegalArgumentException : 번호가 중복되는 경우
      */
     public static void isDuplicate(Lotto lotto, int number) throws IllegalArgumentException {
-        if (lotto.contains(number)) {
+        if (lotto.hasBonusNumber(number)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않아야 합니다.");
         }
     }

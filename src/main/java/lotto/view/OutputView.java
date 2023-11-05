@@ -1,8 +1,6 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.Rank;
 
@@ -14,7 +12,7 @@ public class OutputView {
      * @param result : 결과
      * @param rate   : 수익률
      */
-    public static void showResult(Map<Rank, Integer> result, double rate) {
+    public void showResult(Map<Rank, Integer> result, double rate) {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Rank rank : Rank.values()) {
@@ -29,7 +27,7 @@ public class OutputView {
      * @param result : 결과
      * @param rank   : 당첨 등급
      */
-    private static void showRankResult(Map<Rank, Integer> result, Rank rank) {
+    private void showRankResult(Map<Rank, Integer> result, Rank rank) {
         if (rank.getCount() == 0) {
             return;
         }
@@ -47,12 +45,8 @@ public class OutputView {
      *
      * @param lottoBundle : 로또 묶음
      */
-    public static void showBundle(LottoBundle lottoBundle) {
-        List<Lotto> bundle = lottoBundle.getBundle();
-
-        System.out.println(bundle.size() + "개를 구매했습니다.");
-        for (Lotto lotto : bundle) {
-            System.out.println(lotto.toString());
-        }
+    public void showBundle(LottoBundle lottoBundle) {
+        System.out.println(lottoBundle.size() + "개를 구매했습니다.");
+        System.out.println(lottoBundle.toString());
     }
 }

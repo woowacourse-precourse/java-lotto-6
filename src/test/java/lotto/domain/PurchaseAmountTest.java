@@ -37,4 +37,12 @@ class PurchaseAmountTest {
         PurchaseAmount purchaseAmount = PurchaseAmount.from(2000);
         assertThat(purchaseAmount.affordableCountOfLotto()).isEqualTo(2);
     }
+
+    @DisplayName("벌어들인 금액이 주어질 때 수익률을 계산할 수 있다")
+    @Test
+    void testCalculateProfitRate() {
+        PurchaseAmount purchaseAmount = PurchaseAmount.from(8000);
+        double profitRate = purchaseAmount.profitRate(5000L);
+        assertThat(profitRate).isEqualTo(62.5);
+    }
 }

@@ -72,4 +72,36 @@ class PrizeHandlerTest {
         int totalPrizeCount = fiveRank.getTotalPrizeCount();
         assertThat(totalPrizeCount).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("수익률 계산")
+    void test4() {
+        Paper paper = Paper.of("1,2,3,4,5,6", "7");
+        Lotto lotto = Lotto.of(List.of(8, 21, 23, 41, 42, 43));
+        fiveRank.process(paper, lotto);
+
+        Lotto secondLotto = Lotto.of(List.of(3, 5, 11, 16, 32, 38));
+        fiveRank.process(paper, secondLotto);
+
+        Lotto thirdLotto = Lotto.of(List.of(7, 11, 16, 35, 36, 44));
+        fiveRank.process(paper, thirdLotto);
+
+        Lotto fourthLotto = Lotto.of(List.of(1, 8, 11, 31, 41, 42));
+        fiveRank.process(paper, fourthLotto);
+
+        Lotto fifthLotto = Lotto.of(List.of(13, 14, 16, 38, 42, 45));
+        fiveRank.process(paper, fifthLotto);
+
+        Lotto sixthLotto = Lotto.of(List.of(7, 11, 30, 40, 42, 43));
+        fiveRank.process(paper, sixthLotto);
+
+        Lotto seventhLotto = Lotto.of(List.of(2, 13, 22, 32, 38, 45));
+        fiveRank.process(paper, seventhLotto);
+
+        Lotto eighthLotto = Lotto.of(List.of(1, 3, 5, 14, 22, 45));
+        fiveRank.process(paper, eighthLotto);
+
+        double earnRate = fiveRank.earnRate(8000);
+        assertThat(earnRate).isEqualTo(62.5);
+    }
 }

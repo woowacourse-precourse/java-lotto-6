@@ -11,4 +11,6 @@ public interface PrizeHandler {
     String printWinningStatistics();
 
     int getTotalPrizeCount();
+
+    double earnRate(int investedAmount);
 }

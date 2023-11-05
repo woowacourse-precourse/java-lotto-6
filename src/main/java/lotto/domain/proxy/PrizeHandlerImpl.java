@@ -51,6 +51,13 @@ public class PrizeHandlerImpl implements PrizeHandler {
         return getTotalPrizeCount;
     }
 
+    @Override
+    public double earnRate(int investedAmount) {
+        double profitPercentage = ((double) getTotalPrizeCount() / investedAmount) * 100; // 수익률 계산
+
+        return Math.round(profitPercentage * 100.0) / 100.0;
+    }
+
 
     @Override
     public String printWinningStatistics() {

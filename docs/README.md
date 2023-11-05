@@ -98,6 +98,9 @@
     - LottoNumberDuplicateException
     - LottoNumberSizeException
     - LottoNumericRangeException
+    - InvalidAmountFormatException
+    - NonNumberException
+    - NonPositiveAmountException
 
 ## 프로그래밍 요구사항
 

@@ -22,6 +22,7 @@ public class GameController {
     public void run() {
         for(int i=0; i<coin; i++){
             Lotto lotto = lottoMachine.createLotto();
+            System.out.println(lotto.toString());
         }
     }
 

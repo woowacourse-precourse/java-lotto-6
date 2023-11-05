@@ -1,7 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumber {
@@ -24,6 +26,7 @@ public class WinningNumber {
     private void validateWinningNumbers(String[] winningNumInput) {
         validateWinningNumSize(winningNumInput);
         validateWinningNumRange(winningNumInput);
+        validateIsDuplicated(winningNumInput);
     }
 
     private void validateWinningNumSize(String[] winningNumInput) {
@@ -39,6 +42,13 @@ public class WinningNumber {
                 throw new IllegalArgumentException("당첨 번호는 " + MIN_WINNING_NUMBER + "부터 "
                         + MAX_WINNING_NUMBER + "까지의 숫자만 가능합니다.");
             }
+        }
+    }
+
+    private void validateIsDuplicated(String[] winningNumInput) {
+        Set<String> distinctNumbers = new HashSet<>(Arrays.asList(winningNumInput));
+        if (winningNumInput.length != distinctNumbers.size()) {
+            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
         }
     }
 }

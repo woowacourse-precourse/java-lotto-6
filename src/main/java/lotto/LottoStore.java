@@ -23,6 +23,7 @@ public class LottoStore {
         while (lottoCount < quantity) {
             Lotto lotto = new Lotto(numberGenerator.createSixDigitNumber());
             lottos.add(lotto);
+            lottoCount++;
         }
         return lottos;
     }

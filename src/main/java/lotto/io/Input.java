@@ -92,16 +92,15 @@ public class Input {
         }
     }
 
-    public int getBonusNumber(List<Integer> winningNumbers) {
+    public int getBonusNumber() {
         String userInput = Console.readLine();
-        validateBonusNumber(userInput, winningNumbers);
+        validateBonusNumber(userInput);
         return Integer.parseInt(userInput);
     }
 
-    private void validateBonusNumber(String userInput, List<Integer> winningNumbers) {
+    private void validateBonusNumber(String userInput) {
         validateOnlyOneNumber(userInput);
         validateBonusNumberRange(userInput);
-        validateDuplicateWithWinningNumbers(userInput, winningNumbers);
     }
 
     private void validateOnlyOneNumber(String userInput) {
@@ -116,13 +115,6 @@ public class Input {
         int bonusNumber = Integer.parseInt(userInput);
         if (!(bonusNumber >= Constants.LOTTO_MIN_NUM && bonusNumber <= Constants.LOTTO_MAX_NUM)) {
             throw new IllegalArgumentException(Constants.BONUS_NUM_RANGE_MESSAGE);
-        }
-    }
-
-    private void validateDuplicateWithWinningNumbers(String userInput, List<Integer> winningNumbers) {
-        int bonusNumber = Integer.parseInt(userInput);
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Constants.BONUS_NUM_DUPLICATE_MESSAGE);
         }
     }
 }

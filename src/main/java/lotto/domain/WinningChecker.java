@@ -8,10 +8,10 @@ import static lotto.domain.Constants.*;
 public class WinningChecker {
 
     private final List<Lotto> myLottos;
-    private final List<Integer> winningNumbers;
+    private final WinningNumbers winningNumbers;
     private final int bonusNumber;
 
-    public WinningChecker(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public WinningChecker(List<Lotto> myLottos, WinningNumbers winningNumbers, int bonusNumber) {
         this.myLottos = myLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -27,15 +27,8 @@ public class WinningChecker {
     }
 
     private int countMatchedNumbers(Lotto lotto) {
-        int matchedNumCount = countMatchedNumber(lotto.getNumbers());
+        int matchedNumCount = winningNumbers.countMatchedNumber(lotto);
         return countMatchedBonusNumber(lotto.getNumbers(), matchedNumCount);
-    }
-
-    private int countMatchedNumber(List<Integer> lottoNumbers) {
-        return (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .distinct()
-                .count();
     }
 
     private int countMatchedBonusNumber(List<Integer> lottoNumbers, int matchedNumCount) {

@@ -22,7 +22,7 @@ public class LottoController {
         output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
-        List<Integer> winningNumbers = generateWinningNumbers();
+        WinningNumbers winningNumbers = new WinningNumbers(generateWinningNumbers());
         int bonusNumber = generateBonusNumber(winningNumbers);
 
         List<Integer> winningLottoCounts = getWinningLottosCount(myLottos, winningNumbers, bonusNumber);
@@ -61,12 +61,13 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private int generateBonusNumber(List<Integer> winningNumbers) {
+    private int generateBonusNumber(WinningNumbers winningNumbers) {
         int bonusNumber;
         System.out.println();
         try {
             output.printInputBonusNumberMessage();
-            bonusNumber = input.getBonusNumber(winningNumbers);
+            bonusNumber = input.getBonusNumber();
+            winningNumbers.validateDuplication(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumber = generateBonusNumber(winningNumbers);
@@ -74,7 +75,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private List<Integer> getWinningLottosCount(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
+    private List<Integer> getWinningLottosCount(List<Lotto> myLottos, WinningNumbers winningNumbers, int bonusNumber) {
         WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
         return winningChecker.countWinningLottos();
     }

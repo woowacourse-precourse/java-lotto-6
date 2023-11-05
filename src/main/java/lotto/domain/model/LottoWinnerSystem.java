@@ -1,5 +1,7 @@
 package lotto.domain.model;
 
+import lotto.view.OutputView;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +15,17 @@ public class LottoWinnerSystem {
 
     private List<Integer> winNumbers;
     private List<Integer> bonusNumber;
+
+    // 보너스 번호를 제외하여 비교
+    public int getMatchNumberCount(List<Integer> lottoNumber, List<Integer> winNumber) {
+        int matchCount = 0;
+        for (int i = 0; i < winNumber.size(); i++) {
+            if (lottoNumber.contains(winNumber.get(i))) {
+                matchCount += 1;
+            }
+        }
+        return matchCount;
+    }
 
     public List<Integer> isValidWinNumber(String input) {
         try {

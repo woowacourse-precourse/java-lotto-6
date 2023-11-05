@@ -26,11 +26,9 @@ public class LottoGenerator {
 
     private List<Lotto> makeLottos() {
         List<Lotto> lottos = new ArrayList<>();
-
         for (int i = 0; i < lottoAmount; i++) {
             lottos.add(new Lotto(makeRandomLottoNumbers()));
         }
-
         return lottos;
     }
 
@@ -44,5 +42,9 @@ public class LottoGenerator {
         for (Lotto lotto : lottos) {
             lotto.printNaturalOrder();
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

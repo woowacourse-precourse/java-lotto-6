@@ -14,6 +14,9 @@ public class Application {
         Win win = new Win();
         win.setWinningLotto(askWinningLotto());
         win.setBonus(askBonus());
+
+        Referee referee = new Referee();
+        referee.compare(lottoGenerator.getLottos(), win.getWinningLotto(), win.getBonus());
     }
 
     private static int askPurchaseAmount() {

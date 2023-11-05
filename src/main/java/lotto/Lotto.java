@@ -23,4 +23,8 @@ public class Lotto {
         numbers.sort(Comparator.naturalOrder());
         System.out.println(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

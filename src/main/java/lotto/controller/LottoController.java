@@ -4,6 +4,7 @@ package lotto.controller;
 import lotto.View.ErrorMessageView;
 import lotto.View.InputView;
 import lotto.View.OutputView;
+import lotto.model.BonusNumber;
 import lotto.model.LottoAmount;
 import lotto.model.LottoTickets;
 import lotto.model.WinningNumber;
@@ -13,7 +14,8 @@ public class LottoController {
     public void start() {
         LottoAmount amount = inputAmount();
         buyLotto(amount);
-        inputWinningNumber();
+        WinningNumber winningNum = inputWinningNumber();
+        inputBonusNumber(winningNum);
     }
 
     private LottoAmount inputAmount() {
@@ -40,6 +42,16 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             ErrorMessageView.printErrorWrongNumberRange();
             return inputWinningNumber();
+        }
+    }
+
+    private BonusNumber inputBonusNumber(WinningNumber winningNum) {
+        try {
+            String bonusNum = InputView.inputBonusNumber();
+            return new BonusNumber(bonusNum);
+        } catch (IllegalArgumentException e) {
+            ErrorMessageView.printErrorWrongNumberRange();
+            return inputBonusNumber(winningNum);
         }
     }
 }

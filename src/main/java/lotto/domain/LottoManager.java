@@ -23,14 +23,18 @@ public class LottoManager {
         return sortedLottos;
     }
 
+    public static Map<Prize, Integer> initializePrize() {
+        Map<Prize, Integer> result = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            result.put(prize, 0);
+        }
+        return result;
+    }
+
     public static Map<Prize, Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
         int count;
         // 초기화 메서드
-        Map<Prize, Integer> lottoResult = new HashMap<>();
-        for (Prize prize : Prize.values()) {
-            lottoResult.put(prize, 0);
-        }
-
+        Map<Prize, Integer> lottoResult = initializePrize();
         for (Lotto lotto : lottos) {
             // 일치 개수 return 메서드
             count = 0;

@@ -10,15 +10,15 @@ import java.util.List;
 
 public class LottoController {
 
-    private final OutputView outputView;
-    private final InputView inputView;
-    private final LottoNumbers lottoNumbers;
-    private LottoResult lottoResult;
-    private HashMap<LottoType, Integer> lottoStatistics;
-
     private static int bonus;
     private static List<Lotto> playerLottos = new ArrayList<>();
     private static List<Lotto> winningLotto = new ArrayList<>();
+    private final OutputView outputView;
+    private final InputView inputView;
+    private LottoNumbers lottoNumbers;
+    private LottoResult lottoResult;
+    private HashMap<LottoType, Integer> lottoStatistics;
+
 
     public LottoController() {
         this.outputView = new OutputView();
@@ -30,16 +30,22 @@ public class LottoController {
     public void run() {
         Price price = inputPrice();
         outputView.printLottoTicketMessage(price.getLottoTicket());
-        createPlayerLotto(price.getLottoTicket());
+        printCreatePlayerLotto(price.getLottoTicket());
         winningLotto = inputWinningLotto();
         bonus = inputBonusNumber();
         outputView.printWinningStatisticsMessage();
 
         matchLotto(bonus);
         printLottoStatistics();
-        outputView.printProfitRateMessage(lottoResult.rateOfReturn(price.getPrice()));
-
+        printProfitRate(price.getPrice());
     }
+
+    private void printProfitRate(int price) {
+        lottoStatistics = lottoResult.getMatchLottoCountMap();
+        double rateOfReturn = lottoResult.rateOfReturn(price);
+        outputView.printProfitRateMessage(rateOfReturn);
+    }
+
 
     private Price inputPrice() {
         try {
@@ -76,17 +82,16 @@ public class LottoController {
         this.lottoResult.compareLotto();
     }
 
-    private List<Lotto> createPlayerLotto(int ticket) {
+    private void printCreatePlayerLotto(int ticket) {
         for (int i = 0; i < ticket; i++) {
             playerLottos.add(createLotto());
         }
-        return playerLottos;
     }
 
     private Lotto createLotto() {
         LottoNumbers lottoNumbers = new LottoNumbers();
         List<Integer> lotto = lottoNumbers.createPlayerLotto();
-        outputView.printLottoList(lotto);
+        outputView.printLottoNumber(lotto);
         return new Lotto(lotto);
     }
 
@@ -100,7 +105,6 @@ public class LottoController {
             } catch (NullPointerException e) {
                 outputView.printWinningMoneyMessage(lottoType.getPrize(), 0);
             }
-
         }
     }
 

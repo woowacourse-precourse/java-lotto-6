@@ -18,10 +18,9 @@ public class Buyer {
         return lottos;
     }
 
-
-    private List<Lotto> generateLottos(final long amout) {
+    private List<Lotto> generateLottos(final long amount) {
         List<Lotto> autoGenerateLottos = new ArrayList<>();
-        for (int i = 0; i < amout; i++) {
+        for (int i = 0; i < amount; i++) {
             autoGenerateLottos.add(new Lotto(LottoUtils.generateRandomLottoNumbers()));
         }
         return autoGenerateLottos;

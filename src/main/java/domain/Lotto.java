@@ -51,6 +51,9 @@ public class Lotto {
         if (matchingNumbersCount == winningNumberCount - 1 && numbers.contains(bonusNumber)) {
             return 2;
         }
+        if (matchingNumbersCount < 3) {
+            return -1;
+        }
         return 8 - matchingNumbersCount;
     }
 

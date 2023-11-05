@@ -21,11 +21,13 @@ public class LottoController {
         purchaseLotto();
     }
 
-    private void purchaseLotto() {
+    private LottosDto purchaseLotto() {
         PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
         LottosDto lottosDto = lottoMachine.issuedLottos(purchaseAmountDto);
         outputView.printPurchaseQuantityLottos(purchaseAmountDto);
         outputView.printIssuedPurchaseResult(lottosDto);
+
+        return lottosDto;
     }
 
 

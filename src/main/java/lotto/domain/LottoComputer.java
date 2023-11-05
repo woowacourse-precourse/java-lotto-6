@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -12,6 +13,7 @@ public class LottoComputer {
 	
 	public static void numberMaker() {
 		madeNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+		Collections.sort(madeNumber); // 오름차순으로 정렬
 		System.out.println(madeNumber);
 	}
 	

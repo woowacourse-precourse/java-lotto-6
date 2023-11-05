@@ -13,5 +13,7 @@ public class Application {
     	LottoPlayer.buyLotto();
         LottoComputer.makingLottoIndex();
         
+    	
+        
     }
 }

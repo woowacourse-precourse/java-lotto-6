@@ -1,13 +1,6 @@
 package lotto.code;
 
-/**
- * ErrorMessage
- * <pre>
- * Describe here
- * </pre>
- *
- * @version 1.0,
- */
+
 public enum ErrorMessage {
     EMPTY_DATA("[ERROR] 빈값 입력 불가입니다."),
     ONLY_NUMBERS("[ERROR] 숫자만 입력 가능합니다."),

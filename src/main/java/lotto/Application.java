@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.code.GameMessage;
 import lotto.utils.InputUtils;
 import lotto.utils.PrintUtils;
@@ -19,15 +20,17 @@ public class Application {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto();
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
 
         List<Integer> winnerNumbers = InputUtils.getWinnerNumbers();
         int bonusNumber = InputUtils.getBonusNumber();
 
-        for (Lotto lotto : lottos) {
-            lotto.checkWinning(winnerNumbers, bonusNumber);
-        }
+        WinningCheckMachine winningCheckMachine = new WinningCheckMachine();
+        winningCheckMachine.check(lottos, winnerNumbers, bonusNumber);
+        winningCheckMachine.calculateOfRate(amount);
+        winningCheckMachine.print();
     }
 }

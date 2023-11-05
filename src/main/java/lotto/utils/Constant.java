@@ -15,4 +15,5 @@ public class Constant {
     }
 
     public static final int LOTTO_AMOUNT = 1000;
+    public static final int LOTTO_NUMBERS_SIZE = 6;
 }

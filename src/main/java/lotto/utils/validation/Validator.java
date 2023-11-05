@@ -21,9 +21,13 @@ public class Validator {
     }
 
     private void validateMoneyCorrectAmount(int money) {
-        if (money <= 0 || money % 1000 != 0) {
+        if (isCorrectAmount(money)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isCorrectAmount(int money) {
+        return money <= 0 || money % 1000 != 0;
     }
 
 }

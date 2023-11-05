@@ -42,13 +42,13 @@ class PaymentValidatorTest {
                 .hasMessage(CATCH_ERROR + INVALID_PAYMENT);
     }
 
-//    @DisplayName("올바르게 입력한 경우")
-//    @Test
-//    void 올바른_입력_경우() {
-//        // given
-//        String text = "13000";
-//        // then
-//        Assertions.assertThat(PaymentValidator.validate(text)).isEqualTo(13000);
-//    }
+    @DisplayName("올바르게 입력한 경우")
+    @Test
+    void 올바른_입력_경우() {
+        // given
+        String text = "13000";
+        // then
+        Assertions.assertThat(PaymentValidator.validate(text)).isEqualTo(13000);
+    }
 
 }

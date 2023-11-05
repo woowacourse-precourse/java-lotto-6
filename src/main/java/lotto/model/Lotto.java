@@ -27,7 +27,6 @@ public class Lotto {
         return numbers.stream().distinct().count() < numbers.size();
     }
 
-    // TODO: 추가 기능 구현
     public String getSelectedNumbers() {
         StringBuilder sb = new StringBuilder();
         sb.append(START_TAG);

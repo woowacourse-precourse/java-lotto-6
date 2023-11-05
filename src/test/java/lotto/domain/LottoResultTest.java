@@ -17,4 +17,13 @@ class LottoResultTest {
         LottoResult result = LottoResult.from(countByRanks);
         assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(2);
     }
+
+    @DisplayName("총 상금을 계산할 수 있다")
+    @Test
+    void testTotalPrizeCalculation() {
+        EnumMap<LottoRank, Integer> countByRanks = new EnumMap<>(LottoRank.class);
+        countByRanks.put(LottoRank.FIRST, 2);
+        LottoResult result = LottoResult.from(countByRanks);
+        assertThat(result.getTotalPrize()).isEqualTo(LottoRank.FIRST.getPrize() * 2L);
+    }
 }

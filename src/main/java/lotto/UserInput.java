@@ -8,7 +8,7 @@ public class UserInput {
     public static boolean repeatPurchase = true;
     public static boolean repeatWinningNumber = true;
 
-    public static boolean repearBonusNumber = true;
+    public static boolean repeatBonusNumber = true;
 
     //구매 금액 입력
     public int getPurchaseAmount() {
@@ -97,7 +97,7 @@ public class UserInput {
                 throw new IllegalArgumentException("당첨 번호dhk 다른 숫자를 입력해주세요.");
             }
         }
-        repearBonusNumber = false;
+        repeatBonusNumber = false;
     }
 
 

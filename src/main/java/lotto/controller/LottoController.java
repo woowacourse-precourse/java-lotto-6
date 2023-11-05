@@ -16,8 +16,10 @@ public class LottoController {
         while (readPurchaseLotto()) {
         }
         OutputViews.endOfSection();
-        OutputViews.numOfPurchaseLotto(purchaseNum);
+
         allLotto = MakeLottos.makeLotto(purchaseNum);
+        OutputViews.numOfPurchaseLotto(purchaseNum);
+        OutputViews.listOfPurchaseLotto(allLotto);
     }
 
     public boolean readPurchaseLotto() {

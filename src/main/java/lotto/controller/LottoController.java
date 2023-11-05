@@ -7,7 +7,7 @@ public class LottoController {
 
     public void start() {
         String lottoPurchaseRequest = lottoOrderRequest();
-        LottoStore LottoPurchaseReceipt = buyLottoTicketRequest(lottoPurchaseRequest);
+        LottoStore lottoStore = buyLottoTicketRequest(lottoPurchaseRequest);
     }
 
     public String lottoOrderRequest() {

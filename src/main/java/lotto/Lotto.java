@@ -72,4 +72,11 @@ public class Lotto {
 
         return matchCount;
     }
+
+    public static boolean compareBonus(List<Integer> issueNumbers, int bonusNumber) {
+        if (issueNumbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
 }

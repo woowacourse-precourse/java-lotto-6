@@ -11,10 +11,10 @@ import lotto.model.Lotto;
 import lotto.view.UserView;
 
 public class LottoManager {
-    private User user;
+    private UserInput userInput;
     private UserView userView;
     public LottoManager() {
-        user = new User();
+        userInput = new UserInput();
         userView = new UserView();
     }
 

@@ -4,8 +4,8 @@ import static lotto.utility.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class User {
-    public User() {}
+public class UserInput {
+    public UserInput() {}
     public Integer inputPurchaseAmount() {
         String userInput = Console.readLine();
         Integer purchaseAmount = Integer.parseInt(userInput);

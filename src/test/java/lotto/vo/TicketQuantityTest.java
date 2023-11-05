@@ -22,7 +22,7 @@ class TicketQuantityTest {
         assertEquals(result, quantity);
     }
 
-    @DisplayName("필드 값이 동일하면 두 레코드는 동일해야 한다.")
+    @DisplayName("두 TickeyQuantity의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
     public void quantity_equality_test() {
         // when

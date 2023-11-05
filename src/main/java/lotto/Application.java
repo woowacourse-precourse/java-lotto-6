@@ -167,7 +167,7 @@ public class Application {
         }
     } // inputBounsNumber
 
-    public static void addBonusNumber(List<Integer> winnerNumber, int bonusNum){ // 입력한 보너스 번호를 추가하는 메소드
+    public static void addBonusNumber(List<Integer> winnerNumber, int bonusNum){ // 입력한 보너스 번호를 검증하는 메소드
         if (!userInputNumber(bonusNum)) {
             throw new IllegalArgumentException("[ERROR] 1~45까지 중 에서 입력해주세요");
         }

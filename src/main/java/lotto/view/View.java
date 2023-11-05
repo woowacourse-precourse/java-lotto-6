@@ -17,6 +17,10 @@ public class View {
 
     public void displayPurchaseQuantityMessage(LottoTicket lottoTicket) {
         System.out.println();
-        System.out.println(lottoTicket.getLottoTicketCount()+"개를 구매했습니다.");
+        System.out.println(lottoTicket.getLottoTicketCount() + "개를 구매했습니다.");
+    }
+
+    public void inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }

@@ -18,7 +18,7 @@
 - [ ] 로또 번호와 당첨 번호를 비교해서 나온 결과를 당첨 내역에 추가한다. `void addRankToWinningHistory(List<Lotto> lottos, WinningNumbers winningNumbers)`
 
 ### InputView
-- [ ] 구입 금액을 입력 받는다. `int readPurchaseAmount()`
+- [x] 구입 금액을 입력 받는다. `int readPurchaseAmount()`
     - 정수만 입력 가능하다.
 - [ ] 당첨 번호를 입력 받는다. `List<Integer> readWinningNumbers()`
     - 쉼표(,)를 기준으로 구분한다.

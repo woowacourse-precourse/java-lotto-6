@@ -18,5 +18,6 @@ public class LottoController {
         List<Integer> mainNumbers = Converter.stringToIntList(inputView.ask(inputView.mainNumbers()), DELIMITER_FOR_INPUT);
         Integer bonusNumber = Converter.stringToInt(inputView.ask(inputView.bonusNumber()));
 
+
     }
 }

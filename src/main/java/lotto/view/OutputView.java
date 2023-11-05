@@ -11,6 +11,7 @@ public class OutputView {
     private static final String DELIMITER = ",";
     private static final String PREFIX = "[";
     private static final String SUFFIX = "]";
+    private static final String NEW_LINE = "\n";
 
 
     public void printLottos(List<Lotto> lottos) {
@@ -28,7 +29,7 @@ public class OutputView {
                     lotto.getNumbers().forEach(number -> joiner.add(number.toString()));
                     return joiner.toString();
                 })
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(NEW_LINE));
 
         System.out.printf(BUY_SOME_AMOUNT_OF_LOTTO, lottos.size());
         System.out.println(lottoList);

@@ -34,6 +34,12 @@ public class Validator {
         }
     }
 
+    public static void validateContainsBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static int validateNumeric(String number) {
         try {
             return Integer.parseInt(number);

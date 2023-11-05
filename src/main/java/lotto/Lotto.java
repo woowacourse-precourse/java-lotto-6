@@ -37,8 +37,8 @@ public class Lotto {
 
     private void validateNoDuplicates(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
-        if (!numbers.stream()
-                .allMatch(number -> !set.contains(number))) {
+        if (numbers.stream()
+                .anyMatch(number -> set.contains(number))) {
             throw new IllegalArgumentException();
         }
     }

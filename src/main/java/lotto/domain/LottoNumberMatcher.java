@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 public class LottoNumberMatcher {
 
-    private final List<Rank> matchedLottoRank = Arrays.asList();
+    private final List<Rank> matchedLottoRank = new ArrayList<>();
 
-    private List<Lotto> randomLottos = new ArrayList<>();
+    private List<Lotto> randomLottos;
     private Lotto mainLotto;
     private BonusLotto bonus;
 
@@ -20,7 +20,7 @@ public class LottoNumberMatcher {
         bonus = userLotto.getBonusNumber();
     }
 
-    public List<Rank> getMatchedLottoRank() { ///이름 마음에 안듬
+    public List<Rank> getMatchedLottoRank() {
         List<Integer> userMainNumber = mainLotto.getNumbers();
 
         for (Lotto lotto : randomLottos) {
@@ -33,13 +33,14 @@ public class LottoNumberMatcher {
             System.out.println(matchingCount);
             System.out.println(hasBonus);
 
+            matchedLottoRank.add(Rank.findRank(matchingCount,hasBonus));
         }
         return matchedLottoRank;
     }
 
     private int countMatchingNumbers(List<Integer> randomNum, List<Integer> userNum) {
         List<Integer> conbinedNumbers = toConbinedList(randomNum, userNum);
-        
+
         int numbersWithDuplicates = conbinedNumbers.size();
         int numbersWithoutDuplicates = (int) conbinedNumbers.stream().distinct().count();
 

@@ -6,7 +6,7 @@ public class Validator {
 
     public static boolean isInputEmpty(String userInput) {
         try {
-            if (userInput.isEmpty() || userInput.equals("")) {
+            if (userInput.isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
             }
 

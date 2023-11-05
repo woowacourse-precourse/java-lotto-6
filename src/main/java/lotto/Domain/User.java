@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class User {
+    private static final int LOTTO_SIZE = 6;
     private List<Lotto> userLottos;
     private int lottoQuantity;
 
@@ -46,7 +47,7 @@ public class User {
 
     private List<Rank> findAllRank(List<Integer> resultByWinningNumbers, List<Boolean> resultByBonusNumber) {
         List<Rank> resultRanks = new ArrayList<>();
-        for (int i = 0; i < resultByWinningNumbers.size(); i++) {
+        for (int i = 0; i < lottoQuantity; i++) {
             resultRanks.add(findRank(resultByWinningNumbers.get(i), resultByBonusNumber.get(i)));
         }
         return resultRanks;

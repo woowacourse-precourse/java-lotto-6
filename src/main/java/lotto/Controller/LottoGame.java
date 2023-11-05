@@ -16,13 +16,13 @@ public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private static final int LOW_NUMBER = 1;
     private static final int HIGH_NUMBER = 45;
-    private static final int NUMBER_COUNT = 6;
+    private static final int LOTTO_SIZE = 6;
 
     public void run() {
         int lottoQuantity = findLottoQuantity();
         User user = makeUser(lottoQuantity);
         List<Integer> lottoWinningNumbers = findWinningNumbers();
-        int bonusNumber = findBonusNumber();
+        int bonusNumber = findBonusNumber(lottoWinningNumbers);
         List<Integer> resultCount = user.countTotalResult(lottoWinningNumbers, bonusNumber);
         OutputView.printResultHead();
         transmitOutput(resultCount);
@@ -78,13 +78,13 @@ public class LottoGame {
     }
 
     private List<Integer> makeRandomNums() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOW_NUMBER, HIGH_NUMBER, NUMBER_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOW_NUMBER, HIGH_NUMBER, LOTTO_SIZE);
         return numbers;
     }
 
     private void lottoSort(List<Integer> numbers) {
-        for (int i = 0; i < NUMBER_COUNT - 1; i++) {
-            for (int j = i + 1; j < NUMBER_COUNT; j++) {
+        for (int i = 0; i < LOTTO_SIZE - 1; i++) {
+            for (int j = i + 1; j < LOTTO_SIZE; j++) {
                 minSwap(numbers, i, j);
             }
         }
@@ -119,12 +119,13 @@ public class LottoGame {
         }
     }
 
-    private int findBonusNumber() {
+    private int findBonusNumber(List<Integer> lottoWinningNumbers) {
         while (true) {
             try {
                 String bonusInput = InputView.requestBonusNumber();
                 int bonusNumber = Validator.validateParseInt(bonusInput);
                 Validator.validateNumberRange(bonusNumber);
+                Validator.validateContainWinningNumbers(lottoWinningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());

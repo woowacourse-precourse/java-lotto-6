@@ -61,4 +61,10 @@ public class Validator {
             throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
     }
+
+    public static void validateContainWinningNumbers(List<Integer> lottoWinningNumbers, int bonusNumber) {
+        if (lottoWinningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(CONTAIN_ERROR.getMessage());
+        }
+    }
 }

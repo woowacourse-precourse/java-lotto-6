@@ -27,7 +27,7 @@ public class LottoLogic {
         return purchaseInfo.numberOfLottoPurchased;
     }
 
-    public float getRateOfReturn() {
+    public float getProfitRate() {
         HashMap<LottoResult, BigDecimal> result = getResult();
         BigDecimal total = BigDecimal.ZERO;
         result.forEach((key, value) -> {

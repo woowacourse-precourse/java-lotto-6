@@ -1,5 +1,6 @@
 package lotto.domain.user;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 
@@ -10,6 +11,17 @@ import java.util.List;
  */
 public class User {
     LottoEnvelop lottoEnvelop;
+
+    /**
+     * 돈을 지불한다.
+     *
+     * @return
+     */
+    public String payMoney() {
+        // TODO: 11/5/23 Utill로 빼기
+        String money = Console.readLine();
+        return money;
+    }
 
     /**
      * 로또를 받는다.

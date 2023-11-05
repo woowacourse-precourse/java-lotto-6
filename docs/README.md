@@ -15,6 +15,7 @@
 
 - [x] 사용자 클래스 User
 
+  - [x] 돈을 지불한다.
   - [x] 로또를 받는다. 
   - [ ] 로또를 보여준다. User#showLottos
   - [ ] 로또결과의 당첨에 대한 통계를 한다. User#doStatisticLottoResult

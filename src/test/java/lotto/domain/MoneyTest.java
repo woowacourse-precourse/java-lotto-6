@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import static lotto.error.ExceptionCode.NEGATIVE_MONEY_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.error.ExceptionCode;
 import lotto.error.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +16,8 @@ public class MoneyTest {
     void createMoneyWithNegativeNumber() {
         // given & when & then
         assertThatThrownBy(() -> new Money(-1L))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(NEGATIVE_MONEY_AMOUNT.getMessage());
     }
 
     @DisplayName("금액의 합을 계산한다.")

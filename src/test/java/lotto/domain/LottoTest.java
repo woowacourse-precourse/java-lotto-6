@@ -1,23 +1,27 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
+import static lotto.error.ExceptionCode.DUPLICATED_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER;
+import static lotto.error.ExceptionCode.INVALID_LOTTO_NUMBER_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import lotto.error.LottoException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         // given & when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(INVALID_LOTTO_NUMBER_COUNT.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -25,7 +29,8 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         // given & when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(DUPLICATED_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("로또 번호가 1~45가 아니면 예외가 발생한다.")
@@ -34,15 +39,16 @@ class LottoTest {
     void createLottoByUnderOrOverNumber(final Integer number) {
         // given & when & then
         assertThatThrownBy(() -> new Lotto(List.of(number, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(INVALID_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("번호가 모두 일치하면 1등을 반환한다.")
     @Test
     void getFirstPrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),7);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -55,8 +61,8 @@ class LottoTest {
     @Test
     void getSecondPrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),7);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -69,8 +75,8 @@ class LottoTest {
     @Test
     void getThirdPrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),45);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 45);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -83,8 +89,8 @@ class LottoTest {
     @Test
     void getFourthPrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,3,4,7,8));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),45);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 45);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -97,8 +103,8 @@ class LottoTest {
     @Test
     void getFifthPrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,3,7,8,9));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),45);
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 45);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -111,8 +117,8 @@ class LottoTest {
     @Test
     void getNonePrize() {
         // given
-        final Lotto lotto = new Lotto(List.of(1,2,7,8,9,10));
-        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1,2,3,4,5,6),45);
+        final Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 10));
+        final WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 45);
 
         // when
         final Prize prize = lotto.getPrize(winnerNumbers);
@@ -125,7 +131,7 @@ class LottoTest {
     @Test
     void getSortedNumberString() {
         // given
-        final Lotto lotto = new Lotto(List.of(6,5,4,3,2,1));
+        final Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         final String expected = "1, 2, 3, 4, 5, 6";
 
         // when

@@ -27,6 +27,11 @@ public class InputView {
 
     private static void validate(String purchaseAmount) {
         int purchase = Integer.parseInt(purchaseAmount);
+
+        if (purchase%1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매금액은 1000단위로 입력해야 합니다.");
+        }
+
         if (purchase < 0) {
             throw new IllegalArgumentException("[ERROR] 구매금액은 0보다 커야 합니다.");
         }

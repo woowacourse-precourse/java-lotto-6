@@ -20,6 +20,14 @@ public class LotteryNumbers {
 
     private void validate(Lotto winningLotto, int bonusNumber) {
         LottoValidator.numberOverValueRange(bonusNumber);
-        LotteryResultValidator.bonusNumberDuplicated(winningLotto.getNumbers(), bonusNumber);
+        LotteryResultValidator.bonusNumberDuplicated(winningLotto, bonusNumber);
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

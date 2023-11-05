@@ -27,6 +27,17 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int findSameCount(Lotto lotto) {
+        long count = numbers.stream()
+                .filter(lotto.numbers::contains)
+                .count();
+        return (int) count;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

@@ -1,25 +1,28 @@
 package lotto.domain;
 
-import lotto.validator.LotteryResultValidator;
-import lotto.validator.LottoValidator;
+public enum LotteryResult {
+    EIGHTH(0, ",0원"),
+    SEVENTH(0, ",0원"),
+    SIXTH(0, ",0원"),
+    FIFTH(5_000, "5,000원"),
+    FOURTH(50_000, "50,000원"),
+    THIRD(1_500_000, "1,500,000원"),
+    FIRST(2_000_000_000, "2,000,000,000원"),
+    SECOND(30_000_000, "30,000,000원");
 
-public class LotteryResult {
-    private final Lotto winningLotto;
 
-    private final int bonusNumber;
+    private final int prize;    //LONG으로 설정해줘야하나 Integer 값 범위를 넘어갔을때를 대비
 
-    private LotteryResult(Lotto winningLotto, int bonusNumber) {
-        validate(winningLotto, bonusNumber);
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
+    private final String convertedPrize;
+
+    LotteryResult(int prize, String convertedPrize) {
+        this.prize = prize;
+        this.convertedPrize = convertedPrize;
     }
 
-    public static LotteryResult of(Lotto winningLotto, int bonusNumber) {
-        return new LotteryResult(winningLotto, bonusNumber);
-    }
-
-    private void validate(Lotto winningLotto, int bonusNumber) {
-        LottoValidator.numberOverValueRange(bonusNumber);
-        LotteryResultValidator.bonusNumberDuplicated(winningLotto.getNumbers(), bonusNumber);
+    public boolean isWinning() {
+        return prize != 0;
     }
 }
+
+

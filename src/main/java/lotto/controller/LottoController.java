@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LotteryNumbers;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 import lotto.service.LottoService;
@@ -33,13 +33,14 @@ public class LottoController {
         Player player = start();    //가독성이 나쁘지는 않을까? start를 통해서 player가 생성된다는 의미가 전달되나?
         output.purchasedLotts(player);
         play(player);
+        System.out.println(player.getLotteryResults()); //지우기
     }
 
     private Player start() {
         output.requestPurchasePrice();
         PurchasePrice purchasePrice = createPurchasePrice();
         output.purchaseCount(purchasePrice);
-        Lottos lottos = lottoService.purchaseLottos(purchasePrice);
+        List<Lotto> lottos = lottoService.purchaseLottos(purchasePrice);
         return Player.of(purchasePrice, lottos);
     }
 
@@ -52,14 +53,14 @@ public class LottoController {
     }
 
     private void play(Player player) {
-        LotteryNumbers lotteryNumbers = createLotteryResult();
-        lottoService.compareLotteryResult(player, lotteryNumbers);
+        LotteryNumbers lotteryNumbers = createLotteryNumbers();
+        lottoService.checkLotteryNumbers(player, lotteryNumbers);
     }
 
     /*
      *   이 부분으로 밑에까지 다시 한번 확인해보기
      * */
-    private LotteryNumbers createLotteryResult() {
+    private LotteryNumbers createLotteryNumbers() {
         output.requestWinningNumbers();
         Lotto winningLotto = createWinningLotto();
         output.requestBonusNumber();

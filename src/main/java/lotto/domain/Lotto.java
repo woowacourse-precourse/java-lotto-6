@@ -16,16 +16,6 @@ public class Lotto {
         invalidInput.duplicateNumberException(numbers, bonusNumber);
     }
 
-    public int getScore(int bonusNumber, List<Integer> myLottoNumber) {
-        int score = getSameNumberCount(myLottoNumber);
-
-        if (hasBonusNumber(bonusNumber, myLottoNumber) && score == 5 || score == 6) {
-            score++;
-        }
-
-        return score;
-    }
-
     private void validate(List<Integer> numbers) {
         InvalidInput invalidInput = new InvalidInput();
 
@@ -34,20 +24,11 @@ public class Lotto {
         invalidInput.outOfRangeException(numbers);
     }
 
-    private int getSameNumberCount(List<Integer> myLottoNumber) {
+    public int getSameNumberCount(List<Integer> myLottoNumber) {
         long sameNumberCount = myLottoNumber.stream()
                 .filter(numbers::contains)
                 .count();
 
         return (int)sameNumberCount;
     }
-
-    private Boolean hasBonusNumber(int bonusNumber, List<Integer> myLottoNumber) {
-        if (myLottoNumber.contains(bonusNumber)) {//보너스 볼 일치
-            return true;
-        }
-
-        return false;
-    }
-
 }

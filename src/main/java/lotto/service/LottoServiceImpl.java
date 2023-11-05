@@ -36,12 +36,32 @@ public class LottoServiceImpl implements LottoService{
         List<Integer> statistics = new ArrayList<>(nCopies(MAX_SCORE.getValue() + 1, INIT));
 
         for (List<Integer> myLottoNumber : myLottoNumbers) {
-            int score = lotto.getScore(bonusNumber, myLottoNumber);
+            int sameCount = lotto.getSameNumberCount(myLottoNumber);
+            int score = getScore(bonusNumber, myLottoNumber, sameCount);
             statistics.set(score, statistics.get(score) + 1);
         }
 
         return statistics;
     }
+
+    private int getScore(int bonusNumber, List<Integer> myLottoNumber, int sameCount) {
+        int score = sameCount;
+
+        if (hasBonusNumber(bonusNumber, myLottoNumber) && score == 5 || score == 6) {
+            score++;
+        }
+
+        return score;
+    }
+
+    private Boolean hasBonusNumber(int bonusNumber, List<Integer> myLottoNumber) {
+        if (myLottoNumber.contains(bonusNumber)) {//보너스 볼 일치
+            return true;
+        }
+
+        return false;
+    }
+
 
     private int payMoney() {
         InputView inputView = new InputView();

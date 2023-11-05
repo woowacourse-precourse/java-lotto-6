@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,5 +23,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 빈 값이 들어갈 경우 예외가 발생한다.")
+    @Test
+    void createLottoByEmpty() {
+        assertThatThrownBy(() -> new Lotto(List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호가 비었습니다.");
+    }
+
+    @DisplayName("로또 번호에 빈 문자열이 들어갈 경우 예외가 발생한다.")
+    @Test
+    void createLottoByEmpty2() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호가 비었습니다.");
+    }
 }

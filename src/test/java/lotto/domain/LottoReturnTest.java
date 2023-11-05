@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoReturnTest {
     private LottoResult lottoResult;
+
     @BeforeEach
     void setUp() {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
@@ -46,6 +47,13 @@ public class LottoReturnTest {
         assertThat(returnAmount).isEqualTo(2000005000);
     }
 
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void getLottoReturnRateTest() {
+        int purchasePrice = 8000;
+        double ReturnRate = (double) (5000 - purchasePrice) / purchasePrice * 100 + 100;
 
+        assertThat(ReturnRate).isEqualTo(62.5);
+    }
 
 }

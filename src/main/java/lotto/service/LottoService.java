@@ -12,7 +12,7 @@ public class LottoService {
 
     private Lotto lotto;
     private Payment payment;
-    private List<List<Integer>> userLottos;
+    private List<List<Integer>> userLottoTickets;
 
     public void initLottoAmount(String inputAmount) {
         payment = new Payment(inputAmount);
@@ -34,7 +34,7 @@ public class LottoService {
     public List<List<Integer>> setLottoNumbers() {
         int ticketCount = payment.getTicket();
         User user = new User(ticketCount);
-        userLottos = new ArrayList<>(user.getLottoCount());
-        return userLottos;
+        userLottoTickets = new ArrayList<>(user.getLottoCount());
+        return userLottoTickets;
     }
 }

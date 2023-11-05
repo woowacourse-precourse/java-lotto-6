@@ -11,12 +11,12 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public void run() {
-        inputLottoAmount();
-        setLottoNumber();
-        inputLottoNumber();
+        inputLottoTickets();
+        createLottoTickets();
+        inputWinnerLottoTicket();
     }
 
-    public void inputLottoAmount() {
+    public void inputLottoTickets() {
         boolean exceptionCheck = true;
         while (exceptionCheck) {
             try {
@@ -33,7 +33,7 @@ public class LottoController {
         }
     }
 
-    public void inputLottoNumber() {
+    public void inputWinnerLottoTicket() {
         boolean exceptionCheck = true;
         while (exceptionCheck) {
             try {
@@ -49,7 +49,7 @@ public class LottoController {
         }
     }
 
-    public void setLottoNumber() {
+    public void createLottoTickets() {
         List<List<Integer>> userLottos = this.lottoService.setLottoNumbers();
         printTicketsCount(userLottos.size());
 

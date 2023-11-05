@@ -20,9 +20,8 @@ final class LottoStatus {
         this.buyMoney = buyMoney;
     }
 
-    LottoStatus insert(LottoResult lottoResult) {
+    void insert(LottoResult lottoResult) {
         resultToCount.put(lottoResult, resultToCount.getOrDefault(lottoResult, 0) + 1);
-        return this;
     }
 
     @Override

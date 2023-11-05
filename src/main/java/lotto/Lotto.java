@@ -19,7 +19,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
         }
         for (Integer number : numbers) {
-            new Number(number);
+            new LottoNumber(number);
         }
     }
 
@@ -33,7 +33,7 @@ public class Lotto {
     }
 
 
-    public boolean hasIt(Number number) {
+    public boolean hasIt(LottoNumber number) {
         return numbers.contains(number.getNumber());
     }
 

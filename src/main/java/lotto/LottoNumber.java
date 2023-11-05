@@ -1,11 +1,11 @@
 package lotto;
 
-public class Number {
+public class LottoNumber {
     private final int MINIMUM = 1;
     private final int MAXIMUM = 45;
     private int number;
 
-    public Number(int number) {
+    public LottoNumber(int number) {
         this.number = number;
         checkRange();
     }

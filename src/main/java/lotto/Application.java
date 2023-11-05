@@ -33,7 +33,7 @@ public class Application {
 
     private static int selectBonusNumber(Lotto winningNumber) {
         try {
-            Number bonusNumber = new Number(Screen.inputBonusNumber());
+            LottoNumber bonusNumber = new LottoNumber(Screen.inputBonusNumber());
             if (winningNumber.hasIt(bonusNumber))
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되어서는 안됩니다.");
             return bonusNumber.getNumber();

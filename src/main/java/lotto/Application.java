@@ -6,6 +6,7 @@ import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.service.Service;
 import lotto.view.InputMessage;
+import lotto.view.OutputMessage;
 
 public class Application {
     public static void main(String[] args) {
@@ -16,6 +17,8 @@ public class Application {
 
         Service.buyLotteries(buyer);
         List<Lotto> example = buyer.getPurchasedLotto();
-        example.forEach(lotto -> System.out.println(lotto.getNumbers()));
+
+        OutputMessage.purchasedLotto(example.size());
+        example.forEach(lotto -> OutputMessage.showLottoNumbers(lotto.getNumbers()));
     }
 }

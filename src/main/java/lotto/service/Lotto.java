@@ -1,7 +1,9 @@
 package lotto.service;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.view.ExceptionMessage;
 
 public class Lotto {
@@ -11,6 +13,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateOverlap(numbers);
+        validateRange(numbers);
 
         Collections.sort(numbers);
         this.numbers = numbers;
@@ -36,6 +40,19 @@ public class Lotto {
     public boolean containNumber(int number) {
 
         return numbers.contains(number);
+    }
+
+
+    private void validateOverlap(List<Integer> numbers) {
+        Set<Integer> overlapCheck = new HashSet<>();
+        for (int i = 0; i < numbers.size(); i++) {
+            overlapCheck.add(numbers.get(i));
+        }
+
+        if (overlapCheck.size() != 6) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
     }
 
 }

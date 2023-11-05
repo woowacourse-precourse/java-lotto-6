@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Player;
+import lotto.domain.Result;
 import lotto.view.Input;
 
 import java.util.ArrayList;
@@ -11,12 +12,15 @@ import java.util.List;
 
 public class Game {
     private final Input input = new Input();
+    private final Judge judge = new Judge();
 
     public void start(){
         int quantity = getLottoQuantity();
         Lottos lottos = new Lottos(quantity);
         Player player = new Player(getWinningNumbers(),getBonusNumber(),getBonusNumber());
+        Result result = judge.calculateWinning(player,lottos);
 
+        String earningRate = judge.calculateEarningRate(result,quantity);
 
     }
 

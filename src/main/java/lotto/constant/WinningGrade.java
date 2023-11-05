@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum WinningGrade {
-    FIRST_GRADE(2_000_000_000, 6),
-    SECOND_GRADE(30_000_000, 5),
-    THIRD_GRADE(1_500_000, 5),
+    FIFTH_GRADE(5_000, 3),
     FOURTH_GRADE(50_000, 4),
-    FIFTH_GRADE(5_000, 3);
+    THIRD_GRADE(1_500_000, 5),
+    SECOND_GRADE(30_000_000, 5),
+    FIRST_GRADE(2_000_000_000, 6);
 
-    private final int amount;
+    private final int prize;
     private final int matchNum;
 
-    WinningGrade(final int amount, final int matchNum) {
-        this.amount = amount;
+    WinningGrade(final int prize, final int matchNum) {
+        this.prize = prize;
         this.matchNum = matchNum;
     }
 
@@ -26,7 +26,15 @@ public enum WinningGrade {
         return this == SECOND_GRADE || this == THIRD_GRADE;
     }
 
-    public int toAmount() {
-        return this.amount;
+    public int toPrize() {
+        return this.prize;
+    }
+
+    public int toMatchNum() {
+        return this.matchNum;
+    }
+
+    public boolean equalValue(final WinningGrade winningGrade) {
+        return this == winningGrade;
     }
 }

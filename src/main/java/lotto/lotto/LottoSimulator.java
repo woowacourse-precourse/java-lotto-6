@@ -3,9 +3,9 @@ package lotto.lotto;
 import java.util.List;
 import lotto.input.InputManager;
 import lotto.output.OutputManager;
-import lotto.simulation.LottoConstant;
 
 public final class LottoSimulator {
+    public static final int LOTTO_PRICE = 1000;
     private final LottoNumberGenerator lottoNumberGenerator;
 
     public LottoSimulator(LottoNumberGenerator lottoNumberGenerator) {
@@ -67,7 +67,7 @@ public final class LottoSimulator {
     }
 
     private int calculateLottoCount(int lottoMoney) {
-        return lottoMoney / LottoConstant.LOTTO_PRICE;
+        return lottoMoney / LOTTO_PRICE;
     }
 
     private int getLottoMoney() {

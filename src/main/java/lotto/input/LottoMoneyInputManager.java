@@ -1,7 +1,7 @@
 package lotto.input;
 
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER;
-import static lotto.simulation.LottoConstant.LOTTO_PRICE;
+import static lotto.lotto.LottoSimulator.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ExceptionMessage;

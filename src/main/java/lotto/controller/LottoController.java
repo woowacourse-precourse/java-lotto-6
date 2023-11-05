@@ -26,7 +26,13 @@ public class LottoController {
         Lottos lottos = new Lottos(lotto);
         printLottoList(lottos);
 
+        List<Integer> winningNumbers = inputView.inputLottoWinningNumbers();
+        Lotto winningLotto = new Lotto(winningNumbers);
+
+        int bonusNumber = inputView.inputBonusNumber();
+
+
+
+
     }
-
-
 }

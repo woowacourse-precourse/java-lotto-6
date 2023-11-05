@@ -16,6 +16,15 @@ public class LottoWinnerSystem {
     private List<Integer> winNumbers;
     private List<Integer> bonusNumber;
 
+
+    // 보너스 번호만 검사 (5개 일치할 때만 실행)
+    public boolean isContainBonusNumber(List<Integer> lottoNumber, List<Integer> bonusNumber) {
+        if (lottoNumber.contains(bonusNumber.get(0))) {
+            return true;
+        }
+        return false;
+    }
+
     // 보너스 번호를 제외하여 비교
     public int getMatchNumberCount(List<Integer> lottoNumber, List<Integer> winNumber) {
         int matchCount = 0;

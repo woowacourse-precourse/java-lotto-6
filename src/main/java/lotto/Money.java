@@ -25,7 +25,7 @@ public class Money {
     }
 
     private int inputNumeric(String inputMoney) {
-        int amount = 0;
+        int amount;
         try {
             amount = Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
@@ -36,6 +36,7 @@ public class Money {
 
     private void validateMoney(int amount) {
         validatePositive(amount);
+        validateRemainder(amount);
     }
 
     private void validatePositive(int amount) {
@@ -44,5 +45,9 @@ public class Money {
         }
     }
 
-    private void validateRemainder
+    private void validateRemainder(int amount) {
+        if (amount % LOTTO_MIN_MONEY != ZERO_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

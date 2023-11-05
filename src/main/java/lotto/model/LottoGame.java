@@ -35,19 +35,22 @@ public class LottoGame {
         for (int i = 0; i < amount / 1000; i++) {
             List<Integer> numbers = new ArrayList<>();
 
-            lottos.add(new Lotto(generateNumbers(numbers)));
+            for (int j = 0; j < 6; j++) {
+                generateNumbers(numbers);
+            }
+
+            lottos.add(new Lotto(numbers));
         }
 
         return lottos;
     }
 
-    public List<Integer> generateNumbers(List<Integer> numbers) {
+    public void generateNumbers(List<Integer> numbers) {
 
         do {
             numbers.add(Randoms.pickNumberInRange(1, 45));
         } while (validateDuplication(numbers));
 
-        return numbers;
     }
 
     public boolean validateDuplication(List<Integer> nums) {

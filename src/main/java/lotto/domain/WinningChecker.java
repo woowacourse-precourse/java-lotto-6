@@ -40,10 +40,12 @@ public class WinningChecker {
     private void calculateRank(List<Result> results) {
         for (Result result : results) {
             result.getWinningInfo()
-                    .ifPresent(winningInfo -> this.rankInfo.put(winningInfo.getRank(),
-                            this.rankInfo.getOrDefault(winningInfo.getRank(), 0) + 1));
+                    .ifPresent(winningInfo -> addRankInfo(winningInfo.getRank()));
         }
+    }
 
+    private void addRankInfo(int rank) {
+        this.rankInfo.put(rank, this.rankInfo.getOrDefault(rank, 0) + 1);
     }
 
     public void printWinningInfo() {

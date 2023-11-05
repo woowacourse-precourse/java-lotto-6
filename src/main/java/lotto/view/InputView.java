@@ -8,8 +8,8 @@ public class InputView {
         String input = Console.readLine();
         validateBlank(input);
         validateNonNumber(input);
-        int parsedInput = Integer.parseInt(input);
-        return parsedInput;
+        int amount = validateIntegerRange(input);
+        return amount;
     }
 
     private static void validateBlank(String input) {
@@ -25,4 +25,12 @@ public class InputView {
         }
     }
 
+    private static int validateIntegerRange(String input) {
+        try {
+            int parsedInput = Integer.parseInt(input);
+            return parsedInput;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 정수 값을 입력하세요.");
+        }
+    }
 }

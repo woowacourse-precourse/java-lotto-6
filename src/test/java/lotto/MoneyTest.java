@@ -43,4 +43,12 @@ public class MoneyTest {
 		assertThatThrownBy(() -> new Money("500"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@DisplayName("지불된 금액을 1000으로 나누어 로또 개수 계산")
+	@Test
+	void testCalculateLottoCount() {
+		Money money = new Money("5000");
+		int lottoCount = money.calculateLottoCount();
+		assertEquals(5, lottoCount);
+	}
 }

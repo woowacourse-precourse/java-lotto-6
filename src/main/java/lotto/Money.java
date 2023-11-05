@@ -31,7 +31,7 @@ public class Money {
 
 	public int calculateLottoCount(){
 		//이후에 Constant 추가
-		return (this.money/1000);
+		return this.money/1000;
 	}
 
 	//test code 에서만 사용

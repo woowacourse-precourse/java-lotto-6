@@ -25,4 +25,8 @@ public class InputView {
         println(INPUT_WINNING_NUMBER);
     }
 
+    // 당첨번호 입력 받기
+    public String inputWinningNumbers() {
+        return Console.readLine();
+    }
 }

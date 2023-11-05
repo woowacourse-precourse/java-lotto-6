@@ -44,11 +44,13 @@ public class OutputView {
         for (Result value : Result.values()) {
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
             String formattedNum = decimalFormat.format(value.getMoney());
-            if(value.isBonus()){
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
+            if (value.isBonus()) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", value.getSameCount(),
+                    formattedNum, value.getResultCount());
                 continue;
             }
-            System.out.printf("%d개 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
+            System.out.printf("%d개 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum,
+                value.getResultCount());
         }
     }
 

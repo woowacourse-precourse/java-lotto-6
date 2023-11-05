@@ -21,8 +21,6 @@ public class LottoController {
     private final LottoService lottoService;
 
 
-
-
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -32,17 +30,12 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
-
         List<LottoTicket> lottoTickets = buyLottoTicket(money / 1000);
-
-
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
         Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
-
         outputView.printResult();
         outputView.printYield(calculateYield(result, money));
-
     }
 
     private static double calculateYield(Long result, Long money) {
@@ -56,9 +49,10 @@ public class LottoController {
             outputView.printBeforeInputBonusNumber();
             InputBonusNumberService inputBonusNumberService = new InputBonusNumberService();
             String bonusNumberInput = inputView.inputBonusNumber();
-            inputBonusNumberService.checkRightBonusNumberInput(validator,lottoWinNumbers, bonusNumberInput);
+            inputBonusNumberService.checkRightBonusNumberInput(validator, lottoWinNumbers,
+                bonusNumberInput);
             return Integer.parseInt(bonusNumberInput);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputBonusNumber(lottoWinNumbers);
         }
@@ -68,7 +62,7 @@ public class LottoController {
         outputView.printBeforeBuyLotto(count);
         LottoGenerator lottoGenerator = LottoGenerator.getInstance();
         List<LottoTicket> lottoTickets = new ArrayList<>();
-        for(int i=0; i<count; i++){
+        for (int i = 0; i < count; i++) {
             lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
             outputView.printTicket(lottoTickets.get(i).getNumbers());
         }
@@ -95,7 +89,7 @@ public class LottoController {
             inputWinnerNumberService.checkRightWinnerNumbers(validator,
                 inputView.inputWinnerNumbers());
             return inputWinnerNumberService.convertedWinnerNumbers();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputWinNumbers(inputWinnerNumberService);
         }

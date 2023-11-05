@@ -25,18 +25,21 @@ public class LottoService {
         Result[] values = Result.values();
         long totalMoney = 0L;
         for (Result value : values) {
-            totalMoney+= (long) value.getMoney() * value.getResultCount();
+            totalMoney += (long) value.getMoney() * value.getResultCount();
         }
         return totalMoney;
     }
 
-    private void nowLottoTicketHasBonusNumber(List<LottoTicket> lottoTickets, Integer bonusNumber, int count) {
-        if (lottoTickets.get(count).getSameCount()==5 && lottoTickets.get(count).getNumbers().contains(bonusNumber) ) {
+    private void nowLottoTicketHasBonusNumber(List<LottoTicket> lottoTickets, Integer bonusNumber,
+        int count) {
+        if (lottoTickets.get(count).getSameCount() == 5 && lottoTickets.get(count).getNumbers()
+            .contains(bonusNumber)) {
             lottoTickets.get(count).hasBonus();
         }
     }
 
-    private void nowLottoTicketContainWinNumber(List<LottoTicket> lottoTickets, Integer lottoWinNumber, int count) {
+    private void nowLottoTicketContainWinNumber(List<LottoTicket> lottoTickets,
+        Integer lottoWinNumber, int count) {
         if (lottoTickets.get(count).getNumbers().contains(lottoWinNumber)) {
             lottoTickets.get(count).addSameCount();
         }

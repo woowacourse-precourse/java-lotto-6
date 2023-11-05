@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoGenerator implements NumberGenerator{
+public class LottoGenerator implements NumberGenerator {
 
 
     private static LottoGenerator instance;
@@ -15,7 +15,7 @@ public class LottoGenerator implements NumberGenerator{
 
 
     public static LottoGenerator getInstance() {
-        if(instance == null){
+        if (instance == null) {
             return new LottoGenerator();
         }
         return instance;

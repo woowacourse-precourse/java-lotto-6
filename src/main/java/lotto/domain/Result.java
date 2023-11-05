@@ -4,7 +4,7 @@ public enum Result {
 
     FIFTH(3, 5000, 0, false),
     FORTH(4, 50000, 0, false),
-    THIRD(5,1500000, 0, false),
+    THIRD(5, 1500000, 0, false),
     SECOND(5, 30000000, 0, true),
     FIRST(6, 2000000000, 0, false);
 
@@ -18,7 +18,7 @@ public enum Result {
         this.sameCount = sameCount;
         this.money = money;
         this.resultCount = 0;
-        this.bonus=isBonus;
+        this.bonus = isBonus;
     }
 
     public int getSameCount() {
@@ -37,7 +37,7 @@ public enum Result {
         return bonus;
     }
 
-    public void addCount(){
+    public void addCount() {
         this.resultCount++;
     }
 

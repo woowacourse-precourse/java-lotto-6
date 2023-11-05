@@ -12,15 +12,15 @@ public class LottoTicket {
 
     public LottoTicket(List<Integer> numbers) {
         this.numbers = numbers;
-        this.sameCount=0;
-        this.bonus=false;
+        this.sameCount = 0;
+        this.bonus = false;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public void addSameCount(){
+    public void addSameCount() {
         this.sameCount++;
     }
 
@@ -32,7 +32,7 @@ public class LottoTicket {
         return bonus;
     }
 
-    public void hasBonus(){
+    public void hasBonus() {
         this.bonus = true;
     }
 

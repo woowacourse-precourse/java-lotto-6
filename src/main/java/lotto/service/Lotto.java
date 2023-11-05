@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +18,7 @@ public class Lotto {
     private void duplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateLotto = new HashSet<>(numbers);
         List<Integer> numberNonDuplicate = new ArrayList<>(nonDuplicateLotto);
-        if(numberNonDuplicate.size() != 6){
+        if (numberNonDuplicate.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복 없이 6개여야 합니다!");
         }
     }
@@ -28,5 +29,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }

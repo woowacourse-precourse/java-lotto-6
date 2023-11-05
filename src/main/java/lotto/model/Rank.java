@@ -10,17 +10,17 @@ public enum Rank {
     THREE(3, 5000),
     ECT(0, 0);
 
-    private final int matchingNumbers;
+    private final int matchingNumber;
     private final int prize;
 
-    Rank(int matchingNumbers, int prize) {
-        this.matchingNumbers = matchingNumbers;
+    Rank(int matchingNumber, int prize) {
+        this.matchingNumber = matchingNumber;
         this.prize = prize;
     }
 
     public Rank getPrize(int number) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.matchingNumbers == number)
+                .filter(rank -> rank.matchingNumber == number)
                 .findAny()
                 .orElse(ECT);
     }

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class Output {
     public static void printPaymentMessage() {
         System.out.println(Messages
@@ -7,14 +9,16 @@ public class Output {
                 .getMessage());
     }
 
-    public static void printPurchaseNumber() {
-        System.out.println(Messages
+    public static void printPurchaseNumber(int purchaseNumber) {
+        System.out.println(purchaseNumber + Messages
                 .PURCHASE_NUMBER
                 .getMessage());
     }
 
-    public static void printUserLotto() {
-        System.out.println();
+    public static void printPurchasedLottoNumbers(List<List<Integer>> purchasedLottoNumbers) {
+        for (int i=0;i<purchasedLottoNumbers.size();i++) {
+            System.out.println(purchasedLottoNumbers.get(i));
+        }
     }
 
     public static void printWinningNumbersMessage() {
@@ -29,7 +33,7 @@ public class Output {
                 .getMessage());
     }
 
-    public static void printCheckWinningMessage() {
+    public static void printWinningStatisticsMessage() {
         System.out.println(Messages
                 .CHECK_WINNING_MESSAGE
                 .getMessage());

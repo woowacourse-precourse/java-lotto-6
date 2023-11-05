@@ -6,9 +6,9 @@ import lotto.ErrorMessages;
 public class BonusNumber {
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
+    public BonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateRange(bonusNumber);
-//        validateDuplication(bonusNumber);
+        validateDuplication(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
@@ -20,11 +20,11 @@ public class BonusNumber {
         }
     }
 
-//    private void validateDuplication(int bonusNumber) {
-//        if (contains(bonusNumber)) {
-//            throw new IllegalArgumentException(ErrorMessages
-//                    .DUPLICATE_NUMBER
-//                    .getMessage());
-//        }
-//    }
+    private void validateDuplication(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessages
+                    .DUPLICATE_NUMBER
+                    .getMessage());
+        }
+    }
 }

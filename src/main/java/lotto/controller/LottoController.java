@@ -1,14 +1,14 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.LottoIntermediary;
+import lotto.domain.LottoSystem;
 import lotto.dto.PurchasedLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final LottoIntermediary intermediary = new LottoIntermediary(new Buyer());
+    private final LottoSystem lottoSystem = new LottoSystem(new Buyer());
 
     public void start() {
         buyLotto();
@@ -18,14 +18,14 @@ public class LottoController {
         do {
             try {
                 int purchaseAmount = InputView.enterLottoPurchaseAmount();
-                intermediary.buyLotto(purchaseAmount);
+                lottoSystem.buyLotto(purchaseAmount);
                 break;
             } catch (IllegalArgumentException exception) {
                 exception.printStackTrace(System.out);
             }
         } while (true);
 
-        PurchasedLotto purchasedLotto = intermediary.getPurchasedLotto();
+        PurchasedLotto purchasedLotto = lottoSystem.getPurchasedLotto();
         OutputView.printPurchasedLotto(purchasedLotto);
     }
 }

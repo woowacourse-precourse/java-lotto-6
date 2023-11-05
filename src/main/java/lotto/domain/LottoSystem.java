@@ -6,11 +6,11 @@ import lotto.validator.LottoValidator;
 
 import java.util.List;
 
-public class LottoIntermediary {
+public class LottoSystem {
 
     private final Buyer buyer;
 
-    public LottoIntermediary(Buyer buyer) {
+    public LottoSystem(Buyer buyer) {
         this.buyer = buyer;
     }
 

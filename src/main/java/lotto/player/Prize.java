@@ -51,4 +51,21 @@ public class Prize {
             lottoPrize(lotto, winnerLotto);
         }
     }
+
+    public void printTotalResult(){
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(FIFTH.addString(fifthPrize));
+        System.out.println(FOURTH.addString(fourthPrize));
+        System.out.println(THIRD.addString(thirdPrize));
+        System.out.println(SECOND.addString(secondPrize));
+        System.out.println(FIRST.addString(firstPrize));
+    }
+    public void printTotalWinRate(Wallet wallet){
+        rate = (double)((firstPrize * 2000000000) + (secondPrize * 30000000) + (thirdPrize * 1500000) + (fourthPrize * 50000) + (fifthPrize * 5000)) / wallet.getBuyMoney();
+        rate = rate * 100;
+        System.out.printf("총 수익률은 %.1f",rate);
+        System.out.println("%입니다.");
+    }
 }

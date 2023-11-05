@@ -1,17 +1,26 @@
 package lotto.domain;
 
+import lotto.enums.Ranking;
 import lotto.utils.Messages;
 import lotto.utils.Reader;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private Player player;
     private WinningLotto winningLotto;
+    private LottoMachine lottoMachine;
+
+    public void loadLottoMachine() {
+        lottoMachine = new LottoMachine();
+    }
 
     public void joinPlayer() {
         try {
+            checkMachineLoad();
+
             Messages.inputMoney();
             player = new Player(inputMoney());
             Messages.newLine();
@@ -23,14 +32,19 @@ public class Game {
     }
 
     public void issueLotto() {
+        checkMachineLoad();
         checkPlayerJoin();
-        player.issueLotto();
+
+        List<Lotto> issuedLottos = lottoMachine.issueLottos(player.getMoney());
+        player.addLottos(issuedLottos);
         Messages.print(player.issuedLottos());
     }
 
     public void drawWinningLotto() {
         try {
+            checkMachineLoad();
             checkPlayerJoin();
+
             Messages.inputWinningNumbers();
             List<Integer> winningNumbers = inputWinningNumbers();
             Lotto lotto = new Lotto(winningNumbers);
@@ -57,10 +71,13 @@ public class Game {
     }
 
     public void findResult() {
+        checkMachineLoad();
         checkPlayerJoin();
         checkWinningLottoDraw();
-        player.findResults(winningLotto);
-        player.findTotalPrize();
+
+        Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
+        player.setRankingCounts(rankingCounts);
+        player.findStatistics();
         Messages.print(player.lottoResults());
     }
 
@@ -83,6 +100,12 @@ public class Game {
     private int inputBonusNumber() {
         String input = Reader.readLine().strip();
         return Integer.parseInt(input);
+    }
+
+    private void checkMachineLoad() {
+        if (lottoMachine == null) {
+            throw new IllegalStateException();
+        }
     }
 
     private void checkPlayerJoin() {

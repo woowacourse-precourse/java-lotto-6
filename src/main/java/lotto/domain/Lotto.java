@@ -39,15 +39,15 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int findCount(List<Integer> winningNumbers) {
-        int count = 0;
+    public int findCorrects(List<Integer> winningNumbers) {
+        int corrects = 0;
 
         for (Integer winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {
-                count++;
+                corrects++;
             }
         }
 
-        return count;
+        return corrects;
     }
 }

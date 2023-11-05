@@ -14,9 +14,9 @@ public class LottoService {
     private static final int DEFAULT_COUNT = 0;
     private static final int ADD_COUNT = 1;
 
-    private HashMap<WiningRank, Integer> winingDetails =new HashMap<>();
-    private List<Integer> macthNumbers = new ArrayList<>();
-    private List<Integer> notMacthNumbers = new ArrayList<>();
+    private HashMap<WiningRank, Integer> winingDetails = new HashMap<>();
+    private List<Integer> matchNumbers = new ArrayList<>();
+    private List<Integer> notMatchNumbers = new ArrayList<>();
     private boolean bonusMatch;
 
     public LottoService() {
@@ -28,37 +28,52 @@ public class LottoService {
         bonusMatch = false;
     }
 
+    public HashMap<WiningRank, Integer> getWiningDetails() {
+        return winingDetails;
+    }
+
+    public List<Integer> getMatchNumbers() {
+        return matchNumbers;
+    }
+
+    public List<Integer> getNotMatchNumbers() {
+        return notMatchNumbers;
+    }
+
+    public boolean getBonusMatch() {
+        return bonusMatch;
+    }
+
     public void compareLottoNumber(Buyer buyer, LottoNumber lottoNumber) {
         for (Lotto lotto : buyer.getLottoTickets()) {
             setMacthNumbers(lotto, lottoNumber);
             setNotMacthNumbers(lotto, lottoNumber);
             confrimMatchBonusNumber(lottoNumber);
             applyWiningResult();
-
         }
     }
 
     private void setMacthNumbers(Lotto lotto, LottoNumber lottoNumber) {
-        macthNumbers = lotto.getNumbers().stream()
+        matchNumbers = lotto.getNumbers().stream()
                 .filter(n -> lottoNumber.getWinningNumbers().contains(n))
                 .collect(Collectors.toList());
     }
 
     private void setNotMacthNumbers(Lotto lotto, LottoNumber lottoNumber) {
-        notMacthNumbers = lotto.getNumbers().stream()
+        notMatchNumbers = lotto.getNumbers().stream()
                 .filter(n -> !(lottoNumber.getWinningNumbers().contains(n)))
                 .collect(Collectors.toList());
     }
 
     private void confrimMatchBonusNumber(LottoNumber lottoNumber) {
-        if (notMacthNumbers.size() == 1) {
-            bonusMatch = notMacthNumbers.contains(lottoNumber.getBonusNumber());
+        if (notMatchNumbers.size() == 1) {
+            bonusMatch = notMatchNumbers.contains(lottoNumber.getBonusNumber());
         }
     }
 
     private void applyWiningResult() {
         for (WiningRank rank : winingDetails.keySet()) {
-            if (macthNumbers.size() == rank.getMatchCount() && bonusMatch == rank.isBonusMatch()) {
+            if (matchNumbers.size() == rank.getMatchCount() && bonusMatch == rank.isBonusMatch()) {
                 winingDetails.put(rank, winingDetails.get(rank) + ADD_COUNT);
             }
         }

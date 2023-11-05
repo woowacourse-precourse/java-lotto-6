@@ -65,4 +65,8 @@ public class PurchasingService {
     private void giveLottoToBuyer(int amount) {
         buyer = new Buyer(amount, buyerPurchaseQuantity, buyerLottoTickets);
     }
+
+    public int getBuyerPurchaseQuantity() {
+        return buyerPurchaseQuantity;
+    }
 }

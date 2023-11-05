@@ -17,4 +17,8 @@ public enum ErrorMessage {
     public String getValue() {
         return value;
     }
+
+    public String getValue(Object invalidArgument) {
+        return this.value + ": " + invalidArgument;
+    }
 }

@@ -21,14 +21,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoRule.LOTTO_NUMBER_SIZE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getValue(numbers));
         }
     }
 
     private void validateLottoNumberRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < LottoRule.LOTTO_NUMBER_MIN.getValue() || LottoRule.LOTTO_NUMBER_MAX.getValue() < number) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue(numbers));
             }
         });
     }
@@ -36,7 +36,7 @@ public class Lotto {
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LottoRule.LOTTO_NUMBER_SIZE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getValue());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getValue(numbers));
         }
     }
 

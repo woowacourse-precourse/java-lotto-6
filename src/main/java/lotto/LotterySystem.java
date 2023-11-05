@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.input.Price;
+import lotto.model.Draw;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -13,14 +13,14 @@ public class LotterySystem {
     private final String TICKET_CNT = "개를 구매했습니다.";
     private lotto.ErrorMessages ErrorMessages = new ErrorMessages();
     private static int ticketCnt = 0;
-    private lotto.input.Price Price = new Price();
-    private Draw Draw = new Draw();
+    private InputSystem InputSystem = new InputSystem();
+    private lotto.model.Draw Draw = new Draw();
 
     private List<Draw> tickets = new ArrayList<>();
 
 
     public void input() {
-        ticketCnt = Price.purchase();
+        ticketCnt = InputSystem.purchase();
     }
     public void draw() {
         for (int i = 0; i < ticketCnt; i++) {
@@ -36,7 +36,7 @@ public class LotterySystem {
         for (Draw d : tickets) System.out.println(d.toString());
     }
     public void getNumbers() {
-
+        InputSystem.getNumbers();
     }
     public void bonus() {
 

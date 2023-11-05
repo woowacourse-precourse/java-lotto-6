@@ -1,7 +1,7 @@
-package lotto.input;
+package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
-public class Price {
+public class InputSystem {
     private final String ENTER_PRICE = "구입금액을 입력해 주세요.";
     private final String ENTER_LOTTO = "당첨 번호를 입력해 주세요.";
     private final String ENTER_BONUS = "보너스 번호를 입력해 주세요.";
@@ -27,5 +27,9 @@ public class Price {
         if (Integer.parseInt(price) % 1000 == 0)
             return true;
         return false;
+    }
+
+    public void getNumbers() {
+        enter(ENTER_LOTTO).split(",");
     }
 }

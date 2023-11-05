@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
@@ -26,6 +27,16 @@ public class LottoMachine {
     public int calculateNumberOfTickets(int paidAmount) {
         validatePurchaseAmount(paidAmount);
         return paidAmount / LOTTO_PRICE;
+    }
+
+    public List<Lotto> purchaseLottos(int cash) {
+        int numberOfLottos = calculateNumberOfTickets(cash);
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(new Lotto(RandMachine.generateRandomNumbers()));
+        }
+        return lottos;
     }
 
     private void validatePurchaseAmount(int amount) {

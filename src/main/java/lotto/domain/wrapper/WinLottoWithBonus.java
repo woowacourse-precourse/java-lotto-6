@@ -1,18 +1,21 @@
 package lotto.domain.wrapper;
 
+import java.util.List;
+
+import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
 import static lotto.handler.ErrorHandler.INCONVERTIBLE_TYPE;
 
 public class WinLottoWithBonus {
 
-    private final Lotto winningLotto;
+    private final List<Integer> winningLotto;
     private final int bonusNumber;
 
-    private WinLottoWithBonus(Lotto winningLotto, String bonusNumber) {
+    private WinLottoWithBonus(List<Integer> winningLotto, String bonusNumber) {
         this.bonusNumber = validateType(bonusNumber);
         this.winningLotto = winningLotto;
     }
 
-    public static WinLottoWithBonus create(Lotto winningLotto, String bonusNumber) {
+    public static WinLottoWithBonus create(List<Integer> winningLotto, String bonusNumber) {
         return new WinLottoWithBonus(winningLotto, bonusNumber);
     }
 
@@ -21,6 +24,12 @@ public class WinLottoWithBonus {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
             throw INCONVERTIBLE_TYPE.getException();
+        }
+    }
+
+    private void validateDuplicate() {
+        if (winningLotto.contains(bonusNumber)) {
+            throw DUPLICATE_NUMBER.getException();
         }
     }
 }

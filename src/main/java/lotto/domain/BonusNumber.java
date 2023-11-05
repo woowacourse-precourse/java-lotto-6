@@ -11,4 +11,8 @@ public class BonusNumber {
     public static BonusNumber from(int number){
         return new BonusNumber(number);
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

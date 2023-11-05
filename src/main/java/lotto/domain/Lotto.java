@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public String listToString(){
         String[] array = numbers.stream()
                                 .map(String::valueOf)

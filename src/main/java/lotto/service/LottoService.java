@@ -25,7 +25,7 @@ public class LottoService {
         return buyLottoRepo;
     }
 
-    private static void numberExtraction(String lottoNumber) {
+    private void numberExtraction(String lottoNumber) {
         View.buyLottos(lottoNumber);
     }
 

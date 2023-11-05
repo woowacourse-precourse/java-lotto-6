@@ -15,4 +15,12 @@ public class WinningLottoRepository {
     public static WinningLottoRepository of(Lotto lotto , BonusNumber bonusNumber){
         return new WinningLottoRepository(lotto,bonusNumber);
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

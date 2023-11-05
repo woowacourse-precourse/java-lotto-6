@@ -3,8 +3,8 @@ package lotto.validator;
 import static lotto.util.Constants.MAX_LOTTO_NUM;
 import static lotto.util.Constants.MIN_LOTTO_NUM;
 
-import lotto.Lotto;
 import lotto.message.ExceptionMessage;
+import lotto.model.Lotto;
 
 public class BonusNumberValidator {
 

@@ -8,5 +8,6 @@ public class Application {
         UnifiedController unifiedController = new UnifiedController();
         unifiedController.inputAndStoreMoney();
         unifiedController.printLottoTicketsInfo();
+        unifiedController.inputAndStoreWinningNumbers();
     }
 }

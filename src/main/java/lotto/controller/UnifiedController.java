@@ -9,6 +9,7 @@ import static lotto.view.SystemMessage.ASK_MONEY;
 import static lotto.view.SystemMessage.ASK_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.model.Lotto;
@@ -51,11 +52,19 @@ public class UnifiedController {
         boolean valid = false;
         while (!valid) {
             try {
-//                Register.winningNumbers.add(InputView.);
+                Register.winningNumbers = new Lotto(covertElementStringToInteger(InputView.inputIntegerListData()));
                 valid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }
         }
+    }
+
+    public List<Integer> covertElementStringToInteger(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String element : input.split(",")) {
+            numbers.add(Integer.parseInt(element));
+        }
+        return numbers;
     }
 }

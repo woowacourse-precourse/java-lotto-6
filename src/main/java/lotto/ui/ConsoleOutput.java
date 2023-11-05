@@ -15,6 +15,8 @@ public class ConsoleOutput implements Output {
     private static final String MATCH5_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String MATCH5_WITH_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String MATCH6_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String RETURN_OF_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static String ERROR_PREFIX = "[ERROR] ";
 
     public void printLottoPriceRequest() {
         System.out.println(LOTTO_PRICE_REQUEST);
@@ -43,7 +45,7 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printError(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(ERROR_PREFIX + message);
     }
 
     @Override
@@ -65,6 +67,6 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 %.1f%%입니다.".formatted(rateOfReturn));
+        System.out.println(RETURN_OF_RATE_MESSAGE.formatted(rateOfReturn));
     }
 }

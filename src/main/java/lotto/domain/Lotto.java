@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import javax.swing.*;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,5 +22,5 @@ public class Lotto {
         return playerNumbers.size();
     }
 
-    // TODO: 추가 기능 구현
+
 }

@@ -19,12 +19,22 @@ public class LottoController {
 
     public void play() {
 
+        LottoPack lottoPack = buyLottoPack();
+
+        outputView.newline();
+
+    }
+
+    private LottoPack buyLottoPack() {
+
         Money money = getMoney();
 
         outputView.newline();
 
         LottoPack lottoPack = getLottoPack(money);
         outputView.printLottoPack(lottoPack);
+
+        return lottoPack;
 
     }
 

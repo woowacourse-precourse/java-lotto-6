@@ -17,4 +17,7 @@ public class Validator {
     public static boolean validateInputIsNull(String input){
         return input==null;
     }
+    public static boolean validateNumberRange(int num){
+        return 1 <= num && num <= 45;
+    }
 }

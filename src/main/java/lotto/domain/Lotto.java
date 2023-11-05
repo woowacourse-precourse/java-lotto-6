@@ -6,6 +6,7 @@ import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
+import lotto.utils.Prize;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -41,14 +42,20 @@ public class Lotto {
         }
     }
 
-    public int getSameCount(Lotto winningLotto) {
-        // count가 반환할 수 있는 최대 값은 6이므로 int로 형변환해도 값의 손실이 없다.
+    public Prize getRank(Lotto winningLotto, LottoNumber bonusNumber) {
+        int sameCount = getSameCount(winningLotto);
+        boolean hasBonusNumber = doesHaveBonusNumber(bonusNumber);
+        return Prize.getPrizeRank(sameCount, hasBonusNumber);
+    }
+
+    private int getSameCount(Lotto winningLotto) {
+        // count는 long타입을 반환하지만 반환할 수 있는 최대 값은 6이므로 int로 형변환해도 값의 손실이 없다.
         return (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
                 .count();
     }
 
-    public boolean hasBonusNumber(LottoNumber bonusNumber) {
+    private boolean doesHaveBonusNumber(LottoNumber bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

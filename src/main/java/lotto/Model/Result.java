@@ -35,6 +35,6 @@ public class Result {
                 System.out.println(message);
             }
         }
-        System.out.printf("총 수익률은 %,.1f%%입니다.", (float)totalPrice / purchasePrice * 100);
+        System.out.printf("총 수익률은 %,.1f%%입니다.", (double)totalPrice / purchasePrice * 100);
     }
 }

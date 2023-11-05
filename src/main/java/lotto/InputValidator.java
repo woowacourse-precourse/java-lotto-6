@@ -26,8 +26,13 @@ public class InputValidator {
     }
 
     //보너스 번호 예외 체크
-    public void checkBonusNumber(int bonusNumber){
-        if(!verifyNumberInRange(bonusNumber)) throw new IllegalArgumentException("[ERROR] 1~45 범위 내 숫자만 입력 가능합니다.");
+    public void checkBonusNumber(int bonusNumber) {
+        if (!verifyNumberInRange(bonusNumber)) throw new IllegalArgumentException("[ERROR] 1~45 범위 내 숫자만 입력 가능합니다.");
+    }
+
+    //구입 금액 예외 체크
+    public void checkBuyingAmount(int buyingAmount) {
+        if(!checkDivisibleBy1000(buyingAmount)) throw new IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지지 않습니다.");
     }
 
     private boolean numbersSize(List<Integer> numbers) {
@@ -62,5 +67,9 @@ public class InputValidator {
             if (!part.matches("\\d+")) return false;
         }
         return true;
+    }
+
+    private boolean checkDivisibleBy1000(int buyingAmount){
+        return buyingAmount % 1000 == 0;
     }
 }

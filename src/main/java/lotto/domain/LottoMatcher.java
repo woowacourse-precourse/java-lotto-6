@@ -31,6 +31,15 @@ public class LottoMatcher {
         return new MatchResult(correctNumber, correctBonusNumber);
     }
 
+    public LottoResult matchAll(List<Lotto> lottos) {
+        LottoResult result = new LottoResult();
+        lottos.stream()
+                .map(this::match)
+                .map(Prize::earnPrize)
+                .forEach(result::aggregate);
+        return result;
+    }
+
     private void validateBonusNumber(Lotto winning, int bonusNumber) {
         var rule = LottoNumberRule.BASIC;
         if (bonusNumber < rule.getMinLottoNumber() || bonusNumber > rule.getMaxLottoNumber()) {

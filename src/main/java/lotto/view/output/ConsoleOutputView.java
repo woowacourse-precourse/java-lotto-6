@@ -1,6 +1,5 @@
 package lotto.view.output;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
@@ -24,5 +23,11 @@ public class ConsoleOutputView implements OutputView {
     public void printLotto(List<Integer> lotto) {
         lotto.sort(Integer::compareTo);
         System.out.println(lotto);
+    }
+
+    @Override
+    public void printWinnerNumberMessage() {
+        printNewLine();
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }

@@ -7,4 +7,5 @@ public interface OutputView {
     void printNewLine();
     void printPurchaseResult(int purchaseResult);
     void printLotto(List<Integer> lotto);
+    void printWinnerNumberMessage();
 }

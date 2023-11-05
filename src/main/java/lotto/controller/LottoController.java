@@ -27,7 +27,13 @@ public class LottoController {
     }
 
     private Lotto createWinningLotto() {
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
-        return new Lotto(winningNumbers);
+        while (true) {
+            try {
+                List<Integer> winningNumbers = InputView.readWinningNumbers();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -29,6 +29,7 @@ public class OutputView {
     public void printRanksCount(Map<LottoRank, Integer> rankCount) {
         System.out.println("\n당첨 통계\n---");
         DecimalFormat formatter = new DecimalFormat("###,###");
+
         for(LottoRank lottoRank: rankCount.keySet()) {
             if (lottoRank == LottoRank.NONE) continue;
             int matchCount = lottoRank.getMatchCount();
@@ -40,14 +41,14 @@ public class OutputView {
         }
     }
 
-    public void printRateOfProfits(int lottoCount, Map<LottoRank, Integer> rankCount) {
+    public void printRateOfProfits(Map<LottoRank, Integer> rankCount) {
+        int lottoCount = rankCount.values().stream().mapToInt(Integer::intValue).sum();
         int inMoney = lottoCount * LOTTO_PRICE;
-        int outMoney = 0;
-
-        for(LottoRank lottoRank: rankCount.keySet()) {
-            outMoney += lottoRank.getPrize() * rankCount.get(lottoRank);
-        }
-        double rateOfProfit = (double)outMoney / inMoney * 100.0;
+        int outMoney = rankCount.keySet()
+                .stream()
+                .mapToInt(rank -> rank.getPrize() * rankCount.get(rank))
+                .sum();
+        double rateOfProfit = (double) outMoney / inMoney * 100.0;
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfProfit);
     }
 }

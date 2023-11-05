@@ -1,13 +1,9 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.Rank;
 import lotto.domain.Ranks;
 
 public class LottoService {
@@ -28,7 +24,7 @@ public class LottoService {
         return lottery;
     }
 
-    public Ranks lottoResults(List<Lotto> lottery, List<Integer> winningNumber, LottoNumber bonusNumber) {
+    public Ranks lottoResults(List<Lotto> lottery, List<LottoNumber> winningNumber, LottoNumber bonusNumber) {
         return new Ranks(lottery, winningNumber, bonusNumber);
     }
 

@@ -41,8 +41,6 @@ public class Validator {
         int check_num = parser.parseNumber(each_num);
         if(check_num > 45 || check_num < 0)
             throw new IllegalArgumentException("[ERROR] 값의 범위는 1부터 45까지 입니다.");
-        else
-            System.out.println("잘 진행");
     }
 
     private void checkEachSpace(List<String> userlottoList) {

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lottos;
 import lotto.Lotto;
 import repository.LottoRepository;
+import repository.MoneyRepository;
 
 import java.util.List;
 
@@ -21,13 +22,5 @@ public class LottoService {
 
     public Long lottoSave(List<List<Integer>> lottosList) {
         return lottoRepository.lottoSave(lottosList);
-    }
-
-    public void play() {
-        compareLotto();
-    }
-
-    public void compareLotto() {
-
     }
 }

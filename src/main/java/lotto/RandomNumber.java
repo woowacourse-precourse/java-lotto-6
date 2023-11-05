@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumber {
@@ -13,7 +13,9 @@ public class RandomNumber {
 
     public List<Integer> RandomLottoOutputNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_KIND);
-        return null;
+        return numbers;
     }
+
+
 
 }

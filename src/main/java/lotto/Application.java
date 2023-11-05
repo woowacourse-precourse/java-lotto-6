@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.view.Coin;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Coin coin = new Coin();
+        coin.inputCoin();
     }
 }

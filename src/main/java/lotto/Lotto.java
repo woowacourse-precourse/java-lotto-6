@@ -25,5 +25,4 @@ public class Lotto {
         return bonus;
     }
 
-
 }

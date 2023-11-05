@@ -5,21 +5,11 @@ public class Price {
     private final String ENTER_PRICE = "구입금액을 입력해 주세요.";
     private final String ENTER_LOTTO = "당첨 번호를 입력해 주세요.";
     private final String ENTER_BONUS = "보너스 번호를 입력해 주세요.";
-    private final String PRINT_CNT = "개를 구매했습니다.";
     private static final String IS_ONLY_NUMBER = "[0-9]+"; // 숫자로만 되어있으면 true 반환
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     public int purchase() {
-        int cnt = 0;
-        String price = enter(ENTER_PRICE);
-        try {
-            cnt = isPriceValid(price);
-        } catch (Exception e) {
-            System.out.println(ERROR_MESSAGE); // 금액을 다시 입력하라고
-            purchase();
-        }
-        System.out.println(cnt+PRINT_CNT);
-        return cnt;
+        return isPriceValid(enter(ENTER_PRICE));
     }
     private String enter(String announcement) {
         System.out.println(announcement);

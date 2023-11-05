@@ -24,7 +24,7 @@ public class PrizeController {
         return requestBonusNumber(prizeNumbers);
     }
 
-    public static Prize requestBonusNumber(Lotto prizeNumbers) {
+    public static Prize requestBonusNumber(final Lotto prizeNumbers) {
         try {
             final String bonusNumberInput = InputView.readLine();
             return Prize.of(prizeNumbers, bonusNumberInput);

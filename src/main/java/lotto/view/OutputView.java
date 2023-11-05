@@ -32,7 +32,7 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void printPurchaseCount(LottoNumberResponses responses) {
+    public static void printPurchaseCount(final LottoNumberResponses responses) {
         String formattedMessage = String.format(RESPONSE_PURCHASE_COUNT.getMessage(), responses.purchaseCount());
         println(formattedMessage);
     }

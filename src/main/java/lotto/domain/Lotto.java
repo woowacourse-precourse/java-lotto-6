@@ -31,23 +31,23 @@ public class Lotto {
         }
     }
 
-    public static boolean isInvalidRange(List<Integer> numbers) {
+    public static boolean isInvalidRange(final List<Integer> numbers) {
         return numbers.stream().anyMatch(Lotto::isOutOfRange);
     }
 
-    public boolean isAlreadyContainBonusNumber(int number) {
+    public boolean isAlreadyContainBonusNumber(final int number) {
         return numbers.contains(number);
     }
 
-    private static boolean isOutOfRange(Integer number) {
+    private static boolean isOutOfRange(final Integer number) {
         return isSmallerThanLowerBound(number) || isBiggerThanUpperBound(number);
     }
 
-    private static boolean isSmallerThanLowerBound(Integer number) {
+    private static boolean isSmallerThanLowerBound(final Integer number) {
         return number > NUMBER_UPPER_BOUND.getValue();
     }
 
-    private static boolean isBiggerThanUpperBound(Integer number) {
+    private static boolean isBiggerThanUpperBound(final Integer number) {
         return number < NUMBER_LOWER_BOUND.getValue();
     }
 
@@ -57,11 +57,11 @@ public class Lotto {
         }
     }
 
-    private static boolean isInvalidSize(List<Integer> numbers) {
+    private static boolean isInvalidSize(final List<Integer> numbers) {
         return !Objects.equals(numbers.size(), LOTTO_PICK_COUNT.getValue());
     }
 
-    private static boolean isDuplicated(List<Integer> numbers) {
+    private static boolean isDuplicated(final List<Integer> numbers) {
         final int uniqueNumberCount = (int) numbers.stream().distinct().count();
 
         return !Objects.equals(numbers.size(), uniqueNumberCount);

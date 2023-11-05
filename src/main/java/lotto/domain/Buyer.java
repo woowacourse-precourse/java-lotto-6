@@ -30,7 +30,7 @@ public class Buyer {
         return new Buyer(paymentInput);
     }
 
-    private int calculateTicketCount(int payment) {
+    private int calculateTicketCount(final int payment) {
         return payment / UNIT_PRICE.getValue();
     }
 
@@ -65,7 +65,7 @@ public class Buyer {
         return !Objects.equals(calculateRemainder(payment), ZERO);
     }
 
-    private static int calculateRemainder(int payment) {
+    private static int calculateRemainder(final int payment) {
         return payment % UNIT_PRICE.getValue();
     }
 

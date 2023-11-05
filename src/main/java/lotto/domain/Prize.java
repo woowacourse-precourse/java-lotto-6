@@ -38,21 +38,21 @@ public class Prize {
         }
     }
 
-    public void validateDuplicatedBonusNumber(final int number) {
+    private void validateDuplicatedBonusNumber(final int number) {
         if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
     }
 
-    private static boolean isOutOfRange(int number) {
+    private boolean isOutOfRange(int number) {
         return isBiggerThanUpperBound(number) || isSmallerThanLowerBound(number);
     }
 
-    private static boolean isSmallerThanLowerBound(int number) {
+    private boolean isSmallerThanLowerBound(int number) {
         return number > NUMBER_UPPER_BOUND.getValue();
     }
 
-    private static boolean isBiggerThanUpperBound(int number) {
+    private boolean isBiggerThanUpperBound(int number) {
         return number < NUMBER_LOWER_BOUND.getValue();
     }
 }

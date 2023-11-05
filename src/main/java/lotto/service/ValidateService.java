@@ -9,4 +9,8 @@ public class ValidateService {
     public void validateInputPurchaseMoney(String inputPurchaseMoney) {
         inputValidator.validatePurchaseMoney(inputPurchaseMoney);
     }
+
+    public void validateInputWinnerNumber(String inputWinningNumber) {
+        inputValidator.validateWinnerNumber(inputWinningNumber);
+    }
 }

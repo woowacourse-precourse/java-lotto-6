@@ -15,8 +15,7 @@ public class LottoController {
     public void run() {
 
     private void createLotto() {
-        int numOfLotto = price.numOfLotto();
-        for(int i=0;i<numOfLotto;i++) {
+        for(int i=0;i<price.numOfLotto();i++) {
             lottoRepository.save(new Lotto(lottoNumberGenerator.createLottoNumber()));
         }
     }

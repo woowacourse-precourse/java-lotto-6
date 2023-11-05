@@ -57,4 +57,12 @@ class LottoTest {
             System.out.println(ticket);
         }
     }
+
+    @DisplayName("당첨 번호 확인")
+    @Test
+    void winningNumber() {
+        LottoInput lottoInput = new LottoInput(1000);
+        List<Integer> winningNUmbers = lottoInput.inputWinningNumbers();
+        System.out.println(winningNUmbers);
+    }
 }

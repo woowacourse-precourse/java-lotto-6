@@ -6,20 +6,25 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
 import lotto.domain.Lottos;
 import lotto.domain.LottosDTO;
+import lotto.domain.NumberGenerator;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private BuyAmount buyAmount;
+
+    private final NumberGenerator lottoNumberGenerator;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
+
+    public LottoController(NumberGenerator generator) {
+        this.lottoNumberGenerator = generator;
+    }
 
     public void run() {
         buyLotto();
@@ -28,7 +33,7 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        buyAmount = InputView.getBuyAmountFromInput();
+        BuyAmount buyAmount = InputView.getBuyAmountFromInput();
         lottos = createLottosFromAmount(buyAmount);
         LottosDTO lottosDTO = lottos.toLottosDTO();
         OutputView.displayAllLottos(lottosDTO);
@@ -58,7 +63,7 @@ public class LottoController {
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {
         List<Lotto> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < buyAmount.getAbleToBuyCount(); i++) {
-            Lotto lotto = new Lotto(LottoNumberGenerator.generateNumber());
+            Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());
             lottoNumbers.add(lotto);
         }
         return new Lottos(lottoNumbers);

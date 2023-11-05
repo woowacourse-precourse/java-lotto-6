@@ -7,12 +7,10 @@ import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 import java.util.List;
 
-public class LottoNumberGenerator {
+public class LottoNumberGenerator implements NumberGenerator {
 
-    private LottoNumberGenerator() {
-    }
-
-    public static List<Integer> generateNumber() {
+    @Override
+    public List<Integer> generateNumber() {
         return pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH);
     }
 }

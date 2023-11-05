@@ -30,7 +30,7 @@ public class ReadWinningNum {
             InputWinningNum.inputBonusNumNotInt(bonusNum);
             return false;
         } catch (IllegalArgumentException e) {
-            Exceptions.exceptionNotInt();
+            Exceptions.exceptionBonusNumNotInt();
             return true;
         }
     }

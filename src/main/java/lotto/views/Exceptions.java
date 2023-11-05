@@ -11,6 +11,7 @@ public class Exceptions {
     static final String NUM_NOT_6_MESS = "[ERROR] 당첨번호 개수는 총 6개 입니다. 6개의 수를 ','로 구분하여 입력해주세요.";
     static final String NOT_IN_RANGE_MESS = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     static final String NOT_SAME_WITH_SET_MESS = "[ERROR] 같은 숫자가 들어가 있습니다. 동일하지 않은 숫자로 입력해주세요.";
+    static final String BONUS_NUM_NOT_INT_MESS = "[ERROR] 하나의 숫자만 입력해주세요.";
     static final String BONUS_NUM_IN_WINNER_NUM = "[ERROR] 당첨번호에 동일한 번호가 있습니다. 다시 입력해주세요.";
 
     public static void exceptionNotInt() {
@@ -39,6 +40,10 @@ public class Exceptions {
 
     public static void exceptionNotSameSet() {
         System.out.println(NOT_SAME_WITH_SET_MESS);
+    }
+
+    public static void exceptionBonusNumNotInt() {
+        System.out.println(BONUS_NUM_NOT_INT_MESS);
     }
 
     public static void exceptionBonusNumInWinnerNum() {

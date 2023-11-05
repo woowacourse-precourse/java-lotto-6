@@ -16,6 +16,8 @@ class PlayerLotto {
     private static final String UNKNOWN_ANSWER_MESSAGE = "유효한 정답 로또를 입력해주세요.";
     private static final String NULL_INCLUDED_LOTTOS_MESSAGE = "알 수 없는 로또가 포함된 로또 목록으로 사용자 로또를 생성할 수 없습니다.";
     private static final String BONUS_INCLUDED_ANSWER_MESSAGE = "정답 로또에 이미 포함된 번호는 보너스 번호로 사용할 수 없습니다.";
+    private static final long TOTAL_RETURN_INITIAL_VALUE = 0L;
+    private static final int PRIZE_STATISTICS_INITIAL_COUNT = 0;
 
     private final List<Lotto> lottos;
 
@@ -86,7 +88,7 @@ class PlayerLotto {
     private EnumMap<LottoPrize, Integer> createEmptyStatistics() {
         EnumMap<LottoPrize, Integer> statistics = new EnumMap<>(LottoPrize.class);
         for (LottoPrize prize : LottoPrize.values()) {
-            statistics.put(prize, 0);
+            statistics.put(prize, PRIZE_STATISTICS_INITIAL_COUNT);
         }
 
         return statistics;
@@ -106,7 +108,7 @@ class PlayerLotto {
     private long calculateTotalReturn(EnumMap<LottoPrize, Integer> statistics) {
         return Arrays.stream(LottoPrize.values())
                 .map(prize -> calculatePrizeReward(statistics, prize))
-                .reduce(0L, Long::sum);
+                .reduce(TOTAL_RETURN_INITIAL_VALUE, Long::sum);
     }
 
     private long calculatePrizeReward(EnumMap<LottoPrize, Integer> statistics, LottoPrize prize) {

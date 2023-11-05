@@ -1,8 +1,10 @@
 package lotto.view;
 
 public class OutputView {
-    public void showLottoAmount() {
+    private static final String LOTTO_AMOUNT_MESSAGE = "%d개를 구매했습니다.";
 
+    public void showLottoAmount(int lottoAmount) {
+        System.out.println(String.format(LOTTO_AMOUNT_MESSAGE, lottoAmount));
     }
 
     public void showLottoNumbers() {

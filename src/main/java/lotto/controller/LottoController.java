@@ -1,17 +1,13 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
 
     public int purchaseAmount;
     public int LottoCount;
-    public List<Lotto> lottos;
 
     public void startLotto() {
         requestPurchaseAmount();

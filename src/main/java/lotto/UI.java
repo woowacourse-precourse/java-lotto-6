@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UI {
-    public String inputMoney() {
+    public static String inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String line = readLine();
         System.out.println();
         return line;
     }
 
-    public void printPurchases(List<Lotto> lottos) {
+    public static void printPurchases(List<Lotto> lottos) {
         System.out.println("8개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             printLotto(lotto);
@@ -24,7 +24,7 @@ public class UI {
         System.out.println();
     }
 
-    private void printLotto(Lotto lotto) {
+    private static void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         System.out.print("[");
         for (int i = 0; i < Lotto.size; i++) {
@@ -36,7 +36,7 @@ public class UI {
         System.out.print("]");
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String line = readLine();
         System.out.println();
@@ -45,14 +45,14 @@ public class UI {
         return numbers;
     }
 
-    public Integer inputBonusNumber() {
+    public static Integer inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String line = readLine();
         System.out.println();
         return Integer.parseInt(line);
     }
 
-    public void printWinningStats(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+    public static void printWinningStats(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
         Map<Grade, Integer> winningFrequency = obtainWinningFrequency(lottos, lottoDrawResult);
@@ -60,7 +60,7 @@ public class UI {
         printReturnRate(lottos, lottoDrawResult);
     }
 
-    private Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+    private static Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Map<Grade, Integer> winningFrequency = new HashMap<>();
 
         winningFrequency.put(Grade.FIRST, 0);
@@ -77,7 +77,7 @@ public class UI {
         return winningFrequency;
     }
 
-    private void printWinningFrequency(Map<Grade, Integer> winningFrequency) {
+    private static void printWinningFrequency(Map<Grade, Integer> winningFrequency) {
         Integer frequency = winningFrequency.get(Grade.FIFTH);
         System.out.println("3개 일치 (5,000원) - " + frequency + "개");
         frequency = winningFrequency.get(Grade.FOURTH);
@@ -90,7 +90,7 @@ public class UI {
         System.out.println("6개 일치 (2,000,000,000원) - " + frequency + "개");
     }
 
-    private void printReturnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+    private static void printReturnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
         String returnRateByRound = String.format("%.1f", returnRate);
         System.out.println("총 수익률은 " + returnRateByRound + "%입니다.");

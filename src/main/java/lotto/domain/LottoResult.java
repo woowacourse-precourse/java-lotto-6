@@ -21,6 +21,12 @@ public class LottoResult {
         this.lottoResult = calculateLottoResult(userLottoPrizeResults);
     }
 
+    public double calculateTotalPrize() {
+        return this.lottoResult.keySet().stream()
+                .mapToDouble(prize -> lottoResult.get(prize) * prize.getPrize().getMoney())
+                .sum();
+    }
+
     private EnumMap<LottoPrize, Integer> calculateLottoResult(List<LottoPrize> userLottoPrizeResults) {
         initializeLottoResult();
         userLottoPrizeResults.forEach(prize ->

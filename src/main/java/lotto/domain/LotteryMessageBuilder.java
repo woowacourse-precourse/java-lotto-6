@@ -5,6 +5,7 @@ import lotto.domain.lottery.Lotto;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static lotto.domain.Computer.rateOfProfit;
 import static lotto.domain.Computer.rewards;
@@ -16,17 +17,28 @@ public class LotteryMessageBuilder {
     private final static String COUNT_UNIT = "개";
     private final static String PROFIT_MESSAGE_START = "총 수익률은 ";
     private final static String PROFIT_MESSAGE_END = "%입니다.";
+    private final static String LOTTO_NUMBER_PREFIX = "[";
+    private final static String LOTTO_NUMBER_SUFFIX = "]";
+    private final static String LOTTO_NUMBER_DELIMITER = ", ";
 
     public String returnLottoList(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
         for (Lotto lotto :
                 lottos) {
-            sb.append(lotto).append("\n");
+            sb.append(showLottoNumbers(lotto)).append("\n");
         }
 
         return sb.toString();
     }
 
+    private String showLottoNumbers(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        String lottoNumbers = numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_PREFIX, LOTTO_NUMBER_SUFFIX));
+
+        return lottoNumbers;
+    }
     public String returnWinningLottoList(Map<Integer, Integer> winningStats) {
         StringBuilder sb = new StringBuilder();
         for (int result : winningStats.keySet()) {

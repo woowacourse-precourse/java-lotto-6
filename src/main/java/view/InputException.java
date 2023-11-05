@@ -14,6 +14,7 @@ public class InputException {
     private static final int WINNING_NUMBER_LENGTH = 6;
     private static final String HAS_SIX_NUMBERS_MESSAGE = "당첨 번호는 6개를 입력해야 합니다.";
     private static final String HAS_NO_DUPLICATE_NUMBERS_MESSAGE = "번호 중 중복되는 번호가 있습니다.";
+    private static final String IS_IN_WINNING_NUMBERS_MESSAGE = "보너스 번호는 당첨 번호와 다른 수 이어야 합니다.";
 
     public static void canBeConvertedToInteger(String userInput) {
         try {
@@ -52,5 +53,12 @@ public class InputException {
                 .ifPresent(pNum -> {
                     throw new IllegalArgumentException(ERROR_MESSAGE + HAS_NO_DUPLICATE_NUMBERS_MESSAGE);
                 });
+    }
+
+    public static void isInWinningNumbers(List<Integer> winningNumber, String userInput) {
+        int bonusNumber = Integer.parseInt(userInput);
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + IS_IN_WINNING_NUMBERS_MESSAGE);
+        }
     }
 }

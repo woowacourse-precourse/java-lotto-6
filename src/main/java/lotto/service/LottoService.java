@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LottoService {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> purchasedLottos = new ArrayList<>();
 
     private WinningLotto winningLotto;
 
@@ -23,7 +23,7 @@ public class LottoService {
     public LottoReceiptDto getLottoReceipt(int amount) {
         int purchaseLottoCount = getPurchaseLottoCount(amount);
         purchaseLottos(purchaseLottoCount);
-        return LottoReceiptDto.from(purchaseLottoCount, lottos);
+        return LottoReceiptDto.from(purchaseLottoCount, purchasedLottos);
     }
 
     private int getPurchaseLottoCount(int amount) {
@@ -34,7 +34,7 @@ public class LottoService {
     private void purchaseLottos(int purchaseLottoCount) {
         for (int count = 0; count < purchaseLottoCount; count++) {
             List<Integer> generatedNumbers = generateLottoNumbers();
-            lottos.add(new Lotto(generatedNumbers));
+            purchasedLottos.add(new Lotto(generatedNumbers));
         }
     }
 
@@ -45,9 +45,11 @@ public class LottoService {
     }
 
     public void generateWinningLottoWithoutBonusNumber(List<Integer> winningLottoNumbers) {
+        winningLotto = new WinningLotto(winningLottoNumbers);
     }
 
     public void generateWinningLotto(int bonusNumber) {
+        winningLotto.setBonusNumber(bonusNumber);
     }
 
     public LottoResultDto getLottoResult() {

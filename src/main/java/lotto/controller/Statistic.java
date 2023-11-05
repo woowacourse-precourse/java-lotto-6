@@ -3,7 +3,8 @@ package lotto.controller;
 import java.util.HashMap;
 
 public class Statistic {
-    public static int calLottoCount(int price, int lottoPrice) {
+    private static final int lottoPrice = 1000;
+    public static int calLottoCount(int price) {
         return price / lottoPrice;
     }
 

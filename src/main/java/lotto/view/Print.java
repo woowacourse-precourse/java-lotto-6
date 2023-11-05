@@ -16,6 +16,7 @@ public class Print {
         for (Lotto lotto : lottery) {
             printLottoNumber(sortLottery(lotto));
         }
+        System.out.println();
     }
     public static void printBoughtLottoCount(int lottoCount) {
         System.out.println();

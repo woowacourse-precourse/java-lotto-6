@@ -19,11 +19,11 @@ public class PlayTest {
     @Test
     void calLottoCountTest() {
         int priceA = 10000;
-        int lottoCountA = calLottoCount(priceA, 1000);
+        int lottoCountA = calLottoCount(priceA);
         Assertions.assertThat(lottoCountA).isEqualTo(10);
 
         int priceB = 10010;
-        int lottoCountB = calLottoCount(priceB, 10000);
+        int lottoCountB = calLottoCount(priceB);
         Assertions.assertThat(lottoCountB).isEqualTo(10);
     }
 

@@ -66,13 +66,13 @@
   - [ ] LottoResult
       - [ ] LottoTickets와 WinningLotto를 사용하여 통계 계산
       - [ ] 총 수익률 계산
-  - [ ] WinningLotto
-      - [ ] WinningLotto는 Lotto를 상속
-      - [ ] WinningLotto 생성
-      - [ ] 보너스 번호
-          - [ ] 보너스 번호 길이 검증
-          - [ ] 보너스 번호 범위 검증
-          - [ ] 당첨 번호와 보너스 번호 겹치는지 검증
+  - [X] WinningLotto
+      - [X] WinningLotto는 Lotto를 상속
+      - [X] WinningLotto 생성
+      - [X] 보너스 번호
+          - [X] 보너스 번호 길이 검증
+          - [X] 보너스 번호 범위 검증
+          - [X] 당첨 번호와 보너스 번호 겹치는지 검증
 - [ ] View
     - [ ] 로또 구매 수량 출력
     - [ ] 생성된 로또 번호 출력

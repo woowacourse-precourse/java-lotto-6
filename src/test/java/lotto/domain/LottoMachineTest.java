@@ -34,4 +34,12 @@ class LottoMachineTest {
 
         assertEquals(bonusNum, lottoMachine.getBonusNum());
     }
+
+    @DisplayName("당첨 번호 세팅 시 유효성 검사 실패 테스트")
+    @Test
+    public void given_winningNumbers_when_SetWinningNumbers_then_ThrowsIllegalArgumentException() {
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
+
+        assertThrows(IllegalArgumentException.class, () -> lottoMachine.setWinningNumbers(invalidNumbers));
+    }
 }

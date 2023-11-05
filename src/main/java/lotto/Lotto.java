@@ -23,4 +23,8 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Integer> getLottoNumber() {
+        return numbers;
+    }
 }

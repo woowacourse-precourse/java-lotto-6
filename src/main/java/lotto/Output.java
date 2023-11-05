@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class Output {
     public static void message(String message) {
@@ -12,14 +13,23 @@ public class Output {
         message(Integer.toString(lottoCount).concat(purchaseMessage));
 
         for (Lotto lotto : lottos) {
-            lotto.getNumbers().toString();
+            System.out.println(lotto.getNumbers().toString());
         }
     }
 
-    public static void winStatistics(List<Integer> winRanks) {
+    public static void winStatistics(Map<Rank, Integer> lottoResult) {
         final String winStatisticsMessage = "당첨 통계\n---";
         message(winStatisticsMessage);
-        // continue...
+
+        Rank[] ranks = Rank.values();
+        for (Rank rank : ranks) {
+            String message = rank.getOutputMessage();
+            int totalCount = lottoResult.get(rank);
+
+            message.concat(Integer.toString(totalCount)).concat("개");
+
+            System.out.println(message);
+        }
     }
 
     public static void returnRate(double returnRate) {

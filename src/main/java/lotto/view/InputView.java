@@ -3,10 +3,14 @@ package lotto.view;
 import java.util.List;
 
 public class InputView {
-    int readIntLine() {
+    public long readLongLine() {
+        return 0L;
+    }
+
+    public int readIntLine() {
         return 0;
     }
-    List<Integer> readIntListLine() {
+    public List<Integer> readMultipleIntLine() {
         return List.of(0);
     }
 }

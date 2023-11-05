@@ -1,4 +1,6 @@
 package lotto.dto;
 
-public record LottoReceiptDto() {
+import java.util.List;
+
+public record LottoReceiptDto(int purchaseCount, List<LottoDto> lottos) {
 }

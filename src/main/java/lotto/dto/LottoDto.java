@@ -1,4 +1,6 @@
 package lotto.dto;
 
-public record LottoDto() {
+import java.util.List;
+
+public record LottoDto(List<Integer> numbers) {
 }

@@ -21,7 +21,7 @@ public class LottoServiceImp implements LottoService {
     }
 
     @Override
-    public List<List<Integer>> pickLotto()
+    public List<List<Integer>> getLotto()
     {
         return lottery.getLotto();
     }

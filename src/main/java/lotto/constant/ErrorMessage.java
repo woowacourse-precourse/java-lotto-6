@@ -6,7 +6,8 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBERS("잘못된 당첨 번호 형식입니다."),
     INVALID_NUMBER_RANGE("숫자의 범위가 잘못되었습니다."),
     NOT_UNIQUE_WINNING_NUMBERS("당첨 번호에 중복이 있습니다."),
-    INVALID_PURCHASE_AMOUNT("구매 금액이 잘못되었습니다.");
+    INVALID_PURCHASE_AMOUNT("구매 금액이 잘못되었습니다."),
+    NOT_POSITIVE_PROFIT("수익이 음수가 될 수 없습니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;

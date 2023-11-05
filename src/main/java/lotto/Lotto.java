@@ -17,12 +17,5 @@ public class Lotto {
         }
     }
 
-    private void checkDuplicationNumber(List<Integer> numbers){
-        HashSet<Integer> duplicationNumber = new HashSet<>(numbers);
-        if(duplicationNumber.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하셨습니다.");
-        }
-    }
-
     // TODO: 추가 기능 구현
 }

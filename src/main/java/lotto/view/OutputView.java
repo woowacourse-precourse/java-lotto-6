@@ -41,4 +41,9 @@ public class OutputView {
     public static void printWinningStatistics() {
         System.out.print(WINNING_STATISTICS_MSG);
     }
+
+    public static void printWinningResult(int matchCount, int prize, int count) {
+        System.out.printf(WINNING_RESULT_MSG, matchCount, prize, count);
+        System.out.println();
+    }
 }

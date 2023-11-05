@@ -4,7 +4,7 @@ public enum ExceptionMessage {
     HEADER("[ERROR] "),
     ONLY_NUMBER_REGEX("\\d+"),
     NOT_NUMBER("숫자만 입력해 주십시오."),
-    INPUT_MONEY_NOT_THOUSAND_UNIT("구입 금액은 1,000원 단위로 입력해 주십시오."),
+    INPUT_MONEY_NOT_PRICE_UNIT("구입 금액은 " + LottoSetting.LOTTO_PRICE.getNumber() + "원 단위로 입력해 주십시오."),
     NUMBER_OUT_OF_RANGE(LottoSetting.LOTTO_NUMBER_RANGE_START.getNumber() + " ~ " +
             LottoSetting.LOTTO_NUMBER_RANGE_END.getNumber() + " 사이의 숫자를 입력해 주십시오."),
     WINNING_NUMBERS_COUNT_OUT_OF_RANGE("당첨 번호는 " +

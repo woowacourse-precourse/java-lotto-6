@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.domain.constants.ExceptionMessage;
 
-public class InputNumberValidator implements Validator<String> {
+public class InputOnlyNumberValidator implements Validator<String> {
 
     @Override
     public void validate(String playerInput) {

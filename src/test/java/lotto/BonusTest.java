@@ -19,4 +19,11 @@ public class BonusTest {
         Assertions.assertThatThrownBy(() -> Bonus.from("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 45를 초과하는 숫자를 입력받았다면 예외가 발생한다.")
+    @Test
+    void createBonusByOverRange(){
+        Assertions.assertThatThrownBy(() -> Bonus.from("46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

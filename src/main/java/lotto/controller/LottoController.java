@@ -7,12 +7,12 @@ public class LottoController {
     public final InputView inputView;
     public final OutputView outputView;
 
-    public LottoController(InputView inputView, OutputView outputView){
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void start(){
-
+    public void start() {
+        inputView.getPurchasePrice();
     }
 }

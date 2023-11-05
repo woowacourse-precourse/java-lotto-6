@@ -85,5 +85,19 @@ class WinningNumbersTest {
         // then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+
+
+    @DisplayName("숫자가 아닌 문자열이 포함되어 있을 경우 IllegalArgumentException을 발생시켜야 한다.")
+    @Test
+    void testProcessWithNonNumericValues() {
+        // given
+        String numbersWithNonNumeric = "1, 2, three, 4, 5, 6";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithNonNumeric))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
+    }
 }
 

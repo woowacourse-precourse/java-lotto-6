@@ -32,6 +32,10 @@ public enum Rank {
         rankCount.put(rank, rankCount.get(rank)+1);
     }
 
+    public static void minusThirdRankCount(){
+        rankCount.put(Rank.THIRD, rankCount.get(Rank.THIRD)-1);
+    }
+
     public static int getRankCount(Rank rank){
         return rankCount.get(rank);
     }

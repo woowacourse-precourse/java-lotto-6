@@ -69,16 +69,24 @@
     - [x] WinningNumber를 가진다.
     - [x] PurchasedLotto를 가진다.
     - [x] LottoResultDto를 생성하는 메서드를 가진다.
-      -
 
 ## DTO
 
-- [ ] PurchasedLottoDTO : 구입한 로또들의 대한 번호 정보
-    - [ ] 구입 개수
-    - [ ] 각 로또들이 생성한 6자리 숫자(오름차순)
+- [ ] PurchasedLottoDTO : PurchasedLotto 대해 필요한 정보
+    - [ ] Input : 입력에 필요한 PurchasedLotto 정보
+        - [ ] 총 구입 금액
+    - [ ] Output : 출력에 필요한 PurchasedLotto 정보
+        - [ ] 각 로또들이 생성한 6자리 숫자(오름차순)
+
+
+- [ ] WinningLottoDTO : WinningLotto에 대한 필요한 정보
+    - 출력은 따로 존재하지 않으니 Input/Output 분리는 하지 않는다.
+    - [ ] 당첨번호 6자리를 받는다.
+    - [ ] 보너스 번호를 받는다.
 
 
 - [x] ResultDTO : 결과에 대한 DTO
+    - 입력은 따로 존재하지 않으니 Input/Output 분리는 하지 않는다.
     - [x] 총 수익률
     - [x] 로또 매칭 개수
     - [x] 로또 당첨 매칭 정보

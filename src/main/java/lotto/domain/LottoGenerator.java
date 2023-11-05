@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Handling;
 import lotto.ui.Input;
 import lotto.ui.Output;
 
@@ -28,7 +29,7 @@ public class LottoGenerator {
 
         while (isRunning) {
             try {
-                Input.checkLotto(userInput);
+                Lotto.checkLottoNumber(userInput);
                 winningLotto.checkInclusion(Integer.parseInt(userInput));
                 isRunning = false;
             } catch (IllegalArgumentException ex) {
@@ -39,13 +40,13 @@ public class LottoGenerator {
         return Integer.parseInt(userInput);
     }
 
-    public static Lotto createWinningLotto(List<Integer> lotto) {
+    public static Lotto createWinningLotto(String userInput) {
         boolean isRunning = true;
         Lotto winningLotto = null;
 
         while (isRunning) {
             try {
-                winningLotto = new Lotto(lotto);
+                winningLotto = new Lotto(Handling.parseNumbers(Handling.split(userInput)));
                 isRunning = false;
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);

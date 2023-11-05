@@ -25,7 +25,7 @@ public class Application {
 
         // 5. 당첨 번호 입력
         Output.printWinningNumber();
-        Lotto winningLotto = LottoGenerator.createWinningLotto(Input.parseNumbers(Input.split(Input.get())));
+        Lotto winningLotto = LottoGenerator.createWinningLotto(Input.get());
 
         // 6. 보너스 번호 입력
         Output.printBonusNumber();

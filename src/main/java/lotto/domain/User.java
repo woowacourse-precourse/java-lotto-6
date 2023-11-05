@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.ui.Input;
 import lotto.ui.Output;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
 
 
     public void payMoney() {
-        money = new Money(Computer.getInput());
+        money = new Money(Input.get());
     }
 
     public void purchaseLotto() {

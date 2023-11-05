@@ -9,8 +9,8 @@ public class OutputView {
     private static final String PURCHASE_AMOUNT_OUTPUT_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_OUTPUT_MESSAGE = "당첨통계";
     private static final String LINE_OUTPUT_MESSAGE = "---";
-    private static final String SECOND_WINNING_RESULT_OUTPUT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
-    private static final String DEFAULT_WINNING_RESULT_OUTPUT_MESSAGE = "%d개 일치 (%d원) - %d개";
+    private static final String SECOND_WINNING_RESULT_OUTPUT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String DEFAULT_WINNING_RESULT_OUTPUT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_RETURN_OUTPUT_MESSAGE = "총 수익률은 %d%입니다.";
 
     public void purchaseAmountOuput(int lottoCount) {
@@ -34,8 +34,8 @@ public class OutputView {
     }
 
     private void showRankResult(HashMap<LottoRank, Integer> lottoResult, LottoRank lottoRank) {
-
-        if (lottoRank.equals("NO_RANK")) {
+        if(lottoRank.equals(LottoRank.NO_RNAK)) return;
+        if (lottoRank.equals(LottoRank.SECOND)) {
             System.out.println(String.format(SECOND_WINNING_RESULT_OUTPUT_MESSAGE, lottoRank.getMatchCount(),
                     lottoRank.getOutputPrize(), lottoResult.get(lottoRank)));
             return;

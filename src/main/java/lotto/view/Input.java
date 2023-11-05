@@ -30,7 +30,7 @@ public class Input {
                 .collect(Collectors.toList());
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumberGuide() {
         System.out.println(INPUT_BONUS_NUMBER_GUIDE);
         String bonusNumber = Console.readLine();
         validateBlank(bonusNumber);

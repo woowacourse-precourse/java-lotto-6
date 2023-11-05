@@ -29,11 +29,13 @@ public class LottoLogic {
 
     public float getProfitRate() {
         HashMap<LottoResult, BigDecimal> result = getResult();
+
         BigDecimal total = BigDecimal.ZERO;
-        result.forEach((key, value) -> {
-            BigDecimal prize = new BigDecimal(key.getPrize());
-            total.add(prize.multiply(value));
-        });
+        for (LottoResult key : result.keySet()) {
+            BigDecimal prize = BigDecimal.valueOf(key.getPrize());
+            total = total.add(result.get(key).multiply(prize));
+        }
+
         return total.divide(purchaseInfo.purchaseAmount).floatValue();
     }
 }

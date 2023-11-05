@@ -11,14 +11,15 @@ public class OutputView {
 
     public void printLotteryTickets(int ticketCount, List<List<Integer>> lotteryTickets) {
         System.out.println(ticketCount + "개를 구매했습니다. \n");
-        for(int i=0; i<ticketCount; i++) {
+        for (int i = 0; i < ticketCount; i++) {
             ticketNumbers = lotteryTickets.get(i);
             System.out.print(ticketNumbers + "\n");
         }
     }
 
     public void printWinningLotteryTickets(Map<Integer, Integer> winningTicketsCount) {
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + winningTicketsCount.get(5) + "개");
         System.out.println("4개 일치 (50,000원) - " + winningTicketsCount.get(4) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + winningTicketsCount.get(3) + "개");

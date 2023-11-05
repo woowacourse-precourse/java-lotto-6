@@ -11,8 +11,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     public int askPayment() {
-        System.out.print("구입금액을 입력해 주세요. ");
+        System.out.println("구입금액을 입력해 주세요.");
         String input = readLine();
+        System.out.println();
         validatePayment(input);
         int payment = Integer.parseInt(input);
         return payment;
@@ -20,7 +21,7 @@ public class InputView {
 
     public List<Integer> askWinningTicketNumbers() {
         List<Integer> winningTicketNumbers = new ArrayList<Integer>();
-        System.out.print("당첨 번호를 입력해 주세요. ");
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine().replaceAll("\\p{Z}", "");
         String[] temp = input.split(",");
         validateWinningTicketNumbers(temp);
@@ -31,15 +32,17 @@ public class InputView {
         }
         Lotto lotto = new Lotto(tmp);
         winningTicketNumbers = lotto.getNumbers();
+        System.out.println();
         return winningTicketNumbers;
     }
 
     public int askBonusNumber() {
         int bonusNumber = 0;
-        System.out.print("보너스 번호를 입력해 주세요. ");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String input = readLine();
         validateBonusNumber(input);
         bonusNumber = Integer.parseInt(input);
+        System.out.println();
         return bonusNumber;
     }
 

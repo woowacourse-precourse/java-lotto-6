@@ -51,17 +51,13 @@ public class JudgeWinningTickets {
             int rank = ranking(ticketNumbers, bonusNumber, winningTicketNumbers);
             if (rank == 1) {
                 winningTicketsCount.put(1, (winningTicketsCount.get(1) + 1));
-            }
-            if (rank == 2) {
+            } else if (rank == 2) {
                 winningTicketsCount.put(2, (winningTicketsCount.get(2) + 1));
-            }
-            if (rank == 3) {
+            } else if (rank == 3) {
                 winningTicketsCount.put(3, (winningTicketsCount.get(3) + 1));
-            }
-            if (rank == 4) {
+            } else if (rank == 4) {
                 winningTicketsCount.put(4, (winningTicketsCount.get(4) + 1));
-            }
-            if (rank == 5) {
+            } else if (rank == 5) {
                 winningTicketsCount.put(5, (winningTicketsCount.get(5) + 1));
             }
         }

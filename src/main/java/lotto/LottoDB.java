@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LottoDB {
 
@@ -21,5 +22,8 @@ public class LottoDB {
         return userLottoCount;
     }
 
+    public void storeLottoNumbers(List<Integer> lottoNumbers) {
+        userLottoNumbers.addAll(lottoNumbers);
+    }
 
 }

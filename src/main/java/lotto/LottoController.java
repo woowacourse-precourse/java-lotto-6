@@ -1,8 +1,9 @@
 package lotto;
 
-// Java Basic Library
-
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     // instance
@@ -12,6 +13,7 @@ public class LottoController {
     // Method
     public void start() {
         getLottoCountFromUser();
+        setUserLottoNumbers();
     }
 
     public void getLottoCountFromUser() throws IllegalArgumentException {
@@ -44,4 +46,18 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR] : 입력된 값이 1,000단위가 아닙니다.");
         }
     }
+
+    public void setUserLottoNumbers() {
+        int numberOfLotto = lottoDB.getUserLottoCount();
+        List<Integer> lotto = new ArrayList<>();
+        lottoView.printLottoNumberAnnouncement(numberOfLotto);
+        for (int i = 0; i < numberOfLotto; i++) {
+            lotto.clear();
+            lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoView.printLottoNumber(lotto);
+            lottoDB.storeLottoNumbers(lotto);
+        }
+    }
+
+
 }

@@ -1,8 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +19,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

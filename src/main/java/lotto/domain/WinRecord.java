@@ -4,8 +4,10 @@ import static lotto.ApplicationContext.getPrizeAmount;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.rule.PrizeAmount;
 
 public class WinRecord {
+    private PrizeAmount prizeAmount = getPrizeAmount();
     private List<Integer> winRecord = new ArrayList<>();
     private final List<Integer> lotto;
     private final int bonus;
@@ -16,7 +18,6 @@ public class WinRecord {
     }
 
     public void compareWinning(List<List<Integer>> tickets) {
-        PrizeAmount prizeAmount = getPrizeAmount();
         int lottoCount = 0;
         int bonusCount = 0;
 
@@ -29,14 +30,16 @@ public class WinRecord {
                 bonusCount = 1;
             }
 
-            int matchAllCount = prizeAmount.matchAllCount(lottoCount, bonusCount);
+            int matchAllCount = this.prizeAmount.matchAllCount(lottoCount, bonusCount);
             winRecord.add(matchAllCount);
         }
     }
 
     public void print() {
-        PrizeAmount prizeAmount = getPrizeAmount();
         prizeAmount.classifyWin(this.winRecord);
     }
 
+    public List<Integer> getWinRecord() {
+        return this.winRecord;
+    }
 }

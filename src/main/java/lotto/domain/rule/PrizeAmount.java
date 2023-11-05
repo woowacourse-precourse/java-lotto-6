@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.rule;
 
 import static lotto.constant.LottoConstant.*;
 import java.util.Collections;
@@ -35,7 +35,7 @@ public class PrizeAmount {
         prizeAmounts.put(MATCH_ALL_SEVEN_COUNT, new PrizeAmount(6,0,2000000000,1));
     }
 
-    public static Map<Integer, PrizeAmount> getPrizeAmount() {
+    public static Map<Integer, PrizeAmount> getPrizeAmounts() {
         return Collections.unmodifiableMap(prizeAmounts);
     }
 
@@ -84,5 +84,9 @@ public class PrizeAmount {
         OutputMessage.printf(MessageType.MATCH_SIX_COUNT, sixMatch);
         OutputMessage.printf(MessageType.MATCH_SEVEN_COUNT, sevenMatch);
 
+    }
+
+    public int getAmount() {
+        return this.amount;
     }
 }

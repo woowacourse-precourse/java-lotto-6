@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.domain.Returns;
 import lotto.domain.Tickets;
 import lotto.domain.WinRecord;
 
@@ -36,7 +37,11 @@ public class LottoController {
     }
 
     public void printReturns() {
+        List<Integer> winRecord = this.winRecord.getWinRecord();
+        int wallet = this.tickets.getWallet();
 
+        Returns returns = new Returns(wallet, winRecord);
+        returns.print();
     }
 
 }

@@ -54,4 +54,8 @@ public class Tickets {
 
         return sortedNumbers;
     }
+
+    public int getWallet() {
+        return wallet;
+    }
 }

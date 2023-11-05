@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.domain.PrizeAmount;
+import lotto.domain.rule.PrizeAmount;
 import lotto.input.LottoBuyer;
 import lotto.input.LottoDrawer;
 

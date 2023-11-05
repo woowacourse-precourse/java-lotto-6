@@ -14,16 +14,22 @@ public class InputValidate {
         return 0;
     }
     public List<Integer> lottoAnswerValidate(String lottoNum){
-
-        String[] temp = getLottoByString(lottoNum);
         List<Integer> answerLotto = new ArrayList<>();
-        for(String num : temp){
-            try {
-                answerLotto.add(validateIsDigit(num));
-            }catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
+
+        try{
+            String[] temp = getLottoByString(lottoNum);
+            for(String num : temp){
+                try {
+                    answerLotto.add(validateIsDigit(num));
+                }catch (IllegalArgumentException e){
+                    System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
+                    return new ArrayList<>();
+                }
             }
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
         }
+
         return answerLotto;
     }
 

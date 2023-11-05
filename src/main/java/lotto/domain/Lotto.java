@@ -22,6 +22,10 @@ public class Lotto {
         validateRange(numbers);
     }
 
+    public List<Integer> getNum() {
+        return numbers;
+    }
+
     private void validateSize(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 입력하신 번호가 6개가 아닙니다.");

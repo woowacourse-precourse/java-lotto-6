@@ -24,12 +24,13 @@ public class Setting {
 
     public Lotto getWinningNumbers() {
 
-        while(true){
-            try{
+        while (true) {
+            try {
                 String inputNumbers = Console.readLine();
                 winningNumbers = new Lotto(stringToList(inputNumbers));
                 break;
-            }catch (IllegalArgumentException e){}
+            } catch (IllegalArgumentException e) {
+            }
         }
 
         return winningNumbers;
@@ -37,34 +38,45 @@ public class Setting {
 
     private int input_bonusNumber() {
         String input = Console.readLine();
-        int bonusNumber = inputToInt(input);
+        inputToInt(input);
+        int bonusNumber = Integer.parseInt(input);
         checkNumber(bonusNumber);
         winningNumbers.check_bonusNumber(bonusNumber);
+
         return bonusNumber;
     }
 
-    private int inputToInt(String input){
-        try{
-            return Integer.parseInt(input);
-        }catch (NumberFormatException e){
+    private void inputToInt(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
             System.out.println("\n[ERROR] 숫자를 입력해주세요.");
             throw new IllegalArgumentException();
         }
     }
-    private void checkNumber(int number){
-        if (number<1 || number>45){
+
+    private void checkNumber(int number) {
+        if (number < 1 || number > 45) {
             System.out.println("\n[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
             throw new IllegalArgumentException();
         }
     }
 
     public int purchase_amount() {
-        while (true) {
-            String input = Console.readLine();
-            check_money(input);
+        String input;
 
-            return inputToInt(input);
+        while (true) {
+            try {
+                input = Console.readLine();
+                inputToInt(input);
+                check_money(input);
+
+                break;
+            } catch (IllegalArgumentException e) {
+            }
         }
+
+        return Integer.parseInt(input);
     }
 
     private void check_money(String money) {
@@ -74,12 +86,13 @@ public class Setting {
         }
     }
 
-    public List<Integer> stringToList(String input) throws IllegalArgumentException{
+    public List<Integer> stringToList(String input) throws IllegalArgumentException {
         List<Integer> player = new ArrayList<>();
         String[] numbers = input.split(",");
 
         for (String number : numbers) {
-            int playerNumber = inputToInt(number);
+            inputToInt(number);
+            int playerNumber = Integer.parseInt(number);
             player.add(playerNumber);
         }
 

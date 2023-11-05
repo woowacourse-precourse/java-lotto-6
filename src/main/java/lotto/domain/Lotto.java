@@ -35,11 +35,11 @@ public class Lotto {
     }
 
     private boolean hasDuplicateNumber(List<Integer> numbers) {
-        List<Integer> distinctedNumbers = numbers.stream()
+        List<Integer> distinctNumbers = numbers.stream()
                 .distinct()
                 .toList();
 
-        return !distinctedNumbers.equals(numbers);
+        return !distinctNumbers.equals(numbers);
     }
 
     public boolean isContain(int number) {

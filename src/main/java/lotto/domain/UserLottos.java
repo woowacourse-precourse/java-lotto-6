@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public record UserLottos(List<Lotto> lottos) {
     private static final int COUNT_UNIT = 1;
 
-    public LottoResult compareAllLottos(WinningLotto winningLotto) {
+    public LottoResult compareAllLotto(WinningLotto winningLotto) {
         Map<LottoPrizes, Integer> prizesCountMap = LottoPrizes.getPrizesCountMap();
 
         // 각 로또를 비교한 뒤, 얻어낸 결과가 당첨이라면 각 당첨의 횟수를 증가시킴
@@ -22,7 +22,7 @@ public record UserLottos(List<Lotto> lottos) {
         return new LottoResult(prizesCountMap);
     }
 
-    public String displayAllLottos() {
+    public String displayAllLotto() {
         return lottos.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining(NEW_LINE));

@@ -31,14 +31,14 @@ public class LottoController {
 
         WinningLotto winningLotto = receiveWinningLottoNumber();
 
-        LottoResult lottoResult = userLottos.compareAllLottos(winningLotto);
+        LottoResult lottoResult = userLottos.compareAllLotto(winningLotto);
 
         printLottoResultStatistics(lottoResult, purchaseAmount);
     }
 
     private void displayUserLotto(UserLottos userLottos) {
         int totalLotto = userLottos.getTotalLottos();
-        String allLotto = userLottos.displayAllLottos();
+        String allLotto = userLottos.displayAllLotto();
 
         outputView.printNewLine();
         outputView.printUserLotto(totalLotto, allLotto);

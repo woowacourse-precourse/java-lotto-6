@@ -31,7 +31,7 @@ class UserLottosTest {
 
     @DisplayName("유저의 5개의 로또 번호와 당첨 번호를 비교하고, 정확한 결과를 반환하는지 확인합니다.")
     @Test
-    void compareAllLottos() {
+    void compareAllLotto() {
         // 위의 setUp에서 설정한 유저의 로또와 비교했을 때, 모든 당첨 결과를 1개씩 가지도록 당첨 번호를 설정
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -48,13 +48,13 @@ class UserLottosTest {
 
         LottoResult expectedResult = new LottoResult(expectedPrizes);
 
-        LottoResult actual = userLottos.compareAllLottos(winningLotto);
+        LottoResult actual = userLottos.compareAllLotto(winningLotto);
         assertThat(actual).isEqualTo(expectedResult);
     }
 
     @DisplayName("유저의 로또 번호를, 주어진 형식대로 정확하게 출력하는지 확인합니다.")
     @Test
-    void displayAllLottos() {
+    void displayAllLotto() {
         String expected = """
                 [1, 2, 3, 4, 5, 6]
                 [1, 3, 4, 5, 6, 7]
@@ -62,6 +62,6 @@ class UserLottosTest {
                 [2, 4, 5, 6, 24, 41]
                 [3, 4, 5, 33, 39, 43]""";
 
-        assertThat(userLottos.displayAllLottos()).isEqualTo(expected);
+        assertThat(userLottos.displayAllLotto()).isEqualTo(expected);
     }
 }

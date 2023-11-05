@@ -52,12 +52,12 @@ class LottoMakerTest {
     @DisplayName("올바르지 않은 금액 형식에 대한 예외 처리 확인")
     @ParameterizedTest(name = "{0}")
     @MethodSource("provideInvalidPrice")
-    void createLottosByPrice(
+    void createLottoByPrice_WithInvalidAmount(
             String testMessage,
             int price,
             String expectedErrorMessage
     ) {
-        assertThatThrownBy(() -> lottoMaker.createLottosByPrice(price))
+        assertThatThrownBy(() -> lottoMaker.createLottoByPrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedErrorMessage);
     }

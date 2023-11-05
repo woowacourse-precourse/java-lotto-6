@@ -14,14 +14,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    void createLotto_WithInvalidSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
+    void createLotto_WithDuplicateNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +30,7 @@ class LottoTest {
     @DisplayName("1부터 45까지가 아닌 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest(name = "{0}")
     @MethodSource("argumentsProvider")
-    void createLottoByOverRangeNumber(String testName, List<Integer> numbers) {
+    void createLotto_WithInvalidRange(String testName, List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }

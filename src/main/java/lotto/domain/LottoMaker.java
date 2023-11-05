@@ -79,11 +79,11 @@ public class LottoMaker {
         return new Lotto(lottoNumbers);
     }
 
-    public List<Lotto> createLottosByPrice(int price) {
+    public List<Lotto> createLottoByPrice(int price) {
         validatePrice(price);
-        int lottosCount = price / ONE_LOTTO_PRICE;
+        int lottoCount = price / ONE_LOTTO_PRICE;
 
-        return createLottosByCount(lottosCount);
+        return createLottosByCount(lottoCount);
     }
 
     private void validatePrice(int price) {
@@ -95,15 +95,15 @@ public class LottoMaker {
         }
     }
 
-    private List<Lotto> createLottosByCount(int lottosCount) {
-        validateCount(lottosCount);
-        return IntStream.rangeClosed(START_ORDER, lottosCount)
+    private List<Lotto> createLottosByCount(int lottoCount) {
+        validateCount(lottoCount);
+        return IntStream.rangeClosed(START_ORDER, lottoCount)
                 .mapToObj(order -> createOneLotto())
                 .toList();
     }
 
-    private void validateCount(int lottosCount) {
-        if (lottosCount < ZERO_COUNT) {
+    private void validateCount(int lottoCount) {
+        if (lottoCount < ZERO_COUNT) {
             throw new IllegalArgumentException(NEGATIVE_COUNT.getErrorMessage());
         }
     }

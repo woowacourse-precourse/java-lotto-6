@@ -4,7 +4,7 @@ public class InputBlankException extends IllegalArgumentException {
     public static final InputBlankException inputBlankException = new InputBlankException();
 
     private InputBlankException() {
-        super("빈칸이 입력되었습니다.");
+        super("[ERROR] 빈칸이 입력되었습니다.");
     }
 
     @Override

@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private LottoService lotto = new LottoService();
+
     public void run() {
         userInputMoney();
         // 구입금액에 따른 예외 처리 및 로또 티켓 구매

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
 import lotto.util.LottoGenerator;
@@ -30,11 +31,12 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
-        System.out.println(money);
 
         List<LottoTicket> lottoTickets = buyLottoTicket(money / 1000);
 
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
+
+        lottoWinNumbers.add(inputBonusNumber());
 
 
         /*
@@ -46,6 +48,19 @@ public class LottoController {
         당첨 번호 입
          */
 
+    }
+
+    private Integer inputBonusNumber() {
+        try {
+            outputView.printBeforeInputBonusNumber();
+            InputBonusNumberService inputBonusNumberService = new InputBonusNumberService();
+            String bonusNumberInput = inputView.inputBonusNumber();
+            inputBonusNumberService.checkRightBonusNumberInput(validator, bonusNumberInput);
+            return Integer.parseInt(bonusNumberInput);
+        }catch (IllegalArgumentException e){
+            outputView.printErrorMessage(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
     private List<LottoTicket> buyLottoTicket(long count) {

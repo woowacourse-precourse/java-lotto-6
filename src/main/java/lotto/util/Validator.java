@@ -57,4 +57,17 @@ public class Validator {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public void validateBonusNumberInput(String bonusNumberInput) {
+        try{
+            Integer.parseInt(bonusNumberInput);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 문자가 아닌 숫자로 와야 합니다!");
+        }
+    }
+
+    public void validateBonusNumberRange(int convertedBonusNumber) {
+        if(convertedBonusNumber <1 || convertedBonusNumber >45)
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1-45 사이의 숫자여야 합니다!");
+    }
 }

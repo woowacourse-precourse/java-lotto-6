@@ -26,4 +26,8 @@ public class InputView {
     public String inputWinnerNumbers() {
         return Console.readLine();
     }
+
+    public String inputBonusNumber() {
+        return Console.readLine();
+    }
 }

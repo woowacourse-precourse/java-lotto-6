@@ -32,4 +32,8 @@ public class OutputView {
     public void printBeforeBuyLotto(long count) {
         System.out.printf("%d개를 구매했습니다.\n", count);
     }
+
+    public void printBeforeInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

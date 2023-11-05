@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Controller {
 
-    private static final Integer LOTTERY_PRICE = 1_000;
+    static final Integer LOTTERY_PRICE = 1_000;
 
     public static Integer calculateLotteryCount(Integer budget) {
         return budget / LOTTERY_PRICE;

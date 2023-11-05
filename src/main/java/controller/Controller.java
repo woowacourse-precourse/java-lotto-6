@@ -21,9 +21,12 @@ public class Controller {
     private final Validator validator = new Validator();
     private final LottoService lottoService = new LottoService();
     private LottoRepository lottoRepository = new LottoRepository();
-
-
     private MoneyRepository moneyRepository = new MoneyRepository();
+
+    List<List<Integer>> lottosList = new ArrayList<>();
+    List<Integer> userlottoList;
+
+    private static int bonus = 0;
 
     public void run() {
         saveMoney(parser.parseNumber(getMoneyNumberbyInput()));
@@ -36,12 +39,8 @@ public class Controller {
 
     private void playLotto() {
         OutputView.printMoneyResult(moneyRepository.getMoney());
-
-        List<List<Integer>> lottosList = new ArrayList<>();
-        List<Integer> lottoList = null;
-
+        List<Integer> lottoList = new ArrayList<>();
         for (int i = 0; i < moneyRepository.getTrial(); i++) {
-            lottoList = new ArrayList<>();
             for (int j = 0; j < 6; j++) {
                 lottoList = lottoService.getProgramRandomNumber();
             }
@@ -56,13 +55,41 @@ public class Controller {
     }
 
     private void play() {
+        //lottoService.play(moneyRepository.getTrial());
         OutputView.printLottoResult();
+        int[] correct = new int[8];
+        int check = 0;
+
+        for(int k = 0; k < 6; k++) {
+            int current_lotto = userlottoList.get(k);
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if(current_lotto == lottosList.get(i).get(j)) {
+                        check++;
+                    }
+                    if (check == 5) {
+                        if (bonus == lottosList.get(i).get(j)) {
+                            check = 7;
+                        }
+                    }
+                }
+                if(check == 3) correct[3]++;
+                if(check == 4) correct[4]++;
+                if(check == 5) correct[5]++;
+                if(check == 6) correct[6]++;
+                if(check == 7) correct[7]++; // 보너스 볼
+                check = 0;
+            }
+        }
+
+        OutputView.printRevenue(correct, moneyRepository.getMoney());
     }
 
 
     private void saveLottoNumbers(List<Integer> lottoNumbers) {
         new Lotto(lottoNumbers);
-
+        userlottoList = lottoNumbers;
+        OutputView.printRandomLotto(lottoNumbers);
         for (Integer lottoNumber : lottoNumbers) {
             lottoService.save(new Lottos(lottoNumber));
         }
@@ -70,6 +97,7 @@ public class Controller {
 
     private void saveBonusNumber(Integer bonus_number) {
         lottoService.save(new Lottos(bonus_number));
+        bonus = bonus_number;
     }
 
 

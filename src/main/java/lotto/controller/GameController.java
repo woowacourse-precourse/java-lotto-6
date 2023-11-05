@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoStore;
-import lotto.domain.Statistics;
+import lotto.domain.*;
 import lotto.utility.RandomNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.Map;
 
 public class GameController {
     
@@ -15,7 +15,7 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     RandomNumber randomNumber = new RandomNumber();
-    LottoStore lottoStore = LottoStore.getInstance();
+    WinningLotto winningLotto = new WinningLotto();
 
     public void proceed() {
         init();
@@ -24,15 +24,25 @@ public class GameController {
     }
 
     private void winningLotto() {
-        lottoStore.setWinningLotto(String.valueOf(inputView.printWinningNumber()));
-        lottoStore.setBonusNumber(inputView.printBonusNumber());
+        winningLotto.setWinningLotto(inputView.printWinningNumber());
+        winningLotto.setBonusNumber(inputView.printBonusNumber());
+
+        winningStatistics();
+    }
+
+    private void winningStatistics() {
+        winningLotto.getCollectLottoNumber();
+        Map<Statistics, Integer> winningCount = winningLotto.getWinningCount();
+        outputView.printWinningStatistics(Statistics.statisticsResult(winningCount));
+        outputView.printRateOfReturn(winningLotto.rateOfReturn(amount));
     }
 
     private void LottoPublish() {
+        LottoHistory lottoHistory = new LottoHistory();
         for (int i = 0; i < count; i++) {
             Lotto.createLotto(randomNumber.makeLottoNumber());
         }
-        outputView.printLottoHistory(lottoStore.getLottoHistory());
+        outputView.printLottoHistory(lottoHistory.getLottoHistory());
     }
 
 
@@ -41,4 +51,5 @@ public class GameController {
         count = amount / 1000;
         outputView.printPurchase(count);
     }
+
 }

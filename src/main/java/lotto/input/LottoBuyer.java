@@ -4,12 +4,15 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import lotto.ApplicationContext;
 import lotto.controller.LottoController;
+import lotto.input.convert.ConverToInt;
 
 public class LottoBuyer {
     private LottoController lottoController = ApplicationContext.getController();
 
     public void gernerateTicket(){
-        String wallet = readLine();
+        ConverToInt converToInt = ConverToInt.from(readLine());
+        int wallet = converToInt.getValue();
+
         lottoController.gernerateTicket(wallet);
     }
 

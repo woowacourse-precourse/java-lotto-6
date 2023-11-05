@@ -1,4 +1,4 @@
-package lotto.domain.convert;
+package lotto.input.convert;
 
 import java.util.Arrays;
 import java.util.Collections;

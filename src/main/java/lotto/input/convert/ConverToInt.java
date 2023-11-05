@@ -1,4 +1,4 @@
-package lotto.domain.convert;
+package lotto.input.convert;
 
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;

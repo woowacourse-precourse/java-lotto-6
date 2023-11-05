@@ -63,4 +63,12 @@ class InputValidationTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationLottoWinningNumber(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,1","11,14,16,16,11","2,3,2,2,2", "31,31,31,31,31,31"})
+    public void 당첨번호_중복_검사(String input) {
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationLottoWinningNumber(input));
+    }
 }

@@ -21,6 +21,10 @@ public class LottoNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return this.number;
+    }
+
     private void validate(int number) {
         if (number < LottoEnum.MIN_LOTTO_NUMBER.getValue()
                 || number > LottoEnum.MAX_LOTTO_NUMBER.getValue()) {

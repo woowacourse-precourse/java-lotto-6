@@ -177,7 +177,6 @@ public class Lotto {
         return gameResult;
     }
 
-
     private void lottoResult(List<Integer> lottoResult, String myProfit) {
         System.out.println("당첨통계");
         System.out.println("---");

@@ -27,7 +27,7 @@ public class Output {
         }
     }
 
-    public void printResult(Integer purchaseAmount, HashMap<Integer, Integer> result, double profit) {
+    public void printResult(HashMap<Integer, Integer> result, double profit) {
 
         System.out.println();
         System.out.println(WINNING_RESULT.getMessage());

@@ -41,7 +41,8 @@ public class LottoGameController {
         bonusNumber = input.getBonusNumber();
         getResult(winningNumbers);
         double profit = calculateProfitRate();
-        output.printResult(purchaseAmount, result, profit);
+        output.printResult(result, profit);
+
     }
 
     private List<Lotto> createLotto(Integer purchaseAmount) {

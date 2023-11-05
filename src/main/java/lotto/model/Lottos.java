@@ -10,24 +10,8 @@ import lotto.model.dto.WinningNumDTO;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
-    }
-
-    public static Lottos buyLottos(int numberOfLotto) {
-        List<Lotto> new_lottos = new ArrayList<>();
-        IntStream.range(0, numberOfLotto).forEach(i -> new_lottos.add(createLotto()));
-        return new Lottos(new_lottos);
-    }
-
-    private static Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>(pickRandomNumbers());
-        Collections.sort(numbers);
-        return new Lotto(numbers);
-    }
-
-    private static List<Integer> pickRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public String getPurchasedLottos() {
@@ -42,5 +26,9 @@ public class Lottos {
             rankings.add(lotto.checkResult(winningNumDTO));
         });
         return new Result(rankings);
+    }
+
+    public int getNumberOfLotto() {
+        return lottos.size();
     }
 }

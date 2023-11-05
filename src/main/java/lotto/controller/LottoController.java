@@ -1,5 +1,11 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Result;
 import lotto.model.dto.PayDTO;
@@ -11,13 +17,24 @@ public class LottoController {
     private final Lottos lottos;
 
     public LottoController() {
+        List<Lotto> newLottos = buyLottos();
+        this.lottos = new Lottos(newLottos);
+    }
+    private static List<Lotto> buyLottos() {
         PayDTO payDTO = InputView.readPayment();
-        this.lottos = Lottos.buyLottos(payDTO.getNumberOfLotto());
-        printPurchasedLottos(payDTO.getNumberOfLotto());
+        List<Lotto> new_lottos = new ArrayList<>();
+        IntStream.range(0, payDTO.getNumberOfLotto()).forEach(i -> new_lottos.add(createLotto()));
+        return new_lottos;
+    }
+    private static Lotto createLotto() {
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
-    private void printPurchasedLottos(int numberOfLotto) {
+    public void checkPurchasedLottos() {
         String resultOfPurchasedLottos = lottos.getPurchasedLottos();
+        int numberOfLotto = lottos.getNumberOfLotto();
         OutputView.printPurchasedLottos(numberOfLotto, resultOfPurchasedLottos);
     }
 

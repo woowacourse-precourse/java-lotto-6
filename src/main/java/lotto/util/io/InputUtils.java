@@ -13,6 +13,7 @@ public class InputUtils {
     private static final int COUNT_OF_WINNING_NUMBER = 6;
     private static final int LOTTO_MINIMUM_NUMBER = 1;
     private static final int LOTTO_MAXIMUM_NUMBER = 45;
+    private static final int PRICE_PER_TICKET = 1000;
 
     public static int getPurchaseAmount() {
         String money = Console.readLine();
@@ -43,7 +44,7 @@ public class InputUtils {
         if (!isNumeric(money)) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
-        if (isNumeric(money) && Integer.parseInt(money) % 1000 != 0) {
+        if (isNumeric(money) && Integer.parseInt(money) % PRICE_PER_TICKET != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000단위의 값을 입력해야 합니다.");
         }
     }

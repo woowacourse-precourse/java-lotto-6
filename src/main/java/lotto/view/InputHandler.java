@@ -2,11 +2,24 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.PrintMessages;
+import lotto.validators.InputValidator;
 
 public class InputHandler {
     public static String purchasePrice() {
         System.out.println(PrintMessages.INPUT_PRICE);
-        return Console.readLine();
+        String priceInput;
+
+        while (true) {
+            try {
+                priceInput = Console.readLine();
+                InputValidator.validatePriceInput(priceInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return priceInput;
     }
 
     public static String winningNumber() {

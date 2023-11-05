@@ -18,9 +18,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoGameInputViewTestView {
+public class LottoGameInputViewTest {
 
-    private LottoGameInputViewView lottoGameInputView = new LottoGameInputViewView();
+    private LottoGameInputView lottoGameInputView = new LottoGameInputView();
 
     private OutputStream captor;
 

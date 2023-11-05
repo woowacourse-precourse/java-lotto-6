@@ -16,17 +16,8 @@ public class LottoInputController {
     }
 
     public LottoGameInfo createLottoGame() {
-        long amount;
-        Lottos lottos;
-
-        try {
-            amount = inputView.requestLottoPurchaseAmount();
-            lottos = LottoShop.buyLottos(amount);
-        } catch (IllegalArgumentException e) {
-            inputView.printErrorMessage(e);
-            amount = inputView.requestLottoPurchaseAmount();
-            lottos = LottoShop.buyLottos(amount);
-        }
+        long amount = inputView.requestLottoPurchaseAmount();
+        Lottos lottos = LottoShop.buyLottos(amount);
         return new LottoGameInfo(amount, lottos);
     }
 
@@ -37,25 +28,11 @@ public class LottoInputController {
     }
 
     private Lotto requestWinningLotto() {
-        Lotto lotto;
-        try {
-            lotto = inputView.requestWinningLotto();
-        } catch (IllegalArgumentException e) {
-            inputView.printErrorMessage(e);
-            lotto = inputView.requestWinningLotto();
-        }
-        return lotto;
+        return inputView.requestWinningLotto();
     }
 
     private int requestBonusLottoNumber(Lotto winningLotto) {
-        int bonusNumber;
-        try {
-            bonusNumber = inputView.requestBonusLottoNumber(winningLotto);
-        } catch (IllegalArgumentException e) {
-            inputView.printErrorMessage(e);
-            bonusNumber = inputView.requestBonusLottoNumber(winningLotto);
-        }
-        return bonusNumber;
+        return inputView.requestBonusLottoNumber(winningLotto);
     }
 
 }

@@ -9,12 +9,12 @@ import lotto.validator.LottoNumberInputValidator;
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoGameInputViewView implements InputView {
+public class LottoGameInputView implements InputView {
 
     private final LottoNumberInputValidator numberValidator;
     private final LottoGameInputValidator gameInfoValidator;
 
-    public LottoGameInputViewView() {
+    public LottoGameInputView() {
         this.numberValidator = new LottoNumberInputValidator();
         this.gameInfoValidator = new LottoGameInputValidator();
     }

@@ -1,11 +1,11 @@
-package lotto.domain.profit;
+package lotto.service;
 
 import lotto.constant.LottoConstants;
 import lotto.domain.winning.LottoWinningRanking;
 
 import java.util.EnumMap;
 
-public class LottoProfitCalculator {
+public class LottoProfitCalculatorService {
     public double calculateProfit(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap, int lottoCount) {
         int purchaseAmount = calculatePurchaseAmount(lottoCount);
         int winningAmount = calculateWinningAmount(winningRankingCountMap);

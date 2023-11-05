@@ -2,13 +2,13 @@ package lotto.controller;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.profit.LottoProfitCalculator;
 import lotto.domain.winning.LottoWinningSetPicker;
 import lotto.domain.winning.LottoWinningRanking;
 import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.winning.LottoWinningSet;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
+import lotto.service.LottoProfitCalculatorService;
 import lotto.service.LottoStoreService;
 import lotto.validator.Validator;
 import lotto.view.InputView;
@@ -23,15 +23,15 @@ public class LottoController {
     private final LottoStoreService lottoStoreService;
     private final LottoWinningSetPicker lottoWinningSetPicker;
     private final LottoWinningRankingCalculator lottoWinningRankingCalculator;
-    private final LottoProfitCalculator lottoProfitCalculator;
+    private final LottoProfitCalculatorService lottoProfitCalculatorService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoStoreService lottoStoreService, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculator lottoProfitCalculator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoStoreService lottoStoreService, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculatorService lottoProfitCalculatorService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoStoreService = lottoStoreService;
         this.lottoWinningSetPicker = lottoWinningSetPicker;
         this.lottoWinningRankingCalculator = lottoWinningRankingCalculator;
-        this.lottoProfitCalculator = lottoProfitCalculator;
+        this.lottoProfitCalculatorService = lottoProfitCalculatorService;
     }
 
     public void run() {
@@ -55,7 +55,7 @@ public class LottoController {
     }
 
     private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
-        return lottoProfitCalculator.calculateProfit(winningRankingCountMap, userLottos.getSize());
+        return lottoProfitCalculatorService.calculateProfit(winningRankingCountMap, userLottos.getSize());
     }
 
     private Lottos processLottoPurchaseTransaction() {

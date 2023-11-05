@@ -56,4 +56,12 @@ public class WinningNumber {
     private boolean isEqual(int present, int after) {
         return present == after;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int findNumberByIndex(int index) {
+        return numbers.get(index);
+    }
 }

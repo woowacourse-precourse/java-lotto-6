@@ -8,7 +8,7 @@ import java.util.Objects;
 import static lotto.domain.constants.LottoConstraint.*;
 import static lotto.exception.ErrorMessage.*;
 
-public sealed class Lotto permits Jackpot {
+public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,18 +25,26 @@ public sealed class Lotto permits Jackpot {
         }
     }
 
-    private void validateNumberRange(final List<Integer> numbers) {
+    public void validateNumberRange(final List<Integer> numbers) {
         if (isInvalidRange(numbers)) {
             throw LottoException.from(NUMBER_OUT_OF_RANGE);
         }
     }
 
-    private static boolean isInvalidRange(List<Integer> numbers) {
+    public static boolean isInvalidRange(List<Integer> numbers) {
         return numbers.stream().anyMatch(Lotto::isOutOfRange);
     }
 
     private static boolean isOutOfRange(Integer number) {
-        return number < NUMBER_LOWER_BOUND.getValue() || number > NUMBER_UPPER_BOUND.getValue();
+        return isSmallerThanLowerBound(number) || isBiggerThanUpperBound(number);
+    }
+
+    private static boolean isSmallerThanLowerBound(Integer number) {
+        return number > NUMBER_UPPER_BOUND.getValue();
+    }
+
+    private static boolean isBiggerThanUpperBound(Integer number) {
+        return number < NUMBER_LOWER_BOUND.getValue();
     }
 
     private void validateDuplication(final List<Integer> numbers) {

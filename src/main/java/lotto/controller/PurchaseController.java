@@ -15,6 +15,7 @@ public class PurchaseController {
         LottoNumberResponses lottoResponses =
                 LottoNumberResponses.buildLottoResponses(buyer, lottos);
 
+        OutputView.printNewLine();
         OutputView.printPurchaseCount(lottoResponses);
         OutputView.printPurchaseLottoNumbers(lottoResponses);
 

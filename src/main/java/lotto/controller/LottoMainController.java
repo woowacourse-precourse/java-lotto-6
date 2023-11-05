@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Prize;
 
 public class LottoMainController {
     private LottoMainController() {
@@ -11,6 +11,6 @@ public class LottoMainController {
     public static void start() {
         Buyer buyer = BuyerController.requestPayment();
         Lottos lottos = PurchaseController.purchase(buyer);
-        Lotto jackpotNumber = JackpotController.requestJackpotNumbers();
+        Prize jackpotNumber = PrizeController.requestJackpotNumbers();
     }
 }

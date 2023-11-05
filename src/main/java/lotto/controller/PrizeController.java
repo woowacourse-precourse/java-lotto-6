@@ -1,0 +1,49 @@
+package lotto.controller;
+
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
+import lotto.domain.parser.Parser;
+import lotto.exception.LottoException;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
+import java.util.List;
+
+import static lotto.view.constants.PrintMessage.REQUEST_JACKPOT_BONUS_NUMBER;
+import static lotto.view.constants.PrintMessage.REQUEST_JACKPOT_NUMBER;
+
+public class PrizeController {
+    private PrizeController() {
+    }
+
+    public static Prize requestJackpotNumbers() {
+        OutputView.printMessage(REQUEST_JACKPOT_NUMBER);
+        Lotto prizeNumbers = readJackpotNumbers();
+
+        OutputView.printMessage(REQUEST_JACKPOT_BONUS_NUMBER);
+        return requestBonusNumber(prizeNumbers);
+    }
+
+    public static Prize requestBonusNumber(Lotto prizeNumbers) {
+        try {
+            final String bonusNumberInput = InputView.readLine();
+            return Prize.of(prizeNumbers, bonusNumberInput);
+        } catch (LottoException exception) {
+            OutputView.println(exception.getMessage());
+            return requestBonusNumber(prizeNumbers);
+        }
+    }
+
+    private static Lotto readJackpotNumbers() {
+        try {
+            final String jackpotNumbers = InputView.readLine();
+            List<Integer> numbers = Parser.splitByDelimiter(jackpotNumbers);
+
+            OutputView.printNewLine();
+            return new Lotto(numbers);
+        } catch (LottoException exception) {
+            OutputView.println(exception.getMessage());
+            return readJackpotNumbers();
+        }
+    }
+}

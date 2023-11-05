@@ -16,14 +16,14 @@ public class Buyer {
     private final int ticketCount;
 
     private Buyer(final String paymentInput) {
-        int convertedPayment = Parser.parseStringToInt(paymentInput);
+        int parsedPayment = Parser.parseStringToInt(paymentInput);
 
-        validateMinimumPayment(convertedPayment);
-        validateMaximumPayment(convertedPayment);
-        validateUnitPrice(convertedPayment);
+        validateMinimumPayment(parsedPayment);
+        validateMaximumPayment(parsedPayment);
+        validateUnitPrice(parsedPayment);
 
-        this.payment = convertedPayment;
-        this.ticketCount = calculateTicketCount(convertedPayment);
+        this.payment = parsedPayment;
+        this.ticketCount = calculateTicketCount(parsedPayment);
     }
 
     public static Buyer from(final String paymentInput) {

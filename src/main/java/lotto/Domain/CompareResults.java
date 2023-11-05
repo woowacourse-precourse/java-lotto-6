@@ -43,4 +43,24 @@ public class CompareResults {
         return matchingCount;
     }
 
+    public static long calculatePrizeAmount(int[] matchingCounts) {
+        long prizeAmount = 0;
+
+        if (matchingCounts[6] > 0) {
+            prizeAmount += matchingCounts[6] * 2_000_000_000L;
+        }
+        if (matchingCounts[5] > 0 && matchingCounts[5] == 1 && matchingCounts[6] == 0) {
+            prizeAmount += matchingCounts[5] * 30_000_000L;
+        }
+        if (matchingCounts[5] > 1 && matchingCounts[6] == 0) {
+            prizeAmount += matchingCounts[5] * 1_500_000L;
+        }
+        if (matchingCounts[4] > 0 && matchingCounts[6] == 0) {
+            prizeAmount += matchingCounts[4] * 50_000L;
+        }
+        if (matchingCounts[3] > 0 && matchingCounts[6] == 0) {
+            prizeAmount += matchingCounts[3] * 5_000L;
+        }
+        return prizeAmount;
+    }
 }

@@ -1,6 +1,10 @@
 package lotto.model.exception;
 
 import static lotto.model.MagicVariable.LOTTO_PRICE;
+import static lotto.model.ErrorMessage.PRICE_ERROR_MESSAGE;
+import static lotto.model.ErrorMessage.LOTTO_PRICE_TYPE_ERROR_MESSAGE;
+import static lotto.model.ErrorMessage.LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE;
+
 
 public class LottoProcessException extends IllegalArgumentException {
     private LottoProcessException(String message) {
@@ -9,22 +13,19 @@ public class LottoProcessException extends IllegalArgumentException {
 
     public static void checkLottoPriceRangeException(int money) {
         if (money % LOTTO_PRICE.getNumber() != 0) {
-            String PRICE_ERROR_MESSAGE = "[ERROR] 로또 구입 금액은 " + LOTTO_PRICE.getNumber() + "원 단위의 양수여야 합니다.";
-            throw new LottoProcessException(PRICE_ERROR_MESSAGE);
+            throw new LottoProcessException(PRICE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
     public static void checkLottoPriceTypeException(String userMoney) {
         if (!userMoney.matches("[+-]?\\d*(\\.\\d+)?")) {
-            String LOTTO_PRICE_TYPE_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자여야 합니다.";
-            throw new LottoProcessException(LOTTO_PRICE_TYPE_ERROR_MESSAGE);
+            throw new LottoProcessException(LOTTO_PRICE_TYPE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
     public static void checkLottoPriceNegativeException(String userMoney) {
         if (userMoney.contains("-")) {
-            String LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE = "[ERROR] 구입 금액은 양수여야 합니다.";
-            throw new LottoProcessException(LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE);
+            throw new LottoProcessException(LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 }

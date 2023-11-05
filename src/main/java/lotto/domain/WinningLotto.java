@@ -22,6 +22,10 @@ public class WinningLotto {
             .count();
     }
 
+    public boolean isBonusMatched(List<Number> numbers) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validateNoDuplicatedWinningNumbers(List<Number> winningNumbers,
         Number bonusNumber) {
         Set<Number> set = new HashSet<>(winningNumbers);

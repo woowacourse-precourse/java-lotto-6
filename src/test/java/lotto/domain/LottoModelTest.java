@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 
 class LottoModelTest {
-    private final List<Integer> WINNING_NUMS = Arrays.asList(1,2,3,4,5,6);
+    private final List<Integer> WINNING_NUMS = Arrays.asList(1, 2, 3, 4, 5, 6);
     private final int CHECK_BONUS = 999;
     private final int BONUS_NUM = 40;
 
@@ -32,9 +32,10 @@ class LottoModelTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"14.234,14.2", "14.286,14.3"})
-    void computeRate_소숫점_둘째자리에서_반올림_확인(double test, String expect) {
-        assertThat(lottoModel.computeRate(test)).isEqualTo(expect);
+    @CsvSource({"5000,8000,62.5", "10000,8000,125.0"})
+    void computeRate_소숫점_둘째자리에서_반올림_확인(int totalEarned, int purchased, String expect) {
+        assertThat(lottoModel.computeRate(totalEarned,purchased))
+                .isEqualTo(expect);
     }
 
     @ParameterizedTest
@@ -75,7 +76,7 @@ class LottoModelTest {
         expect.put(4, 1);
         expect.put(5, 1);
         expect.put(6, 1);
-        assertThat(lottoModel.compareLotto(WINNING_NUMS,new MockLotto(List.of(1,2,3,4,5,6)),BONUS_NUM))
+        assertThat(lottoModel.compareLotto(WINNING_NUMS, new MockLotto(List.of(1, 2, 3, 4, 5, 6)), BONUS_NUM))
                 .isEqualTo(expect);
     }
 
@@ -89,7 +90,7 @@ class LottoModelTest {
         expect.put(5, 1);
         expect.put(6, 0);
         expect.put(BONUS_NUM, 1);
-        assertThat(lottoModel.compareLotto(WINNING_NUMS,new MockLotto(List.of(1,2,3,4,5,BONUS_NUM)),BONUS_NUM))
+        assertThat(lottoModel.compareLotto(WINNING_NUMS, new MockLotto(List.of(1, 2, 3, 4, 5, BONUS_NUM)), BONUS_NUM))
                 .isEqualTo(expect);
     }
 
@@ -102,7 +103,7 @@ class LottoModelTest {
         expect.put(4, 1);
         expect.put(5, 1);
         expect.put(6, 0);
-        assertThat(lottoModel.compareLotto(WINNING_NUMS,new MockLotto(List.of(1,2,3,4,5,16)),BONUS_NUM))
+        assertThat(lottoModel.compareLotto(WINNING_NUMS, new MockLotto(List.of(1, 2, 3, 4, 5, 16)), BONUS_NUM))
                 .isEqualTo(expect);
     }
 
@@ -115,7 +116,7 @@ class LottoModelTest {
         expect.put(4, 1);
         expect.put(5, 0);
         expect.put(6, 0);
-        assertThat(lottoModel.compareLotto(WINNING_NUMS,new MockLotto(List.of(1,2,3,4,15,16)),BONUS_NUM))
+        assertThat(lottoModel.compareLotto(WINNING_NUMS, new MockLotto(List.of(1, 2, 3, 4, 15, 16)), BONUS_NUM))
                 .isEqualTo(expect);
     }
 
@@ -128,67 +129,67 @@ class LottoModelTest {
         expect.put(4, 0);
         expect.put(5, 0);
         expect.put(6, 0);
-        assertThat(lottoModel.compareLotto(WINNING_NUMS,new MockLotto(List.of(1,2,3,14,15,16)),BONUS_NUM))
+        assertThat(lottoModel.compareLotto(WINNING_NUMS, new MockLotto(List.of(1, 2, 3, 14, 15, 16)), BONUS_NUM))
                 .isEqualTo(expect);
     }
 
     @Test
     void makeWinningTable_당첨여부_판단_1등() {
-        HashMap<Rewards,Integer> expect = new HashMap<>();
+        HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 1);
         expect.put(Rewards.SECOND, 0);
         expect.put(Rewards.THIRD, 0);
         expect.put(Rewards.FOURTH, 0);
         expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(6,false))
+        assertThat(lottoModel.makeWinningTable(6, false))
                 .isEqualTo(expect);
     }
 
     @Test
     void makeWinningTable_당첨여부_판단_2등() {
-        HashMap<Rewards,Integer> expect = new HashMap<>();
+        HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 0);
         expect.put(Rewards.SECOND, 1);
         expect.put(Rewards.THIRD, 0);
         expect.put(Rewards.FOURTH, 0);
         expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(5,true))
+        assertThat(lottoModel.makeWinningTable(5, true))
                 .isEqualTo(expect);
     }
 
     @Test
     void makeWinningTable_당첨여부_판단_3등() {
-        HashMap<Rewards,Integer> expect = new HashMap<>();
+        HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 0);
         expect.put(Rewards.SECOND, 0);
         expect.put(Rewards.THIRD, 1);
         expect.put(Rewards.FOURTH, 0);
         expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(5,false))
+        assertThat(lottoModel.makeWinningTable(5, false))
                 .isEqualTo(expect);
     }
 
     @Test
     void makeWinningTable_당첨여부_판단_4등() {
-        HashMap<Rewards,Integer> expect = new HashMap<>();
+        HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 0);
         expect.put(Rewards.SECOND, 0);
         expect.put(Rewards.THIRD, 0);
         expect.put(Rewards.FOURTH, 1);
         expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(4,false))
+        assertThat(lottoModel.makeWinningTable(4, false))
                 .isEqualTo(expect);
     }
 
     @Test
     void makeWinningTable_당첨여부_판단_5등() {
-        HashMap<Rewards,Integer> expect = new HashMap<>();
+        HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 0);
         expect.put(Rewards.SECOND, 0);
         expect.put(Rewards.THIRD, 0);
         expect.put(Rewards.FOURTH, 0);
         expect.put(Rewards.FIFTH, 1);
-        assertThat(lottoModel.makeWinningTable(3,false))
+        assertThat(lottoModel.makeWinningTable(3, false))
                 .isEqualTo(expect);
     }
 
@@ -200,10 +201,10 @@ class LottoModelTest {
     }
 
 
-    class MockLotto extends Lotto{
+    class MockLotto extends Lotto {
         private List<Integer> numbers;
 
-        MockLotto(List<Integer> numbers){
+        MockLotto(List<Integer> numbers) {
             super(numbers);
         }
     }

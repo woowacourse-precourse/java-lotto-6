@@ -28,7 +28,6 @@ public enum Rank {
         return Rank.NOTHING;
     }
 
-
     public int getMatchCount(){
         return matchCount;
     }

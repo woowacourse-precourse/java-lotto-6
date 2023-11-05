@@ -5,25 +5,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.model.dto.PayDTO;
 import lotto.model.dto.WinningNumDTO;
 
-public class LottoService {
+public class Lottos {
     private final List<Lotto> lottos;
 
-    private LottoService(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static LottoService buyLottos(PayDTO payDTO) {
-        List<Lotto> lottos = create(payDTO.getNumberOfLotto());
-        return new LottoService(lottos);
-    }
-
-    private static List<Lotto> create(int numberOfLotto) {
+    public static Lottos of(int numberOfLotto) {
         List<Lotto> new_lottos = new ArrayList<>();
         IntStream.range(0, numberOfLotto).forEach(i -> new_lottos.add(createLotto()));
-        return new_lottos;
+        return new Lottos(new_lottos);
     }
 
     private static Lotto createLotto() {

@@ -22,10 +22,8 @@ public class Output {
         // continue...
     }
 
-    public static void returnRate(int totalPrize, int purchaseMoney) {
-        double returnRate = 100.0 * (totalPrize / purchaseMoney);
+    public static void returnRate(double returnRate) {
         System.out.println(Math.round(returnRate));
-        // continue...
     }
 
 }

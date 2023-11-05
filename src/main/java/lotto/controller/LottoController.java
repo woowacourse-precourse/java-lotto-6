@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
@@ -25,7 +26,7 @@ public class LottoController {
     public void run() {
         createPurchaseAmount();
         purchase();
-        createWinningNumber();
+        createWinningCombination();
     }
 
     private void createPurchaseAmount() {
@@ -39,9 +40,13 @@ public class LottoController {
         outputView.printLottos(lottos);
     }
 
-    private void createWinningNumber() {
+    private void createWinningCombination() {
         outputView.printWinningNumbersRequest();
         final WinningNumbers winningNumbers = inputManager.readWinningNumbers();
-        lottoService.saveWinningNumbers(winningNumbers);
+
+        outputView.printBonusNumberRequest();
+        final BonusNumber bonusNumber = inputManager.readBonusNumber();
+
+        lottoService.saveWinningCombination(winningNumbers, bonusNumber);
     }
 }

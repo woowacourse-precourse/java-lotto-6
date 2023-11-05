@@ -1,7 +1,9 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningCombination;
 import lotto.domain.WinningNumbers;
 import lotto.repository.DomainRepository;
 import lotto.utils.LottoPublisher;
@@ -28,7 +30,9 @@ public class LottoService {
         return lottos;
     }
 
-    public void saveWinningNumbers(final WinningNumbers winningNumbers) {
-        domainRepository.saveWinningNumbers(winningNumbers);
+    public void saveWinningCombination(
+            final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
+        domainRepository.saveWinningCombination(
+                new WinningCombination(winningNumbers, bonusNumber));
     }
 }

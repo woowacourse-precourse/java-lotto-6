@@ -3,7 +3,7 @@ package lotto.repository;
 import lotto.constant.ErrorMessage;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningCombination;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -12,7 +12,7 @@ public class DomainRepository {
 
     private PurchaseAmount purchaseAmount;
     private Lottos lottos;
-    private WinningNumbers winningNumbers;
+    private WinningCombination winningCombination;
 
     public void saveLottos(final Lottos lottos) {
         this.lottos = lottos;
@@ -30,12 +30,12 @@ public class DomainRepository {
         return get(() -> this.purchaseAmount);
     }
 
-    public void saveWinningNumbers(final WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public void saveWinningCombination(final WinningCombination winningCombination) {
+        this.winningCombination = winningCombination;
     }
 
-    public WinningNumbers getWinningNumbers() {
-        return get(() -> this.winningNumbers);
+    public WinningCombination getWinningCombination() {
+        return get(() -> this.winningCombination);
     }
 
     private <T> T get(final Supplier<T> supplier) {

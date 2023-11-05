@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.Validation;
+
 public class LottoPurchaseManager {
 
     private static final int LOTTO_TICKET_PRICE = 1000;
@@ -9,7 +11,7 @@ public class LottoPurchaseManager {
 
     public LottoPurchaseManager(int purchaseAmount,
                                 int lottoTicketCount) {
-
+        Validation.validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         this.lottoTicketCount = lottoTicketCount;
     }

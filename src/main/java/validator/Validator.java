@@ -29,38 +29,31 @@ public class Validator {
 
     public void checkDividedByThousand(int amount) throws IllegalArgumentException {
         if (Math.floorMod(amount, THOUSAND) != ZERO) {
-            throw new IllegalArgumentException( ERROR_MESSAGE+"1,000원의 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "1,000원의 단위로 입력해 주세요.");
         }
     }
 
     public void checkStartOrEndWithComma(String input) throws IllegalArgumentException {
         if (input.startsWith(",") || input.endsWith(",")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE+"잘못된 입력 형식입니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "잘못된 입력 형식입니다.");
         }
     }
 
     public void checkCount(List<String> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE+"입력 갯수가 잘못되었습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
         }
     }
 
-    public void checkDuplicateNumber(List<Integer> numbers) throws IllegalArgumentException {
-        Set<Integer> uniques = new HashSet<Integer>();
-        for (Integer number : numbers) {
-            if (!uniques.add(number)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE+"중복된 값이 있습니다.");
-            }
+    public void checkDuplicateNumber(List<Integer> numbers, int number) throws IllegalArgumentException {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 값이 있습니다.");
         }
-
     }
 
     public void checkNumberRange(int number) throws IllegalArgumentException {
         if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException(ERROR_MESSAGE+"값이 범위를 벗어납니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
         }
-
     }
-
-
 }

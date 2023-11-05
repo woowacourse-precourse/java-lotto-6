@@ -42,9 +42,7 @@ public class Service {
         validator.checkStartOrEndWithComma(input);
         List<String> splitNumbers = Utility.splitByComma(input);
         validator.checkCount(splitNumbers);
-        List<Integer> winNumbers = generateWinNumbers(splitNumbers);
-        validator.checkDuplicateNumber(winNumbers);
-        return winNumbers;
+        return generateWinNumbers(splitNumbers);
     }
 
     private List<Integer> generateWinNumbers(List<String> splitNumbers) {
@@ -53,8 +51,17 @@ public class Service {
             validator.checkIsNumber(splitNumber);
             int number = Integer.parseInt(splitNumber);
             validator.checkNumberRange(number);
+            validator.checkDuplicateNumber(winNumbers,number);
             winNumbers.add(number);
         }
         return winNumbers;
+    }
+
+    public int getBonusNumberByUserInput(String input, List<Integer> winNumbers) {
+        validator.checkIsNumber(input);
+        int number = Integer.parseInt(input);
+        validator.checkNumberRange(number);
+        validator.checkDuplicateNumber(winNumbers, number);
+        return number;
     }
 }

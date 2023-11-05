@@ -25,6 +25,7 @@ public class WinningNumbers {
 
     public int validate(String input) {
         int oneNum = Validation.validateInteger(input);
+        Validation.validatePositiveNumber(oneNum);
         Validation.validateNumberRange(oneNum);
         return oneNum;
     }

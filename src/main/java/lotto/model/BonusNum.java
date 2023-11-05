@@ -15,8 +15,8 @@ public class BonusNum {
     }
     public int validate(String input, Lotto lotto) {
         int validNum = Validation.validateInteger(input);
-        Validation.validateBonusNum(validNum);
-        lotto.validateBonusNumDuplicated(validNum);
+        Validation.validateNumberRange(validNum);
+        Validation.validateBonusNumDuplicated(validNum, lotto.getWinningNumbers());
         return validNum;
     }
 }

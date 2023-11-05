@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.exception.ErrorMessage.*;
+
 public class Lotto {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -18,7 +20,7 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
@@ -28,13 +30,13 @@ public class Lotto {
                 .count();
 
         if (distinctNumber < numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         if (isWrongRangeNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 

@@ -69,6 +69,9 @@
         - 프로그램내의 상수들을 관리하는 클래스
     - [ ] LottoHandler
         - 로또 당첨 상태를 Enum으로 관리하는 클래스
+        - 일치하는 개수를 반환하는 `getCount` 메서드 구현
+        - 추가적인 문장을 반환하는 `getMessage` 메서드 구현
+        - 당첨 금액을 반환하는 `getPrize` 메서드 구현
 
 
 - [ ] service Package

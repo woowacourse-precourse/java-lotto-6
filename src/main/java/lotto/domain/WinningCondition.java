@@ -17,8 +17,7 @@ public class WinningCondition {
     }
 
     public double calculateTotalReturn(int money, Map<Rank, Integer> winningResult) {
-        double totalReward = calculateTotalReward(winningResult);
-        return 0;
+        return (calculateTotalReward(winningResult) / money) * 100;
     }
 
     private double calculateTotalReward(Map<Rank, Integer> winningResult) {

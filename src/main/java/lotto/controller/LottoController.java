@@ -45,6 +45,17 @@ public class LottoController {
         return playerLottoAmount.calculateLottoCount();
     }
 
+    public WinningResult validateBonus() {
+        Lotto lotto = new Lotto(InputView.inputLottoWinningNum());
+        List<Integer> winningNumber = lotto.getLottoNumbers();
+
+        int ball = InputView.inputBonusNumber();
+        lotto.validateBonusNumber(winningNumber, ball);
+        winningResult = new WinningResult(new Lotto(winningNumber), ball);
+
+        return winningResult;
+    }
+
 }
 
 

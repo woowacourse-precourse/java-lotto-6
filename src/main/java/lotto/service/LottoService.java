@@ -31,7 +31,7 @@ public class LottoService {
     }
 
     private void nowLottoTicketHasBonusNumber(List<LottoTicket> lottoTickets, Integer bonusNumber, int count) {
-        if (lottoTickets.get(count).getNumbers().contains(bonusNumber)) {
+        if (lottoTickets.get(count).getSameCount()==5 && lottoTickets.get(count).getNumbers().contains(bonusNumber) ) {
             lottoTickets.get(count).hasBonus();
         }
     }

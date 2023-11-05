@@ -16,12 +16,23 @@ public class Money {
     }
 
     public static Money of(String money) {
+        validateBlink(money);
         validateNumeric(money);
         return of(Integer.valueOf(money.trim()));
     }
 
     public Integer calcBillCount() {
         return money / MINIMUM_AMOUNT;
+    }
+
+    private static void validateBlink(String money) {
+        if (isEmpty(money)) {
+            throw new IllegalArgumentException("빈 문자를 입력하지 말아주세요");
+        }
+    }
+
+    private static boolean isEmpty(String money) {
+        return money.isEmpty();
     }
 
     private static void validateNumeric(String money) {

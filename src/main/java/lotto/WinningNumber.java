@@ -15,4 +15,8 @@ public class WinningNumber {
         Validator.validateIsDuplicationExists(numbers);
         this.numbers = numbers;
     }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

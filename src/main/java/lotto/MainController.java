@@ -19,7 +19,7 @@ public class MainController {
         printPurchasedLottos(lottos);
 
         WinningNumber winningNumber = getWinningNumber();
-
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -27,7 +27,7 @@ public class MainController {
             return inputController.getPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getPurchaseAmount();
+            return this.getPurchaseAmount();
         }
     }
 
@@ -47,10 +47,21 @@ public class MainController {
 
     private WinningNumber getWinningNumber() {
         try {
-            return inputController.getWinningNumber();
+            List<Integer> numbers = inputController.getWinningNumber();
+            return WinningNumber.from(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWinningNumber();
+            return this.getWinningNumber();
+        }
+    }
+
+    private BonusNumber getBonusNumber(WinningNumber winningNumber) {
+        try {
+            int bonusNumber = inputController.getBonusNumber();
+            return new BonusNumber(bonusNumber, winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.getBonusNumber(winningNumber);
         }
     }
 }

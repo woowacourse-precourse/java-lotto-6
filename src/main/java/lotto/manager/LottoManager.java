@@ -55,5 +55,6 @@ public class LottoManager {
             List<Integer> winningStatus = winningCalculator.calculator(lotto.getNumbers());
             winningRecord.recorder(winningStatus.get(0), winningStatus.get(1));
         }
+        outputView.printWinningStatistics(winningRecord.getAllPrizeCount());
     }
 }

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class WinningRecord {
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;
@@ -44,5 +47,9 @@ public class WinningRecord {
 
     public int getFifthPrizeCount() {
         return fifthPrizeCount;
+    }
+
+    public List<Integer> getAllPrizeCount() {
+        return Arrays.asList(firstPrizeCount, secondPrizeCount, thirdPrizeCount, fourthPrizeCount, fifthPrizeCount);
     }
 }

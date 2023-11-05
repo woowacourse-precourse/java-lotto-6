@@ -37,7 +37,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -56,7 +56,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(1);
@@ -74,7 +74,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -92,7 +92,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -110,7 +110,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -128,7 +128,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = MatchCheck.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);

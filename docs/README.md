@@ -67,7 +67,7 @@
 
 ### controller
 - LottoController
-    - 로또 구입 요청을 받는 기능
+    - 로또 구매 요청을 받고 결과를 반환하는 기능
 ### service
 - LottoService
     - 로또 구입 요청에 따라 로또를 구입하는 기능

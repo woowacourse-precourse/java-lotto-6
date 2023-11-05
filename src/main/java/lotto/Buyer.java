@@ -17,4 +17,8 @@ public class Buyer {
         myLotteries = lottoMachine.publishLotteries(purchaseAmount);
     }
 
+    public double calculateReturnRate(long prizeSum) {
+        double seedMoney = 1000 * purchaseAmount;
+        return (double) Math.round((prizeSum / seedMoney) * 1000) / 10;
+    }
 }

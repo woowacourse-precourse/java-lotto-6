@@ -9,6 +9,7 @@ public class BonusNumberVerifier implements Verifier{
     @Override
     public void check(String input) {
         checkNumeric(input);
+        checkTypeRange(input);
         checkRange(input);
 
     }
@@ -18,6 +19,14 @@ public class BonusNumberVerifier implements Verifier{
             new BigInteger(input);
         } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMERIC);
+        }
+    }
+
+    private void checkTypeRange(String input){
+        try{
+            Long.parseLong(input);
+        }catch(Exception e){
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
     }
 

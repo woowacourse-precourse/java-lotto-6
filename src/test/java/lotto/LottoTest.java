@@ -3,7 +3,7 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.List;
 

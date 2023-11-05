@@ -2,18 +2,22 @@ package lotto.domain;
 
 import lotto.Lotto;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
 
-    private final List<Lotto> numbers;
+    private final List<Lotto> tickets;
 
-    private User(List<Lotto> numbers) {
-        this.numbers = numbers;
+    private User(List<Lotto> tickets) {
+        this.tickets = tickets;
     }
 
-    public static User of(List<Lotto> numbers) {
-        return new User(numbers);
+    public static User of(List<Lotto> tickets) {
+        return new User(tickets);
+    }
+
+    public List<Lotto> getTickets() {
+        return Collections.unmodifiableList(tickets);
     }
 }

@@ -44,5 +44,9 @@ public class LotteryGame {
         return machine.makeLuckyTicket();
     }
 
+    private LotteryResult match(User user, LuckyTicket ticket) {
+        return null;
+    }
+
 
 }

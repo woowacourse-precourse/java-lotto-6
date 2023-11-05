@@ -38,7 +38,7 @@ public class Result {
         return total;
     }
 
-    public double calculateProfit(int amount) {
+    public double calculatePrizeProfit(int amount) {
         int money = amount * MIN_MONEY.getValue();
         return (calculatePrizeMoney() / money) * 100;
     }

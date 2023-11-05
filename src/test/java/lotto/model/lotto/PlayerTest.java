@@ -12,5 +12,7 @@ class PlayerTest {
         PlayerAmount playerAmount = PlayerAmount.getInstance(1000);
         Player player = Player.from(playerAmount);
         assertThat(player).isNotNull();
+        assertThat(player.getPlayerAmount()).isEqualTo(1);
+        assertThat(player.getPlayerLotto()).hasSize(1);
     }
 }

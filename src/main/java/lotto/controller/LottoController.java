@@ -60,6 +60,6 @@ public class LottoController {
         for (Prize prize : Prize.getPrize()) {
             OutputView.printPrizeLotto(prize.formatMessage(result.getPrizeCount(prize)));
         }
-        OutputView.printPrizeRate(result.calculateProfit(player.getPlayerAmount()));
+        OutputView.printPrizeRate(result.calculatePrizeProfit(player.getPlayerAmount()));
     }
 }

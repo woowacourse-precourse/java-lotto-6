@@ -52,7 +52,7 @@ class LottoTest {
 
     @DisplayName("로또 보너스 번호가 일치하는지 테스트한다.")
     @Test
-    void countMatchNumber() {
+    void isMatchNumber() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 3;
 

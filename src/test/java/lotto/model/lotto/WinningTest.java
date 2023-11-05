@@ -16,6 +16,8 @@ class WinningTest {
         int bonus = 10;
         Winning winning = Winning.of(lotto, bonus);
         assertThat(winning).isNotNull();
+        assertThat(winning.getLotto()).isEqualTo(lotto);
+        assertThat(winning.getBonus()).isEqualTo(bonus);
     }
 
     @DisplayName("로또 당첨 번호와 보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.")

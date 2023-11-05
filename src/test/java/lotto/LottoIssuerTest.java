@@ -10,7 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoIssuerTest {
 
-    private static final Integer wantedNumberOfTickets = 4;
+    private static final Integer PAID_AMOUNT = 4000;
+    private static final Integer PRICE_PER_TICKET = 1000;
     @BeforeEach
     void setUp() {
         LottoIssuer lottoIssuer = new LottoIssuer(new RandomLottoNumberGenerator());
@@ -21,12 +22,13 @@ class LottoIssuerTest {
     void issue() {
         //given
         LottoIssuer lottoIssuer = new LottoIssuer(new RandomLottoNumberGenerator());
+        Integer numberOfLottoTickets = PAID_AMOUNT / PRICE_PER_TICKET;
 
         //when
-        LottoTickets issuedLottos = lottoIssuer.issue(wantedNumberOfTickets);
+        LottoTickets issuedLottos = lottoIssuer.issue(new PaidAmount(PAID_AMOUNT));
 
         //then
         assertThat(issuedLottos.getLottos().size())
-                .isEqualTo(wantedNumberOfTickets);
+                .isEqualTo(numberOfLottoTickets);
     }
 }

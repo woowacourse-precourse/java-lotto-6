@@ -10,5 +10,6 @@ public class Application {
     public static void main(String[] args) {
         int numberOfLotto = lottoHandler.lottoCountForPurchasePrice();
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
+        Lotto winningLotto = lottoHandler.winningLotto();
     }
 }

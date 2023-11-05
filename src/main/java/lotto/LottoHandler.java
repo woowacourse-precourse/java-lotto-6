@@ -14,6 +14,23 @@ public class LottoHandler {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_PRICE = 1000;
 
+    public int lottoCountForPurchasePrice() {
+        int lottoTicket = 0;
+        boolean validPrice = false;
+
+        while (!validPrice) {
+            try {
+                OutputHandler.printMessage("구입금액을 입력해 주세요.");
+                lottoTicket = calculateLottoTicketCount(Console.readLine());
+                validPrice = true;
+            } catch (IllegalArgumentException e) {
+                OutputHandler.printMessage(e.getMessage());
+            }
+        }
+        OutputHandler.printLineBreakMessage(lottoTicket + "개를 구매했습니다.");
+        return lottoTicket;
+    }
+
     public int calculateLottoTicketCount(String receivedPurchasePrice) {
         int purchasePrice;
         try {
@@ -49,20 +66,31 @@ public class LottoHandler {
         return new Lotto(numbers);
     }
 
-    public int lottoCountForPurchasePrice() {
-        int lottoTicket = 0;
-        boolean validPrice = false;
-
-        while (!validPrice) {
+    public Lotto winningLotto() {
+        boolean validWinning = false;
+        Lotto winningLotto = null;
+        while (!validWinning) {
             try {
-                OutputHandler.printMessage("구입금액을 입력해 주세요.");
-                lottoTicket = calculateLottoTicketCount(Console.readLine());
-                validPrice = true;
+                OutputHandler.printLineBreakMessage("당첨 번호를 입력해 주세요.");
+                winningLotto = receiveWinningLotto(Console.readLine());
+                validWinning = true;
             } catch (IllegalArgumentException e) {
                 OutputHandler.printMessage(e.getMessage());
             }
         }
-        OutputHandler.printLineBreakMessage(lottoTicket + "개를 구매했습니다.");
-        return lottoTicket;
+        return winningLotto;
+    }
+
+    public Lotto receiveWinningLotto(String receivedWinningLotto) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        String[] separatedWinningLotto = receivedWinningLotto.split(",");
+        try {
+            for (String winningLotto : separatedWinningLotto) {
+                winningNumbers.add(Integer.parseInt(winningLotto));
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+        return new Lotto(winningNumbers);
     }
 }

@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.validator.constants.ExceptionMessage.*;
+import static lotto.validator.constants.Pattern.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +23,7 @@ public class LottoResult {
     }
 
     private List<Integer> splitWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+        return Arrays.stream(winningNumbers.split(NUMBER_SPLITOR.pattern()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
@@ -42,16 +45,16 @@ public class LottoResult {
 
     public void checkBonusNumberDuplicateWinningNumbers(String bonusNumber) {
         if (winningNumbers.contains(Integer.parseInt(bonusNumber))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATES_WINNING_NUMBER_ERROR.message());
         }
     }
 
     public List<Integer> showLottoResults(List<Lotto> lottos) {
         List<Integer> lottoResults = new ArrayList<>(Collections.nCopies(6, 0));
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             int rank = calculateLottoResult(lotto).getRank();
             int currentValue = lottoResults.get(rank);
-            lottoResults.set(rank, currentValue+1);
+            lottoResults.set(rank, currentValue + 1);
         }
         return lottoResults;
     }
@@ -69,7 +72,7 @@ public class LottoResult {
 
     private int countMatchingNumbers(Lotto lotto) {
         int matchingWinningNumberCount = 0;
-        for(int winningNumber : winningNumbers) {
+        for (int winningNumber : winningNumbers) {
             if (lotto.contains(winningNumber)) {
                 matchingWinningNumberCount++;
             }

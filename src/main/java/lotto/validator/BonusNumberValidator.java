@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.validator.constants.ExceptionMessage.*;
+
+import lotto.model.constans.LottoConstants;
+
 public class BonusNumberValidator {
     public void validate(String bonusNumber) {
         checkBlank(bonusNumber);
@@ -9,7 +13,7 @@ public class BonusNumberValidator {
 
     private void checkBlank(String bonusNumber) {
         if (isBlank(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력하세요. 값이 null 또는 빈 값일 수 없습니다.");
+            throw new IllegalArgumentException(BLANK_ERROR.message());
         }
     }
 
@@ -18,8 +22,8 @@ public class BonusNumberValidator {
     }
 
     private void checkDigit(String bonusNumber) {
-        if(isNotDigit(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+        if (isNotDigit(bonusNumber)) {
+            throw new IllegalArgumentException(NOT_NUMERIC_ERROR.message());
         }
     }
 
@@ -29,13 +33,13 @@ public class BonusNumberValidator {
     }
 
     private void checkValidRangeNumber(String bonusNumber) {
-        if(isInvalidRangeNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45사이의 숫자를 입력해야 합니다");
+        if (isInvalidRangeNumber(bonusNumber)) {
+            throw new IllegalArgumentException(LOTTO_ERROR.message());
         }
     }
 
     private boolean isInvalidRangeNumber(String bonusNumber) {
         int number = Integer.parseInt(bonusNumber);
-        return (number <= 0 || 45 < number);
+        return (number < LottoConstants.MIN_LOTTO_NUMBER.value() || LottoConstants.MAX_LOTTO_NUMBER.value() < number);
     }
 }

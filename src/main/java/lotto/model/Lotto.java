@@ -1,10 +1,12 @@
 package lotto.model;
 
 import static lotto.model.constans.LottoConstants.*;
+import static lotto.validator.constants.ExceptionMessage.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.validator.constants.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isInvalidSize(numbers) || isInvalidRange(numbers) || hasDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 1에서 45사이의 중복되지 않은 6개의 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException(LOTTO_ERROR.message());
         }
     }
 
@@ -26,7 +28,7 @@ public class Lotto {
 
     private boolean isInvalidRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_LOTTO_NUMBER.value() || 45 < MAX_LOTTO_NUMBER.value()) {
+            if (number < MIN_LOTTO_NUMBER.value() || MAX_LOTTO_NUMBER.value() < number) {
                 return true;
             }
         }

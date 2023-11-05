@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.model.constans.LottoConstants.*;
+import static lotto.validator.constants.ExceptionMessage.*;
+import static lotto.validator.constants.Pattern.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,33 +19,33 @@ public class WinningNumbersValidator {
 
     private void isBlank(String winningNumbers) {
         if (winningNumbers == null || winningNumbers.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력하세요. 값이 null 또는 빈 값일 수 없습니다.");
+            throw new IllegalArgumentException(BLANK_ERROR.message());
         }
     }
 
     private void isNotValidWinningNumbersPattern(String winningNumbers) {
-        if (!winningNumbers.matches("^(\\d+(,\\d+)*)?$")) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자를 ,로 구분하여 입력해 주세요. ex)1,2,3,4,5,6");
+        if (!winningNumbers.matches(WINNING_NUMBERS.pattern())) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_PATTERN_ERROR.message());
         }
     }
 
     private List<Integer> splitWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+        return Arrays.stream(winningNumbers.split(NUMBER_SPLITOR.pattern()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     private void containsInvalidRangeNumberInWinningNumbers(List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
-            if (winningNumber <= 0 || 45 < winningNumber) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호는 1에서 45사이의 숫자를 입력해야 합니다.");
+            if (winningNumber < MIN_LOTTO_NUMBER.value() || MAX_LOTTO_NUMBER.value() < winningNumber) {
+                throw new IllegalArgumentException(LOTTO_ERROR.message());
             }
         }
     }
 
     private void hasDuplicatesInWinningNumbers(List<Integer> winningNumbers) {
         if (isDuplicate(winningNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 중복되지 않은 숫자들로 입력해야 합니다.");
+            throw new IllegalArgumentException(LOTTO_ERROR.message());
         }
     }
 

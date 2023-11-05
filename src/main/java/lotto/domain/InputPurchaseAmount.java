@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class inputPurchaseAmount {
+public class InputPurchaseAmount {
     public static void inputPurchaseAmountInt(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);

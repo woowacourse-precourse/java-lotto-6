@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import lotto.domain.inputPurchaseAmount;
+import lotto.domain.InputPurchaseAmount;
 import lotto.views.Exceptions;
 
-public class readPurchaseLottoModules {
+public class ReadPurchaseLottoModules {
 
     public static boolean isPurchaseAmountInt(String purchaseAmountString) {
         try {
-            inputPurchaseAmount.inputPurchaseAmountInt(purchaseAmountString);
+            InputPurchaseAmount.inputPurchaseAmountInt(purchaseAmountString);
             return false;
         } catch (IllegalArgumentException e) {
             Exceptions.exceptionNotInt();
@@ -17,7 +17,7 @@ public class readPurchaseLottoModules {
 
     public static boolean isPurchaseAmountPositive(int purchaseAmount) {
         try {
-            inputPurchaseAmount.inputPurchaseAmountPositive(purchaseAmount);
+            InputPurchaseAmount.inputPurchaseAmountPositive(purchaseAmount);
             return false;
         } catch (IllegalArgumentException e) {
             Exceptions.execptionNotPositive();
@@ -27,7 +27,7 @@ public class readPurchaseLottoModules {
 
     public static boolean isPurchaseAmountDivisible1000(int purchaseAmount) {
         try {
-            inputPurchaseAmount.inputPurchaseAmountDivisible1000(purchaseAmount);
+            InputPurchaseAmount.inputPurchaseAmountDivisible1000(purchaseAmount);
             return false;
         } catch (IllegalArgumentException e) {
             Exceptions.exceptionNotDivisible1000();

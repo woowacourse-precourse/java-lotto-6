@@ -12,15 +12,15 @@ public class LottoController {
 
     public boolean readPurchaseLotto() {
         String purchaseAmountString = InputViews.readPurchaseAmount();
-        if (readPurchaseLottoModules.isPurchaseAmountInt(purchaseAmountString)) {
+        if (ReadPurchaseLottoModules.isPurchaseAmountInt(purchaseAmountString)) {
             return true;
         }
 
         purchaseAmount = Integer.parseInt(purchaseAmountString);
-        if (readPurchaseLottoModules.isPurchaseAmountPositive(purchaseAmount)) {
+        if (ReadPurchaseLottoModules.isPurchaseAmountPositive(purchaseAmount)) {
             return true;
         }
-        if (readPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount)) {
+        if (ReadPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount)) {
             return true;
         }
         return false;

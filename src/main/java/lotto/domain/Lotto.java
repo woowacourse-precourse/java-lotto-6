@@ -13,18 +13,22 @@ import lotto.exception.InputValidationException;
 import org.junit.platform.commons.util.StringUtils;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validateNumbers(numbers);
-        this.numbers = numbers;
+    public static Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers.stream().map(LottoNumber::new).collect(Collectors.toList()));
+    }
+
+    public Lotto(List<LottoNumber> lottoNumbers) {
+        validateNumbers(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     public static Lotto createLotto(String winningNumbers) {
         validateWinningNumbers(winningNumbers);
 
         return new Lotto(Arrays.stream(winningNumbers.split(","))
-                .map(winningNumber -> Integer.parseInt(winningNumber))
+                .map(LottoNumber::createLottoNumber)
                 .collect(Collectors.toList()));
     }
 
@@ -38,23 +42,23 @@ public class Lotto {
         }
     }
 
-    private void validateNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateNumbers(List<LottoNumber> lottoNumbers) {
+        if (lottoNumbers.size() != 6) {
             throw new InputValidationException(INVALID_NUMBERS_COUNT_MESSAGE);
         }
 
-        if (numbers.stream().distinct().count() != numbers.size()) {
+        if (lottoNumbers.stream().distinct().count() != lottoNumbers.size()) {
             throw new InputValidationException(DUPLICATE_NUMBERS_MESSAGE);
         }
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(lottoNumbers);
     }
 
     public int getCountingMatchingNumbers(Lotto lotto) {
         int count = 0;
-        for (int i = 0; i < numbers.size(); i++) {
+        for (int i = 0; i < lottoNumbers.size(); i++) {
             if (containsNumber(lotto.getNumbers().get(i))) {
                 count++;
             }
@@ -62,7 +66,7 @@ public class Lotto {
         return count;
     }
 
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
+    public boolean containsNumber(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 }

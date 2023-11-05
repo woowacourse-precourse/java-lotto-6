@@ -9,6 +9,7 @@ import static org.junit.platform.commons.util.StringUtils.isBlank;
 import lotto.exception.InputValidationException;
 
 public class Money {
+    public static final int COST_PER_LOTTO = 1000;
     private int money;
 
     public Money(String money) {
@@ -25,13 +26,13 @@ public class Money {
             throw new InputValidationException(NOT_A_NUMBER, money);
         }
 
-        if (Integer.parseInt(money) % 1000 != 0) {
+        if (Integer.parseInt(money) % COST_PER_LOTTO != 0) {
             throw new InputValidationException(NOT_IN_1000_UNIT, money);
         }
     }
 
     public int getDividedThousandWonCount() {
-        return money / 1000;
+        return money / COST_PER_LOTTO;
     }
 
     public int getMoney() {

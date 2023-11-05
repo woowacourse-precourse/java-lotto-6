@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoGameResultResponse;
@@ -22,13 +23,9 @@ public class LottoGame {
         inputOutputView.printBuyLottos(lottoBuyResponse);
 
         Lotto winningNumbers = inputOutputView.inputWinningNumbers();
-        int bonusNumber = inputOutputView.inputBonusNumber(winningNumbers);
+        LottoNumber bonusLottoNumber = inputOutputView.inputBonusNumber(winningNumbers);
 
-        if (winningNumbers.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-
-        LottoGameResultResponse result = lottoGameService.calculateResult(winningNumbers, bonusNumber);
+        LottoGameResultResponse result = lottoGameService.calculateResult(winningNumbers, bonusLottoNumber);
         inputOutputView.printResult(result);
     }
 }

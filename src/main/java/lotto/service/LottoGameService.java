@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoGameResultResponse;
@@ -25,14 +26,14 @@ public class LottoGameService {
         int count = money.getDividedThousandWonCount();
 
         buyLottos = IntStream.range(0, count)
-                .mapToObj(i -> new Lotto(createInRangeNumber(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE)))
+                .mapToObj(i -> Lotto.createLotto(createInRangeNumber(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE)))
                 .collect(Collectors.toList());
 
         return LottoBuyResponse.fromLottoNumbers(buyLottos);
     }
 
-    public LottoGameResultResponse calculateResult(Lotto winningLotto, int bonusNumber) {
-        Map<LottoRank, Integer> gameResultCounts = getGameResultCounts(winningLotto, bonusNumber);
+    public LottoGameResultResponse calculateResult(Lotto winningLotto, LottoNumber bonusLottoNumber) {
+        Map<LottoRank, Integer> gameResultCounts = getGameResultCounts(winningLotto, bonusLottoNumber);
         double profitRate = getProfitRate(gameResultCounts);
 
         return LottoGameResultResponse.from(gameResultCounts, profitRate);
@@ -52,12 +53,12 @@ public class LottoGameService {
         return ((double) totalPrize / totalCost) * 100;
     }
 
-    private Map<LottoRank, Integer> getGameResultCounts(Lotto winningLotto, int bonusNumber) {
+    private Map<LottoRank, Integer> getGameResultCounts(Lotto winningLotto, LottoNumber bonusLottoNumber) {
         Map<LottoRank, Integer> gameResultCounts = new HashMap<>();
 
         for (int i = 0; i < buyLottos.size(); i++) {
             int countingMatchingNumbers = buyLottos.get(i).getCountingMatchingNumbers(winningLotto);
-            boolean bonus = winningLotto.containsNumber(bonusNumber);
+            boolean bonus = winningLotto.containsNumber(bonusLottoNumber);
 
             LottoRank rank = LottoRank.getRankByMatchedNumbers(countingMatchingNumbers, bonus);
             gameResultCounts.put(rank, gameResultCounts.getOrDefault(rank, 0) + 1);

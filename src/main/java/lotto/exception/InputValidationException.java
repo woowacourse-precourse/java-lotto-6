@@ -6,9 +6,6 @@ public class InputValidationException extends IllegalArgumentException {
     private static final String ERROR_MESSAGE = "[ERROR]";
     public static final String INPUT_VALUE_LABEL = " 입력 값 : ";
 
-    public InputValidationException() {
-    }
-
     public InputValidationException(ErrorMessages errorMessage) {
         super(ERROR_MESSAGE.concat(errorMessage.getMessage()));
     }

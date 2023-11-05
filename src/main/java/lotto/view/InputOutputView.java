@@ -16,6 +16,7 @@ import java.util.function.Function;
 import lotto.common.InputOutputMessages;
 import lotto.common.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoGameResultResponse;
@@ -31,15 +32,15 @@ public class InputOutputView {
         return getUserInput(INPUT_WINNING_NUMBER, Lotto::createLotto);
     }
 
-    public int inputBonusNumber(Lotto winningNumbers) {
+    public LottoNumber inputBonusNumber(Lotto winningNumbers) {
         return getUserInput(INPUT_BONUS_NUMBER, input -> {
-            int bonusNumber = Integer.parseInt(input);
+            LottoNumber bonusLottoNumber = LottoNumber.createLottoNumber(input);
 
-            if (winningNumbers.containsNumber(bonusNumber)) {
+            if (winningNumbers.containsNumber(bonusLottoNumber)) {
                 throw new InputValidationException(BONUS_DUPLICATE_MESSAGE);
             }
 
-            return bonusNumber;
+            return bonusLottoNumber;
         });
     }
 
@@ -64,8 +65,8 @@ public class InputOutputView {
     public void printResult(LottoGameResultResponse response) {
         Map<LottoRank, Integer> gameResults = response.getGameResultCounts();
 
-        System.out.println(OUTPUT_STATISTICS_HEADER);
-        System.out.println(OUTPUT_DASHES);
+        System.out.println(OUTPUT_STATISTICS_HEADER.getMessage());
+        System.out.println(OUTPUT_DASHES.getMessage());
         Arrays.stream(LottoRank.getSortedValues())
                 .filter(rank -> rank != LottoRank.NO_RANK)
                 .forEach(rank -> {

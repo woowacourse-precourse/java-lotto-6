@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import constants.NumberType;
 
 public class Money {
@@ -17,7 +18,7 @@ public class Money {
 
     private void validateMoney(int money) {
         if (!checkMoney(money)) {
-            throw new IllegalArgumentException(NumberType.LOTTO_PRICE.getValue() + "원으로 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException(String.format(ErrorMessage.INVALID_MONEY_ERROR.getMessage(), NumberType.LOTTO_PRICE.getValue()));
         }
     }
     private boolean checkMoney(int money) {

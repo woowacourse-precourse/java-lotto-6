@@ -44,27 +44,24 @@ public class InputValidator {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE);
-        } finally {
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateInputData(int amount, int unit) {
+    public void validateInputData(int amount) {
         try {
-            validateAmount(amount, unit);
+            validateAmount(amount);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE);
-        } finally {
             throw new IllegalArgumentException();
         }
     }
 
 
-    public IllegalArgumentException validateAmount(int amount, int unit) {
-        if (amount % unit != 0) {
-            return new IllegalArgumentException();
+    public void validateAmount(int amount) {
+        if (amount % LottoConstants.unit != 0) {
+            throw new IllegalArgumentException();
         }
-        return null;
     }
 
 }

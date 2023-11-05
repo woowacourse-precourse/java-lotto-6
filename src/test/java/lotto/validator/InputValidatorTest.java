@@ -38,7 +38,7 @@ class InputValidatorTest {
 
     @Test
     void 인풋_단위_테스트() {
-        assertThatThrownBy(() -> new InputValidator().validateInputData(1049, 1000))
+        assertThatThrownBy(() -> new InputValidator().validateInputData(1049))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -2,35 +2,20 @@ package domain;
 
 public class Player {
     private final LottoTickets lottoTickets;
-    private int money;
+    private Money money;
 
     public Player() {
         lottoTickets = new LottoTickets();
     }
 
-    Player(LottoTickets lottoTickets, int money) {
+    Player(LottoTickets lottoTickets, Money money) {
         this.lottoTickets = lottoTickets;
         this.money = money;
     }
 
-    public void buyLottoTickets(int money) {
-        int ticketCount = calculateTicketCount(money);
-        lottoTickets.add(ticketCount);
-        this.money = money;
-    }
-
-    private int calculateTicketCount(int money) {
-        validateMoney(money);
-        return money / LottoTickets.TICKET_COST;
-    }
-
-    private void validateMoney(int money) {
-        if (money < LottoTickets.TICKET_COST) {
-            throw new IllegalArgumentException();
-        }
-        if (money % LottoTickets.TICKET_COST != 0) {
-            throw new IllegalArgumentException();
-        }
+    public void buyLottoTickets(int moneyAmount) {
+        money = new Money(moneyAmount);
+        lottoTickets.add(money.getTicketCount());
     }
 
     int getTicketCount() {

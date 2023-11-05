@@ -50,7 +50,7 @@ class PlayerTest {
                 new Lotto(List.of(1, 2, 3, 4, 9, 9)),
                 new Lotto(List.of(1, 2, 3, 9, 9, 9)),
                 new Lotto(List.of(1, 2, 9, 9, 9, 9))
-        )), 5000);
+        )), new Money(5000));
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         //when

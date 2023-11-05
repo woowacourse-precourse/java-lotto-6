@@ -6,23 +6,16 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class GameResult {
-    private final int money;
+    private final Money money;
     private final List<Integer> winningRankCount;
 
-    public GameResult(int money, List<Integer> winningRankCount) {
+    public GameResult(Money money, List<Integer> winningRankCount) {
         this.money = money;
         this.winningRankCount = winningRankCount;
     }
 
     public double getRateOfReturn() {
-        validateMoney();
-        return (double) sumOfWinningPrize() / money * 100;
-    }
-
-    private void validateMoney() {
-        if (money <= 0) {
-            throw new RuntimeException();
-        }
+        return money.getRateOfReturn(sumOfWinningPrize());
     }
 
     private int sumOfWinningPrize() {

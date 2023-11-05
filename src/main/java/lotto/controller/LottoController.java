@@ -8,7 +8,6 @@ import lotto.domain.store.LottoStore;
 import lotto.domain.winning.LottoWinningRanking;
 import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.winning.LottoWinningNumbers;
-import lotto.dto.LottoDto;
 import lotto.exception.InvalidNumberFormatException;
 import lotto.exception.LottoException;
 import lotto.exception.MarketException;
@@ -81,10 +80,7 @@ public class LottoController {
     }
 
     private void displayUserLottos(Lottos lottos) {
-        List<LottoDto> lottosDto = lottos.lottos().stream()
-                .map(lotto -> new LottoDto(lotto.getNumbers()))
-                .toList();
-        outputView.responseUserNumbersSet(lottosDto);
+        outputView.responseUserNumbersSet(lottos);
     }
 
     private Lotto processLottoWinningNumbersPickTransaction() {

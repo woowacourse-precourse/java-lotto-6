@@ -27,6 +27,19 @@
 - [x]  예외처리 메세지 (`**ExceptionMessage**`)
 - [x]  정상 실행 메세지 (`**RunMessage**`)
 
+## **뷰 (View)**
+
+- [ ]  InputView
+    - [ ]  금액 입력 (**`inputAmount`**)
+    - [ ]  당첨번호 입력 (**`inputPrizeNumber`**)
+    - [ ]  보너스 번호 입력 (**`inputBonusNumber`**)
+- [ ]  OutputView
+    - [ ]  금액입력 안내 메세지(`**printAmountInputMessage**`)
+    - [ ]  로또 구매 안내 메세지(`**printBuyLottoMessage`)**
+    - [ ]  당첨 번호 입력 안내 메세지(`**printWinningNumberInputMessage**`)
+    - [ ]  보너스 번호 입력 안내 메세지(`**printBonusNumberInputMessage**`)
+    - [ ]  당첨 출력 메세지(`**printWinningStatisticsMessage**`)
+
 ## **도메인 (Domain)**
 
 - [ ]  금액 (**`Amount`**)
@@ -66,18 +79,6 @@
     - [ ]  금액 증가
     - [ ]  수익률 계산
 
-## **뷰 (View)**
-
-- [ ]  InputView
-    - [ ]  금액 입력 (**`inputAmount`**)
-    - [ ]  당첨번호 입력 (**`inputPrizeNumber`**)
-    - [ ]  보너스 번호 입력 (**`inputBonusNumber`**)
-- [ ]  OutputView
-    - [ ]  금액입력 안내 메세지(`**printAmountInputMessage**`)
-    - [ ]  로또 구매 안내 메세지(`**printBuyLottoMessage`)**
-    - [ ]  당첨 번호 입력 안내 메세지(`**printWinningNumberInputMessage**`)
-    - [ ]  보너스 번호 입력 안내 메세지(`**printBonusNumberInputMessage**`)
-    - [ ]  당첨 출력 메세지(`**printWinningStatisticsMessage**`)
 
 ## **컨트롤러 (Controller)**
 

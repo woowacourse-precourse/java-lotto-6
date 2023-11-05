@@ -32,6 +32,10 @@ public enum LottoRank {
                 .findFirst();
     }
 
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
     private boolean isMatch(LottoRank lottoRank, int matchCount, boolean matchBonus) {
         return (lottoRank.matchCount == matchCount) && (lottoRank.matchBonus == matchBonus);
     }

@@ -14,11 +14,11 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	private void validateEmptyString(String price) {
-		if (price.equals("")) {
+		if (price.isEmpty()) {
 			ErrorOperation.EMPTY_ERROR.apply();
 		}
 	}
-	
+
 	private void validateIsDigit(String price) {
 		for (int i = 0; i < price.length(); i++) {
 			char digit = price.charAt(i);

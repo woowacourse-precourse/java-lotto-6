@@ -5,7 +5,6 @@ import lotto.ui.InputView;
 import java.util.List;
 
 public class UserInput {
-    private String cost;
     private int amount;
     private List<Integer> prizeLotto;
     public UserInput() {
@@ -13,9 +12,10 @@ public class UserInput {
 
     public void setAmount() {
         try {
-            this.cost = InputView.readCost();
+            String cost = InputView.readCost();
             Validator validator = new Validator();
-            this.amount = validator.validateCost(this.cost);
+            validator.validateCost(cost);
+            amount = Integer.parseInt(cost) / 1000;
         } catch (IllegalArgumentException illegalArgumentException) {
             setAmount();
         }

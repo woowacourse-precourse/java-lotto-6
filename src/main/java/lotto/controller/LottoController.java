@@ -1,41 +1,54 @@
 package lotto.controller;
 
 import static lotto.view.View.requestMoney;
+import static lotto.view.View.printMessage;
 
+import lotto.constant.Message;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Money;
+import lotto.validator.ValidateObject;
+
 public class LottoController {
-    public void check(){
-        throw new IllegalArgumentException();
+    public void run() {
+        printMessage(Message.INPUT_BUDGET.getMessage());    // 시작 메시지
+
+        Customer customer = buyLottoAndGetNumbers();
+        printMessage(customer.getLottoCount() + Message.PURCHASED_LOTTO_COUNT_MESSAGE.getMessage());
+        customer.showLottos();  // 로또 생성후 출력
+
+        printMessage(Message.INPUT_WINNING_NUMBER.getMessage());
+        Lotto winningLotto = inputWinningNumber();  // 로또 생성
+
+        printMessage(Message.INPUT_BONUS_NUMBER.getMessage());
+        int bonusNumber = inputBonusNumber();
+        ValidateObject.validateBonusNumber(winningLotto, bonusNumber);  // 보너스 넘버
+
+
+        printMessage("당첨 통계");
+        printMessage("---");
+        printMessage("이햐 3개부터 6개까지 일치여부 프린트");
     }
-    public void run(){
+
+    private Customer buyLottoAndGetNumbers() {
         Money money = new Money(requestMoney());
         Customer customer = new Customer(money);
-        LottoNumber lottoNumber = new LottoNumber();
-
-        System.out.println(customer.getLottoCount()+"개를 구매했습니다.");
         customer.purchaseLotto();
-        customer.getLottos()
-                .forEach(lotto -> System.out.println(lotto.getNumbers()));
-        System.out.println("당첨번호를 입력해 주세요");
 
+        return customer;
+    }
 
+    private Lotto inputWinningNumber() {
+        LottoNumber lottoNumber = new LottoNumber();
         String winningNumber = Console.readLine();
         lottoNumber.createWinningNumber(winningNumber);
-        Lotto winningLotto = new Lotto(lottoNumber.getLottoNumbers());
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        return new Lotto(lottoNumber.getLottoNumbers());
+    }
 
-        winningLotto.getNumbers().stream()
-                .filter(s -> s == bonusNumber)
-                .forEach(s -> check()); //  validate 클래스로 분리된 메소드에 접근할것
-
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("이햐 3개부터 6개까지 일치여부 프린트");
+    private int inputBonusNumber() {
+        return Integer.parseInt(Console.readLine());
     }
 }

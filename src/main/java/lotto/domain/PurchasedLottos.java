@@ -2,25 +2,17 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.constants.Messages;
 import lotto.constants.Values;
-import lotto.utils.RandomNumberGenerator;
+import lotto.utils.generator.LottsGenerator;
 
 public class PurchasedLottos {
 
     private final List<Lotto> lottos;
 
-    public PurchasedLottos(int purchaseAmount) {
+    public PurchasedLottos(int purchaseAmount, LottsGenerator lottsGenerator) {
         validate(purchaseAmount);
-        this.lottos = createPurchasedLottos(purchaseAmount);
-    }
-
-    private List<Lotto> createPurchasedLottos(int purchaseAmount) {
-        int purchasedLottoCount = purchaseAmount / Values.LOTTO_PURCHASE_UNIT;
-        return IntStream.range(0, purchasedLottoCount)
-                .mapToObj(i -> new Lotto(RandomNumberGenerator.generateRandomNumbers()))
-                .collect(Collectors.toList());
+        this.lottos = lottsGenerator.generateLottos(purchaseAmount);
     }
 
     public void validate(int purchaseAmount) {

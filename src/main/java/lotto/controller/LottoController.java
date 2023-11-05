@@ -9,6 +9,7 @@ import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
 import lotto.domain.WinningStatisticsCalculator;
 import lotto.utils.InputProcessor;
+import lotto.utils.generator.RandomLottosGenerator;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -32,7 +33,7 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = InputProcessor.processPurchaseAmount();
-                return new PurchasedLottos(purchaseAmount);
+                return new PurchasedLottos(purchaseAmount, new RandomLottosGenerator());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

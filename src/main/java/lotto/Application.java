@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
@@ -32,7 +33,7 @@ public class Application {
         Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, Input.get());
 
         // 7. 당첨 내역 계산 로직
-        List<Integer> lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
+        Map<Prize, Integer> lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
 
         // 당첨금
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));

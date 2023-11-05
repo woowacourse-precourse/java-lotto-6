@@ -40,16 +40,24 @@ public class OutputView {
     }
 
     public void printResult() {
-        Result[] values = Result.values();
-        for (Result value : values) {
+        System.out.println("당첨 통계\n---");
+        for (Result value : Result.values()) {
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
             String formattedNum = decimalFormat.format(value.getMoney());
-            System.out.printf("%d개 일치(%s) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
+            if(value.isBonus()){
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
+                continue;
+            }
+            System.out.printf("%d개 일치 (%s원) - %d개\n", value.getSameCount(), formattedNum, value.getResultCount());
         }
     }
 
     public void printBeforeInputWinNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void printYield(double v1) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", v1);
     }
 }
 

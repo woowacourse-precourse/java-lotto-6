@@ -45,6 +45,10 @@ public class LottoController {
 
         outputView.printResult();
 
+        double v = result.doubleValue();
+        double v1 = v / money * 100;
+        outputView.printYield(v1);
+
         /*
             금액에 따른 로또 번호 뽑기!
 
@@ -74,7 +78,7 @@ public class LottoController {
         LottoGenerator lottoGenerator = LottoGenerator.getInstance();
         List<LottoTicket> lottoTickets = new ArrayList<>();
         for(int i=0; i<count; i++){
-             lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
+            lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
             outputView.printTicket(lottoTickets.get(i).getNumbers());
         }
         return lottoTickets;

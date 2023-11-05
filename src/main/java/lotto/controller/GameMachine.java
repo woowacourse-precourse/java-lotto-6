@@ -56,8 +56,9 @@ public class GameMachine {
             boolean bonusMatch = lotto.getNumbers().contains(inputBonusNumber);
 
             for (WinningRank rank : WinningRank.values()) {
-                if (matchCount == rank.getMatchCount() && bonusMatch) {
+                if (rank.isMatch(matchCount, bonusMatch)) {
                     rank.increaseWinCount();
+                    break;
                 }
             }
         }
@@ -65,10 +66,14 @@ public class GameMachine {
         // 당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
+        int totalPrizeMoney = 0;
         for (WinningRank rank : WinningRank.values()) {
+            totalPrizeMoney += rank.getTotalPrizeMoney();
             System.out.println(rank.getMessage());
         }
-        
+
+        // 총 수익률 출력
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrizeMoney / inputPrice * 100.0);
     }
 
 }

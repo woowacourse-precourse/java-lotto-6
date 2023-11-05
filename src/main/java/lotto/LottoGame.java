@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.LongUnaryOperator;
 import java.util.stream.Collectors;
 
 public class LottoGame {
-
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public LottoGame() {
 
@@ -17,6 +19,8 @@ public class LottoGame {
 
     public void startGame() {
         int purchaseAmount = getPurchaseAmount();
+        this.winningNumbers = inputWinningNumbers();
+        this.bonusNumber = inputBonusNumber();
 
         ArrayList<Lotto> lottos = LottoMachine.buyLotto(purchaseAmount);
         System.out.println(lottos.size() + "개를 구매했습니다.");
@@ -70,6 +74,26 @@ public class LottoGame {
         if (!areNumbersUnique) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
         }
+    }
+
+    public int inputBonusNumber() {
+        int bonusNumber;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력이 가능합니다.");
+        }
+
+        this.winningNumbers.forEach((winningNumber) -> {
+            if (winningNumber == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+            }
+        });
 
     }
 

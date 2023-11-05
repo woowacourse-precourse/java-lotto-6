@@ -87,7 +87,6 @@ class WinningNumbersTest {
     }
 
 
-
     @DisplayName("숫자가 아닌 문자열이 포함되어 있을 경우 IllegalArgumentException을 발생시켜야 한다.")
     @Test
     void testProcessWithNonNumericValues() {

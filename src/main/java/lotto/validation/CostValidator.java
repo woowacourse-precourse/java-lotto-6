@@ -2,7 +2,7 @@ package lotto.validation;
 
 import lotto.exception.InputBlankException;
 
-public class AmountValidator {
+public class CostValidator {
     public static void validate(String readline) {
         checkBlank(readline);
     }

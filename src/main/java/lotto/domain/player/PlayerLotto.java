@@ -1,9 +1,11 @@
 package lotto.domain.player;
 
+import lotto.domain.common.Money;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoPrize;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Objects;
@@ -92,5 +94,22 @@ class PlayerLotto {
 
     private LottoPrize raffle(Lotto answer, LottoNumber bonus, Lotto lotto) {
         return LottoPrize.of(lotto.matchWith(answer), lotto.contains(bonus));
+    }
+
+    public Money calculateTotalReturn(Lotto answer, LottoNumber bonus) {
+        EnumMap<LottoPrize, Integer> statistics = generateStatistics(answer, bonus);
+        long totalReturn = calculateTotalReturn(statistics);
+
+        return Money.from(totalReturn);
+    }
+
+    private long calculateTotalReturn(EnumMap<LottoPrize, Integer> statistics) {
+        return Arrays.stream(LottoPrize.values())
+                .map(prize -> calculatePrizeReward(statistics, prize))
+                .reduce(0L, Long::sum);
+    }
+
+    private long calculatePrizeReward(EnumMap<LottoPrize, Integer> statistics, LottoPrize prize) {
+        return (long) prize.getReward() * statistics.get(prize);
     }
 }

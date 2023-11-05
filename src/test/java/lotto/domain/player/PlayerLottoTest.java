@@ -1,5 +1,6 @@
 package lotto.domain.player;
 
+import lotto.domain.common.Money;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoPrize;
@@ -77,6 +78,16 @@ class PlayerLottoTest {
         assertThatThrownBy(() -> playerLotto.generateStatistics(null, LottoNumber.from(4)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효한 정답 로또를 입력해주세요.");
+    }
+
+    @DisplayName("총 수익금을 조회할 수 있다.")
+    @Test
+    void calculateTotalReturn() {
+        PlayerLotto playerLotto = PlayerLotto.from(createLottos());
+
+        Money result = playerLotto.calculateTotalReturn(createAnswerLotto(), LottoNumber.from(7));
+
+        assertThat(result).isEqualTo(Money.from(2_031_500_000));
     }
 
     private static Lotto createAnswerLotto() {

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoResult;
 import lotto.controller.dto.WinningResult;
@@ -11,7 +10,6 @@ import lotto.model.Number;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.model.WinningResultCalculator;
-import lotto.util.Converter;
 import lotto.util.NumberGenerator;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -72,8 +70,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = inputView.readInput();
-                List<String> lotto = Converter.convertCommaSeparatedStringToList(input);
-                return Lotto.createLottoFromStrings(lotto);
+                return Lotto.fromInput(input);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }

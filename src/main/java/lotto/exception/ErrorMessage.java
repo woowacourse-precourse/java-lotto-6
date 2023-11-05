@@ -6,7 +6,10 @@ public enum ErrorMessage {
     INVALID_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     INVLID_PAYMENT_TYPE("[ERROR] 구입금액은 숫자형태여야 합니다."),
     INVALID_PAYMENT_RANGE("[ERROR] 구입금액은 로또 개당 가격 이상이어야 합니다."),
-    INVALID_PAYMENT_FORM("[ERROR] 구입금액은 로또 개당 가격으로 나누어 떨어져야 합니다.");
+    INVALID_PAYMENT_FORM("[ERROR] 구입금액은 로또 개당 가격으로 나누어 떨어져야 합니다."),
+    INVALID_WINNING_NUMBER_FORM("[ERROR] 당첨 번호는 쉼표(,)로 구분된 숫자 배열이어야 합니다."),
+    WINNING_NUMBER_ENDS_WITH_DELIMITER("[ERROR] 당첨 번호는 쉼표(,)로 끝나지 않아야 합니다."),
+    INVALID_BONUS_NUMBER_FORM("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     private final String message;
 

@@ -29,4 +29,33 @@ class ParserTest {
         assertThat(Parser.parsePay(input)).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,S", "1,2,3,4,5, ", "1,2,3,,4,5,6",""," "})
+    @DisplayName("[EXCEPTION] 당첨 번호가 잘못된 형태의 문자열인 경우 예외가 발생한다.")
+    public void parseWinningNumbersByWrongForm(String input){
+
+        assertThatThrownBy(()->Parser.parseWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 쉼표(,)로 구분된 숫자 배열이어야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",", "1,2,3,4,5,"})
+    @DisplayName("[EXCEPTION] 당첨 번호가 쉼표(,)로 끝나는 경우 예외가 발생한다.")
+    public void winnngNumberEndsWithDelimiter(String input){
+
+        assertThatThrownBy(()->Parser.parseWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 쉼표(,)로 끝나지 않아야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "s","3,3"})
+    @DisplayName("[EXCEPTION] 보너스 번호가 숫자 형태가 아닌 경우 예외가 발생한다.")
+    public void bonusNumberByNonNumericForm(String input){
+
+        assertThatThrownBy(()->Parser.parseBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }

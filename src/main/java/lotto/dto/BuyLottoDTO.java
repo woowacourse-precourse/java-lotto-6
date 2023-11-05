@@ -2,15 +2,13 @@ package lotto.dto;
 
 import lotto.domain.PurchasedLotto;
 
-import java.util.List;
-
-public final class PurchasedLottoDTO {
-    private PurchasedLottoDTO() {
+public final class BuyLottoDTO {
+    private BuyLottoDTO() {
     }
 
     public record Input(Long buyPrice) {
     }
 
-    public record Output(List<Lotto> purchasedLotto) {
+    public record Output(PurchasedLotto purchasedLotto) {
     }
 }

@@ -7,6 +7,5 @@ public class Application {
         LottoController lottoController = new LottoController();
         lottoController.buyLotto();
         lottoController.drawLotto();
-        lottoController.statistics();
     }
 }

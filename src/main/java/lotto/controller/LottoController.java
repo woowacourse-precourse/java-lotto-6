@@ -32,9 +32,11 @@ public class LottoController {
         List<Integer> winningNumber = InputView.getWinningNumberFromInput();
         int bonusNumber = InputView.getBonusNumberFromInput();
         winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+        LottoResultsDTO resultDTO = createLottoResultDTO();
+        OutputView.displayAllLottosStatistics(resultDTO);
     }
 
-    public LottoResultsDTO statistics() {
+    private LottoResultsDTO createLottoResultDTO() {
         List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
         Map<LottoResults, Integer> lottoStatistics = new HashMap<>();
         for (LottoResults result : lottoResults) {

@@ -3,10 +3,9 @@ package lotto.domain;
 import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
-import java.util.List;
-
 import static lotto.domain.constants.LottoConstraint.NUMBER_LOWER_BOUND;
 import static lotto.domain.constants.LottoConstraint.NUMBER_UPPER_BOUND;
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATED;
 import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE;
 
 public class Prize {
@@ -19,8 +18,11 @@ public class Prize {
     ) {
         this.prizeNumbers = prizeNumbers;
 
+        int parsedBonusNumber = Parser.parseStringToInt(bonusNumberInput);
+        validateNumberRange(parsedBonusNumber);
+        validateDuplicatedBonusNumber(parsedBonusNumber);
 
-        this.bonusNumber = Parser.parseStringToInt(bonusNumberInput);
+        this.bonusNumber = parsedBonusNumber;
     }
 
     public static Prize of(
@@ -30,26 +32,27 @@ public class Prize {
         return new Prize(prizeNumbers, bonusNumberInput);
     }
 
-    public void validateNumberRange(final List<Integer> numbers) {
-        if (isInvalidRange(numbers)) {
+    public void validateNumberRange(final int number) {
+        if (isOutOfRange(number)) {
             throw LottoException.from(NUMBER_OUT_OF_RANGE);
         }
     }
 
-    public static boolean isInvalidRange(List<Integer> numbers) {
-        return numbers.stream().anyMatch(Prize::isOutOfRange);
+    public void validateDuplicatedBonusNumber(final int number) {
+        if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
+            throw LottoException.from(BONUS_NUMBER_DUPLICATED);
+        }
     }
 
-    private static boolean isOutOfRange(Integer number) {
+    private static boolean isOutOfRange(int number) {
         return isBiggerThanUpperBound(number) || isSmallerThanLowerBound(number);
     }
 
-    private static boolean isSmallerThanLowerBound(Integer number) {
+    private static boolean isSmallerThanLowerBound(int number) {
         return number > NUMBER_UPPER_BOUND.getValue();
     }
 
-    private static boolean isBiggerThanUpperBound(Integer number) {
+    private static boolean isBiggerThanUpperBound(int number) {
         return number < NUMBER_LOWER_BOUND.getValue();
     }
-
 }

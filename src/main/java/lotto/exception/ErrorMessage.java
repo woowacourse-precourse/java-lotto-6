@@ -44,7 +44,8 @@ public enum ErrorMessage {
                     "%d개의 숫자를 입력해야 합니다",
                     LottoConstraint.LOTTO_PICK_COUNT.getValue())
     ),
-    NUMBER_DUPLICATED("중복된 숫자가 입력되었습니다.");
+    PRIZE_NUMBER_DUPLICATED("당첨 번호에 중복된 숫자가 입력되었습니다."),
+    BONUS_NUMBER_DUPLICATED("당첨 번호에 입력한 숫자가 보너스 번호에 입력되었습니다..");
 
 
     private static final String ERROR_PREFIX = "[ERROR] ";

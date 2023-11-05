@@ -35,6 +35,10 @@ public class Lotto {
         return numbers.stream().anyMatch(Lotto::isOutOfRange);
     }
 
+    public boolean isAlreadyContainBonusNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private static boolean isOutOfRange(Integer number) {
         return isSmallerThanLowerBound(number) || isBiggerThanUpperBound(number);
     }
@@ -49,7 +53,7 @@ public class Lotto {
 
     private void validateDuplication(final List<Integer> numbers) {
         if (isDuplicated(numbers)) {
-            throw LottoException.from(NUMBER_DUPLICATED);
+            throw LottoException.from(PRIZE_NUMBER_DUPLICATED);
         }
     }
 

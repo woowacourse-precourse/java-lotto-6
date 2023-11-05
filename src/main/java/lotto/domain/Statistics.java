@@ -54,10 +54,10 @@ public enum Statistics {
     public static void makeOutputStatistics(Statistics statistics, StringBuilder sb, Map<Statistics, Integer> winningCount) {
         Integer collectCount = winningCount.get(statistics);
         if (statistics.equals(FIVE_BONUS)) {
-            sb.append(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", statistics.count, statistics.getAmount(), collectCount));
+            sb.append(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", statistics.count, statistics.getAmount(), collectCount));
             return;
         }
-        sb.append(String.format("%d개 일치 (%s원) - %d개", statistics.count, statistics.getAmount(), collectCount));
+        sb.append(String.format("%d개 일치 (%s원) - %d개\n", statistics.count, statistics.getAmount(), collectCount));
     }
 
 

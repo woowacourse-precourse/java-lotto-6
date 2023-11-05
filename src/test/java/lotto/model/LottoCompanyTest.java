@@ -54,7 +54,8 @@ public class LottoCompanyTest {
         int expectedMatchLottos = 2;
 
         // when
-        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos, FIFTH.getMatch(), BONUS_EXCLUDE);
+        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos,
+                FIFTH.getMatch(), BONUS_EXCLUDE.getValue());
 
         // then
         assertThat(matchedLottos.size()).isEqualTo(expectedMatchLottos);
@@ -75,7 +76,8 @@ public class LottoCompanyTest {
         int expectedMatchLottos = 1;
 
         // when
-        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos, SECOND.getMatch(), BONUS_INCLUDE);
+        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos,
+                SECOND.getMatch(), BONUS_INCLUDE.getValue());
 
         // then
         assertThat(matchedLottos.size()).isEqualTo(expectedMatchLottos);

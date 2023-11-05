@@ -1,7 +1,8 @@
 package lotto.utils;
 
 public enum PrintingMessage {
-    GET_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요.");
+    GET_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),
+    BUYING_MESSAGE("%d개를 구매했습니다.");
 
     private String message;
 
@@ -12,4 +13,8 @@ public enum PrintingMessage {
     public String get() {
         return message;
     }
+
+    public String getWithFormat(int number) {
+        return String.format(message, number);
     }
+}

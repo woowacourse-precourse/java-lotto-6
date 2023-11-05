@@ -61,16 +61,21 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        outputView.printWinningNumbers();
-        Lotto lotto = generateWinningLottoNumbers();
-        outputView.printBonusNumber();
-        Number bonusNumber = generateBonusNumber();
-        return new WinningLotto(lotto, bonusNumber);
+        while (true) {
+            try {
+                Lotto lotto = generateWinningLottoNumbers();
+                Number bonusNumber = generateBonusNumber();
+                return new WinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
     }
 
     private Lotto generateWinningLottoNumbers() {
         while (true) {
             try {
+                outputView.printWinningNumbers();
                 String input = inputView.readInput();
                 return Lotto.fromInput(input);
             } catch (IllegalArgumentException e) {
@@ -82,6 +87,7 @@ public class LottoController {
     private Number generateBonusNumber() {
         while (true) {
             try {
+                outputView.printBonusNumber();
                 String input = inputView.readInput();
                 return Number.from(input);
             } catch (IllegalArgumentException e) {

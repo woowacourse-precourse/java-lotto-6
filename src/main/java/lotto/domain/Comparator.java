@@ -1,14 +1,14 @@
 package lotto.domain;
 
 public class Comparator {
-    public static int countSameNumber(Lotto numbers, Lotto winnerNumbers) {
-        return (int) numbers.getNumbers().stream()
+    public int countSameNumber(Lotto lotto, Lotto winnerNumbers) {
+        return (int) lotto.getNumbers().stream()
                 .filter(number -> winnerNumbers.getNumbers().contains(number))
                 .count();
     }
 
-    public static boolean checkBonusNumber(Lotto numbers, int bonusNumber) {
-        return numbers.getNumbers().stream()
+    public boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().stream()
                 .anyMatch(number -> number == bonusNumber);
     }
 }

@@ -24,6 +24,7 @@
 
 - [x] 금액에 해당하는 만큼 로또를 발행 - LottoMachine#issue()
 - [x] 로또 번호에 당첨 번호가 몇개가 있는지 계산 - Lotto#equalsNumberCount()
+- [x] 로또 번호에 보너스 번호가 포함되어 있는지 확인 - Lotto#isBonus()
 - [ ] 수익률을 소수점 둘째 자리에서 반올림해서 계산
 
 ### 예외처리

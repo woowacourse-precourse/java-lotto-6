@@ -15,7 +15,7 @@ public class Player {
 
     public static Player createPlayer(final TicketQuantity ticketQuantity, final NumberGenerator numberGenerator) {
         List<Lotto> lotteries = IntStream.range(0, ticketQuantity.quantity())
-                .mapToObj(i -> Lotto.createPlayerLotto(numberGenerator))
+                .mapToObj(eachTicket -> Lotto.createPlayerLotto(numberGenerator))
                 .toList();
         return new Player(lotteries);
     }

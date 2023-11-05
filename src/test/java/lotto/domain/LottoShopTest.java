@@ -56,7 +56,7 @@ class LottoShopTest {
         Lotto winningLottoNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
 
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+        WinningLotto winningLotto = lottoShop.createByWinningLotto(winningLottoNumber, bonusNumber);
 
         assertThat(winningLotto).isInstanceOf(WinningLotto.class);
     }

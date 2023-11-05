@@ -11,9 +11,9 @@ public class Player {
     private final Lotto sixLottoNumber;
 
     public Player(Lotto sixLottoNumber, int bonusNumber) {
-        validator(sixLottoNumber, bonusNumber);
         this.bonusNumber = bonusNumber;
         this.sixLottoNumber = sixLottoNumber;
+        validator();
     }
 
     public Lotto getSixNumbers() {
@@ -24,7 +24,7 @@ public class Player {
         return bonusNumber;
     }
 
-    private void validator(Lotto sixLottoNumber, int bonusNumber) {
+    private void validator() {
         isProperRange(bonusNumber);
         isProperRange(sixLottoNumber.getNumbers());
         isDuplicated(bonusNumber, sixLottoNumber.getNumbers());

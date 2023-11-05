@@ -21,4 +21,8 @@ public class Utils {
                 .map(Integer::parseInt)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public static double calculatePercentage(int income, int inputMoney) {
+        return (double) income * 100 / inputMoney;
+    }
 }

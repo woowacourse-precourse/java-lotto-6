@@ -5,6 +5,14 @@ import lotto.Constants.IntConstants;
 
 public class LottoCounter {
 
+    public void getResultList(List<Integer> resultList, int result, Lotto cpuSixNumber, Player playerLotto) {
+        hitThree(resultList, result);
+        hitFour(resultList, result);
+        hitFive(resultList, result, cpuSixNumber.getNumbers(), playerLotto.getBonusNumber());
+        hitFiveBonus(resultList, result, cpuSixNumber.getNumbers(), playerLotto.getBonusNumber());
+        hitSix(resultList, result);
+    }
+
     public int countElement(List<Integer> list1, List<Integer> list2) {
         int count = 0;
         for (Integer number : list1) {
@@ -15,7 +23,7 @@ public class LottoCounter {
         return count;
     }
 
-    public void hitThree(List<Integer> resultList, int result) {
+    private void hitThree(List<Integer> resultList, int result) {
         if (result == IntConstants.THREE_HIT.getValue()) {
             int count = resultList.get(0);
             ++count;
@@ -23,7 +31,7 @@ public class LottoCounter {
         }
     }
 
-    public void hitFour(List<Integer> resultList, int result) {
+    private void hitFour(List<Integer> resultList, int result) {
         if (result == IntConstants.FOUR_HIT.getValue()) {
             int count = resultList.get(1);
             ++count;
@@ -31,7 +39,7 @@ public class LottoCounter {
         }
     }
 
-    public void hitFive(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
+    private void hitFive(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
         if (result == IntConstants.FIVE_HIT.getValue() && !cpuSixNumbers.contains(playerBonus)) {
             int count = resultList.get(2);
             ++count;
@@ -39,7 +47,7 @@ public class LottoCounter {
         }
     }
 
-    public void hitFiveBonus(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
+    private void hitFiveBonus(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
         if (result == IntConstants.FIVE_HIT.getValue() && cpuSixNumbers.contains(playerBonus)) {
             int count = resultList.get(3);
             ++count;
@@ -47,7 +55,7 @@ public class LottoCounter {
         }
     }
 
-    public void hitSix(List<Integer> resultList, int result) {
+    private void hitSix(List<Integer> resultList, int result) {
         if (result == IntConstants.SIX_HIT.getValue()) {
             int count = resultList.get(4);
             ++count;

@@ -1,4 +1,4 @@
-package lotto.domain.lottoPolicy;
+package lotto.domain.lotto_policy;
 
 import java.util.List;
 import lotto.domain.prize_calculator.PrizeCalculator;

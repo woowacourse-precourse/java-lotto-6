@@ -6,7 +6,7 @@ import lotto.ui.Output;
 
 public class User {
 
-    public Integer lottoCount;
+    public Integer lottoCount; // public 수정?
     public List<Lotto> lottos;
     Money money;
 

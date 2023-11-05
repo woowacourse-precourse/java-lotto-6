@@ -29,7 +29,6 @@ public class Lotto {
         Validator.checkRange(Integer.parseInt(lottoNumber));
     }
 
-
     private void checkSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");

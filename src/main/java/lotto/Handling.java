@@ -7,7 +7,6 @@ import lotto.domain.Lotto;
 
 public class Handling {
 
-    // 자료형 조작, 클래스 변경?, 위치 변경 필요함
     public static List<Integer> parseNumbers(List<String> lotto) {
         List<Integer> inputNumber = new ArrayList<>();
 
@@ -18,8 +17,6 @@ public class Handling {
 
         return inputNumber;
     }
-
-
 
     public static List<String> split(String lotto) {
         return Arrays.asList(lotto.split(","));

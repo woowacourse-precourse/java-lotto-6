@@ -1,7 +1,7 @@
 package lotto.collaboration.lottos;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.io.Randoms;
 
 public class Lotto {
 
@@ -37,12 +37,10 @@ public class Lotto {
         }
     }
 
-    public static Lotto make() {
-        // TODO : 외부 라이브러리 의존성 분리
+    public static Lotto make(Randoms randoms) {
         // TODO : 외부 의존성 사용 테스트 작성
-        // TODO : 중복 번호 발생 문제 처리해야 함
-        // TODO : 테스트 가능하도록 의존성 주입식으로 변경해야 함
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        // TODO : 중복 번호 발생 문제 처리해야 함 (현재 예외 발생하고 있으나, 알아서 재생성해주도록 하는 편이 좋겠다고 생각함. 사용자가 조작하지 않는 부분의 부작용까지 사용자에게 알리면 필요치않게 혼동이 커짐)
+        return new Lotto(randoms.getSixNumbers());
     }
 
 }

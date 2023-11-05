@@ -41,6 +41,7 @@ public class Paper {
         }
         if(cnt==6){
             correspondNumber = 7;
+            return;
         }
         correspondNumber=cnt;
     }

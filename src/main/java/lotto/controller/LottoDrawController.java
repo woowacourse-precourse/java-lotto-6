@@ -29,6 +29,14 @@ public class LottoDrawController {
         Integer countOfPurchasedLotto = UserLotteriesFactory.calculateCountOfPurchasedLotto(purchaseAmount);
         UserLotteries userLotteries = userLotteriesFactory.createFromPurchaseAmount(purchaseAmount);
 
+        showUserLottoDetails(countOfPurchasedLotto, userLotteries);
+
+    }
+
+    private void showUserLottoDetails(Integer countOfPurchasedLotto, UserLotteries userLotteries) {
+        outputView.printPurchasedCountMessage(countOfPurchasedLotto);
+        userLotteries.sortAscendingAllLotto();
+        outputView.printUserLotteries(userLotteries);
     }
 
 }

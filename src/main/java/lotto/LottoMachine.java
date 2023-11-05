@@ -6,7 +6,6 @@ import static lotto.constants.LottoConstants.LOTTO_START;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
@@ -29,7 +28,6 @@ public class LottoMachine {
         for (int i = 0; i < reps; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END,
                     LOTTO_SIZE);
-            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         this.lottos = new Lottos(lottos);

@@ -3,7 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 
 class WinningNumberTest {
@@ -51,5 +51,34 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(winningNumInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("올바른 당첨번호가 주어진다면 예외를 발생시키지 않는다.")
+    void validateWinningNumbers_successful() {
+        /**
+         * given : 조건에 맞는 당첨 번호가 주어진다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 예외가 발생하지 않는다.
+         */
+        String winningNumInput = "1,2,3,4,5,6";
+
+        assertThatCode(() -> new WinningNumber(winningNumInput))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("당첨 번호 생성 후, 값을 검증한다.")
+    void validateWinningNumbers_validateValue() {
+        /**
+         * given : 조건에 맞는 당첨 번호가 주어진다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 당첨 번호의 원소와 크기를 검증한다.
+         */
+        String winningNumInput = "1,2,3,4,5,6";
+
+        WinningNumber winningNumber = new WinningNumber(winningNumInput);
+        assertThat(winningNumber.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(winningNumber.getWinningNumbers()).hasSize(6);
     }
 }

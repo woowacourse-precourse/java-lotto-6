@@ -23,6 +23,10 @@ public class WinningNumber {
                 .collect(Collectors.toList());
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     private void validateWinningNumbers(String[] winningNumInput) {
         validateWinningNumSize(winningNumInput);
         validateWinningNumRange(winningNumInput);

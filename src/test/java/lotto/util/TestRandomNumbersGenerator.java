@@ -2,8 +2,6 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.model.Number;
 
 public class TestRandomNumbersGenerator implements NumbersGenerator {
 

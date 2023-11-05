@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -16,6 +15,12 @@ public class Lotto {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = toNumber(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+            .map(number -> number.getNumber())
+            .toList();
     }
 
     private void validate(List<Integer> numbers) {

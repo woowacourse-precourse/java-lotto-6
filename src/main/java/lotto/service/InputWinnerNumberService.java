@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Lotto;
 import lotto.util.Validator;
 
 public class InputWinnerNumberService {
@@ -17,6 +18,7 @@ public class InputWinnerNumberService {
             winnerNumbers = splitedInputWinnerNumbers.stream().map(Integer::parseInt)
                 .collect(Collectors.toList());
             validator.validateRangeNumber(winnerNumbers);
+            validator.validateNumberLength(winnerNumbers);
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(e.getMessage());
         }

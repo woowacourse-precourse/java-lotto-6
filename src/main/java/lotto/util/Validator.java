@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Lotto;
 
 public class Validator {
 
@@ -49,5 +50,11 @@ public class Validator {
     }
 
 
-
+    public void validateNumberLength(List<Integer> winnerNumbers) {
+        try {
+            Lotto lotto = new Lotto(winnerNumbers);
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 }

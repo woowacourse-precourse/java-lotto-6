@@ -5,19 +5,19 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoTickets {
-    private static int ticketCount;
-    private static List<Lotto> Tickets = new ArrayList<>();
+    private int ticketCount;
+    private List<Lotto> Tickets = new ArrayList<>();
 
     public LottoTickets(int money) {
         ticketCount = TicketCount(money);
         makeLottoTickets();
     }
 
-    public static int getTicketCount() {
+    public int getTicketCount() {
         return ticketCount;
     }
 
-    public static List<Lotto> getTickets() {
+    public List<Lotto> getTickets() {
         return Tickets;
     }
 
@@ -25,7 +25,7 @@ public class LottoTickets {
         return money / 1000;
     }
 
-    private static void makeLottoTickets() {
+    private void makeLottoTickets() {
         for (int i = 0; i < ticketCount; i++) {
             Tickets.add(new Lotto(LottoNumbersGenerator.generate()));
         }

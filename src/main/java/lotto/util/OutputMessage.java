@@ -2,10 +2,7 @@ package lotto.util;
 
 public class OutputMessage {
     public static final String OUTPUT_MONEY_MESSAGE="개를 구매했습니다.";
-    public static final String OUTPUT_RESULT_INFO= """
-
-            당첨 통계
-            ---""";
+    public static final String OUTPUT_RESULT_INFO= "\n당첨 통계\n---\n";
     public static final String OUTPUT_RESULT_3="3개 일치 (5,000원) - ";
     public static final String OUTPUT_RESULT_4="4개 일치 (50,000원) - ";
     public static final String OUTPUT_RESULT_5="5개 일치 (1,500,000원) - ";

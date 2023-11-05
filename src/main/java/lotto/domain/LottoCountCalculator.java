@@ -5,6 +5,7 @@ import lotto.util.Constants;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class LottoCountCalculator {
 
@@ -19,6 +20,7 @@ public class LottoCountCalculator {
     }
 
     private void setLottoResult(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
+        IntStream.range(3, 8).forEach(key -> lottoResult.put(key, 0));
         for (Lotto ticket : lotto) {
             countLotto(countMatches(ticket, winLotto), isBonus(winLotto, bonus));
         }

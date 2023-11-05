@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static util.TestUtil.setInput;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -19,8 +20,9 @@ class InputViewTest {
         Console.close();
     }
 
+    @DisplayName("정상적인 구매금액을 입력한다.")
     @Test
-    void 정상적인_구매금액_입력() {
+    void inputPurchaseAmount() {
         // given
         int expect = 5000;
 
@@ -33,8 +35,9 @@ class InputViewTest {
         assertThat(amount).isEqualTo(expect);
     }
 
+    @DisplayName("빈 문자열을 구매금액으로 입력한다.")
     @Test
-    void 빈_문자열_입력_예외() {
+    void inputEmptyPurchaseAmount() {
         // given
         setInput("\n");
 
@@ -43,8 +46,9 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("정수로 변환할 수 없는 값을 구매금액으로 입력하면 예외를 발생한다.")
     @Test
-    void 정수로_변환할_수_없는_값_입력_예외() {
+    void inputNonDigitPurchaseAmount() {
         // given
         setInput("우테코6기\n");
 

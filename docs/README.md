@@ -59,8 +59,8 @@
 - [x] 당첨 번호를 입력받는다. `printMessage(WINNING_MAIN_REQUEST)` &rarr; `input()`
 - [x] 보너스 번호를 입력받는다. `printMessage(WINNING_BONUS_REQUEST)` &rarr; `input()` 
 
-- [ ] 발행한 로또 수량 및 번호(오름차순)를 출력한다.
-- [ ] 당첨 내역을 출력한다.
+- [x] 발행한 로또 수량 및 번호(오름차순)를 출력한다. `printAmountNotice()` &rarr; `printLotto()`
+- [ ] 당첨 내역을 출력한다. 
 - [ ] 수익률을 출력한다.
 
 - [ ] 예외 상황 시 에러 문구를 출력한다.

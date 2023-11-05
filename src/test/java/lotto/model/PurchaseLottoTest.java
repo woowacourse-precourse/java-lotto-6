@@ -38,4 +38,13 @@ class PurchaseLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1,000원 단위로 입력해 주세요.");
     }
+
+    @Test
+    void 발행할_로또수() {
+        purchaseLotto.purchase("8000");
+        assertThat(purchaseLotto.getNumberOfPurchases()).isEqualTo(8);
+
+        purchaseLotto.purchase("18000");
+        assertThat(purchaseLotto.getNumberOfPurchases()).isEqualTo(18);
+    }
 }

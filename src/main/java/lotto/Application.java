@@ -15,14 +15,15 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Application application = new Application();
-        System.out.println("구입금액을 입력해 주세요.");
         application.getPurchasePrice();
 
     }
 
     private long getPurchasePrice() {
         try {
+            System.out.println("구입금액을 입력해 주세요.");
             String purchasePrice = Console.readLine();
+            System.out.println();
             validatePurchasePrice(purchasePrice);
 
             return Long.parseLong(purchasePrice);

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -141,6 +142,30 @@ class LottoTest {
         boolean actual = lotto.hasNumber(LottoNumber.from(number));
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void 외부로부터_받은_로또번호_목록이_변경되어도_로또_내부의_번호목록은_변경되지_않는다() {
+        List<Integer> modifiableNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto protectedLotto = Lotto.from(modifiableNumbers);
+        Lotto expectedLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+
+        modifiableNumbers.clear();
+
+        assertThat(protectedLotto).usingRecursiveComparison()
+                .isEqualTo(expectedLotto);
+    }
+
+    @Test
+    void 외부로_반환된_로또번호_목록이_변경되어도_로또_내부의_번호목록은_변경되지_않는다() {
+        Lotto protectedLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        List<LottoNumber> modifiableNumbers = protectedLotto.getNumbers();
+        Lotto expectedLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+
+        modifiableNumbers.clear();
+
+        assertThat(protectedLotto).usingRecursiveComparison()
+                .isEqualTo(expectedLotto);
     }
 
     private static Stream<Arguments> invalidCountOfLottoNumber() {

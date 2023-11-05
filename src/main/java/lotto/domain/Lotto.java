@@ -32,14 +32,15 @@ public class Lotto {
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
-        if (containOutRangeNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
+        for (Integer number : numbers) {
+            validateNumberRange(number);
         }
     }
 
-    private boolean containOutRangeNumber(List<Integer> numbers) {
-        //TODO : for문으로 바꾸는 것을 고려
-        return numbers.stream().anyMatch(this::isOutRangeNumber);
+    void validateNumberRange(int number) {
+        if(isOutRangeNumber(number)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
+        }
     }
 
     private boolean isOutRangeNumber(int number) {

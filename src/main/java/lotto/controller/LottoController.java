@@ -16,6 +16,7 @@ public class LottoController {
         int lottoTicketCount = purchaseAmount / Constants.LOTTO_PRICE.getConstants();
         OutputView.printLottoTicketCount(lottoTicketCount);
         List<List<Integer>> lottoTickets = generateAllLottoTickets(lottoTicketCount);
+
         System.out.println();
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber(winningNumbers);
@@ -40,7 +41,7 @@ public class LottoController {
         List<Integer> oneLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_NUMBER.getConstants(),
                 Constants.MAX_NUMBER.getConstants(),
-                Constants.NUMBER_COUNT.getConstants()));
+                Constants.Lotto_Size.getConstants()));
         Collections.sort(oneLotto);
         OutputView.printLottoTickets(oneLotto);
         return oneLotto;

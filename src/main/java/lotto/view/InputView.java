@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.constants.InputMessage;
+import lotto.model.Bonus;
+import lotto.model.InputValidation;
 import lotto.model.Lotto;
-import lotto.model.Validation;
 
 public class InputView {
     public static int getUserPurchaseAmount() {
@@ -15,8 +16,8 @@ public class InputView {
             try {
                 System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
                 String input = Console.readLine();
-                Validation.validatePurchaseAmount(input);
-                purchaseAmount = Validation.validatePurchaseAmountDivisible(input);
+                InputValidation.validatePurchaseAmount(input);
+                purchaseAmount = InputValidation.validatePurchaseAmountDivisible(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -42,23 +43,23 @@ public class InputView {
                     }
                 }
                 Lotto lotto = new Lotto(lottoNumbers);
-                return lotto.getNumbers();
+                return lotto.getWinningNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public static int getBonusNumber(List<Integer> lottoNumbers) {
+    public static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println();
         int bonusNumber;
         while (true) {
             try {
                 System.out.println(InputMessage.BONUS_NUMBER.getMessage());
                 String input = Console.readLine();
-                Validation.validateBonusNumber(input, lottoNumbers);
-                bonusNumber = Integer.parseInt(input);
-                return bonusNumber;
+                bonusNumber = InputValidation.validateBonusNumber(input);
+                Bonus bonus = new Bonus(bonusNumber, winningNumbers);
+                return bonus.getBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

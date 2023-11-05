@@ -1,9 +1,8 @@
 package lotto.model;
 
-import java.util.List;
 import lotto.constants.ErrorMessage;
 
-public class Validation {
+public class InputValidation {
     public static void validatePurchaseAmount(String input) {
         if (!input.matches("[1-9]\\d*")) {
             handleInvalidNegativePurchase(input);
@@ -18,11 +17,10 @@ public class Validation {
         return purchaseAmount;
     }
 
-    public static void validateBonusNumber(String input, List<Integer> lottoNumbers) {
+    public static int validateBonusNumber(String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
-            handleInvalidLottoNumber(bonusNumber);
-            handleInvalidBonusDuplicate(lottoNumbers, bonusNumber);
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
         }
@@ -43,18 +41,6 @@ public class Validation {
     private static void handleInvalidAmountNotDivisible(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
-        }
-    }
-
-    private static void handleInvalidLottoNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
-        }
-    }
-
-    private static void handleInvalidBonusDuplicate(List<Integer> lottoNumbers, int bonusNumber) {
-        if (lottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_DUPLICATE.getMessage());
         }
     }
 }

@@ -17,6 +17,7 @@ public class InputValidatorTest {
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자를 적으면 안 됩니다.";
     private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해주세요.";
     private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해주세요.";
+    private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해주세요.";
     private MoneyValidator inputMoneyValidator;
     private WinningNumValidator winningNumValidator;
 
@@ -42,6 +43,14 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR+NOT_NUMBER_ERROR_MESSAGE);
+    }
+
+    @Test
+    void 입력_값_1000_미만_예외_처리_테스트(){
+        String input = "999";
+        assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR+UNDER_1000_MESSAGE);
     }
 
     @Test

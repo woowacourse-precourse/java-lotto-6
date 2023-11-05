@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.PrizeResult;
 import lotto.domain.Rate;
 import lotto.domain.UserLotto;
@@ -19,26 +20,36 @@ public class LottoGame {
     }
 
     public void gameStart() {
-        int purchaseAmount = inputView.purchaseAmount();
-        UserLotto user = generatedUserLotto(purchaseAmount);
+        Money money = generatedMoney();
+        UserLotto userLotto = generatedUserLotto(money.getTicket());
+        outputView.printCount(money.getTicket());
 
-        for (Lotto lotto : user.getUserLottoNumber()) {
-            outputView.printUserLottoNumbers(lotto.getNumbers());
-        }
+        repeatPrintUserLottoNumber(userLotto);
 
-        List<Integer> winNumbers = inputView.lottoNumbers();
-        int bonusNumber = inputView.bonusNumber();
+        List<Integer> winNumbers = inputView.getLottoNumbers();
+        int bonusNumber = inputView.getBonusNumber();
         WinningLotto winningLotto = generatedWinningLotto(winNumbers, bonusNumber);
 
-        PrizeResult lottoResult = calculateResult(winningLotto, user);
+        PrizeResult prizeResult = calculateResult(winningLotto, userLotto);
+        outputView.printPrizeResult(prizeResult.toString());
 
-        Rate rate = generatedRate(purchaseAmount, lottoResult);
+        Rate rate = generatedRate(money.getMoney(), prizeResult);
+        outputView.printRate(rate.getRate());
     }
 
-    private UserLotto generatedUserLotto(int purchaseAmount) {
-        int lottoCount = purchaseAmount / 1000;
-        outputView.printCount(purchaseAmount / 1000);
-        return new UserLotto(lottoCount);
+    private Money generatedMoney() {
+        return new Money(inputView.purchaseAmount());
+    }
+
+    private UserLotto generatedUserLotto(int ticket) {
+        return new UserLotto(ticket);
+    }
+
+    private void repeatPrintUserLottoNumber(UserLotto userLotto) {
+        for (Lotto lotto : userLotto.getUserLottoNumber()) {
+            outputView.printUserLottoNumbers(lotto.getNumbers());
+        }
+        System.out.println();
     }
 
     private WinningLotto generatedWinningLotto(List<Integer> winNumber, int bonusNumber) {
@@ -46,16 +57,12 @@ public class LottoGame {
     }
 
     private PrizeResult calculateResult(WinningLotto winningLotto, UserLotto userLotto) {
-        PrizeResult lottoResult = new PrizeResult();
-        lottoResult.calcPrizeResult(winningLotto, userLotto);
-        outputView.printPrizeCount(lottoResult.getPrizeResult());
-        return lottoResult;
+        PrizeResult prizeResult = new PrizeResult();
+        prizeResult.getPrizeResult(winningLotto, userLotto);
+        return prizeResult;
     }
 
     private Rate generatedRate(int purchaseAmount, PrizeResult lottoResult) {
-        Rate rate = new Rate(purchaseAmount, lottoResult);
-        outputView.printRate(rate.getRate());
-        return rate;
-
+        return new Rate(purchaseAmount, lottoResult);
     }
 }

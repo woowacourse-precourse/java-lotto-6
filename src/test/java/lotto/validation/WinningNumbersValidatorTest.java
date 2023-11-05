@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,5 +19,16 @@ class WinningNumbersValidatorTest {
         assertThatThrownBy(() -> inputValidation.validateNumberRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMBER_RANGE_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123456", "", "1 2 3 4 5 6"})
+    @DisplayName("입력값의 숫자들이 , 로 구분되어 있지 않으면 예외가 발생하는 테스트")
+    void testValidateCommaSeparatedNumbers(String input) {
+        WinningNumbersValidator inputValidation = new WinningNumbersValidator();
+
+        assertThatThrownBy(() -> inputValidation.validateCommaSeparatedNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CHECK_COMMA_MESSAGE.getMessage());
     }
 }

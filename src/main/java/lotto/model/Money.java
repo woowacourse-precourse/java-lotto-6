@@ -10,6 +10,10 @@ public class Money {
         this.money = money;
     }
 
+    public Integer availableLottoCount() {
+        return this.money / 1000;
+    }
+
     private void validateOverZero(Integer money) {
         if (isOverMinimum(money)) {
             throw new IllegalArgumentException("[ERROR] 돈은 1,000원 이상 입력가능합니다.");

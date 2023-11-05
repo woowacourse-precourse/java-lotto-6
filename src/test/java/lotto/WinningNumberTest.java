@@ -24,7 +24,7 @@ class WinningNumberTest {
     void BonusNumberUnderOrOver() {
         assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "0"))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "40"))
+        assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "47"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

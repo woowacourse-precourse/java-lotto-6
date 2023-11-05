@@ -17,6 +17,4 @@ public class Amount {
     public AmountRecord toRecord() {
         return new AmountRecord(amountCash.cash());
     }
-
-
 }

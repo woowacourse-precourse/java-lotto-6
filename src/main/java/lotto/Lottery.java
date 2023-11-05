@@ -5,6 +5,8 @@ import lotto.Constant.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lottery {
     private final int cost;
@@ -31,10 +33,12 @@ public class Lottery {
     private List<List<Integer>> pickLotto(int numberOfLotto)
     {
         List<List<Integer>> pickedLotto = new ArrayList<>();
-        for(int i = 0 ; i<numberOfLotto ; i++)
-        {
-            pickedLotto.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        }
+        IntStream.range(0, numberOfLotto)
+                        .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
+                            .map(lotto -> lotto.stream()
+                            .sorted()
+                            .collect(Collectors.toList()))
+                        .collect(Collectors.toList());
         return pickedLotto;
     }
 

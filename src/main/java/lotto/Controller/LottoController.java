@@ -35,6 +35,6 @@ public class LottoController {
         int bonusWinningLotteryNumber = inputView.getBonusWinningLotteryNumber(winningLotteryNumber);
 
         List<Integer> resultRecord = lottoService.getResultRecordOfLotto(winningLotteryNumber, bonusWinningLotteryNumber);
-
+        outputView.printResultRecord(resultRecord);
     }
 }

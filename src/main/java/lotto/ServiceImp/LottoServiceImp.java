@@ -80,9 +80,9 @@ public class LottoServiceImp implements LottoService {
             return RecordConstant.NameOfRanking.FOUR_MATCH.getIndex();
         }
 
-        if(overlappedSize == RecordConstant.NameOfRanking.THREE_MATH.getMatchNumber())
+        if(overlappedSize == RecordConstant.NameOfRanking.THREE_MATCH.getMatchNumber())
         {
-            return RecordConstant.NameOfRanking.THREE_MATH.getIndex();
+            return RecordConstant.NameOfRanking.THREE_MATCH.getIndex();
         }
 
         throw new OutOfRankingException("랭킹 안의 범위가 아닙니다");

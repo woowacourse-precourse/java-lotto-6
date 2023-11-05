@@ -6,16 +6,30 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
     public List<Integer> matchingNumbers;
+
+    public List<String> matchingComment;
     public float rateOfReturn=0;
 
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        insertMatchingNumbers();
+        insertComment();
+    }
+    public void insertMatchingNumbers(){
         matchingNumbers=new ArrayList<>();
         for(int i=0;i<5;i++){
             matchingNumbers.add(0);
         }
+    }
+    public void insertComment(){
+        matchingComment=new ArrayList<>();
+        matchingComment.add("3개 일치 (5,000원) - ");
+        matchingComment.add("4개 일치 (50,000원) - ");
+        matchingComment.add("5개 일치 (1,500,000원) - ");
+        matchingComment.add("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+        matchingComment.add("6개 일치 (2,000,000,000) - ");
     }
 
     private void validate(List<Integer> numbers) {
@@ -54,13 +68,14 @@ public class Lotto {
     }
 
     public void printMatchingNumbers(){
-        for(int i : matchingNumbers){
-            System.out.println(i);
+        for(int i =0;i<matchingComment.size();i++){
+            System.out.print(matchingComment.get(i));
+            System.out.println(matchingNumbers.get(i)+"개");
         }
     }
 
     public void printRateOfReturn(){
-        System.out.println(rateOfReturn);
+        System.out.println("총 수익률은 "+rateOfReturn+"%입니다.");
     }
 
     public List<Integer> getLottoNumbers(){

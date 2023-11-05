@@ -33,6 +33,7 @@ class TicketQuantityTest {
         // then
         assertEquals(ticketQuantity1.hashCode(), ticketQuantity2.hashCode());
         assertEquals(ticketQuantity1, ticketQuantity2);
+        assertNotEquals(ticketQuantity1.hashCode(), ticketQuantity3.hashCode());
         assertNotEquals(ticketQuantity1, ticketQuantity3);
     }
 }

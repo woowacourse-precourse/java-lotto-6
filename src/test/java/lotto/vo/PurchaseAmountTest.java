@@ -33,6 +33,7 @@ class PurchaseAmountTest {
         // then
         assertEquals(purchaseAmount1.hashCode(), purchaseAmount2.hashCode());
         assertEquals(purchaseAmount1, purchaseAmount2);
+        assertNotEquals(purchaseAmount1.hashCode(), purchaseAmount3.hashCode());
         assertNotEquals(purchaseAmount1, purchaseAmount3);
     }
 }

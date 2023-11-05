@@ -33,6 +33,7 @@ class BonusNumberTest {
         // then
         assertEquals(bonusNumber1.hashCode(), bonusNumber2.hashCode());
         assertEquals(bonusNumber1, bonusNumber2);
+        assertNotEquals(bonusNumber1.hashCode(), bonusNumber3.hashCode());
         assertNotEquals(bonusNumber1, bonusNumber3);
     }
 }

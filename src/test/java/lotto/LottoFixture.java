@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 
 public enum LottoFixture {
     SIX(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
@@ -21,15 +23,15 @@ public enum LottoFixture {
         this.lotto = lotto;
     }
 
-    Lotto toLotto() {
+    public Lotto toLotto() {
         return lotto;
     }
 
-    static WinningNumbers standard() {
+    public static WinningNumbers standard() {
         return new WinningNumbers(STANDARD, BONUS);
     }
 
-    static List<Lotto> all() {
+    public static List<Lotto> all() {
         return Arrays.stream(LottoFixture.values())
                 .map(LottoFixture::toLotto)
                 .toList();

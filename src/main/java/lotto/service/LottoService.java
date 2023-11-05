@@ -1,7 +1,11 @@
-package lotto;
+package lotto.service;
 
 import java.util.EnumMap;
 import java.util.List;
+import lotto.Money;
+import lotto.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 
 public class LottoService {
 

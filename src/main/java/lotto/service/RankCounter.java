@@ -1,7 +1,8 @@
-package lotto;
+package lotto.service;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import lotto.Rank;
 
 public class RankCounter {
     private final EnumMap<Rank, Integer> map;

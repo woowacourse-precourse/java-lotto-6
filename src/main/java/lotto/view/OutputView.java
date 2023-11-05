@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoResults;
@@ -16,7 +18,11 @@ public class OutputView {
     public static void displayAllLottos(LottosDTO lottosDTO) {
         List<List<Integer>> lottos = lottosDTO.getLottos();
         System.out.println(lottos.size() + CURRENT_BOUGHT_LOTTO_MESSAGE);
-        lottos.forEach(lotto -> System.out.println(lotto.toString()));
+        for (List<Integer> lotto : lottos) {
+            ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
+            copyLotto.sort(Comparator.naturalOrder());
+            System.out.println(copyLotto);
+        }
     }
 
     public static void displayAllLottosStatistics(LottoResultsDTO lottoResultsDTO) {

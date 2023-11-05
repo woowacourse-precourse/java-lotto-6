@@ -3,8 +3,8 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PurchaseTest {
     private final static String VALID_MONEY = "1000";
     private final static String INVALID_MONEY_NOT_NUMBER = "abc";
@@ -14,24 +14,28 @@ class PurchaseTest {
     @Test
     @DisplayName("올바른 구입 금액이 입력된 경우")
     void validatePurchaseMoney() {
-        assertDoesNotThrow(() -> new Purchase<Lotto> (VALID_MONEY));
+        Purchase<Lotto> purchase = new Purchase<>(VALID_MONEY);
+        assertThat(purchase.getMoney()).isEqualTo(1000);
     }
 
     @Test
     @DisplayName("구입 금액이 숫자가 아닌 경우")
     void validatePurchaseMoneyNotNumber() {
-        assertThrows(IllegalArgumentException.class, () -> new Purchase<Lotto> (INVALID_MONEY_NOT_NUMBER));
+        assertThatThrownBy(() -> new Purchase<Lotto> (INVALID_MONEY_NOT_NUMBER))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("구입 금액이 1000원 미만인 경우")
     void validatePurchaseMoneyMinimumLimit() {
-        assertThrows(IllegalArgumentException.class, () -> new Purchase<Lotto> (INVALID_MONEY_MINIMUM_LIMIT));
+        assertThatThrownBy(() -> new Purchase<Lotto> (INVALID_MONEY_MINIMUM_LIMIT))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("구입 금액이 1000원 단위가 아닌 경우")
     void validatePurchaseMoneyUnitLimit() {
-        assertThrows(IllegalArgumentException.class, () -> new Purchase<Lotto> (INVALID_MONEY_UNIT_LIMIT));
+        assertThatThrownBy(() -> new Purchase<Lotto> (INVALID_MONEY_UNIT_LIMIT))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

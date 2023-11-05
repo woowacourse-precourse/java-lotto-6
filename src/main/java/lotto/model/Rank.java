@@ -20,9 +20,21 @@ public enum Rank {
 
     public static Rank findBy(int difference, boolean containsBonusNumber) {
         return Arrays.stream(values())
-                .filter(rank -> rank.difference == difference)
-                .filter(rank -> rank.containsBonusNumber == containsBonusNumber)
+                .filter(rank -> filter(rank, difference, containsBonusNumber))
                 .findFirst()
                 .orElse(Rank.NONE);
+    }
+
+    private static boolean filter(Rank rank, int difference, boolean containsBonusNumber) {
+        return isDifferenceSame(rank, difference)
+                && isContainsBonusNumberSame(rank, containsBonusNumber);
+    }
+
+    private static boolean isDifferenceSame(Rank rank, int difference) {
+        return rank.difference == difference;
+    }
+
+    private static boolean isContainsBonusNumberSame(Rank rank, boolean containsBonusNumber) {
+        return rank.containsBonusNumber == containsBonusNumber;
     }
 }

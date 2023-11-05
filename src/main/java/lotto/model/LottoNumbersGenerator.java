@@ -1,4 +1,4 @@
 package lotto.model;
 
-public class LottoNumberGenerator {
+public class LottoNumbersGenerator {
 }

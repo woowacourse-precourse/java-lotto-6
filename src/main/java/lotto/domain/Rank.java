@@ -40,6 +40,10 @@ public enum Rank {
         return this.hasBonusNumber;
     }
 
+    public long multiplePrizeAndCount(int winningCount) {
+        return (long) this.getPrizeMoney() * winningCount;
+    }
+
     private boolean isSameHasBonusNumber(boolean hasBonusNumber) {
         return this.hasBonusNumber == hasBonusNumber;
     }

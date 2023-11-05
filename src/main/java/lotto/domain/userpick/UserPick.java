@@ -9,19 +9,20 @@ public class UserPick {
 
     Validator validator = new Validator();
 
-    public List<Object> pickNumbers() {
+    public List<Integer> userLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> parsedLottoNumbers = pickLottoNumbers();
         System.out.println();
+
+        return parsedLottoNumbers;
+    }
+
+    public Integer userBonusNumber(List<Integer> userLottoNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        Integer parsedBonusNumber = pickBonusNumber(parsedLottoNumbers);
+        Integer parsedBonusNumber = pickBonusNumber(userLottoNumbers);
         System.out.println();
 
-        List<Object> pickedNumbers = new ArrayList<>();
-        pickedNumbers.add(parsedLottoNumbers);
-        pickedNumbers.add(parsedBonusNumber);
-
-        return pickedNumbers;
+        return parsedBonusNumber;
     }
 
     public List<Integer> pickLottoNumbers() {

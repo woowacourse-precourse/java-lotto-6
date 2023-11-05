@@ -10,7 +10,6 @@ import java.util.List;
 @DisplayName("데이터 엑세스의 경로가 DB가 아님 - 짝퉁 DAO")
 public class LottoDAO {
     private static final CreateAutoLottoNumber cs = new CreateAutoLottoNumber();
-
     public SeasonLottoResultVO insertLotto(){
         SeasonLottoResultVO list = new SeasonLottoResultVO();
         list.setAutoLottoNumber(cs.getLottoSixNumbers());

@@ -17,7 +17,7 @@ public class Lottos {
     }
 
     public Map<Prize, Integer> getPrizeCounts(Lotto winningLotto, LottoNumber bonusNumber) {
-        Map<Prize, Integer> prizeCounts = new HashMap<>();
+        Map<Prize, Integer> prizeCounts = getInitializedPrizeCounts();
         for (Lotto lotto : lottos) {
             Prize prize = lotto.getPrize(winningLotto, bonusNumber);
             if (prize.equals(Prize.NO_PRIZE)) {
@@ -26,6 +26,17 @@ public class Lottos {
             Integer prizeCount = prizeCounts.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
             prizeCount++;
             prizeCounts.put(prize, prizeCount);
+        }
+        return prizeCounts;
+    }
+
+    private Map<Prize, Integer> getInitializedPrizeCounts() {
+        Map<Prize, Integer> prizeCounts = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.NO_PRIZE) {
+                continue;
+            }
+            prizeCounts.put(prize, LottoConstantValue.DEFAULT_COUNT.get());
         }
         return prizeCounts;
     }

@@ -86,3 +86,62 @@
 ---
 ## 9. 결과 출력
 - [x] 당첨 통계를 출력한다
+
+
+---
+# 리팩토링
+
+## 리팩토링의 이유
+
+- 도메인의 설계가 많이 부족했던 이유로, 불필요하게 도메인 객체를 많이 만들고 있었다고 판단했습니다.
+- 또한 현재 프로젝트에서의 dto의 필요성에 대해 의문이 생겼습니다.
+  - 복잡한 결과를 출력하지 않기 때문에 해당 프로젝트에서는 사용하지 않기로 결정했습니다.
+    - 최대 1~2개의 인자를 받아 출력할 것으로 예상
+- 각 도메인의 네이밍이 문맥을 담고 있지 않다고 판단했습니다.
+
+## 리팩토링에 따른 도메인 재설계
+
+### 필요로 예상되는 도메인
+- LottoPurchaseCost: 로또 구입 비용
+  - View로 입력된 원시값을 Controller를 통해 받음
+  - 금액의 검증
+    - 1000원 단위인지
+    - 음수인지, 1000원 미만인지
+- 로또 구매는 어떻게 할 것인가? 컨트롤러에서 LottoPurchase로부터 값을 받아서 객체 생성
+  - 이 때 RandomGenerator를 통해서 생성한다.
+    - 이를 위해 LottoDispenser가 필요할 것 같기는 하다.
+    - 또는 Generator를 controller가 가지고있는 방법이 있기는 하다.
+    - 하지만 LottoNumberDispenser가 더 나아보인다.
+      - 즉, LottoNumberDispenser가 원시값인 구매개수와 Generator를 받아 객체를 생성
+      - 함수를 통해 numbers를 리턴한다.
+  - 위 방법을 통해 컨트롤러에서 Lotto 객체를 생성한다.
+- Lotto: 로또 번호
+  - 로또 번호를 입력받아서 검증
+- PurchasedLottos
+  - 일급컬렉션으로 Lotto 객체를 가진다
+  - 구매 로또 목록
+- WinningLotto
+  - Lotto와 BonusNumber를 인자로 가지고 있음
+    - BonusNumber도 도메인에 포함해 검증 수행할 듯
+- LottoGame
+  - PurchasedLottos와 WinningLotto만 받음
+    - 당첨에 대한 것만 알려주고, 결과의 통계는 여기서 만들지 않는다.
+- LottoResults
+  - Game이 리턴한 LottoResult enum 객체와 LottoPurchase를 인자로 받는다
+  - 당첨 총액과 수익률을 구한다.
+  - 로또 결과는 각 로또 당첨별 몇개 당첨인지와, 수익률을 알려준다.
+  - 즉, Map과 수익률 값을 리턴해준다.
+- 출력은 Map을 통해 Outputview에서 한다.
+- 정렬된 Rank는 enum을 통한다.
+  - 즉, 출력은 Map을 들고 있고, Enum으로부터 정렬된 값을 받는다.
+  - 이를 반복을 돌리면서 Map의 값을 가져와서 출력한다.
+- 기존에 있었던 LottoRankCount객체는 필요없다고 생각함. → Map에서 끝낸다.
+
+## 필요로 예상되는 dto
+- 없음
+  - 로또 번호 출력 → List를 통함
+  - 당첨 통계 출력 → Map을 통함
+    - Map을 받아서 디테일 한 부분은 출력을 해야하는데, 무엇으로 할 것인가 → enum
+
+## 기능 구현 사항에서의 변경사항
+없음

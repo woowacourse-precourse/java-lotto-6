@@ -2,18 +2,15 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.constant.LottoRank;
-import lotto.domain.dto.LottoDto;
-import lotto.domain.mapper.LottoMapper;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoBonusNumber;
 import lotto.domain.model.LottoGame;
 import lotto.domain.model.LottoPurchaseCost;
-import lotto.domain.model.LottoRanks;
+import lotto.domain.model.LottoResults;
 import lotto.domain.model.LottoDispenser;
-import lotto.domain.model.Lottos;
+import lotto.domain.model.PurchasedLottos;
 import lotto.domain.model.WinningLotto;
 import lotto.domain.LottoRandomGenerator;
-import lotto.util.LottoStatistics;
 import lotto.domain.Repeater;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -35,12 +32,12 @@ public class LottoGameController {
         return repeater.repeatBeforeSuccess(() -> new LottoPurchaseCost(inputView.readCostAmount()));
     }
 
-    private Lottos buyLottos(int amount) {
-        LottoDispenser lottoDispenser = new LottoDispenser(new LottoRandomGenerator());
-        Lottos lottos = lottoDispenser.dispense(amount);
-        outputView.printBuyingAmountMessage(amount);
+    private PurchasedLottos buyLottos(LottoPurchaseCost lottoPurchaseCost) {
+        LottoDispenser lottoDispenser = new LottoDispenser(new LottoRandomGenerator(), lottoPurchaseCost);
+        List<Lotto> lottos = lottoDispenser.dispense();
+        outputView.printBuyingAmountMessage(lottoPurchaseCost.getLottoAmount());
 
-        return lottos;
+        return new PurchasedLottos(lottos);
     }
 
     private LottoBonusNumber readBonusNumber() {
@@ -56,41 +53,33 @@ public class LottoGameController {
         return repeater.repeatBeforeSuccess(() -> new WinningLotto(winningLotto, readBonusNumber()));
     }
 
-    private void printBoughtLottos(Lottos lottos) {
-        List<Lotto> rawLottos = lottos.getElements();
-        List<LottoDto> lottoDtos = LottoMapper.toDtos(rawLottos);
-
-        outputView.printLottos(lottoDtos);
+    private void printBoughtLottos(PurchasedLottos purchasedLottos) {
+        List<Lotto> purchasedLottoElements = purchasedLottos.getElements();
+        purchasedLottoElements.stream().map(Lotto::getNumbers).forEach(outputView::printLottoNumbers);
     }
 
     private LottoGame initGame(LottoPurchaseCost lottoPurchaseCost) {
-        int lottoAmount = lottoPurchaseCost.getLottoAmount();
-        Lottos lottos = buyLottos(lottoAmount);
-        printBoughtLottos(lottos);
+        PurchasedLottos purchasedLottos = buyLottos(lottoPurchaseCost);
+        printBoughtLottos(purchasedLottos);
 
         WinningLotto winningLotto = readLottoAnswer();
 
-        return new LottoGame(lottos, winningLotto);
+        return new LottoGame(purchasedLottos, winningLotto);
     }
 
-    private LottoRanks createLottoRanks(LottoGame lottoGame) {
-        List<LottoRank> rawLottoRanks = lottoGame.createLottoRanks();
+    private LottoResults createLottoResults(LottoGame lottoGame, LottoPurchaseCost lottoPurchaseCost) {
+        List<LottoRank> lottoRanks = lottoGame.createWinningLottoRanks();
 
-        return new LottoRanks(rawLottoRanks);
-    }
-
-    private String createStatisticsExpression(LottoRanks lottoRanks, LottoPurchaseCost lottoPurchaseCost) {
-        long rawPurchaseCost = lottoPurchaseCost.getCost();
-
-        return LottoStatistics.createStatisticsExpression(lottoRanks, rawPurchaseCost);
+        return new LottoResults(lottoRanks, lottoPurchaseCost);
     }
 
     public void play() {
         LottoPurchaseCost lottoPurchaseCost = readPurchaseCost();
         LottoGame lottoGame = initGame(lottoPurchaseCost);
-        LottoRanks lottoRanks = createLottoRanks(lottoGame);
-        String statisticsExpression = createStatisticsExpression(lottoRanks, lottoPurchaseCost);
+        LottoResults lottoResults = createLottoResults(lottoGame, lottoPurchaseCost);
 
-        outputView.printStatisticsMessage(statisticsExpression);
+        outputView.printStatisticsPreMessage();
+        outputView.printStatisticsExpression(lottoResults.getRankCounts());
+        outputView.printRateOfReturnExpression(lottoResults.getRateOfReturn());
     }
 }

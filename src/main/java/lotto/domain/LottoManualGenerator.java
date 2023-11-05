@@ -5,13 +5,11 @@ import lotto.constant.IllegalStateExceptionType;
 import lotto.domain.model.Lotto;
 
 public class LottoManualGenerator implements LottoGenerator {
-
     private final List<Lotto> lottos;
-    private int index;
+    private int index = 0;
 
     public LottoManualGenerator(List<List<Integer>> inputs) {
         lottos = inputs.stream().map(Lotto::new).toList();
-        index = 0;
     }
 
     private void increaseIndex() { index++; }

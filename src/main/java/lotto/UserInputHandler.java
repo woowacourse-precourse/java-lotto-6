@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.ErrorMessage.*;
-import static lotto.LottoInputMessages.*;
+import static lotto.messages.LottoInputMessages.*;
+import static lotto.messages.ErrorMessages.*;
 
 public class UserInputHandler {
 
@@ -20,9 +20,9 @@ public class UserInputHandler {
         boolean restart = true;
         String lottoPurchase = null;
         while (restart) {
+            System.out.println(INPUT_USER_LOTTO_PURCHASE.getMessage());
+            lottoPurchase = Console.readLine();
             try {
-                System.out.println(INPUT_USER_LOTTO_PURCHASE.getMessage());
-                lottoPurchase = Console.readLine();
                 validUserLottoPurchase(lottoPurchase);
                 restart = false;
             } catch (IllegalArgumentException e) {
@@ -51,9 +51,9 @@ public class UserInputHandler {
         boolean restart = true;
 
         while (restart) {
+            System.out.println(INPUT_USER_WINNING_NUMBERS.getMessage());
+            winningNumbers = Console.readLine();
             try {
-                System.out.println(INPUT_USER_WINNING_NUMBERS.getMessage());
-                winningNumbers = Console.readLine();
                 validateUserWinningNumbers(winningNumbers);
                 restart = false;
             } catch (IllegalArgumentException e) {

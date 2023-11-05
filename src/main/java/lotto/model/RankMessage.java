@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 
 public enum RankMessage {
     FIRST_MESSAGE(Rank.FIRST, "6개 일치 %s - %d개"),
@@ -18,15 +19,23 @@ public enum RankMessage {
         this.message = message;
     }
 
-    public String getMessage(int counts) {
-        return String.format(message, toAmountFormat(getReward()), counts);
+    public static String getMessage(Rank rank, int counts) {
+        RankMessage rankMessage = findBy(rank);
+        return String.format(rankMessage.message, toAmountFormat(getReward(rank)), counts);
     }
 
-    private int getReward() {
+    private static RankMessage findBy(Rank rank) {
+        return Arrays.stream(values())
+                .filter(rankMessage -> rankMessage.rank == rank)
+                .findFirst()
+                .orElse(NONE_MESSAGE);
+    }
+
+    private static int getReward(Rank rank) {
         return RankReward.getRewardOf(rank);
     }
 
-    private String toAmountFormat(int reward) {
+    private static String toAmountFormat(int reward) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
         return numberFormat.format(reward);
     }

@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public enum Rank {
     FIRST(0, false),
@@ -16,6 +18,12 @@ public enum Rank {
     Rank(int difference, boolean containsBonusNumber) {
         this.difference = difference;
         this.containsBonusNumber = containsBonusNumber;
+    }
+
+    public static List<Rank> getReverseOrderValues() {
+        return Arrays.stream(Rank.values())
+                .sorted(Comparator.reverseOrder())
+                .toList();
     }
 
     public static Rank findBy(int difference, boolean containsBonusNumber) {

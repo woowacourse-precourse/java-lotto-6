@@ -21,4 +21,15 @@ public class LottoResult {
     public int getCounts(Rank rank) {
         return rankCounts.get(rank);
     }
+
+    public String buildResultString() {
+        StringBuilder builder = new StringBuilder();
+
+        for (Rank rank : Rank.getReverseOrderValues()) {
+            builder.append(RankMessage.getMessage(rank, rankCounts.get(rank)));
+            builder.append("\n");
+        }
+
+        return builder.toString();
+    }
 }

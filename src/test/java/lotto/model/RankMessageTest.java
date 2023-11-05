@@ -8,8 +8,8 @@ class RankMessageTest {
     @Test
     @DisplayName("결과 출력 형식 확인")
     void messageTest() {
-        for (RankMessage message : RankMessage.values()) {
-            System.out.println(message.getMessage(3));
+        for (Rank rank : Rank.values()) {
+            System.out.println(RankMessage.getMessage(rank, 3));
         }
     }
 }

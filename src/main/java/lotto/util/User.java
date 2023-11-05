@@ -6,12 +6,12 @@ public class User {
     private static int payment;
 
     public void inputPayment(String input) {
-        checkInteger(input);
-        checkRemainder();
-        checkRange();
+        checkIntegerPayment(input);
+        checkRemainderPayment();
+        checkRangePayment();
     }
 
-    public void checkInteger(String input) {
+    public void checkIntegerPayment(String input) {
         try {
             payment = Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -19,19 +19,19 @@ public class User {
         }
     }
 
-    public void checkRemainder() {
+    public void checkRemainderPayment() {
         if (payment % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 
-    public void checkRange() {
+    public void checkRangePayment() {
         if (payment <= 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 이상만 입력 가능 합니다.");
         }
     }
 
-    public int getLottoTicket() {
+    public int getManyLottoTicket() {
         return payment / 1000;
     }
 }

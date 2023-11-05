@@ -56,6 +56,16 @@ public class LottoController {
         return winningResult;
     }
 
+
+    private static List<Lotto> makeLottoList(int ticketCount) {
+        lottoList = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            lottoList.add(makeLotto());
+        }
+        return lottoList;
+    }
+
+
 }
 
 

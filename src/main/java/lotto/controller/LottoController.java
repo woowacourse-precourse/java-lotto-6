@@ -91,6 +91,11 @@ public class LottoController {
         printEarningRate(result, amount);
     }
 
+    private void printResult(Map<Ranking, Integer> result) {
+        for (int i = Ranking.values().length - 1; i >= 0; i--) {
+            Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+        }
+    }
 
 }
 

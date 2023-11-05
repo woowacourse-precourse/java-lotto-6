@@ -7,10 +7,26 @@ import java.util.List;
 
 public class Draw {
 
-    private void getWinningLottoNumsList() {
+    public Lotto enterWinningLottoNums() {
+        Lotto winningLotto;
+
+        while (true) {
+            try {
+                List<Integer> winningLottoNums = getWinningLottoNumsList();
+                winningLotto = new Lotto(winningLottoNums);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
+    }
+
+    public List<Integer> getWinningLottoNumsList() {
         printWinningLottoNumsEnterGuideStatement();
         String input = Console.readLine();
         String[] strings = input.split(",");
+        return toIntList(strings);
     }
 
     List<Integer> toIntList(String[] strings) {

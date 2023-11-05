@@ -2,21 +2,24 @@ package lotto.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
+import lotto.domain.LottoGenerator;
 import lotto.generator.MockedRandomGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 
 public class LottoRepositoryTest {
-    private LottoGame lottoGame = new LottoGame();
+    private LottoGenerator lottoGame = new LottoGenerator();
     private LottoRepository lottoRepository = new LottoRepository();
 
     @Test
     void 로도_생성_이후_저장하기() {
-        Lotto lotto = lottoGame.generateLotto(new MockedRandomGenerator());
+        Lotto lotto = lottoGame.generateLotto(new MockedRandomGenerator(
+                () -> Randoms.pickNumberInRange(1, 45) // 주입 관련 리팩토링 필요
+        ));
 
         lottoRepository.saveLotto(lotto);
 

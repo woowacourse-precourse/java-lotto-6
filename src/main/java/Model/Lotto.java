@@ -14,7 +14,6 @@ public class Lotto {
     public final static String SEPARATOR_WITH_BLANK = ", ";
     public final static String PRINTING_PREFIX = "[";
     public final static String PRINTING_SUFFIX = "]";
-    public final static int MIN_MATCH = 3;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -33,8 +32,8 @@ public class Lotto {
     }
 
     public int getResult(Winning winnings, Bonus bonus){
-        String match = winnings.countMatch(numbers);
-        if (Integer.parseInt(match) < MIN_MATCH){
+        int match = winnings.countMatch(numbers);
+        if (match < GameConfig.WINNING.valueOfMinMatch().getMatch()){
             return 0;
         }
         int rank = GameConfig.WINNING.valueOfMatch(match).getRank();

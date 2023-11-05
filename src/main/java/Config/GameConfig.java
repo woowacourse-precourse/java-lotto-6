@@ -1,6 +1,7 @@
 package Config;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class GameConfig {
     public final static int MIN_LOTTO = 1;
@@ -9,18 +10,18 @@ public class GameConfig {
     public final static String SEPARATOR = ",";
 
     public enum WINNING{
-        FIRST(2_000_000_000, 1, "6", "6개 일치"),
-        SECOND(30_000_000, 2, "5+1", "5개 일치, 보너스 볼 일치"),
-        THIRD(1_500_000, 3, "5", "5개 일치"),
-        FOURTH(50_000, 4, "4", "4개 일치"),
-        FIFTH(5_000, 5, "3", "3개 일치");
+        FIRST(2_000_000_000, 1, 6, "6개 일치"),
+        SECOND(30_000_000, 2, 6, "5개 일치, 보너스 볼 일치"),
+        THIRD(1_500_000, 3, 5, "5개 일치"),
+        FOURTH(50_000, 4, 4, "4개 일치"),
+        FIFTH(5_000, 5, 3, "3개 일치");
 
         private final int price;
         private final int rank;
-        private final String match;
+        private final int match;
         private final String matchAmount;
 
-        WINNING(int price, int rank, String match, String matchAmount){
+        WINNING(int price, int rank, int match, String matchAmount){
             this.price = price;
             this.rank = rank;
             this.match = match;
@@ -35,6 +36,10 @@ public class GameConfig {
             return rank;
         }
 
+        public int getMatch(){
+            return match;
+        }
+
         public String getMatchAmount(){
             return matchAmount;
         }
@@ -46,10 +51,16 @@ public class GameConfig {
                     .orElse(null);
         }
 
-        public static WINNING valueOfMatch(String match) {
+        public static WINNING valueOfMatch(int match) {
             return Arrays.stream(values())
-                    .filter(value -> value.match.equals(match))
-                    .findAny()
+                    .filter(value -> value.match == match)
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        public static WINNING valueOfMinMatch(){
+            return Arrays.stream(values())
+                    .min(Comparator.comparing(value -> value.match))
                     .orElse(null);
         }
 

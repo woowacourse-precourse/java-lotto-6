@@ -12,6 +12,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validateNumbersSizeIs6(List<Integer> numbers) {
         if (IsSizeSix(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개만 가능합니다.");

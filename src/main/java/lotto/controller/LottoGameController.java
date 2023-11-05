@@ -7,7 +7,6 @@ import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoGameController {
@@ -21,8 +20,8 @@ public class LottoGameController {
         while (true) {
             try {
                 OutputView.printPurchasePriceInputText();
-                int input = convertInputToNumber(InputView.getUserInput());
-                int ticketNumber = lottoOwner.purchaseLotto(input);
+                int bonusNumberInput = InputView.getPaidMoneyInput();
+                int ticketNumber = lottoOwner.purchaseLotto(bonusNumberInput);
                 OutputView.printTicketNumber(ticketNumber);
                 OutputView.printLottoNumbers(lottoOwner.getLottoNumbers());
                 return;
@@ -48,10 +47,7 @@ public class LottoGameController {
         while (true) {
             try {
                 OutputView.printLottoNumbersInputText();
-                List<Integer> lottoNumbers = Arrays.stream(InputView.getUserInput().split(","))
-                        .map(String::trim)
-                        .map(this::convertInputToNumber)
-                        .toList();
+                List<Integer> lottoNumbers = InputView.getLottoNumbersInput();
                 return new Lotto(lottoNumbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
@@ -63,19 +59,11 @@ public class LottoGameController {
         while (true) {
             try {
                 OutputView.printBonusNumberInputText();
-                return new BonusNumber(convertInputToNumber(InputView.getUserInput()));
+                return new BonusNumber(InputView.getBonusNumberInput());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private int convertInputToNumber(String input) {
-        validateInputNumber(input);
-        return Integer.parseInt(input);
-    }
-    private void validateInputNumber(String input) {
-        if (input.matches("\\d*")) return;
-        throw new IllegalArgumentException("숫자를 입력해주세요.");
-    }
 }

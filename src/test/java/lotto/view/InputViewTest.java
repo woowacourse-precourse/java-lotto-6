@@ -74,4 +74,17 @@ public class InputViewTest {
         assertEquals(true, info.isValidate());
         assertThat(inputView.splitUserInput(userInput)).containsExactly("1", "2", "3", "4", "5", "6");
     }
+
+    @Test
+    void 담첨_번호가_숫자가_아닌_경우_예외처리() {
+        // given
+        String userInput = "가,나,다,라,마,바";
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+        // when
+        InputInfo info = inputView.inputWinningNumbers();
+        // then
+        assertEquals(false, info.isValidate());
+        assertEquals(ExceptionCode.INVALID_INPUT_INTEGER.getMessage(), info.getExceptionMessage());
+    }
 }

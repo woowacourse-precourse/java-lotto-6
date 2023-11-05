@@ -3,8 +3,8 @@ package lotto.view.validator;
 import static lotto.exception.ErrorMessage.VALIDATE_INPUT_EMPTY;
 import static lotto.exception.ErrorMessage.VALIDATE_INPUT_NUMBER;
 
-public class InputNumberValidator {
-    private InputNumberValidator() {}
+public class InputValidator {
+    private InputValidator() {}
 
     public static void checkEmpty(String str) {
         if (str.isEmpty()) {

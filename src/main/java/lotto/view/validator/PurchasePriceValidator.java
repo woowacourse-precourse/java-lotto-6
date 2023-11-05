@@ -6,11 +6,11 @@ import static lotto.exception.ErrorMessage.VALIDATE_PURCHASE_PRICE_DIVIDE;
 import lotto.view.OutputView;
 
 public class PurchasePriceValidator {
-    public static boolean validatePurchasePrice(String inputPurchasePrice) {
+    public static boolean validatePurchasePrice(String input) {
         try {
-            InputNumberValidator.checkEmpty(inputPurchasePrice);
-            InputNumberValidator.checkNumber(inputPurchasePrice);
-            checkDivide(inputPurchasePrice);
+            InputValidator.checkEmpty(input);
+            InputValidator.checkNumber(input);
+            checkDivide(input);
             return true;
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());

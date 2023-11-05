@@ -18,11 +18,11 @@ public class LottoResult {
         List<WinningStatistics> winningStatistics = new ArrayList<>(statistics.keySet());
         winningStatistics.remove(WinningStatistics.MISS);
         winningStatistics.sort(Collections.reverseOrder());
-        Map<WinningStatistics, Integer> sortedRanks = new LinkedHashMap<>();
+        Map<WinningStatistics, Integer> sortedStatistics = new LinkedHashMap<>();
         for (WinningStatistics statistic : winningStatistics) {
-            sortedRanks.put(statistic, statistics.get(statistic));
+            sortedStatistics.put(statistic, statistics.get(statistic));
         }
-        return sortedRanks;
+        return sortedStatistics;
     }
 
     public double calculatePercent() {

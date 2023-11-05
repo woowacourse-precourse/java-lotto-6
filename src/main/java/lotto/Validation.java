@@ -42,9 +42,9 @@ public class Validation {
 
     static void rangeCheck(String raw) {
         try {
-            if (Long.parseLong(raw) > ((long) Integer.MAX_VALUE) * 1000) {
+            if (Long.parseLong(raw) > ((long) Integer.MAX_VALUE - 8) * 1000) {
                 throw new IllegalArgumentException(
-                        "[ERROR] 구입금액은 " + Integer.MAX_VALUE * 1000 + "보다 작아야 합니다.");
+                        "[ERROR] 구입금액은 " + (Integer.MAX_VALUE - 8) * 1000 + "보다 작아야 합니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");

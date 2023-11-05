@@ -111,10 +111,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 Integer.MAX_VALUE*1000 보다 크면 예외가 발생한다.")
+    @DisplayName("구입 금액이 (Integer.MAX_VALUE - 8) * 1000 보다 크면 예외가 발생한다.")
     @Test
     void inputMoneyByOverRange() {
-        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("2147483647001"))
+        assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("2147483639001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

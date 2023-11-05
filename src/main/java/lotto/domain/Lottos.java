@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 import lotto.domain.strategy.IssuableStrategy;
@@ -37,6 +38,18 @@ public class Lottos {
             rankResult.put(result, rankResult.getOrDefault(result, 0) + 1);
         }
         return rankResult;
+    }
+
+    public long calculateTotalReward(final EnumMap<Rank, Integer> rankResult) {
+        long totalReward = 0L;
+        for (Entry<Rank, Integer> rankResultEntry : rankResult.entrySet()) {
+            totalReward += calculateReward(rankResultEntry.getKey(), rankResultEntry.getValue());
+        }
+        return totalReward;
+    }
+
+    private long calculateReward(final Rank rank, final int count) {
+        return rank.totalReward(rank, count);
     }
 
 }

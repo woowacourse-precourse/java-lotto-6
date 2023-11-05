@@ -129,4 +129,39 @@ class LottoTest {
         );
     }
 
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @MethodSource("provideDataForCalculateTotalReward")
+    @DisplayName("총 당첨 금액 계산")
+    void givenData_whenCalculateTotalReward_thenReturnCorrectReward(List<Lotto> lottos, long expected) {
+        // given
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Lottos userLottos = new Lottos(lottos);
+
+        // when
+        long result = userLottos.calculateTotalReward(userLottos.getRankResult(winningLotto));
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> provideDataForCalculateTotalReward() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+                        ), 4_030_000_000L
+                ),
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+                                new Lotto(List.of(1, 2, 3, 4, 7, 8)),
+                                new Lotto(List.of(1, 2, 3, 4, 7, 8)),
+                                new Lotto(List.of(1, 2, 3, 7, 8, 9))
+                        ), 1_605_000L
+                )
+        );
+    }
+
 }

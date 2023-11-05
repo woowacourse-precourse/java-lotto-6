@@ -43,4 +43,8 @@ public enum Rank {
                 .orElse(UNRANKED);
     }
 
+    public long totalReward(final Rank rank, final int count) {
+        return (long) rank.reward * count;
+    }
+
 }

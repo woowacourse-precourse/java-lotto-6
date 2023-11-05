@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.text.NumberFormat;
 import java.util.Arrays;

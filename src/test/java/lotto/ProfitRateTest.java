@@ -3,6 +3,8 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import lotto.model.Money;
+import lotto.model.ProfitRate;
 import org.junit.jupiter.api.Test;
 
 class ProfitRateTest {

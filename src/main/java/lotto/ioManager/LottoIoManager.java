@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import lotto.Lotto;
-import lotto.Lottos;
-import lotto.Rank;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Rank;
 import lotto.exception.ExceptionManager;
 
 public class LottoIoManager implements IoManager {

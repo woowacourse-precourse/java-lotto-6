@@ -1,6 +1,12 @@
-package lotto;
+package lotto.controller;
 
 import lotto.ioManager.LottoIoManager;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.Lottos;
+import lotto.model.Money;
+import lotto.model.WinningCalculator;
+import lotto.model.WinningLottoWithBonus;
 
 public class LottoController {
 

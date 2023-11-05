@@ -1,5 +1,9 @@
 package lotto;
 
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.Lottos;
+import lotto.model.Money;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

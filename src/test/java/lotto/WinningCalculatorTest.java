@@ -3,6 +3,10 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.WinningCalculator;
+import lotto.model.WinningLottoWithBonus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model;
 
 import static lotto.constants.LottoConstants.LOTTO_END;
 import static lotto.constants.LottoConstants.LOTTO_START;
 
 import lotto.exception.ExceptionManager;
+import lotto.model.Lotto;
 
 public class WinningLottoWithBonus {
 

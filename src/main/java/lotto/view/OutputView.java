@@ -22,9 +22,10 @@ public class OutputView {
         System.out.println(String.format("%s개 일치, 보너스 볼 일치 (30,000,000원) - %s개", 5, resultCount.getOrDefault(2, 0)));
         System.out.println(String.format("%s개 일치 (2,000,000,000원) - %s개", 6, resultCount.getOrDefault(1, 0)));
 
-        int totalPrice = 5000 * resultCount.getOrDefault(5, 0) + 50000 * resultCount.getOrDefault(4, 0) + 1_500_000 * resultCount.getOrDefault(3, 0)
-                + 30_000_000 * resultCount.getOrDefault(2, 0) + 2_000_000_000 * resultCount.getOrDefault(1, 0);
-        double result = totalPrice * 100 / (Integer.valueOf(purchasePrice) * 1.0);
-        System.out.println(result);
+        Long totalPrice = Long.valueOf(
+                5000 * resultCount.getOrDefault(5, 0) + 50000 * resultCount.getOrDefault(4, 0) + 1_500_000 * resultCount.getOrDefault(3, 0)
+                        + 30_000_000 * resultCount.getOrDefault(2, 0) + 2_000_000_000 * resultCount.getOrDefault(1, 0));
+        double result = (totalPrice * 100) / (Integer.valueOf(purchasePrice) * 1.0);
+        System.out.println(String.format("%,.1f%%", result));
     }
 }

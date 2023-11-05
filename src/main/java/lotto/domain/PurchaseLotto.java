@@ -1,17 +1,20 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.*;
 import lotto.constant.LottoConfig;
 
-import static lotto.constant.ErrorMessage.*;
-
 public class PurchaseLotto {
-    public static int getLottoCount(String amount) {
-        validate(amount);
-        int amountNum = Integer.parseInt(amount);
-        return amountNum / 1000;
+    public static int lottoCount(String amount) {
+        int amountNum = parseAmount(amount);
+        return calculateLottoCount(amountNum);
     }
 
-    public static void validate(String amount){
+    private static int parseAmount(String amount) {
+        validate(amount);
+        return Integer.parseInt(amount);
+    }
+
+    private static void validate(String amount) {
         validateSpace(amount);
         validateNumber(amount);
         validateFirstNumber(amount);
@@ -20,7 +23,7 @@ public class PurchaseLotto {
     }
 
     private static void validateSpace(String amount) {
-        if(amount.contains(" ")){
+        if (amount.contains(" ")) {
             throw new IllegalArgumentException(ERROR_CONTAIN_SPACE.toString());
         }
     }
@@ -37,22 +40,26 @@ public class PurchaseLotto {
 
     private static void validateFirstNumber(String amount) {
         int firstNumber = amount.charAt(0) - '0';
-        if(firstNumber == LottoConfig.NUMBER_ZERO){
+        if (firstNumber == LottoConfig.NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_FIRST_ZERO.toString());
         }
     }
 
     private static void validateMultipleOf1000(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum % LottoConfig.PURCHASE_AMOUNT_UNIT != LottoConfig.NUMBER_ZERO){
+        if (amountNum % LottoConfig.PURCHASE_AMOUNT_UNIT != LottoConfig.NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_UNIT.toString());
         }
     }
 
     private static void validateMaxPurchase(String amount) {
         int amountNum = Integer.parseInt(amount);
-        if(amountNum > LottoConfig.PURCHASE_AMOUNT_MAX){
+        if (amountNum > LottoConfig.PURCHASE_AMOUNT_MAX) {
             throw new IllegalArgumentException(ERROR_OVER_MAX.toString());
         }
+    }
+
+    private static int calculateLottoCount(int amount) {
+        return amount / LottoConfig.PURCHASE_AMOUNT_UNIT;
     }
 }

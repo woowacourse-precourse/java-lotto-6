@@ -11,43 +11,33 @@ import java.util.stream.Collectors;
 public class LottoController {
 
     private final LottoView lottoView = new LottoView();
+    private final LottoService lottoService = new LottoService();
 
     /**
      * 로또 진행
      */
     public void processLottoWinning() {
         ArrayList<Integer> winningNumbers; // 로또 당첨 번호
-        int bonusNumber;
+        int bonusNumber = 0;
         int amount = lottoView.inputPurchaseAmount() / 1000;
 
         Lotto[] lottos = new Lotto[amount];
         for (int i = 0; i < lottos.length; ++i) {
-            lottos[i] = new Lotto(generateLottoNumbers());
+            lottos[i] = new Lotto(lottoService.generateLottoNumbers());
         }
         lottoView.printPurchasedLottoNumbers(lottos);
 
-        winningNumbers = generateLottoWinningNumbers(lottoView.inputWinningNumber());
+        winningNumbers = lottoService.generateLottoWinningNumbers(lottoView.inputWinningNumber());
         bonusNumber = lottoView.inputBonusNumber();
 
+        Rank[] ranks = lottoService.calculateWinningDetails(lottos, winningNumbers, bonusNumber);
+        lottoView.printWinningInformation(ranks);
     }
 
 
-    /**
-     * 로또 번호 생성
-     */
-    public List<Integer> generateLottoNumbers() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto);
-        return lotto;
-    }
 
-    /**
-     * 로또 당첨 번호 생성
-     */
-    public ArrayList<Integer> generateLottoWinningNumbers(String winningNumbers) {
-        String[] winningNumber = winningNumbers.split(",");
-        return Arrays.stream(winningNumber)
-                .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
+
+
+
+
 }

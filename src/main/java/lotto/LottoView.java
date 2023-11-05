@@ -1,7 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LottoView {
     public int inputPurchaseAmount() {
@@ -12,7 +15,7 @@ public class LottoView {
     public void printPurchasedLottoNumbers(Lotto[] lottos) {
         System.out.println(lottos.length + "개를 구매했습니다");
         for (int i = 0; i < lottos.length; i++) {
-            lottos[i].getNumbers();
+            System.out.println(lottos[i].getNumbers());
         }
     }
 
@@ -26,7 +29,18 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-
-
+    public void printWinningInformation(Rank[] ranks) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.KOREA);
+        String countIndex = "";
+        for(Rank rank : ranks) {
+            countIndex = rank.getRank() + "개 일치 ";
+            if(rank.getRank().equals("5B")) {
+                countIndex = "5개 일치, 보너스 볼 일치 ";
+            }
+            System.out.println(countIndex + "(" + numberFormat.format(rank.getMoney()) + "원) - " + rank.getAmount() + "개");
+        }
+    }
 
 }

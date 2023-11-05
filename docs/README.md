@@ -7,8 +7,8 @@
     - [x] 발행된 로또 번호 출력하기 - printPurchasedLottoNumbers ()
 - [x] 당첨번호와 보너스 번호를 입력받기 - inputWinningNumber(), inputBonusNumber()
   - [x] 당첨번호 ArrayList 만들기 - generateLottoWinningNumbers()
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 계산하기
-  - [ ] 당첨 내역 출력하기
+- [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 계산하기 - calculateWinningDetails()
+  - [x] 당첨 내역 출력하기 - printWinningInformation()
 - [ ] 수익률 계산하기
   - [ ] 수익률 출력하기
 - [ ] 전 과정을 진행하는 컨트롤러 생성

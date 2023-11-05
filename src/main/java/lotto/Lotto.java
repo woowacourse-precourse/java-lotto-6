@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private Rank rank;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -18,9 +20,26 @@ public class Lotto {
         }
     }
 
-    public void getNumbers() {
-        System.out.println(numbers);
+    public List<Integer>  getNumbers() {
+        return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public void setRank(ArrayList<Integer> winningNumbers, int bonusNumber) {
+        int count = 0;
+        boolean checkBonus = false;
+        StringBuilder sb = new StringBuilder();
+        for(Integer number : numbers) {
+            if(winningNumbers.contains(number)) ++count;
+            if(number == bonusNumber) checkBonus = true;
+        }
+        sb.append(count);
+        if(checkBonus) sb.append("B");
+        this.rank = rank.calcurateRank(sb.toString());
+    }
+
+    public Rank getRank() {
+        return this.rank;
+    }
+
+
 }

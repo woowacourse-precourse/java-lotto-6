@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class LotteryResultValidatorTest {
+public class LotteryNumbersValidatorTest {
     @ParameterizedTest
     @MethodSource
     void 보너스_번호가_당첨_번호와_중복된_숫자가_존재할때_예외처리(List<Integer> lottoNumbers, int bonusNumber) {

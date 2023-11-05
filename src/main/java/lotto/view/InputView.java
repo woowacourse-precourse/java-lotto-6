@@ -14,4 +14,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public String receiveBonusNumberInput() {
+        outputView.printInputBonusNumberMessage();
+        return Console.readLine();
+    }
+
 }

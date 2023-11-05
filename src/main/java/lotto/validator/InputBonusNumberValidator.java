@@ -3,13 +3,12 @@ package lotto.validator;
 import lotto.domain.LottoConstant;
 import lotto.view.ErrorMessage;
 
-public class InputPurchaseAmountValidator {
-
+public class InputBonusNumberValidator {
     public void validate(String input) {
         validatePurchaseAmountIsBlank(input);
         validatePurchaseAmountIsNumeric(input);
         validatePurchaseAmountIsPositive(input);
-        validatePurchaseAmountIsMultipleOfLottoPriceUnit(input);
+        validateWinningLotteryNumbersIsBetweenValidRange(input);
     }
 
     private void validatePurchaseAmountIsBlank(String input) {
@@ -32,17 +31,10 @@ public class InputPurchaseAmountValidator {
         }
     }
 
-    private void validatePurchaseAmountIsMultipleOfLottoPriceUnit(String input) {
-        if (Integer.parseInt(input) % LottoConstant.LOTTO_PRICE_UNIT.getValue() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_MUST_BE_MULTIPLE_OF_LOTTO_PRICE_UNIT.getMessage());
-        }
-    }
-
     private void validateWinningLotteryNumbersIsBetweenValidRange(String input) {
         int number = Integer.parseInt(input);
         if (number < LottoConstant.MIN_LOTTO_NUMBER.getValue() || number > LottoConstant.MAX_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
-
 }

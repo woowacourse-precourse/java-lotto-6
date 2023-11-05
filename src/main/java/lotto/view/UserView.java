@@ -8,6 +8,9 @@ import static lotto.utility.Constants.INPUT_WINNING_NUMBERS_MESSAGE;
 import static lotto.utility.Constants.LINE;
 import static lotto.utility.Constants.WINNING_STATISTIC;
 
+import java.util.List;
+import lotto.model.Lotto;
+
 public class UserView {
     public UserView() {}
     public void printBuyMessageBefore() {
@@ -26,5 +29,10 @@ public class UserView {
         System.out.println(WINNING_STATISTIC);
         System.out.println(LINE.repeat(3));
         // 당첨 통계 메시지 출력 코드 구현 예정
+    }
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getSortedNumbers());
+        }
     }
 }

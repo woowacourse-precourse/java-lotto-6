@@ -1,8 +1,20 @@
 package lotto.model;
 
+import static lotto.utility.Constants.LOTTO_LENGTH;
+import static lotto.utility.Constants.MAX_LOTTO_NUMBER;
+import static lotto.utility.Constants.MIN_LOTTO_NUMBER;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private Integer purchaseAmount;
     private Integer purchaseLottoNumber;
+    private List<Lotto> lottos;
+    public User() {
+        lottos = new ArrayList<>();
+    }
 
     public Integer getPurchaseAmount() {
         return purchaseAmount;
@@ -18,6 +30,22 @@ public class User {
 
     public void setPurchaseLottoNumber(Integer purchaseLottoNumber) {
         this.purchaseLottoNumber = purchaseLottoNumber;
+    }
+
+    public void setLottos() {
+        for (int i=0; i<purchaseLottoNumber; i++) {
+            this.lottos.add(generateLotto());
+        }
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
+    private Lotto generateLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
+        Lotto newLotto = new Lotto(numbers);
+        return newLotto;
     }
 
 }

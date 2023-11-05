@@ -30,8 +30,13 @@ public enum Rank {
         }
         return Rank.FAIL;
     }
+
     public void addCount() {
         this.winningCount += 1;
+    }
+
+    public int getCount() {
+        return this.winningCount;
     }
 
 }

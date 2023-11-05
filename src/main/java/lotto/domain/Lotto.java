@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +16,13 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
+        if (isDuplicate(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isDuplicate(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().collect(Collectors.toList()).size();
     }
 
     public static void createLotto(List<Integer> lottoNumber) {

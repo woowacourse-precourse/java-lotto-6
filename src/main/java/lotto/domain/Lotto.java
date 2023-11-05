@@ -49,4 +49,8 @@ public class Lotto {
         }
         return matchCounts;
     }
+
+    public boolean isContains(LottoNumber target) {
+        return this.lottoNumbers.contains(target);
+    }
 }

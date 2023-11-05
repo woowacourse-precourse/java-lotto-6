@@ -19,7 +19,7 @@ class PurchaseAmountValidatorTest {
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount("  "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("공백으로만 이루어진 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 공백으로만 이루어진 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("입력 값이 빈 문자열이면 예외를 발생시킨다.")
@@ -31,7 +31,7 @@ class PurchaseAmountValidatorTest {
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("빈 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 빈 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("입력 값이 1000원 단위가 아니면 예외를 발생시킨다.")
@@ -44,7 +44,7 @@ class PurchaseAmountValidatorTest {
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("1000원 단위만 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 1000원 단위만 입력할 수 있습니다.");
 
     }
 
@@ -58,7 +58,7 @@ class PurchaseAmountValidatorTest {
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자만 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 숫자만 입력할 수 있습니다.");
     }
 
     @DisplayName("입력 값이 1000원 단위의 숫자면 예외를 발생시키지 않는다.")
@@ -82,6 +82,6 @@ class PurchaseAmountValidatorTest {
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("0 이하의 수는 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 0 이하의 수는 입력할 수 없습니다.");
     }
 }

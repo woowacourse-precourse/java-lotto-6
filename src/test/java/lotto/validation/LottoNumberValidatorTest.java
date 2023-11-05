@@ -21,7 +21,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("빈 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 빈 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("공백으로된 문자열을 입력하면 예외를 발생시킨다.")
@@ -33,7 +33,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("  "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("공백으로만 이루어진 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 공백으로만 이루어진 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("숫자와 구분자로만 이루어지지 않은 문자열을 입력하면 예외를 발생시킨다.")
@@ -46,7 +46,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구분자 ,와 숫자로 구성된 문자열만을 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 구분자 ,와 숫자로 구성된 문자열만을 입력할 수 있습니다.");
     }
 
     @DisplayName("숫자와 구분자로만 이루어지진 문자열을 입력하면 예외를 발생시키지 않는다.")
@@ -68,7 +68,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(",1,3,2,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구분자인 ,로 시작하는 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 구분자인 ,로 시작하는 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("구분자로 끝나는 문자열을 입력하면 예외를 발생시킨다.")
@@ -80,7 +80,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers("1,3,4,2,5,6,"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구분자인 ,로 끝나는 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 구분자인 ,로 끝나는 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("연속적인 구분자가 있는 문자열을 입력하면 예외를 발생시킨다.")
@@ -93,7 +93,7 @@ class LottoNumberValidatorTest {
         //when, then
         assertThatThrownBy(() -> lottoNumberValidator.validateLottNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구분자 ,를 연속해서 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 구분자 ,를 연속해서 입력할 수 없습니다.");
     }
 
     @DisplayName("보너스 번호를 빈 문자열로 입력하면 에외를 발생시킨다.")
@@ -107,7 +107,7 @@ class LottoNumberValidatorTest {
                 () -> lottoNumberValidator.validateBonusNumber(
                         "", new ArrayList<>(List.of("1", "2", "3", "4", "5", "6"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("빈 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 빈 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("보너스 번호를 공백으로 입력하면 예외를 발생시킨다.")
@@ -121,7 +121,7 @@ class LottoNumberValidatorTest {
                 () -> lottoNumberValidator.validateBonusNumber(
                         "   ", new ArrayList<>(List.of("1", "2", "3", "4", "5", "6"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("공백으로만 이루어진 문자열을 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 공백으로만 이루어진 문자열을 입력할 수 없습니다.");
     }
 
     @DisplayName("숫자와 구분자로만 이루어지지 않은 문자열을 입력하면 예외를 발생시킨다.")
@@ -136,7 +136,7 @@ class LottoNumberValidatorTest {
                 () -> lottoNumberValidator.validateBonusNumber(
                         "string", new ArrayList<>(List.of("1", "2", "3", "4", "5", "6"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자만 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 숫자만 입력할 수 있습니다.");
     }
 
     @DisplayName("보너스 번호의 범위가 1과 45사이가 아니면 예외를 발생시킨다.")
@@ -151,7 +151,7 @@ class LottoNumberValidatorTest {
                 () -> lottoNumberValidator.validateBonusNumber(
                         bonusNumber, new ArrayList<>(List.of("1", "2", "3", "4", "5", "6"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("1에서 45 사이의 숫자만 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 1에서 45 사이의 숫자만 입력할 수 있습니다.");
     }
 
     @DisplayName("주어진 로또 번호에 이미 존재하는 값이면 예외를 발생시킨다.")
@@ -166,7 +166,7 @@ class LottoNumberValidatorTest {
                 () -> lottoNumberValidator.validateBonusNumber(
                         "1", new ArrayList<>(List.of("1", "2", "3", "4", "5", "6"))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("로또에 이미 있는 번호는 입력할 수 없습니다.");
+                .hasMessage("[ERROR] 로또에 이미 있는 번호는 입력할 수 없습니다.");
     }
 
     @DisplayName("로또에 중복되지 않고 범위 내에 있는 숫자를 입력하면 예외를 발생시키지 않는다.")

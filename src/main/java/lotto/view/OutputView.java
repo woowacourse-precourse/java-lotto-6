@@ -8,6 +8,7 @@ public class OutputView {
     }
 
     public void printBuyingMessage(int lottoCount) {
+        System.out.println();
         System.out.println(PrintingMessage.BUYING_MESSAGE.getWithFormat(lottoCount));
     }
 
@@ -16,14 +17,17 @@ public class OutputView {
     }
 
     public void printGetWinningNumbersMessage() {
+        System.out.println();
         System.out.println(PrintingMessage.GET_WINNING_NUMBERS_MESSAGE.get());
     }
 
     public void printGetBonusNumberMessage() {
+        System.out.println();
         System.out.println(PrintingMessage.GET_BONUS_NUMBER_MESSAGE.get());
     }
 
     public void printPrizeMessageStartMessage() {
+        System.out.println();
         System.out.println(PrintingMessage.PRIZE_MESSAGE_START_MESSAGE.get());
     }
 

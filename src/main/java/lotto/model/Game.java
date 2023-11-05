@@ -66,7 +66,7 @@ public class Game {
     public float calculateProfitRate(float buyAmount, int[] result) {
         float winningPrice = calculateWinningPrice(result);
 
-        return winningPrice / buyAmount;
+        return (winningPrice / buyAmount) * 100;
     }
 
 

@@ -36,4 +36,8 @@ public class OutputView {
         System.out.println(6 + "개 일치 (2,000,000,000원) - " + result[5] + "개");
 
     }
+
+    public static void printProfitRate(float profitRate) {
+        System.out.print("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+    }
 }

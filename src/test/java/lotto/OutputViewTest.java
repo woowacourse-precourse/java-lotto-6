@@ -91,4 +91,19 @@ public class OutputViewTest {
     }
 
 
+    @DisplayName("수익률 출력 테스트")
+    @Test
+    void printProfitRate_EqualMessage_Success() {
+        ByteArrayOutputStream output = captureOutputValues();
+        Game game = new Game();
+        float buyAmount = 8000;
+        int[] result = new int[]{0, 1, 0, 0, 0, 0};
+
+        float profitRate = game.calculateProfitRate(8000, result);
+
+        OutputView.printProfitRate(profitRate);
+        assertThat(output.toString()).isEqualTo("총 수익률은 62.5%입니다.");
+    }
+
+
 }

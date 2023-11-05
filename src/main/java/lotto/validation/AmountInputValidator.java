@@ -38,4 +38,10 @@ public class AmountInputValidator {
     private boolean isNotValueDivisibleBy1000(int amountInput) {
         return !(amountInput % ONE_LOTTO_PRICE.getNumber() == 0);
     }
+
+    public void validateAmountInput(String input) {
+        validateInputNumericFormat(input);
+        validatePositive(input);
+        validateDivisibilityBy1000(input);
+    }
 }

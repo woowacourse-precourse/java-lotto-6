@@ -20,8 +20,9 @@ class WinningNumbersTest {
         winningNumbers = new WinningNumbers(new NumberConverter());
     }
 
-    @Test
+
     @DisplayName("유효한 번호 문자열을 올바르게 처리해야 한다.")
+    @Test
     void testProcessWithValidNumbers() {
         // given
         String numbers = "1, 2, 3, 4, 5, 6";
@@ -33,8 +34,9 @@ class WinningNumbersTest {
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
-    @Test
+
     @DisplayName("쉼표로 시작하는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    @Test
     void testProcessWithLeadingComma() {
         // given
         String numbersWithLeadingComma = ",1, 2, 3, 4, 5, 6";
@@ -45,8 +47,9 @@ class WinningNumbersTest {
                 .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
 
-    @Test
+
     @DisplayName("쉼표로 끝나는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    @Test
     void testProcessWithTrailingComma() {
         // given
         String numbersWithTrailingComma = "1, 2, 3, 4, 5, 6,";
@@ -57,8 +60,9 @@ class WinningNumbersTest {
                 .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
 
-    @Test
+
     @DisplayName("연속된 쉼표가 있는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    @Test
     void testProcessWithConsecutiveCommas() {
         // given
         String numbersWithConsecutiveCommas = "1,, 2, 3, 4, 5, 6";
@@ -67,6 +71,19 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> winningNumbers.process(numbersWithConsecutiveCommas))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+    }
+
+    @DisplayName("공백 문자가 포함된 번호 문자열도 올바르게 처리해야 한다.")
+    @Test
+    void testProcessWithSpaces() {
+        // given
+        String numbersWithSpaces = " 1 , 2 , 3 , 4 , 5 , 6 ";
+
+        // when
+        List<Integer> result = winningNumbers.process(numbersWithSpaces);
+
+        // then
+        assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
 

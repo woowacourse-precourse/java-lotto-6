@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -32,7 +33,7 @@ public class Application {
 
 
         //당첨 번호 입력
-        List<Integer> winningNumbers;
+        List<Integer> winningNumbers = null;
 
         System.out.println("당첨 번호를 입력해 주세요.");
 
@@ -43,6 +44,21 @@ public class Application {
             userInputWinningNumber.sortWinningNumbers(winningNumbers);
             userInputWinningNumber.hasDuplicates(winningNumbers);
         }
+
+        System.out.println();
+
+
+        //보너스 번호 입력
+        int bonusNumber = 0;
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        UserInput userInputBonusNumber = new UserInput();
+
+        while(UserInput.repeatBonusNumber){
+            bonusNumber = userInputBonusNumber.getBonusNumber();
+            userInputBonusNumber.overlapWithNumber(winningNumbers, bonusNumber);
+        }
+
 
 
 

@@ -28,13 +28,14 @@ public class LottoFactory {
 
     public Lotto createLottoByAuto() {
         List<Integer> numbers = numberGenerator.generateNumbers(LOTTO_COUNT.getValue());
-        return new Lotto(numbers.stream()
-                .map(LOTTO_NUMBER_CACHE::get)
-                .toList()
-        );
+        return createLotto(numbers);
     }
 
     public Lotto createLottoByManual(List<Integer> numbers) {
+        return createLotto(numbers);
+    }
+
+    private Lotto createLotto(List<Integer> numbers) {
         return new Lotto(numbers.stream()
                 .map(LOTTO_NUMBER_CACHE::get)
                 .toList()

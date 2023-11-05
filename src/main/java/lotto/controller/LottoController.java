@@ -22,6 +22,31 @@ public class LottoController {
         printWinnerNumberMessage();
         String inputWinnerNumber = inputWinnerNumberProcess();
         setWinnerNumber(inputWinnerNumber);
+        printBonusNumberMessage();
+        String inputBonusNumber = inputBonusNumberProcess();
+        setBonusNumber(inputBonusNumber);
+
+    }
+
+    private void setBonusNumber(String inputBonusNumber) {
+        lottoService.setBonusNumber(inputBonusNumber);
+    }
+
+    private String inputBonusNumberProcess() {
+        try {
+            String inputBonusNumber = inputView.inputBonusNumber();
+            validateService.validateInputBonusNumber(inputBonusNumber);
+            printBlankLine();
+            return inputBonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumberProcess();
+        }
+
+    }
+
+    private void printBonusNumberMessage() {
+        outputView.printBonusNumberMessage();
     }
 
     private void setWinnerNumber(String inputWinnerNumber) {

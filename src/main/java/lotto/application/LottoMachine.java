@@ -6,10 +6,10 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
-public class LottoFactory {
+public class LottoMachine {
     private final NumberGenerator numberGenerator;
 
-    public LottoFactory(NumberGenerator numberGenerator) {
+    public LottoMachine(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 

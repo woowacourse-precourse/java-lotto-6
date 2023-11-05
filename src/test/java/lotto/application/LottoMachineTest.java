@@ -6,13 +6,13 @@ import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
-class LottoFactoryTest {
-    private final LottoFactory lottoFactory = new LottoFactory(new RandomNumberGenerator());
+class LottoMachineTest {
+    private final LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
 
     @Test
     void 자동_로또를_생성한다() {
         // when
-        Lotto lotto = lottoFactory.createLottoByAuto();
+        Lotto lotto = lottoMachine.createLottoByAuto();
 
         // then
         assertNotNull(lotto);
@@ -21,7 +21,7 @@ class LottoFactoryTest {
     @Test
     void 수동_로또를_생성한다() {
         // when
-        Lotto lotto = lottoFactory.createLottoByManual(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = lottoMachine.createLottoByManual(List.of(1, 2, 3, 4, 5, 6));
 
         // then
         assertNotNull(lotto);

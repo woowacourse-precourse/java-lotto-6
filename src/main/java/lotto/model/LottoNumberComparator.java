@@ -5,15 +5,13 @@ import java.util.stream.Collectors;
 
 public class LottoNumberComparator {
     private final WinningLotto winningLotto;
-    private final BonusNumber bonusNumber;
 
-    private LottoNumberComparator(WinningLotto winningLotto, BonusNumber bonusNumber) {
+    private LottoNumberComparator(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
     }
 
-    public static LottoNumberComparator create(WinningLotto winningLotto, BonusNumber bonusNumber) {
-        return new LottoNumberComparator(winningLotto, bonusNumber);
+    public static LottoNumberComparator init(WinningLotto winningLotto) {
+        return new LottoNumberComparator(winningLotto);
     }
 
     public List<LottoMatch> calculateMatches(List<Lotto> lottoList) {
@@ -25,13 +23,13 @@ public class LottoNumberComparator {
 
     private LottoMatch calculateMatchForSingleLotto(List<Integer> lottoNumbers) {
         long count = countMatchingNumbers(lottoNumbers);
-        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber.getBonusNumber());
+        boolean hasBonusNumber = lottoNumbers.contains(winningLotto.getBonusNumber());
         return LottoMatch.collect((int) count, hasBonusNumber);
     }
 
     private long countMatchingNumbers(List<Integer> lottoNumbers) {
         return lottoNumbers.stream()
-                .filter(winningLotto.getNumbers()::contains)
+                .filter(winningLotto.getWinningLotto().getNumbers()::contains)
                 .count();
     }
 }

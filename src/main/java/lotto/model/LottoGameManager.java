@@ -24,18 +24,7 @@ public class LottoGameManager {
     }
 
     public static void generateWinningNumbers(List<String> numbersStr, String bonusNumberStr) {
-        if (numbersStr.contains(bonusNumberStr)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-        lottoNumberComparator = LottoNumberComparator.create(generateWinningLotto(numbersStr), generateBonusNumber(bonusNumberStr));
-    }
-
-    public static WinningLotto generateWinningLotto(List<String> numbersStr) {
-        return new WinningLotto(numbersStr);
-    }
-
-    public static BonusNumber generateBonusNumber(String bonusNumberStr) {
-        return new BonusNumber(bonusNumberStr);
+        lottoNumberComparator = LottoNumberComparator.init(new WinningLotto(numbersStr, bonusNumberStr));
     }
 
     public static List<LottoMatch> getWinningResults(List<Lotto> lottoList) {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 로또 번호 리스트 발행시 사용하는 클래스
+ * 로또 번호 리스트를 담고 있는 클래스
  */
 public class Lotto {
     private final List<LottoNumber> numbers;

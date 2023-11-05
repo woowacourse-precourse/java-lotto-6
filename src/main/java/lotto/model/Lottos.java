@@ -19,8 +19,8 @@ public class Lottos {
             int count = lotto.countMatches(winningNumber);
             boolean bonus = lotto.hasBonusNumber(bonusNumber);
 
-            LottoResult lottoResult = LottoResult.create(count, bonus);
-            result.add(lottoResult);
+            LottoResult.create(count, bonus)
+                    .ifPresent(r -> result.add(r));
         }
 
         return result;

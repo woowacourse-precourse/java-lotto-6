@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum LottoResult {
     THREE_MATCH(3, "5,000"),
@@ -17,15 +18,14 @@ public enum LottoResult {
         this.prizeAmount = prizeAmount;
     }
 
-    public static LottoResult create(int matchingNumbers, boolean bonusMatch) {
+    public static Optional<LottoResult> create(int matchingNumbers, boolean bonusMatch) {
         if (matchingNumbers == 5 && bonusMatch) {
-            return FIVE_MATCH_WITH_BONUS;
+            return Optional.of(FIVE_MATCH_WITH_BONUS);
         }
 
         return Arrays.stream(values())
                 .filter(l -> l.matchingNumbers == matchingNumbers)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] : 당첨된 로또가 한개도 없습니다."));
+                .findFirst();
     }
 
     public int getMatchingNumbers() {

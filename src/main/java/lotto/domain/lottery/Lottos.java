@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Lottos {
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottoTickets;
 
     private Lottos(final Buyer buyer) {
         final int ticketCount = buyer.getTicketCount();
-        this.lottos = generateLottos(ticketCount);
+        this.lottoTickets = generateLottos(ticketCount);
     }
 
     public static Lottos create(final Buyer buyer) {
@@ -27,7 +27,7 @@ public class Lottos {
                 .toList();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 }

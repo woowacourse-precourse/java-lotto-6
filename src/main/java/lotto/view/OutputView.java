@@ -1,10 +1,10 @@
 package lotto.view;
 
+import lotto.dto.LottoNumberResponse;
 import lotto.dto.LottoNumberResponses;
 import lotto.exception.ErrorMessage;
 import lotto.view.constants.PrintMessage;
 
-import static lotto.view.constants.PrintMessage.*;
 import static lotto.view.constants.PrintMessage.RESPONSE_PURCHASE_COUNT;
 
 public class OutputView {
@@ -15,11 +15,7 @@ public class OutputView {
     public static void printError(final ErrorMessage message) {
         println(message.getMessage());
     }
-
-    public static void printf(final String format, Object... objs) {
-        System.out.printf(format, objs);
-    }
-
+    
     public static void println(final Object data) {
         System.out.println(data);
     }
@@ -28,15 +24,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPurchaseStatus(final LottoNumberResponses responses) {
+    public static void printPurchaseLottoNumbers(final LottoNumberResponses responses) {
+        responses.lottoResponses()
+                .stream()
+                .map(LottoNumberResponse::numbers)
+                .forEach(OutputView::println);
+    }
+
+    public static void printPurchaseCount(LottoNumberResponses responses) {
         String formattedMessage = String.format(RESPONSE_PURCHASE_COUNT.getMessage(), responses.purchaseCount());
 
         printNewLine();
         println(formattedMessage);
-
-        responses.lottoResponses()
-                .stream()
-                .map(response -> String.format(RESPONSE_LOTTO_RESULT.getMessage(), response))
-                .forEach(System.out::println);
     }
 }

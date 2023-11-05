@@ -1,10 +1,14 @@
 package lotto.dto;
 
+import lotto.domain.lottery.Lotto;
+
+import java.util.List;
+
 public record LottoNumberResponse(
-        String numbers
+        List<Integer> numbers
 ) {
-    @Override
-    public String toString() {
-        return numbers;
+    public static LottoNumberResponse buildLottoResponse(final Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        return new LottoNumberResponse(numbers);
     }
 }

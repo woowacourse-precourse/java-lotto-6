@@ -1,7 +1,6 @@
 package lotto.domain.lottery.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.constants.LottoConstraint;
 
 import java.util.List;
 import java.util.Set;

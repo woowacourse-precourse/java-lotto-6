@@ -53,16 +53,17 @@ public class ConsoleInputView implements InputView {
 
     // 사용자로부터 보너스 번호를 입력받는다. 유효하지 않는 값을 입력하는 경우, 오류를 발생시키며 다시 값을 입력받는다.
     @Override
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winnerNumber) {
         String bonusNumber;
 
         try {
             bonusNumber = Console.readLine();
             inputValueChecker.checkLottoNumberValidation(bonusNumber);
+            inputValueChecker.checkBonusNumberValidation(bonusNumber, winnerNumber);
         } catch(NotValidInputException e) {
             System.out.println("[ERROR] " + e.getMessage());
             System.out.println("보너스 번호를 입력해 주세요.");
-            return getBonusNumber();
+            return getBonusNumber(winnerNumber);
         }
 
         return Integer.parseInt(bonusNumber);

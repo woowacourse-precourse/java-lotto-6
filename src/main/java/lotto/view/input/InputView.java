@@ -5,5 +5,5 @@ import java.util.List;
 public interface InputView {
     int getCost();
     List<Integer> getWinnerNumber();
-    int getBonusNumber();
+    int getBonusNumber(List<Integer> winnerNumber);
 }

@@ -21,9 +21,14 @@ public class InputValueChecker {
     // 사용자가 입력하는 당첨 번호의 유효성을 판단한다.
     public void checkWinnerNumberValidation(List<String> winnerNumber) throws NotValidInputException {
         checkLengthValidation(winnerNumber);
+        checkDupValidation(winnerNumber);
         for(String number : winnerNumber) {
             checkLottoNumberValidation(number);
         }
+    }
+
+    public void checkBonusNumberValidation(String bonusNumber, List<Integer> winnerNumber) throws NotValidInputException {
+        checkContainValidation(bonusNumber, winnerNumber);
     }
 
     // 사용자가 입력하는 보너스 번호의 유효성을 판단한다.
@@ -50,6 +55,23 @@ public class InputValueChecker {
     private void checkLengthValidation(List<String> inputValue) {
         if(inputValue.size() != CONSTANT_LOTTO_LENGTH.getConstant())
             throw new NotValidInputException(INPUT_VALUE_NOT_VALID_LENGTH.getMessage());
+    }
+
+    // 사용자가 입력한 당첨 번호에 중복되는 수가 존재하는 경우 오류를 반환한다.
+    private void checkDupValidation(List<String> inputValue) {
+        long distinctValue = inputValue.stream().distinct().count();
+
+        if(inputValue.size() != distinctValue) {
+            throw new NotValidInputException(INPUT_VALUE_MUST_DISTINCT.getMessage());
+        }
+    }
+
+    private void checkContainValidation(String bonusNumber, List<Integer> winnerNumber) {
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
+
+        if(winnerNumber.contains(parsedBonusNumber)) {
+            throw new NotValidInputException(INPUT_VALUE_MUST_DISTINCT.getMessage());
+        }
     }
 
     // 사용자로부터 입력 받은 값이 유효한 로또 번호가 아닐 경우, 오류를 반환한다.

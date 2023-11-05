@@ -8,6 +8,7 @@ public class Lotto {
 
     private static final int MIN_LOTTO_NUMBER_RANGE = 1;
     private static final int MAX_LOTTO_NUMBER_RANGE = 45;
+    private static final int MAX_LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -19,8 +20,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != MAX_LOTTO_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개 이어야 합니다.");
         }
     }
 

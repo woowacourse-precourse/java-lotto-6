@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,12 +52,14 @@ public class LottoController {
     public boolean readWinningNum() {
         String winningNumsNotSplit = InputViews.readWinningNum();
         List<String> winningNums = Arrays.asList(winningNumsNotSplit.split(","));
+        List<Integer> winningNumsInput = new ArrayList<>();
         for (String winningNum : winningNums) {
             if (ReadWinningNum.isWinningNumTypeOfInput(winningNum)) {
                 return true;
             }
+            winningNumsInput.add(Integer.parseInt(winningNum));
         }
-//        Lotto lotto = new Lotto();
+        Lotto lotto = new Lotto(winningNumsInput);
         return false;
     }
 }

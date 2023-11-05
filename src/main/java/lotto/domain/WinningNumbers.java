@@ -8,6 +8,6 @@ public record WinningNumbers(List<Integer> drawnNumbers, int bonusNumber) {
 
     public WinningNumbers {
         validateLottoNumbers(drawnNumbers);
-        validateNumberRange(bonusNumber);
+        validateBonusNumber(bonusNumber, drawnNumbers);
     }
 }

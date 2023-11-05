@@ -30,7 +30,7 @@ public class LottoApplication {
 
         matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
         List<Result> results = compareTicketAndLottos(ticket, createdLottos);
-
+//        Output.printWinningStatistic(results);
 //        calculatePrize();
     }
 

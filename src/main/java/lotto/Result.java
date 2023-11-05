@@ -9,6 +9,7 @@ public class Result {
 
     Result(Ticket ticket, Lotto lotto) {
         compareTicketAndLotto(ticket, lotto);
+        decideRanking();
     }
 
     private void compareTicketAndLotto(Ticket ticket, Lotto lotto) {
@@ -24,7 +25,7 @@ public class Result {
             }
         }
 
-        isBonusMatching = matchingNumbersCounter == 5 && lottoNumbers.contains(bonusNumber);
+        isBonusMatching = (matchingNumbersCounter == 5) && lottoNumbers.contains(bonusNumber);
     }
 
     private void decideRanking() {
@@ -33,11 +34,11 @@ public class Result {
         }
 
         if (matchingNumbersCounter == 5) {
+            ranking = 3;
+
             if (isBonusMatching) {
                 ranking = 2;
             }
-
-            ranking = 3;
         }
 
         if (matchingNumbersCounter == 4) {
@@ -45,7 +46,7 @@ public class Result {
         }
 
         if (matchingNumbersCounter == 3) {
-           ranking = 5;
+            ranking = 5;
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
 
     public static void printGetPurchasePriceMessage() {
@@ -12,5 +14,9 @@ public class OutputView {
         lottoNum.append(num);
         lottoNum.append("개를 구매했습니다.");
         System.out.println(lottoNum);
+    }
+
+    public static void printLottoNumber(List<Integer> lottoNumber) {
+        System.out.println(lottoNumber);
     }
 }

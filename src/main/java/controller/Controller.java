@@ -1,5 +1,8 @@
 package controller;
 
+import domain.Lottos;
+import lotto.Lotto;
+import repository.LottoRepository;
 import repository.MoneyRepository;
 import service.LottoService;
 import util.Parser;
@@ -17,6 +20,7 @@ public class Controller {
     private final Parser parser = new Parser();
     private final Validator validator = new Validator();
     private final LottoService lottoService = new LottoService();
+    private LottoRepository lottoRepository = new LottoRepository();
 
 
     private MoneyRepository moneyRepository = new MoneyRepository();
@@ -43,7 +47,28 @@ public class Controller {
             }
         }
         lottosList.add(lottoList);
+
+        saveLottoNumbers(parser.parseLottoNumber(getUserLottoNumberbyInput()));
+        saveBonusNumber(getUserBonusNumberbyInput());
+
+        play();
     }
+
+    private void play() {
+
+    }
+
+
+    private void saveLottoNumbers(List<String> lottoNumbers) {
+        for (String lottoNumber : lottoNumbers) {
+            lottoRepository.save(new Lottos(lottoNumber));
+        }
+    }
+
+    private void saveBonusNumber(String bonus_number) {
+        lottoRepository.save(new Lottos(bonus_number));
+    }
+
 
     private String getMoneyNumberbyInput() {
         InputView.requestMoney();
@@ -62,5 +87,37 @@ public class Controller {
         }
     }
 
+    private String getUserLottoNumberbyInput() {
+        InputView.requestLotto();
+        String input = readLine();
+
+        return checkLottoValidation(input);
+    }
+
+    private String checkLottoValidation(String input) {
+        try {
+            validator.checkLottoInput(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            return getUserLottoNumberbyInput();
+        }
+    }
+
+    private String getUserBonusNumberbyInput() {
+        InputView.requestPlusLotto();
+        String input = readLine();
+
+        return checkBonusLottoValidation(input);
+    }
+    private String checkBonusLottoValidation(String input) {
+        try {
+            validator.checkBonusLottoInput(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            return getUserBonusNumberbyInput();
+        }
+    }
 
 }

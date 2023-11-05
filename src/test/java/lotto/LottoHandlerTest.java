@@ -83,4 +83,77 @@ class LottoHandlerTest {
             assertThat(lottoNumber.get(i) < lottoNumber.get(i + 1)).isTrue();
         }
     }
+    
+    @DisplayName("당첨 번호를 입력 받아 Lotto 객체로 반환한다.")
+    @Test
+    void receiveWinningLotto() {
+        // given
+        String receivedWinningLotto = "1,2,3,4,5,6";
+        
+        // when
+        Lotto winningLotto = lottoHandler.receiveWinningLotto(receivedWinningLotto);
+
+        // then
+        assertThat(winningLotto.equals(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isTrue();
+    }
+
+    @DisplayName("입력 받은 당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @Test
+    void receiveWinningLottoByOverSize() {
+        // given
+        String receivedWinningLotto = "1,2,3,4,5,6,7";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 6개의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("입력 받은 당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void receiveWinningLottoByDuplicatedNumber() {
+        // given
+        String receivedWinningLotto = "1,2,3,4,5,5";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+    }
+
+    @DisplayName("입력 받은 당첨 번호가 1보다 작거나 45보다 크면 예외가 발생한다. 1보다 작은 경우")
+    @Test
+    void receiveWinningLottoByOutOfRangeNumberLessThan1() {
+        // given
+        String receivedWinningLotto = "0,2,3,4,5,6";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("입력 받은 당첨 번호가 1보다 작거나 45보다 크면 예외가 발생한다. 45보다 큰 경우")
+    @Test
+    void receiveWinningLottoByOutOfRangeNumberGreaterThan45() {
+        // given
+        String receivedWinningLotto = "1,2,3,4,5,46";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("입력 받은 당첨 번호에 문자가 있으면 예외가 발생한다.")
+    @Test
+    void receiveWinningLottoByString() {
+        // given
+        String receivedWinningLotto = "1,2,3,4,5,46";
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
 }

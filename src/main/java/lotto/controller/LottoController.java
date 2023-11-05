@@ -25,6 +25,8 @@ public class LottoController {
         Money money = loadTicket();
 
         BuyLottos buyLottos = buyLotto(money);
+
+        Lotto winningLotto = loadWinningLotto();
     }
 
     private Money loadTicket() {
@@ -39,5 +41,12 @@ public class LottoController {
         outputHandler.printBuyLottoList(buyLottos);
 
         return BuyLottos.create(buyLottos);
+    }
+
+    private Lotto loadWinningLotto() {
+        outputHandler.printInputWinningLottoMessage();
+        String winningLotto = inputHandler.inputValue();
+
+        return Lotto.from(winningLotto);
     }
 }

@@ -14,6 +14,7 @@
         - view Package와 domain Package의 데이터를 전달하며 값을 출력하는 클래스
         - 프로그램을 실행하는 `run` 메서드
         - 티켓 개수를 불러오는 `loadTicket` 메서드
+        - 티켓 개수를 활용하여 구매한 로또 리스트를 구매하는 `buyLotto` 메서드
             
 
 - [ ] domain Package
@@ -35,7 +36,7 @@
             - 중복되는 로또 번호가 있는지 확인하는 `validateDuplicate` 메서드
             - 로또 번호가 1 ~ 45 사이의 숫자가 맞는지 확인하는 `validateRange` 메서드
             - 로또 번호의 오름차순 값을 반환하는 `sortLottoNumbers` 메서드
-        - [ ] BuyLottos
+        - [x] BuyLottos
             - 구입한 로또에 대한 정보를 갖고있는 클래스
             - 객체를 생성하고 반환하는 create 메서드
             - 구매한 로또를 반환하는 `getBuyLottos` 메서드

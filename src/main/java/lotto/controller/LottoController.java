@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.util.validator.Constant.*;
+import static lotto.util.Constant.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

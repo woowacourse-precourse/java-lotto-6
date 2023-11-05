@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.validator.Constant.LOTTO_PRICE;
+import static lotto.util.Constant.LOTTO_PRICE;
 
 import java.util.Comparator;
 import java.util.HashMap;

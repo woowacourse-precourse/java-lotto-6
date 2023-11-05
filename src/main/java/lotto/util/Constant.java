@@ -1,4 +1,4 @@
-package lotto.util.validator;
+package lotto.util;
 
 public class Constant {
     public static final int START_NUMBER = 1;

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.validator.Constant.LOTTO_LENGTH;
+import static lotto.util.Constant.LOTTO_LENGTH;
 
 import java.util.List;
 

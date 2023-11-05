@@ -1,8 +1,8 @@
 package lotto.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,17 +13,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-    }
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-    private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> givenNumbers = new HashSet<>(numbers);
-        if(numbers.size() != givenNumbers.size()) throw  new IllegalArgumentException();
+        LottoValidator lottoValidator = new LottoValidator();
+        lottoValidator.validateLotto(numbers);
     }
 
+    public LottoResult matchUp(Lotto givenLotto) {
+        AtomicInteger countBall = new AtomicInteger();
+        for (Integer number : numbers) {
+            if (givenLotto.haveSameBall(number)) {
+                countBall.getAndIncrement();
+            }
+        }
+        return LottoResult.getResultByNumberOfBall(countBall.get());
+    }
+
+    private boolean haveSameBall(Integer number) {
+        return this.numbers.contains(number);
+    }
 }

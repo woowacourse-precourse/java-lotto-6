@@ -19,9 +19,8 @@ public class InputNumberImpl implements InputNumber {
 
 	@Override
 	public int inputPurchasePrice() {
-		numberSplitter = new StringTokenizer(Console.readLine(), CommonString.NUMBER_SEPARATOR.word);
-		validator.validateIsDigit(numberSplitter);
-
-		return 0;
+		String price = Console.readLine();
+		validator.validateIsDigit(price);
+		return Integer.parseInt(price);
 	}
 }

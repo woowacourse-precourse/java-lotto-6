@@ -17,6 +17,7 @@ public class LottoProcessImpl implements LottoProcess {
 
 	@Override
 	public void playGame() {
-
+		int inputPrice = inputNumber.inputPurchasePrice();
+		System.out.println(inputPrice);
 	}
 }

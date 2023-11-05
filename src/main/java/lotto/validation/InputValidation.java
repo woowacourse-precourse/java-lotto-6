@@ -27,18 +27,21 @@ public class InputValidation {
 
     public void validationLottoWinningNumber(String lottoNumbers) {
         isEmptyValidation(lottoNumbers);
-        checkSplitNumbers(lottoNumbers);
+        validationSplitNumbers(lottoNumbers);
     }
 
-    private void checkSplitNumbers(String lottoNumbers) {
+    private void validationSplitNumbers(String lottoNumbers) {
         String[] lottoNumber = lottoNumbers.replace(" ", "").split(",");
         isLottoSize(lottoNumber);
+        validationDetailNumbers(lottoNumber);
+        isDuplicateNumber(lottoNumber);
+    }
 
+    private void validationDetailNumbers(String[] lottoNumber) {
         for (int i = 0; i < 6; i++) {
             changeInteger(lottoNumber[i]);
             checkNumberRange(lottoNumber[i]);
         }
-        isDuplicateNumber(lottoNumber);
     }
 
     private void isEmptyValidation(String input) {

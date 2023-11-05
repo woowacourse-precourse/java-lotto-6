@@ -9,8 +9,7 @@ import lotto.validator.Validate;
 public class InputNumber {
 
 
-    public int InputMoney() {
-        String money = Console.readLine();
+    public static int InputMoney(String money) {
         Validate.moneyValidate(money);
         return Integer.parseInt(money);
     }

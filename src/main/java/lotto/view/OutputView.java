@@ -34,13 +34,15 @@ public class OutputView {
 
     private static void checkSecondPrize(LottoRank key, Integer value) {
         if (key == LottoRank.SECOND_RANK) {
-            System.out.printf(String.valueOf(MATCH_COUNT_BONUS.getMessage()), key.getMatchCount(), key.getPrizeMoney(), value);
+            System.out.printf(String.valueOf(MATCH_COUNT_BONUS.getMessage()),
+                    key.getMatchCount(), key.getPrizeMoney(), value);
         }
     }
 
     private static void checkAnotherPrize(LottoRank key, Integer value) {
         if (key != LottoRank.SECOND_RANK && key != LottoRank.NO_RANK) {
-            System.out.printf(String.valueOf(MATCH_COUNT.getMessage()), key.getMatchCount(), key.getPrizeMoney(), value);
+            System.out.printf(String.valueOf(MATCH_COUNT.getMessage()),
+                    key.getMatchCount(), key.getPrizeMoney(), value);
 
         }
     }

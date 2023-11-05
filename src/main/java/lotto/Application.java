@@ -20,39 +20,42 @@ public class Application {
     }
 
     private long calculateLottoPurchaseCount() {
-        long purchasePrice = getPurchasePrice();
+        long purchasePrice = getValidPurchasePrice();
         return purchasePrice / PURCHASE_PRICE_UNIT;
     }
 
-    private long getPurchasePrice() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String purchasePrice = Console.readLine();
-            System.out.println();
-            validatePurchasePrice(purchasePrice);
+    private long getValidPurchasePrice() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String purchasePrice = Console.readLine();
+                System.out.println();
+                checkValidPurchasePrice(purchasePrice);
 
-            return Long.parseLong(purchasePrice);
-        } catch (IllegalArgumentException exception) {
-            printError(exception);
-            return getPurchasePrice();
+                return Long.parseLong(purchasePrice);
+            } catch (IllegalArgumentException exception) {
+                printErrorMessage(exception);
+            }
         }
+
     }
 
-    private void validatePurchasePrice(String input) {
+    private void checkValidPurchasePrice(String input) {
+        long purchasePrice;
         try {
-            long purchasePrice = Long.parseLong(input);
-            if (purchasePrice < PURCHASE_PRICE_UNIT) {
-                throw new BelowMinimumPurchasePriceException(purchasePrice);
-            }
-            if (purchasePrice % PURCHASE_PRICE_UNIT != EMPTY) {
-                throw new NonMultipleOfPriceUnitException(purchasePrice);
-            }
+            purchasePrice = Long.parseLong(input);
         } catch (NumberFormatException numberFormatException) {
             throw new InvalidPurchasePriceFormatException(input);
         }
+        if (purchasePrice < PURCHASE_PRICE_UNIT) {
+            throw new BelowMinimumPurchasePriceException(purchasePrice);
+        }
+        if (purchasePrice % PURCHASE_PRICE_UNIT != EMPTY) {
+            throw new NonMultipleOfPriceUnitException(purchasePrice);
+        }
     }
 
-    private void printError(IllegalArgumentException exception) {
+    private void printErrorMessage(IllegalArgumentException exception) {
         System.out.println(Message.ERROR_PREFIX + exception.getMessage());
     }
 

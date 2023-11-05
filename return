@@ -1,0 +1,53 @@
+[33mcommit 9e0fefc03eb5d517b708362c3548f732758cdeba[m[33m ([m[1;36mHEAD -> [m[1;32mHaHyunkyung[m[33m)[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Sun Nov 5 00:43:23 2023 +0900
+
+    feat: 구입 금액 입력, type검사 함수 구현 (InputAmount)
+
+[33mcommit 49b76d8c46fa134a05f21787b1dea35df66956b4[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Sun Nov 5 00:04:24 2023 +0900
+
+    remove: 에러로 인한 삭제
+
+[33mcommit 8e4e066b083737c75772d6244a4f1b334b9ee335[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Sat Nov 4 02:04:47 2023 +0900
+
+    feat: 구입 금액 입력, Type검사 함수 구현(InputAmount)
+
+[33mcommit 33eab49cab3c2a3a709504877a89b252e14f546e[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Fri Nov 3 17:44:46 2023 +0900
+
+    rename: InputView -> PrintView로 파일명 변경
+
+[33mcommit c68cdfdd23bb08fda4614bac73b590bcffa65332[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Fri Nov 3 17:37:42 2023 +0900
+
+    feat: 구입 금액 입력 함수 구현(InputView)
+
+[33mcommit 4e614d77156af8b08ab33febe0d7126a181d40b6[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Fri Nov 3 17:33:23 2023 +0900
+
+    remove: 파일 생성 위치 잘못되서 test->view 파일 삭제
+
+[33mcommit aa2ab9eb1eb59440b411c74d4422a158ad3c113e[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Fri Nov 3 17:07:27 2023 +0900
+
+    feat: 구입 금액 입력 함수 구현(view)
+
+[33mcommit 82e952e594bf3b4c26b902e8a9fe813b61214c02[m
+Author: HaHyunkyung <87869664+HaHyunkyung@users.noreply.github.com>
+Date:   Thu Nov 2 18:28:52 2023 +0900
+
+    docs: 기능 구현 목록 작성
+
+[33mcommit 666a0907c5435a03f1dab996c5d18af3438f06b5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HaHyunkyung[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: solarsalt <solar@woowahan.com>
+Date:   Sat Oct 28 14:03:10 2023 +0900
+
+    feat: setup precourse lotto project

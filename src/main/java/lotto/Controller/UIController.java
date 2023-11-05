@@ -112,4 +112,29 @@ public class UIController {
             }
         }
     }
+
+
+    public static Integer makeBonusNumber(List<Integer> winningNumbers) {
+        Integer BonusNumber;
+        while (true) {
+            try {
+                UIView.printBonusNumberInstruction();
+                BonusNumber = getBonusNumber();
+                // TODO : 보너스 숫자 검증
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자 여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 번호는 1~45의 당첨번호와 중복되지 않는 숫자 여야 합니다.");
+            }
+        }
+        return BonusNumber;
+    }
+
+
+    private static Integer getBonusNumber() {
+        int BonusNumber;
+        BonusNumber = Integer.parseInt(Console.readLine());
+        return BonusNumber;
+    }
 }

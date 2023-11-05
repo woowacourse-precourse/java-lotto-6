@@ -19,4 +19,18 @@ public class ResultTest {
         //then
         assertThat(result.getTotalProfit()).isEqualTo(first.getRankReward(1));
     }
+
+    @DisplayName("등수의 당첨 통계결과 반환 기능")
+    @Test
+    void 당첨_통계_반환기능() {
+        //given
+        Result result = new Result();
+        Rank first = Rank.FIRST;
+
+        //when
+        result.addRank(first);
+
+        //then
+        assertThat(result.getRankStatistics(first)).isEqualTo("6개 일치 (2,000,000,000원) - 1개");
+    }
 }

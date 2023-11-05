@@ -1,8 +1,8 @@
 package lotto.domain.exception;
 
-import lotto.global.exception.base.DefaultError;
+import lotto.global.exception.base.LottoGameError;
 
-public enum LottoError implements DefaultError {
+public enum LottoError implements LottoGameError {
 
     UNAVAILABLE_NUMBER_RANGE("유효한 범위가 아닙니다. 1부터 45사이의 정수를 입력해주세요."),
     UNAVAILABLE_NUMBER_QUANTITY("숫자가 너무 많거나 적습니다. 6개의 정수만 입력해주세요."),

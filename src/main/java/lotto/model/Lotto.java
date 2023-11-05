@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortLotto();
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,6 +30,10 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 생성된 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    private void sortLotto() {
+        Collections.sort(numbers);
     }
 
     public List<Integer> getNumbers() {

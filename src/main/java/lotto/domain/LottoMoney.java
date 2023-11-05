@@ -23,7 +23,7 @@ public class LottoMoney {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
         }
     }
 

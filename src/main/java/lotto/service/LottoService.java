@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.utils.Utills;
+import lotto.utils.Utils;
 
 public class LottoService {
 
@@ -23,7 +23,7 @@ public class LottoService {
     }
     private Lotto generateLottoNumber() {
         List<Integer> lottoNumbers = new ArrayList<>(
-                Utills.randomUniqueNumbers(1, 45, 6));
+                Utils.randomUniqueNumbers(1, 45, 6));
         return new Lotto(lottoNumbers);
     }
 }

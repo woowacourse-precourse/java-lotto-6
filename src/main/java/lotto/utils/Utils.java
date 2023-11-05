@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Utills {
+public final class Utils {
 
     public static int stringToInteger(String input) {
         Validation.validateStringToInteger(input);

@@ -5,7 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.LottoService;
-import lotto.utils.Utills;
+import lotto.utils.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -35,7 +35,7 @@ public class LottoController {
     private int getInputAmount() {
         inputView.inputAmount();
         String userInput = readLine().trim();
-        return Utills.stringToInteger(userInput);
+        return Utils.stringToInteger(userInput);
     }
 
     private void printBuyLotto() {

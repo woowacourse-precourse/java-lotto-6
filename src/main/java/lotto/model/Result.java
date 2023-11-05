@@ -3,13 +3,13 @@ package lotto.model;
 import java.util.List;
 
 public class Result {
-    List<Integer> result;
+    List<Double> result;
 
-    Result(List<Integer> result) {
+    public Result(List<Double> result) {
         this.result = result;
     }
 
-    public List<Integer> getResult() {
+    public List<Double> getResult() {
         return result;
     }
 }

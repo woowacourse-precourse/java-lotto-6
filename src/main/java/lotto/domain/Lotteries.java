@@ -64,7 +64,7 @@ public class Lotteries {
         return lottos.stream().map(Lotto::getValues).toList();
     }
 
-    public static int getLottoPrice() {
+    public int getLottoPrice() {
         return LOTTO_PRICE;
     }
 }

@@ -63,46 +63,26 @@ public class NumberGenerator {
 
     private void validateNumberType(String unprocessedNumbers) {
         if (!unprocessedNumbers.matches(NUMBER_REGEX)) {
-            try{
-                throw new IllegalNumberTypeException();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                throw e;
-            }
+            throw new IllegalNumberTypeException();
         }
     }
 
     private void validateMinimumAmount(Integer amount) {
 
         if (amount % MIN_VALUE.getAmount() != ZERO_VALUE.getAmount()) {
-            try{
-                throw new IllegalAmountException();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                throw e;
-            }
+            throw new IllegalAmountException();
         }
     }
 
     private void validateIsNull(String unprocessedNumbers) {
         if (unprocessedNumbers == null) {
-            try{
-                throw new IllegalNullTypeException();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                throw e;
-            }
+            throw new IllegalNullTypeException();
         }
     }
 
     private void validateIsSingleNumber(Integer bonusNumber) {
         if (bonusNumber < START_VALUE.getValue() || bonusNumber > END_VALUE.getValue()) {
-            try{
-                throw new IllegalOverValueException();
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                throw e;
-            }
+            throw new IllegalOverValueException();
         }
     }
 

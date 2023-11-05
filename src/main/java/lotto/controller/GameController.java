@@ -69,7 +69,7 @@ public class GameController {
     public void setBonusNumber() {
         try {
             String inputNumber = getBonusNumberInput();
-            winningNumberController.setInputToBonusNumber(bonusNumber, inputNumber);
+            winningNumberController.setInputToBonusNumber(winningNumbers, bonusNumber, inputNumber);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             setBonusNumber();

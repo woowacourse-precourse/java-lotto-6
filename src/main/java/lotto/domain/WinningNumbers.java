@@ -21,4 +21,8 @@ public class WinningNumbers {
     public boolean isMatchedWithWinningNumbers(int lottoNumber) {
         return winningNumbers.get(lottoNumber);
     }
+
+    public boolean hasNumber(int number) {
+        return winningNumbers.get(number);
+    }
 }

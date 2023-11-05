@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumbers;
 import lotto.util.Parser;
-import lotto.validator.DuplicationValidator;
+import lotto.validator.WinningNumbersDuplicationValidator;
 import lotto.validator.OnlyNumberValidator;
 import lotto.validator.WinningNumbersCountValidator;
 
@@ -16,13 +16,14 @@ public class WinningNumberController {
         List<String> inputValues = validateOnlyNumberValues(playerInput);
         List<Integer> inputNumbers = parser.stringListToNumberList(inputValues);
         validateNumbersCount(inputNumbers);
-        validateDuplication(inputNumbers);
+        validateWinningNumbersDuplication(inputNumbers);
         winningNumbers.setWinningNumbers(inputNumbers);
     }
 
-    public void setInputToBonusNumber(BonusNumber bonusNumber, String playerInput) {
+    public void setInputToBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber, String playerInput) {
         validateOnlyNumber(playerInput);
         int inputNumber = parser.inputToNumber(playerInput);
+        validateBonusNumberDuplication(winningNumbers, inputNumber);
         bonusNumber.setBonusNumber(inputNumber);
     }
 
@@ -46,9 +47,15 @@ public class WinningNumberController {
         winningNumbersCountValidator.validate(inputNumbers);
     }
 
-    private void validateDuplication(List<Integer> inputNumbers) {
-        DuplicationValidator duplicationValidator = new DuplicationValidator();
-        duplicationValidator.validate(inputNumbers);
+    private void validateWinningNumbersDuplication(List<Integer> inputNumbers) {
+        WinningNumbersDuplicationValidator winningNumbersDuplicationValidator = new WinningNumbersDuplicationValidator();
+        winningNumbersDuplicationValidator.validate(inputNumbers);
+    }
+
+    private void validateBonusNumberDuplication(WinningNumbers winningNumbers, int inputNumber) {
+        BonusNumberDuplicationValidator bonusNumberDuplicationValidator = new BonusNumberDuplicationValidator();
+        bonusNumberDuplicationValidator.getWinningNumbers(winningNumbers);
+        bonusNumberDuplicationValidator.validate(inputNumber);
     }
 
 }

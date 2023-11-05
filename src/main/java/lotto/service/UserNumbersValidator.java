@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserNumbersValidator {
+    private static final String DELIMITER = ",";
     private static final String ONLY_NUMBER_DELIMITER = "^[0-9,]*$";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
@@ -11,11 +12,43 @@ public class UserNumbersValidator {
 
     public static String preValidate(String userInput) {
         // Only number
+        numberValidate(userInput);
+        // Delimiter starting
+        delimiterStartValidate(userInput);
+        // Delimiter ending
+        delimiterEndValidate(userInput);
+        // Delimiter 뒤에 DELIMITER가 오는지 검증
+        delimiterDoubleValidate(userInput);
+
+        return userInput;
+    }
+
+    // Only number
+    private static void numberValidate(String userInput) {
         if (!userInput.matches(ONLY_NUMBER_DELIMITER)) {
             throw new IllegalArgumentException(UserNumbersValidateEnum.PRE_NUMBERS_DELIMITER_ERROR.get());
         }
+    }
 
-        return userInput;
+    // Delimiter starting
+    private static void delimiterStartValidate(String userInput) {
+        if (userInput.startsWith(DELIMITER)) {
+            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_START_END_ERROR.get());
+        }
+    }
+
+    // Delimiter ending
+    private static void delimiterEndValidate(String userInput) {
+        if (userInput.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_START_END_ERROR.get());
+        }
+    }
+
+    // Delimiter 뒤에 DELIMITER가 오는지 검증
+    private static void delimiterDoubleValidate(String userInput) {
+        if (userInput.contains(DELIMITER + DELIMITER)) {
+            throw new IllegalArgumentException(UserNumbersValidateEnum.DELIMITER_DOUBLE_ERROR.get());
+        }
     }
 
     public static List<Integer> postValidate(List<Integer> numbers) {

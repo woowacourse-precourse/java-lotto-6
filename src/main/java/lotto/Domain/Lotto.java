@@ -8,6 +8,7 @@ public class Lotto {
 
     public static final String INVALID_SIZE_MESSAGE = "[ERROR] 6개의 숫자를 입력해야 합니다.";
     public static final String DUPLICATE_MESSAGE = "[ERROR] 로또 번호에 중복된 값이 있습니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {

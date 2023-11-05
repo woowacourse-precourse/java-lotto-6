@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 public class Budget {
 
-    public static final String NULL_OR_EMPTY_MESSAGE = "[Error] 값을 입력해주세요";
+    public static final String NULL_OR_EMPTY_MESSAGE = "[ERROR] 값을 입력해주세요";
     public static final String EMPTY = "";
-    public static final String THOUSANDS_MULTIPLE_MESSAGE = "[Error] 1000의 배수를 입력해주세요";
+    public static final String THOUSANDS_MULTIPLE_MESSAGE = "[ERROR] 1000의 배수를 입력해주세요";
     public static final String THOUSANDS_MULTIPLE_REGEX = "^[1-9][0-9]*000$";
     public static final int LOTTO_PRICE = 1000;
     private int budgetAmount;

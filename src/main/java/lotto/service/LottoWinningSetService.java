@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 import lotto.vo.BonusNumber;
 

@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Lottos;
-import lotto.domain.winning.LottoWinningRanking;
-import lotto.domain.winning.LottoWinningSet;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.LottoWinningRanking;
+import lotto.domain.LottoWinningSet;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
 import lotto.service.LottoProfitService;

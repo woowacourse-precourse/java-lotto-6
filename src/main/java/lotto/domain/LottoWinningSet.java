@@ -1,6 +1,5 @@
-package lotto.domain.winning;
+package lotto.domain;
 
-import lotto.domain.lotto.Lotto;
 import lotto.vo.BonusNumber;
 
 public class LottoWinningSet {

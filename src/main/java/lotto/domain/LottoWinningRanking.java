@@ -1,4 +1,4 @@
-package lotto.domain.winning;
+package lotto.domain;
 
 public enum LottoWinningRanking {
     NONE(0, 0L),

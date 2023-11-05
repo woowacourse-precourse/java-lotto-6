@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.constant.LottoConstants;
-import lotto.domain.winning.LottoWinningRanking;
+import lotto.domain.LottoWinningRanking;
 
 import java.util.EnumMap;
 

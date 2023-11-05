@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.winning.LottoWinningRanking;
+import lotto.domain.LottoWinningRanking;
 
 public enum OutputMessage {
     REQUEST_PURCHASE_AMOUNT("구입금액을 입력해 주세요.\n"),

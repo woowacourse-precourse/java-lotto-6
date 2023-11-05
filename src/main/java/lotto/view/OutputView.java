@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Lottos;
-import lotto.domain.winning.LottoWinningRanking;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.LottoWinningRanking;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

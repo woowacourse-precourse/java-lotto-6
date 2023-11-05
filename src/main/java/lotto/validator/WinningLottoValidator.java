@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.domain.Lotto;
 
-public class BonusLottoNumValidator {
+public class WinningLottoValidator {
     private boolean isNotInRange(int bonusNum) {
         return bonusNum < 1 || bonusNum > 45;
     }

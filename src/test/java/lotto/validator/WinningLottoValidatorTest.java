@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import lotto.domain.Lotto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,13 +12,13 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class BonusLottoNumValidatorTest {
-    private static BonusLottoNumValidator bonusLottoNumValidator = new BonusLottoNumValidator();
+public class WinningLottoValidatorTest {
+    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void 보너스_넘버_범위_에외_테스트(int bonusNum) {
-        assertThatThrownBy(() -> bonusLottoNumValidator.checkRange(bonusNum))
+        assertThatThrownBy(() -> winningLottoValidator.checkRange(bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContainingAll("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
@@ -31,7 +30,7 @@ public class BonusLottoNumValidatorTest {
         int bonusNum = 3;
         List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(numbers);
-        assertThatThrownBy(() -> bonusLottoNumValidator.checkDuplicateWinningNumbers(lotto, bonusNum))
+        assertThatThrownBy(() -> winningLottoValidator.checkDuplicateWinningNumbers(lotto, bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContainingAll("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
 
@@ -43,7 +42,7 @@ public class BonusLottoNumValidatorTest {
         int bonusNum = 7;
         List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(numbers);
-        assertThatCode(() -> bonusLottoNumValidator.checkDuplicateWinningNumbers(lotto, bonusNum))
+        assertThatCode(() -> winningLottoValidator.checkDuplicateWinningNumbers(lotto, bonusNum))
                 .doesNotThrowAnyException();
 
     }

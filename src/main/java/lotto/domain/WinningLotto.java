@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import lotto.validator.BonusLottoNumValidator;
-
-import java.util.ArrayList;
+import lotto.validator.WinningLottoValidator;
 
 public class WinningLotto {
-    private static BonusLottoNumValidator bonusLottoNumValidator = new BonusLottoNumValidator();
+    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
     private Lotto lotto;
     private int bonusLottoNum;
@@ -20,8 +18,8 @@ public class WinningLotto {
     }
 
     private void validateBonusLottoNum(Lotto lotto, int bonusLottoNum) {
-        bonusLottoNumValidator.checkRange(bonusLottoNum);
-        bonusLottoNumValidator.checkDuplicateWinningNumbers(lotto, bonusLottoNum);
+        winningLottoValidator.checkRange(bonusLottoNum);
+        winningLottoValidator.checkDuplicateWinningNumbers(lotto, bonusLottoNum);
     }
 
     public int matchNumberNum(Lotto userLotto) {

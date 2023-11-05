@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,5 +38,12 @@ public class Lotto {
                 .ifPresent(number -> {
                     throw new IllegalArgumentException("[ERROR] ");
                 });
+    }
+
+    public boolean isContain(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
     }
 }

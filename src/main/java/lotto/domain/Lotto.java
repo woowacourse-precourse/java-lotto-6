@@ -37,6 +37,14 @@ public class Lotto {
         return true;
     }
 
+    public int matchSameNumberNum(Lotto winLotto) {
+        int sameNumberNum = (int) numbers.stream()
+                .filter(number -> winLotto.hasSameNumber(number))
+                .count();
+
+        return sameNumberNum;
+    }
+
     public boolean hasSameNumber(int number) {
         return numbers.contains(number);
     }

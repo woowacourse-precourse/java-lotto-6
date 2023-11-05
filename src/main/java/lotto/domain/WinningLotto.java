@@ -22,8 +22,8 @@ public class WinningLotto {
         winningLottoValidator.checkDuplicateWinningNumbers(lotto, bonusLottoNum);
     }
 
-    public int matchNumberNum(Lotto userLotto) {
-        return 0;
+    public int matchSameNumberNum(Lotto userLotto) {
+        return userLotto.matchSameNumberNum(lotto);
     }
 
     public boolean isBonusNumContain(Lotto userLotto) {

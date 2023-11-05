@@ -2,10 +2,12 @@ package lotto.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -48,6 +50,38 @@ class GameEngineTest {
                 List.of(1, 2, 3, 4, 5, 45),
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(40, 41, 42, 43, 44, 45)
+        );
+    }
+
+    private static Stream<Arguments> 보너스로또번호_숫자가_아닌경우() {
+        return Stream.of(
+                Arguments.of("", ""),
+                Arguments.of(" ", " "),
+                Arguments.of("1q", "1q"),
+                Arguments.of("qwe", "qwe"),
+                Arguments.of("★", "★"),
+                Arguments.of("1o", "1o"),
+                Arguments.of("!", "!"),
+                Arguments.of("Q", "Q"),
+                Arguments.of("*", "*"),
+                Arguments.of("+", "+"),
+                Arguments.of("1,23,q,2,3,5", "1,23,q,2,3,5")
+        );
+    }
+
+    private static Stream<Arguments> 로또번호_숫자가_아닌경우() {
+        return Stream.of(
+                Arguments.of("", ""),
+                Arguments.of(" ", " "),
+                Arguments.of("1q", "1q"),
+                Arguments.of("qwe", "qwe"),
+                Arguments.of("★", "★"),
+                Arguments.of("1o", "1o"),
+                Arguments.of("!", "!"),
+                Arguments.of("Q", "Q"),
+                Arguments.of("*", "*"),
+                Arguments.of("+", "+"),
+                Arguments.of("1,23,q,2,3,5", "q")
         );
     }
 
@@ -129,6 +163,120 @@ class GameEngineTest {
                 ((startInclusive, endInclusive, size) -> lottoNumbers));
 
         Assertions.assertThatCode(() -> gameEngine.createLottos("1000"))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    void 보너스로또숫자가_null이면_예외가_나온다() {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertThatCode(() -> gameEngine.createAnswerBonusNumber(null))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 넘버는 null이 될수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @MethodSource("보너스로또번호_숫자가_아닌경우")
+    void 보너스로또숫자가_숫자가아니면_예외가_나온다(String readLine, String exceptionValue) {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertThatCode(() -> gameEngine.createAnswerBonusNumber(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("%s는 숫자가 아닙니다.", exceptionValue));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0", "46", "21473694"})
+    void 보너스로또숫자가__1부터_45사이가_아니면_예외가나온다(String readLine) {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertThatCode(() -> gameEngine.createAnswerBonusNumber(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1", "45", "44", "2"})
+    void 보너스로또숫자가__1부터_45사이면_예외가_나오지않는다(String readLine) {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertThatCode(() -> gameEngine.createAnswerBonusNumber(readLine))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    void 입력한_로또넘버가_null이면_예외가나온다() {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(null))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 넘버는 null이 될수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @MethodSource("로또번호_숫자가_아닌경우")
+    void 입력한_로또넘버가_숫자가_아니면_예외가나온다(String readLine, String exceptionValue) {
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("%s는 숫자가 아닙니다.", exceptionValue));
+    }
+
+    @ParameterizedTest
+    @MethodSource("여섯개의_사이즈_아닌_배열")
+    void 입력한_로또넘버사이즈가_6가_아니면_예외가나온다(List<Integer> lottoNumbers) {
+        String readLine = lottoNumbers.stream()
+                .map(x -> Integer.toString(x))
+                .collect(Collectors.joining(","));
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("로또 넘버개수는 %s가 아니라 %s 여야합니다.", lottoNumbers.size(), 6));
+    }
+
+    @ParameterizedTest
+    @MethodSource({"로또숫자가6개인데_중복이있는경우"})
+    void 입력한_로또숫자가_중복이_있는경우면_예외가나온다(List<Integer> lottoNumbers) {
+        String readLine = lottoNumbers.stream()
+                .map(x -> Integer.toString(x))
+                .collect(Collectors.joining(","));
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또번호는 중복값을 가지고 있으면 안됩니다.");
+    }
+
+    @ParameterizedTest
+    @MethodSource("로또숫자가_1부터_45사이가_아닌_경우")
+    void 압력한_로또숫자가_1부터_45사이가_아니면_예외가나온다(List<Integer> lottoNumbers) {
+        String readLine = lottoNumbers.stream()
+                .map(x -> Integer.toString(x))
+                .collect(Collectors.joining(","));
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @MethodSource("로또숫자가_중복되지않고_6개_1부터_45사이인_경우")
+    void 입력한_로또숫자가_중복되지않고_6개_1부터_45사이면_예외가_나오지않는다(List<Integer> lottoNumbers) {
+        String readLine = lottoNumbers.stream()
+                .map(x -> Integer.toString(x))
+                .collect(Collectors.joining(","));
+        gameEngine = new GameEngine(new GameEngineValidator(),
+                ((startInclusive, endInclusive, size) -> List.of(1, 2, 3, 4, 5, 6)));
+
+        Assertions.assertThatCode(() -> gameEngine.createAnswerLotto(readLine))
                 .doesNotThrowAnyException();
     }
 }

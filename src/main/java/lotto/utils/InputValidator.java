@@ -20,7 +20,7 @@ public class InputValidator {
     private static final int MAX_LOTTO_NUM = 45;
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
-    private static final Pattern LOTTO_PATTERN = Pattern.compile("(\\d*,){5}\\d*$");
+    private static final Pattern LOTTO_PATTERN = Pattern.compile("^(\\d*,)*\\d{1}$");
 
     public static void checkMoney(String input) {
         checkIsBlank(input);
@@ -28,11 +28,10 @@ public class InputValidator {
         checkPriceFormat(input);
     }
 
-    public static void checkLotto(List<Integer> input, String inputNumbers) {
+    public static void checkLotto(List<Integer> input) {
         checkLottoSizeIsSix(input);
         checkLottoIsInRange(input);
         checkLottoNumberIsDuplicated(input);
-        checkLottoNumberFormat(inputNumbers);
     }
 
     public static void checkBonusNumber(List<Integer> lotto, String bonusNumber) {
@@ -91,7 +90,7 @@ public class InputValidator {
         }
     }
 
-    private static void checkLottoNumberFormat(String input) {
+    public static void checkLottoNumberFormat(String input) {
         if (!LOTTO_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + INVALID_LOTTO_FORMAT);
         }

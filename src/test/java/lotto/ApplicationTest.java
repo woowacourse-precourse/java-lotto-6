@@ -54,6 +54,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 잘못된_입력_테스트_1000으로_안나누어떨어지는() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_입력_테스트_숫자가_아닌() {
+        assertSimpleTest(() -> {
+            runException("abcd1234");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

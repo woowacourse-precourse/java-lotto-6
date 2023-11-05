@@ -18,10 +18,10 @@ public class LottoStore {
     }
 
     private Lotto publishLotto() {
-        return new Lotto(getRandomNumbers());
+        return new Lotto(generateRandomNumbers());
     }
 
-    private List<Integer> getRandomNumbers() {
+    private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LottoNumberRange.MIN.getValue(), LottoNumberRange.MAX.getValue(), COUNT);
     }

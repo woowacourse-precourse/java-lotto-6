@@ -1,5 +1,7 @@
 package lotto.winning;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +9,14 @@ import java.util.List;
 public class Analyst {
     private static final int COUNT = PrizeIndex.COUNT.getNumber();
     private static final int PRIZE = PrizeIndex.PRIZE.getNumber();
+
+    public double calculateReturnRatio(HashMap<String, List<Integer>> updatedPrizes, int totalPurchase) {
+        int totalPrize = updatedPrizes.values().stream().mapToInt(list -> list.get(PRIZE)).sum();
+
+        double returnRatio = ((double) totalPrize / totalPurchase) * 100;
+
+        return new BigDecimal(returnRatio).setScale(1, RoundingMode.HALF_UP).doubleValue();
+    }
 
     public HashMap<String, List<Integer>> updatePrizes(List<Integer> winningNumberMatchCounts, List<Integer> bonusNumberMatchCounts) {
         HashMap<String, List<Integer>> updatedPrizes = createDefaultPrizes();

@@ -31,7 +31,7 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        outputView.println("보너스 번호를 입력해 주세요.");
+        outputView.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         Validator.validateIntFormat(bonusNumber);
 

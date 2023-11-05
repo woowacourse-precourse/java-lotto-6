@@ -5,19 +5,20 @@ import java.util.Map;
 import java.util.StringJoiner;
 import lotto.domain.Rank;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 public class LottoMessageConverter {
-    private StringJoiner joiner;
+    private static StringJoiner joiner;
 
-    public String convertLottoNumberMessage(List<Lotto> lottos) {
+    public static String convertLottoNumberMessage(List<Lotto> lottos) {
         StringBuilder lottoNumberMessage = new StringBuilder();
         String lottoAmountCheckMessage = String.format("\n%d개를 구매했습니다.\n", lottos.size());
         lottoNumberMessage.append(lottoAmountCheckMessage);
 
         for (Lotto lotto : lottos) {
             joiner = new StringJoiner(", ", "[", "]\n");
-            for (Integer number : lotto.getNumbers()) {
-                joiner.add(number.toString());
+            for (LottoNumber number : lotto.getNumbers()) {
+                joiner.add(number.getValue().toString());
             }
             lottoNumberMessage.append(joiner);
         }
@@ -25,7 +26,7 @@ public class LottoMessageConverter {
         return lottoNumberMessage.toString();
     }
 
-    public String convertLottoResultMessage(Map<Rank, Integer> result, double profitPercentage) {
+    public static String convertLottoResultMessage(Map<Rank, Integer> result, double profitPercentage) {
         StringBuilder resultMessage = new StringBuilder();
         resultMessage.append("\n당첨 통계\n---\n");
         for (Rank rank : Rank.values()) {

@@ -24,7 +24,7 @@ public enum Rank {
         return winningMessage;
     }
 
-    public static Rank findByLottoResult(int matchCount, boolean isBonusNumberMatched) {
+    public static Rank calcualteBy(int matchCount, boolean isBonusNumberMatched) {
         if(matchCount == 6) {
             return Rank.FIRST;
         } else if(matchCount == 5 && isBonusNumberMatched) {

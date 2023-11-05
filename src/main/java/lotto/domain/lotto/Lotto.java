@@ -4,24 +4,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public List<LottoNumber> getNumbers() {
+        return numbers;
     }
 
-    public boolean containsNumber(int number) {
+    public boolean containsNumber(LottoNumber number) {
         return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {
         validateNumbersCount(numbers);
-        validateNumbersRange(numbers);
         validateNumbersDuplication(numbers);
     }
 
@@ -31,13 +33,6 @@ public class Lotto {
         }
     }
 
-    private static void validateNumbersRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if(number > 45 || number < 1) {
-                throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
-            }
-        }
-    }
     private static void validateNumbersDuplication(List<Integer> numbers) {
         long numberCount = numbers.stream()
                 .distinct()

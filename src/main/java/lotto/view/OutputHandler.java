@@ -21,4 +21,12 @@ public class OutputHandler {
         System.out.println(lottoNumbers);
     }
 
+    public static void requireWinningNumbers() {
+        System.out.println(SystemMessage.REQUIRE_WINNING_NUMBERS);
+    }
+
+    public static void requireBonusNumber() {
+        System.out.println(SystemMessage.REQUIRE_BONUS_NUMBER);
+    }
+
 }

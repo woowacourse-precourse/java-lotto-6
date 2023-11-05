@@ -42,4 +42,17 @@ class FinalGradeTest {
             Assertions.assertThat(totalPrice).isEqualTo(expectedTotalPrice);
         }
     }
+
+    @Nested
+    @DisplayName("사용자의 로또 구입 금액을 얻어오는 기능 테스트")
+    class PlayerTotalPurchaseAmountTest {
+        @Test
+        void elevenTimePurchase() {
+            List<Rank> ranks = Lists.newArrayList(Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH,
+                    Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST, Rank.FIFTH);
+            FinalGrade finalGrade = new FinalGrade(ranks);
+            BigDecimal expectedAmount = new BigDecimal(11000L);
+            Assertions.assertThat(finalGrade.getPlayerTotalPurchaseAmount()).isEqualTo(expectedAmount);
+        }
+    }
 }

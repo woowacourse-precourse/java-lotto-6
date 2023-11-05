@@ -21,5 +21,20 @@ public class LottoFactoryTest {
         assertThat(tickets).hasSize((int) ticketCounts);
     }
 
+    @DisplayName("각 로또 티켓의 번호는 1부터 45 사이여야 한다.")
+    @Test
+    void testLottoNumbersShouldBeBetweenOneAndFortyFive() {
+        // given
+        LottoFactory lottoFactory = new LottoFactory(1);
+
+        // when
+        Lotto ticket = lottoFactory.getTickets().get(0);
+
+        // then
+        assertThat(ticket.getNumbers())
+                .allMatch(number -> number >= 1 && number <= 45);
+    }
+
+
 }
 

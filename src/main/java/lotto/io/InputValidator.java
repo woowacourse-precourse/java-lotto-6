@@ -19,8 +19,12 @@ public class InputValidator {
     }
 
     public void validateWinningNumbers(final String input) {
-        if (!WINNING_NUMBERS_PATTERN.matcher(input).matches()) {
+        if (isInvalidWinningNumberPattern(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.toValue());
         }
+    }
+
+    private boolean isInvalidWinningNumberPattern(final String input) {
+        return !WINNING_NUMBERS_PATTERN.matcher(input).matches();
     }
 }

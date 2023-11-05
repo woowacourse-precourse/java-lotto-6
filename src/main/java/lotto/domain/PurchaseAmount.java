@@ -13,7 +13,7 @@ public final class PurchaseAmount {
     }
 
     private void validate(final Integer value) {
-        if (hasNoAmount(value) || isDivideByUnit(value)) {
+        if (hasNoAmount(value) || isNotDivisibleByUnit(value)) {
             throw new IllegalArgumentException();
         }
     }
@@ -22,7 +22,7 @@ public final class PurchaseAmount {
         return value <= NO_PURCHASE_AMOUNT;
     }
 
-    private boolean isDivideByUnit(final Integer value) {
+    private boolean isNotDivisibleByUnit(final Integer value) {
         return value % PURCHASE_AMOUNT_UNIT != NONE;
     }
 

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -86,5 +87,24 @@ class WinningLottoTest {
         assertThatThrownBy(() -> lotto.plusBonusNumber(List.of("1")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    @DisplayName("넘겨받은 로또의 당첨 여부를 확인해서 등수를 담은 리스트를 반환한다.")
+    @Test
+    void returnRankResultList() {
+        WinningLotto winningLotto = new WinningLotto(List.of("3", "7", "12", "16", "35", "38"));
+        List<Lotto> allLotto = new ArrayList<>();
+
+        winningLotto.plusBonusNumber(List.of("20"));
+
+        Lotto fifthLotto = new Lotto(List.of(1, 3, 6, 7, 29, 35));
+        Lotto loseLotto = new Lotto(List.of(5, 9, 20, 31, 39, 41));
+
+        allLotto.add(fifthLotto);
+        allLotto.add(loseLotto);
+
+        List<Rank> result = winningLotto.judgeLottoGame(allLotto);
+
+        assertThat(result.size()).isEqualTo(2);
     }
 }

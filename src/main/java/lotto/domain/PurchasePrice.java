@@ -8,7 +8,7 @@ public class PurchasePrice {
 
     public PurchasePrice(int price) {
         this.price = price;
-        validate();
+        validatePriceFormat();
     }
 
     public int getLottoCount() {
@@ -20,4 +20,5 @@ public class PurchasePrice {
             throw new IllegalStateException(PRICE_IS_NOT_FORMATTED_MESSAGE);
         }
     }
+
 }

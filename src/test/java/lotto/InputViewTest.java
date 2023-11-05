@@ -29,6 +29,15 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자로 입력해야합니다.");
     }
+    @DisplayName("공백을 입력하면 예외를 반환한다.")
+    @ParameterizedTest
+    @EmptySource
+    void check_inputPurchase_null_blank(String empty) {
+        NumberValidator numberValidator = new NumberValidator();
+        assertThatThrownBy(() -> numberValidator.validate(empty))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("공백은 입력할 수 없습니다.");
+    }
 
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());

@@ -15,7 +15,7 @@ public class YieldCalculatorTest {
     @DisplayName("로또 갯수와 당첨된 로또들로 수익률을 계산한다.")
     void calculate_yield() {
         // given
-        Map<Rank, Integer> winningLottoTable = initRankTable();
+        WinningLottoTable winningLottoTable = createWinningLottoTable();
         long lottoCnt = 7;
 
         YieldCalculator calculator = new YieldCalculator();
@@ -27,10 +27,10 @@ public class YieldCalculatorTest {
         assertThat(yield).isEqualTo("71.4%");
     }
 
-    private Map<Rank, Integer> initRankTable() {
+    private WinningLottoTable createWinningLottoTable() {
         Map<Rank, Integer> winningLottoTable = new HashMap<>();
         winningLottoTable.put(FIFTH, 1);
         winningLottoTable.put(NOTHING, 6);
-        return winningLottoTable;
+        return new WinningLottoTable(winningLottoTable);
     }
 }

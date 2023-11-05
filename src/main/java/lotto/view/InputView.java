@@ -3,9 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.ErrorMessage;
 
 public class InputView {
+
+    private static final String INVALID_INTEGER_INPUT = "[ERROR] 정수만 입력 가능합니다.";
 
     private InputView() {
     }
@@ -16,7 +17,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
         }
     }
 
@@ -28,7 +29,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
         }
     }
 
@@ -38,7 +39,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+            throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
         }
     }
 }

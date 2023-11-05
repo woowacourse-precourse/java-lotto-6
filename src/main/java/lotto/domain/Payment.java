@@ -37,6 +37,6 @@ public class Payment {
     }
 
     public int calculatePurchaseLottoCount() {
-        return 0;
+        return (int) amount / LottoConstraint.PRICE_PER_LOTTO.getValue();
     }
 }

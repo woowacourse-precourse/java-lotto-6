@@ -75,6 +75,8 @@ public class LottoGame {
         System.out.println("5개 일치 (1,500,000원) - " + match5 + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + match5WithBonus + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + match6 + "개");
+        
+        getEarningRate(match3, match4, match5, match5WithBonus, match6);
     }
     
     private int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winNumbers) {
@@ -86,6 +88,12 @@ public class LottoGame {
         }
         return count;
     }
-    
+
+    public void getEarningRate(int match3, int match4, int match5, int match5WithBonus, int match6){
+        int price = this.gameCount*1000;
+        int totalPrice = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match5WithBonus * 30000000 + match6 * 2000000000;
+        float earningRate = (totalPrice/(float)price) * 100;
+        System.out.println("총 수익률은 " + earningRate + "입니다.");
+    }
 
 }

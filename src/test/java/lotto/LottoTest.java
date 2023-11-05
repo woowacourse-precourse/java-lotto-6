@@ -1,7 +1,6 @@
 package lotto;
 
-import lotto.view.AmountInputView;
-import lotto.view.InputViewConstants;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -31,3 +31,75 @@
     - [ ] 보너스 번호가 당첨 번호에 포함되어 있다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
     - [ ] 보너스 번호가 숫자가 아니라면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
     - [ ] 보너스 번호의 범위가 1~45를 벗어난다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
+
+
+## 도메인 분석
+
+### Controller
+- LottoGameStore (view와 domain을 연결하는 역할)
+
+
+### View
+- Input (입력 인터페이스)
+- Output (출력 인터페이스)
+- Console
+  - 구매금액 입력받기 (input)
+  - 당첨번호 입력받기 (input)
+  - 보너스번호 입력받기 (input)
+  - 발행한 로또 오름차순으로 출력 (output)
+  - 계산된 당첨 통계 출력 (output)
+  ```text
+  당첨 통계
+  ---
+  3개 일치 (5,000원) - 1개
+  4개 일치 (50,000원) - 0개
+  5개 일치 (1,500,000원) - 0개
+  5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+  6개 일치 (2,000,000,000원) - 0개
+  ```
+  - 계산된 수익률 출력 (output)
+
+
+### Domain
+- Lotto (일급 컬렉션)
+  - 로또번호 리스트를 가지고 있다.
+  - 당첨 번호와 비교해 일치하는 개수 계산 가능
+
+- Lottos (일급 컬렉션)
+  - Lotto를 가진 일급 컬렉션
+
+- Rank
+  - 등수와 해당 등수 당첨 금액을 가지고 있는 enum
+
+- Price
+  - 가격을 입력 받아야 한다.
+
+- WinningLotto
+  - 당첨 번호와 보너스 번호를 가지고 있다.
+
+- LotteryGenerator
+  - 로또 번호를 발행한다.
+  - Lotto를 생성한다.
+
+- LottoResult
+- 결과를 가지고 있는 객체
+
+- Rule
+  - 로또 게임의 규칙(정책)을 가지고 있는 객체
+
+
+### 정책 -> 바뀔 수 있는 부분
+- LottoGeneratePolicy (로또생성정책)
+  - 1번 ~ 45번까지의 숫자를 가진 로또를 발행한다. (숫자 제한)
+
+- LottoPurchasePolicy (로또구매정책)
+  - 로또 1장의 가격은 **1,000원단위**이다. (가격 단위 제한)
+
+- LottoPrintPolicy(로또 출력 정책) -> view에 있어야함
+  - 로또번호는 `오름차순` 으로 정렬해 보여준다.
+
+- LottoWinningPricePolicy (로또당첨금액정책)
+  - 총 일치하는 등수에 대한 당첨금액을 결정하는 정책
+
+- LottoWinningCountPolicy (로또 당첨 개수 정책)
+  - 등수에서 당첨 번호와 일치하는 개수가 몇개인지를 결정하는 정책

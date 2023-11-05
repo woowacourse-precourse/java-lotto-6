@@ -1,30 +1,44 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import validator.LottoCostValidator;
 
 public class Input {
     public Input(){};
 
-
-    public int getInputForLottoCost(){
+    public static int getInputForLottoCost(){
         String inputData = reanLineValidateNull();
+        LottoCostValidator lottoCostValidator = new LottoCostValidator();
 
+        while(true){
+            System.out.println("구입 금액을 입력해 주세요");
+            String input = reanLineValidateNull();
+            if(lottoCostValidator.validate(input))
+                break;
+        }
+        return Integer.parseInt(inputData);
     }
 
-    public String reanLineValidateNull(){
+    public static String reanLineValidateNull(){
         String input = Console.readLine();
-        validateNull(input);
+        while(true){
+            if(validateNull(input)){
+                break;
+            }
+        }
         return input;
     }
 
-    private void validateNull(String input){
+    private static boolean validateNull(String input){
         try{
             if(input.equals("") || input == null){
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e){
             Output.printErrorNullMessage();
+            return false;
         }
+        return  true;
     }
 
 }

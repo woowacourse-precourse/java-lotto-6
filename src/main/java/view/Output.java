@@ -11,4 +11,8 @@ public class Output {
     public static void printErrorNumbericMessage(){
         System.out.println(ErrorMessage.NUMBERIC_MESSAGE);
     }
+
+    public static void printErrorFitLottoCostMessage(){
+        System.out.println(ErrorMessage.FIT_LOTTO_COST);
+    }
 }

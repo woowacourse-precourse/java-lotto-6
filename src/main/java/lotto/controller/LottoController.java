@@ -37,10 +37,9 @@ public class LottoController {
 
         List<LottoTicket> lottoTickets = buyLottoTicket(money / 1000);
 
+
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
-
         Integer bonusNumber = inputBonusNumber();
-
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
 
 
@@ -76,7 +75,7 @@ public class LottoController {
         List<LottoTicket> lottoTickets = new ArrayList<>();
         for(int i=0; i<count; i++){
              lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
-            outputView.printTicket(lottoGenerator.generateNumberList());
+            outputView.printTicket(lottoTickets.get(i).getNumbers());
         }
         return lottoTickets;
     }
@@ -97,6 +96,7 @@ public class LottoController {
     private List<Integer> inputWinNumbers(InputWinnerNumberService inputWinnerNumberService) {
         inputWinnerNumberService.init();
         try {
+            outputView.printBeforeInputWinNumbers();
             inputWinnerNumberService.checkRightWinnerNumbers(validator,
                 inputView.inputWinnerNumbers());
             return inputWinnerNumberService.convertedWinnerNumbers();

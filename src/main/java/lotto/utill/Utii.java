@@ -9,7 +9,7 @@ public class Utii {
     }
 
     public static String InputStringLine() {
-        String inputStringLine = Console.readLine();
+        String inputStringLine = Console.readLine().trim();
 
         ValidateException.includeString(inputStringLine);
 

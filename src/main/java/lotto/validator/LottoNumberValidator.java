@@ -41,15 +41,15 @@ public class LottoNumberValidator {
 
     public static void validateNumberRangeInLotto(List<Integer> lotto) {
         lotto.stream()
-                .forEach((number) -> validateNumberRange(number));
+                .forEach(number -> validateNumberRange(number));
     }
 
     public static void validateNumberRange(int number) {
         if ((number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue())) {
             throw new IllegalArgumentException(String.format(
                     SHOULD_BE_IN_LOTTO_NUMBER_RANGE.getValue(),
-                    MIN_LOTTO_NUMBER,
-                    MAX_LOTTO_NUMBER));
+                    MIN_LOTTO_NUMBER.getValue(),
+                    MAX_LOTTO_NUMBER.getValue()));
         }
     }
 }

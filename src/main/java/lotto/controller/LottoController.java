@@ -5,6 +5,17 @@ import lotto.view.InputView;
 
 public class LottoController {
     public void start() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(Integer.parseInt(InputView.readPurchaseAmount()));
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
+    }
+
+    private PurchaseAmount readPurchaseAmount() {
+        while (true) {
+            try {
+                PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.readPurchaseAmount());
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

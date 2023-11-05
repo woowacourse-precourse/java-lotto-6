@@ -3,7 +3,8 @@ package lotto.model;
 public class PurchaseAmount {
     private int purchaseAmount;
 
-    public PurchaseAmount(int purchaseAmount) {
+    public PurchaseAmount(String input) {
+        int purchaseAmount = Integer.parseInt(input);
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }

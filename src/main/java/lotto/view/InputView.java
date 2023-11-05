@@ -21,4 +21,8 @@ public class InputView {
         return Arrays.stream(winningNumberInput.split(REGEX))
                 .map(String::trim).toList();
     }
+
+    public String requestBonusNumber() {
+        return request();
+    }
 }

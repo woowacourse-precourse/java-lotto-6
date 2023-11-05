@@ -4,7 +4,9 @@ import static java.lang.String.format;
 import static lotto.constant.LottoOutputMessage.*;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 import lotto.domain.LottoStore;
 import lotto.domain.PurchaseCount;
 import lotto.domain.WinningNumber;
@@ -28,11 +30,18 @@ public class LottoGameController {
         PurchaseCount purchaseCount = initPurchaseAmount();
         LottoStore lottoStore = initLottoStore(purchaseCount);
         WinningNumber winningNumber = initWinningNumber();
-        initBonusNumber();
+        BonusNumber bonusNumber = initBonusNumber();
+        new LottoGame(lottoStore, winningNumber, bonusNumber);
     }
 
-    private void initBonusNumber() {
+    private BonusNumber initBonusNumber() {
+        String bonusNumberInput = requestBonusNumber();
+        return new BonusNumber(bonusNumberInput);
+    }
+
+    private String requestBonusNumber() {
         outputView.output(BONUS_NUMBER.getMessage());
+        return inputView.requestBonusNumber();
     }
 
     private WinningNumber initWinningNumber() {

@@ -26,6 +26,7 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또 번호를 정확히 출력하는지 확인한다.")
     void printLottoNumber() {
         assertThat(new Lotto(List.of(1,2,3,4,5,6)).toString())
                 .isEqualTo("[1, 2, 3, 4, 5, 6]");

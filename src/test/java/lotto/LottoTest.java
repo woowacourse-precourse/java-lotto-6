@@ -47,9 +47,9 @@ class LottoTest {
 
     private static Stream<Arguments> provide_getScore_TestData() {
         return Stream.of(
-                Arguments.of(List.of(1,2,3,4,5,6),7,new int[] {6, 0}),
-                Arguments.of(List.of(1,2,3,4,5,10),6,new int[] {5, 1}),
-                Arguments.of(List.of(1,2,3,4,5,10),45,new int[] {5, 0})
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7, new int[]{6, 0}),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 6, new int[]{5, 1}),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 45, new int[]{5, 0})
 
         );
     }

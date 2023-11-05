@@ -8,6 +8,7 @@ public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
 
     private List<Integer> winningNumbers; //매주 토요일 오후 8시 35분
+    private int bonusNum;
     private static final LottoMachine instance = new LottoMachine();
 
     private LottoMachine() {}
@@ -22,6 +23,14 @@ public class LottoMachine {
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
+    }
+
+    public void setBonusNum(Integer bonusNum) {
+        this.bonusNum = bonusNum;
+    }
+
+    public Integer getBonusNum() {
+        return bonusNum;
     }
 
     public int calculateNumberOfTickets(int paidAmount) {

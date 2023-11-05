@@ -9,6 +9,8 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 int cost = Integer.parseInt(Console.readLine());
                 Play play = new Play(cost);
+                play.startGame();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }

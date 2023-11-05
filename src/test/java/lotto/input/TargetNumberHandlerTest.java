@@ -19,7 +19,7 @@ public class TargetNumberHandlerTest {
 
     @AfterEach
     void closeConsole(){
-        Console.close();
+        Console.close(); 
     }
 
     @ParameterizedTest
@@ -40,7 +40,7 @@ public class TargetNumberHandlerTest {
         setIn(input);
 
         Lotto lotto = targetNumberHandler.setTargetLottoByInput();
-        
+
     }
 
     private static void setIn(String input){

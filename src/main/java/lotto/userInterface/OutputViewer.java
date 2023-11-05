@@ -1,7 +1,7 @@
 package lotto.userInterface;
 
+import java.util.List;
 import lotto.constants.Rank;
-import lotto.domain.Lotto;
 
 public class OutputViewer {
     private OutputViewer() {
@@ -11,12 +11,12 @@ public class OutputViewer {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void printCountOfPurchaseLottos(int countOfLottos) {
-        System.out.println(countOfLottos + "개를 구매했습니다.");
+    public static void printNumberOf(int countOfLottery) {
+        System.out.println(countOfLottery + "개를 구매했습니다.");
     }
 
-    public static void printPurchasedLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+    public static void printPurchased(List<Integer> lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 
     public static void printRequestWinningNumberMessage() {
@@ -31,7 +31,7 @@ public class OutputViewer {
         System.out.println("당첨 통계\n---");
     }
 
-    public static void printLottoResult(Rank rank, int rankCount) {
+    public static void printLottoResultBy(Rank rank, int rankCount) {
         int matchedCount = rank.getMatchCount();
         String amount = rank.getAmountMessage();
         if (rank == Rank.NO_RANK) {
@@ -43,7 +43,7 @@ public class OutputViewer {
         System.out.printf("%d개 일치 (%s) - %d개\n", matchedCount, amount, rankCount);
     }
 
-    public static void printProfitRatio(double profitRatio) {
+    public static void printLastMessageWith(double profitRatio) {
         System.out.println("총 수익률은 " + String.format("%.1f", profitRatio) + "%입니다.");
     }
 }

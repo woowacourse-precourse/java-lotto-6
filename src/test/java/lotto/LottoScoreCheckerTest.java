@@ -18,7 +18,7 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.SIX_MATCH);
     }
@@ -30,7 +30,7 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 6, 7));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
     }
@@ -42,7 +42,7 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.FIVE_MATCH);
     }
@@ -54,7 +54,7 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 45));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.FOUR_MATCH);
     }
@@ -66,7 +66,7 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.THREE_MATCH);
     }
@@ -78,13 +78,13 @@ public class LottoScoreCheckerTest {
         String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 38));
 
-        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+        Rank rank = getRankByComparing(firstNumbersInput, bonusNumberInput, lotto);
 
         assertThat(rank).isEqualTo(Rank.NO_RANK);
     }
 
-    private Rank getRank(String firstNumberInput, String bonusNumberInput, Lotto lotto) {
-        List<String> firstNumbers = StringChanger.stringToTrimmedStringList(firstNumberInput);
+    private Rank getRankByComparing(String firstNumberInput, String bonusNumberInput, Lotto lotto) {
+        List<String> firstNumbers = StringChanger.toTrimmedStringList(firstNumberInput);
 
         LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
         lottoScoreChecker.setFirstRankNumbers(firstNumbers);

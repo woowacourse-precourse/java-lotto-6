@@ -11,23 +11,23 @@ public class WinningNumbers {
     private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
     private static final int NOTHING = 0;
-    private static final String NO_LOTTO = Error.NO_LOTTO.getMessage();
+    private static final Error NO_LOTTO = Error.NO_LOTTO;
     private Lotto firstRankLotto;
     private int bonusNumber = NOTHING;
 
     public void setFirstRankLotto(List<String> inputNumbers) {
-        firstRankLotto = new Lotto(stringToNumbers(inputNumbers));
+        firstRankLotto = new Lotto(toNumbers(inputNumbers));
     }
 
     public void setBonusNumber(String userInput) {
-        bonusNumber = stringToBonusNumber(userInput);
+        bonusNumber = toBonusNumber(userInput);
     }
 
     public Lotto getFirstRankLotto() {
         try {
             return new Lotto(new ArrayList<>(firstRankLotto.getNumbers()));
         } catch (NullPointerException e) {
-            System.out.println(NO_LOTTO);
+            System.out.println(NO_LOTTO.getMessage());
         }
         return new Lotto(new ArrayList<>());
     }
@@ -36,33 +36,33 @@ public class WinningNumbers {
         return bonusNumber;
     }
 
-    private List<Integer> stringToNumbers(List<String> inputNumbers) {
+    private List<Integer> toNumbers(List<String> inputNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String inputNumber : inputNumbers) {
-            validateNumber(inputNumber);
-            numbers.add(stringToInteger(inputNumber));
+            validateIsNumber(inputNumber);
+            numbers.add(toInteger(inputNumber));
         }
         return numbers;
     }
 
-    private int stringToBonusNumber(String userInput) {
-        validateNumber(userInput);
-        int bonusNumber = stringToInteger(userInput);
-        validateWinningNumbers(bonusNumber);
+    private int toBonusNumber(String userInput) {
+        validateIsNumber(userInput);
+        int bonusNumber = toInteger(userInput);
+        validateWinningNumbersWith(bonusNumber);
         return bonusNumber;
     }
 
-    private void validateWinningNumbers(int bonusNumber) {
+    private void validateWinningNumbersWith(int bonusNumber) {
         List<Integer> winningNumbers = firstRankLotto.getNumbers();
         winningNumbers.add(bonusNumber);
         Validator.validateUniqueNumbersInRange(winningNumbers, LOTTO_NUMBER_START, LOTTO_NUMBER_END);
     }
 
-    private void validateNumber(String inputNumber) {
-        Validator.validateStringIsNumber(inputNumber);
+    private void validateIsNumber(String inputNumber) {
+        Validator.validateIsNumber(inputNumber);
     }
 
-    private int stringToInteger(String inputNumber) {
-        return StringChanger.stringToInteger(inputNumber);
+    private int toInteger(String inputNumber) {
+        return StringChanger.toInteger(inputNumber);
     }
 }

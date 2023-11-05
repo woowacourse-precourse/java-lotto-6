@@ -10,8 +10,8 @@ import lotto.utils.Validator;
 public class Lotto {
     private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_COUNT = Number.FIXED_LOTTO_NUMBERS_COUNT.getNumber();
-    private static final String NO_NUMBERS = Error.NO_NUMBERS.getMessage();
+    private static final int LOTTO_NUMBER_COUNT = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
+    private static final Error NO_NUMBERS = Error.NO_NUMBERS;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,7 +24,7 @@ public class Lotto {
         try {
             return new ArrayList<>(numbers);
         } catch (NullPointerException e) {
-            System.out.println(NO_NUMBERS);
+            System.out.println(NO_NUMBERS.getMessage());
         }
         return new ArrayList<>();
     }
@@ -38,7 +38,7 @@ public class Lotto {
         try {
             this.numbers.sort(Comparator.naturalOrder());
         } catch (NullPointerException e) {
-            System.out.println(NO_NUMBERS);
+            System.out.println(NO_NUMBERS.getMessage());
         }
     }
 }

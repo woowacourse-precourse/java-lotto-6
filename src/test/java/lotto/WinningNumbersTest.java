@@ -27,7 +27,7 @@ public class WinningNumbersTest {
         invalidBonusNumberTest(invalidBonusInput);
     }
 
-    @DisplayName("보너스 번호 입력이 중복되면 예외를 발생시킨다.")
+    @DisplayName("보너스 번호 입력이 당첨 번호와 중복되면 예외를 발생시킨다.")
     @Test
     void inputBonusDuplicated() {
         String invalidBonusInput = "1";
@@ -43,7 +43,7 @@ public class WinningNumbersTest {
 
     private void invalidBonusNumberTest(String invalidBonusInput) {
         WinningNumbers winningNumbers = new WinningNumbers();
-        String userInput = "1, 2, 3, 4, 5, 6 ";
+        String userInput = "1,2,3,4,5,6";
         makeWinningLotto(winningNumbers, userInput);
         assertThatThrownBy(() -> winningNumbers.setBonusNumber(invalidBonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -55,7 +55,7 @@ public class WinningNumbersTest {
     }
 
     private List<String> makeInputList(String userInput) {
-        return new ArrayList<>(StringChanger.stringToTrimmedStringList(userInput));
+        return new ArrayList<>(StringChanger.toTrimmedStringList(userInput));
     }
 
 

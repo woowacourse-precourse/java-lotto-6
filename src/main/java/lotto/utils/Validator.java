@@ -9,23 +9,23 @@ public class Validator {
     private Validator() {
     }
 
-    public static void validateStringIsNumber(String input) {
+    public static void validateIsNumber(String input) {
         boolean isNotNumber = !input.chars().allMatch(Character::isDigit);
         if (isNotNumber) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " 숫자만 입력해주세요.");
         }
     }
 
-    public static void validateNotLessThanNumber(int checkingNumber, int standardNumber) {
+    public static void validateNotLessThan(int checkingNumber, int standardNumber) {
         if (checkingNumber < standardNumber) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + standardNumber + " 이상의 수를 입력하세요.");
         }
     }
 
-    public static void validateDivisor(int dividend, int divisor) {
+    public static void validateIsDivisor(int dividend, int divisor) {
         boolean canNotDivide = !(dividend % divisor == 0);
         if (canNotDivide) {
-            raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + divisor + " 단위로만 입력하세요.");
+            raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + divisor + "단위 이상으로 입력하세요.");
         }
     }
 

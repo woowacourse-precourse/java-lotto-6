@@ -47,7 +47,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() { // 더 자세한 예외사항 검증은 도메인 테스트 파일들에서 확인
+    void 예외_테스트() { // 더 자세한 예외 검증은 도메인 테스트에서 검증
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);

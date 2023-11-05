@@ -11,7 +11,7 @@ public class InputViewer {
         return Console.readLine();
     }
 
-    public static String requestWinningNumberInput() {
+    public static String requestFirstRankNumberInput() {
         OutputViewer.printRequestWinningNumberMessage();
         return Console.readLine();
     }

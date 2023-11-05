@@ -11,18 +11,18 @@ public class StringChanger {
     private StringChanger() {
     }
 
-    public static String trimString(String input) {
+    public static String toTrimmedString(String input) {
         return input.trim();
     }
 
-    public static List<String> stringToTrimmedStringList(String input) {
+    public static List<String> toTrimmedStringList(String input) {
         return Arrays.stream(
                         input.split(SEPARATOR_BETWEEN_NUMBERS, INCLUDING_LAST_BLANK))
                 .map(String::trim).collect(Collectors.toList()
                 );
     }
 
-    public static int stringToInteger(String input) {
+    public static int toInteger(String input) {
         return Integer.parseInt(input);
     }
 }

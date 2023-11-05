@@ -24,14 +24,10 @@ public class LottoProcedure {
 
     public void startLotto() {
         getPayment();
-
         Output.printPurchaseNumber(user.purchaseNumber());
         Output.printPurchasedLottoNumbers(user.PurchasedLottoNumbers());
-
         getLotto();
-
         getBonusNumber();
-
         Output.printWinningStatisticsMessage();
         checkRank();
         Output.printStatistics(user.numberOfWin());
@@ -40,7 +36,7 @@ public class LottoProcedure {
     }
 
     public void getPayment() {
-        Output.printPaymentMessage();
+        Output.printRequsetPayment();;
         do {
             try {
                 user = new User(Input.inputPayment());
@@ -54,7 +50,7 @@ public class LottoProcedure {
     }
 
     public void getLotto() {
-        Output.printWinningNumbersMessage();
+        Output.printRequestWinningNumbers();
         do {
             try {
                 lotto = new Lotto(Input.inputLotto());
@@ -68,7 +64,7 @@ public class LottoProcedure {
     }
 
     public void getBonusNumber() {
-        Output.printBonusNumberMessage();
+        Output.printRequestBonusNumber();
         do {
             try {
                 bonusNumber = new BonusNumber(Input.inputBonusNumber(), lotto.numbers());

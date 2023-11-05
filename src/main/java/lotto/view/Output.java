@@ -3,9 +3,9 @@ package lotto.view;
 import java.util.List;
 
 public class Output {
-    public static void printPaymentMessage() {
+    public static void printRequsetPayment() {
         System.out.println(Messages
-                .PAYMENT_MESSAGE
+                .REQUEST_PAYMENT
                 .getMessage());
     }
 
@@ -21,15 +21,15 @@ public class Output {
         }
     }
 
-    public static void printWinningNumbersMessage() {
+    public static void printRequestWinningNumbers() {
         System.out.println(Messages
-                .WINNING_NUMBERS_MESSAGE
+                .REQUEST_WINNING_NUMBERS
                 .getMessage());
     }
 
-    public static void printBonusNumberMessage() {
+    public static void printRequestBonusNumber() {
         System.out.println(Messages
-                .BONUS_NUMBER_MESSAGE
+                .REQUEST_BONUS_NUMBER
                 .getMessage());
     }
 
@@ -38,7 +38,7 @@ public class Output {
                 .CHECK_WINNING_MESSAGE
                 .getMessage());
     }
-
+    // 수정 필요
     public static void printStatistics(List<Integer> numberOfWin) {
         System.out.println("3개 일치 (5,000원) - " + numberOfWin.get(3) + "개");
         System.out.println("4개 일치 (50,000원) - " + numberOfWin.get(4) + "개");

@@ -16,10 +16,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

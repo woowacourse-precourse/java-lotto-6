@@ -30,14 +30,14 @@ public class Input {
         return lottoToInteger(splitLotto);
     }
 
-    public static List<String> splitNumbersByComma(String splitNumbers) {
-        return List.of(splitNumbers.split(","));
+    public static List<String> splitNumbersByComma(String numbersForSplit) {
+        return List.of(numbersForSplit.split(","));
     }
 
-    public static List<Integer> lottoToInteger(List<String> winningNumbers) {
+    public static List<Integer> lottoToInteger(List<String> splitLotto) {
         List<Integer> integerWinningNumbers = new ArrayList<>();
 
-        for (String number : winningNumbers) {
+        for (String number : splitLotto) {
             try {
                 integerWinningNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {

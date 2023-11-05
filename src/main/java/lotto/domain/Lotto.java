@@ -15,10 +15,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    // 입력한 로또 번호와 생성된 로또 번호 사이에 몇개의 숫자가 맞는지 반환
     public int countMatchedNumbers(List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    // 로또 번호 리스트를 반환하는 메서드
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

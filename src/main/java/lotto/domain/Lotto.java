@@ -34,8 +34,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public boolean contains(LottoNumber number) {
-        return this.numbers.contains(number.getNumber());
+    public boolean contains(LottoNumber lottoNumber) {
+        return this.numbers.stream().anyMatch(number -> number.getNumber() == lottoNumber.getNumber());
     }
 
     @Override

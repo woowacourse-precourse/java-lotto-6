@@ -16,10 +16,8 @@ public class MainLottoController {
 
         UserLotto userLotto = makeUserLotto();
 
-        System.out.println(userLotto.getMainLottoNumber());
-        System.out.println(userLotto.getBonusNumber());
 
-        //로또 입력받기
+
         //결과 출력
 
     }
@@ -53,6 +51,7 @@ public class MainLottoController {
     }
     //endregion
 
+    //region 로또번호 입력받기
     private UserLotto makeUserLotto() {
         Lotto mainNumber = inputMainLottoNumber();
         BonusLotto bonusNumber = inputBonusLottoNumber();
@@ -80,29 +79,7 @@ public class MainLottoController {
             return inputBonusLottoNumber();
         }
     }
-
-
-
-    /*
-    private int inputBonusLottoNumber(Lotto mainLotto) {
-        int bonusNumber = input.getBonusNumber();
-        try {
-            validateDuplicateBonusLotto(mainLotto,bonusNumber);
-        } catch (IllegalArgumentException e) {
-            Output.printErrorMessage(e.getMessage());
-            return inputBonusLottoNumber(mainLotto);
-        }
-        return bonusNumber;
-    }
-
-    private void validateDuplicateBonusLotto(Lotto mainLotto, int bonusLotto){
-        List<Integer> mainLottoNumber = mainLotto.getNumbers();
-        if(mainLottoNumber.contains(bonusLotto)){
-            throw new IllegalArgumentException("6개의 로또 번호와 중복되는 숫자입니다.");
-        }
-    }
-
-     */
+    //endregion
 
 
 }

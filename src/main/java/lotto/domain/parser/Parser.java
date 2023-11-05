@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.domain.parser.constants.InputConstraint.DELIMITER;
+import static lotto.exception.ErrorMessage.CONTAIN_WHITESPACE;
 import static lotto.exception.ErrorMessage.REQUEST_NOT_INTEGER;
 
 public class Parser {
@@ -14,6 +15,7 @@ public class Parser {
 
     public static int parseStringToInt(final String input) {
         try {
+            validateContainWhiteSpace(input);
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw LottoException.of(REQUEST_NOT_INTEGER, exception);
@@ -22,11 +24,22 @@ public class Parser {
 
     public static List<Integer> splitByDelimiter(final String input) {
         try {
+            validateContainWhiteSpace(input);
             return Arrays.stream(input.split(DELIMITER.getValue()))
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException exception) {
             throw LottoException.of(REQUEST_NOT_INTEGER, exception);
         }
+    }
+
+    private static void validateContainWhiteSpace(final String input) {
+        if (hasWhiteSpace(input)) {
+            throw LottoException.from(CONTAIN_WHITESPACE);
+        }
+    }
+
+    private static boolean hasWhiteSpace(final String input) {
+        return input.chars().anyMatch(Character::isWhitespace);
     }
 }

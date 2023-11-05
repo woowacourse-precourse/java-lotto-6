@@ -20,6 +20,12 @@ public class Lotto {
         return numbers.contains(obj);
     }
 
+    public int getMatchCount(Lotto lotto) {
+        int matchCount = (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+        return matchCount;
+    }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("6개의 로또 숫자를 입력하세요.");

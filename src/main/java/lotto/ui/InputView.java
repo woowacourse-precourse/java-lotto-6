@@ -6,13 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private final OutputView outputView;
-    public InputView() {
-        outputView = new OutputView();
-    }
-
     public int inputMoney() {
-        outputView.enterYourAmount();
         return Integer.parseInt(Console.readLine());
     }
 

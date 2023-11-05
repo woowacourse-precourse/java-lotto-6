@@ -20,22 +20,25 @@ public class LottoIssueController {
         this.output = new OutputView();
     }
 
-    public List<Lotto> issueLottos() {
-        List<Lotto> lottos = null;
-        while (lottos == null) {
-            try {
-                int money = input.inputMoney();
-                validateMoney(money);
-                int issueCount = getIssueCount(money);
-                lottos = issueService.issueLottos(issueCount);
-            } catch (IllegalArgumentException e) {
-                output.printInvalidateMoneyStatement();
-            }
-        }
-        return lottos;
+    public List<Lotto> issueLottos(int money) {
+        validateMoney(money);
+        int issueCount = getIssueCount(money);
+        return issueService.issueLottos(issueCount);
     }
 
-    private int getIssueCount(int money) {
+    public WinningLotto pickWinningLotto() {
+        WinningLotto winningLotto = null;
+        while (winningLotto == null) {
+            try {
+
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+        return winningLotto;
+    }
+
+    private int getIssueCount(final int money) {
         return money / UNIT_PRICE;
     }
 

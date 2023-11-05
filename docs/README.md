@@ -22,10 +22,11 @@
         + [x] 입력 번호가 1 ~ 45 사이의 숫자인지 검증한다. 이외의 범위에 해당할 경우 IllegalArgumentException을 발생시킨다.
         + [x] 입력 번호가 총 6자리가 맞는지 검증한다. 6자리가 아닐 경우 IllegalArgumentException을 발생시킨다.
         + [x] 각각의 번호가 숫자 형식이 맞는지 확인한다. 숫자 형식이 아닐 경우 IllegalArgumentException을 발생시킨다.
-+ [ ] 보너스 번호를 입력 받는다.
-    + [ ] 입력 번호가 1 ~ 45 사이의 숫자인지 검증한다. 이외의 범위에 해당할 경우 IllegalArgumentException을 발생시킨다.
-    + [ ] 입력 번호의 개수가 하나인지 검증한다. 아닐 경우 IllegalArgumentException을 발생시킨다.
-    + [ ] 각각의 번호가 숫자 형식이 맞는지 확인한다. 숫자 형식이 아닐 경우 IllegalArgumentException을 발생시킨다.
++ [x] 보너스 번호를 입력 받는다.
+    + [x] 입력 번호가 숫자 형식이 맞는지 확인한다. 숫자 형식이 아닐 경우 IllegalArgumentException을 발생시킨다.
+    + [x] 입력 번호가 1 ~ 45 사이의 숫자인지 검증한다. 이외의 범위에 해당할 경우 IllegalArgumentException을 발생시킨다.
+    + [x] 입력 번호의 개수가 하나인지 검증한다. 아닐 경우 IllegalArgumentException을 발생시킨다.
+    + [x] 입력 번호가 당첨 번호중의 하나이면 IllegalArgumentException을 발생시킨다.
 + [ ] 로또 당첨 여부를 검증한다.
     + [ ] 순위 검증에 enum을 사용한다.
     + [ ] 숫자의 일치 여부 개수를 확인하는 로직을 작성한다.

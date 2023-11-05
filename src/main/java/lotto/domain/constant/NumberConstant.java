@@ -21,9 +21,11 @@ public class NumberConstant {
     public static final int COUNT_IDX_OFFSET = 1;
     public static final int BONUS_MATCH_COUNT = 5;
 
-    // SERVICE
+    // COMPUTE SERVICE
     public static final int MATCHRESULT_INITIAL_NUM = 0;
-    public static final int MATCHRESULT_INCREMENT_NUM = 1;
+    public static final int MATCHRESULT_INCREMENT = 1;
+    public static final int DECIMAL_POINT_MULTIPLIER = 100;
+    public static final double DECIMAL_POINT_DENOMINATOR = 100.0;
 
     // TEST CASE
     public static final int TEST_TICKET_NUM = 5;

@@ -7,8 +7,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.domain.constant.NumberConstant.LOTTO_PRICE;
-import static lotto.domain.constant.NumberConstant.MATCHRESULT_INCREMENT_NUM;
+import static lotto.domain.constant.NumberConstant.*;
 import static lotto.service.InputService.readExpense;
 
 public class ComputeService {
@@ -23,7 +22,7 @@ public class ComputeService {
         for (Lotto randomLotto : randomLottos) {
             MatchResult matchResult = Lotto.match(randomLotto, winningLotto, bonusNum);
 
-            totalResult.compute(matchResult, (k, v) -> v + MATCHRESULT_INCREMENT_NUM);
+            totalResult.compute(matchResult, (k, v) -> v + MATCHRESULT_INCREMENT);
         }
 
         return totalResult;
@@ -59,6 +58,6 @@ public class ComputeService {
     }
 
     private static double computeDecimalPoint(double margin) {
-        return Math.round(margin * 100) / 100.0;
+        return Math.round(margin * DECIMAL_POINT_MULTIPLIER) / DECIMAL_POINT_DENOMINATOR;
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +35,18 @@ public class WinningNumberTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
 
         assertThat(winningNumber.calculateRank(lotto).name()).isEqualTo(result);
+    }
+
+    @Test
+    void 등수_카운트_테스트() {
+        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        BonusNumber bonusNumber = new BonusNumber(10);
+        WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
+
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        Rank rank = winningNumber.calculateRank(lotto);
+        assertThat(rank.getCount()).isEqualTo(1);
     }
 
     private static Stream<Arguments> generateInput() {

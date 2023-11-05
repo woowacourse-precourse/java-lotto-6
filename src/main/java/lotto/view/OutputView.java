@@ -41,4 +41,8 @@ public class OutputView {
 
         System.out.println(matchInfo + rewardInfo);
     }
+
+    public static void printProfitPercent(double profitPercent) {
+        System.out.println("총 수익률은 " + String.format("%.1f", profitPercent) + "%입니다.");
+    }
 }

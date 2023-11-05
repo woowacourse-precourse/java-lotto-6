@@ -53,4 +53,8 @@ public enum Rank {
     public String getShowPrizeMoney() {
         return showPrizeMoney;
     }
+
+    public boolean isBlank() {
+        return this == BLANK;
+    }
 }

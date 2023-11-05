@@ -11,6 +11,10 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
+	public String removeSpacesBetweenNumbersAndCommas(String numbers) {
+		return numbers.replace(" ", "");
+	}
+
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
 			throw new IllegalArgumentException("[ERROR] 로또번호는 6개를 쉼표로 구분해서 입력해주세요");

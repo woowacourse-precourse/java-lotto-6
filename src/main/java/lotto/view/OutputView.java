@@ -28,4 +28,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
     }
 
+    public static void printProfit(double profit) {
+        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+    }
 }

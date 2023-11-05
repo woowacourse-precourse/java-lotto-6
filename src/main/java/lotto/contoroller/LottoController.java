@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.LottoBonusComparer;
 import lotto.service.LottoPurchaseListComparer;
+import lotto.service.RateCalculator;
 import lotto.view.OutputValue;
 import lotto.view.PurchaseListPrinter;
 import lotto.utility.ListTypeChanger;
@@ -32,6 +33,7 @@ public class LottoController {
         test.compareBundle(purchaseList, lotto, bonus);
         OutputValue.guidePrize(test.getResultList());
         // 여기까지? 혹은 마지막 통계까지?
+        System.out.println(RateCalculator.calculateRate(purchaseAmount, test.getResultList()));
     }
 
     // 구입 금액 입력

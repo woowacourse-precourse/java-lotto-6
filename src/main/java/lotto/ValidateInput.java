@@ -41,6 +41,7 @@ public class ValidateInput {
 	public void checkLottoWinningNumbers(List<Integer> winningNumbers){
 		Set<Integer> numberSet = new HashSet<>();
 		for (int number : winningNumbers) {
+			if (winningNumbers.size() !=6) throw new IllegalArgumentException(errorMessage + "당첨 번호는 6자리입니다.");
 			if (number > 45 || number < 1) throw new IllegalArgumentException(errorMessage + " 당첨 번호를 확인해주세요");
 			if (!numberSet.add(number)) throw new IllegalArgumentException(errorMessage + " 당첨 번호에 중복된 값이 있습니다.");
 		}

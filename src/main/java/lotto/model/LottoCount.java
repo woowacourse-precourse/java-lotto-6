@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.exception.Constant;
-import lotto.exception.ErrorMessage;
+import lotto.common.Constant;
+import lotto.common.ErrorMessage;
 
 public class LottoCount {
     private final int amount;
@@ -13,8 +13,14 @@ public class LottoCount {
         this.count = calculateLottoCount();
     }
 
-    public static LottoCount createLottoCount(int amount) {
-        return new LottoCount(amount);
+    public static LottoCount createLottoCount(String amount) {
+        return new LottoCount(convertStringToInt(amount));
+    }
+
+    private static int convertStringToInt(String amount) {
+        isNULL(amount);
+        isContainsBlank(amount);
+        return Integer.parseInt(amount);
     }
 
     public int getLottoCount() {
@@ -23,10 +29,22 @@ public class LottoCount {
 
     private void validateAmount(int amount) {
         if (!isMinAmount(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_MIN_TICKET_PRICE.get());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_COUNT_MIN_TICKET_PRICE.get());
         }
         if (!isDivisible(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_ONE_TICKET_PRICE.get());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_IS_NOT_DIVISIBLE.get());
+        }
+    }
+
+    private static void isNULL(String amount) {
+        if(amount.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_NULL.get());
+        }
+    }
+
+    private static void isContainsBlank(String amount) {
+        if(amount.contains(Constant.BLANK.getCharValue())) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_CONTAINS_BLANK.get());
         }
     }
 
@@ -39,7 +57,7 @@ public class LottoCount {
     }
 
     private boolean isMinAmount(int amount) {
-        return (amount > Constant.LOTTO_TICKET_PRICE.getIntValue());
+        return (amount >= Constant.LOTTO_TICKET_PRICE.getIntValue());
     }
 
 }

@@ -41,8 +41,7 @@ public class LottoService {
     }
 
     private List<Integer> generateNumbers() {
-        List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return list;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public RanksDto judgeRanks(WinningNumberDto winningNumberDto, LottosDto lottosDto) {

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.UserMoney;
 import lotto.view.parser.InputParser;
 
 public class InputView {
@@ -11,8 +12,8 @@ public class InputView {
         inputParser = new InputParser();
     }
 
-    public Long getMoneyToBuyLottoFromUser(){
-        return inputParser.parseMoneyToBuyLottoToNumeric(readLine());
+    public UserMoney getUserMoney(){
+        return inputParser.parseUserMoney(readLine());
     }
 
     private String readLine(){

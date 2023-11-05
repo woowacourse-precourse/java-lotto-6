@@ -1,16 +1,17 @@
 package lotto.view.parser;
 
-import lotto.view.validator.MoneyToBuyLottoInputValidator;
+import lotto.domain.UserMoney;
+import lotto.view.validator.UserMoneyInputValidator;
 
 public class InputParser {
-    private final MoneyToBuyLottoInputValidator moneyToBuyLottoInputValidator;
+    private final UserMoneyInputValidator userMoneyInputValidator;
 
     public InputParser(){
-        moneyToBuyLottoInputValidator = new MoneyToBuyLottoInputValidator();
+        userMoneyInputValidator = new UserMoneyInputValidator();
     }
 
-    public Long parseMoneyToBuyLottoToNumeric(String userInput){
-        moneyToBuyLottoInputValidator.validate(userInput);
-        return Long.parseLong(userInput);
+    public UserMoney parseUserMoney(String userMoney){
+        userMoneyInputValidator.validate(userMoney);
+        return UserMoney.of(userMoney);
     }
 }

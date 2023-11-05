@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.UserMoney;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,11 +19,12 @@ public class LottoController {
     }
 
     public void playGame(){
+        UserMoney userMoney;
         try {
-            Long moneyToBuyLotto = askUserToInsertMoneyToBuyLotto();
+            userMoney = askToInsertUserMoney();
         } catch(LottoInputException e){
             outputView.printErrorMessage(e.getMessage());
-            playGame();
+            userMoney = askToInsertUserMoney();
         }
         askUserToInsertLottoWinningNumbers();
         askUserToInsertBonusNumber();
@@ -30,9 +32,9 @@ public class LottoController {
         endGame();
     }
 
-    private Long askUserToInsertMoneyToBuyLotto(){
-        outputView.askUserToInsertMoneyToBuyLotto();
-        return inputView.getMoneyToBuyLottoFromUser();
+    private UserMoney askToInsertUserMoney(){
+        outputView.askToInsertUserMoney();
+        return inputView.getUserMoney();
     }
 
     private void askUserToInsertLottoWinningNumbers(){

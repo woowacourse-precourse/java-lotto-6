@@ -4,7 +4,7 @@ import lotto.domain.constant.LottoConstant;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
-public class MoneyToBuyLottoInputValidator {
+public class UserMoneyInputValidator {
     public void validate(String userInput){
         isNotEmpty(userInput);
         isNotNumeric(userInput);
@@ -21,13 +21,13 @@ public class MoneyToBuyLottoInputValidator {
         try{
             Long.parseLong(userInput);
         } catch(NumberFormatException e){
-            throw LottoInputException.of(LottoInputExceptionMessage.MONEY_TO_BUY_LOTTO_IS_NOT_NUMERIC_TYPE);
+            throw LottoInputException.of(LottoInputExceptionMessage.USER_MONEY_IS_NOT_NUMERIC_TYPE);
         }
     }
 
     private void isNotDivisibleWithLottoPrice(String userInput){
         if(!divisibleWithLottoPrice(userInput)){
-            throw LottoInputException.of(LottoInputExceptionMessage.MONEY_TO_BUY_IS_NOT_DIVISIBLE_WITH_LOTTO_PRICE);
+            throw LottoInputException.of(LottoInputExceptionMessage.USER_MONEY_IS_NOT_DIVISIBLE_WITH_LOTTO_PRICE);
         }
     }
 

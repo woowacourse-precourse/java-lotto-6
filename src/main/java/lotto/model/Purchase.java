@@ -54,4 +54,12 @@ public class Purchase<T> {
     public List<T> getItems() {
         return items;
     }
+
+    @Override
+    public String toString() {
+        return items.stream()
+                .map(T::toString)
+                .reduce((item1, item2) -> item1 + "\n" + item2)
+                .orElse("");
+    }
 }

@@ -1,7 +1,17 @@
 package lotto;
 
+import lotto.calculator.MoneyCalculator;
+import lotto.iomanangers.OutputManager;
+import lotto.lotto.TicketScratcher;
+import lotto.numbergenerator.NumberGenerator;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        OutputManager outputManager = new OutputManager();
+        TicketScratcher ticketScratcher = new TicketScratcher();
+        NumberGenerator numberGenerator = new NumberGenerator();
+        MoneyCalculator moneyCalculator = new MoneyCalculator();
+        LottoSystem lottoSystem = new LottoSystem(moneyCalculator,numberGenerator,ticketScratcher,outputManager);
+        lottoSystem.tempRun();
     }
 }

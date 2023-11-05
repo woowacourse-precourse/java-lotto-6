@@ -1,6 +1,5 @@
 package lotto.numbergenerator;
 
-import static lotto.enums.AmountEnum.MAX_VALUE;
 import static lotto.enums.AmountEnum.MIN_VALUE;
 import static lotto.enums.LottoNumberEnum.*;
 import static lotto.enums.LottoNumberEnum.END_VALUE;
@@ -44,21 +43,21 @@ class NumberGeneratorTest {
     @DisplayName("문자열을 로또형식에 맞게 숫자리스트로 변환한다.")
     @Test
     void createLottoNumbersFromConsole() {
-        List<Integer> numbersFromConsole = numberGenerator.createLottoNumbersFromConsole(NORMAL_LOTTO_NUMBER);
+        List<Integer> numbersFromConsole = numberGenerator.createWinningNumbersFromConsole(NORMAL_LOTTO_NUMBER);
         assertThat(numbersFromConsole.size()).isEqualTo(SIZE.getValue());
     }
 
     @DisplayName("입력된 문자열이 숫자가 아니면 예외를 발생한다.")
     @Test
     void createLottoNumbersFromConsoleException() {
-        assertThatThrownBy(()->numberGenerator.createLottoNumbersFromConsole(LOTTO_NUMBER_CONTAIN_TEXT))
+        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createLottoNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPACE))
+        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPACE))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createLottoNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPECIAL_TEXT))
+        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPECIAL_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
 
-        assertThatThrownBy(()->numberGenerator.createLottoNumbersFromConsole(null))
+        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
     @DisplayName("최소금액이 1000인 금액을 수량으로 환산한다.")

@@ -16,31 +16,27 @@ class WinningChartEnumTest {
     @Test
     void valueOfWhen5CountBonus() {
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(FIVE_MATCH.getMatchCount(), BONUS);
-        String name = winningChartEnum.name();
-        Assertions.assertThat(name).isEqualTo(FIVE_AND_BONUS_MATCH.name());
+        Assertions.assertThat(winningChartEnum).isEqualTo(FIVE_AND_BONUS_MATCH);
     }
 
     @DisplayName("5개가 일치하고, bonus 가 거짓이면, FIVE_MATCH 가 된다.")
     @Test
     void valueOfWhen5Count() {
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(FIVE_MATCH.getMatchCount(), NO_BONUS);
-        String name = winningChartEnum.name();
-        Assertions.assertThat(name).isEqualTo(FIVE_MATCH.name());
+        Assertions.assertThat(winningChartEnum).isEqualTo(FIVE_MATCH);
     }
 
     @DisplayName("3개가 일치하고, bonus 가 거짓이면, THREE_MATCH 가 된다.")
     @Test
     void valueOfWhen3Count() {
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(THREE_MATCH.getMatchCount(), NO_BONUS);
-        String name = winningChartEnum.name();
-        Assertions.assertThat(name).isEqualTo(THREE_MATCH.name());
+        Assertions.assertThat(winningChartEnum).isEqualTo(THREE_MATCH);
     }
 
     @DisplayName("3개가 일치하고, bonus 가 참이어도, THREE_MATCH 가 된다.")
     @Test
     void valueOfWhen3CountButBonus() {
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(THREE_MATCH.getMatchCount(), BONUS);
-        String name = winningChartEnum.name();
-        Assertions.assertThat(name).isEqualTo(THREE_MATCH.name());
+        Assertions.assertThat(winningChartEnum).isEqualTo(THREE_MATCH);
     }
 }

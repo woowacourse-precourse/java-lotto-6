@@ -1,8 +1,11 @@
 package lotto.calculator;
 
+import static lotto.enums.AmountEnum.MIN_VALUE;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import lotto.enums.AmountEnum;
 import lotto.enums.WinningChartEnum;
 import lotto.lotto.ScratchedLottoTicket;
 import lotto.lotto.ScratchedLottoTicketList;
@@ -11,7 +14,12 @@ public class MoneyCalculator{
     private Integer totalMoney;
     private BigDecimal rateOfReturn;
 
-    public void calculateTotalMoney(ScratchedLottoTicketList scratchedLottoTicketList){
+    public void calculate(ScratchedLottoTicketList scratchedLottoTicketList, Integer investmentMoney){
+        this.calculateTotalMoney(scratchedLottoTicketList);
+        this.calculateRateOfReturn(investmentMoney);
+    }
+
+    private void calculateTotalMoney(ScratchedLottoTicketList scratchedLottoTicketList){
         List<WinningChartEnum> prizes = scratchedLottoTicketList.getScratchedLottoTickets().stream()
                 .map(ScratchedLottoTicket::getWinningChartEnum).toList();
         List<Integer> prizeMoney = prizes.stream().map(WinningChartEnum::getPrize).toList();
@@ -19,7 +27,8 @@ public class MoneyCalculator{
         totalMoney = prizeMoney.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public void calculateRateOfReturn(Integer investmentMoney){
+    public void calculateRateOfReturn(Integer amountQuantity){
+        int investmentMoney = amountQuantity * MIN_VALUE.getAmount();
         BigDecimal findInvestmentMoney = new BigDecimal(investmentMoney);
         BigDecimal totalMoney = new BigDecimal(this.totalMoney);
         BigDecimal profit = totalMoney.subtract(findInvestmentMoney);

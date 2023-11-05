@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class MoneyCalculatorTest {
 
     private static final MoneyCalculator calculator = new MoneyCalculator();
-    private static final TicketScratcher TICKET_SCRATCHER = new TicketScratcher();
+    private static final TicketScratcher ticketScratcher = new TicketScratcher();
     private final static List<Integer> LOTTO_NUMBER_FIVE_MATCH = Arrays.asList(1, 2, 3, 4, 5, 15);
     private final static List<Integer> LOTTO_NUMBER_FOUR_MATCH = Arrays.asList(1, 2, 3, 33, 5, 15);
     private final static List<Integer> WINNING_NUMBERS = Arrays.asList(1, 2, 3, 32, 5, 4);
@@ -35,11 +35,11 @@ class MoneyCalculatorTest {
         //if
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch0,
                 lottoTicketWithFourMatch1, lottoTicketWithFourMatch2, lottoTicketWithFourMatch3);
-        ScratchedLottoTicketList scratchedLottoTicketList = TICKET_SCRATCHER.scratchAllTickets(winningNumbers,
+        ScratchedLottoTicketList scratchedLottoTicketList = ticketScratcher.scratchAllTickets(winningNumbers,
                 winBonusNumber, lottoTickets);
 
         //when
-        calculator.calculateTotalMoney(scratchedLottoTicketList);
+        calculator.calculate(scratchedLottoTicketList,lottoTickets.size());
         calculator.calculateRateOfReturn(lottoTickets.size() * MIN_VALUE.getAmount());
         Integer totalMoney = calculator.getTotalMoney();
         BigDecimal rateOfReturn = calculator.getRateOfReturn();

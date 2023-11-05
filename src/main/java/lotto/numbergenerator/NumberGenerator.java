@@ -22,7 +22,7 @@ public class NumberGenerator {
         return Randoms.pickUniqueNumbersInRange(START_VALUE.getValue(), END_VALUE.getValue(), SIZE.getValue());
     }
 
-    public List<Integer> createLottoNumbersFromConsole(String unprocessedNumbers) {
+    public List<Integer> createWinningNumbersFromConsole(String unprocessedNumbers) {
         List<Integer> numbers = new ArrayList<>();
         this.validateIsNull(unprocessedNumbers);
         String[] splitUnprocessedNumber = unprocessedNumbers.split(DELIMITER);

@@ -6,11 +6,11 @@ import lotto.domain.dto.LottoBundleDto;
 import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.WinLotto;
+import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Player;
 import lotto.domain.player.Profit;
-import lotto.domain.service.LottoPurchaseService;
-import lotto.domain.service.LottoResultsService;
 import lotto.util.ModelAndViewConverter;
 import lotto.util.RandomLottoGenerator;
 import lotto.view.InputView;
@@ -21,35 +21,33 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final ModelAndViewConverter modelAndViewConverter;
-    private final LottoPurchaseService lottoPurchaseService;
-    private final LottoResultsService lottoResultsService;
+    private final LottoResultsRepository lottoResultsRepository;
 
     public LottoController(InputView inputView, OutputView outputView, ModelAndViewConverter modelAndViewConverter,
-                           LottoPurchaseService lottoPurchaseService, LottoResultsService lottoResultsService) {
+                           LottoResultsRepository lottoResultsRepository) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.modelAndViewConverter = modelAndViewConverter;
-        this.lottoPurchaseService = lottoPurchaseService;
-        this.lottoResultsService = lottoResultsService;
+        this.lottoResultsRepository = lottoResultsRepository;
     }
 
     public void runLottoGame() {
         Player player = makePlayer();
-        player = lottoPurchaseService.purchaseLotto(player, RandomLottoGenerator::generateRandomLotto);
+        player.buyAndSaveRandomLottoWithAllTicket(RandomLottoGenerator::generateRandomLotto);
 
-        LottoBundleDto lottoBundleDto = lottoPurchaseService.makeLottoBundleDto();
+        LottoBundleDto lottoBundleDto = player.makeLottoBundleDto();
         printPurchaseLotto(lottoBundleDto);
 
         WinLotto winLotto = makeWinLotto();
-        lottoResultsService.updateLottoResultRepository(lottoBundleDto,winLotto);
-        LottoResultsDto lottoResultsDto = lottoResultsService.makeLottoResultsDto();
+        lottoResultsRepository.updateLottoResultRepository(lottoBundleDto, winLotto);
+        LottoResultsDto lottoResultsDto = lottoResultsRepository.makeLottoResultsDto();
 
         printWinning(lottoResultsDto);
-        checkAndPrintProfit(player, lottoResultsService);
+        checkAndPrintProfit(player);
     }
 
     private Player makePlayer() {
-        return repeat(() -> new Player(inputView.inputPurchaseMoney()));
+        return repeat(() -> new Player(inputView.inputPurchaseMoney(), new LottoBundle()));
     }
 
     private void printPurchaseLotto(LottoBundleDto lottoBundleDto) {
@@ -81,8 +79,8 @@ public class LottoController {
         outputView.printLottoResultsData();
     }
 
-    private void checkAndPrintProfit(Player player, LottoResultsService lottoResultsService){
-        Profit profit = lottoResultsService.calculateProfit(player);
+    private void checkAndPrintProfit(Player player){
+        Profit profit = lottoResultsRepository.calculateProfit(player);
         modelAndViewConverter.addComponent(profit);
         outputView.printProfit();
     }

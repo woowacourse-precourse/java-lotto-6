@@ -1,6 +1,7 @@
 package lotto.domain.player;
 
 import java.util.function.Supplier;
+import lotto.domain.dto.LottoBundleDto;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lottoresult.LottoPrizeMoney;
@@ -27,8 +28,8 @@ public class Player {
         return playerWallet.issueLottoTicket();
     }
 
-    public Profit getProfit(LottoResultsRepository lottoResultsRepository) {
-        return  playerWallet.calculateProfit(lottoResultsRepository);
+    public Profit getProfit(LottoPrizeMoney lottoPrizeMoney) {
+        return  playerWallet.calculateProfit(lottoPrizeMoney);
     }
 
     public LottoBundleDto makeLottoBundleDto() {

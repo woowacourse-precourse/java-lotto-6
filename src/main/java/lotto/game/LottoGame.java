@@ -1,6 +1,6 @@
-package lotto.io.game;
+package lotto.game;
 
-import lotto.io.collaboration.Lottos;
+import lotto.collaboration.Lottos;
 
 public class LottoGame {
 

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.io.game.LottoGame;
+import lotto.game.LottoGame;
 
 public class Application {
 

@@ -27,7 +27,9 @@ public class LottoController {
 
 
     private void determineWinningLotto() {
-
+        Lotto lotto = input.readWinningNumbers();
+        int bonusNumber = input.readBonusNumber();
+        manager.makeWinningLotto(lotto, bonusNumber);
     }
 
 

@@ -19,10 +19,8 @@ public class Application {
     final static int[] prices = { 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000, 0 };
 
     enum ErrorType { 
-        NUMBERANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
-        DUP("[ERROR] 로또 번호는 중복할 수 없습니다."),
-        MONEY("[ERROR] 금액은 1000으로 나누어 떨어지는 정수 입니다."),
-        NOTINTEGER("[ERROR] 정수를 입력해 주세요.");
+        NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."), 
+        MONEY("[ERROR] 금액은 1000으로 나누어 떨어지는 정수 입니다.");
 
         final private String name; 
         public String getName() { 
@@ -47,7 +45,6 @@ public class Application {
 
     public static int vaildMoney(int m){
         if (m == -1 || m%1000 != 0) {
-            System.err.println(m + ErrorType.MONEY.getName());
             return -1;
         }
         return m;
@@ -59,6 +56,7 @@ public class Application {
             res = myParseInt(Console.readLine());
             res = vaildMoney(res);
             System.out.println();
+            if(res == -1) System.out.println(ErrorType.MONEY.getName());
         }
         return res;
     }
@@ -91,7 +89,10 @@ public class Application {
 
     public static List<Integer> setWinNumbers(){
         List<Integer> res = new ArrayList<Integer>();
-        while(res.isEmpty()) res = strToIntegerList(Console.readLine());
+        while(res.isEmpty()) {
+            res = strToIntegerList(Console.readLine());
+            if(res.isEmpty()) System.out.println(ErrorType.NUMBER.getName());
+        }
         return res;
     }
 

@@ -2,12 +2,26 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Draw {
 
     private void getWinningLottoNumsList() {
         printWinningLottoNumsEnterGuideStatement();
         String input = Console.readLine();
         String[] strings = input.split(",");
+    }
+
+    List<Integer> toIntList(String[] strings) {
+
+        List<Integer> nums = new ArrayList<>();
+
+        for (String str : strings) {
+            nums.add(toInt(str));
+        }
+
+        return nums;
     }
 
     int toInt(String str) {

@@ -33,4 +33,12 @@ class ConverterTest {
         assertThat(Converter.stringListToIntegers(inputNumbers)).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @Test
+    @DisplayName("형변환이 안되는 문자열 리스트 입력 시 예외 발생한다.")
+    void convertExceptionOnInvalidInputList() {
+        assertThatThrownBy(() -> Converter.stringListToIntegers(Arrays.asList("1", "a", "3", "4", "5", "6")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자를 입력해주세요.");
+    }
+
 }

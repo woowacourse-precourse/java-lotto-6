@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import static lotto.domain.Ranking.SECOND;
-import static lotto.domain.Ranking.THIRD;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.domain.Ranking;
+import lotto.domain.Rank;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -21,7 +21,7 @@ public class LottoController {
     private List<Lotto> lottos;
     private Lotto winningNumbers;
     private BonusNumber bonusNumber;
-    private Map<Ranking, Integer> results;
+    private Map<Rank, Integer> results;
 
     public void start() {
         buyLottos();
@@ -62,8 +62,8 @@ public class LottoController {
     }
 
     private void getBonusNumber() {
-        bonusNumber = new BonusNumber(Input.inputBonusNumber());
         try {
+            bonusNumber = new BonusNumber(Input.inputBonusNumber());
             winningNumbers.validateBonusNumber(bonusNumber);
         } catch(IllegalArgumentException e) {
             getBonusNumber();
@@ -77,19 +77,19 @@ public class LottoController {
 
     private void writeResults() {
         results = new HashMap<>();
-        for(Ranking ranking : Ranking.values()) {
-            results.put(ranking, findRanking(ranking));
+        for(Rank rank : Rank.values()) {
+            results.put(rank, findRanking(rank));
         }
     }
 
-    private int findRanking(Ranking ranking) {
-        if(ranking == SECOND) {
+    private int findRanking(Rank rank) {
+        if(rank == SECOND) {
             return findSecond();
         }
-        if(ranking == THIRD) {
+        if(rank == THIRD) {
             return findThird();
         }
-        return findElse(ranking);
+        return findElse(rank);
     }
 
     private int findSecond() {
@@ -106,24 +106,24 @@ public class LottoController {
                 .count();
     }
 
-    private int findElse(Ranking ranking) {
+    private int findElse(Rank rank) {
         return (int) lottos.stream()
-                .filter(lotto -> lotto.matchNumbers(winningNumbers) == ranking.getCount())
+                .filter(lotto -> lotto.matchNumbers(winningNumbers) == rank.getCount())
                 .count();
     }
 
     private void printResult() {
-        Output.printWinningStatic();
-        for(Ranking ranking : Ranking.values()) {
-            Output.printResults(ranking.getMessage(), results.get(ranking));
+        Output.printWinningStatistic();
+        for(Rank rank : Rank.values()) {
+            Output.printResults(rank.getMessage(), results.get(rank));
         }
         printPercent();
     }
 
     private void printPercent() {
         double sum = 0;
-        for(Ranking ranking : Ranking.values()) {
-            sum += (ranking.getPrize() * results.get(ranking));
+        for(Rank rank : Rank.values()) {
+            sum += (rank.getPrize() * results.get(rank));
         }
         Output.printPercent(sum / money.getValue() * 100);
     }

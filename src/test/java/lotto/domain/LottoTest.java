@@ -1,6 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import java.util.Arrays;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +37,7 @@ class LottoTest {
     @Test
     void validateBonusNumber() {
 
-        assertThatThrownBy(() -> new Lotto(Arrays.asList(1,2,3,4,5,6))
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6))
                 .validateBonusNumber(new BonusNumber(5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

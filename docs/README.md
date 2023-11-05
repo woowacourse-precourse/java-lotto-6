@@ -70,6 +70,14 @@
 
 - 중복 없는 로또 번호 6자리를 Lotto 객체로 반환
 
+### Rank
+
+- 랭크 객체에 따라 숫자 매칭 수, 금액, 메세지 추가
+
+### LottoDetails
+
+- 로또 세부 정보 등을 상수로 저장
+
 ## Controller
 
 ### LottoController

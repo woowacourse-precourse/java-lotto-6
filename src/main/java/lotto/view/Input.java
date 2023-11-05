@@ -23,7 +23,7 @@ public class Input {
             System.out.println(INPUT_WINNING_NUMBERS);
             String[] input = Console.readLine().split(",");
             return Arrays.stream(input)
-                    .map(Integer::parseInt)
+                    .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
         } catch(NumberFormatException e) {
             printInputFormatError();

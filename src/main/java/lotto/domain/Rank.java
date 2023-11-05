@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum Ranking {
+public enum Rank {
 
     FIFTH(3, 5_000, "3개 일치 (5,000원) - %d개\n"),
     FOURTH(4, 50_000, "4개 일치 (50,000원) - %d개\n"),
@@ -11,7 +11,7 @@ public enum Ranking {
     private int count;
     private int prize;
     private String message;
-    Ranking(int count, int prize, String message) {
+    Rank(int count, int prize, String message) {
         this.count = count;
         this.prize = prize;
         this.message = message;

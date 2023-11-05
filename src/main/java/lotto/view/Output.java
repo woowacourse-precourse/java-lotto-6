@@ -14,7 +14,7 @@ public class Output {
         System.out.println(lotto);
     }
 
-    public static void printWinningStatic() {
+    public static void printWinningStatistic() {
         System.out.println(WINNING_STATISTIC);
     }
 

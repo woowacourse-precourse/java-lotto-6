@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -59,6 +60,7 @@ public class LottoGame {
             System.out.printf("%s%d개%n", winnerType.message(), winner.getOrDefault(winnerType, 0));
         }
 
-        ConsoleMessage.RATE_OF_RETURN.print(getRateOfReturn());
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        ConsoleMessage.RATE_OF_RETURN.print(decimalFormat.format(getRateOfReturn()));
     }
 }

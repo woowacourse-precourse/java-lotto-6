@@ -44,7 +44,7 @@ public class ConsoleMessageTest {
         // given
         ConsoleMessage buyMessage = ConsoleMessage.BUY;
         int lottoCount = 8;
-        String expectedBuyMessage = "8개를 구매했습니다.\n";
+        String expectedBuyMessage = "\n8개를 구매했습니다.\n";
 
         // when
         buyMessage.print(lottoCount);
@@ -58,7 +58,7 @@ public class ConsoleMessageTest {
     void rateOfReturnMessage() {
         // given
         ConsoleMessage rateOfReturnMsg = ConsoleMessage.RATE_OF_RETURN;
-        double rateOfReturn = 62.455;
+        double rateOfReturn = 62.5;
         String expectedRateOfReturnMsg = "총 수익률은 62.5%입니다.\n";
 
         // when

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    public List<Lotto> sellLottos(Integer money) {
+    public static List<Lotto> sellLottos(Integer money) {
         List<Lotto> lottos = new ArrayList<Lotto>();
         validateDividedByPrice(money);
 
@@ -19,7 +19,7 @@ public class Store {
         return lottos;
     }
 
-    private void validateDividedByPrice(Integer money) {
+    private static void validateDividedByPrice(Integer money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000으로 가격이 나누어 떨어져야 합니다.");
         }

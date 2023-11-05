@@ -8,7 +8,12 @@ public enum IntConstants {
     THREE_HIT(3),
     FOUR_HIT(4),
     FIVE_HIT(5),
-    SIX_HIT(6);
+    SIX_HIT(6),
+    FIRST_INDEX(0),
+    SECOND_INDEX(1),
+    THIRD_INDEX(2),
+    FORTH_INDEX(3),
+    FIFTH_INDEX(4);
 
 
     int value;

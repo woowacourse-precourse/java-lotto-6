@@ -25,41 +25,41 @@ public class LottoCounter {
 
     private void hitThree(List<Integer> resultList, int result) {
         if (result == IntConstants.THREE_HIT.getValue()) {
-            int count = resultList.get(0);
+            int count = resultList.get(IntConstants.FIRST_INDEX.getValue());
             ++count;
-            resultList.set(0, count);
+            resultList.set(IntConstants.FIRST_INDEX.getValue(), count);
         }
     }
 
     private void hitFour(List<Integer> resultList, int result) {
         if (result == IntConstants.FOUR_HIT.getValue()) {
-            int count = resultList.get(1);
+            int count = resultList.get(IntConstants.SECOND_INDEX.getValue());
             ++count;
-            resultList.set(1, count);
+            resultList.set(IntConstants.SECOND_INDEX.getValue(), count);
         }
     }
 
     private void hitFive(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
         if (result == IntConstants.FIVE_HIT.getValue() && !cpuSixNumbers.contains(playerBonus)) {
-            int count = resultList.get(2);
+            int count = resultList.get(IntConstants.THREE_HIT.getValue());
             ++count;
-            resultList.set(2, count);
+            resultList.set(IntConstants.THREE_HIT.getValue(), count);
         }
     }
 
     private void hitFiveBonus(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
         if (result == IntConstants.FIVE_HIT.getValue() && cpuSixNumbers.contains(playerBonus)) {
-            int count = resultList.get(3);
+            int count = resultList.get(IntConstants.FORTH_INDEX.getValue());
             ++count;
-            resultList.set(3, count);
+            resultList.set(IntConstants.FORTH_INDEX.getValue(), count);
         }
     }
 
     private void hitSix(List<Integer> resultList, int result) {
         if (result == IntConstants.SIX_HIT.getValue()) {
-            int count = resultList.get(4);
+            int count = resultList.get(IntConstants.FIFTH_INDEX.getValue());
             ++count;
-            resultList.set(4, count);
+            resultList.set(IntConstants.FIFTH_INDEX.getValue(), count);
         }
     }
 }

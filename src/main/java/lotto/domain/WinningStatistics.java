@@ -37,7 +37,7 @@ public class WinningStatistics {
     }
 
     private void updateWinningStatistics(WinningResult winningResult){
-        winningStatistics.put(winningResult, winningStatistics.getOrDefault(winningResult, 1));
+        winningStatistics.put(winningResult, winningStatistics.getOrDefault(winningResult, 0) + 1);
     }
 
     private boolean getHasBonus(List<Integer> userLottoNumbers, Bonus bonus){
@@ -45,6 +45,5 @@ public class WinningStatistics {
     }
 
     private void setRevenueRate(Lottos userLottos, WinningLotto winningLotto){
-
     }
 }

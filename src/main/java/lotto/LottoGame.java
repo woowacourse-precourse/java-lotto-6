@@ -11,11 +11,14 @@ public class LottoGame {
     private WinningLotto winningLotto;
 
     public LottoGame() {
+        lottos = new ArrayList<Lotto>();
     }
 
     public void run() {
         requestMoneyToBuy();
         requestWinningLotto();
+        generateLottos();
+        printBoughtLottos();
     }
 
     private void requestMoneyToBuy() {
@@ -41,5 +44,16 @@ public class LottoGame {
         });
 
         return list;
+    }
+
+    private void generateLottos() {
+        for (int i = 0; i < moneyToBuy.getLottosSize(); i++) {
+            lottos.add(Lotto.generateLotto());
+        }
+    }
+
+    private void printBoughtLottos() {
+        System.out.printf(OutputMessage.BUY_LOTTO_RESULT.getMessage() + "\n", moneyToBuy.getLottosSize());
+        lottos.forEach(lotto -> System.out.println(lotto));
     }
 }

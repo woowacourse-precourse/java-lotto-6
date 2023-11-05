@@ -16,4 +16,8 @@ public class MoneyToBuy {
             throw new IllegalArgumentException();
         }
     }
+
+    public Integer getLottosSize() {
+        return value / 1000;
+    }
 }

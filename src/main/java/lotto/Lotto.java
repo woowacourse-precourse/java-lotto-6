@@ -34,4 +34,9 @@ public class Lotto {
 
         return new Lotto(list);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

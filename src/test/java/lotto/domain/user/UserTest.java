@@ -24,16 +24,22 @@ class UserTest {
     void setUp() {
         lottoTargetNumResults = new LottoTargetNumResults("1,2,3,4,5,6", "7");
 
-        user = new User(lottoEnvelop, lottoTargetNumResults);
         lottoEnvelop = new LottoEnvelop();
         lotto_1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         lotto_2 = new Lotto(List.of(7, 6, 5, 4, 3, 2));
         lotto_3 = new Lotto(List.of(8, 7, 6, 5, 4, 3));
+
+        user = new User(lottoEnvelop, lottoTargetNumResults);
+
     }
 
     @DisplayName("로또를 보여준다.")
     @Test
     void showLottoEnvelop() {
+        lotto_1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        lotto_2 = new Lotto(List.of(7, 6, 5, 4, 3, 2));
+        lotto_3 = new Lotto(List.of(8, 7, 6, 5, 4, 3));
+
         lottoEnvelop.add(lotto_1);
         lottoEnvelop.add(lotto_2);
         lottoEnvelop.add(lotto_3);

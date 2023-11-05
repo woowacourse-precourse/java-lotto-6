@@ -19,6 +19,7 @@ public class Lottos {
     public void getWinningResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
         for (Lotto lotto : lottos) {
             int countOfMatchingNumber = lotto.countMatchingNumber(winningNumber);
+            boolean isBonusIncluded = lotto.contains(bonusNumber);
         }
     }
 }

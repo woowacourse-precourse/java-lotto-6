@@ -24,4 +24,8 @@ public class Lotto {
                 .filter(winningNumber::contains)
                 .count();
     }
+
+    public boolean contains(BonusNumber bonusNumber) {
+        return bonusNumber.isBonusNumberContainedInLottoNumbers(numbers);
+    }
 }

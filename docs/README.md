@@ -2,8 +2,9 @@
 
 - [x] 구입 금액으로 로또 몇장을 구입할 수 있는지 계산한다.(로또 1장당 1,000원) - LottoManager#calculateNumberOfLottos()
   - [x] 구입 금액이 1,000원단위로 나누어 떨어지는지 검사한다. - LottoManager#validatePurchaseAmount()
+- [ ] 로또를 생성한다. - LottoFactory#createLotto()
 - [ ] 매개변수로 들어온 장수만큼 로또를 생성한다. - Lottos#createLottos()
-- [x] 1 ~ 45까지의 난수 6개를 `List<Integer>`로 생성한다. - NumberGenerator#generateRandomNumbers()
+- [x] 1 ~ 45까지의 중복하지 않는 난수 6개를 `List<Integer>`로 생성한다. - NumberGenerator#generateRandomNumbers()
 
 - [ ] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
 - [ ] 보너스 번호와 일치하는 번호가 있는지 검사한다. - BonusNumber#isContains()

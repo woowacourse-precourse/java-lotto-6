@@ -74,4 +74,13 @@ class LottoMachineTest {
             lottoMachine.calculateNumberOfTickets(800);
         });
     }
+
+    @Test
+    @DisplayName("5000원이 주어질 때, 5장의 로또가 생성된다.")
+    public void given_5000Won_when_PurchaseLottos_then_Returns5Lottos() {
+        List<Lotto> lottos = lottoMachine.purchaseLottos(5000);
+
+        assertEquals(5, lottos.size());
+    }
+
 }

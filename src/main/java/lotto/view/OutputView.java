@@ -12,24 +12,33 @@ public class OutputView {
     public static void printInputPurchaseAmountMsg() {
         System.out.print(INPUT_PURCHASE_AMOUNT_MSG);
     }
+
     public static void printPurchaseMsg(int lottoCount) {
         System.out.printf(PURCHASE_MSG, lottoCount);
     }
+
     private static void printLotto(int[] lotto) {
         System.out.println("[" + String.join(", ",
                 java.util.Arrays.stream(lotto)
                         .mapToObj(String::valueOf)
                         .toArray(String[]::new)) + "]");
     }
+
     public static void printLottos(int[][] lottos) {
         for (int[] lotto : lottos) {
             printLotto(lotto);
         }
     }
+
     public static void printInputWinningNumberMsg() {
         System.out.print(INPUT_LOTTO_NUMBER_MSG);
     }
+
     public static void printInputBonusNumberMsg() {
         System.out.print(INPUT_BONUS_NUMBER_MSG);
+    }
+
+    public static void printWinningStatistics() {
+        System.out.print(WINNING_STATISTICS_MSG);
     }
 }

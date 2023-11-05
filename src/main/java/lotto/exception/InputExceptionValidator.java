@@ -24,6 +24,7 @@ public class InputExceptionValidator {
 
     public Exception inputWinningNumbersValidation(List<String> splitedList) {
         try {
+            sizeValidation(splitedList);
             duplicatedValidation(splitedList);
             splitedList.forEach(this::numberFormatValidation);
             splitedList.stream()
@@ -54,6 +55,12 @@ public class InputExceptionValidator {
     private void dividedValidation(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new InputException(ExceptionCode.INVALID_INPUT_DIVIDED);
+        }
+    }
+
+    private void sizeValidation(List<String> splitedList) {
+        if (splitedList.size() != 6) {
+            throw new InputException(ExceptionCode.INVALID_INPUT_SIZE);
         }
     }
 

@@ -39,17 +39,17 @@ public class LottoMachine {
         lottosRepository.saveWinningLotto(winningLotto);
     }
 
-    public WinningResults createWinningResult() {
+    public WinningResults createWinningResults() {
         Lottos userLottos = findUserLottosObject();
         WinningLotto winningLotto = findWinningLottoObject();
 
         List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto);
-        return WinningResults.from(compareResults);
+        return WinningResults.createFrom(compareResults);
     }
 
     private List<Lotto> createLottos(final Supplier<List<Integer>> randomLottoSupplier, final LottoMoney lottoMoney) {
         return Stream.generate(randomLottoSupplier)
-                .limit(lottoMoney.createBuyingCount())
+                .limit(lottoMoney.calculateBuyingCount())
                 .map(Lotto::createFrom)
                 .toList();
     }

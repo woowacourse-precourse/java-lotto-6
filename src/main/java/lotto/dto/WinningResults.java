@@ -8,7 +8,7 @@ import lotto.domain.money.LottoMoneyCondition;
 
 public record WinningResults(Map<LottoRewardCondition, Integer> results) {
 
-    public static WinningResults from(final List<LottoRewardCondition> rewards) {
+    public static WinningResults createFrom(final List<LottoRewardCondition> rewards) {
         return new WinningResults(rewards.stream()
                 .collect(Collectors.groupingBy(lottoReward -> lottoReward,
                         Collectors.collectingAndThen(Collectors.counting(), Long::intValue))));

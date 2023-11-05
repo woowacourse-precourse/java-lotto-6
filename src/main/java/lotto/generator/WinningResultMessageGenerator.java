@@ -1,7 +1,6 @@
 package lotto.generator;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,12 +24,12 @@ public class WinningResultMessageGenerator {
     private WinningResultMessageGenerator() {
     }
 
-    public static String generate(final WinningResults winningResult) {
+    public static String generate(final WinningResults winningResults) {
         List<Integer> winningCounts = Arrays.stream(LottoRewardCondition.values())
                 .filter(LottoRewardCondition::isNotFail)
-                .map(winningResult::getRewardCount)
+                .map(winningResults::getRewardCount)
                 .toList();
-        return createResultMessage(winningResult, winningCounts);
+        return createResultMessage(winningResults, winningCounts);
     }
 
     private static String createResultMessage(final WinningResults winningResults, final List<Integer> winningCounts) {

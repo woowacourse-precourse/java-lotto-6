@@ -60,8 +60,8 @@ public class LottoGame {
     }
 
     private void printWinningResult() {
-        WinningResults winningResult = lottoMachine.createWinningResult();
-        String message = WinningResultMessageGenerator.generate(winningResult);
+        WinningResults winningResults = lottoMachine.createWinningResults();
+        String message = WinningResultMessageGenerator.generate(winningResults);
         outputView.printWinningResult(message);
     }
 

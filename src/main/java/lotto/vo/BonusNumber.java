@@ -16,11 +16,11 @@ public final class BonusNumber {
 
     private void validate(Integer value) throws LottoException {
         if (value < LottoConstants.LOTTO_MIN_NUMBER.getValue()) {
-            throw new LottoException("로또 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new LottoException(LottoException.ErrorMessage.RANGE_BONUS_NUMBER.getMessage());
         }
 
         if (value > LottoConstants.LOTTO_MAX_NUMBER.getValue()) {
-            throw new LottoException("로또 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new LottoException(LottoException.ErrorMessage.RANGE_BONUS_NUMBER.getMessage());
         }
     }
 

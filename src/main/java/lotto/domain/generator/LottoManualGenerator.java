@@ -15,8 +15,8 @@ public class LottoManualGenerator {
                     .map(Integer::valueOf)
                     .collect(Collectors.toSet());
             return new Lotto(new ArrayList<>(uniqueNumbers));
-        } catch (NumberFormatException exception) {
-            throw new LottoException("숫자를 입력해 주세요");
+        } catch (NumberFormatException | LottoException exception) {
+            throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 }

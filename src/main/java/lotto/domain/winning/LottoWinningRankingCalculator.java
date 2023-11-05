@@ -7,7 +7,7 @@ import lotto.vo.LottoNumber;
 import java.util.EnumMap;
 
 public class LottoWinningRankingCalculator {
-    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningNumbers winningLotto) {
+    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningSet winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 
         for (Lotto lotto : userLottos.lottos()) {
@@ -21,7 +21,7 @@ public class LottoWinningRankingCalculator {
         return rankingCountMap;
     }
 
-    private int countMatchedNumbers(Lotto lotto, LottoWinningNumbers winningLotto) {
+    private int countMatchedNumbers(Lotto lotto, LottoWinningSet winningLotto) {
         int matchedNumberCount = 0;
         for (LottoNumber number : winningLotto.getLotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
@@ -31,8 +31,8 @@ public class LottoWinningRankingCalculator {
         return matchedNumberCount;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, LottoWinningNumbers lottoWinningNumbers) {
-        return lotto.getNumbers().contains(lottoWinningNumbers.getBonusNumber());
+    private boolean hasBonusNumber(Lotto lotto, LottoWinningSet lottoWinningSet) {
+        return lotto.getNumbers().contains(lottoWinningSet.getBonusNumber());
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {

@@ -1,10 +1,13 @@
 package lotto.domain.store;
 
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.generator.LottoAutoGenerator;
 import lotto.domain.generator.LottoManualGenerator;
 import lotto.exception.LottoException;
-import lotto.exception.MarketException;
+import lotto.exception.LottoStoreException;
+
+import java.util.List;
 
 import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
@@ -24,17 +27,19 @@ public class LottoStore {
         return lottoAutoGenerator.generate(lottoCount);
     }
 
-    private void validate(int money) throws MarketException {
+    public Lotto purchaseManualLotto(List<String> list) throws LottoException {
+        return lottoManualGenerator.generate(list);
+    }
+
+    private void validate(int money) throws LottoStoreException {
         if (!isValidMoney(money)) {
-            throw new MarketException(MarketException.ErrorMessage.VALID_MONEY.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.LOTTO_MIN_MONEY.getMessage());
         }
-
-        if (!isDivisibleByLottoPrice(money)) {
-            throw new MarketException(MarketException.ErrorMessage.NOT_DIVISIBLE.getMessage());
-        }
-
         if (isExceedMaxLottoAmountPerUser(money)) {
-            throw new MarketException(MarketException.ErrorMessage.EXCEED_MAX_LOTTO_AMOUNT.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.EXCEED_MAX_LOTTO_AMOUNT.getMessage());
+        }
+        if (!isDivisibleByLottoPrice(money)) {
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.NOT_DIVISIBLE.getMessage());
         }
     }
 

@@ -4,9 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-
 public class RandomGenerator {
-    public List<Integer> createUniqueNumbers(int start, int end, int count) {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public List<Integer> createUniqueNumbers(int min, int max, int size) {
+        return Randoms.pickUniqueNumbersInRange(min, max, size);
     }
 }

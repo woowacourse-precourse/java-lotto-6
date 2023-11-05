@@ -30,7 +30,7 @@
 ## **뷰 (View)**
 
 - [ ]  InputView
-    - [ ]  금액 입력 (**`inputAmount`**)
+    - [x]  금액 입력 (**`inputAmount`**)
     - [ ]  당첨번호 입력 (**`inputPrizeNumber`**)
     - [ ]  보너스 번호 입력 (**`inputBonusNumber`**)
 - [ ]  OutputView

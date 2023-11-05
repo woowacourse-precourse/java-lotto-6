@@ -21,13 +21,9 @@ public class GameService {
     }
 
     public void gameSetting() {
-        GameOutput.enterWinnigNumbersMessage();
-        game.setWinningNumbers(GameInput.enterWinningNumbers());
-
+        inputWinngngNumbers();
         GameOutput.printBlankLine();
-
-        GameOutput.enterBonusNumberMessage();
-        game.setBonusNumber(GameInput.enterBonusNumbers());
+        inputBonusNumbers();
     }
 
     public void gameInProgress() {
@@ -39,5 +35,15 @@ public class GameService {
         GameOutput.lottoResultTitleMessage();
         GameOutput.lottoResultMessage();
         GameOutput.earningMessage(player.getEarningRate(game.receiveAmount));
+    }
+
+    private void inputWinngngNumbers() {
+        GameOutput.enterWinnigNumbersMessage();
+        ExceptionHandler.retryUntilSuccess(() ->  game.setWinningNumbers(GameInput.enterWinningNumbers()));
+    }
+
+    private void inputBonusNumbers() {
+        GameOutput.enterBonusNumberMessage();
+        ExceptionHandler.retryUntilSuccess(() ->  game.setBonusNumber(GameInput.enterBonusNumbers()));
     }
 }

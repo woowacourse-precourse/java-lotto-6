@@ -6,7 +6,7 @@ public interface ExceptionHandler<T> {
     static <T> T retryUntilSuccess(ExceptionHandler<T> task) {
         while(true) {
             try {
-                task.run();
+                return task.run();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

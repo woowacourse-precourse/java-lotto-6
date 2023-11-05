@@ -23,23 +23,26 @@ public class Game {
         this.receiveAmount = Integer.parseInt(receiveAmount);
     }
 
-    public void setWinningNumbers(String enterNumbers) {
+    public Game setWinningNumbers(String enterNumbers) {
         List<String> numbers = List.of(enterNumbers.split(","));
         validWinningNubmers(numbers);
 
         winningNumbers = numbers.stream()
                 .map(Integer::valueOf)
                 .sorted()
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
+
+        return this;
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
-    public void setBonusNumber(String enterNumber){
+    public Game setBonusNumber(String enterNumber){
         validBonusNubmer(enterNumber);
         bonusNumber = Integer.parseInt(enterNumber);
+        return this;
     }
 
     public int getBonusNumber() {

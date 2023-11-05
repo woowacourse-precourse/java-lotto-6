@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import lotto.model.Ranking;
 import lotto.service.LottoService;
 import lotto.service.ValidateService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -25,7 +27,15 @@ public class LottoController {
         printBonusNumberMessage();
         String inputBonusNumber = inputBonusNumberProcess();
         setBonusNumber(inputBonusNumber);
+        winningStatisticsProcess();
+    }
 
+    private void winningStatisticsProcess() {
+        outputView.printWinningStaticsMessage();
+        Map<Ranking, Integer> result = lottoService.calculatePrizeMoney();
+        for (int i = Ranking.values().length - 1; i >= 0; i--) {
+            Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+        }
     }
 
     private void setBonusNumber(String inputBonusNumber) {

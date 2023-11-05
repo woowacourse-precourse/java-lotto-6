@@ -2,10 +2,9 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.model.Ranking;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static lotto.util.CalculateUtil.divideByThousands;
 import static lotto.util.GenerateLottoNumbersUtil.generateLottoNumber;
@@ -32,6 +31,21 @@ public class LottoService {
         return purchaseLottoNumbers;
     }
 
+    public Map<Ranking, Integer> calculatePrizeMoney() {
+        Map<Ranking, Integer> result = setResult();
+
+        List<List<Integer>> purchaseLottoNumbers = lottoGame.getPurchaseLottoNumbers();
+        for (List<Integer> purchaseLottoNumber : purchaseLottoNumbers) {
+            long count = purchaseLottoNumber.stream().filter(number -> winnerLottoNumber.contains(number))
+                    .count();
+            boolean contains = purchaseLottoNumber.contains(bonusNumber);
+            Ranking ranking = Ranking.valueOf((int) count, contains);
+            result.put(ranking, result.get(ranking) + 1);
+        }
+
+        return result;
+    }
+
     public void setWinnerLottoNumbers(String inputWinnerNumber) {
         List<Integer> winnerNumber = StringToIntegerList(inputWinnerNumber);
         Lotto lotto = new Lotto(winnerNumber);
@@ -39,8 +53,7 @@ public class LottoService {
     }
 
     public void setBonusNumber(String inputBonusNumber) {
-        int bonusNumber = StringToInt(inputBonusNumber);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = StringToInt(inputBonusNumber);
     }
 
     private void setPurchaseLottoNumbers(List<List<Integer>> purchaseLottoNumbers) {
@@ -60,5 +73,14 @@ public class LottoService {
 
     private static void sortLottoNumber(List<Integer> lottoNumber) {
         Collections.sort(lottoNumber);
+    }
+
+    private Map<Ranking, Integer> setResult() {
+        Map<Ranking, Integer> result = new LinkedHashMap<>();
+
+        for (Ranking rank : Ranking.values()) {
+            result.put(rank, 0);
+        }
+        return result;
     }
 }

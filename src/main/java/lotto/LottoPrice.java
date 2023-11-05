@@ -23,5 +23,8 @@ public class LottoPrice {
         if (Price==0) {
             throw new IllegalArgumentException();
         }
+
     }
+
+
 }

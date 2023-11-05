@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.WinningStatics.NumberOfMatches;
 
 public class PlayLotto {
     private static List<Lotto> Lottos = new ArrayList<>();

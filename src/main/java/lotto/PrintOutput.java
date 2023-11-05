@@ -17,6 +17,6 @@ public class PrintOutput {
         System.out.println(detail + MatchCount+"개");
     }
     public void printRateOfReturn(double ROR){
-        System.out.printf("총 수익률은 %.1f%%입니다",ROR);
+        System.out.printf("총 수익률은 %.1f%%입니다.",ROR);
     }
 }

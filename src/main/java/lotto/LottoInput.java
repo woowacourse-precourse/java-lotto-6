@@ -8,10 +8,14 @@ import net.bytebuddy.description.annotation.AnnotationValue.ForEnumerationDescri
 
 public class LottoInput {
     private static final List<Integer> WinningNumbers = new ArrayList<>();
-    public int getLottoPrice(){
+    ExceptionCases exceptionCases = new ExceptionCases();
+    public int getLottoPrice() {
         PrintInput printInput = new PrintInput();
         printInput.printLottoMoney();
-        String s = Console.readLine();
+        String s;
+        do {
+            s = Console.readLine();
+        } while (exceptionCases.LottoPriceCheck(s));
         System.out.println();
         return Integer.parseInt(s);
     }

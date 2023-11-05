@@ -14,6 +14,17 @@ public class LottoController {
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     public void run() {
+        getPriceByUserInput();
+        printNumOfLotto(price.numOfLotto());
+        createLotto();
+        showLottoTicket();
+    }
+
+    private void showLottoTicket() {
+        for(Lotto lotto : lottoRepository.getAllLotto()) {
+            OutputView.printLottoTickets(lotto.getNumbers());
+        }
+    }
 
     private void createLotto() {
         for(int i=0;i<price.numOfLotto();i++) {

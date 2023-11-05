@@ -1,10 +1,9 @@
 package lotto.model.domain.lotto.lottogenerator;
 
 import java.util.List;
-import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
 
-public class AnswerGenerator extends LottoGenerator {
+public class AnswerGenerator extends LottoGenerator<LottoAnswer> {
     private static LottoAnswer lottoAnswer;
     private final List<Integer> list;
     private final Integer bonusNumber;
@@ -16,7 +15,7 @@ public class AnswerGenerator extends LottoGenerator {
     }
 
     @Override
-    public Lotto generate() {
+    public LottoAnswer generate() {
         if (lottoAnswer == null) {
             lottoAnswer = new LottoAnswer(this.list, this.bonusNumber);
         }

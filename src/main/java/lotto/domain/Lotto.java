@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -18,7 +20,7 @@ public class Lotto {
     public int compareTo(Lotto other) {
         int sameCount = 0;
         for (int i = 0; i < NUMBERS_SIZE; i++) {
-            sameCount = getSameCount(other, sameCount, i);
+            sameCount += getSameCount(other, sameCount, i);
         }
         return sameCount;
     }
@@ -29,9 +31,9 @@ public class Lotto {
 
     private int getSameCount(Lotto other, int i, int sameCount) {
         if (isSameNumber(other, i)) {
-            return sameCount + 1;
+            return 1;
         }
-        return sameCount;
+        return 0;
     }
 
     private boolean isSameNumber(Lotto other, int i) {
@@ -40,7 +42,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
+        validateDuplicatedNumber(numbers);
         validateNumbersRange(numbers);
+    }
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateSize(List<Integer> numbers) {

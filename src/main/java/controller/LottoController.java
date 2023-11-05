@@ -22,7 +22,11 @@ public class LottoController {
     }
 
     private void getPriceByUserInput() {
-        int input = InputView.enterPrice();
-        price = new Price(input);
+        try {
+            int input = InputView.enterPrice();
+            price = new Price(input);
+        } catch (IllegalArgumentException e) {
+            getPriceByUserInput();
+        }
     }
 }

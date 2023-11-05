@@ -6,8 +6,6 @@ import lotto.Lotto;
 import lotto.util.Constants;
 
 public class LottoService {
-    private static final LottoService LOTTO_SERVICE = new LottoService();
-
     public List<Lotto> purchaseLottos(int purchaseAmount) {
         int numberOfLottos = purchaseAmount / Constants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();

@@ -26,20 +26,20 @@ class LottoStatisticsTest {
         winningNumbers = Arrays.asList(3, 12, 21, 25, 38, 42);
         bonusNumber = 45;
         userLottos = Arrays.asList(
-                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 42)), // First prize
-                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 45)), // Second prize
-                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 1)),  // Third prize
-                new Lotto(Arrays.asList(3, 12, 21, 25, 1, 2)),   // Fourth prize
-                new Lotto(Arrays.asList(3, 12, 21, 1, 2, 4))     // Fifth prize
+                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 42)), // 1위
+                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 45)), // 2위
+                new Lotto(Arrays.asList(3, 12, 21, 25, 38, 1)),  // 3위
+                new Lotto(Arrays.asList(3, 12, 21, 25, 1, 2)),   // 4위
+                new Lotto(Arrays.asList(3, 12, 21, 1, 2, 4))     // 5위
         );
-        lottoStatistics = new LottoStatistics(userLottos, winningNumbers, bonusNumber);
+        lottoStatistics = new LottoStatistics(lottoService, userLottos, winningNumbers, bonusNumber);
     }
 
     @Test
     @DisplayName("각 등수별로 당첨 횟수를 계산한다.")
     void calculateWinsPerCategory() {
         List<Integer> winsPerCategory = lottoStatistics.calculateWinsPerCategory();
-        assertThat(winsPerCategory).containsExactly(1, 1, 1, 1, 1);
+        assertThat(winsPerCategory).containsExactly(1, 1, 1, 1, 1, 0);
     }
 
     @Test

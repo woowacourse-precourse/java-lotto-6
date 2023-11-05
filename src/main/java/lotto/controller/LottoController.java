@@ -68,8 +68,16 @@ public class LottoController {
     }
 
     private int generateBonusNumber() {
-        output.printInputBonusNumberMessage();
-        return input.getBonusNumber();
+        int bonusNumber;
+        System.out.println();
+        try {
+            output.printInputBonusNumberMessage();
+            bonusNumber = input.getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bonusNumber = generateBonusNumber();
+        }
+        return bonusNumber;
     }
 
     private List<Integer> getWinningLottosCount(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {

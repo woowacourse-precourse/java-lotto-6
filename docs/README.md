@@ -17,6 +17,7 @@ Lotto
 Lottos
 - [x] Lottos를 생성한다.
 - [x] 가지고있는 모든 로또들에대한 결과를 구한다.
+- [x] List<LottoDto>로 변환한다.
 
 Bonus
 - [x] 보너스 번호를 생성한다.

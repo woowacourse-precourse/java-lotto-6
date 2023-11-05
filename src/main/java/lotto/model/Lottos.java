@@ -1,7 +1,9 @@
 package lotto.model;
 
+import lotto.dto.LottoDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -22,5 +24,11 @@ public class Lottos {
         }
 
         return result;
+    }
+
+    public List<LottoDto> toDtos() {
+        return lottos.stream()
+                .map(Lotto::toDto)
+                .collect(Collectors.toList());
     }
 }

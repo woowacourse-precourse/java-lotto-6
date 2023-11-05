@@ -3,11 +3,31 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.dto.LottoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class LottosTest {
+
+    @DisplayName("로또 List<LottoDto>로 변환하는 테스트 : Lottos 객체를 List<LottoDto>로 변환한다.")
+    @Test
+    void toDtos() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> lottos = List.of(lotto1, lotto2, lotto3);
+        Lottos userLottos = new Lottos(lottos);
+
+        List<LottoDto> lottosDtos = userLottos.toDtos();
+
+        assertThat(lottosDtos).usingRecursiveFieldByFieldElementComparator()
+                .containsExactly(
+                        new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
+                        new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
+                        new LottoDto(List.of(1, 2, 3, 4, 5, 6))
+                );
+    }
 
     @DisplayName("로또 당첨 결과 구하는 테스트(5개 + 보너스 x) : 당첨 결과를 담은 로또 결과를 반환한다.")
     @Test

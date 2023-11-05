@@ -1,13 +1,22 @@
 package lotto.controller;
 
+import java.util.List;
+
 import lotto.views.InputViews;
+import lotto.views.OutputViews;
+import lotto.domain.Lotto;
+import lotto.domain.MakeLottos;
 
 public class LottoController {
-    int purchaseAmount;
+    int purchaseAmount, purchaseNum;
+    private static List<List<Integer>> allLotto;
+
 
     public void run() {
         while (readPurchaseLotto()) {
         }
+        OutputViews.endOfSection();
+        allLotto = MakeLottos.makeLotto(purchaseNum);
     }
 
     public boolean readPurchaseLotto() {
@@ -23,6 +32,7 @@ public class LottoController {
         if (ReadPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount)) {
             return true;
         }
+        purchaseNum = purchaseAmount / 1000;
         return false;
     }
 }

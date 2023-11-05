@@ -23,7 +23,16 @@ class LottoCountTest {
         int amount = 10001;
         assertThatThrownBy(() -> LottoCount.createLottoCount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.ERROR_LOTTO_TICKET_PRICE.get());
+                .hasMessageContaining(ErrorMessage.ERROR_LOTTO_ONE_TICKET_PRICE.get());
+    }
+
+    @DisplayName("최소 구매 금액보다 적은 경우 수량 예외 발생 테스트")
+    @Test
+    void isMinAmount() {
+        int amount = 500;
+        assertThatThrownBy(() -> LottoCount.createLottoCount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.ERROR_LOTTO_MIN_TICKET_PRICE.get());
     }
 
 }

@@ -19,6 +19,13 @@ public class WinningNumber {
         }
     }
 
+    public LottoRank getLottoRank(Lotto lotto) {
+        int matchCount = getMatchCount(lotto);
+        boolean isBonus = containsBonusNumber(lotto);
+
+        return LottoRank.value(matchCount, isBonus);
+    }
+
     public boolean containsBonusNumber(Lotto lotto) {
         return lotto.bonusNumberContains(bonusNumber);
     }

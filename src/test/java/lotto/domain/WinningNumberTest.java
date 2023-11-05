@@ -18,13 +18,21 @@ class WinningNumberTest {
 
     @Test
     @DisplayName("당첨번호와 내 로또번호를 비교하여 일치하는 숫자의 갯수 카운트")
-    void test() {
+    void testLottoNumberMatching() {
         Lotto myLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         WinningNumber winLotto = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
-
         int matchCount = winLotto.getMatchCount(myLotto);
         Assertions.assertEquals(6, matchCount);
 
+    }
+
+    @Test
+    @DisplayName("로또 등수가 정상적으로 반환되는지 확인")
+    void calculateLottoRank(){
+        Lotto myLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningNumber winLotto = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
+        LottoRank lottoRank = winLotto.getLottoRank(myLotto);
+        Assertions.assertEquals(LottoRank.FIRST,lottoRank);
     }
 
 }

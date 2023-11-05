@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.List;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -11,7 +11,9 @@ public class Application {
 
         int inputMoney = inputMoney();
         int count = moneyReplaceCount(inputMoney);
-        System.out.println(count+"개를 구매했습니다.");
+        System.out.println("\n"+count+"개를 구매했습니다.");
+        Map<Integer, List<Integer>> integers = generateAndDisplayNumbers(count);
+        printGenerateAndDisplayNumbers(integers);
 
 
     } // main
@@ -51,4 +53,24 @@ public class Application {
         return money/1000;
     } // moneyReplaceCount
 
+    public static Map<Integer, List<Integer>> generateAndDisplayNumbers(int count){ // 횟수만큼 복권을 Map 객체에 저장
+
+        Map<Integer, List<Integer>> pickNumbers = new Hashtable<>();
+
+        for(int i=1; i<=count; i++){
+            pickNumbers.put(i, pickUniqueNumber());
+        }
+
+        return pickNumbers;
+    }
+    
+    public static void printGenerateAndDisplayNumbers(Map<Integer, List<Integer>> pickNumbers){ // 횟수만큼 저장한 복권을 출력
+
+        pickNumbers.forEach((key, value) -> {
+            Collections.sort(value);
+            System.out.println(value);
+        });
+
+    }
+    
 }

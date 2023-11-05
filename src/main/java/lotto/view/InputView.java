@@ -7,12 +7,13 @@ import lotto.model.validator.PaymentValidator;
 import lotto.model.validator.WinningNumValidator;
 
 public class InputView {
-    private static final String REQEUST_PAYMENT= "구입금액을 입력해 주세요.";
+    private static final String REQEUST_PAYMENT = "구입금액을 입력해 주세요.";
     private static final String REQUEST_WINNING_NUMS = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUM = "보너스 번호를 입력해 주세요.";
-    public static PayDTO readPayment(){
+
+    public static PayDTO readPayment() {
         System.out.println(REQEUST_PAYMENT);
-        while(true){
+        while (true) {
             try {
                 String inputPayment = Console.readLine();
                 PaymentValidator.validate(inputPayment);
@@ -26,7 +27,7 @@ public class InputView {
     public static WinningNumDTO readWinningNums() {
         System.out.println(REQUEST_WINNING_NUMS);
         String inputWinningNums;
-        while(true) {
+        while (true) {
             try {
                 inputWinningNums = Console.readLine();
                 WinningNumValidator.validateWinningNums(inputWinningNums);
@@ -36,7 +37,7 @@ public class InputView {
             }
         }
         System.out.println(REQUEST_BONUS_NUM);
-        while(true) {
+        while (true) {
             try {
                 String inputBonus = Console.readLine();
                 WinningNumValidator.validateBonus(inputBonus, inputWinningNums);
@@ -46,4 +47,4 @@ public class InputView {
             }
         }
     }
- }
+}

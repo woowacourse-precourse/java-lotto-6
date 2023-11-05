@@ -10,7 +10,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private final LottoService lottoService;
 
-    public LottoController(){
+    public LottoController() {
         PayDTO payDTO = InputView.readPayment();
         this.lottoService = LottoService.buyLottos(payDTO);
         printPurchasedLottos(payDTO.getNumberOfLotto());

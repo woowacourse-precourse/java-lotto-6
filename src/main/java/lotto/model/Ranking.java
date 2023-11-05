@@ -10,6 +10,7 @@ public enum Ranking {
 
     private String condition;
     private int profit;
+
     private Ranking(String condition, int profit) {
         this.condition = condition;
         this.profit = profit;

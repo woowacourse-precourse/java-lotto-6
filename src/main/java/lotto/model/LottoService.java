@@ -11,16 +11,19 @@ import lotto.model.dto.WinningNumDTO;
 public class LottoService {
     private final List<Lotto> lottos;
     private final int payment;
-    private LottoService(List<Lotto> lottos, int payment){
+
+    private LottoService(List<Lotto> lottos, int payment) {
         this.lottos = lottos;
         this.payment = payment;
     }
-    public static LottoService buyLottos(PayDTO payDTO){
+
+    public static LottoService buyLottos(PayDTO payDTO) {
         List<Lotto> lottos = create(payDTO.getNumberOfLotto());
         int payment = payDTO.getPayment();
         return new LottoService(lottos, payment);
     }
-    private static List<Lotto> create(int numberOfLotto){
+
+    private static List<Lotto> create(int numberOfLotto) {
         List<Lotto> new_lottos = new ArrayList<>();
         IntStream.range(0, numberOfLotto).forEach(i -> new_lottos.add(createLotto()));
         return new_lottos;
@@ -32,7 +35,7 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-    private static List<Integer> pickRandomNumbers(){
+    private static List<Integer> pickRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

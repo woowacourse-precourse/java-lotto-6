@@ -11,7 +11,6 @@ import static lotto.constants.ExceptionMessages.INVALID_TOTAL_NUMBER;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.dto.WinningNumDTO;
 
 public class WinningNumValidator {
 
@@ -19,6 +18,7 @@ public class WinningNumValidator {
     private static final int TOTAL_NUM = 6;
     private static final int MIN_NUM = 1;
     private static final int MAX_NUM = 45;
+
     public static void validateWinningNums(String winNums) {
         checkNull(winNums);
         List<Integer> numbers = split(winNums);
@@ -28,26 +28,27 @@ public class WinningNumValidator {
     }
 
     private static void checkRange(int num) {
-        if(num < MIN_NUM || num > MAX_NUM) {
+        if (num < MIN_NUM || num > MAX_NUM) {
             throw new IllegalArgumentException(CATCH_ERROR + INVALID_RANGE);
         }
     }
 
     private static void checkTotalNum(List<Integer> numbers) {
-        if(numbers.size() != TOTAL_NUM) {
+        if (numbers.size() != TOTAL_NUM) {
             throw new IllegalArgumentException(CATCH_ERROR + INVALID_TOTAL_NUMBER);
         }
     }
 
     private static void checkDuplicated(List<Integer> numbers) {
-        if(numbers.stream().distinct().count() < numbers.size()) {
+        if (numbers.stream().distinct().count() < numbers.size()) {
             throw new IllegalArgumentException(CATCH_ERROR + DUPLICATED_NUMBER);
         }
     }
 
     private static void checkNull(String winNums) {
-        if(winNums == null || winNums.isEmpty())
+        if (winNums == null || winNums.isEmpty()) {
             throw new IllegalArgumentException(CATCH_ERROR + INPUT_EMPTY);
+        }
     }
 
     private static List<Integer> split(String winNums) {
@@ -56,7 +57,7 @@ public class WinningNumValidator {
     }
 
     private static Integer toInteger(String number) {
-        try{
+        try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(CATCH_ERROR + INVALID_NUMBER);
@@ -72,7 +73,7 @@ public class WinningNumValidator {
     }
 
     private static void checkOverlappingWithWinningNums(List<Integer> winningNums, int bonusNum) {
-        if(winningNums.contains(bonusNum)) {
+        if (winningNums.contains(bonusNum)) {
             throw new IllegalArgumentException(CATCH_ERROR + DUPLICATED_WITH_WINNING_NUM);
         }
     }

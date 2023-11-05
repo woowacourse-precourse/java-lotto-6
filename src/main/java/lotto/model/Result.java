@@ -19,13 +19,15 @@ public class Result {
         }
         System.out.println("profit : " + profit);
         System.out.println("payment : " + payment);
-        return (profit / payment)*100;
+        return (profit / payment) * 100;
     }
 
     public String getNumOfRanks() {
         StringBuilder sb = new StringBuilder();
         for (Ranking ranking : Ranking.values()) {
-            if (ranking.getCondition().isEmpty()) continue;
+            if (ranking.getCondition().isEmpty()) {
+                continue;
+            }
             int cnt = (int) rankings.stream().filter(r -> r.name().equals(ranking.name())).count();
             sb.append(ranking.getCondition() + cnt + UNIT);
         }

@@ -19,8 +19,9 @@ public class Game {
         Lottos lottos = new Lottos(quantity);
         Player player = new Player(getWinningNumbers(),getBonusNumber(),getBonusNumber());
         Result result = judge.calculateWinning(player,lottos);
+        result.setEarningRate(judge.calculateEarningRate(result,quantity));
 
-        String earningRate = judge.calculateEarningRate(result,quantity);
+
 
     }
 

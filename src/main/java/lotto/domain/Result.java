@@ -45,4 +45,8 @@ public class Result {
         return six;
     }
 
+    public void setEarningRate(String earningRate){
+        this.earningRate = earningRate;
+    }
+
 }

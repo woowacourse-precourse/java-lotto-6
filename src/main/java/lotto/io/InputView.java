@@ -15,4 +15,10 @@ public class InputView {
         inputValidator.validatePurchaseAmount(input);
         return input;
     }
+
+    public String readWinningNumbers() {
+        final String input = Console.readLine();
+        inputValidator.validateWinningNumbers(input);
+        return input;
+    }
 }

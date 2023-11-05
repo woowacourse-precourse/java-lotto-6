@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GameResult {
     private final Map<Rank, Integer> gameResult;
@@ -11,13 +12,12 @@ public class GameResult {
     }
 
     public static GameResult create() {
-        Map<Rank, Integer> result = new HashMap<>();
-        for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
-        }
+        Map<Rank, Integer> result = Arrays.stream(Rank.values())
+                .collect(Collectors.toMap(rank -> rank, count -> 0));
 
         return new GameResult(result);
     }
+
 
     public void add(Rank rank) {
         gameResult.put(rank, gameResult.get(rank) + 1);

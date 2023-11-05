@@ -5,6 +5,7 @@ import static lotto.constants.Bonus.BONUS_INCLUDE;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.constants.LottoRule.MINIMUM_MATCH_SIZE;
 
+import lotto.constants.Bonus;
 import lotto.constants.Prize;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
@@ -33,29 +34,19 @@ public class LottoCompanyService {
 
     public List<PrizeResult> evaluateLottos() {
         List<PrizeResult> results = new ArrayList<>();
-        results.addAll(evaluateLottosWithBonus());
-        results.addAll(evaluateLottosExceptBonus());
+        results.addAll(evaluateLottosWithBonusOption(BONUS_INCLUDE));
+        results.addAll(evaluateLottosWithBonusOption(BONUS_EXCLUDE));
 
         Collections.sort(results);
 
         return results;
     }
 
-    private List<PrizeResult> evaluateLottosWithBonus() {
+    private List<PrizeResult> evaluateLottosWithBonusOption(final Bonus hasBonus) {
         List<PrizeResult> results = new ArrayList<>();
         for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
-            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, match);
-            Prize.findByMatchAndBonus(match, BONUS_INCLUDE)
-                    .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
-        }
-        return results;
-    }
-
-    private List<PrizeResult> evaluateLottosExceptBonus() {
-        List<PrizeResult> results = new ArrayList<>();
-        for (int match = MINIMUM_MATCH_SIZE.getValue(); match <= LOTTO_NUMBER_LENGTH.getValue(); match++) {
-            List<Lotto> matchLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, match);
-            Prize.findByMatchAndBonus(match, BONUS_EXCLUDE)
+            List<Lotto> matchLottos = lottoCompany.collectLottosWithOption(lottos, match, hasBonus);
+            Prize.findByMatchAndBonus(match, hasBonus)
                     .ifPresent(prize -> savePrizeResult(prize, matchLottos.size(), results));
         }
         return results;

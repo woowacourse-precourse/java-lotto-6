@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.Bonus.BONUS_EXCLUDE;
+import static lotto.constants.Bonus.BONUS_INCLUDE;
 import static lotto.constants.Prize.FIFTH;
 import static lotto.constants.Prize.SECOND;
 import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
@@ -52,7 +54,7 @@ public class LottoCompanyTest {
         int expectedMatchLottos = 2;
 
         // when
-        List<Lotto> matchedLottos = lottoCompany.collectLottosWithSizeExceptBonus(lottos, FIFTH.getMatch());
+        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos, FIFTH.getMatch(), BONUS_EXCLUDE);
 
         // then
         assertThat(matchedLottos.size()).isEqualTo(expectedMatchLottos);
@@ -73,7 +75,7 @@ public class LottoCompanyTest {
         int expectedMatchLottos = 1;
 
         // when
-        List<Lotto> matchedLottos = lottoCompany.collectLottosWithSizeIncludeBonus(lottos, SECOND.getMatch());
+        List<Lotto> matchedLottos = lottoCompany.collectLottosWithOption(lottos, SECOND.getMatch(), BONUS_INCLUDE);
 
         // then
         assertThat(matchedLottos.size()).isEqualTo(expectedMatchLottos);

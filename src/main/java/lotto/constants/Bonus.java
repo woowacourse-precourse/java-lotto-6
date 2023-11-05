@@ -11,7 +11,7 @@ public enum Bonus {
         this.hasBonus = hasBonus;
     }
 
-    public boolean isSame(final boolean value) {
-        return hasBonus == value;
+    public boolean getValue() {
+        return hasBonus;
     }
 }

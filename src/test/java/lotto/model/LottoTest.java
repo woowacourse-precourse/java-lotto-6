@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class LottoTest {
     @ParameterizedTest
     @MethodSource("invalidRange")
     @DisplayName("로또 범위 실패 테스트")
-    void validateRangeTest(List<Integer> invalidRange) {
+    void invalidRangeTest(List<Integer> invalidRange) {
         assertThrows(IllegalArgumentException.class,
                 () -> new Lotto(invalidRange));
     }
@@ -23,6 +24,21 @@ public class LottoTest {
         return Stream.of(
                 Arguments.of(Arrays.asList(0,1,2,3,4,5)),
                 Arguments.of(Arrays.asList(-1,0,1,46,47,48))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("validRange")
+    @DisplayName("로또 범위 성공 테스트")
+    void validRangeTest(List<Integer> validRange) {
+        assertDoesNotThrow(
+                () -> new Lotto(validRange));
+    }
+
+    static Stream<Arguments> validRange() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5,6)),
+                Arguments.of(Arrays.asList(40,41,42,43,44,45))
         );
     }
 }

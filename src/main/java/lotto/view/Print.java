@@ -4,30 +4,23 @@ import lotto.controller.Rank;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class Print {
-    public static void printPrice(int price) {
-        System.out.println(price);
-    }
     public static void printBoughtLottoCount(int lottoCount) {
+        System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void printLottery(List<Lotto> lottery) {
-        for (Lotto lotto : lottery) {
-            printLottoNumber(lotto);
-        }
-    }
-
-    public static void printLottoNumber(Lotto lotto) {
+    public static void printLottoNumber(List<Integer> lotto) {
         List<String> tmpLotto = new ArrayList<>();
-        for (int lottoNumber : lotto.getLotto()) {
+        for (int lottoNumber : lotto) {
             tmpLotto.add(String.valueOf(lottoNumber));
         }
         String allNumber = "[";
-        allNumber += String.join(",", tmpLotto);
+        allNumber += String.join(", ", tmpLotto);
         allNumber += "]";
         System.out.println(allNumber);
     }
@@ -39,13 +32,11 @@ public class Print {
             if (result.containsKey(rank)) {
                 count = result.get(rank);
             }
-            sb.append(rank.getCorrectNum()).append("개 일치 (").append(rank.getPrize())
-                            .append("원) - ").append(count).append("개\n");
+            sb.append(rank.getResultPrint()).append(count).append("개\n");
             count = 0;
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
-
 
     public static void printMean(double mean) {
         StringBuilder sb = new StringBuilder();

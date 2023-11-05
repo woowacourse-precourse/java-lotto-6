@@ -26,4 +26,8 @@ public class LottoInputProvider {
 		return new Lotto(numbers);
 	}
 
+	public int getInputBonusNumber() {
+		System.out.println("보너스 번호를 입력해 주세요.");
+		return Integer.parseInt(Console.readLine());
+	}
 }

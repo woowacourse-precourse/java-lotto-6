@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.model.Lotteries;
 import lotto.domain.model.Lotto;
 import lotto.enums.OutputMessage;
 
@@ -16,8 +17,8 @@ public final class OutputView {
         System.out.println(String.format(format, countOfLotto));
     }
 
-    public static void showLotteries(List<Lotto> lotteries) {
-        for (Lotto lotto : lotteries) {
+    public static void showLotteries(Lotteries lotteries) {
+        for (Lotto lotto : lotteries.getLotteries()) {
             lotto.showNumbers();
         }
     }

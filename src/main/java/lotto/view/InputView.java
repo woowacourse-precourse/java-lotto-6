@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.Validator;
@@ -18,6 +20,8 @@ public class InputView {
     }
 
     public List<String> splitUserInput(String userInput) {
-        return null;
+        return Arrays.stream(userInput.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 }

@@ -23,6 +23,9 @@ public enum ErrorMessage {
             LottoConstraint.MAX_LOTTO_NUMBER.getValue()
     )),
     DUPLICATE_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다."),
+
+    BONUS_NUMBER_ALREADY_INITIALIZED("보너스 번호는 한 번만 초기화할 수 있습니다."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호는 로또 번호와 중복될 수 없습니다."),
     ;
     private final String message;
 

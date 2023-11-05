@@ -5,10 +5,13 @@ import java.util.List;
 public class LottoChecker {
 
     private final List<Integer> winningNumbers;
+    private final Integer bonusNumber;
 
-    public LottoChecker(List<Integer> winningNumbers) {
+    public LottoChecker(List<Integer> winningNumbers, Integer bonusNumber) {
         validate(winningNumbers);
+        validateNumberRange(bonusNumber);
         this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> winningNumbers) {

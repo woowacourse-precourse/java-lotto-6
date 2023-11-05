@@ -23,6 +23,10 @@ public class WinningLotto extends Lotto {
         return new WinningLotto(numbers, bonusNumber);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private static void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < NUMBER_START) {
             throw LottoGameException.of(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);

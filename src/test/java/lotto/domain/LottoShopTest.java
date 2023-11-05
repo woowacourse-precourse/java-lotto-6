@@ -30,12 +30,12 @@ class LottoShopTest {
         assertEquals(buyerLotto.size(), price / 1000);
     }
 
-    @DisplayName("입력한 당첨 번호로 WinningLotto 생성 확인 테스트")
+    @DisplayName("입력한 당첨 번호로 WinningNumber 생성 확인 테스트")
     @Test
-    void createWinningLottoWithInputNumbers() {
+    void createWinningNumberWithInputNumbers() {
         List<Integer> inputWinningLotto = List.of(1, 2, 3, 4, 5, 6);
 
-        Lotto winningLotto = lottoShop.createByWinningLotto(inputWinningLotto);
+        Lotto winningLotto = lottoShop.createByWinningNumber(inputWinningLotto);
 
         assertThat(winningLotto).isInstanceOf(Lotto.class);
     }

@@ -1,9 +1,7 @@
 package lotto.config;
 
-import lotto.controller.LottoController;
-import lotto.controller.LottoControllerImpl;
-import lotto.service.LottoService;
-import lotto.service.LottoServiceImpl;
+import lotto.annotation.bean.Bean;
+import lotto.annotation.configuration.Configuration;
 import lotto.util.generator.LottoNumbersGenerator;
 import lotto.util.generator.LottoNumbersGeneratorImpl;
 import lotto.util.lottoFactory.LottoFactory;
@@ -13,54 +11,40 @@ import lotto.util.matcher.NumbersMatcherImpl;
 import lotto.util.parser.NumberParser;
 import lotto.util.parser.NumberParserImpl;
 import lotto.util.validator.*;
-import lotto.view.Console;
-import lotto.view.ConsoleImpl;
 
-@Deprecated
-public class ApplicationConfig {
-    public LottoController lottoController(Console console, LottoService lottoService) {
-        return new LottoControllerImpl(console, lottoService);
-    }
-
-
-    public Console console() {
-        return new ConsoleImpl();
-    }
-
-
-    public LottoService lottoService(
-            LottoFactory lottoFactory,
-            Validator validator,
-            NumberParser numberParser,
-            NumbersMatcher numbersMatcher
-    ) {
-        return new LottoServiceImpl(lottoFactory, validator, numberParser, numbersMatcher);
-    }
-
+@Configuration
+public class UtilConfig {
+    @Bean
     public LottoFactory lottoFactory(LottoNumbersGenerator lottoNumbersGenerator) {
         return new LottoFactoryImpl(lottoNumbersGenerator);
     }
 
+    @Bean
     public LottoNumbersGenerator lottoNumbersGenerator() {
         return new LottoNumbersGeneratorImpl();
     }
 
+    @Bean
     public Validator validator(PaymentValidator paymentValidator, NumberValidator numberValidator) {
         return new ValidatorDecorator(paymentValidator, numberValidator);
     }
 
+    @Bean
     public PaymentValidator paymentValidator() {
         return new PaymentValidatorImpl();
     }
 
+    @Bean
     public NumberValidator numberValidator() {
         return new NumberValidatorImpl();
     }
 
+    @Bean
     public NumberParser numberParser() {
         return new NumberParserImpl();
     }
 
+    @Bean
     public NumbersMatcher numbersMatcher() {
         return new NumbersMatcherImpl();
     }

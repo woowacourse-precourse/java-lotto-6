@@ -1,7 +1,8 @@
-package lotto.container.container;
+package lotto.container.container.implementation;
 
 import lotto.config.ApplicationConfig;
 import lotto.container.beanFactory.BeanFactory;
+import lotto.container.container.ApplicationContainer;
 import lotto.container.exception.NoSuchBeanException;
 import lotto.container.exception.UndefinedBeanConfigurationException;
 
@@ -9,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+@Deprecated
 public class DefaultApplicationContainer implements ApplicationContainer {
     private final BeanFactory factory;
     private final ApplicationConfig config;

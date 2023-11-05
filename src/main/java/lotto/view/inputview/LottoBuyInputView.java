@@ -1,5 +1,7 @@
 package lotto.view.inputview;
 
+import lotto.dto.BuyLottoDTO;
+import lotto.dto.DTO;
 import lotto.view.InputView;
 
 import java.util.Map;
@@ -9,14 +11,16 @@ import static lotto.view.ParameterConfig.BUY_LOTTO_DTO;
 
 public final class LottoBuyInputView implements InputView {
     @Override
-    public void read(Map<String, String> parameter) {
-        parameter.put(BUY_LOTTO_DTO, readBuyPrice());
+    public void read(Map<String, ? extends DTO.Input> parameter) {
+        BuyLottoDTO.Input dto = (BuyLottoDTO.Input) parameter.get(BUY_LOTTO_DTO);
+        
+        inputBuyPrice(dto);
     }
 
-    private String readBuyPrice() {
+    private void inputBuyPrice(BuyLottoDTO.Input dto) {
         String price = removeEmptySpace(readLine());
         InputValidator.validateIsNumber(price);
-        return price;
+        dto.setBuyPrice(Long.parseLong(price));
     }
 
     private String removeEmptySpace(String input) {

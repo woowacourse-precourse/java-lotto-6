@@ -1,7 +1,9 @@
 package lotto.view.inputview;
 
 import lotto.Error;
+import lotto.dto.DTO;
 import lotto.view.InputView;
+import lotto.view.ParameterConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +27,8 @@ class LottoBuyInputViewTest {
         String join = String.join("\n", testParam);
         System.setIn(new ByteArrayInputStream(join.getBytes()));
         for (String input : testParam) {
-            Map<String, String> param = new HashMap<>();
+            Map<String, DTO.Input> param = new HashMap<>();
+            param.put(ParameterConfig.BUY_LOTTO_DTO, null);
             //then
             assertThatThrownBy(() -> inputView.read(param))
                     .isInstanceOf(IllegalArgumentException.class)

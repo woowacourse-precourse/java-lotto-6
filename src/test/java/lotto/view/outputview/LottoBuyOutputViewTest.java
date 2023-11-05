@@ -3,6 +3,7 @@ package lotto.view.outputview;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.dto.BuyLottoDTO;
+import lotto.dto.DTO;
 import lotto.view.ParameterConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +42,7 @@ class LottoBuyOutputViewTest {
     @DisplayName("BUY_LOOTO_DTO의 매핑된 값이 null 일 때 '구입 금액을 력해주세요.'가 나온다.")
     void 구입_금액_출력_테스트() {
         //given
-        Map<String, Object> model = new HashMap<>();
+        Map<String, DTO.Output> model = new HashMap<>();
         model.put(ParameterConfig.BUY_LOTTO_DTO, null);
         //when
         outputView.view(model);
@@ -54,13 +55,13 @@ class LottoBuyOutputViewTest {
     @MethodSource("setBuyParam")
     @DisplayName("구입한 로또가 정상적으로 오름차순으로 나와야한다.")
     void 구입_로또_출력_테스트(PurchasedLotto purchasedLotto) {
-        Map<String, Object> model = new HashMap<>();
+        Map<String, DTO.Output> model = new HashMap<>();
         BuyLottoDTO.Output dto = new BuyLottoDTO.Output(purchasedLotto);
         model.put(ParameterConfig.BUY_LOTTO_DTO, dto);
         //when
         outputView.view(model);
-        String result = getExpectedResult(purchasedLotto);
         //then
+        String result = getExpectedResult(purchasedLotto);
         assertThat(outputMessage.toString()).contains(result);
     }
 

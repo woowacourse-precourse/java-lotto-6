@@ -23,21 +23,6 @@ public class Controller {
         showProfitRate();
     }
 
-    private void showProfitRate() {
-        int userLottoCount = lottoService.getUserLottoCount();
-        String profitRate = lottoResultService.getProfitRate(userLottoCount);
-        System.out.println(Message.getLottoProfitRate(profitRate));
-    }
-
-    private void showRank() {
-        System.out.println(Message.LOTTO_RESULT_MESSAGE);
-
-        List<Lotto> userLottos = lottoService.getUserLottos();
-        lottoResultService.calculateLottoResult(userLottos);
-
-        lottoResultService.showResult();
-    }
-
     public void createUserLottos() {
         int lottoAmount = inputService.inputAmount();
         lottoService.createUserLottos(lottoAmount);
@@ -55,8 +40,23 @@ public class Controller {
     }
 
     private void createWinningLotto() {
-        WinningLotto winningLotto = inputService.inputWinningLottoNumbersAndBonusNumber();
+        WinningLotto winningLotto = inputService.inputWinningLotto();
         lottoResultService.setWinningLotto(winningLotto);
+    }
+
+    private void showRank() {
+        System.out.println(Message.LOTTO_RESULT_MESSAGE);
+
+        List<Lotto> userLottos = lottoService.getUserLottos();
+        lottoResultService.calculateLottoResult(userLottos);
+
+        lottoResultService.showResult();
+    }
+
+    private void showProfitRate() {
+        int userLottoCount = lottoService.getUserLottoCount();
+        String profitRate = lottoResultService.getProfitRate(userLottoCount);
+        System.out.println(Message.getLottoProfitRate(profitRate));
     }
 
 }

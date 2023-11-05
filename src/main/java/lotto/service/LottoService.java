@@ -20,10 +20,10 @@ public class LottoService {
         return userLottos.size();
     }
 
-    public void createUserLottos(int lottoCount) {
+    public void createUserLottos(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < lottoCount/Value.LOTTO_TICKET_PRICE; i++) {
+        for (int i = 0; i < lottoAmount/Value.LOTTO_TICKET_PRICE; i++) {
             lottos.add(createSingleLotto());
         }
 

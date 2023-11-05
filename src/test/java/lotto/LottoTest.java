@@ -1,28 +1,64 @@
 package lotto;
 
+import lotto.enums.ExceptionMessage;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    void 로또번호갯수_7개_입력() {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5,6,7"))
+                .hasMessage(ExceptionMessage.LOTTO_SIZE_IS_OVER_SIX.getMessage());
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    void 로또_중복된번호_입력() {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5,5"))
+                .hasMessage(ExceptionMessage.LOTTO_IS_DUPLICATED.getMessage());
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName("로또 번호가 1~45사이의 숫자가 아닌경우 예외가 발생한다.")
+    void 로또_옳은범위_아님() throws Exception{
+        //given
+        final String numbers = "1,2,3,4,5,47";
+        //when, then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .hasMessage(ExceptionMessage.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 문자로 입력된 경우 예외가 발생한다.")
+    void 로또_문자가_입력() throws Exception{
+        //given
+        final String numbers = "a,b,c,d,e,f";
+        //when,then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .hasMessage(ExceptionMessage.LOTTO_IS_NOT_NUMER.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 빈문자로 입력된 경우 예외가 발생한다.")
+    void 로또_빈문자가_입력() throws Exception{
+        //given
+        final String numbers = "";
+        //when,then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .hasMessage(ExceptionMessage.LOTTO_IS_EMPTY.getMessage());
+    }
 }

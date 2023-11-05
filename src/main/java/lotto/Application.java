@@ -10,7 +10,7 @@ public class Application {
         Screen.printAskingBonusNumberMessage();
         int bonusNumber = selectBonusNumber(winningNumber);
         Result result = lottos.makeResult(winningNumber, bonusNumber);
-        Screen.displayWinningResult(result);
+        Screen.dispalyResult(result);
     }
 
     private static Lottos buyLottos() {

@@ -59,7 +59,16 @@ public class Screen {
         System.out.println(message);
     }
 
-    public static void displayWinningResult(Result result) {
-        System.out.print(result.getResult());
+    public static void dispalyResult(Result result) {
+        System.out.println("당첨 통계\n---");
+        displayWinningResult(result);
+        displayEarningRate(result);
+    }
+    private static void displayWinningResult(Result result) {
+        System.out.print(result.getWinningResult());
+    }
+
+    private static void displayEarningRate(Result result) {
+        System.out.printf("총 수익률은 %.2f%%입니다\n", result.getEarningRate());
     }
 }

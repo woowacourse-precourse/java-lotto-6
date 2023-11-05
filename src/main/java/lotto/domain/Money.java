@@ -1,8 +1,9 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
+
 public class Money {
 
-    public static final int UNIT = 1000;
     private final int money;
 
     public Money(int money) {
@@ -18,13 +19,13 @@ public class Money {
     }
 
     private void validateUnit(int money) {
-        if (money % UNIT != 0) {
+        if (money % LottoConfig.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }
 
     public int count() {
-        return money / UNIT;
+        return money / LottoConfig.LOTTO_PRICE;
     }
 
 }

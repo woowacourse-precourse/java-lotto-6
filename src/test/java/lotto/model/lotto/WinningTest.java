@@ -25,4 +25,11 @@ class WinningTest {
         assertThatThrownBy(() -> Winning.of(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 보너스 번호가 범위인 1 ~ 45가 아니라면 예외가 발생한다.")
+    @Test
+    void createLottoByOverRange() {
+        assertThatThrownBy(() -> Winning.of(lotto, 100))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

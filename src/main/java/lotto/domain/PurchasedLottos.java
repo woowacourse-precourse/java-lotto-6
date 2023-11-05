@@ -24,4 +24,8 @@ public class PurchasedLottos {
     public Stream<Lotto> stream() {
         return lottos.stream();
     }
+
+    public int getsize() {
+        return lottos.size();
+    }
 }

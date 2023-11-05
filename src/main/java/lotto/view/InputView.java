@@ -11,6 +11,7 @@ public class InputView {
     public static long readLong() {
         String userInput = Console.readLine();
         InputValidator.validate(userInput);
+        System.out.println();
         return Long.parseLong(userInput);
     }
 
@@ -18,6 +19,7 @@ public class InputView {
         Stream<String> userInput = Arrays.stream(
                 Console.readLine().split(SystemMessage.WINNING_NUMBER_SEPARATOR.getMessage()));
         userInput.forEach(InputValidator::validate);
+        System.out.println();
         return userInput
                 .map(Integer::valueOf)
                 .toList();
@@ -26,6 +28,7 @@ public class InputView {
     public static int readInt() {
         String userInput = Console.readLine();
         InputValidator.validate(userInput);
+        System.out.println();
         return Integer.parseInt(userInput);
     }
 }

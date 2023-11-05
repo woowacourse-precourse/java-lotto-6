@@ -14,6 +14,7 @@ public class SystemController {
     }
 
     public void doLotto() {
-
+        PurchasedLottos purchasedLottos = PurchasedLottos.from(Money.createManual());
+        OutputView.printPurchasedLottos(purchasedLottos);
     }
 }

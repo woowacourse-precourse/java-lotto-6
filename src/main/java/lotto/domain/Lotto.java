@@ -76,4 +76,8 @@ public class Lotto {
     private boolean contains(Integer number) {
         return numbers.contains(number);
     }
+
+    public List<Integer> get() {
+        return numbers;
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class WinningLotto {
@@ -11,6 +12,7 @@ public class WinningLotto {
 
     public WinningLotto(List<Integer> winningLotto, int bonusNumber) {
         validateWinningLottoRange(winningLotto);
+        validateWinningLottoUnique(winningLotto);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
@@ -20,6 +22,13 @@ public class WinningLotto {
             if (!isValidRange(lottoNumber)) {
                 throw new IllegalArgumentException("당첨 번호는 1~45 사이만 입력 가능합니다.");
             }
+        }
+    }
+
+    private void validateWinningLottoUnique(List<Integer> winningLotto) {
+        HashSet<Integer> unique = new HashSet<>(winningLotto);
+        if (unique.size() != winningLotto.size()) {
+            throw new IllegalArgumentException("중복된 번호가 존재합니다.");
         }
     }
 

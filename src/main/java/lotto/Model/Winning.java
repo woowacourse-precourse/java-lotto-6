@@ -8,11 +8,9 @@ public enum Winning {
     FIRST(6, 2000000000, 0),
     No_Match(0, 0, 0);
 
-    private static final int NO_PRICE = 2;
-
-    private int matchNumber;
-    private int winningPrice;
-    private int checkBonusBall;
+    private final int matchNumber;
+    private final int winningPrice;
+    private final int checkBonusBall;
 
     public int getMatchNumber(){
         return matchNumber;

@@ -1,6 +1,5 @@
 package lotto.Model;
 
-import lotto.View.PrintInput;
 import lotto.View.PrintOutput;
 
 import java.util.EnumMap;
@@ -19,9 +18,11 @@ public class Result {
         result.put(winning, result.get(winning) + 1);
     }
 
-    public void printResult() {
+    public void printResult(int purchasePrice) {
+        int totalPrice = 0;
         System.out.println("\n" + PrintOutput.RESURLT_LOTTO + "\n---");
         for (Winning winning : Winning.values()) {
+            totalPrice += winning.getWinningPrice() * result.get(winning);
             if (winning != Winning.No_Match) {
                 String message = String.format(
                         "%d개 일치 (%s원) - %d개",
@@ -34,6 +35,6 @@ public class Result {
                 System.out.println(message);
             }
         }
+        System.out.printf("총 수익률은 %,.1f%%입니다.", (float)totalPrice / purchasePrice * 100);
     }
-
 }

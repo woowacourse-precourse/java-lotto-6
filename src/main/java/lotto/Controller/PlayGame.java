@@ -1,11 +1,9 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.*;
 import lotto.View.PrintInput;
 import lotto.View.PrintOutput;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PlayGame {
@@ -28,7 +26,7 @@ public class PlayGame {
         System.out.println("\n" + PrintInput.BONUS_NUMBER);
         matchResult(randomLottoNumbers, setting.getBonusNumber());
 
-        winningData.printResult();
+        winningData.printResult(lottoAmount * 1000);
     }
 
     public void matchResult(List<Lotto> randomLottoNumbers, int bonusNumber) {

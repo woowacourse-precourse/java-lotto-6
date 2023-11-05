@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,4 +39,10 @@ public class Lotto {
     public int matchCount(Lotto otherLotto) {
         return (int) this.numbers.stream().filter(otherLotto::containsNumber).count();
     }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.InputDto;
+import lotto.dto.LottoDto;
 import lotto.model.service.LottoService;
 import lotto.view.OutputView;
 
@@ -12,12 +12,15 @@ public class LottoController {
     }
 
     public void run() {
-        InputDto inputDto = new InputDto();
+        LottoDto lottoDto = new LottoDto();
 
-        InputController.inputLottoPurchaseAmount(inputDto);
-        service.createLottos(inputDto);
+        InputController.inputLottoPurchaseAmount(lottoDto);
+        service.createLottos(lottoDto);
+
         OutputView.outputAllLottoNumbers(service.getLottos());
-        InputController.inputWinningNumbers(inputDto);
-        InputController.inputBonusNumber(inputDto);
+        InputController.inputWinningNumbers(lottoDto);
+        InputController.inputBonusNumber(lottoDto);
+
+        service.createGame(lottoDto);
     }
 }

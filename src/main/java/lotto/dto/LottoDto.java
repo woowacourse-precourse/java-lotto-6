@@ -3,7 +3,7 @@ package lotto.dto;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputDto {
+public class LottoDto {
 
     private int lottoPurchaseAmount;
     private List<Integer> winningNumbers;

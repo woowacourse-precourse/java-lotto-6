@@ -4,7 +4,7 @@ import static lotto.util.Validator.bonusNumberValidator;
 import static lotto.util.Validator.lottoPurchaseAmountValidator;
 import static lotto.util.Validator.lottoWinningNumberValidator;
 
-import lotto.dto.InputDto;
+import lotto.dto.LottoDto;
 import lotto.view.InputView;
 
 public class InputController {
@@ -12,9 +12,9 @@ public class InputController {
     private static String inputWinningNumbers;
     private static String inputBonusNumber;
 
-    public static void inputLottoPurchaseAmount(InputDto inputDto) {
+    public static void inputLottoPurchaseAmount(LottoDto lottoDto) {
         while (lottoPurchaseAmountValidator(getInputPurchase())) {
-            inputDto.setLottoPurchaseAmount(inputLottoPurchaseAmount);
+            lottoDto.setLottoPurchaseAmount(inputLottoPurchaseAmount);
         }
     }
 
@@ -22,9 +22,9 @@ public class InputController {
         return inputLottoPurchaseAmount = InputView.inputLottoPurchaseAmount();
     }
 
-    public static void inputWinningNumbers(InputDto inputDto) {
+    public static void inputWinningNumbers(LottoDto lottoDto) {
         while (lottoWinningNumberValidator(getInputWinning())) {
-            inputDto.setWinningNumbers(inputWinningNumbers);
+            lottoDto.setWinningNumbers(inputWinningNumbers);
         }
     }
 
@@ -32,9 +32,9 @@ public class InputController {
         return inputWinningNumbers = InputView.inputWinningNumbers();
     }
 
-    public static void inputBonusNumber(InputDto inputDto) {
-        while (bonusNumberValidator(getInputBonus(), inputDto.getWinningNumbers())) {
-            inputDto.setBonusNumber(inputBonusNumber);
+    public static void inputBonusNumber(LottoDto lottoDto) {
+        while (bonusNumberValidator(getInputBonus(), lottoDto.getWinningNumbers())) {
+            lottoDto.setBonusNumber(inputBonusNumber);
         }
     }
 

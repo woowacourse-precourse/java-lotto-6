@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.policy.LottoPolicy;
+import lotto.util.LottoProvider;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,14 +26,9 @@ public class Controller {
     public User createUserLotto(int purchase) {
         List<Lotto> lottos = new ArrayList<>();
         int lottoAmount = LottoPolicy.LOTTO_AMOUNT.getValue();
-        while (purchase >= lottoAmount) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                    LottoPolicy.MIN_LOTTO_NUMBER.getValue(),
-                    LottoPolicy.MAX_LOTTO_NUMBER.getValue(),
-                    LottoPolicy.LOTTO_NUMBER_COUNT.getValue()
-            );
-            lottos.add(new Lotto(numbers));
-            purchase -= lottoAmount;
+        int lottoCount = purchase / lottoAmount;
+        while (lottoCount-- > 0) {
+            lottos.add(LottoProvider.createLotto());
         }
         return new User(lottos);
     }

@@ -1,6 +1,8 @@
 package Model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoValidator {
 
@@ -36,6 +38,13 @@ public class LottoValidator {
             if (MIN_LOTTO_NUMBER > lottoNumber || MAX_LOTTO_NUMBER < lottoNumber) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    void validateWinningNumberDuplication(List<Integer> winningNumber) {
+        Set<Integer> comparativeGroup = new HashSet<>(winningNumber);
+        if (comparativeGroup.size() != winningNumber.size()) {
+            throw new IllegalArgumentException();
         }
     }
 }

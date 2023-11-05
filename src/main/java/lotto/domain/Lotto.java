@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.exception.InvalidBallException;
 import lotto.exception.InvalidLottoNumbersException;
-import lotto.utils.LottoWinningStrategy;
 
 import java.util.*;
 
@@ -10,6 +9,7 @@ public class Lotto {
     private static final int DEFAULT_LOTTO_SIZE = 6;
     private static final double MIN_RANGE = 1;
     private static final double MAX_RANGE = 45;
+    private static final int DEFAULT_MATCH_COUNT = 0;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,8 +29,11 @@ public class Lotto {
         }
     }
 
-    public Result determineResult(LottoWinningStrategy winningStrategy, List<Integer> winningNumbers, int bonusBall) {
-        return winningStrategy.determineResult(numbers, winningNumbers, bonusBall);
+    public Result determineResult(List<Integer> winningNumbers, int bonusBall) {
+        int matchCount = getMatchCount(numbers, winningNumbers);
+        boolean bonusMatch = getBonusMatch(numbers, bonusBall);
+
+        return new Result(matchCount, bonusMatch);
     }
 
     public List<Integer> getSortedNumbers() {
@@ -38,5 +41,25 @@ public class Lotto {
         Collections.sort(sortedNumbers);
 
         return sortedNumbers;
+    }
+
+    private int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int matchCount = DEFAULT_MATCH_COUNT;
+
+        for (Integer winningNumber : winningNumbers) {
+            if (lottoNumbers.contains(winningNumber)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean getBonusMatch(List<Integer> lottoNumbers, int bonusNumber) {
+        boolean bonusMatch = false;
+
+        if (lottoNumbers.contains(bonusNumber)) {
+            bonusMatch = true;
+        }
+        return bonusMatch;
     }
 }

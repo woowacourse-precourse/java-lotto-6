@@ -3,8 +3,6 @@ package lotto;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.Result;
-import lotto.utils.DefaultLottoWinningStrategy;
-import lotto.utils.LottoWinningStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,13 +32,11 @@ class LottoTest {
     @DisplayName("로또 당첨 검증 테스트")
     @Test
     void getResultTest() {
-        LottoWinningStrategy lottoWinningStrategy = new DefaultLottoWinningStrategy();
-
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusBall = 7;
 
-        Result result = lotto.determineResult(lottoWinningStrategy, winningNumbers, bonusBall);
+        Result result = lotto.determineResult(winningNumbers, bonusBall);
 
         Assertions.assertThat(result.getRank())
                 .isEqualTo(Rank.FIRST);

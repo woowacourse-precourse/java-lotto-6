@@ -4,8 +4,6 @@ import lotto.controller.GameController;
 import lotto.handler.InputHandler;
 import lotto.service.GameService;
 import lotto.service.LottoService;
-import lotto.utils.DefaultLottoWinningStrategy;
-import lotto.utils.LottoWinningStrategy;
 import lotto.utils.NumberGenerator;
 import lotto.utils.RandomNumberGenerator;
 import lotto.view.GameInputView;
@@ -26,10 +24,7 @@ public class GameConfig {
         return new InputHandler();
     }
     private LottoService lottoService() {
-        return new LottoService(lottoWinningStrategy(), numberGenerator());
-    }
-    private LottoWinningStrategy lottoWinningStrategy() {
-        return new DefaultLottoWinningStrategy();
+        return new LottoService(numberGenerator());
     }
     private NumberGenerator numberGenerator() {
         return new RandomNumberGenerator();

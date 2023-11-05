@@ -1,9 +1,12 @@
 package lotto.validation;
 
 import lotto.property.ValidationProperty;
+import lotto.validation.validator.CostValidator;
 
 import static lotto.property.ValidationProperty.*;
 import static lotto.validation.validator.WinningValidator.*;
+import static lotto.validation.validator.CostValidator.*;
+
 
 public class ValidationForm {
 
@@ -13,6 +16,9 @@ public class ValidationForm {
         }
         if (validatorType.equals(WINNINGS)){
             verifyForWinningNumbers(inputValue);
+        }
+        if (validatorType.equals(COST)){
+            verifyForPurchaseCost(inputValue);
         }
     }
 
@@ -26,5 +32,11 @@ public class ValidationForm {
         valueIsNumeric(winningNumber);
         winningOrBonusIsCorrectRange(winningNumber);
     }
-
+    static void verifyForPurchaseCost(String purchaseCost){
+        valueIsEmpty(purchaseCost);
+        valueContainsSpace(purchaseCost);
+        valueIsNumeric(purchaseCost);
+        costIsStandardUnder(purchaseCost);
+        costFormatIsCorrect(purchaseCost);
+    }
 }

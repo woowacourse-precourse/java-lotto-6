@@ -11,7 +11,7 @@ public class Money {
     public Money(String inputMoney){
         int money = validateNumeric(inputMoney);
         validateMultiple(money);
-        validateZero(money);
+        validatePositive(money);
         this.money = money;
     }
 
@@ -38,9 +38,9 @@ public class Money {
         }
     }
 
-    private void validateZero(int money){
-        if (money == 0){
-            throw new IllegalArgumentException(ErrorMessage.NON_ZERO.getErrorMessage());
+    private void validatePositive(int money){
+        if (money <= 0){
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE.getErrorMessage());
         }
     }
 }

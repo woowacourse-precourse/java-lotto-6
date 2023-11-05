@@ -8,7 +8,6 @@ public class Amount {
     }
 
     public static Amount create(String amountStr) {
-        validateNull(amountStr);
         validateEmpty(amountStr);
         int amount = validateNotNumber(amountStr);
         validateNegativeNumber(amount);
@@ -20,14 +19,8 @@ public class Amount {
         return this.amount;
     }
 
-    private static void validateNull(String amountStr) {
-        if (amountStr == null) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 null입니다.");
-        }
-    }
-
     private static void validateEmpty(String amountStr) {
-        if (amountStr.isEmpty() || amountStr.isBlank()) {
+        if (amountStr.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
         }
     }

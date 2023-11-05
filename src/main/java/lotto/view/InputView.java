@@ -15,7 +15,7 @@ public class InputView {
     public static List<Integer> inputWinningNumbers() {
         try {
             String input = Console.readLine();
-            if (input.isEmpty() || input.isBlank()) {
+            if (input.isBlank()) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해 주세요.");
             }
             return List.of(input.split(COMMA_SEPARATOR)).stream()

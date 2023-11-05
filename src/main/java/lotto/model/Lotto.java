@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_SIZE = 6;
@@ -23,7 +24,10 @@ public class Lotto {
     }
 
     private void validateEmpty(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number.equals(0))) {
+        if (numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(""))
+                .isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 비었습니다.");
         }
     }

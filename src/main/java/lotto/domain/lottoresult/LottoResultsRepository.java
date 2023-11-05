@@ -2,8 +2,14 @@ package lotto.domain.lottoresult;
 
 import static lotto.domain.lottoresult.LottoPrizeMoney.makeZeroLottoPrizeMoney;
 
+import java.util.List;
 import java.util.Map;
+import lotto.domain.dto.LottoBundleDto;
 import lotto.domain.dto.LottoResultsDto;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinLotto;
+import lotto.domain.player.Player;
+import lotto.domain.player.Profit;
 
 public class LottoResultsRepository {
     private final Map<LottoResult, Integer> lottoResultsRepository;
@@ -14,7 +20,15 @@ public class LottoResultsRepository {
         lottoPrizeMoney = makeZeroLottoPrizeMoney();
     }
 
-    public void saveLottoResult(LottoResult lottoResult) {
+    public void updateLottoResultRepository(LottoBundleDto lottoBundleDto, WinLotto winLotto) {
+        List<Lotto> lottoBundleData = lottoBundleDto.getLottoBundleData();
+        for (Lotto lottoData : lottoBundleData) {
+            LottoResult lottoResult = winLotto.getLottoResult(lottoData);
+            saveLottoResult(lottoResult);
+        }
+    }
+
+    void saveLottoResult(LottoResult lottoResult) {
         if (lottoResult.isNone()) {
             return;
         }

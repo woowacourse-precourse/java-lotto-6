@@ -15,6 +15,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateUnder6Length(numbers);
         validateDuplicateNumbers(numbers);
@@ -51,10 +55,6 @@ public class Lotto {
         if (number < NUMBER_MIN.getValue() || number > NUMBER_MAX.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     public void sort() {

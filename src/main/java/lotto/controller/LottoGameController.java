@@ -8,7 +8,7 @@ import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoBonusNumber;
 import lotto.domain.model.LottoGame;
 import lotto.domain.model.LottoPurchaseCost;
-import lotto.domain.model.LottoRanks;
+import lotto.domain.model.LottoResults;
 import lotto.domain.model.LottoDispenser;
 import lotto.domain.model.PurchasedLottos;
 import lotto.domain.model.WinningLotto;
@@ -72,10 +72,10 @@ public class LottoGameController {
         return new LottoGame(purchasedLottos, winningLotto);
     }
 
-    private LottoRanks createLottoRanks(LottoGame lottoGame) {
-        List<LottoRank> rawLottoRanks = lottoGame.createLottoRanks();
+    private LottoResults createLottoResults(LottoGame lottoGame, LottoPurchaseCost lottoPurchaseCost) {
+        List<LottoRank> lottoRanks = lottoGame.createWinningLottoRanks();
 
-        return new LottoRanks(rawLottoRanks);
+        return new LottoResults(lottoRanks, lottoPurchaseCost);
     }
 
     private String createStatisticsExpression(LottoRanks lottoRanks, LottoPurchaseCost lottoPurchaseCost) {

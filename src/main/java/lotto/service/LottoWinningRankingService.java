@@ -7,7 +7,7 @@ import lotto.domain.winning.LottoWinningSet;
 import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
-public class LottoWinningRankingCountService {
+public class LottoWinningRankingService {
     public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningSet winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 

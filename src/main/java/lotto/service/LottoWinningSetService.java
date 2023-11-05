@@ -1,4 +1,4 @@
-package lotto.domain.winning;
+package lotto.service;
 
 import lotto.domain.generator.LottoManualGenerator;
 import lotto.domain.lotto.Lotto;
@@ -7,7 +7,7 @@ import lotto.vo.BonusNumber;
 
 import java.util.List;
 
-public class LottoWinningSetPicker {
+public class LottoWinningSetService {
 
     private static final String delimiter = ",";
 

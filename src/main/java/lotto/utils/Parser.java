@@ -1,8 +1,14 @@
 package lotto.utils;
 
 public class Parser {
+
     public static int parseStringToInt(String stringValue) {
-            return Integer.parseInt(stringValue);
+        try {
+            int intValue = Integer.parseInt(stringValue);
+            return intValue;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 정수값을 입력해 주세요.");
+        }
     }
 
 }

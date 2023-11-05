@@ -12,10 +12,10 @@
 
 - [ ] 입출력
     - [ ] 로또 구매
-        - [ ] 구입 금액
-            - [ ] 1,000 단위로 나눠 떨어지는 경우 진행
-            - [ ] 1,000 단위로 나눠 떨어지지 않는 경우 `IllegalArgmentException`
-            - [ ] 음수 값을 입력 받은 경우 `IllegalArgumentExcpetion`
+        - [x] 구입 금액
+            - [x] 1,000 단위로 나눠 떨어지는 경우 진행
+            - [x] 1,000 단위로 나눠 떨어지지 않는 경우 `IllegalArgmentException`
+            - [x] 음수 값을 입력 받은 경우 `IllegalArgumentExcpetion`
         - [ ] 로또 구매한 수량을 출력
         - [ ] 구매한 로또를 출력
 

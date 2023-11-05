@@ -2,9 +2,12 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidWinningNumbersException;
 
 public class WinningNumbersInputView {
@@ -16,7 +19,15 @@ public class WinningNumbersInputView {
         String inputWinningNumbers = Console.readLine().trim();
         System.out.println();
         inputValidate(inputWinningNumbers);
+        duplicateValidate(inputWinningNumbers);
         return convertToIntegerList(inputWinningNumbers);
+    }
+
+    private static List<Integer> convertToIntegerList(String inputWinningNumbers) {
+        String[] parts = inputWinningNumbers.split(",");
+        return Arrays.stream(parts)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private static void inputValidate(String inputWinningNumbers) {
@@ -25,10 +36,14 @@ public class WinningNumbersInputView {
         }
     }
 
-    private static List<Integer> convertToIntegerList(String inputWinningNumbers) {
+    private static void duplicateValidate(String inputWinningNumbers) {
         String[] parts = inputWinningNumbers.split(",");
-        return Arrays.stream(parts)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        Set<String> uniqueNumbers = new HashSet<>();
+        for (String part : parts) {
+            if (uniqueNumbers.contains(part)) {
+                throw new DuplicateNumberException();
+            }
+            uniqueNumbers.add(part);
+        }
     }
 }

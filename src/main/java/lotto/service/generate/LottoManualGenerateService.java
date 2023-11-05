@@ -24,7 +24,7 @@ public class LottoManualGenerateService {
                     .collect(Collectors.toSet());
             return new Lotto(new ArrayList<>(uniqueNumbers));
         } catch (NumberFormatException | LottoException exception) {
-            throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_NUMBER.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 }

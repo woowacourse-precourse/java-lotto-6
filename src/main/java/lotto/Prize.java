@@ -1,41 +1,15 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Prize {
-    private static String groupNumbers;
     private static int bonusCounts;
     private static int luckyCounts;
     private static int totalProfit;
     private static final int[] finalResult = new int[5];
     private static List<Integer> separatedLotto = new ArrayList<Integer>();
-    public static List<Integer> luckyNumber = new ArrayList<Integer>();
-    public static int bonusNumber;
-
-    static void inputNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        groupNumbers = Console.readLine();
-        System.out.println();
-    }
-
-    static void cutNumbers() {
-        String[] separatedNumbers = groupNumbers.split(",");
-
-        for (int i = 0; i < separatedNumbers.length; i++) {
-            luckyNumber.add(Integer.parseInt(separatedNumbers[i]));
-        }
-    }
-
-    static void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String number = Console.readLine();
-        bonusNumber = Integer.parseInt(number);
-        System.out.println();
-    }
 
     static void separateNumbers() {
         for (int i = 0; i < Issue.lottoGroup.size(); i++) {
@@ -50,11 +24,11 @@ public class Prize {
 
     static void checkNumbers() {
         for (int j = 0; j < separatedLotto.size(); j++) {
-            if (separatedLotto.contains(luckyNumber.get(j))) {
+            if (separatedLotto.contains(Pick.luckyNumber.get(j))) {
                 luckyCounts += 1;
             }
 
-            if (separatedLotto.contains((bonusNumber))) {
+            if (separatedLotto.contains((Pick.bonusNumber))) {
                 bonusCounts += 1;
             }
         }
@@ -121,9 +95,6 @@ public class Prize {
     }
 
     public static void playPrize() {
-        inputNumbers();
-        cutNumbers();
-        inputBonusNumber();
         separateNumbers();
         printPrize();
         calculateProfit();

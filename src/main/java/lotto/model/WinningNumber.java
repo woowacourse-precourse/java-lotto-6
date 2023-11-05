@@ -12,6 +12,10 @@ public class WinningNumber {
         this.winningNumbers = winningNumbers;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return List.copyOf(winningNumbers);
+    }
+
     private void validate(List<Integer> winningNumbers) {
         LottoNumberValidator.validateLottoNumber(winningNumbers);
     }

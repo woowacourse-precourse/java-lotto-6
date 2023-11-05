@@ -227,3 +227,80 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+---
+
+## 🔥 구현해야 할 것
+
+### 1) 입력받은 금액에 대해, 몇 장의 로또를 발행할 것인지 구현 
+
+
+##### * 예외 처리 
+
+  * 입력받은 금액이 1,000원 단위로 나누어 떨어지지 않음에 대해 예외처리
+  * 입력받은 금액이 1,000원 미만일 경우 예외 처리
+  * 입력받은 금액이 100,000원 초과인 경우 예외 처리 → [아직 미정]
+
+##### * 구현 방법
+
+  * List<Lotto> purchased_lottos = new ArrayList<>(); 로 선언하자
+  
+### 2) 로또 발행 [중복되지 않는 숫자 6개의 숫자]
+
+##### - 예외처리
+
+- Lotto 생성자로 받아오는 List 중, 크기가 6이 아닌 것 예외 처리
+- Lotto 생성자로 받아오는 List 중, 중복된 수가 있는 것 예외 처리
+- Lotto 생성자로 받아온ㄴ List 중, 숫자로 이루어지지 않은 것 예외 처리
+
+
+##### - 구현 방법
+
+  - 1~45개의 랜덤한 수 중 중복없는 6개의 숫자를 뽑는 함수를 만든다. → pickUniqueNumbersInRange(1, 45, 6);
+  - 6개의 숫자를 오름차순으로 정렬해야한다. → Arrays.sort();
+  - 정렬한 list를 Lotto 생성자의 매개변수로 넘겨준다. [ Illegal Check ]
+  - 6개의 번호가 적힌 Lotto가 생성된다.
+
+
+### 3) 당첨 번호를 입력받기
+
+##### - 구현 방법
+
+- StringTokenizer를 통해 ' , ' 을 구분자로 입력받아, List<Intege> lotto_answer 에 저장
+- int bonus_number에 보너스 번호 저장
+- static 변수로 만드는 것이 좋을까??? ~~[ 고민해봐야할것같음 ]~~
+
+### 4) 구매한 로또에 대한 출력
+
+##### - 구현 방법
+
+- purchased_lottos.size()를 통해 구매한 갯수 출력
+- for(int purchased_lotto=0; purchased_lotto<purchased_lottos.size() purchased_lotto++)을 통해 구매한 로또 출력
+  * Lotto.numbers는 private으로 선언되어있기 때문에, get_numbers() 메소드가 필요함.
+
+### 5) 구매한 로또 각각에 대해 당첨인지 판별
+
+
+##### - 구현방법
+
+1) 내가 구매한 로또를 가져와, 몇 개를 맞추었는지 판별한다.
+- 몇 개의 숫자가 일치하는지 확인하기 위한 변수 int match_count = 0; 이 필요하다
+- 구매한 로또들 purchased_lottos 를 for loop로 순회하며, 구매한 로또들을 하나씩 가져온다.
+- purchased_lottos ▶ Lotto를 넘겨주면, 몇 개가 일치하는지 알려준다. 
+  - 만약, 맞춘 개수가 5개라면 bonus 번호를 맞추었는지 확인한다
+
+2) 맞춘 개수에 맞추어 내가 당첨된 내역에 업데이트한다.
+- int[] my_lotto_scores = new int[5];
+- static int matched_3 = 0;
+- static int matched_4 = 1;
+- static int matched_5 = 2;
+- static int matched_5_with_bonus = 3;
+- static int matched_6 = 4; 를 통해 가독성이 쉽게 접근하기로 하자.
+- Ex) my_lotto_scores[match_count]++; 
+
+### 6) 당첨금과 내 돈을 입력받아 수익률 계산
+
+##### - 구현방법
+
+- 당첨금 / 구입금액 * 100 
+  - 반올림하여 소수점 첫재짜리까지 → String.format("%.1f", my_price);

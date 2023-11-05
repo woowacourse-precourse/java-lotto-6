@@ -32,8 +32,7 @@ public class InputController {
     private Lotto checkWinningNumbers(String input) {
         try {
             List<Integer> numbers = transformInputNumber(input);
-            Lotto lotto = new Lotto(numbers);
-            return lotto;
+            return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumbersInput();
@@ -47,8 +46,7 @@ public class InputController {
     }
 
     private List<String> convertStringToList(String input) {
-        List<String> numbers = new ArrayList<>(Arrays.asList(input.split(",")));
-        return numbers;
+        return new ArrayList<>(Arrays.asList(input.split(",")));
     }
 
     private List<Integer> convertStringToInt(List<String> input) {

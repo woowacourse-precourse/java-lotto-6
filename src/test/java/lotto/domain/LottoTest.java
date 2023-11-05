@@ -1,5 +1,8 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Arrays;
+import lotto.domain.Lotto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +26,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName("로또 번호를 오름차순으로 정렬한다.")
+    void sortedLottoNumbers(){
+        List<Integer> sortedLottoNumber = new Lotto(List.of(6, 5, 4, 3, 2, 1)).sortLottoNumber();
+        Assertions.assertEquals(sortedLottoNumber, Arrays.asList(1,2,3,4,5,6));
+    }
 }

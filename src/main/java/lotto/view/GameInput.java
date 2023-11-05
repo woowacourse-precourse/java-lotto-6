@@ -2,15 +2,15 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 public class GameInput {
-    public String enterPurchaseAmout() {
+    public static String enterPurchaseAmout() {
         return readLine();
     }
 
-    public String enterWinningNumbers() {
+    public static String enterWinningNumbers() {
         return readLine();
     }
 
-    public String enterBonusNumbers() {
+    public static String enterBonusNumbers() {
         return readLine();
     }
 }

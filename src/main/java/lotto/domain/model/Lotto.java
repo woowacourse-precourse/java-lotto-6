@@ -19,6 +19,7 @@ public class Lotto {
     public List<Integer> getNumbers() { return numbers; }
 
     public boolean contains(int number) { return numbers.contains(number); }
+
     private boolean hasInvalidSize(int size) {
         return size != LOTTO_SIZE;
     }

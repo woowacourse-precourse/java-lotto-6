@@ -9,7 +9,7 @@ public class WinningStatistic {
     private final Map<Rank, Integer> result = new EnumMap<Rank, Integer>(Rank.class);
 
     public WinningStatistic(List<Rank> ranks) {
-        ranks.forEach(rank -> result.put(rank, result.get(rank) + 1));
+        ranks.forEach(rank -> result.put(rank, result.getOrDefault(rank, 0) + 1));
     }
 
     public Map<Rank, Integer> getResult() {
@@ -18,7 +18,7 @@ public class WinningStatistic {
 
     public long calculateTotalPrize() {
         return result.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().multiplePrizeAndCount(entry.getValue()))
                 .sum();
     }
 }

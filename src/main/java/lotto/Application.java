@@ -1,11 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.InputConverter;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 
@@ -14,11 +13,10 @@ public class Application {
         // TODO: 프로그램 구현
         Money money = new Money(askToPay());// 금액 입력
         int howManyLotto = money.getHowManyLotto();// 로또 개수
-        //List<List<Integer>> lottos = Lotto.generate(howManyLotto);
 
-        //for (List<Integer> lotto : lottos) {
-        //    System.out.println(lotto);
-        //}
+        LottoGenerator generator = new LottoGenerator();
+        List<Lotto> lottos = generator.generateLotto(howManyLotto);
+
         List<Integer> winningNumber = askWinningNumber();// 당첨번호 6개 입력
         int bonusNumber = askBonus();// 보너스번호 입력
         WinningNumber numbers = new WinningNumber(winningNumber, bonusNumber);

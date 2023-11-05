@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -10,6 +12,7 @@ public class OutputView {
     public static final String WINNING_STATISTIC_FORMAT = "당첨 통계\n---";
     public static final String OPEN_BRACKET = "[";
     public static final String CLOSE_BRACKET = "]";
+    public static final String MONEY_FORMAT = ",###";
 
     public static void printTotalLottoNumber(int totalLottoNumber) {
         System.out.println(totalLottoNumber + PURCHASE_NUMBER_FORMAT);
@@ -20,31 +23,45 @@ public class OutputView {
     }
 
     public static void printTotalEarningsRate(String earningRate) {
-        System.out.printf("총 수익률은 %s%% 입니다.", earningRate);
+        System.out.printf("총 수익률은 %s%%입니다.", earningRate);
     }
 
     public static void printWinningStatistic(Map<Rank, Integer> result) {
         System.out.println(WINNING_STATISTIC_FORMAT);
 
-        StringBuilder stringBuilder = new StringBuilder();
         result.remove(Rank.LOSING_TICKET);
-        result.forEach((key, value) -> makeWinningStatisticOutput(key, value, stringBuilder));
+        StringBuilder stringBuilder = new StringBuilder();
+        DecimalFormat decimalFormat = new DecimalFormat(MONEY_FORMAT);
+        result.forEach((key, value) -> makeWinningStatisticOutput(key, value, stringBuilder, decimalFormat));
 
         System.out.print(stringBuilder);
     }
 
-    private static void makeWinningStatisticOutput(Rank rank, int winningCount, StringBuilder stringBuilder) {
+    private static void makeWinningStatisticOutput(
+            Rank rank,
+            int winningCount,
+            StringBuilder stringBuilder,
+            DecimalFormat decimalFormat
+    ) {
         stringBuilder.append(String.format("%d개 일치", rank.getMatchingCount()));
+
         if (rank.isHasBonusNumber()) {
             stringBuilder.append(", 보너스 볼 일치");
         }
-        stringBuilder.append(String.format(" (%d) - ", rank.getPrizeMoney()));
+
+        stringBuilder.append(String.format(" (%s원) - ", decimalFormat.format(rank.getPrizeMoney())));
+
         stringBuilder.append(String.format("%d개\n", winningCount));
     }
 
     private static String makeLottoOutput(Lotto lotto) {
-        List<String> lottoNumbers = convertIntegersToStrings(lotto.getNumbers());
+        List<String> lottoNumbers = convertIntegersToStrings(sortAscending(lotto.getNumbers()));
         return OPEN_BRACKET + String.join(", ", lottoNumbers) + CLOSE_BRACKET;
+    }
+
+    private static List<Integer> sortAscending(List<Integer> integers) {
+        integers.sort(Comparator.naturalOrder());
+        return integers;
     }
 
     private static List<String> convertIntegersToStrings(List<Integer> integers) {

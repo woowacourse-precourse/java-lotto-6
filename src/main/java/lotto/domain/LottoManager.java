@@ -2,9 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.Prize;
 
 public class LottoManager {
@@ -21,16 +19,6 @@ public class LottoManager {
         return sortedLottos;
     }
 
-    public static Map<Prize, Integer> initializePrize() {
-        Map<Prize, Integer> result = new HashMap<>();
-
-        for (Prize prize : Prize.values()) {
-            result.put(prize, 0);
-        }
-
-        return result;
-    }
-
     public static Integer countMatching(Lotto userLotto, Lotto winningLotto) {
         Integer countMatching = 0;
 
@@ -43,15 +31,15 @@ public class LottoManager {
         return countMatching;
     }
 
-    public static Map<Prize, Integer> checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
-        Map<Prize, Integer> lottoResult = initializePrize();
+    public static LottoResult checkWinning(List<Lotto> lottos, Lotto winningLotto, Integer bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
 
         for (Lotto userLotto : lottos) {
             Integer countMatching = countMatching(userLotto, winningLotto);
 
             if (countMatching >= Prize.FIFTH.getMatchingNumber()) {
                 Prize prize = Prize.rank(countMatching, userLotto.getNumbers().contains(bonusNumber));
-                lottoResult.replace(prize, lottoResult.get(prize) + 1);
+                lottoResult.state.replace(prize, lottoResult.state.get(prize) + 1);
             }
 
         }
@@ -59,13 +47,5 @@ public class LottoManager {
         return lottoResult;
     }
 
-    public static Double calculateEarningRate(Map<Prize, Integer> lottoResult, Integer lottoCount) {
-        int sum = 0;
 
-        for (Prize key : lottoResult.keySet()) {
-            sum += key.getPrizeAmount() * lottoResult.get(key);
-        }
-
-        return ((double) sum / (lottoCount * 1000)) * 100;
-    }
 }

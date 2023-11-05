@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.Prize;
 import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
 public class Output {
 
@@ -36,12 +37,12 @@ public class Output {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void printResult(Map<Prize, Integer> lottoResult, Double earningRate) {
+    public static void printResult(LottoResult lottoResult, Double earningRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (Prize prize : lottoResult.keySet()) {
-            System.out.println(prize.getDescription() + lottoResult.get(prize) + "개");
+        for (Prize prize : lottoResult.state.keySet()) {
+            System.out.println(prize.getDescription() + lottoResult.state.get(prize) + "개");
 
         }
 

@@ -7,6 +7,7 @@ import java.util.Map;
 import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoResult;
 import lotto.domain.User;
 import lotto.ui.Input;
 import lotto.ui.Output;
@@ -34,16 +35,10 @@ public class Application {
         Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, Input.get());
 
         // 7. 당첨 내역 계산 로직
-        Map<Prize, Integer> lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
-
-        // 당첨금
-        List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
-
-        // 8. 수익률 계산 로직
-        Double earningRate = LottoManager.calculateEarningRate(lottoResult, user.lottoCount);
+        LottoResult lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
 
         // 9. 당첨 결과 출력
-        Output.printResult(lottoResult, earningRate);
+        Output.printResult(lottoResult, lottoResult.calculateEarningRate(user.lottoCount));
 
 
     }

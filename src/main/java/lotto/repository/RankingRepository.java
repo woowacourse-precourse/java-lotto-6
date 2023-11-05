@@ -29,5 +29,4 @@ public class RankingRepository {
     public static String getPrizeBy(int rank){
         return ranksMap.get(rank);
     }
-
 }

@@ -6,7 +6,8 @@ public enum Announcement {
     REQUEST_LOTTO_WINNING_NUMBERS("\n\n당첨 번호를 입력해 주세요."),
     REQUEST_LOTTO_BONUS_NUMBERS("\n보너스 번호를 입력해 주세요."),
     BUY_LOTTO("\n[ %s ]"),
-    WINNING_STATISTICS("\n당첨 통계\n---");
+    WINNING_STATISTICS("\n당첨 통계\n---"),
+    PER_LOTTO_TOTAL_COUNT("%d개\n");
     private final String print;
 
     Announcement(String print) {

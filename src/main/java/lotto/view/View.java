@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.settings.Announcement.BUY_LOTTO;
+import static lotto.settings.Announcement.PER_LOTTO_TOTAL_COUNT;
 import static lotto.settings.Announcement.PURCHASE_NUMBER;
 import static lotto.settings.Announcement.REQUEST_LOTTO_BONUS_NUMBERS;
 import static lotto.settings.Announcement.REQUEST_LOTTO_WINNING_NUMBERS;
@@ -35,7 +36,7 @@ public class View {
     }
 
     public static void result(String prize, int num){
-        System.out.printf(prize+"%s개\n",num);
+        System.out.printf(prize+PER_LOTTO_TOTAL_COUNT.getPrint(),num);
     }
     public static void buyLottos(String lottoNumber){
         System.out.printf(BUY_LOTTO.getPrint(),lottoNumber);}

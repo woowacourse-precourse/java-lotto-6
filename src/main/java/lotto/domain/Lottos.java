@@ -1,10 +1,11 @@
 package lotto.domain;
 
 import static lotto.exception.ExceptionMessage.INDIVISIBLE;
+import static lotto.exception.ExceptionMessage.OUT_OF_MEMORY;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 import lotto.util.Parser;
 import lotto.util.LottoValidator;
 import lotto.exception.LottoException;
@@ -12,8 +13,8 @@ import lotto.exception.LottoException;
 public class Lottos {
     private List<Lotto> lottos;
 
-    private Lottos(int money) {
-        int quantity = moneyToQuantity(money);
+    private Lottos(long money) {
+        long quantity = moneyToQuantity(money);
         this.lottos = generateLotto(quantity);
     };
 
@@ -22,7 +23,7 @@ public class Lottos {
         return new Lottos(Parser.parseMoney(inputMoney));
     }
 
-    public int getLottoQuantity() {
+    public long getLottoQuantity() {
         return lottos.size();
     }
 
@@ -49,7 +50,7 @@ public class Lottos {
         return LottoResult.create(matchCount, matchBonusNumber);
     }
 
-    private int moneyToQuantity(int money) throws LottoException {
+    private long moneyToQuantity(long money) throws LottoException {
         // TODO: 매직넘버 상수화하기
         if (money % 1_000 > 0) {
             throw new LottoException(INDIVISIBLE);
@@ -57,9 +58,13 @@ public class Lottos {
         return money / 1_000;
     }
 
-    private List<Lotto> generateLotto(int ticketQuantity) {
-        return IntStream.range(0, ticketQuantity)
-                .mapToObj(lotto -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
-                .collect(Collectors.toList());
+    private List<Lotto> generateLotto(long ticketQuantity) throws LottoException {
+        try {
+            return LongStream.range(0, ticketQuantity)
+                    .mapToObj(lotto -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
+                    .collect(Collectors.toList());
+        } catch (OutOfMemoryError e) {
+            throw new LottoException(OUT_OF_MEMORY);
+        }
     }
 }

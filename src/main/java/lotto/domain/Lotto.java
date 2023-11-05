@@ -15,7 +15,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws LottoException {
         if (numbers.size() != 6) {
             throw new LottoException(NOT_SIX_NUMBER);
         }

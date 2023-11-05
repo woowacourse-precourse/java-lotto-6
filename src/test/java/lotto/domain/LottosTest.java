@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static lotto.exception.ExceptionMessage.EMPTY;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER;
 import static lotto.exception.ExceptionMessage.INDIVISIBLE;
+import static lotto.exception.ExceptionMessage.OUT_OF_MEMORY;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +21,14 @@ public class LottosTest {
     void getLottosByPurchaseMoney(String input, int expected) {
         assertThat(Lottos.purchase(input).getLottoQuantity())
                 .isEqualTo(expected);
+    }
+
+    @DisplayName("[Exception] 입력한 금액이 너무 큰 경우 예외가 발생한다.")
+    @Test
+    void getLottosByLongInput() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Lottos.purchase("30000000000"))
+                .withMessage(OUT_OF_MEMORY.getMessage());
     }
 
     @DisplayName("[Exception] 입력한 금액이 숫자가 아니면 예외가 발생한다.")

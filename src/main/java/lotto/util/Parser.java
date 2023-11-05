@@ -12,8 +12,8 @@ public class Parser {
         // 인스턴스 생성 방지용
     }
 
-    public static int parseMoney(String input) {
-        return stringParseInt(input);
+    public static long parseMoney(String input) {
+        return stringParseLong(input);
     }
 
     public static List<Integer> parseWinningNumber(String input) {
@@ -31,6 +31,14 @@ public class Parser {
     private static int stringParseInt(String input) throws LottoException {
         try {
             return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new LottoException(NOT_NUMBER, e);
+        }
+    }
+
+    private static long stringParseLong(String input) throws LottoException {
+        try {
+            return Long.parseLong(input);
         } catch (NumberFormatException e) {
             throw new LottoException(NOT_NUMBER, e);
         }

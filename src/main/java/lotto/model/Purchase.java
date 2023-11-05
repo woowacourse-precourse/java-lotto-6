@@ -11,7 +11,15 @@ public class Purchase {
     public Purchase(int money) {
         validate(money);
         this.money = money;
-        this.count = money / 10;
+        this.count = money / MONEY_UNIT;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     private void validate(int money) {

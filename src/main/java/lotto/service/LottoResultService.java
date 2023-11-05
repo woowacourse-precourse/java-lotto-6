@@ -22,7 +22,7 @@ public class LottoResultService {
     }
 
     protected EnumMap<RankCategory, Integer> getInitializedEnumMap() {
-        EnumMap<RankCategory,Integer> results = new EnumMap<>(RankCategory.class);
+        EnumMap<RankCategory, Integer> results = new EnumMap<>(RankCategory.class);
         for (RankCategory rankCategory : RankCategory.values()) {
             results.put(rankCategory, 0);
         }
@@ -46,7 +46,7 @@ public class LottoResultService {
             return RankCategory.FOURTH;
         }
         if (matchCount == 3) {
-            return RankCategory.THIRD;
+            return RankCategory.FIFTH;
         }
         return RankCategory.NONE;
     }

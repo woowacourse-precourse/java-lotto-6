@@ -24,9 +24,9 @@ public class LottoPlay implements Play{
     private int getPurchaseQuantity() {
         int purchaseQuantity = 0;
 
+        System.out.print(view.getAskPurchaseAmount());
         do {
             try {
-                System.out.print(view.getAskPurchaseAmount());
                 purchaseQuantity = controller.getPurchaseQuantity();
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessage.NOT_A_NUMBER.getErrorMessage());
@@ -44,7 +44,6 @@ public class LottoPlay implements Play{
 
         System.out.println();
         System.out.print(view.getPrintPurchaseAmount(purchaseQuantity));
-
         for (int i = 0; i < purchaseQuantity; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             myLotto.add(new Lotto(numbers));
@@ -60,7 +59,6 @@ public class LottoPlay implements Play{
 
         System.out.println();
         System.out.print(view.getAskWinningNumber());
-
         do {
             try {
                 lotto = new Lotto(controller.readWinningNumber());
@@ -77,7 +75,6 @@ public class LottoPlay implements Play{
 
         System.out.println();
         System.out.print(view.getAskBonusNumber());
-
         do {
             try {
                 bonusNumber = controller.readBonusNumber();

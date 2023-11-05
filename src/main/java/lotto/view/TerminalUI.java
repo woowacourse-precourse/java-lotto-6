@@ -42,7 +42,7 @@ public class TerminalUI implements LottoGameUI {
 
     @Override
     public void printResult(List<Entry<LottoResult, Integer>> results) {
-        Writer.printMessage("당첨 통계\n---");
+        Writer.printMessage(PrintConst.TITLE_RESULTS);
         for (Map.Entry<LottoResult, Integer> result : results) {
             LottoResult lottoResult = result.getKey();
             int count = result.getValue();

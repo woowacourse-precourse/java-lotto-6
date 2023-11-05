@@ -41,8 +41,11 @@ public class LottoBundle {
         Map<Rank, Integer> result = new HashMap<>();
 
         for (Lotto lotto : this.bundle) {
-            Rank rank = Rank.values()[getCount(lotto, winningLotto)];
-            if (rank == Rank.THIRD && lotto.hasBonusNumber(bonus)) {
+            Rank rank = Rank.values()[correctCount(lotto, winningLotto)];
+            if (rank == Rank.SECOND) {
+                rank = Rank.FIRST;
+            }
+            if (rank == Rank.THIRD && lotto.hasNumber(bonus)) {
                 rank = Rank.SECOND;
             }
             result.put(rank, result.getOrDefault(rank, 0) + 1);
@@ -51,19 +54,17 @@ public class LottoBundle {
     }
 
     /**
-     * 당첨 정도를 확인한다.
+     * 일치하는 숫자의 개수를 구한다.
      *
      * @param lotto        : 비교할 로또
      * @param winningLotto : 당첨 로또
      * @return : 당첨 개수
      */
-    private static int getCount(Lotto lotto, Lotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
+    private static int correctCount(Lotto lotto, Lotto winningLotto) {
         int count = 0;
-        for (Integer lottoNumber : lottoNumbers) {
-            if (winningNumbers.contains(lottoNumber)) {
+
+        for (Integer lottoNumber : lotto.getNumbers()) {
+            if (winningLotto.hasNumber(lottoNumber)) {
                 count++;
             }
         }

@@ -90,7 +90,7 @@ public class Lotto {
      * @param number : 확인할 숫자
      * @return : 숫자 포함 여부
      */
-    public boolean hasBonusNumber(int number) {
+    public boolean hasNumber(int number) {
         return this.numbers.contains(number);
     }
 

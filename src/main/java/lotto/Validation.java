@@ -49,7 +49,7 @@ public class Validation {
      * @throws IllegalArgumentException : 번호가 중복되는 경우
      */
     public static void isDuplicate(Lotto lotto, int number) throws IllegalArgumentException {
-        if (lotto.hasBonusNumber(number)) {
+        if (lotto.hasNumber(number)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않아야 합니다.");
         }
     }

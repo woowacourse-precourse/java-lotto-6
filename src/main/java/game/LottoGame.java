@@ -1,5 +1,13 @@
 package game;
 
+import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
+import static constant.ConstantMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
+import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
+import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
+import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
+import static constant.ConstantNumber.NUMBER_INITIALIZATION;
+import static constant.ConstantNumber.PURCHASE_UNIT;
+
 import base.Converter;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -10,14 +18,14 @@ import java.util.List;
 public class LottoGame {
     public void run() {
         Converter converter = new Converter();
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
         String purchaseAmountString = Console.readLine();
         int purchaseAmount = converter.stringToInteger(purchaseAmountString); // 8000
 
         System.out.println();
 
-        int purchaseQuantity = purchaseAmount / 1000; // 8
-        System.out.println(purchaseQuantity + "개를 구매했습니다.");
+        int purchaseQuantity = purchaseAmount / PURCHASE_UNIT; // 8
+        System.out.println(purchaseQuantity + PURCHASE_QUANTITY_PRINT_MESSAGE);
         List<List<Integer>> userLottoNumberCollection = new ArrayList<>(purchaseQuantity);
 
         for (int index = 0; index < purchaseQuantity; index++) {
@@ -32,7 +40,7 @@ public class LottoGame {
 
         System.out.println();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_REQUEST_MESSAGE);
         String luckyNumberString = Console.readLine();
 
         List<Integer> luckyNumbers = new ArrayList<>();
@@ -45,20 +53,19 @@ public class LottoGame {
 
         System.out.println();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
         String bonusNumberWord = Console.readLine();
         int bonusNumber = converter.stringToInteger(bonusNumberWord);
 
         System.out.println();
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS_NOTICE_MESSAGE);
 
-        int sixSuccess = 0;
-        int fiveSuccess = 0;
-        int fiveAndBonusSuccess = 0;
-        int fourSuccess = 0;
-        int threeSuccess = 0;
+        int sixSuccess = NUMBER_INITIALIZATION;
+        int fiveSuccess = NUMBER_INITIALIZATION;
+        int fiveAndBonusSuccess = NUMBER_INITIALIZATION;
+        int fourSuccess = NUMBER_INITIALIZATION;
+        int threeSuccess = NUMBER_INITIALIZATION;
 
         for (int index = 0; index < userLottoNumberCollection.size(); index++) {
             int score = 0;

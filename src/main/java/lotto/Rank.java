@@ -11,20 +11,20 @@ public enum Rank {
     FIFTH_PLACE(3,0,5000);
 
     private final int hit;
-    private final int bonus;
+    private final int bonusHit;
     private final int prizeMoney;
 
     Rank(int hit,int bonus, int prizeMoney){
         this.hit = hit;
-        this.bonus = bonus;
+        this.bonusHit = bonus;
         this.prizeMoney = prizeMoney;
     }
     public int getHit(){
         return hit;
     }
 
-    public int getBonus(){
-        return bonus;
+    public int getBonusHit(){
+        return bonusHit;
     }
 
     public int getPrizeMoney(){
@@ -33,7 +33,7 @@ public enum Rank {
 
     public String getStatus(){
         String formattedPrizeMoney = formattingNum(getPrizeMoney());
-        if(bonus==1){
+        if(bonusHit ==1){
             return String.format("%d개 일치, 보너스 볼 일치 (%s원)",getHit(),formattedPrizeMoney);
         }
         return String.format("%d개 일치 (%s원)",getHit(),formattedPrizeMoney);
@@ -46,7 +46,7 @@ public enum Rank {
     static Rank getRank(int hit,int bonus){
         return Arrays.asList(Rank.values()).stream()
                 .filter(rank -> rank.getHit()==hit)
-                .filter(rank -> rank.getBonus()==bonus)
+                .filter(rank -> rank.getBonusHit()==bonus)
                 .findAny().get();
     }
 }

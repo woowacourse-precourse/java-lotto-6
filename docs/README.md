@@ -20,3 +20,5 @@
 8. 결과에 대한 수익률 계산 기능
 9. 당첨 번호와 보너스 번호 중복 여부 확인 기능
    - 불만족 시 예외(IllegalArgumentException) 리턴
+10. 로또 구입 금액 유효성 검사
+    - 1,000원 단위로 나누어 떨어지지 않을 시 예외(IllegalArgumentException) 리턴

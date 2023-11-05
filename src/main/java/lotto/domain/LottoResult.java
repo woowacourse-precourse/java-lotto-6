@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import lotto.controller.dto.ResultResponseDto;
 
 public enum LottoResult {
     FIRST(6, 2000000000, false),
@@ -14,6 +15,7 @@ public enum LottoResult {
     private final int winningPrice;
 
     private final boolean hasBonus;
+
     LottoResult(int sameNumber, int winningPrice, boolean isBonus) {
         this.sameNumber = sameNumber;
         this.winningPrice = winningPrice;
@@ -28,11 +30,15 @@ public enum LottoResult {
                 .orElse(NONE);
     }
 
+    public ResultResponseDto toResponseDto(int totalCount) {
+        return new ResultResponseDto(sameNumber, winningPrice, hasBonus, totalCount);
+    }
+
     private boolean isEqualHasBonus(boolean hasBonus) {
         return this.hasBonus == hasBonus;
     }
 
-    private boolean isEqualSameNumber(int sameNumber){
+    private boolean isEqualSameNumber(int sameNumber) {
         return this.sameNumber == sameNumber;
     }
 

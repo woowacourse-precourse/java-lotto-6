@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.dto.ResultResponseDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
@@ -24,6 +26,8 @@ public class LottoController {
         int userBonusNumber = getUserBonusNumber();
         // 당첨 통계
         List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos, userBonusNumber);
+        // 출력
+        OutputView.printLottoResult(lottoService.convertToDto(results));
         // 수익률
 
     }

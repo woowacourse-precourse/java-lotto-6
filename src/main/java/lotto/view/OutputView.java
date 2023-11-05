@@ -4,6 +4,7 @@ package lotto.view;
 import java.util.List;
 import lotto.controller.dto.LottoResponseDto;
 import lotto.controller.dto.LottoResponseDtos;
+import lotto.controller.dto.ResultResponseDto;
 
 public class OutputView {
 
@@ -22,9 +23,29 @@ public class OutputView {
 
     public static void printLottosValue(LottoResponseDtos lottoResponseDtos) {
         List<LottoResponseDto> dtos = lottoResponseDtos.toLottoResponseDto();
-        for (LottoResponseDto dto: dtos) {
+        for (LottoResponseDto dto : dtos) {
             printLottoValue(dto);
         }
+    }
+
+    public static void printLottoResult(List<ResultResponseDto> resultResponseDtos) {
+        System.out.println("당첨 통계\n---");
+        for (ResultResponseDto dto :
+                resultResponseDtos) {
+            printLottoResultEachRanking(dto);
+        }
+    }
+
+    private static void printLottoResultEachRanking(ResultResponseDto resultResponseDto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(resultResponseDto.getSameNumberCount()).append("개 일치 ");
+        if (resultResponseDto.isHasBonus()) {
+            stringBuilder.append("보너스 볼 일치 ");
+        }
+        stringBuilder.append("(").append(resultResponseDto.getWinnerPrice()).append(")")
+                .append(" - ").append(resultResponseDto.getTotalCount()).append(" 개");
+
+        System.out.println(stringBuilder.toString());
     }
 
     private static void printLottoValue(LottoResponseDto responseLottoDto) {

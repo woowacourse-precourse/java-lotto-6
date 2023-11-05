@@ -9,4 +9,7 @@ public class OutputView {
     private final static String WINNING_RESULT_MSG = "%d개 일치 (%d원) - %d개";
     private final static String TOTAL_PROFIT_RATE_MGS = "총 수익률은 %.2f%%입니다.\n";
 
+    public static void printInputPurchaseAmountMsg() {
+        System.out.print(INPUT_PURCHASE_AMOUNT_MSG);
+    }
 }

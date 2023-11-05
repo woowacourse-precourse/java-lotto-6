@@ -63,7 +63,7 @@
 - [x] 당첨 내역을 출력한다. `printMessage(WINNING_DETAILS_NOTICE)` &rarr; `printWinningDetail()`
 - [x] 수익률을 출력한다. `printRateOfReturn()`
 
-- [ ] 예외 상황 시 에러 문구를 출력한다.
+- [x] 예외 상황 시 에러 문구를 출력한다. `printMessage()`*로 처리*
 
 ### 3) Controller 로직
 - [ ] 입력받은 로또 구입 금액을 로또 발행 도메인 로직으로 넘긴다.

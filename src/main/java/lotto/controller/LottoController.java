@@ -10,6 +10,7 @@ public class LottoController {
 
     private static  User user;
     private static WinningNumber winningNumber;
+    private static LottoResult lottoResult;
 
     public void run() {
         inputAmount();
@@ -45,7 +46,7 @@ public class LottoController {
     }
 
     private void printLottoResult() {
-        LottoResult lottoResult = new LottoResult(user, winningNumber);
+        lottoResult = new LottoResult(user, winningNumber);
         OutputView.printLottoResult(lottoResult.getLottoResult(user.getPurchasedLottos(), winningNumber));
         OutputView.printYield(lottoResult.getYield());
     }

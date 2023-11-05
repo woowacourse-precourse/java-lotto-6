@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.service.PrintUtil;
 import lotto.validation.LottoNumberValidation;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,27 +11,32 @@ public class LottoNumbers {
 
     private StringBuilder sb = new StringBuilder();
 
-    private Lotto lotto;
-
     LottoNumberValidation lottoNumberValidation = new LottoNumberValidation();
 
     PrintUtil printUtil = new PrintUtil();
 
-    public void pickLottoNumbers(int numberOfLotto) {
+    public Lotto[] pickLottoNumbers(int numberOfLotto) {
         printUtil.printNumberOfLotto(numberOfLotto);
 
-        List<Integer> lottoNumbers = new ArrayList<>();
+        Lotto[] lottos = new Lotto[numberOfLotto];
         for (int count = 0; count < numberOfLotto; count++) {
-            lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-            Collections.sort(lottoNumbers);
-            if(isDuplicateLottoNumbers(lottoNumbers)) count--;
+            lottos[count] = pickRandomLottoNumbers();
         }
-
         printUtil.printLottoNumbers(sb);
+
+        return lottos;
     }
 
-    public boolean isDuplicateLottoNumbers(List<Integer> lottoNumbers) {
+    public Lotto pickRandomLottoNumbers() {
+        Lotto lottoNumbers;
+        do {
+            lottoNumbers = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        } while (isDuplicateLottoNumbers(lottoNumbers));
+
+        return lottoNumbers;
+    }
+
+    public boolean isDuplicateLottoNumbers(Lotto lottoNumbers) {
         try {
             lottoNumberValidation.validateDuplicateLottoNumbers(lottoNumbers);
             synthesizeLottoNumbers(lottoNumbers);

@@ -111,12 +111,19 @@ public class LottoHandler {
     }
 
     public int receiveBonusNumber(String receivedBonusNumber) {
-        int bonusNumeber = 0;
+        int bonusNumber = 0;
         try {
-            bonusNumeber = Integer.parseInt(receivedBonusNumber);
+            bonusNumber = Integer.parseInt(receivedBonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
-        return bonusNumeber;
+        validBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private void validBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+        }
     }
 }

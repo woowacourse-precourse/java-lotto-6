@@ -24,6 +24,8 @@ public class Winner {
     private int bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonus = Console.readLine();
-        int bonusNum;
+        int bonusNum = Integer.parseInt(bonus);
+
+        return bonusNum;
     }
 }

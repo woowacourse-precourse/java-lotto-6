@@ -23,7 +23,7 @@ public class Lotto {
     }
 
     public boolean hasMatchedBonus(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getValue());
+        return numbers.contains(bonusNumber.getBonusNumber());
     }
 
     @Override
@@ -31,4 +31,3 @@ public class Lotto {
         return numbers.toString();
     }
 }
-

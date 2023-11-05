@@ -3,17 +3,16 @@ package lotto.model;
 
 import static lotto.util.validators.BonusNumberValidator.validateBonusNumber;
 
-import lotto.model.WinningNumbers;
 
 public class BonusNumber {
-    private final Integer value;
+    private final Integer bonusNumber;
 
-    public BonusNumber(String value, WinningNumbers winningNumbers) {
-        validateBonusNumber(value, winningNumbers);
-        this.value = Integer.valueOf(value);
+    public BonusNumber(String bonusNumber, WinningNumbers winningNumbers) {
+        validateBonusNumber(bonusNumber, winningNumbers);
+        this.bonusNumber = Integer.valueOf(bonusNumber);
     }
 
-    public Integer getValue() {
-        return this.value;
+    public Integer getBonusNumber() {
+        return this.bonusNumber;
     }
 }

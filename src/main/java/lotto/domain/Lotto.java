@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.ErrorMessage;
-import lotto.constant.Number;
+import lotto.constant.LottoNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != Number.SIZE.getValue()) {
+        if (numbers.size() != LottoNumber.SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.COUNT.getMessage());
         }
     }
@@ -35,7 +35,7 @@ public class Lotto {
     private void checkRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); ++i) {
             Integer number = numbers.get(i);
-            if (number < 1 || number > 45) {
+            if (number < LottoNumber.MINIMUM.getValue() || number > LottoNumber.MAXIMUM.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
             }
         }

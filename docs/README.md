@@ -33,14 +33,14 @@
 - [x] 입력받은 문자열이 숫자가 아닌 경우 - InputValidation#checkNumber()
 - [x] 구매금액이 1000원으로 나누어 떨어지지 않는 경우 - InputValidation#checkDivisible()
 - [x] 구매금액이 부족한 경우 - InputValidation#checkSufficient()
-- [ ] 당첨번호가 쉼표(,)를 기준으로 구분되어 있지 않는 경우
+- [x] 당첨번호가 쉼표(,)를 기준으로 구분되어 있지 않는 경우 -InputValidation#checkDelimiter()
 
 ## 입출력 요구 사항
 
 ### 입력
 
 - [x] 로또 구매 금액 입력 받기 - Input#readAmount()
-- [ ] 당첨 번호 입력 받기
+- [x] 당첨 번호 입력 받기 - Input#readWinningNumber()
 - [ ] 보너스 번호를 입력 받기
 
 ### 출력

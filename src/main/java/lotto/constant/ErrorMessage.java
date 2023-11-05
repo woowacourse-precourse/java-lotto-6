@@ -6,7 +6,8 @@ public enum ErrorMessage {
     OVERLAP("[ERROR] 중복된 번호가 있습니다."),
     NUMBER("[ERROR] 숫자가 아닙니다."),
     INDIVISIBLE("[ERROR] 숫자가 나누어 떨어지지 않습니다."),
-    INSUFFICIENT("[ERROR] 금액이 충분하지 않습니다.");
+    INSUFFICIENT("[ERROR] 금액이 충분하지 않습니다."),
+    DELIMITER("[ERROR] 구분자를 기준으로 구분되어 있지 않습니다.");
 
     private final String message;
 

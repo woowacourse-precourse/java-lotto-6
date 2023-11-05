@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
 
 class InputValidationTest {
     @Test
@@ -28,5 +29,14 @@ class InputValidationTest {
         assertThatThrownBy(() -> InputValidation.checkSufficient(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 금액이 충분하지 않습니다.");
+    }
+
+    @EmptySource
+    @ParameterizedTest
+    @CsvSource(value = {"123456,"}, delimiter = ':')
+    void 구분자를_기준으로_구분되어_있지_않은_경우(String input) {
+        assertThatThrownBy(() -> InputValidation.checkDelimiter(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구분자를 기준으로 구분되어 있지 않습니다.");
     }
 }

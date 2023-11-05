@@ -1,7 +1,6 @@
 package lotto.constant;
 
-public enum Number {
-    ZERO(0),
+public enum LottoNumber {
     MINIMUM(1),
     MAXIMUM(45),
     PRICE(1000),
@@ -9,7 +8,7 @@ public enum Number {
 
     private final int value;
 
-    Number(int value) {
+    LottoNumber(int value) {
         this.value = value;
     }
 

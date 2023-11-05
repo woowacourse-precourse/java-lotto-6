@@ -13,11 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoSystemTest {
 
     Buyer buyer;
+    WinningLotto winningLotto;
     LottoSystem lottoSystem;
 
     @BeforeEach
     void setUp() {
         buyer = new Buyer();
+        winningLotto = new WinningLotto();
         lottoSystem = new LottoSystem(buyer, winningLotto);
     }
 

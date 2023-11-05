@@ -13,4 +13,11 @@ public class LottoManager {
         return new LottoManager(Lottos.of(numberOfLottos, lottoGenerator));
     }
 
+    public List<List<Integer>> getPurchaseLottos(){
+         return lottos.toLottoDtos()
+                .stream()
+                .map(LottoDTO::numbers)
+                .toList();
+    }
+
 }

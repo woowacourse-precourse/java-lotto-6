@@ -30,4 +30,10 @@ public class Domain {
     public List<Integer> getCorrectNumberCount() {
         return correctNumberCount;
     }
+
+    public void checkPriceUnit(int price) {
+        if(price % 1000 != 0) {
+            new IllegalArgumentException();
+        }
+    }
 }

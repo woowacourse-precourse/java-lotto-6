@@ -12,12 +12,11 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public static void start() {
-        int purchaseAmount = InputView.getUserPurchaseAmount();
+        int purchaseAmount = InputView.getPurchaseAmount();
         int lottoTicketCount = purchaseAmount / Constants.LOTTO_PRICE.getConstants();
         OutputView.printLottoTicketCount(lottoTicketCount);
         List<List<Integer>> lottoTickets = generateAllLottoTickets(lottoTicketCount);
 
-        System.out.println();
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber(winningNumbers);
         play(lottoTickets, winningNumbers, bonusNumber, purchaseAmount);

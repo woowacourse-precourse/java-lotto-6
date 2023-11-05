@@ -14,10 +14,10 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public static void printResult(List<Integer> lucky, double rate) {
+    public static void printResult(List<Integer> result, double rate) {
         printResultHeader();
-        for (int i = 0; i < lucky.size(); i++) {
-            System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), lucky.get(i)));
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), result.get(i)));
         }
         System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
     }

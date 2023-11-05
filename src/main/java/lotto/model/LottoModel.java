@@ -20,14 +20,20 @@ public class LottoModel {
         for (int i = 0; i < lottoTickets.size(); i++) {
             int sameNumberCount = countSameNumbers(winningNumbers, lottoTickets.get(i));
 
-            if (sameNumberCount >= 3 && sameNumberCount != 5) {
-                result.set(sameNumberCount - 3, result.get(sameNumberCount - 3) + 1);
+            if (sameNumberCount == 3) {
+                result.set(0, result.get(0) + 1);
+            }
+            if (sameNumberCount == 4) {
+                result.set(1, result.get(1) + 1);
             }
             if (sameNumberCount == 5 && !lottoTickets.get(i).contains(bonusNumber)) {
                 result.set(2, result.get(2) + 1);
             }
             if (sameNumberCount == 5 && lottoTickets.get(i).contains(bonusNumber)) {
-                result.set(3, result.get(4) + 1);
+                result.set(3, result.get(3) + 1);
+            }
+            if (sameNumberCount == 6) {
+                result.set(4, result.get(4) + 1);
             }
         }
     }

@@ -2,9 +2,12 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoWallet;
 import lotto.domain.LottoWalletGenerator;
 import lotto.domain.Money;
+import lotto.domain.MoneyRate;
+import lotto.domain.TotalAmount;
 import lotto.domain.WinningLotto;
 import lotto.view.BonusNumberInputView;
 import lotto.view.MoneyInputView;
@@ -23,6 +26,14 @@ public class LottoController {
         LottoWallet lottoWallet = buyLotto(money.getTicket());
         WinningLotto winningLotto = getWinningLotto();
 
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.countPrizes(lottoWallet, winningLotto);
+        outputView.printPrizeCount(lottoResult);
+
+        TotalAmount totalAmount = new TotalAmount(lottoResult.getTotalAmount());
+        MoneyRate moneyRate = new MoneyRate(totalAmount, money);
+
+        outputView.printMoneyRate(moneyRate.getRate());
     }
 
     private Money getMoney() {

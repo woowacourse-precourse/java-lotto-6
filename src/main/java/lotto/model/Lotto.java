@@ -45,12 +45,12 @@ public class Lotto {
 
     private boolean hasLargerThanMaxNumber(final List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number > LOTTO_MAX_NUMBER.getValue());
+                .anyMatch(number -> (number > LOTTO_MAX_NUMBER.getValue()));
     }
 
     private boolean hasLessThanMinNumber(final List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue());
+                .anyMatch(number -> (number < LOTTO_MIN_NUMBER.getValue()));
     }
 
     public static Lotto createPlayerLotto(final NumberGenerator numberGenerator) {

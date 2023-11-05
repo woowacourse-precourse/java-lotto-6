@@ -23,7 +23,6 @@ public class LottoController {
 
     public void start() {
         EnterPurchaseMoney();
-
         OutputView.printPurchaseCount(lottoSaleSystem.getPurchaseCount());
         generateLotto(lottoSaleSystem.getPurchaseCount());
         OutputView.printPurchasedLotto(purchasedLotto);

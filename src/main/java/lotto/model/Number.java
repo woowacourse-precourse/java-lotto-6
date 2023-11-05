@@ -1,8 +1,8 @@
 package lotto.model;
 
 import java.util.Objects;
-import lotto.exception.Constant;
-import lotto.exception.ErrorMessage;
+import lotto.common.Constant;
+import lotto.common.ErrorMessage;
 
 public class Number {
 
@@ -19,7 +19,7 @@ public class Number {
 
     private static void validateNumber(int number) {
         if ((number < Constant.LOTTO_NUMBER_MIN.getIntValue()) || (number > Constant.LOTTO_NUMBER_MAX.getIntValue())) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_RANGE.get());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.get());
         }
     }
 
@@ -30,6 +30,19 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Number otherNumber = (Number) obj;
+        return number == otherNumber.number;
     }
 
 }

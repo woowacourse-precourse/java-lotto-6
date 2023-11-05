@@ -32,4 +32,12 @@ public class LottoNumberComparator {
                 .filter(winningLotto.getWinningLotto().getNumbers()::contains)
                 .count();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoNumberComparator lottoNumberComparator = (LottoNumberComparator) o;
+        return winningLotto == lottoNumberComparator.winningLotto;
+    }
 }

@@ -4,22 +4,29 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoView {
 
-    public String requestPurchasePrice() {
+    public static String requestPurchasePrice() {
         printConstantMessage(LottoViewConstantMessages.PURCHASE_PRICE_REQUEST_MESSAGE);
-        return readLine();
+        String readLine = readLine();
+        System.out.println();
+        return readLine;
     }
 
-    public void printPurchasedQuantity(int quantity) {
-        System.out.print(quantity);
+    public static void printPurchasedLottos(Lottos lottos) {
+        System.out.print(lottos.getLottos().size());
         printConstantMessage(LottoViewConstantMessages.PURCHASED_QUANTITY_MESSAGE);
+        for (Lotto lotto : lottos.getLottos()) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
-    public String requestWinningNumbers() {
+    public static String requestWinningNumbers() {
         printConstantMessage(LottoViewConstantMessages.BONUS_NUMBER_REQUEST_MESSAGE);
-        return readLine();
+        String readLine = readLine();
+        System.out.println();
+        return readLine;
     }
 
-    private void printConstantMessage(LottoViewConstantMessages lottoViewConstantsMessage) {
+    private static void printConstantMessage(LottoViewConstantMessages lottoViewConstantsMessage) {
         System.out.println(lottoViewConstantsMessage.getMessage());
     }
 

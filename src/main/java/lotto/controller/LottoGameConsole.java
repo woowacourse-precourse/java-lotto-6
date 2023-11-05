@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LotteryBallMachine;
-import lotto.model.Lotto;
-import lotto.model.Purchase;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,9 +11,12 @@ public class LottoGameConsole {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
+    private Purchase<Lotto> purchase;
+    private WinningNumbers winningNumbers;
+
     public void start() {
-        String inputMoney = inputView.inputMoney();
-        Purchase<Lotto> purchase = new Purchase<>(inputMoney);
+        purchaseLotto();
+
         int purchaseMoney = purchase.getMoney();
         int purchaseCount = purchaseMoney / 1000;
 
@@ -24,11 +24,44 @@ public class LottoGameConsole {
         purchase.purchaseItems(generateLotto(purchaseCount));
         outputView.printLotto(purchase.toString());
 
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers);
+        inputWinningNumbers();
+        inputBonusNumber();
 
-        String inputBonusNumber = inputView.inputBonusNumber();
-        winningNumbers.addBonusNumber(inputBonusNumber);
+        PrizeEvaluator prizeEvaluator = new PrizeEvaluator();
+        Prize prize = prizeEvaluator.evaluate(winningNumbers, purchase.getItems());
+
+        outputView.printPrizeResult(prize);
+        outputView.printPrizeRate(prize.prizeMoney() / (double) purchaseMoney * 100);
+    }
+
+    private void purchaseLotto() {
+        try {
+            String inputMoney = inputView.inputMoney();
+            purchase = new Purchase<>(inputMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            purchaseLotto();
+        }
+    }
+
+    private void inputWinningNumbers() {
+        try {
+            String inputWinningNumbers = inputView.inputWinningNumbers();
+            winningNumbers = new WinningNumbers(inputWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbers();
+        }
+    }
+
+    private void inputBonusNumber() {
+        try {
+            String inputBonusNumber = inputView.inputBonusNumber();
+            winningNumbers.addBonusNumber(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNumber();
+        }
     }
 
     private List<Lotto> generateLotto(int purchaseCount) {

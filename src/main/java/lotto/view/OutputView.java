@@ -18,8 +18,6 @@ public class OutputView {
     private static void printLottoDto(LottoDto lottoDto) {
         List<Integer> lottoDtoNumbers = lottoDto.getNumbers();
 
-        Collections.sort(lottoDtoNumbers);
-
         String result = lottoDtoNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));

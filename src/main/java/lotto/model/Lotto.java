@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.dto.LottoDto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -45,6 +46,8 @@ public class Lotto {
     }
 
     public LottoDto toDto() {
-        return new LottoDto(Collections.unmodifiableList(numbers));
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return new LottoDto(Collections.unmodifiableList(sortedNumbers));
     }
 }

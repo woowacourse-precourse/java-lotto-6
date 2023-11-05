@@ -2,6 +2,8 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,7 @@ public class LottoService {
     private final List<Lotto> userLottos = new ArrayList<>();
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber = 0;
+    private HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
 
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = 0; i < purchaseQuantity; i++) {
@@ -35,5 +38,17 @@ public class LottoService {
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
+    }
+
+    public HashMap<LottoRank, Integer> checkLottoResult() {
+        for (Lotto userLotto : userLottos) {
+            int matchingCount = userLotto.checkMatchingNumbers(winningNumbers);
+            boolean hasBonusNumber = userLotto.hasBonusNumber(bonusNumber);
+            if (matchingCount >= 3) {
+                LottoRank lottoRank = LottoRank.findRank(matchingCount,hasBonusNumber);
+                winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, 0) + 1);
+            }
+        }
+        return winningRankCount;
     }
 }

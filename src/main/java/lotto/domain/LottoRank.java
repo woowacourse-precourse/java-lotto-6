@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum LottoRank {
 
     FIFTH(3,5_000 ,"5,000"),
@@ -16,5 +18,22 @@ public enum LottoRank {
         this.rankMatchCount = rankMatchCount;
         this.prizeMoney = prizeMoney;
         this.prizeAsString = prizeAsString;
+    }
+
+    public static LottoRank findRank(int matchingCount, boolean hasBonusNumber) {
+        if (matchingCount == 5) {
+            if (hasBonusNumber) {
+                return SECOND;
+            }
+            return THIRD;
+        }
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.getRankMatchCount() == matchingCount)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("맞힌 개수와 일치하는 Rank가 없습니다"));
+    }
+
+    public int getRankMatchCount() {
+        return rankMatchCount;
     }
 }

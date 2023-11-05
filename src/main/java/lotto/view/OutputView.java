@@ -24,24 +24,24 @@ public class OutputView {
         int[] matchCounts = new int[Prize.values().length];
 
         totalPrize = getTotalPrize(lottos, winningLotto, matchCounts, totalPrize);
-        finalResult(matchCounts);
+        printFinalResult(matchCounts);
 
         double profitRate = (totalPrize / (double) purchaseAmount) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    private void finalResult(int[] matchCounts) {
+    private void printFinalResult(int[] matchCounts) {
         for (int i = Prize.values().length - 1; i >= 0; i--) {
             Prize prize = Prize.values()[i];
             DecimalFormat decFormat = new DecimalFormat("###,###");
             int prizeMatchCount = prize.getMatchCount();
             String prizeMoney = decFormat.format(prize.getPrizeMoney());
             int prizeCount = matchCounts[prize.ordinal()];
-            printFinalResult(prize, prizeMatchCount, prizeMoney, prizeCount);
+            formatResult(prize, prizeMatchCount, prizeMoney, prizeCount);
         }
     }
 
-    private void printFinalResult(Prize prize, int prizeMatchCount, String prizeMoney, int prizeCount) {
+    private void formatResult(Prize prize, int prizeMatchCount, String prizeMoney, int prizeCount) {
         if (prize != Prize.NONE && prize != Prize.SECOND) {
             System.out.println(prizeMatchCount + "개 일치 (" + prizeMoney + "원) - " + prizeCount + "개");
         }

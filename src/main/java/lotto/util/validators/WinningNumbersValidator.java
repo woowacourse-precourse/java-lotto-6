@@ -16,24 +16,18 @@ import lotto.util.exception.input.WinningNumbersLengthNotMatchException;
 /**
  * 당첨 번호 입력을 검증하는 검사기
  */
-public class WinningBonusNumbersValidator {
+public class WinningNumbersValidator {
     private static final int MAX_WINNING_NUMBERS = 6;
     private static final int ZERO = 0;
 
     public static void validateWinningNumbers(String winningNumbers) {
-        validateNotNullAndNotEmpty(winningNumbers);
+        validateNull(winningNumbers);
+        validateEmpty(winningNumbers);
         List<String> parseWinningNumbers = Parser.parseString(winningNumbers);
-        validateNumberDuplicates(parseWinningNumbers);
-        validateWinningNumbersLength(parseWinningNumbers);
-        validateNumbersInRange(parseWinningNumbers);
-    }
-
-    public static void validateBonusNumber(String bonusNumbers, WinningNumbers winningNumbers) {
-        validateNull(bonusNumbers);
-        validateEmpty(bonusNumbers);
-        validateBonusNumberContains(bonusNumbers, winningNumbers);
-        validateNonPositiveBonusNumber(bonusNumbers);
-//        validateMaxNumber(bonusNumbers);
+        numberDuplicates(parseWinningNumbers);
+        lengthCheck(parseWinningNumbers);
+        validateNonPositiveWinningNumber(parseWinningNumbers);
+        validateMaxNumber(parseWinningNumbers);
     }
 
     private static void validateMaxNumber(final List<String> parseWinningNumbers) {
@@ -45,14 +39,7 @@ public class WinningBonusNumbersValidator {
     }
 
     private static void validateNonPositiveWinningNumber(List<String> parseWinningNumbers) {
-        parseWinningNumbers.forEach(WinningBonusNumbersValidator::validateNonPositiveBonusNumber);
-    }
-
-    private static void validateBonusNumberContains(String bonusNumbers,
-                                                    WinningNumbers winningNumbers) {
-        if (winningNumbers.contains(Integer.valueOf(bonusNumbers))) {
-            throw new BonusNumberNotUniqueException();
-        }
+        parseWinningNumbers.forEach(WinningNumbersValidator::validateNonPositiveBonusNumber);
     }
 
     private static void lengthCheck(List<String> parseWinningNumbers) {

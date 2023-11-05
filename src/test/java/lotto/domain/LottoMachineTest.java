@@ -60,4 +60,10 @@ class LottoMachineTest {
         int duplicateBonusNum = 6;
         assertThrows(IllegalArgumentException.class, () -> lottoMachine.setBonusNum(duplicateBonusNum));
     }
+
+    @DisplayName("5000원이 주어질 때, 5장의 로또를 계산한다.")
+    @Test
+    public void given_5000Won_when_CalculateNumberOfTickets_then_Returns5Tickets() {
+        assertEquals(5, lottoMachine.calculateNumberOfTickets(5000));
+    }
 }

@@ -55,11 +55,11 @@ public class OutputView {
 
     public static void displayWinningStatistics(final List<LottoMatch> lottoResultCount) {
         for (LottoMatch lottoMatch : LottoMatch.values()) {
-            if (lottoMatch == LottoMatch.NOTHING) {
+            if (lottoMatch == LottoMatch.NOTHING_MATCH) {
                 continue;
             }
             String bonusBallMessage = EMPTY_MESSAGE;
-            if (lottoMatch == LottoMatch.FIVE_AND_BONUS) {
+            if (lottoMatch == LottoMatch.FIVE_AND_BONUS_MATCH) {
                 bonusBallMessage = BONUS_BALL_MATCH_MESSAGE;
             }
 

@@ -8,7 +8,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import static lotto.controller.lotteryController.sortLottery;
+
 public class Print {
+
+    public static void printLottoRotate(List<Lotto> lottery) {
+        for (Lotto lotto : lottery) {
+            printLottoNumber(sortLottery(lotto));
+        }
+    }
     public static void printBoughtLottoCount(int lottoCount) {
         System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");

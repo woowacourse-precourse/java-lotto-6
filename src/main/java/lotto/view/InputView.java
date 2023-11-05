@@ -7,8 +7,9 @@ public class InputView {
     public static int readPurchaseAmount() {
         String input = Console.readLine();
         validateBlank(input);
-        validateNonNumber(input);
         int amount = validateIntegerRange(input);
+        validateCheckNegativeValue(amount);
+        validateNonNumber(input);
         return amount;
     }
 
@@ -31,6 +32,12 @@ public class InputView {
             return parsedInput;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 정수 값을 입력하세요.");
+        }
+    }
+
+    private static void validateCheckNegativeValue(int input) {
+        if (input < 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 작을 수 없습니다.");
         }
     }
 }

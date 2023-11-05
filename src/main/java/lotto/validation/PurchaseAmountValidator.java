@@ -5,6 +5,12 @@ import lotto.constant.GameConfig;
 
 public class PurchaseAmountValidator {
 
+    public static void validate(int amount) {
+        validateUnitAmount(amount);
+        validateMaxAmount(amount);
+        validateMinAmount(amount);
+    }
+
     private static void validateUnitAmount(int amount) {
         GameConfig lottoPrice = GameConfig.LOTTO_PRICE;
 

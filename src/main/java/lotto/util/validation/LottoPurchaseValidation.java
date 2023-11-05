@@ -9,7 +9,7 @@ public class LottoPurchaseValidation {
     public void validatorNotDivided(int purchaseAmount) {
 
         if (purchaseAmount % 1000 != 0) {
-            ErrorThrower.throwIllegalStateException(NOT_THOUSAND_DIVIDED_ERROR.getMessage());
+            ErrorThrower.throwIllegalArgumentException(NOT_THOUSAND_DIVIDED_ERROR.getMessage());
         }
 
     }

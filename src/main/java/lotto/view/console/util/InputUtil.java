@@ -2,6 +2,7 @@ package lotto.view.console.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.exception.AppException;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
@@ -27,10 +28,10 @@ public class InputUtil {
                 .toList();
     }
 
-    public static <T> T retryOnException(InputFunction<T> inputFunction, boolean lineBreak) {
+    public static <T> T retryOnException(Supplier<T> supplier, boolean lineBreak) {
         while (true) {
             try {
-                return inputFunction.handleInput();
+                return supplier.get();
             } catch (AppException e) {
                 System.out.println(e.getMessage());
                 if (lineBreak) {
@@ -40,12 +41,7 @@ public class InputUtil {
         }
     }
 
-    public static <T> T retryOnException(InputFunction<T> inputFunction) {
-        return retryOnException(inputFunction, false);
-    }
-
-    @FunctionalInterface
-    public interface InputFunction<T> {
-        T handleInput() throws AppException;
+    public static <T> T retryOnException(Supplier<T> supplier) {
+        return retryOnException(supplier, false);
     }
 }

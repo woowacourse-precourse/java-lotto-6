@@ -68,7 +68,7 @@ public class UIController {
             try {
                 UIView.printWinningNumberInstruction();
                 winningNumbers = getWinningNumber();
-                // TODO : 당첨번호 검증
+                validateWinningNumber(winningNumbers);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 당첨번호는 숫자 여야 합니다.");
@@ -102,6 +102,14 @@ public class UIController {
     private static void numberDupCheck(ArrayList<Integer> winningNumbers, Integer number) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException("중복 숫자는 입력할 수 없습니다.");
+        }
+    }
+
+    private static void validateWinningNumber(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber < 1 || winningNumber > 45) {
+                throw new IllegalArgumentException("당첨번호는 1~45 까지의 숫자만 허용합니다.");
+            }
         }
     }
 }

@@ -8,9 +8,9 @@ public class Output {
         System.out.println(message);
     }
 
-    public static void issueLotto(int lottoCount, List<Lotto> lottos) {
-        final String purchaseMessage = "개를 구매했습니다.";
-        message(Integer.toString(lottoCount).concat(purchaseMessage));
+    public static void issueLotto(int issueCount, List<Lotto> lottos) {
+        final String purchaseMessage = "\n" + issueCount + "개를 구매했습니다.";
+        message(purchaseMessage);
 
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers().toString());
@@ -18,22 +18,19 @@ public class Output {
     }
 
     public static void winStatistics(Map<Rank, Integer> lottoResult) {
-        final String winStatisticsMessage = "당첨 통계\n---";
+        final String winStatisticsMessage = "\n당첨 통계\n---";
         message(winStatisticsMessage);
 
         Rank[] ranks = Rank.values();
         for (Rank rank : ranks) {
-            String message = rank.getOutputMessage();
             int totalCount = lottoResult.get(rank);
-
-            message.concat(Integer.toString(totalCount)).concat("개");
-
+            String message = rank.getOutputMessage() + totalCount + "개";
             System.out.println(message);
         }
     }
 
     public static void returnRate(double returnRate) {
-        System.out.println(Math.round(returnRate));
+        String message = "총 수익률은 " + returnRate + "%입니다.";
+        System.out.println(message);
     }
-
 }

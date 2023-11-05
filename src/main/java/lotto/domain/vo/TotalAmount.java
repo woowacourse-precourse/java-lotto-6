@@ -15,7 +15,7 @@ public class TotalAmount {
 
     public TicketCount calculateTicketCount() {
         int count = amount / LottoConstants.PRICE_PER_LOTTO;
-        return new TicketCount(count);
+        return TicketCount.from(count);
     }
 
     public int getAmount() {

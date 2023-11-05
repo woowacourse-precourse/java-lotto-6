@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.InputController;
+import lotto.domain.Purchase;
 import lotto.domain.vo.TotalAmount;
 import lotto.util.parser.AmountParser;
 import lotto.util.parser.InputParser;
@@ -14,5 +15,6 @@ public class Application {
         InputController inputController = new InputController(amountParser, validator);
 
         TotalAmount totalAmount = inputController.tryInputValidAmount();
+        Purchase purchase = Purchase.createFrom(totalAmount);
     }
 }

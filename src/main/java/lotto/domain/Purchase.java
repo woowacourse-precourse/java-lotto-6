@@ -12,4 +12,9 @@ public class Purchase {
         this.ticketCount = ticketCount;
     }
 
+    public static Purchase createFrom(TotalAmount totalAmount) {
+        TicketCount ticketCount = totalAmount.calculateTicketCount();
+        return new Purchase(totalAmount, ticketCount);
+    }
+
 }

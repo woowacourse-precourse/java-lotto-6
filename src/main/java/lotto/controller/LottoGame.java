@@ -23,7 +23,8 @@ public class LottoGame {
     public void run() {
         buyLotto();
         initWinningLotto(inputWinningLotto(), inputBonusNumber());
-//        matchLottos();
+        initResult();
+        matchLottos();
 //        showResult();
     }
 
@@ -56,5 +57,34 @@ public class LottoGame {
         InputView.inputPrise();
         buyer = new Buyer(lottoPayment());
         buyer.showLottos();
+    }
+
+    private void matchLottos() {
+        for (Lotto lotto : buyer.getLottos()) {
+            int cnt = LottoUtils.matchLotto(lotto.getNumbers(), winningLotto.getNumbers());
+            boolean bonusMatch = LottoUtils.matchBonus(cnt, lotto, winningLotto.getBonus());
+            countResult(cnt, bonusMatch);
+        }
+    }
+
+    private void countResult(int cnt, boolean bonusMatch) {
+        for (Rank rank : Rank.values()) {
+            if (!isCorrect(rank, cnt, bonusMatch)) {
+                continue;
+            }
+            reward = rank.calculateReward(reward);
+            result.put(rank, result.get(rank) + 1);
+        }
+    }
+
+    private boolean isCorrect(Rank rank, int num, boolean bonus) {
+        return rank.getMatchNumbers() == num && rank.getMatchBonus() == bonus;
+    }
+
+    private void initResult() {
+        reward = 0;
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
+        }
     }
 }

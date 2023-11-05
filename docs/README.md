@@ -65,6 +65,13 @@
 
 ## 서비스
 
+- [x] LottoPurchaseService : 로또 구입과 관련된 서비스
+    - [x] LottoMachine을 생성자 주입 받는다.
+    - [x] 구입 금액을 생성자로 가져야 한다.
+    - [x] 구입 금액만큼 로또를 생성한다.
+    - [x] PurchasedLottoDTO.Output을 반환하는 메서드를 가져야한다.
+
+
 - [x] LottoResultService : 로또 당첨 결과를 생성하는 서비스
     - [x] WinningNumber를 가진다.
     - [x] PurchasedLotto를 가진다.

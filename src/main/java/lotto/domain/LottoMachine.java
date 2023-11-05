@@ -6,17 +6,17 @@ import java.util.List;
 import static lotto.Error.Domain.WRONG_PRICE;
 
 public final class LottoMachine {
-    static final int PRICE_PER_LOTTO = 1000;
+    static final long PRICE_PER_LOTTO = 1000L;
     private final LottoCreateModel lottoCreateModel;
 
     public LottoMachine(LottoCreateModel lottoCreateModel) {
         this.lottoCreateModel = lottoCreateModel;
     }
 
-    public PurchasedLotto generateForPrice(int price) {
+    public PurchasedLotto generateForPrice(long price) {
         validate(price);
 
-        int amount = price / PRICE_PER_LOTTO;
+        int amount = (int) (price / PRICE_PER_LOTTO);
         return generateLotto(amount);
     }
 
@@ -30,7 +30,7 @@ public final class LottoMachine {
         return new PurchasedLotto(lotto);
     }
 
-    private void validate(int price) {
+    private void validate(Long price) {
         if (price % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(
                     WRONG_PRICE.getText().formatted(PRICE_PER_LOTTO));

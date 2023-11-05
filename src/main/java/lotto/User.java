@@ -22,14 +22,14 @@ public class User {
 
         } catch ( NumberFormatException e ) {
 
-            System.out.println( FORMAT_ERROR );
+            throw new IllegalArgumentException( FORMAT_ERROR );
         }
 
         int count = price % 1000;
 
         if ( count != 0 ) {
 
-            System.out.println( PRICE_ERROR );
+            throw new IllegalArgumentException( PRICE_ERROR );
         }
     }
 

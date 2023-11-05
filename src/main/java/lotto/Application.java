@@ -25,5 +25,17 @@ public class Application {
         List<List<Integer>> userLotto = user.makeUserLotto( lottoNum );
         user.printUserLotto( userLotto );
 
+        List<Integer> wonLottoNumber = new ArrayList<>();
+        System.out.println( "\n" + WIN_LOTTO_NUMBER );
+        String winNumber = Console.readLine();
+
+        Lotto lotto = new Lotto();
+        lotto.validateLottoNumber( winNumber );
+
+        System.out.println( "\n" + WIN_BONUS_NUMBER );
+        String bonusNumber = Console.readLine();
+
+
+
     }
 }

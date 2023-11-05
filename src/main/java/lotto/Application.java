@@ -23,6 +23,7 @@ public class Application {
         for(Lotto l : lottos.getLottos()){
             System.out.println(l);
         }
+        System.out.println(lottos.getLottos().size());
     }
 
 

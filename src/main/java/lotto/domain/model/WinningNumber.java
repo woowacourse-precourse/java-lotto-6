@@ -1,6 +1,7 @@
 package lotto.domain.model;
 
 import lotto.domain.validator.Validator;
+import lotto.enums.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,7 @@ public class WinningNumber {
         Set<Integer> duplicateChecker = new HashSet<>(regularWinningNumbers);
 
         if (!duplicateChecker.add(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호에 포함되지 않은 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_BONUS_NUMBER_IN_WINNING_NUMBER.getMessage());
         }
     }
 

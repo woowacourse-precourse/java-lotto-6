@@ -20,4 +20,12 @@ public class WinningLotto {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public Bonus getBonus() {
+        return bonus;
+    }
 }

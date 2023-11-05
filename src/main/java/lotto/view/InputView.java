@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.utils.ExceptionMessage.NOT_NUMBER;
+import static lotto.utils.GameMessage.DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -21,9 +22,10 @@ public class InputView {
     }
 
     public List<Integer> inputWinNumbers() {
-        List<Integer> winNumbers = new ArrayList<>(Arrays.stream(Console.readLine().split(","))
-                .map(Integer::valueOf)
-                .toList());
+        List<Integer> winNumbers = new ArrayList<>(
+                Arrays.stream(Console.readLine().split(DELIMITER.getMessage()))
+                        .map(Integer::valueOf)
+                        .toList());
         System.out.println();
         return winNumbers;
     }

@@ -1,11 +1,12 @@
 package lotto.Domain.LottoResult;
 
-enum Rank {
+public enum Rank {
     FIRST(1),
     SECOND(2),
     THIRD(3),
     FOURTH(4),
-    FIFTH(5);
+    FIFTH(5),
+    MISS(0);
 
     private Integer rank;
 

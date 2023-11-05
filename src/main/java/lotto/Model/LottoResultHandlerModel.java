@@ -1,5 +1,7 @@
 package lotto.Model;
 
+import static lotto.Domain.LottoResult.Rank.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Domain.Lotto;
@@ -39,17 +41,17 @@ public class LottoResultHandlerModel {
     }
 
     private Integer convertRank(Integer matchCount, boolean isBonusNumberMatched) {
-        return switch (matchCount) {
-            case 6 -> 1;
-            case 5 -> {
-                if (isBonusNumberMatched) {
-                    yield 2;
-                }
-                yield 3;
-            }
-            case 4 -> 4;
-            case 3 -> 5;
-            default -> 0;
-        };
+        if (matchCount == 6)
+            return FIRST.getRank();
+        if (matchCount == 5 && isBonusNumberMatched)
+            return SECOND.getRank();
+        if (matchCount == 5)
+            return THIRD.getRank();
+        if (matchCount == 4)
+            return FOURTH.getRank();
+        if (matchCount == 3)
+            return FIFTH.getRank();
+
+        return MISS.getRank();
     }
 }

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.settings.ErrorMessage.*;
-import static lotto.settings.LottoRange.*;
+import static lotto.settings.LottoSettings.*;
 
 public class PurchaseAmount {
     private final int amount;

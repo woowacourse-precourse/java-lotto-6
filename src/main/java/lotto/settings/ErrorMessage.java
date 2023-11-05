@@ -1,6 +1,6 @@
 package lotto.settings;
 
-import static lotto.settings.LottoRange.*;
+import static lotto.settings.LottoSettings.*;
 
 public enum ErrorMessage {
     //숫자인지

@@ -1,9 +1,9 @@
 package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.settings.LottoRange.MAX_VALUE;
-import static lotto.settings.LottoRange.MIN_VALUE;
-import static lotto.settings.LottoRange.SIZE;
+import static lotto.settings.LottoSettings.MAX_VALUE;
+import static lotto.settings.LottoSettings.MIN_VALUE;
+import static lotto.settings.LottoSettings.SIZE;
 
 import java.util.List;
 import lotto.domain.Lotto;

@@ -1,6 +1,6 @@
 package lotto.settings;
 
-public enum LottoRange {
+public enum LottoSettings {
 
     MIN_VALUE(1),
     MAX_VALUE(45),
@@ -9,7 +9,7 @@ public enum LottoRange {
 
     private final int number;
 
-    LottoRange(int number) {
+    LottoSettings(int number) {
         this.number = number;
     }
 

@@ -14,13 +14,18 @@ public class LottoController {
     public static void play() {
         int purchaseAmount = enterPurchaseAmount();
         List<Lotto> lottos = generateRandomLottos(purchaseAmount);
+        printAllPurchaseLotto(lottos);
 
-        printAllPurchasedLotto(lottos);
+        Lotto lottoNumbers = enterWinningNumbers();
+        int bonusNumber = enterBonusNumber(lottoNumbers);
 
-        WinningNumbers winningNumbers = new WinningNumbers(enterWinningNumbers(), enterBonusNumber());
-
+        WinningNumbers winningNumbers = new WinningNumbers(lottoNumbers, bonusNumber);
         matchLottoNumbers(winningNumbers, lottos);
 
+        printResult(purchaseAmount);
+    }
+
+    public static void printResult(int purchaseAmount){
         printWinningStatus();
         printEarningRatio(purchaseAmount);
     }

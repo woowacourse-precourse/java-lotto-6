@@ -6,11 +6,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.ErrorHeadMessage;
 import lotto.model.enums.Prize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static lotto.model.enums.ErrorMessage.ERROR_HEAD_MESSAGE;
+
 
 class WinningLottoTest {
     private WinningLotto winningLottoTest;
@@ -107,7 +108,7 @@ class WinningLottoTest {
         }
         assertThatThrownBy(() -> winningLottoTest.isValidBonusNumber(userBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorHeadMessage.ERROR_HEAD_MESSAGE);
+                .hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
     }
 
     @Test
@@ -120,7 +121,7 @@ class WinningLottoTest {
         }
         assertThatThrownBy(() -> winningLottoTest.isValidBonusNumber(userBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorHeadMessage.ERROR_HEAD_MESSAGE);
+                .hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
     }
 
     @Test
@@ -133,7 +134,7 @@ class WinningLottoTest {
         }
         assertThatThrownBy(() -> winningLottoTest.isValidBonusNumber(userBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorHeadMessage.ERROR_HEAD_MESSAGE);
+                .hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
     }
 
     @Test
@@ -146,6 +147,6 @@ class WinningLottoTest {
         }
         assertThatThrownBy(() -> winningLottoTest.isValidBonusNumber(userBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorHeadMessage.ERROR_HEAD_MESSAGE);
+                .hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
     }
 }

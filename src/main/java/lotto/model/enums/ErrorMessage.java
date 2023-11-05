@@ -1,6 +1,7 @@
 package lotto.model.enums;
 
 public enum ErrorMessage {
+    ERROR_HEAD_MESSAGE("[ERROR]"),
     NUMBERS_SIZE_ERROR_MESSAGE("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),
     NUMBERS_DUPLICATION_ERROR_MESSAGE("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다."),
     NUMBERS_RANGE_ERROR_MESSAGE("[ERROR] 로또 번호는 1과 45사이의 숫자여야 합니다."),

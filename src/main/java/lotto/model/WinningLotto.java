@@ -8,7 +8,6 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final String userBonusNumber;
 
-
     public WinningLotto(Lotto winningLotto, String userBonusNumber) {
         int bonusNumber = isValidBonusNumber(userBonusNumber, winningLotto.getNumbers());
         this.userBonusNumber = String.valueOf(bonusNumber);

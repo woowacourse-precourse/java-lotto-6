@@ -4,8 +4,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Game {
-    InputView inputView;
-    OutputView outputView;
+    private InputView inputView;
+    private OutputView outputView;
 
     public Game() {
         inputView = new InputView();
@@ -14,6 +14,6 @@ public class Game {
 
     public void run(){
         inputView.purchaseAmountView();
-        
+
     }
 }

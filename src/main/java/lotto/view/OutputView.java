@@ -14,8 +14,9 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] {0}";
     private static final String PRINT_LOTTO_SIZE_FORMAT = "\n{0}개를 구매했습니다.";
     private static final String PRINT_LOTTO_RESULT_START_FORMAT = "\n당첨 통계\n---\n";
-    private static final String PRINT_PRIZE_RESULT_FORMAT = "{0}개 일치, ({1}원) - {2}개\n";
+    private static final String PRINT_PRIZE_RESULT_FORMAT = "{0}개 일치 ({1}원) - {2}개\n";
     private static final String PRINT_2ND_PRIZE_RESULT_FORMAT = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개\n";
+    private static final String PRINT_RATE_RETURN_FORMAT = "총 수익률은 {0}%입니다.";
     private static final int ZERO = 0;
 
     public void printErrorMessage(String errorMessage) {
@@ -35,7 +36,11 @@ public class OutputView {
         lottoResult.keySet().stream()
                 .sorted(Comparator.reverseOrder())
                 .forEach(prize -> lottoResultFormat(winningStatistics, prize, lottoResult.get(prize)));
-        System.out.println(winningStatistics);
+        System.out.print(winningStatistics);
+    }
+
+    public void printReturnRate(double returnRate) {
+        System.out.println(format(PRINT_RATE_RETURN_FORMAT, returnRate));
     }
 
     private void lottoResultFormat(StringBuilder winningStatistics, LottoPrize prize, int numberOfWin) {

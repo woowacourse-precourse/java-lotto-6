@@ -10,6 +10,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Money;
 import lotto.validator.ValidateObject;
+import lotto.view.View;
 
 public class LottoController {
     public void run() {
@@ -26,9 +27,9 @@ public class LottoController {
         int bonusNumber = inputBonusNumber();
         ValidateObject.validateBonusNumber(winningLotto, bonusNumber);  // 보너스 넘버
 
+        printMessage(Message.RESULT_MESSAGE.getMessage());
+        View.seperateLine();
 
-        printMessage("당첨 통계");
-        printMessage("---");
         printMessage("이햐 3개부터 6개까지 일치여부 프린트");
     }
 

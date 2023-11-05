@@ -36,7 +36,7 @@ public class LottoJudge {
             LottoHandler lottoHandler = LottoHandler.getLottoHandler(matchingCount);
 
             if (lottoHandler == FIVE) {
-                checkBonus(sortBuyLotto, winLottoWithBonus.getBonusNumber());
+                lottoHandler = checkBonus(sortBuyLotto, winLottoWithBonus.getBonusNumber());
             }
 
             lottoResult.put(lottoHandler, lottoResult.getOrDefault(lottoHandler, 0) + 1);

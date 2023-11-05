@@ -1,20 +1,28 @@
 package lotto;
 
-import controller.InputValues;
+import camp.nextstep.edu.missionutils.Console;
 
 public class Money {
 
-	private int purchase_amount;
+	private static int purchase_amount_refined;
 	private static final int UNIT_AMOUNT=1000;
 	
-	private static final controller.InputValues RE_INPUT=new InputValues();
+	//private static final controller.InputValues RE_INPUT=new InputValues();
 	
-	public Money(String purchase_amount) {
-		validate(purchase_amount);
+	public Money() {
+		while(true) {
+			try {
+				String purchase_amount=Console.readLine();
+				validate(purchase_amount);
+				break;
+			} catch(IllegalArgumentException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public int getRefinedAmount() {
-		return this.purchase_amount;
+		return purchase_amount_refined;
 	}
 	
 	private void validate(String purchase_amount) {
@@ -49,45 +57,48 @@ public class Money {
 	
 	private void notEmpty(String purchase_amount) {
 		if(purchase_amount==null||purchase_amount.equals("")) {
-			treatEmpty();
+			//treatEmpty();
+			throw new IllegalArgumentException("[ERROR] 구입금액을 반드시 입력해주세요");
 		}
 	}
 	
-	private void treatEmpty() {
+	/*private void treatEmpty() {
 		try {
 			throw new IllegalArgumentException("[ERROR] 구입금액을 반드시 입력해주세요");
 		} catch(IllegalArgumentException e) {
-			RE_INPUT.purchaseAmount();
+			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	private void naN(String purchase_amount) {
 		try {
-			this.purchase_amount=Integer.parseInt(purchase_amount);
+			purchase_amount_refined=Integer.parseInt(purchase_amount);
 		} catch(NumberFormatException e) {
-			treatNaN();
+			//treatNaN();
+			throw new IllegalArgumentException("[ERROR] 구입금액은 반드시 숫자여야합니다");
 		}
 	}
 	
-	private void treatNaN() {
+	/*private void treatNaN() {
 		try {
 			throw new IllegalArgumentException("[ERROR] 구입금액은 반드시 숫자여야합니다");
 		} catch(IllegalArgumentException e) {
-			RE_INPUT.purchaseAmount();
+			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	private void noChanges() {
-		if(this.purchase_amount%UNIT_AMOUNT!=0) {
-			treatChanges();
+		if(purchase_amount_refined%UNIT_AMOUNT!=0) {
+			//treatChanges();
+			throw new IllegalArgumentException("[ERROR] 거스름돈은 받을 수 없습니다");
 		}
 	}
 	
-	private void treatChanges() {
+	/*private void treatChanges() {
 		try {
 			throw new IllegalArgumentException("[ERROR] 거스름돈은 받을 수 없습니다");
 		} catch(IllegalArgumentException e) {
-			RE_INPUT.purchaseAmount();
+			e.printStackTrace();
 		}
-	}
+	}*/
 }

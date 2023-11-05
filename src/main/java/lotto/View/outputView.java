@@ -10,7 +10,7 @@ public class outputView {
 
     public void displayLottoNumberList(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.print(lotto.getNumbers() + " ");
+            System.out.println(lotto.getNumbers());
         }
         System.out.println();
     }

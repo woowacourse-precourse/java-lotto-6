@@ -1,5 +1,6 @@
 package lotto.config;
 
+import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.BonusLottoNum;
@@ -13,6 +14,10 @@ import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
 
 public class Config {
+    public static LottoHost lottoHost() {
+        return new LottoHost();
+    }
+
     public static Lotto lotto() {
         return new Lotto(RanNumbers.createLottoNumbers());
     }

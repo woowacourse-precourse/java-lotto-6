@@ -4,12 +4,18 @@ import java.util.List;
 
 public class LottoManager {
 
+    private final LottoIssuer lottoIssuer;
     private final WinningDetails winningDetails;
     private final ProfitRateCalculator profitRateCalculator;
 
-    public LottoManager(WinningDetails winningDetails, ProfitRateCalculator profitRateCalculator) {
+    public LottoManager(LottoIssuer lottoIssuer, WinningDetails winningDetails, ProfitRateCalculator profitRateCalculator) {
+        this.lottoIssuer = lottoIssuer;
         this.winningDetails = winningDetails;
         this.profitRateCalculator = profitRateCalculator;
+    }
+
+    public List<Lotto> issueLotto(PurchaseAmount purchaseAmount) {
+        return lottoIssuer.issue(purchaseAmount);
     }
 
     public void addRankToWinningDetails(List<Lotto> lottos, WinningNumbers winningNumbers) {

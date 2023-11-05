@@ -10,6 +10,8 @@ import static lotto.view.message.OutputMessage.WinningStatisticsDetails.THREE_MA
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.Lotto;
+import lotto.dto.LottoNumberDto;
 import lotto.dto.LottoResultDto;
 import lotto.view.message.OutputMessage;
 import lotto.view.message.OutputMessage.WinningStatisticsDetails;
@@ -35,7 +37,14 @@ public class LottoView {
         System.out.printf(formattedMessage.getMessage(), percentage);
     }
 
-    public void displayResult(LottoResultDto resultDto) {
+    public void displayLottoNumber(LottoNumberDto numberDto) {
+        List<Lotto> lottos = numberDto.getLottos();
+        lottos.stream().map(Lotto::getNumbers)
+                .map(numbers -> numbers.stream().sorted().toList())
+                .forEach(System.out::println);
+    }
+
+    public void displayStatistics(LottoResultDto resultDto) {
         displayMessage(WINNING_STATISTICS);
 
         List<Integer> winResults = resultDto.getWinResults();

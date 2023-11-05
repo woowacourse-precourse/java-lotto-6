@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum Rank {
-    THREE(3, 3_000, " "),
+    THREE(3, 5_000, " "),
     FOUR(4, 50_000, " "),
     FIVE(5, 1_500_000, " "),
     BONUS(5, 30_000_000, ", 보너스 볼 일치 "),
@@ -37,6 +37,6 @@ public enum Rank {
     public static String getMsg(Rank rank) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
         String reward = numberFormat.format(rank.reward);
-        return rank.rank + "개 일치" + rank.message+"(" + reward + "원)";
+        return rank.rank + "개 일치" + rank.message + "(" + reward + "원)";
     }
 }

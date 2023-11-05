@@ -10,10 +10,10 @@ public class LottoResult {
         Map<String, Integer> resultsCount = new LinkedHashMap<>(); // 변경된 부분
 
         // 초기 카운트 설정
-        resultsCount.put("3개 번호 일치 (5,000원)", 0);
-        resultsCount.put("4개 번호 일치 (50,000원)", 0);
-        resultsCount.put("5개 번호 일치 (1,500,000원)", 0);
-        resultsCount.put("5개 번호 + 보너스 번호 일치 (30,000,000원)", 0);
+        resultsCount.put("3개 일치 (5,000원)", 0);
+        resultsCount.put("4개 일치 (50,000원)", 0);
+        resultsCount.put("5개 일치 (1,500,000원)", 0);
+        resultsCount.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
         resultsCount.put("6개 일치 (2,000,000,000원)", 0);
 
 
@@ -34,12 +34,12 @@ public class LottoResult {
 
             // 5개 번호 + 보너스 번호 일치
             if (matchCount == 5 && bonusMatch) {
-                resultsCount.put("5개 번호 + 보너스 번호 일치 (30,000,000원)", resultsCount.get("5개 번호 + 보너스 번호 일치 (30,000,000원)") + 1);
+                resultsCount.put("5개 일치, 보너스 볼 일치 (30,000,000원)", resultsCount.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
             }
 
             // 5개 번호 일치
             if (matchCount == 5 && !bonusMatch) {
-                resultsCount.put("5개 번호 일치 (1,500,000원)", resultsCount.get("5개 번호 일치 (1,500,000원)") + 1);
+                resultsCount.put("5개 일치 (1,500,000원)", resultsCount.get("5개 일치 (1,500,000원)") + 1);
             }
 
             // 4개 번호 일치
@@ -49,7 +49,7 @@ public class LottoResult {
 
             // 3개 번호 일치
             if (matchCount == 3) {
-                resultsCount.put("3개 번호 일치 (5,000원)", resultsCount.get("3개 번호 일치 (5,000원)") + 1);
+                resultsCount.put("3개 일치 (5,000원)", resultsCount.get("3개 일치 (5,000원)") + 1);
             }
         }
 

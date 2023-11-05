@@ -5,10 +5,19 @@ import lotto.view.InputView;
 
 public class LottoController {
 
-    public static final int LOTTO_PRICE = 1_000;
-
     public void start() {
-        int purchaseAmount = InputView.enterLottoPurchaseAmount();
-        LottoValidator.validatePurchaseAmount(purchaseAmount);
+        int purchaseAmount = inputLottoPurchaseAmount();
+    }
+
+    private int inputLottoPurchaseAmount() {
+        do {
+            try {
+                int purchaseAmount = InputView.enterLottoPurchaseAmount();
+                LottoValidator.validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException exception) {
+                exception.printStackTrace(System.out);
+            }
+        } while (true);
     }
 }

@@ -9,7 +9,12 @@ public class LottoStore {
     }
 
     private void purchaseLotto() {
-        String inputAmount = InputView.receivePurchaseAmount();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
+        try {
+            String inputAmount = InputView.receivePurchaseAmount();
+            PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            purchaseLotto();
+        }
     }
 }

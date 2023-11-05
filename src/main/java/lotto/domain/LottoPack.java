@@ -2,18 +2,17 @@ package lotto.domain;
 
 import util.NumberGenerator.INumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoPack {
 
     private final List<Lotto> lottoPack;
 
     public LottoPack(int count, INumberGenerator numberGenerator) {
-        lottoPack = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottoPack.add(new Lotto(numberGenerator.generateNumbers()));
-        }
+        lottoPack = IntStream.range(0, count)
+                .mapToObj(i -> new Lotto(numberGenerator.generateNumbers()))
+                .toList();
     }
 
     public int size() {

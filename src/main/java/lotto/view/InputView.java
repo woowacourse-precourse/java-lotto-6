@@ -11,9 +11,7 @@ public class InputView {
 
         while (true) {
             try {
-                System.out.println(InputMessage.REQUEST_PURCHASE_PRICE.getMessage());
-                purchasePrice = Console.readLine();
-                purcharPriceValidator.validate(purchasePrice);
+                purchasePrice = requestPurchasePrice();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -21,5 +19,15 @@ public class InputView {
         }
 
         return Integer.parseInt(purchasePrice);
+    }
+
+    private String requestPurchasePrice() {
+        String purchasePrice = "";
+
+        System.out.println(InputMessage.REQUEST_PURCHASE_PRICE.getMessage());
+        purchasePrice = Console.readLine();
+        purcharPriceValidator.validate(purchasePrice);
+
+        return purchasePrice;
     }
 }

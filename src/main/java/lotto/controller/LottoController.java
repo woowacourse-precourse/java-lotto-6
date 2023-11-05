@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.Lotto;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
@@ -23,7 +24,17 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
+        List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
 
+
+        /*
+            금액에 따른 로또 번호 뽑기!
+
+         */
+
+        /*
+        당첨 번호 입
+         */
 
     }
 
@@ -39,4 +50,15 @@ public class LottoController {
             return inputMoney(inputMoneyService);
         }
     }
+
+    private List<Integer> inputWinNumbers(InputWinnerNumberService inputWinnerNumberService) {
+        try {
+            inputWinnerNumberService.checkRightWinnerNumbers(validator,
+                inputView.inputWinnerNumbers());
+        }catch (IllegalArgumentException e){
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinNumbers(inputWinnerNumberService);
+        }
+    }
+
 }

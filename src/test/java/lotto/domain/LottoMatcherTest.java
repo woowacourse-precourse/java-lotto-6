@@ -149,5 +149,29 @@ public class LottoMatcherTest {
         Assertions.assertThat(correctBonus).isEqualTo(true);
     }
 
+    @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 1개인지 검증한다.")
+    @Test
+    void calculateAllCorrectWinningByUser() {
+        //given
+        List<Lotto> userNumbers = new ArrayList<>();
+        Lotto firstUserNumber = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto secondUserNumber = new Lotto(List.of(1, 2, 3, 4, 7, 13));
+        userNumbers.add(firstUserNumber);
+        userNumbers.add(secondUserNumber);
+
+        Lotto winningNumbers = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        int bonusNumber = 13;
+
+        //when
+        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
+        List<Long> correctWinningsCount = lottoMatcher.getCorrectWinningsCount();
+        List<Boolean> correctBonuses = lottoMatcher.getCorrectBonuses();
+
+        //then
+        Assertions.assertThat(correctWinningsCount.get(0)).isEqualTo(1);
+        Assertions.assertThat(correctWinningsCount.get(1)).isEqualTo(2);
+        Assertions.assertThat(correctBonuses.get(0)).isEqualTo(false);
+        Assertions.assertThat(correctBonuses.get(1)).isEqualTo(true);
+    }
 
 }

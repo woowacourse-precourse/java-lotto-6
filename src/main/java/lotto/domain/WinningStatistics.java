@@ -25,7 +25,7 @@ public class WinningStatistics {
 
     public long showRevenue() {
         Long revenue = Arrays.stream(Rank.values())
-                            .map(rank -> rank.showPrize() * rankCount.getOrDefault(rank, 0))
+                            .map(rank  -> rank.showPrizeCountOf(showCountOf(rank)))
                             .reduce(0L, Long::sum);
         return revenue;
     }

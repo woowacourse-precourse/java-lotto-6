@@ -27,8 +27,8 @@ public enum Rank {
         return rankMatch.apply(count, bonus);
     }
 
-    public long showPrize() {
-        return prize;
+    public long showPrizeCountOf(int count) {
+        return (long) prize*count;
     }
 
 }

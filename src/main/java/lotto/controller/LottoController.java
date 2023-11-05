@@ -25,6 +25,7 @@ public class LottoController {
     public void run() {
         InvestorService investorService = createInvestorService();
         List<Lotto> lottos = investorService.buyLottos();
+
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
 

@@ -2,7 +2,6 @@ package lotto.global.utils.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
 import java.util.List;
 
 public class RandomNumberGenerator implements NumberGenerator {
@@ -12,8 +11,6 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generate() {
-        List<Integer> randomList = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_OF_RANGE, MAX_NUMBER_OF_RANGE, 6);
-        Collections.sort(randomList);
-        return randomList;
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER_OF_RANGE, MAX_NUMBER_OF_RANGE, 7);
     }
 }

@@ -1,9 +1,8 @@
-package lotto.view;
+package lotto.view.output;
 
 import lotto.dto.LottoDto;
 import lotto.model.LottoResult;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

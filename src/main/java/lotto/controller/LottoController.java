@@ -5,8 +5,8 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.NumberGenerator;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.input.InputView;
+import lotto.view.output.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 

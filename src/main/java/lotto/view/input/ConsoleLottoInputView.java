@@ -1,6 +1,8 @@
-package lotto.view;
+package lotto.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import lotto.view.input.LottoInputView;
 
 public class ConsoleLottoInputView implements LottoInputView {
     @Override

@@ -8,10 +8,10 @@ public class InputValidator {
     private static final String NUMBER = "숫자를 입력해주세요.";
     private static final String BLANK = "입력이 공백입니다.";
     private static final String INVALID_PRICE = "1000원 단위의 수를 입력해주세요.";
-    private static final String INVALID_SIZE = "6개의 번호를 입력해주세요.";
+    private static final String INVALID_SIZE = "6개의 당첨 번호를 입력해주세요.";
     private static final String INVALID_RANGE = "1부터 45까지의 번호만 입력해주세요.";
-    private static final String DUPLICATED = "중복된 숫자가 존재합니다.";
-    private static final String INVALID_LOTTO_FORMAT = "숫자와 쉼표를 이용해 입력해주세요.";
+    private static final String DUPLICATED = "당첨 번호에 중복된 숫자가 존재합니다.";
+    private static final String INVALID_LOTTO_FORMAT = "숫자와 쉼표를 이용해 당첨 번호를 입력해주세요.";
     private static final String INVALID_BONUS_NUMBER = "입력한 당첨 번호 중 보너스 번호가 이미 존재합니다.";
 
     private static final int LOTTO_PRICE = 1000;
@@ -28,10 +28,11 @@ public class InputValidator {
         checkPriceFormat(input);
     }
 
-    public static void checkLotto(List<Integer> input) {
+    public static void checkLotto(List<Integer> input, String inputNumbers) {
         checkLottoSizeIsSix(input);
         checkLottoIsInRange(input);
         checkLottoNumberIsDuplicated(input);
+        checkLottoNumberFormat(inputNumbers);
     }
 
     public static void checkBonusNumber(List<Integer> lotto, String bonusNumber) {
@@ -90,7 +91,7 @@ public class InputValidator {
         }
     }
 
-    public static void checkLottoNumberFormat(String input) {
+    private static void checkLottoNumberFormat(String input) {
         if (!LOTTO_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ERROR + INVALID_LOTTO_FORMAT);
         }

@@ -30,4 +30,8 @@ public class GameEngine {
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
+
+    public int getLottoSize() {
+        return lottos.size();
+    }
 }

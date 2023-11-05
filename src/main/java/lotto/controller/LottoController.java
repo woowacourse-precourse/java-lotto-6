@@ -1,12 +1,16 @@
 package lotto.controller;
 
+import lotto.domain.LottoIntermediary;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
 public class LottoController {
 
+    private final LottoIntermediary intermediary = new LottoIntermediary();
+
     public void start() {
         int purchaseAmount = inputLottoPurchaseAmount();
+        intermediary.buyLottos(purchaseAmount);
     }
 
     private int inputLottoPurchaseAmount() {

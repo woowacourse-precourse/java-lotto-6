@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.DomainError.*;
+
 public class BonusNumber {
 
     private int number;
@@ -11,7 +13,7 @@ public class BonusNumber {
 
     private void validateDuplicateNumber(int number, Lotto lotto) {
         if (lotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(BONUS_DUPLICATE_ERROR.getMessage());
         }
     }
 }

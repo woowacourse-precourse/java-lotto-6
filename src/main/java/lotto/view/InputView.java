@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.view.Error.*;
+import static lotto.view.ViewError.*;
 import static lotto.view.Message.*;
 import static lotto.view.InputStandard.*;
 
@@ -23,7 +23,7 @@ public class InputView {
 
     private static void validatePurchaseAmounts(String userInput) {
         if (!userInput.matches(STANDARD_NUMBER.getStandard())) {
-            throw new IllegalArgumentException(VALIDATE_PURCHASE_AMOUNTS.getError());
+            throw new IllegalArgumentException(VALIDATE_PURCHASE_AMOUNTS.getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ public class InputView {
 
     private static void validateLottoNumbers(String userInput) {
         if (!userInput.matches(STANDARD_NUMBER.getStandard())) {
-            throw new IllegalArgumentException(VALIDATE_LOTTO_NUMBERS.getError());
+            throw new IllegalArgumentException(VALIDATE_LOTTO_NUMBERS.getMessage());
         }
     }
 
@@ -67,7 +67,7 @@ public class InputView {
 
     private static void validateBonusNumber(String userInput) {
         if (!userInput.matches(STANDARD_NUMBER.getStandard())) {
-            throw new IllegalArgumentException(VALIDATE_BONUS_NUMBER.getError());
+            throw new IllegalArgumentException(VALIDATE_BONUS_NUMBER.getMessage());
         }
     }
 }

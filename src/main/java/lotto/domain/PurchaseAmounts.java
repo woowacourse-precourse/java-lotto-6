@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.DomainError.*;
+
 public class PurchaseAmounts {
     private final int LOTTO_PRICE = 1000;
 
@@ -12,7 +14,7 @@ public class PurchaseAmounts {
 
     private void validatePurchaseAmounts(int price) {
         if (price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 장당 1000원 입니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(PRICE_ERROR.getMessage());
         }
     }
 }

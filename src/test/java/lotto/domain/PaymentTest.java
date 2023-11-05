@@ -13,8 +13,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentTest {
-    private final String INVALID_PAYMENT_RANGE = "[ERROR] 구입금액은 로또 개당 가격 이상이어야 합니다.";
-    private final String INVALID_PAYMENT_FORM = "[ERROR] 구입금액은 로또 개당 가격으로 나누어 떨어져야 합니다.";
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 999})
@@ -24,7 +22,7 @@ class PaymentTest {
 
         assertThatThrownBy(() -> new Payment(pay))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_PAYMENT_RANGE);
+                .hasMessage("[ERROR] 구입금액은 로또 개당 가격 이상이어야 합니다.");
     }
 
     @ParameterizedTest
@@ -35,7 +33,7 @@ class PaymentTest {
 
         assertThatThrownBy(() -> new Payment(pay))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_PAYMENT_FORM);
+                .hasMessage("[ERROR] 구입금액은 로또 개당 가격으로 나누어 떨어져야 합니다.");
     }
 
     @ParameterizedTest

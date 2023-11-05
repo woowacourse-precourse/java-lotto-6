@@ -22,18 +22,7 @@
 - [ ] 당첨 통계
 - [ ] 수익률
 
-## 3. 패키지 구분 
-   - [ ] main
-     - [ ] lottoController
-     - [ ] domain
-     - [ ] service
-     - [x] view 
-     - [x] Application
-     - [x] Lotto
-   - [ ] test
-     - [ ] LottoApplicationTest
-
-## 4. 기능 구현 순서
+## 3. 기능 구현 순서
 
 - [x] user input 구현 (view - InputView) (OutputEnum - 출력 문구 저장)
   - [x] 구입금액 입력

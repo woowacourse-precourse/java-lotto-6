@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,5 +26,9 @@ public class Convert {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BLANK_OR_NON_INTEGER_INPUT_ERROR_MESSAGE);
         }
+    }
+
+    public static String formatDoubleWithCommaAndRound(double totalYield) {
+        return new DecimalFormat("#,###.#").format(totalYield);
     }
 }

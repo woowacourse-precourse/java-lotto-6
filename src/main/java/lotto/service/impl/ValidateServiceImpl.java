@@ -8,20 +8,20 @@ import lotto.exception.WrongTypeFormatException;
 import lotto.service.ValidateService;
 
 public class ValidateServiceImpl implements ValidateService {
-    private static void checkBlankInput(String input) {
+    private void checkBlankInput(String input) {
         if (input.equals("")) {
             throw new WrongBlankException();
         }
     }
 
-    private static void checkCorrectCommas(String input, List<String> inputStream) {
+    private void checkCorrectCommas(String input, List<String> inputStream) {
         long count = countCommas(input);
         if (count != 5 || inputStream.size() != 6) {
             throw new WrongCommasFormatException();
         }
     }
 
-    private static long countCommas(String input) {
+    private long countCommas(String input) {
         return input.chars().filter(ch -> ch == ',').count();
     }
 

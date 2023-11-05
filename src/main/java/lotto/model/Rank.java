@@ -9,7 +9,7 @@ public enum Rank {
     FifthPlace(3, false, 5000);
 
     final int matchingCount;
-    final boolean isBonusNumberMatch;
+    final boolean isBonusNumberMatch; // SecondPlace와 ThirdPlace를 구별하기 위한 변수로, 다른 멤버에게는 의미가 없다.
     final int winningAmount;
 
     Rank(int matchingCount, boolean isBonusNumberMatch, int winningAmount) {

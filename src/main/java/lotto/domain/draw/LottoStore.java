@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.lotto.Money;
+import lotto.domain.money.Money;
 
-public class DrawingMachine {
+public class LottoStore {
     private final NumbersGenerator numbersGenerator;
 
-    public DrawingMachine(NumbersGenerator numbersGenerator) {
+    public LottoStore(NumbersGenerator numbersGenerator) {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public Lottos drawLottoTickets(Money currentMoney) {
+    public Lottos sellLottoTickets(Money currentMoney) {
         Money remainingMoney = currentMoney;
         if (remainingMoney.isNotEnough()) {
             throw new IllegalArgumentException("로또를 더 이상 발행할 수 없습니다.");

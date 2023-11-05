@@ -11,7 +11,8 @@ public enum ErrorMessage {
     INVALID_LENGTH_WINNING_NUMBER(WINNING_NUMBER_LENGTH + "자리의 당첨 번호를 입력해 주세요."),
     INVALID_RANGE_WINNING_NUMBER(MINIMUM_WINNING_NUMBER + "에서 " + MAXIMUM_WINNING_NUMBER + "사이의 당첨 번호를 입력해 주세요."),
     DUPLICATE_WINNING_NUMBER("당첨 번호는 중복될 수 없습니다."),
-    NON_INTEGER_BONUS_NUMBER("올바른 숫자의 보너스 번호를 입력해 주세요.");
+    NON_INTEGER_BONUS_NUMBER("올바른 숫자의 보너스 번호를 입력해 주세요."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
 
     public static final String ERROR = "[ERROR] %s";

@@ -15,4 +15,12 @@ class RankTest {
 
         assertThat(money).isEqualTo(2_000_000_000.0);
     }
+
+    @DisplayName("주어진 번호 갯수에 따라 상응하는 등수를 반환한다.")
+    @Test
+    void getRankByWinningNumber() {
+        Rank result = Rank.resultRank(6);
+
+        assertThat(result).isEqualTo(Rank.FIRST);
+    }
 }

@@ -30,14 +30,14 @@ public class Lotto {
     }
 
     private int getSameCount(Lotto other, int i) {
-        if (numbers.contains(other.numbers.get(i))) {
+        if (isContains(other, i)) {
             return 1;
         }
         return 0;
     }
 
-    private boolean isSameNumber(Lotto other, int i) {
-        return numbers.get(i) == other.numbers.get(i);
+    private boolean isContains(Lotto other, int i) {
+        return numbers.contains(other.numbers.get(i));
     }
 
     private void validate(List<Integer> numbers) {

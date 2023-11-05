@@ -23,6 +23,10 @@ public class Lotto {
         return sameCount;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private int getSameCount(Lotto other, int i, int sameCount) {
         if (isSameNumber(other, i)) {
             return sameCount + 1;

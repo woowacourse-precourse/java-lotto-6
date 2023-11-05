@@ -19,4 +19,12 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public Integer getNumberIndex(int index){
+        return numbers.get(index);
+    }
+
+    public void setNumberIndex(int index,int value){
+        this.numbers.set(index,value);
+    }
 }

@@ -39,13 +39,13 @@ public class LottoGenerator {
         return Integer.parseInt(userInput);
     }
 
-    public static Lotto createWinningLotto(String userInput) {
+    public static Lotto createWinningLotto(List<Integer> lotto) {
         boolean isRunning = true;
         Lotto winningLotto = null;
 
         while (isRunning) {
             try {
-                winningLotto = new Lotto(Input.parseNumbers(Input.split(userInput)));
+                winningLotto = new Lotto(lotto);
                 isRunning = false;
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);

@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import lotto.utils.Casher;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -261,7 +262,9 @@ class ApplicationTest extends NsTest {
     void 예외_테스트_가격_1000원_미만() {
         assertSimpleTest(() -> {
             runException("900");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output())
+                    .contains(ERROR_MESSAGE)
+                    .contains(Casher.NOT_ENOUGH_PRICE);
         });
     }
 

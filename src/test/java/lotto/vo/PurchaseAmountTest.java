@@ -25,14 +25,21 @@ class PurchaseAmountTest {
         assertEquals(result, amount);
     }
 
-    @DisplayName("유효하지 않은 값으로 PurchaseAmount를 생성할 경우 예외가 발생한다.")
+    @DisplayName("로또 최소금액보다 작은 금액으로 PurchaseAmount를 생성할 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1001, 10500, 900})
-    public void testInvalidPurchaseAmount(Integer invalidAmount) {
+    @ValueSource(ints = {0, 500})
+    public void invalid_purchaseAmount_less_than_lotto_price_test(Integer invalidAmount) {
         // then
         assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(invalidAmount));
     }
 
+    @DisplayName("로또 하나의 금액으로 나누어 떨어지지 않는 금액으로 PurchaseAmount를 생성할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1001, 1050, 1150})
+    public void invalid_purchaseAmount_has_change_test(Integer invalidAmount) {
+        // then
+        assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(invalidAmount));
+    }
 
     @DisplayName("두 PurchaseAmount의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test

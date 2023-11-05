@@ -22,10 +22,10 @@ class BonusNumberTest {
         assertDoesNotThrow(() -> new BonusNumber(validNumber));
     }
 
-    @DisplayName("유효하지 않은 값으로 BonusNumber를 생성할 경우 예외가 발생한다.")
+    @DisplayName("로또 번호 범위가 아닌 번호로 BonusNumber를 생성할 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 50})
-    public void testInvalidBonusNumber(Integer invalidNumber) {
+    @ValueSource(ints = {0, 46})
+    public void invalid_number_not_between_lotto_number_test(Integer invalidNumber) {
         // then
         assertThrows(IllegalArgumentException.class, () -> new BonusNumber(invalidNumber));
     }

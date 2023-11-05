@@ -1,33 +1,35 @@
 package lotto.domain;
 
+import lotto.util.Constants;
+
 public class CostValidator {
-    private static String COSTSTRING;
-    private static int COST;
-    public static int LottoNum;
+    private static String costInput;
+    private static int cost;
+    public static int lottoCount;
     public CostValidator(String coststring) {
         while(true){
             try{
-                this.COSTSTRING = coststring;
-                this.COST = Integer.parseInt(coststring);
-                isRightNum(COST);
-                isRightLotto(COST);
+                this.costInput = coststring;
+                this.cost = Integer.parseInt(coststring);
+                isRightNum(cost);
+                isRightLotto(cost);
                 setLottoNum();
             }catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("숫자를 입력해 주십시오");
+                throw new IllegalArgumentException(Constants.NUM_IS_INT);
             }
         }
     }
     public void isRightNum(int cost){
         if(cost<=0){
-            throw new IllegalArgumentException("음수가 아닌 양수를 입력해 주십시오");
+            throw new IllegalArgumentException(Constants.COST_WRONG_ERROR);
         }
     }
     public void isRightLotto(int cost){
         if(cost%1000!=0){
-            throw new IllegalArgumentException("1000원 단위의 입력만 가능합니다.");
+            throw new IllegalArgumentException(Constants.COST_ERROR);
         }
     }
     public void setLottoNum(){
-        this.LottoNum = COST%1000;
+        this.lottoCount = cost%1000;
     }
 }

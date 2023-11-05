@@ -19,17 +19,17 @@ public class InputController {
     public int setCost(){
         try{
             new CostValidator(input.inputCost());
-            return CostValidator.LottoNum;
+            return CostValidator.lottoCount;
         }catch (IllegalArgumentException  e){
             throw new IllegalArgumentException();
         }
     }
     public Lotto setLottoNum(){
         new LottoNumValidator(input.inputLottoNum());
-        return new Lotto(LottoNumValidator.LOTTONUMS);
+        return new Lotto(LottoNumValidator.lottoNums);
     }
     public int setBonusNum(){
         new BonusNumValidator(input.inputLottoBonusNum());
-        return BonusNumValidator.BONUS;
+        return BonusNumValidator.bonusNum;
     }
 }

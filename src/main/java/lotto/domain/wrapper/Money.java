@@ -1,5 +1,6 @@
 package lotto.domain.wrapper;
 
+import static lotto.handler.ConstantsHandler.*;
 import static lotto.handler.ErrorHandler.*;
 
 public class Money {
@@ -25,13 +26,13 @@ public class Money {
     }
 
     private void validateMoney(int purchaseAmount) {
-        if (purchaseAmount <= 0) {
+        if (purchaseAmount <= MIN_PURCHASE_AMOUNT) {
             throw INVALID_NEGATIVE_INPUT.getException();
         }
     }
 
     private void validateDivision(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % UNIT_OF_AMOUNT != REMAINDER) {
             throw INVALID_DIVISION.getException();
         }
     }

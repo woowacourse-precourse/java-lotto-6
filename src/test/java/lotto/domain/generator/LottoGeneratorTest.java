@@ -1,21 +1,23 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class LottoMakerTest {
-    LottoMaker lottoMaker;
+class LottoGeneratorTest {
+    LottoGenerator lottoGenerator;
 
     @BeforeEach
     void setUp() {
-        lottoMaker = new LottoMaker();
+        lottoGenerator = new LottoGenerator();
     }
 
     @DisplayName("올바르지 않은 당첨 번호에 대한 예외 처리 확인")
@@ -28,7 +30,7 @@ class LottoMakerTest {
     ) {
         // 보너스 번호는 예외를 발생시키지 않는 값으로 설정
         int bonusNumber = 45;
-        assertThatThrownBy(() -> lottoMaker.createWinningLottoFromInput(input, bonusNumber))
+        assertThatThrownBy(() -> lottoGenerator.createWinningLottoFromInput(input, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedErrorMessage);
 
@@ -44,7 +46,7 @@ class LottoMakerTest {
     ) {
         // 당첨 번호는 예외를 발생시키지 않는 값으로 설정
         String winningNumber = "1,2,3,4,5,6";
-        assertThatThrownBy(() -> lottoMaker.createWinningLottoFromInput(winningNumber, input))
+        assertThatThrownBy(() -> lottoGenerator.createWinningLottoFromInput(winningNumber, input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedErrorMessage);
     }
@@ -57,7 +59,7 @@ class LottoMakerTest {
             Money price,
             String expectedErrorMessage
     ) {
-        assertThatThrownBy(() -> lottoMaker.createLottoByPrice(price))
+        assertThatThrownBy(() -> lottoGenerator.createLottoByPrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedErrorMessage);
     }

@@ -4,9 +4,9 @@ import static lotto.constant.Constant.ONE_LOTTO_PRICE;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMaker;
+import lotto.domain.generator.LottoGenerator;
 import lotto.domain.LottoResult;
-import lotto.domain.Money;
+import lotto.domain.money.Money;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
@@ -15,14 +15,14 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LottoMaker lottoMaker;
+    private final LottoGenerator lottoGenerator;
 
     public LottoController() {
-        this(new LottoMaker());
+        this(new LottoGenerator());
     }
 
-    public LottoController(LottoMaker lottoMaker) {
-        this.lottoMaker = lottoMaker;
+    public LottoController(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void play() {
@@ -47,7 +47,7 @@ public class LottoController {
 
     private UserLotto receiveUserLottos() {
         Money purchaseAmount = receivePurchaseAmount();
-        List<Lotto> userLottoNumbers = lottoMaker.createLottoByPrice(purchaseAmount);
+        List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
 
         return new UserLotto(userLottoNumbers);
     }
@@ -71,7 +71,7 @@ public class LottoController {
         int bonusNumber = receiveBonusNumber(winningNumbers);
         outputView.printNewLine();
 
-        return lottoMaker.createWinningLottoFromInput(winningNumbers, bonusNumber);
+        return lottoGenerator.createWinningLottoFromInput(winningNumbers, bonusNumber);
     }
 
     private String receiveWinningNumber() {

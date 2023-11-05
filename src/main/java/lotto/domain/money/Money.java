@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.money;
 
 import java.text.DecimalFormat;
 import lotto.constant.Constant;

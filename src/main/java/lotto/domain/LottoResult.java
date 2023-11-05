@@ -5,6 +5,7 @@ import static lotto.constant.Constant.NEW_LINE;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.money.Money;
 
 public record LottoResult(Map<LottoPrizes, Long> result) {
     private static final String LEFT_PARENTHESIS = "(";

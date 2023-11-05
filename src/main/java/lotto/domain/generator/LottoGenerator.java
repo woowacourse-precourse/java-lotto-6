@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import static lotto.constant.Constant.COMMA;
 import static lotto.constant.Constant.MAX_RANGE;
@@ -7,35 +7,38 @@ import static lotto.constant.Constant.NUMBERS_FORMAT_REGEX;
 import static lotto.constant.Constant.ONE_LOTTO_PRICE;
 import static lotto.constant.Constant.SIX;
 import static lotto.constant.Constant.ZERO;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NEGATIVE_COUNT;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_SIX_NUMBERS;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.NOT_THOUSAND_UNIT;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.OVER_RANGE;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.UNDER_THOUSAND_AMOUNT;
-import static lotto.domain.LottoMaker.LottoMakerErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NEGATIVE_COUNT;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_SIX_NUMBERS;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_THOUSAND_UNIT;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.OVER_RANGE;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.UNDER_THOUSAND_AMOUNT;
+import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.LongStream;
+import lotto.domain.Lotto;
+import lotto.domain.money.Money;
+import lotto.domain.WinningLotto;
 
-public class LottoMaker {
+public class LottoGenerator {
     private static final long START_ORDER = 1L;
-    private final LottoNumberMaker lottoNumberMaker;
+    private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoMaker() {
-        this(new LottoNumberMaker());
+    public LottoGenerator() {
+        this(new LottoNumberGenerator());
     }
 
-    public LottoMaker(LottoNumberMaker lottoNumberMaker) {
-        this.lottoNumberMaker = lottoNumberMaker;
+    public LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public WinningLotto createWinningLottoFromInput(String numbers, int bonusNumber) {
         validateNumbers(numbers);
         validateBonusNumber(numbers, bonusNumber);
-        return new WinningLotto(lottoNumberMaker.createByInput(numbers), bonusNumber);
+        return new WinningLotto(lottoNumberGenerator.createByInput(numbers), bonusNumber);
     }
 
     private void validateNumbers(String numbers) {
@@ -75,7 +78,7 @@ public class LottoMaker {
 
 
     private Lotto createOneLotto() {
-        List<Integer> lottoNumbers = lottoNumberMaker.createLottoNumbers();
+        List<Integer> lottoNumbers = lottoNumberGenerator.createLottoNumbers();
         return new Lotto(lottoNumbers);
     }
 

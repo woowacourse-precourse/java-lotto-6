@@ -4,6 +4,7 @@ import static lotto.constant.Constant.ZERO;
 
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.domain.money.Money;
 
 public enum LottoPrizes {
     THREE_NUMBERS_MATCHED("3개 일치", new Money(5_000L)),

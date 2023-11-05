@@ -12,8 +12,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMaker;
-import lotto.domain.Money;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.money.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -73,8 +73,8 @@ class LottoControllerTest extends NsTest {
         System.setOut(new PrintStream(out));
 
         // 유저의 로또 번호 임의 설정
-        LottoMaker lottoMaker = spy(new LottoMaker());
-        when(lottoMaker.createLottoByPrice(new Money(5000)))
+        LottoGenerator lottoGenerator = spy(new LottoGenerator());
+        when(lottoGenerator.createLottoByPrice(new Money(5000)))
                 .thenReturn(List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 3, 4, 5, 6, 7)),
@@ -84,7 +84,7 @@ class LottoControllerTest extends NsTest {
                         )
                 );
 
-        LottoController lottoController = new LottoController(lottoMaker);
+        LottoController lottoController = new LottoController(lottoGenerator);
         lottoController.play();
 
         assertThat(out.toString()).contains(

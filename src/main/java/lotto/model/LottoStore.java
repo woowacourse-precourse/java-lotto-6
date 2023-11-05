@@ -7,6 +7,7 @@ import java.util.List;
 public class LottoStore {
 
     private static final Integer LOTTO_PRICE = 1000;
+    private static final int ZERO_COUNT_VALUE = 0;
 
     private LottoStore() {
     }
@@ -26,8 +27,9 @@ public class LottoStore {
 
     private List<Lotto> createLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < quantity; i++) {
+        while (quantity > ZERO_COUNT_VALUE) {
             lottos.add(createLotto());
+            quantity--;
         }
         return lottos;
     }

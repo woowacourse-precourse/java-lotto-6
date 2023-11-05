@@ -13,7 +13,9 @@ import lotto.view.InputValue;
 import lotto.view.OutputMessage;
 
 public class LottoController {
-    private List<Integer> winningNumbers;
+    private List<List<Integer>> prize;
+    private List<Integer> lotto;
+    private int bonus;
 
     public void startLotto() {
         int purchaseAmount = getInputPurchase();
@@ -21,10 +23,9 @@ public class LottoController {
         System.out.printf("%n%d%s%n", purchaseAmount / 1000, OutputMessage.PURCHASE.getMessage());
         LottoNumberPrinter.generateAndPrintLottoNumbers(purchaseAmount); // 비교를 위해서 어딘가에 담아두는 식으로 리팩토링 필요할듯
         // 요기까지
-        List<Integer> winningNumbers = getInputLotto();
-        int bonusNumber = getInputBonus();
-        validateDuplicate(winningNumbers, bonusNumber);
-        // 여기까지가 유효성 검증, 이제 통계내야 함
+        prize = LottoNumberPrinter.getPrizeList();
+        lotto = getInputLotto();
+        bonus = getInputBonus();
     }
 
     // 구입 금액 입력
@@ -40,16 +41,6 @@ public class LottoController {
             }
         }
     }
-
-//    private void generateAndPrintLottoNumbers(int purchaseAmount) {
-//        LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
-//        int numberOfTickets = purchaseAmount / 1000;
-//
-//        for (int i = 0; i < numberOfTickets; i++) {
-//            System.out.println(numberGenerator.generateNumbers());
-//        }
-//        System.out.println();
-//    }
 
     // 당첨 번호 입력
     private List<Integer> getInputLotto() {
@@ -68,26 +59,38 @@ public class LottoController {
 
     // 보너스 번호 입력
     private int getInputBonus() {
-        while(true) {
+        int inputNumber;
+        while (true) {
             try {
                 String input = InputValue.inputBonusNumber();
-                int bonusNumber = NumberTypeChanger.changeNumberType(input);
-                Bonus bonus = new Bonus(bonusNumber);
-                return bonus.getNumber();
+                inputNumber = NumberTypeChanger.changeNumberType(input);
+                if (isValidBonusNumber(inputNumber)) {
+                    break;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return inputNumber;
     }
 
-    // 당첨 번호 입력값들이랑 중복되지 않았는지
-    private int validateDuplicate(List<Integer> numbers, int number) {
-        while (LottoBonusComparer.compare(numbers, number)) {
+    private boolean isValidBonusNumber(int inputNumber) {
+        if (LottoBonusComparer.compare(lotto, inputNumber)) {
             System.out.println(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
-            int input = getInputBonus(); // 재입력 받음
-            number = input;
+            return false;
         }
-        return number;
+        return true;
     }
+
+
+    // 당첨 번호 입력값들이랑 중복되지 않았는지
+//    private int validateDuplicate(List<Integer> numbers, int number) {
+//        while (LottoBonusComparer.compare(numbers, number)) {
+//            System.out.println(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
+//            int input = getInputBonus(); // 재입력 받음
+//            number = input;
+//        }
+//        return number;
+//    }
 
 }

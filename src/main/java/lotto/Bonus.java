@@ -15,7 +15,7 @@ public class Bonus {
     }
 
     private void validate(int number, List<Integer> numbers) {
-        validateAllRange(number);
+        validateAllRange(number, MIN_NUMBER, MAX_NUMBER);
         validateNoDuplicates(number, numbers);
     }
 }

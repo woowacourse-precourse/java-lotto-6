@@ -20,10 +20,8 @@ public class WinningDetails {
 
     public long getTotalReward() {
         long totalReward = 0;
-        for (int matchCount : details.values()) {
-            for (Rank rank : Rank.values()) {
-                totalReward += rank.getReward() * matchCount;
-            }
+        for (Rank rank : details.keySet()) {
+            totalReward += rank.getReward() * details.get(rank);
         }
         return totalReward;
     }

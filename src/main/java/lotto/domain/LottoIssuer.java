@@ -12,10 +12,11 @@ public class LottoIssuer {
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
     public List<Lotto> issue(PurchaseAmount purchaseAmount) {
+        int lottoCount = purchaseAmount.getAmount() / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
-        do {
+        for (int i = 0; i < lottoCount; i++) {
             lottos.add(getLotto());
-        } while (purchaseAmount.decrease(LOTTO_PRICE) > 0);
+        }
         return List.copyOf(lottos);
     }
 

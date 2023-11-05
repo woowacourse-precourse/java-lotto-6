@@ -1,4 +1,4 @@
-package lotto;
+package lotto.variables;
 
 public enum ErrorMessages {
     LOTTO_NUM_ERROR("[ERROR] 당첨 번호는 1과 45 사이 정수여야 합니다."),

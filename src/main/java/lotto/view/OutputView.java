@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Payment;
+import lotto.dto.LottoNumbersDto;
 
 public class OutputView {
 
@@ -20,6 +21,12 @@ public class OutputView {
 
     private static String addLineSeparator(final String errorMessage) {
         return String.join("", System.lineSeparator(), errorMessage);
+    }
+
+    public static void printIssuedLottosNumbers(final LottoNumbersDto lottoNumbersDto) {
+        System.out.println();
+        lottoNumbersDto.getLottosNumbers()
+                .forEach(System.out::println);
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 import lotto.domain.strategy.IssuableStrategy;
+import lotto.dto.LottoNumbersDto;
 
 public class Lottos {
 
@@ -50,6 +51,16 @@ public class Lottos {
 
     private long calculateReward(final Rank rank, final int count) {
         return rank.totalReward(rank, count);
+    }
+
+    public LottoNumbersDto getLottoNumbersDto() {
+        return new LottoNumbersDto(convertToNumbersList());
+    }
+
+    private List<List<Integer>> convertToNumbersList() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
     }
 
 }

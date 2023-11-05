@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -63,6 +64,10 @@ public class Lotto {
 
     public boolean hasNumber(final int number) {
         return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

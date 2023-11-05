@@ -24,16 +24,28 @@ public class Application {
         for (int i = 0; i < purchaseCount; i++) {
             lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
+        //TODO : lottoList에 저장되는 번호들을 오름차순 정렬하기
 
         for (int i = 0; i < lottoList.size(); i++) {
             System.out.println(lottoList.get(i).toString());
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winNumbers = Console.readLine();
+        String winNumbersInput = Console.readLine();
+
+        String[] winNumbersInputSplit = winNumbersInput.split(",");
+
+        //TODO : 당첨번호가 형식에 맞는지 검증
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
+
+        //TODO : 보너스번호가 형식에 맞는지 검증
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        //TODO: 당첨 내역 출력
+
     }
 
 }

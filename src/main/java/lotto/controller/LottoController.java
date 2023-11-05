@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.collections.LottoBundle;
 import lotto.model.collections.LottoPurchaseAmount;
 import lotto.model.collections.LottoTicketCount;
 import lotto.service.LottoTicketService;
@@ -18,5 +19,7 @@ public class LottoController {
         LottoPurchaseAmount purchaseAmount = lottoTicketService.parsePurchaseAmount(InputView.read());
         LottoTicketCount ticketCount = lottoTicketService.convertMoneyToTickets(purchaseAmount);
         OutputView.printTicketCountMessage(ticketCount.getCount());
+        LottoBundle lottoBundle = lottoTicketService.generateLottoBundle(ticketCount.getCount());
+        OutputView.printLottoBundle(lottoBundle);
     }
 }

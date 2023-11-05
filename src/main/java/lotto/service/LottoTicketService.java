@@ -36,8 +36,8 @@ public class LottoTicketService {
         return new Lotto(lottoNumbers);
     }
 
-    public LottoBundle generateLottoBundle(LottoTicketCount ticketCount){
-        List<Lotto> lottoBundle = IntStream.range(0, ticketCount.getCount())
+    public LottoBundle generateLottoBundle(int ticketCount){
+        List<Lotto> lottoBundle = IntStream.range(0, ticketCount)
                 .mapToObj(countIndex->generateLottoNumbers())
                 .toList();
         return new LottoBundle(lottoBundle);

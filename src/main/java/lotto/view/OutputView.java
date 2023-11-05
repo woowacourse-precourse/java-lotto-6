@@ -1,5 +1,12 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+import lotto.model.collections.LottoBundle;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static lotto.view.Message.*;
 
 public class OutputView {
@@ -10,6 +17,18 @@ public class OutputView {
         printMessage();
         printMessage(TICKET_COUNT_MESSAGE.formatMessage(ticketCount));
     }
+    public static void printLottoBundle(LottoBundle lottoBundle){
+        for(Lotto lotto: lottoBundle.getLottoBundle()){
+            printMessage(formatLottoNumbers(lotto.getNumbers()));
+        }
+    }
+
+    private static String formatLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ","[","]"));
+    }
+
     public static void printWinningNumbersMessage(){
         printMessage(WINNING_NUMBERS_MESSAGE.getMessage());
     }

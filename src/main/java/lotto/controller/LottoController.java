@@ -11,6 +11,7 @@ import lotto.domain.winning.LottoWinningNumbers;
 import lotto.exception.InvalidNumberFormatException;
 import lotto.exception.LottoException;
 import lotto.exception.MarketException;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.vo.BonusNumber;
@@ -71,7 +72,7 @@ public class LottoController {
 
     private int getUserPurchaseAmount() {
         String userPurchaseAmount = inputView.inputPurchaseAmount();
-        validateNumeric(userPurchaseAmount);
+        Validator.validateNumeric(userPurchaseAmount);
         return Integer.parseInt(userPurchaseAmount);
     }
 
@@ -96,7 +97,7 @@ public class LottoController {
 
     private Lotto getLottoWinningNumbers() throws LottoException {
         String input = inputView.inputWinningNumbers();
-        validateLottoNumbers(input);
+        Validator.validatedWinningNumbersFormat(input);
         List<String> splitLottoNumbers = List.of(input.split(","));
 
         LottoManualGenerator lottoManualGenerator = new LottoManualGenerator();
@@ -118,7 +119,7 @@ public class LottoController {
 
     private BonusNumber getBonusNumber() throws InvalidNumberFormatException, LottoException {
         String input = inputView.inputBonusNumber();
-        validateNumeric(input);
+        Validator.validateNumeric(input);
         return new BonusNumber(Integer.parseInt(input));
     }
 
@@ -130,20 +131,5 @@ public class LottoController {
     private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         outputView.responseWinningStatisticsHeader();
         outputView.responseWinningStatisticsBody(winningRankingCountMap);
-    }
-    
-    private void validateNumeric(String input) throws InvalidNumberFormatException {
-        try {
-            Integer.valueOf(input);
-        } catch (NumberFormatException e) {
-            throw new InvalidNumberFormatException(InvalidNumberFormatException.ErrorMessage.NUMBER.getMessage());
-        }
-    }
-
-    private static void validateLottoNumbers(String lottoNumbers) throws LottoException {
-        String regex = "^\\d{1,2}(,\\d{1,2}){5}$";
-        if (!lottoNumbers.matches(regex)) {
-            throw new LottoException(LottoException.ErrorMessage.INVALID_NUMBERS.getMessage());
-        }
     }
 }

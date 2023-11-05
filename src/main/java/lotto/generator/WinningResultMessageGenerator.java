@@ -1,5 +1,7 @@
 package lotto.generator;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +18,8 @@ public class WinningResultMessageGenerator {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",
             "6개 일치 (2,000,000,000원) - %d개\n"
     );
-    private static final String PROFIT_RATIO_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###.0");
+    private static final String PROFIT_RATIO_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String MESSAGE_SUMMING_FORMAT = "%s%s";
 
     private WinningResultMessageGenerator() {
@@ -38,7 +41,7 @@ public class WinningResultMessageGenerator {
 
     private static String createProfitRatioMessage(final WinningResults winningResults) {
         double profitRatio = winningResults.calculateProfitRatio();
-        return String.format(PROFIT_RATIO_FORMAT, profitRatio);
+        return String.format(PROFIT_RATIO_FORMAT, DECIMAL_FORMAT.format(profitRatio));
     }
 
     private static String createWinningCountMessage(final List<Integer> winningCounts) {

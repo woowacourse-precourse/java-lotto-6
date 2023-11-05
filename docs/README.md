@@ -8,7 +8,7 @@
   - [x] 로또 번호의 숫자 범위는 1~45 까지이다.
   - [x] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. -Random#makeNumber()
 - [x] 발급 횟수만큼 동작한다. -IssuingMachine#operate()
--[] 사용자에게 로또를 발행한다. -IssuingMachine#issueLotto()
+-[x] 사용자에게 로또를 발행한다. -IssuingMachine#issueLotto()
 - [] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
 - [] 비교한 값에 따라 당첨 내역을 저장한다.
   - [] 당첨은 1등부터 5등까지 있다.

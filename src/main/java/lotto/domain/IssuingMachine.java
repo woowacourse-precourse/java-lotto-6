@@ -37,7 +37,7 @@ public class IssuingMachine {
     }
 
     public List<Lotto> issueLotto() {
-        return null;
+        return lottos;
     }
 
     public void validateMoney() {

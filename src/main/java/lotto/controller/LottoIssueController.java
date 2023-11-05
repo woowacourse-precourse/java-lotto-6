@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoIssueService;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
@@ -11,6 +13,7 @@ public class LottoIssueController {
     private final LottoIssueService issueService;
     private final InputView input;
     private final OutputView output;
+
     public LottoIssueController() {
         this.issueService = new LottoIssueService();
         this.input = new InputView();
@@ -18,34 +21,35 @@ public class LottoIssueController {
     }
 
     public List<Lotto> issueLottos() {
-        int validCount = getValidCount();
-        return issueService.issueLottos(validCount);
-    }
-
-    private int getValidCount() {
-        int validMoney = 0;
-        while (validMoney == 0) {
+        List<Lotto> lottos = null;
+        while (lottos == null) {
             try {
-                int inputMoney = input.inputMoney();
-                validMoney = validateMoney(inputMoney);
+                int money = input.inputMoney();
+                validateMoney(money);
+                int issueCount = getIssueCount(money);
+                lottos = issueService.issueLottos(issueCount);
             } catch (IllegalArgumentException e) {
                 output.printInvalidateMoneyStatement();
             }
         }
-        return validMoney / UNIT_PRICE;
+        return lottos;
     }
 
-    private int validateMoney(final int validMoney) {
-        if (validMoney < 0)
-            throw new IllegalArgumentException();
-
-        if (isNotRemainedMoney(validMoney))
-            throw new IllegalArgumentException();
-
-        return validMoney;
+    private int getIssueCount(int money) {
+        return money / UNIT_PRICE;
     }
 
-    private boolean isNotRemainedMoney(final int validMoney) {
+    private void validateMoney(final int money) {
+        if (money < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (hasChange(money)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean hasChange(final int validMoney) {
         return validMoney % UNIT_PRICE != 0;
     }
 }

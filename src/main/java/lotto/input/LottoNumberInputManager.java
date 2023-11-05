@@ -56,10 +56,6 @@ class LottoNumberInputManager {
         }
     }
 
-    private static void validateLottoNumberSize(List<Integer> numbers) {
-        numbers.forEach(number -> LottoNumberValidator.validateNumberIsLottoNumber(number, WRONG_LOTTO_NUMBER_SIZE));
-    }
-
     private static List<Integer> convertToLottoNumber(List<String> parsedInput) {
         List<Integer> lottoNumbers;
         try {
@@ -70,6 +66,10 @@ class LottoNumberInputManager {
         validateLottoNumberSize(lottoNumbers);
         validateDuplicateLottoNumber(lottoNumbers);
         return lottoNumbers;
+    }
+
+    private static void validateLottoNumberSize(List<Integer> numbers) {
+        numbers.forEach(number -> LottoNumberValidator.validateNumberIsLottoNumber(number, WRONG_LOTTO_NUMBER_SIZE));
     }
 
     private static void validateDuplicateLottoNumber(List<Integer> lottoNumbers) {

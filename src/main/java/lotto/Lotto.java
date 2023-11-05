@@ -25,11 +25,26 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
-        for (Integer number: numbers) {
-            if(set.contains(number)) throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATION.getMessage());
+        for (Integer number : numbers) {
+            if (set.contains(number))
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATION.getMessage());
             set.add(number);
         }
     }
 
-    // TODO: 추가 기능 구현
+    enum Constant{
+        MIN(1),
+        MAX(45),
+        ;
+
+        private final int value;
+
+        Constant(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }

@@ -8,7 +8,8 @@ public enum PrintingMessage {
     GET_WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
     GET_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
     PRIZE_MESSAGE("%d개 일치%s(%s원) - %d개"),
-    DECIMAL_FORMAT("#,###");
+    DECIMAL_FORMAT("#,###"),
+    PROFIT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private String message;
 
@@ -32,5 +33,9 @@ public enum PrintingMessage {
             bonusMessage = ", 보너스 볼 일치 ";
         }
         return String.format(message, sameCount, bonusMessage, formattedPrizeProfit, prizeCount);
+    }
+
+    public String getWithFormat(double number) {
+        return String.format(message, number);
     }
 }

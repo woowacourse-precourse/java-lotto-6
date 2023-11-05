@@ -26,4 +26,8 @@ public class OutputView {
     public void printPrizeMessages(int sameCount, long prizeProfit, int prizeCount) {
         System.out.println(PrintingMessage.PRIZE_MESSAGE.getWithFormat(sameCount, prizeProfit, prizeCount));
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.println(PrintingMessage.PROFIT_MESSAGE.getWithFormat(profitRate));
+    }
 }

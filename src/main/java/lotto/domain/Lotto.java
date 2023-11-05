@@ -15,4 +15,9 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    @Override
+    public String toString() {
+        return "" + numbers + '\n';
+    }
 }

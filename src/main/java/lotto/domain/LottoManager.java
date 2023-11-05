@@ -4,7 +4,23 @@ import lotto.errors.ErrorMessage;
 import lotto.output.OutputView;
 
 public class LottoManager {
+
+    private static LottoManager lottoManager;
+
     private int numberOfLottos;
+
+    private LottoManager() {}
+
+    public static LottoManager getInstance() {
+        if (lottoManager==null) {
+            lottoManager = new LottoManager();
+        }
+        return lottoManager;
+    }
+
+    public int getNumberOfLottos() {
+        return numberOfLottos;
+    }
 
     public void setNumberOfLottos(String cost) {
         int integerCost = parseIntCost(cost);

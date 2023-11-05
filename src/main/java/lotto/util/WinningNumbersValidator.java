@@ -31,10 +31,11 @@ public class WinningNumbersValidator {
     }
 
     private static boolean isNumeric(List<String> numbers) {
-        for (String numberAsString : numbers) {
+        for (String numberAsText : numbers) {
             try {
-                Integer.parseInt(numberAsString);
-            } catch (NumberFormatException e) {
+                Integer.parseInt(numberAsText);
+            } catch (NumberFormatException e)
+            {
                 return false;
             }
         }
@@ -51,8 +52,8 @@ public class WinningNumbersValidator {
     }
 
     private static boolean isWithinRange(List<String> numbers) {
-        for (String numberAsString : numbers) {
-            int number = Integer.parseInt(numberAsString);
+        for (String numberAsText : numbers) {
+            int number = Integer.parseInt(numberAsText);
             if (number > MAX_NUMBER || number < MIN_NUMBER) {
                 return false;
             }

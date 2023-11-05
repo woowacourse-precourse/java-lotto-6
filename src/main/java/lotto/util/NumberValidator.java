@@ -81,8 +81,8 @@ public class NumberValidator {
         return numericValue % 1000 == 0;
     }
 
-    private boolean isWithinRange(String bonusNumberAsString) {
-        int bonusNumber = Integer.parseInt(bonusNumberAsString);
+    private boolean isWithinRange(String bonusNumberAsText) {
+        int bonusNumber = Integer.parseInt(bonusNumberAsText);
 
         if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
             return false;

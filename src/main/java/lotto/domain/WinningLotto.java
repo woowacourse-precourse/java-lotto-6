@@ -39,6 +39,7 @@ public class WinningLotto {
         for (Lotto lotto : allLotto) {
             List<Integer> target = lotto.getLottoNumbers();
             Integer countNum = countWinningNumber(target);
+
             if (checkBonus(countNum, target)) {
                 countNum = SECOND_NUMBER_NUM;
             }
@@ -49,6 +50,7 @@ public class WinningLotto {
 
     private Integer countWinningNumber(List<Integer> target) {
         int count = 0;
+
         for (Integer num : target) {
             if (numbers.contains(num)) {
                 count += 1;

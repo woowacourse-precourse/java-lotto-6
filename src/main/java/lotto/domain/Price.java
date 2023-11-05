@@ -22,6 +22,10 @@ public class Price{
         }
     }
 
+    public int getLottoCount(){
+        return this.purchasePrice/UNIT;
+    }
+
     double calculateEarningRate(int winningPrice){
         return -1;
     }

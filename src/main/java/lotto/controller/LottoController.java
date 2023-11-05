@@ -1,49 +1,72 @@
 package lotto.controller;
 
-import lotto.exceptionhandler.ExceptionHandler;
-import lotto.exceptionhandler.RetryExceptionHandler;
+import java.util.List;
+import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.model.LottoStore;
-import lotto.model.Lottos;
-import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.Lottos;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
+import lotto.model.domain.Results;
+import lotto.model.domain.Revenue;
+import lotto.model.domain.result.ResultFactory;
 import lotto.model.lottogenerator.AnswerGenerator;
 import lotto.view.LottoGameUI;
-import lotto.view.TerminalUI;
-import lotto.ui.Writer;
-import lotto.model.lottogenerator.RandomLottoGenerator;
 
 public class LottoController {
 
-    final private ExceptionHandler retryHandler;
+    final private ExceptionHandler handler;
     final private LottoStore store;
     final private LottoGameUI ui;
 
-    private Lottos lottos;
-    private AnswerGenerator answerGenerator;
+    ResultFactory factory = new ResultFactory();
+    Results results = new Results();
 
     public LottoController(ExceptionHandler handler, LottoStore store, LottoGameUI ui){
-        this.retryHandler = handler;
+        this.handler = handler;
         this.store = store;
         this.ui = ui;
     }
 
     public void run(){
-        purchaseLotto();
-        createAnswer();
+        int money = getMoney();
+        Lottos lottos = purchaseLotto(money);
+        LottoAnswer answer = createAnswer();
+        Results results = computeResult(lottos, answer);
+        computeRevenue(money, results);
     }
 
-    private void purchaseLotto() {
-        lottos = retryHandler.getResult(
-                () -> {
-                    int money = ui.getMoney();
-                    return store.purchase(money);
-                }); // vs inline code
-        Writer.printModelsInList(lottos.getLottosDTO());
+    private int getMoney() {
+        return handler.getResult(ui::getMoney);
     }
 
-    private void createAnswer(){
-        answerGenerator = retryHandler.getResult(
+    private Lottos purchaseLotto(int money) {
+        Lottos lottos = store.purchase(money);
+        List<Lotto> purchasedLottos = lottos.getLottosDTO();
+        ui.printPurchasedLottos(purchasedLottos);
+        return lottos;
+    }
+
+    private LottoAnswer createAnswer(){
+        AnswerGenerator answerGenerator = handler.getResult(
                 ()-> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
+        return (LottoAnswer) answerGenerator.generate();
     }
 
-    //TODO 5. 결과 생성 및 처리
+    private Results computeResult(Lottos lottos, LottoAnswer answer){
+        lottos.getLottosDTO()
+                .stream()
+                .map((lotto) -> factory.getResult(lotto, answer))
+                .forEach(results::addResult);
+        ui.printResult(results.getResults());
+        return results;
+    }
+
+    private void computeRevenue(int money, Results results){
+        long prize = results.getResults()
+                .stream()
+                .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
+                .sum();
+        Revenue revenue = new Revenue(prize, money);
+        ui.printRevenue(revenue);
+    }
 }

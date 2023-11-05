@@ -1,15 +1,20 @@
-package lotto.model.domain;
+package lotto.model.domain.lotto;
 
 import java.util.List;
-import lotto.util.LottoGameException;
+import lotto.exception.LottoGameException;
+import lotto.model.domain.lotto.Lotto;
 
 public class LottoAnswer extends Lotto {
-    private Integer bonusNumber;
+    private final Integer bonusNumber;
 
     public LottoAnswer(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);
         validateBonusNumber(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {

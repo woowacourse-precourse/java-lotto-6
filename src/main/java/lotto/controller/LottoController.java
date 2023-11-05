@@ -18,7 +18,7 @@ public class LottoController {
         OutputHandler.requirePaymentPrice();
         String paymentPrice = InputHandler.getPaymentPrice();
         OutputHandler.printEmptyLine();
-        ticketCount = getLotteryCount(paymentPrice);
+        ticketCount = getTicketCount(paymentPrice);
         OutputHandler.sayTicketCount(ticketCount);
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto();
@@ -27,7 +27,7 @@ public class LottoController {
         }
     }
 
-    int getLotteryCount(String inputPay) throws IllegalArgumentException{
+    int getTicketCount(String inputPay) throws IllegalArgumentException{
         int paymentPrice = Converter.pay(inputPay);
         if (paymentPrice < 0) {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);

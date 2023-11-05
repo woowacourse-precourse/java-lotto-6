@@ -10,7 +10,9 @@ public class Domain {
 
     private List<Lotto> myLotto;
     private List<Integer> correctNumberCount;
-    public static int price;
+    public int price;
+    public int lottoNum;
+    public double revenueRate;
 
     private Domain() {
     }

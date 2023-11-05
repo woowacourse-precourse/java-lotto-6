@@ -56,8 +56,7 @@ public class WinningCalculator {
     private Rank getRank(Lotto lotto) {
         int same = 0;
         for (int i = 0; i < lotto.getNumbers().size(); i++) {
-            if (winningLottoWithBonus.getLotto().getNumbers().get(i)
-                    .equals(lotto.getNumbers().get(i))) {
+            if (winningLottoWithBonus.getLotto().getNumbers().contains(lotto.getNumbers().get(i))) {
                 same++;
             }
         }

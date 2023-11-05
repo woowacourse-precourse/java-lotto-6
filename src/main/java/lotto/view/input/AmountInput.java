@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 import lotto.validator.AmountInputValidator;
 import lotto.validator.InputValidator;

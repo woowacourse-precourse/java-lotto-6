@@ -4,6 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mockStatic;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.input.AmountInput;
+import lotto.view.input.BonusNumberInput;
+import lotto.view.input.Input;
+import lotto.view.input.LottoAnswerInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

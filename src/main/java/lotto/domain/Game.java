@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.constant.LottoNumber;
+import lotto.constant.Rank;
 import lotto.ui.Input;
 import lotto.ui.Output;
 
@@ -49,6 +50,7 @@ public class Game {
         Output.printLotto(lotteries);
         Lotto winningNumber = createWinningNumber();
         int bonus = createBonus(winningNumber.getNumbers());
-        lottoMachine.draw(winningNumber, bonus, lotteries);
+        List<Rank> result = lottoMachine.draw(winningNumber, bonus, lotteries);
+        Output.printResult(result);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.ExceptionConstant.*;
-import static lotto.constant.ExceptionConstant.BUYING_PRICE_INPUT_EXCEPTION;
 import static lotto.constant.NumberConstant.*;
 
 public class ViewValidator {
@@ -33,9 +32,15 @@ public class ViewValidator {
         return winningNumbers;
     }
 
+    public void validateNonZero(final int buyingPrice) {
+        if (buyingPrice == ZERO_PRICE) {
+            throw new IllegalArgumentException(BUYING_PRICE_ZERO_EXCEPTION);
+        }
+    }
+
     public void validateMod(final int buyingPrice) {
         if (buyingPrice % BUYING_PRICE_UNIT != ZERO_REMAINDER) {
-            throw new IllegalArgumentException(BUYING_PRICE_INPUT_EXCEPTION);
+            throw new IllegalArgumentException(BUYING_PRICE_UNIT_EXCEPTION);
         }
     }
 

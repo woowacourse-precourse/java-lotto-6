@@ -21,4 +21,21 @@ public class InputView {
     private String readMessage() {
         return Console.readLine();
     }
+
+    public int requestBonusNumber() {
+        printBonusNumberMessage();
+        String input = readMessage();
+
+        try {
+            int bonusNumber = Integer.valueOf(input);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void printBonusNumberMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
 }

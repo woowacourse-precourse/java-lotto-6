@@ -46,6 +46,7 @@ public class LottoIoManager implements IoManager {
     }
 
     public void displayWinningResult(Map<Rank, Integer> result) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Entry<Rank, Integer> entry : result.entrySet()) {

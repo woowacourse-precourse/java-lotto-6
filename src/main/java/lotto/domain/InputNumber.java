@@ -15,6 +15,7 @@ public class InputNumber {
         return Integer.parseInt(money);
     }
 
+    // 기능 분리 예정
     public List<Integer> InputLottos() {
         String userInput = Console.readLine();
         String[] lotto = userInput.split(",");

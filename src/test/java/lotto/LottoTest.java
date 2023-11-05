@@ -1,11 +1,13 @@
 package lotto;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +27,15 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    void 유효_로또_번호_생성() {
+        //given
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        List<Integer> lottoNumber = lottoNumberGenerator.generate();
+
+        //when,then
+        assertThatCode(() -> new Lotto(lottoNumber))
+                .doesNotThrowAnyException();
+    }
 }

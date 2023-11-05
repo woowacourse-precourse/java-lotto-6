@@ -1,15 +1,15 @@
 package lotto.view;
 
+import static lotto.view.ViewConstant.OutputViewConstant.BONUS_NUMBER_MESSAGE;
+import static lotto.view.ViewConstant.OutputViewConstant.EARNING_RATE_MESSAGE;
+import static lotto.view.ViewConstant.OutputViewConstant.HUNDRED;
+import static lotto.view.ViewConstant.OutputViewConstant.NEW_LINE;
+import static lotto.view.ViewConstant.OutputViewConstant.PURCHASE_AMOUNT_MESSAGE;
+import static lotto.view.ViewConstant.OutputViewConstant.PURCHASE_MESSAGE;
+import static lotto.view.ViewConstant.OutputViewConstant.STATUS;
+import static lotto.view.ViewConstant.OutputViewConstant.THREE_DASH;
+import static lotto.view.ViewConstant.OutputViewConstant.WINNING_NUMBER_MESSAGE;
 public class OutputView {
-    private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
-    private static final String STATUS = "당첨 통계";
-    private static final String THREE_DASH = "---";
-    private static final String NEW_LINE = System.getProperty("line.separator");
-    private static final int HUNDRED = 100;
 
     public void printMessage(String message) {
         System.out.println(message);

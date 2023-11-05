@@ -1,29 +1,28 @@
 package lotto.view;
 
-import static lotto.view.InputView.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
-import static lotto.view.InputView.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
-import static lotto.view.InputView.InputErrorMessage.NOT_EXIST_INPUT_ERROR;
-import static lotto.view.InputView.InputErrorMessage.NOT_NUMBER;
-import static lotto.view.InputView.InputErrorMessage.NOT_SIX_NUMBERS;
-import static lotto.view.InputView.InputErrorMessage.NOT_THOUSAND_UNIT;
-import static lotto.view.InputView.InputErrorMessage.OVER_RANGE;
-import static lotto.view.InputView.InputErrorMessage.UNDER_THOUSAND_AMOUNT;
-import static lotto.view.InputView.InputErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
+import static lotto.view.ViewConstant.InputViewConstant.COMMA;
+import static lotto.view.ViewConstant.InputViewConstant.MAX_RANGE;
+import static lotto.view.ViewConstant.InputViewConstant.MIN_RANGE;
+import static lotto.view.ViewConstant.InputViewConstant.NUMBERS_COUNT;
+import static lotto.view.ViewConstant.InputViewConstant.NUMBERS_FORMAT_REGEX;
+import static lotto.view.ViewConstant.InputViewConstant.NUMBER_REGEX;
+import static lotto.view.ViewConstant.InputViewConstant.ONE_LOTTO_PRICE;
+import static lotto.view.ViewConstant.InputViewConstant.ZERO;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.NOT_EXIST_INPUT_ERROR;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.NOT_NUMBER;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.NOT_SIX_NUMBERS;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.NOT_THOUSAND_UNIT;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.OVER_RANGE;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.UNDER_THOUSAND_AMOUNT;
+import static lotto.view.ViewConstant.InputViewConstant.InputErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    private static final String COMMA = ",";
-    private static final String NUMBERS_FORMAT_REGEX = "([0-9]+,?)+";
-    private static final String NUMBER_REGEX = "[0-9]+";
-    private static final long ONE_LOTTO_PRICE = 1000L;
-    private static final long ZERO = 0L;
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
-    private static final int NUMBERS_COUNT = 6;
-
     public long receivePurchaseAmount() {
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
@@ -112,28 +111,6 @@ public class InputView {
         int bonusNumberInt = Integer.parseInt(number);
         if (bonusNumberInt < MIN_RANGE || bonusNumberInt > MAX_RANGE) {
             throw new IllegalArgumentException(OVER_RANGE.getErrorMessage());
-        }
-    }
-
-    enum InputErrorMessage {
-        NOT_EXIST_INPUT_ERROR("[ERROR] 입력이 존재하지 않습니다."),
-        NOT_CONTAINS_ONLY_NUMBER("[ERROR] 숫자 이외의 문자는 포함될 수 없습니다."),
-        NOT_THOUSAND_UNIT("[ERROR] 금액은 1000원 단위로 입력해야 합니다."),
-        UNDER_THOUSAND_AMOUNT("[ERROR] 최소 1000원의 금액을 입력해야 합니다."),
-        WINNING_NUMBERS_INVALID_FORMAT("[ERROR] 입력 형식이 올바르지 않습니다."),
-        NOT_SIX_NUMBERS("[ERROR] 당첨 번호는 6개의 숫자로 이루어져야 합니다."),
-        DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다."),
-        NOT_NUMBER("[ERROR] 값은 숫자만 가능합니다."),
-        OVER_RANGE("[ERROR] 숫자 범위는 1부터 45까지 가능합니다.");
-
-        private final String errorMessage;
-
-        InputErrorMessage(String errorMessage) {
-            this.errorMessage = errorMessage;
-        }
-
-        public String getErrorMessage() {
-            return errorMessage;
         }
     }
 }

@@ -32,7 +32,7 @@ public class PlayerTest {
 
     @DisplayName("player가 계산한 당첨 통계(수익률 제외)가 예상과 틀리면 테스트에 실패한다.")
     @Test
-    void prizeCounter_test() {
+    void 당첨_통계_계산_테스트() {
         // given
         Map<LottoPrize, Integer> expected = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
@@ -51,9 +51,9 @@ public class PlayerTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("player가 계산한 수익률 예상과 틀리면 테스트에 실패한다.")
+    @DisplayName("player가 계산한 수익률이 예상과 틀리면 테스트에 실패한다.")
     @Test
-    void calculateRateOfReturn_test() {
+    void 수익률_계산_테스트() {
         // given
         Map<LottoPrize, Integer> expectedPrizeCounter = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개

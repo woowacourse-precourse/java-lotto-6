@@ -10,21 +10,28 @@ import org.junit.jupiter.api.Test;
 public class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    void 로또_생성_테스트_번호가_6개_초과인_경우() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개보다 작으면 예외가 발생한다.")
+    @Test
+    void 로또_생성_테스트_번호가_6개_미만인_경우() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 1~45 범위가 아닌 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByNumberInRange() {
+    void 로또_생성_테스트_번호가_정해놓은_범위가_아닌_경우() {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
+    void 로또_생성_테스트_로또_번호에_중복이_있는_경우() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 6, 4)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

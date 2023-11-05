@@ -12,16 +12,17 @@ import org.junit.jupiter.api.Test;
 public class WinningLottoTest {
     @DisplayName("보너스 번호에 당첨 번호와 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createWinningLottoByDuplicatedWithBonusNumber() {
+    void WinningLotto_생성_테스트_당첨_번호에_보너스_번호와_중복되는_숫자가_있는_경우() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 5;
+
         assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입한 복권 번호와 당첨 번호를 비교하여 등수에 맞는 LottoPrize 객체를 반환해야 한다. 각 등수 별로 잘 반환되지 않으면 예외가 발생한다.")
     @Test
-    void compareTest() {
+    void compare_테스트() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);

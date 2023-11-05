@@ -9,7 +9,7 @@ public class LottoShopTest {
     LottoShop lottoShop;
 
     @Test
-    void createLottoTickets_test() {
+    void createLottoTickets_테스트() {
         // given
         LottoMachine lottoMachine = new LottoMachine(new LottoNotRandomGenerator());
         lottoShop = new LottoShop(lottoMachine);
@@ -26,7 +26,7 @@ public class LottoShopTest {
     }
 
     @Test
-    void getLottoPrice_test() {
+    void getLottoPrice_테스트() {
         // given
         LottoMachine lottoMachine = new LottoMachine(new LottoNotRandomGenerator());
         lottoShop = new LottoShop(lottoMachine);

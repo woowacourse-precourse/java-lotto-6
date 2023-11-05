@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 import java.util.List;
 
@@ -17,4 +17,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void purchasedAndPublish(){
+
+    }
 }

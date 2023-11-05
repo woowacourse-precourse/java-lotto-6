@@ -14,4 +14,8 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return List.copyOf(lottos);
     }
+
+    public void clearLottos() {
+        lottos.clear();
+    }
 }

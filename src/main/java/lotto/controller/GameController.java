@@ -75,7 +75,7 @@ public class GameController {
 
         while (status == Status.FAIL) {
             try {
-                lottoBonusNumber = new LottoBonusNumber(inputView.inputLottoWin());
+                lottoBonusNumber = new LottoBonusNumber(inputView.inputLottoWin(), lottoWinNumbers.getLottoWinNumbers());
                 status = Status.SUCCESS;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

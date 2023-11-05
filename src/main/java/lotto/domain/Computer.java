@@ -6,13 +6,14 @@ import lotto.domain.lottery.Lotto;
 import lotto.domain.lottery.Lottos;
 import lotto.domain.lottery.WinningLotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class Computer {
 
     public static int[] rewards;
-    public static double rateOfProfit;
+    public static String rateOfProfit;
 
     public void setWinningReward() {
         rewards = new int[]{
@@ -79,13 +80,14 @@ public class Computer {
     }
 
     public void calcRateOfProfit(Map<Integer, Integer> winningStats, int purchaseAmount) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
         double totalReward = 0.0;
 
         for (int result : winningStats.keySet()) {
             totalReward += winningStats.get(result) * rewards[result - 1];
         }
 
-        rateOfProfit = totalReward / purchaseAmount;
+        rateOfProfit = decimalFormat.format(totalReward / purchaseAmount);
     }
 
 }

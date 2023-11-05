@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
 import lotto.model.User;
 import lotto.view.InputView;
@@ -11,7 +12,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         User user = User.purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(user.getNumberOfLottoTickets(), user.getAllLottoTicketsNumbers());
-        List<String> winningNumbers = InputView.readWinningNumbers();
+        Lotto winningLotto = createWinningLotto();
     }
 
     private PurchaseAmount readPurchaseAmount() {
@@ -23,5 +24,10 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private Lotto createWinningLotto() {
+        List<Integer> winningNumbers = InputView.readWinningNumbers();
+        return new Lotto(winningNumbers);
     }
 }

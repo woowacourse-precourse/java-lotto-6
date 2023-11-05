@@ -19,7 +19,7 @@ public class InputView {
         }
     }
 
-    public static List<String> readWinningNumbers() {
+    public static List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
@@ -31,6 +31,8 @@ public class InputView {
             validateIsNumeric(winningNumber);
         }
 
-        return winningNumbers;
+        return winningNumbers.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 }

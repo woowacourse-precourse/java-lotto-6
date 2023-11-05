@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
+import static lotto.enumerate.ConfigInteger.LOTTO_NUMBER_COUNT;
 import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_OVER_OR_UNDER_SIZE;
@@ -47,7 +48,7 @@ public class Lotto {
     }
 
     private void lottoNumberSizeValidate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getInt()) {
             exceptionCodeThrow(LOTTO_NUMBER_OVER_OR_UNDER_SIZE);
         }
     }

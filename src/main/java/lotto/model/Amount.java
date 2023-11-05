@@ -13,7 +13,6 @@ import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.enumerate.ConfigInteger;
 import lotto.record.AmountRecord;
 
 public class Amount {
@@ -37,6 +36,13 @@ public class Amount {
         }
     }
 
+    private static void getLottoNumber(ArrayList<Lotto> list) {
+        List<Integer> numbers = Randoms
+                .pickUniqueNumbersInRange(LOTTO_START_NUMBER.getInt(), LOTTO_END_NUMBER.getInt(),
+                        LOTTO_NUMBER_COUNT.getInt());
+        list.add(new Lotto(numbers));
+    }
+
     public List<Lotto> buyLotto() {
         return getLottos(amount);
     }
@@ -54,9 +60,7 @@ public class Amount {
 
     private void getLottoList(long lottoVolume, ArrayList<Lotto> list) {
         for (int i = 0; i < lottoVolume; i++) {
-            List<Integer> numbers = Randoms
-                    .pickUniqueNumbersInRange(LOTTO_START_NUMBER.getInt(), LOTTO_END_NUMBER.getInt(), LOTTO_NUMBER_COUNT.getInt());
-            list.add(new Lotto(numbers));
+            getLottoNumber(list);
         }
     }
 

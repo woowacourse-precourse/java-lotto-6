@@ -3,6 +3,7 @@ package lotto.enumerate;
 public enum ConfigInteger {
     LOTTO_PRICE(1000),
     ZERO(0),
+    ONE(1),
     DECIMAL_PLACE(1),
     LOTTO_START_NUMBER(1),
     LOTTO_END_NUMBER(45),

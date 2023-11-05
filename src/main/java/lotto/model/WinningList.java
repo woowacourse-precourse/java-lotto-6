@@ -4,8 +4,10 @@ import static lotto.enumerate.ConfigInteger.FIRST_PLACE_MATCH;
 import static lotto.enumerate.ConfigInteger.FORTH_PLACE_MATCH;
 import static lotto.enumerate.ConfigInteger.LONG_ROUND_DIVIDE_NUMBER;
 import static lotto.enumerate.ConfigInteger.LONG_ROUND_NUMBER;
+import static lotto.enumerate.ConfigInteger.ONE;
 import static lotto.enumerate.ConfigInteger.SECOND_PLACE_MATCH;
 import static lotto.enumerate.ConfigInteger.THIRD_PLACE_MATCH;
+import static lotto.enumerate.ConfigInteger.ZERO;
 import static lotto.enumerate.ConfigString.WINNING_STRING_FIRST;
 
 import java.util.EnumMap;
@@ -25,13 +27,17 @@ public class WinningList {
     public WinningList(List<LottoNumberRecord> lottoNumberRecordList, WinningNumber winningNumber) {
         winningList = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            winningList.put(rank, 0);
+            winningList.put(rank, ZERO.getInt());
         }
         for (LottoNumberRecord lotto : lottoNumberRecordList) {
             Rank rank = calculateRank(lotto, winningNumber);
-            if (rank != null) {
-                winningList.put(rank, winningList.get(rank) + 1);
-            }
+            putWinningList(rank);
+        }
+    }
+
+    private void putWinningList(Rank rank) {
+        if (rank != null) {
+            winningList.put(rank, winningList.get(rank) + ONE.getInt());
         }
     }
 

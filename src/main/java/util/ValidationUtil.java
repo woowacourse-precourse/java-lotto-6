@@ -44,14 +44,14 @@ public class ValidationUtil {
     private void validDuplicateWinningNumber(String[] array) {
         List<Integer> numbers = Arrays.stream(array)
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
     }
 
     private void validRangeWinningNumber(String[] array) {
-        if (!Arrays.stream(array).mapToInt(Integer::parseInt).noneMatch(this::isValidRangeWinningNumber)) {
+        if (Arrays.stream(array).mapToInt(Integer::parseInt).anyMatch(this::isValidRangeWinningNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE);
         }
     }

@@ -41,8 +41,6 @@ public class MessageUtil {
     }
 
     public void printPurchaseInfo(List<Integer> lottoNums){
-//        Collections.sort(lottoNum);
-//        System.out.println(lottoNum.toString());
         List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
         sortLottoNums.sort(Comparator.naturalOrder());
         StringBuilder lottoNum = new StringBuilder("");

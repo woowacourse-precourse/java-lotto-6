@@ -26,7 +26,13 @@ public class LottoInputController {
 
     public LottoResult requestLottoResult() {
         Lotto winningLotto = requestWinningLotto();
-        int bonusLottoNumber = requestBonusLottoNumber(winningLotto);
+        int bonusLottoNumber;
+        try {
+            bonusLottoNumber = requestBonusLottoNumber(winningLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bonusLottoNumber = requestBonusLottoNumber(winningLotto);
+        }
         return new LottoResult(winningLotto, bonusLottoNumber);
     }
 

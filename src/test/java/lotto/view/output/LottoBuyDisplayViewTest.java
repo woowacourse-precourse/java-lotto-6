@@ -31,8 +31,8 @@ class LottoBuyDisplayViewTest extends DisplayTestSupport {
     public void printAllLottoNumbers() {
         // given
         Lottos lottos = createLottos();
-        String result = "[1,2,3,4,5,6]\n" +
-                        "[1,2,3,4,5,6]\n\n";
+        String result = "[1, 2, 3, 4, 5, 6]\n" +
+                        "[1, 2, 3, 4, 5, 6]\n\n";
         // when
         lottoBuyOutputView.printAllLottoNumbers(lottos);
         // then

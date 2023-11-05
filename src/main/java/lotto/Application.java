@@ -11,10 +11,22 @@ public class Application {
         // TODO: 프로그램 구현
         LottoInputController lottoInputController = new LottoInputController();
         LottoOutputController lottoOutputController = new LottoOutputController();
-
-        LottoGameInfo lottoGameInfo = lottoInputController.createLottoGame();
+        LottoGameInfo lottoGameInfo;
+        try {
+            lottoGameInfo = lottoInputController.createLottoGame();
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lottoGameInfo = lottoInputController.createLottoGame();
+        }
         lottoOutputController.printBuyLottos(lottoGameInfo);
-        LottoResult lottoResult = lottoInputController.requestLottoResult();
+
+        LottoResult lottoResult;
+        try {
+            lottoResult = lottoInputController.requestLottoResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lottoResult = lottoInputController.requestLottoResult();
+        }
         lottoOutputController.resultMessage(lottoGameInfo,lottoResult);
     }
 }

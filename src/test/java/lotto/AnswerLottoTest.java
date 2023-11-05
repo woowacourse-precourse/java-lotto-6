@@ -25,7 +25,6 @@ public class AnswerLottoTest {
         );
     }
 
-
     @DisplayName("보너스 숫자가 1~45 숫자가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("invalidBonusProvider")

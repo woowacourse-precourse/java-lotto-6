@@ -44,4 +44,8 @@ public class Lotto {
         return number < LottoOption.LOTTO_MIN_NUMBER ||
                 number > LottoOption.LOTTO_MAX_NUMBER;
     }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
 }

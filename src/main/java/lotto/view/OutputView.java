@@ -1,7 +1,6 @@
 package lotto.view;
 
 public class OutputView {
-
     private static final String ASK_FOR_MONEY = "구입금액을 입력해 주세요.";
     private static final String ASK_FOR_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String PURCHASED_LOTTO_COUNT = "%d개를 구매했습니다.";

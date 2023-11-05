@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
@@ -34,6 +35,10 @@ public class LottoService {
 
     public void initWinningNumbers(String inputBonusNumber) {
         this.winningNumbers = new WinningNumbers(winningLotto, Converter.stringToInt(inputBonusNumber));
+    }
+
+    public LottoResult compareNumbers() {
+        return new LottoResult(lottoTicket.compareLotto(winningNumbers));
     }
 
 }

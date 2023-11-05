@@ -13,7 +13,7 @@ public class LottoController {
 
     public void run() {
         Client client = newClient();
-        issueLotto(client);
+        issueLottos(client);
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         drawWinningNumbers(lottoResultChecker);
         announceLottoResults(client, lottoResultChecker);
@@ -24,20 +24,20 @@ public class LottoController {
         while (true) {
             try {
                 String payAmount = view.inputValue();
-                return Client.of(payAmount);
+                return Client.from(payAmount);
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
             }
         }
     }
 
-    private void issueLotto(Client client) {
+    private void issueLottos(Client client) {
         int purchasedLottoAmount = lottoStore.calculatePurchasedLottoAmount(client.getPayAmount());
         view.printPurchaseLottoAmount(purchasedLottoAmount);
         for (int issuedLottoCount = 1; issuedLottoCount <= purchasedLottoAmount; issuedLottoCount++) {
-            Lotto lotto = lottoStore.createRandomLotto();
+            Lotto lotto = lottoStore.issueRandomLotto();
             view.printIssuedLotto(lotto.toString());
-            client.addLotto(lotto);
+            client.receiveLotto(lotto);
         }
     }
 

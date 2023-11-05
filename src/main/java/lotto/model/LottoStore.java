@@ -1,16 +1,18 @@
 package lotto.model;
 
+import static lotto.model.constans.LottoConstants.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoStore {
-    private static final int lottoPrice = 1000;
+    private static final int lottoPrice = LOTTO_PRICE.value();
 
     public int calculatePurchasedLottoAmount(int purchaseAmount) {
         return purchaseAmount / lottoPrice;
     }
 
-    public Lotto createRandomLotto() {
+    public Lotto issueRandomLotto() {
         return new Lotto(createRandomNumbers());
     }
 

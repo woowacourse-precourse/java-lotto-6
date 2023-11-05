@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.constans.LottoConstants.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,12 +21,12 @@ public class Lotto {
     }
 
     private boolean isInvalidSize(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_SIZE.value();
     }
 
     private boolean isInvalidRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number <= 0 || 45 < number) {
+            if (number < MIN_LOTTO_NUMBER.value() || 45 < MAX_LOTTO_NUMBER.value()) {
                 return true;
             }
         }

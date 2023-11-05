@@ -7,14 +7,14 @@ import lotto.validator.PayAmountValidator;
 
 public class Client {
     private final int payAmount;
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
     private static final PayAmountValidator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
 
     private Client(int payAmount) {
         this.payAmount = payAmount;
     }
 
-    public static Client of(String payAmount) {
+    public static Client from(String payAmount) {
         PAY_AMOUNT_VALIDATOR.validate(payAmount);
         return new Client(Integer.parseInt(payAmount));
     }
@@ -23,7 +23,7 @@ public class Client {
         return payAmount;
     }
 
-    public void addLotto(Lotto lotto) {
+    public void receiveLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 
@@ -31,7 +31,6 @@ public class Client {
         List<Lotto> clonedLottos = new ArrayList<>(lottos);
         return Collections.unmodifiableList(clonedLottos);
     }
-
 
     private long calculateWinningPrize(List<Integer> lottoResults) {
         long winningPrize = 0;
@@ -46,6 +45,4 @@ public class Client {
         rateOfReturn = Math.round(rateOfReturn * 1000) / 10.0;
         return rateOfReturn;
     }
-
-
 }

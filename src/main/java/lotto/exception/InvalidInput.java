@@ -20,6 +20,14 @@ public class InvalidInput {
         }
     }
 
+    public void duplicateNumberException(List<Integer> numbers, int bonusNumber) {
+        message = ExceptionMessage.DUPLICATE_BONUSE_NUMBER.getMessage();
+
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
     public void outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
 

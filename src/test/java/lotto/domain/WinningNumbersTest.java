@@ -56,5 +56,17 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
     }
+
+    @Test
+    @DisplayName("연속된 쉼표가 있는 경우 IllegalArgumentException을 발생시켜야 한다.")
+    void testProcessWithConsecutiveCommas() {
+        // given
+        String numbersWithConsecutiveCommas = "1,, 2, 3, 4, 5, 6";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithConsecutiveCommas))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+    }
 }
 

@@ -22,9 +22,10 @@ public class LottoGame {
         BonusNumberInput bonusNumberInput = new BonusNumberInput();
         LottoResultDisplay lottoResultDisplay = new LottoResultDisplay();
         ProfitCalculator profitCalculator = new ProfitCalculator();
-        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
+        OutputResult outputResult = new OutputResult();
 
         // LottoTicketPurchase
+        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         System.out.println();
 
@@ -60,7 +61,6 @@ public class LottoGame {
         lottoResultDisplay.outputLottoResult();
 
         // LotteryProfit
-        OutputResult outputResult = new OutputResult();
         outputResult.outputProfitResult(profitCalculator, lottoResultDisplay, purchaseAmount);
     }
 }

@@ -1,8 +1,9 @@
-package game;
+package lottoResult;
 
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
 
 import constant.ConstantNumber;
+import game.LottoRank;
 import java.util.List;
 
 public class LottoResultCalculator {

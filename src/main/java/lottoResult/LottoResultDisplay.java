@@ -2,7 +2,6 @@ package lottoResult;
 
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
 
-import game.LottoResultCalculator;
 import java.util.List;
 
 public class LottoResultDisplay {

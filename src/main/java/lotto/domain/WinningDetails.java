@@ -18,6 +18,16 @@ public class WinningDetails {
         details.put(rank, details.getOrDefault(rank, 0) + 1);
     }
 
+    public long getTotalReward() {
+        long totalReward = 0;
+        for (int matchCount : details.values()) {
+            for (Rank rank : Rank.values()) {
+                totalReward += rank.getReward() * matchCount;
+            }
+        }
+        return totalReward;
+    }
+
     @Override
     public String toString() {
         List<Rank> ranks = Arrays.stream(Rank.values())

@@ -19,4 +19,8 @@ public class LottoManager {
     public String getWinningDetailsToString() {
         return winningDetails.toString();
     }
+
+    public long calculateTotalReward() {
+        return winningDetails.getTotalReward();
+    }
 }

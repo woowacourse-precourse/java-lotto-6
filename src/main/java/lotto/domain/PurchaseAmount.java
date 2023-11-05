@@ -12,4 +12,8 @@ public class PurchaseAmount {
         amount -= lottoPrice;
         return amount;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

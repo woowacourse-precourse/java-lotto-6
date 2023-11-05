@@ -9,6 +9,8 @@ public class Application {
         Lotto winningNumber = selectLottoWinningNumber();
         Screen.printAskingBonusNumberMessage();
         int bonusNumber = selectBonusNumber(winningNumber);
+        Result result = lottos.makeResult(winningNumber, bonusNumber);
+
     }
 
     private static Lottos buyLottos() {

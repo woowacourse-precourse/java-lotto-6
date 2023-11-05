@@ -34,4 +34,13 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return this.lottos;
     }
+
+    public Result makeResult(Lotto winningNumber, int bonusNumber) {
+        Result result = new Result();
+
+        for (Lotto lotto : lottos) {
+            result.putIt(lotto.getRanking(winningNumber, bonusNumber));
+        }
+        return result;
+    }
 }

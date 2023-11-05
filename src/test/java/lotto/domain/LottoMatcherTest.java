@@ -163,9 +163,9 @@ public class LottoMatcherTest {
         int bonusNumber = 13;
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
-        List<Long> correctWinningsCount = lottoMatcher.getCorrectWinningsCount();
-        List<Boolean> correctBonuses = lottoMatcher.getCorrectBonuses();
+        LottoResult lottoResult = new LottoResult(userNumbers, winningNumbers, bonusNumber);
+        List<Long> correctWinningsCount = lottoResult.getCorrectWinningsCount();
+        List<Boolean> correctBonuses = lottoResult.getCorrectBonuses();
 
         //then
         Assertions.assertThat(correctWinningsCount.get(0)).isEqualTo(1);

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.model.MagicVariable.LOTTO_PRICE;
+import static lotto.model.enums.MagicVariable.LOTTO_PRICE;
 
 class LottoProcessTest {
     String ERROR_HEAD_MESSAGE = ErrorHeadMessage.ERROR_HEAD_MESSAGE;

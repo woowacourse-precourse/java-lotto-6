@@ -1,12 +1,12 @@
 package lotto.model.exception;
 
 import java.util.List;
-import static lotto.model.MagicVariable.NUMBERS_SIZE;
-import static lotto.model.MagicVariable.NUMBERS_MIN_RANGE;
-import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
-import static lotto.model.ErrorMessage.NUMBERS_SIZE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.NUMBERS_DUPLICATION_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.NUMBERS_RANGE_ERROR_MESSAGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_SIZE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MIN_RANGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MAX_RANGE;
+import static lotto.model.enums.ErrorMessage.NUMBERS_SIZE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NUMBERS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NUMBERS_RANGE_ERROR_MESSAGE;
 
 
 public class LottoException extends IllegalArgumentException {

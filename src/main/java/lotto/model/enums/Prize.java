@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.enums;
 
 public enum Prize {
     FIRST(6, false, 2_000_000_000),

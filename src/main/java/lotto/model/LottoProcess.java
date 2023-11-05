@@ -1,14 +1,13 @@
 package lotto.model;
 
-import static lotto.model.MagicVariable.NUMBERS_MIN_RANGE;
-import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
-import static lotto.model.MagicVariable.NUMBERS_SIZE;
-import static lotto.model.MagicVariable.LOTTO_PRICE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MIN_RANGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MAX_RANGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_SIZE;
+import static lotto.model.enums.MagicVariable.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.exception.LottoException;
 import lotto.model.exception.LottoProcessException;
 
 public class LottoProcess {

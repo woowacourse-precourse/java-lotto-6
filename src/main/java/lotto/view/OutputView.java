@@ -3,7 +3,7 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Prize;
+import lotto.model.enums.Prize;
 import lotto.model.WinningLotto;
 
 public class OutputView {

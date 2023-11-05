@@ -1,11 +1,11 @@
 package lotto.model.exception;
 
-import static lotto.model.MagicVariable.NUMBERS_MAX_RANGE;
-import static lotto.model.MagicVariable.NUMBERS_MIN_RANGE;
-import static lotto.model.ErrorMessage.BONUS_NUMBER_TYPE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.BONUS_NUMBER_NEGATIVE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.BONUS_NUMBER_RANGE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MAX_RANGE;
+import static lotto.model.enums.MagicVariable.NUMBERS_MIN_RANGE;
+import static lotto.model.enums.ErrorMessage.BONUS_NUMBER_TYPE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.BONUS_NUMBER_NEGATIVE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.BONUS_NUMBER_RANGE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE;
 
 import java.util.List;
 

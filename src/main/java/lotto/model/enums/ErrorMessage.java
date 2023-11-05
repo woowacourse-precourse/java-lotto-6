@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.enums;
 
 public enum ErrorMessage {
     NUMBERS_SIZE_ERROR_MESSAGE("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),

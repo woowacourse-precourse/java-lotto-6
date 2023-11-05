@@ -1,9 +1,9 @@
 package lotto.model.exception;
 
-import static lotto.model.MagicVariable.LOTTO_PRICE;
-import static lotto.model.ErrorMessage.PRICE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.LOTTO_PRICE_TYPE_ERROR_MESSAGE;
-import static lotto.model.ErrorMessage.LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE;
+import static lotto.model.enums.MagicVariable.LOTTO_PRICE;
+import static lotto.model.enums.ErrorMessage.PRICE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.LOTTO_PRICE_TYPE_ERROR_MESSAGE;
+import static lotto.model.enums.ErrorMessage.LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE;
 
 
 public class LottoProcessException extends IllegalArgumentException {

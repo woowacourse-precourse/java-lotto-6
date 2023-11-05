@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.enums;
 
 public enum MagicVariable {
     NUMBERS_SIZE(6),

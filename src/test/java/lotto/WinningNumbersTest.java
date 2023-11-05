@@ -16,21 +16,21 @@ public class WinningNumbersTest {
     void createInputEmptyString() {
         assertThatThrownBy(() -> Parser.parseWinningNumbers("1,2,3,4,,5,6,"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 쉼표(,)로 구분했을 때 정수만 입력할 수 있습니다.\n");
+                .hasMessage("[ERROR] 정수만 입력할 수 있습니다.\n");
     }
     @DisplayName("쉼표(,)로 끝나도록 입력할 경우 예외가 발생한다")
     @Test
     void createInputLastComma() {
         assertThatThrownBy(() -> Parser.parseWinningNumbers("1,2,3,4,5,6,"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 쉼표(,)로 구분했을 때 정수만 입력할 수 있습니다.\n");
+                .hasMessage("[ERROR] 정수만 입력할 수 있습니다.\n");
     }
     @DisplayName("정수 외 다른 문자를 입력할 경우 예외가 발생한다")
     @Test
     void createInputWinningNumberNotInteger() {
         assertThatThrownBy(() -> Parser.parseWinningNumbers("1,2,3,4d,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 쉼표(,)로 구분했을 때 정수만 입력할 수 있습니다.\n");
+                .hasMessage("[ERROR] 정수만 입력할 수 있습니다.\n");
     }
     @DisplayName("당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다")
     @Test

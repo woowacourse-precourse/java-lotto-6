@@ -41,6 +41,10 @@ public class Parser {
         return parseString;
     }
 
+    public static int parseBonusNumber(String input) {
+        return Validator.validateParseInt(input);
+    }
+
     public static String parseProfitRateFormat(double profitRate) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         return decimalFormat.format(profitRate);

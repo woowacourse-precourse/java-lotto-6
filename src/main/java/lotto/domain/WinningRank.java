@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum WinningRank {
     FIRST(6, false, 2000000000, "6개 일치"),

@@ -1,14 +1,9 @@
 package lotto.view;
 
 import java.math.BigDecimal;
-import java.text.Format;
-import java.text.NumberFormat;
-import java.util.List;
-import java.util.Map;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.WinningRank;
 import lotto.domain.WinningStatistics;
 import lotto.util.StringFormatter;
 
@@ -44,10 +39,6 @@ public class OutputView {
     private static void printWinningStatisticsHeader(){
         System.out.println("\n당첨 통계");
         System.out.println("---");
-    }
-
-    private static void printWinningPrize(WinningRank winningRank, int countOfPrize) {
-        System.out.println(winningRank.getMessage() + "(" + winningRank.getPrize() + ") - " + countOfPrize + "개");
     }
 
     private static void printRevenueRate(BigDecimal revenueRate){

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.view.View.printMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,11 @@ public class Customer {
     }
     public List<Lotto> getLottos() {
         return lottos;
+    }
+    public void showLottos(){
+        this.getLottos()
+                .forEach(lotto ->
+                        printMessage(lotto.getNumbers().toString()));
     }
 
 }

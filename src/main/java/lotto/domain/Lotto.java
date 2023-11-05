@@ -2,7 +2,6 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
 import lotto.validator.BallValidator;
@@ -46,5 +45,19 @@ public class Lotto {
         return numbers.stream()
                 .distinct()
                 .count() != numbers.size();
+    }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean contains(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.get());
+    }
+
+    private boolean contains(Integer number) {
+        return numbers.contains(number);
     }
 }

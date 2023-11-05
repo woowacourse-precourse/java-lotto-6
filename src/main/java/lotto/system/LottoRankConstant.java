@@ -21,6 +21,15 @@ public enum LottoRankConstant {
         this.message = creatMessage();
     }
 
+    public static LottoRankConstant findByRank(int rank) {
+        for (LottoRankConstant lottoRankConstant : values()) {
+            if (lottoRankConstant.getRank() == rank) {
+                return lottoRankConstant;
+            }
+        }
+        throw new IllegalStateException(ExceptionMessage.NOT_CONSTANT.getMessage());
+    }
+
     private String creatMessage() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(matchingNumbers);
@@ -34,5 +43,17 @@ public enum LottoRankConstant {
 
     public String getMessage() {
         return message;
+    }
+
+    public int getMatchingNumbers() {
+        return matchingNumbers;
+    }
+
+    public boolean getHasBonusNumber() {
+        return hasBonusNumber;
+    }
+
+    public int getRank() {
+        return rank;
     }
 }

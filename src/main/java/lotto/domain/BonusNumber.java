@@ -17,4 +17,8 @@ public class BonusNumber {
     private void validate(int number) {
         BallValidator.validate(number);
     }
+
+    public int get() {
+        return number;
+    }
 }

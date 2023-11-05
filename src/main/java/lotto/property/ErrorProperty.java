@@ -9,7 +9,7 @@ public enum ErrorProperty {
     WINNING_IS_NOT_CORRECTLY_RANGE("당첨번호는 1 ~ 45 사이의 숫자여야합니다."),
     WINNING_COUNT_IS_OVER_OR_UNDER("당첨번호의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE)),
     WINNING_FORMAT_IS_NOT_CORRECT("당첨번호의 입력 양식이 옳바르지 못합니다."),
-    COST_FORMAT_IS_NOT_CORRECT("구입금액은 %s 단위로 구매해야합니다.".formatted(COST_UNIT_MODULUS));
+    COST_FORMAT_IS_NOT_CORRECT("구입금액은 %s 단위로 구매해야합니다.".formatted(COST_UNIT_STANDARD));
 
     private String errorMessage;
 

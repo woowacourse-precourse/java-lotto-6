@@ -6,15 +6,15 @@ import static lotto.view.constant.Message.NOTICE_PURCHASE_QUANTITY;
 import java.util.Objects;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.domain.Lottos;
 import lotto.domain.LottoResults;
-import lotto.domain.LottoTickets;
 import lotto.domain.WinningNumber;
 import lotto.exception.LottoException;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoTickets lottoTickets;
+    private Lottos lottos;
     private WinningNumber winningNumber;
     private LottoResults lottoResults;
 
@@ -37,7 +37,7 @@ public class LottoController {
     private void getLottoTickets() {
         try {
             String input = inputView.requestPurchaseMoney();
-            lottoTickets = LottoTickets.purchase(input);
+            lottos = Lottos.purchase(input);
             printLottoTicketQuantity();
         } catch (LottoException e) {
             outputView.printErrorMessage(e);
@@ -69,7 +69,7 @@ public class LottoController {
         try {
             outputView.printDynamicMessage(
                     NOTICE_PURCHASE_QUANTITY,
-                    lottoTickets.getLottoTicketQuantity()
+                    lottos.getLottoQuantity()
             );
         } catch (LottoException e) {
             outputView.printErrorMessage(e);
@@ -78,11 +78,11 @@ public class LottoController {
     }
 
     private void printLottoNumbers() {
-        outputView.printIterableMessage(lottoTickets.getLottoNumbers());
+        outputView.printIterableMessage(lottos.getLottoNumbers());
     }
 
     private void printLottoResult() {
-        lottoResults = winningNumber.compareWithLottos(lottoTickets);
+        lottoResults = winningNumber.compareWithLottos(lottos);
         outputView.printResult(lottoResults.toString());
     }
 

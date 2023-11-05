@@ -9,23 +9,20 @@ import lotto.util.Parser;
 import lotto.util.LottoValidator;
 import lotto.exception.LottoException;
 
-public class LottoTickets {
-    private final int purchaseMoney;
+public class Lottos {
     private List<Lotto> lottos;
 
-    // TODO: 필드에서 purchaseMoney 없애기
-    private LottoTickets(int purchaseMoney) {
-        this.purchaseMoney = purchaseMoney;
+    private Lottos(int money) {
+        int quantity = moneyToQuantity(money);
+        this.lottos = generateLotto(quantity);
     };
 
-    public static LottoTickets purchase(String inputMoney) {
+    public static Lottos purchase(String inputMoney) {
         LottoValidator.validateNotNull(inputMoney);
-        return new LottoTickets(Parser.parseMoney(inputMoney));
+        return new Lottos(Parser.parseMoney(inputMoney));
     }
 
-    public int getLottoTicketQuantity() {
-        int ticketQuantity = moneyToTicket();
-        generateLottoTicket(ticketQuantity);
+    public int getLottoQuantity() {
         return lottos.size();
     }
 
@@ -52,16 +49,16 @@ public class LottoTickets {
         return LottoResult.create(matchCount, matchBonusNumber);
     }
 
-    private int moneyToTicket() throws LottoException {
+    private int moneyToQuantity(int money) throws LottoException {
         // TODO: 매직넘버 상수화하기
-        if (purchaseMoney % 1_000 > 0) {
+        if (money % 1_000 > 0) {
             throw new LottoException(INDIVISIBLE);
         }
-        return purchaseMoney / 1_000;
+        return money / 1_000;
     }
 
-    private void generateLottoTicket(int ticketQuantity) {
-        lottos = IntStream.range(0, ticketQuantity)
+    private List<Lotto> generateLotto(int ticketQuantity) {
+        return IntStream.range(0, ticketQuantity)
                 .mapToObj(lotto -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
                 .collect(Collectors.toList());
     }

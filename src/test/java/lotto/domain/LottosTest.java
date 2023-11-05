@@ -13,20 +13,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-public class LottoTicketsTest {
+public class LottosTest {
     @DisplayName("[Success] 구매한 금액을 1,000으로 나누어 구매 개수를 리턴한다.")
     @ParameterizedTest
     @CsvSource(value = {"1000:1", "2000:2", "4000:4"}, delimiter = ':')
-    void getLottoTicketByPurchaseMoney(String input, int expected) {
-        assertThat(LottoTickets.purchase(input).getLottoTicketQuantity())
+    void getLottosByPurchaseMoney(String input, int expected) {
+        assertThat(Lottos.purchase(input).getLottoQuantity())
                 .isEqualTo(expected);
     }
 
     @DisplayName("[Exception] 입력한 금액이 숫자가 아니면 예외가 발생한다.")
     @Test
-    void getLottoTicketByNotNumberInput() {
+    void getLottosByNotNumberInput() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase("숫자가아님").getLottoTicketQuantity())
+                .isThrownBy(() -> Lottos.purchase("숫자가아님").getLottoQuantity())
                 .withMessage(NOT_NUMBER.getMessage());
     }
 
@@ -34,17 +34,17 @@ public class LottoTicketsTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
-    void getLottoTicketByNullInput(String input) {
+    void getLottosByNullInput(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase(input).getLottoTicketQuantity())
+                .isThrownBy(() -> Lottos.purchase(input).getLottoQuantity())
                 .withMessage(EMPTY.getMessage());
     }
 
     @DisplayName("[Exception] 입력한 금액이 1,000으로 나누어지지 않는 숫자이면 예외가 발생한다")
     @Test
-    void getLottoTicketByIndivisibleInput() {
+    void getLottosByIndivisibleInput() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoTickets.purchase("1200").getLottoTicketQuantity())
+                .isThrownBy(() -> Lottos.purchase("1200").getLottoQuantity())
                 .withMessage(INDIVISIBLE.getMessage());
     }
 }

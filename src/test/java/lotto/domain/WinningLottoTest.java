@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.WinningLotto.BONUS_EXCEPTION_MSG;
+import static lotto.domain.WinningLotto.BONUS_NOT_UNIQUE_EXCEPTION_MSG;
+import static lotto.domain.WinningLotto.BONUS_RANGE_EXCEPTION_MSG;
 import static lotto.domain.WinningLotto.NUMBERS_EXCEPTION_MSG;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,7 +28,7 @@ public class WinningLottoTest {
         bonusInputs.stream().forEach(bonus -> {
             assertThatThrownBy(() -> new WinningLotto(numbersInput, bonus))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(BONUS_EXCEPTION_MSG);
+                    .hasMessageContaining(BONUS_RANGE_EXCEPTION_MSG);
         });
     }
 
@@ -38,6 +39,6 @@ public class WinningLottoTest {
         String bonusInput = "3";
         assertThatThrownBy(() -> new WinningLotto(numbersInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_EXCEPTION_MSG);
+                .hasMessageContaining(BONUS_NOT_UNIQUE_EXCEPTION_MSG);
     }
 }

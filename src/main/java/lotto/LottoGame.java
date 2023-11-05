@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.domain.WinningLotto.getValidBonusNumber;
+import static lotto.domain.WinningLotto.getValidLottoNumbers;
 import static lotto.view.Inputs.getBonusNumbers;
 import static lotto.view.Inputs.getPurchaseAmount;
 import static lotto.view.Inputs.getWinningNumbers;
@@ -26,12 +28,47 @@ public class LottoGame {
     }
 
     private void setGame() {
-        PurchaseLotto purchaseLotto = new PurchaseLotto();
-        purchaseLottos = purchaseLotto.purchase(getPurchaseAmount());
+        purchaseLottos = getValidPurchaseLottos();
         showLottos(purchaseLottos);
 
-        inputWinningLotto = new WinningLotto(getWinningNumbers(), getBonusNumbers());
+        Lotto validWinningLotto = makeValidWinningLotto();
+        Integer validBonusNumber = makeValidBonusNumber(validWinningLotto);
+
+        inputWinningLotto = new WinningLotto(validWinningLotto, validBonusNumber);
     }
+
+    private Integer makeValidBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                return getValidBonusNumber(getBonusNumbers(), winningLotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto makeValidWinningLotto() {
+        while (true) {
+            try {
+                return getValidLottoNumbers(getWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Lotto> getValidPurchaseLottos() {
+        PurchaseLotto purchaseLotto = new PurchaseLotto();
+
+        while (true) {
+            try {
+                return purchaseLotto.purchase(getPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 
     private void play() {
         results = new ArrayList<>();

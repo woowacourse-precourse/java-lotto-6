@@ -20,8 +20,8 @@
 
 ### 📍 사용자 입력 예외
 
-- [ ] <code>IllegalArgumentException</code>를 발생시킴
-- [ ] "[ERROR]"로 시작하는 에러 메시지 출력 후 다시 입력받음
+- [x] <code>IllegalArgumentException</code>를 발생시킴
+- [x] "[ERROR]"로 시작하는 에러 메시지 출력 후 다시 입력받음
 
 ### 📍 로또 랜덤 생성
 

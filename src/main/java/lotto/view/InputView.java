@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.constant.ErrorMessage.EXCEEDED_MAXIMUM_NUMBER_FORMAT;
+import static lotto.constant.ErrorMessage.INPUT_NOT_DIGIT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +24,7 @@ public class InputView {
     private void validateIsInputDigit(String input) {
         Matcher matcher = IS_NUMBER_PATTERN.matcher(input);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_DIGIT.toString());
         }
     }
 
@@ -29,7 +32,7 @@ public class InputView {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(EXCEEDED_MAXIMUM_NUMBER_FORMAT.toString());
         }
     }
 

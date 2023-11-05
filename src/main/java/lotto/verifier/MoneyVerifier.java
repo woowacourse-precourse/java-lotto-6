@@ -9,6 +9,7 @@ public class MoneyVerifier implements Verifier {
     @Override
     public void check(String input) {
         checkNumeric(input);
+        checkTypeRange(input);
         checkRange(input);
         checkDivisible(input);
     }
@@ -21,6 +22,13 @@ public class MoneyVerifier implements Verifier {
         }
     }
 
+    private void checkTypeRange(String input){
+        try{
+            Long.parseLong(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
+        }
+    }
     private void checkRange(String input) {
         int money = Integer.parseInt(input);
         if (money <= 0)

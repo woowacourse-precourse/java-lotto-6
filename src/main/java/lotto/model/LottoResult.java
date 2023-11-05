@@ -2,40 +2,44 @@ package lotto.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
 
+    private static final int SCALE = 1;
     private final Map<MatchCount, Integer> result;
 
     public LottoResult() {
-        result = new HashMap<>();
-        Arrays.stream(MatchCount.values())
-            .filter(matchCount -> matchCount != MatchCount.DEFAULT_NONE)
-            .forEach(matchCount -> {
-                result.put(matchCount, 0);
-            });
-    }
-
-    public void addResult(final MatchCount matchCount) {
-        if (matchCount != MatchCount.DEFAULT_NONE) {
-            result.put(matchCount, result.get(matchCount) + 1);
+        this.result = new HashMap<>();
+        for (MatchCount matchCount : MatchCount.values()) {
+            result.put(matchCount, 0);
         }
     }
 
-    public int getCount(final MatchCount matchCount) {
+
+    public void addResult(final MatchCount matchCount) {
+        result.put(matchCount, result.get(matchCount) + 1);
+    }
+
+    public int getMatchedTicketCount(final MatchCount matchCount) {
         return result.get(matchCount);
     }
 
     public double calculateEarningsRate(final int purchaseAmount) {
-        int totalEarnings = result.entrySet().stream()
-            .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+        long totalEarnings = calculateTotalEarnings();
+        return roundEarningsRate((double) totalEarnings / purchaseAmount * 100);
+    }
+
+    private long calculateTotalEarnings() {
+        return result.entrySet().stream()
+            .mapToLong(entry -> entry.getKey().getReward() * entry.getValue())
             .sum();
-        double earningsRate = ((double) totalEarnings / purchaseAmount) * 100;
-        BigDecimal bd = new BigDecimal(Double.toString(earningsRate)).setScale(2,
-            RoundingMode.HALF_UP);
+    }
+
+    private double roundEarningsRate(final double earningsRate) {
+        BigDecimal bd = new BigDecimal(Double.toString(earningsRate))
+            .setScale(SCALE, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
 

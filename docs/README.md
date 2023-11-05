@@ -1,4 +1,4 @@
-# 로또 (ver 1.0.1)
+# 로또 (ver 1.1.0)
 
 ## 문서 Versioning 규칙
 
@@ -48,6 +48,19 @@
 - LottoTickets: 구매한 로또들을 추상화한 클래스
   - [x] 구매 횟수를 받아 로또를 생성한다.
   - [x] 무작위 번호를 생성하고 오름차순하여 반환한다.
+- WinningNumber: 당첨 번호를 추상화한 클래스
+  - [ ] 당첨 번호를 반환한다.
+  - 유효성 검증
+    - [ ] 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
+    - [ ] 당첨 번호의 원소가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
+    - [ ] 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 당첨 번호가 공백이라면 IllegalArgumentException을 발생시킨다.
+- BonusNumber: 보너스 번호를 추상화한 클래스
+  - [ ] 보너스 번호를 반환한다.
+  - 유효성 검증
+    - [ ] 보너스 번호가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
+    - [ ] 보너스 번호가 당첨 번호와 중복된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 보너스 번호가 공백이라면 IllegalArgumentException을 발생시킨다.
 - EarningRate: 수익률을 추상화한 클래스
 
 ### View

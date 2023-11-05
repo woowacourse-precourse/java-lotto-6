@@ -10,8 +10,8 @@ import static lotto.util.GenerateRandomList.*;
 public class Customer {
     private final Integer MONEY;
     private final List<Lotto> buyLotto;
-    private final Integer COUNT_START = 0;
-    private final Integer COUNT_PLUS = 1;
+    private static final Integer COUNT_START = 0;
+    private static final Integer COUNT_PLUS = 1;
 
     public Customer(String money) {
         moneyValidate(money);

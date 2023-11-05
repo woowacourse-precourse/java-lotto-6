@@ -31,13 +31,23 @@ class LottoShopTest {
     }
 
     @Test
-    @DisplayName("당첨 번호로 WinningLotto 생성 확인 테스트")
+    @DisplayName("입력한 당첨 번호로 WinningLotto 생성 확인 테스트")
     void createWinningLottoWithInputNumbers() {
         List<Integer> inputWinningLotto = List.of(1, 2, 3, 4, 5, 6);
 
         Lotto winningLotto = lottoShop.createByWinningLotto(inputWinningLotto);
 
         assertThat(winningLotto).isInstanceOf(Lotto.class);
+    }
+
+    @Test
+    @DisplayName("입력한 보너스 번호로 BonusNumber 생성 확인 테스트")
+    void createBonusNumberWithInputNumber() {
+        int number = 7;
+
+        BonusNumber bonusNumber = lottoShop.createByBonusNumber(number);
+
+        assertThat(bonusNumber).isInstanceOf(BonusNumber.class);
     }
 }
 

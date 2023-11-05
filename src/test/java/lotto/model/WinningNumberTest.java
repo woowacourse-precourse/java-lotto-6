@@ -30,4 +30,15 @@ public class WinningNumberTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.WINNING_NUMBER_NOT_INTEGER.getMessage());
     }
+
+    @DisplayName("당첨 번호가 1에서 45 사이의 숫자가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0,2,3,4,5,6", "-5,1,2,3,4,5", "1,2,3,4,5,46"})
+    public void 범위에서_벗어난_당첨번호_예외처리(String input) {
+        //when+then
+        assertThatThrownBy(() -> {
+            WinningNumber.create(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
+    }
 }

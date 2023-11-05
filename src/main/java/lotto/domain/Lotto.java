@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.ExceptionConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +16,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

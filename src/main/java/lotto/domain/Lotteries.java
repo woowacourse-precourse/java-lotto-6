@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
 public class Lotteries {
 
-    private int Lotteries;
+    private int lotteries;
 
     private Lotteries(String userInput) {
-        this.Lotteries = generateLotteries(userInput);
+        this.lotteries = generateLotteries(userInput);
     }
 
     public static Lotteries from(String userInput) {

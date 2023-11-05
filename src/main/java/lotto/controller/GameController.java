@@ -30,6 +30,7 @@ public class GameController {
         setLottoBonusNumber();
         setLottoCountCalculator();
         setLottoProfitCalculator();
+        winResultPrint();
     }
 
     public void moneyConvertLotto() {
@@ -95,5 +96,9 @@ public class GameController {
         lottoProfitCalculator = new LottoProfitCalculator(
                 lottoCountCalculator.getLottoResult(),
                 moneyConverter.getChance());
+    }
+
+    public void winResultPrint(){
+        outputView.printResult(lottoCountCalculator.getLottoResult(), lottoProfitCalculator.getTotalProfitPercentile());
     }
 }

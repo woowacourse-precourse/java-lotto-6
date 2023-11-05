@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.exception.ErrorCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,8 @@ public class LottoService {
     }
 
     private void bonusNumberDuplicateCheck(int bonusNumber) {
-        if(winLotto.getLotto().contains(bonusNumber)) throw new IllegalArgumentException();
+        if (winLotto.getLotto().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
+        }
     }
 }

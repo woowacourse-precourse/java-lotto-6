@@ -1,5 +1,6 @@
 package lotto.utill;
 
+import Validate.ValidateException;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Utii {
@@ -9,6 +10,8 @@ public class Utii {
 
     public static String InputStringLine() {
         String inputStringLine = Console.readLine();
+
+        ValidateException.includeString(inputStringLine);
 
         return inputStringLine;
     }

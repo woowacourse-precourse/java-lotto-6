@@ -54,6 +54,13 @@ public class Lotto {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
+    public int compare(final Lotto lotto) {
+        return (int) lotto.numbers
+                .stream()
+                .filter(this::hasNumber)
+                .count();
+    }
+
     public boolean hasNumber(final int number) {
         return numbers.contains(number);
     }

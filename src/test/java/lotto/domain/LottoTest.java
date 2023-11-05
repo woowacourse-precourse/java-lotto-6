@@ -60,6 +60,32 @@ class LottoTest {
                 .isThrownBy(() -> new Lotto(numbers));
     }
 
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @MethodSource("provideDataForCompare")
+    @DisplayName("두 개의 로또를 비교해 매칭된 번호 개수를 알려준다")
+    void givenTwoLotto_whenCompare_thenReturnMatchingCount(List<Integer> numbers, int expected) {
+        // given
+        Lotto fixedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        int result = fixedLotto.compare(lotto);
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> provideDataForCompare() {
+        return Stream.of(
+                Arguments.of(List.of(1, 7, 8, 9, 10, 11), 1),
+                Arguments.of(List.of(1, 2, 8, 9, 10, 11), 2),
+                Arguments.of(List.of(1, 2, 3, 9, 10, 11), 3),
+                Arguments.of(List.of(1, 2, 3, 4, 10, 11), 4),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 11), 5),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6)
+        );
+    }
+
     @ParameterizedTest
     @CsvSource(value = {"1:true", "7:false"}, delimiter = ':')
     @DisplayName("로또가 해당 번호를 갖고 있는지 알려준다")

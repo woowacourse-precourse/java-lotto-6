@@ -37,4 +37,8 @@ public class WinningLotto {
         }
     }
 
+    public int countMatchingNumber(final Lotto userLotto) {
+        return winningLotto.compare(userLotto);
+    }
+
 }

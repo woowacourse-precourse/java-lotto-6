@@ -2,11 +2,15 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningLottoTest {
@@ -42,6 +46,32 @@ class WinningLottoTest {
         // when & then
         assertThatNoException()
                 .isThrownBy(() -> new WinningLotto(lotto, bonusNumber));
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @MethodSource("provideDataForCountMatchingNumber")
+    @DisplayName("사용자가 구매한 로또와 당첨 번호를 비교: 일치하는 당첨 번호 수를 알려준다")
+    void givenWinningLottoAndUserLotto_whenCountMatchingNumber_thenReturnCount(List<Integer> numbers, int expected) {
+        // given
+        WinningLotto winningLotto = new WinningLotto(lotto, 1);
+        Lotto userLotto = new Lotto(numbers);
+
+        // when
+        int result = winningLotto.countMatchingNumber(userLotto);
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> provideDataForCountMatchingNumber() {
+        return Stream.of(
+                Arguments.of(List.of(2, 10, 11, 12, 13, 14), 1),
+                Arguments.of(List.of(2, 3, 11, 12, 13, 14), 2),
+                Arguments.of(List.of(2, 3, 4, 12, 13, 14), 3),
+                Arguments.of(List.of(2, 3, 4, 5, 13, 14), 4),
+                Arguments.of(List.of(2, 3, 4, 5, 6, 14), 5),
+                Arguments.of(List.of(2, 3, 4, 5, 6, 7), 6)
+        );
     }
 
 }

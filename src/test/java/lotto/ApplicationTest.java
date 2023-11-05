@@ -268,6 +268,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_가격_1000원_단위X() {
+        assertSimpleTest(() -> {
+            runException("1300");
+            assertThat(output())
+                    .contains(ERROR_MESSAGE)
+                    .contains(Casher.NOT_LOTTO_UNIT);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

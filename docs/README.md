@@ -20,8 +20,10 @@
 - 도메인 로직에 단위테스트 구현하기
 
 ### 클래스 나누기
-- lotto 주어진 클래스
-- enum 상금을 나누는 클래스
-- class 로또게임, 전체적인 로직 담당 (컨트롤러)
-- view 클래스
-- 예외처리 담당 클래스, Validation 담당
+- lotto: 주어진 model(domain) 클래스
+- enum: 상금을 나누는 model 클래스
+- controller: 뷰로부터 입력받고, domain 이용 
+- service: 게임의 로직 관리
+- util: 게임에 이용될 도구들
+- view: 클래스
+- validation: 검증담당 클래스

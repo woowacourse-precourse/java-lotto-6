@@ -1,10 +1,11 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class OutputView {
 
-    static void printPurchaseHistory(List<Lotto> list) {
+    public static void printPurchaseHistory(List<Lotto> list) {
         print(String.format("%d개를 구매했습니다.", list.size()));
         for (Lotto lotto : list) {
             List<Integer> lottoNumbers = lotto.getList();

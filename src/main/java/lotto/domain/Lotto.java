@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
 
@@ -45,4 +46,18 @@ public class Lotto {
     public List<LottoNumber> getNumbers(){
         return numbers;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Lotto lotto = (Lotto) obj;
+        return this.numbers.equals(lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
+    }
+
 }

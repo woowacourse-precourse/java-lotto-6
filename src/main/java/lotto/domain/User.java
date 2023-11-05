@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class User {
     private final Money money;
     private final LottoTicket lottoTicket;
@@ -13,7 +15,7 @@ public class User {
         money.zero();
     }
 
-    public LottoTicket getLottoTicket() {
-        return lottoTicket;
+    public List<Lotto> getLottoTicket() {
+        return lottoTicket.getLottoTicket();
     }
 }

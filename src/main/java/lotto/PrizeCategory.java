@@ -23,8 +23,4 @@ public enum PrizeCategory {
     public int getPrizeAmount() {
         return prizeAmount;
     }
-
-    public void setPrizeAmount(int prizeAmount){
-        this.prizeAmount = prizeAmount;
-    }
 }

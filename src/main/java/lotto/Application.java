@@ -7,4 +7,10 @@ public class Application {
         System.out.println(InputMessage.purchaseAmount);
         String purchaseAmount = Console.readLine();
     }
+
+    public void checkEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_VALUE);
+        }
+    }
 }

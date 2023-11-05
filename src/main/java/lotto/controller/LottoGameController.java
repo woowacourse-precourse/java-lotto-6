@@ -31,8 +31,14 @@ public class LottoGameController {
     }
 
     private WinningNumber initWinningNumber() {
-        List<String> winningNumberInput = requestWinningNumber();
-        return new WinningNumber(winningNumberInput);
+        while (true) {
+            try {
+                List<String> winningNumberInput = requestWinningNumber();
+                return new WinningNumber(winningNumberInput);
+            } catch (IllegalArgumentException exception) {
+                outputView.output(exception.getMessage());
+            }
+        }
     }
 
     private List<String> requestWinningNumber() {

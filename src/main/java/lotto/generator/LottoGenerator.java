@@ -27,6 +27,4 @@ public class LottoGenerator {
     public List<Integer> generateLottoNum() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, PICK_NUM);
     }
-
-
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Calculator {
 
-    public static Ranking calculateRanking(Lotto lotto, WinningNumbers winningNumbers) {
+    public Ranking calculateRanking(Lotto lotto, WinningNumbers winningNumbers) {
         List<Integer> winningMainNumbers = winningNumbers.getMainNumbers().getNumbers();
         int winningBonusNumber = winningNumbers.getBonusNumber();
 
@@ -39,7 +39,7 @@ public class Calculator {
                 .count();
     }
 
-    public static float calculateReturnOfRate(Map<Ranking, Integer> result, int ticketQuantity) {
+    public float calculateReturnOfRate(Map<Ranking, Integer> result, int ticketQuantity) {
         int totalRevenue = 0;
         for (Map.Entry<Ranking, Integer> entry : result.entrySet()) {
             int eachRankRevenue = entry.getKey().getReward() * entry.getValue();

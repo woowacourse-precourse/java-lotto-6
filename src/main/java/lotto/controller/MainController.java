@@ -13,6 +13,12 @@ import lotto.domain.WinningNumbers;
 
 public class MainController {
 
+    Calculator calculator;
+
+    public MainController(){
+        this.calculator = new Calculator();
+    }
+
     public ArrayList<Lotto> settingConsumerLottos(int ticketQuantity) {
         ArrayList<Lotto> consumerLottos = new ArrayList<>();
         publishLottoByTicketQuantity(ticketQuantity, consumerLottos);
@@ -30,7 +36,7 @@ public class MainController {
     public Map<Ranking, Integer> getRankingResult(ArrayList<Lotto> consumerLottos, WinningNumbers winningNumbers) {
         Map<Ranking, Integer> resultBoard = makeResultMap();
         for (Lotto lotto : consumerLottos) {
-            Ranking rank = Calculator.calculateRanking(lotto, winningNumbers);
+            Ranking rank = calculator.calculateRanking(lotto, winningNumbers);
             resultBoard.put(rank, resultBoard.getOrDefault(rank, 0) + 1);
         }
         preventNullPointMap(resultBoard);
@@ -52,7 +58,7 @@ public class MainController {
     }
 
     public float getReturnOfRate(Map<Ranking, Integer> resultBoard, int ticketQuantity) {
-        float returnOfRate = Calculator.calculateReturnOfRate(resultBoard, ticketQuantity);
+        float returnOfRate = calculator.calculateReturnOfRate(resultBoard, ticketQuantity);
         return returnOfRate;
     }
 

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -22,8 +23,9 @@ public class LottoController {
         // 보너스 번호를 입력해 주세요.
         int userBonusNumber = getUserBonusNumber();
         // 당첨 통계
-
+        List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos, userBonusNumber);
         // 수익률
+
     }
 
     private static int getUserBonusNumber() {

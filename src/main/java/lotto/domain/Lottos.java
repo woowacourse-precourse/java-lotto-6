@@ -15,6 +15,9 @@ public class Lottos {
     public Lotto get(int index){
         return lottos.get(index);
     }
+    public int size(){
+        return lottos.size();
+    }
 
     public LottoResponseDtos toResponseDto(){
         return new LottoResponseDtos(mapToLottoResponseDto());

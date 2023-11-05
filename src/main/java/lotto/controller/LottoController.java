@@ -12,6 +12,7 @@ public class LottoController {
 
     public int purchaseAmount;
     public int lottoCount;
+    public int bonusNumber;
     public List<Lotto> lottos;
     public List<Integer> answerNumber;
 
@@ -21,6 +22,8 @@ public class LottoController {
         showLottoCount();
         OutputView.printNextLine();
         requestAnswerNumber();
+        OutputView.printNextLine();
+        requestBonusNumber();
     }
 
     public void requestPurchaseAmount() {
@@ -41,6 +44,22 @@ public class LottoController {
     }
 
     public void requestAnswerNumber() {
-        answerNumber = inputView.inputAnswerNumber();
+        OutputView.printAnswerNumberRequest();
+        try {
+            answerNumber = inputView.inputAnswerNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            requestAnswerNumber();
+        }
+    }
+
+    public void requestBonusNumber() {
+        OutputView.printBonusNumberRequest();
+        try {
+            bonusNumber = inputView.inputBonusNumber(answerNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            requestBonusNumber();
+        }
     }
 }

@@ -20,6 +20,14 @@ public class OutputView {
         }
     }
 
+    public static void printAnswerNumberRequest() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void printBonusNumberRequest() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public static void printNextLine() {
         System.out.print("\n");
     }

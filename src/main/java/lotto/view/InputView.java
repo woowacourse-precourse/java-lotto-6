@@ -11,7 +11,7 @@ public class InputView {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int MAX_PURCHASE_AMOUNT = 10000000;
+    private static final int MAX_PURCHASE_AMOUNT = 1000000;
     private static final int MIN_INPUT_ANSWER_LENGTH = 11;
     private static final int MAX_INPUT_ANSWER_LENGTH = 17;
     private static final String VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE = "[ERROR] 공백이 없는 값이어야 합니다.";
@@ -60,7 +60,7 @@ public class InputView {
         if (inputAnswer.length() < MIN_INPUT_ANSWER_LENGTH || inputAnswer.length() > MAX_INPUT_ANSWER_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 잘못된 범위의 입력입니다.");
         }
-        if (inputAnswer.matches("^(?:[^,]*,){5}[^,]*$")) {
+        if (!inputAnswer.matches("^[^,]+(,[^,]+){5}$")) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
     }
@@ -91,5 +91,10 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
             }
         }
+    }
+
+    public int inputBonusNumber(List<Integer> answerNumber){
+        String inputBonus = Console.readLine();
+        return Integer.parseInt(inputBonus);
     }
 }

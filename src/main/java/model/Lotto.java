@@ -25,13 +25,17 @@ public class Lotto {
     }
 	
 	// TODO: 추가 기능 구현
-	public static List<Integer> divideText(String lottoNumberText) throws IllegalArgumentException {
+	public static void validateLottoNumber(String lottoNumberText) throws IllegalArgumentException {
 		InputException.checkNull(lottoNumberText);
-		
+	}
+	
+	public static List<Integer> changeNumberList(String lottoNumberText) throws IllegalArgumentException {
 		List<String> numberTextList = Arrays.asList(lottoNumberText.split(",", -1));
 		List<Integer> numberList = new ArrayList<>();
 		for(String numberText : numberTextList) {
-			int number = Integer.valueOf(numberText.trim());
+			numberText = numberText.trim();
+			InputException.checkNumber(numberText);
+			int number = Integer.valueOf(numberText);
 			numberList.add(number);
 		}
 		return numberList;

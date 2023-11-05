@@ -6,19 +6,28 @@ import model.BonusNumber;
 import model.BuyLotto;
 import model.BuyLottoNumber;
 import model.Lotto;
+import validators.InputException;
 import view.InputView;
 import view.OutputView;
 
 public class LottoController {
 	
 	public void start() {
-		buyLotto();
+		BuyLotto buyLotto = buyLotto();
 		choiceNumber();
 	}
 
-	public static void buyLotto() {
-		BuyLotto buyLotto = new BuyLotto(InputView.getBuyAmount());
-		showLottoList(buyLotto.getNumberList());
+	public static BuyLotto buyLotto() {
+		while(true) {
+			try {
+				BuyLotto buyLotto = new BuyLotto(InputView.getBuyAmount());
+				showLottoList(buyLotto.getNumberList());
+				
+				return buyLotto;
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 
 	private static void showLottoList(List<BuyLottoNumber> buyLottoNumberList) {
@@ -28,36 +37,34 @@ public class LottoController {
 	
 	private static void choiceNumber() {
 		Lotto lotto = inputLottoNumber(InputView.getNumberListText());
-		BonusNumber bonus = inputBonusNumber(InputView.getBonusNumberText());
+		BonusNumber bonus = inputBonusNumber(InputView.getBonusNumberText(), lotto);
 	}
 	
 	public static Lotto inputLottoNumber(String lottoNumberText) {
 		while(true) {
 			try {
-				List<Integer> numberList = Lotto.divideText(lottoNumberText);
-				Lotto lotto = new Lotto(numberList);
+				InputException.checkNull(lottoNumberText);
+				List<Integer> numberList = Lotto.changeNumberList(lottoNumberText);
 				
-				return lotto;
+				return new Lotto(numberList);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e);
-				return inputLottoNumber(InputView.getNumberListText());
+				lottoNumberText = InputView.getNumberListText();
 			}
 		}
 	}
-	
-	private static BonusNumber inputBonusNumber(String bonusNumberText) {
+
+	private static BonusNumber inputBonusNumber(String bonusNumberText, Lotto lotto) {
 		while(true) {
 			try {
-				BonusNumber.validateBonusNumber(bonusNumberText);
+				InputException.checkNull(bonusNumberText);
 				int bonusNumber = BonusNumber.changeToNumber(bonusNumberText);
 				BonusNumber bonus = new BonusNumber(bonusNumber);
-				
+					
 				return bonus;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e);
-				System.out.println();
-				
-				return inputBonusNumber(InputView.getBonusNumberText());
+				bonusNumberText = InputView.getBonusNumberText();
 			}
 		}
 	}

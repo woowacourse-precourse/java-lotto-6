@@ -39,6 +39,10 @@ public class Payment {
         }
     }
 
+    public int calculatePurchasedLottoCount() {
+        return amount / LOTTO_PRICE;
+    }
+
     public double calculateYield(final long totalReward) {
         return Math.round((double) totalReward / amount * 1000) / 10.0;
     }

@@ -52,6 +52,7 @@ public class InputUtils {
         String input = null;
 
         while (true) {
+            PrintUtils.print("");
             PrintUtils.print(GameMessage.INPUT_WINNER_NUMBERS);
             input = Console.readLine();
             boolean isValid = false;
@@ -64,10 +65,31 @@ public class InputUtils {
             if (isValid) {
                 break;
             }
-
         }
 
         return convertToWinnerNumbers(input);
+    }
+
+    public static Integer getBonusNumber() {
+        String input = null;
+
+        while (true) {
+            PrintUtils.print("");
+            PrintUtils.print(GameMessage.INPUT_BONUS_NUMBER);
+            input = Console.readLine();
+            boolean isValid = false;
+            try {
+                isValid = validBonusNumber(input);
+            } catch (IllegalArgumentException e) {
+                PrintUtils.print(e.getMessage());
+            }
+
+            if (isValid) {
+                break;
+            }
+        }
+
+        return Integer.valueOf(input);
     }
 
     private static boolean validAmount(String input) {
@@ -113,6 +135,32 @@ public class InputUtils {
     }
 
     private static List<Integer> convertToWinnerNumbers(String input) {
-        return Arrays.stream(input.split(",")).map(Integer::valueOf).toList();
+        List<Integer> winnerNumbers = null;
+        try {
+            winnerNumbers = Arrays.stream(input.split(",")).map(Integer::valueOf).toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBERS.getMessage());
+        }
+
+        return winnerNumbers;
+    }
+
+    private static boolean validBonusNumber(String input) {
+        if (Strings.isNullOrEmpty(input)) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_DATA.getMessage());
+        }
+
+        int number = 0;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBERS.getMessage());
+        }
+
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_INVALID_NUMBER_RANGE.getMessage());
+        }
+
+        return true;
     }
 }

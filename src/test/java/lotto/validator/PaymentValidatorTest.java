@@ -21,15 +21,15 @@ class PaymentValidatorTest {
                 .hasMessage(CATCH_ERROR + INPUT_EMPTY);
     }
 
-//    @DisplayName("입력값에 문자가 포함된 경우")
-//    @Test
-//    void 문자가_포함된_입력_경우() {
-//        // given
-//        String text = "10000l";
-//        // then
-//        Assertions.assertThatThrownBy(() -> PaymentValidator.validate(text))
-//                .hasMessage(CATCH_ERROR + INVALID_NUMBER);
-//    }
+    @DisplayName("입력값에 문자가 포함된 경우")
+    @Test
+    void 문자가_포함된_입력_경우() {
+        // given
+        String text = "10000l";
+        // then
+        Assertions.assertThatThrownBy(() -> PaymentValidator.validate(text))
+                .hasMessage(CATCH_ERROR + INVALID_NUMBER);
+    }
 
     @DisplayName("공백 값인 경우")
     @Test

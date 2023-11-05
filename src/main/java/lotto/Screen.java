@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,14 +17,14 @@ public class Screen {
     }
 
     static public void printAllLottos(List<Lotto> lottos) {
-        System.out.printf("%s개를 구매했습니다.%n", lottos.size());
+        System.out.printf("\n%s개를 구매했습니다.%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
     }
 
     public static void printAskingWinningNumbersMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public static List<Integer> inputWinningNumbers() {
@@ -41,7 +42,7 @@ public class Screen {
     }
 
     static public void printAskingBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public static int inputBonusNumber() {
@@ -60,7 +61,7 @@ public class Screen {
     }
 
     public static void dispalyResult(Result result) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         displayWinningResult(result);
         displayEarningRate(result);
     }
@@ -69,6 +70,8 @@ public class Screen {
     }
 
     private static void displayEarningRate(Result result) {
-        System.out.printf("총 수익률은 %.2f%%입니다\n", result.getEarningRate());
+        DecimalFormat formatter = new DecimalFormat("###,###.##");
+
+        System.out.printf("총 수익률은 %s%%입니다.\n", formatter.format(result.getEarningRate()));
     }
 }

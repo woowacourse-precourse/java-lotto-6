@@ -1,9 +1,9 @@
 package lotto;
 
 public class LottoNumber {
-    private final int MINIMUM = 1;
-    private final int MAXIMUM = 45;
-    private int number;
+    private static final int MINIMUM = 1;
+    private static final int MAXIMUM = 45;
+    private final int number;
 
     public LottoNumber(int number) {
         this.number = number;

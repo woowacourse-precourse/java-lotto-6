@@ -23,4 +23,8 @@ public class ValidatorPurchaseAmount {
         }
     }
 
+    private boolean isEmpty(Purchase purchase) {
+        String returnAmount = purchase.getPurchaseAmount();
+        return !returnAmount.isEmpty();
+    }
 }

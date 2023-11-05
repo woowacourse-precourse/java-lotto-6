@@ -19,4 +19,8 @@ public class BonusNumber {
     private boolean isInvalidRange(int bonusNumber) {
         return bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -31,7 +31,7 @@ public class BonusNumberVerifier implements Verifier{
     }
 
     private void checkRange(String input){
-        int BonusNumber = Integer.parseInt(input);
+        long BonusNumber = Long.parseLong(input);
         if(BonusNumber < Constant.START_INCLUSIVE || BonusNumber > Constant.END_INCLUSIVE ){
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
         }

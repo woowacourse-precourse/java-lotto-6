@@ -42,4 +42,12 @@ class LottoMachineTest {
 
         assertThrows(IllegalArgumentException.class, () -> lottoMachine.setWinningNumbers(invalidNumbers));
     }
+
+    @DisplayName("보너스 번호 세팅 시 유효성 검사 실패 테스트")
+    @Test
+    public void given_InvalidBonusNum_when_SetBonusNum_then_ThrowsIllegalArgumentException() {
+        int bonusNum = 0;
+
+        assertThrows(IllegalArgumentException.class, () -> lottoMachine.setBonusNum(bonusNum));
+    }
 }

@@ -32,6 +32,6 @@ public class Input {
     }
 
     public static List<String> split(String userInput) {
-        return Arrays.asList(Computer.getInput().split(","));
+        return Arrays.asList(userInput.split(","));
     }
 }

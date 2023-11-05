@@ -9,7 +9,7 @@ public class TotalProfitCalculator {
         this.payment = payment;
     }
 
-    private double calculateTotalProfit(LottoStatistics lottoStatistics) {
+    public double calculateTotalProfit(LottoStatistics lottoStatistics) {
         double allProfitMoney = calculateAllMoney(lottoStatistics);
 
         double decimal =  allProfitMoney / (double) payment;
@@ -30,6 +30,6 @@ public class TotalProfitCalculator {
     }
 
     private double roundToTwoDecimal(double value) {
-        return Math.round(value * 100.0) / 100.0;
+        return Math.round(value * 10.0) / 10.0;
     }
 }

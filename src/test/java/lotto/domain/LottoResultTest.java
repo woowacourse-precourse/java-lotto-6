@@ -49,6 +49,22 @@ public class LottoResultTest {
         assertThat(matchCount).isEqualTo(15);
     }
 
+    @DisplayName("로또 번호가 3개,6개가 맞는 경우를 테스트")
+    @Test
+    void getWinningCountTest() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 5, 8, 9, 11));
+        Lotto lotto3 = new Lotto(List.of(11, 21, 31, 41, 5, 6));
+
+        List<Lotto> purchaseLottoNumbers = List.of(lotto1, lotto2, lotto3);
+
+        LottoCount lottoCount = lottoResult.getLottoStatus(purchaseLottoNumbers);
+
+        assertThat(lottoCount.getSixCount()).isEqualTo(1);
+        assertThat(lottoCount.getThreeCount()).isEqualTo(1);
+
+    }
+
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(buffer));

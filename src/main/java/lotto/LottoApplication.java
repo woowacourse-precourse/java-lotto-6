@@ -15,6 +15,9 @@ public class LottoApplication {
         int receivedAmount = getReceivedAmount();
 
         Lotto pickedNumbers = getPickedNumbers();
+        Bonus bonus = getBonusNumber();
+
+        Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
@@ -48,10 +51,18 @@ public class LottoApplication {
                     .toList(); // String[]을 List<Integer>로 변환 
             
             return new Lotto(pickedNumbers);
-        } catch(NumberFormatException nfe) { // picekdNumbers 중 정수값이 없을 경우
+        } catch(NumberFormatException nfe) { // pickedNumbers 중 정수값이 없을 경우
             throw new IllegalArgumentException();
         }
         
+    }
+
+    private Bonus getBonusNumber() {
+        try {
+            return new Bonus(Integer.parseInt(Input.readBonusNumber()));
+        } catch (NumberFormatException nfe) { // 정수값 입력하지 않았을 경우
+            throw new IllegalArgumentException();
+        }
     }
 
     private Lotto drawLotto() {

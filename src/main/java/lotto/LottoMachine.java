@@ -9,13 +9,13 @@ public class LottoMachine {
 
     public List<Lotto> publishLotteries(int count) {
         while (count > 0) {
-            lotteries.add(this.GenerateLotto());
+            lotteries.add(this.generateLotto());
             count--;
         }
         return lotteries;
     }
 
-    private Lotto GenerateLotto() {
+    private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER,
                 Lotto.LOTTO_LENGTH);
         return new Lotto(numbers);

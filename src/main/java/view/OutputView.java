@@ -3,6 +3,9 @@ package view;
 import lotto.domain.LottoPack;
 import util.Printer.IPrinter;
 
+import static lotto.constant.OutputMessage.BOUGHT_LOTTO_PACK;
+import static lotto.constant.OutputMessage.GET_MONEY_MESSAGE;
+
 public class OutputView {
 
     private final IPrinter printer;
@@ -12,7 +15,7 @@ public class OutputView {
     }
 
     public void printGetMoney() {
-        printer.println("구입금액을 입력해 주세요.");
+        printer.println(GET_MONEY_MESSAGE.getMessage());
     }
 
     public void newline() {
@@ -20,8 +23,12 @@ public class OutputView {
     }
 
     public void printLottoPack(LottoPack lottoPack) {
-        printer.println(String.format("%d개를 구매했습니다.", lottoPack.size()));
+        printer.println(buildLottoPackMessage(lottoPack));
         printer.println(lottoPack.toString());
+    }
+
+    private String buildLottoPackMessage(LottoPack lottoPack) {
+        return String.format(BOUGHT_LOTTO_PACK.getMessage(), lottoPack.size());
     }
 
     public void printException(Exception exception) {

@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import lotto.Model.Lotto;
+import lotto.Model.Prize;
 import lotto.Service.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,4 +31,25 @@ public class LottoMachineTest {
         assertThat(count).isEqualTo(6);
     }
 
+
+
+    @DisplayName("통계를 카운트하는 함수가 맞게 카운트 하는지 확인")
+    @Test
+    void checkCountStatistics() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 43, 44, 45)));
+        List<Integer> winningNumbers = new ArrayList<>();
+        winningNumbers.add(1);
+        winningNumbers.add(2);
+        winningNumbers.add(3);
+        winningNumbers.add(4);
+        winningNumbers.add(5);
+        winningNumbers.add(6);
+        Integer bonusNumber = 7;
+
+        LottoMachine.countStatistics(lottos , winningNumbers , bonusNumber);
+
+
+        assertThat(Prize.THREE.getCount()).isEqualTo(1);
+    }
 }

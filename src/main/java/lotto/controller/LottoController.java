@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
+import lotto.util.LottoGenerator;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,6 +18,8 @@ public class LottoController {
     private final Validator validator;
 
 
+
+
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -25,6 +28,11 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
+
+        buyLottoTicket(money/1000);
+
+
+
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
 
 
@@ -39,6 +47,13 @@ public class LottoController {
 
     }
 
+    private void buyLottoTicket(long count) {
+        LottoGenerator lottoGenerator = LottoGenerator.getInstance();
+        for(int i=0; i<count; i++){
+            outputView.printTicket(lottoGenerator.generateNumberList());
+        }
+
+    }
 
 
     private Long inputMoney(InputMoneyService inputMoneyService) {

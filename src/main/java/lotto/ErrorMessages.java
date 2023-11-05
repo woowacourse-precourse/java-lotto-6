@@ -6,7 +6,7 @@ public enum ErrorMessages {
             + "의 배수를 입력해 주세요."),
     ERROR_LENGTH_NOT_SIX("[ERROR] 6개의 숫자를 입력해 주세요."),
     ERROR_OUT_OF_RANGE_LOTT_NUMBER("[ERROR] " + Config.MIN_LOTTO_NUMBER + "~" + Config.MAX_LOTTO_NUMBER
-            + "사이의 숫자를 입력해 주세요");
+            + " 사이의 숫자를 입력해 주세요");
 
 
     private final String message;

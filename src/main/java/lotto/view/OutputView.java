@@ -22,4 +22,8 @@ public class OutputView {
     public void printGetBonusNumberMessage() {
         System.out.println(PrintingMessage.GET_BONUS_NUMBER_MESSAGE.get());
     }
+
+    public void printPrizeMessages(int sameCount, long prizeProfit, int prizeCount) {
+        System.out.println(PrintingMessage.PRIZE_MESSAGE.getWithFormat(sameCount, prizeProfit, prizeCount));
+    }
 }

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,17 +14,17 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLotto() {
+    public List<Lotto> getLottos() {
         return lottos;
     }
 
     public Map<Price, Integer> calculateScore(Lotto answer, Bonus bonus) {
         Map<Price, Integer> scores = initializeScores();
-        Price price;
-        for (Lotto lotto : lottos) {
-            price = checkPrice(lotto.calculateScore(answer), lotto, bonus);
-            scores.put(price, scores.get(price) + 1);
-        }
+        lottos.stream()
+                .filter(lotto -> lotto.calculateScore(answer) >= 3)
+                .forEach(lotto ->
+                        scores.put(checkPrice(lotto.calculateScore(answer), lotto, bonus)
+                                , scores.get(checkPrice(lotto.calculateScore(answer), lotto, bonus)) + 1));
         return scores;
     }
 
@@ -43,12 +43,12 @@ public class Lottos {
     }
 
     private Map<Price, Integer> initializeScores() {
-        Map<Price, Integer> scores = new HashMap<>();
-        scores.put(Price.FIRST, NONE_SCORE);
-        scores.put(Price.SECOND, NONE_SCORE);
-        scores.put(Price.THIRD, NONE_SCORE);
-        scores.put(Price.FORTH, NONE_SCORE);
+        Map<Price, Integer> scores = new LinkedHashMap<>();
         scores.put(Price.FIFTH, NONE_SCORE);
+        scores.put(Price.FORTH, NONE_SCORE);
+        scores.put(Price.THIRD, NONE_SCORE);
+        scores.put(Price.SECOND, NONE_SCORE);
+        scores.put(Price.FIRST, NONE_SCORE);
         return scores;
     }
 }

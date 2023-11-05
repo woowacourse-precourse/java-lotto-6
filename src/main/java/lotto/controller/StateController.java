@@ -1,15 +1,16 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static lotto.random.Number.LottoGenerator;
+import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 
 public class StateController {
@@ -29,7 +30,7 @@ public class StateController {
 
     private void enterMoney() {
         try {
-            money = new Money(Integer.parseInt(InputView.readMoney().trim()));
+            money = new Money(Integer.parseInt(readMoney().trim()));
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             enterMoney();
@@ -41,15 +42,19 @@ public class StateController {
                 .range(0, money.lottoCount())
                 .mapToObj(i -> new Lotto(LottoGenerator()))
                 .toList());
-        OutputView.printLottoCount(money.lottoCount());
-        lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
+        printLottoCount(money.lottoCount());
+
+        for (Lotto lotto : lottos.getLottos()) {
+            printLotto(lotto.getNumbers());
+        }
     }
 
     private void enterAnswer() {
         List<Integer> answerLotto = Stream
-                .of(InputView.readAnswer().trim().split(","))
+                .of(readAnswer().trim().split(","))
                 .map(Integer::parseInt)
                 .toList();
+
         try {
             this.answerLotto = new Lotto(answerLotto);
         } catch (IllegalArgumentException exception) {
@@ -60,7 +65,7 @@ public class StateController {
 
     private void enterBonus() {
         try {
-            this.bonus = new Bonus(Integer.parseInt(InputView.readBonus().trim()), answerLotto.getNumbers());
+            this.bonus = new Bonus(Integer.parseInt(readBonus().trim()), answerLotto.getNumbers());
 
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -70,5 +75,12 @@ public class StateController {
 
     private void calculateResult() {
         Map<Price, Integer> scores = lottos.calculateScore(answerLotto, bonus);
+
+        printResult();
+        for (Map.Entry<Price, Integer> score : scores.entrySet()) {
+            printPrice(score.getKey().getGuideline()
+                    , NumberFormat.getInstance().format(score.getKey().getReward())
+                    , score.getValue());
+        }
     }
 }

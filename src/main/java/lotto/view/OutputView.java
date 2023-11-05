@@ -26,4 +26,7 @@ public class OutputView {
             printLotto(lotto);
         }
     }
+    public static void printInputWinningNumberMsg() {
+        System.out.print(INPUT_LOTTO_NUMBER_MSG);
+    }
 }

@@ -59,8 +59,7 @@ public class Lotto {
 
         correctBonusNumberCount = countBonusNumber(bonusNumber, correctBonusNumberCount);
 
-        // TODO : 당첨 등수 추출
-        return null;
+        return getPrize(correctNomalNumberCount, correctBonusNumberCount);
     }
 
     private Integer countNomalNumber(List<Integer> winningNumbers,
@@ -78,5 +77,13 @@ public class Lotto {
             collectBonusNumberCount++;
         }
         return collectBonusNumberCount;
+    }
+    private static Prize getPrize(Integer collectNomalNumberCount, Integer collectBonusNumberCount) {
+        if (collectNomalNumberCount == 6) return Prize.SIX;
+        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 1) return Prize.FIVE_BONUS;
+        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 0) return Prize.FIVE;
+        if (collectNomalNumberCount == 4) return Prize.FOUR;
+        if (collectNomalNumberCount == 3) return Prize.THREE;
+        return Prize.NONE;
     }
 }

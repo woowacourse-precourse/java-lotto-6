@@ -17,7 +17,9 @@ public enum ErrorMessage {
     // Input View Validation
     EMPTY_STRING_EXCEPTION("입력 값이 없습니다."),
     BLANK_STRING_EXCEPTION("입력 값이 비어 있습니다."),
-    INPUT_STRING_NOT_NUMBER("숫자만 입력할 수 있습니다.");
+    INPUT_STRING_NOT_NUMBER("숫자만 입력할 수 있습니다."),
+    INPUT_STRING_NOT_LOTTO_NUMBER("당첨 번호는 쉼표(,)를 기준으로 구분하여야 합니다."),
+    ;
 
 
     private final String message;

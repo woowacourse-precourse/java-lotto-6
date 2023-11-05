@@ -18,7 +18,7 @@ public class LottoCompanyTest {
     void allNumberUniqueTest() {
         // given
         GoalNumbers goalNumbers = GoalNumbers.from("1,2,3,4,5,6");
-        BonusNumber bonusNumber = BonusNumber.from("7");
+        LottoNumber bonusNumber = LottoNumber.from("7");
 
         // when & then
         assertDoesNotThrow(() -> LottoCompany.of(goalNumbers, bonusNumber));
@@ -29,7 +29,7 @@ public class LottoCompanyTest {
     void bonusNumberAlreadyUsedExceptionTest() {
         // given
         GoalNumbers goalNumbers = GoalNumbers.from("1,2,3,4,5,6");
-        BonusNumber bonusNumber = BonusNumber.from("6");
+        LottoNumber bonusNumber = LottoNumber.from("6");
 
         // when & then
         assertThatThrownBy(() -> LottoCompany.of(goalNumbers, bonusNumber))
@@ -47,7 +47,7 @@ public class LottoCompanyTest {
             new Lotto(List.of(13, 14, 15, 16, 17, 18))
         );
         GoalNumbers goalNumbers = GoalNumbers.from("1,2,3,10,11,12");
-        BonusNumber bonusNumber = BonusNumber.from("14");
+        LottoNumber bonusNumber = LottoNumber.from("14");
         LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
         int expectedMatchLottos = 2;
 
@@ -68,7 +68,7 @@ public class LottoCompanyTest {
                 new Lotto(List.of(13, 14, 15, 16, 17, 18))
         );
         GoalNumbers goalNumbers = GoalNumbers.from("1,2,3,4,5,12");
-        BonusNumber bonusNumber = BonusNumber.from("6");
+        LottoNumber bonusNumber = LottoNumber.from("6");
         LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
         int expectedMatchLottos = 1;
 

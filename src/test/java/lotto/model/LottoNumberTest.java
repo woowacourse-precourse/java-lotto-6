@@ -12,14 +12,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class BonusNumberTest {
+public class LottoNumberTest {
 
     @Test
     @DisplayName("정상적인 값이 주어질 시 생성된다.")
     void validNumberTest() {
         // given
         String numberInput = "30";
-        assertDoesNotThrow(() -> BonusNumber.from(numberInput));
+        assertDoesNotThrow(() -> LottoNumber.from(numberInput));
     }
 
     @Nested
@@ -32,7 +32,7 @@ public class BonusNumberTest {
         @ValueSource(strings = {"abc", "   5  00 "})
         void notNumberInputExceptionTest(final String numberInput) {
             // when & then
-            assertThatThrownBy(() -> BonusNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> LottoNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
 
@@ -41,7 +41,7 @@ public class BonusNumberTest {
         @ValueSource(strings = {"100", "-50"})
         void unvalidNumberValueExceptionTest(final String numberInput) {
             // when & then
-            assertThatThrownBy(() -> BonusNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> LottoNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(UNVALID_GOAL_NUMBER.getMessage());
         }
     }

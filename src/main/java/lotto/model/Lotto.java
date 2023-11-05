@@ -34,12 +34,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public boolean isContainsNumber(final int number) {
+    public boolean isContainsNumber(final LottoNumber lottoNumber) {
+        int number = lottoNumber.getNumber();
         return numbers.contains(number);
     }
 
-    public boolean isContainsNumbersWithSize(final List<Integer> goalNumbers, final int size) {
-        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+    public boolean isContainsNumbersWithSize(final List<LottoNumber> goalNumbers, final int size) {
+        List<LottoNumber> lottoNumbers = new ArrayList<>(numbers.stream()
+                .map(LottoNumber::withNumber)
+                .toList());
         lottoNumbers.retainAll(goalNumbers);
 
         return lottoNumbers.size() == size;

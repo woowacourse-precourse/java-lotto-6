@@ -3,11 +3,11 @@ package lotto.service;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.constants.LottoRule.MINIMUM_MATCH_SIZE;
 
-import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
 import lotto.model.LottoCompany;
 import lotto.constants.Prize;
+import lotto.model.LottoNumber;
 import lotto.model.dto.PrizeResult;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +24,7 @@ public class LottoCompanyService {
     }
 
     public static LottoCompanyService of(final GoalNumbers goalNumbers,
-                                         final BonusNumber bonusNumber, final List<Lotto> lottos) {
+                                         final LottoNumber bonusNumber, final List<Lotto> lottos) {
         LottoCompany lottoCompany = LottoCompany.of(goalNumbers, bonusNumber);
         return new LottoCompanyService(lottoCompany, lottos);
     }

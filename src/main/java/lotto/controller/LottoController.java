@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
 import lotto.model.GoalNumbers;
 import lotto.model.Lotto;
+import lotto.model.LottoNumber;
 import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
 import lotto.service.InvestorService;
@@ -59,7 +59,7 @@ public class LottoController {
     public LottoCompanyService createLottoCompanyService(final List<Lotto> lottos) {
         return createInstance(LottoCompanyService.class, () -> {
             GoalNumbers goalNumbers = createGoalNumbers();
-            BonusNumber bonusNumber = createBonusNumber();
+            LottoNumber bonusNumber = createBonusNumber();
 
             return LottoCompanyService.of(goalNumbers, bonusNumber, lottos);
         });
@@ -73,11 +73,11 @@ public class LottoController {
         });
     }
 
-    private BonusNumber createBonusNumber() {
-        return createInstance(BonusNumber.class, () -> {
+    private LottoNumber createBonusNumber() {
+        return createInstance(LottoNumber.class, () -> {
             outputView.askBonusNumber();
             String bonusNumberInput = inputView.readLine();
-            return BonusNumber.from(bonusNumberInput);
+            return LottoNumber.from(bonusNumberInput);
         });
     }
 

@@ -7,39 +7,24 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MoneyTest {
-
-    @DisplayName("입력한 금액 숫자로 변환")
-    @Test
-    void getMoneyTest() {
-        Money money = new Money("5000");
-        assertThat(money.getMoney()).isEqualTo(5000);
-    }
-
-    @DisplayName("로또 매수 계산")
-    @Test
-    void countTheNumberOfTickets() {
-        Money money = new Money("5000");
-        assertThat(money.getTickets()).isEqualTo(5);
-    }
-
-    @DisplayName("숫자 외의 입력 값이 있으면 예외가 발생한다.")
-    @Test
-    void containValuesOtherThanNumbers() {
-        assertThatThrownBy(() -> new Money("123dd"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("금액이 1000원 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @DisplayName("금액이 1000원 보다 작으면 예외가 발생한다.")
     @Test
     void isLessThanPrice() {
-        assertThatThrownBy(() -> new Money("950"))
+        assertThatThrownBy(() -> new Money(950))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액이 1000원 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
     void isNotDivisibleByPrice() {
-        assertThatThrownBy(() -> new Money("1800"))
+        assertThatThrownBy(() -> new Money(1800))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("금액에 따라 발행할 로또 매수를 계산한다.")
+    @Test
+    void countHowManyLotto() {
+        Money money = new Money(5000);
+        assertThat(money.getHowManyLotto()).isEqualTo(5);
     }
 }

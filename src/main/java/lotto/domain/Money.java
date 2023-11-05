@@ -4,28 +4,13 @@ import lotto.constants.LottoStatus;
 
 public class Money {
     private final int money;
-    private final int Tickets;
+    private final int howManyLotto;
 
-    public Money(String input) {
-        hasOnlyNumbers(input);
-        this.money = Integer.parseInt(input);
+    public Money(int money) {
         isMoreThanPrice(money);
         isDividedByPrice(money);
-        this.Tickets = money / LottoStatus.PRICE;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public int getTickets() {
-        return Tickets;
-    }
-
-    private void hasOnlyNumbers(String input) {
-        if (!input.matches("^[0-9]*$")) { // "^[0-9]*$" : 숫자를 의미하는 정규표현식
-            throw new IllegalArgumentException();
-        }
+        this.money = money;
+        this.howManyLotto = money / LottoStatus.PRICE;
     }
 
     private void isMoreThanPrice(int money) {
@@ -39,4 +24,13 @@ public class Money {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getHowManyLotto() {
+        return howManyLotto;
+    }
+
 }

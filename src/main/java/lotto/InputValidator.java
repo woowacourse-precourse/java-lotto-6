@@ -18,6 +18,13 @@ public class InputValidator {
         }
     }
 
+    //입력값 예외 체크
+    public void checkInputValue(String inputValue) {
+        if (checkForSpaces(inputValue)) throw new IllegalArgumentException("[ERROR] 입력값에 띄어쓰기가 포함되어 있습니다.");
+        else if (checkForEmpty(inputValue)) throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+        else if (!checkForNumericOnly(inputValue)) throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+    }
+
     private boolean numbersSize(List<Integer> numbers) {
         return numbers.size() != SIZE;
     }
@@ -34,5 +41,21 @@ public class InputValidator {
             return true;
         }
         return false;
+    }
+
+    private boolean checkForSpaces(String inputValue) {
+        return inputValue.contains(" ");
+    }
+
+    private boolean checkForEmpty(String inputValue) {
+        return inputValue.isEmpty();
+    }
+
+    private boolean checkForNumericOnly(String inputValue) {
+        String[] parts = inputValue.split(",");
+        for (String part : parts) {
+            if (!part.matches("\\d+")) return false;
+        }
+        return true;
     }
 }

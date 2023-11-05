@@ -1,41 +1,53 @@
 package lotto.model;
 
-import static lotto.constants.Error.DUPLICATE_INVALID;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class Prize {
-    private final Lotto lotto;
-    private final int bonus;
+public enum Prize {
+    NONE(0, 0, "낙첨"),
+    FIFTH(3, 5000, "3개 일치 (5,000원) - %d개"),
+    FOURTH(4, 50000, "4개 일치 (50,000원) - %d개"),
+    THIRD(5, 1500000, "5개 일치 (1,500,000원) - %d개"),
+    SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
+    FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - %d개");
 
-    private Prize(Lotto lotto, int bonus) {
-        validate(lotto, bonus);
-        this.lotto = lotto;
-        this.bonus = bonus;
+    private final int count;
+    private final int prizeMoney;
+    private final String message;
+
+    Prize(int count, int prizeMoney, String message) {
+        this.count = count;
+        this.prizeMoney = prizeMoney;
+        this.message = message;
     }
 
-    public static Prize of(Lotto lotto, int bonus) {
-        return new Prize(lotto, bonus);
+    public String formatMessage(int value) {
+        return String.format(message, value);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public int getBonus() {
-        return bonus;
-    }
-
-    private static void validate(Lotto lotto, int bonus) {
-        if (lotto.isMatchNumber(bonus)) {
-            throw new IllegalArgumentException(DUPLICATE_INVALID.getMessage());
+    public static Prize valueOf(int count, boolean isBonus) {
+        if (count == 5 && isBonus) {
+            return SECOND;
         }
+        return Arrays.stream(Prize.values())
+                .filter(rank -> rank.isMatch(count))
+                .findFirst()
+                .orElse(NONE);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Prize\n");
-        sb.append("로또 당첨 번호: ").append(lotto).append("\n");
-        sb.append("보너스 번호: ").append(bonus).append("\n");
-        return sb.toString();
+    public static List<Prize> getPrize() {
+        return Arrays.stream(Prize.values())
+                .filter(prize -> !prize.equals(NONE))
+                .collect(Collectors.toList());
     }
+
+    private boolean isMatch(int count) {
+        return this.count == count;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
 }

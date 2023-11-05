@@ -7,48 +7,37 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final Map<Rank, Integer> result = new HashMap<>();
+    private final Map<Prize, Integer> prizeResult = new HashMap<>();
 
-    private Result(List<Lotto> playerLotto, Prize prize) {
+    private Result(List<Lotto> playerLotto, Winning winning) {
         for (Lotto lotto : playerLotto) {
-            Rank rank = Rank.valueOf(lotto.countMatchNumbers(prize), lotto.isMatchNumber(prize.getBonus()));
-            add(rank);
+            Prize prize = Prize.valueOf(lotto.countMatchNumbers(winning), lotto.isMatchNumber(winning.getBonus()));
+            addPrizeResult(prize);
         }
     }
 
-    public static Result of(List<Lotto> playerLotto, Prize prize) {
-        return new Result(playerLotto, prize);
+    public static Result of(List<Lotto> playerLotto, Winning winning) {
+        return new Result(playerLotto, winning);
     }
 
-    private void add(Rank rank) {
-        result.put(rank, result.getOrDefault(rank, 0) + 1);
+    private void addPrizeResult(Prize prize) {
+        prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1);
     }
 
-    public int getResultCount(Rank rank) {
-        return result.getOrDefault(rank, 0);
+    public int getPrizeCount(Prize prize) {
+        return prizeResult.getOrDefault(prize, 0);
     }
 
-    public double calculateResult() {
+    public double calculatePrizeMoney() {
         double total = 0;
-        for (Rank rank : result.keySet()) {
-            total += rank.getPrizeMoney() * result.get(rank);
+        for (Prize prize : prizeResult.keySet()) {
+            total += prize.getPrizeMoney() * prizeResult.get(prize);
         }
         return total;
     }
 
-    public double calculateRate(int amount) {
+    public double calculateProfit(int amount) {
         int money = amount * MIN_MONEY.getValue();
-        return (calculateResult() / money) * 100;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Result:\n");
-
-        for (Rank rank : result.keySet()) {
-            sb.append(rank.getPrizeMoney()).append(": ").append(getResultCount(rank)).append("\n");
-        }
-        return sb.toString();
+        return (calculatePrizeMoney() / money) * 100;
     }
 }

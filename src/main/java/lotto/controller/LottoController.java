@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Player;
 import lotto.model.Prize;
-import lotto.model.Rank;
 import lotto.model.Result;
+import lotto.model.Winning;
 import lotto.utils.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,8 +16,8 @@ public class LottoController {
     public void run() {
         Player player = getPlayer();
         showPlayerLotto(player);
-        Prize prize = getPrize(getPrizeLotto());
-        showLottoResult(player, prize);
+        Winning winning = getPrize(getPrizeLotto());
+        showLottoResult(player, winning);
     }
 
     private Player getPlayer() {
@@ -30,14 +30,14 @@ public class LottoController {
     }
 
     private void showPlayerLotto(Player player) {
-        OutputView.printPlayerAmount(player.getAmount());
-        player.getLotto().forEach(lotto -> OutputView.printPlayerLotto(lotto.toString()));
+        OutputView.printPlayerAmount(player.getPlayerAmount());
+        player.getPlayerLotto().forEach(lotto -> OutputView.printPlayerLotto(lotto.toString()));
     }
 
-    private Prize getPrize(Lotto lotto) {
+    private Winning getPrize(Lotto lotto) {
         int bonus = InputView.getLottoBonus();
         try {
-            return Prize.of(lotto, bonus);
+            return Winning.of(lotto, bonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPrize(lotto);
@@ -53,15 +53,12 @@ public class LottoController {
         }
     }
 
-    private void showLottoResult(Player player, Prize prize) {
+    private void showLottoResult(Player player, Winning winning) {
         OutputView.printPrizeResult();
-        Result result = Result.of(player.getLotto(), prize);
-        for (Rank rank : Rank.values()) {
-            if (!rank.equals(Rank.NONE)) {
-                int count = result.getResultCount(rank);
-                OutputView.printPrizeLotto(rank.formatMessage(count));
-            }
+        Result result = Result.of(player.getPlayerLotto(), winning);
+        for (Prize prize : Prize.getPrize()) {
+            OutputView.printPrizeLotto(prize.formatMessage(result.getPrizeCount(prize)));
         }
-        OutputView.printPrizeRate(result.calculateRate(player.getAmount()));
+        OutputView.printPrizeRate(result.calculateProfit(player.getPlayerAmount()));
     }
 }

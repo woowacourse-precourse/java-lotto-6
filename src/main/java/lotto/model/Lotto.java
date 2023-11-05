@@ -8,7 +8,6 @@ import static lotto.constants.Rule.MAX_LOTTO;
 import static lotto.constants.Rule.MIN_LOTTO;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -46,29 +45,12 @@ public class Lotto {
         }
     }
 
-    public int countMatchNumbers(Prize prize) {
-        return (int) numbers.stream().filter(prize.getLotto()::isMatchNumber).count();
+    public int countMatchNumbers(Winning winning) {
+        return (int) numbers.stream().filter(winning.getLotto()::isMatchNumber).count();
     }
 
     public boolean isMatchNumber(int lottoNumber) {
         return numbers.contains(lottoNumber);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Lotto lotto = (Lotto) o;
-        return Objects.equals(numbers, lotto.numbers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numbers);
     }
 
     @Override

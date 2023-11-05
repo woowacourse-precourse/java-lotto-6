@@ -4,8 +4,6 @@ import static lotto.constants.Error.DIVIDE_INVALID;
 import static lotto.constants.Error.MINIMUM_INVALID;
 import static lotto.constants.Rule.MIN_MONEY;
 
-import java.util.Objects;
-
 public class PlayerAmount {
     private final int amount;
 
@@ -41,27 +39,5 @@ public class PlayerAmount {
 
     public int getAmount() {
         return amount;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(amount);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PlayerAmount that = (PlayerAmount) o;
-        return amount == that.amount;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount);
     }
 }

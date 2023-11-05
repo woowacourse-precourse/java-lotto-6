@@ -36,9 +36,9 @@ class LottoTest {
     void countMatchNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 10;
-        Prize prize = Prize.of(lotto, bonus);
+        Winning winning = Winning.of(lotto, bonus);
 
-        int matchNumbers = lotto.countMatchNumbers(prize);
+        int matchNumbers = lotto.countMatchNumbers(winning);
 
         assertThat(matchNumbers).isEqualTo(6);
     }

@@ -27,9 +27,8 @@ public class Lotto {
 
     public static int calculateIssueCount(int purchaseAmount) {
         final int oneLottoPrice = 1000;
-        int issueCount;
 
-        issueCount = purchaseAmount / oneLottoPrice;
+        int issueCount = purchaseAmount / oneLottoPrice;
 
         return issueCount;
     }
@@ -47,18 +46,21 @@ public class Lotto {
 
     public static Map<Rank, Integer> isWin(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {
         final int fiveMatch = 5;
-        Map<Rank, Integer> map = new HashMap<>();
+        Map<Rank, Integer> lottoResult = new HashMap<>();
 
         for (Lotto lotto : lottos) {
             List<Integer> issueNumbers = lotto.getNumbers();
             int matchCount = compareMatch(issueNumbers, winNumbers);
 
-            boolean matchBonus;
+            boolean matchBonus = false;
             if (matchCount == fiveMatch) {
                 matchBonus = compareBonus(issueNumbers, bonusNumber);
             }
-
+            setInitialValue(lottoResult);
+            saveLottoResult(lottoResult, matchCount, matchBonus);
         }
+
+        return lottoResult;
     }
 
     public static int compareMatch(List<Integer> issueNumbers, List<Integer> winNumbers) {
@@ -78,5 +80,14 @@ public class Lotto {
             return true;
         }
         return false;
+    }
+
+    public static void setInitialValue(Map<Rank, Integer> lottoResult) {
+        final int initialCount = 0;
+
+        Rank[] ranks = Rank.values();
+        for (Rank rank : ranks) {
+            lottoResult.put(rank, initialCount);
+        }
     }
 }

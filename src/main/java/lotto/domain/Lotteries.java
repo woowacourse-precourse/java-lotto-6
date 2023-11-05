@@ -45,8 +45,8 @@ public class Lotteries {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
 
-    public List<List<Integer>> getLottos() {
+    public List<List<Integer>> getValues() {
         return lottos.stream()
-                .map(Lotto::getNumbers).toList();
+                .map(Lotto::getValues).toList();
     }
 }

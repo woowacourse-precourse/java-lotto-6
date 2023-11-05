@@ -6,7 +6,7 @@ import lotto.domain.Lotteries;
 public record LotteriesDto(List<LottoDto> lottos) {
 
     public static LotteriesDto from(Lotteries lotteries) {
-        List<LottoDto> lottoDtos = lotteries.getLottos().stream()
+        List<LottoDto> lottoDtos = lotteries.getValues().stream()
                 .map(LottoDto::new).toList();
 
         return new LotteriesDto(lottoDtos);

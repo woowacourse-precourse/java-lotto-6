@@ -1,12 +1,13 @@
 package lotto.view;
 
-public enum Standard {
+public enum InputStandard {
     STANDARD_NUMBER("-?\\\\d+"),
     STANDARD_OF_SPLIT(",");
 
+
     private final String standard;
 
-    Standard(String standard) {
+    InputStandard(String standard) {
         this.standard = standard;
     }
 

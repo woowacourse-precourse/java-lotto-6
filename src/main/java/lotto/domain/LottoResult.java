@@ -8,9 +8,10 @@ public class LottoResult {
     private final StringJoiner lottoResultMaker = new StringJoiner(Message.NEW_LINE);
 
     public void addLotto(Lotto lotto) {
+        lotto.addedToResult(lottoResultMaker);
     }
 
     public String getLottoResult() {
-        return null;
+        return lottoResultMaker.toString();
     }
 }

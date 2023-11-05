@@ -1,4 +1,11 @@
+package lotto.view;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import java.util.Iterator;
+import lotto.model.Lotto;
+import lotto.model.WinningStatistics;
+import lotto.utils.Message;
 
 public class View {
 
@@ -7,7 +14,7 @@ public class View {
         System.out.println(Message.PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public void displayLottoNumberMessage() {
+    public void displayWinningNumberMessage() {
         System.out.println(Message.LOTTO_NUMBER_MESSAGE);
     }
 
@@ -19,6 +26,12 @@ public class View {
         System.out.println(Message.WINNING_STATISTICS_MESSAGE);
     }
 
+    public void displayRandomLottos(Iterator<Lotto> lottoIterator) {
+        while (lottoIterator.hasNext()) {
+            System.out.println(lottoIterator.next());
+        }
+    }
+
     private String getUserInput() {
         return readLine();
     }
@@ -27,11 +40,15 @@ public class View {
         return getUserInput();
     }
 
-    public String getLottoNumbers() {
+    public String getWinningNumbers() {
         return getUserInput();
     }
 
     public String getBonusNumber() {
         return getUserInput();
+    }
+
+    public void displayWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println(winningStatistics);
     }
 }

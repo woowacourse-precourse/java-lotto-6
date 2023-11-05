@@ -12,6 +12,7 @@ import lotto.enums.LottoError;
 import lotto.enums.PriceInputError;
 
 class UserInputValidatorTest {
+
 	@DisplayName("하나의 숫자 입력시 정상 통과")
 	@Test
 	void validateInputNumberSuccess() {

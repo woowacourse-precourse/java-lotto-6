@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class InputMoneyTest {
 
-
 	@Test
 	void 구매_금액이_1000원_단위가_아니면_에러를_발생시킨다() {
 		assertThrows(IllegalArgumentException.class, () -> {

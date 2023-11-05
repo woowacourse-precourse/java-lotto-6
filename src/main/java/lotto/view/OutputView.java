@@ -18,4 +18,8 @@ public class OutputView {
     public void printGetWinningNumbersMessage() {
         System.out.println(PrintingMessage.GET_WINNING_NUMBERS_MESSAGE.get());
     }
+
+    public void printGetBonusNumberMessage() {
+        System.out.println(PrintingMessage.GET_BONUS_NUMBER_MESSAGE.get());
+    }
 }

@@ -8,7 +8,7 @@ public class Application {
         LottoWin lottoWin = new LottoWin();
 
         System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
+        String price = Console.readLine();
         lottoGame.validatePurchaseAmount(price);
         System.out.println();
 
@@ -21,7 +21,7 @@ public class Application {
 
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        lottoWin.setWinBonusnumber();
+        lottoWin.setWinBonusNumber();
         System.out.println();
 
 

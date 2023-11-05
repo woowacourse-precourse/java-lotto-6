@@ -13,17 +13,22 @@ public class LottoGame {
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
     private int gameCount;
-    private List<List<Integer>> lottogame;
+    private List<Lotto> lottogame;
 
     public void setLottoGame(int number){
         this.gameCount = number;
     }
 
-    public void validatePurchaseAmount(int price){
-        if (price % LOTTO_PRICE == 0){
-            setLottoGame(price / LOTTO_PRICE);
-        } else {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+    public void validatePurchaseAmount(String input){
+        try {
+            int price = Integer.parseInt(input);
+            if (price % LOTTO_PRICE == 0) {
+                setLottoGame(price / LOTTO_PRICE);
+            } else {
+                throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 
@@ -32,15 +37,17 @@ public class LottoGame {
         System.out.println(this.gameCount+"개를 구매했습니다.");
         for (int i = 0; i < this.gameCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBERS_COUNT);
-            Collections.sort(numbers);
-            lottogame.add(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottogame.add(lotto);
         }
         printLotto();
     }
 
     public void printLotto() {
-        for (List<Integer> numbers : this.lottogame){
-            System.out.println(numbers.toString());
+        for (Lotto lotto : this.lottogame) {
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
     }
 
@@ -51,9 +58,9 @@ public class LottoGame {
         int match5WithBonus = 0;
         int match6 = 0;
     
-        for (List<Integer> numbers : this.lottogame) {
+        for (Lotto numbers : this.lottogame) {
             int matchingNumbers = countMatchingNumbers(numbers, lottoWin.getWinNumbers());
-            boolean hasBonusNumber = numbers.contains(lottoWin.getBonusNumber());
+            boolean hasBonusNumber = numbers.containsNumber(lottoWin.getBonusNumber());
     
             if (matchingNumbers == 3) {
                 match3++;
@@ -67,22 +74,23 @@ public class LottoGame {
                 match6++;
             }
         }
-    
-        System.out.println("당첨 통계");
-        System.out.println("---");
+
         System.out.println("3개 일치 (5,000원) - " + match3 + "개");
         System.out.println("4개 일치 (50,000원) - " + match4 + "개");
         System.out.println("5개 일치 (1,500,000원) - " + match5 + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + match5WithBonus + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + match6 + "개");
-        
+
         getEarningRate(match3, match4, match5, match5WithBonus, match6);
     }
     
-    private int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winNumbers) {
+    private int countMatchingNumbers(Lotto userNumbers,  Lotto winNumbers) {
         int count = 0;
-        for (int number : userNumbers) {
-            if (winNumbers.contains(number)) {
+        List<Integer> userNumberList = userNumbers.getNumbers();
+        List<Integer> winNumberList = winNumbers.getNumbers();
+    
+        for (int number : userNumberList) {
+            if (winNumberList.contains(number)) {
                 count++;
             }
         }
@@ -93,7 +101,7 @@ public class LottoGame {
         int price = this.gameCount*1000;
         int totalPrice = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match5WithBonus * 30000000 + match6 * 2000000000;
         float earningRate = (totalPrice/(float)price) * 100;
-        System.out.println("총 수익률은 " + earningRate + "입니다.");
+        System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 
 }

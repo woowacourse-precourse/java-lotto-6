@@ -14,7 +14,9 @@ public class Controller {
     public void run() {
         int money = getMoneyByUserInput();
         List<Lotto> lottos = purchaseLotto(money);
-        System.out.println(getWinNumbersByUserInput().toString());
+        getWinNumbersByUserInput();
+        getBonusNumberByUserInput();
+
     }
 
     public Controller(Service service) {
@@ -53,7 +55,19 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
-
     }
+
+    public List<Integer> getBonusNumberByUserInput() {
+        while (true) {
+            try {
+                InputView.printAskForInputWinNumber();
+                String input = Console.readLine();
+                return service.getWinNumbersByUserInput(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 
 }

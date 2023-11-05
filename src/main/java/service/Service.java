@@ -6,7 +6,6 @@ import utility.Utility;
 import validator.Validator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Service {
@@ -41,14 +40,21 @@ public class Service {
 
     public List<Integer> getWinNumbersByUserInput(String input) {
         validator.checkStartOrEndWithComma(input);
-        List<String> numbers = Arrays.stream(Utility.splitByComma(input)).toList();
-        validator.checkCount(numbers);
-        List<Integer> winNumbers = new ArrayList<Integer>();
-        for(String number : numbers){
-            validator.checkIsNumber(number);
-            winNumbers.add(Integer.parseInt(number));
-        }
+        List<String> splitNumbers = Utility.splitByComma(input);
+        validator.checkCount(splitNumbers);
+        List<Integer> winNumbers = generateWinNumbers(splitNumbers);
         validator.checkDuplicateNumber(winNumbers);
+        return winNumbers;
+    }
+
+    private List<Integer> generateWinNumbers(List<String> splitNumbers) {
+        List<Integer> winNumbers = new ArrayList<Integer>();
+        for (String splitNumber : splitNumbers) {
+            validator.checkIsNumber(splitNumber);
+            int number = Integer.parseInt(splitNumber);
+            validator.checkNumberRange(number);
+            winNumbers.add(number);
+        }
         return winNumbers;
     }
 }

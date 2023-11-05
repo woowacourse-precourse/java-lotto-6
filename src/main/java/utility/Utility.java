@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class Utility {
         return numbers;
     }
 
-    public static String[] splitByComma(String input){
-        return input.split(",");
+    public static List<String> splitByComma(String input){
+        return Arrays.stream(input.split(",")).toList();
     }
 }

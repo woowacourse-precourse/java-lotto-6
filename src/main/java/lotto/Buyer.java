@@ -21,9 +21,12 @@ public class Buyer {
         double seedMoney = 1000 * purchaseAmount;
         return (double) Math.round((prizeSum / seedMoney) * 1000) / 10;
     }
-
-    // myLotteries를 할당하지 않은 영우 get요청을 한다면 illegalstateExcept 추가하기
+    
     public List<Lotto> getMyLotteries() {
+        if (myLotteries == null) {
+            throw new IllegalStateException("구매한 복권 정보가 없습니다.");
+        }
         return myLotteries;
     }
+
 }

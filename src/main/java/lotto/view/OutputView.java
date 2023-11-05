@@ -28,4 +28,8 @@ public class OutputView {
     public void printTicket(List<Integer> lottos) {
         System.out.println(lottos.toString());
     }
+
+    public void printBeforeBuyLotto(long count) {
+        System.out.printf("%d개를 구매했습니다.\n", count);
+    }
 }

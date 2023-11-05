@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
+import lotto.domain.LottoTicket;
 import lotto.service.InputMoneyService;
 import lotto.service.InputWinnerNumberService;
 import lotto.util.LottoGenerator;
@@ -28,10 +30,9 @@ public class LottoController {
 
     public void start() {
         Long money = inputMoney(new InputMoneyService());
+        System.out.println(money);
 
-        buyLottoTicket(money/1000);
-
-
+        List<LottoTicket> lottoTickets = buyLottoTicket(money / 1000);
 
         List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
 
@@ -47,20 +48,24 @@ public class LottoController {
 
     }
 
-    private void buyLottoTicket(long count) {
+    private List<LottoTicket> buyLottoTicket(long count) {
+        outputView.printBeforeBuyLotto(count);
         LottoGenerator lottoGenerator = LottoGenerator.getInstance();
+        List<LottoTicket> lottoTickets = new ArrayList<>();
         for(int i=0; i<count; i++){
+             lottoTickets.add(new LottoTicket(lottoGenerator.generateNumberList()));
             outputView.printTicket(lottoGenerator.generateNumberList());
         }
-
+        return lottoTickets;
     }
 
 
     private Long inputMoney(InputMoneyService inputMoneyService) {
         try {
             outputView.printBeforeInputMoney();
-            inputMoneyService.getRightMoneyProcess(validator, inputView.inputMoney());
-            return Long.parseLong(inputView.inputMoney());
+            String money = inputView.inputMoney();
+            inputMoneyService.getRightMoneyProcess(validator, money);
+            return Long.parseLong(money);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputMoney(inputMoneyService);

@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.validator.LottoNumbersValidator;
 
 public class Lotto {
@@ -14,5 +16,9 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         LottoNumbersValidator validator = new LottoNumbersValidator();
         validator.validate(numbers);
+    }
+
+    public Set<Integer> toSet() {
+        return new HashSet<>(numbers);
     }
 }

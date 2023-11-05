@@ -6,7 +6,7 @@ public enum ValidatorConstant {
     NOT_EQUALS_NUMBER("[ERROR] 중복된 숫자가 있습니다.\n"),
     OUT_OF_RANGE_ERROR("[ERROR] 1~45 사이의 정수만 입력할 수 있습니다.\n"),
     SIZE_ERROR("[Error] 쉼표(,)로 구분했을 때 6개의 정수로 이루어져야 합니다.\n"),
-    CONTAIN_ERROR("[ERROR] 당첨 번호에 없는 정수를 입력해야 합니다.");
+    CONTAIN_ERROR("[ERROR] 당첨 번호에 없는 정수를 입력해야 합니다.\n");
 
     private final String message;
 

@@ -13,7 +13,6 @@ public class LottoNumberFactory {
 		for (int i = 0; i < count; i++){
 			List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 			Collections.sort(lottoNumbers);
-			System.out.println(lottoNumbers);
 			Lotto lotto = new Lotto(lottoNumbers);
 			lottoHouse.add(lotto);
 		}

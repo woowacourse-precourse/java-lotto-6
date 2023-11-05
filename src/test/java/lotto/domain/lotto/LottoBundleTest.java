@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.dto.LottoBundleDto;
-import lotto.domain.lottoresult.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,17 +26,5 @@ public class LottoBundleTest {
         LottoBundleDto lottoBundleDto = lottoBundle.makeLottoBundleDto();
         // Then
         assertThat(lottoBundleDto.getLottoBundleData()).contains(lotto);
-    }
-
-    @DisplayName("LottoBundle 에 1등 로또가 있는 경우 결과 리스트를 받으면, LottoResult.FIRST 가 담긴 리스트를 반환한다.")
-    @Test
-    void lottoBundleGetResultTest() {
-        //Given
-        lottoBundle.addLotto(lotto);
-        WinLotto winLotto = new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
-        //When
-        List<LottoResult> lottoResults = lottoBundle.getLottoResults(winLotto);
-        //Then
-        assertThat(lottoResults).contains(LottoResult.FIRST);
     }
 }

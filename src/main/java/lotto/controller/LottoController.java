@@ -11,15 +11,13 @@ public class LottoController {
     int purchaseAmount, purchaseNum;
     private static List<List<Integer>> allLotto;
 
-
     public void run() {
         while (readPurchaseLotto()) {
         }
         OutputViews.endOfSection();
 
-        allLotto = MakeLottos.makeLotto(purchaseNum);
-        OutputViews.numOfPurchaseLotto(purchaseNum);
-        OutputViews.listOfPurchaseLotto(allLotto);
+        writePurchaseLotto();
+        OutputViews.endOfSection();
     }
 
     public boolean readPurchaseLotto() {
@@ -37,5 +35,11 @@ public class LottoController {
         }
         purchaseNum = purchaseAmount / 1000;
         return false;
+    }
+
+    public void writePurchaseLotto() {
+        allLotto = MakeLottos.makeLotto(purchaseNum);
+        OutputViews.numOfPurchaseLotto(purchaseNum);
+        OutputViews.listOfPurchaseLotto(allLotto);
     }
 }

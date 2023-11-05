@@ -1,15 +1,10 @@
 package lotto.service;
 
+import lotto.domain.PurchaseAmount;
 import lotto.util.Validation;
 
 public class LottoService {
-    public void generateLotteries(String input) {
-        int purchaseAmount = getPurchaseAmount(input);
-    }
-
-    private int getPurchaseAmount(String input) {
-        int purchaseAmount = Integer.parseInt(input);
-        Validation.purchaseAmount(purchaseAmount);
-        return purchaseAmount % 1000;
+    public void generateLotteries(String inputAmount) {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
     }
 }

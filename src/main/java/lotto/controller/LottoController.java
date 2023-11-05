@@ -19,9 +19,9 @@ public class LottoController {
     }
 
     private void purchaseLotteries() {
-        String input = lottoView.requestInput(InputRequestMessage.PURCHASE);
+        String inputAmount = lottoView.requestInput(InputRequestMessage.PURCHASE_AMOUNT);
         try {
-            lottoService.generateLotteries(input);
+            lottoService.generateLotteries(inputAmount);
         } catch (IllegalArgumentException illegalArgumentException) {
             lottoView.printError(ErrorMessage.PURCHASE_AMOUNT);
             purchaseLotteries();

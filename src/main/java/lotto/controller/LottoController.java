@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumber;
+import lotto.model.LottoConstants;
 import lotto.model.LottoTicket;
 import lotto.model.MoneyValidator;
 import lotto.model.ResultDetails;
@@ -16,10 +17,11 @@ public class LottoController {
 
     public void play() {
         int purchaseAmount = generateValidMoney();
+        int numberOfLottoPurchased = purchaseAmount / LottoConstants.LOTTO_PRICE_UNIT;
 
-        LottoTicket lottoTicket = LottoTicket.create(purchaseAmount / 1000);
+        LottoTicket lottoTicket = LottoTicket.create(numberOfLottoPurchased);
 
-        OutputView.printNumberOfLotto(purchaseAmount / 1000);
+        OutputView.printNumberOfLotto(numberOfLottoPurchased);
         OutputView.printLottoTicket(lottoTicket);
 
         WinningNumbers winningNumbers = createValidWinningNumbers();

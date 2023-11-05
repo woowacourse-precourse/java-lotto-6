@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.code.ExceptionMessage;
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoGame;
 
 public class Lotto {
-    private final static int MIN_WIN_NUMBER = 3;
     private final List<Integer> numbers;
     private Rank rank;
 
@@ -24,9 +24,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public void setRank(int count) {
-        if(count >= MIN_WIN_NUMBER) {
+        if(count >= LottoGame.WIN_MIN_COUNT) {
             rank = Rank.getRank(count);
             Rank.addRankCount(rank);
         }

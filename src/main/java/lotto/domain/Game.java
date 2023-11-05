@@ -4,16 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.code.ExceptionMessage;
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoGame;
 import lotto.util.Calculator;
-import lotto.util.InputValidator;
 
 public class Game {
-    private final static int LOTTO_PRICE = 1000;
-    private final static int LOTTO_NUMBER_COUNT = 6;
-    private final static int MIN_NUMBER = 1;
-    private final static int MAX_NUMBER = 45;
-
     public static int receiveAmount;
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -51,11 +46,11 @@ public class Game {
 
 
     public int lottoPurchaseCount(){
-        return Calculator.divide(receiveAmount, LOTTO_PRICE);
+        return Calculator.divide(receiveAmount, LottoGame.LOTTO_PRICE);
     }
 
     private void validateAmount(String amount) {
-        if(!InputValidator.isNumber(amount) || !InputValidator.isMultiple(Integer.parseInt(amount), LOTTO_PRICE)){
+        if(!isNumber(amount) || !Calculator.isMultiple(Integer.parseInt(amount), LottoGame.LOTTO_PRICE)){
             throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NUMBER_ERROR.getMessage());
         }
     }
@@ -71,24 +66,28 @@ public class Game {
 
     private static void validWinningNubmer(List<String> winningNumbers) {
         for (var winningNumber : winningNumbers) {
-            if (!InputValidator.isNumber(winningNumber) || !isCorrectNumber(Integer.parseInt(winningNumber))) {
+            if (!isNumber(winningNumber) || !isCorrectNumber(Integer.parseInt(winningNumber))) {
                 throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_ERROR.getMessage());
             }
         }
     }
 
     private void validBonusNubmer(String bonusNumber) {
-        if(!InputValidator.isNumber(bonusNumber)
+        if(!isNumber(bonusNumber)
                 || !isCorrectNumber(Integer.parseInt(bonusNumber)) || winningNumbers.contains(bonusNumber)){
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_ERROR.getMessage());
         }
     }
+
+    private static boolean isNumber(String inputValue) {
+        return inputValue.matches(LottoGame.REGEX);
+    }
     private static boolean isCorrectCount(int length) {
-        return length == LOTTO_NUMBER_COUNT;
+        return length == LottoGame.LOTTO_NUMBER_COUNT;
     }
 
     private static boolean isCorrectNumber(int winningNumber) {
-        return winningNumber >= MIN_NUMBER && winningNumber <= MAX_NUMBER;
+        return winningNumber >= LottoGame.LOTTO_MIN_NUMBER && winningNumber <= LottoGame.LOTTO_MAX_NUMBER;
     }
 
     private static boolean isDuplicateNumber(List<String> winningNumbers) {

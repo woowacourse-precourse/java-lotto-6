@@ -1,4 +1,4 @@
-package lotto.code;
+package lotto.constant;
 
 public enum ExceptionMessage {
     AMOUNT_NUMBER_ERROR("[ERROR] 로또 구입 금액은 1000원 단위로 입력하셔야 합니다."),

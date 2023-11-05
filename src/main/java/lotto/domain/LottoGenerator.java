@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.Boolean.FALSE;
+import static lotto.constants.Boolean.TRUE;
+import static lotto.constants.Null.NULL;
 import static lotto.constants.Value.INITIAL_ZERO;
 import static lotto.constants.Value.LOTTO_SIZE;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
@@ -27,13 +30,13 @@ public class LottoGenerator {
     }
 
     public static Lotto createWinningLotto(String userInput) {
-        boolean isRunning = true;
-        Lotto winningLotto = null;
+        boolean isRunning = TRUE.get();
+        Lotto winningLotto = NULL.get();
 
         while (isRunning) {
             try {
                 winningLotto = new Lotto(Handling.parseNumbers(Handling.split(userInput)));
-                isRunning = false;
+                isRunning = FALSE.get();
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);
             }
@@ -43,13 +46,13 @@ public class LottoGenerator {
     }
 
     public static Integer createBonusNumber(Lotto winningLotto, String userInput) {
-        boolean isRunning = true;
+        boolean isRunning = TRUE.get();
 
         while (isRunning) {
             try {
                 Lotto.checkLottoNumber(userInput);
                 winningLotto.checkInclusion(Integer.parseInt(userInput));
-                isRunning = false;
+                isRunning = FALSE.get();
             } catch (IllegalArgumentException ex) {
                 Output.printError(ex);
             }

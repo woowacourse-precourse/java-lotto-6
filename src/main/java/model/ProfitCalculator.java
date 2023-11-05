@@ -21,7 +21,7 @@ public class ProfitCalculator implements ProfitCalculable {
     {
         int profit = 0;
         int count = 0;
-        for(Rank rank : result.keySet()) {
+        for(Rank rank : Rank.values()) {
             profit += (MONEY_OF_WINNING[count++] * result.getOrDefault(rank,0));
         }
         return profit;

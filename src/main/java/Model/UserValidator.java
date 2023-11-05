@@ -1,10 +1,13 @@
 package Model;
 
+import java.util.List;
+
 public class UserValidator {
 
     private static final int MIN_MONEY_RANGE = 1000;
     private static final int MAX_MONEY_RANGE = 1000000000;
     private static final int MONEY_MAX_LENGTH = 10;
+    private static final int LOTTO_NUMBER_SIZE = 6;
 
     void validateMoneyLength(String money) {
         if (money.length() > MONEY_MAX_LENGTH) {
@@ -23,6 +26,12 @@ public class UserValidator {
             if (Character.isDigit(money.charAt(moneyIndex))) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    void validateWinningNumberLength(List<Integer> winningNumber) {
+        if (winningNumber.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException();
         }
     }
 }

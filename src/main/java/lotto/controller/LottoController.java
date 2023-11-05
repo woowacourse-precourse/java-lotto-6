@@ -8,8 +8,8 @@ import lotto.model.LottoStore;
 import lotto.view.View;
 
 public class LottoController {
-    View view = new View();
-    LottoStore lottoStore = new LottoStore();
+    private static final View view = new View();
+    private static final LottoStore lottoStore = new LottoStore();
 
     public void run() {
         Client client = newClient();

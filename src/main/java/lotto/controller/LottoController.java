@@ -14,10 +14,16 @@ public class LottoController {
 
     public void playGame(){
         askUserToInsertMoneyToBuyLotto();
+        askUserToInsertLottoWinningNumbers();
         lottoService.playGame();
     }
 
     private void askUserToInsertMoneyToBuyLotto(){
         outputView.askUserToInsertMoneyToBuyLotto();
     }
+
+    private void askUserToInsertLottoWinningNumbers(){
+        outputView.askUserToInsertLottoWinningNumbers();
+    }
+
 }

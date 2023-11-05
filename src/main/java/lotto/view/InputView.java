@@ -8,15 +8,17 @@ public class InputView {
     private final static String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private final static String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private final InputParser inputParser = new InputParser();
 
     public String inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
-        return Console.readLine();
+        String purchaseAmount = Console.readLine();
+        inputParser.validatePurchaseAmount(purchaseAmount);
+        return purchaseAmount;
     }
 
     public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
-        InputParser inputParser = new InputParser();
         return inputParser.parseAndValidateWinningNumbers(Console.readLine());
     }
 

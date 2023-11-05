@@ -11,6 +11,11 @@ public class InputParser {
         this.inputValidator = new InputValidator();
     }
 
+    public void validatePurchaseAmount(String input) {
+        inputValidator.validateNonNumeric(input);
+        inputValidator.validatePurchaseAmount(input);
+    }
+
     public List<Integer> parseAndValidateWinningNumbers(String input) {
         List<Integer> parsedNumbers = parseNumbers(input);
         validateNumbers(parsedNumbers);

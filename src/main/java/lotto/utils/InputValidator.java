@@ -5,9 +5,17 @@ import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
+    private static final int MONEY_UNIT = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int WINNING_NUMBERS_COUNT = 6;
+
+    public void validatePurchaseAmount(String input) {
+        int money = Integer.parseInt(input);
+        if (money % MONEY_UNIT != 0) {
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
+        }
+    }
 
     public int validateNonNumeric(String input) {
         try {

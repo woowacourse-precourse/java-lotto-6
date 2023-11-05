@@ -37,6 +37,14 @@ public class Lotto {
         return numbers;
     }
 
+
+    public int calculateMatchCount(Lotto issuedLotto) {
+        List<Integer> issuedLottoNumbers = issuedLotto.getNumbers();
+        return (int)numbers.stream()
+                .filter(num -> issuedLottoNumbers.contains(num))
+                .count();
+    }
+
     @Override
     public String toString() {
         return numbers.stream()

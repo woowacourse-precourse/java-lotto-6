@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.domain.LottoPrice.UNIT_PRICE;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -9,7 +11,6 @@ import lotto.ui.OutputView;
 import lotto.util.ErrorMessages;
 
 public class LottoIssueController {
-    private final static int UNIT_PRICE = 1000;
     private final LottoIssueService issueService;
     private final InputView input;
     private final OutputView output;

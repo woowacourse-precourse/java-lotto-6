@@ -2,6 +2,7 @@ package lotto.validation;
 
 import static lotto.validation.enumType.AmountInput.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.enumType.AmountInput.POSITIVE_MESSAGE;
+import static lotto.validation.enumType.AmountInput.VALUE_DIVIDE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -35,5 +36,16 @@ class AmountInputValidatorTest {
         assertThatThrownBy(() -> inputValidation.validatePositive(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(POSITIVE_MESSAGE.getValue());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1500", "157", "999"})
+    @DisplayName("입력값이 1000으로 나누어 떨어지지 않으면 예외가 발생하는 테스트")
+    void testValidateDivisibilityBy1000(String input) {
+        AmountInputValidator inputValidation = new AmountInputValidator();
+
+        assertThatThrownBy(() -> inputValidation.validateDivisibilityBy1000(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(VALUE_DIVIDE_MESSAGE.getValue());
     }
 }

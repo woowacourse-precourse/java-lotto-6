@@ -7,7 +7,7 @@ public class PriceInputHandler {
 
     private static final int ZERO = 0;
     private static final int PURCHASE_MIN = 1000;
-    private static final int PURCHASE_MAX = 100000;
+    private static final int PURCHASE_MAX = 1000000000;
     private static final String PURCHASE_INFO_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_ERROR_MESSAGE = "[ERROR] 지불할 금액을 다시 입력해주세요.";
 

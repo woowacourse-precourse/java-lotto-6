@@ -3,6 +3,7 @@ package lotto.input;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.NoSuchElementException;
 import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
@@ -19,7 +20,7 @@ public class TargetNumberHandlerTest {
 
     @AfterEach
     void closeConsole(){
-        Console.close(); 
+        Console.close();
     }
 
     @ParameterizedTest
@@ -34,13 +35,14 @@ public class TargetNumberHandlerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6", "11,12,13,14,1,25", "1,43,23,21,6,7","1  , 2,  34, 5, 7, 9 "})
-    @DisplayName("타겟번호는 로또를 만들 수 있는 입력이여야 한다.")
+    @ValueSource(strings = {"1","2","3","4","5","6","0","46"})
+    @DisplayName("보너스 번호는 타겟번호와 겹칠 수 없다. 1~45의 범위를 넘을 수 없다.")
     void 타겟번호_테스트2(String input){
+        Lotto target = new Lotto(List.of(1,2,3,4,5,6));
         setIn(input);
-
-        Lotto lotto = targetNumberHandler.setTargetLottoByInput();
-
+        Assertions.assertThatThrownBy(()->
+                targetNumberHandler.setBonusByInput(target))
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     private static void setIn(String input){

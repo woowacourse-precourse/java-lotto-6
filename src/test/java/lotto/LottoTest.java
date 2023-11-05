@@ -33,6 +33,7 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
 
+    //컨벤션상 위에 있어야 하지만, 윗 부분을 변경하지 않기 위해 작성하였음.
     Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @Test

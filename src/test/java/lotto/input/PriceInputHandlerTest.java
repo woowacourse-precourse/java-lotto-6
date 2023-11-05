@@ -22,7 +22,7 @@ class PriceInputHandlerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123","만원","1000000"})
+    @ValueSource(strings = {"11123","만원","10000000000000"})
     void 구매입력_테스트(String input) {
         setIn(input);
 

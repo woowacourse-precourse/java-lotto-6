@@ -63,4 +63,17 @@ public class AmountTest extends Amount{
         assertThatNoException()
                 .isThrownBy(() -> isDividedUp(amount));
     }
+
+    @Test
+    void 로또_발행_개수_확인() {
+
+        //given
+        int amount = 14000;
+
+        //when
+        int result = isDividedUp(amount);
+
+        //then
+        assertThat(result).isEqualTo(14);
+    }
 }

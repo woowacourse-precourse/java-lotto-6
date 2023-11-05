@@ -144,7 +144,7 @@ class WinningLottoValidatorTest {
             WinningLotto winningLotto2 = new WinningLotto(numbers2);
         }
 
-        @DisplayName("")
+        @DisplayName("중복된 숫자가 존재하면 예외 발생")
         @Test
         void Has_duplicate_numbers() {
             // given

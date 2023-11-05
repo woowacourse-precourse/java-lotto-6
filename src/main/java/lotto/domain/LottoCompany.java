@@ -22,8 +22,7 @@ public enum LottoCompany {
     }
 
     public static void setBonusNumber(int bonusNumber) {
-        NumberValidator.isValidRange(bonusNumber);
-        NumberValidator.checkDuplicates(bonusNumber);
+        NumberValidator.validateBonusNumber(bonusNumber);
         LottoCompany.bonusNumber = bonusNumber;
     }
 

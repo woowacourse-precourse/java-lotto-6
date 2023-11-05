@@ -26,6 +26,11 @@ public class NumberValidator {
         validateDuplicates(numbers);
     }
 
+    public static void validateBonusNumber(int number) {
+        isValidRange(number);
+        checkDuplicates(number);
+    }
+
     private static void validateSizeSix(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_SIX_NUMBER.toString());
@@ -38,7 +43,7 @@ public class NumberValidator {
         }
     }
 
-    public static void isValidRange(int number) {
+    private static void isValidRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.toString());
         }
@@ -51,7 +56,7 @@ public class NumberValidator {
         }
     }
 
-    public static void checkDuplicates(int number) {
+    private static void checkDuplicates(int number) {
         if (!set.add(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE.toString());
         }

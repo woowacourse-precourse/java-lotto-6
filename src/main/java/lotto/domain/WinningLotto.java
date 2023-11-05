@@ -1,7 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import static lotto.service.Validator.*;
 
 public class WinningLotto {
 
@@ -41,6 +42,7 @@ public class WinningLotto {
     }
 
     private void validate(String winningNumbers, String bonusNumber) {
+
         validateNullOrBlank(winningNumbers);
         validateIsNumber(winningNumbers);
         validateNullOrBlank(bonusNumber);
@@ -73,32 +75,7 @@ public class WinningLotto {
         }
     }
 
-    private void validateIsNumber(String winningNumbers) {
-        String[] splitNumbers = winningNumbers.split(COMMA);
-        for (String splitNumber : splitNumbers) {
-            checkAndThrowIfNotNumeric(splitNumber);
-        }
-    }
-
-    private void checkAndThrowIfNotNumeric(String splitNumber) {
-        try {
-            Integer.parseInt(splitNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getMessage());
-        }
-    }
-
-    private void validateNullOrBlank(String winningNumbers) {
-        if (isNullOrBlank(winningNumbers)) {
-            throw new IllegalArgumentException(ErrorMessage.NULL_OR_BLANK.getMessage());
-        }
-    }
-
     private String ignoreSpace(String winningNumbers) {
         return winningNumbers.replaceAll(SPACE, NULL);
-    }
-
-    private boolean isNullOrBlank(String winningNumbers) {
-        return winningNumbers == null || winningNumbers.isBlank();
     }
 }

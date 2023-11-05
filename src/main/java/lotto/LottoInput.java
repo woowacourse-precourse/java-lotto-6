@@ -1,10 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import net.bytebuddy.description.annotation.AnnotationValue.ForEnumerationDescription.WithUnknownConstant;
 
 public class LottoInput {
 
@@ -34,23 +32,18 @@ public class LottoInput {
         }
         return CheckError(WinningNumbers,s);
     }
+    public int getBonusNum(){
+        String s = Console.readLine();
+        return Integer.parseInt(s);
+    }
     public List<Integer> CheckError(List<Integer> WinningNumbers, String s){
         try{
             new Lotto(WinningNumbers);
-            CheckLast(s);
+            exceptionCases.CheckLastComma(s);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             WinningNumbers = getWinningNum();
         }
         return WinningNumbers;
-    }
-    public void CheckLast(String s){
-        if(s.charAt(s.length()-1)==','){
-            exceptionCases.CheckComma();
-        }
-    }
-    public int getBonusNum(){
-        String s = Console.readLine();
-        return Integer.parseInt(s);
     }
 }

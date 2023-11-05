@@ -88,8 +88,10 @@ public class ExceptionCases {
             throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호는 6개의 숫자로 구성되어야 합니다.");
         }
     }
-    public void CheckComma(){
-        throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호 입력 형식이 잘못되었습니다");
+    public void CheckLastComma(String s){
+        if(s.charAt(s.length()-1)==',') {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호 입력 형식이 잘못되었습니다");
+        }
     }
 }
 

@@ -13,4 +13,12 @@ public class Application {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_VALUE);
         }
     }
+
+    public void checkNumber(String input) {
+        try {
+            int parsedInput = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER);
+        }
+    }
 }

@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+
 import lotto.views.Exceptions;
 
 public class Lotto {
@@ -9,12 +12,21 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
+
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             Exceptions.exceptionNotNum6();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicate (List<Integer> numbers) {
+        if (!Objects.equals(numbers.size(), new HashSet<>(numbers).size())) {
+            Exceptions.exceptionNotSameSet();
             throw new IllegalArgumentException();
         }
     }

@@ -3,9 +3,9 @@ package lotto.domain.model;
 import lotto.constant.IllegalArgumentExceptionType;
 
 public final class LottoPurchaseCost {
-    static final int ZERO = 0;
-    static final int LOTTO_PRICE = 1000;
-    static final int MAX_AMOUNT = 2_000_000_000; // 20억. Integer.MAX_VALUE 에 근접한 수
+    private static final int ZERO = 0;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MAX_AMOUNT = 2_000_000_000; // 20억. Integer.MAX_VALUE 에 근접한 수
 
     private final long cost;
 

@@ -1,5 +1,6 @@
 package lotto.domain.model;
 
+import lotto.domain.util.ErrorMessage;
 import lotto.view.OutputView;
 
 import java.util.HashSet;
@@ -98,8 +99,8 @@ public class LottoWinnerSystem {
 
             this.winNumbers = numbers;
             return numbers;
-        } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
         }
     }
 
@@ -112,8 +113,8 @@ public class LottoWinnerSystem {
 
             this.bonusNumber = numbers;
             return numbers;
-        } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
         }
     }
 
@@ -124,28 +125,28 @@ public class LottoWinnerSystem {
 
     private static void isValidLength(List<Integer> numbers, int numberCount) {
         if (numbers.size() != numberCount) {
-            throw new IllegalArgumentException("[ERROR] 알맞은 개수의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH_INPUT.getErrorMessage());
         }
     }
 
-    private static void isDistinct(List<Integer> numbers) {
+    public static void isDistinct(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getErrorMessage());
         }
     }
 
     private static void isValidRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < 1 && numbers.get(i) > 45) {
-                throw new IllegalArgumentException("[ERROR] 1-45 이내의 숫자를 입력해 주세요.");
+            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_NUMBER.getErrorMessage());
             }
         }
     }
 
     private void isContainWinNumbers(List<Integer> winNumbers, List<Integer> numbers) {
         if (winNumbers.contains(numbers.get(0))) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 번호입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getErrorMessage());
         }
     }
 }

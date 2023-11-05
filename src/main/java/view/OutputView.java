@@ -1,17 +1,10 @@
 package view;
 
 import java.util.List;
-import enums.ConstantStringManager;
+import constants.ConstantStringManager;
 import java.util.stream.Collectors;
+import static constants.ConstantNumbersManager.*;
 public class OutputView {
-    static final int FIRST_INDEX = 1;
-    static final int SECOND_INDEX = 2;
-    static final int THIRD_INDEX = 3;
-    static final int FORTH_INDEX = 4;
-    static final int FIFTH_INDEX = 5;
-    static final String LIST_START_MARK = "[";
-    static final String LIST_END_MARK = "]\n";
-    static final String LIST_SPLIT_MARK = ", ";
 
     public void printLottoPriceInputNotify() {
     String message = ConstantStringManager.LOTTO_PRICE_INPUT_NOTIFY.getMessage();
@@ -24,12 +17,12 @@ public class OutputView {
     }
 
     public void printRandomNumber(List<Integer> randomNumber) {
-        System.out.print(LIST_START_MARK);
+        System.out.print(ConstantStringManager.LIST_START_MARK);
         String result = randomNumber.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(LIST_SPLIT_MARK));
+                .collect(Collectors.joining(ConstantStringManager.LIST_SPLIT_MARK.getMessage()));
         System.out.print(result);
-        System.out.print(LIST_END_MARK);
+        System.out.print(ConstantStringManager.LIST_END_MARK);
     }
 
     public void printWinningNumberInputNotify() {
@@ -43,7 +36,7 @@ public class OutputView {
     }
 
     public void printWinningStatics(List<Integer> staticsValue) {
-        System.out.print(ConstantStringManager.WINNING_STATICS_NOTIFY);
+        System.out.print(ConstantStringManager.WINNING_STATICS_NOTIFY.getMessage());
         System.out.printf(ConstantStringManager.LOTTO_SAME_THREE.getMessage(), staticsValue.get(FIRST_INDEX));
         System.out.printf(ConstantStringManager.LOTTO_SAME_FOUR.getMessage(), staticsValue.get(SECOND_INDEX));
         System.out.printf(ConstantStringManager.LOTTO_SAME_FIVE.getMessage(), staticsValue.get(THIRD_INDEX));

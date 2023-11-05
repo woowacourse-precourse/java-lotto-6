@@ -33,8 +33,9 @@
 ### controller package
   + [ ] model, view를 통해 로또 진행
 
-### enums package
-  + [0] 상수 string을 한번에 관리하는 기능 
+### contstants
+  + [0] 상수 string을 enum으로 관리하는 기능 
+  + [0] 수 관련 상수를 모아 관리하는 기능
 
 ### utility package
 - computerInputException class (Lotto)
@@ -46,6 +47,7 @@
   + [ ] 입력된 구입 금액이 숫자가 아닐 경우 - 재입력
   + [ ] 로또 당첨 번호가 6자리를 넘을 경우 - 재입력
   + [ ] 로또 당첨 번호에 숫자외 값이 올경우 -재입력
+  + [ ] 보너스 번호와 당첨 번호에 중복이 있을 경우 - 재입력
 
 ### 기능 요구 사항
 

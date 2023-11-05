@@ -1,4 +1,4 @@
-package enums;
+package constants;
 public enum ConstantStringManager {
     LOTTO_PRICE_INPUT_NOTIFY("구입금액을 입력해 주세요"),
     LOTTO_NUMBER_NOTIFY("%d개를 구매했습니다.\n"),
@@ -10,7 +10,11 @@ public enum ConstantStringManager {
     LOTTO_SAME_FIVE("5개 일치 (1,500,000원) - %d\n"),
     LOTTO_SAME_FIVE_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - %d\n"),
     LOTTO_SAME_SIX("6개 일치 (2,000,000,000원) - %d\n"),
-    TOTAL_RETURN("총 수익률은 %.2f%입니다.\n");
+    TOTAL_RETURN("총 수익률은 %.2f%입니다.\n"),
+    LIST_START_MARK("["),
+    LIST_END_MARK("]\n"),
+    LIST_SPLIT_MARK(", ");
+
 
     private final String message;
 

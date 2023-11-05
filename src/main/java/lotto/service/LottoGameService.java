@@ -51,6 +51,7 @@ public class LottoGameService {
     public void printWinningResult(final WinningLotto winningLotto, Lottos lottos) {
         outputView.printWinningStatistics();
         WinningLottoResult result = calculateWinningResult(winningLotto, lottos);
+        outputView.printWinningNumberCount(result);
     }
 
     private Lotto getWinningLottoNumbers() {

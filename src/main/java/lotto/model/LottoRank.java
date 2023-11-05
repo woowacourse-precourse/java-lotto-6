@@ -10,6 +10,8 @@ public enum LottoRank {
     SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원)");
 
+    private static final String DASH_SYMBOL = " - ";
+    private static final String COUNT_EXPRESSION = "%d개";
     private final int matchCount;
     private final boolean bonusNumberExists;
     private final int prize;
@@ -19,7 +21,7 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.bonusNumberExists = bonusNumberExists;
         this.prize = prize;
-        this.message = message;
+        this.message = message + DASH_SYMBOL + COUNT_EXPRESSION;
     }
 
     public static LottoRank findRankByMatchCount(int matchCount, boolean bonusNumberExists) {

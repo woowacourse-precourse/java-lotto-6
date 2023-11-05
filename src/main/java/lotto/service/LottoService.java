@@ -50,7 +50,12 @@ public class LottoService {
 
     private Lotto getWinnigNumbers() {
         OutputViewService.outputWinnigNumbers();
-        return InputViewService.inputWinnigNumbers();
+        try {
+            return InputViewService.inputWinnigNumbers(LOTTO_STAT_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
+        } catch (IllegalArgumentException e) {
+            OutputViewService.outPutErrorMessage(e);
+            return getWinnigNumbers();
+        }
     }
 
     private int getBonusNumber() {

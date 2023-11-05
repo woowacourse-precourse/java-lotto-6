@@ -25,6 +25,7 @@ public class OutputViewService {
     }
 
     public static void outputWinnigNumbers() {
+        System.out.println(ASK_WINNING_NUMBERS.getMessage());
     }
 
     public static void outputStatistics() {

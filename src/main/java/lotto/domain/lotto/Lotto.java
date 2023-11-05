@@ -4,6 +4,7 @@ import static lotto.domain.lotto.LottoConstants.LOTTO_SIZE;
 import static lotto.domain.lotto.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.domain.lotto.LottoConstants.MIN_LOTTO_NUMBER;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,5 +44,9 @@ public class Lotto {
         if (filtered.findAny().isPresent()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

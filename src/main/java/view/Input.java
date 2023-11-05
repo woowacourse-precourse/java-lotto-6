@@ -10,6 +10,7 @@ public class Input {
     private static final String ENTER_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_NUMBER_SEPARATOR = ",";
+    private static final String LINE_BREAK = "\n";
 
     public static int getPurchaseAmount() {
         String userInput;
@@ -35,7 +36,7 @@ public class Input {
 
     public static List<Integer> getWinningNumber() {
         String[] userInputs;
-        System.out.println(ENTER_WINNING_NUMBER);
+        System.out.println(LINE_BREAK + ENTER_WINNING_NUMBER);
 
         do {
             userInputs = Console.readLine().split(WINNING_NUMBER_SEPARATOR);
@@ -72,7 +73,7 @@ public class Input {
     public static int getBonusNumber(List<Integer> winningNumber) {
         String userInput;
 
-        System.out.println(ENTER_BONUS_NUMBER);
+        System.out.println(LINE_BREAK + ENTER_BONUS_NUMBER);
         do {
             userInput = Console.readLine();
         } while (!validateBonusNumber(winningNumber, userInput));

@@ -1,6 +1,5 @@
 package Validate;
 
-import java.util.IllegalFormatConversionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +41,7 @@ public class ValidateException {
         }
     }
 
-    public static boolean commaNextBlank(String strLine) {
+    public static boolean commaStartAndEnd(String strLine) {
         int length = strLine.length();
 
         if (strLine.charAt(length - 1) != COMMA_CHAR || strLine.charAt(0) == ',') {

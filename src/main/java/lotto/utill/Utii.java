@@ -15,7 +15,7 @@ public class Utii {
         ValidateException.blankCheck(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
         ValidateException.includeSpecialString(inputStringLine);
-        ValidateException.commaNextBlank(inputStringLine);
+        ValidateException.commaStartAndEnd(inputStringLine);
 
         return inputStringLine;
     }

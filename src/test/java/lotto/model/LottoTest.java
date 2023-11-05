@@ -38,7 +38,7 @@ class LottoTest {
 
         //when
         Lotto lotto = new Lotto(numbers);
-        String lottoNumbers = lotto.printNumbers();
+        String lottoNumbers = lotto.toString();
 
         //then
         org.assertj.core.api.Assertions.assertThat(lottoNumbers).isEqualTo("13, 24, 32, 36, 40, 41");

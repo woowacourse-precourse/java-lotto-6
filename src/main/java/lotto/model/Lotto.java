@@ -22,7 +22,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public String printNumbers() {
+    public String toString() {
         String lottoNumbers = "";
 
         for (int i = 0; i < numbers.size() - 1; i++) {

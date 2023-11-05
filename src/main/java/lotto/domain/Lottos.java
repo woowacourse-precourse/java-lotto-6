@@ -11,7 +11,7 @@ public final class Lottos {
         lottos.add(new Lotto(lotto));
     }
 
-    List<List<Integer>> getLottosNum() {
+    List<List<Integer>> getLottos() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());

@@ -7,8 +7,11 @@ import java.util.List;
 
 public class LottoGame {
     private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_LOTTO = "\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS = "\n보너스 번호를 입력해 주세요.";
+
     private static final String OUTPUT_PURCHASE_AMOUNT = "\n%d개를 구매했습니다.\n";
-    private static final String OUTPUT_WINNING_LOTTO = "\n당첨 번호를 입력해 주세요.";
+
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -26,8 +29,11 @@ public class LottoGame {
         printLottos(purchasedLottosNumber);
 
         Win win = new Win();
-        System.out.println(OUTPUT_WINNING_LOTTO);
+        System.out.println(INPUT_WINNING_LOTTO);
         win.setWinningLotto(Console.readLine());
+
+        System.out.println(INPUT_BONUS);
+        win.setBonus(Integer.parseInt(Console.readLine()));
     }
 
     private void makeLottos(int lottosNumber) {

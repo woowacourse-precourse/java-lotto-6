@@ -22,10 +22,9 @@ public class LottoController {
         printSortedLottos(playerLottos);
 
         WinningLotto winningLotto = generateWinningLotto();
-        getWinningResult(playerLottos, winningLotto);
 
-        // TODO: 당첨 내역 출력
-        // TODO: 수익률 출력
+        WinningResultResponse winningResult = getWinningResult(playerLottos, winningLotto);
+        printWinningResult(winningResult, lottoQuantity);
     }
 
     private static int getLottoQuantity( ) {
@@ -54,5 +53,11 @@ public class LottoController {
 
     private static WinningResultResponse getWinningResult(Lottos playerLottos, WinningLotto winningLotto) {
         return playerLottos.generateWinningResult(winningLotto);
+    }
+
+    public static void printWinningResult(WinningResultResponse winningResultResponse, int lottoQuantity) {
+        OutputView.printLottoResultTitle();
+        OutputView.printFullWinningResult(winningResultResponse);
+        OutputView.printTotalReturn(winningResultResponse, lottoQuantity);
     }
 }

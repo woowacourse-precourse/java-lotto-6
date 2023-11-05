@@ -21,8 +21,7 @@ public class InputView {
         OutputView.printInputWinningNumbersMsg();
 
         String userInputWinningNumbers = readLine();
-        String[] splitWinningNumbers = userInputWinningNumbers.split(",", -1);
-        List<String> winningNumbers = new ArrayList<>(Arrays.asList(splitWinningNumbers));
+        List<String> winningNumbers = new ArrayList<>(Arrays.asList(userInputWinningNumbers.split(",", -1)));
 
         // [예외처리] 입력한 당첨 번호 중에 공백이 있는 경우
         // [예외처리] 중복된 숫자를 입력한 경우

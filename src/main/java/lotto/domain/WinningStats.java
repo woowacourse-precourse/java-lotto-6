@@ -17,6 +17,7 @@ public class WinningStats {
     private WinningStats(PurchasedLottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         countWinningCountByRank(purchasedLottos, winningNumbers, bonusNumber);
         winningCountByRank = temporalWinngCount;
+        // TODO 2023-11-06 04:04 파라미터 개수 줄이기 (winningNumbers와 bonusNumber를 합친 객체를 만들어서 받는다.)
     }
 
     public static WinningStats of(PurchasedLottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {

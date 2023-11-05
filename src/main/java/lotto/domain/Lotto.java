@@ -21,12 +21,12 @@ public class Lotto {
 
     public Ranking matchWithWinLotto(WinLotto winLotto) {
         Integer matchNumbers = matchWithNumbers(winLotto);
-        Integer matchBonus = matchWithBonus(winLotto);
+        Integer matchBonus = matchWithBonus(winLotto.bonus);
         return Ranking.compareRanking(matchNumbers, matchBonus);
     }
 
-    private Integer matchWithBonus(WinLotto winLotto) {
-        if (numbers.contains(winLotto.bonus)) {
+    private Integer matchWithBonus(Integer bonus) {
+        if (numbers.contains(bonus)) {
             return 1;
         }
 
@@ -47,10 +47,11 @@ public class Lotto {
         return matchNumber;
     }
 
-
     // TODO: 접근제한자 private 변경 불가 X.
     private void validate(List<Integer> numbers) {
-        if (!(isMatchedCount(numbers) && isInNumberRange(numbers) && hasNotDuplicates(numbers))) {
+        if (!(isMatchedCount(numbers)
+                && isInNumberRange(numbers)
+                && hasNotDuplicates(numbers))) {
             throw new IllegalArgumentException();
         }
     }
@@ -66,7 +67,7 @@ public class Lotto {
     }
 
     private boolean hasNotDuplicates(List<Integer> numbers){
-        return numbers.size() == Set.of(numbers).size();
+        return numbers.size() == Set.copyOf(numbers).size();
     }
 
     private void sortAscending() {

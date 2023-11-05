@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
 
 public class Lotto {
@@ -27,9 +25,15 @@ public class Lotto {
         }
     }
 
-    private List<Integer> createLottoRandomNumber() {
-        final List<Integer> numbers;
-        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private void dupulicationCheckBonus(List<Integer> numbers, int bonusNumber) {
+        for (int i = 0; i < numbers.size()-1; i++) {
+            if(numbers.get(i).equals(bonusNumber)){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

@@ -1,13 +1,17 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoSalesmanTest {
 
-    @DisplayName("총 지불 금액을 1,000으로 나눴을 때 나머지가 없어야 함")
+    @DisplayName("총 지불 금액을 1,000으로 나눴을 때 나머지가 0 이상이라면 예외가 발생한다.")
     @Test
     void lottoCount() {
         int[] moneyValues = {5000, 6005, 7231, 8493, 9000};
@@ -22,4 +26,14 @@ public class LottoSalesmanTest {
             assertThat(lottoNumber).isEqualTo(money / 1000);
         }
     }
+
+    @DisplayName("1개의 로또를 발행한다.")
+    @Test
+    void oneLottoCreate() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        Lotto createLottoRandomNumbers = new Lotto(numbers);
+        System.out.println("생성된 로또 번호 : " + createLottoRandomNumbers.getNumbers());
+    }
+
 }

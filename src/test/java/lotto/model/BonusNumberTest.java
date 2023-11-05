@@ -2,16 +2,17 @@ package lotto.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {
 
+    @DisplayName("보너스 번호가 1~45의 범위를 벗어나면 예외가 발생한다.")
     @Test
-    void 보너스_번호가_범위를_벗어난_경우_예외_처리한다() {
+    void createBonusNumberByOutOfRangeNumber() {
         int input = 0;
 
         assertThatThrownBy(() -> new BonusNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

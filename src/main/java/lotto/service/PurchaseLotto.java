@@ -29,23 +29,21 @@ public class PurchaseLotto {
         return numberCost / PURCHASE_COST_UNIT.getLimit();
     }
 
-    private boolean checkRange(int number) {
-        return number >= PURCHASE_COST_LOWER_LIMIT.getLimit()
-                && number <= PURCHASE_COST_UPPER_LIMIT.getLimit();
+    private boolean checkRange(int cost) {
+        return cost >= PURCHASE_COST_LOWER_LIMIT.getLimit()
+                && cost <= PURCHASE_COST_UPPER_LIMIT.getLimit();
     }
 
-    private boolean checkUnit(int number) {
-        return number % PURCHASE_COST_UNIT.getLimit() == 0;
+    private boolean checkUnit(int cost) {
+        return cost % PURCHASE_COST_UNIT.getLimit() == 0;
     }
 
     private int toNumber(String cost) {
-        int result;
         try {
-            result = Integer.parseInt(cost);
+            return Integer.parseInt(cost);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
-        return result;
     }
 
     private List<Lotto> getLottos(int numberOfLottos) {

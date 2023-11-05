@@ -6,8 +6,8 @@ import lotto.domain.ResultRepository;
 import lotto.domain.constant.Rank;
 
 public class WinningStatistics {
-    private int numberOfPurchase;
-    private int sumOfWinningCost;
+    private final int numberOfPurchase;
+    private final int sumOfWinningCost;
     private List<Integer> countRank;
 
     public WinningStatistics(List<ResultRepository> repositories) {

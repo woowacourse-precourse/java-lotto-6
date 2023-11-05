@@ -14,7 +14,7 @@ public enum Range {
         this.limit = limit;
     }
 
-    public Integer getLimit() {
+    public int getLimit() {
         return limit;
     }
 }

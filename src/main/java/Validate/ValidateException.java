@@ -13,7 +13,7 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new NumberFormatException("입력에 문자가 포함되어 있습니다.");
+            throw new NumberFormatException("[ERROR] 입력에 문자가 포함되어 있습니다.");
         }
     }
 
@@ -21,6 +21,6 @@ public class ValidateException {
         if (!strLine.equals(NOTING_STRING)) {
             return true;
         }
-        throw new NumberFormatException("빈칸은 입력할 수 없습니다.");
+        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
     }
 }

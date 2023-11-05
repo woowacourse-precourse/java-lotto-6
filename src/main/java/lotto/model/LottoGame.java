@@ -4,9 +4,9 @@ import java.util.List;
 
 public class LottoGame {
 
-  public int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumbers) {
+  public int countMatchingNumbers(List<Integer> lotto, List<String> winningNumbers) {
     int matchedNumbers = 0;
-    for (int userNumber : winningNumbers) {
+    for (String userNumber : winningNumbers) {
       if (lotto.contains(userNumber)) {
         matchedNumbers++;
       }

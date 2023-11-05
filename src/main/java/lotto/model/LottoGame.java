@@ -8,24 +8,24 @@ import lotto.vo.BonusNumber;
 
 public class LottoGame {
 
-    private final Player player;
+    private final Lotteries lotteries;
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    private LottoGame(final Player player, final Lotto winningLotto, final BonusNumber bonusNumber) {
-        this.player = player;
+    private LottoGame(final Lotteries lotteries, final Lotto winningLotto, final BonusNumber bonusNumber) {
+        this.lotteries = lotteries;
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoGame createGame(final Player player, final Lotto lotto, final BonusNumber bonusNumber) {
-        return new LottoGame(player, lotto, bonusNumber);
+    public static LottoGame createGame(final Lotteries lotteries, final Lotto lotto, final BonusNumber bonusNumber) {
+        return new LottoGame(lotteries, lotto, bonusNumber);
     }
 
     public Map<LottoRank, Integer> calculateScore() {
         Map<LottoRank, Integer> playerRank = new HashMap<>();
 
-        List<Lotto> playerLotteries = player.getLotteries();
+        List<Lotto> playerLotteries = lotteries.getLotteries();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 
         playerLotteries.forEach(playerLotto ->

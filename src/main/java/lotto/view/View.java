@@ -63,8 +63,8 @@ public class View {
         outputView.printTicketCountMessage(count);
     }
 
-    public void showPlayerNumbers(final List<LottoDto> playerLotteries) {
-        outputView.printPlayerNumbers(playerLotteries);
+    public void showLotteriesNumber(final List<LottoDto> lotteries) {
+        outputView.printLotteriesNumber(lotteries);
     }
 
     public void showStatistics(final Map<LottoRank, Integer> result) {

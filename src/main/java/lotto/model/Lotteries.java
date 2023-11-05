@@ -5,19 +5,19 @@ import java.util.stream.IntStream;
 import lotto.util.NumberGenerator;
 import lotto.vo.TicketCount;
 
-public class Player {
+public class Lotteries {
 
     private final List<Lotto> lotteries;
 
-    private Player(final List<Lotto> lotteries) {
+    private Lotteries(final List<Lotto> lotteries) {
         this.lotteries = lotteries;
     }
 
-    public static Player createPlayer(final TicketCount ticketCount, final NumberGenerator numberGenerator) {
+    public static Lotteries createLotteries(final TicketCount ticketCount, final NumberGenerator numberGenerator) {
         List<Lotto> lotteries = IntStream.range(0, ticketCount.count())
-                .mapToObj(eachTicket -> Lotto.createPlayerLotto(numberGenerator))
+                .mapToObj(eachTicket -> Lotto.createLotto(numberGenerator))
                 .toList();
-        return new Player(lotteries);
+        return new Lotteries(lotteries);
     }
 
     public List<Lotto> getLotteries() {

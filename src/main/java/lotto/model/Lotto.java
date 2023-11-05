@@ -51,11 +51,11 @@ public class Lotto {
                 .anyMatch(number -> (number < LottoInfo.LOTTO_MIN_NUMBER.getValue()));
     }
 
-    public static Lotto createPlayerLotto(final NumberGenerator numberGenerator) {
-        return new Lotto(getPlayerLottoNumbers(numberGenerator));
+    public static Lotto createLotto(final NumberGenerator numberGenerator) {
+        return new Lotto(getLottoNumbers(numberGenerator));
     }
 
-    private static List<Integer> getPlayerLottoNumbers(final NumberGenerator numberGenerator) {
+    private static List<Integer> getLottoNumbers(final NumberGenerator numberGenerator) {
         List<Integer> randomNumbers = numberGenerator.pickNumbers();
         randomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(randomNumbers);

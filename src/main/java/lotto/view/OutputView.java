@@ -41,8 +41,8 @@ public class OutputView {
         printMessage(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
-    public void printPlayerNumbers(final List<LottoDto> playerLotteries) {
-        playerLotteries.stream().forEach(lottoDto -> {
+    public void printLotteriesNumber(final List<LottoDto> lotteries) {
+        lotteries.stream().forEach(lottoDto -> {
             printMessage(lottoDto.getNumbers().toString());
         });
         printMessage(LINE);

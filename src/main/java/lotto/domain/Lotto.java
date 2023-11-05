@@ -2,8 +2,10 @@ package lotto.domain;
 
 import static lotto.Exception.ExceptionMessage.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.lang.Integer;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,6 +18,12 @@ public class Lotto {
 
     public List<Integer> sortLottoNumber() {
         return numbers.stream().sorted().toList();
+    }
+
+    public int getMatchCount(Lotto lotto) {
+        List<Integer> myLottoNumbers = new ArrayList<>(this.numbers);
+        myLottoNumbers.retainAll(lotto.sortLottoNumber());
+        return myLottoNumbers.size();
     }
 
     private void validateLottoLength(List<Integer> numbers) {

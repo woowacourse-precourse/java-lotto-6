@@ -17,7 +17,7 @@ public class BonusLotto {
         }
     }
 
-    public int getNumbers() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

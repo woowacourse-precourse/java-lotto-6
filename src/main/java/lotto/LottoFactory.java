@@ -9,8 +9,7 @@ public class LottoFactory {
     public LottoController createLottoController() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        LottoService lottoService = new LottoService();
 
-        return new LottoController(inputView, outputView,lottoService);
+        return new LottoController(inputView, outputView);
     }
 }

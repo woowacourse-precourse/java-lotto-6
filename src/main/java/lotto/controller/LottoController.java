@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.LottoFactory;
+import lotto.model.BonusLotto;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
 import lotto.view.InputView;
@@ -13,12 +14,10 @@ import static lotto.Message.ErrorMessage.VALUE_IS_NOT_CONVERT_INTEGER;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -30,6 +29,10 @@ public class LottoController {
             //당첨번호 입력
             Lotto lotto = new Lotto(inputView.input());
             //보너스 번호 입력
+            BonusLotto bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()));
+            //당첨 내역 출력
+            LottoService lottoService = new LottoService(amount, userLotto, lotto, bonusLotto);
+            //총 수익률 출력
         } catch (NumberFormatException e) {
             throw new NumberFormatException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
         }

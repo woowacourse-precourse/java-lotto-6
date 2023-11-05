@@ -34,6 +34,6 @@ public class BonusLottoTest {
         int inputBonus = 2;
         BonusLotto bonusLotto = new BonusLotto(inputBonus);
 
-        assertThat(bonusLotto.getNumbers()).isEqualTo(2);
+        assertThat(bonusLotto.getBonusNumber()).isEqualTo(2);
     }
 }

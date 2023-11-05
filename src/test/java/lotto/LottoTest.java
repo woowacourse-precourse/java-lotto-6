@@ -24,9 +24,24 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 올바른지 검증한다.")
+    @ParameterizedTest
+    @MethodSource("provideNumbersForValidate")
+    void 로또_번호_검증(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideNumbersForValidate() {
+        return Stream.of(
+                Arguments.of(List.of(1, 1, 2, 3, 4, 5)),
+                Arguments.of(List.of(1, 46, 2, 3, 4, 5)),
+                Arguments.of(List.of(1, 2, 3, 4, 5))
+        );
     }
 
     @DisplayName("로또 번호가 오름차순으로 정렬된다.")
@@ -41,22 +56,6 @@ class LottoTest {
 
         // then
         assertEquals(List.of(5, 7, 18, 25, 33, 41), sortedNumbers);
-    }
-
-    @DisplayName("로또 번호가 올바른지 검증한다.")
-    @ParameterizedTest
-    @MethodSource("provideNumbersForValidate")
-    void 로또_번호_검증(List<Integer> numbers) {
-        assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private static Stream<Arguments> provideNumbersForValidate() {
-        return Stream.of(
-                Arguments.of((Object) List.of(1, 1, 2, 3, 4, 5)),
-                Arguments.of((Object) List.of(1, 46, 2, 3, 4, 5)),
-                Arguments.of((Object) List.of(1, 2, 3, 4, 5))
-        );
     }
 
     @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 확인한다.")

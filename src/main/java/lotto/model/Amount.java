@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.Constraints.LOTTO_PRICE;
 import static lotto.ErrorMessage.BLANK_INPUT_MESSAGE;

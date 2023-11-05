@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.ErrorMessage.BLANK_INPUT_MESSAGE;
 import static lotto.ErrorMessage.NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE;

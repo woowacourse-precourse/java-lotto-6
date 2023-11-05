@@ -23,5 +23,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액이 1,000원으로 나누어 떨어 지지 않으면 예외가 발생한다.")
+    @Test
+    void inputPurchaseAmount() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)).checkPurchaseAmount(1550))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입 금액은 1,000원 단위로 입력해야 합니다.");
+    }
 }

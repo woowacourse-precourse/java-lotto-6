@@ -21,11 +21,15 @@ public class LottoShop {
                 .collect(Collectors.toList());
     }
 
-    public Lotto createByWinningLotto(List<Integer> inputLottoNumber) {
+    public Lotto createByWinningNumber(List<Integer> inputLottoNumber) {
         return new Lotto(inputLottoNumber);
     }
 
     public BonusNumber createByBonusNumber(int number) {
         return new BonusNumber(number);
+    }
+
+    public WinningLotto createByWinningLotto(Lotto winningLottoNumber, BonusNumber bonusNumber) {
+        return new WinningLotto(winningLottoNumber, bonusNumber);
     }
 }

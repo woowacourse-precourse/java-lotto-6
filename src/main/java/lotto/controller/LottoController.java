@@ -20,61 +20,60 @@ public class LottoController {
 
     public void run() {
         BuyerLotto buyerLotto = createBuyerLotto();
-        WinningLotto winningLotto = createWinningLotto();
+        Lotto winningLottoNumber = createWinningNumber();
+        BonusNumber bonusNumber = createBonusNumber();
+        WinningLotto winningLotto = createWinningLotto(winningLottoNumber, bonusNumber);
         LottoResult lottoResult = winningLotto.calculateStatistics(buyerLotto);
         OutputView.printResult(lottoResult.getSortedStatistics());
         OutputView.printProfitPercent(lottoResult.calculatePercent());
     }
 
     private BuyerLotto createBuyerLotto() {
-        OutputView.requestPurchaseAmount();
-
-        int amount = generateAmount();
-        List<Lotto> createBuyerLotto = lottoShop.createByBuyerLotto(amount);
-
-        OutputView.printBuyerLotto(createBuyerLotto.size(), createBuyerLotto);
-
-        return new BuyerLotto(createBuyerLotto);
-    }
-
-    private WinningLotto createWinningLotto() {
-        OutputView.requestWinnerLottoNumber();
-        List<Integer> winningLotto = generateWinningLotto();
-        Lotto createWinningLotto = lottoShop.createByWinningLotto(winningLotto);
-
-        OutputView.requestBonusNumber();
-        int bonusNumber = generateBonusNumber();
-        BonusNumber createBonusNumber = lottoShop.createByBonusNumber(bonusNumber);
-
-        return new WinningLotto(createWinningLotto, createBonusNumber);
-    }
-
-    private int generateAmount() {
         while (true) {
             try {
-                return InputView.readPurchaseAmount();
+                OutputView.requestPurchaseAmount();
+                int amount = InputView.readPurchaseAmount();
+                List<Lotto> createBuyerLotto = lottoShop.createByBuyerLotto(amount);
+                OutputView.printBuyerLotto(createBuyerLotto.size(), createBuyerLotto);
+                return new BuyerLotto(createBuyerLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Integer> generateWinningLotto() {
+    private Lotto createWinningNumber() {
         while (true) {
             try {
-                return InputView.readWinnerLottoNumber();
+                OutputView.requestWinnerLottoNumber();
+                List<Integer> winningLotto = InputView.readWinnerLottoNumber();
+                return lottoShop.createByWinningNumber(winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private int generateBonusNumber() {
+    private BonusNumber createBonusNumber() {
         while (true) {
             try {
-                return InputView.readBonusNumber();
+                OutputView.requestBonusNumber();
+                int bonusNumber = InputView.readBonusNumber();
+                return lottoShop.createByBonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto createWinningLotto(Lotto winningLottoNumber, BonusNumber bonusNumber) {
+        while (true) {
+            try {
+                winningLottoNumber.validateDuplicateWinningLottoNumberAndBonusNumber(bonusNumber);
+                return lottoShop.createByWinningLotto(winningLottoNumber, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                bonusNumber = createBonusNumber();
             }
         }
     }

@@ -10,6 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningRank;
 import lotto.domain.WinningStatistics;
+import lotto.util.StringFormatter;
 
 public class OutputView {
     private static final String COUNT_OF_USER_LOTTOS_MESSAGE = "\n%d개를 구매했습니다.";
@@ -35,6 +36,8 @@ public class OutputView {
 
     public static void printWinningStaticstics(WinningStatistics winningStatistics){
         printWinningStatisticsHeader();
+        String resultStatistics = StringFormatter.mapToWinningStatisticsToString(winningStatistics.getWinningStatistics());
+        printWinningStaticstics(resultStatistics);
         printRevenueRate(winningStatistics.getRevenueRate());
     }
 
@@ -49,5 +52,9 @@ public class OutputView {
 
     private static void printRevenueRate(BigDecimal revenueRate){
         System.out.println(String.format("총 수익률은 %s%%입니다.%n", revenueRate.toString()));
+    }
+
+    public static void printWinningStaticstics(String resultStatistics){
+        System.out.println(resultStatistics);
     }
 }

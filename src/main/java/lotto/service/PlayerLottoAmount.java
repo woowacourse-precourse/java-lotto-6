@@ -16,4 +16,10 @@ public class PlayerLottoAmount {
         return amount / LOTTO_MIN_AMOUNT;
     }
 
+
+    private void validateAmount(int amount) {
+        validateNatural(amount);
+        validateDivisible(amount);
+    }
+
 }

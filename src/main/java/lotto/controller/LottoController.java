@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Mapper.LottoTicketsDtoMapper;
+import lotto.mapper.LottoTicketsDtoMapper;
 import lotto.dto.LottoTicketsDto;
 import lotto.model.LottoTickets;
 import lotto.model.Money;

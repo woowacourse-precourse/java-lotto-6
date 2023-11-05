@@ -1,4 +1,4 @@
-package lotto.Mapper;
+package lotto.mapper;
 
 import java.util.List;
 import lotto.dto.LottoDto;

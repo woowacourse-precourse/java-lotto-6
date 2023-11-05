@@ -1,4 +1,4 @@
-package lotto.Mapper;
+package lotto.mapper;
 
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;

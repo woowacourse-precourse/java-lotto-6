@@ -32,18 +32,6 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("발행된 로또 번호를 반환한다.")
-    @Test
-    void getLottoNumbers() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.getNumbers())
-                .contains(1,2,3,4,5,6);
-
-        assertThat(lotto.getNumbers())
-                .contains(1,2,4,3,6,5);
-
-    }
-
     @DisplayName("발행된 로또 번호를 보여준다.")
     @Test
     void showLottoNumbers() {

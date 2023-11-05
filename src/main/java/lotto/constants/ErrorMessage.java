@@ -22,4 +22,8 @@ public enum ErrorMessage {
         this.message = message;
     }
 
+    @Override
+    public String toString() {
+        return "[ERROR] " + message;
+    }
 }

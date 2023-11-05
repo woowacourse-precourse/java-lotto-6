@@ -22,4 +22,20 @@ public class LottoResult {
         result.remove(LottoRank.OUT_RANK);
         return Collections.unmodifiableMap(result);
     }
+
+    public double calculateProfitRate(Payment payment) {
+        long totalPrizeMoney = calculateTotalPrizeMoney();
+        return (double) totalPrizeMoney / payment.getAmount();
+    }
+
+    private long calculateTotalPrizeMoney() {
+        long totalPrizeMoney = 0;
+
+        for (LottoRank lottoRank : result.keySet()) {
+            int count = result.get(lottoRank);
+            totalPrizeMoney += (long) lottoRank.getPrizeMoney() * count;
+        }
+
+        return totalPrizeMoney;
+    }
 }

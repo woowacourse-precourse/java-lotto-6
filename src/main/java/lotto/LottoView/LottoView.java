@@ -43,4 +43,8 @@ public class LottoView {
         System.out.println("총 수익률은 " + yieldRate + "입니다.");
     }
 
+    public void errorMeg(String meg){
+        System.out.println("[ERROR] " + meg);
+    }
+
 }

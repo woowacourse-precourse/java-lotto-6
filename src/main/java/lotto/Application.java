@@ -4,6 +4,7 @@ import controller.LottoGenerator;
 import controller.UserInput;
 import model.Lotto;
 import model.Lottos;
+import model.PrizeNumber;
 import model.Purchase;
 
 public class Application {
@@ -15,6 +16,8 @@ public class Application {
     static void run(){
         Purchase purchase = new Purchase();
         Lottos lottos = new Lottos();
+        PrizeNumber prizeNumber = new PrizeNumber();
+
 
         purchase.Number(UserInput.purchasePrice());
         System.out.println(purchase.getPurchaseNumber());
@@ -24,6 +27,10 @@ public class Application {
             System.out.println(l);
         }
         System.out.println(lottos.getLottos().size());
+        prizeNumber.initPrizeNumber(UserInput.prizeNumber());
+        System.out.println(prizeNumber.getPrizeNumber());
+        prizeNumber.initBonusNumber(UserInput.bonusNumber());
+        System.out.println(prizeNumber.getBonousNumber());
     }
 
 

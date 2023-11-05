@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import model.Purchase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserInput {
@@ -14,12 +15,30 @@ public class UserInput {
         int price = Integer.parseInt(Console.readLine());
         return price;
     }
-    static List<Integer> prizeNumber(){
-        List<Integer> test = new ArrayList<>();
-        return test;
+
+    public static List<Integer> prizeNumber(){
+        String inputNumber = Console.readLine();
+        List<String> strPrizeNumbers = Arrays.asList(inputNumber.split(","));
+        List<Integer> prizeNumbers = new ArrayList<>();
+        for(String prize : strPrizeNumbers){
+            int number = Integer.parseInt(prize);
+            validateNumber(number);
+            prizeNumbers.add(number);
+        }
+        if(prizeNumbers.size() != 6){
+            throw new IllegalArgumentException("[ERRPR] 로또 번호는 6개 입력해야 합니다.");
+        }
+        return prizeNumbers;
     }
-    static int bonusNumber(){
-        int test = 1;
-        return test;
+    public static int bonusNumber(){
+        int bonus = Integer.parseInt(Console.readLine());
+        validateNumber(bonus);
+        return bonus;
+    }
+
+    static void validateNumber(int number){
+        if(number < 1 || number > 45){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 }

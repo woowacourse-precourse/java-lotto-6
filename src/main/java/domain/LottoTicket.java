@@ -8,4 +8,8 @@ public class LottoTicket {
     public LottoTicket(List<Lotto> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
+
+    public List<Lotto> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

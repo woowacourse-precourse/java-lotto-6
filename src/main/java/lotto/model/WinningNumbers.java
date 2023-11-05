@@ -5,18 +5,22 @@ import lotto.common.ErrorMessage;
 
 public class WinningNumbers {
 
-    private final LottoTickets ticketNumbers;
+    private final Lotto lotto;
     private final Number bonusNumber;
 
-    private WinningNumbers(LottoTickets ticketNumbers, Number bonusNumber) {
-        validate(ticketNumbers, bonusNumber);
-        this.ticketNumbers = ticketNumbers;
+    public WinningNumbers(Lotto lotto, Number bonusNumber) {
+        validate(lotto, bonusNumber);
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers createBonusNumber(LottoTickets ticketNumbers, String bonusNumber) {
+    public Number getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public static WinningNumbers createWinningNumbers(Lotto lotto, String bonusNumber) {
         Number number = parseAndValidateBonusNumber(bonusNumber);
-        return new WinningNumbers(ticketNumbers, number);
+        return new WinningNumbers(lotto, number);
     }
 
     private static Number parseAndValidateBonusNumber(String bonusNumber) {
@@ -24,14 +28,14 @@ public class WinningNumbers {
         return Number.of(Integer.parseInt(bonusNumber));
     }
 
-    private void validate(LottoTickets ticketNumbers, Number bonusNumber) {
-        if (isContainsBonusNumber(ticketNumbers, bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_CONTAINS_BONUS_NUMBER.get());
+    private void validate(Lotto lotto, Number bonusNumber) {
+        if (isContainsBonusNumber(lotto, bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.get());
         }
     }
 
-    private boolean isContainsBonusNumber(LottoTickets ticketNumbers, Number bonusNumber) {
-        return ticketNumbers.getTickets().contains(bonusNumber);
+    private boolean isContainsBonusNumber(Lotto lotto, Number bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     private static void validateBonusNumber(String bonusNumber) {
@@ -43,19 +47,19 @@ public class WinningNumbers {
     private static void isNotOneBonusNumber(String bonusNumber) {
         String[] bonusNumbers = bonusNumber.split(Constant.COMMA.getCharValue());
         if (bonusNumbers.length != 1 || bonusNumbers[0].isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_IS_NOT_ONE_BONUS_NUMBER.get());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_NOT_ONE.get());
         }
     }
 
     private static void isNullBonusNumber(String bonusNumber) {
         if (bonusNumber.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_BONUS_NUMBER_NULL.get());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NULL.get());
         }
     }
 
     private static void isContainsBlank(String bonusNumber) {
         if (bonusNumber.contains(Constant.BLANK.getCharValue())) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_BONUS_NUMBER_CONTAINS_BLANK.get());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_CONTAINS_BLANK.get());
         }
     }
 }

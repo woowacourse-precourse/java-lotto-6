@@ -28,7 +28,11 @@ public class LottoTicket {
         lottoBundle.addLotto(randomLotto);
     }
 
-    int getLottoTicket() {
-        return lottoTicket;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof LottoTicket compareLottoTicket) {
+            return this.lottoTicket == compareLottoTicket.lottoTicket;
+        }
+        return false;
     }
 }

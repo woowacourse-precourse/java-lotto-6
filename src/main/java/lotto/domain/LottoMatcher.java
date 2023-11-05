@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.Rank;
+
 public final class LottoMatcher {
 
     private final WinningNumbers winningNumbers;
@@ -8,11 +10,13 @@ public final class LottoMatcher {
         this.winningNumbers = winningNumbers;
     }
 
-    public int countMatchesForLotto(Lotto lotto) {
-        return countMatchedNumbers(lotto);
+    public Rank match(Lotto lotto) {
+        int matchedCount = countMatchedNumbers(lotto);
+        boolean hasBonusMatch = hasMatchingBonusNumber(lotto);
+        return Rank.findRank(matchedCount, hasBonusMatch);
     }
 
-    public boolean hasMatchingBonusNumber(Lotto lotto) {
+    private boolean hasMatchingBonusNumber(Lotto lotto) {
         return lotto.numbers().contains(winningNumbers.bonusNumber());
     }
 

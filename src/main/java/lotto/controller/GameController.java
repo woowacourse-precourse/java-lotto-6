@@ -1,11 +1,15 @@
 package lotto.controller;
 
 
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Payment;
+import lotto.utils.Generator;
 import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
 
@@ -14,9 +18,12 @@ public class GameController {
         String payInput = InputView.getPaymentFromUserInput();
         Payment payment = new Payment(Parser.parsePay(payInput));
 
-        OutputView.printLottoAmount(payment.calculateLottoAmount());
+        List<Lotto> generatedLotto = Generator.generateLottoByAmount(payment.calculateLottoAmount());
+        Lottos lottos = new Lottos(generatedLotto);
 
-        Lottos lottos = new Lottos(payment.calculateLottoAmount());
+        OutputView.printLottoAmount(lottos.getLottosAmount());
+        OutputView.printGeneratedLottos(lottos.getLottosNumber());
+
 
 
 

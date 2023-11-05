@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,13 +29,13 @@ public class Lotto {
     }
 
     private void validateSixNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 6개여야 합니다.");
         }
     }
 
     private void validateInvalidLottoNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이의 수여야 합니다.");
         }
     }

@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoGameManager {
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int PERCENTAGE = 100;
     private static LottoNumberComparator lottoNumberComparator;
 
     public static int calculateLottoCount(Amount amount) {
@@ -15,7 +19,7 @@ public class LottoGameManager {
 
     public static List<Lotto> buyLotto(int lottoCount) {
         return IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE)))
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +43,7 @@ public class LottoGameManager {
     }
 
     public static Double calculateYield(List<LottoMatch> winningResults, Amount amount) {
-        return calculatePrize(winningResults) / Double.valueOf(amount.getAmount()) * 100;
+        return calculatePrize(winningResults) / Double.valueOf(amount.getAmount()) * PERCENTAGE;
     }
 
     private static int calculatePrize(List<LottoMatch> lottoResultCount) {

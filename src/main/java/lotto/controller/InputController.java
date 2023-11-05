@@ -3,14 +3,13 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Unit;
 import lotto.service.NumberValidator;
 import lotto.view.InputView;
 
 public class InputController {
 
     private static final String COMMA_DELIMITER = ",";
-
-    private static final String NUMBER = "^[0-9]+$";
 
     private final NumberValidator numberValidator;
 
@@ -28,6 +27,7 @@ public class InputController {
             inputView.showPurchasePriceMessage();
             try {
                 price = convertInputData(Console.readLine());
+                price = Unit.calculateLottoTicketCanPurchase(price);
                 isValidInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -38,9 +38,7 @@ public class InputController {
 
     private int convertInputData(String purchasePrice) {
         numberValidator.validatePurchasePriceIsNumber(purchasePrice);
-        int price = Integer.parseInt(purchasePrice);
-        numberValidator.validatePurchasePriceUnit(price);
-        return price;
+        return Integer.parseInt(purchasePrice);
     }
 
     public List<Integer> inputLottoNumbers() {

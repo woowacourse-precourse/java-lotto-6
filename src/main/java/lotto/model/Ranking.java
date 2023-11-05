@@ -47,6 +47,10 @@ public enum Ranking {
         return this.countOfMatch == countOfMatch;
     }
 
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
     public void printMessage(int count) {
         if (this != MISS) {
             OutputView.printSuccessMessage(message, count);

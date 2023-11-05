@@ -4,6 +4,7 @@ import lotto.Lotto;
 
 public class Calculator {
 
+
     public void countCorrectLuckyNumbers(){
     }
 

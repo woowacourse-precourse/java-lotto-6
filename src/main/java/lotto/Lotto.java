@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Lotto {
@@ -17,9 +19,13 @@ public class Lotto {
     }
 
     public void inputPurchaseAmount(){
+        System.out.println("구입금액을 입력해 주세요.");
+        int inputPurchaseAmount = Integer.parseInt(Console.readLine());
     }
 
-    public void run(){
-
+    public void validateInputPurchaseAmount(int inputPurchaseAmount) {
+        if (inputPurchaseAmount % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
+        }
     }
 }

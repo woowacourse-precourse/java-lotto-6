@@ -96,15 +96,17 @@
 
 ## 6. 기능에 따른 클래스 구조
 >- Numbers
->  - `inputPurchaseAmount`
 >  - `createLottoNumbers`
->  - `inputLuckyNumbers`
->  - `inputBonusNumber`
 >- Calculator
 >  - `countCorrectLuckyNumbers`
 >  - `rateOfReturn`
 >- Lotto
 >  - `run`
+>  - `inputPurchaseAmount`
+>  - `validateInputPurchaseAmount`
+>  - `inputBonusNumber`
+>  - `validate`
+>  - `inputLuckyNumbers`
 
 ## 7. 테스트 코드 설계
 

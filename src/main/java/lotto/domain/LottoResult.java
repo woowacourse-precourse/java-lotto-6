@@ -27,19 +27,19 @@ public class LottoResult {
 
     public void calculateNumberOfWins(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         for (Lotto lotto : lottos) {
-            countWinningType(getMatchNumbers(lotto, winningLotto), checkMatchBonusNumber(lotto, bonusNumber));
+            countWinningRank(getMatchNumbers(lotto, winningLotto), checkMatchBonusNumber(lotto, bonusNumber));
         }
     }
 
-    private void countWinningType(int matchNumber, boolean matchBonus) {
-        WinningCriteria type = WinningCriteria.getWinningType(matchNumber, matchBonus);
-        result.put(type, result.getOrDefault(type, 0) + 1);
+    private void countWinningRank(int matchNumber, boolean matchBonus) {
+        WinningCriteria rank = WinningCriteria.getWinningRank(matchNumber, matchBonus);
+        result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
 
     private int calculateTotalPrize() {
         int totalPrize = 0;
-        for (WinningCriteria type : result.keySet()) {
-            totalPrize += type.getPrize();
+        for (WinningCriteria rank : result.keySet()) {
+            totalPrize += rank.getPrize();
         }
         return totalPrize;
     }

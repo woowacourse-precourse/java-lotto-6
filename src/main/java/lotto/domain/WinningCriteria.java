@@ -24,7 +24,7 @@ public enum WinningCriteria {
         return prize;
     }
 
-    public static WinningCriteria getWinningType(int matchCount, boolean matchBonus) {
+    public static WinningCriteria getWinningRank(int matchCount, boolean matchBonus) {
         for (WinningCriteria type : WinningCriteria.values()) {
             if (matchCount == 5 && !matchBonus) {
                 return THIRD;

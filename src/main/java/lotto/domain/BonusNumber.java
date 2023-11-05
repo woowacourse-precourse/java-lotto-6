@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.system.SystemConstant;
 import lotto.system.SystemMessage;
 import lotto.validator.BallValidator;
 import lotto.view.InputView;
@@ -19,6 +20,13 @@ public class BonusNumber {
 
     public static BonusNumber createManual() {
         OutputView.printFrom(SystemMessage.INPUT_BONUS_NUMBER);
+        int userInput = SystemConstant.NOTHING.getValue();
+        try {
+            userInput = InputView.readInt();
+        } catch (Exception e) {
+            OutputView.exceptionMessage(e);
+            createManual();
+        }
         return new BonusNumber(InputView.readInt());
     }
 

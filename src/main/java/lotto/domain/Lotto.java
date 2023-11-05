@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
@@ -23,6 +24,13 @@ public class Lotto {
 
     public static Lotto createWinningNumbers() {
         OutputView.printFrom(SystemMessage.INPUT_WINNING_NUMBER);
+        List<Integer> userInput = new ArrayList<>();
+        try {
+            userInput = InputView.readIntegerList();
+        } catch (Exception e) {
+            OutputView.exceptionMessage(e);
+            createWinningNumbers();
+        }
         return new Lotto(InputView.readIntegerList());
     }
 

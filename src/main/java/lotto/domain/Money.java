@@ -20,7 +20,14 @@ public class Money {
 
     public static Money createManual() {
         OutputView.printFrom(SystemMessage.INPUT_MONEY);
-        return new Money(InputView.readLong());
+        long userInput = SystemConstant.NOTHING.getValue();
+        try {
+            userInput = InputView.readLong();
+        } catch (Exception e) {
+            OutputView.exceptionMessage(e);
+            createManual();
+        }
+        return new Money(userInput);
     }
 
     private void validate(long value) {

@@ -8,12 +8,19 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        checkDuplicateNumber();
         sortNumber();
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또번호 6자리 아님.");
+        }
+    }
+    private void checkDuplicateNumber(){
+        Set<Integer> number = toSet();
+        if(number.size() < 6){
+            throw new IllegalArgumentException("[ERROR] 중복되는 번호가 있음.");
         }
     }
 

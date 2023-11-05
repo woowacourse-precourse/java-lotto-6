@@ -49,4 +49,11 @@ public class Money {
     public int countPurchase() {
         return (int) (value / SystemConstant.LOTTO_TICKET_PRICE.getValue());
     }
+
+    public double getProfitMargin(WinningStats winningStats) {
+        long profit = winningStats.stream()
+                .map(WinningStat::getProfit)
+                .reduce(0L, Long::sum);
+        return (double) profit / value;
+    }
 }

@@ -10,10 +10,10 @@ public enum LottoRankConstant {
     private final int rank;
     private final int matchingNumbers;
     private final boolean hasBonusNumber;
-    private final int prize;
+    private final long prize;
     private final String message;
 
-    LottoRankConstant(int rank, int matchingNumbers, boolean hasBonusNumber, int prize) {
+    LottoRankConstant(int rank, int matchingNumbers, boolean hasBonusNumber, long prize) {
         this.rank = rank;
         this.matchingNumbers = matchingNumbers;
         this.hasBonusNumber = hasBonusNumber;
@@ -55,5 +55,9 @@ public enum LottoRankConstant {
 
     public int getRank() {
         return rank;
+    }
+
+    public long getPrize() {
+        return prize;
     }
 }

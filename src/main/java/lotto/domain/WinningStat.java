@@ -26,4 +26,8 @@ public class WinningStat {
         return String.format(SystemMessage.WINNING_STAT_MASSAGE_FORMAT.getMessage()
                 , lottoRankConstant.getMessage(), count);
     }
+
+    public long getProfit() {
+        return lottoRankConstant.getPrize() * count;
+    }
 }

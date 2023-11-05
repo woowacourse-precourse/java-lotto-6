@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 import lotto.system.SystemMessage;
 import lotto.validator.InputValidator;
 
@@ -11,7 +10,6 @@ public class InputView {
     public static long readLong() {
         String userInput = Console.readLine();
         InputValidator.validate(userInput);
-        System.out.println();
         return Long.parseLong(userInput);
     }
 

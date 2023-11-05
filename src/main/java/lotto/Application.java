@@ -1,7 +1,10 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import lotto.domain.Rank;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.lotto.converter.LottoMessageConverter;
@@ -30,6 +33,37 @@ public class Application {
 
         // 보너스 번호 입력
         int bonusNumber = createBonusNumber(winningLotto);
+
+        // 결과 확인
+        Map<Rank, Integer> result = new HashMap<>();
+        int profit = 0;
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
+        }
+
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        for (Lotto lotto : lottos) {
+            int matchCount = 0;
+            boolean isBonusNumberMatched = false;
+
+            for (int winningNumber : winningNumbers) {
+                if(lotto.containsNumber(winningNumber)){
+                    matchCount++;
+                }
+            }
+
+            if(matchCount < 3) {
+                continue;
+            }
+            isBonusNumberMatched = lotto.containsNumber(bonusNumber);
+            Rank lottoResult = Rank.findByLottoResult(matchCount, isBonusNumberMatched);
+            profit += lottoResult.getPrizeMoney();
+            result.put(lottoResult, result.get(lottoResult) + 1);
+        }
+
+        double profitPercentage = (double) profit / money.getAmount() * 100;
+        String lottoResultMessage = messageConverter.convertLottoResultMessage(result, profitPercentage);
+        outputView.println(lottoResultMessage);
     }
 
     private static Money inputMoneyAmount() {

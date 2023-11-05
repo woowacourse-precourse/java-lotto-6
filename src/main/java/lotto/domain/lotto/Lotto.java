@@ -15,6 +15,10 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateNumbersRange(numbers);

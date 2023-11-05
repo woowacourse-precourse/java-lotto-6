@@ -1,13 +1,16 @@
-package lotto.view;
+package lotto.util;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.HashMap;
 import java.util.List;
 
 import static lotto.CommonMessages.*;
+import static lotto.LottoGameController.LottoGameController.*;
+import static lotto.MATCHING.*;
 
-public class OutputView {
+public class Output {
+
 
     public void printPurchaseAmount(Integer amount) {
 
@@ -24,15 +27,15 @@ public class OutputView {
         }
     }
 
-    public void printResult(HashMap<Integer, Integer> result) {
+    public void printResult(Integer purchaseAmount, HashMap<Integer, Integer> result, double profit) {
 
         System.out.println();
         System.out.println(WINNING_RESULT.getMessage());
-        System.out.println(MATCH_THREE.getMessage(result.get(3)));
-        System.out.println(MATCH_FOUR.getMessage(result.get(4)));
-        System.out.println(MATCH_FIVE.getMessage(result.get(5)));
-        System.out.println(MATCH_FIVE_BONUS.getMessage(result.get(7)));
-        System.out.println(MATCH_SIX.getMessage(result.get(6)));
-        System.out.println(PROFIT_RATE.getMessage());
+        System.out.println(MATCH_THREE.getMessage(result.get(ANSWER_COUNT_THREE)));
+        System.out.println(MATCH_FOUR.getMessage(result.get(ANSWER_COUNT_FOUR)));
+        System.out.println(MATCH_FIVE.getMessage(result.get(ANSWER_COUNT_FIVE)));
+        System.out.println(MATCH_FIVE_BONUS.getMessage(result.get(ANSWER_COUNT_FIVE_BONUS)));
+        System.out.println(MATCH_SIX.getMessage(result.get(ANSWER_COUNT_SIX)));
+        System.out.println(PROFIT_RATE.getMessage(profit));
     }
 }

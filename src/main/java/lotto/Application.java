@@ -2,17 +2,18 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        Game game = initGame();
+        Screen.printAskingPurchasingAmountMessage();
+        Lottos lottos = makeLottos();
+        Screen.printAllLottos(lottos.getLottos());
     }
 
-    private static Game initGame() {
-        Screen.printAskingPurchasingAmountMessage();
-        Game game = new Game(Screen.inputPurchasingAmount() / 1000);
-        Screen.printAllLottos(game.getLottos());
-        Screen.printAskingWinningNumbersMessage();
-        Lotto winningLotto = Screen.inputWinningNumbers();
-        Screen.printAskingBonusNumberMessage();
-        game.setLottoNumbers(winningLotto, Screen.inputBonusNumber(winningLotto));
-        return game;
+    private static Lottos makeLottos() {
+        try {
+            return new Lottos(Screen.inputPurchasingAmount());
+        }
+        catch (IllegalArgumentException exception) {
+            Screen.printErrorMessage(exception.getMessage());
+        }
+        return makeLottos();
     }
 }

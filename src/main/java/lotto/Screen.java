@@ -6,30 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Screen {
-    static public int inputPurchasingAmount() {
-        String purchasingAmount = Console.readLine();
-
-        try {
-            checkPurchasingAmount(purchasingAmount);
-        }
-        catch (IllegalArgumentException exception) {
-            printErrorMessage(exception.getMessage());
-            inputPurchasingAmount();
-        }
-        return Integer.parseInt(purchasingAmount);
-    }
-
-    static private void checkPurchasingAmount(String purchasingAmount) {
-        if (!isValidPurchasingAmount(purchasingAmount))
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000 단위이어야 합니다.");
-    }
-
-    static private boolean isValidPurchasingAmount(String purchasingAmount) {
-        return purchasingAmount.matches("^[1-9]\\d*000$");
-    }
-
-    static public void printAskingPurchasingAmountMessage() {
+    public static void printAskingPurchasingAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public static String inputPurchasingAmount() {
+        return Console.readLine();
     }
 
     static public void printAllLottos(List<Lotto> lottos) {
@@ -37,6 +19,10 @@ public class Screen {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 
     static public Lotto inputWinningNumbers() {
@@ -116,9 +102,5 @@ public class Screen {
 
     static public void printAskingBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    static private void printErrorMessage(String message) {
-        System.out.println(message);
     }
 }

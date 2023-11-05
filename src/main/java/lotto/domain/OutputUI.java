@@ -9,7 +9,7 @@ public class OutputUI {
 
     private Rewards rewards;
 
-    public void rate(long winningRate) {
+    public void rate(double winningRate) {
         System.out.println("총 수익률은 " + winningRate + "%입니다.");
     }
 
@@ -24,6 +24,8 @@ public class OutputUI {
     public void winnings(HashMap<Rewards, Integer> resultAll) {
         Rewards[] rewards = Rewards.values();
         Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (Rewards reward : rewards) {
             System.out.printf("%s %s - %d개",reward.getNotifyMessege(),moneyEdit(reward)
                     ,resultAll.get(reward));

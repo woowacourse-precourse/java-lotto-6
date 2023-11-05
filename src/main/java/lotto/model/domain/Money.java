@@ -24,6 +24,10 @@ public class Money {
         }
     }
 
+    /**
+     * 같은 패키지에 위치한 도메인 객체 (더 정확히는 `Revenue` 객체)에게만 해당 메서드를 제공하기 위해 `default` 제어자 사용 `Lotto` 를 포함한 다른 객체에게는 제공하지 않기 위해
+     * `protected` 가 아닌, `default` 사용
+     */
     int getMoney() {
         return money;
     }

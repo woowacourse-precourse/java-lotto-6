@@ -25,6 +25,14 @@ public class Game {
                 .collect(Collectors.joining("\n"));
     }
 
+    public void setWinningLotto(List<Integer> numbers, int bonusNumber) {
+        winningLotto = new WinningLotto(numbers, bonusNumber);
+    }
+
+    public String getLottoWinningResult() {
+        return null;
+    }
+
     private Lotto publishLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }

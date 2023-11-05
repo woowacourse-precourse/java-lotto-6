@@ -1,10 +1,13 @@
 package lotto.service;
 
+import static java.util.Collections.nCopies;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MAX_SCORE;
 import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Cost;
@@ -14,6 +17,7 @@ import lotto.view.OutputView;
 
 public class LottoServiceImpl implements LottoService{
     private static final int START = 0;
+    private final static int INIT = 0;
 
     @Override
     public List<List<Integer>> buyLotto() {
@@ -27,12 +31,16 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public void checkResult(List<List<Integer>> myLottoNumbers, List<Integer> numbers, int bonusNumber) {
+    public List<Integer> getResult(List<List<Integer>> myLottoNumbers, List<Integer> numbers, int bonusNumber) {
         Lotto lotto = new Lotto(numbers);
-        List<Integer> statistics = lotto.winningStatistics(bonusNumber, myLottoNumbers);
+        List<Integer> statistics = new ArrayList<>(nCopies(MAX_SCORE.getValue() + 1, INIT));
 
-        OutputView outputView = new OutputView();
-        outputView.printStatistics(statistics);
+        for (List<Integer> myLottoNumber : myLottoNumbers) {
+            int score = lotto.getScore(bonusNumber, myLottoNumber);
+            statistics.set(score, statistics.get(score) + 1);
+        }
+
+        return statistics;
     }
 
     private int payMoney() {
@@ -47,6 +55,7 @@ public class LottoServiceImpl implements LottoService{
                 .mapToObj(q -> generateLottoNumber())
                 .toList();
     }
+
     private List<Integer> generateLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(
                 MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());

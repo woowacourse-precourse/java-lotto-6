@@ -30,5 +30,8 @@ public enum Rank {
         throw new IllegalArgumentException("[ERROR] 맞는 숫자가 형식에 맞지 않습니다.");
     }
 
+    public long getPrize() {
+        return prize;
+    }
 
 }

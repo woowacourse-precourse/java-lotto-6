@@ -18,12 +18,15 @@ public class Lottos {
 
     public Map<Prize, Integer> getPrizeCounts(Lotto winningLotto, LottoNumber bonusNumber) {
         Map<Prize, Integer> prizeCounts = new HashMap<>();
-        lottos.stream()
-                .map(lotto -> lotto.getRank(winningLotto, bonusNumber))
-                .forEach(prize -> {
-                    Integer prizeCount = prizeCounts.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
-                    prizeCounts.put(prize, prizeCount);
-                });
+        for (Lotto lotto : lottos) {
+            Prize prize = lotto.getPrize(winningLotto, bonusNumber);
+            if (prize.equals(Prize.NO_PRIZE)) {
+                continue;
+            }
+            Integer prizeCount = prizeCounts.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
+            prizeCount++;
+            prizeCounts.put(prize, prizeCount);
+        }
         return prizeCounts;
     }
 

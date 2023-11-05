@@ -60,7 +60,7 @@ class LottoTest {
         Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
         LottoNumber bonusNumber = new LottoNumber(7);
         // when
-        Prize prize = lotto.getRank(winningLotto, bonusNumber);
+        Prize prize = lotto.getPrize(winningLotto, bonusNumber);
         // then
         assertThat(prize.name()).isEqualTo(expectedPrize);
     }

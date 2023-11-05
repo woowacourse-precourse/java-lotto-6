@@ -42,7 +42,7 @@ public class Lotto {
         }
     }
 
-    public Prize getRank(Lotto winningLotto, LottoNumber bonusNumber) {
+    public Prize getPrize(Lotto winningLotto, LottoNumber bonusNumber) {
         int sameCount = getSameCount(winningLotto);
         boolean hasBonusNumber = doesHaveBonusNumber(bonusNumber);
         return Prize.getPrizeRank(sameCount, hasBonusNumber);

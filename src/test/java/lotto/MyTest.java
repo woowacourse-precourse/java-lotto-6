@@ -1,11 +1,15 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MyTest {
+public class MyTest extends NsTest {
     private LottoController lottoController;
     private LottoDB lottoDB;
 
@@ -23,9 +27,31 @@ public class MyTest {
     @Test
     public void checkLottoCountInputError2() {
         assertThatThrownBy(() -> {
-            lottoDB = new LottoDB();
-            lottoDB.setUserLottoCount(1234);
+            lottoController = new LottoController();
+            lottoController.checkUserInputIsThousandUnit(1234);
         })
                 .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
+    @Test
+    void setLottoNumbers() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]"
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44)
+        );
+    }
+
+    public void runMain() {
+        Application.main(new String[]{});
     }
 }

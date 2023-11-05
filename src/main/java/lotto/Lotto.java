@@ -46,9 +46,13 @@ public class Lotto {
         return set.size() != numbers.size();
     }
 
-    public List<String> getLottoNumberStrings(){
+    public List<String> getLottoNumberStrings() {
         return numbers.stream()
-                .map(n->n.toString())
+                .map(number -> number.toString())
                 .collect(Collectors.toList());
+    }
+
+    public boolean contains(LottoNumber bonusBall) {
+        return numbers.contains(bonusBall);
     }
 }

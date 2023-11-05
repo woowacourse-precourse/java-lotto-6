@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.Deposit;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
@@ -8,7 +10,18 @@ public class Application {
     private final static String ASK_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static void main(String[] args) {
+        Deposit deposit = makeDeposit();
+    }
 
+    public static Deposit makeDeposit() {
+        while (true) {
+            try {
+                String purchaseAmount = askPurchaseAmount();
+                return new Deposit(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static String askPurchaseAmount() {

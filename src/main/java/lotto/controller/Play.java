@@ -15,7 +15,6 @@ import static lotto.view.Print.*;
 
 public class Play {
 
-    public static boolean flag  = false;
     public Play() {
         HashMap<Rank, Integer> result = new HashMap<>();
         int price = createPrice();
@@ -26,11 +25,9 @@ public class Play {
         printLottoRotate(lottery);
         List<Integer> winningNumbers = createWinningNumber();
 
-        System.out.println();
         int bonus = createBonusNumber();
 
         Winning winning = new Winning(winningNumbers, bonus);
-        System.out.println();
         messageAboutWinningStatistic();
 
         result = createResult(lottery, winningNumbers, bonus);
@@ -60,28 +57,33 @@ public class Play {
     public static List<Integer> createWinningNumber() {
         messageAboutUserLottoNumber();
         List<Integer> winningNumbers = new ArrayList<>();
-        try {
-            String tmpWinningNumbers = inputWinningNumbers();
-            winningNumbers = convertWinningNumber(tmpWinningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
-            createWinningNumber();
-            //e.getMessage();
+        while(true) {
+            try {
+                String tmpWinningNumbers = inputWinningNumbers();
+                winningNumbers = convertWinningNumber(tmpWinningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+                //e.getMessage();
+            }
         }
+        System.out.println();
         return winningNumbers;
     }
 
     public static int createBonusNumber() {
         messageAboutUserBonusNumber();
         int bonus = 0;
-        try {
-            String tmpBonusNumber = inputBonusNumber();
-            bonus = convertBonusNumber(tmpBonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
-            createBonusNumber();
+        while(true) {
+            try {
+                String tmpBonusNumber = inputBonusNumber();
+                bonus = convertBonusNumber(tmpBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+                createBonusNumber();
+            }
         }
-
         return bonus;
     }
 

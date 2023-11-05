@@ -14,6 +14,7 @@ public class Message {
     }
 
     public static void messageAboutWinningStatistic() {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
     }

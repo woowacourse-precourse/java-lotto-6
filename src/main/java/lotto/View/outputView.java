@@ -8,10 +8,11 @@ public class outputView {
     }
 
     public void displayLottoNumberList(List<Integer> numbers) {
-        System.out.print("로또 번호 리스트: ");
         for (int number : numbers) {
             System.out.print(number + " ");
         }
         System.out.println();
     }
+
+
 }

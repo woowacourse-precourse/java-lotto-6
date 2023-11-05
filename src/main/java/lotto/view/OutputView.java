@@ -40,4 +40,8 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getOrDefault("SECOND", 0));
         System.out.println("6개 일치 (2,000,000,000원) - " + result.getOrDefault("FIRST", 0));
     }
+
+    public void printRateOfResult(double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
 }

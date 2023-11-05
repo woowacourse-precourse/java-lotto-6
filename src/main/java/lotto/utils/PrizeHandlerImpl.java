@@ -4,7 +4,6 @@ import lotto.domain.Lottery;
 import lotto.domain.Lotto;
 import lotto.domain.Paper;
 
-import java.io.StringReader;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -13,7 +12,7 @@ public class PrizeHandlerImpl implements PrizeHandler {
     private final int matchingNumbers;
     private final PrizeAmount prizeAmount;
     private final boolean isBonus;
-    private Count count;
+    private final Count count;
 
 
     private PrizeHandlerImpl(int matchingNumbers, PrizeAmount prizeAmount, Count count, boolean isBonus) {

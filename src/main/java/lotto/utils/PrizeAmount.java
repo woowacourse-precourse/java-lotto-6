@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import java.text.DecimalFormat;
-import java.util.StringJoiner;
 
 public class PrizeAmount {
     private final int amount;

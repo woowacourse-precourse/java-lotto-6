@@ -20,6 +20,14 @@ public class InputViewTest {
         assertThat(userInput).isEqualTo("5000");
     }
 
+    @Test
+    @DisplayName("당첨 번호 입력 테스트 - 정상데이터 - 성공")
+    void askAnswerLottoNumbersTest() {
+        System.setIn(createUserInput("1, 2, 3, 4, 5, 6"));
+        String userInput = inputView.askPaymentAmount();
+        assertThat(userInput).isEqualTo("1, 2, 3, 4, 5, 6");
+    }
+
     private static InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }

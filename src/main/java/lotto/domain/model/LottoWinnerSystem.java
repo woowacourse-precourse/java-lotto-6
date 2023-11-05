@@ -16,6 +16,42 @@ public class LottoWinnerSystem {
     private List<Integer> winNumbers;
     private List<Integer> bonusNumber;
 
+    private static int first;
+    private static int second;
+    private static int third;
+    private static int fourth;
+    private static int fifth;
+
+    public LottoWinnerSystem() {
+        this.first = 0;
+        this.second = 0;
+        this.third = 0;
+        this.fourth = 0;
+        this.fifth = 0;
+    }
+
+    private void compareOneLotto(List<Integer> winNumber, List<Integer> bonusNumber, List<Integer> compareLotto) {
+        int matchCount = getMatchNumberCount(compareLotto, winNumber);
+        if (matchCount >= 3) {
+            if (matchCount == 3) {
+                fifth += 1;
+                return;
+            }
+            if (matchCount == 4) {
+                fourth += 1;
+                return;
+            }
+            if (matchCount == 5) {
+                if (isContainBonusNumber(compareLotto, bonusNumber)) {
+                    second += 1;
+                    return;
+                }
+                third += 1;
+                return;
+            }
+            first += 1;
+        }
+    }
 
     // 보너스 번호만 검사 (5개 일치할 때만 실행)
     public boolean isContainBonusNumber(List<Integer> lottoNumber, List<Integer> bonusNumber) {

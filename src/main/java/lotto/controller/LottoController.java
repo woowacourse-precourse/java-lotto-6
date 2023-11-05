@@ -22,7 +22,8 @@ public class LottoController {
     }
 
     public void start() {
-        purchaseLotto();
+        LottosDto lottosDto = purchaseLotto();
+        drawLotto(lottosDto);
     }
 
     private LottosDto purchaseLotto() {
@@ -34,6 +35,14 @@ public class LottoController {
         return lottosDto;
     }
 
+    private void drawLotto(final LottosDto lottosDto) {
+        WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
+        BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
+        validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
+
+        DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
+        outputView.printDrawingResult(drawingResultDto);
+    }
 
     private void validateBonusNumberDuplicate(final WinningLottoDto winningLottoDto,
                                               final BonusNumberDto bonusNumberDto) {

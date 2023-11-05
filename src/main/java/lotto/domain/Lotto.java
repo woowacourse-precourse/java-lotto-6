@@ -12,6 +12,7 @@ public class Lotto {
     private static final int MIN_NUMBER = 1;
     private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String DUPLICATION_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 중복없이 6개의 번호들로 구성되어야 합니다.";
+    private static final String LOTTO_SIZE_EXCEPTION_MESSAGE = "[ERROR] 로또는 6개의 숫자로 구성되어야 합니다.";
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -22,7 +23,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_SIZE_EXCEPTION_MESSAGE);
         }
     }
 

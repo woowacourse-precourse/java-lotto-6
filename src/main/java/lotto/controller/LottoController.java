@@ -33,12 +33,34 @@ public class LottoController {
         }
     }
 
-
     private WinningLotto drawLotto(){
-        InputView.printRequireWinningNumbersMessage();
-        Lotto lotto = lottoGenerator.generateWinningLotto();
-        Bonus bonus = Bonus.from(InputView.getBonusInput());
-        return WinningLotto.of(lotto, bonus);
+        try {
+            Lotto lotto = getWinningLotto();
+            Bonus bonus = getBonus();
+            return WinningLotto.of(lotto, bonus);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return drawLotto();
+        }
+    }
+
+    private Lotto getWinningLotto(){
+        try {
+            InputView.printRequireWinningNumbersMessage();
+            return lottoGenerator.generateWinningLotto();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private Bonus getBonus(){
+        try {
+            return Bonus.from(InputView.getBonusInput());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getBonus();
+        }
     }
 
     private WinningStatistics makeStatistics(Lottos userLottos, WinningLotto winningLotto){

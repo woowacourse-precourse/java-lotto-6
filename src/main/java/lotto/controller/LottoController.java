@@ -22,30 +22,31 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getValidPurchaseAmount();
-        List<Lotto> purchaseLotto = getValidPurchaseLotto(purchaseAmount);
+        List<Lotto> purchaseLotto = getValidPurchaseLotto(String.valueOf(purchaseAmount));
         WinningLotto winningLotto = getValidWinningLotto();
 
         outputView.showPrizeResult(purchaseLotto, winningLotto, purchaseAmount);
     }
 
     private int getValidPurchaseAmount() {
+//        boolean status = true;
         while (true) {
             try {
                 String userPurchaseAmount = inputView.getPurchaseAmount();
-                LottoProcessException.checkLottoPriceTypeException(userPurchaseAmount);
-                int purchaseAmount = Integer.parseInt(userPurchaseAmount);
-                LottoProcessException.checkLottoPriceException(purchaseAmount);
-                return purchaseAmount;
+                return LottoProcess.purchaseAmount(userPurchaseAmount);
+//                status = false;
             } catch (LottoProcessException e) {
                 System.out.println(e.getMessage());
             }
         }
+//        return 0;
     }
 
-    private List<Lotto> getValidPurchaseLotto(int purchaseAmount) {
+    private List<Lotto> getValidPurchaseLotto(String userPurchaseAmount) {
         while (true) {
             try {
-                List<Lotto> purchaseLotto = lottoProcess.purchaseLotto(purchaseAmount);
+                int purchaseAmount = Integer.parseInt(userPurchaseAmount);
+                List<Lotto> purchaseLotto = LottoProcess.purchaseLotto(String.valueOf(purchaseAmount));
                 outputView.showPurchasedLottos(purchaseLotto);
                 return purchaseLotto;
             } catch (IllegalArgumentException e) {

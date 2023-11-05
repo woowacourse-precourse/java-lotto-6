@@ -21,27 +21,40 @@ public class PurchasePriceValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    @BeforeAll
-    static void setUpStream() {
-        System.setOut(new PrintStream(output));
+
+    @DisplayName("로또구입금액 입력값 에러 리턴값 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "100a", "1001"})
+    void purchasePriceValidatorErrorReturnTest(String input) {
+        boolean result = PurchasePriceValidator.validatePurchasePrice(input);
+
+        assertThat(result).isEqualTo(false);
     }
 
-    @AfterAll()
-    static void resetUpStream() {
+    @DisplayName("로또구입금액 입력값 리턴값 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "5000", "531234000"})
+    void purchasePriceValidatorReturnTest(String input) {
+        boolean result = PurchasePriceValidator.validatePurchasePrice(input);
+
+        assertThat(result).isEqualTo(true);
+    }
+
+    @DisplayName("로또구입금액 입력값 에러 메시지 출력 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "100a", "1001"})
+    void purchasePriceValidatorErrorTest(String input) {
+        System.setOut(new PrintStream(output));
+
+        PurchasePriceValidator.validatePurchasePrice(input);
+
+        assertThat(output.toString()).contains(ERROR_MESSAGE);
+
         System.setOut(System.out);
         output.reset();
     }
 
-    @DisplayName("로또구입금액 입력 에러처리 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"", "100a", "1001"})
-    void purchasePriceValidatorErrorTest(String input) {
-        PurchasePriceValidator.validatePurchasePrice(input);
-
-        assertThat(output.toString()).contains(ERROR_MESSAGE);
-    }
-
-    @DisplayName("로또구입금액 입력 에러 재입력 테스트")
+    @DisplayName("로또구입금액 입력값 에러 시 재입력 결과값 확인")
     @Test
     void purchasePriceValidatorRetryTest() {
         String input;

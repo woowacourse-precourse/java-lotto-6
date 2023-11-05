@@ -90,4 +90,16 @@ public class Lotto {
             lottoResult.put(rank, initialCount);
         }
     }
+
+    public static void saveLottoResult(Map<Rank, Integer> lottoResult, int matchCount, boolean matchBonus) {
+        Rank[] ranks = Rank.values();
+
+        for (Rank rank : ranks) {
+            if (rank.getMatchCount() == matchCount && rank.isMatchBonus() == matchBonus) {
+                int oldValue = lottoResult.get(rank);
+                int newValue = ++oldValue;
+                lottoResult.replace(rank, oldValue, newValue);
+            }
+        }
+    }
 }

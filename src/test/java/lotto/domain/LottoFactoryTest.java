@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +50,19 @@ public class LottoFactoryTest {
         assertThat(ticket.getNumbers()).isSorted();
     }
 
+    @DisplayName("각 로또 티켓에는 중복된 번호가 없어야 한다.")
+    @Test
+    void testLottoTicketsShouldHaveUniqueNumbers() {
+        // given
+        LottoFactory lottoFactory = new LottoFactory(1);
+
+        // when
+        Lotto ticket = lottoFactory.getTickets().get(0);
+
+        // then
+        Set<Integer> uniqueNumbers = ticket.getNumbers().stream().collect(Collectors.toSet());
+        assertThat(uniqueNumbers).hasSameSizeAs(ticket.getNumbers());
+    }
 
 
 }

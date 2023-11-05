@@ -7,6 +7,7 @@ public class PriceValidator {
     public static int validate(String price) {
         validateNumber(price);
         validateMinPrice(price);
+        validatePriceUnit(price);
         return Integer.parseInt(price) / MIN_PRICE;
     }
 
@@ -19,6 +20,11 @@ public class PriceValidator {
     }
 
     private static void validateMinPrice(String price) {
+        if(Integer.parseInt(price) < MIN_PRICE) {
+            throw new IllegalArgumentException(LottoError.LOTTO_PRICE.getMessage());
+        }
+    }
+    private static void validatePriceUnit(String price) {
         if(Integer.parseInt(price) % MIN_PRICE != 0) {
             throw new IllegalArgumentException(LottoError.LOTTO_PRICE.getMessage());
         }

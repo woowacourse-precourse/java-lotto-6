@@ -1,5 +1,7 @@
 package domain;
 
+import exception.InputException;
+
 import static config.ErrorMessage.*;
 import static config.LottoConst.*;
 
@@ -13,6 +15,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateInRange(numbers);
         validateSize(Removeduplication(numbers));
         this.numbers = numbers;
     }
@@ -25,6 +28,12 @@ public class Lotto {
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(LOTTO.getMessage());
+        }
+    }
+
+    private void validateInRange(List<Integer> numbers) {
+        for(int number : numbers) {
+            InputException.validateRange(number);
         }
     }
 

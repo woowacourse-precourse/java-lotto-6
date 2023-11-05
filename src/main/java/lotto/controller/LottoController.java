@@ -31,11 +31,11 @@ public class LottoController {
         this.winRecord.compareWinning(tickets);
     }
 
-    public void verifyWinRecord() {
+    public void printWinRecord() {
 
     }
 
-    public void verifyReturns() {
+    public void printReturns() {
 
     }
 

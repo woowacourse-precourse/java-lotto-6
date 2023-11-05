@@ -32,8 +32,8 @@ public class ApplicationContext {
     }
 
     private static void outputProcess() {
-        lottoBuyer.verifyWinRecord();
-        lottoBuyer.verifyReturns();
+        lottoBuyer.printWinRecord();
+        lottoBuyer.printReturns();
     }
 
     public static LottoController getController() {

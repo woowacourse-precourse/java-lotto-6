@@ -18,6 +18,10 @@ public class WinRecord {
             List<Integer> commonNumbers = new ArrayList<>(ticket);
             commonNumbers.retainAll(this.lotto);
 
+            if(ticket.contains(bonus)){
+                commonNumbers.add(bonus);
+            }
+
             this.winRecord.add(commonNumbers.size());
         }
     }

@@ -16,12 +16,12 @@ public class LottoBuyer {
         lottoController.gernerateTicket(wallet);
     }
 
-    public void verifyWinRecord(){
-        lottoController.verifyWinRecord();
+    public void printWinRecord(){
+        lottoController.printWinRecord();
     }
 
-    public void verifyReturns(){
-        lottoController.verifyReturns();
+    public void printReturns(){
+        lottoController.printReturns();
     }
 
 }

@@ -1,7 +1,9 @@
 package lotto.service;
 
 import lotto.constant.LottoConstraint;
+import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Payment;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoReceiptDto;
@@ -14,6 +16,7 @@ public class LottoService {
     private final RandomNumberGenerator randomNumberGenerator;
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
+    private Payment payment;
     private WinningLotto winningLotto;
 
     public LottoService(RandomNumberGenerator randomNumberGenerator) {
@@ -27,7 +30,7 @@ public class LottoService {
     }
 
     private int getPurchaseLottoCount(int amount) {
-        Payment payment = new Payment(amount);
+        payment = new Payment(amount);
         return payment.calculatePurchaseLottoCount();
     }
 
@@ -53,6 +56,21 @@ public class LottoService {
     }
 
     public LottoResultDto getLottoResult() {
-        return new LottoResultDto();
+        LottoResult lottoResult = initLottoResult();
+        double profitRate = lottoResult.calculateProfitRate(payment);
+
+        return new LottoResultDto(profitRate, lottoResult.getResult());
+    }
+
+    private LottoResult initLottoResult() {
+        LottoResult lottoResult = new LottoResult();
+
+        purchasedLottos.forEach(lotto -> {
+                    LottoRank lottoRank = winningLotto.calculateRank(lotto);
+                    lottoResult.increaseLottoRankCount(lottoRank);
+                }
+        );
+
+        return lottoResult;
     }
 }

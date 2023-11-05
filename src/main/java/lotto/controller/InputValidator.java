@@ -4,6 +4,9 @@ import static lotto.util.Constants.MAX_RANGE;
 import static lotto.util.Constants.MIN_RANGE;
 import static lotto.util.ErrorConstants.OVER_RANGE;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.util.ErrorConstants;
 
 public class InputValidator {
@@ -29,10 +32,15 @@ public class InputValidator {
         }
     }
 
-    private static void isNumberInRange(String number) {
-        int num = isInteger(number);
-        if (num < MIN_RANGE || num > MAX_RANGE) {
+    private static void isNumberInRange(int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
             throw new IllegalArgumentException(OVER_RANGE);
+        }
+    }
+
+    private static void containsNumber(int target, List<Integer> numbers) {
+        if (numbers.contains(target)) {
+            throw new IllegalArgumentException(ErrorConstants.DUPLICATE_NUMBER);
         }
     }
 
@@ -48,12 +56,18 @@ public class InputValidator {
         return true;
     }
 
-    public static boolean validateWinningNumbers(String input) {
+    public static List<Integer> validateWinningNumbers(String input) {
         isCommaSeparated(input);
-        return true;
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(InputValidator::isInteger)
+                .collect(Collectors.toList());
     }
 
-    public static boolean validateBonusNumber(String bonusNumber, String winningNumbers) {
+    public static boolean validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+        int bonus = isInteger(bonusNumber);
+        isNumberInRange(bonus);
+        containsNumber(bonus, winningNumbers);
         return true;
     }
 

@@ -3,13 +3,14 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import java.util.List;
 import lotto.controller.InputValidator;
 import lotto.util.ErrorConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
-    String winningNumbers = "123456";
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
     @Test
     @DisplayName("구입 금액이 숫자가 아닐 때 예외를 던진다")
@@ -83,7 +84,7 @@ class InputValidatorTest {
     @Test
     @DisplayName("당첨 번호가 6개의 숫자로 이루어지지 않았을 때 예외를 던진다")
     void validateWinningNumbers_NoLength6_ThrowsException() {
-        String input = "1,2,3,4,5";
+        String input = "1,2,3,4,5,7,8";
 
         assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -146,7 +147,7 @@ class InputValidatorTest {
 
         assertThatThrownBy(() -> InputValidator.validateBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호는 당첨 번호와 달라야 합니다.");
+                .hasMessageContaining(ErrorConstants.DUPLICATE_NUMBER);
     }
 
     @Test
@@ -156,7 +157,7 @@ class InputValidatorTest {
 
         assertThatThrownBy(() -> InputValidator.validateBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 숫자여야 합니다.");
+                .hasMessageContaining(ErrorConstants.OVER_INTEGER);
     }
 
     @Test
@@ -166,7 +167,7 @@ class InputValidatorTest {
 
         assertThatThrownBy(() -> InputValidator.validateBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호는 1-45 내여야 합니다.");
+                .hasMessageContaining(ErrorConstants.OVER_RANGE);
     }
 
     @Test

@@ -1,23 +1,23 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import java.util.List;
+import lotto.domain.Prize;
 import lotto.dto.IssuedLottoResponse;
+import lotto.dto.WinningResultResponse;
 
 public class OutputView {
     private static final String LOTTO_RESULT_TITLE = "\n당첨 통계";
     private static final String LOTTO_PURCHASED_MESSAGE = "개를 구매했습니다.";
-    private static final String LOTTO_TOTAL_RETURN_MESSAGE = "총 수익률은 %f%입니다.";
+    private static final String BONUSBALL_MATCHING_MESSAGE = ", 보너스 볼 일치";
+    private static final String LOTTO_WINNING_RESULT_MESSAGE = "%d개 일치 (%s원)%s - %d개";
+    private static final String LOTTO_TOTAL_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final int LOTTO_RESULT_CHARACTER_REPEAT_COUNT = 3;
-
-    private static final int FIRST_PLACE_WINNING_AMOUNT = 2000000000;
-    private static final int SECOND_PLACE_WINNING_AMOUNT = 30000000;
-    private static final int THIRD_PLACE_WINNING_AMOUNT = 1500000;
-    private static final int FORTH_PLACE_WINNING_AMOUNT = 50000;
-    private static final int FIFTH_PLACE_WINNING_AMOUNT = 5000;
+    private static final int LOTTO_ONE_PRICE = 1_000;
 
     private static final String DASH = "-";
     private static final String OPEN_SQUARE_BRACKETS = "[";
-    private static final String CLOSE_SQUARE_BRACKETS = "[";
+    private static final String CLOSE_SQUARE_BRACKETS = "]";
 
     public static void printIssuedLottoCountAndNumbers(List<IssuedLottoResponse> lottoResponses) {
         printIssuedLottoCount(lottoResponses.size());
@@ -29,20 +29,34 @@ public class OutputView {
         System.out.println(DASH.repeat(LOTTO_RESULT_CHARACTER_REPEAT_COUNT));
     }
 
-    public static void printLottoWinningResult() {
-
+    public static void printFullWinningResult(WinningResultResponse winningResultResponse) {
+        winningResultResponse.getWinningResult().forEach(OutputView::printOneWinningResult);
     }
 
-    public static void printTotalReturn(int rank) {
-        double totalReturn = 0;
-        switch (rank) {
-            case 5 -> totalReturn = FIFTH_PLACE_WINNING_AMOUNT / 1000.0 / 100.0;
-            case 4 -> totalReturn = FORTH_PLACE_WINNING_AMOUNT / 1000.0 / 100.0;
-            case 3 -> totalReturn = THIRD_PLACE_WINNING_AMOUNT / 1000.0 / 100.0;
-            case 2 -> totalReturn = SECOND_PLACE_WINNING_AMOUNT / 1000.0 / 100.0;
-            case 1 -> totalReturn = FIRST_PLACE_WINNING_AMOUNT / 1000.0 / 100.0;
+    private static void printOneWinningResult(Prize prize, int count) {
+
+        if (prize.equals(Prize.NONE)) {
+            return;
         }
-        System.out.printf(LOTTO_TOTAL_RETURN_MESSAGE, Math.round(totalReturn) / 10.0);
+
+        String bonusballMessage = "";
+        if (prize.equals(Prize.SECOND)) {
+            bonusballMessage = BONUSBALL_MATCHING_MESSAGE;
+        }
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String winningAmount = numberFormat.format(prize.getWinningAmount());
+
+        System.out.printf(LOTTO_WINNING_RESULT_MESSAGE, prize.getMatchingCount(), winningAmount, bonusballMessage, count);
+        System.out.println();
+    }
+
+    public static void printTotalReturn(WinningResultResponse winningResultResponse, int lottoQuantity) {
+        double totalWinningAmount = winningResultResponse.getTotalWinningPrice();
+        double totalReturn = totalWinningAmount / (LOTTO_ONE_PRICE * lottoQuantity) * 100;
+
+        System.out.printf(LOTTO_TOTAL_RETURN_MESSAGE, String.format("%.1f", totalReturn));
+        System.out.println();
     }
 
     private static void printIssuedLottoCount(int lottoCount) {
@@ -50,8 +64,9 @@ public class OutputView {
     }
 
     private static void printIssuedLotto(IssuedLottoResponse lottoResponse) {
-        System.out.println(OPEN_SQUARE_BRACKETS);
-        lottoResponse.getLottoNumbers().forEach(System.out::println);
-        System.out.println(CLOSE_SQUARE_BRACKETS);
+        System.out.print(OPEN_SQUARE_BRACKETS);
+        lottoResponse.getLottoNumbers().forEach(number -> System.out.print(number + " "));
+        System.out.print(CLOSE_SQUARE_BRACKETS);
+        System.out.println();
     }
 }

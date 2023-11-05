@@ -41,7 +41,7 @@ public class GameController {
         List<Integer> winNumbers = InputView.readWinningNumber();
 
         //5) 보너스 번호 입력 기능
-        int bonusNumber = InputView.readBonusNumber();
+        int bonusNumber = InputView.readBonusNumber(winNumbers);
 
         WinLotto winLotto = new WinLotto(winNumbers, bonusNumber);
 

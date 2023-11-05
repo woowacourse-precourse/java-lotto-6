@@ -20,4 +20,15 @@ public class WinningNumberTest {
         assertThat(lotto.contains(bonusNumber)).isTrue();
         assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨번호갯수_보너스포함여부_등수_계산_테스트() {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+        WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
+
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        assertThat(winningNumber.calculateRank(lotto).getValue()).isEqualTo("FIRST");
+    }
 }

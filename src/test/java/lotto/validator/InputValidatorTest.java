@@ -44,4 +44,15 @@ class InputValidatorTest {
                 .withMessageContaining("숫자와 구분자 쉼표(,)만 입력할 수 있습니다.");
     }
 
+    @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"010000", "01,02,03,04,05,06"})
+    @DisplayName("입력 공통 예외 처리: 0으로 시작하는 숫자를 입력한 경우")
+    void givenWrongNumber_whenValidate_thenThrowException(String input) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputValidator.validate(input))
+                .withMessageStartingWith(error)
+                .withMessageContaining("숫자는 0으로 시작할 수 없습니다.");
+    }
+
 }

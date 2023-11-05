@@ -16,6 +16,8 @@ public class Lotto {
         Validation.validateLottoNumbers(numbers);
     }
 
+    public boolean containBonus(int bonus){return numbers.contains(bonus);}
+
     @Override
     public String toString() {
         return String.join(", ", Utils.integerListToStringList(numbers));

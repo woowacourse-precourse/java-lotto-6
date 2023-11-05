@@ -27,17 +27,9 @@ public class LottoController {
     List<List<Integer>> lottos = new ArrayList<>();
     for (int i = 0; i < calculateLottoCount; i++) {
       List<Integer> lotto = LottoGame.createRandomLottoNumber();
-      LottoGame.sortLottoNumbers(lotto);
       lottos.add(lotto);
     }
     return lottos;
-  }
-
-  private static Lotto makeLotto() {
-    LottoGame lottoNumbers = new LottoGame();
-    lotto = new ArrayList<>();
-    lotto = lottoNumbers.createRandomLottoNumber();
-    return new Lotto(lotto);
   }
 
   public static void run(){
@@ -45,7 +37,6 @@ public class LottoController {
     int calculateLottoCount = InputPresent.calculateLottoCount(money);
 
     OutputView.printLottoCountMessage(calculateLottoCount);
-    List<Integer> lotto = LottoGame.createRandomLottoNumber();
     List<List<Integer>> lottos = createLottos(calculateLottoCount);
     OutputView.printLottos(lottos);
 
@@ -53,9 +44,9 @@ public class LottoController {
     List<String> winningNumbers = InputProcessor.splitWinningNumbers(winningNumber);
     List<Integer> winningNumberSet = InputProcessor.convertToIntegerList(winningNumbers);
 
+
     int bonusNumber = inputView.inputBonusNumber();
 
-    int matchedNumber = LottoGame.countMatchingNumbers(lotto, winningNumberSet);
     List<Integer> rank = LottoGame.checkWinningStatus(lottos, winningNumberSet, bonusNumber);
     OutputView.printSuccessResult();
     OutputView.printRanking(rank);

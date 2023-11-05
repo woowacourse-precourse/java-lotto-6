@@ -30,6 +30,13 @@ public enum Rank {
                 .orElse(None);
     }
 
+    public static Rank toRank(int rankNumber) {
+        return Arrays.stream(Rank.values())
+                .filter(info -> info.rankNumber == rankNumber)
+                .findAny()
+                .orElse(None);
+    }
+
     public int getCostForCalculate() {
         return costForCalculate;
     }

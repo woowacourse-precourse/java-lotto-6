@@ -1,6 +1,9 @@
 package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Service.LottoMachine;
+import java.util.List;
+import lotto.Model.Lotto;
 import lotto.View.UIView;
 
 public class UIController {
@@ -38,5 +41,11 @@ public class UIController {
             return;
         }
         throw new IllegalArgumentException("천 단위의 숫자만 가능 합니다");
+    }
+
+    public static List<Lotto> makeLotto(Integer price) {
+        int lottoCount = LottoMachine.lottoCount(price);
+        // TODO : 난수추출 , 로또 생성
+        return null;
     }
 }

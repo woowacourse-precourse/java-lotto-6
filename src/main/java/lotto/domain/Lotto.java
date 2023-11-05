@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstraint;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -65,8 +66,9 @@ public class Lotto {
     }
 
     private List<Integer> convertSortedAndUnmodifiable(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return Collections.unmodifiableList(numbers);
+        List<Integer> modifiableNumbers = new ArrayList<>(numbers);
+        Collections.sort(modifiableNumbers);
+        return Collections.unmodifiableList(modifiableNumbers);
     }
 
     public int countMatchedNumber(Lotto lotto) {

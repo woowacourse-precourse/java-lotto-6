@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.message.ExceptionMessage;
+
 // TODO 지갑과 로또가 너무 연관있는 것 같음
 public class Wallet {
     private int money;
@@ -26,10 +28,15 @@ public class Wallet {
         }
     }
 
+    public boolean canPurchaseLotto() {
+        return money < LottoOption.LOTTO_PRICE;
+    }
+
     public void payLotto() {
-        if (money < LottoOption.LOTTO_PRICE) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_MONEY);
+        if (canPurchaseLotto()) {
+            this.money -= money;
+            return;
         }
-        this.money -= money;
+        throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_MONEY);
     }
 }

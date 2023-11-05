@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.message.ExceptionMessage;
+
 public record AnswerLotto(Lotto lotto, int bonus) {
     public AnswerLotto {
         validate(lotto, bonus);
@@ -11,8 +13,8 @@ public record AnswerLotto(Lotto lotto, int bonus) {
     }
 
     private void validateBonusInRange(int bonus) {
-        if (bonus < LottoOption.LOTTO_MIN_NUMBER ||
-                bonus > LottoOption.LOTTO_MAX_NUMBER) {
+        if (bonus < LottoOption.LOTTO_START_INCLUSIVE ||
+                bonus > LottoOption.LOTTO_END_INCLUSIVE) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
         }
     }

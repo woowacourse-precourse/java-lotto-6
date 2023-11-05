@@ -1,4 +1,6 @@
-package lotto;
+package lotto.message;
+
+import lotto.LottoOption;
 
 public class ExceptionMessage {
     public static final String INVALID_SIZE = "허용되는 로또 숫자 개수는 " + LottoOption.LOTTO_SIZE + "입니다.";

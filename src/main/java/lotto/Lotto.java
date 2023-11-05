@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.message.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -41,8 +42,8 @@ public class Lotto {
     }
 
     private boolean isOutRangeLottoNumber(Integer number) {
-        return number < LottoOption.LOTTO_MIN_NUMBER ||
-                number > LottoOption.LOTTO_MAX_NUMBER;
+        return number < LottoOption.LOTTO_START_INCLUSIVE ||
+                number > LottoOption.LOTTO_END_INCLUSIVE;
     }
 
     public boolean hasNumber(int number) {
@@ -53,5 +54,9 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(lotto::hasNumber)
                 .count();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

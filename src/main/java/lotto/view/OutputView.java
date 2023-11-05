@@ -1,13 +1,21 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
 
     public static void buyLottoTicket() {
         System.out.println(OutputEnum.BUY_LOTTO_TICKET.get());
     }
 
-    public static void getLottoTicket(int count) {
+    public static void getLottoCount(int count) {
         System.out.println(count + OutputEnum.GET_LOTTO_TICKET.get());
+    }
+
+    public static void printLottoTicket(List<String> lottoTickets) {
+        for (String lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
+        }
     }
 
     public static void numbersLotto() {

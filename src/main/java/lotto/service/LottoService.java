@@ -34,4 +34,12 @@ public class LottoService {
     public void makeLuckyNumbers() {
         dto.setLuckyNumbers();
     }
+
+    public int getTicketCount() {
+        return dto.getLottoTickets().getTicketCount();
+    }
+
+    public List<String> getLottoTickets() {
+        return makeLottoTickets.make(dto.getLottoTickets().getTickets());
+    }
 }

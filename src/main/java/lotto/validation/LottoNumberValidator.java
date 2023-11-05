@@ -17,6 +17,15 @@ public class LottoNumberValidator {
         }
     }
 
+    private static void validateWinningNumbersCount(List<Integer> numbers) {
+        GameConfig winningNumbersCount = GameConfig.WINNING_NUMBERS_COUNT;
+
+        if (numbers.size() != winningNumbersCount.getValue()) {
+            ExceptionMessage message = ExceptionMessage.WINNING_NUMBERS_COUNT_EXCEPTION;
+            throw new IllegalArgumentException(message.getMessage());
+        }
+    }
+
     private static void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> deduplicatedNumbers = new HashSet<>(numbers);
 

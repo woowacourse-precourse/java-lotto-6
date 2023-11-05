@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import static java.util.Collections.sort;
+import static lotto.domain.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.ErrorMessages.NOT_UNIQUE;
+import static lotto.domain.ErrorMessages.NUMBER_OF_LOTTO;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -14,8 +17,14 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     private void validate(List<Integer> numbers) {
-        if (!checkSize(numbers) || !checkUnique(numbers) || !checkRange(numbers)) {
-            throw new IllegalArgumentException();
+        if (!checkSize(numbers)) {
+            throw new IllegalArgumentException(NUMBER_OF_LOTTO.getMessage());
+        }
+        if (!checkUnique(numbers)) {
+            throw new IllegalArgumentException(NOT_UNIQUE.getMessage());
+        }
+        if (!checkRange(numbers)) {
+            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
     }
 

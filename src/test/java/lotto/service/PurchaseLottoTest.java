@@ -1,8 +1,8 @@
 package lotto.service;
 
-import static lotto.service.PurchaseLotto.PURCHASE_COST_NAN_MSG;
-import static lotto.service.PurchaseLotto.PURCHASE_COST_RANGE_MSG;
-import static lotto.service.PurchaseLotto.PURCHASE_COST_UNIT_MSG;
+import static lotto.domain.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.ErrorMessages.PURCHASE_RANGE;
+import static lotto.domain.ErrorMessages.PURCHASE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,7 +27,7 @@ public class PurchaseLottoTest {
     @Test
     void invalidPurchaseCost() {
         String[] inputs = {"1.23", "10000000", "1001"};
-        String[] outputs = {PURCHASE_COST_NAN_MSG, PURCHASE_COST_RANGE_MSG, PURCHASE_COST_UNIT_MSG};
+        String[] outputs = {NOT_INTEGER.getMessage(), PURCHASE_RANGE.getMessage(), PURCHASE_UNIT.getMessage()};
 
         for (int i = 0; i < 3; i++) {
             String input = inputs[i];

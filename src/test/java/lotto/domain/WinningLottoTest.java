@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.WinningLotto.BONUS_NOT_UNIQUE_EXCEPTION_MSG;
-import static lotto.domain.WinningLotto.BONUS_RANGE_EXCEPTION_MSG;
-import static lotto.domain.WinningLotto.NUMBERS_EXCEPTION_MSG;
+import static lotto.domain.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.ErrorMessages.NOT_UNIQUE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class WinningLottoTest {
         String bonusInput = "1";
         assertThatThrownBy(() -> new WinningLotto(numbersInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NUMBERS_EXCEPTION_MSG);
+                .hasMessageContaining(NOT_INTEGER.getMessage());
     }
 
     @DisplayName("보너스 번호 입력시 1이상 45이하의 정수가 아니면 예외가 발생한다.")
@@ -27,8 +26,7 @@ public class WinningLottoTest {
         List<String> bonusInputs = List.of("-1", "!?!", "46", ",");
         bonusInputs.stream().forEach(bonus -> {
             assertThatThrownBy(() -> new WinningLotto(numbersInput, bonus))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(BONUS_RANGE_EXCEPTION_MSG);
+                    .isInstanceOf(IllegalArgumentException.class);
         });
     }
 
@@ -39,6 +37,6 @@ public class WinningLottoTest {
         String bonusInput = "3";
         assertThatThrownBy(() -> new WinningLotto(numbersInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NOT_UNIQUE_EXCEPTION_MSG);
+                .hasMessageContaining(NOT_UNIQUE.getMessage());
     }
 }

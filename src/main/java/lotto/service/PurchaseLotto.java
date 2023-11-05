@@ -1,15 +1,15 @@
 package lotto.service;
 
+import static lotto.domain.ErrorMessages.NOT_INTEGER;
+import static lotto.domain.ErrorMessages.PURCHASE_RANGE;
+import static lotto.domain.ErrorMessages.PURCHASE_UNIT;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class PurchaseLotto {
-    public static final String PURCHASE_COST_NAN_MSG = "[ERROR] 구입 금액은 정수이어야 합니다.";
-    public static final String PURCHASE_COST_RANGE_MSG = "[ERROR] 로또는 최소 한 개 최대 천 개까지 구입 가능합니다.";
-    public static final String PURCHASE_COST_UNIT_MSG = "[ERROR] 구입 금액은 1000단위 숫자이어야 합니다.";
-
     public List<Lotto> purchase(String cost) {
         int numberOfLotto = validateNumberOfLotto(cost);
         return getLottos(numberOfLotto);
@@ -18,10 +18,10 @@ public class PurchaseLotto {
     private int validateNumberOfLotto(String cost) {
         int numberCost = toNumber(cost);
         if (!checkRange(numberCost)) {
-            throw new IllegalArgumentException(PURCHASE_COST_RANGE_MSG);
+            throw new IllegalArgumentException(PURCHASE_RANGE.getMessage());
         }
         if (!checkUnit(numberCost)) {
-            throw new IllegalArgumentException(PURCHASE_COST_UNIT_MSG);
+            throw new IllegalArgumentException(PURCHASE_UNIT.getMessage());
         }
         return numberCost / 1000;
     }
@@ -39,7 +39,7 @@ public class PurchaseLotto {
         try {
             result = Integer.parseInt(cost);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PURCHASE_COST_NAN_MSG);
+            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
         return result;
     }

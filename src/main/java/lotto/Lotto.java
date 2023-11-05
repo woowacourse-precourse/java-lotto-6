@@ -34,7 +34,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!lottoPattern.matcher(Integer.toString(number)).matches()) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getErrorMessage());
             }
         }
 

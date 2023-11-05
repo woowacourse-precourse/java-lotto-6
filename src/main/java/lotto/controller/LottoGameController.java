@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoMachine;
+import lotto.model.LottoRandomGenerator;
 import lotto.model.LottoShop;
 import lotto.model.Player;
 import lotto.model.WinningLotto;
@@ -13,7 +14,8 @@ public class LottoGameController {
     private final Player player;
 
     public LottoGameController(InputController inputController, OutputController outputController) {
-        lottoShop = new LottoShop(new LottoMachine());
+        LottoMachine lottoMachine = new LottoMachine(new LottoRandomGenerator());
+        lottoShop = new LottoShop(lottoMachine);
         player = new Player();
         this.inputController = inputController;
         this.outputController = outputController;

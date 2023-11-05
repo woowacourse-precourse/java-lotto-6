@@ -19,5 +19,9 @@ public class MessageList {
     public static final String ERROR_INPUT_IS_NOT_NUMBER = "[ERROR] 숫자만 입력해 주세요.";
     public static final String ERROR_INPUT_IS_NOT_POSITIVE_NUMBER = "[ERROR] 양수를 입력해 주세요.";
     public static final String ERROR_INPUT_IS_NOT_DIVISIBLE = "[ERROR] 1,000원으로 나누어 떨어지는 수를 입력해 주세요";
+    public static final String ERROR_INVALID_INPUT = "[ERROR] 쉼표(,)를 기준으로 입력해 주세요";
+    public static final String ERROR_INPUT_IS_NOT_IN_PROPER_RANGE = "[ERROR] 1부터 45 사이의 숫자를 입력해 주세요.";
+    public static final String ERROR_INPUT_HAS_NOT_PROPER_SIZE = "[ERROR] 쉼표(,)를 기준으로 6개의 당첨 번호를 입력해 주세요.";
+    public static final String ERROR_INPUT_HAS_DUPLICATED_NUMBER = "[ERROR] 쉼표(,)를 기준으로 중복되지 않은 6개의 당첨 번호를 입력해 주세요.";
 
 }

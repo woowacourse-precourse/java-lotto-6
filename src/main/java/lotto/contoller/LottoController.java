@@ -18,5 +18,4 @@ public class LottoController {
         return new PurchaseAmount(answer);
     }
 
-
 }

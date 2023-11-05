@@ -12,7 +12,7 @@ public class Money {
     }
 
     public int lottoCount() {
-        return money/LOTTO_PRICE;
+        return money / LOTTO_PRICE;
     }
 
     private void validateMoney(int money) {

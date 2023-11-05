@@ -29,7 +29,7 @@ public enum Price {
         return score;
     }
 
-    public static Price findByValue(int score) {
+    public static Price findByScore(int score) {
         for (Price type : Price.values()) {
             if (type.getScore() == score) {
                 return type;

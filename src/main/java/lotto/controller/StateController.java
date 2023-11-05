@@ -1,31 +1,30 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.Money;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static lotto.random.Number.LottoGenerator;
 
 
 public class StateController {
 
-
     private Money money;
     private Lottos lottos;
     private Lotto answerLotto;
-    private int bonus;
-
+    private Bonus bonus;
 
     public void run() {
         enterMoney();
         purchaseLotto();
         enterAnswer();
         enterBonus();
+        calculateResult();
     }
 
     private void enterMoney() {
@@ -40,7 +39,7 @@ public class StateController {
     private void purchaseLotto() {
         lottos = new Lottos(IntStream
                 .range(0, money.lottoCount())
-                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .mapToObj(i -> new Lotto(LottoGenerator()))
                 .toList());
         OutputView.printLottoCount(money.lottoCount());
         lottos.getLotto().forEach(lotto -> OutputView.printLotto(lotto.getNumbers()));
@@ -61,21 +60,15 @@ public class StateController {
 
     private void enterBonus() {
         try {
-            int bonus = Integer.parseInt(InputView.readBonus().trim());
-            validateBonus(bonus);
-            this.bonus = bonus;
+            this.bonus = new Bonus(Integer.parseInt(InputView.readBonus().trim()), answerLotto.getNumbers());
+
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             enterBonus();
         }
     }
 
-    private void validateBonus(int number) {
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호의 숫자 범위는 1~45까지입니다.");
-        }
-        if (answerLotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 로또 번호와 중복될 수 없습니다.");
-        }
+    private void calculateResult() {
+        Map<Price, Integer> scores = lottos.calculateScore(answerLotto, bonus);
     }
 }

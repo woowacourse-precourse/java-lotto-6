@@ -1,9 +1,14 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Input {
     private static final String ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String ENTER_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBER_SEPARATOR = ",";
 
     public static int getPurchaseAmount() {
         String userInput;
@@ -25,5 +30,41 @@ public class Input {
             return false;
         }
         return true;
+    }
+
+    public static List<Integer> getWinningNumber() {
+        String[] userInputs;
+        System.out.println(ENTER_WINNING_NUMBER);
+
+        do {
+            userInputs = Console.readLine().split(WINNING_NUMBER_SEPARATOR);
+        } while (!handleWinningNumber(userInputs));
+
+        return convertToInteger(userInputs);
+    }
+
+    private static boolean handleWinningNumber(String[] userInputs) {
+        try {
+            validateWinningNumber(userInputs);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private static void validateWinningNumber(String[] userInputs) {
+        for (String userInput : userInputs) {
+            InputException.canBeConvertedToInteger(userInput);
+            InputException.isNumberInRange(userInput);
+        }
+        InputException.hasSixNumbers(userInputs);
+        InputException.hasNoDuplicateNumbers(List.of(userInputs));
+    }
+
+    private static List<Integer> convertToInteger(String[] userInputs) {
+        return Arrays.stream(userInputs)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

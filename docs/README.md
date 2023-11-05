@@ -79,10 +79,10 @@
         - [ ] 각 로또들이 생성한 6자리 숫자(오름차순)
 
 
-- [ ] WinningLottoDTO : WinningLotto에 대한 필요한 정보
+- [x] WinningLottoDTO : WinningLotto에 대한 필요한 정보
     - 출력은 따로 존재하지 않으니 Input/Output 분리는 하지 않는다.
-    - [ ] 당첨번호 6자리를 받는다.
-    - [ ] 보너스 번호를 받는다.
+    - [x] 당첨번호 6자리를 받는다.
+    - [x] 보너스 번호를 받는다.
 
 
 - [x] ResultDTO : 결과에 대한 DTO

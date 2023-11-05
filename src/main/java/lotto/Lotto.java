@@ -40,4 +40,8 @@ public class Lotto {
 			throw new IllegalArgumentException(LottoError.INVALID_REDUNDANT_INPUT.getErrorDescription());
 		}
 	}
+
+	public List<Integer> getNumbers() {
+		return this.numbers;
+	}
 }

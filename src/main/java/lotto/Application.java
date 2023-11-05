@@ -2,19 +2,20 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        // TODO: input validation
-//        validate(input);
+        String purchaseAmount = Console.readLine();
 
-        int purchaseAmount = Integer.parseInt(input);
-        // TODO: 구입 금액에 따라 로또 구매하기
+        LottoProvider lottoProvider = new LottoProvider();
+        List<Lotto> lottos = lottoProvider.buyLottos(purchaseAmount);
+        int lottoCnt = lottos.size();
 
-
-        System.out.println("{lottoCnt}"+"개를 구매했습니다.");
-        // TODO: 구입한 로또들 출력
+        System.out.println(lottoCnt + "개를 구매했습니다.");
+        lottos.forEach(Lotto::print);
+        System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winInput = Console.readLine();

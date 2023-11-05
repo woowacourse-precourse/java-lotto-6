@@ -1,12 +1,17 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Play {
+    private static final String ERROR_NUMBER= "[ERROR] 숫자만 입력해 주세요.";
+    private static final String ERROR_THOUSAND= "[ERROR] 천원단위로 입력해 주세요.";
+    private static final String ERROR_DUPLICATE= "[ERROR] 로또번호와 다른 번호를 입력해야 합니다.";
+    private static final String ERROR_VALIDNUMBER= "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_VALIDLENGTH= "[ERROR] 로또 번호는 6자리만 입력해야 합니다.";
+    private static final String ERROR_LOTTODUPLICATENUMBER= "[ERROR] 로또 번호가 중복되었습니다.";
+
     public int money = 0;
     public int count = 0;
     public List<Integer> winNumber=new ArrayList<>();
@@ -30,12 +35,12 @@ public class Play {
 
     public boolean isNumeric(String str) {
         if (str == null || str.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_NUMBER);
         }
 
         for (int i = 0; i < str.length(); i++) {
             if (!Character.isDigit(str.charAt(i))) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+                throw new IllegalArgumentException(ERROR_NUMBER);
             }
         }
 
@@ -64,7 +69,7 @@ public class Play {
         if(money%1000==0) {
             check = false;
         }
-        throw new IllegalArgumentException("[ERROR] 천원단위로 입력해 주세요.");
+        throw new IllegalArgumentException(ERROR_THOUSAND);
     }
     public void inputCount(){
         count=money/1000;
@@ -89,7 +94,7 @@ public class Play {
     public void isDuplicate(){
         if(winNumber.contains(bonusNumber)){
             check=true;
-            throw new IllegalArgumentException("[ERROR] 로또번호와 다른 번호를 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
         check=false;
     }
@@ -99,7 +104,7 @@ public class Play {
         }
         if(bonusNumber<1 || bonusNumber>45){
             check=true;
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_VALIDNUMBER);
         }
         check=false;
     }
@@ -130,7 +135,7 @@ public class Play {
             check=false;
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리만 입력해야 합니다.");
+        throw new IllegalArgumentException(ERROR_VALIDLENGTH);
     }
     public void isValidLotto(int[] num){
         if(check){
@@ -140,7 +145,7 @@ public class Play {
         for(int i : num){
             if(i<1 || i>45){
                 check=true;
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ERROR_VALIDNUMBER);
             }
         }
 
@@ -150,6 +155,7 @@ public class Play {
         }
         check=false;
     }
+
 
     public void playLotto(){
 

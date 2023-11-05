@@ -89,4 +89,14 @@ public class Application {
         long count = matchCounts.getOrDefault(matchCount, 0L);
         System.out.println(matchCount + "개 일치 " + prize + " - " + count + "개");
     }
+
+    private static double calculateTotalPrize(Map<Integer, Long> matchCounts) {
+        double totalPrize = 0;
+        totalPrize += matchCounts.getOrDefault(6, 0L) * 2_000_000_000;
+        totalPrize += matchCounts.getOrDefault(5, 0L) * 1_500_000;
+        totalPrize += matchCounts.getOrDefault(5, 0L) * 30_000_000;
+        totalPrize += matchCounts.getOrDefault(4, 0L) * 50_000;
+        totalPrize += matchCounts.getOrDefault(3, 0L) * 5_000;
+        return totalPrize;
+    }
 }

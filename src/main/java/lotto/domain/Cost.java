@@ -12,8 +12,8 @@ public class Cost {
         this.cost = cost;
     }
 
-    public int getCost() {
-        return cost;
+    public int getQuantity() {
+        return cost / UNIT.getValue();
     }
 
     private void validate(int cost){

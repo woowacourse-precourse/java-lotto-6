@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 
+import static lotto.MatchingNumber.Three;
+
 public class Paper {
     public List<Integer> originNumbers;
     public List<Integer> numbers;
@@ -35,35 +37,35 @@ public class Paper {
                 cnt++;
             }
         }
-        if(cnt==5 && numbers.contains(bonusNumber)){
-            correspondNumber = 6;
+        if(cnt==MatchingNumber.Five.getValue() && numbers.contains(bonusNumber)){
+            correspondNumber = MatchingNumber.FiveBonus.getValue();
             return;
         }
         if(cnt==6){
-            correspondNumber = 7;
+            correspondNumber = MatchingNumber.Six.getValue();
             return;
         }
         correspondNumber=cnt;
     }
-
+    //3~7 enum화
     public void checkWinMoney(){
-        if(correspondNumber==3) {
+        if(correspondNumber== MatchingNumber.Three.getValue()) {
             winMoney=5000;
             return;
         }
-        if(correspondNumber==4) {
+        if(correspondNumber==MatchingNumber.Four.getValue()) {
             winMoney=50000;
             return;
         }
-        if(correspondNumber==5) {
+        if(correspondNumber==MatchingNumber.Five.getValue()) {
             winMoney=1500000;
             return;
         }
-        if(correspondNumber==7) {
+        if(correspondNumber==MatchingNumber.Six.getValue()) {
             winMoney=20000000;
             return;
         }
-        if(correspondNumber==6) {
+        if(correspondNumber==MatchingNumber.FiveBonus.getValue()) {
             winMoney=30000000;
         }
     }

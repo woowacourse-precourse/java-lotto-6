@@ -57,19 +57,19 @@ public class Lotto {
 
     public void saveMatchingNumbers(List<Paper> papers){
         for(Paper i : papers){
-            if(i.getCorrespondNum()==3){
+            if(i.getCorrespondNum()==MatchingNumber.Three.getValue()){
                 matchingNumbers.set(0,matchingNumbers.get(0)+1);
             }
-            if(i.getCorrespondNum()==4){
+            if(i.getCorrespondNum()==MatchingNumber.Four.getValue()){
                 matchingNumbers.set(1,matchingNumbers.get(1)+1);
             }
-            if(i.getCorrespondNum()==5){
+            if(i.getCorrespondNum()==MatchingNumber.Five.getValue()){
                 matchingNumbers.set(2,matchingNumbers.get(2)+1);
             }
-            if(i.getCorrespondNum()==6){
+            if(i.getCorrespondNum()==MatchingNumber.FiveBonus.getValue()){
                 matchingNumbers.set(3,matchingNumbers.get(3)+1);
             }
-            if(i.getCorrespondNum()==7){
+            if(i.getCorrespondNum()==MatchingNumber.Six.getValue()){
                 matchingNumbers.set(4,matchingNumbers.get(4)+1);
             }
         }

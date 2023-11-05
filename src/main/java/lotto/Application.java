@@ -68,7 +68,6 @@ public class Application {
         List<List<Integer>> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
             res.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            System.out.println(res.get(index));
         }
         return res;
     }
@@ -139,6 +138,15 @@ public class Application {
         );
     }
 
+    public static void showReturnRate(int[] result, float money){
+        float profit = 0;
+        for (int i = 0; i < result.length; i++) {
+            profit += result[i]*prices[i];
+        }
+        float tmp = Math.round(profit/money*1000);
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", tmp/10));
+    }
+
     public static void main(String[] args) {
         int money = -1, bonus;
         List<List<Integer>> user;
@@ -152,5 +160,6 @@ public class Application {
         bonus = setBonus(winLotto);
         Lottery_result = lottery(winLotto, user, bonus);
         printResult(Lottery_result);
+        showReturnRate(Lottery_result, money);
     }
 }

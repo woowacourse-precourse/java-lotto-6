@@ -28,8 +28,9 @@ public class LottoGameController {
         requestWinningNumber();
     }
 
-    private void requestWinningNumber() {
+    private List<String> requestWinningNumber() {
         outputView.output(WINNING_NUMBER.getMessage());
+        return inputView.requestWinningNumber();
     }
 
     private Integer initPurchaseAmount() {

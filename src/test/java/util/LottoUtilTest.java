@@ -36,4 +36,15 @@ public class LottoUtilTest {
         assertThat(Arrays.toString(countWinLotto(winningLotto, userLottoVO)))
                 .isEqualTo("[0, 0, 0, 1, 0, 0, 1, 1]");
     }
+
+    @DisplayName("금액에 따른 수익률 반환")
+    @Test
+    void calculateByWinRate() {
+        final int[] winCountArr = {0, 0, 0, 1, 0, 0, 0, 1};
+        final int pay = 5000;
+
+        assertThat(String.format("%.1f", calculateRate(winCountArr,pay)))
+                .isEqualTo("600100.0");
+    }
+
 }

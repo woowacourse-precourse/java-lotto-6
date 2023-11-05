@@ -10,6 +10,7 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private LottoPurchaseManager lottoPurchaseManager;
+    private long inputMoney;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -18,20 +19,12 @@ public class GameController {
 
     public void run() {
         initializeLottoPurchaseManager();
-        String purchaseAmountInput = inputView.printAskPurchaseAmount();
-        Lottos lottos = lottoPurchaseManager.createLottos(purchaseAmountInput);
-        printLottos(lottos);
+        Lottos lottos = createLottos();
+        inputMoney = lottoPurchaseManager.getInputMoney();
+        printPurchasedLottos(lottos);
 
-        String winningNumbersInput = inputView.printAskWinningNumbers();
-        WinningNumbers winningNumbers = WinningNumbers.create(winningNumbersInput);
-
-        String bonusNumberInput = inputView.printAskBonusNumber();
-        BonusNumber bonusNumber = BonusNumber.create(bonusNumberInput);
-        winningNumbers.assignBonusNumber(bonusNumber);
-
-        long inputMoney = lottoPurchaseManager.getInputMoney();
-
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney);
+        WinningLotto winningLotto = createWinningLotto();
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, inputMoney);
         Map<PrizeCondition, Long> prizeResult = lottoResultGenerator.generatePrizeResult(lottos);
         double profit = lottoResultGenerator.generateProfit();
         outputView.printResult(prizeResult, profit);
@@ -41,7 +34,54 @@ public class GameController {
         lottoPurchaseManager = new LottoPurchaseManager(new LottoGenerator());
     }
 
-    private void printLottos(Lottos lottos) {
+    private Lottos createLottos() {
+        while (true) {
+            try {
+                String purchaseAmountInput = inputView.printAskPurchaseAmount();
+                return lottoPurchaseManager.createLottos(purchaseAmountInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void printPurchasedLottos(Lottos lottos) {
         outputView.printLottos(lottos);
+    }
+
+
+    private WinningLotto createWinningLotto() {
+        WinningNumbers winningNumbers = createWinningNumbers();
+        while (true) {
+            try {
+                BonusNumber bonusNumber = createBonusNumber();
+                return WinningLotto.create(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    private WinningNumbers createWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbersInput = inputView.printAskWinningNumbers();
+                return WinningNumbers.create(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber createBonusNumber() {
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.printAskBonusNumber();
+                return BonusNumber.create(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

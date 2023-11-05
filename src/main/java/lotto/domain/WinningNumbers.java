@@ -10,7 +10,6 @@ import java.util.List;
 public class WinningNumbers {
     private static final String NUMBERS_DELIMITER = ",";
     private final List<Integer> numbers;
-    private BonusNumber bonusNumber;
 
     private WinningNumbers(String input) {
         this.numbers = validate(input);
@@ -20,15 +19,8 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbersInput);
     }
 
-    public void assignBonusNumber(BonusNumber bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
-    }
-
-    private void validateBonusNumber(BonusNumber bonusNumber) {
-        if (numbers.contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED.getMessage());
-        }
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 
     private List<Integer> validate(String input) {
@@ -66,9 +58,5 @@ public class WinningNumbers {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
     }
 }

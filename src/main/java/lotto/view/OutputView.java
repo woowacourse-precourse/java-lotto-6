@@ -37,11 +37,11 @@ public class OutputView {
     }
 
     private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
-        printFifthPrizeResult(prizeResult.get(PrizeCondition.FIFTH));
-        printFourthPrizeResult(prizeResult.get(PrizeCondition.FOURTH));
-        printThirdPrizeResult(prizeResult.get(PrizeCondition.THIRD));
-        printSecondPrizeResult(prizeResult.get(PrizeCondition.SECOND));
-        printFirstPrizeResult(prizeResult.get(PrizeCondition.FIRST));
+        printFifthPrizeResult(prizeResult.getOrDefault(PrizeCondition.FIFTH, 0L));
+        printFourthPrizeResult(prizeResult.getOrDefault(PrizeCondition.FOURTH, 0L));
+        printThirdPrizeResult(prizeResult.getOrDefault(PrizeCondition.THIRD, 0L));
+        printSecondPrizeResult(prizeResult.getOrDefault(PrizeCondition.SECOND, 0L));
+        printFirstPrizeResult(prizeResult.getOrDefault(PrizeCondition.FIRST, 0L));
     }
 
     private static void printFifthPrizeResult(long count) {

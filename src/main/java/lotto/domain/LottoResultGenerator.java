@@ -6,24 +6,22 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LottoResultGenerator {
-    private final WinningNumbers winningNumbers;
-    private final BonusNumber bonusNumber;
+    private final WinningLotto winningLotto;
     private final long inputMoney;
     private Map<PrizeCondition, Long> prizeResult;
     private long prizeMoney;
 
-    private LottoResultGenerator(WinningNumbers winningNumbers, BonusNumber bonusNumber, long inputMoney) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    private LottoResultGenerator(WinningLotto winningLotto, long inputMoney) {
+        this.winningLotto = winningLotto;
         this.inputMoney = inputMoney;
     }
 
-    public static LottoResultGenerator create(WinningNumbers winningNumbers, BonusNumber bonusNumber, long inputMoney) {
-        return new LottoResultGenerator(winningNumbers, bonusNumber, inputMoney);
+    public static LottoResultGenerator create(WinningLotto winningLotto, long inputMoney) {
+        return new LottoResultGenerator(winningLotto, inputMoney);
     }
 
     public Map<PrizeCondition, Long> generatePrizeResult(Lottos lottos) {
-        List<PrizeCondition> prizeConditions = lottos.providePrizeConditions(winningNumbers, bonusNumber);
+        List<PrizeCondition> prizeConditions = lottos.providePrizeConditions(winningLotto);
         prizeResult = prizeConditions.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return prizeResult;

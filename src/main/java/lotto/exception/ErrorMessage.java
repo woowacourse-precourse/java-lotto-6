@@ -16,9 +16,10 @@ public enum ErrorMessage {
     WINNING_NUMBERS_NOT_NUMERIC("[ERROR] 당첨번호로 6개의 숫자를 입력해주세요."),
     BONUS_NUMBER_DUPLICATED("[ERROR] 보너스 넘버는 당첨번호와 중복되지 않는 숫자로 입력해주세요.");
 
-    private String message;
+    private final String message;
 
-    ErrorMessage(String s) {
+    ErrorMessage(String message) {
+        this.message = message;
     }
 
     public String getMessage() {

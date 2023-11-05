@@ -76,6 +76,8 @@ public class Game {
         checkWinningLottoDraw();
 
         Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
+        ResultMaker resultMaker = new ResultMaker(rankingCounts, player.getMoney());
+
         player.setRankingCounts(rankingCounts);
         player.findStatistics();
         Messages.print(player.lottoResults());

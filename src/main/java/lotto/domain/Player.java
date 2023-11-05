@@ -7,8 +7,6 @@ import java.util.*;
 
 public class Player {
     private int money;
-    private long totalPrize;
-    private double prizeRate;
     private List<Lotto> lottos;
     private Map<Ranking, Integer> rankingCounts;
 
@@ -40,24 +38,7 @@ public class Player {
         lottos.addAll(issuedLottos);
     }
 
-    public void setRankingCounts(Map<Ranking, Integer> rankingCounts) {
-        this.rankingCounts = rankingCounts;
-    }
 
-    public void findStatistics() {
-        findTotalPrize();
-        findPrizeRate();
-    }
-
-    private void findTotalPrize() {
-        for (Ranking ranking : rankingCounts.keySet()) {
-            totalPrize += (long) ranking.getPrize() * rankingCounts.get(ranking);
-        }
-    }
-
-    private void findPrizeRate() {
-        prizeRate = (long) (1000. * totalPrize / money + 0.5) / 10.;
-    }
 
     public String issuedLottos() {
         StringBuilder result = new StringBuilder(String.valueOf(lottos.size()))

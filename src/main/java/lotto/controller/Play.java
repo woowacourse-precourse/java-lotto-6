@@ -18,7 +18,6 @@ public class Play {
     public Play() {
         HashMap<Rank, Integer> result = new HashMap<>();
         int price = createPrice();
-        System.out.println(price);
         int count = calLottoCount(price);
         printBoughtLottoCount(count);
         List<Lotto> lottery = rotateLotteryCount(count);
@@ -36,7 +35,6 @@ public class Play {
         int sumPrize = calSumPrize(result);
         double rateMean = calRate(sumPrize, price);
         printMean(rateMean);
-
     }
 
     public static int createPrice() {
@@ -55,10 +53,10 @@ public class Play {
     }
 
     public static List<Integer> createWinningNumber() {
-        messageAboutUserLottoNumber();
         List<Integer> winningNumbers = new ArrayList<>();
         while(true) {
             try {
+                messageAboutUserLottoNumber();
                 String tmpWinningNumbers = inputWinningNumbers();
                 winningNumbers = convertWinningNumber(tmpWinningNumbers);
                 break;
@@ -72,22 +70,18 @@ public class Play {
     }
 
     public static int createBonusNumber() {
-        messageAboutUserBonusNumber();
         int bonus = 0;
         while(true) {
             try {
+                messageAboutUserBonusNumber();
                 String tmpBonusNumber = inputBonusNumber();
                 bonus = convertBonusNumber(tmpBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
-                createBonusNumber();
             }
         }
         return bonus;
     }
-
-
-
 
 }

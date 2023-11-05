@@ -22,9 +22,7 @@ public class InputConverter {
     }
 
     public static int convertBonusNumber(String inputBonusNumber) {
-        checkDigit(inputBonusNumber);
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        return bonusNumber;
+        return checkDigit(inputBonusNumber);
     }
 
     public static int checkDigit(String input) throws IllegalArgumentException{

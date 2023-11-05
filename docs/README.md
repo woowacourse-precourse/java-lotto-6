@@ -40,3 +40,8 @@
   - Lotto 클래스에 상금액을 계산하는 calculatePrize 메소드를 추가한다.
   - calculatePrize 안에서 일치하는 번호를 확인하는 checkCorrectNumber, 각각의 시도마다 상금을 계산하는 getPrize 메소드를 추가한다.
   - 상금 수익률을 계산하는 calculateReturnRatio 메소드를 추가한다.
+  
+  
+## 3-1. 당첨 내역 및 상금 도출 기능 테스트
+  - 당첨 총상금 계산에 대한 테스트를 추가한다.
+  - 수익률 계산에 대한 테스트를 추가한다.

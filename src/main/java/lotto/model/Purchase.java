@@ -14,4 +14,8 @@ public class Purchase {
         }
     }
 
+    public int getTicketNumber() {
+        return money / 1000;
+    }
+
 }

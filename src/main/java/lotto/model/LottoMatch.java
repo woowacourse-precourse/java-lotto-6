@@ -29,6 +29,13 @@ public enum LottoMatch {
     }
 
     public static LottoMatch collect(int matching, boolean bonusMatching) {
+        if (matching >= 5) {
+            return filterLottoMatch(matching, bonusMatching);
+        }
+        return filterLottoMatch(matching, false);
+    }
+
+    private static LottoMatch filterLottoMatch(int matching, boolean bonusMatching) {
         return Arrays.stream(LottoMatch.values())
                 .filter(lottoMatch -> lottoMatch.matching == matching && lottoMatch.bonusMatching == bonusMatching)
                 .findFirst()

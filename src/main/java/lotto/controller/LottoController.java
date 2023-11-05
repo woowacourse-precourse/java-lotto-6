@@ -70,6 +70,6 @@ public class LottoController {
     }
 
     public void printProfit(){
-        
+
     }
 }

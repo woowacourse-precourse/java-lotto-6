@@ -21,7 +21,9 @@ public class LottoGame {
         int purchaseAmount = InputView.inputLottoPurchaseAmount();
         OutputView.printLottoAmount(purchaseAmount);
 
-        lottoList = makeLottoList(purchaseAmount);
+        List<Lotto> lottos = makeLottoList(purchaseAmount);
+        OutputView.printPurchasedLottos(lottos);
+
         winningNumbers = InputView.inputLottoNumbers();
         bonusNumber = InputView.inputBonusNumber();
 

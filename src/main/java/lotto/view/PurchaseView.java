@@ -17,7 +17,7 @@ public class PurchaseView {
         return createFromInput(input);
     }
 
-    private int createFromInput(String input) {
+    public int createFromInput(String input) {
         int money = Integer.parseInt(input);
         return money;
     }

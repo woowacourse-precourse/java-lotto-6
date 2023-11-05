@@ -4,11 +4,13 @@ import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Tickets;
+import lotto.domain.WinRecord;
 
 public class LottoController {
     private Tickets tickets;
     private Lotto lotto;
     private Bonus bonus;
+    private WinRecord winRecord;
 
     public void gernerateTicket(final int wallet) {
         this.tickets = new Tickets(wallet);
@@ -24,6 +26,9 @@ public class LottoController {
         List<List<Integer>> tickets = this.tickets.getTickets();
         List<Integer> lotto = this.lotto.getNumbers();
         int bonus = this.bonus.getNumber();
+
+        this.winRecord = new WinRecord(lotto, bonus);
+        this.winRecord.compareWinning(tickets);
     }
 
     public void verifyWinRecord() {

@@ -4,7 +4,7 @@ import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 
-enum LottoPrize {
+public enum LottoPrize {
 
     FIRST(6, 2_000_000_000, "6개 일치", false),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치", true),

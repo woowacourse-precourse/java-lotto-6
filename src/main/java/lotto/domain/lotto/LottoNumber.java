@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Objects;
 
-class LottoNumber {
+public class LottoNumber {
 
     private static final int MIN_NUMBER_RANGE = 1;
     private static final int MAX_NUMBER_RANGE = 45;

@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import java.util.List;
 import java.util.Objects;
 
-class Lotto {
+public class Lotto {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final String UNKNOWN_NUMBERS_MESSAGE = "알 수 없는 숫자 목록으로 로또를 생성할 수 없습니다.";

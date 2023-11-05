@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+
 public class OutputView {
 
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -38,6 +41,14 @@ public class OutputView {
 
     public static void printWinningStatisticsInfoMessage() {
         println(WINNING_STATISTICS_INFO_MESSAGE);
+    }
+
+    public static void printLotto(Lotto lotto) {
+        println(lotto.toString());
+    }
+
+    public static void printLottos(Lottos lottos) {
+        print(lottos.toString());
     }
 
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int NUMBERS_SIZE = 6;
@@ -59,12 +60,14 @@ public class Lotto {
     private boolean isNumberBetweenRange(int number) {
         return number >= NUMBERS_RANGE_START && number <= NUMBERS_RANGE_END;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        sb.append(String.join(",", (CharSequence) numbers));
+        sb.append(numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")));
         sb.append("]");
         return sb.toString();
     }

@@ -4,15 +4,15 @@ import lotto.common.consts.ErrorMessage;
 import lotto.view.OutputView;
 
 public class Money {
-    private long money;
+    private int money;
     private static final int ONE_THOUSAND_WON = 1000;
     private static final int ZERO = 0;
 
-    public Money(long money) {
+    public Money(int money) {
         this.money = money;
     }
 
-    private void validate(long money) {
+    private void validate(int money) {
         if (!isPositive(money)) {
             OutputView.printError(ErrorMessage.NOT_POSITIVE_ERROR_MESSAGE);
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_ERROR_MESSAGE);
@@ -23,15 +23,15 @@ public class Money {
         }
     }
 
-    private boolean isPositive(long money) {
-        return money > 0L;
+    private boolean isPositive(int money) {
+        return money > 0;
     }
 
-    private boolean isDivideUp(long money) {
+    private boolean isDivideUp(int money) {
         return money % ONE_THOUSAND_WON == ZERO;
     }
 
-    public long getDivideValue() {
+    public int getDivideValue() {
         return money / ONE_THOUSAND_WON;
     }
 

@@ -1,9 +1,10 @@
 package lotto.controller;
 
+import lotto.model.PurchaseAmount;
 import lotto.view.InputView;
 
 public class LottoController {
     public void start() {
-        String purchaseAmount = InputView.readPurchaseAmount();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(Integer.parseInt(InputView.readPurchaseAmount()));
     }
 }

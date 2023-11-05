@@ -1,26 +1,32 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.service.LottoService;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoService lottoService;
+    private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
 
     public LottoController(){
-        lottoService = new LottoService();
+        inputView = new InputView();
         outputView = new OutputView();
+        lottoService = new LottoService();
     }
 
     public void playGame(){
-        askUserToInsertMoneyToBuyLotto();
+        Long moneyToBuyLotto = askUserToInsertMoneyToBuyLotto();
         askUserToInsertLottoWinningNumbers();
         askUserToInsertBonusNumber();
         lottoService.playGame();
+        endGame();
     }
 
-    private void askUserToInsertMoneyToBuyLotto(){
+    private Long askUserToInsertMoneyToBuyLotto(){
         outputView.askUserToInsertMoneyToBuyLotto();
+        return inputView.getMoneyToBuyLottoFromUser();
     }
 
     private void askUserToInsertLottoWinningNumbers(){
@@ -29,5 +35,9 @@ public class LottoController {
 
     private void askUserToInsertBonusNumber(){
         outputView.askUserToInsertBonusNumber();
+    }
+
+    private void endGame(){
+        Console.close();
     }
 }

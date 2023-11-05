@@ -18,11 +18,10 @@ public class Lotto {
         }
     }
 
-    public List<List<Integer>> buyLotto (String inputMoney){
+    public List<List<Integer>> buyLotto (int inputMoney){
         List<List<Integer>>randomLottoNumbers = new ArrayList<>();
-        int numberOfLotto = Integer.parseInt(inputMoney)/1000;
-        for(int i = 0; i < numberOfLotto; i++){
-            randomLottoNumbers.add(getRandomLottoNumbers(numberOfLotto));
+        for(int i = 0; i < inputMoney/1000; i++){
+            randomLottoNumbers.add(getRandomLottoNumbers(inputMoney/1000));
         }
         return randomLottoNumbers;
     }

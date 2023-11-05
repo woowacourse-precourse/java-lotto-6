@@ -61,4 +61,17 @@ class LottoTest {
         assertThatCode(() -> new Lotto(List.copyOf(givenNumbers)))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("로또 번호에 1에서 45 사이의 숫자보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByNumberRange() {
+        // given
+        List<Integer> givenNumbers = List.of(1, 2, 3, 4, 5, 46);
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Lotto(List.copyOf(givenNumbers)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+    }
 }

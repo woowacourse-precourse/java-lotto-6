@@ -8,8 +8,8 @@ public enum LottoResults {
     FIFTH(3, 5_000L),
     FAIL(0, 0L);
 
-    private int correctCount;
-    private long winningAmount;
+    private final int correctCount;
+    private final long winningAmount;
 
     LottoResults(int correctCount, long winningAmount) {
         this.correctCount = correctCount;

@@ -29,4 +29,12 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public int readBonusNumber() {
+        outputView.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        Validator.validateIntFormat(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
 }

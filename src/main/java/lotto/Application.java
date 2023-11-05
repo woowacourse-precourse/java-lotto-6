@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Optional;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.lotto.converter.LottoMessageConverter;
@@ -26,6 +27,9 @@ public class Application {
 
         // 당첨 번호 입력
         Lotto winningLotto = createWinningLotto();
+
+        // 보너스 번호 입력
+        int bonusNumber = createBonusNumber(winningLotto);
     }
 
     private static Money inputMoneyAmount() {
@@ -49,6 +53,34 @@ public class Application {
         } catch (IllegalArgumentException error) {
             outputView.printError(error);
             return createWinningLotto();
+        }
+    }
+
+    private static int createBonusNumber(Lotto winningLotto) {
+        try {
+            int bonusNumber = inputView.readBonusNumber();
+            validateBonusNumbersRange(bonusNumber);
+            validateDuplicationWithWinningNumbers(bonusNumber, winningLotto);
+
+            return bonusNumber;
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            return createBonusNumber(winningLotto);
+        }
+    }
+
+    private static void validateBonusNumbersRange(int bonusNumber) {
+        if (bonusNumber > 45 || bonusNumber < 1) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static void validateDuplicationWithWinningNumbers(int bonusNumber, Lotto winningLotto) {
+        Optional<Integer> duplicatedNumber = winningLotto.getNumbers().stream()
+                .filter(number -> number == bonusNumber)
+                .findAny();
+        if(duplicatedNumber.isPresent()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
     }
 }

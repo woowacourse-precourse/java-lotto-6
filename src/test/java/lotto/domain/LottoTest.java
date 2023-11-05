@@ -32,4 +32,13 @@ public class LottoTest {
         });
         Assertions.assertEquals(manyNumbersException.getClass(),smallNumbersException.getClass());
     }
+    @Test
+    @DisplayName("중복된 숫자가 있으면 예외를 발생한다.")
+    void throwExceptionWhenNumbersIsDuplicated() {
+        var duplicatedNumbers = Randoms.pickUniqueNumbersInRange(1,45,5);
+        duplicatedNumbers.add(duplicatedNumbers.get(0));
+        Assertions.assertThrows(LottoException.class,()->{
+            new Lotto(duplicatedNumbers);
+        });
+    }
 }

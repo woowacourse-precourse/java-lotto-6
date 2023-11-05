@@ -5,7 +5,9 @@ import lotto.exception.LottoException;
 import lotto.exception.LottoExceptionMessage;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto implements LottoConstant {
     private final List<Integer> numbers;
@@ -21,6 +23,7 @@ public class Lotto implements LottoConstant {
     private static void validateNumbers(List<Integer>numbers){
         validateNumbersSizeIsPickCount(numbers);
         validateNumberInRange(numbers);
+        validateDuplicated(numbers);
     }
 
     private static void validateNumbersSizeIsPickCount(List<Integer>numbers){
@@ -31,8 +34,15 @@ public class Lotto implements LottoConstant {
 
     private static void validateNumberInRange(List<Integer>numbers){
         for (Integer number : numbers){
-            if (number<MIN_NUMBER || number>MAX_NUMBER)
+            if (number<MIN_NUMBER || number>MAX_NUMBER){
                 throw new LottoException(LottoExceptionMessage.INVALID_NUMBER);
+            }
+        }
+    }
+    private static void validateDuplicated(List<Integer>numbers){
+        Set<Integer> uniqueNumbers = new HashSet(numbers);
+        if (uniqueNumbers.size()!=PICK_COUNT){
+            throw new LottoException(LottoExceptionMessage.DUPLICATE_NUMBER);
         }
     }
 }

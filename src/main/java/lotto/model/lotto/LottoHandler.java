@@ -14,6 +14,7 @@ public class LottoHandler {
     private List<Integer> winList;
 
     private LottoHandler(List<Integer> winningNumber, int bonusNumber) {
+        checkDuplicateNumbers(winningNumber, bonusNumber);
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
         this.resultAmount = new ArrayList<>();
@@ -68,11 +69,11 @@ public class LottoHandler {
 
     private void calculateWinningResult() {
         for (int amount : resultAmount) {
-            calWinList(amount);
+            calculateWinningList(amount);
         }
     }
 
-    private void calWinList(int amount) {
+    private void calculateWinningList(int amount) {
         for (LottoInfo lottoInfo : LottoInfo.values()) {
             if (amount == lottoInfo.getWinningAmount()) {
                 int index = lottoInfo.getIndex();
@@ -89,6 +90,12 @@ public class LottoHandler {
         sb.append(LottoInfo.SECOND_WINNER.getInfo()).append(" - ").append(winList.get(3)).append("개").append("\n");
         sb.append(LottoInfo.FIRST_WINNER.getInfo()).append(" - ").append(winList.get(4)).append("개").append("\n");
         return sb.toString();
+    }
+
+    private static void checkDuplicateNumbers(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스 번호가 중복됩니다.");
+        }
     }
 
 }

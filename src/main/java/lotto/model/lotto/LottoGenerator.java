@@ -6,12 +6,8 @@ import java.util.List;
 
 
 public class LottoGenerator {
-    public Lotto lotto;
-    public LottoGenerator() {
-    }
-    public static Lotto generateLotto( ) {
+    public static Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
-
 }

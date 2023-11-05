@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.error.ExceptionCode.NEGATIVE_MONEY_AMOUNT;
 
+import java.util.Objects;
 import lotto.error.LottoException;
 
 public class Money {
@@ -47,5 +48,22 @@ public class Money {
 
     public float getRate(final Money money) {
         return (float) money.amount / amount;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Money money = (Money) o;
+        return Objects.equals(amount, money.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
     }
 }

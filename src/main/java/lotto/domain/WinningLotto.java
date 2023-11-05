@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.ExceptionConstant;
 import lotto.constant.StringConstant;
 
 public class WinningLotto {
@@ -12,7 +13,8 @@ public class WinningLotto {
 
     private WinningLotto(String winningLotto, String bonusNumber) {
         this.winningLotto = createWinningLotto(winningLotto);
-        this.bonusNumber = bonusNumber;
+        validateDuplication(winningLotto,bonusNumber);
+        this.bonusNumber = convertStrToInt(bonusNumber);
     }
 
     public static WinningLotto of(String winningLotto, String bonusNumber) {
@@ -28,5 +30,15 @@ public class WinningLotto {
         return Arrays.stream(winningLotto.split(StringConstant.DIVISION_STANDARD.getMessage()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int convertStrToInt(String bonusNumber) {
+        return Integer.parseInt(bonusNumber);
+    }
+
+    private void validateDuplication(String winningLotto, String bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
+        }
     }
 }

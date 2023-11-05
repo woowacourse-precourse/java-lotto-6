@@ -4,23 +4,23 @@ public enum PrizeMessage {
 
     FIRST(PrizeCondition.FIRST.getMatchNumbers()
             + "개 일치 ("
-            + PrizeMoney.FIRST.getValueAsDecimalFormat()
+            + PrizeMoney.FIRST.getValueWithDelimiter()
             + "원) - "),
     SECOND(PrizeCondition.SECOND.getMatchNumbers()
             + "개 일치, 보너스 볼 일치 ("
-            + PrizeMoney.SECOND.getValueAsDecimalFormat()
+            + PrizeMoney.SECOND.getValueWithDelimiter()
             + "원) - "),
     THIRD(PrizeCondition.THIRD.getMatchNumbers()
             + "개 일치 ("
-            + PrizeMoney.THIRD.getValueAsDecimalFormat()
+            + PrizeMoney.THIRD.getValueWithDelimiter()
             + "원) - "),
     FOURTH(PrizeCondition.FOURTH.getMatchNumbers()
             + "개 일치 ("
-            + PrizeMoney.FOURTH.getValueAsDecimalFormat()
+            + PrizeMoney.FOURTH.getValueWithDelimiter()
             + "원) - "),
     FIFTH(PrizeCondition.FIFTH.getMatchNumbers()
             + "개 일치 ("
-            + PrizeMoney.FIFTH.getValueAsDecimalFormat()
+            + PrizeMoney.FIFTH.getValueWithDelimiter()
             + "원) - ");
 
     final String message;

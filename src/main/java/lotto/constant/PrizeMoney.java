@@ -9,13 +9,17 @@ public enum PrizeMoney {
     FOURTH(50000),
     FIFTH(5000);
 
-    final int value;
+    final long value;
 
-    PrizeMoney(int value) {
+    PrizeMoney(long value) {
         this.value = value;
     }
 
-    String getValueAsDecimalFormat() {
+    public long getValue() {
+        return value;
+    }
+
+    String getValueWithDelimiter() {
         return DecimalFormatter.toNumberWithDelimiter(value);
     }
 }

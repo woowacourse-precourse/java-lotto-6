@@ -12,9 +12,9 @@
 3. ~~1 ~ 45 숫자 중 중복 없는 6개의 숫자 List에 생성 - Modle - RandomLotto - generateNum~~
 4. ~~랜덤 숫자 정렬하기 - Model - RandomLotto - listSort~~
 5. ~~테스트 코드 구현~~
-6. 구매 개수 출력 - View - outputView - purchasePieces
-4. 로또 구매 번호 출력 - View - outputView - purchaseNum
-5. 당첨번호 입력 - View - inputView - winNum
+6. ~~구매 개수 출력 - View - outputView - purchasePieces~~
+4. ~~로또 구매 번호 출력 - View - outputView - purchaseNum~~
+5. ~~당첨번호 입력 - View - inputView - winNum~~
 6. Lotto클래스로 당첨번호 6자리인지 확인 - Model - Lotto - validate
 6. 당첨번호 HashSet에 넣기 - Model - Lotto - winNumIntersection
 7. 보너스 번호 입력 - View - inputView - bonusNum

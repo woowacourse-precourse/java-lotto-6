@@ -9,8 +9,27 @@ public class InputView {
 
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = lottoInputView.inputPurchaseAmount();
-        return Integer.parseInt(purchaseAmount);
+
+        while (true) {
+            try {
+                String purchaseAmount = lottoInputView.inputPurchaseAmount();
+
+                validate(purchaseAmount);
+현
+                return Integer.parseInt(purchaseAmount);
+            }catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자형식으로 입력해주세요.");
+            }catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    private static void validate(String purchaseAmount) {
+        int purchase = Integer.parseInt(purchaseAmount);
+        if (purchase < 0) {
+            throw new IllegalArgumentException("[ERROR] 구매금액은 0보다 커야 합니다.");
+        }
     }
 
     public static List<Integer> inputWinningNumber() {

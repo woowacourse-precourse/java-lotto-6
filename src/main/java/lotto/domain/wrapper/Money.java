@@ -36,4 +36,8 @@ public class Money {
             throw INVALID_DIVISION.getException();
         }
     }
+
+    public int getTicket() {
+        return purchaseAmount / UNIT_OF_AMOUNT;
+    }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class UserLottoNum {
     private static final Integer LOTTO_SIZE = 7;
@@ -36,5 +37,9 @@ public class UserLottoNum {
         if(bonusNum <= MIN_NUM || bonusNum >= MAX_NUM) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 1~45 범위에 없습니다.");
         }
+    }
+
+    public boolean isContain(int num) {
+        return userLotto.isContain(num);
     }
 }

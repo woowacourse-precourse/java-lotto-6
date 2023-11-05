@@ -25,7 +25,7 @@ public class DisplayAnnounce extends DisplayView {
 
     private void buildBoughtString(List<String> tickets) {
         int amount = tickets.size();
-        String message = String.format(Templates.BOUGHT_MESSAGE.format(amount));
+        String message = Templates.BOUGHT_MESSAGE.format(amount);
         addToCache(message);
         for (String ticket : tickets) {
             addToCache(ticket);
@@ -49,7 +49,7 @@ public class DisplayAnnounce extends DisplayView {
     }
 
     private void buildProfitString(double profitRatio) {
-        String string = String.format(Templates.PROFIT_RATIO_MESSAGE.format(profitRatio));
+        String string = Templates.PROFIT_RATIO_MESSAGE.format(profitRatio);
         addToCache(string);
     }
 

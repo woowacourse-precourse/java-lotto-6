@@ -4,30 +4,46 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Templates;
 
 public class InputView {
-    public String getUserBuyAmount() {
-        print(Templates.BUY_MESSAGE);
-        String amount = Console.readLine();
+    StringBuilder cache = new StringBuilder();
 
+    public String getUserBuyAmount() {
+        initializaCache();
+        addToCache(Templates.BUY_MESSAGE);
+        print();
+
+        String amount = Console.readLine();
         return amount;
     }
 
     public String getPrizingNumbers() {
-        print(Templates.GET_PRIZING_NUMBERS_MESSAGE);
-        String numbers = Console.readLine();
+        initializaCache();
+        addToCache(Templates.GET_PRIZING_NUMBERS_MESSAGE);
+        print();
 
+        String numbers = Console.readLine();
         return numbers;
     }
 
     public String getBonusNumbers() {
-        print(Templates.GET_BONUS_NUMBER_MESSAGE);
-        String bonus = Console.readLine();
+        initializaCache();
+        addToCache(Templates.GET_BONUS_NUMBER_MESSAGE);
+        print();
 
+        String bonus = Console.readLine();
         return bonus;
     }
 
 
-    private void print(Templates string) {
-        System.out.println(string);
+    private void initializaCache() {
+        cache.setLength(0);
+    }
+
+    private void addToCache(Templates string) {
+        cache.append(string);
+    }
+
+    private void print() {
+        System.out.print(cache);
     }
 
 }

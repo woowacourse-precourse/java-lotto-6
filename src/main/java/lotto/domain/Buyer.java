@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.view.OutputView;
 
 public class Buyer {
 
@@ -15,5 +15,10 @@ public class Buyer {
 
     public void buyLotto(){
         lottoNumbers = LottoMachine.generate(purchaseAmount);
+    }
+
+    public void printLotto() {
+        OutputView.printNumberOfLottoTickets(lottoNumbers.size());
+        OutputView.printLottoTickets(lottoNumbers);
     }
 }

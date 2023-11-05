@@ -9,10 +9,15 @@ public class Controller {
 
     public void run(){
         initBuyer();
+        printBuyersLotto();
     }
 
     private void initBuyer(){
         int amount = InputView.readAmount();
         buyer = new Buyer(amount);
+    }
+
+    private void printBuyersLotto(){
+        buyer.printLotto();
     }
 }

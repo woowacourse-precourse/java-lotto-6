@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,11 +40,42 @@ class RankTest {
         );
     }
 
+    @DisplayName("총 상금액을 구할 수 있다")
+    @ParameterizedTest
+    @MethodSource
+    void getTotalPrize(EnumMap<Rank, Integer> rankToCount, long expected) {
+
+        long totalPrize = Rank.getTotalPrize(rankToCount);
+
+        assertThat(totalPrize).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> getTotalPrize() {
+        return Stream.of(
+                Arguments.of(createRankToCount(Rank.NONE, Rank.NONE), 0),
+                Arguments.of(createRankToCount(Rank.NONE, Rank.FIFTH), 5000),
+                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH), 5000 + 5000),
+                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH, Rank.FIRST), 2_000_000_000 + 5000 + 5000)
+        );
+    }
+
     private static Lotto createLotto(Integer... nums) {
         return new Lotto(Arrays.asList(nums));
     }
 
     private static WinningNumber createWinningNumber(int bonusNumber, Integer... nums) {
         return new WinningNumber(createLotto(nums), new LottoNumber(bonusNumber));
+    }
+
+    private static EnumMap<Rank, Integer> createRankToCount(Rank... ranks) {
+        EnumMap<Rank, Integer> rankToInteger = new EnumMap<>(Rank.class);
+        for (Rank rank : ranks) {
+            add(rankToInteger, rank);
+        }
+        return rankToInteger;
+    }
+
+    private static void add(EnumMap<Rank, Integer> map, Rank rank) {
+        map.put(rank, map.getOrDefault(rank, 0) + 1);
     }
 }

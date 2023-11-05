@@ -1,12 +1,21 @@
 package lotto;
 
+import java.util.EnumMap;
+import java.util.Map.Entry;
+
 public enum Rank {
-    FOURTH,
-    FIFTH,
-    THIRD,
-    SECOND,
-    FIRST,
-    NONE;
+    FIFTH(5_000),
+    FOURTH(50_000),
+    THIRD(1_500_000),
+    SECOND(30_000_000),
+    FIRST(2_000_000_000),
+    NONE(0);
+
+    private final long prize;
+
+    Rank(int prize) {
+        this.prize = prize;
+    }
 
     public static Rank of(Lotto lotto, WinningNumber winningNumber) {
         int matchCount = lotto.match(winningNumber.getWinningLotto());
@@ -31,5 +40,13 @@ public enum Rank {
             return Rank.FIRST;
         }
         return NONE;
+    }
+
+    public static long getTotalPrize(EnumMap<Rank, Integer> rankToCount) {
+        long totalPrize = 0;
+        for (Entry<Rank, Integer> rankToCountEntry : rankToCount.entrySet()) {
+            totalPrize += rankToCountEntry.getKey().prize * rankToCountEntry.getValue();
+        }
+        return totalPrize;
     }
 }

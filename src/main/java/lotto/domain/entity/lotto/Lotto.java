@@ -1,4 +1,4 @@
-package lotto.domain.entity;
+package lotto.domain.entity.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +13,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private List<Integer> sortAscending() {
+    public List<Integer> getSortedAscending() {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;

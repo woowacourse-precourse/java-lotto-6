@@ -10,6 +10,7 @@ public class InputManager {
 
     public static String getReadLineWithTrim() {
         String userInput = Console.readLine();
+        System.out.println();
 
         return userInput.trim();
     }

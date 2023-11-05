@@ -1,4 +1,4 @@
-package lotto.domain.entity;
+package lotto.domain.entity.lotto;
 
 import java.util.List;
 import lotto.domain.util.validator.WinningLottoValidator;

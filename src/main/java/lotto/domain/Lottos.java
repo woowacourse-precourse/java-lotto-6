@@ -33,10 +33,6 @@ public class Lottos {
         }
     }
 
-    public boolean existLottos() {
-        return this.numberOfLottos>0;
-    }
-
     public String printOutNumberOfLottos() {
         return this.numberOfLottos + OutputView.NUMBER_OF_LOTTOS.getMessage();
     }

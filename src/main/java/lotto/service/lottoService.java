@@ -4,13 +4,13 @@ import lotto.view.InputView;
 
 public class lottoService {
 
-    public static int getAmountOfTickets() {
+    public static int getAmountOfLottoTickets() {
         int money = InputView.inputMoney();
-        int amountOfTickets = money / 1000;
+        int amountOfLottoTickets = money / 1000;
 
         // [예외처리] 1000원으로 나누어 떨어지지 않는 경우
 
-        return amountOfTickets;
+        return amountOfLottoTickets;
     }
     public void makeLottoTickets() {
     }

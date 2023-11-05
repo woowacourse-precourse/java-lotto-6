@@ -6,6 +6,7 @@ public class InputException {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
     private static final int ZERO = 0;
     private static final String IS_VALID_AMOUNT_MESSAGE = "로또 구입 금액은 1,000원 단위로 입력해야 합니다.";
+    private static final String IS_NUMBER_IN_RANGE_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     public static void canBeConvertedToInteger(String userInput) {
         try {
@@ -19,6 +20,13 @@ public class InputException {
         int amount = Integer.parseInt(userInput);
         if (amount % PURCHASE_AMOUNT_UNIT > ZERO) {
             throw new IllegalArgumentException(ERROR_MESSAGE + IS_VALID_AMOUNT_MESSAGE);
+        }
+    }
+
+    public static void isNumberInRange(String userInput) {
+        int winningNum = Integer.parseInt(userInput);
+        if (winningNum < 1 || winningNum > 45) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + IS_NUMBER_IN_RANGE_MESSAGE);
         }
     }
 }

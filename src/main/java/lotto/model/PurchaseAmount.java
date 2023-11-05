@@ -26,4 +26,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
         }
     }
+
+    public int divideByThousand() {
+        return purchaseAmount / 1000;
+    }
 }

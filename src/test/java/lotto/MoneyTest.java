@@ -3,13 +3,15 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import controller.InputMoney;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MoneyTest {
 	
-	private final Money money=new Money();
+	private final InputMoney money=new InputMoney();
 	
 	private static final String VALID_INPUT="50, 00 0.0 W ";
 	private static final String EMPTY_INPUT="";

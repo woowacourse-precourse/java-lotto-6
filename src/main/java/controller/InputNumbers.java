@@ -1,21 +1,15 @@
-package lotto;
+package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Lotto {
-	
-    private List<Integer> numbers;
+import camp.nextstep.edu.missionutils.Console;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-    
-    private void validate(List<Integer> numbers) {
-    	new controller.InputNumbers().forTest(numbers);
-    }
-    
-    /*public List<Integer> select_numbers() {
+public class InputNumbers {
+
+	private List<Integer> numbers_refined=new ArrayList<Integer>();
+	
+    public List<Integer> select_numbers() {
     	while(true) {
     		try {
 	    		String selected=Console.readLine();
@@ -25,6 +19,23 @@ public class Lotto {
     			e.printStackTrace();
     		}
     	}
+    	return numbers_refined;
+    }
+    
+    public void forTest(List<Integer> test_input) {
+    	if (test_input.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 번호만 유효합니다");
+        }
+    	for(int num:test_input) {
+    		if(test_input.indexOf(num)!=test_input.lastIndexOf(num)) {
+        		throw new IllegalArgumentException("[ERROR] 중복된 번호는 유효하지 않습니다");
+        	}
+    		valueOutOfBoundary(num);
+    	}
+    }
+    
+    public List<Integer> forMyTest(String test_input) {
+    	validate(test_input);
     	return numbers_refined;
     }
     
@@ -86,5 +97,5 @@ public class Lotto {
     	if(num<1||num>45) {
     		throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     	}
-    }*/
+    }
 }

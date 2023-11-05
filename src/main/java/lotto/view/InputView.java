@@ -45,8 +45,14 @@ public class InputView {
     }
 
     public void validateInputAnswer(String inputAnswer) {
-        if(inputAnswer.contains(" ")){
+        if (inputAnswer.contains(" ")) {
             throw new IllegalArgumentException(VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE);
+        }
+        if (inputAnswer.startsWith(",") || inputAnswer.endsWith(",")) {
+            throw new IllegalArgumentException("[ERROR] 쉼표로 시작하거나 끝나면 안됩니다.");
+        }
+        if (inputAnswer.matches("^(?:[^,]*,){5}[^,]*$")) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
     }
 }

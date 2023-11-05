@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.service.LottoService;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoGameController {
@@ -76,5 +78,8 @@ public class LottoGameController {
     }
 
     private void printLottoResults() {
+        HashMap<LottoRank, Integer> winningRankCount = lottoService.checkLottoResult();
+        double profitRate = lottoService.getProfitRate();
+        OutputView.winningResult(winningRankCount,profitRate);
     }
 }

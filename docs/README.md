@@ -40,7 +40,11 @@
   - [ ]  수익률 출력
 - domain
   - Lotto
+    - [ ]  예외처리 - 6자리 숫자인지, 중복된 숫자있는지, 숫자만 있는지 확인
+    - [ ]  띄어쓰기(” “)무시하도록 설정
+    - [ ]  오름차순 정렬
   - IssuedLotto
+- service
 - controller
 
 ## Test

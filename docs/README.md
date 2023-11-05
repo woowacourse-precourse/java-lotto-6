@@ -51,9 +51,9 @@
 
 **입출력**
 
-- 콘솔로 입력을 읽어들인다.
-    - `camp.nextstep.edu.missionutils.Console.readLine()`을 활용한다.
-- 콘솔로 메시지를 출력한다.
+- ✅ 콘솔로 입력을 읽어들인다.
+  - ✅ `camp.nextstep.edu.missionutils.Console.readLine()`을 활용한다.
+- ✅ 콘솔로 메시지를 출력한다.
 
 **입력 유효성 검증**
 

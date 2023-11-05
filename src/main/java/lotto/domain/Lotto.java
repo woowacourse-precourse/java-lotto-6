@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
@@ -26,7 +27,7 @@ public class Lotto {
     }
 
     private void validateListDuplication(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>(numbers);
+        Set<Integer> set = new HashSet<>(numbers);
         if (numbers.size() != set.size()) {
             ErrorMessage.listDuplicationError();
             throw new IllegalArgumentException();

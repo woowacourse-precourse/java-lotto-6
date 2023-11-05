@@ -2,38 +2,61 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import lotto.constants.GuideMessage;
-import lotto.validate.Validate;
+import java.util.List;
+import lotto.common.constants.GuideMessage;
+import lotto.common.utils.Utils;
+import lotto.common.validate.Validate;
 
 public class View {
     private final Validate validate;
+    private final Utils util;
 
     public View() {
         validate = new Validate();
+        util = new Utils();
     }
 
     public int buyPriceMessage() {
-        System.out.println(GuideMessage.INPUT_BUY_PRICE_MESSAGE.getMessage());
+        System.out.println(GuideMessage.INPUT_BUY_PRICE.getMessage());
         return inputBuyPrice();
     }
 
     public void buyTicketCountMessage(int ticketCount) {
-        System.out.println(ticketCount + GuideMessage.OUTPUT_BUY_LOTTO_COUNT_MESSAGE.getMessage());
+        System.out.println(ticketCount + GuideMessage.OUTPUT_BUY_LOTTO_COUNT.getMessage());
     }
 
     public void lottoTicketInformation(ArrayList<ArrayList<Integer>> lottoTickets) {
-        for (int i = 0; i < lottoTickets.size(); i++) {
-            System.out.println(lottoTickets.get(i));
+        for (ArrayList<Integer> lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
         }
     }
 
+    public List<Integer> sixHitLottoNumberMessage() {
+        System.out.println(GuideMessage.INPUT_HIT_NUMBER.getMessage());
+        return inputSixHitLottoNumber();
+    }
+
+    private String systemInput() {
+        return Console.readLine();
+    }
+
     private int inputBuyPrice() {
-        String inputPrice = Console.readLine();
+        String inputPrice = systemInput();
         try {
             validate.buyPriceValidate(inputPrice);
             return Integer.parseInt(inputPrice);
         } catch (IllegalArgumentException e) {
             return inputBuyPrice();
+        }
+    }
+
+    private List<Integer> inputSixHitLottoNumber() {
+        List<String> inputSixNumber = util.stringToStringList(systemInput());
+        try {
+            validate.sixHitLottoNumberValidate(inputSixNumber);
+            return util.stringListToIntegerList(inputSixNumber);
+        } catch (IllegalArgumentException e) {
+            return inputSixHitLottoNumber();
         }
     }
 }

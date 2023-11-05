@@ -9,6 +9,7 @@ public class LottoController {
 
     public void startLotto() {
         buyLotto();
+        chooseHitLottoNumber();
     }
 
     private void buyLotto() {
@@ -16,6 +17,11 @@ public class LottoController {
         System.out.println();
         buyLottoPrice(buy);
         lottoTicket(buy);
+    }
+
+    private void chooseHitLottoNumber() {
+        view.sixHitLottoNumberMessage();
+        // sixHitNumber, bonusHitNumber
     }
 
     private void buyLottoPrice(Buy buy) {

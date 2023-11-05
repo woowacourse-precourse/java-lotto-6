@@ -13,13 +13,23 @@ import lotto.domain.WinningLotto;
 public class LottoService {
 
     public Map<LottoResult, Integer> getLottoResult(Lottos lottos, WinningLotto winningLotto) {
-        Map<LottoResult, Integer> lottoResult = new HashMap<>();
+
+        Map<LottoResult, Integer> lottoResult = lottoResultInitialize();
         for (Lotto lotto : lottos.getLottos()) {
             int correctCount = checkLotto(lotto, winningLotto.getAnswerLotto());
             boolean hasBonus = checkBonus(lotto, winningLotto.getBonusNumber());
             LottoResult rank = LottoResult.findRank(correctCount, hasBonus);
+            if(rank != null) {
+                lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+            }
+        }
+        return lottoResult;
+    }
 
-            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+    private Map<LottoResult, Integer> lottoResultInitialize() {
+        Map<LottoResult, Integer> lottoResult = new HashMap<>();
+        for(LottoResult result : LottoResult.values()){
+            lottoResult.put(result, 0);
         }
         return lottoResult;
     }

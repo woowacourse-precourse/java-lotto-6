@@ -6,9 +6,9 @@ public class Money {
     private int lottoTickets;
     private String money;
 
-    public Money(String input){
-        validate(input);
-        this.money = input;
+    public Money(String money){
+        validate(money);
+        this.money = money;
         moneyToLottoTicket();
     }
 

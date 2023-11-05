@@ -8,20 +8,20 @@ public class InputView {
 
     private static final PriceFormatValidator priceFormatValidator = new PriceFormatValidator();
     public static int enterPrice() {
-        System.out.println(InputMessage.ENTER_PRICE);
+        System.out.println(InputMessage.ENTER_PRICE.getInputMessage());
         String input = Console.readLine();
         return priceFormatValidator.checkPriceFormat(input);
 
     }
 
     public static String enterWinningNumbers() {
-        System.out.println(InputMessage.ENTER_WINNING_NUMBERS);
+        System.out.println(InputMessage.ENTER_WINNING_NUMBERS.getInputMessage());
         String input = Console.readLine();
         return input;
     }
 
     public static String enterBonusNumbers() {
-        System.out.println(InputMessage.ENTER_BONUS_NUMBERS);
+        System.out.println(InputMessage.ENTER_BONUS_NUMBERS.getInputMessage());
         String input = Console.readLine();
         return input;
     }

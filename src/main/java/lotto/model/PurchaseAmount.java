@@ -18,6 +18,10 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
         }
 
+        if (!isBlankOrEmpty(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        }
+
         if (isZeroOrMinus(amount)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
         }
@@ -38,6 +42,10 @@ public class PurchaseAmount {
 
     private boolean isBeingDivided(String amount) {
         return Integer.parseInt(amount) % 1000 == 0;
+    }
+
+    private boolean isBlankOrEmpty(String amount) {
+        return amount.isBlank() || amount.isEmpty();
     }
 
     public int getAmount() {

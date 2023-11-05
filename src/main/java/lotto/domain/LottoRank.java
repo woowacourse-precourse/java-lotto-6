@@ -29,4 +29,25 @@ public enum LottoRank {
     public String getMessage(){
         return this.message;
     }
+
+    private boolean matchHit(int hit){
+        return this.hit == hit;
+    }
+
+    public static LottoRank valueOf(int hit, boolean matchBonus){
+        if(hit < 3){
+            return MISS;
+        }
+
+        if(SECOND.matchHit(hit) && matchBonus){
+            return SECOND;
+        }
+
+        for(LottoRank rank : values()){
+            if(rank.matchHit(hit) && rank != SECOND){
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }

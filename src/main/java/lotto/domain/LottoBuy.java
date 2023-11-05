@@ -22,11 +22,7 @@ public class LottoBuy {
         }
     }
 
-    public void calculateLottoQuantity(){
-        this.quantity = money / MONEY_UNIT;
-    }
-
     public Integer getQuantity(){
-        return this.quantity;
+        return this.quantity = money / MONEY_UNIT;
     }
 }

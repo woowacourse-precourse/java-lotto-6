@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.Service.LottoService;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    LottoService lottoService = new LottoService();
     public void play() {
         try {
             buy();
@@ -19,14 +17,13 @@ public class LottoController {
     }
 
     public void buy(){
-        Integer buyMoney = InputView.inputBuyMoney();
-        LottoBuy lottoBuy = new LottoBuy(buyMoney);
+        LottoBuy lottoBuy = new LottoBuy(InputView.inputBuyMoney());
         OutputView.outputLottoNum(lottoBuy.getQuantity());
 
-        playLotto(lottoBuy.getQuantity());
+        playerLotto(lottoBuy.getQuantity());
     }
 
-    public void playLotto(int lottoQuantity){
+    public void playerLotto(int lottoQuantity){
         LottoSet lottoSet = new LottoSet(lottoQuantity);
         OutputView.outputLottoSet(lottoSet);
 
@@ -34,13 +31,13 @@ public class LottoController {
     }
 
     public void inputNumber(LottoSet lottoSet){
-        LottoWinning lottoWinning = new LottoWinning(InputView.inputLottoWinning());
-        LottoBonus lottoBonus = new LottoBonus(lottoWinning.getNumbers(), InputView.inputLottoBonus());
+        Lotto lottoWinning = new Lotto(InputView.inputLottoWinning());
+        LottoBonus lottoBonus = new LottoBonus(lottoWinning, InputView.inputLottoBonus());
 
         generateResult(lottoSet, lottoWinning, lottoBonus);
     }
 
-    public void generateResult(LottoSet lottoSet, LottoWinning lottoWinning, LottoBonus lottoBonus){
+    public void generateResult(LottoSet lottoSet, Lotto lottoWinning, LottoBonus lottoBonus){
         LottoResult lottoResult = new LottoResult(lottoService.generateMap(lottoSet, lottoWinning, lottoBonus));
 
     }

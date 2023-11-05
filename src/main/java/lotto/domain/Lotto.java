@@ -34,6 +34,15 @@ public class Lotto {
 
     public static List<Integer> sortLotto(List<Integer> lotto){
         return lotto.stream().sorted().collect(Collectors.toList());
+    }
 
+    public int countHit(Lotto lottoWinning){
+        return (int) numbers.stream()
+                .filter(lottoWinning::containNumber)
+                .count();
+    }
+
+    public boolean containNumber(int number){
+        return numbers.contains(number);
     }
 }

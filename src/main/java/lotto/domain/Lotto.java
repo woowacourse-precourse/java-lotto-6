@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.Validate;
+
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +16,8 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        Validate.hasDuplicateNumbers(this.numbers);
     }
 
     // TODO: 추가 기능 구현

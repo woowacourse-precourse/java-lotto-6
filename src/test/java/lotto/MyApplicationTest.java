@@ -71,4 +71,8 @@ public class MyApplicationTest {
     protected static List<String> outputs() {
         return List.copyOf(outputs);
     }
+
+    protected static void println(String str) {
+        systemOut.println(str);
+    }
 }

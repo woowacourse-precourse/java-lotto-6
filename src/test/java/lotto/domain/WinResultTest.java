@@ -22,4 +22,18 @@ public class WinResultTest {
 
     }
 
+    @DisplayName("당첨 번호와 일치하는 값 개수가 2초과인지 확인")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4})
+    void isOverTwo(int rankValue) {
+        assertEquals(winResult.isOverTwo(rankValue), true);
+    }
+
+    @DisplayName("당첨 번호와 일치하는 값 개수가 2이하인지 확인")
+    @Test
+    void isNotOverTwo() {
+        int rankValue = 2;
+        assertEquals(winResult.isOverTwo(rankValue), false);
+    }
+
 }

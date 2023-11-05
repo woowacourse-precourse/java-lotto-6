@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.IncomeRate;
 import lotto.domain.LottoPack;
 import lotto.domain.Result;
 import lotto.util.Printer.IPrinter;
@@ -28,19 +29,24 @@ public class OutputView {
     }
 
     private String buildLottoPackMessage(LottoPack lottoPack) {
-        return String.format(BOUGHT_LOTTO_PACK.getMessage(), lottoPack.size());
+        return String.format(BOUGHT_LOTTO_PACK_MESSAGE.getMessage(), lottoPack.size());
     }
 
     public void printGetWinningNumbers() {
-        printer.println(GET_WINNING_NUMBERS.getMessage());
+        printer.println(GET_WINNING_NUMBERS_MESSAGE.getMessage());
     }
 
     public void printGetBonusNumber() {
-        printer.println(GET_BONUS_NUMBER.getMessage());
+        printer.println(GET_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
     public void printResult(Result result) {
+        printer.println(LOTTO_RESULT_MESSAGE.getMessage());
         printer.println(result.toString());
+    }
+
+    public void printIncomeRate(IncomeRate incomeRate) {
+        printer.println(String.format(INCOME_RATE_MESSAGE.getMessage(), incomeRate.getIncomeRate()));
     }
 
     public void printException(Exception exception) {

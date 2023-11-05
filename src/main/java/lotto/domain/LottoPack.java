@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 import lotto.util.NumberGenerator.INumberGenerator;
 import lotto.util.NumberGenerator.NumberGenerator;
@@ -27,10 +28,13 @@ public class LottoPack {
         return lottoPack.size();
     }
 
+    public int getPrice() {
+        return lottoPack.size() * LottoConfig.LOTTO_PRICE;
+    }
+
     public Result calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
 
         EnumMap<LottoRank, Integer> map = new EnumMap<>(LottoRank.class);
-
         Arrays.stream(LottoRank.values()).forEach(lottoRank -> map.put(lottoRank, 0));
 
         lottoPack.stream()

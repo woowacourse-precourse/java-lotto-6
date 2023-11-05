@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoPack;
-import lotto.domain.Money;
-import lotto.domain.WinningNumber;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,14 +19,17 @@ public class LottoController {
     public void play() {
 
         LottoPack lottoPack = buyLottoPack();
-
         outputView.newline();
-
         WinningNumbers winningNumbers = loop(this::getWinningNumbers);
         outputView.newline();
         WinningNumber bonusNumber = loop(this::getBonusNumber);
+        outputView.newline();
 
-        outputView.printResult(lottoPack.calculate(winningNumbers, bonusNumber));
+        Result result = lottoPack.calculate(winningNumbers, bonusNumber);
+        outputView.printResult(result);
+
+        IncomeRate incomeRate = new IncomeRate(lottoPack.getPrice(), result.getIncome());
+        outputView.printIncomeRate(incomeRate);
 
     }
 

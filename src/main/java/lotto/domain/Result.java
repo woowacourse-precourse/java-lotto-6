@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 
 import java.util.ArrayList;
@@ -31,6 +30,12 @@ public class Result {
 
     private String buildLine(LottoRank rank, Integer count) {
         return rank.toString() + String.format(" - %d개", count);
+    }
+
+    public int getIncome() {
+        return result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 
 }

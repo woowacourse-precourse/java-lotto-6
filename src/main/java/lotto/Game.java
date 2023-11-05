@@ -20,10 +20,19 @@ public class Game {
         }
         int lottoNum = (int) (Math.round(purchaseAmount / 1000));
 
+        System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningNum = readLine().split(",");
 
         if (winningNum.length != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+        }
+
+        try {
+            for (String num : winningNum) {
+                int number = Integer.parseInt(num);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값은 숫자여야합니다.");
         }
 
     }

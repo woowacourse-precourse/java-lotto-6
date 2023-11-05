@@ -79,6 +79,15 @@
 
 ## DTO
 
+- [x] DTO: DTO 자체를 의미하는 추상클래스
+    - [x] 내부 클래스로 Input을 가진다.
+        - [x] Input은 DTO를 상속
+        - [x] 입력 뷰에서 필요한 정보들은 모두 DTO.Input을 상속
+    - [x] 내부 클래스로 Output을 가진다.
+        - [x] Output은 DTO를 상속
+        - [x] 출력 뷰에서 필요한 정보들은 모두 DTO.Output을 상속
+    - DTO 클래스를 만든 이유: DTO 클래스를 인식하기 위해
+
 - [x] PurchasedLottoDTO : PurchasedLotto 대해 필요한 정보
     - [x] Input : 입력에 필요한 PurchasedLotto 정보
         - [x] 총 구입 금액

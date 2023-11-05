@@ -12,11 +12,11 @@ public class Application {
         LotteryCommittee committee = new LotteryCommittee();
 
         buyerService.tryBuy(buyer);
-        buyer.printLottos();
-        committee.getWeeklyNumber();
-        buyerService.tryCheck(buyer);
-        buyer.printResult();
-        buyerService.tryCalculate(buyer);
-        buyer.printProfitRate();
+//        buyer.printLottos();
+//        committee.getWeeklyNumber();
+//        buyerService.tryCheck(buyer);
+//        buyer.printResult();
+//        buyerService.tryCalculate(buyer);
+//        buyer.printProfitRate();
     }
 }

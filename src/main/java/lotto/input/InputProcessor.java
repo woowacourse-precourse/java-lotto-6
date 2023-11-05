@@ -5,6 +5,14 @@ import java.util.List;
 
 import static lotto.GameConfig.*;
 
+//todo :
+/*
+ * todo
+ *  1. 도메인과 관련된 validate 로직들은 LottoGame 또는 다른 클래스로 역할 분리할 필요 있음.
+ *  2. 에러 메세지 상수 뽑아내기
+ *  3. 메소드, 지역변수명이 역할을 더 잘 나타내도록 수정하기.
+ *  4. private methods -> static 여부 결정하기
+ * */
 public class InputProcessor {
     private final InputProvider inputProvider;
 
@@ -15,7 +23,7 @@ public class InputProcessor {
     public Integer getUserPurchaseMoney() {
         String input = inputProvider.read();
         validatePurchaseMoneyInput(input);
-        return Integer.valueOf(input);
+        return Integer.parseInt(input);
     }
 
     public List<Integer> getWinningNumbers() {
@@ -24,24 +32,40 @@ public class InputProcessor {
         return parseWinningNumberInputToList(input);
     }
 
-    private List<Integer> parseWinningNumberInputToList(String input) {
-        String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
-        return Arrays.stream(separatedInput)
-                .map(Integer::parseInt)
-                .toList();
+    private void validatePurchaseMoneyInput(String input) {
+        validateIsInteger(input);
+        validatePurchaseMoneyUnit(input);
     }
 
     private void validateWinningNumberInput(String input) {
         String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
 
-        if (!hasValidNumberOfBalls(separatedInput)) {
-            throw new IllegalArgumentException("\',\'으로 구분된 여섯 개의 숫자를 입력해주십시오.");
+        validateNumberOfBalls(separatedInput);
+        Arrays.stream(separatedInput)
+                .forEach(this::validateIsInteger);
+        Arrays.stream(separatedInput)
+                .forEach((numberString) -> {
+                    int number = Integer.parseInt(numberString);
+                    validateRangeOfNumber(number);
+                });
+        validateDuplication(separatedInput);
+    }
+
+    private void validateDuplication(String[] separatedInput) {
+        if (containsDuplication(separatedInput)) {
+            throw new IllegalArgumentException("중복된 숫자가 존재할 수 없습니다.");
         }
-        if (!hasValidRangeOfNumber(separatedInput)) {
+    }
+
+    private static void validateRangeOfNumber(int number) {
+        if (hasInvalidRange(number)) {
             throw new IllegalArgumentException("1에서 45 사이의 정수를 입력해주십시오.");
         }
-        if (!containsDuplication(separatedInput)) {
-            throw new IllegalArgumentException("중복된 숫자가 존재할 수 없습니다.");
+    }
+
+    private void validateNumberOfBalls(String[] separatedInput) {
+        if (!hasValidNumberOfBalls(separatedInput)) {
+            throw new IllegalArgumentException("','으로 구분된 여섯 개의 숫자를 입력해주십시오.");
         }
     }
 
@@ -49,31 +73,18 @@ public class InputProcessor {
         long distinctNumberCount = Arrays.stream(separatedInput)
                 .distinct()
                 .count();
-        return distinctNumberCount == separatedInput.length;
+        return distinctNumberCount != separatedInput.length;
     }
 
-    // todo: 가독성을 높이기 위해 로직 분리 or 수정 필요
-    private boolean hasValidRangeOfNumber(String[] seperatedInput) {
-        long numberOfInteger = Arrays.stream(seperatedInput)
-                .filter(InputProcessor::isNotInteger)
-                .count();
-        if (seperatedInput.length != numberOfInteger) {
-            return false;
-        }
-        return Arrays.stream(seperatedInput).anyMatch((t) -> {
-            int number = Integer.parseInt(t);
-            return number < 1 || number > 45;
-        });
+    private static boolean hasInvalidRange(int number) {
+        return number < 1 || number > 45;
     }
 
     private boolean hasValidNumberOfBalls(String[] input) {
         return input.length == NUMBER_OF_LOTTO_NUMBERS;
     }
 
-    private void validatePurchaseMoneyInput(String input) {
-        if (isNotInteger(input)) {
-            throw new IllegalArgumentException("정수를 입력해주십시오.");
-        }
+    private void validatePurchaseMoneyUnit(String input) {
         if (!isMultipleOfUnit(Integer.parseInt(input))) {
             throw new IllegalArgumentException("최소 단위는 ~입니다.");
         }
@@ -83,12 +94,18 @@ public class InputProcessor {
         return input % 1000 == 0;
     }
 
-    private static boolean isNotInteger(String str) {
+    private void validateIsInteger(String str) {
         try {
             Integer.parseInt(str);
-            return false;
         } catch (NumberFormatException e) {
-            return true;
+            throw new IllegalArgumentException("정수를 입력해주십시오");
         }
+    }
+
+    private List<Integer> parseWinningNumberInputToList(String input) {
+        String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
+        return Arrays.stream(separatedInput)
+                .map(Integer::parseInt)
+                .toList();
     }
 }

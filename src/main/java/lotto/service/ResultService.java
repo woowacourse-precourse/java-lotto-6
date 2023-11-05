@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
@@ -38,7 +37,7 @@ public class ResultService {
 
         //등수별 결과 출력
         for(int rank=5; rank>0;rank--){
-            View.result(RankingRepository.getResultBy(rank), lotteryTracker.countLottoIn(rank));
+            View.result(RankingRepository.getPrizeBy(rank), lotteryTracker.countLottoIn(rank));
         }
     }
 }

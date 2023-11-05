@@ -20,21 +20,8 @@ public class LotteryTracker {
         return result.get(index).size();
     }
 
-    public void matchingNumber(int cnt, Lotto buyLotto, int bonusNumber){
-        if(cnt==3){
-            result.get(5).add(cnt);}
-        else if(cnt==4){
-            result.get(4).add(cnt);}
-        else if(cnt==5){
-            if(buyLotto.has(bonusNumber)){
-                result.get(2).add(cnt);
-            }
-            result.get(3).add(cnt);
-        }
-        else if(cnt==6){
-            result.get(1).add(cnt);}
+    public void matchingNumber(int cnt, Lotto buyLotto, int bonusNum){
+        int rank = buyLotto.findRank(cnt, bonusNum);
+        result.get(rank).add(cnt);
     }
-
-
-
 }

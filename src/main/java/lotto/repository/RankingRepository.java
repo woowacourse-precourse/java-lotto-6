@@ -36,7 +36,7 @@ public class RankingRepository {
         ranks.get(1).add(FIRST.getPrize());
     }
 
-    public static List<String> getResultBy(int index){
-        return ranks.get(index);
+    public static List<String> getPrizeBy(int rank){
+        return ranks.get(rank);
     }
 }

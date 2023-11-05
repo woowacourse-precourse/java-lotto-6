@@ -59,8 +59,16 @@ public class Lotto {
         return cnt;
     }
 
-    public boolean has(int bonusNumber){
-        return numbers.contains(bonusNumber);
+    public int findRank(int correctNum,int bonusNum){
+        if(correctNum ==3) return 5;
+        else if(correctNum ==4) return 4;
+        else if(correctNum ==5){
+            if(numbers.contains(bonusNum)) return 2;
+            return 3;
+        } else if (correctNum ==6) {
+            return 1;
+        }
+        return 0;
     }
 
     // TODO: 추가 기능 구현

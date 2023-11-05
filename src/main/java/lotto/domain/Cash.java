@@ -3,7 +3,7 @@ package lotto.domain;
 public class Cash {
     private static final int LOTTO_PRICE = 1000;
 
-    Integer amount;
+    private final Integer amount;
 
     public Cash(Integer amount) {
         validate(amount);
@@ -18,5 +18,9 @@ public class Cash {
 
     private boolean isAmountNotInMultipleOfLottoPrice(Integer amount) {
         return amount % LOTTO_PRICE != 0;
+    }
+
+    public Integer getAmount() {
+        return amount;
     }
 }

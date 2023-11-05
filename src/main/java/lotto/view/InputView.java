@@ -35,4 +35,12 @@ public class InputView {
         return winningNumberList;
     }
 
+    private static int conventToInt(String inputNumber) {
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            ExceptionMessage.typeException();
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private static final int NUMBER_OF_LOTTO = 6;
+    private static final int COUNT_OF_LOTTO_NUMBERS = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

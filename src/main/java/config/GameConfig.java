@@ -13,11 +13,10 @@ public class GameConfig {
     private InputView inputView;
     private GameController gameController;
     private LottoService lottoService;
-    private WinningLotto winningLotto;
     private UserLottoVO userLottoVO;
     private GameView gameView;
 
-    private LottoLauncher() {
+    private GameConfig() {
     }
 
     public static GameConfig getInstance() {

@@ -24,6 +24,10 @@ public class InputView {
         }
     }
 
+    public static String inputBonusNum(){
+        return Console.readLine();
+    }
+
     public static List<Integer> parseStirngToInt(String input){
         List<Integer> winningNumber = new ArrayList<>();
         for(String number : input.split(",")){

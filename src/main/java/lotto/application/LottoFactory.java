@@ -20,10 +20,14 @@ public class LottoFactory {
                 .forEach(i -> LOTTO_NUMBER_CACHE.put(i, new LottoNumber(i)));
     }
 
+    private final NumberGenerator numberGenerator;
+
+    public LottoFactory(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
     public Lotto createLottoByAuto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue(), LOTTO_COUNT.getValue()
-        );
+        List<Integer> numbers = numberGenerator.generateNumbers(LOTTO_COUNT.getValue());
         return new Lotto(numbers.stream()
                 .map(LOTTO_NUMBER_CACHE::get)
                 .toList()

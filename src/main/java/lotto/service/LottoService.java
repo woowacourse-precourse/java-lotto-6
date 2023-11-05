@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.domain.constant.LottoPrize;
@@ -16,7 +16,7 @@ public class LottoService {
 
     private final NumberGenerator numberGenerator;
     private WinningLotto winningLotto;
-    private List<Lotto> lottos;
+    private LottoTickets lottoTickets;
     private Money money;
     private LottoResult lottoResult;
 
@@ -28,13 +28,11 @@ public class LottoService {
     public List<List<Integer>> generateLottos(String moneyInput) {
         this.money = Money.of(moneyInput);
 
-        List<List<Integer>> generateNumber = getGenerateNumbers();
+        List<List<Integer>> generateNumbers = getGenerateNumbers();
 
-        this.lottos = generateNumber.stream()
-                .map(numbers -> new Lotto(numbers))
-                .collect(Collectors.toList());
+        this.lottoTickets = LottoTickets.generateLottos(generateNumbers);
 
-        return generateNumber;
+        return generateNumbers;
     }
 
     public void createWinningLotto(List<String> inputLotto, String bonusInput) {
@@ -42,7 +40,7 @@ public class LottoService {
     }
 
     public Map<LottoPrize, Integer> getLottoResults() {
-        this.lottoResult = LottoResult.createLottoResult(winningLotto, lottos);
+        this.lottoResult = LottoResult.createLottoResult(winningLotto, lottoTickets);
 
         return lottoResult.getLottoPrizesHistory();
     }

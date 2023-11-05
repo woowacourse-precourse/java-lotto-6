@@ -19,7 +19,9 @@ public class LottoResult {
         this.lottoPrizes = lottoPrizes;
     }
 
-    public static LottoResult createLottoResult(WinningLotto winningLotto, List<Lotto> lottos) {
+    public static LottoResult createLottoResult(WinningLotto winningLotto, LottoTickets lottoTickets) {
+        List<Lotto> lottos = lottoTickets.getLottos();
+
         List<LottoPrize> lottoPrizes = lottos.stream()
                 .map(lotto -> getEachLottoResult(winningLotto, lotto))
                 .collect(Collectors.toList());

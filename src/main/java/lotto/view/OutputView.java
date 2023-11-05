@@ -10,6 +10,7 @@ public class OutputView {
     private static final String NEWLINE = System.lineSeparator();
 
     private static final String NUMBER_OF_LOTTOS_MESSAGE_FORMAT = "%d개를 구매했습니다.";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
 
     public void printLottos(List<LottoDto> lottos) {
         newLine();
@@ -50,5 +51,9 @@ public class OutputView {
 
     public void printRateOfResult(double rateOfReturn) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, errorMessage));
     }
 }

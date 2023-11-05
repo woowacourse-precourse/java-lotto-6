@@ -43,4 +43,8 @@ public class LottoView {
         }
     }
 
+    public void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
+
 }

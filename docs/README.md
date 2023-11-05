@@ -9,8 +9,8 @@
   - [x] 당첨번호 ArrayList 만들기 - generateLottoWinningNumbers()
 - [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 계산하기 - calculateWinningDetails()
   - [x] 당첨 내역 출력하기 - printWinningInformation()
-- [ ] 수익률 계산하기
-  - [ ] 수익률 출력하기
+- [x] 수익률 계산하기 - calculateProfitRate()
+  - [x] 수익률 출력하기 - printProfitRate()
 - [ ] 전 과정을 진행하는 컨트롤러 생성
 - [ ] 예외 상황시 에러 문구를 출력
 

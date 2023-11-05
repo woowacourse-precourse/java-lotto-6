@@ -1,12 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -32,12 +26,8 @@ public class LottoController {
 
         Rank[] ranks = lottoService.calculateWinningDetails(lottos, winningNumbers, bonusNumber);
         lottoView.printWinningInformation(ranks);
+
+        double profitRate = lottoService.calculateProfitRate(ranks);
+        lottoView.printProfitRate(profitRate);
     }
-
-
-
-
-
-
-
 }

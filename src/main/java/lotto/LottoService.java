@@ -42,12 +42,27 @@ public class LottoService {
         return ranks;
     }
 
+    /**
+     * 몇 번째 rank인지 검사
+     */
     public void checkRank(Rank[] ranks, Lotto lotto) {
         for(int i = 0; i < ranks.length; ++i) {
             if(ranks[i].getRank() == lotto.getRank().getRank()) {
                 ranks[i].setAmount();
             }
         }
+    }
+
+    public double calculateProfitRate(Rank[] ranks) {
+        double profitRate= 0.0;
+        double sum = 0;
+        for (Rank rank : ranks) {
+            profitRate += rank.getMoney() * rank.getAmount();
+            sum += rank.getAmount();
+        }
+        profitRate = profitRate / sum;
+        profitRate = Math.round(profitRate * 100.0) / 100.0;
+        return profitRate;
     }
 
 }

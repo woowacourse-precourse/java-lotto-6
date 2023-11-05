@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.view.constants.Notice.PURCHASE_RESULT;
+import static lotto.constants.Notice.PURCHASE_RESULT;
 
 import java.util.List;
 import lotto.domain.Lotto;

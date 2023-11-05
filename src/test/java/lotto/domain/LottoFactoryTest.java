@@ -35,6 +35,20 @@ public class LottoFactoryTest {
                 .allMatch(number -> number >= 1 && number <= 45);
     }
 
+    @DisplayName("각 로또 티켓은 정렬되어 있어야 한다.")
+    @Test
+    void testLottoTicketsShouldBeSorted() {
+        // given
+        LottoFactory lottoFactory = new LottoFactory(1);
+
+        // when
+        Lotto ticket = lottoFactory.getTickets().get(0);
+
+        // then
+        assertThat(ticket.getNumbers()).isSorted();
+    }
+
+
 
 }
 

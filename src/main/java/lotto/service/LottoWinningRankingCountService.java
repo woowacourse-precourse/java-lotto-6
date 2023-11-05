@@ -1,12 +1,13 @@
-package lotto.domain.winning;
+package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.winning.LottoWinningRanking;
+import lotto.domain.winning.LottoWinningSet;
 import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
-
-public class LottoWinningRankingCalculator {
+public class LottoWinningRankingCountService {
     public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningSet winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 

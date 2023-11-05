@@ -4,12 +4,12 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.winning.LottoWinningSetPicker;
 import lotto.domain.winning.LottoWinningRanking;
-import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.winning.LottoWinningSet;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
 import lotto.service.LottoProfitCalculatorService;
 import lotto.service.LottoStoreService;
+import lotto.service.LottoWinningRankingCountService;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,15 +22,15 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoStoreService lottoStoreService;
     private final LottoWinningSetPicker lottoWinningSetPicker;
-    private final LottoWinningRankingCalculator lottoWinningRankingCalculator;
+    private final LottoWinningRankingCountService lottoWinningRankingCountService;
     private final LottoProfitCalculatorService lottoProfitCalculatorService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoStoreService lottoStoreService, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCalculator lottoWinningRankingCalculator, LottoProfitCalculatorService lottoProfitCalculatorService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoStoreService lottoStoreService, LottoWinningSetPicker lottoWinningSetPicker, LottoWinningRankingCountService lottoWinningRankingCountService, LottoProfitCalculatorService lottoProfitCalculatorService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoStoreService = lottoStoreService;
         this.lottoWinningSetPicker = lottoWinningSetPicker;
-        this.lottoWinningRankingCalculator = lottoWinningRankingCalculator;
+        this.lottoWinningRankingCountService = lottoWinningRankingCountService;
         this.lottoProfitCalculatorService = lottoProfitCalculatorService;
     }
 
@@ -122,7 +122,7 @@ public class LottoController {
 
     private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, BonusNumber bonusNumber) {
         LottoWinningSet lottoWinningSet = new LottoWinningSet(winningLotto, bonusNumber);
-        return lottoWinningRankingCalculator.countWinningRankings(userLottos, lottoWinningSet);
+        return lottoWinningRankingCountService.countWinningRankings(userLottos, lottoWinningSet);
     }
 
     private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {

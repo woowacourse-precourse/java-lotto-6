@@ -3,10 +3,10 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.domain.generator.LottoAutoGenerator;
 import lotto.domain.winning.LottoWinningSetPicker;
-import lotto.domain.winning.LottoWinningRankingCalculator;
 import lotto.domain.generator.LottoManualGenerator;
 import lotto.service.LottoProfitCalculatorService;
 import lotto.service.LottoStoreService;
+import lotto.service.LottoWinningRankingCountService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,10 +18,10 @@ public class Application {
         LottoManualGenerator lottoManualGenerator = new LottoManualGenerator();
         LottoWinningSetPicker lottoWinningSetPicker = new LottoWinningSetPicker();
         LottoStoreService lottoStoreService = new LottoStoreService(lottoAutoGenerator, lottoManualGenerator);
-        LottoWinningRankingCalculator lottoWinningRankingCalculator = new LottoWinningRankingCalculator();
+        LottoWinningRankingCountService lottoWinningRankingCountService = new LottoWinningRankingCountService();
         LottoProfitCalculatorService lottoProfitCalculatorService = new LottoProfitCalculatorService();
 
-        LottoController lottoController = new LottoController(inputView, outputView, lottoStoreService, lottoWinningSetPicker, lottoWinningRankingCalculator, lottoProfitCalculatorService);
+        LottoController lottoController = new LottoController(inputView, outputView, lottoStoreService, lottoWinningSetPicker, lottoWinningRankingCountService, lottoProfitCalculatorService);
         lottoController.run();
     }
 }

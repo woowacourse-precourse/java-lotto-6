@@ -18,6 +18,8 @@ public class UIView {
     private static final String FIVE_CORRECT = "5개 일치 (1,500,000원) - ";
     private static final String FIVE_BONUS_CORRECT = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String SIX_CORRECT = "6개 일치 (2,000,000,000원) - ";
+    private static final String PROFIT_PERCENTAGE = "총 수익률은 ";
+    private static final String PERCENTAGE = "%입니다.";
     public static void printPurchasePriceInstruction() {
         System.out.println(ENTER_PURCHASE_PRICE);
     }
@@ -52,5 +54,9 @@ public class UIView {
         System.out.println(FIVE_CORRECT + Prize.FIVE.getCount() + COUNT);
         System.out.println(FIVE_BONUS_CORRECT + Prize.FIVE_BONUS.getCount() + COUNT);
         System.out.println(SIX_CORRECT + Prize.SIX.getCount() + COUNT);
+    }
+
+    public static void printProfit(double roundedProfit) {
+        System.out.println(PROFIT_PERCENTAGE + roundedProfit +PERCENTAGE);
     }
 }

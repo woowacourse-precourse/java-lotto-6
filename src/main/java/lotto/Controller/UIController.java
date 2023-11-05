@@ -81,7 +81,15 @@ public class UIController {
 
     private static List<Integer> getWinningNumber() {
         String[] line = Console.readLine().split(",");
+        lineLengthCheck(line);
 
         return null;
+    }
+
+
+    private static void lineLengthCheck(String[] line) {
+        if (line.length != 6) {
+            throw new IllegalArgumentException("6개의 숫자만 입력 받을수 있습니다.");
+        }
     }
 }

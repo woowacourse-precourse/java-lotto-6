@@ -26,4 +26,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    // 보너스 번호가 포함되어 있는지 확인하는 메서드
+    public boolean isContainedBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

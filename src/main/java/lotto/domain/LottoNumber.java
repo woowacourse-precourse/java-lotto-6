@@ -7,19 +7,19 @@ import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
 public class LottoNumber {
     private final int number;
 
-    public LottoNumber(int number) {
+    public LottoNumber(final int number) {
         validateNumberRange(number);
         this.number = number;
     }
 
-    private void validateNumberRange(int number) {
+    private void validateNumberRange(final int number) {
         if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(IS_OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

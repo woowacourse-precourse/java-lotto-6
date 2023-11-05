@@ -8,20 +8,20 @@ import java.util.List;
 public class Lotto {
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<LottoNumber> numbers) {
+    public Lotto(final List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
-    private void validateSize(List<LottoNumber> numbers) {
+    private void validateSize(final List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_COUNT.getValue()) {
             throw new IllegalArgumentException(IS_NOT_LOTTO_COUNT.getMassage());
         }
     }
 
-    private void validateDuplicatedNumber(List<LottoNumber> numbers) {
-        int distinctCount = (int) numbers.stream()
+    private void validateDuplicatedNumber(final List<LottoNumber> numbers) {
+        final int distinctCount = (int) numbers.stream()
                 .distinct()
                 .count();
         if (distinctCount != LOTTO_COUNT.getValue()) {

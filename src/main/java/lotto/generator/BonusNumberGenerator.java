@@ -1,4 +1,4 @@
-package lotto.domain.generator;
+package lotto.generator;
 
 import lotto.domain.model.BonusNumber;
 import lotto.domain.model.WinningNumber;
@@ -12,8 +12,9 @@ public class BonusNumberGenerator {
 
         try {
             winningNumber.validateAlreadyHaveNumber(bonusNumber);
+             BonusNumber validateBonusNumber = new BonusNumber(bonusNumber);
 
-            return new BonusNumber(bonusNumber);
+            return validateBonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 

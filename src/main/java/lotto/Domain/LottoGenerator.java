@@ -17,7 +17,7 @@ public class LottoGenerator {
 
         lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
         List<Integer> generatedLottoNumbersList = new ArrayList<>(lottoNumberList);
-        Collections.sort(generatedLottoNumbersList);
+        Collections.sort(generatedLottoNumbersList); // 필요한가?
 
         return generatedLottoNumbersList;
 

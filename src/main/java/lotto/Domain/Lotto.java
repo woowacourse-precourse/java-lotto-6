@@ -2,16 +2,12 @@ package lotto.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Set;
-
-/*- 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
-        - `numbers`의 접근 제어자인 private을 변경할 수 없다.
-        - `Lotto`에 필드(인스턴스 변수)를 추가할 수 없다.
- */
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,6 +18,7 @@ public class Lotto {
         validateIsNumberDuplicate(numbers);
         validateEachLottoNumber(numbers);
 
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -75,6 +72,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 
 }

@@ -13,11 +13,10 @@ public class CompareResults {
         for (Lotto lotto : purchasedLottos) {
             int matchingCount = countMatchingNumbers(lotto, winningNumbers);
             boolean bonusMatch = lotto.contains(bonusNumber);
-
-            totalMatchingCounts(matchingCounts, matchingCount, bonusMatch);
         }
 
         return matchingCounts;
+
     }
 
     private static int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
@@ -30,19 +29,17 @@ public class CompareResults {
         return count;
     }
 
-    private static int totalMatchingCounts(int[] matchingCounts, int matchingCount, boolean bonusMatch) {
-        if (matchingCount == 6) {
-            matchingCounts[6]++;
-            return 6;
+    private static int[] totalMatchingCounts(int[] matchingCounts, int matchingCount) {
+
+        for (int i = 0; i < 7; i++) {
+
+            if (matchingCount == i)
+            {
+                matchingCounts[i]++;
+            }
         }
 
-        if (matchingCount == 5 && bonusMatch) {
-            matchingCounts[5]++;
-            return 5;
-        }
-
-        matchingCounts[matchingCount]++;
-        return matchingCount;
+        return matchingCounts;
     }
 
     public static long calculatePrizeAmount(int[] matchingCounts) {

@@ -5,9 +5,8 @@ import lotto.View.OutputView;
 
 public class CountLottoAmount {
 
-    public static void countLottoQuantity() {
-        int purchaseAmount = InputView.inputLottoPurchaseAmount() / 1000;
-
-        OutputView.printLottoAmount(purchaseAmount);
+    public static int countLottoQuantity() {
+        int purchaseAmount = InputView.inputLottoPurchaseAmount()/1000;
+        return purchaseAmount;
     }
 }

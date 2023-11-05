@@ -1,5 +1,7 @@
 package lotto.View;
 
+import static lotto.Domain.CountLottoAmount.countLottoQuantity;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Domain.Lotto;
@@ -11,9 +13,9 @@ public class OutputView {
     private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE_MESSAGE = "---";
 
-    public static void printLottoAmount(int purchaseAmount) {
+    public static void printLottoAmount() {
 
-        System.out.println(purchaseAmount + LOTTO_AMOUNT_MESSAGE);
+        System.out.println(countLottoQuantity() + LOTTO_AMOUNT_MESSAGE);
     }
 
     public static void printPurchasedLottos(List<Lotto> lottos) {

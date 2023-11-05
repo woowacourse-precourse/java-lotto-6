@@ -47,7 +47,9 @@ public class Application {
     // 금액 받기.
     private static int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String line = Console.readLine();
+        isInteger(line);
+        return Integer.parseInt(line);
     }
 
     // 당첨 번호 받기.
@@ -71,5 +73,14 @@ public class Application {
     private static int bonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
+    }
+
+    // 숫자 인지 확인
+    private static void isInteger(String strValue) {
+        try {
+            Integer.parseInt(strValue);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력 하세요.");
+        }
     }
 }

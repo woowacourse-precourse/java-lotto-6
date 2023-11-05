@@ -19,7 +19,7 @@ public class InputController {
         return Integer.parseInt(budget);
     }
 
-    public WinningLotto askWinningLottoTicket() {
+    public WinningLotto askWinningLotto() {
         Lotto winningNumbers = askWinningNumbers();
         int bonusNumber = askBonusNumber();
         return new WinningLotto(winningNumbers, bonusNumber);

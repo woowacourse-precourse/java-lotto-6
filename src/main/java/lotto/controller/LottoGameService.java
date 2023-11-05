@@ -30,7 +30,7 @@ public class LottoGameService {
         outputController.printLottoTickets(player.getLottoTickets());
 
         // 외부로부터 당첨 번호, 보너스 번호 입력 받기
-        WinningLotto winningLotto = inputController.askWinningLottoTicket();
+        WinningLotto winningLotto = inputController.askWinningLotto();
 
         // player 스스로 당첨 결과 계산
         player.calculateWinningLottoWithMine(winningLotto);

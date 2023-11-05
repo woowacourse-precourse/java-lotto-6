@@ -47,7 +47,7 @@ public class OutputView {
         for(LottoRank lottoRank: rankCount.keySet()) {
             outMoney += lottoRank.getPrize() * rankCount.get(lottoRank);
         }
-        double ratfOfProfit = (double)outMoney / inMoney * 100.0;
-        System.out.printf("총 수익률은 %.1f%%입니다.", ratfOfProfit);
+        double rateOfProfit = (double)outMoney / inMoney * 100.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfProfit);
     }
 }

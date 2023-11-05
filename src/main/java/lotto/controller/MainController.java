@@ -19,6 +19,7 @@ public class MainController {
         // userLottoController 사용
         int amount = inputView.inputBuyAmount();
         UserLotto userLotto = new UserLotto(userLottoController.buyLotto(amount));
+        outputView.printUserLotto(userLotto.getMyLotto());
 
     }
 }

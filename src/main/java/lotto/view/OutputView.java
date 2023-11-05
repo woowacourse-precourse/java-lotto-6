@@ -1,19 +1,27 @@
 package lotto.view;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.model.Lotto;
 
 public class OutputView {
     public void printLottoCount(int number) {
         System.out.println("\n" + number + "개를 구매했습니다.");
     }
 
-    public void printBoughtLotto(Set<Integer> lotto) {
-        System.out.println(lotto);
+    public void printUserLotto(List<Lotto> lottos) {
+        for(Lotto lotto : lottos) {
+            System.out.println(
+                    lotto.getLotto().stream()
+                            .sorted(Comparator.naturalOrder())
+                            .collect(Collectors.toList())
+            );
+        }
     }
 
-    public void printWinningStatisics(List<Integer> lotto) {
+    public void printWinningStatistics(List<Integer> lotto) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + lotto.get(0) + "개");

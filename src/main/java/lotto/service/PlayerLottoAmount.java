@@ -31,4 +31,12 @@ public class PlayerLottoAmount {
         }
     }
 
+
+    private void validateNatural(int amount) {
+        if (amount <= 0) {
+            ExceptionMessage.naturalException();
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

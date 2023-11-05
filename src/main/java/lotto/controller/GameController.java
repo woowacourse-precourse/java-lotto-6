@@ -75,7 +75,6 @@ public class GameController {
     private Integer createBonusNumber() {
         try {
             Integer bonusNumber = inputView.inputBonusNumber();
-            inputView.close();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
@@ -95,6 +94,7 @@ public class GameController {
 
     private void showStaticResult() {
         outputView.printStaticResult(prizes, cash);
+        inputView.close();
     }
 
 }

@@ -44,7 +44,6 @@ public class Cash {
     }
 
     public Integer getSeed() {
-
         return totalAmount;
     }
 

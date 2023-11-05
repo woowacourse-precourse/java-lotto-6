@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.view.LottoGameMessage.COUNT_OF_PURCHASED_LOTTO;
+import static lotto.view.LottoGameMessage.REQUEST_BONUS_LOTTO_NUMBER;
 import static lotto.view.LottoGameMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.LottoGameMessage.REQUEST_WINNING_LOTTO_NUMBERS;
 
@@ -24,6 +25,11 @@ public class ConsoleOutputView {
     public void requestWinningLottoNumbers() {
         printBlankLine();
         System.out.println(REQUEST_WINNING_LOTTO_NUMBERS.getMessage());
+    }
+
+    public void requestBonusLottoNumber() {
+        printBlankLine();
+        System.out.println(REQUEST_BONUS_LOTTO_NUMBER.getMessage());
     }
 
     private void printBlankLine() {

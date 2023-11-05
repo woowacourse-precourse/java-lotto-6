@@ -21,8 +21,8 @@ public class LottoChecker {
 
         for (int i = 0; i < purchaseLottoTickets.size(); i++) {
             int count = compare(purchaseLottoTickets.get(i), winningLotto);
-            if (count == 5 && includeBonusNumberInLottoNumber(purchaseLottoTickets.get(i), bonusNumber)) {
-                count++;
+            if (count == Lotto.Prize.THIRD.getMatchCount() && includeBonusNumberInLottoNumber(purchaseLottoTickets.get(i), bonusNumber)) {
+                count = Lotto.Prize.SECOND.getMatchCount();
             }
             counts.add(count);
         }

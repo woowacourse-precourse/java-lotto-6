@@ -26,7 +26,7 @@ public class LottoUtil {
 
     public static void validateAmount(int amount) {
         if (amount % 1000 != 0) {
-            System.out.println("[ERROR] 1000원 단위로 입력해 주세요.");
+            ErrorMessage.divisibleException();
             throw new IllegalArgumentException();
         }
     }
@@ -35,7 +35,7 @@ public class LottoUtil {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자형식으로 입력해 주세요.");
+            ErrorMessage.typeException();
 //            throw new IllegalArgumentException(); 예외_테스트 시 에러발생하면 fail이 난다..
         }
 

@@ -3,6 +3,8 @@ package lotto.controller;
 import java.util.List;
 import lotto.mapper.LottoTicketsDtoMapper;
 import lotto.dto.LottoTicketsDto;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.Money;
 import lotto.model.WinningLotto;
@@ -31,8 +33,8 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        List<Integer> winningLotto = Input.inputWinningLotto();
-        int bonusNumber = Input.inputBonusNumber();
+        Lotto winningLotto = new Lotto(Input.inputWinningLotto());
+        BonusNumber bonusNumber = new BonusNumber(Input.inputBonusNumber());
         return new WinningLotto(winningLotto, bonusNumber);
     }
 }

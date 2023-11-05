@@ -1,14 +1,16 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.LottoMaker;
 
 public class LottoFactory {
+    private final LottoMaker lottoMaker;
     private final List<Lotto> lottoTickets;
 
-    public LottoFactory(long ticketAcounts) {
+    public LottoFactory(LottoMaker lottoMaker, long ticketAcounts) {
+        this.lottoMaker = lottoMaker;
         this.lottoTickets = generate(ticketAcounts);
     }
 
@@ -25,7 +27,7 @@ public class LottoFactory {
     }
 
     private Lotto makeLotto() {
-        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> lotto = new ArrayList<>(lottoMaker.genrate());
         Collections.sort(lotto);
         return new Lotto(lotto);
     }

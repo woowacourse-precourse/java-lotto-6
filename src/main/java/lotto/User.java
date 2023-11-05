@@ -47,7 +47,7 @@ class User {
         return lottoPapers;
     }
 
-    public int countSingleLottoMatchNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers){
         int count = 0;
         for(int lottoNum : lottoNumbers){
             if(winningNumbers.contains(lottoNum)){
@@ -64,11 +64,11 @@ class User {
         return false;
     }
 
-    public List<Integer> countAllLottoMatchNumbers(List<List<Integer>> allLotto, List<Integer> winningNumbers){
+    public List<Integer> countAllLottoMatchingNumbers(List<List<Integer>> allLotto, List<Integer> winningNumbers){
         int count = 0;
         List<Integer> lottoMatchingCount = new ArrayList<>();
         for(List<Integer> singleLotto : allLotto){
-            count = countSingleLottoMatchNumbers(singleLotto, winningNumbers);
+            count = countSingleLottoMatchingNumbers(singleLotto, winningNumbers);
             lottoMatchingCount.add(count);
         }
         return lottoMatchingCount;

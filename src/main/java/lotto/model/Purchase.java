@@ -19,4 +19,8 @@ public class Purchase {
     public List<Lotto> getLottos() {
         return lottos.getLottos();
     }
+
+    public Integer getAvailableLotto() {
+        return this.money.availableLottoCount();
+    }
 }

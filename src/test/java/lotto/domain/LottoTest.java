@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -98,6 +100,33 @@ class LottoTest {
 
         // then
         assertEquals(expected, result);
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}, 기대 순위 : {1}, 기대 개수 : {2}")
+    @MethodSource("provideDataForGetRankResult")
+    @DisplayName("로또마다 순위를 구해 결과를 반환: key(순위)-value(개수)")
+    void givenData_whenGetRankResult_thenReturnResult(List<Integer> numbers, Rank expectedRank, int expectedCount) {
+        // given
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Lottos userLottos = new Lottos(List.of(new Lotto(numbers)));
+
+        // when
+        EnumMap<Rank, Integer> result = userLottos.getRankResult(winningLotto);
+
+        // then
+        assertThat(result.containsKey(expectedRank)).isTrue();
+        assertEquals(expectedCount, result.get(expectedRank));
+    }
+
+    static Stream<Arguments> provideDataForGetRankResult() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), Rank.FIRST, 1),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), Rank.SECOND, 1),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 8), Rank.THIRD, 1),
+                Arguments.of(List.of(1, 2, 3, 4, 7, 8), Rank.FOURTH, 1),
+                Arguments.of(List.of(1, 2, 3, 7, 8, 9), Rank.FIFTH, 1),
+                Arguments.of(List.of(1, 2, 7, 8, 9, 10), Rank.UNRANKED, 1)
+        );
     }
 
 }

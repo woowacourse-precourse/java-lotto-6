@@ -1,0 +1,46 @@
+package lotto.domain;
+
+import java.util.Arrays;
+
+public enum Rank {
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
+    UNRANKED(0, 0);
+
+    private final int matchingCount;
+    private final int reward;
+
+    Rank(final int matchingCount, final int reward) {
+        this.matchingCount = matchingCount;
+        this.reward = reward;
+    }
+
+    public static Rank find(final int matchingCount, final boolean bonusNumberExistence) {
+        if (isSecond(matchingCount, bonusNumberExistence)) {
+            return SECOND;
+        }
+        if (isThird(matchingCount, bonusNumberExistence)) {
+            return THIRD;
+        }
+        return findByMatchingCount(matchingCount);
+    }
+
+    private static boolean isSecond(final int matchingCount, final boolean bonusNumberExistence) {
+        return matchingCount == SECOND.matchingCount && bonusNumberExistence;
+    }
+
+    private static boolean isThird(final int matchingCount, final boolean bonusNumberExistence) {
+        return matchingCount == THIRD.matchingCount && !bonusNumberExistence;
+    }
+
+    private static Rank findByMatchingCount(final int matchingCount) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> matchingCount == rank.matchingCount)
+                .findFirst()
+                .orElse(UNRANKED);
+    }
+
+}

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.NumberGenerator;
@@ -19,6 +20,7 @@ public class LottoController {
         List<Lotto> userLottos = createLotto(ticketCount);
         OutputView.printUserLottos(userLottos);
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
+        BonusNumber bonusNumber = getValidBonusNumberInput();
     }
 
     private Money getValidMoneyInput() {
@@ -59,5 +61,15 @@ public class LottoController {
         return winningNumbers;
     }
 
-
+    private BonusNumber getValidBonusNumberInput() {
+        BonusNumber bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                bonusNumber = new BonusNumber(InputView.getBonusNumberInput());
+            } catch (IllegalArgumentException e) {
+                OutputView.printException(e);
+            }
+        }
+        return bonusNumber;
+    }
 }

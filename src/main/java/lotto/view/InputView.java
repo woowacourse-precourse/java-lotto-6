@@ -57,4 +57,17 @@ public class InputView {
             return false;
         }
     }
+
+    public static int getBonusNumberInput() {
+        System.out.println("보너스를 입력하세요.");
+        String inputBonusNumber = Console.readLine();
+        validateIntegerForInputBonusNumber(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
+    }
+
+    private static void validateIntegerForInputBonusNumber(String input) {
+        if (!isInteger(input)) {
+            throw new IllegalArgumentException("보너스 번호는 오로지 정수여야 합니다.");
+        }
+    }
 }

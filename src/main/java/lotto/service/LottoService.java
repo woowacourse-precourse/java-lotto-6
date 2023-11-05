@@ -35,7 +35,7 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public Integer compareMyLottoWithWinningLotto(List<Integer> winningLotto, List<Integer> myLotto) {
+    public Integer countMatchingWinningNumbers(List<Integer> winningLotto, List<Integer> myLotto) {
 
         Integer countValue = 0;
 
@@ -55,13 +55,7 @@ public class LottoService {
         List<List<Integer>> myLotto = generateRandomLottoNumbers(8);
 
         for (int i = 0; i < 8; i++) {
-            compareMyLottoWithWinningLotto(winningLotto, myLotto.get(i));
-        }
-    }
-
-    public void reportLotteryAmount(Integer matchValue) {
-        if (matchValue == 6) {
-
+            countMatchingWinningNumbers(winningLotto, myLotto.get(i));
         }
     }
 

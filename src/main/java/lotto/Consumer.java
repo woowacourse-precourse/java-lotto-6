@@ -1,10 +1,15 @@
 package lotto;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Consumer {
     private int payment = 0;
 
     private final int LOTTO_PRICE = 1000;
+
+    public List<Lotto> lotto = new ArrayList<>();
 
     public int getPayment() {
         return payment;

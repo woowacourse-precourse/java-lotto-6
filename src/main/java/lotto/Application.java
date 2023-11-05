@@ -10,20 +10,22 @@ public class Application {
         Consumer consumer = new Consumer();
 
         int lottoAmount = gameManager.getPaymentForLottoByRead(consumer);
-        List<Lotto> lottos = new ArrayList<>();
 
-        List<Integer> winningNumbers = gameManager.getWinningLottoNumberByRead();
-        int bonusNumber = gameManager.getBonusLottoNumberByRead();
+        List<Integer> winningNumbers = gameManager.getWinningLottoNumberByRead();   // 당첨 번호
+        int bonusNumber = gameManager.getBonusLottoNumberByRead();                // 보너스 번호
+
 
         for (int i = 0; i < lottoAmount; i++) {
             Lotto lotto = new Lotto(gameManager.createRandomNumber());
-            lotto.setWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-            lottos.add(lotto);
+            consumer.lotto.add(lotto);
         }
 
         System.out.println(lottoAmount + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        gameManager.printWinning(lottos);
-        System.out.println("총 수익률은 " + gameManager.getProfitRate(lottos, consumer.getPayment()) + "%입니다.");
+        consumer.lotto.forEach(lotto -> System.out.println(lotto.getNumbers()));
+
+        gameManager.setWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);   // 당첨 번호와 보너스 번호를 GameManager에 저장
+
+        gameManager.printWinning(consumer.lotto);
+        System.out.println("총 수익률은 " + gameManager.getProfitRate(consumer.lotto, consumer.getPayment()) + "%입니다.");
     }
 }

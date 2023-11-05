@@ -45,7 +45,7 @@ public class LottoService {
     public static void countCorrectNumbers(List<Lotto> lottoTickets) {
         List<Integer> amountOfCorrectNumbers = new ArrayList<>();
         for (Lotto lottoTicket : lottoTickets) {
-            amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket, winningNumbers));
+            amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket));
         }
     }
     public static void compareWithBonusNumber(int bonusNumber) {

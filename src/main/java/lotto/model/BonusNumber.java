@@ -1,4 +1,4 @@
-package lotto.Model;
+package lotto.model;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.NumberRange;

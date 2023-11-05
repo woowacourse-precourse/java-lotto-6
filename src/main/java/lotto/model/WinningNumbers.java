@@ -1,6 +1,5 @@
-package lotto.Model;
+package lotto.model;
 
-import java.util.List;
 import lotto.constant.ErrorMessage;
 
 public class WinningNumbers {
@@ -16,7 +15,8 @@ public class WinningNumbers {
     private void isNotDuplicate(Lotto winningNumbers, BonusNumber bonusNumber) {
         for (Integer lottoNumber : winningNumbers.getLottoNumbers()) {
             if (bonusNumber.getBonusNumber() == lottoNumber) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_ERROR_MESSAGE.getErrorMessage())
+                throw new IllegalArgumentException(ErrorMessage
+                        .DUPLICATE_ERROR_MESSAGE.getErrorMessage());
             }
         }
     }

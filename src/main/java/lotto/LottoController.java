@@ -3,8 +3,7 @@ package lotto;
 import static lotto.domain.util.LottoParser.*;
 
 import java.util.*;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
+import lotto.domain.*;
 import lotto.domain.numbergenerator.RandomNumberGenerator;
 import lotto.exception.InputException;
 import lotto.exception.LottoException;
@@ -23,7 +22,7 @@ public class LottoController {
 
     public void run() {
         outputView.printInputMoneyMessage();
-        int validLottoCount = receiveValidLottoCounty();
+        int validLottoCount = receiveValidLottoCount();
         lottoMachine = new LottoMachine(validLottoCount, new RandomNumberGenerator());
         lottoMachine.makeLottos();
 
@@ -36,15 +35,29 @@ public class LottoController {
         outputView.printInputBonusNumberMessage();
         int validBonusNumber = receiveValidBonusNumber();
 
+        LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(validWinningNumbers, validBonusNumber);
+
+        Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
+        for(LottoRank lottoRank: LottoRank.values()) {
+            rankCount.put(lottoRank, 0);
+        }
+
+        for(Lotto lotto: lottos) {
+            LottoRank rank = lottoWinningChecker.getRank(lotto);
+            rankCount.put(rank, rankCount.get(rank) + 1);
+        }
+
+        outputView.printRanksCount(rankCount);
+        outputView.printRateOfProfits(validLottoCount, rankCount);
     }
 
-    private int receiveValidLottoCounty() {
+    private int receiveValidLottoCount() {
         try {
             String money = inputView.inputMoney();
             return parseMoneyToLottoCount(money);
         } catch (InputException | LottoException e) {
             System.out.println(e.getMessage());
-            return receiveValidLottoCounty();
+            return receiveValidLottoCount();
         }
     }
 

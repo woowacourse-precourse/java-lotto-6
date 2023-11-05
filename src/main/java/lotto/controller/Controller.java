@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constants.Message;
+import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.service.InputService;
@@ -17,21 +18,22 @@ public class Controller {
 
     public void run() {
         createUserLottos();
-        showUserLottos();
         createWinningLotto();
         showRank();
         showProfitRate();
     }
 
-    public void createUserLottos() {
-        int lottoAmount = inputService.inputAmount();
-        lottoService.createUserLottos(lottoAmount);
+    private void createUserLottos() {
+        int amount = inputService.inputAmount();
+        lottoService.createUserLottos(amount);
+
+        showUserLottos();
     }
 
     private void showUserLottos() {
-        int userLottoCount = lottoService.getUserLottoCount();
-        System.out.println("\n" + userLottoCount + Message.USER_LOTTOS_COUNT_MESSAGE);
         List<Lotto> userLottos = lottoService.getUserLottos();
+
+        System.out.println("\n" + userLottos.size() + Message.USER_LOTTOS_COUNT_MESSAGE);
 
         for (Lotto lotto : userLottos) {
             System.out.println(lotto.toString());
@@ -49,13 +51,12 @@ public class Controller {
 
         List<Lotto> userLottos = lottoService.getUserLottos();
         lottoResultService.calculateLottoResult(userLottos);
-
         lottoResultService.showResult();
     }
 
     private void showProfitRate() {
-        int userLottoCount = lottoService.getUserLottoCount();
-        String profitRate = lottoResultService.getProfitRate(userLottoCount);
+        int amount = lottoService.getUserLottoSize() * Value.LOTTO_TICKET_PRICE;
+        String profitRate = lottoResultService.getProfitRate(amount);
         System.out.println(Message.getLottoProfitRate(profitRate));
     }
 

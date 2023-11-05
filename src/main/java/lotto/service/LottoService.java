@@ -12,14 +12,15 @@ public class LottoService {
 
     List<Lotto> userLottos = new ArrayList<>();
 
-    public int getUserLottoCount() {
+    public int getUserLottoSize() {
         return userLottos.size();
     }
 
-    public void createUserLottos(int lottoAmount) {
+    public void createUserLottos(int amount) {
+        int lottoSize = amount / Value.LOTTO_TICKET_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < lottoAmount/Value.LOTTO_TICKET_PRICE; i++) {
+        for (int i = 0; i < lottoSize; i++) {
             lottos.add(createSingleLotto());
         }
 

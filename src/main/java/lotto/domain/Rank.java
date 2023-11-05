@@ -22,7 +22,7 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public String getResult() {
+    public String toString() {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
         if (this == Rank.SECOND) {

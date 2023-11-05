@@ -25,21 +25,20 @@ public class LottoResultService {
     }
 
     public void showResult() {
-//        List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
         Set<Rank> ranks = lottoResults.keySet();
 
         for (Rank rank : ranks) {
-            System.out.println(rank.getResult() + " - " + lottoResults.get(rank) + "개");
+            System.out.println(rank.toString() + " - " + lottoResults.get(rank) + "개");
         }
     }
 
     public void calculateLottoResult(List<Lotto> userLottos) {
-        for (Lotto userLotto : userLottos) {
+        userLottos.forEach(userLotto -> {
             Rank rank = compareUserLottoAndWinningLotto(userLotto.getNumbers());
-            if (lottoResults.get(rank) != null) {
+            if (lottoResults.containsKey(rank)) {
                 lottoResults.put(rank, lottoResults.get(rank) + 1);
             }
-        }
+        });
     }
 
     private Rank compareUserLottoAndWinningLotto(List<Integer> userLottoNumbers) {
@@ -72,7 +71,7 @@ public class LottoResultService {
         return userLottoNumbers.contains(winningLottoBonusNumber);
     }
 
-    public String getProfitRate(int userLottoCount) {
+    public String getProfitRate(int amount) {
         int profit = 0;
         List<Rank> ranks = new ArrayList<>(lottoResults.keySet().stream().toList());
 
@@ -80,11 +79,7 @@ public class LottoResultService {
             profit += (lottoResults.get(rank) * rank.getPrize());
         }
 
-        int amount = userLottoCount * Value.LOTTO_TICKET_PRICE;
         double profitRate = profit / (double) amount * 100;
-
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
-
-        return decimalFormat.format(profitRate);
+        return new DecimalFormat("#.#").format(profitRate);
     }
 }

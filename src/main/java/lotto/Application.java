@@ -1,7 +1,5 @@
 package lotto;
-/*
-    2023 11 04 다시 만들기로 결정
-*/
+
 import java.util.ArrayList;
 import java.util.List;
 

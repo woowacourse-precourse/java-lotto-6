@@ -43,4 +43,27 @@ public class WinningStatistics {
         }
         return reward;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder statisticsFormat = new StringBuilder();
+        for (Prize prize : statistics.keySet()) {
+            if (prize.getMatchCount() >= 3){
+                statisticsFormat.append(
+                        String.format(
+                                ResponseMessage.FORMATTED_RESULT_MESSAGE,
+                                prize.getPrizeMessage(),
+                                adjustToFormat(prize.getWinningAmount()),
+                                statistics.get(prize)
+                        )
+                );
+            }
+        }
+        return statisticsFormat.toString();
+    }
+
+    private String adjustToFormat(int number){
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(number);
+    }
 }

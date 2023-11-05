@@ -5,5 +5,6 @@ import java.util.List;
 public interface Viewer {
     public void ViewPrint();
 
-    void ViewPrint(String buyRequest);
+    void ViewPrint(String data);
+    void ViewPrint(List<Integer> data);
 }

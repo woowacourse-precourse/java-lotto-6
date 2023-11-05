@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -16,58 +17,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-public class BuyTest {
+public class BuyTest extends NsTest {
     private final Buy buy = new Buy(2000000L,2000L);
-    private PrintStream standardOut;
-    private OutputStream captor;
-
-    @BeforeEach
-    protected final void init() {
-        standardOut = System.out;
-        captor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(captor));
-    }
-
-    @AfterEach
-    protected final void printOutput() {
-        System.setOut(standardOut);
-        System.out.println(output());
-    }
-
-    protected final String output() {
-        return captor.toString().trim();
-    }
-
-    protected final void run(String a,final String... args) {
-        try {
-            command(args);
-            runMain(a);
-        } finally {
-            Console.close();
-        }
-    }
-    private void command(final String... args) {
-        final byte[] buf = String.join("\n", args).getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-    }
-
-    void runMain(String a){
-        if(Objects.equals(a, "RequestBuyMoney")) {
-            buy.RequestBuyMoney();
-        }
-        if(Objects.equals(a, "PrintLottoIssuanceNumber")){
-            buy.PrintLottoIssuanceNumber();
-        }
-    }
+    private boolean iswhat;
     @DisplayName("정상 입력")
     @Test
     void RequestBuyMoney_MultipleRead_테스트() {
         //give
+        iswhat = true;
         long Money = 2000000L;
         long IssuanceNumber = 2000L;
         //when
         assertTimeoutPreemptively(Duration.ofSeconds(1L),() -> {
-            run("RequestBuyMoney", "2000000");
+            run("2000000");
         });
         //then
         assertEquals(buy.GetBuyMoney(),Money);
@@ -78,6 +40,7 @@ public class BuyTest {
     @Test
     void SetBuy_GetBuy_테스트() {
         //given
+        iswhat = true;
         long Money = 2000000L;
         long IssuanceNumber = 2000L;
         //when
@@ -92,9 +55,17 @@ public class BuyTest {
     @DisplayName("몇개 구매 하였는가?")
     @Test
     void PrintLottoIssuanceNumber_테스트() {
+        iswhat = false;
         assertTimeoutPreemptively(Duration.ofSeconds(1L),() -> {
-            run("PrintLottoIssuanceNumber");
+            run();
             assertThat(output()).contains("2000개를 구매했습니다.");
         });
+    }
+    @Override
+    public void runMain() {
+        if(iswhat){
+            buy.RequestBuyMoney();
+        }
+        else buy.PrintLottoIssuanceNumber();
     }
 }

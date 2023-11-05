@@ -14,7 +14,7 @@ public class InputView {
 
 
     public static String readNumbers() {
-        System.out.println(INPUT_COST.getMessage());
+        System.out.println(INPUT_NUMBERS.getMessage());
         return Console.readLine();
     }
 

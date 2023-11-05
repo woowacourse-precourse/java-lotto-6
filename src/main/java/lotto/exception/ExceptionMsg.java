@@ -12,4 +12,8 @@ public enum ExceptionMsg {
     ExceptionMsg(String message) {
         this.message = message;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

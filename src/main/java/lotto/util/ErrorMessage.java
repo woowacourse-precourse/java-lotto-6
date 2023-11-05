@@ -8,9 +8,9 @@ public enum ErrorMessage {
     INPUT_NOT_NUMBER("[ERROR] 숫자만 입력해주세요."),
     INPUT_NOT_THOUSAND_UNIT("[ERROR] 구입 금액을 1000원 단위로 입력해주세요."),
     INPUT_TOO_MUCH_MONEY("[ERROR] 구입 금액은 2,000,000,000 까지 가능합니다."),
-    INPUT_NOT_IN_RANGE("[ERROR] 로또 숫자가 1-45 사이의 숫자가 아닙니다."),
-    INPUT_OUT_OF_SIZE("[ERROR] 로또 숫자의 개수가 6개가 아닙니다."),
-    INPUT_DUPLICATE_NUMBER("[ERROR] 로또 숫자가 중복됩니다."),
+    INPUT_NOT_IN_RANGE("[ERROR] 당첨 번호가 1-45 사이의 숫자가 아닙니다."),
+    INPUT_OUT_OF_SIZE("[ERROR] 당첨 번호의 개수가 6개가 아닙니다."),
+    INPUT_DUPLICATE_NUMBER("[ERROR] 당첨 번호가 중복됩니다."),
     ;
 
     private final String message;

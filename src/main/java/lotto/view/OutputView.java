@@ -29,6 +29,7 @@ public class OutputView {
     }
 
     public static void printTicketNumber (int ticketNumber) {
+        System.out.println();
         System.out.printf(TICKET_NUMBER_TEXT, ticketNumber);
     }
 
@@ -37,10 +38,12 @@ public class OutputView {
     }
 
     public static void printBonusNumberInputText () {
+        System.out.println();
         System.out.print(BONUS_NUMBER_INPUT_TEXT);
     }
 
     public static void printLottoResultStartText () {
+        System.out.println();
         System.out.print(LOTTO_RESULT_START_TEXT);
         System.out.print(BOUNDARY);
     }

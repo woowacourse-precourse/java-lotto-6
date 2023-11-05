@@ -41,6 +41,7 @@ public class InputExceptionValidator {
     public Exception inputBonusNumberValidation(String userInput) {
         try {
             numberFormatValidation(userInput);
+            rangeValidation(Integer.valueOf(userInput));
         } catch (InputException e) {
             System.out.println(e.getMessage());
             return e;

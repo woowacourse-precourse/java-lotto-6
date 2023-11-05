@@ -2,7 +2,7 @@ package lotto;
 
 public enum StringUtil {
 
-    ENTER_PURCHASE_LOTTO_COST("구입금액을 입력해 주세요.\n"),
+    ENTER_PAY_AMOUNT("구입금액을 입력해 주세요."),
     PRINT_LOTTO_COUNT("%s개를 구매했습니다.\n"),
     ENTER_WINNING_NUMBER("당첨 번호를 입력해 주세요.\n"),
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요.\n"),

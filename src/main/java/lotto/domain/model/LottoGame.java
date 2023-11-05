@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.constant.LottoRank;
 
 public final class LottoGame {
-    private static final int FIVE_COUNT = 5;
 
     private final PurchasedLottos purchasedLottos;
     private final WinningLotto winningLotto;
@@ -14,14 +13,8 @@ public final class LottoGame {
         this.winningLotto = winningLotto;
     }
 
-    private boolean isFiveMatched(int matchCount) { return matchCount == FIVE_COUNT; }
-
     private LottoRank getLottoRankByMatchCountAndBonusMatch(int matchCount, boolean isBonusMatched) {
-        if (isFiveMatched(matchCount)) {
-            return LottoRank.getByBonusMatchWhenMatchCountIsFive(isBonusMatched);
-        }
-
-        return LottoRank.getByMatchCountWhenBonusNotMatched(matchCount);
+        return LottoRank.getRankByMatches(matchCount, isBonusMatched);
     }
 
     private LottoRank createLottoRank(Lotto lotto) {

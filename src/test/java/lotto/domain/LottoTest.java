@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +42,7 @@ class LottoTest {
         List<Integer> statistics = lotto.winningStatistics(bonusNumber, myLottoNumbers);
 
         //then
-        assertThat(statistics).hasSize(6)
-                .containsExactly(0, 1, 0, 2, 0, 1);
+        assertThat(statistics).hasSize(8)
+                .containsExactly(0, 0, 0, 1, 0, 2, 0, 1);
     }
 }

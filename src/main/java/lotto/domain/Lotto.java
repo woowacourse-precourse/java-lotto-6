@@ -1,13 +1,14 @@
 package lotto.domain;
 
 import static java.util.Collections.nCopies;
-import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.MAX_SCORE;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.InvalidInput;
 
 public class Lotto {
+    private final static int INIT = 0;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,15 +17,11 @@ public class Lotto {
     }
 
     public List<Integer> winningStatistics(int bonusNumber, List<List<Integer>> myLottoNumbers) {
-        int initSzie = LOTTO_SIZE.getValue();
-        int initNum = 0;
-
-        List<Integer> statistics = new ArrayList<>(nCopies(initSzie, initNum));
+        List<Integer> statistics = new ArrayList<>(nCopies(MAX_SCORE.getValue() + 1, INIT));
 
         for (List<Integer> myLottoNumber : myLottoNumbers) {
-            int sameNumberScore = getSameNumberScore(bonusNumber, myLottoNumber);
-            int index = sameNumberScore - 2;
-            statistics.set(index, statistics.get(index) + 1);
+            int score = getScore(bonusNumber, myLottoNumber);
+            statistics.set(score, statistics.get(score) + 1);
         }
 
         return statistics;
@@ -38,17 +35,22 @@ public class Lotto {
         invalidInput.outOfRangeException(numbers);
     }
 
-    private int getSameNumberScore(int bonusNumber, List<Integer> myLottoNumber) {
-        int sameNumberCount = (int) myLottoNumber.stream()
+    private int getScore(int bonusNumber, List<Integer> myLottoNumber) {
+        int score = getSameNumberCount(myLottoNumber);
+
+        if (hasBonusNumber(bonusNumber, myLottoNumber) && score == 5 || score == 6) {
+            score++;
+        }
+
+        return score;
+    }
+
+    private int getSameNumberCount(List<Integer> myLottoNumber) {
+        long sameNumberCount = myLottoNumber.stream()
                 .filter(numbers::contains)
                 .count();
 
-        int score = sameNumberCount;
-
-        if (hasBonusNumber(bonusNumber, myLottoNumber) && sameNumberCount == 5 || sameNumberCount == 6) {
-            score++;
-        }
-        return score;
+        return (int)sameNumberCount;
     }
 
     private Boolean hasBonusNumber(int bonusNumber, List<Integer> myLottoNumber) {

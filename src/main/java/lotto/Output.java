@@ -34,7 +34,7 @@ public class Output {
         System.out.println(System.lineSeparator() + "보너스 번호를 입력해 주세요.");
     }
 
-    private static String calculateEarningRatio(Integer spent, Integer earned) {
+    private static String calculateEarningRatio(Long spent, Long earned) {
         return "총 수익률은 " + formatPoint((float) earned / spent * 100) + "%입니다.";
     }
 
@@ -69,8 +69,8 @@ public class Output {
         }
     }
 
-    static Integer calculateReward(Map<SameNumber, Integer> sameNumberCount) {
-        Integer rewardSum = 0;
+    static Long calculateReward(Map<SameNumber, Integer> sameNumberCount) {
+        Long rewardSum = 0L;
         for (SameNumber sameNumber : sameNumberCount.keySet()) {
             Integer reward = Reward.fromSameNumber(sameNumber);
             Integer count = sameNumberCount.get(sameNumber);
@@ -85,8 +85,8 @@ public class Output {
         Control control = new Control();
         Map<SameNumber, Integer> sameNumberCount = control.countSameNumber(winnerTicket, bonusNumber, tickets);
         printAllSameNumberResult(sameNumberCount);
-        Integer earned = calculateReward(sameNumberCount);
-        Integer spent = control.moneyForTickets(tickets.length);
+        Long earned = calculateReward(sameNumberCount);
+        Long spent = control.moneyForTickets(tickets.length);
         System.out.println(calculateEarningRatio(spent, earned));
     }
 }

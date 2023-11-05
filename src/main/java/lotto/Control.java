@@ -24,8 +24,8 @@ public class Control {
         return (int) (money / 1000);
     }
 
-    int moneyForTickets(Integer ticketCount) {
-        return ticketCount * 1000;
+    long moneyForTickets(Integer ticketCount) {
+        return (long) ticketCount * 1000;
     }
 
     SameNumber compareTicket(Lotto winner, Lotto ticket) {

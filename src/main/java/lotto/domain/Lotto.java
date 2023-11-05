@@ -44,4 +44,7 @@ public class Lotto {
                 && number <= LOTTO_RANGE_IN_END_VALUE;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

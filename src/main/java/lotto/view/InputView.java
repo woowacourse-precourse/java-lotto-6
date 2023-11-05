@@ -21,7 +21,7 @@ public class InputView {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("1000원 단위 정수로 입력해 주세요."); // 하드코딩 제거
         }
-        return intBudget;
+        return intBudget / 1000; // 하드코딩 제거
     }
 
     public ArrayList<Integer> inputWinningNumber() { // 기능 나누기 -> validator

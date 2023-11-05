@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,6 +31,14 @@ public class Lotto {
     private void validateAllRange(List<Integer> numbers, int minNumber, int maxNumber) {
         if (!numbers.stream()
                 .allMatch(number -> number >= minNumber && number <= maxNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNoDuplicates(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>();
+        if (!numbers.stream()
+                .allMatch(number -> !set.contains(number))) {
             throw new IllegalArgumentException();
         }
     }

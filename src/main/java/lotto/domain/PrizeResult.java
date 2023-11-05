@@ -14,18 +14,18 @@ public class PrizeResult {
         );
     }
 
-    public Prize calculatePrize(Lotto lotto, WinningLotto winningLotto) {
+    public EnumMap<Prize, Integer> getResult() {
+        return result;
+    }
+
+    private Prize calculatePrize(Lotto lotto, WinningLotto winningLotto) {
         return Prize.getPrizeByCount(
                 lotto.calculateMatchCount(winningLotto.getWinningLotto()),
                 lotto.isContain(winningLotto.getBonusNumber())
         );
     }
 
-    public void updatePrizeCount(Prize prize) {
+    private void updatePrizeCount(Prize prize) {
         result.put(prize, result.get(prize) + 1);
-    }
-
-    public EnumMap<Prize, Integer> getResult() {
-        return result;
     }
 }

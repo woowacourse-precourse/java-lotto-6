@@ -23,14 +23,6 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     public static WinningLotto of(String inputLottoNumbers, String inputBonusNumber) {
         List<Integer> lottoNumbers = parse(inputLottoNumbers);
 
@@ -40,6 +32,14 @@ public class WinningLotto {
 
         validateDup(lottoNumbers, bonusNumber);
         return new WinningLotto(new Lotto(lottoNumbers), bonusNumber);
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private static List<Integer> parse(String inputLottoNumbers) {

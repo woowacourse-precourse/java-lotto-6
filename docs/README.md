@@ -7,7 +7,7 @@
 - [x] 발행한 로또 수량 출력 - #quantityLotto()
 - [x] 로또 번호(오름차순, 중복 X) 출력 - #numberLotto()
 
-### WinLotto.class
+### InputNumber.class
 - [x] 당첨 번호 입력 - #inputWinningNumber()
 - [x] 보너스 번호 입력 - #inputBonusNumber()
 - [x] 입력된 숫자가 올바르지 않을 경우 에러 처리

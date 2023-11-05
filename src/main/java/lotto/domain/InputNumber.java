@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class WinLotto {
+public class InputNumber {
     private static List<Integer> inputWinningNumber;
     private static boolean isCorrectLottoNumber, isCorrectBonusNumber;
     public static void inputWinningNumber() {

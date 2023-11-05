@@ -14,4 +14,8 @@ public class OutputView {
     public void printLottos(String lottos) {
         System.out.println(lottos);
     }
+
+    public void printGetWinningNumbersMessage() {
+        System.out.println(PrintingMessage.GET_WINNING_NUMBERS_MESSAGE.get());
+    }
 }

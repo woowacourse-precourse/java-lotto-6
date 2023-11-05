@@ -12,7 +12,8 @@ import java.util.List;
 public class LottoController {
     public void run() {
         final Amount amount = getAmountFromUser();
-        final List<Lotto> lottoList = purchaseLottoByAmount(amount);
+        int lottoCount = calculateLottoCount(amount);
+        final List<Lotto> lottoList = purchaseLottoByAmount(lottoCount);
         decideWinningNumbers();
         final List<LottoMatch> winningResults = LottoGameManager.getWinningResults(lottoList);
         displayWinningStatisticsAndYield(winningResults, amount);
@@ -33,12 +34,16 @@ public class LottoController {
         return Amount.create(InputView.inputPurchaseAmount());
     }
 
-    private List<Lotto> purchaseLottoByAmount(Amount amount) {
-        int lottoCount = LottoGameManager.calculateLottoCount(amount);
-        OutputView.displayLottoCount(lottoCount);
+    private List<Lotto> purchaseLottoByAmount(int lottoCount) {
         List<Lotto> purchasedLottoList = LottoGameManager.buyLotto(lottoCount);
         OutputView.displayLottoNumbers(purchasedLottoList);
         return purchasedLottoList;
+    }
+
+    private int calculateLottoCount(Amount amount) {
+        int lottoCount = LottoGameManager.calculateLottoCount(amount);
+        OutputView.displayLottoCount(lottoCount);
+        return lottoCount;
     }
 
     private void decideWinningNumbers() {

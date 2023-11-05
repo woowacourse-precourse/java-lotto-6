@@ -27,6 +27,7 @@ public class LottoController {
     }
 
     private WinningLotto drawLotto(){
+        InputView.printRequireWinningNumbersMessage();
         Lotto lotto = lottoGenerator.generateWinningLotto();
         Bonus bonus = Bonus.from(InputView.getBonusInput());
         return WinningLotto.of(lotto, bonus);

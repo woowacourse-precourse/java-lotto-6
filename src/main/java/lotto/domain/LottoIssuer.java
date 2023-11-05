@@ -20,6 +20,10 @@ public class LottoIssuer {
     }
 
     private Lotto getLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_COUNT));
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER,
+                MAX_LOTTO_NUMBER,
+                LOTTO_NUMBERS_COUNT).stream().sorted().toList();
+        return new Lotto(randomNumbers);
     }
 }

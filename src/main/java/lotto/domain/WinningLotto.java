@@ -6,7 +6,7 @@ import lotto.view.InputView;
 public class WinningLotto extends Lotto {
     private static final String SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개를 입력해야 합니다.";
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복 없이 입력해야 합니다.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호와 보너스 번호는 중복 없이 입력해야 합니다.";
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
@@ -24,6 +24,7 @@ public class WinningLotto extends Lotto {
     }
 
     public void setBonusNumber(BonusNumber bonusNumber) {
+        validateDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -64,6 +65,12 @@ public class WinningLotto extends Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateDuplicate(BonusNumber bonusNumber) {
+        if (super.getNumbers().contains(bonusNumber.getNumber())) {
             throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }

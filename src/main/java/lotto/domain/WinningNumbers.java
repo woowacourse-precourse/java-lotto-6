@@ -21,8 +21,8 @@ public class WinningNumbers {
         return winningNumbers.countMatchingNumber(lotto);
     }
 
-    public boolean bonusNumberMatch(LottoNumber lottoNumber) {
-        return bonusNumber.equals(lottoNumber);
+    public boolean bonusNumberMatch(Lotto lotto) {
+        return lotto.contains(bonusNumber);
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {

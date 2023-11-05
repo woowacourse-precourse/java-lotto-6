@@ -26,9 +26,10 @@ class WinningNumbersTest {
     @Test
     void testBonusNumberHit() {
         Lotto winningLotto = createLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto issuedLotto = createLotto(List.of(1, 2, 3, 4, 5, 15));
         LottoNumber bonusNumber = LottoNumber.from(15);
         WinningNumbers winningNumbers = WinningNumbers.of(winningLotto, bonusNumber);
-        assertThat(winningNumbers.bonusNumberMatch(LottoNumber.from(15))).isTrue();
+        assertThat(winningNumbers.bonusNumberMatch(issuedLotto)).isTrue();
     }
 
     @DisplayName("당첨 번호와 전달 로또의 일치하는 번호 개수를 계산할 수 있다")

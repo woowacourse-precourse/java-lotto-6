@@ -1,6 +1,5 @@
 package lotto.input;
 
-import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_INPUT;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
 
@@ -60,7 +59,7 @@ class LottoNumberInputManager {
     }
 
     private static void validateLottoNumberSize(int lottoNumber) {
-        LottoNumberValidator.validateNumberIsLottoNumber(lottoNumber, WRONG_LOTTO_NUMBER);
+        LottoNumberValidator.validateNumberIsLottoNumber(lottoNumber, WRONG_LOTTO_NUMBER_SIZE);
     }
 
     private static List<Integer> convertToLottoNumber(List<String> parsedInput) {

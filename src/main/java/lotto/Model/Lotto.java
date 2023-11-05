@@ -2,6 +2,7 @@ package lotto.Model;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import lotto.View.ExceptionMessage;
 import lotto.View.InputVIew;
@@ -25,7 +26,6 @@ public class Lotto {
             System.out.println(e.getMessage());
             validate(InputVIew.inputWinningNumbers());
         }
-
     }
     private void validateLength(List<Integer> numbers){
         if (numbers.size() != ExceptionMessage.LOTTO_LENGTH) {

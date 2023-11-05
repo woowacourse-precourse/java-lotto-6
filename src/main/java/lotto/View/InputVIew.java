@@ -27,6 +27,8 @@ public class InputVIew {
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputWinningNumbers();
+        } catch (NoSuchElementException e){
+            throw new IllegalArgumentException(ExceptionMessage.NO_SUCH_ELEMENT);
         }
 
     }
@@ -37,6 +39,8 @@ public class InputVIew {
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputBonusNumber();
+        }  catch (NoSuchElementException e){
+            throw new IllegalArgumentException(ExceptionMessage.NO_SUCH_ELEMENT);
         }
     }
     private static List<Integer> toWinningNumbers(String input){

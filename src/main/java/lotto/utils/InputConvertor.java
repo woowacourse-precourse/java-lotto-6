@@ -4,6 +4,7 @@ import static java.util.regex.Pattern.compile;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.constants.LottoConstants;
 
 public class InputConvertor {
     private static final String NUMBER_MATCH_REGEX = "[+-]?\\d*(\\.\\d+)?";
@@ -34,4 +35,18 @@ public class InputConvertor {
         return convertStringtoInt(input.replace(",", ""));
     }
 
+    public static int convertBonus(String input) {
+        int result = convertStringtoInt(input);
+        if (!IsRange(result)) {
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 보너스 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
+                            LottoConstants.MAX_NUMBER.getConstants()));
+        }
+        return result;
+    }
+
+    private static boolean IsRange(int lottoNumber) {
+        return LottoConstants.MIN_NUMBER.getConstants() <= lottoNumber
+                && lottoNumber <= LottoConstants.MAX_NUMBER.getConstants();
+    }
 }

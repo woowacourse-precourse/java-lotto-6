@@ -28,4 +28,13 @@ public class InputView {
         }
     }
 
+    public static int getBonusInput() {
+        try {
+            return InputConvertor.convertBonus(getInput(BONUS_INPUT_MESSAGE));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoneyInput();
+        }
+    }
+
 }

@@ -41,4 +41,26 @@ class InputConvertorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"'1', 1", "'2', 2", "'45', 45"})
+    void convertBonus는_문자열을_정수로_변환한다(String input, int output) {
+        // when
+        int result = InputConvertor.convertMoney(input);
+        // then
+        assertThat(result).isEqualTo(output);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"8,0", "'40s", " "})
+    void convertBonus는_정수가아닌_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputConvertor.convertBonus(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "-1"})
+    void convertBonus는_로또번호_범위를_벗어난_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputConvertor.convertBonus(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

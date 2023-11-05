@@ -13,6 +13,7 @@ import lotto.domain.user.Judgment;
 import lotto.domain.user.RateResult;
 import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
+import lotto.view.ShowLottoProcess;
 
 public class Config {
     public static Process process() {
@@ -61,5 +62,9 @@ public class Config {
 
     public static User user() {
         return new User();
+    }
+
+    public static ShowLottoProcess showLottoProcess() {
+        return new ShowLottoProcess();
     }
 }

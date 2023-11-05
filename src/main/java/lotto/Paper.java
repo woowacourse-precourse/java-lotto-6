@@ -11,8 +11,8 @@ import java.util.Collections;
 public class Paper {
     public List<Integer> originNumbers;
     public List<Integer> numbers;
-    private int correspondNumber;
-    private int winMoney;
+    public int correspondNumber;
+    public int winMoney;
 
     public Paper(){
         pickLottoNumber();
@@ -42,7 +42,7 @@ public class Paper {
         if(cnt==6){
             correspondNumber = 7;
         }
-
+        correspondNumber=cnt;
     }
 
     public void checkWinMoney(){

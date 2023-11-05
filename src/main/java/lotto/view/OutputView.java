@@ -30,7 +30,7 @@ public class OutputView {
         result.remove(Rank.LOSING_TICKET);
         result.forEach((key, value) -> makeWinningStatisticOutput(key, value, stringBuilder));
 
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     private static void makeWinningStatisticOutput(Rank rank, int winningCount, StringBuilder stringBuilder) {
@@ -39,7 +39,7 @@ public class OutputView {
             stringBuilder.append(", 보너스 볼 일치");
         }
         stringBuilder.append(String.format(" (%d) - ", rank.getPrizeMoney()));
-        stringBuilder.append(String.format("%d개", winningCount));
+        stringBuilder.append(String.format("%d개\n", winningCount));
     }
 
     private static String makeLottoOutput(Lotto lotto) {

@@ -27,7 +27,7 @@ public class Amount {
     }
 
     private String roundOff(double earningsRate) {
-        return String.format("%.2f", earningsRate);
+        return String.format("%.1f", earningsRate);
     }
 
     private void validateMinAmount(int amount) {

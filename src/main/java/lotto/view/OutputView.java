@@ -3,15 +3,6 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
-
-    private String[] strs = {
-            "3개 일치 (5,000원) - ",
-            "4개 일치 (50,000원) - ",
-            "5개 일치 (1,500,000원) - ",
-            "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-            "6개 일치 (2,000,000,000원) - ",
-    };
-
     public static void printBuyNumbers (int number) {
         System.out.println(number+"개를 구매했습니다.");
     }
@@ -24,14 +15,6 @@ public class OutputView {
         System.out.println(result);
         System.out.println("총 수익률은 "+percentage+"%입니다.");
     }
-
-//    public static void printWinningText () {
-//        System.out.println("당첨 통계\n---");
-//    }
-//
-//    public static void printWinningRate (double percentage) {
-//        System.out.println("총 수익률은 "+percentage+"%입니다.");
-//    }
 
     public static void printIsInteger () {
         System.out.println("[ERROR] 숫자 형태의 값이여야 합니다.");

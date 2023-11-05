@@ -5,8 +5,10 @@ import lotto.model.Logics;
 import lotto.model.Lotto;
 import lotto.model.Errors;
 import lotto.view.OutputView;
+import lotto.model.StringAndReulst;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class LottoController {
     private int money = 0;
@@ -57,9 +59,7 @@ public class LottoController {
         //각 결과의 값을 저장해서 퍼센트로 변환
         sumOfNumbers();
 
-        //결과 프린트
-//        OutputView lottoResult = new OutputView();
-//        lottoResult.printLottoResult(results, percentage);
+        //배열로 저장된 각 결과 하나의 String으로 변환시켜서 View의 Output으로 전달
         OutputView.printLottoResult(makeResultToString(),percentage);
     }
 

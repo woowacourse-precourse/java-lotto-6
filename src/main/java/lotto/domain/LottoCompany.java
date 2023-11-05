@@ -3,13 +3,10 @@ package lotto.domain;
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.INT_NULL;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHT;
-import static lotto.constant.GeneralConstant.PRIZE_RANK_INDEXES;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import lotto.util.NumberValidator;
 

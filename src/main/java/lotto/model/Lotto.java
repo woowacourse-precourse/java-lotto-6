@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -7,19 +7,30 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator.validate(numbers);
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException();
-        }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchCount(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::isContain)
+                .count();
+    }
+
+    public boolean isContainBonus(int bonus) {
+        return numbers.contains(bonus);
+    }
+
+
 }

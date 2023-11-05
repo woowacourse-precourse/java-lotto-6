@@ -14,7 +14,7 @@ public class OutputView {
         printLineSeparator();
 
         List<LottoNumbers> lottos = purchasedLotto.lottos();
-        lottos.forEach(lottoNumbers -> System.out.println(lottoNumbers.displayNumbers()));
+        lottos.forEach(lottoNumbers -> System.out.println(DisplayFormatter.formatLottoNumbers(lottoNumbers)));
     }
 
     private static void printLineSeparator() {

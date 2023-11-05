@@ -38,4 +38,15 @@ class PurchaseAmoutTest {
         // then
         assertThat(availableLottoCount).isEqualTo(8);
     }
+
+    @DisplayName("구입 금액과 상금 비율로 총 수익률을 계산한다.")
+    @Test
+    void calculateProfitRate() {
+        // given
+        PurchaseAmout purchaseAmout = new PurchaseAmout(10000);
+        // when
+        double profitRate = purchaseAmout.calculateProfitRate(5000L);
+        // then
+        assertThat(profitRate).isEqualTo(50.0);
+    }
 }

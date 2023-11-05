@@ -1,8 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.DIVISION_ERROR_MESSAGE;
+
 public class BuyAmount {
 
-    private static final String DIVISION_ERROR_MESSAGE = "1000원으로 나눌 수 있는 금액만 입력 가능합니다.";
     private final long buyAmount;
 
     public BuyAmount(long buyAmount) {

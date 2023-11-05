@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.NO_DUPLICATE_ERROR_MESSAGE;
+import static lotto.constant.ExceptionMessage.OUT_OF_RANGE_ERROR_MESSAGE;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
 
-    private static final String NO_DUPLICATE_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
-    private static final String OUT_OF_RANGE_ERROR_MESSAGE = "1 ~ 45사이의 숫자만 입력할 수 있습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

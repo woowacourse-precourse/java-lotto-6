@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -35,5 +36,17 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.copyOf(givenNumbers)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+    }
+
+    @DisplayName("로또 번호의 개수가 6개이면 예외가 발생하지 않는다.")
+    @Test
+    void createLottoBySize() {
+        // given
+        List<Integer> givenNumbers = List.of(1, 2, 3, 4, 5, 6);
+        // when
+
+        // then
+        assertThatCode(() -> new Lotto(List.copyOf(givenNumbers)))
+                .doesNotThrowAnyException();
     }
 }

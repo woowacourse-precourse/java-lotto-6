@@ -21,7 +21,7 @@
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
 - [x] 로또 결과를 통해 수익률 가져오기 - Player
-- [ ] Player 가 로또를 구매해 저장함 - Player
+- [x] Player 가 로또를 구매해 저장함 - Player
 - [ ] 로또 구매 내역을 LottoBundleDto 를 통해 반환 - Player
 - [x] 수익률을 저장함 - Profit
 - ### Lotto

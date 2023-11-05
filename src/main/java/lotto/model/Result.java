@@ -26,7 +26,7 @@ public class Result {
         StringBuilder sb = new StringBuilder();
         for (Ranking ranking : Ranking.values()) {
             if (ranking.getCondition().isEmpty()) continue;
-            int cnt = (int) rankings.stream().filter(r -> r.getCondition().equals(ranking.getCondition())).count();
+            int cnt = (int) rankings.stream().filter(r -> r.name().equals(ranking.name())).count();
             sb.append(ranking.getCondition() + cnt + UNIT);
         }
         return sb.toString();

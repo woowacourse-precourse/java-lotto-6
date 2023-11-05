@@ -49,6 +49,17 @@ class LottoShopTest {
 
         assertThat(bonusNumber).isInstanceOf(BonusNumber.class);
     }
+
+    @DisplayName("입력한 당첨 번호와 보너스 번호로 WinningLotto 생성 확인 테스트")
+    @Test
+    void createWinningLottoWithInputNumber() {
+        Lotto winningLottoNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+
+        assertThat(winningLotto).isInstanceOf(WinningLotto.class);
+    }
 }
 
 

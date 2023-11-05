@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
 
@@ -10,14 +10,14 @@ import lotto.service.MoneyService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGame {
+public class LottoController {
 
 	private MoneyService moneyService;
 	private LottoService lottoService;
 	private final InputView inputView;
 	private final OutputView outputView;
 
-	public LottoGame() {
+	public LottoController() {
 		this.moneyService = new MoneyService();
 		this.lottoService = new LottoService();
 		this.inputView = new InputView();

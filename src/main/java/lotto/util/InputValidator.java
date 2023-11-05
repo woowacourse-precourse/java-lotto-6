@@ -6,29 +6,29 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    public static void validatePurchaseAmount(String purchaseAmount) throws IllegalArgumentException{
+    public static void validatePurchaseAmount(String purchaseAmount) {
         validateNotEmpty(purchaseAmount);
         validateIntegerType(purchaseAmount);
     }
 
-    public static void validateLottoNumber(List<String> lottoNumbers) throws IllegalArgumentException{
+    public static void validateLottoNumber(List<String> lottoNumbers) {
         validateEachNumberNotEmpty(lottoNumbers);
         validateEachNumberIntegerType(lottoNumbers);
     }
 
-    private static void validateEachNumberIntegerType(List<String> lottoNumbers) throws IllegalArgumentException{
+    private static void validateEachNumberIntegerType(List<String> lottoNumbers) {
         for (String lottoNumber : lottoNumbers) {
             validateIntegerType(lottoNumber);
         }
     }
 
-    private static void validateEachNumberNotEmpty(List<String> lottoNumbers) throws IllegalArgumentException{
+    private static void validateEachNumberNotEmpty(List<String> lottoNumbers) {
         for (String lottoNumber : lottoNumbers) {
             validateNotEmpty(lottoNumber);
         }
     }
 
-    private static void validateIntegerType(String input) throws IllegalArgumentException{
+    private static void validateIntegerType(String input) {
         Pattern pattern = Pattern.compile("^-?\\d+$");
         Matcher matcher = pattern.matcher(input);
 
@@ -37,13 +37,13 @@ public class InputValidator {
         }
     }
 
-    private static void validateNotEmpty(String input) throws IllegalArgumentException{
+    private static void validateNotEmpty(String input) {
         if(input.isEmpty()){
             throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
         }
     }
 
-    public static void validateBonusNumber(String bonusNumber) throws IllegalArgumentException{
+    public static void validateBonusNumber(String bonusNumber) {
         validateNotEmpty(bonusNumber);
         validateIntegerType(bonusNumber);
     }

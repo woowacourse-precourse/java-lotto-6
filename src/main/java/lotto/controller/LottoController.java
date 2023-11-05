@@ -50,7 +50,6 @@ public class LottoController {
                 return new WinningLotto(lottoAnswer, bonusNumber);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         }
     }

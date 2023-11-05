@@ -14,7 +14,7 @@ import lotto.domain.WinningLotto;
 public class LottoService {
 
     public Map<LottoResult, Integer> getLottoResult(Lottos lottos, WinningLotto winningLotto) {
-        Map<LottoResult,Integer> lottoResult = new HashMap<>();
+        Map<LottoResult, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : lottos.getLottos()) {
             int correctCount = checkLotto(lotto, winningLotto.getAnswerLotto());
             boolean hasBonus = checkBonus(lotto, winningLotto.getBonusNumber());
@@ -35,8 +35,8 @@ public class LottoService {
         List<Integer> answerLottoNumbers = answerLotto.getNumbers();
         int equalCount = 0;
 
-        for(int nthIndex = 0 ; nthIndex < myLottoNumbers.size();nthIndex++){
-            if(answerLottoNumbers.get(nthIndex) == myLottoNumbers.get(nthIndex)){
+        for (int nthIndex = 0; nthIndex < myLottoNumbers.size(); nthIndex++) {
+            if (answerLottoNumbers.get(nthIndex) == myLottoNumbers.get(nthIndex)) {
                 equalCount++;
             }
         }
@@ -51,5 +51,17 @@ public class LottoService {
         }
 
         return lottos;
+    }
+
+    public long sumTotalLottoPrize(Map<LottoResult, Integer> lottoResult) {
+        long totalPrize = 0;
+        for (LottoResult result : lottoResult.keySet()) {
+            totalPrize += calculatePrize(result.getPrize(), lottoResult.get(result));
+        }
+        return totalPrize;
+    }
+
+    private long calculatePrize(int prize, Integer count) {
+        return (long) prize * count;
     }
 }

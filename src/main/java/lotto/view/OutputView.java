@@ -16,6 +16,10 @@ public class OutputView {
         printMessage(OutputMessage.ASK_TO_INSERT_LOTTO_BONUS_NUMBER.getMessage() + OutputConstant.NEW_LINE);
     }
 
+    public void printErrorMessage(String message){
+        printMessage(message);
+    }
+
     private void printMessage(String message){
         System.out.print(message);
     }

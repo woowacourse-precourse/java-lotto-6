@@ -10,6 +10,7 @@ public class InputParser {
     }
 
     public Long parseMoneyToBuyLottoToNumeric(String userInput){
+        moneyToBuyLottoInputValidator.validate(userInput);
         return Long.parseLong(userInput);
     }
 }

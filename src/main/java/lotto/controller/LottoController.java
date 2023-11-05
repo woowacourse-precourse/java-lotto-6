@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.exception.LottoInputException;
 
 public class LottoController {
     private final InputView inputView;
@@ -17,7 +18,12 @@ public class LottoController {
     }
 
     public void playGame(){
-        Long moneyToBuyLotto = askUserToInsertMoneyToBuyLotto();
+        try {
+            Long moneyToBuyLotto = askUserToInsertMoneyToBuyLotto();
+        } catch(LottoInputException e){
+            outputView.printErrorMessage(e.getMessage());
+            playGame();
+        }
         askUserToInsertLottoWinningNumbers();
         askUserToInsertBonusNumber();
         lottoService.playGame();

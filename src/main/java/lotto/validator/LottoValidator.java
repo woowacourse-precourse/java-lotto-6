@@ -8,7 +8,7 @@ public class LottoValidator {
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 로또 번호가 있습니다.";
     private static final String SIZE_OVER_MESSAGE = "로또 번호가 6개가 아닙니다.";
     private static final String RANGE_OVER_MESSAGE = "로또 번호가 1이상 45이하가 아닙니다.";
-    private static final String NOT_SORT_MESSAGE = "로또가 정렬이 되어있지 않습니다.";
+    private static final String NOT_SORT_MESSAGE = "로또가 오름차순이 아닙니다.";
 
     public LottoValidator(List<Integer> numbers){
         isSizeError(numbers);

@@ -20,7 +20,7 @@ public class WinningNumValidator {
 
     public WinningNumValidator(List<Integer> numbers){
         isDuplicate(numbers);
-        isSizeOver(numbers);
+        isSizeError(numbers);
         isRangeOver(numbers);
     }
 
@@ -38,7 +38,7 @@ public class WinningNumValidator {
         }
     }
 
-    public void isSizeOver(List<Integer> numbers) {
+    public void isSizeError(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR + SIZE_OVER_MESSAGE);
         }

@@ -3,7 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public final class RandomNumberGenerator {
+public class RandomNumberGenerator {
 
     private RandomNumberGenerator() {
     }

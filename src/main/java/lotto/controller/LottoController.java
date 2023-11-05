@@ -13,6 +13,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final ResultDetails resultDetails = new ResultDetails();
 
     public void play() {
@@ -21,25 +23,25 @@ public class LottoController {
 
         LottoTicket lottoTicket = LottoTicket.create(numberOfLottoPurchased);
 
-        OutputView.printNumberOfLotto(numberOfLottoPurchased);
-        OutputView.printLottoTicket(lottoTicket);
+        outputView.printNumberOfLotto(numberOfLottoPurchased);
+        outputView.printLottoTicket(lottoTicket);
 
         resultDetails.updateResultDetails(lottoTicket, createValidWinningNumbers());
 
-        OutputView.printWinningStatisticsHeader();
-        OutputView.printWinningStatistics(resultDetails);
-        OutputView.printProfitRate(resultDetails.calculateProfitRate(purchaseAmount));
+        outputView.printWinningStatisticsHeader();
+        outputView.printWinningStatistics(resultDetails);
+        outputView.printProfitRate(resultDetails.calculateProfitRate(purchaseAmount));
     }
 
     private int generateValidMoney() {
         while (true) {
             try {
-                OutputView.printPurchaseAmountMessage();
-                int purchaseAmount = InputView.inputNumber();
+                outputView.printPurchaseAmountMessage();
+                int purchaseAmount = inputView.inputNumber();
                 MoneyValidator.validateMoney(purchaseAmount);
                 return purchaseAmount;
             } catch (final IllegalArgumentException illegalArgumentException) {
-                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }
@@ -48,11 +50,11 @@ public class LottoController {
         WinningNumbersData winningNumbersData = createValidWinningNumbersData();
         while (true) {
             try {
-                OutputView.printBonusNumberMessage();
-                BonusNumber bonusNumber = new BonusNumber(InputView.inputNumber());
+                outputView.printBonusNumberMessage();
+                BonusNumber bonusNumber = new BonusNumber(inputView.inputNumber());
                 return new WinningNumbers(winningNumbersData, bonusNumber);
             } catch (final IllegalArgumentException illegalArgumentException) {
-                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }
@@ -60,11 +62,11 @@ public class LottoController {
     private WinningNumbersData createValidWinningNumbersData() {
         while (true) {
             try {
-                OutputView.printWinningNumbersMessage();
-                List<Integer> winningNumbers = InputView.inputWinningNumbers();
+                outputView.printWinningNumbersMessage();
+                List<Integer> winningNumbers = inputView.inputWinningNumbers();
                 return new WinningNumbersData(winningNumbers);
             } catch (final IllegalArgumentException illegalArgumentException) {
-                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }

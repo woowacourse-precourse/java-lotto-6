@@ -1,7 +1,13 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
 import lotto.ui.InputHandler;
 import lotto.ui.OutputHandler;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
 
@@ -22,6 +28,18 @@ public class Application {
 
     public void run () {
         int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottoBundle = new ArrayList<>();
+        while (purchaseAmount != 0) {
+            purchaseAmount -= 1000;
+            List<Integer> numbers = generateNumbers();
+            Collections.sort(numbers);
+            lottoBundle.add(new Lotto(numbers));
+        }
+        System.out.println(lottoBundle.size() + "개를 구매했습니다.");
+    }
+
+    private List<Integer> generateNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private int getPurchaseAmount() {

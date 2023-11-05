@@ -13,5 +13,7 @@ public class Application {
 
         List<Integer> lottoNumbersPurchased = new ArrayList<>();
         lottoNumbersPurchased = buyLotto.numberLotto();
+
+
     }
 }

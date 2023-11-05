@@ -22,7 +22,7 @@ public class BuyLotto {
         }
     }
 
-    public static void validateInputMoney(int inputPurchaseMoney){
+    private static void validateInputMoney(int inputPurchaseMoney){
         //1000원으로 나누어떨어지지 않는 경우 에러 처리
         try{
             if(inputPurchaseMoney % 1000 == 0){
@@ -35,7 +35,6 @@ public class BuyLotto {
             System.out.println("[ERROR] 로또 금액인 1000원 단위로 입력해주세요.");
         }
     }
-
 
     public static void quantityLotto(int inputPurchaseMoney) {
         //발행한 로또 수량 출력

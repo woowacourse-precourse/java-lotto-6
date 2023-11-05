@@ -45,11 +45,15 @@ public enum Validator {
 
     public void validateOutOfRange(List<Integer> numbers) {
         List<Integer> outOfRangeNumbers = numbers.stream()
-                .filter((number) -> number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND)
+                .filter(this::isOutOfRange)
                 .toList();
 
         if (!outOfRangeNumbers.isEmpty()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean isOutOfRange(long number) {
+        return number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND;
     }
 }

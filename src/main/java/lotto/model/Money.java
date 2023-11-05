@@ -11,7 +11,7 @@ public class Money {
     }
 
     private void validate(String money) {
-        InputValidator.checkPrice(money);
+        InputValidator.checkMoney(money);
     }
 
 }

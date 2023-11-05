@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputValidator {
-
     private static final String ERROR = "[ERROR] ";
     private static final String NUMBER = "숫자를 입력해주세요.";
     private static final String BLANK = "입력이 공백입니다.";
@@ -23,7 +22,7 @@ public class InputValidator {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[1-9]*$");
     private static final Pattern LOTTO_PATTERN = Pattern.compile("(\\d*,){5}\\d*$");
 
-    public static void checkPrice(String input) {
+    public static void checkMoney(String input) {
         checkIsBlank(input);
         checkIsNumber(input);
         checkPriceFormat(input);

@@ -8,7 +8,7 @@ public final class InvestMoney {
     private static final String ZERO_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %d원은 입력할 수 없습니다.";
     private static final String MAX_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %,d원 이하로 입력해주세요.";
     private static final int ZERO = 0;
-    private static final int MAX_INVESTMENT = 100_000_000;
+    private static final int MAX_INVESTMENT = 100_000;
     private static final int PERCENT_MULTIPLIER = 100;
 
     private final int money;

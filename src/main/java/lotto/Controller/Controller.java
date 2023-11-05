@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.Model.CountRank.countRank;
+import static lotto.View.View.lottoResult;
 
 
 public class Controller {
@@ -22,8 +23,10 @@ public class Controller {
 
         List listLotto = randLotto.getBuyLotto(count);
         List correctLotto = correctLotto();
-        List countList = countRank(listLotto, correctLotto);
         String bonus = view.bonusNum(correctLotto);
+
+        List countList = countRank(listLotto, correctLotto, bonus);
+        lottoResult(countList, myMoney);
 
     }
     private List<Integer> correctLotto(){

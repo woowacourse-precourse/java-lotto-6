@@ -62,16 +62,23 @@ public class View {
         return k;
     }
 
-    public static void lottoResult(List countRank){
+    public static void lottoResult(List countRank, int myMoney){
+        float percentLotto;
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(RankOfLotto.FIFTH.printRank + Collections.frequency(countRank, "3") +"개");
-        System.out.println(RankOfLotto.FOURTH.printRank + Collections.frequency(countRank, "4") +"개");
-        System.out.println(RankOfLotto.THIRD.printRank + Collections.frequency(countRank, "5") +"개");
-        System.out.println(RankOfLotto.SECOND.printRank + Collections.frequency(countRank, "5") +"개");
-        System.out.println(RankOfLotto.FIRST.printRank + Collections.frequency(countRank, "6") +"개");
+        System.out.println(RankOfLotto.FIFTH.printRank + Collections.frequency(countRank, 3) +"개");
+        System.out.println(RankOfLotto.FOURTH.printRank + Collections.frequency(countRank, 4) +"개");
+        System.out.println(RankOfLotto.THIRD.printRank + Collections.frequency(countRank, 5) +"개");
+        System.out.println(RankOfLotto.SECOND.printRank + Collections.frequency(countRank, 7) +"개");
+        System.out.println(RankOfLotto.FIRST.printRank + Collections.frequency(countRank, 6) +"개");
+        percentLotto = (Collections.frequency(countRank, 3) * 5000) +
+                (Collections.frequency(countRank, 4) * 50000) +
+                (Collections.frequency(countRank, 5) * 15000000) +
+                (Collections.frequency(countRank, 7) * 30000000) +
+                (Collections.frequency(countRank, 6) * 2000000000);
 
-//        lottoPercent();
+        float percent = (percentLotto / myMoney) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", percent) + "%입니다.");
     }
     private void bonusNumException(List correctLotto, String bonus){
         if(correctLotto.contains(Integer.parseInt(bonus))){

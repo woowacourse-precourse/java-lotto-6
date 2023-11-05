@@ -8,15 +8,15 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningCriteria;
 
 public class OutputView {
-    private static final String LOTTO_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String LOTTO_PURCHASE_MESSAGE = "%d개를 구매했습니다.%n";
     private static final String START_WINNING_STATICS_MESSAGE = "당첨 통계\n---";
     private static final String LOTTO_RESULT = "%d개 일치 (%,d원) - %d개";
     private static final String LOTTO_SECOND_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.%n";
 
     public static void printNumberOfLottoPurchase(int quantity) {
         System.out.println();
-        System.out.println(String.format(LOTTO_PURCHASE_MESSAGE, quantity));
+        System.out.printf(LOTTO_PURCHASE_MESSAGE, quantity);
     }
 
     public static void printLottoList(List<Lotto> lottos) {
@@ -51,6 +51,6 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(double rate) {
-        System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rate));
+        System.out.printf(RATE_OF_RETURN_MESSAGE, rate);
     }
 }

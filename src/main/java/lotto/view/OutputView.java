@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.dto.LottoDto;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,9 +14,17 @@ public class OutputView {
     }
 
     private static void printLottoDto(LottoDto lottoDto) {
-        String result = lottoDto.getNumbers().stream()
+        List<Integer> lottoDtoNumbers = lottoDto.getNumbers();
+
+        Collections.sort(lottoDtoNumbers);
+
+        String result = lottoDtoNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
         System.out.println(result);
+    }
+
+    public static void printLottoResult() {
+        System.out.println("결과출력");
     }
 }

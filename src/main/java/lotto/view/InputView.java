@@ -27,13 +27,13 @@ public class InputView {
 
     private void validateNotNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getWithPrefix());
         }
     }
 
     private void validateNotEmpty(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getWithPrefix());
         }
     }
 
@@ -41,7 +41,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getWithPrefix());
         }
     }
 }

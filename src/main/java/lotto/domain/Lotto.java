@@ -26,7 +26,7 @@ public class Lotto {
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.INVALID_LOTTO_NUMBERS_LENGTH.getFormattedMessage(
+                    ErrorMessage.INVALID_LOTTO_NUMBERS_LENGTH.getWithFormatAndPrefix(
                             LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()
                     )
             );
@@ -38,7 +38,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (numbers.size() != uniqueNumbersLength) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION.getWithPrefix());
         }
     }
 

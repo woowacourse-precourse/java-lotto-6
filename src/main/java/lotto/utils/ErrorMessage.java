@@ -1,7 +1,7 @@
 package lotto.utils;
 
 public enum ErrorMessage {
-    ERROR_PREFIX("[ERROR] "),
+    PREFIX("[ERROR] "),
     NULL_INPUT("입력이 null입니다."),
     EMPTY_INPUT("입력이 공백으로만 이루어져 있습니다."),
     NOT_INTEGER_INPUT("입력이 정수가 아닙니다."),
@@ -18,14 +18,18 @@ public enum ErrorMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return ERROR_PREFIX + message;
+    private String get() {
+        return message;
     }
 
-    public String getFormattedMessage(int number) {
-        return ERROR_PREFIX + String.format(message, number);
+    public String getWithPrefix() {
+        return PREFIX.get() + message;
     }
-    public String getFormattedMessage(int minNumber, int maxNumber) {
-        return ERROR_PREFIX + String.format(message, minNumber, maxNumber);
+
+    public String getWithFormatAndPrefix(int number) {
+        return PREFIX.get() + String.format(message, number);
+    }
+    public String getWithFormatAndPrefix(int minNumber, int maxNumber) {
+        return PREFIX.get() + String.format(message, minNumber, maxNumber);
     }
 }

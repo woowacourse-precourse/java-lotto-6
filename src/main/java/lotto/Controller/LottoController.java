@@ -34,6 +34,7 @@ public class LottoController {
         System.out.println("보너스 번호를 입력해주세요");
         int bonusWinningLotteryNumber = inputView.getBonusWinningLotteryNumber(winningLotteryNumber);
 
+        List<Integer> resultRecord = lottoService.getResultRecordOfLotto(winningLotteryNumber, bonusWinningLotteryNumber);
 
     }
 }

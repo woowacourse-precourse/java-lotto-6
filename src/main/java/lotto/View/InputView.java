@@ -3,7 +3,6 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Constant.LottoConstant;
 import lotto.Exception.InvalidInputException;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

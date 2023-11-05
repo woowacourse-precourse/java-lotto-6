@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
 
@@ -18,6 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
+        validateDistinct(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -26,5 +28,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDistinct(List<Integer> numbers) {
+        if (isDuplicate(numbers)) {
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_DISTINCT.getMessage());
+        }
+    }
+
+    private boolean isDuplicate(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != numbers.size();
+    }
 }

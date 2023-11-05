@@ -10,6 +10,8 @@ public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Lottos(PurchaseAmount purchaseAmount) {
+        generateLottos(purchaseAmount);
+        purchaseAmount.buyLotto(purchaseAmount.calculateLottoCount());
     }
 
     private void generateLottos(PurchaseAmount purchaseAmount) {

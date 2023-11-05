@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
-import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
-import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
+import static lotto.domain.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConfig.MIN_LOTTO_NUMBER;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class LottoNumber {
     private static final Map<Integer, LottoNumber> LOTTO_NUMBER_CACHE = new HashMap<>();
 
     static {
-        IntStream.rangeClosed(LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue())
+        IntStream.rangeClosed(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue())
                 .forEach(i -> LOTTO_NUMBER_CACHE.put(i, new LottoNumber(i)));
     }
 
@@ -28,7 +28,7 @@ public class LottoNumber {
     }
 
     private static void validateNumberRange(final int number) {
-        if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
+        if (number < MIN_LOTTO_NUMBER.getValue() || number > MAX_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMassage());
         }
     }

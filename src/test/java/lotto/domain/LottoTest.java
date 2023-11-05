@@ -4,11 +4,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.LottoExceptionMessage;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
@@ -70,6 +72,30 @@ class LottoTest {
             List<Integer> invalidNumbers = createLottoNumbers(input);
             assertThatThrownBy(() -> new Lotto(invalidNumbers))
                     .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+        }
+    }
+
+    @Nested
+    @DisplayName("로또 번호 포함 개수 기능 테스트")
+    class CalculateContainCountsTest {
+
+        private final Lotto playerLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        @ParameterizedTest
+        @CsvSource(value = {
+                "7,8,9,10,11,1:1",
+                "12,13,14,15,3,6:2",
+                "17,18,19,2,5,4:3",
+                "20,25,1,3,5,6:4",
+                "31,1,3,4,6,5:5",
+                "3,5,1,4,2,6:6"},
+                delimiter = ':')
+        @DisplayName("당첨 번호와 기댓값이 주어졌을 때, 일치하는지 확인")
+        void oneContainCount(String winnerNumbers, int expectedCounts) {
+            // given
+            Lotto winningNumber = new Lotto(createLottoNumbers(winnerNumbers));
+            Assertions.assertThat(playerLotto.countMatchingNumbers(winningNumber))
+                    .isSameAs(expectedCounts);
         }
     }
 

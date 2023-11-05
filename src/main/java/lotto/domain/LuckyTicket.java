@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import lotto.domain.collections.LotteryResultCollection;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class LuckyTicket {
 
@@ -26,7 +28,7 @@ public class LuckyTicket {
         return new LuckyTicket(lotto, bonusNumber);
     }
 
-    public LotteryResult matchWith(final User user) {
+    public LotteryResultCollection matchWith(final User user) {
         List<Lotto> userTickets = user.getTickets();
         List<Integer> luckyNumbers = lotto.getNumbers();
         List<LotteryResult> results = new ArrayList<>();
@@ -38,48 +40,21 @@ public class LuckyTicket {
             results.add(makeLotteryResult(numberCount, bonusCount));
         }
 
-        Collections.sort(results);
-        return results.get(0);
+        return LotteryResultCollection.of(results);
     }
 
     private LotteryResult makeLotteryResult(int matchCount, int bonusCount) {
-
+        return LotteryResult.getWinnerMoneyOf(matchCount, bonusCount);
     }
 
-    private int matchCountWithStream(List<Integer> luckyNumbers, List<Integer> userNumbers) {
+    private int matchCountWithStream(
+        final List<Integer> luckyNumbers,
+        final List<Integer> userNumbers
+    ) {
         Long count = userNumbers.stream()
             .filter(luckyNumbers::contains)
             .count();
         return count.intValue();
     }
-
-    public boolean hasBonusNumberInt(List<Integer> list) {
-        return list.contains(bonusNumber);
-    }
-
-
-    public int matchCountWithTwoPointer(
-        final List<Integer> userNumbers,
-        final List<Integer> luckyNumbers
-    ) {
-        // 투포인터 알고리즘으로 이미 정렬되어 있는 두 리스트의 숫자 들을 비교한다.
-        int userIndex = 0, luckyIndex = 0;
-        int count = 0;
-
-        while (userIndex < userNumbers.size() && luckyIndex < luckyNumbers.size()) {
-            Integer userNumber = userNumbers.get(userIndex);
-            Integer luckyNumber = luckyNumbers.get(luckyIndex);
-
-            if (userNumber > luckyNumber) luckyIndex++;
-            if (luckyNumber > userNumber) userIndex++;
-            if (userNumber == luckyNumber) {
-                luckyIndex++;
-                userIndex++;
-                count++;
-            }
-        }
-        return count;
-    }
-
 
 }

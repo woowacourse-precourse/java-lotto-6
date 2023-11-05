@@ -18,6 +18,7 @@ public class Statistic {
     private Integer countOfThirdPlace;
     private Integer countOfFourthPlace;
     private Integer countOfFifthPlace;
+    private Integer totalWinMoney;
 
 
     public Statistic(LottoEnvelop lottoEnvelop, LottoNumResults lottoNumResults) {
@@ -28,6 +29,7 @@ public class Statistic {
         this.countOfThirdPlace = 0;
         this.countOfFourthPlace = 0;
         this.countOfFifthPlace = 0;
+        this.totalWinMoney = 0;
     }
     // 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
     //  1등: 6개 번호 일치 / 2,000,000,000원
@@ -90,5 +92,19 @@ public class Statistic {
         resultString.append("6개 일치 (2,000,000,000원) - " + countOfFirstPlace + "개\n");
 
         return resultString;
+    }
+
+    private void calculateTotalWinMoney() {
+        totalWinMoney = totalWinMoney + (countOfFifthPlace * 5000);
+        totalWinMoney = totalWinMoney + (countOfFourthPlace * 50000);
+        totalWinMoney = totalWinMoney + (countOfThirdPlace * 1500000);
+        totalWinMoney = totalWinMoney + (countOfSecondPlace * 30000000);
+        totalWinMoney = totalWinMoney + (countOfFirstPlace * 2000000000);
+
+    }
+
+    public Integer getTotalWinMoney() {
+        calculateTotalWinMoney();
+        return totalWinMoney;
     }
 }

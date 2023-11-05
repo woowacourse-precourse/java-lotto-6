@@ -6,15 +6,17 @@ import lotto.domain.Rank;
 
 import java.util.List;
 
+import static lotto.domain.Constants.*;
+
 public class Output {
 
     public void printInputPurchaseAmountMessage() {
-        System.out.println(Constants.PURCHASE_AMOUNT_MESSAGE);
+        System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }
 
     public void printPurchaseQuantity(int lottoQuantity) {
         System.out.println();
-        System.out.printf(Constants.QUANTITY_MESSAGE, lottoQuantity);
+        System.out.printf(QUANTITY_MESSAGE, lottoQuantity);
     }
 
     public void printMyLottos(List<Lotto> myLottos) {
@@ -23,11 +25,11 @@ public class Output {
 
     public void printInputWinningNumbersMessage() {
         System.out.println();
-        System.out.println(Constants.INPUT_WINNING_NUMBERS);
+        System.out.println(INPUT_WINNING_NUMBERS);
     }
 
     public void printInputBonusNumberMessage() {
-        System.out.println(Constants.INPUT_BONUS_NUMBER);
+        System.out.println(INPUT_BONUS_NUMBER);
     }
 
     public void printResult(List<Integer> winningLottoCounts, double profit) {
@@ -38,20 +40,20 @@ public class Output {
 
     private static void printWinningResultMessage() {
         System.out.println();
-        System.out.println(Constants.WINNING_STATS_MESSAGE);
-        System.out.println(Constants.THREE_HYPHEN);
+        System.out.println(WINNING_STATS_MESSAGE);
+        System.out.println(THREE_HYPHEN);
     }
 
     private static void printWinningCounts(List<Integer> winningLottoCounts) {
-        System.out.printf(Constants.WINNING_THREE_NUMBERS, winningLottoCounts.get(Rank.FIFTH.getRankIndex()));
-        System.out.printf(Constants.WINNING_FOUR_NUMBERS, winningLottoCounts.get(Rank.FOURTH.getRankIndex()));
-        System.out.printf(Constants.WINNING_FIVE_NUMBERS, winningLottoCounts.get(Rank.THIRD.getRankIndex()));
-        System.out.printf(Constants.WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottoCounts.get(Rank.SECOND.getRankIndex()));
-        System.out.printf(Constants.WINNING_SIX_NUMBERS, winningLottoCounts.get(Rank.FIRST.getRankIndex()));
+        System.out.printf(WINNING_THREE_NUMBERS, winningLottoCounts.get(Rank.FIFTH.getRankIndex()));
+        System.out.printf(WINNING_FOUR_NUMBERS, winningLottoCounts.get(Rank.FOURTH.getRankIndex()));
+        System.out.printf(WINNING_FIVE_NUMBERS, winningLottoCounts.get(Rank.THIRD.getRankIndex()));
+        System.out.printf(WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottoCounts.get(Rank.SECOND.getRankIndex()));
+        System.out.printf(WINNING_SIX_NUMBERS, winningLottoCounts.get(Rank.FIRST.getRankIndex()));
     }
 
     private static void printProfit(double profit) {
-        System.out.printf(Constants.PROFIT, profit);
+        System.out.printf(PROFIT, profit);
     }
 }
 

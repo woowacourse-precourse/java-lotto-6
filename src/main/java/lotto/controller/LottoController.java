@@ -6,6 +6,8 @@ import lotto.io.Output;
 
 import java.util.List;
 
+import static lotto.domain.Constants.*;
+
 public class LottoController {
 
     final Input input;
@@ -31,7 +33,7 @@ public class LottoController {
     }
 
     private int getUserAmount() {
-        int money = 0;
+        int money;
         try {
             output.printInputPurchaseAmountMessage();
             money = input.getUserAmount();
@@ -43,7 +45,7 @@ public class LottoController {
     }
 
     private int getLottoQuantity(int money) {
-        int lottoQuantity = money / Constants.LOTTO_PRICE;
+        int lottoQuantity = money / LOTTO_PRICE;
         output.printPurchaseQuantity(lottoQuantity);
         return lottoQuantity;
     }

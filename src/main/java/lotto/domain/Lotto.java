@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.domain.Constants.*;
+
 public class Lotto {
 
     private final List<Integer> numbers;
@@ -18,20 +20,20 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != Constants.LOTTO_NUMBERS) {
-            throw new IllegalArgumentException("[ERROR] 6자리 숫자를 입력해 주세요.");
+        if (numbers.size() != LOTTO_NUMBERS) {
+            throw new IllegalArgumentException(SIX_NUMBERS_MESSAGE);
         }
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 6자리 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(UNIQUE_SIX_NUMBERS_MESSAGE);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 각 번호는 1 이상 45 이하로 입력해 주세요.");
+        if (numbers.stream().anyMatch(num -> num < LOTTO_MIN_NUM || num > LOTTO_MAX_NUM)) {
+            throw new IllegalArgumentException(NUMBER_RANGE_MESSAGE);
         }
     }
 

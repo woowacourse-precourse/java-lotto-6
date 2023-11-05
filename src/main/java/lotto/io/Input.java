@@ -1,6 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,25 +24,25 @@ public class Input {
     private void validateOnlyNumber(String userInput) {
         for (int i = 0; i < userInput.length(); i++) {
             if(!Character.isDigit(userInput.charAt(i))){
-                throw new IllegalArgumentException("[ERROR] 1000원 이상 숫자만 입력해 주세요.\n");
+                throw new IllegalArgumentException(Constants.ONLY_NUMBER_MESSAGE);
             }
         }
     }
 
     private void validateAboveOrEqualThousand(String userInput) {
-        if (Integer.parseInt(userInput) < 1000) {
-            throw new IllegalArgumentException("[ERROR] 1000원 이상 입력해 주세요.\n");
+        if (Integer.parseInt(userInput) < Constants.LOTTO_PRICE) {
+            throw new IllegalArgumentException(Constants.ABOVE_THOUSAND_MESSAGE);
         }
     }
 
     private void validateDivisibleByThousand(String userInput) {
-        if ((Integer.parseInt(userInput) % 1000) != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.\n");
+        if ((Integer.parseInt(userInput) % Constants.LOTTO_PRICE) != Constants.ZERO_CHANGE) {
+            throw new IllegalArgumentException(Constants.DIVISIBLE_BY_THOUSAND_MESSAGE);
         }
     }
 
     public List<Integer> getWinningNumbers() {
-        List<String> userInput = Arrays.asList(Console.readLine().split(","));
+        List<String> userInput = Arrays.asList(Console.readLine().split(Constants.COMMA));
         validateWinningNumbers(userInput);
 
         return userInput.stream()
@@ -58,36 +59,36 @@ public class Input {
     }
 
     private void validateNoBlank(List<String> userInput) {
-        if (userInput.stream().anyMatch(num -> num.contains(" "))) {
-            throw new IllegalArgumentException("[ERROR] 공백은 입력이 불가능 합니다.");
+        if (userInput.stream().anyMatch(num -> num.contains(Constants.BLANK))) {
+            throw new IllegalArgumentException(Constants.NO_BLANK_MESSAGE);
         }
     }
 
     private void validateOnlyNumbers(List<String> userInput) {
         for (String num : userInput) {
             if(!(num.chars().allMatch(Character::isDigit))) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+                throw new IllegalArgumentException(Constants.ONLY_NUMBERS_MESSAGE);
             }
         }
     }
 
     private void validateNumbersSizeSix(List<String> userInput) {
-        if (userInput.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6자리 숫자를 입력해 주세요.");
+        if (userInput.size() != Constants.LOTTO_NUMBERS) {
+            throw new IllegalArgumentException(Constants.SIX_NUMBERS_MESSAGE);
         }
     }
 
     private void validateNumberRange(List<String> userInput) {
         if (userInput.stream()
                 .mapToInt(Integer::parseInt)
-                .anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 각 번호는 1 이상 45 이하로 입력해 주세요.");
+                .anyMatch(num -> num < Constants.LOTTO_MIN_NUM || num > Constants.LOTTO_MAX_NUM)) {
+            throw new IllegalArgumentException(Constants.NUMBER_RANGE_MESSAGE);
         }
     }
 
     private void validateDuplicatedNumber(List<String> userInput) {
         if (userInput.size() != userInput.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 6자리 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(Constants.UNIQUE_SIX_NUMBERS_MESSAGE);
         }
     }
 
@@ -106,22 +107,22 @@ public class Input {
     private void validateOnlyOneNumber(String userInput) {
         for (int i = 0; i < userInput.length(); i++) {
             if(!Character.isDigit(userInput.charAt(i))){
-                throw new IllegalArgumentException("[ERROR] 0 이상 숫자 하나만 입력해 주세요.");
+                throw new IllegalArgumentException(Constants.ONLY_ONE_NUMBER_MESSAGE);
             }
         }
     }
 
     private void validateBonusNumberRange(String userInput) {
         int bonusNumber = Integer.parseInt(userInput);
-        if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 이상 45 이하로 입력해 주세요.");
+        if (!(bonusNumber >= Constants.LOTTO_MIN_NUM && bonusNumber <= Constants.LOTTO_MAX_NUM)) {
+            throw new IllegalArgumentException(Constants.BONUS_NUM_RANGE_MESSAGE);
         }
     }
 
     private void validateDuplicateWithWinningNumbers(String userInput, List<Integer> winningNumbers) {
         int bonusNumber = Integer.parseInt(userInput);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(Constants.BONUS_NUM_DUPLICATE_MESSAGE);
         }
     }
 }

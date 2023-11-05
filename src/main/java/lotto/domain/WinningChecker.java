@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.domain.Constants.*;
+
 public class WinningChecker {
 
     private final List<Lotto> myLottos;
@@ -19,7 +21,7 @@ public class WinningChecker {
         List<Integer> matchedNumberCounts =
                 myLottos.stream()
                         .map(lotto -> countMatchedNumbers(lotto))
-                        .filter(matchedNumbersCount -> matchedNumbersCount >= Constants.WINNING_COUNT)
+                        .filter(matchedNumbersCount -> matchedNumbersCount >= WINNING_COUNT)
                         .collect(Collectors.toList());
         return countRanks(matchedNumberCounts);
     }

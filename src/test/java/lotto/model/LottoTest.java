@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -19,5 +20,19 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("두 로또번호 비교")
+    @Test
+    void compareTwoLotto() {
+        // given
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+
+        // when
+        int difference = answer.getDifferenceBetween(lotto);
+
+        // then
+        assertThat(difference).isEqualTo(2);
     }
 }

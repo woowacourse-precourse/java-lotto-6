@@ -55,4 +55,14 @@ public class Lotto {
         }
     }
 
+    private void validateRange(List<Integer> numbers) {
+        for (int winningNumber = 0; winningNumber < numbers.size(); winningNumber++) {
+            if (numbers.get(winningNumber) < MIN_NUMBER || numbers.get(winningNumber) > MAX_NUMBER) {
+                ExceptionMessage.rangeException();
+                throw new IllegalArgumentException();
+            }
+
+        }
+    }
+
 }

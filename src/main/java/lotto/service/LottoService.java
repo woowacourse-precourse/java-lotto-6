@@ -45,7 +45,7 @@ public class LottoService {
         int equalCount = 0;
 
         for (int nthIndex = 0; nthIndex < myLottoNumbers.size(); nthIndex++) {
-            if (answerLottoNumbers.get(nthIndex) == myLottoNumbers.get(nthIndex)) {
+            if (answerLottoNumbers.contains(myLottoNumbers.get(nthIndex))) {
                 equalCount++;
             }
         }

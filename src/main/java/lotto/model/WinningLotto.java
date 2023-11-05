@@ -1,11 +1,15 @@
 package lotto.model;
 
+import java.util.List;
+import lotto.validator.BonusNumberValidator;
+
 public class WinningLotto {
     private final Lotto winningLotto;
-    private final BonusNumber bonusNumber;
+    private final Integer bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
-        this.winningLotto = winningLotto;
+    public WinningLotto(List<Integer> winningLotto, Integer bonusNumber) {
+        this.winningLotto = new Lotto(winningLotto);
+        BonusNumberValidator.validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 }

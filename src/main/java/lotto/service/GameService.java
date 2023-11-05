@@ -1,13 +1,6 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import lotto.constant.NumberConstant;
 import lotto.domain.Lotteries;
-import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 import lotto.util.RandomNumberGenerator;

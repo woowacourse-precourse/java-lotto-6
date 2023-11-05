@@ -1,10 +1,11 @@
 package lotto;
 
-import util.RandomNumbers;
+import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println(RandomNumbers.makeLottoNumbers());
+        final int totalPurchaseQuantity = 8;
+        OutputView.outputTotalPurchaseQuantity(totalPurchaseQuantity);
     }
 }

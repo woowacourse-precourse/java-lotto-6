@@ -17,15 +17,17 @@ public class LottoController {
         int lottoCount = amount / 1000;
 
         Lotto[] lottos = new Lotto[lottoCount];
+        LottoRank[] lottoRanks = new LottoRank[lottoCount];
         for (int i = 0; i < lottos.length; ++i) {
             lottos[i] = new Lotto(lottoService.generateLottoNumbers());
+            lottoRanks[i] = new LottoRank(lottos[i]);
         }
         lottoView.printPurchasedLottoNumbers(lottos);
 
         winningNumbers = lottoService.generateLottoWinningNumbers(lottoView.inputWinningNumber());
         bonusNumber = lottoView.inputBonusNumber();
 
-        Rank[] ranks = lottoService.calculateWinningDetails(lottos, winningNumbers, bonusNumber);
+        Rank[] ranks = lottoService.calculateWinningDetails(lottoRanks, winningNumbers, bonusNumber);
         lottoView.printWinningInformation(ranks);
 
         double profitRate = lottoService.calculateProfitRate(ranks, amount);

@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class LottoView {
@@ -34,12 +32,13 @@ public class LottoView {
         System.out.println("---");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.KOREA);
         String countIndex = "";
-        for(Rank rank : ranks) {
+        for (Rank rank : ranks) {
             countIndex = rank.getRank() + "개 일치 ";
-            if(rank.getRank().equals("5B")) {
+            if (rank.getRank().equals("5B")) {
                 countIndex = "5개 일치, 보너스 볼 일치 ";
             }
-            System.out.println(countIndex + "(" + numberFormat.format(rank.getMoney()).replace("₩", "") + "원) - " + rank.getAmount() + "개");
+            System.out.println(countIndex + "(" + numberFormat.format(rank.getMoney()).replace("₩", "") + "원) - "
+                    + rank.getAmount() + "개");
         }
     }
 

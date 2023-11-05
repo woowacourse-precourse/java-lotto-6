@@ -6,7 +6,7 @@ public enum Rank {
     THIRD("5", 1500000, 0),
     FOURTH("4", 50000, 0),
     FIFTH("3", 5000, 0),
-    FAIL("0",0,0);
+    FAIL("0", 0, 0);
 
 
     private String rank;
@@ -36,11 +36,21 @@ public enum Rank {
     }
 
     public Rank calcurateRank(String rank) {
-        if(rank.equals(FIRST.rank)) return FIRST;
-        if(rank.equals(SECOND.rank)) return SECOND;
-        if(rank.equals(THIRD.rank)) return THIRD;
-        if(rank.equals(FOURTH.rank)) return FOURTH;
-        if(rank.equals(FIFTH.rank)) return FIFTH;
+        if (rank.equals(FIRST.rank)) {
+            return FIRST;
+        }
+        if (rank.equals(SECOND.rank)) {
+            return SECOND;
+        }
+        if (rank.equals(THIRD.rank)) {
+            return THIRD;
+        }
+        if (rank.equals(FOURTH.rank)) {
+            return FOURTH;
+        }
+        if (rank.equals(FIFTH.rank)) {
+            return FIFTH;
+        }
         return FAIL;
     }
 }

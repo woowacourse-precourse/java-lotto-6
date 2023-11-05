@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -15,7 +14,6 @@ public class LottoService {
      */
     public List<Integer> generateLottoNumbers() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
         return lotto;
     }
 
@@ -33,11 +31,11 @@ public class LottoService {
     /**
      * 당첨 내역 계산하기
      */
-    public Rank[] calculateWinningDetails(Lotto[] lottos, ArrayList<Integer> winningNumbers, int bonusNumber) {
+    public Rank[] calculateWinningDetails(LottoRank[] lottoRanks, ArrayList<Integer> winningNumbers, int bonusNumber) {
         Rank[] ranks = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
-        for (int i = 0; i < lottos.length; ++i) {
-            lottos[i].setRank(winningNumbers, bonusNumber);
-            checkRank(ranks, lottos[i]);
+        for (int i = 0; i < lottoRanks.length; ++i) {
+            lottoRanks[i].setRank(winningNumbers, bonusNumber);
+            checkRank(ranks, lottoRanks[i]);
         }
         return ranks;
     }
@@ -45,9 +43,9 @@ public class LottoService {
     /**
      * 몇 번째 rank인지 검사
      */
-    public void checkRank(Rank[] ranks, Lotto lotto) {
-        for(int i = 0; i < ranks.length; ++i) {
-            if(ranks[i].getRank() == lotto.getRank().getRank()) {
+    public void checkRank(Rank[] ranks, LottoRank lottoRanks) {
+        for (int i = 0; i < ranks.length; ++i) {
+            if (ranks[i].getRank() == lottoRanks.getRank().getRank()) {
                 ranks[i].setAmount();
             }
         }
@@ -62,7 +60,7 @@ public class LottoService {
         for (Rank rank : ranks) {
             sum += rank.getMoney() * rank.getAmount();
         }
-        profitRate =  sum/amount;
+        profitRate = sum / amount;
         return profitRate * 100;
     }
 

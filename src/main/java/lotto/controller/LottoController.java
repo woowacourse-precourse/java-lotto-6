@@ -91,13 +91,6 @@ public class LottoController {
                 .count();
     }
 
-    private int findSecond2() {
-        return  (int) lottos.stream()
-                .filter(lotto -> lotto.matchNumbers(winningNumbers) == SECOND.getCount()
-                        && lotto.containsBonusNumber(bonusNumber))
-                .count();
-    }
-
     public int findThird() {
         return (int) lottos.stream()
                 .filter(lotto -> lotto.matchNumbers(winningNumbers) == THIRD.getCount()

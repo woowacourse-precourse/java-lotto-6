@@ -22,11 +22,11 @@ public class LottoController {
     }
 
     public void lottoRun() {
-        lottoFirstSetting();
+        lottoInitialSetting();
         lottoStart();
     }
 
-    private void lottoFirstSetting() {
+    private void lottoInitialSetting() {
         int lottoCount = inputView.getLottoCount();
 
         this.createdLottos = service.createLotto(lottoCount);

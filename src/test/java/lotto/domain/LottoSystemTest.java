@@ -3,6 +3,7 @@ package lotto.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -54,5 +55,20 @@ class LottoSystemTest {
         Assertions.assertThatThrownBy(() -> lottoSystem.buyLotto(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또는 1,000원 단위로 구매할 수 있습니다.");
+    }
+
+    @DisplayName("당첨 로또를 생성한다.")
+    @Test
+    void generateWinningLotto() throws Exception {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        lottoSystem.generateWinningLotto(numbers);
+
+        // when
+        List<Integer> winningLottoNumbers = winningLotto.numbers();
+
+        // then
+        assertThat(winningLottoNumbers).isNotEmpty();
+        assertThat(winningLottoNumbers).isEqualTo(numbers);
     }
 }

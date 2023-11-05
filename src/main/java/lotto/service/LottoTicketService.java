@@ -17,6 +17,10 @@ public class LottoTicketService {
     private final int endInclusive = LOTTO_END_NUMBER.getValue();
     private final int count = LOTTO_COUNT_NUMBER.getValue();
 
+    public LottoPurchaseAmount parsePurchaseAmount(String userInput){
+        return new LottoPurchaseAmount(userInput);
+    }
+
     public LottoTicketCount convertMoneyToTickets(LottoPurchaseAmount purchaseAmount) {
         int ticketCount = purchaseAmount.getAmount() / TICKET_PRICE.getValue();
         return new LottoTicketCount(ticketCount);

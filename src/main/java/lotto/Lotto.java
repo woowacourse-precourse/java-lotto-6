@@ -33,7 +33,7 @@ public class Lotto {
     public void validateProperNumbers(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             int lottoNum = numbers.get(i);
-            if (lottoNum > MIN_NUMBER && lottoNum < MAX_NUMBER) {
+            if (lottoNum < MIN_NUMBER && lottoNum > MAX_NUMBER) {
                 throw new IllegalArgumentException(
                         ErrorMessage.NON_PROPER_NUMS.getErrorMessage()
                 );

@@ -12,7 +12,7 @@ public class RandomNumberGenerator{
     private static final int COUNT = 6;
 
     public static List<Integer> createUniqueRandomNumbers(){
-    return sortRandomNumbers(pickUniqueNumbersInRange(STARTINCLUSIVE,ENDINCLUSIVE,COUNT));
+        return sortRandomNumbers(pickUniqueNumbersInRange(STARTINCLUSIVE,ENDINCLUSIVE,COUNT));
     }
 
     private static List<Integer> sortRandomNumbers(List<Integer> randomNumbers){

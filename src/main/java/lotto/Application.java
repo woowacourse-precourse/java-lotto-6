@@ -106,7 +106,31 @@ public class Application {
         return inputBonusNumberValidation;
     }
 
+    public int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+        int matchCount = 0;
+        for(int i = 0 ; i < winningNumber.size() ; i++){
+            if(lotto.contains(winningNumber.get(i))){
+                matchCount++;
+            }
+        }
 
+        if(matchCount == 3){
+            return 5000;
+        }
+        if(matchCount == 4){
+            return 50000;
+        }
+        if(matchCount == 5){
+            if(lotto.contains(bonusNumber)){
+                return 30000000;
+            }
+            return 1500000;
+        }
+        if(matchCount == 6){
+            return 200000000;
+        }
+        return 0;
+    }
 
 
 }

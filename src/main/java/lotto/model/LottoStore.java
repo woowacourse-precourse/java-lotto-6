@@ -8,32 +8,28 @@ public class LottoStore {
 
     private static final Integer LOTTO_PRICE = 1000;
 
-    private int purchaseAmount;
-    private int lottoPurchaseQuantity;
-
-    private LottoStore(int purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+    private LottoStore() {
     }
 
-    public static LottoStore of(int purchaseAmount) {
-        return new LottoStore(purchaseAmount);
+    public static LottoStore of() {
+        return new LottoStore();
     }
 
-    public Lottos buyLotto() {
-        calculatePurchaseQuantity(purchaseAmount);
-        return createLottos();
+    public List<Lotto> sellLotto(int money) {
+        int quantity = calculatePurchaseQuantity(money);
+        return createLottos(quantity);
     }
 
-    private void calculatePurchaseQuantity(int purchaseAmount) {
-        this.lottoPurchaseQuantity = purchaseAmount / LOTTO_PRICE;
+    private int calculatePurchaseQuantity(int money) {
+        return money / LOTTO_PRICE;
     }
 
-    private Lottos createLottos() {
+    private List<Lotto> createLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoPurchaseQuantity; i++) {
+        for (int i = 0; i < quantity; i++) {
             lottos.add(createLotto());
         }
-        return Lottos.of(lottos);
+        return lottos;
     }
 
     private Lotto createLotto() {

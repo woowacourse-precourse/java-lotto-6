@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.service.LottoService;
 import lotto.validation.InputValidation;
 
 public class InputView {
@@ -11,6 +12,6 @@ public class InputView {
         int purchaseInput = Integer.parseInt(input);
         InputValidation.validateInputPurchaseAmount(purchaseInput);
         InputValidation.validateInputString(input);
-        return purchaseInput;
+        return LottoService.amountPurchaseDivide(purchaseInput);
     }
 }

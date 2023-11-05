@@ -14,6 +14,10 @@ public class Buyer {
         this.lottoTickets = lottoTickets;
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     public int getPurchaselottoQuantity() {
         return purchaselottoQuantity;
     }

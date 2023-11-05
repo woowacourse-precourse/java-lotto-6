@@ -41,13 +41,14 @@ public class Validator {
         String[] nums = input.split(",");
         int NumCount = 0;
         for (String num : nums) {
-            if(validateInputIsNumeric(num)){
-                if (!num.isEmpty()&&validateNumberRange(Integer.parseInt(num))) {
-                    NumCount++;
-                }
+            if (!num.isEmpty()&&validateNumberRange(Integer.parseInt(num))&&validateInputIsNumeric(num)) {
+                NumCount++;
             }
         }
-        return NumCount == 6;
+        if (NumCount != 6) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 잘못됐습니다.");
+        }
+        return true;
     }
 
     public static int validateBonusNumber(String input){

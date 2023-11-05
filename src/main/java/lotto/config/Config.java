@@ -1,5 +1,6 @@
 package lotto.config;
 
+import lotto.control.Process;
 import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
@@ -14,6 +15,10 @@ import lotto.domain.user.Statistic;
 import lotto.domain.user.User;
 
 public class Config {
+    public static Process process() {
+        return new Process();
+    }
+
     public static LottoHost lottoHost() {
         return new LottoHost();
     }

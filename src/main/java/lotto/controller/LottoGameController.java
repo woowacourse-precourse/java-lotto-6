@@ -13,23 +13,8 @@ public class LottoGameController {
     }
 
     public void run() {
-        PurchasedLotto purchasedLotto = initPurchasedLotto();
-        Lotto winningLotto = initWinningLotto();
-
-    }
-
-    private PurchasedLotto initPurchasedLotto() {
         PurchasedLotto purchasedLotto = purchasedLottoService.createPurchasedLotto();
-        purchasedLottoService.printPurchasedLotto(purchasedLotto);
-        return purchasedLotto;
+        Lotto winningLotto = winningLottoService.craeteWinningLotto();
+
     }
-
-    private Lotto initWinningLotto() {
-        return winningLottoService.craeteWinningLotto();
-    }
-
-
-
-
-
 }

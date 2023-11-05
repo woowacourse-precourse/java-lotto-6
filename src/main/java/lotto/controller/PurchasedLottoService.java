@@ -8,31 +8,49 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.util.RandomNumbersGenerator;
-import lotto.view.InputView;
+import lotto.view.InputPurchasePriceView;
 import lotto.view.OutputView;
 
 public class PurchasedLottoService {
 
     public PurchasedLotto createPurchasedLotto() {
-        int lottoCount = inputPurchasedLottoCount(InputView.inputPurchasePrice());
+        int lottoCount = calculatePurchasedLottoCount(inputPurchasePrice());
 
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = RandomNumbersGenerator.generateSortedRandomNumbers();
             lotto.add(new Lotto(numbers));
         }
-        return new PurchasedLotto(lotto);
+        PurchasedLotto purchasedLotto = new PurchasedLotto(lotto);
+
+        printPurchasedLotto(purchasedLotto);
+        return purchasedLotto;
     }
 
-    private int inputPurchasedLottoCount(int purchasePrice) {
+    private int inputPurchasePrice() {
+        do {
+            try {
+                return InputPurchasePriceView.inputPurchasePrice();
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        } while (true);
+    }
+
+    private int calculatePurchasedLottoCount(int purchasePrice) {
         int purchasedLottoCount = purchasePrice / LOTTO_PRICE.getNumber();
-        String purchaseMessage = String.format(PURCHASE_MESSAGE.getMessage(), purchasedLottoCount);
-        OutputView.printMessage(purchaseMessage);
+        printPurchasedLottoCount(purchasedLottoCount);
 
         return purchasedLottoCount;
     }
 
-    public void printPurchasedLotto(PurchasedLotto purchasedLotto) {
+    private void printPurchasedLottoCount(int count) {
+        String purchaseMessage = String.format(PURCHASE_MESSAGE.getMessage(), count);
+
+        OutputView.printMessage(purchaseMessage);
+    }
+
+    private void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         purchasedLotto.getLotto()
                 .forEach(lotto -> OutputView.printNumbers(lotto.getLotto()));
     }

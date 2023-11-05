@@ -1,8 +1,9 @@
 package lotto.view;
 
+import static lotto.config.GameNumberConfig.LOTTO_NUMBER_COUNT;
 import static lotto.config.GameTextConfig.LOTTO_NUMBER_SEPARATOR;
+import static lotto.exception.ErrorMessage.VALIDATE_INPUT_LOTTO_LENGTH;
 import static lotto.exception.ErrorMessage.VALIDATE_INPUT_NUMBER;
-import static lotto.view.constants.OutputMessage.INPUT_PURCHASE_PRICE_MESSAGE;
 import static lotto.view.constants.OutputMessage.INPUT_WINNING_NUMBER_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -10,29 +11,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.view.validator.InputValidator;
-import lotto.view.validator.PurchasePriceValidator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class InputView {
-    private InputView() {
-    }
+public class InputWinningNumberView {
+    private static final int INPUT_SEPARATOR_COUNT = (LOTTO_NUMBER_COUNT.getNumber() - 1) * LOTTO_NUMBER_SEPARATOR.getText().length();
 
-    public static int inputPurchasePrice() {
-        String inputPrice;
-        do {
-            OutputView.printMessage(INPUT_PURCHASE_PRICE_MESSAGE.getMessage());
-            inputPrice = Console.readLine();
-        } while (!PurchasePriceValidator.validatePurchasePrice(inputPrice));
-        return Integer.parseInt(inputPrice);
+    private InputWinningNumberView() {
     }
 
     public static List<Integer> inputWinningNumber() {
         OutputView.printMessage(INPUT_WINNING_NUMBER_MESSAGE.getMessage());
 
         String input = Console.readLine();
-        InputValidator.validateWinningNumber(input);
+        validateWinningNumber(input);
         return parseWinningNumber(input);
+    }
 
+    private static void validateWinningNumber(String input) {
+        checkSeparatorCount(input);
+    }
+
+    private static void checkSeparatorCount(String input) {
+        Pattern pattern = Pattern.compile(LOTTO_NUMBER_SEPARATOR.getText());
+        Matcher matcher = pattern.matcher(input);
+
+        int count = 0;
+        while (matcher.find()) {
+            count++;
+        }
+
+        if (count != INPUT_SEPARATOR_COUNT) {
+            throw new IllegalArgumentException(VALIDATE_INPUT_LOTTO_LENGTH.getMessage());
+        }
     }
 
     private static List<Integer> parseWinningNumber(String input) {
@@ -42,11 +53,11 @@ public class InputView {
         return numbers;
     }
 
-    public static List<String> splitBySeparator(String input) {
+    private static List<String> splitBySeparator(String input) {
         return Arrays.asList(input.split(LOTTO_NUMBER_SEPARATOR.getText()));
     }
 
-    public static List<Integer> parseIntList(List<String> input){
+    private static List<Integer> parseIntList(List<String> input){
         try {
             return new ArrayList<>(input.stream()
                     .map(Integer::parseInt)

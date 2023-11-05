@@ -5,72 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.WinningNumber;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 public class LottoMachineTest {
     private final TestInputReader testInputReader = new TestInputReader();
     private final LottoMachine lottoMachine = new LottoMachine(testInputReader);
-
-    @Nested
-    class inputWinningNumbers {
-        @Test
-        void 영어_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5,six");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 한글_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5,육");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 특수문자_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5,^");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 빈값_입력의_경우() {
-            testInputReader.setInput("");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 갯수보다_적은_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 갯수보다_많은_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5,6,7");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 번호범위보다_작은_입력의_경우() {
-            testInputReader.setInput("0,1,2,3,4,5");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 번호범위보다_큰_입력의_경우() {
-            testInputReader.setInput("46,2,3,4,5,6");
-            assertThrows(IllegalArgumentException.class, () -> lottoMachine.inputWinningNumbers());
-        }
-
-        @Test
-        void 정상적인_입력의_경우() {
-            testInputReader.setInput("1,2,3,4,5,6");
-            WinningNumber winningNumber = lottoMachine.inputWinningNumbers();
-
-            assertThat(winningNumber.getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
-        }
-    }
 
     @Test
     void 로또_생성_갯수_테스트() {

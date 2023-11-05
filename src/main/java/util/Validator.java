@@ -50,7 +50,12 @@ public class Validator {
     }
 
     private void checkEachSpace(List<String> userlottoList) {
-        if(userlottoList.contains(" "))
+        for (String check_space : userlottoList)
+            checkEachCharSpace(check_space);
+    }
+
+    private void checkEachCharSpace(String check_space) {
+        if(check_space.contains(" "))
             throwSpaceException();
     }
 

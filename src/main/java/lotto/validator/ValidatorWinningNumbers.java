@@ -16,5 +16,13 @@ public class ValidatorWinningNumbers {
     private boolean checkInputSizeIs6(WinningNumbers winningNumbers) {
         return winningNumbers.getWinningNumbers().size() == 6;
     }
-    
+
+    private boolean checkInputBounds(WinningNumbers winningNumbers) {
+        for (int number: winningNumbers.getWinningNumbers()) {
+            if (!(1 <= number && number <= 45)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

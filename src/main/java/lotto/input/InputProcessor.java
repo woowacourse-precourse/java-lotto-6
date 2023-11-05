@@ -77,7 +77,7 @@ public class InputProcessor {
     }
 
     private static boolean hasInvalidRange(int number) {
-        return number < 1 || number > 45;
+        return number < LOTTO_NUMBER_LOWER_BOUND || number > LOTTO_NUMBER_UPPER_BOUND;
     }
 
     private boolean hasValidNumberOfBalls(String[] input) {
@@ -91,7 +91,7 @@ public class InputProcessor {
     }
 
     private boolean isMultipleOfUnit(int input) {
-        return input % 1000 == 0;
+        return input % PURCHASE_MONEY_UNIT == 0;
     }
 
     private void validateIsInteger(String str) {
@@ -109,3 +109,21 @@ public class InputProcessor {
                 .toList();
     }
 }
+
+//    public Integer getBonusNumber() {
+//        String input = inputProvider.read();
+//        validateBonusNumberInput(input);
+//        return Integer.valueOf(input);
+//    }
+//
+//    private void validateBonusNumberInput(String input) {
+//        validateIsInteger(input);
+//        validateHasValidRange(input);
+//        if (isNotInteger(input)) {
+//            throw new IllegalArgumentException("1에서 45 사이의 정수를 입력해주십시오.");
+//        }
+//        if (hasInvalidRange(input)) {
+//            throw new IllegalArgumentException("")
+//        }
+
+//    }

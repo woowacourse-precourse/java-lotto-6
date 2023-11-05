@@ -38,13 +38,4 @@ public class Validation {
 
         return numbersWithoutDuplicate.size() != numbers.size();
     }
-
-    public static boolean hasCorrectFormat(String input) {
-        for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c) && c != ',') {
-                return false;
-            }
-        }
-        return true;
-    }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.Constant.NEW_LINE;
+import static lotto.constant.DomainConstant.NEW_LINE;
 
 import java.util.Arrays;
 import java.util.Map;

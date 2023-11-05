@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.constant.Constant.MAX_RANGE;
-import static lotto.constant.Constant.MIN_RANGE;
-import static lotto.constant.Constant.SIX;
+import static lotto.constant.DomainConstant.MAX_RANGE;
+import static lotto.constant.DomainConstant.MIN_RANGE;
+import static lotto.constant.DomainConstant.SIX;
 import static lotto.domain.Lotto.LottoErrorMessage.COUNT_NOT_SIX;
 import static lotto.domain.Lotto.LottoErrorMessage.HAS_DUPLICATE_NUBMER;
 import static lotto.domain.Lotto.LottoErrorMessage.NOT_IN_RANGE;

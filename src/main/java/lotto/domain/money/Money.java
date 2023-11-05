@@ -1,7 +1,7 @@
 package lotto.domain.money;
 
 import java.text.DecimalFormat;
-import lotto.constant.Constant;
+import lotto.constant.DomainConstant;
 
 public record Money(long amount) {
     public static final Money ZERO = new Money(0);
@@ -30,6 +30,6 @@ public record Money(long amount) {
     }
 
     public boolean cantDividedBy(Money other) {
-        return amount % other.amount() != Constant.ZERO;
+        return amount % other.amount() != DomainConstant.ZERO;
     }
 }

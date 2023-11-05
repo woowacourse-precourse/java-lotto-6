@@ -1,9 +1,9 @@
 package lotto.domain.generator;
 
-import static lotto.constant.Constant.COMMA;
-import static lotto.constant.Constant.MAX_RANGE;
-import static lotto.constant.Constant.MIN_RANGE;
-import static lotto.constant.Constant.NUMBERS_COUNT;
+import static lotto.constant.DomainConstant.COMMA;
+import static lotto.constant.DomainConstant.MAX_RANGE;
+import static lotto.constant.DomainConstant.MIN_RANGE;
+import static lotto.constant.DomainConstant.NUMBERS_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;

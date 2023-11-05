@@ -1,12 +1,12 @@
 package lotto.domain.generator;
 
-import static lotto.constant.Constant.COMMA;
-import static lotto.constant.Constant.MAX_RANGE;
-import static lotto.constant.Constant.MIN_RANGE;
-import static lotto.constant.Constant.NUMBERS_FORMAT_REGEX;
-import static lotto.constant.Constant.ONE_LOTTO_PRICE;
-import static lotto.constant.Constant.SIX;
-import static lotto.constant.Constant.ZERO;
+import static lotto.constant.DomainConstant.COMMA;
+import static lotto.constant.DomainConstant.MAX_RANGE;
+import static lotto.constant.DomainConstant.MIN_RANGE;
+import static lotto.constant.DomainConstant.NUMBERS_FORMAT_REGEX;
+import static lotto.constant.DomainConstant.ONE_LOTTO_PRICE;
+import static lotto.constant.DomainConstant.SIX;
+import static lotto.constant.DomainConstant.ZERO;
 import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NEGATIVE_COUNT;
 import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;

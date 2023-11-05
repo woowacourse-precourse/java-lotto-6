@@ -3,7 +3,9 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,6 +29,17 @@ class RandMachineTest {
         for (int number : numbers) {
             assertThat(number).isBetween(1, 45);
         }
+    }
+
+    @DisplayName("로또 번호 생성 시 중복되지 않는 숫자를 반환하는지 검증")
+    @Test
+    void givenRandMachine_whenGenerateNumbers_thenReturnUniqueNumbers() {
+        // when
+        List<Integer> numbers = RandMachine.generateRandomNumbers();
+
+        // then
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        assertThat(uniqueNumbers.size()).isEqualTo(6);
     }
 
 }

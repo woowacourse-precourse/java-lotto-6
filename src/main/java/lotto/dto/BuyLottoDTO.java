@@ -14,6 +14,7 @@ public final class BuyLottoDTO {
         }
 
         public void setBuyPrice(Long buyPrice) {
+            validateOverride(this.buyPrice);
             this.buyPrice = buyPrice;
         }
     }

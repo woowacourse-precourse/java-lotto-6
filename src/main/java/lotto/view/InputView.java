@@ -8,19 +8,19 @@ public class InputView {
 
     public String inputPurchaseAmount(){
         outputView.requestInputAmountMessage();
-        String userInput = readLine();
+        String userInput = readLine().trim();
         return userInput;
     }
 
     public String inputWinningNumbers(){
         outputView.requestInputWinningNumbersMessage();
-        String userInput = readLine();
+        String userInput = readLine().trim();
         return userInput;
     }
 
     public String inputBonusNumber(){
         outputView.requestInputBonusNumberMessage();
-        String userInput = readLine();
+        String userInput = readLine().trim();
         return userInput;
     }
 

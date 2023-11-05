@@ -10,15 +10,18 @@ import java.util.Map;
 
 public class LottoRepository {
     private Long id = 0L;
-    private final ArrayList<Lotto> lotteries = new ArrayList<>();
+
+    private final ArrayList<Lotto>  purchasedLotteries = new ArrayList<>();
 
     public void save(Lotto lotto) {
-        lotteries.add(lotto);
+        purchasedLotteries.add(lotto);
     }
 
     public ArrayList<Lotto> getLotteries() {
-        return lotteries;
+        return purchasedLotteries;
     }
+
+
 
     //    public Lotto findById(Long id) {
 //        return lotteries.get(id);

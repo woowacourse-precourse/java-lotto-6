@@ -11,7 +11,7 @@ import java.util.List;
 public class LottoService {
 
     private final LottoRepository lottoRepository = new LottoRepository();
-    private List<Integer> numbers;
+
 
     private static final int LEAST_AMOUNT = 1000;
     private static final int MIN_NUMBER = 0;
@@ -31,15 +31,14 @@ public class LottoService {
 
     public void buyOneLotto(User user){
         Lotto lotto = generateLottoNumber();
-        saveLotto(lotto);
+        user.buyLotto(lotto);
     }
 
 
 
     //Lotto안에 넣어야 자동 검증
     private Lotto generateLottoNumber(){
-        numbers.clear();
-        numbers = new ArrayList<>(Utils.generateRandomUniqueNumber());
+        List<Integer> numbers = new ArrayList<>(Utils.generateRandomUniqueNumber());
         return new Lotto(numbers);
     }
 

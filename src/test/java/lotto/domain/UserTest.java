@@ -31,4 +31,15 @@ class UserTest {
         }
 
 
+        @DisplayName("getPurchased 작동 여부 확인")
+        @Test
+        void 작동_여부_확인(){
+            User user1 = new User(1000);
+            int userAMount1 = user1.getPurchaseAmount();
+
+            assertThat(userAMount1).isEqualTo(1000);
+
+        }
+
+
     }

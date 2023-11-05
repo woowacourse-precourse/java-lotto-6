@@ -1,11 +1,13 @@
 package lotto.validation;
 
+import lotto.utils.Parser;
 import lotto.view.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
 
 public class Validator {
+
 
     private static final int MAX_NUMBER_LENGTH = 6;
     private static final int START_NUMBER = 1;
@@ -14,8 +16,10 @@ public class Validator {
     private static final int DIVISOR = 1000;
 
 
-    public void isValidPurchaseAmount(int amount) {
-        isMultipleNumber(amount);
+
+
+    public void isValidNumberAmount(String amount){
+        isNumberCharInteger(amount);
     }
 
     public void isValidWinningNumbers(List<Integer> winningNumbers){
@@ -24,7 +28,7 @@ public class Validator {
         isValidRangeNumberInList(winningNumbers);
     }
 
-    public void isValidBonusNumber(List<Integer> winningNumbers,int bonusNumber){
+    public void isValidBonusNumber(List<Integer> winningNumbers, int bonusNumber){
         isValidNumberInRange(bonusNumber);
         isDuplicateNumber(winningNumbers,bonusNumber);
     }
@@ -57,18 +61,26 @@ public class Validator {
         }
     }
 
-    public boolean isNumberCharInteger(String input){
-        for(char c : input.toCharArray()){
-            if(!Character.isDigit(c)){
-                ErrorMessage.numberCharErrorMessage();
-                throw new IllegalArgumentException();
-            }
+//    public boolean isNumberCharInteger(String input){
+//        for(char c : input.toCharArray()){
+//            if(!Character.isDigit(c)){
+//                ErrorMessage.numberCharErrorMessage();
+//                throw new IllegalArgumentException();
+//            }
+//        }
+//        return true;
+//    }
+    public boolean  isNumberCharInteger(String string) {
+        if (!string.chars().allMatch(Character::isDigit)) {
+            ErrorMessage.numberCharErrorMessage();
+            throw new IllegalArgumentException();
         }
         return true;
     }
 
     public boolean isMultipleNumber(int number){
         int divisor = DIVISOR;
+
         if(number < divisor || number % divisor != 0){
             ErrorMessage.multipleErrorMessage(divisor);
             throw new IllegalArgumentException();

@@ -14,7 +14,7 @@ public class Game {
     public Game(List<Integer> winningNumbers, int bonusNumber) {
         validator.isValidWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
-        validator.isValidBonusNumber(winningNumbers,bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -24,6 +24,9 @@ public class Game {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+    public void validateBonusNumber(int bonusNumber){
+        validator.isValidBonusNumber(winningNumbers,bonusNumber);
     }
 
 

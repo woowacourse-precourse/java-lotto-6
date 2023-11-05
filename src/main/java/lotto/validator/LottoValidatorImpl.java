@@ -14,10 +14,10 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public int validatePrice(String price) {
-		validateEmptyString(price);
-		validateIsDigit(price);
-		int parsePrice = validateRange(price);
+	public int validatePrice(String lottoPrice) {
+		validateEmptyString(lottoPrice);
+		validateIsDigit(lottoPrice);
+		int parsePrice = validateRange(lottoPrice);
 		validateRest(parsePrice);
 		return parsePrice;
 	}
@@ -36,25 +36,25 @@ public class LottoValidatorImpl implements LottoValidator {
 
 	}
 
-	private void validateEmptyString(String price) {
-		if (price.isEmpty()) {
+	private void validateEmptyString(String lottoPrice) {
+		if (lottoPrice.isEmpty()) {
 			ErrorOperation.EMPTY_ERROR.apply();
 		}
 	}
 
-	private void validateIsDigit(String price) {
-		for (int i = 0; i < price.length(); i++) {
-			char digit = price.charAt(i);
+	private void validateIsDigit(String lottoPrice) {
+		for (int i = 0; i < lottoPrice.length(); i++) {
+			char digit = parser.toCharacterParser(lottoPrice, i);
 			if (!Character.isDigit(digit)) {
 				ErrorOperation.DIGIT_ERROR.apply();
 			}
 		}
 	}
 
-	private int validateRange(String price) {
+	private int validateRange(String lottoPrice) {
 		int parsePrice = 0;
 		try {
-			parsePrice = Integer.parseInt(price);
+			parsePrice = parser.toIntPaser(lottoPrice);
 		} catch (NumberFormatException e) {
 			ErrorOperation.RANGE_ERROR.apply();
 		}

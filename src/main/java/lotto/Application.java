@@ -13,6 +13,7 @@ public class Application {
         int count = purchase();
         List<Lotto> lottos = createLottos(count);
         DrawingLotto drawingLotto = createDrawingLottos(createDrawingNumbers());
+        List<LottoResult> result = lottos.stream().map(drawingLotto::compareWith).toList();
     }
 
     private static int purchase() {

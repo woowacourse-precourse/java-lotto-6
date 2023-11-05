@@ -36,11 +36,11 @@ public class InputView {
         for (String number : splitInput) {
             try {
                 intNumber = Integer.parseInt(number);
-                if (!(intNumber >= 1 && intNumber <= 45)) {
+                if (!(intNumber >= 1 && intNumber <= 45)) { // 1~45 사이가 아니라면 예외 처리
                     throw new IllegalArgumentException("콤마(,)로 구분하여 1~45 사이의 수를 중복 없이 6개 입력해 주세요."); // 하드 코딩 제거
                 }
                 winningNumber.add(intNumber);
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException exception) { // 정수가 아니라면 예외 처리
                 throw new IllegalArgumentException("콤마(,)로 구분하여 1~45 사이의 수를 중복 없이 6개 입력해 주세요."); // 하드 코딩 제거
             }
         }
@@ -52,6 +52,26 @@ public class InputView {
 
         return winningNumber;
 
+    }
+
+    private int inputBonusNumber(ArrayList<Integer> number) { //기능 나누기 -> validator
+        String input = Console.readLine();
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (NumberFormatException exception) { // 정수인지 검증
+            throw new IllegalArgumentException("1~45 사이의 정수를 기존 당첨 번호와 중복없이 입력해 주세요.");
+        }
+
+        if (number.contains(bonusNumber)) { // 기존 당첨번호와 중복인지 검증
+            throw new IllegalArgumentException("1~45 사이의 정수를 기존 당첨 번호와 중복없이 입력해 주세요.");
+        }
+
+        if (!(bonusNumber >= 1 && bonusNumber <= 45)) { // 1~45 사아인지 검증
+            throw new IllegalArgumentException("1~45 사이의 정수를 기존 당첨 번호와 중복없이 입력해 주세요.");
+        }
+
+        return bonusNumber;
     }
 
 

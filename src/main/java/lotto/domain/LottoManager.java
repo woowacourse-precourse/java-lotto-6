@@ -5,9 +5,11 @@ import java.util.List;
 public class LottoManager {
 
     private final WinningDetails winningDetails;
+    private final ProfitRateCalculator profitRateCalculator;
 
-    public LottoManager(WinningDetails winningDetails) {
+    public LottoManager(WinningDetails winningDetails, ProfitRateCalculator profitRateCalculator) {
         this.winningDetails = winningDetails;
+        this.profitRateCalculator = profitRateCalculator;
     }
 
     public void addRankToWinningDetails(List<Lotto> lottos, WinningNumbers winningNumbers) {
@@ -20,7 +22,11 @@ public class LottoManager {
         return winningDetails.toString();
     }
 
-    public long calculateTotalReward() {
+    public double calculateProfitRate(PurchaseAmount purchaseAmount) {
+        return profitRateCalculator.calculate(purchaseAmount.getAmount(), calculateTotalReward());
+    }
+
+    private long calculateTotalReward() {
         return winningDetails.getTotalReward();
     }
 }

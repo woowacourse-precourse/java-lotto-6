@@ -11,11 +11,11 @@ public class LottoIssuer {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public List<Lotto> issue(final Integer numberOfTickets) {
-        List<Lotto> issuedLotto = new ArrayList<>();
+    public LottoTickets issue(final Integer numberOfTickets) {
+        List<Lotto> issuedLottos = new ArrayList<>();
         for (int issueCount = 0; issueCount < numberOfTickets; issueCount++) {
-            issuedLotto.add(new Lotto(lottoNumberGenerator.create()));
+            issuedLottos.add(new Lotto(lottoNumberGenerator.create()));
         }
-        return issuedLotto;
+        return new LottoTickets(issuedLottos);
     }
 }

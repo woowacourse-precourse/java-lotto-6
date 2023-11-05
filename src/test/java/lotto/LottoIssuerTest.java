@@ -23,10 +23,10 @@ class LottoIssuerTest {
         LottoIssuer lottoIssuer = new LottoIssuer(new RandomLottoNumberGenerator());
 
         //when
-        List<Lotto> issuedLotto = lottoIssuer.issue(wantedNumberOfTickets);
+        LottoTickets issuedLottos = lottoIssuer.issue(wantedNumberOfTickets);
 
         //then
-        assertThat(issuedLotto.size())
+        assertThat(issuedLottos.getLottos().size())
                 .isEqualTo(wantedNumberOfTickets);
     }
 }

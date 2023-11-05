@@ -9,11 +9,10 @@ import java.util.stream.Collectors;
 public class InputHandler {
 
     public List<Integer> getWinningNumber() {
-        List<Integer> winningNumber = Arrays.stream(Console.readLine().split(","))
+        return Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        return winningNumber;
     }
 
     public int getInputNumber() {

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
-    private Map<WinningCriteria, Integer> result = new EnumMap<>(WinningCriteria.class);
+    private final Map<WinningCriteria, Integer> result = new EnumMap<>(WinningCriteria.class);
 
     public LottoResult() {
         for (WinningCriteria criteria : WinningCriteria.values()) {
@@ -28,8 +28,7 @@ public class LottoResult {
                 lottoResult.getCount(WinningCriteria.SECOND_PLACE) * 30_000_000 +
                 lottoResult.getCount(WinningCriteria.FIRST_PLACE) * 2_000_000_000;
         double totalReturn = ((double) totalPrice / userPurchaseAmount) * 100.0;
-        double roundedReturn = Math.round(totalReturn * 10.0) / 10.0;
-        return roundedReturn;
+        return Math.round(totalReturn * 10.0) / 10.0;
     }
 
     public WinningCriteria getWinningCriteria(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {

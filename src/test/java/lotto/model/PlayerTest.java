@@ -3,18 +3,46 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoPrize;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
-    private static WinningStatistics getFixedWinningStatistics() {
-        // 고정된 번호의 로또 생성기
-        LottoGenerator lottoGenerator = new LottoNotRandomGenerator();
-        LottoMachine lottoMachine = new LottoMachine(lottoGenerator);
+    LottoGenerator lottoGenerator;
+    LottoMachine lottoMachine;
+    LottoShop lottoShop;
 
-        LottoShop lottoShop = new LottoShop(lottoMachine);
+    @BeforeEach
+    void init_environment() {
+        // 고정된 번호의 로또 생성기
+        lottoGenerator = new LottoNotRandomGenerator();
+        lottoMachine = new LottoMachine(lottoGenerator);
+        lottoShop = new LottoShop(lottoMachine);
+    }
+
+    // 로또 구매 테스트
+    @DisplayName("player가 로또를 구매한다. 구매한 로또가 테스트에서 설계한 로또 목록와 다르면 테스트에 실패한다.")
+    @Test
+    void buyLottoTickets_테스트() {
+        // given
+        Player player = new Player();
+        int budget = 8000;
+        player.setBudget(budget);
+        List<Lotto> expected = ((LottoNotRandomGenerator) lottoGenerator).fixedTickets;
+
+        // when
+        player.buyLottoTickets(lottoShop);
+        List<Lotto> actual = player.getLottoTickets();
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    // 당첨 통계 계산 테스트
+    private WinningStatistics getFixedWinningStatistics() {
         Player player = new Player();
         int budget = 8000;
 

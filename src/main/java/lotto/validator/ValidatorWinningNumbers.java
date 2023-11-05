@@ -12,4 +12,9 @@ public class ValidatorWinningNumbers {
         Set<Integer> numbers = new HashSet<>(winningNumbers.getWinningNumbers());
         return numbers.size() == winningNumbers.getWinningNumbers().size();
     }
+
+    private boolean checkInputSizeIs6(WinningNumbers winningNumbers) {
+        return winningNumbers.getWinningNumbers().size() == 6;
+    }
+    
 }

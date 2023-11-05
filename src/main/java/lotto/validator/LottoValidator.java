@@ -4,6 +4,9 @@ public class LottoValidator {
 
     private static final int LOTTO_PRICE = 1_000;
 
+    private LottoValidator() {
+    }
+
     public static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 로또는 1개 이상 구매해야 합니다.");

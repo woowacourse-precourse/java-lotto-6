@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numberSortWithAscendingOrder(numbers);
+        this.numbers = List.copyOf(numberSortWithAscendingOrder(numbers));
     }
 
     public void displayLottoNumbers() {

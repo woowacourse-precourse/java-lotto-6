@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum LottoRankRule {
+public enum LottoRank {
 
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -13,7 +13,7 @@ public enum LottoRankRule {
     private boolean needBonusNumberMatch;
     private int prize;
 
-    LottoRankRule(int matchingCount, boolean needBonusNumberMatch, int prize) {
+    LottoRank(int matchingCount, boolean needBonusNumberMatch, int prize) {
         this.matchingCount = matchingCount;
         this.needBonusNumberMatch = needBonusNumberMatch;
         this.prize = prize;

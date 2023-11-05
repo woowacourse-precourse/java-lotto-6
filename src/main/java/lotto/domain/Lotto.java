@@ -1,7 +1,11 @@
 package lotto.domain;
 
+import lotto.exception.DuplicateInputException;
+
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +19,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (hasDuplicate(numbers)) {
+            throw new DuplicateInputException();
+        }
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() < numbers.size();
     }
 
     // TODO: 추가 기능 구현

@@ -9,6 +9,7 @@ public class ValidateException {
     private static final String NOTING_STRING = "";
     private static final String BLANK = " ";
     private static final String SPECIAL_CHARACTER_REGEX = ".*[!@#$%^&*().?\":{}|<>].*";
+    private static final Character COMMA_CHAR = ',';
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -37,7 +38,17 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new NumberFormatException("문자열에 특수 문자가 포함되어 있습니다.");
+            throw new NumberFormatException("[ERROR] 문자열에 특수 문자가 포함되어 있습니다.");
         }
+    }
+
+    public static boolean commaNextBlank(String strLine) {
+        int length = strLine.length();
+
+        if (strLine.charAt(length - 1) != COMMA_CHAR || strLine.charAt(0) == ',') {
+            return true;
+        }
+
+        throw new IllegalArgumentException("[ERROR] 처음 또는 끝이 ',' 입니다.");
     }
 }

@@ -8,6 +8,6 @@ public class InputManager {
     }
     public int getPurchaseAmount(String data) {
         //예외처리
-        return Integer.parseInt(data);
+        return Integer.parseInt(data)/1000;
     }
 }

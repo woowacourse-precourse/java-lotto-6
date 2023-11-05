@@ -1,10 +1,10 @@
 package lotto.model;
 
-import static lotto.ErrorMessage.BLANK_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NULL_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.BLANK_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NULL_INPUT_MESSAGE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.stream.Stream;

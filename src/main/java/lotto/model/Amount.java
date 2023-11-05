@@ -1,11 +1,11 @@
 package lotto.model;
 
 import static lotto.Constraints.LOTTO_PRICE;
-import static lotto.ErrorMessage.BLANK_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_MESSAGE;
-import static lotto.ErrorMessage.NULL_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.BLANK_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_MESSAGE;
+import static lotto.model.enums.ErrorMessage.NULL_INPUT_MESSAGE;
 
 public class Amount {
     private final int amount;

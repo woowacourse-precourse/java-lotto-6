@@ -7,6 +7,8 @@ import lotto.ServiceImp.LottoServiceImp;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
+import java.util.List;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,5 +28,12 @@ public class LottoController {
 
         System.out.println(lottoService.getNumberOfLotto() + "개를 구매했습니다.");
         outputView.printLotto(lottoService.getLotto());
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningLotteryNumber = inputView.getWinningLotteryNumber();
+        System.out.println("보너스 번호를 입력해주세요");
+        int bonusWinningLotteryNumber = inputView.getBonusWinningLotteryNumber(winningLotteryNumber);
+
+
     }
 }

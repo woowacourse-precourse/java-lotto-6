@@ -93,4 +93,39 @@ public class InputView
             }
         }
     }
+
+    private int getValidBonusWinningLotteryNumber(List<Integer> winningLotteryNumber) throws InvalidInputException
+    {
+        try
+        {
+            int bonusWinningNumber = Integer.parseInt(Console.readLine());
+
+            if(bonusWinningNumber<LottoConstant.MINIMUM_NUMBER || bonusWinningNumber>LottoConstant.MAXIMUM_NUMBER)
+                throw new InvalidInputException("[ERROR] 보너스 숫자의 값이 범위를 넘어갔습니다.");
+
+            if(winningLotteryNumber.contains(bonusWinningNumber))
+                throw new InvalidInputException("[ERROR] 보너스 숫자의 값이 기존 당첨 번호와 중복됩니다.");
+
+            return bonusWinningNumber;
+        }
+        catch(NumberFormatException e)
+        {
+            throw new InvalidInputException("[ERROR] 보너스 숫자의 입력된 값이 숫자가 아닙니다.");
+        }
+    }
+
+    public int getBonusWinningLotteryNumber(List<Integer> winningLotteryNumber)
+    {
+        while(true)
+        {
+            try
+            {
+                return getValidBonusWinningLotteryNumber(winningLotteryNumber);
+            }
+            catch (InvalidInputException e)
+            {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.dto.LottoNumbersDTO;
+import lotto.dto.LottoNumbersResult;
 import lotto.dto.WinningLottoResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
@@ -38,7 +38,7 @@ public class LottoGameService {
 
     public void printLottoNumbersByCount(final Lottos lottos) {
         for (int i = 0; i < lottos.size(); i++) {
-            LottoNumbersDTO lottoNumbers = new LottoNumbersDTO(lottos.findLottoByIndex(i));
+            LottoNumbersResult lottoNumbers = new LottoNumbersResult(lottos.findLottoByIndex(i));
             outputView.printLottoNumbers(lottoNumbers);
         }
     }
@@ -48,8 +48,9 @@ public class LottoGameService {
         return getWinningLottoByBonusNumber(winningLottoNumbers);
     }
 
-    public void printWinningResult(final WinningLotto winningLotto) {
+    public void printWinningResult(final WinningLotto winningLotto, Lottos lottos) {
         outputView.printWinningStatistics();
+        WinningLottoResult result = calculateWinningResult(winningLotto, lottos);
     }
 
     private Lotto getWinningLottoNumbers() {
@@ -86,5 +87,14 @@ public class LottoGameService {
 
     private void handleIllegalArgumentException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
+    }
+
+    private WinningLottoResult calculateWinningResult(WinningLotto winningLotto, Lottos lottos) {
+        WinningLottoResult result = new WinningLottoResult();
+        for (int i = 0; i < lottos.size(); i++) {
+            Lotto lotto = lottos.findLottoByIndex(i);
+            result.countWinningResult(winningLotto, lotto);
+        }
+        return result;
     }
 }

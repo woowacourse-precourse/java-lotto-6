@@ -1,8 +1,9 @@
 package lotto.domain;
 
-enum Constraint {
+public enum Constraint {
     MIN(1),
     MAX(45),
+    SIZE(6),
     ;
 
     private final int value;

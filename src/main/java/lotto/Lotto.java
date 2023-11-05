@@ -13,6 +13,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

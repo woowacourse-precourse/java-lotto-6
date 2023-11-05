@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.calculator.MoneyCalculator;
 import lotto.exception.LottoApplicationException;
-import lotto.exception.ExceptionHandler;
+import lotto.iomanangers.ExceptionOutputManager;
 import lotto.iomanangers.OutputManager;
 import lotto.lotto.BonusNumber;
 import lotto.lotto.LottoTicket;
@@ -20,16 +20,16 @@ public class LottoSystem {
     private final NumberGenerator numberGenerator;
     private final TicketScratcher ticketScratcher;
     private final OutputManager outputManager;
-    private final ExceptionHandler exceptionHandler;
+    private final ExceptionOutputManager exceptionOutputManager;
 
     public LottoSystem(MoneyCalculator moneyCalculator, NumberGenerator numberGenerator,
                        TicketScratcher ticketScratcher, OutputManager outputManager,
-                       ExceptionHandler exceptionHandler) {
+                       ExceptionOutputManager exceptionOutputManager) {
         this.moneyCalculator = moneyCalculator;
         this.numberGenerator = numberGenerator;
         this.ticketScratcher = ticketScratcher;
         this.outputManager = outputManager;
-        this.exceptionHandler = exceptionHandler;
+        this.exceptionOutputManager = exceptionOutputManager;
     }
 
     public void run() {
@@ -60,7 +60,7 @@ public class LottoSystem {
                 String purchaseAmount = this.readLine();
                 return numberGenerator.createAmountToQuantity(purchaseAmount);
             } catch (LottoApplicationException e) {
-                exceptionHandler.handleException(e);
+                exceptionOutputManager.printException(e);
             }
         }
     }
@@ -71,7 +71,7 @@ public class LottoSystem {
                 moneyCalculator.calculate(scratchedLottoTicketList, amountToQuantity);
                 return moneyCalculator.getRateOfReturn();
             } catch (LottoApplicationException e) {
-                exceptionHandler.handleException(e);
+                exceptionOutputManager.printException(e);
             }
         }
     }
@@ -83,7 +83,7 @@ public class LottoSystem {
                 Integer bonusNumberFromConsole = numberGenerator.createBonusNumberFromConsole(unprocessedBonusNumber);
                 return new BonusNumber(bonusNumberFromConsole);
             } catch (LottoApplicationException e) {
-                exceptionHandler.handleException(e);
+                exceptionOutputManager.printException(e);
             }
         }
     }
@@ -96,7 +96,7 @@ public class LottoSystem {
                         unprocessedWinningNumbers);
                 return new WinningNumbers(winningNumbersFromConsole);
             } catch (LottoApplicationException e) {
-                exceptionHandler.handleException(e);
+                exceptionOutputManager.printException(e);
             }
         }
     }
@@ -113,7 +113,7 @@ public class LottoSystem {
                 }
                 return lottoTickets;
             } catch (LottoApplicationException e) {
-                exceptionHandler.handleException(e);
+                exceptionOutputManager.printException(e);
             }
         }
     }

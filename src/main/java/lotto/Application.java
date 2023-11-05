@@ -30,7 +30,9 @@ public class Application {
         BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
         InputValidatorTemplate template = new InputValidatorTemplate();
 
-        InputView inputView = new InputView(purchasePriceValidator, winnerNumberValidator, bonusNumberValidator,
+        InputView inputView = new InputView(purchasePriceValidator,
+                winnerNumberValidator,
+                bonusNumberValidator,
                 template);
         OutputView outputView = new OutputView();
 
@@ -50,10 +52,15 @@ public class Application {
         StatisticsService statisticsService = new StatisticsService(outputView);
         StatisticsController statisticsController = new StatisticsController(statisticsService);
 
+        // 구입 금액 입력
         PurchasePrice purchasePrice = inputPurchasePriceController.purchasePrice();
+        // 로또 구입
         LottoResults lottoResults = buyLottoController.buyLotto(purchasePrice);
+        // 당첨 번호 & 보너스 번호 입력
         WinnerAndBonusNumber winnerAndBonusNumber = inputNumberController.inputNumber();
+        // 당첨 & 보너스 번호 vs 로또 번호 비교
         List<Statistics> result = compareController.compareNumber(lottoResults, winnerAndBonusNumber);
+        // 당첨 통계 출력
         statisticsController.getStatics(result, purchasePrice);
     }
 }

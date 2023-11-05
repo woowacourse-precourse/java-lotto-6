@@ -1,7 +1,7 @@
-package lotto.domain.lotto;
+package lotto.domain.money;
 
 public class Money {
-    private static final int LOTTO_PRICE = 1_000;
+    public static final int LOTTO_PRICE = 1_000;
     private static final int POSITIVE_VALUE = 0;
     private static final int MAX_MONEY = 10_0000;
     private final int money;

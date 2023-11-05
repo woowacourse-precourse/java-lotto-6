@@ -1,6 +1,7 @@
 package lotto.domain.player.playermoney;
 
-import lotto.domain.lottoresult.LottoResultsRepository;
+import lotto.domain.lottoresult.LottoPrizeMoney;
+import lotto.domain.player.LottoTicket;
 import lotto.domain.player.Profit;
 
 public class UsedMoney {
@@ -19,8 +20,8 @@ public class UsedMoney {
         return new UsedMoney(usedMoney + consumeMoney);
     }
 
-    int getUsedMoney() {
-        return usedMoney;
+    Profit calculateProfit(LottoPrizeMoney lottoPrizeMoney) {
+        return lottoPrizeMoney.calculateProfit(usedMoney);
     }
 
     Profit calculateProfit(LottoResultsRepository lottoResultsRepository) {

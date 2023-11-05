@@ -91,12 +91,19 @@
     - Generator: interface(NumberGenerator)와 구현 객체(ComputerGenerator)가 있다. 숫자를 생성하며, service에서 Mock 객체를 통한 테스트를 위해
       interface를 분리했다.
     - Money: 사용자가 입력한 금액에 따른 검증을 하는 객체. 로또의 금액과 사용자가 구매한 금액을 가지고 있고, 몇 장의 로또를 발급할 수 있는지 반환한다.
+
 - LottoService : 도메인을 조합해 컨트롤러가 필요한 값으로 응답한다.
-- LottoController: ui의 input을 service 계층에 로직 수행을 위임하고 service의 응답값을 ui로 보낸다.
+
+- LottoController: ui의 input을 service 계층에 로직 수행을 위임하고 service의 응답값을 ui로 보낸다. try-catch를 통해 에러 메시지를 출력하고, 프로그램을 정상적으로 종료시킨다.
+
 - ui
     - InputView: Input에 관한 메시지와 입력을 받는다.
     - OutputView: Output에 관한 출력을 한다.
-- ExceptionMessage: 에러에 관한 상수를 모아놓은 클래스
+
+- Configuration: 외부에서 생성자를 주입하는 클래스이다.
+
+- ExceptionMessage: 에러에 관한 상수를 모아놓은 Enum
+- RangeConstant: 숫자 범위나 사이즈 범위에 대해 모아놓은 Enum
 
 ## 📄 기능 명세서
 

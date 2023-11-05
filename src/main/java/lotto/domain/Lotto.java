@@ -32,6 +32,11 @@ public class Lotto {
         }
     }
 
+    public Rank getRank() {
+        return rank;
+    }
+
+
     public void matchBonusNumber(int bonusNumber) {
         if(rank == Rank.THIRD && numbers.contains(bonusNumber)) {
             Rank.minusThirdRankCount();

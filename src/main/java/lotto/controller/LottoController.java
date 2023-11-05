@@ -27,6 +27,7 @@ public class LottoController {
     List<List<Integer>> lottos = new ArrayList<>();
     for (int i = 0; i < calculateLottoCount; i++) {
       List<Integer> lotto = LottoGame.createRandomLottoNumber();
+      LottoGame.sortLottoNumbers(lotto);
       lottos.add(lotto);
     }
     return lottos;

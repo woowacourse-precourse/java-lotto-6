@@ -8,9 +8,17 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private static final Integer ZERO = 0;
+    private static final Integer TWO = 2;
     private static final Integer LOTTO_LENGTH = 6;
     private static final Integer RANGE_START_NUMBER = 1;
     private static final Integer RANGE_END_NUMBER = 45;
+
+    private static final String COMMA = ",";
+    private static final String SPACE = " ";
+
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "]";
+
     private final List<Integer> numbers;
     private StringBuilder lottoBuilder;
 
@@ -79,16 +87,15 @@ public class Lotto {
     @Override
     public String toString() {
         initLottoBuilder();
-        lottoBuilder.append("[");
+        lottoBuilder.append(LEFT_BRACKET);
         for (Integer number : numbers) {
             lottoBuilder.append(number);
-            lottoBuilder.append(",");
-            lottoBuilder.append(" ");
+            lottoBuilder.append(COMMA);
+            lottoBuilder.append(SPACE);
         }
 
-        lottoBuilder.replace(lottoBuilder.length()-2,
-                lottoBuilder.length(),
-                                "]");
+        lottoBuilder.replace(lottoBuilder.length()-TWO,
+                                   lottoBuilder.length(), RIGHT_BRACKET);
 
         return lottoBuilder.toString();
     }

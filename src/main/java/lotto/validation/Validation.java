@@ -1,4 +1,5 @@
 package lotto.validation;
 
-public class Validation {
+public interface Validation {
+    public abstract void check(String input) throws IllegalArgumentException;
 }

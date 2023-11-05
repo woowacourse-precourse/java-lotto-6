@@ -10,4 +10,10 @@ public class InputValidator {
             throw new IllegalArgumentException(getValidateNonIntegerMessage());
         }
     }
+
+    public static void validateDivisibleByThousand(int input) {
+        if ( input % 1000 != 0) {
+            throw new IllegalArgumentException("입력된 숫자가 1000으로 나누어 떨어지지 않습니다.");
+        }
+    }
 }

@@ -21,6 +21,11 @@ public class InputView {
                 userInput);
     }
 
+    public InputInfo inputBonusNumber() {
+        String userInput = Console.readLine();
+        return new InputInfo(null, userInput);
+    }
+
     public List<String> splitUserInput(String userInput) {
         return Arrays.stream(userInput.split(","))
                 .map(String::trim)

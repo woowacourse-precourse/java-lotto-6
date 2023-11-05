@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -13,6 +14,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+
+        boolean[] checkDuplication = new boolean[46];
+        Arrays.fill(checkDuplication, false);
+
+        for(int number : numbers){
+            if(checkDuplication[number]) throw new IllegalArgumentException();
+            checkDuplication[number] = true;
         }
     }
 }

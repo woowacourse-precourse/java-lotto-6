@@ -1,8 +1,8 @@
 package lotto.game;
 
 import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
 import lotto.domain.LottoPrize;
+import lotto.domain.WinLotto;
 import lotto.util.InputManager;
 import lotto.util.PrintManager;
 
@@ -19,9 +19,15 @@ public class LottoGame {
 
     public void play(){
         money = InputManager.getInputMoney();
-        List<Integer> winNumbers = InputManager.getInputWinNumbers();
-        int bonusNumber = InputManager.getInputBonusNumber();
-        winLotto = new WinLotto(winNumbers, bonusNumber);
+        try {
+            List<Integer> winNumbers = InputManager.getInputWinNumbers();
+            int bonusNumber = InputManager.getInputBonusNumber();
+            winLotto = new WinLotto(winNumbers, bonusNumber);
+        }catch (IllegalArgumentException e){
+            PrintManager.printIllegalArgumentExceptionWinLotto();
+            play();
+            return;
+        }
 
         pickLottoNumbers();
         calculateResult();

@@ -17,4 +17,8 @@ public class PrintManager {
     public static void printBonusNumberInput() {
         System.out.println(INPUT_BONUS_NUMBER);
     }
+
+    public static void printIllegalArgumentExceptionWinLotto(){
+        System.out.println(ErrorMessage.ILLEGAL_ARGUMENT_WIN_LOTTO.getMessage());
+    }
 }

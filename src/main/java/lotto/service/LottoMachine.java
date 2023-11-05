@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Const.Const.LOTTO_PURCHASED_UNIT;
+import static lotto.constant.constant.LOTTO_PURCHASED_UNIT;
 
 
 public class LottoMachine {

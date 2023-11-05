@@ -8,5 +8,4 @@ public class NumberValidator {
             throw new IllegalArgumentException("당첨 리스트의 번호와 보너스 번호가 중복됩니다.");
         }
     }
-
 }

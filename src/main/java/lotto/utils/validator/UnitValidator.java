@@ -3,7 +3,7 @@ package lotto.utils.validator;
 
 import java.util.List;
 
-import static lotto.Const.Const.*;
+import static lotto.constant.constant.*;
 
 public class UnitValidator {
     public static void validMoneyUnitCheck(int money) {

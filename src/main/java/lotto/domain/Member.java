@@ -4,7 +4,7 @@ import lotto.Lotto;
 
 import java.util.List;
 
-import static lotto.Const.Const.LOTTO_PURCHASED_UNIT;
+import static lotto.constant.constant.LOTTO_PURCHASED_UNIT;
 
 public class Member {
 

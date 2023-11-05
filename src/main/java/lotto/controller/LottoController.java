@@ -5,6 +5,7 @@ import lotto.domain.LottoPaper;
 import lotto.domain.Payment;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.LottoTicketCalculator;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,11 @@ public class LottoController {
 
         List<Lotto> lottoTickets = purchaseLottoWithAmount(amount);
         LottoPaper lottoPaper = new LottoPaper(amount,lottoTickets);
+        OutputView.printLottoPaperMessage(lottoPaper);
 
         return lottoPaper;
     }
-    public List<Lotto> purchaseLottoWithAmount(int amount){
+    private List<Lotto> purchaseLottoWithAmount(int amount){
         int lottoTicketSize = LottoTicketCalculator.calculateLottoTicketQuantityWithAmount(amount);
         List<Lotto> lottoTickets = new ArrayList<>();
 

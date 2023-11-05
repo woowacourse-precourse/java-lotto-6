@@ -14,7 +14,7 @@ public class LottoController {
         Money money = getMoney();
         printByLottoCount(money);
 
-        Lottos lottos = getLottos(money);
+        Lottos lottos = generateLottos(money);
         printLottos(lottos);
     }
 
@@ -23,10 +23,8 @@ public class LottoController {
         return new Money(money);
     }
 
-    private Lottos getLottos(Money money) {
+    private Lottos generateLottos(Money money) {
         LottosGeneratorMachine lottosGeneratorMachine = new LottosGeneratorMachine();
         return new Lottos(lottosGeneratorMachine.generateLottos(money.getLottoCount()));
     }
-
-
 }

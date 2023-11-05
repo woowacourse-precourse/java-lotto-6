@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoOption.LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -33,10 +33,15 @@ public class Lotto {
 
     private void validateInRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number < 1 || number > 45)
+                .filter(this::isOutRangeLottoNumber)
                 .findAny()
                 .ifPresent((i) -> {
                     throw new IllegalArgumentException();
                 });
+    }
+
+    private boolean isOutRangeLottoNumber(Integer number) {
+        return number < LottoOption.LOTTO_MIN_NUMBER ||
+                number > LottoOption.LOTTO_MAX_NUMBER;
     }
 }

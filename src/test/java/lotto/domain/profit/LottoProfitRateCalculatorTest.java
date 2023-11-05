@@ -1,13 +1,12 @@
-package lotto.domain.prize;
+package lotto.domain.profit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import lotto.domain.result.LottoGameResult;
 import lotto.domain.LottoPurchaseAmount;
-import lotto.domain.profit.LottoProfitRate;
-import lotto.domain.profit.LottoProfitRateCalculator;
+import lotto.domain.prize.LottoPrizeType;
+import lotto.domain.result.LottoGameResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

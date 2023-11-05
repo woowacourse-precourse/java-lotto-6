@@ -1,10 +1,10 @@
-package lotto.domain;
+package lotto.domain.prize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.prize.LottoPrizeCalculator;
-import lotto.domain.prize.LottoPrizeType;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

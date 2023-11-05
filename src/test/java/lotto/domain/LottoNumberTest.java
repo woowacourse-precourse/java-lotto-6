@@ -2,10 +2,12 @@ package lotto.domain;
 
 import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
 import static lotto.domain.LottoConfig.LOTTO_MIN_NUMBER;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,5 +22,12 @@ class LottoNumberTest {
     @MethodSource("provideLottoNumbers")
     void 숫자가_LOTTO_MIN_NUMBER과_LOTTO_MAX_NUMBER사이일_경우_객체를_올바르게_생성한다(int number) {
         assertDoesNotThrow(() -> new LottoNumber(number));
+    }
+
+    @Test
+    void 숫자가_LOTTO_MIN_NUMBER보다_작을_경우_예외가_발생한다() {
+        int number = LOTTO_MIN_NUMBER.getValue() - 1;
+        assertThatThrownBy(() -> new LottoNumber(number))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

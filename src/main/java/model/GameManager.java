@@ -26,7 +26,7 @@ public class GameManager {
     public void generateAnswerLotto(final List<Integer> answerNumbers,
         final int answerBonusNumber) {
         answerLotto = new LottoWithBonus(new Lotto(answerNumbers),
-            new LottoNumber(answerBonusNumber));
+            LottoNumber.from(answerBonusNumber));
     }
 
     public LottoTotalResult calculateResult() {

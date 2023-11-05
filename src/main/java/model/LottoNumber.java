@@ -6,8 +6,12 @@ public class LottoNumber {
 
     private final int number;
 
-    public LottoNumber(final int number) {
+    private LottoNumber(final int number) {
         this.number = number;
+    }
+
+    public static LottoNumber from(final int number) {
+        return new LottoNumber(number);
     }
 
     public int getNumber() {

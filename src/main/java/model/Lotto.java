@@ -15,7 +15,7 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
-            .map(LottoNumber::new)
+            .map(LottoNumber::from)
             .toList();
     }
 
@@ -40,12 +40,11 @@ public class Lotto {
         while (isContainNumber(number)) {
             number = pickNewNumber();
         }
-
         return number;
     }
 
     private static LottoNumber pickNewNumber() {
-        return new LottoNumber(
+        return LottoNumber.from(
             Randoms.pickNumberInRange(START_INCLUSIVE.number(), END_INCLUSIVE.number()));
     }
 

@@ -12,8 +12,8 @@ class LottoWithBonusTest {
     void 보너스_번호가_같을_때_true_반환() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWithBonus lottoWithBonus1 = new LottoWithBonus(lotto, new LottoNumber(1));
-        LottoWithBonus lottoWithBonus2 = new LottoWithBonus(lotto, new LottoNumber(1));
+        LottoWithBonus lottoWithBonus1 = new LottoWithBonus(lotto, LottoNumber.from(1));
+        LottoWithBonus lottoWithBonus2 = new LottoWithBonus(lotto, LottoNumber.from(1));
 
         // when & then
         assertTrue(lottoWithBonus1.hasSameBonusNumber(lottoWithBonus2));
@@ -23,8 +23,8 @@ class LottoWithBonusTest {
     void 보너스_번호가_다를_때_false_반환() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWithBonus lottoWithBonus1 = new LottoWithBonus(lotto, new LottoNumber(1));
-        LottoWithBonus lottoWithBonus2 = new LottoWithBonus(lotto, new LottoNumber(2));
+        LottoWithBonus lottoWithBonus1 = new LottoWithBonus(lotto, LottoNumber.from(1));
+        LottoWithBonus lottoWithBonus2 = new LottoWithBonus(lotto, LottoNumber.from(2));
 
         // when & then
         assertFalse(lottoWithBonus1.hasSameBonusNumber(lottoWithBonus2));

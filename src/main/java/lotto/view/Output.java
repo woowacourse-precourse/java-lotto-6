@@ -10,5 +10,6 @@ public class Output {
         for (LottoDto lottoDto : lottoTicketsDto.getLottoTickets()) {
             System.out.println(lottoDto.getNumbers());
         }
+        System.out.println();
     }
 }

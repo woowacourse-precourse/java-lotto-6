@@ -4,49 +4,48 @@ import java.util.List;
 
 public class LottoGame {
 
-  public int countMatchingNumbers(List<Integer> ticket, List<Integer> numbers) {
+  public int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumbers) {
     int matchedNumbers = 0;
-    for (int userNumber : numbers) {
-      if (ticket.contains(userNumber)) {
+    for (int userNumber : winningNumbers) {
+      if (lotto.contains(userNumber)) {
         matchedNumbers++;
       }
     }
     return matchedNumbers;
   }
 
-  public int matchingBonusNumber(List<Integer> ticket, int bonusNumber, int matchedNumbers) {
+  public int setRank(List<Integer> lotto, int bonusNumber, int matchedNumbers) {
     if (matchedNumbers == 6) {
-      return -1;
+      return 1;
     }
-
-    if (ticket.contains(bonusNumber)) {
-      return matchedNumbers + 1;
+    if (matchedNumbers == 5) {
+      return matchBonusNumber(lotto, bonusNumber);
     }
-
-    return matchedNumbers;
+    if (matchedNumbers == 4) {
+      return 4;
+    }
+    if (matchedNumbers == 3) {
+      return 5;
+    }
+    return 0;
   }
 
-  public List<Integer> checkWinningStatus(List<List<Integer>> lottos, List<Integer> numbers, int bonusNumber) {
+  public int matchBonusNumber(List<Integer> lotto, int bonusNumber) {
+    if (lotto.contains(bonusNumber)) {
+      return 2;
+    }
+    return 3;
+  }
+
+
+  public List<Integer> checkWinningStatus(List<List<Integer>> lottos, List<Integer> winningNumbers, int bonusNumber) {
     List<Integer> rank = Lotto.createRank();
     for (List<Integer> lotto : lottos) {
-      int matchedNumbers = countMatchingNumbers(lotto, numbers);
-      matchedNumbers = matchingBonusNumber(lotto, bonusNumber, matchedNumbers);
-      updateRank(rank, matchedNumbers);
+      int matchedNumbers = countMatchingNumbers(lotto, winningNumbers);
+      int rankIndex = setRank(lotto, bonusNumber, matchedNumbers);
+      int currentCount = rank.get(rankIndex);
+      rank.set(rankIndex, currentCount + 1);
     }
     return rank;
   }
-
-  private void updateRank(List<Integer> rank, int matchedNumbers) {
-    if (matchedNumbers == -1) {
-      int currentCount = rank.get(0);
-      rank.set(0, currentCount + 1);
-    }
-
-    if (matchedNumbers > 2) {
-      int currentCount = rank.get(matchedNumbers - 2);
-      rank.set(matchedNumbers - 2, currentCount + 1);
-    }
-  }
-
-
 }

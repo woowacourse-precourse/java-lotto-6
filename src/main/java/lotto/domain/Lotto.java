@@ -9,12 +9,12 @@ import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_NUMBERS_SIZ
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
+    public Lotto(final List<Integer> numbers) {
+        validateSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new InputException(INVALID_LOTTO_NUMBERS_SIZE);
         }

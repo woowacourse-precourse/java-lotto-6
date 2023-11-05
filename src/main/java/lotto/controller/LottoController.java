@@ -1,13 +1,9 @@
 package lotto.controller;
 
-import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
-import static lotto.enumerate.ConfigInteger.LOTTO_NUMBER_COUNT;
-import static lotto.enumerate.ConfigInteger.LOTTO_PRICE;
-import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.enumerate.ConfigInteger;
 import lotto.model.Amount;
 import lotto.model.Cash;
 import lotto.model.Lotto;
@@ -22,37 +18,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final int LOTTO_PRICE = ConfigInteger.LOTTO_PRICE.getInt();
+    private static final int LOTTO_START_NUMBER = ConfigInteger.LOTTO_START_NUMBER.getInt();
+    private static final int LOTTO_END_NUMBER = ConfigInteger.LOTTO_END_NUMBER.getInt();
+    private static final int LOTTO_NUMBER_COUNT = ConfigInteger.LOTTO_NUMBER_COUNT.getInt();
     private final InputView inputView;
     private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-    }
-
-    private static void getLottoNumber(ArrayList<Lotto> list) {
-        List<Integer> numbers = Randoms
-                .pickUniqueNumbersInRange(LOTTO_START_NUMBER.getInt(), LOTTO_END_NUMBER.getInt(),
-                        LOTTO_NUMBER_COUNT.getInt());
-        LottoNumbers lottoNumbers = new LottoNumbers(numbers);
-        list.add(new Lotto(lottoNumbers));
-    }
-
-    private void getLottoList(long lottoVolume, ArrayList<Lotto> list) {
-        for (int i = 0; i < lottoVolume; i++) {
-            getLottoNumber(list);
-        }
-    }
-
-    private ArrayList<Lotto> getLottos(Cash amountCash) {
-        ArrayList<Lotto> list = new ArrayList<>();
-        long lottoVolume = amountCash.cash() / LOTTO_PRICE.getInt();
-        getLottoList(lottoVolume, list);
-        return list;
-    }
-
-    public List<Lotto> buyLotto(Cash amountCash) {
-        return getLottos(amountCash);
     }
 
     public void run() {
@@ -69,6 +44,25 @@ public class LottoController {
         return new Amount(inputView.inputAmount());
     }
 
+    private List<Lotto> buyLotto(Cash amountCash) {
+        ArrayList<Lotto> list = new ArrayList<>();
+        long lottoVolume = amountCash.cash() / LOTTO_PRICE;
+        getLottoList(lottoVolume, list);
+        return list;
+    }
+
+    private void getLottoList(long lottoVolume, List<Lotto> list) {
+        for (int i = 0; i < lottoVolume; i++) {
+            getLottoNumber(list);
+        }
+    }
+
+    private void getLottoNumber(List<Lotto> list) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER,
+                LOTTO_NUMBER_COUNT);
+        LottoNumbers lottoNumbers = new LottoNumbers(numbers);
+        list.add(new Lotto(lottoNumbers));
+    }
 
     private void printLotto(List<Lotto> lottos) {
         List<String> lottoList = lottos.stream()

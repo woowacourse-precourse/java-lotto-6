@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class OutputView {
     public void amountMessage() {
-        System.out.println(Message.INPUT_AMOUNT_MESSAGE);
+        System.out.println(Message.INPUT_AMOUNT_MESSAGE.getMessage());
     }
 
     public void countMessage(int count) {
@@ -19,15 +19,15 @@ public class OutputView {
     }
 
     public void winningNumberMessage() {
-        System.out.println(Message.INPUT_WINNINGLOTTO);
+        System.out.println(Message.INPUT_WINNINGLOTTO.getMessage());
     }
 
     public void bonusNumberMessage() {
-        System.out.println(Message.INPUT_BONUSNUMBER);
+        System.out.println(Message.INPUT_BONUSNUMBER.getMessage());
     }
 
     public void matchingMessage(Map<Rank, Integer> ranks, double rateOfReturn) {
-        System.out.println(Message.RESULT);
+        System.out.println(Message.RESULT.getMessage());
         System.out.println(Message.RANKING_FIFTH.getMessage()+ "" + ranks.get(Rank.FIFTH) + "개");
         System.out.println(Message.RANKING_FORTH.getMessage()+ "" + ranks.get(Rank.FORTH) + "개");
         System.out.println(Message.RANKING_THIRD.getMessage() + "" + ranks.get(Rank.THIRD) + "개");

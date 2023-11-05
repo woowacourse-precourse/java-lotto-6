@@ -23,13 +23,13 @@ public class LottoService {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public LottoReceiptDto getLottoReceipt(int amount) {
+    public LottoReceiptDto getLottoReceipt(long amount) {
         int purchaseLottoCount = getPurchaseLottoCount(amount);
         purchaseLottos(purchaseLottoCount);
         return LottoReceiptDto.from(purchaseLottoCount, purchasedLottos);
     }
 
-    private int getPurchaseLottoCount(int amount) {
+    private int getPurchaseLottoCount(long amount) {
         payment = new Payment(amount);
         return payment.calculatePurchaseLottoCount();
     }

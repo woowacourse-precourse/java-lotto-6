@@ -3,14 +3,16 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumber;
 import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private PurchaseAmount purchaseAmount;
-    private int coin;
-    private LottoMachine lottoMachine;
+    private final PurchaseAmount purchaseAmount;
+    private final int coin;
+    private final LottoMachine lottoMachine;
+    private WinningNumber winningNumber;
 
     public GameController() {
         this.lottoMachine = new LottoMachine();
@@ -20,11 +22,11 @@ public class GameController {
     }
 
     public void run() {
-        for(int i=0; i<coin; i++){
+        for (int i = 0; i < coin; i++) {
             Lotto lotto = lottoMachine.createLotto();
             System.out.println(lotto.toString());
         }
+
+        winningNumber = new WinningNumber(InputView.inputWinningNumber());
     }
-
-
 }

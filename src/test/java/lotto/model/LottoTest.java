@@ -13,6 +13,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoTest {
     @ParameterizedTest
+    @MethodSource("invalidSize")
+    @DisplayName("로또 개수 실패 테스트")
+    void invalidSizeTest(List<Integer> invalidRange) {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(invalidRange));
+    }
+
+    static Stream<Arguments> invalidSize() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5)),
+                Arguments.of(Arrays.asList(39,40,41,42,43,44,45)),
+                Arguments.of(List.of())
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("invalidRange")
     @DisplayName("로또 범위 실패 테스트")
     void invalidRangeTest(List<Integer> invalidRange) {

@@ -12,4 +12,12 @@ public class Lottos {
     public static Lottos getInstance(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
+
+    public String getLottos() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            sb.append(lotto.getLottoNumbers());
+        }
+        return sb.toString();
+    }
 }

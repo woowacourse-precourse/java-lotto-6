@@ -17,9 +17,35 @@ public class LottoController {
     }
 
     public static LottoController getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new LottoController();
         }
         return instance;
+    }
+
+    public void run() {
+        lottoStart();
+    }
+
+    private void lottoStart() {
+        String purchaseAmount = readPurchaseAmount();
+        makeLottoByPurchaseAmount(purchaseAmount);
+        printLottoNumbers(getLottoNumbers());
+    }
+
+    private String readPurchaseAmount() {
+        return inputView.readPurchaseAmount();
+    }
+
+    private void makeLottoByPurchaseAmount(String purchaseAmount) {
+        lottoService.makeLottoByPurchaseAmount(purchaseAmount);
+    }
+
+    private void printLottoNumbers(String lottos) {
+        outputView.printLottos(lottos);
+    }
+
+    private String getLottoNumbers() {
+        return lottoService.getLottoNumbers();
     }
 }

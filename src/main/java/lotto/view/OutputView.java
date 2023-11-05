@@ -11,4 +11,8 @@ public class OutputView {
         }
         return instance;
     }
+
+    public void printLottos(String lottos) {
+        System.out.println(lottos);
+    }
 }

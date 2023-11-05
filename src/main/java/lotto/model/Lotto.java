@@ -1,5 +1,6 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 
@@ -10,7 +11,10 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
+    public static Lotto newInstance(){
+        List<Integer> numbers =Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
     private void validate(List<Integer> numbers) {
         LottoValidator lottoValidator = new LottoValidator();
         lottoValidator.validateLotto(numbers);
@@ -35,5 +39,9 @@ public class Lotto {
 
     private boolean wonFiveBonusNumber(LottoResult result, Integer bonusNumber) {
         return result.equals(LottoResult.FIVE_MATCHES) && haveSameBall(bonusNumber);
+    }
+
+    public List<Integer> getNumbersForMessage() {
+        return numbers;
     }
 }

@@ -1,13 +1,16 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
+import java.util.Collections;
+
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        Collections.sort(numbers);
+        this.lottoNumbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,3 +21,4 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 }
+

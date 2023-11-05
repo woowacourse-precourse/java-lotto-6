@@ -1,6 +1,7 @@
 package lotto.model.domain.result;
 
 import java.text.DecimalFormat;
+import lotto.constance.PrintConst;
 
 public enum LottoResult {
 
@@ -14,7 +15,7 @@ public enum LottoResult {
     private static final String COLLECTION_FORMAT = "%d개 일치";
     private static final String BONUS_FORMAT = ", 보너스 볼 일치";
     private static final String PRICE_FORMAT = " (%s원)";
-    private static final DecimalFormat moneyFormat = new DecimalFormat("###,###");
+    private static final DecimalFormat moneyFormat = new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
 
     private int prize;
     private int collectCount;

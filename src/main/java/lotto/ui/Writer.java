@@ -11,8 +11,8 @@ public class Writer {
         System.out.println();
     }
 
-    public static void printGuide(String guide) {
-        System.out.println(guide);
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 
     public static void printException(IllegalArgumentException e){

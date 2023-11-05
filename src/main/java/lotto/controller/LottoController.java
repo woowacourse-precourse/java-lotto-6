@@ -7,6 +7,7 @@ import lotto.model.Lottos;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoAnswer;
 import lotto.model.domain.Results;
+import lotto.model.domain.Revenue;
 import lotto.model.domain.result.ResultFactory;
 import lotto.model.lottogenerator.AnswerGenerator;
 import lotto.view.LottoGameUI;
@@ -65,7 +66,7 @@ public class LottoController {
                 .stream()
                 .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
                 .sum();
-        double revenue = (prize * 100) / (double) money;
+        Revenue revenue = new Revenue(prize, money);
         ui.printRevenue(revenue);
     }
 }

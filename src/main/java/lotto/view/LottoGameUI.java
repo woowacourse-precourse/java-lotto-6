@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import lotto.model.domain.Lotto;
+import lotto.model.domain.Revenue;
 import lotto.model.domain.result.LottoResult;
 
 public interface LottoGameUI {
@@ -11,5 +12,5 @@ public interface LottoGameUI {
     List<Integer> getAnswerNumber();
     Integer getBonusNumber();
     void printResult(List<Map.Entry<LottoResult, Integer>> results);
-    void printRevenue(double revenue);
+    void printRevenue(Revenue revenue);
 }

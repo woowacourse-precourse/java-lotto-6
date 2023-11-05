@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class MakeLottos<Lotto> {
+public class MakeLottos {
     static final int START_INCLUSIVE = 1;
     static final int END_INCLUSIVE = 45;
     static final int LOTTO_CNT = 6;

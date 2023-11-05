@@ -1,10 +1,12 @@
 package lotto;
 
-import static lotto.IntConstants.MAX_RANGE;
+import static lotto.Constants.IntConstants.MAX_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Constants.ErrorMessage;
+import lotto.Constants.IntConstants;
 
 public class Lotto {
     private final List<Integer> numbers;

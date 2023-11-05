@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.Constants.IntConstants;
 
 public class LottoGenerator {
     public static List<Integer> sixNumber() {

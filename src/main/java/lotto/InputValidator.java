@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.Constants.ErrorMessage;
+
 public class InputValidator {
 
     public void checkInputDigit(String input) {

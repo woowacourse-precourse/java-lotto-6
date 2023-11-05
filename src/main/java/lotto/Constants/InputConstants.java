@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Constants;
 
 public enum InputConstants {
     ENTER_MONEY("구입 금액을 입력해주세요."),

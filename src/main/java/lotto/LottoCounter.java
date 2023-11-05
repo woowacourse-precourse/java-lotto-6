@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.Constants.IntConstants;
 
 public class LottoCounter {
 

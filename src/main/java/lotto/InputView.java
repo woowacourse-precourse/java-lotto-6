@@ -1,9 +1,11 @@
 package lotto;
 
+import static lotto.Utils.splitWithComma;
+import static lotto.Utils.stringToInteger;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import lotto.Constants.InputConstants;
 
 public class InputView {
 
@@ -30,11 +32,9 @@ public class InputView {
     public ArrayList<Integer> insertLottoNumbers() {
         String input = Console.readLine();
         validateLottoNumber(input);
-        ArrayList<String> inputList = new ArrayList<>(Arrays.asList(input.split(",")));
+        ArrayList<String> inputList = splitWithComma(input);
         validateNumber(inputList);
-        return inputList.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
+        return stringToInteger(inputList);
     }
 
     public static void printBonusNumber() {

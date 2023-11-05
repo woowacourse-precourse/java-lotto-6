@@ -1,22 +1,27 @@
 package lotto;
 
+import static lotto.Utils.getSortedList;
+
 import java.util.List;
+import lotto.Constants.OutputConstants;
 
 public class OutputView {
 
     public static void printBuyTickets(int tickets) {
-        System.out.println(tickets + OutputConstants.TOTAL_LOTTO_TICKETS.getMessage());
+        String resultString = String.format(OutputConstants.TOTAL_LOTTO_TICKETS.getMessage(), tickets);
+        System.out.println(resultString);
     }
 
     public static void printLottoNumbers(Cpu cpuLottos, int tickets) {
         List<Lotto> LottoNumbers = cpuLottos.getSixLottoNumbers();
 
         for (int index = 0; index < tickets; index++) {
-            System.out.println(LottoNumbers
+            System.out.println(getSortedList(LottoNumbers
                     .get(index)
-                    .getNumbers());
+                    .getNumbers()));
         }
     }
+
 
     public static void printResultMessage() {
         System.out.println(OutputConstants.LOTTO_RESULT.getMessage());
@@ -30,7 +35,8 @@ public class OutputView {
         OutputConstants[] stringArray = OutputConstants.values();
         for (int index = 0; index < lottoResult.size(); index++) {
             OutputConstants outputConstants = stringArray[index];
-            System.out.println(outputConstants.getMessage() + lottoResult.get(index) + "개");
+            String resultString = String.format(outputConstants.getMessage(), lottoResult.get(index));
+            System.out.println(resultString);
         }
     }
 

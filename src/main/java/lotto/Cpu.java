@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Constants.ErrorMessage;
+import lotto.Constants.IntConstants;
 
 public class Cpu {
     private List<Lotto> sixLottoNumbers;
@@ -28,7 +30,7 @@ public class Cpu {
         }
         return lottos;
     }
-    
+
     private void validTickets(int money) {
         if (money % IntConstants.UNIT_BILL.getValue() != 0) { // 나머지가 0이 아닐 때 오류 반환
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_UNIT_MESSAGE.getMessage());

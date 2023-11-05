@@ -3,6 +3,7 @@ package lotto;
 import static lotto.InputController.getValidInput;
 
 import java.util.List;
+import lotto.Constants.IntConstants;
 
 public class GameController {
 

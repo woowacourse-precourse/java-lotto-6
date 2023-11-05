@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.Constants.ErrorMessage;
+import lotto.Constants.IntConstants;
 
 public class Player {
     private final int bonusNumber;

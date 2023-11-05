@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Constants;
 
 public enum PrizeMoney {
     FIFTH_RANK(5000),

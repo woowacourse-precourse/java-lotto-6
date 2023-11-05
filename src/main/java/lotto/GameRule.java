@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Constants.PrizeMoney;
 
 public class GameRule {
 

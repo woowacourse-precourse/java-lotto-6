@@ -3,54 +3,50 @@ package lotto.controller;
 import lotto.domain.Customer;
 import lotto.domain.Target;
 import lotto.domain.WinningChecker;
-import lotto.handler.InputHandler;
-import lotto.message.GuideMessage;
+import lotto.handler.UIHandler;
 
 import java.util.List;
 
 public class LottoGameController {
-    private final InputHandler inputHandler;
+    private final UIHandler uiHandler;
 
-    public LottoGameController(InputHandler inputHandler) {
-        this.inputHandler = inputHandler;
+    public LottoGameController(UIHandler uiHandler) {
+        this.uiHandler = uiHandler;
     }
 
     public void run() {
-        Customer customer = createCustomerAndBuyLottos();
+        int payment = uiHandler.getAndValidatePayment();
 
-        Target target = createTargetNumbersAndBonusNumber();
+        Customer customer = createCustomerAndBuyLottos(payment);
+        uiHandler.printInfoOfLottos(customer);
+
+        Target target = createTargetByTargetNumbersAndBonusNumber();
 
         customer.calculateResult(target);
 
-        calculateAndPrintWinning(customer);
+        WinningChecker winningChecker = createWinningCheckerAndCheckWinning(customer);
+
+        uiHandler.printWinningInfo(winningChecker);
+        uiHandler.printRateOfProfit(customer, winningChecker);
     }
 
-    private Customer createCustomerAndBuyLottos() {
-        System.out.println(GuideMessage.GET_PAYMENT_REQUEST_MESSAGE);
-        int payment = inputHandler.getAndValidatePayment();
-
+    private Customer createCustomerAndBuyLottos(int payment) {
         Customer customer = Customer.createCustomer(payment);
         customer.buyLottos();
-        customer.printInfoOfLottos();
-
         return customer;
     }
 
-    private Target createTargetNumbersAndBonusNumber() {
-        System.out.println(GuideMessage.GET_TARGET_NUMBERS_REQUEST_MESSAGE);
-        List<Integer> targetNumbers = inputHandler.getAndTargetNumbers();
+    private Target createTargetByTargetNumbersAndBonusNumber() {
+        List<Integer> targetNumbers = uiHandler.getAndTargetNumbers();
+        int bonusNumber = uiHandler.getAndValidateBonusNumber(targetNumbers);
 
-        System.out.println(GuideMessage.GET_BONUS_NUMBER_REQUEST_MESSAGE);
-        int bonusNumber = inputHandler.getAndValidateBonusNumber(targetNumbers);
-
-        return Target.createTarget(targetNumbers, bonusNumber);
+        Target target = Target.createTarget(targetNumbers, bonusNumber);
+        return target;
     }
 
-    private static void calculateAndPrintWinning(Customer customer) {
+    private static WinningChecker createWinningCheckerAndCheckWinning(Customer customer) {
         WinningChecker winningChecker = WinningChecker.createWinningChecker();
         winningChecker.checkWinning(customer);
-        winningChecker.printWinningInfo();
-        winningChecker.printRateOfProfit(customer);
+        return winningChecker;
     }
-
 }

@@ -1,9 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constants.WinningInfo;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static lotto.constants.SystemOption.*;
 import static lotto.message.GuideMessage.SHOW_LOTTOS_INFO_MESSAGE;
@@ -21,7 +21,6 @@ public class Customer {
         this.numberOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
         this.results = new ArrayList<>();
     }
-
 
     public static Customer createCustomer(int payment) {
         return new Customer(payment);
@@ -41,11 +40,10 @@ public class Customer {
         return lottoNumbers;
     }
 
-    public void printInfoOfLottos() {
-        System.out.println(String.format(SHOW_LOTTOS_INFO_MESSAGE.toString(), this.numberOfLottos));
-        for (Lotto lotto : lottos) {
-            lotto.printNumbers();
-        }
+    public List<String> getInfoOfLottos() {
+        return this.lottos.stream()
+                .map(lotto -> lotto.getNumbersInfo())
+                .collect(Collectors.toList());
     }
 
     public void calculateResult(Target target) {
@@ -55,11 +53,15 @@ public class Customer {
         }
     }
 
+    public int getNumberOfLottos() {
+        return this.numberOfLottos;
+    }
+
     public List<Result> getResults() {
         return this.results;
     }
 
     public int getPayment() {
-        return payment;
+        return this.payment;
     }
 }

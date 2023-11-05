@@ -1,15 +1,8 @@
 package lotto.domain;
 
-import lotto.message.WinningMessage;
-
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static lotto.message.GuideMessage.RATE_OF_PROFIT_MESSAGE;
-import static lotto.message.GuideMessage.WINNING_RESULT_MESSAGE;
 
 public class WinningChecker {
     private double totalWinningAmount;
@@ -48,22 +41,11 @@ public class WinningChecker {
         this.rankInfo.put(rank, this.rankInfo.getOrDefault(rank, 0) + 1);
     }
 
-    public void printWinningInfo() {
-        System.out.println(WINNING_RESULT_MESSAGE);
-        Arrays.stream(WinningMessage.values())
-                .map(winningMessage -> createWinningMessage(winningMessage))
-                .forEach(message -> System.out.println(message));
+    public Map<Integer, Integer> getRankInfo() {
+        return this.rankInfo;
     }
 
-    private String createWinningMessage(WinningMessage winningMessage) {
-        return String.format(winningMessage.getContent(),
-                this.rankInfo.getOrDefault(winningMessage.getRank(), 0));
-    }
-
-    public void printRateOfProfit(Customer customer) {
-        double rateOfProfit = (totalWinningAmount / customer.getPayment()) * 100;
-        DecimalFormat df = new DecimalFormat("#.##");
-        String roundedNumber = df.format(rateOfProfit);
-        System.out.println(String.format(RATE_OF_PROFIT_MESSAGE.toString(), roundedNumber));
+    public double getTotalWinningAmount() {
+        return totalWinningAmount;
     }
 }

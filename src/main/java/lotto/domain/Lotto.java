@@ -15,7 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
     public static Lotto createLotto(List<Integer> lottoNumbers) {
         return new Lotto(lottoNumbers);
     }
@@ -39,8 +38,8 @@ public class Lotto {
                 .size();
     }
 
-    public void printNumbers() {
-        System.out.println(this.numbers);
+    public String getNumbersInfo() {
+        return this.numbers.toString();
     }
 
     public Result compareWith(Target target) {

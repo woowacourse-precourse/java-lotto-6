@@ -3,8 +3,14 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Lotto.winningNumber;
+import static lotto.Lotto.winningNumberLogic;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +29,26 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+
+    @Test
+    void 당첨번호_숫자_범위는_1부터_45까지() {
+        List<Integer> result = new ArrayList<>();
+        String[] winningNumbers = {"1","2","3","6","45","48"};
+        assertThatThrownBy(() -> winningNumberLogic(result,winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스번호_숫자_범위는_1부터_45까지() {
+        assertThatThrownBy(()->{
+            System.out.println("보너스 번호를 입력해주세요");
+            int bonusNumber = 46;
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
 }

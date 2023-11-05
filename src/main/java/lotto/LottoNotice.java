@@ -6,5 +6,13 @@ public enum LottoNotice {
     THIRD_PLACE("5개 일치 (1,500,000원) - "),
     FORTH_PLACE("4개 일치 (50,000원) - "),
     FIFTH_PLACE("3개 일치 (5,000원) - ");
-    LottoNotice(String count){}
+
+    private final String string;
+    LottoNotice(String string){
+        this.string = string;
+    }
+
+    public String getString() {
+        return string;
+    }
 }

@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -16,7 +15,7 @@ public class Application {
 
         int bonusNumber = lotto.bonusNumber();
 
-        lotto.lottoGame(gameCount, bonusNumber, myLottoNumber);
+        lotto.lottoGame(bonusNumber, myLottoNumber);
 
     }
 }

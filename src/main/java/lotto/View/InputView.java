@@ -8,4 +8,9 @@ public class InputView {
         System.out.println(InputMessage.TOTAL_COST);
         return Console.readLine();
     }
+
+    public static String winningNumber() {
+        System.out.println(InputMessage.WINNING_NUMBER);
+        return Console.readLine();
+    }
 }

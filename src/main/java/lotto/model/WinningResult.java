@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.GameConfig;
+import lotto.view.OutputView;
 
 public class WinningResult {
 
@@ -15,6 +16,12 @@ public class WinningResult {
     public void addLottoRank(LottoRank lottoRank) {
         int winningResultValue = getWinningResultValue(lottoRank);
         winningResult.put(lottoRank, ++winningResultValue);
+    }
+
+    public void displayWinningResult() {
+        for (LottoRank lottoRank : winningResult.keySet()) {
+            OutputView.printLottoRank(lottoRank, getWinningResultValue(lottoRank));
+        }
     }
 
     private void initWinningResult() {

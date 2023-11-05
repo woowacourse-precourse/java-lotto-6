@@ -9,7 +9,7 @@ import java.util.List;
 import static constant.ResultMessage.*;
 
 public class LottoResultCompute {
-    private final ValidationUtil validationUtil = new ValidationUtil();
+//    private final ValidationUtil validationUtil = new ValidationUtil();
     private final MessageUtil messageUtil = new MessageUtil();
     private final LottoWinningNumber lottoWinningNumberInfo;
     private final LottoBonusNumber lottoBonusNumberInfo;
@@ -28,7 +28,7 @@ public class LottoResultCompute {
             int matchCountWithBonus = checkBonusNumber(matchCount, userLottoNumbers);
             addMatchNumbers(matchCountWithBonus, userLottoNumbers);
         }
-        printLottoResults();
+        printLottoResults(lottoAmount);
     }
     private int getMatchNumbers(List<Integer> userLottoNumbers){
         long count = userLottoNumbers.stream()
@@ -54,17 +54,33 @@ public class LottoResultCompute {
             lottoMatchCount.addSixCount();
         }
     }
-    private void printLottoResults(){
+    private void printLottoResults(int lottoAmount){
         messageUtil.printWinningResult(THREE.getMatchNumber(), THREE.getPrice(), lottoMatchCount.getThreeCount());
         messageUtil.printWinningResult(FOUR.getMatchNumber(), FOUR.getPrice(), lottoMatchCount.getFourCount());
         messageUtil.printWinningResult(FIVE.getMatchNumber(), FIVE.getPrice(), lottoMatchCount.getFiveCount());
         messageUtil.printWinningResult(FIVE_WITH_BONUS.getMatchNumber(), FIVE_WITH_BONUS.getPrice(), lottoMatchCount.getFiveWithBonusCount());
         messageUtil.printWinningResult(SIX.getMatchNumber(), SIX.getPrice(), lottoMatchCount.getSixCount());
+
+        long totalAmount = getTotalWinningAmount();
+        double totalWinningRate = getTotalWinningRate(lottoAmount, totalAmount);
+        messageUtil.printWinningRate(totalWinningRate);
     }
     private int checkBonusNumber(int matchCount, List<Integer> userLottoNumbers){
         if(userLottoNumbers.contains(lottoBonusNumberInfo.getLottoBonusNum())){
             matchCount *= 100;
         }
         return matchCount;
+    }
+
+    private long getTotalWinningAmount(){
+        long totalAmount = (long) lottoMatchCount.getThreeCount() * THREE.getPrice()
+                + (long) lottoMatchCount.getFourCount() * FOUR.getPrice()
+                + (long) lottoMatchCount.getFiveCount() * FIVE.getPrice()
+                + (long) lottoMatchCount.getFiveWithBonusCount() * FIVE_WITH_BONUS.getPrice()
+                + (long) lottoMatchCount.getSixCount() * SIX.getPrice();
+        return totalAmount;
+    }
+    private double getTotalWinningRate(int lottoAmount, long totalAmount){
+        return ((double) totalAmount / (double) (lottoAmount * 1000)) * 100;
     }
 }

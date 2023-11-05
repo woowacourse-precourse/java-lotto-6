@@ -3,27 +3,27 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(2000000000L, 6, 0),
-    SECOND(30000000L, 5, 1),
-    THIRD(1500000L, 5, 0),
-    FOURTH(50000L, 4, 0),
-    FIFTH(5000L, 3, 0),
-    UNRANKED(0L, 0, 0);
+    FIRST(2000000000L, 6, false),
+    SECOND(30000000L, 5, true),
+    THIRD(1500000L, 5, false),
+    FOURTH(50000L, 4, false),
+    FIFTH(5000L, 3, false),
+    UNRANKED(0L, 0, false);
 
     private Long price;
     private Integer criterion;
-    private Integer bonusCount;
+    private boolean requireBonus;
 
-    Rank(Long price, Integer criterion, Integer bonusCount) {
+    Rank(Long price, Integer criterion, boolean requireBonus) {
         this.price = price;
         this.criterion = criterion;
-        this.bonusCount = bonusCount;
+        this.requireBonus = requireBonus;
     }
 
-    public static Rank determineByMatchingCount(Integer criterion, Integer bonusCount) {
+    public static Rank determineByMatchingCount(Integer criterion, boolean requireBonus) {
         return Arrays.stream(Rank.values())
             .filter(rank -> rank.equalsCriterion(criterion))
-            .filter(rank -> rank.equalsBonusCount(bonusCount))
+            .filter(rank -> rank.checkBonusRequiring(requireBonus))
             .findAny()
             .orElse(UNRANKED);
     }
@@ -32,7 +32,7 @@ public enum Rank {
         return this.criterion.equals(criterion);
     }
 
-    private boolean equalsBonusCount(Integer bonusCount) {
-        return this.bonusCount.equals(bonusCount);
+    private boolean checkBonusRequiring(boolean requireBonus) {
+        return this.requireBonus == requireBonus;
     }
 }

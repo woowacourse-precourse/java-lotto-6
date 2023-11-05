@@ -54,7 +54,7 @@ public class LottoStatistics {
         if (count == 4) {
             fourNumbersMatch++;
         }
-        if (count == 5) {
+        if (count == 5 && lottoHasBonusNumber == false) {
             fiveNumbersMatch++;
         }
         if (count == 5 && lottoHasBonusNumber == true) {

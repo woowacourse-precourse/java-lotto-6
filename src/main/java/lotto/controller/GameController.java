@@ -4,6 +4,8 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Map;
+
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,8 +28,9 @@ public class GameController {
         winningNumbers.assignBonusNumber(bonusNumber);
 
         LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
-        lottoResultGenerator.computePrizeFrequencies(lottos);
-
+        Map<PrizeCondition, Long> prizeResult = lottoResultGenerator.generatePrizeResult(lottos);
+        double profit = lottoResultGenerator.generateProfit();
+        outputView.printResult(prizeResult, profit);
     }
 
     private void initializeLottoPurchaseManager() {

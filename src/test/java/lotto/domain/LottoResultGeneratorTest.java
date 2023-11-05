@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +53,7 @@ class LottoResultGeneratorTest {
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
         // when, then
-        lottoResultGenerator.computePrizeFrequencies(Lottos.create(lottos));
+        lottoResultGenerator.generatePrizeResult(Lottos.create(lottos));
         //winningNumbers와 파라미터로 들어온 Lottos 를 비교하여 winningRecords 필드를 업데이트
         //winningRecords : Map<Integer, Integer> 등수 : 몇개가 해당 등수인지
 

@@ -5,6 +5,7 @@ import static lotto.util.message.Error.MUST_LOTTO_RANGE;
 import static lotto.util.message.Error.MUST_LOTTO_SIZE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,10 @@ public class Lotto {
         List<Lotto> result = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            result.add(new Lotto(RandomNumber.generate()));
+            List<Integer> number = RandomNumber.generate();
+            Collections.sort(number);
+            
+            result.add(new Lotto(number));
         }
         return result;
     }

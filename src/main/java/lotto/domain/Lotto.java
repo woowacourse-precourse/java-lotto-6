@@ -36,4 +36,8 @@ public final class Lotto {
     private static List<LottoNumber> createLottoNumbers(NumbersCreator numbersCreator) {
         return LottoNumber.createLottoNumbers(numbersCreator, LOTTO_LENGTH);
     }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 }

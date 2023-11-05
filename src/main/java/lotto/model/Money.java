@@ -13,6 +13,10 @@ public class Money {
         this.money = Integer.parseInt(money);
     }
 
+    public int moneyToLottoCount(){
+        return money/LOTTO_PRICE;
+    }
+
     private void checkValidMoneyFormat(String money) {
         checkNotNumber(money);
         checkIndivisibleMoney(Integer.parseInt(money));

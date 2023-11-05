@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class WinningLottoStorage {
 
-    private Map<Rank, Integer> rankStorage;
+    private final Map<Rank, Integer> rankStorage;
 
     public WinningLottoStorage() {
         rankStorage = new HashMap<>();
@@ -22,4 +22,10 @@ public class WinningLottoStorage {
         rankStorage.put(Rank.CORRECT_FIVE_BONUS, 0);
         rankStorage.put(Rank.CORRECT_SIX, 0);
     }
+
+    public void store(Rank rank) {
+        Integer count = rankStorage.get(rank);
+        rankStorage.put(rank, count + 1);
+    }
+
 }

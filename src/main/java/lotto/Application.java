@@ -14,11 +14,15 @@ public class Application {
         System.out.println();
         int numberOfLottos = userPurchaseAmount / 1000;
         System.out.println(numberOfLottos + "개를 구매했습니다.");
+
+        List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
-            lotto.getNumbers().sort(Comparator.naturalOrder());
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            sortedNumbers.sort(Comparator.naturalOrder());
+            System.out.println(sortedNumbers);
+            purchasedLottos.add(lotto);
         }
 
         System.out.println();

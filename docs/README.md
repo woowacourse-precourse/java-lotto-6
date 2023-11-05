@@ -33,9 +33,9 @@
 - ✅ displayLottoNumberList
     -  생성된 로또 번호 6개 리스트 형식으로 출력
 
-## ❌ 당첨 통계 출력
+## ✅ 당첨 통계 출력
 
-- ❌ displayLottoResult
+- ✅ displayLottoResult
     -  구매한 로또의 결과를 집계
     - 각 등수별 당첨 개수를 출력
     - 수익률 출력

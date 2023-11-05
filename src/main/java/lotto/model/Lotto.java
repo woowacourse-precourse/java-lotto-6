@@ -2,13 +2,16 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNotDuplicated(numbers);
         this.numbers = numbers;
     }
 
@@ -19,6 +22,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validateNotDuplicated(List<Integer> numbers) throws IllegalArgumentException {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() < numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void sortAscending() {
         Collections.sort(this.numbers);
     }

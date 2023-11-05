@@ -31,4 +31,9 @@ public class LottoService {
             winningStatistics.checkWinningResult(winningNumbersMatchingCount, isBonusNumberMatch);
         }
     }
+
+    public double calculateTotalYield(int purchaseAmount) {
+        int totalWinningAmount = winningStatistics.getTotalWinningAmount();
+        return ((double) totalWinningAmount / (double) purchaseAmount) * 100;
+    }
 }

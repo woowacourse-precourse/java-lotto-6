@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.view.ExceptionMessage;
+
 public class PurchaseAmount {
 
     private int amount;
@@ -12,8 +14,16 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseAmount(String amount) {
-        if (!isDigit(amount) || isZeroOrMinus(amount) || isBeingDivided(amount)) {
-            throw new IllegalArgumentException();
+        if (!isDigit(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
+        }
+
+        if (isZeroOrMinus(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
+        }
+
+        if (!isBeingDivided(amount)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_BEING_DIVIDED);
         }
     }
 

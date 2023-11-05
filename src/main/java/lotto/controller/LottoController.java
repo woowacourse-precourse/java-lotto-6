@@ -18,7 +18,7 @@ public class LottoController {
         int lottoPurchaseAmount = getLottoPurchaseAmount();
 
         // 구입한 수량 만큼 로또 생성
-        List<Lotto> lottoTickets = getLottos(lottoPurchaseAmount);
+        List<Lotto> lottoTickets = getLottoTickets(lottoPurchaseAmount);
 
         // 로또 당첨번호 입력
         List<Integer> lottoWinningNumbers = getLottoWinningNumbers();
@@ -53,7 +53,7 @@ public class LottoController {
         return lottoWinningNumbers;
     }
 
-    private static List<Lotto> getLottos(int lottoPurchaseAmount) {
+    private static List<Lotto> getLottoTickets(int lottoPurchaseAmount) {
         List<Lotto> lottoTickets = LottoGenerator.buyLottoTickets(lottoPurchaseAmount);
         OutputView.printUserPurchase(lottoTickets);
         return lottoTickets;

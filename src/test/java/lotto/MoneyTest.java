@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.domain.Money;
+import lotto.domain.Money.NumericString;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,13 +29,13 @@ public class MoneyTest {
     @ValueSource(strings = {"abc", "90 0", "-1a00"})
     @DisplayName("숫자가 아닌 입력시 예외")
     public void createByNonNumeric(String money) {
-        assertThatThrownBy(() -> Money.of(money)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Money.of(new NumericString(money))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("빈값 입력시 예외")
     public void createByEmptyString() {
-        assertThatThrownBy(() -> Money.of("")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Money.of(new NumericString(""))).isInstanceOf(IllegalArgumentException.class);
     }
 
 

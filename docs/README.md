@@ -40,11 +40,6 @@
     - 각 등수별 당첨 개수를 출력
     - 수익률 출력
 
-## ❌ 에러 메시지 출력
-
-- ❌ displayErrorMessage
-    -  검증에서 실패할 경우 실패한 사유 출력
-
 ## ✅ 구입금액 입력
 
 - ✅ getInputPurchaseAmount 메서드 구현

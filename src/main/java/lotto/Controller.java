@@ -28,4 +28,12 @@ public class Controller {
 
         return winningNumbers;
     }
+
+    public Integer readBonusNumber() {
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+        return bonusNumber;
+    }
 }

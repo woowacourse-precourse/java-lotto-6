@@ -1,5 +1,6 @@
 package lotto;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,7 @@ public class LottoPlay implements Play{
         int purchaseQuantity = getPurchaseQuantity();
         List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
         Lotto winningLotto = readWinningNumber();
-        readBonusNumber();
+        int bonusNumber = readBonusNumber(winningLotto);
         printWinningStat();
         printYieldRate();
     }
@@ -71,8 +72,23 @@ public class LottoPlay implements Play{
         return lotto;
     }
 
-    private void readBonusNumber() {
+    private int readBonusNumber(Lotto winningLotto) {
+        int bonusNumber;
 
+        System.out.println();
+        System.out.print(view.getAskBonusNumber());
+
+        do {
+            try {
+                bonusNumber = controller.readBonusNumber();
+                validateBonusNumber(bonusNumber, winningLotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
+                bonusNumber = 0;
+            }
+        } while (bonusNumber == 0);
+
+        return bonusNumber;
     }
 
     private void printWinningStat() {
@@ -81,6 +97,12 @@ public class LottoPlay implements Play{
 
     private void printYieldRate() {
 
+    }
+
+    private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {
+        if (winningLotto.getLottoNumber().contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

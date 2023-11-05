@@ -208,62 +208,119 @@ public class Lotto {
 
 # 절차
 
-- 구입 금액을 입력받는다.
+- 올바른 값을 입력받을 때까지
+  - 구입 금액을 입력받는다.
   - 금액이 1000원 단위가 아니라면 잘못된 값으로 간주한다.
   - 금액이 0 이하라면 잘못된 값으로 간주한다.
-  - 잘못된 값을 입력받았을 경우,
-    - 오류 문자열을 출력한다.
-    - 구매 금액을 다시 입력받는다.
+  - 잘못된 값을 입력받았을 경우, 오류 문자열을 출력한다.
 - 로또를 발행한다.
 - 로또를 출력한다.
   - 로또는 오름차순으로 출력한다.
-- 당첨 번호를 입력받는다.
+- 올바른 값을 입력받을 때까지
+  - 당첨 번호를 입력받는다.
   - 번호가 자연수가 아니라면 잘못된 값으로 간주한다.
   - 번호 범위가 1~45가 아니라면 잘못된 값으로 간주한다.
-  - 잘못된 값을 입력받았을 경우,
-    - 오류 문자열을 출력한다.
-    - 당첨 번호를 다시 입력받는다.
-- 보너스 번호를 입력받는다.
+  - 잘못된 값을 입력받았을 경우, 오류 문자열을 출력한다.
+- 올바른 값을 입력받을 때까지
+  - 보너스 번호를 입력받는다.
   - 당첨 번호와 동일한 조건으로 검사를 진행한다.
-- 당첨 내역을 계산한다.
-- 당첨 내역을 출력한다.
-- 수익률을 계산한다.
-- 수익률을 출력한다.
+- 결과를 계산한다.
+- 결과를 출력한다.
 
 # 객체
 
-- 구입 금액
+## 도메인
+- 구입 금액(돈)
 - 로또
+  - 로또 팩
 - 당첨 번호
-- 보너스 번호
-- 당첨 내역
-- 수익률
+  - 당첨 번호들
+  - 보너스 번호
+- 결과
 
-# 기능
+## 뷰
+- 인풋 뷰
+- 아웃풋 뷰
 
-- getMoney
-- getLotteryNumbers
-- getBonusNumber
-- calculateResult
-- calculateIncomeRate
-- printLotto
-- printResult
-- printIncomeRate
+## 상수 데이터
+- 출력 메시지
+- 예외 메시지
+- 로또 옵션
+  - 숫자 범위
+  - 로또 가격
+  - 로또 길이
+  - 상금
+  - 기타 매직 넘버
+
+## 유틸리티
+- 숫자 생성기
+- 스캐너
+- 프린터
 
 # 기능 분배
 
-- Money
-- Lotto
-- LottoPack
+## 도메인
+
+- [Money](../src/main/java/lotto/domain/Money.java)
+  - count
+
+- [Lotto](../src/main/java/lotto/domain/Lotto.java)
+  - calculate
+  - toString
+
+- [LottoPack](../src/main/java/lotto/domain/LottoPack.java)
   - calculateResult
-- LotteryNumber
-- Result
-- IncomeRate
-- InputView
-  - getMoney
-  - getLotteryNumber
-  - getBonusNumber
-- OutputView
+  - toString
+
+- [WinningNumber](../src/main/java/lotto/domain/WinningNumber.java)
+  - is
+
+- [WinningNumbers](../src/main/java/lotto/domain/WinningNumbers.java)
+  - contains
+
+- [Result](../src/main/java/lotto/domain/Result.java)
+  - toString
+
+- [InputView](../src/main/java/lotto/view/InputView.java)
+  - getNumber
+  - getNumbers
+
+- [OutputView](../src/main/java/lotto/view/OutputView.java)
+  - printGetMoney
   - printLotto
+  - printGetWinningNumber
+  - printGetBonusNumber
   - printResult
-  - printIncomeRate
+  - newline
+
+## 상수 데이터
+
+- [ExceptionMessage](../src/main/java/lotto/constant/ExceptionMessage.java)
+  - NOT_NUMBER_MESSAGE
+  - OUT_OF_LOTTO_RANGE_MESSAGE
+
+- [LottoRank](../src/main/java/lotto/constant/LottoRank.java)
+  - THREE
+  - FOUR
+  - FIVE
+  - FIVE_BONUS
+  - SIX
+  - findRank
+  - getPrize
+
+- [OutputMessage](../src/main/java/lotto/constant/OutputMessage.java)
+  - GET_MONEY_MESSAGE
+  - BOUGHT_LOTTO_PACK
+  - GET_WINNING_NUMBERS
+  - GET_BONUS_NUMBER
+
+## 유틸리티
+
+- [NumberGenerator](../src/main/java/lotto/util/NumberGenerator/INumberGenerator.java)
+  - generateNumbers
+
+- [Scanner](../src/main/java/lotto/util/Scanner/Scanner.java)
+  - readLine
+
+- [Printer](../src/main/java/lotto/util/Printer/Printer.java)
+  - println

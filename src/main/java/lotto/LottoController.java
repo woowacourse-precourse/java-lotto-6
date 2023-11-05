@@ -8,11 +8,12 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 public class LottoController {
 	private Lotto randomLotto;
 	private LottoView LottoView;
-	private List<List<Integer>> randomLottos;
-	private List<Integer> winLotto;
+	private List<List<Integer>> createdLottos;
+	private List<Integer> winNumbers;
+	private int bonusNumber;
 
 	public LottoController() {
-		randomLottos = new ArrayList<>();
+		createdLottos = new ArrayList<>();
 		LottoView = new LottoView();
 	}
 
@@ -25,7 +26,7 @@ public class LottoController {
 			List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
 			randomLotto = new Lotto(randomNumbers);
 			LottoView.printLottos(randomLotto.getNumbers());
-			randomLottos.add(randomNumbers);
+			createdLottos.add(randomNumbers);
 		}
 	}
 
@@ -45,20 +46,43 @@ public class LottoController {
 	}
 
 	public void getWinNumbers() {
-		String[] winNumbers = LottoView.getWinLotto();
-		winLotto = this.setWinNumbers(winNumbers);
-		this.addBonusNumber();
-		System.out.println(winLotto);
+		String[] numbers = LottoView.getWinLotto();
+		winNumbers = this.setWinNumbers(numbers);
+		bonusNumber = this.getBonusNumber();
+		System.out.println(winNumbers);
+		System.out.println(bonusNumber);
 	}
 
-	public void addBonusNumber() {
+	public int getBonusNumber() {
 		int bonusNumber = LottoView.getBonusNumber();
-		winLotto.add(bonusNumber);
+		return  bonusNumber;
 	}
 
+	public void matchNumbers() {
+		List<Integer> matchList = new ArrayList<>();
+		for (List<Integer> innerList : createdLottos) {
+			int count = 0;
+			for (int i = 0; i < winNumbers.size() - 1; i++) {
+				int num = winNumbers.get(i);
+				if (innerList.contains(num)) {
+					count++;
+				}
+			}
+			matchList.add(count);
+		}
+		for (int count : matchList) {
+			System.out.println(count);
+		}
+//		return matchList;
+	}
+
+	// matchNumber -> 사용자가 구매한 로또와 사용자가 입력한 당첨번호가 일치하는지 확인
+	// bonusNumber -> 사용자가 입력한 보너스 번호가 일치하는지 확인
+//			return Ranking.valueOf(matchNumber, bonusNumber)
 	public void processGame() {
 		int count = this.getCount();
 		this.createRandomLotto(count);
 		this.getWinNumbers();
+		this.matchNumbers();
 	}
 }

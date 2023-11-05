@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumbers;
 
 public class InputView {
 
@@ -23,7 +24,13 @@ public class InputView {
         }
     }
 
-    public Lotto requestWinningNumbers() {
+    public WinningNumbers requestWinningNumbers() {
+        Lotto winningLotto = requestWinningLotto();
+        LottoNumber bonusNumber = requestBonusNumber();
+        return WinningNumbers.of(winningLotto, bonusNumber);
+    }
+
+    private Lotto requestWinningLotto() {
         while (true) {
             try {
                 System.out.println(InputMessage.INPUT_LOTTO.getMessage());
@@ -34,7 +41,7 @@ public class InputView {
         }
     }
 
-    public LottoNumber requestBonusNumber() {
+    private LottoNumber requestBonusNumber() {
         while (true) {
             try {
                 System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());

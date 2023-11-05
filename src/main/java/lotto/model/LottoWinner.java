@@ -44,7 +44,7 @@ public class LottoWinner {
     }
 
     private List<Integer> winningNumbersValidate(String givenNumbers) {
-        List<String> givenNumberStrings = Arrays.asList(givenNumbers.split(","));
+        List<String> givenNumberStrings = Arrays.asList(givenNumbers.replaceAll(" ", "").split(","));
 
         // 1. 숫자 형식 검증
         List<Integer> checkedNumbers = new ArrayList<>();

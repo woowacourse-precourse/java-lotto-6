@@ -6,7 +6,7 @@ import lotto.domain.LottoGenerator;
 
 import java.util.List;
 
-final class RandomLottoGenerator implements LottoGenerator {
+public final class RandomLottoGenerator implements LottoGenerator {
     @Override
     public List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(Constraint.MIN.getValue(), Constraint.MAX.getValue(), Constraint.SIZE.getValue());

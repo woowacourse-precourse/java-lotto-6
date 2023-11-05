@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain.constant;
 
 public class LottoConstant {
     public static final int PRICE_PER_TICKET = 1000;

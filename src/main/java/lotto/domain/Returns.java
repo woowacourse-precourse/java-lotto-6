@@ -18,23 +18,18 @@ public class Returns {
     }
 
     public void print() {
-        calculate();
         OutputMessage.printf(MessageType.OUTPUT_RETURNS, this.returns);
     }
 
-    private void calculate() {
+    public void calculate() {
         Map<Integer, PrizeAmount> prizeAmounts = PrizeAmount.getPrizeAmounts();
-        double value = 0.0;
+        double totalPrizeAmount = this.winRecord.stream()
+                .filter(prizeAmounts::containsKey)
+                .map(prizeAmounts::get)
+                .mapToDouble(PrizeAmount::getAmount)
+                .sum();
 
-        for (Integer integer : this.winRecord) {
-            PrizeAmount prizeAmount = prizeAmounts.get(integer);
-
-            if (prizeAmount != null) {
-                value += prizeAmount.getAmount();
-            }
-        }
-        double result = Math.round((value / this.wallet) * 1000) / 10.0;
-
-        this.returns = result + "%";
+        double returnsPercentage = Math.round((totalPrizeAmount / this.wallet) * 1000) / 10.0;
+        this.returns = returnsPercentage + "%";
     }
 }

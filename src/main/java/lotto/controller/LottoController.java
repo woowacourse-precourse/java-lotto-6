@@ -1,49 +1,57 @@
 package lotto.controller;
 
+import static lotto.ApplicationContext.getDataModel;
+
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Returns;
 import lotto.domain.Tickets;
 import lotto.domain.WinRecord;
+import lotto.model.DataModel;
 
 public class LottoController {
-    private Tickets tickets;
-    private Lotto lotto;
-    private Bonus bonus;
-    private WinRecord winRecord;
+    private DataModel dataModel = getDataModel();
 
     public void gernerateTicket(final int wallet) {
-        this.tickets = new Tickets(wallet);
-        this.tickets.generate();
+        Tickets tickets = new Tickets(wallet);
+        tickets.generate();
+        tickets.saveTickets();
+        tickets.saveWallet();
     }
 
     public void inputLotto(final List<Integer> numbers) {
-        this.lotto = new Lotto(numbers);
+        Lotto lotto = new Lotto(numbers);
+        lotto.save();
     }
 
     public void inputBonus(final int number){
-        this.bonus = new Bonus(number);
+        Bonus bonus = new Bonus(number);
+        bonus.save();
     }
 
     public void compareWinning() {
-        List<List<Integer>> tickets = this.tickets.getTickets();
-        List<Integer> lotto = this.lotto.getNumbers();
-        int bonus = this.bonus.getNumber();
+        List<List<Integer>> tickets = dataModel.findTickets();
+        List<Integer> lotto = dataModel.findLotto();
+        int bonus = dataModel.findBonus();
 
-        this.winRecord = new WinRecord(lotto, bonus);
-        this.winRecord.compareWinning(tickets);
+        WinRecord winRecord = new WinRecord(lotto, bonus);
+        winRecord.compareWinning(tickets);
+        winRecord.save();
     }
 
     public void printWinRecord() {
-        this.winRecord.print();
+        List<Integer> winRecord = dataModel.findWinRecord();
+
+        WinRecord.print(winRecord);
     }
 
     public void printReturns() {
-        List<Integer> winRecord = this.winRecord.getWinRecord();
-        int wallet = this.tickets.getWallet();
+        List<Integer> winRecord = dataModel.findWinRecord();
+        int wallet = dataModel.findWallet();
 
         Returns returns = new Returns(wallet, winRecord);
+        returns.calculate();
         returns.print();
     }
 

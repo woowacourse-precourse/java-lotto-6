@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.domain.rule.PrizeAmount;
 import lotto.input.LottoBuyer;
 import lotto.input.LottoDrawer;
+import lotto.model.DataModel;
 import lotto.output.MessageType;
 import lotto.output.OutputMessage;
 
@@ -12,6 +13,7 @@ public class ApplicationContext {
     private static LottoBuyer lottoBuyer;
     private static LottoDrawer lottoDrawer;
     private static PrizeAmount prizeAmount;
+    private static DataModel dataModel;
 
     public static ApplicationContext init(){
         return new ApplicationContext();
@@ -77,5 +79,12 @@ public class ApplicationContext {
             prizeAmount = new PrizeAmount();
         }
         return prizeAmount;
+    }
+
+    public static DataModel getDataModel(){
+        if(dataModel == null){
+            dataModel = new DataModel();
+        }
+        return dataModel;
     }
 }

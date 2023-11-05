@@ -1,13 +1,17 @@
 package lotto.domain;
 
+import static lotto.ApplicationContext.getDataModel;
 import static lotto.ApplicationContext.getPrizeAmount;
-import static lotto.constant.LottoConstant.MATCH_ALL_SEVEN_COUNT;
-import static lotto.constant.LottoConstant.MATCH_ALL_SIX_COUNT;
+import static lotto.domain.constant.LottoConstant.MATCH_ALL_SEVEN_COUNT;
+import static lotto.domain.constant.LottoConstant.MATCH_ALL_SIX_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.domain.rule.PrizeAmount;
+import lotto.output.MessageType;
+import lotto.output.OutputMessage;
 
 public class WinRecord {
     private PrizeAmount prizeAmount = getPrizeAmount();
@@ -56,11 +60,29 @@ public class WinRecord {
         return sumCount;
     }
 
-    public void print() {
-        prizeAmount.classifyWin(this.winRecord);
+    public void save() {
+        getDataModel().saveWinRecord(this.winRecord);
     }
 
-    public List<Integer> getWinRecord() {
-        return this.winRecord;
+    public static void print(List<Integer> winRecord) {
+        IntStream.range(3, 8)
+                .forEach(match -> {
+                    long count = matchCount(winRecord, match);
+
+                    if (count >= 0) {
+                        createMessage(match, count);
+                    }
+                });
+    }
+
+    private static void createMessage(int match, long count) {
+        MessageType messageType = MessageType.valueOf("MATCH_" + match + "_COUNT");
+        OutputMessage.printf(messageType, count);
+    }
+
+    private static long matchCount(List<Integer> winRecord, int match) {
+        return winRecord.stream()
+                .filter(allMatch -> allMatch == match)
+                .count();
     }
 }

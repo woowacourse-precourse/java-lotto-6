@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import lotto.constant.LottoConstant;
+import static lotto.ApplicationContext.getDataModel;
+
+import lotto.domain.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 import lotto.output.MessageType;
@@ -26,7 +28,7 @@ public class Bonus {
         return LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number;
     }
 
-    public int getNumber() {
-        return this.number;
+    public void save(){
+        getDataModel().saveBonus(this.number);
     }
 }

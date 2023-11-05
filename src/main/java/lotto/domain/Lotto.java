@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static lotto.ApplicationContext.getDataModel;
+
 import java.util.List;
-import lotto.constant.LottoConstant;
+import lotto.domain.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 import lotto.output.MessageType;
@@ -41,11 +43,18 @@ public class Lotto {
 
     private boolean islottoRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(
-                        number -> LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number);
+                .anyMatch(number -> isLower(number) || isHight(number));
     }
 
-    public List<Integer> getNumbers() {
-        return this.numbers;
+    private static boolean isHight(Integer number) {
+        return LottoConstant.LOTTO_END_NUMBER < number;
+    }
+
+    private static boolean isLower(Integer number) {
+        return LottoConstant.LOTTO_START_NUMBER > number;
+    }
+
+    public void save() {
+        getDataModel().saveLotto(this.numbers);
     }
 }

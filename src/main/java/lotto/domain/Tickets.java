@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.ApplicationContext.getDataModel;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.constant.LottoConstant;
+import lotto.domain.constant.LottoConstant;
 import lotto.exception.ExceptionType;
 import lotto.exception.InputException;
 import lotto.output.MessageType;
@@ -26,10 +27,6 @@ public class Tickets {
         OutputMessage.printf(MessageType.INPUT_BUY_END, this.ticketCount);
     }
 
-    public List<List<Integer>> getTickets() {
-        return Collections.unmodifiableList(tickets);
-    }
-
     private void validate(int wallet) {
         if (isGenerate(wallet)) {
             throw new InputException(ExceptionType.ERROR_TICKETS_GENERATE);
@@ -44,11 +41,8 @@ public class Tickets {
         this.tickets = IntStream.range(0, this.ticketCount)
                 .mapToObj(i -> randomNumbers())
                 .map(this::ascendingNumber)
+                .peek(ticket -> OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, ticket))
                 .collect(Collectors.toList());
-
-        for (List<Integer> ticket : tickets) {
-            OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, ticket);
-        }
     }
 
     private List<Integer> randomNumbers() {
@@ -64,7 +58,11 @@ public class Tickets {
         return sortedNumbers;
     }
 
-    public int getWallet() {
-        return wallet;
+    public void saveWallet() {
+        getDataModel().saveWallet(this.wallet);
+    }
+
+    public void saveTickets() {
+        getDataModel().saveTicktet(this.tickets);
     }
 }

@@ -11,11 +11,11 @@ public enum MessageType {
     INPUT_ERROR("%s"),
 
     OUTPUT_MATCH_STATICS("\n담청 통계\n---\n"),
-    MATCH_THREE_COUNT("3개 일치 (5,000원) - %d개\n"),
-    MATCH_FOUR_COUNT("4개 일치 (50,000원) - %d개\n"),
-    MATCH_FIVE_COUNT("5개 일치 (1,500,000원) - %d개\n"),
-    MATCH_SIX_COUNT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
-    MATCH_SEVEN_COUNT("6개 일치 (2,000,000,000원) - %d개\n"),
+    MATCH_3_COUNT("3개 일치 (5,000원) - %d개\n"),
+    MATCH_4_COUNT("4개 일치 (50,000원) - %d개\n"),
+    MATCH_5_COUNT("5개 일치 (1,500,000원) - %d개\n"),
+    MATCH_6_COUNT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
+    MATCH_7_COUNT("6개 일치 (2,000,000,000원) - %d개\n"),
     OUTPUT_RETURNS("총 수익률은 %s입니다.")
     ;
 

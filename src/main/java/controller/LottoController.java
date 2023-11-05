@@ -4,10 +4,10 @@ import View.MessagePrinter;
 
 public class LottoController {
     public void start() {
-        buyLotto();
+        askLottoPurchaseAmount();
     }
 
-    private void buyLotto() {
+    private void askLottoPurchaseAmount() {
         MessagePrinter.inputAmount();
     }
 }

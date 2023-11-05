@@ -48,6 +48,16 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countMatchedNumber(Lotto winningNumber) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumber.hasNumber(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

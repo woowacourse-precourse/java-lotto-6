@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.view.message.Error;
@@ -50,5 +51,18 @@ public class BonusNumberTest {
             });
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.BONUS_NUMBER_DUPLICATE_WITH_WINNINGNUMBER.getMessage());
+    }
+
+    @DisplayName("유효한 보너스 번호의 경우 BonusNumber 인스턴스를 생성한다.")
+    @Test
+    public void 유효한_보너스_번호() {
+        //given
+        String validInput = "24";
+
+        //when
+        BonusNumber createdBonusNumber = BonusNumber.create(validInput, winningNumber);
+
+        //then
+        assertThat(createdBonusNumber.getBonusNumber()).isEqualTo(Integer.parseInt(validInput));
     }
 }

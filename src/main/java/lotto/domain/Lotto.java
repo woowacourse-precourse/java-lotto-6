@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +9,7 @@ import lotto.LottoGenerator;
 import lotto.controller.dto.LottoResponseDto;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,9 +17,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public LottoResponseDto toResponseDto(){
-        sort();
-        return new LottoResponseDto(numbers);
+    public LottoResponseDto toResponseDto() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return new LottoResponseDto(sortedNumbers);
     }
 
     public int countContainsNumber(Lotto lotto) {
@@ -26,13 +29,10 @@ public class Lotto {
                 .count();
     }
 
-    public boolean isContain(int lottoNumber){
+    public boolean isContain(int lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 
-    private void sort(){
-        Collections.sort(numbers);
-    }
 
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
@@ -46,16 +46,17 @@ public class Lotto {
         }
     }
 
-    private void validateNumbersDuplicated(List<Integer> numbers){
+    private void validateNumbersDuplicated(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또번호가 있습니다.");
         }
     }
 
-    private void validateNumbersInRange(List<Integer> numbers){
+    private void validateNumbersInRange(List<Integer> numbers) {
         for (Integer num : numbers) {
-            if (num < LottoGenerator.LOTTO_START_INCLUSIVE || num > LottoGenerator.LOTTO_END_INCLUSIVE) {
+            if (num < LottoGenerator.LOTTO_START_INCLUSIVE
+                    || num > LottoGenerator.LOTTO_END_INCLUSIVE) {
                 throw new IllegalArgumentException("[ERROR] 로또번호는 1부터 45까지의 값을 가져야 합니다.");
             }
         }

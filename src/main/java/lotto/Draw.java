@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +55,17 @@ public class Draw {
 
     private void printWinningLottoNumsEnterGuideStatement() {
         System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public List<Lotto> issueLottos(int num) {
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(pickedNumbers));
+        }
+
+        return lottos;
     }
 }

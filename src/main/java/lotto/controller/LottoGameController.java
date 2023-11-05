@@ -21,46 +21,77 @@ public class LottoGameController {
     }
 
     public void gameStart() {
-        getLottoBucket();
-        getWiningLotto();
-        getWiningLottoAddBonusNumber();
+        buyLotto();
+        inputWiningNumbers();
+        inputBonusNumber();
     }
 
-    private void getLottoBucket() {
+    private void buyLotto() {
         while (true) {
             try {
-                OutputView.writeLine(OutputMessage.REQUEST_LOTTO_COST.message());
-                String userInputLottoCost = inputView.readLine();
-                lottoBucket = lottoGameManager.createLottoBucket(userInputLottoCost);
+                printLottoCostRequest();
+                publishLotto();
+                printPublishedLotto();
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.writeLine(e.getMessage());
+                printErrorMessage(e);
             }
         }
     }
 
-    private void getWiningLotto() {
+    private void printLottoCostRequest() {
+        OutputView.writeLine(OutputMessage.REQUEST_LOTTO_COST.message());
+    }
+
+    private void publishLotto() {
+        String userInputLottoCost = inputView.readLine();
+        lottoBucket = lottoGameManager.createLottoBucket(userInputLottoCost);
+    }
+
+    private void printPublishedLotto() {
+        OutputView.writeLine(
+                lottoBucket.getLottoAmount() + OutputMessage.RESPONSE_PURCHASED_LOTTO_AMOUNT.message());
+        OutputView.writeLine(lottoBucket.showLottoBucket());
+    }
+
+    private void inputWiningNumbers() {
         while (true) {
             try {
-                OutputView.writeLine(OutputMessage.REQUEST_WINNING_NUMBER.message());
-                String userInputWinningNumbers = inputView.readLine();
-                winningLotto = lottoGameManager.createWinningLotto(userInputWinningNumbers);
+                printWinningNumbersRequest();
+                publishWinningLotto();
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.writeLine(e.getMessage());
+                printErrorMessage(e);
             }
         }
     }
 
-    private LottoRanking getWiningLottoAddBonusNumber() {
+    private void printWinningNumbersRequest() {
+        OutputView.writeLine(OutputMessage.REQUEST_WINNING_NUMBERS.message());
+    }
+
+    private void publishWinningLotto() {
+        String userInputWinningNumbers = inputView.readLine();
+        winningLotto = lottoGameManager.createWinningLotto(userInputWinningNumbers);
+    }
+
+    private LottoRanking inputBonusNumber() {
         while (true) {
             try {
-                OutputView.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.message());
+                printBonusNumberRequest();
                 String userInputBonusNumbers = inputView.readLine();
                 return lottoGameManager.createWinningLottoAddBonusNumber(winningLotto, userInputBonusNumbers);
             } catch (IllegalArgumentException e) {
-                OutputView.writeLine(e.getMessage());
+                printErrorMessage(e);
             }
         }
+    }
+
+    private void printBonusNumberRequest() {
+        OutputView.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.message());
+    }
+
+    private void printErrorMessage(IllegalArgumentException e) {
+        OutputView.writeLine(e.getMessage());
     }
 }

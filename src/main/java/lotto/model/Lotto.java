@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Comparator;
 import java.util.List;
 import lotto.model.validator.LottoNumbersValidator;
 
@@ -14,5 +15,10 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public String showNumbers() {
+        numbers.sort(Comparator.naturalOrder());
+        return numbers.toString();
     }
 }

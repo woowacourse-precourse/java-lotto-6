@@ -1,20 +1,17 @@
 package lotto.controller;
 
-import static lotto.util.ModelAndViewConverter.MODEL_AND_VIEW_CONVERTER;
-
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.domain.dto.LottoBundleDto;
 import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.WinLotto;
-import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Player;
 import lotto.domain.player.Profit;
 import lotto.domain.service.LottoPurchaseService;
 import lotto.domain.service.LottoResultsService;
+import lotto.util.ModelAndViewConverter;
 import lotto.util.RandomLottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,16 +20,20 @@ public class LottoController {
     private static final String BONUS_NUMBER_DUPLICATE_ERROR = "보너스 넘버와 당첨 번호는 동일할 수 없습니다.";
     private final OutputView outputView;
     private final InputView inputView;
+    private final ModelAndViewConverter modelAndViewConverter;
+    private final LottoPurchaseService lottoPurchaseService;
+    private final LottoResultsService lottoResultsService;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, ModelAndViewConverter modelAndViewConverter,
+                           LottoPurchaseService lottoPurchaseService, LottoResultsService lottoResultsService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.modelAndViewConverter = modelAndViewConverter;
+        this.lottoPurchaseService = lottoPurchaseService;
+        this.lottoResultsService = lottoResultsService;
     }
 
-    public void doLottoGame() {
-        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(new LottoBundle());
-        LottoResultsService lottoResultsService = new LottoResultsService(new LottoResultsRepository());
-
+    public void runLottoGame() {
         Player player = makePlayer();
         player = lottoPurchaseService.purchaseLotto(player, RandomLottoGenerator::generateRandomLotto);
 
@@ -44,7 +45,7 @@ public class LottoController {
         LottoResultsDto lottoResultsDto = lottoResultsService.makeLottoResultsDto();
 
         printWinning(lottoResultsDto);
-        checkAndPrintProfit(player, lottoResultsDto);
+        checkAndPrintProfit(player, lottoResultsService);
     }
 
     private Player makePlayer() {
@@ -52,7 +53,7 @@ public class LottoController {
     }
 
     private void printPurchaseLotto(LottoBundleDto lottoBundleDto) {
-        MODEL_AND_VIEW_CONVERTER.addComponent(lottoBundleDto);
+        modelAndViewConverter.addComponent(lottoBundleDto);
         outputView.printTotalNumberOfLotto();
         outputView.printTotalLotto();
     }
@@ -76,13 +77,13 @@ public class LottoController {
     }
 
     private void printWinning(LottoResultsDto lottoResultsDto) {
-        MODEL_AND_VIEW_CONVERTER.addComponent(lottoResultsDto);
+        modelAndViewConverter.addComponent(lottoResultsDto);
         outputView.printLottoResultsData();
     }
 
-    private void checkAndPrintProfit(Player player, LottoResultsDto lottoResultsDto){
-        Profit profit = player.getProfit(lottoResultsDto);
-        MODEL_AND_VIEW_CONVERTER.addComponent(profit);
+    private void checkAndPrintProfit(Player player, LottoResultsService lottoResultsService){
+        Profit profit = lottoResultsService.calculateProfit(player);
+        modelAndViewConverter.addComponent(profit);
         outputView.printProfit();
     }
 
@@ -90,7 +91,7 @@ public class LottoController {
         try {
             return something.get();
         } catch (IllegalArgumentException e) {
-            MODEL_AND_VIEW_CONVERTER.addComponent(e);
+            modelAndViewConverter.addComponent(e);
             outputView.printError();
             return repeat(something);
         }
@@ -100,7 +101,7 @@ public class LottoController {
         try {
             return something.apply(input);
         } catch (IllegalArgumentException e) {
-            MODEL_AND_VIEW_CONVERTER.addComponent(e);
+            modelAndViewConverter.addComponent(e);
             outputView.printError();
             return repeat(something,input);
         }

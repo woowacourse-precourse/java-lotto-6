@@ -14,7 +14,7 @@ public class InputBuyLottoView extends InputView {
         return Integer.parseInt(userInput);
     }
 
-    private void validate(String userInput) {
+    private void validate(String userInput) throws IllegalArgumentException {
         if(!PATTERN.matcher(userInput).matches()) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }

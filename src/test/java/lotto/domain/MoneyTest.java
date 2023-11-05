@@ -12,4 +12,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> Money.from(12060))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("충분한 돈이 없을 경우 예외가 발생한다.")
+    @Test
+    void createMoneyByNotEnough() {
+        assertThatThrownBy(() -> Money.from(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

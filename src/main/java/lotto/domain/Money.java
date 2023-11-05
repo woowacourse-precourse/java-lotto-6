@@ -16,8 +16,19 @@ public class Money {
     }
 
     private void validate(long value) {
+        validateDivisible(value);
+        validateEnought(value);
+    }
+
+    private void validateDivisible(long value) {
         if (value % SystemConstant.LOTTO_TICKET_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(ExceptionMessage.MONEY_NOT_DIVISIBLE.getMessage());
+        }
+    }
+
+    private void validateEnought(long value) {
+        if (value < SystemConstant.LOTTO_TICKET_PRICE.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessage.MONET_NOT_ENOUGH.getMessage());
         }
     }
 

@@ -1,6 +1,6 @@
 package lotto.system;
 
-public enum LottoRankConst {
+public enum LottoRankConstant {
     FIRST_PRIZE(1, 6, false, 2000000000),
     SECOND_PRIZE(2, 5, true, 30000000),
     THIRD_PRIZE(3, 5, false, 1500000),
@@ -13,7 +13,7 @@ public enum LottoRankConst {
     private final int prize;
     private final String message;
 
-    LottoRankConst(int rank, int matchingNumbers, boolean hasBonusNumber, int prize) {
+    LottoRankConstant(int rank, int matchingNumbers, boolean hasBonusNumber, int prize) {
         this.rank = rank;
         this.matchingNumbers = matchingNumbers;
         this.hasBonusNumber = hasBonusNumber;

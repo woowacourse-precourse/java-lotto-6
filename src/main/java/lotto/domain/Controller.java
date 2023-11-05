@@ -13,6 +13,7 @@ import lotto.model.LottoTicket;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
 import lotto.validator.ValidatorPurchaseAmount;
+import lotto.validator.ValidatorWinningNumbers;
 import lotto.view.View;
 
 public class Controller {
@@ -36,40 +37,28 @@ public class Controller {
         LottoTicket lottoTicket = new LottoTicket(calculateLottoTicketCount(purchase));
         view.displayPurchaseQuantityMessage(lottoTicket);
 
+        // 로또 번호 출력
         displayLottoNumbers(generateLottoNumbersList(generateLottoTickets(lottoTicket)));
 
         view.inputWinningNumbers();
 
-        String input = view.input();
-
-        if(!isEmpty(input)){
-            throw new IllegalArgumentException();
-        }
-
-        if(!isNotNumeric(input)){
-            throw new IllegalArgumentException();
-        }
-
-        String[] inputArray = input.split(",");
-        List<Integer> inputWinningNumbers = new ArrayList<>();
-        for (String numStr : inputArray) {
-            int num = Integer.parseInt(numStr);
-            inputWinningNumbers.add(num);
-        }
-
-        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers);
+        // 당첨 번호 입력 ~ 검증 ~ 저장
+        winningNumberLogic(view);
 
 
     }
 
+    // 로또 티켓 개수 계산
     public int calculateLottoTicketCount(Purchase purchase) {
         return Integer.parseInt(purchase.getPurchaseAmount()) / 1000;
     }
 
+    // 로또 번호 랜덤 뽑기
     public List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    // 로또 티켓 개수만큼 로또 객체 생성
     public List<Lotto> generateLottoTickets(LottoTicket lottoTicket) {
         List<Lotto> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoTicket.getLottoTicketCount(); i++) {
@@ -90,6 +79,7 @@ public class Controller {
         return numbers;
     }
 
+    // 로또 번호 출력
     public void displayLottoNumbers(List<Object> numbers) {
         for (Object number : numbers) {
             System.out.println(number);
@@ -109,6 +99,60 @@ public class Controller {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    // 최소 검증 로직
+    public boolean validateInput(String input) {
+        if (!isEmpty(input) && isNotNumeric(input)) {
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
+
+    // 당첨 번호 모델에 넘기기 전 자료형 변환
+    // 메서드 이름 다시 짓기
+    public List<Integer> performTypeConversion(String input) {
+        String[] inputArray = input.split(",");
+        List<Integer> inputWinningNumbers = new ArrayList<>();
+        for (String numStr : inputArray) {
+            int num = Integer.parseInt(numStr);
+            inputWinningNumbers.add(num);
+        }
+        return inputWinningNumbers;
+    }
+
+    public String processErrorResult() {
+        return "[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.";
+    }
+
+
+
+    public void winningNumberLogic(View view) {
+        //당첨 번호 입력
+        String input = view.input();
+        //최소 검증 로직 수행 후 모델에 넘김
+        preprocessDataWithErrorHandling(input, view);
+
+        processDataWithErrorHandling(input, view);
+
+    }
+
+    public void preprocessDataWithErrorHandling(String input, View view){
+        try {
+            validateInput(input);
+        } catch (IllegalArgumentException e){
+            processErrorResult();
+            winningNumberLogic(view);
+        }
+    }
+
+    public void processDataWithErrorHandling(String input, View view) {
+        try {
+            new WinningNumbers(performTypeConversion(input));
+        } catch (IllegalArgumentException e) {
+            processErrorResult();
+            winningNumberLogic(view);
         }
     }
 }

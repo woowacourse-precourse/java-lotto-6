@@ -54,6 +54,10 @@ public final class OutputView {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.FIRST));
     }
 
+    public static void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
+
     public static void printProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }

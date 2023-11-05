@@ -21,7 +21,7 @@ class Output {
         System.out.println(userMoney + "\n");
     }
 
-    static void printNumberOfLottoes(int numberOfLottoes) {
+    static void printNumberOfLottos(int numberOfLottoes) {
         System.out.println(String.format(NUMBER_OF_LOTTOS, numberOfLottoes));
     }
 

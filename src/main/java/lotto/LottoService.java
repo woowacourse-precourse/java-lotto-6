@@ -17,7 +17,7 @@ public class LottoService {
         int numberOfLottos = userMoney / LOTTO_PRICE;
 
         Output.printUserMoney(userMoney);
-        Output.printNumberOfLottoes(numberOfLottos);
+        Output.printNumberOfLottos(numberOfLottos);
 
         List<Lotto> lottos = LottoGenerator.generateLottos(numberOfLottos);
         for (Lotto lotto : lottos) {

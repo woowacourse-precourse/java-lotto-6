@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoStore {
@@ -21,7 +22,7 @@ public class LottoStore {
     }
 
     private Lotto publishLotto() {
-        return new Lotto(generateRandomNumbers());
+        return new Lotto(Collections.unmodifiableList(generateRandomNumbers()));
     }
 
     private List<Integer> generateRandomNumbers() {

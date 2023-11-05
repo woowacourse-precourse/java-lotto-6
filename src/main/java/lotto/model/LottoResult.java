@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.constans.LottoResultConstants;
+import lotto.model.constans.WinningPrize;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.WinningNumbersValidator;
 
@@ -49,51 +49,33 @@ public class LottoResult {
         }
     }
 
-    public List<Integer> showLottoResults(List<Lotto> lottos) {
-        List<Integer> lottoResults = new ArrayList<>(Collections.nCopies(6, 0));
+    public List<Integer> calculateLottosResult(List<Lotto> lottos) {
+        List<Integer> lottoResults = new ArrayList<>(Collections.nCopies(WinningPrize.values().length, 0));
         for (Lotto lotto : lottos) {
-            int rank = calculateLottoResult(lotto).getRank();
-            int currentValue = lottoResults.get(rank);
-            lottoResults.set(rank, currentValue + 1);
+            int prizeRank = calculatePrizeRank(lotto);
+            int currentValue = lottoResults.get(prizeRank);
+            lottoResults.set(prizeRank, currentValue + 1);
         }
         return lottoResults;
     }
 
-    private LottoResultConstants calculateLottoResult(Lotto lotto) {
-        int matchingWinningNumberCount = countMatchingNumbers(lotto);
-        if (matchingWinningNumberCount == 5) {
-            if (containsBonusNumber(lotto)) {
-                return LottoResultConstants.SECOND_PRIZE;
-            }
-            return LottoResultConstants.THIRD_PRIZE;
-        }
-        return determineRank(matchingWinningNumberCount);
+    private int calculatePrizeRank(Lotto lotto) {
+        int matchingNumberCount = countMatchingNumbers(lotto);
+        boolean matchBonusNumber = matchBonusNumber(lotto);
+        return WinningPrize.getRankByResult(matchingNumberCount, matchBonusNumber);
     }
 
     private int countMatchingNumbers(Lotto lotto) {
-        int matchingWinningNumberCount = 0;
+        int matchingNumberCount = 0;
         for (int winningNumber : winningNumbers) {
             if (lotto.contains(winningNumber)) {
-                matchingWinningNumberCount++;
+                matchingNumberCount++;
             }
         }
-        return matchingWinningNumberCount;
+        return matchingNumberCount;
     }
 
-    private boolean containsBonusNumber(Lotto lotto) {
+    private boolean matchBonusNumber(Lotto lotto) {
         return lotto.contains(bonusNumber);
-    }
-
-    private LottoResultConstants determineRank(int matchingWinningNumberCount) {
-        if (matchingWinningNumberCount == 6) {
-            return LottoResultConstants.FIRST_PRIZE;
-        }
-        if (matchingWinningNumberCount == 4) {
-            return LottoResultConstants.FORTH_PRIZE;
-        }
-        if (matchingWinningNumberCount == 3) {
-            return LottoResultConstants.FIFTH_PRIZE;
-        }
-        return LottoResultConstants.NO_PRIZE;
     }
 }

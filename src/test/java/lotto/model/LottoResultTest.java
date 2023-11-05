@@ -39,7 +39,7 @@ public class LottoResultTest {
         LottoResult lottoResult = LottoResult.from("1,2,3,4,5,6");
         lottoResult.createBonusNumber("16");
 
-        List<Integer> result = lottoResult.showLottoResults(client.getLottos());
+        List<Integer> result = lottoResult.calculateLottosResult(client.getLottos());
 
         assertThat(result).isEqualTo(List.of(1, 1, 1, 0, 1, 1));
     }

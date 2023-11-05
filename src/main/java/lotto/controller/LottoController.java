@@ -67,7 +67,7 @@ public class LottoController {
     }
 
     private void announceLottoResults(Client client, LottoResult lottoResult) {
-        List<Integer> lottoResults = lottoResult.showLottoResults(client.getLottos());
+        List<Integer> lottoResults = lottoResult.calculateLottosResult(client.getLottos());
         view.printLottoResult(lottoResults);
         double rateOfReturn = client.calculateRateOfReturn(lottoResults);
         view.printRateOfReturn(rateOfReturn);

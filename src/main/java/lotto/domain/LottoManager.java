@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.Prize;
 
 public class LottoManager {
@@ -56,16 +57,13 @@ public class LottoManager {
         return lottoResult;
     }
 
-
-    public static Double calculateEarningRate(List<Integer> lottoResult, List<Integer> prizeMoney, Integer lottoCount) {
+    public static Double calculateEarningRate(Map<Prize, Integer> lottoResult, Integer lottoCount) {
         int sum = 0;
 
-        for (int i = 0; i < lottoResult.size(); i++) {
-            sum += lottoResult.get(i) * prizeMoney.get(i);
+        for (Prize key : lottoResult.keySet()) {
+            sum += key.getPrizeAmount() * lottoResult.get(key);
         }
-
         return ((double) sum / (lottoCount * 1000)) * 100;
 
     }
-
 }

@@ -39,7 +39,7 @@ public class Application {
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
 
         // 8. 수익률 계산 로직
-        Double earningRate = LottoManager.calculateEarningRate(lottoResult, prizeMoney, user.lottoCount);
+        Double earningRate = LottoManager.calculateEarningRate(lottoResult, user.lottoCount);
 
         // 9. 당첨 결과 출력
         Output.printResult(lottoResult, earningRate);

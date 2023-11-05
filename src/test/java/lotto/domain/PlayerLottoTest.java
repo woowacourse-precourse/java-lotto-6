@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,15 +15,17 @@ public class PlayerLottoTest {
     @DisplayName("보너스 숫자가 로또 숫자와 중복되면 예외가 발생한다.")
     @Test
     void createPlayerLottoWithDuplicateBonusNumber() {
-        assertThatThrownBy(() -> new PlayerLotto(lottoNumbers, 1))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 6));
     }
 
     @DisplayName("보너스 숫자가 허용된 범위 밖의 숫자면 예외가 발생한다.")
     @Test
     void createPlayerLottoWithBonusNumberOutOfRange() {
-        assertThatThrownBy(() -> new PlayerLotto(lottoNumbers, 48))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 0));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerLotto(lottoNumbers, 46));
     }
 
     @DisplayName("플레이어 로또 생성에 성공한다.")

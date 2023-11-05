@@ -1,24 +1,45 @@
 package lotto.domain.user;
 
+import lotto.domain.lotto.Lotto;
+import lotto.domain.num.LottoNumResults;
+
 /**
  * 사용자의 당첨 판단 클래스.
  */
 public class Judgment {
+    private static final Integer SIZE_LOTTO = 6;
+    private static final Integer BONUS_NUM_INDEX = 6;
+
     /**
      * 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
      *
      * @return
      */
-    public Boolean compareLottos() {
-        /**
-         * 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
-         *  1등: 6개 번호 일치 / 2,000,000,000원
-         *  2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-         *  3등: 5개 번호 일치 / 1,500,000원
-         *  4등: 4개 번호 일치 / 50,000원
-         *  5등: 3개 번호 일치 / 5,000원
-         *  (3개 일치 (5,000원) - 1개)
-         */
+    public Integer countSameWinNum(Lotto lotto, LottoNumResults lottoNumResults) {
+        Integer countSameWinNum = 0;
+        Integer numOfLotto = 0;
+
+        for (int i = 0; i < SIZE_LOTTO; i++) {
+            numOfLotto = lotto.getNumber(i);
+            
+            if (lottoNumResults.isSameWinNums(numOfLotto)) {
+                countSameWinNum = countSameWinNum + 1;
+            }
+        }
+        return countSameWinNum;
+    }
+
+    public Boolean isSameBonusNum(Lotto lotto, LottoNumResults lottoNumResults) {
+        Integer numOfLotto = 0;
+
+        for (int i = 0; i < SIZE_LOTTO; i++) {
+            numOfLotto = lotto.getNumber(i);
+
+            if (lottoNumResults.isSameBonusNum(numOfLotto, BONUS_NUM_INDEX)) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

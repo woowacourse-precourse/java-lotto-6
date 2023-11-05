@@ -50,4 +50,8 @@ public class Lotto {
 
         return informationOfNumbers;
     }
+
+    public Integer getNumber(Integer index) {
+        return numbers.get(index);
+    }
 }

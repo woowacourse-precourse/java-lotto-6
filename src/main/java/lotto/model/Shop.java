@@ -26,7 +26,7 @@ public class Shop {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoSize; i++) {
-            List<Integer> numbers = NumberPicker.createNumbers();
+            List<Integer> numbers = LottoMachine.pickNumbers();
             lottos.add(new Lotto(numbers));
         }
 

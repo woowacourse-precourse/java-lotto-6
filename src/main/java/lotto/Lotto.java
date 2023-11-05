@@ -1,9 +1,8 @@
 package lotto;
 
-import static util.ErrorMessage.LOTTO_COUNT_LIMIT;
-
 import java.util.List;
 import java.util.regex.Pattern;
+import util.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,13 +21,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_COUNT_LIMIT.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_COUNT_LIMIT.getErrorMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers){
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.CANT_DUPLICATE_NUMBER.getErrorMessage());
         }
     }
 

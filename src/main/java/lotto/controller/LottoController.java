@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.GetLottoPurchase;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
+import lotto.view.ExceptionMessage;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
 
@@ -19,6 +20,7 @@ public class LottoController {
     private static List<Lotto> lottoList;
     private static List<Integer> lotto = new ArrayList<>();
     private static Lotto winningLotto;
+    private static int bonus;
 
 
     public void run(){
@@ -30,6 +32,7 @@ public class LottoController {
         OutputMessage.printLottoCount(lottoCount);
         lottoList = makeLottoList(lottoCount);
         winningLotto = makeWinningLotto();
+        bonus = makeBonus();
     }
 
     public int purchaseAmount(){
@@ -63,7 +66,6 @@ public class LottoController {
         while(!isGetLotto){
             String num = InputMessage.inputPrizeLotto();
             lotto = lottoNumbers.setPrizeNumbers(num);
-
             if(lottoNumbers.validateRange() && lottoNumbers.validateDuplicate() && lottoNumbers.validateSize()){
                 winningLotto = new Lotto(lotto);
                 isGetLotto = true;
@@ -72,4 +74,23 @@ public class LottoController {
         return winningLotto;
     }
 
+    public int makeBonus(){
+        String bonus;
+        int bonusNum = 0;
+        while(!isGetBonus){
+            try{
+                bonus = InputMessage.inputBonusNumber();
+                bonusNum = Integer.parseInt(bonus);
+                if(bonusNum < 1 || bonusNum > 45){
+                    ExceptionMessage.wrongLottoRangeException();
+                }
+            } catch (IllegalArgumentException e){
+                ExceptionMessage.wrongLottoException();
+            }
+            if(bonusNum >= 1 && bonusNum <= 45) {
+                isGetBonus = true;
+            }
+        }
+        return bonusNum;
+    }
 }

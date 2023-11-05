@@ -14,13 +14,8 @@ public class InputMessage {
         return Console.readLine();
     }
 
-    public static int inputBonusNumber(){
+    public static String inputBonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        try{
-            return Integer.parseInt(Console.readLine());
-        } catch (IllegalArgumentException e){
-            ExceptionMessage.wrongLottoException();
-            return 0;
-        }
+        return Console.readLine();
     }
 }

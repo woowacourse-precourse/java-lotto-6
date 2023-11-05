@@ -28,9 +28,9 @@
 - ✅ displayLottoCount
     -  구매한 로또 개수 출력 'n개를 구매했습니다.'
 
-## ❌ 구매 로또 번호 리스트 출력
+## ✅ 구매 로또 번호 리스트 출력
 
-- ❌ displayLottoNumberList
+- ✅ displayLottoNumberList
     -  생성된 로또 번호 6개 리스트 형식으로 출력
 
 ## ❌ 당첨 통계 출력

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
@@ -56,11 +57,31 @@ class LottoTest {
         assertThat(result).isInstanceOf(Lotto.class);
     }
 
+    @ParameterizedTest
+    @MethodSource("generateTestTwoLottoInput")
+    void matchCount는_두_로또의_번호를비교해_일치하는개수를_반환한다(List<Integer> input1, List<Integer> input2, int input3) {
+        // given
+        Lotto given = Lotto.from(input1);
+        Lotto winning = Lotto.from(input2);
+        // when
+        int result = Lotto.matchCount(given, winning);
+        // then
+        assertThat(result).isEqualTo(input3);
+    }
+
     static Stream<List<Integer>> generateTestLottoInput() {
         return Stream.of(
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
                 List.of(7, 11, 16, 35, 36, 44)
+        );
+    }
+
+    static Stream<Arguments> generateTestTwoLottoInput() {
+        return Stream.of(
+                Arguments.arguments(List.of(8, 21, 23, 41, 42, 43), List.of(8, 21, 23, 41, 42, 43), 6),
+                Arguments.arguments(List.of(3, 5, 11, 16, 32, 38), List.of(7, 11, 16, 35, 36, 44), 2),
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), List.of(7, 8, 9, 10, 11, 12), 0)
         );
     }
 

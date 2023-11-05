@@ -19,5 +19,6 @@ public final class OutputView {
 
     public static void showLotteries(Lotteries lotteries) {
         lotteries.showLotteries();
+        System.out.println();
     }
 }

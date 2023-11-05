@@ -14,24 +14,27 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private LottoIssuer lottoIssuer = new LottoIssuer();
+    private static final int LOTTO_PRICE = 1000;
+    private static final double TO_PERCENTAGE = 100.0;
+
+    private final LottoIssuer lottoIssuer = new LottoIssuer();
 
     public void play() {
-        LottoGame lottoGame;
-
         List<Lotto> lottos = getLottos();
         WinningNumber winningNumber = getWinningNumber();
         final int bonusNumber = getBonusNumber(winningNumber);
-        lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
+        LottoGame lottoGame = new LottoGame(lottos, winningNumber, bonusNumber);
+
         Map<LottoResult, Integer> result = lottoGame.getResult();
-        OutputView.printGameResult(result, getYieldRate(result, lottos.size()));
+        double yieldRate = getYieldRate(result, lottos.size());
+        OutputView.printGameResult(result, yieldRate);
     }
 
     private double getYieldRate(Map<LottoResult, Integer> result, int purchaseQuantity) {
-        int purchasePrice = purchaseQuantity * 1000;
+        int purchasePrice = purchaseQuantity * LOTTO_PRICE;
         int totalYield = getTotalYield(result);
 
-        return ((double) totalYield) / purchasePrice * 100;
+        return TO_PERCENTAGE * totalYield / purchasePrice;
     }
 
     private int getTotalYield(Map<LottoResult, Integer> result) {
@@ -39,7 +42,8 @@ public class LottoController {
 
         Set<LottoResult> keys = result.keySet();
         for (LottoResult lottoResult : keys) {
-            totalYield += lottoResult.yield(result.get(lottoResult));
+            Integer count = result.get(lottoResult);
+            totalYield += lottoResult.yield(count);
         }
         return totalYield;
     }

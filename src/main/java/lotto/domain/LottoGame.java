@@ -10,6 +10,10 @@ import lotto.message.LottoResult;
 
 public class LottoGame {
 
+    private static final Integer INITIAL_VALUE = 0;
+    private static final Integer INCREMENT_COUNT = 1;
+    private static final Integer WINNING_THRESHOLD = 3;
+
     private final List<Lotto> lottos;
     private final WinningNumber winningNumber;
     private final int bonusNumber;
@@ -21,20 +25,20 @@ public class LottoGame {
     }
 
     public Map<LottoResult, Integer> getResult() {
-        Map<LottoResult, Integer> result = getResultMap();
+        Map<LottoResult, Integer> result = getInitialResultMap();
 
         lottos.forEach(lotto -> {
                     Optional<LottoResult> lottoResult = checkLottoResult(lotto);
-                    lottoResult.ifPresent(l -> result.merge(l, 1, Integer::sum));
+                    lottoResult.ifPresent(l -> result.merge(l, INCREMENT_COUNT, Integer::sum));
                 }
         );
         return result;
     }
 
-    private Map<LottoResult, Integer> getResultMap() {
+    private Map<LottoResult, Integer> getInitialResultMap() {
         Map<LottoResult, Integer> result = new TreeMap<>(Comparator.naturalOrder());
 
-        Arrays.stream(LottoResult.values()).forEach(lottoResult -> result.put(lottoResult, 0));
+        Arrays.stream(LottoResult.values()).forEach(lottoResult -> result.put(lottoResult, INITIAL_VALUE));
         return result;
     }
 
@@ -44,7 +48,7 @@ public class LottoGame {
 
         int matchedNumberCount = (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
         boolean isBonusNumberMatched = lottoNumbers.contains(bonusNumber);
-        if (matchedNumberCount >= 3) {
+        if (matchedNumberCount >= WINNING_THRESHOLD) {
             return Optional.of(LottoResult.getMessageByResult(matchedNumberCount, isBonusNumberMatched));
         }
         return Optional.empty();

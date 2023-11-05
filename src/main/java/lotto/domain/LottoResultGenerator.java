@@ -29,7 +29,7 @@ public class LottoResultGenerator {
 
     public double generateProfit() {
         calculatePrizeMoney();
-        double profit = (double) prizeMoney / inputMoney;
+        double profit = (double) prizeMoney / inputMoney * 100;
         return Math.round(profit * 10) / 10.0;
     }
 

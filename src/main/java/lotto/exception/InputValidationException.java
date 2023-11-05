@@ -3,7 +3,7 @@ package lotto.exception;
 import lotto.common.ErrorMessages;
 
 public class InputValidationException extends IllegalArgumentException {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     public static final String INPUT_VALUE_LABEL = " 입력 값 : ";
 
     public InputValidationException(ErrorMessages errorMessage) {

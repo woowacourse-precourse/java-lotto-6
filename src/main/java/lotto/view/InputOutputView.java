@@ -15,32 +15,32 @@ import java.util.Map;
 import java.util.function.Function;
 import lotto.common.InputOutputMessages;
 import lotto.common.LottoRank;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Money;
-import lotto.dto.LottoBuyResponse;
-import lotto.dto.LottoGameResultResponse;
+import lotto.dto.request.LottoMoneyRequest;
+import lotto.dto.request.LottoNumberRequest;
+import lotto.dto.request.LottoRequest;
+import lotto.dto.response.LottoBuyResponse;
+import lotto.dto.response.LottoGameResultResponse;
+import lotto.dto.response.LottoResponse;
 import lotto.exception.InputValidationException;
 
 public class InputOutputView {
-
-    public Money inputMoney() {
-        return getUserInput(INPUT_MONEY, Money::new);
+    public LottoMoneyRequest inputMoney() {
+        return getUserInput(INPUT_MONEY, LottoMoneyRequest::new);
     }
 
-    public Lotto inputWinningNumbers() {
-        return getUserInput(INPUT_WINNING_NUMBER, Lotto::createLotto);
+    public LottoRequest inputWinningNumbers() {
+        return getUserInput(INPUT_WINNING_NUMBER, LottoRequest::new);
     }
 
-    public LottoNumber inputBonusNumber(Lotto winningNumbers) {
+    public LottoNumberRequest inputBonusNumber(LottoRequest winningNumbers) {
         return getUserInput(INPUT_BONUS_NUMBER, input -> {
-            LottoNumber bonusLottoNumber = LottoNumber.createLottoNumber(input);
+            LottoNumberRequest request = new LottoNumberRequest(input);
 
-            if (winningNumbers.containsNumber(bonusLottoNumber)) {
+            if (winningNumbers.getLotto().contains(request.getLottoNumber())) {
                 throw new InputValidationException(BONUS_DUPLICATE_MESSAGE);
             }
 
-            return bonusLottoNumber;
+            return request;
         });
     }
 
@@ -58,7 +58,9 @@ public class InputOutputView {
 
     public void printBuyLottos(LottoBuyResponse lottoBuyResponse) {
         System.out.printf(OUTPUT_PURCHASED_LOTTO_COUNT_FORMAT.getMessage(), lottoBuyResponse.getCount());
-        lottoBuyResponse.getBuyLottoNumbers().stream()
+        lottoBuyResponse.getBuyLottoNumbers()
+                .stream()
+                .map(LottoResponse::getLotto)
                 .forEach(System.out::println);
     }
 

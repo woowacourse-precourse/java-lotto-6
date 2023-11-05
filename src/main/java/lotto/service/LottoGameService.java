@@ -11,8 +11,11 @@ import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Money;
-import lotto.dto.LottoBuyResponse;
-import lotto.dto.LottoGameResultResponse;
+import lotto.dto.request.LottoMoneyRequest;
+import lotto.dto.request.LottoNumberRequest;
+import lotto.dto.request.LottoRequest;
+import lotto.dto.response.LottoBuyResponse;
+import lotto.dto.response.LottoGameResultResponse;
 
 public class LottoGameService {
     public static final int MIN_NUMBER = 1;
@@ -22,7 +25,8 @@ public class LottoGameService {
 
     private List<Lotto> buyLottos;
 
-    public LottoBuyResponse buyLottos(Money money) {
+    public LottoBuyResponse buyLottos(LottoMoneyRequest lottoMoneyRequest) {
+        Money money = new Money(Integer.parseInt(lottoMoneyRequest.getMoney()));
         int count = money.getDividedThousandWonCount();
 
         buyLottos = IntStream.range(0, count)
@@ -32,8 +36,9 @@ public class LottoGameService {
         return LottoBuyResponse.fromLottoNumbers(buyLottos);
     }
 
-    public LottoGameResultResponse calculateResult(Lotto winningLotto, LottoNumber bonusLottoNumber) {
-        Map<LottoRank, Integer> gameResultCounts = getGameResultCounts(winningLotto, bonusLottoNumber);
+    public LottoGameResultResponse calculateResult(LottoRequest winningLotto, LottoNumberRequest bonusLottoNumber) {
+        Map<LottoRank, Integer> gameResultCounts = getGameResultCounts(Lotto.createLotto(winningLotto.getLotto()),
+                new LottoNumber(bonusLottoNumber.getLottoNumber()));
         double profitRate = getProfitRate(gameResultCounts);
 
         return LottoGameResultResponse.from(gameResultCounts, profitRate);

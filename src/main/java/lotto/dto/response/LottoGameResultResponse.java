@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.dto.response;
 
 import java.util.Collections;
 import java.util.Map;

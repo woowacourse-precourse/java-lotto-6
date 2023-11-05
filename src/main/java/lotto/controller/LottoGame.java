@@ -1,31 +1,31 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Money;
-import lotto.dto.LottoBuyResponse;
-import lotto.dto.LottoGameResultResponse;
+import lotto.dto.request.LottoMoneyRequest;
+import lotto.dto.request.LottoNumberRequest;
+import lotto.dto.request.LottoRequest;
+import lotto.dto.response.LottoBuyResponse;
+import lotto.dto.response.LottoGameResultResponse;
 import lotto.service.LottoGameService;
 import lotto.view.InputOutputView;
 
 public class LottoGame {
-    private LottoGameService lottoGameService;
-    private InputOutputView inputOutputView;
+    private final LottoGameService lottoGameService;
+    private final InputOutputView inputOutputView;
 
     public LottoGame() {
         this.lottoGameService = new LottoGameService();
         this.inputOutputView = new InputOutputView();
     }
 
-    public void start() throws IllegalArgumentException {
-        Money money = inputOutputView.inputMoney();
-        LottoBuyResponse lottoBuyResponse = lottoGameService.buyLottos(money);
+    public void start() {
+        LottoMoneyRequest lottoMoneyRequest = inputOutputView.inputMoney();
+        LottoBuyResponse lottoBuyResponse = lottoGameService.buyLottos(lottoMoneyRequest);
         inputOutputView.printBuyLottos(lottoBuyResponse);
 
-        Lotto winningNumbers = inputOutputView.inputWinningNumbers();
-        LottoNumber bonusLottoNumber = inputOutputView.inputBonusNumber(winningNumbers);
-
-        LottoGameResultResponse result = lottoGameService.calculateResult(winningNumbers, bonusLottoNumber);
-        inputOutputView.printResult(result);
+        LottoRequest lottoRequest = inputOutputView.inputWinningNumbers();
+        LottoNumberRequest bonusLottoNumber = inputOutputView.inputBonusNumber(lottoRequest);
+        LottoGameResultResponse lottoGameResultResponse = lottoGameService.calculateResult(lottoRequest,
+                bonusLottoNumber);
+        inputOutputView.printResult(lottoGameResultResponse);
     }
 }

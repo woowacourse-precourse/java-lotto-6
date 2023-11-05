@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public final class LottoGroup {
     private final List<Lotto> purchasedLottos;
 
-    private LottoGroup(List<Lotto> purchasedLottos) {
+    LottoGroup(List<Lotto> purchasedLottos) {
         this.purchasedLottos = new ArrayList<>(purchasedLottos);
     }
 

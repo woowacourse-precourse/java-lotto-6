@@ -41,4 +41,13 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - 숫자 이외의 문자가 입력된 경우")
+    void receiveNotANumberAmountTest() {
+        String amount = "1000a";
+
+        assertThatThrownBy(() -> new PurchaseAmount(amount))
+                .isInstanceOf(NumberFormatException.class);
+    }
 }

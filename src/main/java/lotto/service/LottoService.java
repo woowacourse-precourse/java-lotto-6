@@ -8,14 +8,20 @@ import java.util.Map;
 import lotto.domain.Lotto;
 
 public class LottoService {
+
+    private final LottoMachine lottoMachine;
+    public LottoService() {
+        this.lottoMachine = new LottoMachine();
+    }
+
     public List<Lotto> buyLottery(Integer purchasePrice) {
         List<Lotto> lottery = new ArrayList<>();
         Integer numOfLotto = purchasePrice / 1000;
 
         for (Integer i = 0; i < numOfLotto; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottery.add(new Lotto(numbers));
+            lottery.add(this.lottoMachine.buyLotto());
         }
+
         return lottery;
     }
 

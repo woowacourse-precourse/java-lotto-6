@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidatorTest {
@@ -79,6 +80,14 @@ class ValidatorTest {
                 .hasMessage(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
     }
 
+    @DisplayName("올바른 값이 들어왔을 때 예외가 발생하는지 확인.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6"})
+    void hasCommasWithoutSurroundingValues2(String valuesSeparatedByCommas) {
+        assertThatCode(() -> Validator.hasCommasWithoutSurroundingValues(valuesSeparatedByCommas))
+                .doesNotThrowAnyException();
+    }
+
     @DisplayName("6개로 이루어진 값이 아니면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("stringArraysProvider")
@@ -96,4 +105,5 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
     }
+
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.validator.PurchasePriceValidator;
 
 public class PurchasePrice {
+    private final int THOUSAND = 1000;
     private int price;
 
     public PurchasePrice(int price) {
@@ -19,5 +20,9 @@ public class PurchasePrice {
 
         purchasePriceValidator.checkRemainderZero(price);
         purchasePriceValidator.checkOverMinPrice(price);
+    }
+
+    public int getLottoAmount() {
+        return price / THOUSAND;
     }
 }

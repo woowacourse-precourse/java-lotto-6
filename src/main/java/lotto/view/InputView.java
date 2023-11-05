@@ -1,14 +1,13 @@
 package lotto.view;
 
-import static lotto.util.InputConvertUtil.*;
-import static lotto.util.InputValidator.*;
+import static lotto.util.InputConvertUtil.lottoNumberToIntegerList;
+import static lotto.util.InputConvertUtil.lottoNumberToLottoList;
+import static lotto.util.InputValidator.validateBonusNumber;
+import static lotto.util.InputValidator.validateLottoNumber;
+import static lotto.util.InputValidator.validatePurchaseAmount;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import lotto.util.InputConvertUtil;
-import lotto.util.InputValidator;
 
 public class InputView {
 

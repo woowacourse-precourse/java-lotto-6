@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import static lotto.view.InputView.*;
+import static lotto.view.InputView.inputBonusNumber;
+import static lotto.view.InputView.inputLottoNumber;
 import static lotto.view.InputView.inputPurchaseAmount;
 
-import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -11,7 +11,6 @@ import lotto.domain.Lottos;
 import lotto.domain.User;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {

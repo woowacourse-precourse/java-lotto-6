@@ -13,27 +13,27 @@ public enum LottoPrize {
 
     private final int requiredMatchingNumbers;
     private final int prizeMoney;
-    private final boolean requiresBonusNumber;
+    private final boolean isBonusNumberRequired;
 
     LottoPrize(int requiredMatchingNumbers, int prizeMoney) {
         this(requiredMatchingNumbers, prizeMoney, false);
     }
 
-    LottoPrize(int requiredMatchingNumbers, int prizeMoney, boolean requiresBonusNumber) {
+    LottoPrize(int requiredMatchingNumbers, int prizeMoney, boolean isBonusNumberRequired) {
         this.requiredMatchingNumbers = requiredMatchingNumbers;
         this.prizeMoney = prizeMoney;
-        this.requiresBonusNumber = requiresBonusNumber;
+        this.isBonusNumberRequired = isBonusNumberRequired;
     }
 
-    public static LottoPrize of(int numberOfMatches, boolean isBonusNumberMatched) {
-        if (isEligibleForSecondPrize(numberOfMatches, isBonusNumberMatched)) {
+    public static LottoPrize of(int numberOfMatches, boolean isBonusNumberRequired) {
+        if (isEligibleForSecondPrize(numberOfMatches, isBonusNumberRequired)) {
             return SECOND_PRIZE;
         }
         return findByMatchingNumbers(numberOfMatches);
     }
 
-    private static boolean isEligibleForSecondPrize(int numberOfMatches, boolean isBonusNumberMatched) {
-        return numberOfMatches == SECOND_PRIZE.requiredMatchingNumbers && isBonusNumberMatched;
+    private static boolean isEligibleForSecondPrize(int numberOfMatches, boolean isBonusNumberRequired) {
+        return numberOfMatches == SECOND_PRIZE.requiredMatchingNumbers && isBonusNumberRequired;
     }
 
     private static LottoPrize findByMatchingNumbers(int matchCount) {

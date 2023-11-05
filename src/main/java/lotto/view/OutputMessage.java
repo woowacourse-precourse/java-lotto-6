@@ -13,6 +13,11 @@ public enum OutputMessage {
         return String.format(message, quantity);
     }
 
+    // 메서드 오버라이딩
+    public String getMessage() {
+        return message;
+    }
+
     private final String message;
 
     OutputMessage(String message) {

@@ -28,12 +28,16 @@ public class Lotto {
         if (lottoNumbers.size() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.OVER_MAX_SIZE_MESSAGE.getMessage());
         }
-        if (lottoNumbers.stream().distinct().count() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
+        if (lottoNumbers.stream().mapToInt(LottoNumber::getNumber).distinct().count() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_MESSAGE.getMessage());
         }
     }
 
     // TODO: 추가 기능 구현
+    public boolean contains(LottoNumber number) {
+        return this.numbers.contains(number.getNumber());
+    }
+
     @Override
     public String toString() {
         return numbers.stream().map(LottoNumber::getNumber).toList().toString();

@@ -10,4 +10,12 @@ public class WinningLotto {
     public void generate(List<Integer> numbers) {
         lotto = new Lotto(numbers);
     }
+
+    public List<Integer> numbers() {
+        return lotto.getNumbers().numbers();
+    }
+
+    public void updateBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
 }

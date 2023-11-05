@@ -29,6 +29,10 @@ public class Lotto {
         return new LottoNumbers(numbers);
     }
 
+    public int numberOf(int index) {
+        return numbers.get(index);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

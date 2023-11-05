@@ -27,15 +27,11 @@ public class LottoValidator {
 
     public static void validateLottoNumbersRange(List<Integer> numbers) {
         Optional<Integer> outOfRangeNumber = numbers.stream()
-                .filter(LottoValidator::isOutOfRange)
+                .filter(LottoValidator::isOutOfLottoNumberRange)
                 .findAny();
         if (outOfRangeNumber.isPresent()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 중 하나이어야 합니다.");
         }
-    }
-
-    private static boolean isOutOfRange(int value) {
-        return value < Lotto.MINIMUM_NUMBER || value > Lotto.MAXIMUM_NUMBER;
     }
 
     public static void validatePurchaseAmount(int purchaseAmount) {
@@ -45,5 +41,18 @@ public class LottoValidator {
         if (purchaseAmount % Lotto.PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매할 수 있습니다.");
         }
+    }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호에 존재하지 않아야 합니다.");
+        }
+        if (isOutOfLottoNumberRange(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 중 하나이어야 합니다.");
+        }
+    }
+
+    private static boolean isOutOfLottoNumberRange(int value) {
+        return value < Lotto.MINIMUM_NUMBER || value > Lotto.MAXIMUM_NUMBER;
     }
 }

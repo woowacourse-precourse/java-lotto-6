@@ -16,6 +16,7 @@ public class LottoController {
     public void start() {
         buyLotto();
         generateWinningLotto();
+        inputBonusNumber();
     }
 
     private void buyLotto() {
@@ -32,6 +33,13 @@ public class LottoController {
         repeatExecutionOnFailure(() -> {
             List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
             lottoSystem.generateWinningLotto(winningLottoNumbers);
+        });
+    }
+
+    private void inputBonusNumber() {
+        repeatExecutionOnFailure(() -> {
+            int bonusNumber = InputView.enterBonusNumber();
+            lottoSystem.inputBonusNumber(bonusNumber);
         });
     }
 

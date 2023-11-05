@@ -38,4 +38,9 @@ public class LottoSystem {
     public void generateWinningLotto(List<Integer> winningLottoNumbers) {
         winningLotto.generate(winningLottoNumbers);
     }
+
+    public void inputBonusNumber(int bonusNumber) {
+        LottoValidator.validateBonusNumber(bonusNumber, winningLotto.numbers());
+        winningLotto.updateBonusNumber(bonusNumber);
+    }
 }

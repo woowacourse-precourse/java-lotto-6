@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lottoTicketPurchase.LottoTicketPurchase;
 import lottoTicketPurchase.LottoTicketQuantity;
+import lottoWinningNumber.BonusNumberInput;
+import lottoWinningNumber.WinningNumberInput;
 
 public class LottoGame {
     public void run() {

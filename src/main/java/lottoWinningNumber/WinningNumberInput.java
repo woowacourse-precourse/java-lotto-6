@@ -1,4 +1,4 @@
-package game;
+package lottoWinningNumber;
 
 import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 

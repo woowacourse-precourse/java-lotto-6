@@ -1,7 +1,5 @@
 package game;
 
-import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
-import static constant.ConstantNumber.BONUS_CRITERIA;
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
 import static game.LottoRank.FIFTH_RANK;
 import static game.LottoRank.FIRST_RANK;
@@ -25,6 +23,7 @@ public class LottoGame {
         UserLottoNumbers lottoTicketDisplay = new UserLottoNumbers();
         WinningNumberInput winningNumberInput = new WinningNumberInput();
         BonusNumberInput bonusNumberInput = new BonusNumberInput();
+        LottoResultDisplay lottoResultDisplay = new LottoResultDisplay();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         // LottoTicketPurchase
@@ -59,49 +58,14 @@ public class LottoGame {
         System.out.println();
 
         // LottoResultDisplay
-        System.out.println(WINNING_STATISTICS_NOTICE_MESSAGE);
+        lottoResultDisplay.getLottoSuccessCount(userLottoNumbers, winningNumberList, bonusNumber);
+        lottoResultDisplay.outputLottoResult();
 
-        int sixSuccess = NUMBER_INITIALIZATION;
-        int fiveSuccess = NUMBER_INITIALIZATION;
-        int fiveAndBonusSuccess = NUMBER_INITIALIZATION;
-        int fourSuccess = NUMBER_INITIALIZATION;
-        int threeSuccess = NUMBER_INITIALIZATION;
-
-        for (int index = 0; index < userLottoNumbers.size(); index++) {
-            int score = 0;
-            int bonusScore = 0;
-            for (int userNumber : userLottoNumbers.get(index)) {
-                for (int luckyNumber : winningNumberList) {
-                    if (luckyNumber == userNumber) {
-                        score++;
-                    }
-                    if (userNumber == bonusNumber) {
-                        bonusScore++;
-                    }
-                }
-            }
-            if (score == FIFTH_RANK.getMatchCount()) {
-                threeSuccess++;
-            }
-            if (score == FOURTH_RANK.getMatchCount()) {
-                fourSuccess++;
-            }
-            if (score == THIRD_RANK.getMatchCount()) {
-                fiveSuccess++;
-            }
-            if (score == SECOND_RANK.getMatchCount() && bonusScore == BONUS_CRITERIA) {
-                fiveAndBonusSuccess++;
-            }
-            if (score == FIRST_RANK.getMatchCount()) {
-                sixSuccess++;
-            }
-        }
-
-        System.out.println("3개 일치 (5,000원) - " + threeSuccess + "개");
-        System.out.println("4개 일치 (50,000원) - " + fourSuccess + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + fiveSuccess + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveAndBonusSuccess + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + sixSuccess + "개");
+        int sixSuccess = lottoResultDisplay.sixSuccess;
+        int fiveSuccess = lottoResultDisplay.fiveSuccess;
+        int fiveAndBonusSuccess = lottoResultDisplay.fiveAndBonusSuccess;
+        int fourSuccess = lottoResultDisplay.fourSuccess;
+        int threeSuccess = lottoResultDisplay.threeSuccess;
 
         int totalReward = NUMBER_INITIALIZATION;
         totalReward += FIFTH_RANK.getReward() * threeSuccess;

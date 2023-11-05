@@ -9,8 +9,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        checkDuplicatedNumber(numbers);
-        checkNumberRange(numbers);
+        validateDuplicatedNumber(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -20,14 +20,14 @@ public class Lotto {
         }
     }
 
-    private void checkDuplicatedNumber(List<Integer> numbers) {
+    private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     }
 
-    private void checkNumberRange(List<Integer> numbers) {
+    private void validateNumberRange(List<Integer> numbers) {
         numbers.stream()
                 .filter(number -> number < 1 || number > 45)
                 .findAny()

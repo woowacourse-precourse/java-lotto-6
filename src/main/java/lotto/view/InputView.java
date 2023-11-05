@@ -42,7 +42,7 @@ public class InputView {
         String inputAnswer = Console.readLine();
         validateInputAnswer(inputAnswer);
 
-        List<Integer> answerNumber = new ArrayList<>();
+        List<Integer> answerNumber = validateAnswerNumber(inputAnswer);
         return answerNumber;
     }
 
@@ -59,5 +59,20 @@ public class InputView {
         if (inputAnswer.matches("^(?:[^,]*,){5}[^,]*$")) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
+    }
+
+    public List<Integer> validateAnswerNumber(String inputAnswer) {
+        String[] inputAnswerPart = inputAnswer.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String part : inputAnswerPart) {
+            try {
+                int inputNumber = Integer.parseInt(part.trim());
+                numbers.add(inputNumber);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(VALIDATE_STRING_TO_INT_MESSAGE);
+            }
+        }
+        return numbers;
     }
 }

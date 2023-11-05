@@ -4,6 +4,8 @@ import lotto.util.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class CustomerTest {
     @DisplayName("입력한 금액만큼 로또를 구매한다.")
     @Test
@@ -16,7 +18,7 @@ class CustomerTest {
         // when
         customer.purchaseLottos();
 
-        // than
-        assertThat(customer.getLottos()).isEqualTo(3);
+        // then
+        assertThat(customer.getLottos().size()).isEqualTo(3);
     }
 }

@@ -6,33 +6,31 @@ import lotto.utils.Validator;
 
 public class UserView {
 
-    private static String startMessage() {
+    public static String startMessage() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
         Validator.validateMoney(money);
         return money;
     }
 
-    private static List<Integer> printLotto(List<Integer> lotto) {
+    public static List<Integer> printLotto(List<Integer> lotto) {
         System.out.println("8개를 구매했습니다.");
         return lotto;
     }
 
-    private static String winNumberMessage() {
+    public static String winNumberMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String numbers = Console.readLine();
-        Validator.validateWinningNumber(numbers);
-        return numbers;
+        return Console.readLine();
     }
 
-    private static String bonusNumberMessage() {
+    public static String bonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         Validator.validateBonusNumber(bonusNumber);
         return bonusNumber;
     }
 
-    private static void winStatisticsMessage(int count) {
+    public static void winStatisticsMessage(int count) {
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + count + "개");
         System.out.println("4개 일치 (5,0000원) - " + count + "개");
@@ -41,7 +39,7 @@ public class UserView {
         System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
     }
 
-    private static void totalYieldMessage(int yield) {
+    public static void totalYieldMessage(int yield) {
         System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 }

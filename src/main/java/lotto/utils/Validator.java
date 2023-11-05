@@ -2,6 +2,7 @@ package lotto.utils;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lotto.enums.LottoNumber;
 
@@ -16,23 +17,23 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumber(String numbers) {
-        String[] numberStrings = numbers.replace("", " ").split(",");
-        validateNumberCount(numberStrings);
+    public static void validateWinningNumber(List<Integer> numbers) {
+        validateNumberCount(numbers);
 
         Set<Integer> numberSet = new HashSet<>();
-        for (String numberString : numberStrings) {
-            int number = validateNumberRange(numberString);
+        for (Integer number : numbers) {
+            validateNumberRange(number);
             validateDuplicateNumber(number, numberSet);
         }
     }
 
-    public static void validateBonusNumber(String bonusNumber) {
+    public static void validateBonusNumber(String number) {
+        int bonusNumber = Integer.parseInt(number);
         validateNumberRange(bonusNumber);
     }
 
-    private static void validateNumberCount(String[] numberStrings) {
-        if (numberStrings.length != LottoNumber.COUNT.getValue()) {
+    private static void validateNumberCount(List<Integer> numbers) {
+        if (numbers.size() != LottoNumber.COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력하여 주세요.");
         }
     }
@@ -43,12 +44,9 @@ public class Validator {
         }
     }
 
-    private static int validateNumberRange(String numberString) {
-        int number = Integer.parseInt(numberString);
-
+    private static void validateNumberRange(int number) {
         if (number < LottoNumber.MIN.getValue() || number > LottoNumber.MAX.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 수여야 합니다.");
         }
-        return number;
     }
 }

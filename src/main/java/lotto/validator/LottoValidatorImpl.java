@@ -6,12 +6,19 @@ public class LottoValidatorImpl implements LottoValidator {
 
 	@Override
 	public int validatePrice(String price) {
+		validateEmptyString(price);
 		validateIsDigit(price);
 		int parsePrice = validateRange(price);
 		validateRest(parsePrice);
 		return parsePrice;
 	}
 
+	private void validateEmptyString(String price) {
+		if (price.equals("")) {
+			ErrorOperation.EMPTY_ERROR.apply();
+		}
+	}
+	
 	private void validateIsDigit(String price) {
 		for (int i = 0; i < price.length(); i++) {
 			char digit = price.charAt(i);

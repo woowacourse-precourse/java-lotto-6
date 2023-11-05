@@ -22,6 +22,10 @@ public final class Money {
         return money % unitPrice == 0 && money >= unitPrice;
     }
 
+    public int calculateQuantity(int price) {
+        return money / price;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

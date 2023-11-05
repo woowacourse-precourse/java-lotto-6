@@ -7,6 +7,7 @@ public class LottoMachine {
 
     public Lottos purchaseLotto(Money purchaseMoney) {
         validate(purchaseMoney);
+        int lottoQuantity = purchaseMoney.calculateQuantity(LOTTO_PRICE);
         return new Lottos();
     }
 

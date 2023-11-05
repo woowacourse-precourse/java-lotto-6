@@ -8,7 +8,7 @@ import lotto.model.BonusNumber;
 import lotto.model.WinningNumbers;
 import lotto.utils.Casher;
 import lotto.utils.enums.Code;
-import lotto.utils.enums.Message;
+import lotto.utils.enums.ErrorMessage;
 
 public class InputView {
     private final String INPUT_PRICE = "구입금액을 입력해 주세요.";
@@ -72,7 +72,7 @@ public class InputView {
         String[] split = numbers.split(",");
         Arrays.stream(split).forEach(this::validateNumber);
         if (split.length != 6) {
-            throw new IllegalArgumentException(Message.LACK_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LACK_NUMBER_COUNT.getMessage());
         }
         return Arrays.stream(split)
                 .map(Integer::parseInt)
@@ -83,7 +83,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
 

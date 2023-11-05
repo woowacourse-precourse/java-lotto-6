@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 import lotto.utils.enums.Code;
 import lotto.utils.InputValidator;
-import lotto.utils.enums.Message;
+import lotto.utils.enums.ErrorMessage;
 
 public class BonusNumber {
     private final int bonusNumber;
@@ -16,7 +16,7 @@ public class BonusNumber {
 
     private void validateDuplicatedWinningAndBonus(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Message.NOT_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_DUPLICATED.getMessage());
         }
     }
 

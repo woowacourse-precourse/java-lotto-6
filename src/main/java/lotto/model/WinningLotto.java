@@ -36,16 +36,9 @@ public class WinningLotto {
     }
 
     private int bonusNumberValidator(String bonusNumberStr) {
-        validateEmpty(bonusNumberStr);
         int bonusNumber = validateNotNumber(bonusNumberStr);
         validateInvalidLottoNumberRange(bonusNumber);
         return bonusNumber;
-    }
-
-    private void validateEmpty(String bonusNumberStr) {
-        if (bonusNumberStr.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.");
-        }
     }
 
     private int validateNotNumber(String bonusNumberStr) {

@@ -10,7 +10,6 @@ public class Amount {
     }
 
     public static Amount create(String amountStr) {
-        validateEmpty(amountStr);
         int amount = validateNotNumber(amountStr);
         validateNegativeNumber(amount);
         validateAmountInThousandUnit(amount);
@@ -19,12 +18,6 @@ public class Amount {
 
     public int getAmount() {
         return this.amount;
-    }
-
-    private static void validateEmpty(String amountStr) {
-        if (amountStr.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
-        }
     }
 
     private static int validateNotNumber(String amountStr) {

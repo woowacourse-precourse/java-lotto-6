@@ -9,15 +9,19 @@ public class InputView {
     private static final String COMMA_SEPARATOR = ",";
 
     public static String inputPurchaseAmount() {
-        return Console.readLine();
+        String input = Console.readLine();
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
+        }
+        return input;
     }
 
     public static List<Integer> inputWinningNumbers() {
+        String input = Console.readLine();
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해 주세요.");
+        }
         try {
-            String input = Console.readLine();
-            if (input.isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해 주세요.");
-            }
             return List.of(input.split(COMMA_SEPARATOR)).stream()
                     .map(numberStr -> Integer.parseInt(numberStr))
                     .collect(Collectors.toList());
@@ -27,6 +31,10 @@ public class InputView {
     }
 
     public static String inputBonusNumber() {
-        return Console.readLine();
+        String input = Console.readLine();
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.");
+        }
+        return input;
     }
 }

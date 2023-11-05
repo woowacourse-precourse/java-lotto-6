@@ -1,14 +1,13 @@
 package lotto.utils;
 
+import lotto.utils.message.ErrorMessage;
 import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    private static final String REGEXP_NUMBER = "^[0-9]*$";
-
     public static void validateIsNumber(String input) {
-        if (!Pattern.matches(REGEXP_NUMBER, input)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        if (!Pattern.matches(Constants.REGEXP_NUMBER, input)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER.getMessage());
         }
     }
 

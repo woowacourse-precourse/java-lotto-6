@@ -1,17 +1,14 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.utils.Constants;
+import lotto.utils.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
-    private static final int AMOUNT_UNIT = 1000;
-    private static final int NO_AMOUNT = 0;
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private int amount;
     private List<Lotto> purchasedLottos;
 
@@ -26,14 +23,14 @@ public class User {
     }
 
     private static void validateAmountUnit(int amount) {
-        if (amount % AMOUNT_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
+        if (amount % Constants.AMOUNT_UNIT != 0) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_AMOUNT_UNIT.getMessage());
         }
     }
 
     private static void validateIsZero(int amount) {
-        if (amount == NO_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 0원 이상 입력해야 합니다.");
+        if (amount == Constants.NO_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NO_AMOUNT.getMessage());
         }
     }
 
@@ -48,11 +45,11 @@ public class User {
     }
 
     private int getLottoCount() {
-        return amount / LOTTO_PRICE;
+        return amount / Constants.LOTTO_PRICE;
     }
 
     private Lotto generateLottoNumber() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, 6);
         return new Lotto(numbers);
     }
 

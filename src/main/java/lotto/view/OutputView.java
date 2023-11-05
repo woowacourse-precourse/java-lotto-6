@@ -2,28 +2,32 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.Rank;
+import lotto.utils.Constants;
+import lotto.utils.message.OutputMessage;
 import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
-        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
+        System.out.println();
+        System.out.println(lottos.size() + OutputMessage.OUTPUT_PURCHASED_LOTTOS.getMessage());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getSortedNumbers());
         }
     }
 
     public static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(OutputMessage.OUTPUT_LOTTO_RESULT.getMessage());
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchCount() >= 3) {
-                System.out.println(rank.getMessage() + lottoResult.get(rank) + "개");
+            if (rank.getMatchCount() >= Constants.MATCH_COUNT_THRESHOLD) {
+                System.out.println(rank.getMessage() + lottoResult.get(rank) +
+                        OutputMessage.OUTPUT_COUNT_UNIT.getMessage());
             }
         }
     }
 
     public static void printYield(double yield) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+        System.out.println(OutputMessage.getYieldMessage(yield));
     }
 }

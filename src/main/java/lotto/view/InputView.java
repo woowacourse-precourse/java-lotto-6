@@ -1,26 +1,28 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Constants;
 import lotto.utils.InputValidator;
+import lotto.utils.message.InputMessage;
 
 public class InputView {
 
     public static int inputAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(InputMessage.INPUT_AMOUNT.getMessage());
         String input = Console.readLine();
         InputValidator.validateIsNumber(input);
         return Integer.parseInt(input);
     }
 
     public static String[] inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String[] input = Console.readLine().split(",");
+        System.out.println(InputMessage.INPUT_WINNING_NUMBERS.getMessage());
+        String[] input = Console.readLine().split(Constants.SEPARATOR);
         InputValidator.validateIsAllNumber(input);
         return input;
     }
 
     public static int inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
         InputValidator.validateIsNumber(input);
         return Integer.parseInt(input);

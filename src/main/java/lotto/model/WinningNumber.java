@@ -1,12 +1,12 @@
 package lotto.model;
 
+import lotto.utils.Constants;
+import lotto.utils.message.ErrorMessage;
 import lotto.utils.Util;
 import java.util.List;
 
 public class WinningNumber {
 
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private Lotto winningNumber;
     private int bonusNumber;
 
@@ -25,13 +25,13 @@ public class WinningNumber {
 
     private static void validateDuplicatedNumber(Lotto winningNumber, int bonusNumber) {
         if (winningNumber.hasNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 
     private static void validateNumberRange(int number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (number < Constants.MIN_LOTTO_NUMBER || number > Constants.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_RANGE.getMessage());
         }
     }
 

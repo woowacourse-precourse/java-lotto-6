@@ -12,4 +12,11 @@ public class BonusTest {
         Assertions.assertThatThrownBy(() -> Bonus.from("1000a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 1미만의 숫자를 입력받았다면 예외가 발생한다.")
+    @Test
+    void createBonusLowerThanMinimumRange(){
+        Assertions.assertThatThrownBy(() -> Bonus.from("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

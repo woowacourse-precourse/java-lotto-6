@@ -14,15 +14,15 @@ public enum LottoNumbers {
             .map(LottoNumbers::getNumber)
             .toList();
     private final int number;
+    public static boolean contains(int number) {
+        return LOTTO_NUMBERS.contains(number);
+    }
+
     LottoNumbers(int number) {
         this.number = number;
     }
 
     public int getNumber() {
         return number;
-    }
-
-    public static boolean contains(int number) {
-        return LOTTO_NUMBERS.contains(number);
     }
 }

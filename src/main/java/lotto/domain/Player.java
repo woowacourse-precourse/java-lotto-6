@@ -10,7 +10,7 @@ public class Player {
     private int money;
     private long totalPrize;
     private List<Lotto> lottos = new ArrayList<>();
-    private Map<Ranking, Integer> results = new HashMap<>();
+    private Map<Ranking, Integer> results = new EnumMap<>(Ranking.class);
 
     public Player(int money) {
         this.money = money;

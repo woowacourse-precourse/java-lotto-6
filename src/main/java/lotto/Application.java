@@ -5,5 +5,7 @@ public class Application {
         Lotto lotto = new Lotto(LottoInput.getPurchaseAmount(),
         		LottoInput.getWinningNumber(),
         		LottoInput.getBonusNumber());
+        
+        lotto.lottoPlay();
     }
 }

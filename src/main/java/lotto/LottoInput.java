@@ -10,12 +10,16 @@ import java.util.HashSet;
 
 class LottoInput {
 	protected static int getPurchaseAmount() {
+		LottoPrint.printPurchase();
+		
 		int amount = Integer.valueOf(Console.readLine());
 		
 		return amount;
 	}
 	
 	protected static List<Integer> getWinningNumber(){
+		LottoPrint.printWinningNumbers();
+		
 		String inputNumbers = Console.readLine();
 		List<Integer> winningNumbers = Arrays.asList(inputNumbers.split(",")).stream()
 				.map(Integer::valueOf)
@@ -25,6 +29,8 @@ class LottoInput {
 	}
 	
 	protected static int getBonusNumber() {
+		LottoPrint.printBonusNumber();
+		
 		int bonusNumber = Integer.valueOf(Console.readLine());
 		
 		return bonusNumber;

@@ -18,6 +18,7 @@ public class Lotto {
         this.lottoTrials = lottoTrials;
         
         this.randomNumbers = generateRandomLottoNumber(lottoTrials);
+        LottoPrint.printLottos(this.randomNumbers, lottoTrials);
         
         validate(numbers);
         validateNumberRange(numbers);
@@ -131,6 +132,9 @@ public class Lotto {
 			prize += getPrize(correctNumbers, i, rankCount);
 		}
 		
+		double ratio = calculateReturnRatio(prize, lottoTrials);
+		LottoPrint.printResult(rankCount, ratio);
+		
 		return prize;
 	}
 	
@@ -138,5 +142,9 @@ public class Lotto {
 		double ratio = Math.round(prize / lottoTrials) / 10.0;
 		
 		return ratio;
+	}
+	
+	protected void lottoPlay() {
+		calculatePrize(this.lottoTrials, this.numbers, this.randomNumbers);
 	}
 }

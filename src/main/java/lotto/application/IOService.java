@@ -10,6 +10,8 @@ public class IOService {
     private final String BEFORE_PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";
 
     private final String LOTTO_CNT_MESSAGE = "개를 구매했습니다.";
+
+    private final String PRIZE_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String ERROR_INTEGER = "[ERROR] 구입 금액은 정수여야 합니다.";
     private final String ERROR_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야합니다.";
 
@@ -30,6 +32,11 @@ public class IOService {
     public void printLottoCount(int cnt) {
         System.out.println(cnt + LOTTO_CNT_MESSAGE);
     }
+
+    public void printPrizeNumberMessage(){
+        System.out.println(PRIZE_NUMBER_MESSAGE);
+    }
+
     public long scanPurchaseAmount() {
         boolean success = true;
         String purchaseAmount;

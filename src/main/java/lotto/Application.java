@@ -6,8 +6,10 @@ import lotto.ui.InputHandler;
 import lotto.ui.OutputHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -39,6 +41,13 @@ public class Application {
         for (Lotto lotto : lottoBundle) {
             System.out.println(lotto.toString());
         }
+        String userInput = inputHandler.getWinnerNumbers();
+        List<Integer> winnerNumbers = Arrays.stream(userInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
+        int bonusNumber = inputHandler.getBonusNumber();
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 
     private List<Integer> generateNumbers() {

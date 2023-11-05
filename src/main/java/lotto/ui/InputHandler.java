@@ -20,4 +20,14 @@ public class InputHandler {
         return purchaseAmount;
     }
 
+    public String getWinnerNumbers() {
+        outputHandler.printMessage(MessageForm.ASK_WINNER_NUMBERS);
+        return Console.readLine();
+    }
+
+    public int getBonusNumber() {
+        outputHandler.printMessage(MessageForm.ASK_WINNER_NUMBERS);
+        return Integer.parseInt(Console.readLine());
+    }
+
 }

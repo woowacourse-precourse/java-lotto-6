@@ -26,11 +26,10 @@ public class InputView {
     }
 
     private static int convertToInt(String cost) {
-        try {
-            return Integer.parseInt(cost);
-        } catch (NumberFormatException e) {
+        if (!cost.matches("\\d+")) {
             throw new IllegalArgumentException(PRICE_NOT_INTEGER_ERROR_MESSAGE);
         }
+        return Integer.parseInt(cost);
     }
 
     private static String[] getSplit(String input) {

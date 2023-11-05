@@ -3,10 +3,12 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoBundleTest {
 
+    @DisplayName("로또 묶음은 금액만큼 로또를 생성한다.")
     @Test
     void makeLotto() {
         // given

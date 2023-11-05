@@ -5,10 +5,12 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidationTest {
 
+    @DisplayName("올바른 단위인지 검사한다.")
     @Test
     void isCorrectUnit() {
         // given
@@ -34,8 +36,9 @@ class ValidationTest {
         assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("양수인지 검사한다.")
     @Test
-    void isOver() {
+    void isNumeric() {
         // given
         int case1 = 1000;
         int case2 = 0;
@@ -58,6 +61,7 @@ class ValidationTest {
         assertThat(result3).as("case3").isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("범위 내의 숫자인지 검사한다.")
     @Test
     void isInRange() {
         // given
@@ -89,6 +93,7 @@ class ValidationTest {
         assertThat(result4).as("case4").isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("중복되는 숫자인지 검사한다.")
     @Test
     void isDuplicate() {
         // given

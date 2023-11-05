@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,20 +34,36 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호를 저장할 때 정렬 후 저장한다.")
+    @Test
+    void sortNumbers() {
+        // given
+        List<Integer> list = List.of(2, 1, 4, 3, 6, 5);
+
+        // when
+        Lotto lotto = new Lotto(list);
+
+        // then
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("로또 번호를 조회할 때는 수정할 수 없는 리스트를 반환한다.")
     @Test
     void getNumbers() {
         // given
-        Lotto case1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        List<Integer> result1 = case1.getNumbers();
+        List<Integer> numbers = lotto.getNumbers();
 
         // then
-        assertThat(result1).as("case1").isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(numbers).as("case1").isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> numbers.sort(Comparator.naturalOrder())).isInstanceOf(UnsupportedOperationException.class);
     }
 
+    @DisplayName("로또는 숫자가 포함되어있는지 확인한다.")
     @Test
-    void contains() {
+    void hasNumber() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int case1 = 1;
@@ -61,6 +78,7 @@ class LottoTest {
         assertThat(result2).as("case2").isEqualTo(false);
     }
 
+    @DisplayName("로또 번호를 문자열로 변환한다.")
     @Test
     void testToString() {
         // given

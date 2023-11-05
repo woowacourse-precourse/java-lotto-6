@@ -6,7 +6,7 @@ import lotto.model.Money;
 import lotto.view.Input;
 
 public class InputController {
-    private InputController() {};
+    private InputController() {}
 
     public static Money getMoney() {
         try {

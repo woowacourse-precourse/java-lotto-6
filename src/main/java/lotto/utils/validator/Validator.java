@@ -1,8 +1,8 @@
 package lotto.utils.validator;
 
-public class Validator {
+import static lotto.constant.ExceptionMessage.NO_EMPTY_ERROR_MESSAGE;
 
-    private static final String NO_EMPTY_ERROR_MESSAGE = "공백 혹은 빈문자는 입력할 수 없습니다.";
+public class Validator {
 
     private Validator() {
     }

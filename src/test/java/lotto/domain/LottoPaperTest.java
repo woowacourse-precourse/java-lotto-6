@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.LottoTicketCalculator;
 import org.junit.jupiter.api.Assertions;

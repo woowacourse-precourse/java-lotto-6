@@ -15,4 +15,9 @@ public class ConsoleInputView implements InputView {
     public List<String> getWinnerNumber() {
         return Arrays.stream(Console.readLine().split(",")).toList();
     }
+
+    @Override
+    public String getBonusNumber() {
+        return Console.readLine();
+    }
 }

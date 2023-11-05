@@ -8,4 +8,5 @@ public interface OutputView {
     void printPurchaseResult(int purchaseResult);
     void printLotto(List<Integer> lotto);
     void printWinnerNumberMessage();
+    void printBonusNumberMessage();
 }

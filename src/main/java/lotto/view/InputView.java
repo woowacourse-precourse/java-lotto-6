@@ -34,7 +34,7 @@ public class InputView {
     }
 
     private void validateInputMoney(String inputMoney) {
-        inputValidator.validateInputMoneyAndBonusNumber(inputMoney);
+        inputValidator.validateInputMoney(inputMoney);
     }
 
 
@@ -47,6 +47,8 @@ public class InputView {
 
                 return winningNumbers;
             } catch (DuplicateInputException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -79,6 +81,6 @@ public class InputView {
     }
 
     private void validateBonusNumber(String bonusNumber) {
-        inputValidator.validateInputMoneyAndBonusNumber(bonusNumber);
+        inputValidator.validateBonusNumber(bonusNumber);
     }
 }

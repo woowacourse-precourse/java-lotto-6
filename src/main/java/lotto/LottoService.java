@@ -14,12 +14,12 @@ public class LottoService {
     public void run() {
         Output.printGameStartMessage();
         int userMoney = user.inputMoney();
-        int numberOfLottoes = userMoney / LOTTO_PRICE;
+        int numberOfLottos = userMoney / LOTTO_PRICE;
 
         Output.printUserMoney(userMoney);
-        Output.printNumberOfLottoes(numberOfLottoes);
+        Output.printNumberOfLottoes(numberOfLottos);
 
-        List<Lotto> lottos = LottoGenerator.generateLottos(numberOfLottoes);
+        List<Lotto> lottos = LottoGenerator.generateLottos(numberOfLottos);
         for (Lotto lotto : lottos) {
             Output.printLottoSixNumbers(lotto);
         }

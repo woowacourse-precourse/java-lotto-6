@@ -11,8 +11,8 @@
 - [x] 당첨 번호를 맞춘 개수에 맞게 등수를 정한다. - Prize#determineRank()
 - [x] 당첨 기준에 맞게 해당 등수의 받을 상금 수량을 증가시킨다. Prizes#increasePrizeAmount()
 - [x] 각 등수별 상금 합계를 계산한다. Prizes#calculateTotalPrizeForRank()
-- [ ] 총 상금을 계산한다. Prizes#calculateTotalPrize()
-- [ ] 수익률을 계산한다. (수익률은 소수점 둘째 자리에서 반올림) - LottoManager#calculateProfitRate()
+- [x] 총 상금을 계산한다. Prizes#calculateTotalPrize()
+- [x] 수익률을 계산한다. (수익률은 소수점 둘째 자리에서 반올림) - LottoManager#calculateProfitRate()
 
 ### 입력
 - [ ] 로또 구입 금액을 입력 받을 수 있다. - InputView#askLottoPurchaseAmount()

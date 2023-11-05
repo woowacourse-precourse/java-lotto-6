@@ -16,7 +16,7 @@ public class LottoManager {
         }
     }
 
-    public double calculateProfitRate() {
-        return 0.0;
+    public double calculateProfitRate(int purchaseAmount, int totalPrize) {
+        return ((double) totalPrize) / purchaseAmount * 100;
     }
 }

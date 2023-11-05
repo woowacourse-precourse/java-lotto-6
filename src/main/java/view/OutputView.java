@@ -14,25 +14,29 @@ public class OutputView {
     }
 
     public void informLottoCount(final int count) {
-        System.out.println();
-        System.out.printf("%d개를 구매했습니다.\n", count);
+        printNewLine();
+        System.out.printf("%d개를 구매했습니다.", count);
+        printNewLine();
     }
 
     public void noticeGeneratedLottos(final List<LottoResponse> lottoResponses) {
         lottoResponses.stream()
             .map(LottoResponse::getJoinedNumbers)
             .forEach(numbers -> {
-                System.out.printf("[%s]\n", numbers);
+                System.out.printf("[%s]", numbers);
+                printNewLine();
             });
     }
 
     public void askLottoNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        printNewLine();
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
 
     public void askBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        printNewLine();
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public void informWinningStatistics(final List<LottoResult> results) {
@@ -54,5 +58,9 @@ public class OutputView {
 
     public void showErrorMessage(final String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }

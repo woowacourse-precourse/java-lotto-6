@@ -63,4 +63,11 @@ public class LottoValidator {
         }
     }
 
+    public static void validateBonusNumberInWinningNumbers(Lotto lotto, int bonusNumber){
+        List<Integer> lottoNumbers = lotto.getLotto();
+        if(lottoNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_ALREADY_IN_WINNING_ERROR);
+        }
+    }
+
 }

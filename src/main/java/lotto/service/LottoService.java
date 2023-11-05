@@ -37,12 +37,13 @@ public class LottoService {
         return new Lotto(inputNumbers);
     }
 
-    public static int enterBonusNumber() {
+    public static int enterBonusNumber(Lotto lotto) {
         noticeToGetBonusNumber();
+        int bonusNumber = Integer.parseInt(Console.readLine());
         //보너스 번호가 당첨 번호랑 중복되는지 여부 확인
+        validateBonusNumberInWinningNumbers(lotto, bonusNumber);
 
-        String bonusNumber = Console.readLine();
-        return Integer.parseInt(bonusNumber);
+        return bonusNumber;
     }
 
     public static void matchLottoNumbers(WinningNumbers winningNumbers, List<Lotto> lottos){

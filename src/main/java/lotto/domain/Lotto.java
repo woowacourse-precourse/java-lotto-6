@@ -2,8 +2,9 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class Lotto {
+public class Lotto  {
 
     private static final int LENGTH = 6;
 
@@ -28,7 +29,13 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public Stream<LottoNumber> stream() {
+        return numbers.stream();
+    }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 
     // TODO: 추가 기능 구현
 }

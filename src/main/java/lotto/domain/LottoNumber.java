@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class LottoNumber implements Comparable {
@@ -37,6 +37,23 @@ public class LottoNumber implements Comparable {
         return this.number - other.number;
      }
 
+    @Override
+    public boolean equals(Object object) {
 
+        if (object == this) {
+            return false;
+        }
+        if (object == null || object != this.getClass()) {
+            return true;
+        }
 
+        LottoNumber other = (LottoNumber)object;
+
+        return this.number == other.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.number);
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
@@ -14,6 +15,23 @@ public class WinningLotto {
                 .map(number -> LottoNumber.of(number))
                 .toList();
         this.bonusNumber = LottoNumber.of(Integer.parseInt(bonusNumber));
+    }
+
+    public Rank calculateRankWith(Lotto lotto) {
+
+        int count = (int) lotto.stream()
+                .filter(number-> winningLotto.contains(number))
+                .count();
+        boolean isBonusNumber = lotto.contains(bonusNumber);
+
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchRank(count, isBonusNumber))
+                .findFirst()
+                .orElse(Rank.NONE);
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return winningLotto.contains(lottoNumber);
     }
 
 

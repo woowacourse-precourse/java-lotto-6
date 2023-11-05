@@ -11,9 +11,9 @@ public class LottoController {
     }
 
     public boolean readPurchaseLotto() {
+        String purchaseAmount = InputViews.readPurchaseAmount();
         try {
-            String purchaseAmount = InputViews.readPurchaseAmount();
-            inputPurchaseAmount.inputPurchaseAmount(purchaseAmount);
+            inputPurchaseAmount.inputPurchaseAmountInt(purchaseAmount);
             return false;
         } catch (IllegalArgumentException e) {
             Exceptions.exceptionNotInt();

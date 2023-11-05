@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class inputPurchaseAmount {
-    public static boolean inputPurchaseAmount(String purchaseAmount) {
+    public static boolean inputPurchaseAmountInt(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);
             return true;

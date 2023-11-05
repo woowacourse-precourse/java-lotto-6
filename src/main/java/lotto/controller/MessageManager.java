@@ -1,8 +1,9 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.Winner;
 
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.EnumMap;
 
 public class MessageManager {
     public static final int LOTTO_SIZE = 6;
@@ -20,4 +21,20 @@ public class MessageManager {
     public static final String ERROR_IS_NOT_CORRECT_SIZE = "[ERROR] 6개의 숫자를 입력해야 합니다.";
     public static final String ERROR_OUT_OF_RANGE = "[ERROR] 1~45 사이의 숫자만 입력 가능합니다.";
 
+    public void showResult(EnumMap<Winner, Integer> winnersResult){
+        for(Winner winner: Winner.values()){
+            if(winner.getMatch() == -5){
+                System.out.println("5개 일치, 보너스 볼 일치 ("+decimalFormat(winner.getPrize())+"원) - " + winnersResult.get(winner).toString()
+                + "개");
+            }else{
+                System.out.println(winner.getMatch() +"개 일치 ("+decimalFormat(winner.getPrize())+"원) - " + winnersResult.get(winner).toString()
+                        + "개");
+            }
+        }
+    }
+
+    public String decimalFormat(int amount){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(amount);
+    }
 }

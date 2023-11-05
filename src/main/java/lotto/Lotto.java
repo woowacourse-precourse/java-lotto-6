@@ -64,6 +64,17 @@ public class Lotto {
         }
         return true;
     }
+    public int compareNumber(Lotto lotto, int bonus){
+        for(int i = 0; i < MessageManager.LOTTO_SIZE; i++){
+            if(numbers.get(i) != lotto.numbers.get(i)){
+                if(i == 4 && numbers.contains(bonus)){
+                    return -5;
+                }
+                return i;
+            }
+        }
+        return MessageManager.LOTTO_SIZE;
+    }
 
     public void showNumbers(){
         System.out.println(numbers.toString());

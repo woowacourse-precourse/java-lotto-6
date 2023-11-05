@@ -1,11 +1,13 @@
 package lotto.domain.lottery;
 
+import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
 import java.util.Objects;
 
 import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
-import static lotto.exception.ErrorMessage.*;
+import static lotto.exception.ErrorMessage.NOT_ENOUGH_PAYMENT;
+import static lotto.exception.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_UNIT_PRICE;
 
 public class Buyer {
     private static final int ZERO = 0;
@@ -14,7 +16,7 @@ public class Buyer {
     private final int ticketCount;
 
     private Buyer(final String paymentInput) {
-        int convertedPayment = convertStringToInt(paymentInput);
+        int convertedPayment = Parser.parseStringToInt(paymentInput);
 
         validateMinimumPayment(convertedPayment);
         validateUnitPrice(convertedPayment);
@@ -25,14 +27,6 @@ public class Buyer {
 
     public static Buyer from(final String paymentInput) {
         return new Buyer(paymentInput);
-    }
-
-    private int convertStringToInt(final String paymentInput) {
-        try {
-            return Integer.parseInt(paymentInput);
-        } catch (NumberFormatException exception) {
-            throw LottoException.of(PAYMENT_NOT_INTEGER, exception);
-        }
     }
 
     private int calculateTicketCount(int payment) {

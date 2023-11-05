@@ -11,7 +11,7 @@ public class RandomNumberGenerator {
     private RandomNumberGenerator() {
     }
 
-    public static List<Integer> generateLottoNumbers() {
+    public static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
         Collections.sort(randomNumbers);
         return randomNumbers;

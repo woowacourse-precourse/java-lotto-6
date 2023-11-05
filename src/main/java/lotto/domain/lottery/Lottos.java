@@ -18,7 +18,7 @@ public class Lottos {
     }
 
     private List<Lotto> generateLottos(final int ticketCount) {
-        return Stream.generate(RandomNumberGenerator::generateLottoNumbers)
+        return Stream.generate(RandomNumberGenerator::generateOrderedLottoNumbers)
                 .limit(ticketCount)
                 .toList()
 

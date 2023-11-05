@@ -1,7 +1,20 @@
 package lotto;
 
+import lotto.util.Log;
+
 public class Application {
+
+    private static final LottoController lottoController = new LottoController();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Log.println("구입금액을 입력해 주세요.");
+        lottoController.buyLotto();
+
+        Log.println("당첨 번호를 입력해 주세요.");
+        lottoController.saveAnswerNumber();
+
+        Log.println("보너스 번호를 입력해주세요.");
+        lottoController.saveBonusNumber();
+
+        lottoController.getStatistics();
     }
 }

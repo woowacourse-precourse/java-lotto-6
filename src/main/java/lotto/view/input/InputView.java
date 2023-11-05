@@ -3,7 +3,7 @@ package lotto.view.input;
 import java.util.List;
 
 public interface InputView {
-    String getCost();
-    List<String> getWinnerNumber();
-    String getBonusNumber();
+    int getCost();
+    List<Integer> getWinnerNumber();
+    int getBonusNumber();
 }

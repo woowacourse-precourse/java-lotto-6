@@ -19,6 +19,6 @@ public class LottoController {
         InputView.inputBonusNumber();
         List<Statistics> lottoStatistics = LottoService.makeStatistics(LottoService.countCorrectNumbers(lottoTickets));
         OutputView.printStatistics(lottoStatistics);
-        LottoService.getEarningRate(lottoStatistics);
+        OutputView.printEarningRate(LottoService.getEarningRate(lottoStatistics));
     }
 }

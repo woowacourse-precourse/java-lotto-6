@@ -25,11 +25,12 @@ public class OutputView {
     }
     public static void printStatistics(List<Statistics> lottoStatistics) {
         System.out.println("당첨 통계");
+        System.out.println("---");
         for(Statistics statistics : lottoStatistics) {
             System.out.printf("%s - %d개 |n", statistics.getValue(), statistics.getAmountOfTickets());
         }
     }
-    public static void printEarningRate() {
-
+    public static void printEarningRate(double earningRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.|n", earningRate);
     }
 }

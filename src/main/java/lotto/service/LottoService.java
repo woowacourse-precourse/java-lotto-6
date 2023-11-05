@@ -86,7 +86,6 @@ public class LottoService {
             earningRate += statistics.getValueNumber()*statistics.getAmountOfTickets();
         }
         earningRate *= 100;
-        // 반올림 추가
         return earningRate;
     }
 }

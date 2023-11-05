@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,12 +38,8 @@ public class LottoService {
         return lotto;
     }
 
-    public Lotto putWinnerLotto() {
+    public WinnerLotto putWinnerLotto() {
         return InputView.inputWinnerLotto();
-    }
-
-    public int putBonusNumber(Lotto winnerLotto) {
-        return InputView.inputBonusNumber(winnerLotto);
     }
 
 }

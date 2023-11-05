@@ -17,21 +17,4 @@ public class Validator {
         }
         return Integer.parseInt(input);
     }
-
-    public static void validationDuplicationLottoNumber(Lotto lotto, int matchNumber) {
-        if(lotto.getLotto()
-                .stream()
-                .anyMatch(lottoNumber -> lottoNumber == matchNumber)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
-        }
-    }
-
-    public static void validationDuplicationLottoNumber(Lotto lotto) {
-        if(lotto.getLotto()
-                .stream()
-                .distinct()
-                .count() < lotto.getLotto().size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
-        }
-    }
 }

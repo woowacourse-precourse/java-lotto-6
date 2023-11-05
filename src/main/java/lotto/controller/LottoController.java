@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinnerLotto;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -11,7 +12,6 @@ public class LottoController {
     public void start() {
         Money money = lottoService.putMoney();
         Lottos lottos = lottoService.buyLottos(money);
-        Lotto winnerLotto = lottoService.putWinnerLotto();
-        int bonusNumber = lottoService.putBonusNumber(winnerLotto);
+        WinnerLotto winnerLotto = lottoService.putWinnerLotto();
     }
 }

@@ -9,6 +9,6 @@ public class Utils {
     }
 
     public static List<Integer> convertListStringToListInteger(List<String> source) {
-        return new ArrayList<>;
+        return new ArrayList<>(List.of());
     }
 }

@@ -6,14 +6,14 @@ public class InputView {
     public static String readString(String message) {
         System.out.println(message);
         String inputValue = Console.readLine();
-        validateString(inputValue);
+//        validateString(inputValue);
         return inputValue;
     }
 
     public static int readInteger(String message) {
         System.out.println(message);
         String inputValue = Console.readLine();
-        validateInteger(inputValue);
+//        validateInteger(inputValue);
         return Integer.parseInt(inputValue);
     }
 }

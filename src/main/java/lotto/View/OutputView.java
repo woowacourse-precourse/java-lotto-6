@@ -50,6 +50,9 @@ public class OutputView {
         return "";
 
     }
+    public static void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.2f입니다.%n", profitRate);
+    }
 }
 
 

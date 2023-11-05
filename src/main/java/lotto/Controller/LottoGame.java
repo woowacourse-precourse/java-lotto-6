@@ -27,7 +27,12 @@ public class LottoGame {
         winningNumbers = InputView.inputLottoNumbers();
         bonusNumber = InputView.inputBonusNumber();
 
-        CompareResults.compareLottoResults(lottoList, winningNumbers, bonusNumber);
+       int[] matchingCounts = CompareResults.compareLottoResults(lottos, winningNumbers, bonusNumber);
+
+        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
+        double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);
+
+        OutputView.printProfitRate(profitRate);
 
 
     }

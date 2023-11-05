@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class CompareResults {
 
-    public static void compareLottoResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static int[] compareLottoResults(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
 
         int[] matchingCounts = new int[7];
 
@@ -16,6 +16,8 @@ public class CompareResults {
 
             totalMatchingCounts(matchingCounts, matchingCount, bonusMatch);
         }
+
+        return matchingCounts;
     }
 
     private static int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {

@@ -1,6 +1,7 @@
 package lotto;
 
-import lotto.controller.InputController;
+import lotto.controller.AmountInputController;
+import lotto.controller.IssueController;
 import lotto.domain.Purchase;
 import lotto.domain.vo.TotalAmount;
 import lotto.util.parser.AmountParser;
@@ -12,9 +13,12 @@ public class Application {
     public static void main(String[] args) {
         InputParser<Integer> amountParser = new AmountParser();
         InputValidator<Integer> validator = new AmountValidator();
-        InputController inputController = new InputController(amountParser, validator);
+        AmountInputController amountInputController = new AmountInputController(amountParser, validator);
 
-        TotalAmount totalAmount = inputController.tryInputValidAmount();
-        Purchase purchase = Purchase.createFrom(totalAmount);
+        TotalAmount totalAmount = amountInputController.InputValid();
+        Purchase purchase = Purchase.from(totalAmount);
+
+        IssueController issueController = IssueController.from(purchase);
+        issueController.issueTickets();
     }
 }

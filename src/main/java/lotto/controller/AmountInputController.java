@@ -4,17 +4,18 @@ import lotto.domain.vo.TotalAmount;
 import lotto.util.parser.InputParser;
 import lotto.util.validator.InputValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
-public class InputController {
+public class AmountInputController {
     private final InputParser<Integer> amountParser;
     private final InputValidator<Integer> validator;
 
-    public InputController(InputParser<Integer> amountParser, InputValidator<Integer> validator) {
+    public AmountInputController(InputParser<Integer> amountParser, InputValidator<Integer> validator) {
         this.amountParser = amountParser;
         this.validator = validator;
     }
 
-    public TotalAmount tryInputValidAmount() {
+    public TotalAmount InputValid() {
         while (true) {
             try {
                 String input = readInput();
@@ -44,6 +45,6 @@ public class InputController {
     }
 
     private void displayError(String message) {
-        InputView.printError(message);
+        OutputView.printError(message);
     }
 }

@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 
-import java.util.List;
-
 public class WinningLotto {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
@@ -16,7 +14,7 @@ public class WinningLotto {
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_INCLUDE_BONUS_MESSAGE.getMessage());
         }
     }
 }

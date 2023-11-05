@@ -1,4 +1,4 @@
-package lotto.Message;
+package lotto.message;
 
 public enum InputMessage {
     TOTAL_COST("구입금액을 입력해 주세요."),

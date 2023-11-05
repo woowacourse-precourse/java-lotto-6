@@ -1,7 +1,7 @@
-package lotto.View;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Message.InputMessage;
+import lotto.message.InputMessage;
 
 public class InputView {
     public static String totalCost() {

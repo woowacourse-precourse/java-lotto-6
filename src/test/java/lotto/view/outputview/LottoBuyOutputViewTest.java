@@ -43,7 +43,7 @@ class LottoBuyOutputViewTest {
     void 구입_금액_출력_테스트() {
         //given
         Map<String, DTO.Output> model = new HashMap<>();
-        model.put(ParameterConfig.BUY_LOTTO_DTO, null);
+        model.put(ParameterConfig.BUY_PRICE, null);
         //when
         outputView.view(model);
         //then
@@ -57,7 +57,7 @@ class LottoBuyOutputViewTest {
     void 구입_로또_출력_테스트(PurchasedLotto purchasedLotto) {
         Map<String, DTO.Output> model = new HashMap<>();
         BuyLottoDTO.Output dto = new BuyLottoDTO.Output(purchasedLotto);
-        model.put(ParameterConfig.BUY_LOTTO_DTO, dto);
+        model.put(ParameterConfig.BUY_PRICE, dto);
         //when
         outputView.view(model);
         //then

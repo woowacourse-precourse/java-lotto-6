@@ -28,7 +28,7 @@ class LottoBuyInputViewTest {
         System.setIn(new ByteArrayInputStream(join.getBytes()));
         for (String input : testParam) {
             Map<String, DTO.Input> param = new HashMap<>();
-            param.put(ParameterConfig.BUY_LOTTO_DTO, null);
+            param.put(ParameterConfig.BUY_PRICE, null);
             //then
             assertThatThrownBy(() -> inputView.read(param))
                     .isInstanceOf(IllegalArgumentException.class)

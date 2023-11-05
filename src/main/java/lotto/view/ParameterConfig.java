@@ -4,7 +4,7 @@ public class ParameterConfig {
     private ParameterConfig() {
     }
 
-    public static final String BUY_LOTTO_DTO = "buyLottoDto";
-    public static final String WINNING_LOTTO_DTO = "winningLottoDto";
-    public static final String LOTTO_RESULT_DTO = "lottoResultDto";
+    public static final String BUY_PRICE = "buyPrice";
+    public static final String WINNING_LOTTO_NUMBERS = "winningLottoNumbers";
+    public static final String BONUS_NUMBER = "bonusNumber";
 }

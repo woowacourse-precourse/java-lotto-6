@@ -30,4 +30,11 @@ class LottoNumberTest {
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 숫자가_LOTTO_MAX_NUMBER보다_클_경우_예외가_발생한다() {
+        int number = LOTTO_MAX_NUMBER.getValue() + 1;
+        assertThatThrownBy(() -> new LottoNumber(number))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }

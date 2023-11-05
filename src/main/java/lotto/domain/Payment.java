@@ -13,6 +13,7 @@ public class Payment {
 
     private void validate(int amount) {
         validateDivisibleAmount(amount);
+        validateAmountRange(amount);
     }
 
     private void validateDivisibleAmount(int amount) {
@@ -23,6 +24,16 @@ public class Payment {
 
     private boolean isIndivisibleAmount(int amount) {
         return amount % LottoConstraint.PRICE_PER_LOTTO.getValue() != 0;
+    }
+
+    private void validateAmountRange(int amount) {
+        if (isOutRangeAmount(amount)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_AMOUNT.getMessage());
+        }
+    }
+
+    private boolean isOutRangeAmount(int amount) {
+        return amount < LottoConstraint.MIN_AMOUNT.getValue() || amount > LottoConstraint.MAX_AMOUNT.getValue();
     }
 
     public int calculatePurchaseLottoCount() {

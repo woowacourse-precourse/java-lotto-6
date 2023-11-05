@@ -1,12 +1,13 @@
-package lotto.validator;
+package lotto.purchaseTest;
 
+import lotto.validator.PurchaseAmountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PurchaseAmountValidatorTest {
+public class PurchaseValidatorTest {
 
     private static final int DIVIDER = 1000;
 

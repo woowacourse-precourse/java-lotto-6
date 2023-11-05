@@ -8,7 +8,7 @@ import java.io.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class purchaseFunctionTest {
+public class PurchaseFunctionTest {
 
     public void init(String input){
         OutputStream out = new ByteArrayOutputStream();

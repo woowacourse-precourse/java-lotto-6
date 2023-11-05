@@ -27,6 +27,10 @@ public class InputView {
                 .map(String::trim)
                 .toList();
 
+        for (String winningNumber : winningNumbers) {
+            validateIsNumeric(winningNumber);
+        }
+
         return winningNumbers;
     }
 }

@@ -11,7 +11,7 @@
   - [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
 ## ⚙️ 로또 생성 전략
-- [ ] Random 값 추출은 `pickUniqueNumbersInRange()`를 활용한다.
+- [x] Random 값 추출은 `pickUniqueNumbersInRange()`를 활용한다.
 
 ## 🧾 로또 발행기
 - [ ] 로또 1장의 가격은 1,000원이며, 구입 금액에 해당하는 만큼 로또를 발행해야 한다.

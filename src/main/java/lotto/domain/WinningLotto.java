@@ -42,6 +42,20 @@ public class WinningLotto {
         validateIsNumber(winningNumbers);
         validateNullOrBlank(bonusNumber);
         checkAndThrowIfNotNumeric(bonusNumber);
+        validateAlreadyDrawn(winningNumbers, bonusNumber);
+    }
+
+    private void validateAlreadyDrawn(String winningNumbers, String bonusNumber) {
+        String[] splitNumbers = winningNumbers.split(COMMA);
+        for (String splitNumber : splitNumbers) {
+            checkAndThrowIfAlreadyDrawn(bonusNumber, splitNumber);
+        }
+    }
+
+    private static void checkAndThrowIfAlreadyDrawn(String bonusNumber, String splitNumber) {
+        if (splitNumber.equals(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_DRAWN.getMessage());
+        }
     }
 
     private void validateIsNumber(String winningNumbers) {

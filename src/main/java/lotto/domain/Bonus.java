@@ -28,6 +28,10 @@ public class Bonus {
         return LottoConstants.MIN_NUMBER.getConstants() <= bonus && bonus <= LottoConstants.MAX_NUMBER.getConstants();
     }
 
+    public static boolean isSameNumber(Lotto given, Bonus bonus) {
+        return given.getLotto().stream().anyMatch(n -> n == bonus.getBonus());
+    }
+
     public int getBonus() {
         return bonus;
     }

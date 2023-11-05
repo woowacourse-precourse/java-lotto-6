@@ -1,10 +1,8 @@
 package lotto.view;
 
-import static lotto.controller.InputController.numberList;
-
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.Util;
 
 public class InputView {
     private static final String INPUT_LOTTO_AMOUNT = "구입금액을 입력해 주세요.";
@@ -18,7 +16,7 @@ public class InputView {
 
     public static List<Integer> inputLottoWinningNum() {
         System.out.println(INPUT_LOTTO_WINNING);
-        return numberList(Console.readLine());
+        return Util.numberList(Console.readLine());
     }
 
     public static String bonusNumInput() {

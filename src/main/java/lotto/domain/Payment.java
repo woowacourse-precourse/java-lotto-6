@@ -25,4 +25,8 @@ public class Payment {
             throw new IllegalArgumentException(INVALID_PAYMENT_FORM.getMessage());
         }
     }
+
+    public int calculateLottoAmount() {
+        return pay / PRICE_PER_LOTTO;
+    }
 }

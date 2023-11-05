@@ -1,10 +1,14 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,5 +36,20 @@ class PaymentTest {
         assertThatThrownBy(() -> new Payment(pay))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_PAYMENT_FORM);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"8000,8","12000,12"})
+    @DisplayName("[SUCCESS]구입금액을 로또 가격으로 나누어 로또 구매 개수를 구한다.")
+    void calculateLottoAmountUsingPay(int input, int expected) {
+
+        // given
+        Payment userPay = new Payment(input);
+
+        // when
+        int amount = userPay.calculateLottoAmount();
+
+        // then
+        assertThat(amount).isEqualTo(expected);
     }
 }

@@ -3,10 +3,10 @@ package lotto.domain;
 import lotto.errors.ErrorMessage;
 import lotto.output.OutputView;
 
-public class Lottos {
+public class LottoManager {
     private int numberOfLottos;
 
-    public Lottos(String cost) {
+    public void setNumberOfLottos(String cost) {
         int integerCost = parseIntCost(cost);
         isZero(integerCost);
         calculateNumberOfLottos(integerCost);
@@ -31,6 +31,10 @@ public class Lottos {
         if (cost%1000!=0) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_COST.getMessage());
         }
+    }
+
+    public boolean checkNumberOfLottos() {
+        return this.numberOfLottos>0;
     }
 
     public String printOutNumberOfLottos() {

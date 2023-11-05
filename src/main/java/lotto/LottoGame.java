@@ -1,17 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lottos;
+import lotto.domain.LottoManager;
 
 public class LottoGame {
 
-    public static Lottos getRightCost(Lottos lottos) {
+    public static void getRightCost(LottoManager lottoManager) {
         try {
-            lottos = new Lottos(Console.readLine());
+            lottoManager.setNumberOfLottos(Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-        } finally {
-            return lottos;
         }
     }
 }

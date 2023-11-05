@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.Lottos;
+import lotto.domain.LottoManager;
 import lotto.output.OutputView;
 
 public class Application {
@@ -8,17 +8,15 @@ public class Application {
 
         System.out.println(OutputView.INPUT_COST.getMessage());
 
-        Lottos lottos = null;
+        LottoManager lottoManager = new LottoManager();
         while (true) {
-            lottos = LottoGame.getRightCost(lottos);
-            if (lottos!=null) {
+            LottoGame.getRightCost(lottoManager);
+            if (lottoManager.checkNumberOfLottos()) {
                 break;
             }
         }
 
-        System.out.println('\n' + lottos.printOutNumberOfLottos());
-
-
+        System.out.println('\n' + lottoManager.printOutNumberOfLottos());
 
     }
 }

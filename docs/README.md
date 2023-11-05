@@ -5,23 +5,23 @@
 - 가정 : 당첨 번호 6개와 보너스 번호 또한 중복이 없어야 한다.
 
 ## 2. 기능 요구사항
-1. 로또 발행 기능
+1. 로또 숫자 발행 기능
    - 중복되지 않는 6개의 숫자 생성
-2. 로또 유효성 검사 기능
-   - 각 로또 번호의 숫자 범위가 1 ~ 45인지 확인
-   - 로또 번호의 수가 정확히 6개인지 확인
-   - 로또 번호가 중복되지 않는지 확인
-   - 위 3개 중 하나라도 불만족 시 예외(IllegalArgumentException) 리턴
-3. 사용자 입력 UI 기능
-4. 결과 출력 UI 기능
-5. 등수 Enum 기능
+2. 각 로또 번호의 숫자 범위 확인 기능
+    - 1 ~ 45의 범위를 벗어난 숫자 발견 시 예외 (IllegalArgumentException) 리턴
+3. 로또 번호 중복 확인 기능
+    - 중복 발견 시 예외 (IllegalArgumentException) 리턴
+4. 사용자 입력 UI 기능
+5. 결과 출력 UI 기능
 6. 각 로또에 대한 등수 파악 기능
 7. 전체 로또에 대한 결과 기능
 8. 결과에 대한 수익률 계산 기능
 9. 당첨 번호와 보너스 번호 중복 여부 확인 기능
-   - 불만족 시 예외(IllegalArgumentException) 리턴
+   - 불만족 시 예외 (IllegalArgumentException) 리턴
 10. 로또 구입 금액 유효성 검사 기능
-    - 1,000원 단위로 나누어 떨어지지 않을 시 예외(IllegalArgumentException) 리턴
+    - 1,000원 단위로 나누어 떨어지지 않을 시 예외 (IllegalArgumentException) 리턴
 11. 당첨 번호 6개끼리 중복 여부 검사 기능
-    - 중복 발견 시 예외(IllegalArgumentException) 리턴
+    - 중복 발견 시 예외 (IllegalArgumentException) 리턴
 12. 금액에 따른 로또 수 리턴 기능
+13. 각 당첨 번호 및 보너스 번호의 숫자 범위 확인 기능
+    - 1 ~ 45의 범위를 벗어난 숫자 발견 시 예외 (IllegalArgumentException) 리턴

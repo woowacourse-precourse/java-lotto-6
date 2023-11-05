@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum Result {
+public enum LottoResult {
     matches3("3개 일치 (5,000원)", 5000, 0),
     matches4("4개 일치 (50,000원)", 50000, 0),
     matches5("5개 일치 (1,500,000원)", 1500000,  0),
@@ -12,7 +12,7 @@ public enum Result {
     private String matchesN;
     private int amount, numOfMatches;
 
-    private Result(String matchesN, int amount, int numOfMatches) {
+    private LottoResult(String matchesN, int amount, int numOfMatches) {
         this.matchesN = matchesN;
         this.amount = amount;
         this.numOfMatches = numOfMatches;

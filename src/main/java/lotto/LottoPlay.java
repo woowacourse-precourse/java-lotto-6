@@ -14,7 +14,7 @@ public class LottoPlay implements Play{
     public void start() {
         int purchaseQuantity = getPurchaseQuantity();
         List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
-        readWinningNumber();
+        Lotto winningLotto = readWinningNumber();
         readBonusNumber();
         printWinningStat();
         printYieldRate();
@@ -54,8 +54,21 @@ public class LottoPlay implements Play{
         return myLotto;
     }
 
-    private void readWinningNumber() {
+    private Lotto readWinningNumber() {
+        Lotto lotto = null;
 
+        System.out.println();
+        System.out.print(view.getAskWinningNumber());
+
+        do {
+            try {
+                lotto = new Lotto(controller.readWinningNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.INVALID_WINNING_NUMBER.getErrorMessage());
+            }
+        } while (lotto == null);
+
+        return lotto;
     }
 
     private void readBonusNumber() {

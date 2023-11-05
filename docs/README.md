@@ -5,23 +5,64 @@
 
 1. 금액을 준비한다.
 2. 금액에 해당하는 만큼 로또를 발행(구입)한다
-   * 랜덤으로 중복없는 6개의 숫자를 추출
 3. 당첨 번호를 사용자로부터 입력받는다.
-   * 랜덤으로 중복없는 6개의 숫자와 보너스 번호 1개 추출
 4. 당첨 등수 확인
-   - 1등: 6개 번호 일치 / 2,000,000,000원
-   - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-   - 3등: 5개 번호 일치 / 1,500,000원
-   - 4등: 4개 번호 일치 / 50,000원
-   - 5등: 3개 번호 일치 / 5,000원
-   - 1등부터 5등까지 확인
 5. 당첨 내역을 출력한다.
 6. 수익률을 계산하여 출력한다.
 7. 에러 상황에서는 에러 문구를 출력한다.
 
 ---
 ## ▶ 기능 목록
+### 로또 구매 기능
+* [ ] 금액 입력 기능
+  *  (유효성 검사)
+* [ ] 금액에 따라 로또 발급 기능
+  * 로또 한 개 발급 기능
+    * 중복 없는 랜덤 숫자 생성 기능
+      * (유효성 검사)
+    * 랜덤 숫자 6개로 로또 리스트 생성 기능
+      * (유효성 검사)
+      * 리스트를 오름차순으로 정렬하는 기능
+### 위닝콤비네이션(당첨 번호 및 보너스 번호) 입력 기능
+* [ ] 당첨 번호 입력 기능
+  * 6개의 숫자를 입력
+  * 입력된 문자열을 숫자로 이루어진 리스트로 변환
+  * (유효성 검사)
+* [ ] 보너스 번호 입력 기능
+  * 보너스 번호 입력
+  * (유효성 검사)
+### 통계 기능
+* [ ] 당첨된 로또가 등수에 따라 몇 개인지 측정하는 기능
+  * 구매한 각 로또마다 위닝콤비네이션과 비교하여 등수 측정
+  * 당첨 기준에 따라 각 등수별 개수 누적
+* [ ] 각 등수별 개수를 리스트 형태로 반환하는 기능
+### 수익률 기능
+* [ ] 구매한 금액과 당첨된 금액을 통해 수익률 계산하는 기능
+* [ ] 소수점 둘째자리에서 반올림하여 수익률을 저장 및 반환하는 기능
+### 입출력 기능
+* [ ] 실행 결과를 사용자에게 출력하는 기능
+  * 정해져있는 문구 출력하는 기능
+  * 뽑은 모든 로또들을 출력하는 기능
+  * 통계 및 수익률을 출력하는 기능
+* [ ] 요청 질문 출력 및 사용자가 입력받고 기능
+  * 정해져있는 요청 질문을 출력한다.
+  * 금액을 입력 받는다.
+  * 당첨 번호를 입력 받는다
+  * 보너스 번호를 입력 받는다.
+  * (입력 유효성 검사)
+### 유효성 검사 기능
+* [ ] 입력이 알맞지 않을 경우 예외처리하는 기능
+  * [ ] 사용자 입력 부분 예외처리
+    * 숫자가 아닌 경우 예외 처리
+  * [ ] 시스템 규칙 부분 예외처리
+    * 금액 부분
+      * 숫자가 1000 미만일 경우
+    * 위닝콤비네이션(당첨 번호+보너스 번호) 입력 부분
+      * 숫자가 6개가 아닐 경우(당첨 번호 경우에만)
+      * 숫자의 범위가 1~45를 벗어날 경우
+      * 중복일 경우
 
+## ▶ 클래스 목록
 ### LottoSystemController
 * 로또 시스템을 위와 같은 순서로 진행한다.
 ### OutputView
@@ -30,7 +71,7 @@
 * 시스템이 실행되는 동안 사용자로부터 입력 값을 받음
 ### LottoPurchaseManager
 * 로또를 사용자가 입력한 금액에 따라 로또를 뽑는다.
-  * **MoneyInputManager**
+  * **BudgetInputManager**
     * 사용자의 로또 구입을 위해 금액을 입력받는다.
     * 유효성 검사
       * 최소 1000원 이상
@@ -69,10 +110,10 @@
     * 개수 확인
 
 ## ▶ 도메인 목록
-### BudgetMoney
+### Budget
 * 구매할 금액
 * (유효성 검사)
-### LottoTicket
+### LottoTickets
 * Lotto들로 구성되어있다.
 * 구매한 로또만큼 가지고 있다.
 ### Lotto
@@ -86,40 +127,25 @@
     * 6개의 당첨 숫자
     * 1개의 보너스 숫자
 * (유효성 검사)
-### Message
-* **ViewMessage**
-    * **ProcessMessage**
-        * 로또 시스템이 시행되는 동안 사용자에게 보여줄 메세지
-    * **StatisticsMessage**
-        * 당첨 통계를 보여줄 메세지
-  * **ExceptionMessage**
-    * [Error]로 시작해야한다.
-    * **MoneyInputErrorMessage**
-      * LESS_THAN_1000
-      * NOT_NUMBER
-    * **WinningNumbersInputErrorMessage**
-      * NOT_NUMBER
-      * OUT_OF_RANGE_NUMBER
-      * DUPLICATED_NUMBER
-    * **LottoGenerateErrorMessage**
-      * DUPLICATED_NUMBER
+### WinningCombination
+* WinningNumbers + LottoNumber
 
 ---
-## ▶ 계층 개요
-### Message
-* **ViewMessage**
-    * **ProcessMessage**
-    * **StatisticsMessage**
-    * **ExceptionMessage**
-        * **MoneyInputErrorMessage**
-            * LESS_THAN_1000
-            * NOT_NUMBER
-        * **WinningNumbersInputErrorMessage**
-            * NOT_NUMBER
-            * OUT_OF_RANGE_NUMBER
-            * DUPLICATED_NUMBER
-        * **LottoGenerateErrorMessage**
-            * DUPLICATED_NUMBER
+## ▶ 패키지 개요
+### view
+* **InputView**
+  * InputBudget
+  * InputWinningNumbers
+  * InputBonusNumber
+* **OutputView**
+* **message**
+  * **ViewMessage**
+      * **ProcessMessage**
+      * **ResultMessage**
+  * **ExceptionMessage**
+      * **MoneyInputErrorMessage**
+      * **WinningNumbersInputErrorMessage**
+      * **LottoGenerateErrorMessage**
 
 ---
 ## ▶ 시스템 기능 흐름

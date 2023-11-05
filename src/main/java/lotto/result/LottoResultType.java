@@ -1,4 +1,4 @@
-package lotto;
+package lotto.result;
 
 import java.text.DecimalFormat;
 
@@ -13,6 +13,10 @@ public enum LottoResultType {
     private Long price;
     private int count = 0;
     private boolean useBonus = false;
+
+    public Long getPrice() {
+        return price;
+    }
 
     public int getCount() {
         return count;

@@ -40,10 +40,23 @@ public class LottoController {
             List<Integer>item = makeNumber(); // 생성
             Collections.sort(item); // 정렬
             lottos.add(new Lotto(item)); // 추가
+        }
+    }
+
+    public void showLottos(){
+        for(int i=0;i<maxRound;i++){
             lottos.get(i).printNumbers(); // 출력
         }
     }
 
+    public double showLottoReward(){
+        for(int i=0;i<maxRound;i++)
+        {
+            checkNumber(i);
+        }
+        money.printReward();
+        return money.getRRate();
+    }
     private List<Integer> makeNumber(){
         List<Integer> item = new ArrayList<Integer>();
         while(item.size()<6){
@@ -53,5 +66,23 @@ public class LottoController {
             }
         }
         return item;
+    }
+
+    public void checkNumber(int index){
+        List<Integer> item = lottos.get(index).getNumbers();
+        double count = 0;
+        for(int i=0;i<item.size();i++){
+            if(lotto.getNumbers().contains(item.get(i))){
+                count++;
+            }
+        }
+        if(count==5){
+           count+=checkBonus(item);
+        }
+        money.addReward(count);
+    }
+    private double checkBonus(List<Integer> item){
+        if(item.contains(bonus)) return 0.5;
+        return 0;
     }
 }

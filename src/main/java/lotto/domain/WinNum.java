@@ -11,11 +11,11 @@ import static lotto.enums.LottoEnum.*;
 
 public class WinNum {
 
-    private List<Integer> winNum;
-    private int bonusNum;
+    private final List<Integer> winNum;
+    private final int bonusNum;
 
     public WinNum(List<Integer> winNum, int bonusNum) {
-        this.winNum = winNum.stream().collect(Collectors.toUnmodifiableList());
+        this.winNum = winNum.stream().collect(Collectors.toList());
         this.bonusNum = bonusNum;
     }
 

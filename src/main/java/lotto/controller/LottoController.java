@@ -43,7 +43,7 @@ public class LottoController {
 
     private Lottos purchaseLotto(Money money) {
         Lottos lottos = store.purchase(money);
-        List<Lotto> purchasedLottos = lottos.getLottosDTO();
+        List<Lotto> purchasedLottos = lottos.getLottos();
         ui.printPurchasedLottos(purchasedLottos);
         return lottos;
     }
@@ -55,7 +55,7 @@ public class LottoController {
     }
 
     private LottoResults computeResult(Lottos lottos, LottoAnswer answer) {
-        lottos.getLottosDTO()
+        lottos.getLottos()
                 .stream()
                 .map(answer::compareLotto)
                 .map(factory::getLottoResult)

@@ -58,13 +58,12 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-
     public LottoCompareResult compareLotto(Lotto lotto) {
-        int collectNumber = collectNumber(lotto);
+        int collectNumber = countCollectNumber(lotto);
         return new LottoCompareResult(collectNumber, false);
     }
 
-    private int collectNumber(Lotto lotto) {
+    private int countCollectNumber(Lotto lotto) {
         return (int) lotto.numbers
                 .stream()
                 .filter(this.numbers::contains)

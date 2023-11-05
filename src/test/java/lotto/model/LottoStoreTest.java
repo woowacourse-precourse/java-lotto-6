@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.Money;
+import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.lotto.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +28,7 @@ class LottoStoreTest {
         Lottos lottos = lottoStore.purchase(new Money(money));
 
         //then
-        Assertions.assertThat(lottos.getLottosDTO().size())
+        Assertions.assertThat(lottos.getLottos().size())
                 .isEqualTo(money / 1000);
     }
 

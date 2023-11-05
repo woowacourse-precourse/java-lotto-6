@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class LottoResults {
-    Map<LottoResult, Integer> map;
+    private final Map<LottoResult, Integer> map;
 
     public LottoResults() {
         map = new HashMap<>();

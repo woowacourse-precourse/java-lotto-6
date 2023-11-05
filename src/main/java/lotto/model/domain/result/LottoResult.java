@@ -17,8 +17,8 @@ public enum LottoResult {
     private static final String PRICE_FORMAT = " (%s원)";
     private static final DecimalFormat moneyFormat = new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
 
-    private int prize;
-    private int collectCount;
+    private final int prize;
+    private final int collectCount;
 
     LottoResult(int collectCount, int prize) {
         this.collectCount = collectCount;

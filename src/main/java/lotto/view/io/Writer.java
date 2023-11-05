@@ -7,7 +7,7 @@ public class Writer {
     private Writer() {
     }
 
-    public static void printEmtpyLine() {
+    public static void printEmptyLine() {
         System.out.println();
     }
 

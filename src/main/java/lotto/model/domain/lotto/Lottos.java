@@ -10,7 +10,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottosDTO() {
+    public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
 }

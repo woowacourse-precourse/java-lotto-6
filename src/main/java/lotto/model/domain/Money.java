@@ -4,7 +4,7 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 
 public class Money {
-    int money;
+    private int money;
 
     public Money(int money) {
         validateMoneyUnit(money);
@@ -13,7 +13,7 @@ public class Money {
     }
 
     private static void validateMoneyUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % GameConst.MONEY_UNIT != 0) {
             throw LottoGameException.WRONG_MONEY_UNIT.makeException();
         }
     }

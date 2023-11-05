@@ -3,8 +3,8 @@ package lotto.model.domain.result;
 import java.util.Objects;
 
 public class LottoCompareResult {
-    private int collectCount;
-    private boolean isCollectBonus;
+    private final int collectCount;
+    private final boolean isCollectBonus;
 
     public LottoCompareResult(int collectCount, boolean isCollectBonus) {
         this.collectCount = collectCount;

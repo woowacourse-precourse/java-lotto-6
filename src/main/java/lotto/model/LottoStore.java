@@ -19,8 +19,7 @@ public class LottoStore {
         List<Lotto> lottos = new ArrayList<>();
         while (money.possibleToPurchaseLotto()) {
             money.purchaseLotto();
-            Lotto generatedLotto = lottoGenerator.generate();
-            lottos.add(generatedLotto);
+            lottos.add(lottoGenerator.generate());
         }
         return new Lottos(lottos);
     }

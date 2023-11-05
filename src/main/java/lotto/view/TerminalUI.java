@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -28,14 +29,14 @@ public class TerminalUI implements LottoGameUI {
 
     @Override
     public List<Integer> getAnswerNumber() {
-        Writer.printEmtpyLine();
+        Writer.printEmptyLine();
         Writer.printMessage(PrintConst.GUIDE_LOTTO_NUMBERS);
         return Reader.getAnswerNumbers();
     }
 
     @Override
     public Integer getBonusNumber() {
-        Writer.printEmtpyLine();
+        Writer.printEmptyLine();
         Writer.printMessage(PrintConst.GUIDE_BONUS_NUMBERS);
         return Reader.getBonusNumber();
     }
@@ -52,7 +53,9 @@ public class TerminalUI implements LottoGameUI {
 
     @Override
     public void printRevenue(Revenue revenue) {
-        Writer.printMessage(revenue.toString());
+        Writer.printUsingFormat(PrintConst.FORMAT_REVENUE,
+                new DecimalFormat(PrintConst.DECIMAL_FORMAT_REVENUE)
+                        .format(revenue.getRevenue()));
     }
 
 

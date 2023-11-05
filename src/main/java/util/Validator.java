@@ -87,7 +87,7 @@ public class Validator {
     private void checkDuplicate(String input) {
         List<String> userlottoList = parser.parseLottoNumber(input);
         for (int i = 0; i < 6; i++) {
-            having_lotto[Integer.parseInt(userlottoList.get(i))]++;
+            having_lotto[i] = Integer.parseInt(userlottoList.get(i));
             compareDuplicate(i, userlottoList);
         }
     }

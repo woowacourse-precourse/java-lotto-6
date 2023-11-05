@@ -27,6 +27,7 @@ public class Controller {
 
     List<List<Integer>> lottosList = new ArrayList<>();
     List<Integer> userlottoList;
+    List<Integer> lottoList = new ArrayList<>();
 
     private static int bonus = 0;
 
@@ -41,40 +42,34 @@ public class Controller {
     }
 
     private void playLotto() {
-        List<Integer> lottoList = new ArrayList<>();
-        userlottoList = new ArrayList<>();
 
         lottosList.clear();
 
         for (int i = 0; i < moneyRepository.getTrial(); i++) {
-            for (int j = 0; j < 6; j++) {
-                lottoList = lottoService.getProgramRandomNumber();
-            }
-            OutputView.printRandomLotto(lottoList);
+            lottosList.add(saveLotto());
         }
-        lottosList.add(lottoList);
 
         lottoService.lottoSave(lottosList);
         saveLottoNumbers(parser.parseLottoNumberToInt(getUserLottoNumberbyInput()));
         saveBonusNumber(parser.parseNumber(getUserBonusNumberbyInput()));
 
+        OutputView.printLottoResult();
         play();
     }
 
     private void play() {
-
-        OutputView.printLottoResult();
 
         int[] correct = new int[8];
         int check = 0;
 
         for(int k = 0; k < 6; k++) {
             int current_lotto = userlottoList.get(k);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < moneyRepository.getTrial(); i++) {
                 for (int j = 0; j < 6; j++) {
                     if(current_lotto == lottosList.get(i).get(j)) {
                         check++;
                     }
+
                     if (check == 5) {
                         if (bonus == lottosList.get(i).get(j)) {
                             check = 7;
@@ -98,6 +93,7 @@ public class Controller {
         for (Integer lottoNumber : lottoNumbers) {
             lottoService.save(new Lottos(lottoNumber));
         }
+        userlottoList = lottoNumbers;
     }
 
     private void saveBonusNumber(Integer bonus_number) {
@@ -157,4 +153,15 @@ public class Controller {
         }
     }
 
+    private List<Integer> saveLotto() {
+        for (int j = 0; j < 6; j++) {
+            lottoList = lottoService.getProgramRandomNumber();
+        }
+        OutputView.printRandomLotto(lottoList);
+        return lottoList;
+    }
+
+    private List<Lottos> getUserInputLottoList() {
+        return lottoRepository.findAll();
+    }
 }

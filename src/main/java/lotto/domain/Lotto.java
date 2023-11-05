@@ -14,8 +14,8 @@ public class Lotto {
         return this.numbers;
     }
 
-    public int compareLottoWithWinningNumber(LottoNumbers winningNumber) {
-        List<Integer> numbers = winningNumber.getLottoNumbers();
+    public int compareLottoWithWinningNumber(Lotto winningNumber) {
+        List<Integer> numbers = winningNumber.getNumbers();
         return (int) numbers.stream().filter(this::contains).count();
     }
 
@@ -24,8 +24,40 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateDuplicated(numbers);
+        validateRange(numbers);
+        validateTotalNumbers(numbers);
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        if (getDistintCount(numbers) != numbers.size()) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.DUPLICATED_NUMBER.getValue()
+            );
         }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        boolean isValidNumberRange = numbers.stream()
+                .allMatch(number -> number >= LottoNumberRange.MIN.getValue() &&
+                        number <= LottoNumberRange.MAX.getValue());
+
+        if (!isValidNumberRange) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_NUMBER_RANGE.getValue()
+            );
+        }
+    }
+
+    private void validateTotalNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.TOTAL_NUMBER.getValue()
+            );
+        }
+    }
+
+    private long getDistintCount(List<Integer> numbers) {
+        return numbers.stream().distinct().count();
     }
 }

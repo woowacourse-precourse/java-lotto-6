@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Amount;
-import lotto.domain.LottoNumbers;
+import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
@@ -34,9 +34,9 @@ public class LottoController {
         }
     }
 
-    private LottoNumbers getLottoNumbers() {
+    private Lotto getLottoNumbers() {
         try {
-            return new LottoNumbers(InputView.inputWinningNumbers());
+            return new Lotto(InputView.inputWinningNumber());
 
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
@@ -55,9 +55,9 @@ public class LottoController {
     }
 
     private WinningNumbers generateWinningNumbers() {
-        LottoNumbers lottoNumbers = getLottoNumbers();
+        Lotto winningNumber = getLottoNumbers();
         int bonusNumber = getBonusNumber();
-        return new WinningNumbers(lottoNumbers, bonusNumber);
+        return new WinningNumbers(winningNumber, bonusNumber);
     }
 
     private WinningStatistic generateWinningStatistic(List<Rank> ranks) {

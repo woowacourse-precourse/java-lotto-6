@@ -8,7 +8,7 @@ public class LottoManager {
     private static final LottoManager lottoManager = new LottoManager();
     private static final int LOTTO_PRICE = 1000;
 
-    private LottoManager() {
+    public LottoManager() {
     }
 
     public LottoManager getInstance() {
@@ -26,4 +26,12 @@ public class LottoManager {
         return lottos;
     }
 
+    public LottoRank checkWinning(List<Integer> userNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) userNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean matchBonus = userNumbers.contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
 }

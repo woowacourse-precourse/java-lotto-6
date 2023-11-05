@@ -17,7 +17,7 @@ public class LottoManagerTest {
 
     @BeforeEach
     void setUp() {
-        lottoManager = lottoManager.getInstance();
+        lottoManager = new LottoManager();
         winningNumbers = Arrays.asList(3, 12, 21, 25, 38, 42);
         bonusNumber = 45;
     }

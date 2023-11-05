@@ -4,18 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.adapter.IoAdapter;
 import lotto.domain.Statistics;
-import lotto.vo.Lotto;
 
 public class StandardIoAdapter implements IoAdapter {
 
     @Override
     public String inputStream() {
         return Console.readLine().strip();
-    }
-
-    @Override
-    public void printStatistics(Statistics statistics) {
-
     }
 
     @Override

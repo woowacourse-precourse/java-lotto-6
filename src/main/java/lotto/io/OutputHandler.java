@@ -4,6 +4,7 @@ package lotto.io;
 import lotto.domain.Award;
 import lotto.system.Constant;
 import lotto.system.IOMessage;
+import lotto.util.Util;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,6 +43,7 @@ public final class OutputHandler {
         System.out.println();
     }
     public static void printYield(float yield){
-        printMessage("총 수익률은 "+yield+"%입니다.");
+        String formattedYield = Util.makeFloatFormattedYield(yield, Constant.YIELD_PRECISION);
+        printMessage("총 수익률은 "+formattedYield+"%입니다.");
     }
 }

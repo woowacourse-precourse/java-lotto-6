@@ -201,4 +201,20 @@ class LottoTest {
         assertThat(controller.moneyForTickets(100)).isEqualTo(100000);
         assertThat(controller.moneyForTickets(2147483647)).isEqualTo(2147483647000L);
     }
+
+    @DisplayName("로또 번호 중 당첨 번호와 같은 숫자의 갯수를 계산한다.")
+    @Test
+    void compareTicket() {
+        Control controller = new Control();
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(SameNumber.SAME6);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(2, 3, 4, 5, 6, 7)))).isEqualTo(SameNumber.SAME5);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(3, 4, 5, 6, 7, 8)))).isEqualTo(SameNumber.SAME4);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(4, 5, 6, 7, 8, 9)))).isEqualTo(SameNumber.SAME3);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(5, 6, 7, 8, 9, 10)))).isEqualTo(SameNumber.SAME0);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(6, 7, 8, 9, 10, 11))))
+                .isEqualTo(SameNumber.SAME0);
+        assertThat(controller.compareTicket(winner, new Lotto(List.of(7, 8, 9, 10, 11, 12))))
+                .isEqualTo(SameNumber.SAME0);
+    }
 }

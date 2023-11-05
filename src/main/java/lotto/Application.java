@@ -20,7 +20,7 @@ public class Application {
             purchasePieces = new Purchase(purchasingAmount).pieces();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            purchaseCount(purchasingAmount);
+            purchaseCount(inputView.purchaseAmount());
         }
     }
 
@@ -35,5 +35,6 @@ public class Application {
         purchaseCount(inputView.purchaseAmount());
         outputView.purchasePieces(purchasePieces);
         randomRepeat();
+        inputView.winNum();
     }
 }

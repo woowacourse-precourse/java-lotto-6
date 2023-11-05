@@ -20,6 +20,9 @@ public enum Prize {
         this.isBonusNumberMatched = isBonusNumberMatched;
     }
 
+    public int getPrizeMoney() {
+        return money;
+    }
 
     public static Prize determineRank(int matchedCount, boolean isBonusNumberMatched) {
         return Arrays.stream(Prize.values())

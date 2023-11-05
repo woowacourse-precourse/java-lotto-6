@@ -25,13 +25,21 @@ public class Prizes {
     }
 
     public void increasePrizeAmount(Prize prize) {
-        int prizeAmount = prizes.getOrDefault(prize, 0);
+        int prizeAmount = getPrizeAmount(prize);
 
         prizes.put(prize, ++prizeAmount);
     }
 
-    public int calculateTotalPrizeForRank() {
-        return 0;
+    public int calculateTotalPrizeForRank(Prize prize) {
+        int prizeMoney = prize.getPrizeMoney();
+        int prizeAmount = getPrizeAmount(prize);
+        int totalPrizeForRank = prizeMoney * prizeAmount;
+
+        return totalPrizeForRank;
+    }
+
+    public int getPrizeAmount(Prize prize) {
+        return prizes.getOrDefault(prize, 0);
     }
 
     public int calculateTotalPrize() {

@@ -36,49 +36,40 @@ public class Play {
     }
 
     public static int createPrice() {
-        int price = 0;
         while(true) {
             messageAboutPrice();
             String tmpPrice = inputPrice();
             try {
-                price = convertPrice(tmpPrice);
-                break;
+                return convertPrice(tmpPrice);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }
         }
-        return price;
     }
 
     public static List<Integer> createWinningNumber() {
-        List<Integer> winningNumbers = new ArrayList<>();
         while(true) {
             try {
                 messageAboutUserLottoNumber();
                 String tmpWinningNumbers = inputWinningNumbers();
-                winningNumbers = checkExceptionWinningNumber(tmpWinningNumbers);
-                break;
+                return checkExceptionWinningNumber(tmpWinningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }
         }
-        System.out.println();
-        return winningNumbers;
     }
 
     public static int createBonusNumber(List<Integer> numbers) {
-        int bonus = 0;
+        System.out.println();
         while(true) {
             try {
                 messageAboutUserBonusNumber();
                 String tmpBonusNumber = inputBonusNumber();
-                bonus = checkExceptionBonus(numbers,tmpBonusNumber);
-                break;
+                return checkExceptionBonus(numbers,tmpBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]");
             }
         }
-        return bonus;
     }
 
     public static List<Integer> checkExceptionWinningNumber(String tmpWinningNumbers) throws IllegalArgumentException {

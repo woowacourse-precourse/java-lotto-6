@@ -2,13 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BuyPrice;
+import lotto.domain.UserNumber;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        BuyPrice buyPrice = new BuyPrice();
-        String input = Console.readLine();
-        int price = Integer.parseInt(input);
-        price = BuyPrice.buylotto(price);
-        System.out.println(price);
+        UserNumber userNumber = new UserNumber();
+        List<Integer> a = new ArrayList<>();
+        a = userNumber.lottonumber(a);
+        System.out.println(a);
     }
 }

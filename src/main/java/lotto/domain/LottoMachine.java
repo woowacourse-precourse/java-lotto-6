@@ -114,7 +114,7 @@ public class LottoMachine {
                 );
     }
 
-    public double computedYieldRate(int purchaseAmount, List<LottoRank> lottoRanks) {
+    public double computedYieldRate(int purchaseAmount, Map<LottoRank, Integer> lottoRanks) {
         int totalPrizeMoney = getTotalPrizeMoney(lottoRanks);
         double yieldRate = getYieldRate(purchaseAmount, totalPrizeMoney);
         return Math.round(yieldRate * ROUNDING_VALUE) / ROUNDING_DOUBLE_VALUE;
@@ -124,9 +124,14 @@ public class LottoMachine {
         return PERCENTAGE * totalPrizeMoney / purchaseAmount;
     }
 
-    private int getTotalPrizeMoney(List<LottoRank> lottoRanks) {
-        return lottoRanks.stream()
-                .mapToInt(LottoRank::getPrizeMoney)
-                .sum();
+    private int getTotalPrizeMoney(Map<LottoRank, Integer> lottoRanks) {
+        int totalPrizeMoney = 0;
+        for(LottoRank lottoRank : LottoRank.values()) {
+            if(lottoRanks.containsKey(lottoRank)) {
+                totalPrizeMoney += lottoRank.getPrizeMoney() * lottoRanks.get(lottoRank);
+            }
+        }
+
+        return totalPrizeMoney;
     }
 }

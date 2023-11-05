@@ -6,15 +6,22 @@ import lotto.domain.validation.MemberValidationHandler;
 
 public class Member {
     private int lottoCount;
+    private int lottoPurchaseAmount;
 
-    public int buyLotto(int lottoPurchaseAmount) {
+    public Member buyLotto(String lottoPurchaseAmount) {
         validationLottoPurchaseAmount(lottoPurchaseAmount);
-        return lottoCount = computedLottoCount(lottoPurchaseAmount);
+        this.lottoPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
+        this.lottoCount = computedLottoCount(this.lottoPurchaseAmount);
+
+        return this;
     }
 
-    private void validationLottoPurchaseAmount(int lottoPurchaseAmount) {
-        MemberValidationHandler.validationLottoPurchaseAmountUnit(lottoPurchaseAmount);
-        MemberValidationHandler.validationRangeLottoCount(lottoPurchaseAmount);
+    private void validationLottoPurchaseAmount(String lottoPurchaseAmount) {
+        MemberValidationHandler.validationHasText(lottoPurchaseAmount);
+        MemberValidationHandler.validationNumeric(lottoPurchaseAmount);
+        int convertLottoPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
+        MemberValidationHandler.validationLottoPurchaseAmountUnit(convertLottoPurchaseAmount);
+        MemberValidationHandler.validationRangeLottoCount(convertLottoPurchaseAmount);
     }
 
     private int computedLottoCount(int lottoPurchaseAmount) {
@@ -23,5 +30,9 @@ public class Member {
 
     public int getLottoCount() {
         return lottoCount;
+    }
+
+    public int getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
     }
 }

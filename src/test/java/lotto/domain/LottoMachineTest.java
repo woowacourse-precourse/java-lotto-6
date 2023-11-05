@@ -132,7 +132,7 @@ class LottoMachineTest {
     void computedYieldRate() {
         // given
         int purchaseAmount = 8_000;
-        List<LottoRank> lottoRanks = List.of(LottoRank.FIFTH_PRIZE);
+        Map<LottoRank, Integer> lottoRanks = Map.of(LottoRank.FIFTH_PRIZE, 1);
 
         // when
         double yieldRate = lottoMachine.computedYieldRate(purchaseAmount, lottoRanks);

@@ -116,4 +116,70 @@ class LottoTest {
         assertThatThrownBy(() -> Validation.inputMoneyExceptionCheck("2147483647001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void inputBonusByDuplicatedNumber() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "1",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 빈 입력이면 예외가 발생한다.")
+    @Test
+    void inputBonusByEmpty() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void inputBonusByNotANumber() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "~",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 음수면 예외가 발생한다.")
+    @Test
+    void inputBonusByNegativeNumber() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "-7",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 소수면 예외가 발생한다.")
+    @Test
+    void inputBonusByFloatNumber() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "7.0",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호의 범위가 1~45가 아니면 예외가 발생한다.")
+    @Test
+    void inputBonusByOverRange() {
+        assertThatThrownBy(() -> {
+            Validation.inputBonusNumberExceptionCheck(
+                    "46",
+                    new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

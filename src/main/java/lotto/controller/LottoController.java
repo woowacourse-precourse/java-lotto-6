@@ -23,7 +23,8 @@ public class LottoController {
 
     public void start() {
         LottosDto lottosDto = purchaseLotto();
-        drawLotto(lottosDto);
+        DrawingResultDto drawingResultDto = drawLotto(lottosDto);
+        profitRate(lottosDto, drawingResultDto);
     }
 
     private LottosDto purchaseLotto() {
@@ -53,5 +54,10 @@ public class LottoController {
         if (isDuplicate) {
             throw new IllegalArgumentException(BonusNumberValidator.DUPLICATE_NUMBER_MESSAGE);
         }
+    }
+
+    public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
+        double profitRate = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+        outputView.printProfitRate(profitRate);
     }
 }

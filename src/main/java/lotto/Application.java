@@ -7,5 +7,6 @@ public class Application {
         // TODO: 프로그램 구현
         UnifiedController unifiedController = new UnifiedController();
         unifiedController.inputAndStoreMoney();
+        unifiedController.printLottoTicketsInfo();
     }
 }

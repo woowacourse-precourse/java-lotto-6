@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public final class LottoMatcher {
 
     private final WinningNumbers winningNumbers;
@@ -11,18 +8,17 @@ public final class LottoMatcher {
         this.winningNumbers = winningNumbers;
     }
 
-    public List<Integer> countMatchedNumbersForLottoTickets(List<Lotto> lottoTickets) {
-        List<Integer> matchedCounts = new ArrayList<>();
-        for (Lotto lotto : lottoTickets) {
-            matchedCounts.add(countMatchedNumbers(lotto));
-        }
+    public int countMatchesForLotto(Lotto lotto) {
+        return countMatchedNumbers(lotto);
+    }
 
-        return matchedCounts;
+    public boolean hasMatchingBonusNumber(Lotto lotto) {
+        return lotto.numbers().contains(winningNumbers.bonusNumber());
     }
 
     private int countMatchedNumbers(Lotto lotto) {
         return (int) winningNumbers.drawnNumbers().stream()
-            .filter(lotto.getNumbers()::contains)
+            .filter(lotto.numbers()::contains)
             .count();
     }
 }

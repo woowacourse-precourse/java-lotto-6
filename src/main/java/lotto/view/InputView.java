@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.InvalidNumberFormatException;
+import lotto.validation.ValidateLottoNumberFormat;
 import lotto.validation.ValidateNumberFormat;
 import lotto.validation.ValidateThousandWonFormat;
 
@@ -41,5 +42,10 @@ public class InputView {
     public void inputWinningNumber() {
         String inputWinnigNumber;
         inputWinnigNumber = Console.readLine();
+        validateInputWinningNumber(inputWinnigNumber);
+    }
+
+    private void validateInputWinningNumber(String inputWinningNumber) {
+        ValidateLottoNumberFormat.validate(inputWinningNumber);
     }
 }

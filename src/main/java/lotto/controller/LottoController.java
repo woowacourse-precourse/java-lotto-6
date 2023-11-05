@@ -22,5 +22,6 @@ public class LottoController {
         lottoGame.buy(quantity);
         outputView.readLottoNumbers(lottoGame.getLottos());
         inputView.readInputWinningNumberMessage();
+        inputView.inputWinningNumber();
     }
 }

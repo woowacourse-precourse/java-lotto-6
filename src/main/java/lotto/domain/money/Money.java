@@ -1,5 +1,6 @@
 package lotto.domain.money;
 
+import java.util.Objects;
 import lotto.domain.validator.MoneyValidator;
 
 public class Money {
@@ -34,5 +35,21 @@ public class Money {
 
     public boolean isEnough() {
         return money >= LOTTO_PRICE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Money money1)) {
+            return false;
+        }
+        return money == money1.money;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(money);
     }
 }

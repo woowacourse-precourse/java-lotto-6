@@ -52,11 +52,28 @@ public class GameController {
     }
 
     private void createWinnerLotto() {
+        List<Integer> winnerNumbers = createWinnerNumbers();
+        Integer bonusNumber = createBonusNumber();
+        winnerLotto = new WinnerLotto(winnerNumbers, bonusNumber);
+    }
+
+    private List<Integer> createWinnerNumbers() {
         try {
-            winnerLotto = inputView.inputWinnerLotto();
+            List<Integer> winnerNumbers = inputView.inputWinnerNumbers();
+            return winnerNumbers;
         } catch (Exception e) {
             outputView.printErrorMessage(e);
-            createWinnerLotto();
+            return createWinnerNumbers();
+        }
+    }
+
+    private Integer createBonusNumber() {
+        try {
+            Integer bonusNumber = inputView.inputBonusNumber();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createBonusNumber();
         }
     }
 

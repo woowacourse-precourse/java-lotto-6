@@ -2,6 +2,8 @@ package lotto.controller;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
+import lotto.domain.dto.LottoBundleDto;
+import lotto.domain.dto.LottoResultsDto;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoBundle;
@@ -35,21 +37,23 @@ public class LottoController {
         Player player = makePlayer();
         player = lottoPurchaseService.purchaseLotto(player, RandomLottoGenerator::generateRandomLotto);
 
-        printPurchaseLotto(lottoPurchaseService);
+        LottoBundleDto lottoBundleDto = lottoPurchaseService.makeLottoBundleDto();
+        printPurchaseLotto(lottoBundleDto);
 
         WinLotto winLotto = makeWinLotto();
+        lottoResultsService.updateLottoResultRepository(lottoBundleDto,winLotto);
+        LottoResultsDto lottoResultsDto = lottoResultsService.makeLottoResultsDto();
 
-        checkAndPrintWinning(lottoPurchaseService, lottoResultsService, winLotto);
-
-        checkAndPrintProfit(player, lottoResultsService);
+        printWinning(lottoResultsDto);
+        checkAndPrintProfit(player, lottoResultsDto);
     }
 
     private Player makePlayer() {
         return repeat(() -> new Player(inputView.inputPurchaseMoney()), modelAndViewConverter);
     }
 
-    private void printPurchaseLotto(LottoPurchaseService lottoPurchaseService) {
-        modelAndViewConverter.addComponent(lottoPurchaseService.makeLottoBundleDto());
+    private void printPurchaseLotto(LottoBundleDto lottoBundleDto) {
+        modelAndViewConverter.addComponent(lottoBundleDto);
         outputView.printTotalNumberOfLotto(modelAndViewConverter);
         outputView.printTotalLotto(modelAndViewConverter);
     }
@@ -72,16 +76,13 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void checkAndPrintWinning(LottoPurchaseService lottoPurchaseService,
-                                      LottoResultsService lottoResultsService,
-                                      WinLotto winLotto) {
-        lottoResultsService.updateLottoResultRepository(lottoPurchaseService, winLotto);
-        modelAndViewConverter.addComponent(lottoResultsService.makeLottoResultsDto());
+    private void printWinning(LottoResultsDto lottoResultsDto) {
+        modelAndViewConverter.addComponent(lottoResultsDto);
         outputView.printLottoResultsData(modelAndViewConverter);
     }
 
-    private void checkAndPrintProfit(Player player, LottoResultsService lottoResultsService) {
-        Profit profit = player.getProfit(lottoResultsService.makeLottoResultsDto());
+    private void checkAndPrintProfit(Player player, LottoResultsDto lottoResultsDto){
+        Profit profit = player.getProfit(lottoResultsDto);
         modelAndViewConverter.addComponent(profit);
         outputView.printProfit(modelAndViewConverter);
     }

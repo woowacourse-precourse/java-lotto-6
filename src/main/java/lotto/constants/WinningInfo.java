@@ -24,8 +24,8 @@ public enum WinningInfo {
 
     public static Optional<WinningInfo> of(int numberOfMatch, boolean isBonusWinning) {
         return Arrays.stream(WinningInfo.values())
-                .filter(prizeOption -> prizeOption.getNumberOfMatch() == numberOfMatch)
-                .filter(prizeOption -> prizeOption.checkBonusWinning(isBonusWinning))
+                .filter(winningInfo -> winningInfo.getNumberOfMatch() == numberOfMatch)
+                .filter(winningInfo -> winningInfo.checkBonusWinning(isBonusWinning))
                 .findFirst();
     }
 

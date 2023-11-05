@@ -4,17 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static String printPurchaseAmount() {
+    public static String inputPurchaseMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
 
-    public static String printWinningNumber() {
+    public static String inputWinningNumber() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
-    public static String printBonusNumber() {
+    public static String inputBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }

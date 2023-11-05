@@ -31,6 +31,8 @@ public class LottoController {
         Lottos lottos = new Lottos(buyLotto(amount));
         WinnerLotto winnerLotto = new WinnerLotto(getWinnerLotto(), getBonusNumber());
         Result result = new Result(lottos.calculateResult(winnerLotto));
+        outputView.printResult(result);
+        outputView.printProfitRate(result.calculateProfitRate(amount));
     }
 
     private int getBonusNumber() {

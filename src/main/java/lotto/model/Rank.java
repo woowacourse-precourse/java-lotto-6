@@ -29,4 +29,14 @@ public enum Rank {
     public long getPrize(){
         return this.prize;
     }
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        output.append(String.format("%d개 일치", count));
+        if (bonus) {
+            output.append(", 보너스 볼 일치");
+        }
+        output.append(String.format(" (%,d원)", prize));
+        return output.toString();
+    }
 }

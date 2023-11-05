@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoInfo;
 import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
+import lotto.model.LottoInfo;
 import lotto.vo.TicketQuantity;
 
 public class OutputView {

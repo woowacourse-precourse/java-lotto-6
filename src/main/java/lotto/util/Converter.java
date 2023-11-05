@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,9 +1,9 @@
 package lotto.constant;
 
-import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
-import static lotto.constant.LottoInfo.LOTTO_MIN_NUMBER;
-import static lotto.constant.LottoInfo.LOTTO_SIZE;
-import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
+import static lotto.model.LottoInfo.LOTTO_MIN_NUMBER;
+import static lotto.model.LottoInfo.LOTTO_SIZE;
+import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
 
 public enum ErrorMessage {
 

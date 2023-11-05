@@ -59,7 +59,7 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printProfit() {
-
+    public void printProfit(LottoResult lottoResult) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResult.getProfit());
     }
 }

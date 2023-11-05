@@ -29,7 +29,9 @@ public class LottoController {
 
         WinLottoWithBonus winLottoWithBonus = loadBonusNumber(winningLotto);
 
-        LottoStatistics(buyLottos, winLottoWithBonus);
+        LottoResult lottoResult = LottoStatistics(buyLottos, winLottoWithBonus);
+
+        LottoProfit(lottoResult);
     }
 
     private Money loadTicket() {
@@ -61,10 +63,15 @@ public class LottoController {
         return WinLottoWithBonus.create(sortedNumbers, bonusNumber);
     }
 
-    private void LottoStatistics(BuyLottos buyLottos, WinLottoWithBonus winLottoWithBonus) {
+    private LottoResult LottoStatistics(BuyLottos buyLottos, WinLottoWithBonus winLottoWithBonus) {
         LottoJudge lottoJudge = LottoJudge.create(buyLottos, winLottoWithBonus);
         LottoResult lottoResult = lottoJudge.matchLottoHandler();
 
         outputHandler.printLottoResult(lottoResult);
+        return lottoResult;
+    }
+
+    private void LottoProfit(LottoResult lottoResult) {
+        outputHandler.printProfit(lottoResult);
     }
 }

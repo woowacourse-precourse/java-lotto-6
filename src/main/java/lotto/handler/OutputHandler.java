@@ -12,5 +12,5 @@ public interface OutputHandler {
     public void printInputWinningLottoMessage();
     public void printInputBonusLottoMessage();
     public void printLottoResult(LottoResult lottoResult);
-    public void printProfit();
+    public void printProfit(LottoResult lottoResult);
 }

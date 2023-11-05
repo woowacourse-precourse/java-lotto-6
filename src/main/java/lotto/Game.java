@@ -21,7 +21,10 @@ public class Game {
         int lottoNum = (int) (Math.round(purchaseAmount / 1000));
 
         String[] winningNum = readLine().split(",");
-        
+
+        if (winningNum.length != 6) {
+            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+        }
 
     }
 }

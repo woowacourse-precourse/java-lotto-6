@@ -20,7 +20,7 @@
     - [ ] LottoJudge
         - 당첨 번호와 구매 번호의 매칭을 판단하는 클래스
     - wrapper Package 
-        - [ ] Money
+        - [x] Money
             - 구입 금액에 대한 유효성 검사와 구입 금액에 따른 티켓 수 반환을 진행하는 클래스
             - 객체를 생성하고 반환하는 create 메서드
             - 구입 금액이 숫자로 반환이 가능한지 확인하는 `validateType` 메서드

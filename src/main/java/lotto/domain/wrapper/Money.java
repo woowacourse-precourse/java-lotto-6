@@ -21,7 +21,7 @@ public class Money {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw INVALID_TYPE.getException();
+            throw INCONVERTIBLE_TYPE.getException();
         }
     }
 

@@ -72,11 +72,11 @@ public class LottoService {
     public static List<Statistics> makeStatistics(List<Integer> amountOfCorrectNumbers) {
         List<Statistics> lottoStatistics = new ArrayList<>();
         countCorrespondingTickets(3, amountOfCorrectNumbers);
-        lottoStatistics.add(new Statistics(5000, countCorrespondingTickets(3, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics(50000, countCorrespondingTickets(4, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics(1500000, countCorrespondingTickets(5, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics(30000000, countCorrespondingTickets(7, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics(2000000000, countCorrespondingTickets(6, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("3개 일치 (5,000원)",5000, countCorrespondingTickets(3, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("4개 일치 (50,000원)",50000, countCorrespondingTickets(4, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("5개 일치 (1,500,000원)",1500000, countCorrespondingTickets(5, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("5개 일치, 보너스 볼 일치 (30,000,000원)",30000000, countCorrespondingTickets(7, amountOfCorrectNumbers)));
+        lottoStatistics.add(new Statistics("6개 일치 (2,000,000,000원)",2000000000, countCorrespondingTickets(6, amountOfCorrectNumbers)));
 
         return lottoStatistics;
     }
@@ -86,6 +86,7 @@ public class LottoService {
             earningRate += statistics.getValueNumber()*statistics.getAmountOfTickets();
         }
         earningRate *= 100;
+        // 반올림 추가
         return earningRate;
     }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.Statistics;
 import lotto.service.LottoService;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class OutputView {
     public static void printInputBonusNumberMsg() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
-    public static void printStatistics() {
-
+    public static void printStatistics(List<Statistics> lottoStatistics) {
+        System.out.println("당첨 통계");
+        for(Statistics statistics : lottoStatistics) {
+            System.out.printf("%s - %d개 |n", statistics.getValue(), statistics.getAmountOfTickets());
+        }
     }
     public static void printEarningRate() {
 

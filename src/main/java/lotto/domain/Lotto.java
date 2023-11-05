@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        
+        Collections.sort(numbers); // 오름차순 정렬
+
         this.numbers = numbers;
     }
 
@@ -17,4 +21,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

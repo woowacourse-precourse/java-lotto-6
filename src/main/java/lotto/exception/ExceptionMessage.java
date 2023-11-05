@@ -8,4 +8,6 @@ public class ExceptionMessage {
             LOTTO_PRICE);
     public static final String WRONG_LOTTO_NUMBER_INPUT =
             "[ERROR] 입력을 \",\"를 기준으로 이를 포함하지 않고 잘랐을 때, 6개의 수로 나눌 수 있어야 합니다.";
+
+    public static final String WRONG_LOTTO_NUMBER_SIZE = "[ERROR] 당첨 번호는 1 이상 45 이하여야 합니다.";
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,5 +40,21 @@ class LottoTest {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         System.out.println(numbers);
+    }
+
+    @DisplayName("사용자가 구매한 수만큼 로또 번호 생성")
+    @Test
+    void generateLottoTickets() {
+        int input = 5;
+        List<List<Integer>> lottoTickets = new ArrayList<>();
+        for (int i=0; i < input; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottoTickets.add(numbers);
+        }
+
+        for (List<Integer> ticket : lottoTickets) {
+            System.out.println(ticket);
+        }
     }
 }

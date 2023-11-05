@@ -1,7 +1,7 @@
 package lotto.util;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import lotto.model.lottogenerator.LottoGenerator;
+import lotto.model.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class RandomLottoGeneratorTest {
 
     @Test
     @DisplayName("로또가 정상적으로 생성됨")
-    public void 정상_동작() throws Exception{
+    public void 정상_동작() {
         Assertions.assertThatNoException()
                 .isThrownBy(() -> generator.generate());
     }

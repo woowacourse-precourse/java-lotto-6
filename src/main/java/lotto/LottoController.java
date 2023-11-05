@@ -4,7 +4,7 @@ import static lotto.domain.util.LottoParser.*;
 
 import java.util.*;
 import lotto.domain.*;
-import lotto.domain.numbergenerator.RandomNumberGenerator;
+import lotto.domain.numbergenerator.NumberGenerator;
 import lotto.exception.InputException;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
@@ -14,10 +14,12 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private LottoMachine lottoMachine;
+    private NumberGenerator numberGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
@@ -28,7 +30,7 @@ public class LottoController {
         // 로또 당첨 판단 체크 객체 생성
         LottoWinningChecker lottoWinningChecker = initLottoWinningChecker();
         // 당첨 등수 맵 생성
-        Map<LottoRank, Integer> rankCount = gerResultRankCount(lottos, lottoWinningChecker);
+        Map<LottoRank, Integer> rankCount = getResultRankCount(lottos, lottoWinningChecker);
         // 결과 출력하기
         showResult(rankCount);
     }
@@ -47,7 +49,7 @@ public class LottoController {
     private List<Lotto> generateLottos() {
         // 검증된 금액 입력 받기
         int lottoCount = receiveValidLottoCount();
-        lottoMachine = new LottoMachine(lottoCount, new RandomNumberGenerator());
+        lottoMachine = new LottoMachine(lottoCount, numberGenerator);
         lottoMachine.makeLottos();
         return lottoMachine.getLottos();
     }
@@ -81,12 +83,11 @@ public class LottoController {
         return new LottoWinningChecker(validWinningNumbers, validBonusNumber);
     }
 
-    private Map<LottoRank, Integer> gerResultRankCount(List <Lotto> lottos, LottoWinningChecker lottoWinningChecker) {
+    private Map<LottoRank, Integer> getResultRankCount(List <Lotto> lottos, LottoWinningChecker lottoWinningChecker) {
         Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
         for(LottoRank lottoRank: LottoRank.values()) {
             rankCount.put(lottoRank, 0);
         }
-        // 당처 등수 받기
         for(Lotto lotto: lottos) {
             LottoRank rank = lottoWinningChecker.getRank(lotto);
             rankCount.put(rank, rankCount.get(rank) + 1);

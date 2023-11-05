@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
 import lotto.config.WinningPrize;
 
@@ -52,13 +53,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_SIZE.message());
         }
     }
 
     private void validateDuplicates(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO.message());
         }
     }
 
@@ -68,7 +69,7 @@ public class Lotto {
                 .toList()
                 .size();
         if (filterSize > FILTER_CONDITION) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_RANGE.message());
         }
     }
 }

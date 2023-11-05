@@ -1,18 +1,17 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
+import lotto.util.Parser;
 
 public class LottoPrice {
-    private final String NUMERIC_STRING_ERROR = "[ERROR] 숫자형태의 입력이 아닙니다.";
-    private final String MINIMUM_PRICE_ERROR = "[ERROR] 1000이상의 값을 입력해야 합니다.";
-    private final String PRICE_DIVISION_ERROR = "[ERROR] 1000단위의 값을 입력해야 합니다.";
-    private final int CORRECT_DIVISION = 0;
-    private final int LOTTO_PRICE = LottoConfig.PRICE.getValue();
+    private static final int CORRECT_DIVISION = 0;
+    private static final int LOTTO_PRICE = LottoConfig.PRICE.getValue();
 
     private final int price;
 
     public LottoPrice(String numericString) {
-        int price = parseIntOrThrow(numericString);
+        int price = Parser.parseIntOrThrow(numericString);
         validateRange(price);
         validateDivision(price);
         this.price = price;
@@ -22,23 +21,15 @@ public class LottoPrice {
         return price / LOTTO_PRICE;
     }
 
-    private int parseIntOrThrow(String numericString) {
-        try {
-            return Integer.parseInt(numericString);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(NUMERIC_STRING_ERROR);
-        }
-    }
-
     private void validateRange(int price) {
         if (price < LOTTO_PRICE) {
-            throw new IllegalArgumentException(MINIMUM_PRICE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_PRICE_RANGE.message());
         }
     }
 
     private void validateDivision(int price) {
         if (price % LOTTO_PRICE != CORRECT_DIVISION) {
-            throw new IllegalArgumentException(PRICE_DIVISION_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_PRICE_DIVISION.message());
         }
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
 import lotto.config.WinningPrize;
 
@@ -23,13 +24,13 @@ public class WinningNumber {
 
     private void validateRange(int number) {
         if (number < RANGE_START || number > RANGE_END) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_RANGE.message());
         }
     }
 
     private void validateDuplicates(Lotto numbers, int bonus) {
         if (numbers.checkDuplicates(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS.message());
         }
     }
 }

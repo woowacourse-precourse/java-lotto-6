@@ -2,18 +2,21 @@ package domain;
 
 public class Player {
     private final LottoTickets lottoTickets;
+    private int money;
 
     public Player() {
         lottoTickets = new LottoTickets();
     }
 
-    Player(LottoTickets lottoTickets) {
+    Player(LottoTickets lottoTickets, int money) {
         this.lottoTickets = lottoTickets;
+        this.money = money;
     }
 
     public void buyLottoTickets(int money) {
         int ticketCount = calculateTicketCount(money);
         lottoTickets.add(ticketCount);
+        this.money = money;
     }
 
     private int calculateTicketCount(int money) {
@@ -32,5 +35,9 @@ public class Player {
 
     int getTicketCount() {
         return lottoTickets.size();
+    }
+
+    public GameResult getRank(WinningLotto winningLotto) {
+        return new GameResult(money, lottoTickets.getRanks(winningLotto));
     }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import constant.ConstantNumber;
 import constant.WinningPrize;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class LottoTickets {
     }
 
     public List<Integer> getRanks(WinningLotto winningLotto) {
-        List<Integer> ranks = createList(WinningPrize.COUNT_OF_WINNING_PRIZE.get());
+        List<Integer> ranks = createList(ConstantNumber.COUNT_OF_WINNING_PRIZE.get());
         lottoList.stream()
                 .mapToInt(lotto -> lotto.rank(winningLotto))
                 .filter(rank -> rank != -1)

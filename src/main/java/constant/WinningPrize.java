@@ -6,7 +6,6 @@ public enum WinningPrize {
     RANK_3RD(1500000),
     RANK_4TH(50000),
     RANK_5TH(5000),
-    COUNT_OF_WINNING_PRIZE(5),
     ;
 
     private final int rank;

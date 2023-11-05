@@ -1,5 +1,6 @@
 package domain;
 
+import domain.dto.GameResultDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -49,13 +50,13 @@ class PlayerTest {
                 new Lotto(List.of(1, 2, 3, 4, 9, 9)),
                 new Lotto(List.of(1, 2, 3, 9, 9, 9)),
                 new Lotto(List.of(1, 2, 9, 9, 9, 9))
-        )));
+        )), 5000);
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         //when
-        GameResult gameResult = player.getRank();
+        GameResult gameResult = player.getRank(winningLotto);
 
         //then
-        assertThat(gameResult.getWinningStatistics()).isEqualsTo(525916.7);
+        assertThat(gameResult.getRateOfReturn()).isEqualTo(631100);
     }
 }

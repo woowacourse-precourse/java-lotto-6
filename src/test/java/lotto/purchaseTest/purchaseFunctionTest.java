@@ -10,15 +10,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class purchaseFunctionTest {
 
+    public void init(String input){
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+    }
+
     @Test
     @DisplayName("구입_금액에_해당하는_만큼_로또를_발행하는_테스트")
     public void purchaseAndPublishTest(){
         //given
         String money = "8000";
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        InputStream in = new ByteArrayInputStream(money.getBytes());
-        System.setIn(in);
+        init(money);
         int wantBuyAmount = 8;
         int purchasedAmount = LottoService.enterPurchaseAmount();
         //when

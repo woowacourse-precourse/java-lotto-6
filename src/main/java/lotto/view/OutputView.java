@@ -11,7 +11,7 @@ import lotto.dto.WinningStatisticsDto;
 
 public class OutputView {
 
-    private static final String LOTTO_SIZE_FORMAT = "%d개를 구매했습니다.\n";
+    private static final String LOTTO_SIZE_FORMAT = "\n%d개를 구매했습니다.\n";
     private static final String NUMBER_DELIMITER = ", ";
     private static final String NUMBER_PREFIX = "[";
     private static final String NUMBER_SUFFIX = "]\n";

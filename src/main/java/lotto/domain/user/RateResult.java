@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.user;
 
 /**
  * 사용자의 수익률 클래스

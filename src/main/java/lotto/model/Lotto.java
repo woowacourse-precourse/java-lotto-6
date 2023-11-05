@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Set;
-import lotto.Score;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -43,6 +42,11 @@ public class Lotto {
     }
 
     public Score contains(Lotto lotto) {
-        return null;
+        int score = numbers.stream()
+                .map(lotto::contains)
+                .filter(bool -> bool)
+                .mapToInt(item -> 1)
+                .sum();
+        return Score.from(score);
     }
 }

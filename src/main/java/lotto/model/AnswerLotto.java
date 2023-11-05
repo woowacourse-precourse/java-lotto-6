@@ -21,4 +21,10 @@ public class AnswerLotto extends Lotto {
     public boolean isAnswerLotto() {
         return true;
     }
+
+    @Override
+    public Score contains(Lotto lotto) {
+        return super.contains(lotto)
+                .canSecond(lotto.contains(bonusNo));
+    }
 }

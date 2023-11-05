@@ -12,7 +12,7 @@ import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
 
 public class InputValidator {
     private static final String SEPARATOR = ",";
-    private static final String VALID_LOTTO_PRICE_PATTERN = "^\\d+$";
+    private static final String VALID_NUMERIC_PATTERN = "^\\d+$";
     public static void validatePriceInput(String priceInput) {
         if (!isNumericString(priceInput)) {
             throw new IllegalArgumentException(ErrorMessages.INPUT_NUMBER);
@@ -25,16 +25,24 @@ public class InputValidator {
         List<String> winningNumbers = Arrays.stream(winnigNumberInput.split(SEPARATOR)).toList();
 
         if (!isValidWinningNumberLength(winningNumbers)) {
-            throw new IllegalArgumentException(java.lang.String.format(ErrorMessages.LOTTO_CHOICE_NUMBER, TOTAL_CHOICE_NUMBER.getValue()));
+            throw new IllegalArgumentException(String.format(ErrorMessages.LOTTO_CHOICE_NUMBER, TOTAL_CHOICE_NUMBER.getValue()));
         } else if (!isValidLottoNumbersRange(winningNumbers)) {
-            throw new IllegalArgumentException(java.lang.String.format(ErrorMessages.LOTTO_NUMBER_RANGE, MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue()));
+            throw new IllegalArgumentException(String.format(ErrorMessages.LOTTO_NUMBER_RANGE, MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue()));
         } else if (hasDuplicatesWinningNumber(winningNumbers)){
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER);
         }
     }
 
+    public static void validateBonusNumberInput(String bonusNumberInput, List<String> winningNumbers) {
+        if (!isValidLottoNumberRange(bonusNumberInput)) {
+            throw new IllegalArgumentException(String.format(ErrorMessages.LOTTO_NUMBER_RANGE, MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue()));
+        } else if(hasDuplicatesBonusNumber(bonusNumberInput, winningNumbers)) {
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER);
+        }
+    }
+
     private static boolean isNumericString(String input) {
-        return input.matches(VALID_LOTTO_PRICE_PATTERN);
+        return input.matches(VALID_NUMERIC_PATTERN);
     }
 
     private static boolean isValidPurchaseUnit(String input) {
@@ -66,5 +74,9 @@ public class InputValidator {
         int choiceNumber = Integer.parseInt(input);
 
         return (MIN_LOTTO_NUMBER.getValue() <= choiceNumber) && (choiceNumber <= MAX_LOTTO_NUMBER.getValue());
+    }
+
+    private static boolean hasDuplicatesBonusNumber(String bonusNumberInput, List<String> winningNumbers) {
+        return winningNumbers.contains(bonusNumberInput);
     }
 }

@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.PrintMessages;
 import lotto.validators.InputValidator;
 
+import java.util.List;
+
 public class InputHandler {
     public static String purchasePrice() {
         System.out.println(PrintMessages.INPUT_PRICE);
@@ -37,8 +39,19 @@ public class InputHandler {
         return winnigNumberInput;
     }
 
-    public static String bonusNumber() {
+    public static String bonusNumber(List<String> winningNumbers) {
         System.out.println(PrintMessages.INPUT_BONUS_NUMBER);
-        return Console.readLine();
+        String bonusNumberInput;
+
+        while (true) {
+            try {
+                bonusNumberInput = Console.readLine();
+                InputValidator.validateBonusNumberInput(bonusNumberInput, winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumberInput;
     }
 }

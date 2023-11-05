@@ -2,8 +2,11 @@ package lotto.utils;
 
 import static java.util.regex.Pattern.compile;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.constants.InputConstants;
 import lotto.constants.LottoConstants;
 
 public class InputValidator {
@@ -44,18 +47,32 @@ public class InputValidator {
         return validateInt(money);
     }
 
-    public static void validateBonus(String input) {
-        String bonus = validateInt(input);
-        if (!IsRange(Integer.parseInt(bonus))) {
-            throw new IllegalArgumentException(
-                    String.format("[ERROR] 보너스 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
-                            LottoConstants.MAX_NUMBER.getConstants()));
+    public static String validateWinnings(String winnings) {
+        List<String> input = Arrays.asList(winnings.split(InputConstants.WINNING_DELIMITER.getConstants()));
+        List<String> duplicated = input.stream().map(InputValidator::validateLottoNumber).distinct().toList();
+        if (input.size() != duplicated.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
+        if (duplicated.size() != LottoConstants.LENGTH.getConstants()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 입니다.");
+        }
+        return winnings;
     }
 
-    private static boolean IsRange(int bonus) {
-        return LottoConstants.MIN_NUMBER.getConstants() <= bonus
-                && bonus <= LottoConstants.MAX_NUMBER.getConstants();
+    public static String validateLottoNumber(String input) {
+        String number = validateInt(input);
+        if (!IsRange(number)) {
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 로또 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
+                            LottoConstants.MAX_NUMBER.getConstants()));
+        }
+        return number;
+    }
+
+    private static boolean IsRange(String input) {
+        int number = Integer.parseInt(input);
+        return LottoConstants.MIN_NUMBER.getConstants() <= number
+                && number <= LottoConstants.MAX_NUMBER.getConstants();
     }
 
     public static String validateInt(String input) {

@@ -36,7 +36,7 @@ public class InputView {
     public static Bonus getBonusInput() {
         String bonus = getInput(BONUS_INPUT_MESSAGE);
         try {
-            InputValidator.validateBonus(bonus);
+            InputValidator.validateLottoNumber(bonus);
             return InputConvertor.convertBonus(bonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

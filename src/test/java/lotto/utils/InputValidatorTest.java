@@ -54,15 +54,54 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"8,0", "'40s", " "})
-    void validateBonus는_정수가아닌_문자열에_예외를_반환한다(String input) {
-        assertThatThrownBy(() -> InputValidator.validateBonus(input))
+    void validateLottoNumber는_정수가아닌_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateLottoNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "46", "-1"})
-    void validateBonus는_로또번호_범위를_벗어난_문자열에_예외를_반환한다(String input) {
-        assertThatThrownBy(() -> InputValidator.validateBonus(input))
+    void validateLottoNumber는_로또번호_범위를_벗어난_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateLottoNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "12,13,45,6,3,2"})
+    void validateWinnings는_당첨번호를_검증통과시킨다(String input) {
+        // when
+        String result = InputValidator.validateWinnings(input);
+        // then
+        assertThat(result).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"111,2,3,4,5,6", "12,13,46,6,3,2"})
+    void validateWinnings는_로또번호_범위를_벗어난_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinnings(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,3,4,5,6", "12,13,45,13,3,2"})
+    void validateWinnings는_중복된숫자가_포함된_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinnings(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,3,,4,5, ,6", "12,13,45,:,3,2"})
+    void validateWinnings는_정수외에_포함된_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinnings(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,3,6", "12,13,45,3,1,2,6"})
+    void validateWinnings는_숫자가6이아닌_문자열에_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinnings(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

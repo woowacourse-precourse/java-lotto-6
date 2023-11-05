@@ -81,4 +81,10 @@ public class UI {
         frequency = winningFrequency.get(Grade.FIRST);
         System.out.println("6개 일치 (2,000,000,000원) - " + frequency + "개");
     }
+
+    private Double printReturnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
+        String returnRateByRound = String.format("%.1f", returnRate);
+        System.out.println("총 수익률은 " + returnRateByRound + "%입니다.");
+    }
 }

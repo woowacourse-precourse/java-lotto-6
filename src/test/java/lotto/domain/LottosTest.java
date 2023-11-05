@@ -1,11 +1,15 @@
 package lotto.domain;
 
+import static java.util.Map.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest {
@@ -26,5 +30,43 @@ public class LottosTest {
 
         List<List<Integer>> lottoNumbers = lottos.getLottos().stream().map(Lotto::getNumbers).toList();
         assertEquals(numbers, lottoNumbers);
+    }
+
+    @Test
+    void 당첨_통계_계산_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Lotto lotto1 = mock(Lotto.class);
+        Lotto lotto2 = mock(Lotto.class);
+        Lotto lotto3 = mock(Lotto.class);
+
+        when(lotto1.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.FIFTH);
+        when(lotto2.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.FIFTH);
+        when(lotto3.getRanking(winningNumbers, bonusNumber)).thenReturn(Ranking.FIFTH);
+
+        List<Lotto> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoNumbers.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
+        lottoNumbers.add(new Lotto(List.of(13, 14, 15, 16, 17, 18)));
+
+        Lottos lottos = new Lottos(lottoNumbers);
+
+        List<Lotto> mockLottos = lottos.getLottos();
+        mockLottos.set(0, lotto1);
+        mockLottos.set(1, lotto2);
+        mockLottos.set(2, lotto3);
+
+        lottos.calculateWinningStatistics(winningNumbers, bonusNumber);
+
+        Map<Ranking, Integer> winningStatics = Map.ofEntries(
+                entry(Ranking.FIRST, 0),
+                entry(Ranking.SECOND, 0),
+                entry(Ranking.THIRD, 0),
+                entry(Ranking.FOURTH, 0),
+                entry(Ranking.FIFTH, 3),
+                entry(Ranking.NONE, 0)
+        );
+        assertEquals(winningStatics, lottos.getWinningStatics());
     }
 }

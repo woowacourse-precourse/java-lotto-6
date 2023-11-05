@@ -30,6 +30,10 @@ public class Lottos {
         return number;
     }
 
+    public Map<Ranking, Integer> getWinningStatics() {
+        return winningStatics;
+    }
+
     public void draw(List<Integer> winningNumbers, int bonusNumber) {
         calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputUtils.printResultAnnouncementMessage();
@@ -38,7 +42,7 @@ public class Lottos {
         printResult();
     }
 
-    private void calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
+    public void calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
         winningStatics = lottos.stream()
                 .collect(groupingBy(
                         lotto -> lotto.getRanking(winningNumbers, bonusNumber),

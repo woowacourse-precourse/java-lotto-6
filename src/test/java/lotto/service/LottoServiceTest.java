@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
-
     @DisplayName("로또 번호 3개 일치일 때 통과")
     @ParameterizedTest
     @MethodSource("winningTestCase")

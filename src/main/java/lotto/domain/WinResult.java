@@ -35,6 +35,6 @@ public class WinResult {
     }
 
     public boolean isFiveSame(int rankValue) {
-        return true;
+        return rankValue == 5;
     }
 }

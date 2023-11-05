@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.view.constants.ConstantMessage;
 
+/*
+    TODO : 당첨 통계 메시지 숫자, 세 자리 단위로 ,로 구분하여 포맷팅 필요
+    TODO : 당첨 통계 메시지 순서, 3~6 일치순으로 정렬하여 메시지 빌드 필요
+    TODO : 수익률 로직 수정
+
+ */
+
+
 public class ConstantMessageBuilder {
     private ConstantMessageBuilder() {
     }
@@ -38,25 +46,25 @@ public class ConstantMessageBuilder {
         return buildMessage(DIVIDER);
     }
 
-    public static String buildLottoResultMessage(Integer matchCount, Integer prize, Integer winning) {
-        return buildMessage(LOTTO_RESULT, matchCount, prize, winning);
-    }
-
-    public static String buildLottoResultWithBonusMessage(Integer matchCount, Integer prize, Integer winning) {
-        return buildMessage(LOTTO_RESULT_WITH_BONUS, matchCount, prize, winning);
-    }
-
-    public static String buildTotalReturnRateMessage(Float totalReturnRate) {
-        return buildMessage(TOTAL_RETURN_RATE, totalReturnRate);
-    }
-
-    public static String buildLottoNumberMessage(final List<List<Integer>> lottoNumberList) {
-        return lottoNumberList.stream()
+    public static String buildGenerateLotteriesResultMessage(final List<List<Integer>> lotteriesNumbers) {
+        return lotteriesNumbers.stream()
                 .map(lottoNumbers -> "[" +
                         lottoNumbers.stream()
                                 .map(Object::toString)
                                 .collect(Collectors.joining(", "))
                         + "]")
                 .collect(Collectors.joining("\n"));
+    }
+
+    public static String buildLottoResultMessage(Long matchCount, Integer prize, Integer winning) {
+        return buildMessage(LOTTO_RESULT, matchCount, prize, winning);
+    }
+
+    public static String buildLottoResultWithBonusMessage(Long matchCount, Integer prize, Integer winning) {
+        return buildMessage(LOTTO_RESULT_WITH_BONUS, matchCount, prize, winning);
+    }
+
+    public static String buildTotalReturnRateMessage(Double totalReturnRate) {
+        return buildMessage(TOTAL_RETURN_RATE, totalReturnRate);
     }
 }

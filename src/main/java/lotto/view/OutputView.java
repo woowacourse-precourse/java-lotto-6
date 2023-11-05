@@ -24,7 +24,15 @@ public class OutputView {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        sortedNumbers.forEach(number -> System.out.print(number + " "));
+        printJoiningNumber(sortedNumbers);
+    }
+
+    private static void printJoiningNumber(List<Integer> sortedNumbers) {
+        String formattedString = sortedNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+
+        System.out.println(formattedString);
     }
 
     public static void printLottoResult(Map<LottoResult, Integer> lottoResult) {

@@ -47,4 +47,12 @@ class InputValidationTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 inputValidation.validationMoney(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1","1,2","1,2,3","1,2,3,4","1,2,3,4,5","1,2,3,4,5,6,7","1,2,3,4,5,6,7,8,9,10"})
+    public void 당첨번호_사이즈_검사(String input) {
+        //then (기능 작동 후 결과)
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                inputValidation.validationLottoWinningNumber(input));
+    }
 }

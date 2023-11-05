@@ -1,9 +1,12 @@
 package lotto.Model;
 
+import lotto.View.PrintInput;
+import lotto.View.PrintOutput;
+
 import java.util.EnumMap;
 
 public class Result {
-    private EnumMap<Winning, Integer> result = new EnumMap<>(Winning.class);
+    private final EnumMap<Winning, Integer> result = new EnumMap<>(Winning.class);
 
     public Result() {
         for (Winning winning : Winning.values()) {
@@ -17,7 +20,7 @@ public class Result {
     }
 
     public void printResult() {
-        System.out.println("\n당첨 통계" + "\n---");
+        System.out.println("\n" + PrintOutput.RESURLT_LOTTO + "\n---");
         for (Winning winning : Winning.values()) {
             if (winning != Winning.No_Match) {
                 String message = String.format(

@@ -3,8 +3,10 @@ package lotto.Model;
 import java.util.*;
 
 public class Lotto {
-
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         size_check(numbers);
@@ -15,7 +17,7 @@ public class Lotto {
     }
 
     private void size_check(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             System.out.println("[ERROR] 로또 번호는 6개의 수를 입력해주세요.\n");
             throw new IllegalArgumentException();
         }
@@ -24,7 +26,7 @@ public class Lotto {
 
     private void number_check(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
                 System.out.println("[ERROR] 로또 번호 1부터 45까지의 수로 입력해주세요.\n");
                 throw new IllegalArgumentException();
             }
@@ -34,7 +36,7 @@ public class Lotto {
 
     private void duplication_check(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != 6) {
+        if (set.size() != LOTTO_SIZE) {
             System.out.println("[ERROR] 로또 수는 중복 없이 입력해주세요.\n");
             throw new IllegalArgumentException();
         }
@@ -57,8 +59,7 @@ public class Lotto {
         if (lottoNumbers.numbers.contains(bonusBall)){
             matchResult[1] = 1;
         }
-        System.out.println(numbers);
-        System.out.println(lottoNumbers.numbers);
+
         return matchResult;
     }
 

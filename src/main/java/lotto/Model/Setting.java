@@ -6,6 +6,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setting {
+    Lotto winningNumbers;
+
+    public int getBonusNumber() {
+        int bonusNumber;
+
+        while (true) {
+            try {
+                bonusNumber = input_bonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+
+        return bonusNumber;
+    }
+
+    public Lotto getWinningNumbers() {
+
+        while(true){
+            try{
+                String inputNumbers = Console.readLine();
+                winningNumbers = new Lotto(stringToList(inputNumbers));
+                break;
+            }catch (IllegalArgumentException e){}
+        }
+
+        return winningNumbers;
+    }
+
+    public int input_bonusNumber() {
+        String input = Console.readLine();
+        int bonusNumber = inputToInt(input);
+        checkNumber(bonusNumber);
+        winningNumbers.check_bonusNumber(bonusNumber);
+        return bonusNumber;
+    }
     public int inputToInt(String input){
         try{
             return Integer.parseInt(input);
@@ -53,14 +89,15 @@ public class Setting {
     }
 
 
-    public List<Integer> stringToList(String s) {
+    public List<Integer> stringToList(String input) throws IllegalArgumentException{
         List<Integer> player = new ArrayList<>();
-        String[] numbers = s.split(",");
+        String[] numbers = input.split(",");
 
-        for (String ss : numbers) {
-            int playerNumber = Integer.parseInt(ss);
+        for (String number : numbers) {
+            int playerNumber = inputToInt(number);
             player.add(playerNumber);
         }
+
         return player;
     }
 

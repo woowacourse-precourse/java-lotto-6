@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println(String.format(PROFIT_RATE, rate));
     }
 
-    public void printLottoList(List<Integer> lotto) {
+    public void printLottoNumber(List<Integer> lotto) {
         System.out.println(lotto);
     }
 

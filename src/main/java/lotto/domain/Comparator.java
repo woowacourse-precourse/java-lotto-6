@@ -6,4 +6,9 @@ public class Comparator {
                 .filter(number -> winnerNumbers.getNumbers().contains(number))
                 .count();
     }
+
+    public static boolean checkBonusNumber(Lotto numbers, int bonusNumber) {
+        return numbers.getNumbers().stream()
+                .anyMatch(number -> number == bonusNumber);
+    }
 }

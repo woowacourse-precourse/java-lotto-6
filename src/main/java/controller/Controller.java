@@ -47,6 +47,7 @@ public class Controller {
             }
         }
         lottosList.add(lottoList);
+        lottoService.lottoSave(lottosList);
 
         saveLottoNumbers(parser.parseLottoNumber(getUserLottoNumberbyInput()));
         saveBonusNumber(getUserBonusNumberbyInput());
@@ -55,18 +56,19 @@ public class Controller {
     }
 
     private void play() {
-
+        OutputView.printLottoResult();
+        LottoService.play();
     }
 
 
     private void saveLottoNumbers(List<String> lottoNumbers) {
         for (String lottoNumber : lottoNumbers) {
-            lottoRepository.save(new Lottos(lottoNumber));
+            lottoService.save(new Lottos(lottoNumber));
         }
     }
 
     private void saveBonusNumber(String bonus_number) {
-        lottoRepository.save(new Lottos(bonus_number));
+        lottoService.save(new Lottos(bonus_number));
     }
 
 

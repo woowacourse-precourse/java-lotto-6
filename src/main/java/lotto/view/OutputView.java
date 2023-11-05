@@ -10,6 +10,20 @@ public class OutputView {
 
     private static final String LINE_BREAK = System.lineSeparator();
 
+    public static void requestPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public static void requestWinnerLottoNumber() {
+        System.out.print(LINE_BREAK);
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void requestBonusNumber() {
+        System.out.print(LINE_BREAK);
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public static void printBuyerLotto(int lottoCount, List<Lotto> lottoNumbers) {
         System.out.print(LINE_BREAK);
         System.out.println(lottoCount + "개를 구매했습니다.");

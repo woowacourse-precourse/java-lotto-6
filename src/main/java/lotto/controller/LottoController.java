@@ -27,6 +27,8 @@ public class LottoController {
     }
 
     private BuyerLotto createBuyerLotto() {
+        OutputView.requestPurchaseAmount();
+
         int amount = generateAmount();
         List<Lotto> createBuyerLotto = lottoShop.createByBuyerLotto(amount);
 
@@ -36,9 +38,11 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
+        OutputView.requestWinnerLottoNumber();
         List<Integer> winningLotto = generateWinningLotto();
         Lotto createWinningLotto = lottoShop.createByWinningLotto(winningLotto);
 
+        OutputView.requestBonusNumber();
         int bonusNumber = generateBonusNumber();
         BonusNumber createBonusNumber = lottoShop.createByBonusNumber(bonusNumber);
 

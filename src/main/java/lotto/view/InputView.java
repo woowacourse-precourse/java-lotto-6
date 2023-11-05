@@ -11,21 +11,18 @@ public class InputView {
     }
 
     public static int readPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
         String amount = Console.readLine();
         validateBlank(amount);
         return validateInteger(amount);
     }
 
     public static List<Integer> readWinnerLottoNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
         validateBlank(numbers);
         return splitWord(numbers);
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         validateBlank(bonusNumber);
         return validateInteger(bonusNumber);

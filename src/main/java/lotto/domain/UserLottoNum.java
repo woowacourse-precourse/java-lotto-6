@@ -34,7 +34,7 @@ public class UserLottoNum {
     }
 
     private void validateRange(Integer bonusNum) {
-        if(bonusNum <= MIN_NUM || bonusNum >= MAX_NUM) {
+        if(bonusNum < MIN_NUM || bonusNum > MAX_NUM) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 1~45 범위에 없습니다.");
         }
     }

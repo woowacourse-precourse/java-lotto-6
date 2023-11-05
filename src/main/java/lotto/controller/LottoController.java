@@ -32,7 +32,7 @@ public class LottoController {
         // 보너스 번호 받기
         bonusNumber = getBonusNumber();
         // 당첨 통계 계산 & 당첨 통계, 수익률 출력
-        Rank rank = getRank(lottos);
+        Rank rank = getStatic(lottos);
         OutputHandler.showWinningDetails(rank.getRank(1), rank.getRank(2), rank.getRank(3), rank.getRank(4),
                 rank.getRank(5));
         showRateOfReturn(rank, paymentPrice);
@@ -92,7 +92,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    Rank getRank(List<Lotto> lottos) {
+    Rank getStatic(List<Lotto> lottos) {
         Rank rank = new Rank();
         for (Lotto lotto : lottos) {
             LottoMatch lottoMatch = getLottoMatch(lotto, winningNumbers, bonusNumber);

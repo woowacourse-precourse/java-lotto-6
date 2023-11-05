@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 class LottoNumberGeneratorTest {
 
-    private final LottoNumberGenerator lottoNumberGenerator= new LottoNumberGenerator();
+    private LottoNumberGenerator lottoNumberGenerator;
 
     @DisplayName("중복되지 않는 6개의 숫자가 생성되는지 확인")
     @Test

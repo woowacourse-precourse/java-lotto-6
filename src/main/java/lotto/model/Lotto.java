@@ -8,13 +8,13 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
-    public boolean hasNumber(int number) {
+    public boolean hasNumber(final int number) {
         return numbers.contains(number);
     }
 
@@ -23,23 +23,23 @@ public class Lotto {
         return sortLottoNumber().toString();
     }
     
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         if (isNotLottoSizeSix(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isNotLottoSizeSix(List<Integer> numbers) {
+    private boolean isNotLottoSizeSix(final List<Integer> numbers) {
         return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 
-    private int countUniqueLottoNumbers(List<Integer> numbers) {
+    private int countUniqueLottoNumbers(final List<Integer> numbers) {
         return (int) numbers.stream()
                 .distinct()
                 .count();

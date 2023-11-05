@@ -12,6 +12,12 @@ public final class OutputView {
     private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String HORIZONTAL_LINE = "---";
+    private static final String THREE_MATCH_PRIZE_MESSAGE = "3개 일치 (5,000원) - %d개\n";
+    private static final String FOUR_MATCH_PRIZE_MESSAGE = "4개 일치 (50,000원) - %d개\n";
+    private static final String FIVE_MATCH_PRIZE_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
+    private static final String FIVE_MATCH_WITH_BONUS_PRIZE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
+    private static final String SIX_MATCH_PRIZE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private OutputView() {
     }
@@ -20,12 +26,12 @@ public final class OutputView {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public static void printNumberOfLotto(int NumberOfLotto) {
+    public static void printNumberOfLotto(final int NumberOfLotto) {
         printEmptyLine();
         System.out.printf(PURCHASE_MESSAGE, NumberOfLotto);
     }
 
-    public static void printLottoTicket(LottoTicket lottoTicket) {
+    public static void printLottoTicket(final LottoTicket lottoTicket) {
         lottoTicket.getLottos()
                 .forEach(System.out::println);
     }
@@ -46,20 +52,20 @@ public final class OutputView {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public static void printWinningStatistics(ResultDetails resultDetails) {
-        System.out.printf("3개 일치 (5,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.FIFTH));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.FOURTH));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.THIRD));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.SECOND));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", resultDetails.getWinnerCountByRank(Rank.FIRST));
+    public static void printWinningStatistics(final ResultDetails resultDetails) {
+        System.out.printf(THREE_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FIFTH));
+        System.out.printf(FOUR_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FOURTH));
+        System.out.printf(FIVE_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.THIRD));
+        System.out.printf(FIVE_MATCH_WITH_BONUS_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.SECOND));
+        System.out.printf(SIX_MATCH_PRIZE_MESSAGE, resultDetails.getWinnerCountByRank(Rank.FIRST));
     }
 
-    public static void printExceptionMessage(String exceptionMessage) {
+    public static void printExceptionMessage(final String exceptionMessage) {
         System.out.println(exceptionMessage);
     }
 
-    public static void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    public static void printProfitRate(final double profitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
     }
 
     private static void printEmptyLine() {

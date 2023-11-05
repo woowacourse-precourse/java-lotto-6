@@ -7,21 +7,22 @@ public class WinningNumbers {
     private final WinningNumbersData winningNumbersData;
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
+    public WinningNumbers(final WinningNumbersData winningNumbersData, final BonusNumber bonusNumber) {
         validateDuplicateBonusNumber(winningNumbersData, bonusNumber);
         this.winningNumbersData = winningNumbersData;
         this.bonusNumber = bonusNumber;
     }
 
-    public int countMatchingNumbers(Lotto lotto) {
+    public int countMatchingNumbers(final Lotto lotto) {
         return winningNumbersData.countMatchingNumber(lotto);
     }
 
-    public boolean hasBonusNumber(Lotto lotto) {
+    public boolean hasBonusNumber(final Lotto lotto) {
         return lotto.hasNumber(bonusNumber.getBonusNumber());
     }
 
-    private void validateDuplicateBonusNumber(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
+    private void validateDuplicateBonusNumber(final WinningNumbersData winningNumbersData,
+                                              final BonusNumber bonusNumber) {
         if (winningNumbersData.contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE);
         }

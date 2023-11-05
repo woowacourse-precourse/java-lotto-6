@@ -11,7 +11,7 @@ public final class Utils {
     private Utils() {
     }
 
-    public static int convertStringToInt(String string) {
+    public static int convertStringToInt(final String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException numberFormatException) {
@@ -19,14 +19,14 @@ public final class Utils {
         }
     }
 
-    public static List<Integer> convertStringToIntegerList(String string) {
+    public static List<Integer> convertStringToIntegerList(final String string) {
         return splitWinningNumbers(string).stream()
                 .map(inputNumber -> convertStringToInt(inputNumber))
                 .toList();
     }
 
-    private static List<String> splitWinningNumbers(String string) {
-        return Arrays.stream(string.split(WINNING_NUMBER_SEPARATOR))
+    private static List<String> splitWinningNumbers(final String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(WINNING_NUMBER_SEPARATOR))
                 .toList();
     }
 }

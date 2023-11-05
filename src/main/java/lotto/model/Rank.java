@@ -13,14 +13,14 @@ public enum Rank {
     NONE(0, 0);
 
     private final int matchingNumber;
-    private final int reward;
+    private final int prize;
 
-    Rank(int matchingNumber, int reward) {
+    Rank(final int matchingNumber, final int prize) {
         this.matchingNumber = matchingNumber;
-        this.reward = reward;
+        this.prize = prize;
     }
 
-    public static Rank find(int matchingNumber, boolean bonusMatch) {
+    public static Rank find(final int matchingNumber, final boolean bonusMatch) {
         if (isSecondRank(matchingNumber, bonusMatch)) {
             return SECOND;
         }
@@ -31,17 +31,17 @@ public enum Rank {
                 .orElse(NONE);
     }
 
-    public static int calculateTotalReward(Map<Rank, Integer> resultDetails) {
+    public static int calculateTotalReward(final Map<Rank, Integer> resultDetails) {
         return Arrays.stream(Rank.values())
-                .mapToInt(rank -> rank.reward * resultDetails.get(rank))
+                .mapToInt(rank -> rank.prize * resultDetails.get(rank))
                 .sum();
     }
 
-    private static boolean isSecondRank(int matchingNumber, boolean bonusMatch) {
+    private static boolean isSecondRank(final int matchingNumber, final boolean bonusMatch) {
         return matchingNumber == SECOND.matchingNumber && bonusMatch;
     }
 
-    private static boolean isSameMatchingNumber(int matchingNumberOfRank, int matchingNumber) {
+    private static boolean isSameMatchingNumber(final int matchingNumberOfRank, final int matchingNumber) {
         return matchingNumberOfRank == matchingNumber;
     }
 }

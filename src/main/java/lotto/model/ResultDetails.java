@@ -16,7 +16,7 @@ public class ResultDetails {
         initializeWinningCountsForRanks();
     }
 
-    public void updateResultDetails(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
+    public void updateResultDetails(final LottoTicket lottoTicket, final WinningNumbers winningNumbers) {
         lottoTicket.getLottos().stream()
                 .map(lotto -> Rank.find(winningNumbers.countMatchingNumbers(lotto),
                         winningNumbers.hasBonusNumber(lotto)))
@@ -24,11 +24,11 @@ public class ResultDetails {
                 .forEach((rank, count) -> resultDetails.put(rank, count.intValue()));
     }
 
-    public double calculateProfitRate(int purchaseAmount) {
+    public double calculateProfitRate(final int purchaseAmount) {
         return (double) Rank.calculateTotalReward(resultDetails) / purchaseAmount * PERCENTAGE_FACTOR;
     }
 
-    public int getWinnerCountByRank(Rank rank) {
+    public int getWinnerCountByRank(final Rank rank) {
         return resultDetails.get(rank);
     }
 

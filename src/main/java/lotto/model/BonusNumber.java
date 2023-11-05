@@ -6,7 +6,7 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
+    public BonusNumber(final int bonusNumber) {
         validateNumberInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -15,13 +15,13 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    private void validateNumberInRange(int bonusNumber) {
+    private void validateNumberInRange(final int bonusNumber) {
         if (isNotValidBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isNotValidBonusNumber(int bonusNumber) {
+    private boolean isNotValidBonusNumber(final int bonusNumber) {
         return bonusNumber < LottoConstants.START_NUMBER || bonusNumber > LottoConstants.END_NUMBER;
     }
 }

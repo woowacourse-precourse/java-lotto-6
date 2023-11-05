@@ -8,11 +8,11 @@ public class LottoTicket {
     
     private final List<Lotto> lottos;
 
-    private LottoTicket(List<Lotto> lottos) {
+    private LottoTicket(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static LottoTicket create(int purchasedLottoNumber) {
+    public static LottoTicket create(final int purchasedLottoNumber) {
         List<Lotto> lottos = IntStream.range(0, purchasedLottoNumber)
                 .mapToObj(i -> RandomNumberGenerator.generate())
                 .map(Lotto::new)

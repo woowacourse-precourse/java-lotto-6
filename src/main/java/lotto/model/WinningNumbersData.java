@@ -10,24 +10,24 @@ public class WinningNumbersData {
 
     private final List<Integer> winningNumbers;
 
-    public WinningNumbersData(List<Integer> winningNumbers) {
+    public WinningNumbersData(final List<Integer> winningNumbers) {
         validateNumberInRange(winningNumbers);
         validateWinningNumbersCount(winningNumbers);
         validateDuplicate(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    public boolean contains(int number) {
+    public boolean contains(final int number) {
         return winningNumbers.contains(number);
     }
 
-    public int countMatchingNumber(Lotto lotto) {
+    public int countMatchingNumber(final Lotto lotto) {
         return (int) winningNumbers.stream()
                 .filter(lotto::hasNumber)
                 .count();
     }
 
-    private void validateNumberInRange(List<Integer> winningNumbers) {
+    private void validateNumberInRange(final List<Integer> winningNumbers) {
         for (final Integer winningNumber : winningNumbers) {
             if (isNotValidWinningNumber(winningNumber)) {
                 throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
@@ -35,27 +35,27 @@ public class WinningNumbersData {
         }
     }
 
-    private boolean isNotValidWinningNumber(int winningNumber) {
+    private boolean isNotValidWinningNumber(final int winningNumber) {
         return winningNumber < LottoConstants.START_NUMBER || winningNumber > LottoConstants.END_NUMBER;
     }
 
-    private void validateWinningNumbersCount(List<Integer> winningNumbers) {
+    private void validateWinningNumbersCount(final List<Integer> winningNumbers) {
         if (isNotSameWinningNumbersSize(winningNumbers)) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isNotSameWinningNumbersSize(List<Integer> winningNumbers) {
+    private boolean isNotSameWinningNumbersSize(final List<Integer> winningNumbers) {
         return winningNumbers.size() != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 
-    private void validateDuplicate(List<Integer> winningNumbers) {
+    private void validateDuplicate(final List<Integer> winningNumbers) {
         if (isNotSameWinningNumbersSize(removeDuplicateWinningNumbers(winningNumbers))) {
             throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS_EXCEPTION_MESSAGE);
         }
     }
 
-    private List<Integer> removeDuplicateWinningNumbers(List<Integer> winningNumbers) {
+    private List<Integer> removeDuplicateWinningNumbers(final List<Integer> winningNumbers) {
         return winningNumbers.stream()
                 .distinct()
                 .toList();

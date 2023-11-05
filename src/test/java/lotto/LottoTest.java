@@ -33,7 +33,7 @@ class LottoTest {
         final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
-        Lotto lotto = new Lotto(numbers);
+        final Lotto lotto = new Lotto(numbers);
 
         // then
         Assertions.assertTrue(lotto.hasNumber(5));
@@ -45,7 +45,7 @@ class LottoTest {
         final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
-        Lotto lotto = new Lotto(numbers);
+        final Lotto lotto = new Lotto(numbers);
 
         // then
         Assertions.assertFalse(lotto.hasNumber(7));

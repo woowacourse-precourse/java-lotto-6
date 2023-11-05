@@ -3,10 +3,12 @@ package lotto.domain;
 import lotto.ui.InputView;
 
 public class UserInput {
+    private String cost;
     public int setAmount() {
-        String cost;
-        cost = InputView.readCost();
+        this.cost = InputView.readCost();
         Validator validator = new Validator();
-        return validator.validateCost(cost);
+        return validator.validateCost(this.cost);
     }
+
+
 }

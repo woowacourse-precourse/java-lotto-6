@@ -16,4 +16,8 @@ public final class Money {
     public String lottoExchangeCount() {
         return Integer.toString(money / 1000);
     }
+
+    public Integer getMoney() {
+        return money;
+    }
 }

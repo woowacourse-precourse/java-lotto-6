@@ -1,8 +1,5 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.Price;
-
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -24,8 +21,8 @@ public class OutputView {
     }
 
     public static void printLotto(List<Integer> lotto) {
-        StringJoiner stringJoiner = new StringJoiner(", ","[","]");
-        for (int number: lotto) {
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
+        for (int number : lotto) {
             stringJoiner.add(String.valueOf(number));
         }
         System.out.println(stringJoiner);
@@ -49,5 +46,9 @@ public class OutputView {
 
     public static void printProfit(Float profit) {
         System.out.println(String.format(PROFIT_MESSAGE, profit));
+    }
+
+    public static void printException(String exceptionMessage) {
+        System.out.println(exceptionMessage);
     }
 }

@@ -20,4 +20,10 @@ public class Wallet {
     public int getBuyMoney() {
         return buyMoney;
     }
+
+    public void printMyLotto() {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getLottoInfo());
+        }
+    }
 }

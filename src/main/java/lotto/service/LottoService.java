@@ -17,4 +17,8 @@ public class LottoService {
         UserNumbersValidator.postValidate(numbers);
         List<Integer> sortedNumbers = UserNumbersUtils.sort(numbers);
     }
+
+    public static void userInputBonus(String userInput) {
+        int bonus = BonusValidator.validate(userInput);
+    }
 }

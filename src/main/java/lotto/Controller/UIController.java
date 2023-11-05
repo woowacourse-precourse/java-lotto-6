@@ -142,6 +142,8 @@ public class UIController {
         if (BonusNumber < 1 || BonusNumber > 45) {
             throw new IllegalArgumentException("1~45의 숫자만 가능합니다.");
         }
-
+        if (winningNumbers.contains(BonusNumber)) {
+            throw new IllegalArgumentException("당첨번호와 중복되지 않는 번호 이어야 합니다.");
+        }
     }
 }

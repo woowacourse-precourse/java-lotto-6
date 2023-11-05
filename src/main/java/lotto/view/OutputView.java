@@ -17,8 +17,10 @@ public class OutputView {
         System.out.println(lottoCount + LOTTO_PURCHASE_MESSAGE);
     }
 
-    public void printLotto(List<Integer> lotto) {
-        System.out.println(lotto);
+    public void printLottoTickets(List<List<Integer>> lottoTickets) {
+        for (List<Integer> lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
+        }
     }
 
     public void printWinningNumbersInputMessage() {
@@ -28,5 +30,4 @@ public class OutputView {
     public void printBonusNumberInputMessage() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
-
 }

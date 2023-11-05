@@ -8,8 +8,8 @@ import java.util.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.RandNumber.*;
-import static lotto.controller.Rank.getRank;
 import static lotto.controller.Statistic.*;
+import static lotto.controller.winningController.*;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -47,7 +47,7 @@ public class Play {
         messageAboutWinningStatistic();
 
         for (Lotto lotto : lottery) {
-            int resultCount = compareLottoAndWinning(lotto.getLotto(), winningNumbers);
+            int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers);
             Rank resultRank = findRank(resultCount);
             if (resultRank == null) {
                 continue;
@@ -113,37 +113,6 @@ public class Play {
         lotto = new Lotto(number);
         return lotto;
     }
-
-
-    public static int compareLottoAndWinning(List<Integer> lotto, List<Integer> winning) {
-        Set<Integer> uniqueLotto = new HashSet<>(lotto);
-        Set<Integer> uniqueWinning = new HashSet<>(winning);
-
-        uniqueLotto.retainAll(uniqueWinning);
-        return uniqueLotto.size();
-    }
-
-    public static boolean compareLottoAndBonus(List<Integer> lotto, int bonus) {
-        Set<Integer> uniqueLotto = new HashSet<>(lotto);
-        return uniqueLotto.contains(bonus);
-    }
-
-    public static Rank findRank(int resultCount) {
-        Rank rank = getRank(resultCount);
-        if (rank != null) {
-            return rank;
-        }
-        return null;
-    }
-
-    //TODO : getLotto 이름 바꾸기
-    public static Rank checkIfSecondOrThird(Lotto lotto, int bonus) {
-        if (compareLottoAndBonus(lotto.getLotto(), bonus)) {
-            return Rank.SECOND;
-        }
-        return Rank.THIRD;
-    }
-
 
     public static List<Integer> sortLottery(Lotto lotto) {
         List<Integer> sortNumbers = new ArrayList<>(lotto.getLotto());

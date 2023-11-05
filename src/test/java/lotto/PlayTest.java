@@ -10,6 +10,8 @@ import java.util.List;
 
 import static lotto.controller.Play.*;
 import static lotto.controller.Statistic.calLottoCount;
+import static lotto.controller.winningController.compareLottoAndBonus;
+import static lotto.controller.winningController.compareLottoAndWinningNumber;
 
 public class PlayTest {
     @DisplayName("로또 한 장의 금액에 따라서 로또의 수를 반환한다.")
@@ -42,7 +44,7 @@ public class PlayTest {
         winningNumbers.add(3);
         winningNumbers.add(2);
         winningNumbers.add(9);
-        Assertions.assertThat(compareLottoAndWinning(lottoNumbers, winningNumbers)).isEqualTo(5);
+        Assertions.assertThat(compareLottoAndWinningNumber(lottoNumbers, winningNumbers)).isEqualTo(5);
     }
 
     @DisplayName("로또와 보너스 숫자를 비교해서 맞으면 참, 틀리면 거짓을 반환한다.")

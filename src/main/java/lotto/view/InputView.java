@@ -14,9 +14,11 @@ public class InputView {
             System.out.println(PURCHASE_AMOUNT_MONEY_MESSAGE);
             String money = Console.readLine();
             inputValidation.validationMoney(money);
+            System.out.println();
             return money;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            System.out.println();
             return purchaseAmountMoney();
         }
     }

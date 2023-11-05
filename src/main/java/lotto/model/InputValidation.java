@@ -3,18 +3,13 @@ package lotto.model;
 import lotto.constants.ErrorMessage;
 
 public class InputValidation {
-    public static void validatePurchaseAmount(String input) {
+    public static int validatePurchaseAmount(String input) {
         if (!input.matches("[1-9]\\d*")) {
             handleInvalidNegativePurchase(input);
             handleInvalidZeroPurchase(input);
             throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_PURCHASE.getMessage());
         }
-    }
-
-    public static int validatePurchaseAmountDivisible(String input) {
-        int purchaseAmount = Integer.parseInt(input);
-        handleInvalidAmountNotDivisible(purchaseAmount);
-        return purchaseAmount;
+        return Integer.parseInt(input);
     }
 
     public static int validateBonusNumber(String input) {
@@ -35,12 +30,6 @@ public class InputValidation {
     private static void handleInvalidZeroPurchase(String input) {
         if (input.matches("0+")) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ZERO_PURCHASE.getMessage());
-        }
-    }
-
-    private static void handleInvalidAmountNotDivisible(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
 }

@@ -8,22 +8,21 @@ import lotto.constants.InputMessage;
 import lotto.model.Bonus;
 import lotto.model.InputValidation;
 import lotto.model.Lotto;
+import lotto.model.Purchase;
 
 public class InputView {
     public static int getUserPurchaseAmount() {
-        int purchaseAmount;
         while (true) {
             try {
                 System.out.println(InputMessage.PURCHASE_AMOUNT.getMessage());
                 String input = Console.readLine();
-                InputValidation.validatePurchaseAmount(input);
-                purchaseAmount = InputValidation.validatePurchaseAmountDivisible(input);
-                break;
+                int purchaseAmount = InputValidation.validatePurchaseAmount(input);
+                Purchase purchase = new Purchase(purchaseAmount);
+                return purchase.getPurchase();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return purchaseAmount;
     }
 
     public static List<Integer> getWinningNumbers() {
@@ -52,12 +51,11 @@ public class InputView {
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println();
-        int bonusNumber;
         while (true) {
             try {
                 System.out.println(InputMessage.BONUS_NUMBER.getMessage());
                 String input = Console.readLine();
-                bonusNumber = InputValidation.validateBonusNumber(input);
+                int bonusNumber = InputValidation.validateBonusNumber(input);
                 Bonus bonus = new Bonus(bonusNumber, winningNumbers);
                 return bonus.getBonusNumber();
             } catch (IllegalArgumentException e) {

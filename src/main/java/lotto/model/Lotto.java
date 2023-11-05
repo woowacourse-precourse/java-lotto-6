@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.enums.ExceptionMessage;
 
 public class Lotto {
 
@@ -26,23 +27,23 @@ public class Lotto {
 
     private void validate(final String numbers) {
         if(isEmpty(numbers)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_IS_EMPTY.throwException();
         }
 
         if(!isDigit(numbers)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_IS_NOT_NUMER.throwException();
         }
 
         if(!isSixNumbers(numbers)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_SIZE_IS_OVER_SIX.throwException();
         }
 
         if(!isBetweenOneAndFortyFive(numbers)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
         }
 
         if(isDuplicatedNumber(numbers)){
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_IS_DUPLICATED.throwException();
         }
     }
 

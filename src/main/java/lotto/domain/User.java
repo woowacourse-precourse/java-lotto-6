@@ -12,8 +12,6 @@ public class User {
         this.lottos = lottos;
     }
 
-    
-
 
 
 

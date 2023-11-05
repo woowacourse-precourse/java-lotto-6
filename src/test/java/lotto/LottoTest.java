@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +26,14 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또_당첨_번호_확인(){
+
+        Lotto lotto = new Lotto(List.of(6,32,1,8,39,41));
+
+        assertThat(lotto.checkWinningNumbers(List.of(1,6,8,15,7,23)))
+                .isEqualTo(3);
+    }
+
+
 }

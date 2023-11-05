@@ -19,9 +19,33 @@ public class Lotto {
     private boolean isDuplicated(List<Integer> numbers) {
         int size = numbers.size();
         return size == numbers.stream()
-                                .distinct()
-                                .count();
+                .distinct()
+                .count();
+    }
+
+    public int checkWinningNumbers(List<Integer> winningNumber) {
+        int matchCount = 0;
+
+        for (int number : winningNumber) {
+            if (numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean checkBonusNumber(int bonusNumber){
+        return numbers.contains(bonusNumber);
     }
 
 
 }
+
+
+
+
+
+
+
+
+

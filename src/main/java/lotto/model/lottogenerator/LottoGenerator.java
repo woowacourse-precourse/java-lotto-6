@@ -1,7 +1,6 @@
 package lotto.model.lottogenerator;
 
-import java.util.List;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.lotto.Lotto;
 
 public abstract class LottoGenerator{
     abstract public Lotto generate();

@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.exception;
 
 import lotto.constance.GameConst;
 

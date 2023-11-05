@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.view.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.constance.GameConst;
-import lotto.util.LottoGameException;
+import lotto.exception.LottoGameException;
 
 public class Reader {
     private static Pattern answerPattern = Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);

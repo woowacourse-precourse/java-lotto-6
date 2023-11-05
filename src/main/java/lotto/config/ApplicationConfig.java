@@ -1,8 +1,8 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.exceptionhandler.ExceptionHandler;
-import lotto.exceptionhandler.RetryExceptionHandler;
+import lotto.exception.exceptionhandler.ExceptionHandler;
+import lotto.exception.exceptionhandler.RetryExceptionHandler;
 import lotto.model.LottoStore;
 import lotto.model.lottogenerator.LottoGenerator;
 import lotto.model.lottogenerator.RandomLottoGenerator;

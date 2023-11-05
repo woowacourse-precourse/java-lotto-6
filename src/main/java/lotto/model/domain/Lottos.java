@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.model.domain;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.lotto.Lotto;
 
 public class Lottos {
     private List<Lotto> lottos;

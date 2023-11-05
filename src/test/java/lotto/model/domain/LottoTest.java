@@ -1,7 +1,8 @@
 package lotto.model.domain;
 
 import java.util.stream.Stream;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
 import lotto.model.domain.result.CompareResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

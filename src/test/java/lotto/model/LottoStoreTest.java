@@ -1,8 +1,6 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.stream.Stream;
+import lotto.model.domain.Lottos;
 import lotto.model.lottogenerator.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

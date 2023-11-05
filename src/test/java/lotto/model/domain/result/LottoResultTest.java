@@ -1,16 +1,10 @@
 package lotto.model.domain.result;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.stream.Stream;
-import lotto.model.domain.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.EnumSource.Mode;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoResultTest {
 

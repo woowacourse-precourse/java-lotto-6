@@ -2,8 +2,8 @@ package lotto.model.domain.result;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
 
 public class ResultFactory {
     private final Map<CompareResult, LottoResult> results;

@@ -1,9 +1,8 @@
 package lotto.model.lottogenerator;
 
 import java.util.List;
-import java.util.Objects;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
 
 public class AnswerGenerator extends LottoGenerator{
     private static LottoAnswer lottoAnswer;

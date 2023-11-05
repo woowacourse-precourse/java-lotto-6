@@ -1,11 +1,9 @@
 package lotto.model.domain.result;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.exceptionhandler.ExceptionHandler;
+import lotto.exception.exceptionhandler.ExceptionHandler;
 import lotto.model.LottoStore;
-import lotto.model.Lottos;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoAnswer;
+import lotto.model.domain.Lottos;
+import lotto.model.domain.lotto.Lotto;
+import lotto.model.domain.lotto.LottoAnswer;
 import lotto.model.domain.Results;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.result.ResultFactory;

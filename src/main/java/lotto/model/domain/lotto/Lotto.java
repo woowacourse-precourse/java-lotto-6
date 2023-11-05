@@ -1,11 +1,10 @@
-package lotto.model.domain;
+package lotto.model.domain.lotto;
 
 import java.util.Collections;
 import java.util.List;
 import lotto.constance.GameConst;
-import lotto.constance.PrintConst;
 import lotto.model.domain.result.CompareResult;
-import lotto.util.LottoGameException;
+import lotto.exception.LottoGameException;
 
 public class Lotto {
     private static final int LOTTO_SIZE = GameConst.LOTTO_SIZE;

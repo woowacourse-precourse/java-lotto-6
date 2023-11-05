@@ -3,9 +3,10 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constance.GameConst;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.Lottos;
+import lotto.model.domain.lotto.Lotto;
 import lotto.model.lottogenerator.LottoGenerator;
-import lotto.util.LottoGameException;
+import lotto.exception.LottoGameException;
 
 public class LottoStore {
     private static final int LOTTO_PRICE = GameConst.LOTTO_PRICE;

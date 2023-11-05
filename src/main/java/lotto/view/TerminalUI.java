@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.constance.PrintConst;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.result.LottoResult;
-import lotto.ui.Reader;
-import lotto.ui.Writer;
+import lotto.view.io.Reader;
+import lotto.view.io.Writer;
 
 public class TerminalUI implements LottoGameUI {
 

@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.domain.Lotto;
+import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.result.LottoResult;
 

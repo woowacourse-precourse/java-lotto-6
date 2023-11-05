@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.view.io;
 
 import lotto.constance.PrintConst;
 

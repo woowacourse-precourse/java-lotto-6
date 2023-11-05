@@ -2,12 +2,15 @@ package lotto.model;
 
 import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
 import static lotto.enumerate.ConfigInteger.LOTTO_NUMBER_COUNT;
+import static lotto.enumerate.ConfigInteger.LOTTO_PRICE;
 import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_DUPLICATE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_OVER_OR_UNDER_SIZE;
 import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.record.LottoNumberRecord;
 
@@ -27,6 +30,30 @@ public class Lotto {
                 .stream().sorted()
                 .toList()
                 .toString();
+    }
+
+    private static void getLottoNumber(ArrayList<Lotto> list) {
+        List<Integer> numbers = Randoms
+                .pickUniqueNumbersInRange(LOTTO_START_NUMBER.getInt(), LOTTO_END_NUMBER.getInt(),
+                        LOTTO_NUMBER_COUNT.getInt());
+        list.add(new Lotto(numbers));
+    }
+
+    private void getLottoList(long lottoVolume, ArrayList<Lotto> list) {
+        for (int i = 0; i < lottoVolume; i++) {
+            getLottoNumber(list);
+        }
+    }
+
+    private ArrayList<Lotto> getLottos(Cash amountCash) {
+        ArrayList<Lotto> list = new ArrayList<>();
+        long lottoVolume = amountCash.cash() / LOTTO_PRICE.getInt();
+        getLottoList(lottoVolume, list);
+        return list;
+    }
+
+    public List<Lotto> buyLotto(Cash amountCash) {
+        return getLottos(amountCash);
     }
 
     private void validate(List<Integer> numbers) {

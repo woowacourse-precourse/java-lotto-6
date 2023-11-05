@@ -1,5 +1,6 @@
 package lotto.domain.player;
 
+import static lotto.domain.player.LottoTicket.makeZeroLottoTicket;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class LottoTicketTest {
      */
     @BeforeEach
     void initData() {
-        lottoTicket = new LottoTicket(0);
+        lottoTicket = makeZeroLottoTicket();
         playerWallet = new PlayerWallet(10000);
         playerWallet.consumeMoneyToLottoTicket(10000);
         boughtLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

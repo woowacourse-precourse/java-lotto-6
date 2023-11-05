@@ -1,5 +1,7 @@
 package lotto.domain.player.playermoney;
 
+import static lotto.domain.player.playermoney.UsedMoney.makeZeroUsedMoney;
+
 import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Profit;
 
@@ -9,7 +11,7 @@ public class PlayerWallet {
 
     public PlayerWallet(int initialHoldingMoney) {
         this.holdingMoney = new HoldingMoney(initialHoldingMoney);
-        this.usedMoney = new UsedMoney(0);
+        this.usedMoney = makeZeroUsedMoney();
     }
 
     public void consumeMoneyToLottoTicket(int consumeMoney) {

@@ -3,8 +3,12 @@ package lotto.domain.lottoresult;
 public class LottoPrizeMoney {
     private final long lottoPrizeMoney;
 
-    public LottoPrizeMoney(long lottoPrizeMoney) {
+    private LottoPrizeMoney(long lottoPrizeMoney) {
         this.lottoPrizeMoney = lottoPrizeMoney;
+    }
+
+    public static LottoPrizeMoney makeZeroLottoPrizeMoney() {
+        return new LottoPrizeMoney(0);
     }
 
     public LottoPrizeMoney updateLottoPrizeMoney(LottoResult lottoResult) {

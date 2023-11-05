@@ -10,8 +10,12 @@ public class LottoTicket {
 
     private final int lottoTicket;
 
-    LottoTicket(int lottoTicket) {
+    private LottoTicket(int lottoTicket) {
         this.lottoTicket = lottoTicket;
+    }
+
+    public static LottoTicket makeZeroLottoTicket() {
+        return new LottoTicket(0);
     }
 
     LottoTicket issueLottoTicket(PlayerWallet playerWallet) {
@@ -20,7 +24,7 @@ public class LottoTicket {
 
     LottoTicket changeAllTicketToLotto(Supplier<Lotto> randomLotto, LottoBundle lottoBundle) {
         if (lottoTicket == 0) {
-            return new LottoTicket(0);
+            return makeZeroLottoTicket();
         }
         addLottoToLottoBundle(randomLotto.get(), lottoBundle);
         int newTicketCount = lottoTicket - 1;

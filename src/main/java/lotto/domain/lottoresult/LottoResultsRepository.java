@@ -1,5 +1,7 @@
 package lotto.domain.lottoresult;
 
+import static lotto.domain.lottoresult.LottoPrizeMoney.makeZeroLottoPrizeMoney;
+
 import java.util.Map;
 import lotto.domain.dto.LottoResultsDto;
 
@@ -9,7 +11,7 @@ public class LottoResultsRepository {
 
     public LottoResultsRepository() {
         lottoResultsRepository = LottoResult.getInitialLottoResultsRepository();
-        lottoPrizeMoney = new LottoPrizeMoney(0);
+        lottoPrizeMoney = makeZeroLottoPrizeMoney();
     }
 
     public void saveLottoResult(LottoResult lottoResult) {

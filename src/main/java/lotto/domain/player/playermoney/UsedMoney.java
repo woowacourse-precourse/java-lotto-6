@@ -8,8 +8,12 @@ public class UsedMoney {
     private final static double U = 10.0;
     private final int usedMoney;
 
-    UsedMoney(int usedMoney) {
+    private UsedMoney(int usedMoney) {
         this.usedMoney = usedMoney;
+    }
+
+    public static UsedMoney makeZeroUsedMoney() {
+        return new UsedMoney(0);
     }
 
     UsedMoney updateUsedMoney(int consumeMoney) {

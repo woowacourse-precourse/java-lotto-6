@@ -12,7 +12,7 @@ public class Player {
 
     public Player(int inputMoney) {
         this.playerWallet = new PlayerWallet(inputMoney);
-        this.lottoTicket = new LottoTicket(0);
+        this.lottoTicket = LottoTicket.makeZeroLottoTicket();
     }
 
     public void consumeAllMoneyToLottoTicket() {

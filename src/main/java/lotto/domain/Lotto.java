@@ -20,6 +20,12 @@ public class Lotto {
         return new LottoResponseDto(numbers);
     }
 
+    public int countContainsNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::isContain)
+                .count();
+    }
+
     public boolean isContain(int lottoNumber){
         return numbers.contains(lottoNumber);
     }

@@ -41,11 +41,9 @@ public enum LottoPrizeRule {
             return place;
         }
 
-        place = matchedPlaceByCount.get(0).place;
-
-        if (matchedPlaceByCount.size() == 2 && hasLottoBonusNumber) {
-            place = matchedPlaceByCount.get(1).place;
-        }
+        place = matchedPlaceByCount.stream()
+                .filter(prizeRule -> prizeRule.hasSameBonusNumberRule(hasLottoBonusNumber))
+                .findAny().get().place;
 
         return place;
     }
@@ -66,6 +64,10 @@ public enum LottoPrizeRule {
 
     private boolean hasSameCount(int matchedNumbersCount) {
         return this.matchedNumbersCount == matchedNumbersCount;
+    }
+
+    private boolean hasSameBonusNumberRule(boolean hasBonusNumber) {
+        return this.hasBonusNumber == hasBonusNumber;
     }
 
 

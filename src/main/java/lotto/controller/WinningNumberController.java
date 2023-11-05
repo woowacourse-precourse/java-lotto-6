@@ -67,6 +67,4 @@ public class WinningNumberController {
         NumberOfRangeValidator numberOfRangeValidator = new NumberOfRangeValidator();
         numberOfRangeValidator.validate(number);
     }
-
-
 }

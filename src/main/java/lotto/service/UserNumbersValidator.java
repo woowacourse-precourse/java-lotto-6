@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserNumbersValidator {
-    private static final String ONLY_NUMBER = "^[0-9,]*$";
+    private static final String ONLY_NUMBER_DELIMITER = "^[0-9,]*$";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
     public static String preValidate(String userInput) {
         // Only number
-        if (!userInput.matches(ONLY_NUMBER)) {
+        if (!userInput.matches(ONLY_NUMBER_DELIMITER)) {
             throw new IllegalArgumentException(UserNumbersValidateEnum.PRE_NUMBERS_ERROR.get());
         }
 

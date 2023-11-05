@@ -8,8 +8,14 @@ public class InputView {
         OutputView.printInputPurchaseAmountMsg();
         return Console.readLine();
     }
+
     public static String receiveInputWinningNumberMsg(){
         OutputView.printInputWinningNumberMsg();
+        return Console.readLine();
+    }
+
+    public static String receiveInputBonusNumberMsg(){
+        OutputView.printInputBonusNumberMsg();
         return Console.readLine();
     }
 }

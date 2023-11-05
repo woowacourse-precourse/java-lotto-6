@@ -2,9 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class RandNumber {
     public static List<Integer> makeRandNumber() {
@@ -12,12 +10,24 @@ public class RandNumber {
         return lottoNumbers;
     }
 
-    public static List<Integer> checkDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() == numbers.size()) {
-            return numbers;
+    public static List<Integer> makeUniqueNumber() {
+        List<Integer> numbers = new ArrayList<>();
+        while(true) {
+            numbers = makeRandNumber();
+            if (checkDuplicate(numbers)) {
+                break;
+            }
+
         }
-        return checkDuplicate(makeRandNumber());
+        return numbers;
+    }
+
+    public static boolean checkDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            return false;
+        }
+        return true;
     }
 
 }

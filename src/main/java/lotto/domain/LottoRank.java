@@ -40,4 +40,8 @@ public enum LottoRank {
     public long getPrizeMoney() {
         return prizeMoney;
     }
+
+    public String getPrizeAsString() {
+        return prizeAsString;
+    }
 }

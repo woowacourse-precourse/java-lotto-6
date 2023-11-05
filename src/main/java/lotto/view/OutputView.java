@@ -19,7 +19,7 @@ public class OutputView {
 
     public void printLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers());
         }
     }
   
@@ -29,5 +29,9 @@ public class OutputView {
   
     public void printInputBonusNumberMessage() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void printResultMessage() {
+        System.out.println("\n당첨 통계\n---");
     }
 }

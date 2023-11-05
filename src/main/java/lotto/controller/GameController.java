@@ -21,13 +21,17 @@ public class GameController {
         String purchaseAmountInput = inputView.printAskPurchaseAmount();
         Lottos lottos = lottoPurchaseManager.createLottos(purchaseAmountInput);
         printLottos(lottos);
+
         String winningNumbersInput = inputView.printAskWinningNumbers();
         WinningNumbers winningNumbers = WinningNumbers.create(winningNumbersInput);
+
         String bonusNumberInput = inputView.printAskBonusNumber();
         BonusNumber bonusNumber = BonusNumber.create(bonusNumberInput);
         winningNumbers.assignBonusNumber(bonusNumber);
 
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
+        long inputMoney = lottoPurchaseManager.getInputMoney();
+
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney);
         Map<PrizeCondition, Long> prizeResult = lottoResultGenerator.generatePrizeResult(lottos);
         double profit = lottoResultGenerator.generateProfit();
         outputView.printResult(prizeResult, profit);

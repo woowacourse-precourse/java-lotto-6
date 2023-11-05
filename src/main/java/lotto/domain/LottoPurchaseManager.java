@@ -6,6 +6,7 @@ import lotto.validator.LottoNumberValidator;
 public class LottoPurchaseManager {
     private static final int LOTTO_PRICE = 1000;
     private final LottoGenerator lottoGenerator;
+    private long inputMoney;
 
     public LottoPurchaseManager(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
@@ -16,11 +17,14 @@ public class LottoPurchaseManager {
         return lottoGenerator.generateLottos(quantity);
     }
 
+    public long getInputMoney() {
+        return inputMoney;
+    }
 
     private long calculateLottoQuantity(String input) {
-        long money = LottoNumberValidator.validateNumeric(input);
-        validatePurchaseAmount(money);
-        return money / LOTTO_PRICE;
+        inputMoney = LottoNumberValidator.validateNumeric(input);
+        validatePurchaseAmount(inputMoney);
+        return inputMoney / LOTTO_PRICE;
     }
 
     private void validatePurchaseAmount(long money) {

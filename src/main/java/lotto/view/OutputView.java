@@ -13,7 +13,7 @@ public class OutputView {
     private static final String THIRD_PRIZE_RESULT_MESSAGE_FORMAT = "5개 일치 (1,500,000원) - %d개";
     private static final String SECOND_PRIZE_RESULT_MESSAGE_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String FIRST_PRIZE_RESULT_MESSAGE_FORMAT = "6개 일치 (2,000,000,000원) - %d개";
-    private static final String PROFIT_MESSAGE_FORMAT = "총 수익률은 %f%입니다.";
+    private static final String PROFIT_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(Lottos lottos) {
         System.out.println();
@@ -70,7 +70,6 @@ public class OutputView {
     }
 
     private static void printProfit(double profit) {
-        //TODO profit 출력
         String profitMessage = String.format(PROFIT_MESSAGE_FORMAT, profit);
         System.out.println(profitMessage);
     }

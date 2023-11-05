@@ -34,14 +34,6 @@ public enum PrizeCondition {
                 .orElse(NONE);
     }
 
-    public int getMatchingNumberCount() {
-        return matchingNumberCount;
-    }
-
-    public boolean isRequiresBonusMatch() {
-        return requiresBonusMatch;
-    }
-
     public long getPrize() {
         return prize;
     }

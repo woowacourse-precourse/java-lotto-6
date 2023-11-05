@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoResultGeneratorTest {
     WinningNumbers winningNumbers;
     BonusNumber bonusNumber;
+    long inputMoney = 10000;
 
     @DisplayName("당첨번호에 보너스넘버가 중복되지 않으면 정상 처리된다.")
     @Test
@@ -21,7 +22,7 @@ class LottoResultGeneratorTest {
         bonusNumber = BonusNumber.create("7");
 
         // when
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney);
 
         // then
         assertThat(lottoResultGenerator).isNotNull();
@@ -35,7 +36,7 @@ class LottoResultGeneratorTest {
         bonusNumber = BonusNumber.create("1");
 
         // when, then
-        assertThatThrownBy(() -> LottoResultGenerator.create(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -49,7 +50,7 @@ class LottoResultGeneratorTest {
 
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
         bonusNumber = BonusNumber.create("7");
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney);
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
         // when, then
@@ -74,7 +75,7 @@ class LottoResultGeneratorTest {
 
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
         bonusNumber = BonusNumber.create("7");
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningNumbers, bonusNumber, inputMoney);
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
         // when, then

@@ -8,31 +8,36 @@ import java.util.stream.Collectors;
 public class LottoResultGenerator {
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
+    private final long inputMoney;
+    private Map<PrizeCondition, Long> prizeResult;
+    private long prizeMoney;
 
-    private LottoResultGenerator(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private LottoResultGenerator(WinningNumbers winningNumbers, BonusNumber bonusNumber, long inputMoney) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        this.inputMoney = inputMoney;
     }
 
-    public static LottoResultGenerator create(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return new LottoResultGenerator(winningNumbers, bonusNumber);
+    public static LottoResultGenerator create(WinningNumbers winningNumbers, BonusNumber bonusNumber, long inputMoney) {
+        return new LottoResultGenerator(winningNumbers, bonusNumber, inputMoney);
     }
 
     public Map<PrizeCondition, Long> generatePrizeResult(Lottos lottos) {
         List<PrizeCondition> prizeConditions = lottos.providePrizeConditions(winningNumbers, bonusNumber);
-        return prizeConditions.stream()
+        prizeResult = prizeConditions.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return prizeResult;
     }
 
     public double generateProfit() {
-        //TODO profit 계산 후 리턴
-        return 0;
+        calculatePrizeMoney();
+        double profit = (double) prizeMoney / inputMoney;
+        return Math.round(profit * 10) / 10.0;
     }
 
     private void calculatePrizeMoney() {
-        //TODO 전체 수익 금액 계산
-//        for (PrizeCondition prizeCondition : prizeFrequencies.keySet()) {
-//            prizeMoney += prizeCondition.getPrize() * prizeFrequencies.get(prizeCondition);
-//        }
+        for (PrizeCondition prizeCondition : prizeResult.keySet()) {
+            prizeMoney += prizeCondition.getPrize() * prizeResult.get(prizeCondition);
+        }
     }
 }

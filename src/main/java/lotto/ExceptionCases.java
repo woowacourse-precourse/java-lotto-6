@@ -1,5 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ExceptionCases {
     private static final String ERROR_MESSAGE = "[ERROR]";
     public boolean LottoPriceCheck(String s){
@@ -28,12 +32,19 @@ public class ExceptionCases {
         }
         return false;
     }
-    private boolean CheckFormat() {
+    public boolean CheckFormat() {
         try {
             throw new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 형식의 입력입니다.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
+        }
+    }
+    public void CheckFormat2() {
+        try {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 형식의 입력입니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
     public boolean CheckPrice(int i){
@@ -59,5 +70,27 @@ public class ExceptionCases {
         }
         return false;
     }
+    public void CheckDuplicate(List<Integer> numbers){
+        Set<Integer> numSet = new HashSet<>(numbers);
+        if (numSet.size() != numbers.size()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호는 중복될 수 없습니다.");
+        }
+    }
+    public void CheckNum(List<Integer> numbers){
+        for(int temp : numbers){
+            if(temp<=0||temp>=46){
+                throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+    public void CheckSize(List<Integer> numbers){
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호는 6개의 숫자로 구성되어야 합니다.");
+        }
+    }
+    public void CheckComma(){
+        throw new IllegalArgumentException(ERROR_MESSAGE + "당첨 번호 입력 형식이 잘못되었습니다");
+    }
 }
+
 

@@ -15,7 +15,7 @@ public class StatisticsService {
         this.outputView = outputView;
     }
 
-    public void calculateStatistics(List<Statistics> result, int purchasePrice) {
+    public String calculateStatistics(List<Statistics> result, int purchasePrice) {
         //로또 통계
         Map<Statistics, Integer> matchingCount = new HashMap<>();
         PrizeMoney prizeMoney = new PrizeMoney();
@@ -30,6 +30,8 @@ public class StatisticsService {
 
         String formattedPercent = printEarningPercent(earningMoney, purchasePrice);
         outputView.printEarningPercent(formattedPercent);
+
+        return formattedPercent;
     }
 
     private void updateMatchingCount(List<Statistics> result, Map<Statistics, Integer> matchingCount) {

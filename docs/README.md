@@ -13,22 +13,16 @@
 > 우아한테크코스 6기 3주차 미션, 로또 미션을 구현한 저장소입니다.
 
 <br>
-<img src="./"> 오퍼레이션 등록 예정
+<img src="./operation.png">
 
 # 목차
 
-- [패키지 구조](#패키지 구조)
 - [기능 목록](#기능-목록)
     - [로또 구입](#로또-구입)
     - [당첨 번호 입력](#로또-당첨-번호)
     - [보너스 번호 입력](#로또-보너스-번호)
     - [당첨 통계 출력](#로또-당첨-통계-출력)
-
----
-
-## 패키지 구조
-
-작성 예정
+- [패키지 구조](#패키지 구조)
 
 ---
 
@@ -73,3 +67,46 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 0.0%입니다.
 ```
+
+---
+
+## 패키지 구조
+
+- controller
+  - LottoController: Model과 View 중재 역할
+- model
+  - constant
+    - LottoConfig: LottoConfing 상수들을 모아놓은 클래스
+  - Lotto
+    - sameNumberCounter: 같은 숫자 개수 반환 기능
+    - hasNumber: 숫자가 포함 되는지 판단 기능
+  - LottoResult
+    - calculateRank: 등수 계산 기능
+    - calculatePriceSum: 누적 당첨 금액 계산 기능
+  - Lottos
+    - addLotto: 로또 구매 기능
+  - Money
+    - availableLottoCount: 구매 가능 로또 개수 계산 기능
+  - Purchase
+    - purchase: 돈 투입 기능
+  - WinningNumbers
+    - calculate: 등수 계산 기능
+  - PriceMoney
+    - getRank: 맞춘 개수, 보너스 번호 맞춤 여부를 입력 받아 등수 생성 기능
+- dto
+  - PurchaseResult: 로또 목록과 구매 개수 전달 객체
+  - WinningResult: 로또 등수와 수익률 전달 객체
+- view
+  - constant
+    - viewMessage: 입,출력 뷰 메세지 관리 클래스
+  - validation
+    - InputValidation
+      - 빈칸 입력 검증 기능
+      - 공백 입력 검증 기능
+  - InputView
+    - inputMoney: 구매 금액 입력 기능
+    - inputWinningNumbers: 당첨 번호 입력 기능
+    - inputBonusNumber: 보너스 번호 입력 기능
+  - OutputView
+    - outputPurchaseLottos: 구매한 로또 목록 출력 기능
+    - outputWinningResult: 구매 통계 출력 기능

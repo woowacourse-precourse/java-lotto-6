@@ -27,6 +27,7 @@ class LottoPrint {
 	}
 	
 	protected static void printResult(List<Integer> rankCount, double ratio) {
+		System.out.println("\n당첨 통계");
 		System.out.println("---");
 		System.out.println(Rank.FIRST.message() + " - " + rankCount.get(1) + "개");
 		System.out.println(Rank.SECOND.message() + " - " + rankCount.get(2) + "개");

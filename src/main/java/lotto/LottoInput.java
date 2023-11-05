@@ -12,7 +12,10 @@ class LottoInput {
 	protected static int getPurchaseAmount() {
 		LottoPrint.printPurchase();
 		
-		int amount = Integer.valueOf(Console.readLine());
+		String inputAmount = Console.readLine();
+		Validation.validateNonIntegerInput(inputAmount);
+		
+		int amount = Integer.valueOf(inputAmount);
 		
 		return amount;
 	}
@@ -31,7 +34,8 @@ class LottoInput {
 	protected static int getBonusNumber() {
 		LottoPrint.printBonusNumber();
 		
-		int bonusNumber = Integer.valueOf(Console.readLine());
+		String inputNumber = Console.readLine();
+		int bonusNumber = Integer.valueOf(inputNumber);
 		
 		return bonusNumber;
 	}

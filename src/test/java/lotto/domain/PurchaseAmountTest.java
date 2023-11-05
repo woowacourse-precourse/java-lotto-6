@@ -59,4 +59,13 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액 예외 - 입력 값이 0원인 경우")
+    void receiveZeroAmountTest() {
+        String amount = "0";
+
+        assertThatThrownBy(() -> new PurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

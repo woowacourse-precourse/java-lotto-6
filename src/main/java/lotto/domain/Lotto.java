@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbersAscending();
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +19,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void sortNumbersAscending() {
+        Collections.sort(numbers);
+    }
 }

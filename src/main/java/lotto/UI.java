@@ -9,11 +9,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UI {
-    public static String inputMoney() {
+    public static Integer inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String line = readLine();
         System.out.println();
-        return line;
+        Integer payment = Integer.parseInt(line);
+        return payment;
     }
 
     public static void printPurchases(List<Lotto> lottos) {

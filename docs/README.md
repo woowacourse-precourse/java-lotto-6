@@ -35,4 +35,4 @@
 
 - 예외 발생 시 에러 문구를 출력하고 해당 지점부터 입력을 다시 받아야 한다.
 - 사용자가 잘못된 입력을 했을 때는 IllegalArgumentException을 발생시킨다.
-- 입력 예외가 아닌 경우를 체크한다. IlleagalStateException과 같은 명확한 유형을 처리한다.
+- Exception이 아닌 IlleagalStateException과 같은 명확한 유형을 처리한다.

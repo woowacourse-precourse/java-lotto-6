@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.config.GameConfig;
+import lotto.exception.InputException;
+import lotto.exception.LottoGameException;
 
 public class InputUtil {
 
@@ -20,7 +22,7 @@ public class InputUtil {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(InputException.INVALID_INTEGER);
         }
     }
 
@@ -37,13 +39,13 @@ public class InputUtil {
                     .map(Integer::valueOf)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(InputException.INVALID_INTEGER);
         }
     }
 
     private static void validateDelimiter(String input) {
         if (!input.contains(GameConfig.LOTTO_NUMBER_INPUT_DELIMITER)) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(InputException.INVALID_DELIMITER);
         }
     }
 
@@ -55,7 +57,7 @@ public class InputUtil {
 
     private static boolean validateHasInput(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(); // TODO: custom 예외 만들기
+            throw new LottoGameException(InputException.INVALID_INPUT);
         }
         return true;
     }

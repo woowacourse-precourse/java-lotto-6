@@ -6,18 +6,26 @@ import static lotto.util.ErrorConstants.DUPLICATE_NUMBER;
 import static lotto.util.ErrorConstants.OVER_RANGE;
 import static lotto.util.ErrorConstants.OVER_SIZE;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public static Lotto generate() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
+    }
+
+    public static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(OVER_SIZE);
         }
@@ -31,4 +39,7 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

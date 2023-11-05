@@ -7,6 +7,7 @@ import static lotto.util.ErrorConstants.OVER_RANGE;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Lotto;
 import lotto.util.ErrorConstants;
 
 public class InputValidator {
@@ -57,10 +58,12 @@ public class InputValidator {
 
     public static List<Integer> validateWinningNumbers(String input) {
         isCommaSeparated(input);
-        return Arrays.stream(input.split(","))
+        List<Integer> result = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(InputValidator::isInteger)
                 .collect(Collectors.toList());
+        Lotto.validate(result);
+        return result;
     }
 
     public static int validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
@@ -69,5 +72,4 @@ public class InputValidator {
         containsNumber(bonus, winningNumbers);
         return bonus;
     }
-
 }

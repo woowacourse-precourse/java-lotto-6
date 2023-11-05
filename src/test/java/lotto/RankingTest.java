@@ -12,7 +12,7 @@ public class RankingTest {
     void findFirst() {
         int count = 6;
         boolean hasBonusNumber = true;
-        Ranking ranking = Ranking.find(count, hasBonusNumber);
+        Ranking ranking = Ranking.valudOf(count, hasBonusNumber);
 
         assertThat(ranking).isEqualTo(Ranking.FIRST);
     }
@@ -22,7 +22,7 @@ public class RankingTest {
     void findSecond() {
         int count = 5;
         boolean hasBonusNumber = true;
-        Ranking ranking = Ranking.find(count, hasBonusNumber);
+        Ranking ranking = Ranking.valudOf(count, hasBonusNumber);
 
         assertThat(ranking).isEqualTo(Ranking.SECOND);
     }
@@ -32,19 +32,19 @@ public class RankingTest {
     void findThird() {
         int count = 5;
         boolean hasBonusNumber = false;
-        Ranking ranking = Ranking.find(count, hasBonusNumber);
+        Ranking ranking = Ranking.valudOf(count, hasBonusNumber);
 
         assertThat(ranking).isEqualTo(Ranking.THIRD);
     }
 
-    @DisplayName("일치횟수가 2개고, 보너스 숫자와 일치하면 NONE을 찾는다")
+    @DisplayName("일치횟수가 2개고, 보너스 숫자와 일치하면 Ranking에서 값을 찾을 수 없다.")
     @Test
-    void findNONE() {
+    void findNothing() {
         int count = 2;
         boolean hasBonusNumber = true;
-        Ranking ranking = Ranking.find(count, hasBonusNumber);
+        Ranking ranking = Ranking.valudOf(count, hasBonusNumber);
 
-        assertThat(ranking).isEqualTo(Ranking.NONE);
+        assertThat(ranking).isEqualTo(null);
     }
 
     @DisplayName("2등을 2번 한 경우의 결과 메시지 확인")
@@ -52,7 +52,7 @@ public class RankingTest {
     void checkSecondMessage() {
         String result = Ranking.SECOND.getResult(2);
 
-        assertThat(result).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원) - 2개");
+        assertThat(result).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원) - 2개\n");
     }
 
     @DisplayName("3등을 1번 한 경우의 결과 메시지 확인")
@@ -60,6 +60,6 @@ public class RankingTest {
     void checkThirdMessage() {
         String result = Ranking.THIRD.getResult(1);
 
-        assertThat(result).isEqualTo("5개 일치 (1,500,000원) - 1개");
+        assertThat(result).isEqualTo("5개 일치 (1,500,000원) - 1개\n");
     }
 }

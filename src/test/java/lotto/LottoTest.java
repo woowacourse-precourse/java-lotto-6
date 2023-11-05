@@ -68,6 +68,6 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(45, 44, 43, 42, 41, 40));
         Ranking ranking = lotto.getRanking(winningLotto, bonusNumber);
 
-        assertThat(ranking).isEqualTo(Ranking.NONE);
+        assertThat(ranking).isEqualTo(null);
     }
 }

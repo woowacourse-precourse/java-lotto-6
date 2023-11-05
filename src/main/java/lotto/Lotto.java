@@ -50,6 +50,6 @@ public class Lotto {
                 count++;
             }
         }
-        return Ranking.find(count, hasBonusNumber);
+        return Ranking.valudOf(count, hasBonusNumber);
     }
 }

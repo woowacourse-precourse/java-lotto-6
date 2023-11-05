@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
     public static final int NUMBERS_SIZE = 6;
+    public static final int MINIMUM_NUMBER = 1;
+    public static final int MAXIMUM_NUMBER = 45;
 
     public Lotto(List<Integer> numbers) {
         validateNumbers(numbers);
@@ -31,4 +34,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBERS_SIZE);
+    }
 }

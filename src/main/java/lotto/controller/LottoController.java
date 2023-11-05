@@ -53,7 +53,7 @@ public class LottoController {
     private void printBuyLotto() {
         outputView.printLottoCount(user.getPurchaseAmount() / 1_000);
         for(Lotto lotto : user.getLottos()) {
-            outputView.printLottoNumbers(lotto.getNumbers());
+            outputView.printLottoNumbers(lotto.numbers());
         }
     }
 }

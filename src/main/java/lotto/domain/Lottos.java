@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.errors.ErrorMessage;
+
 public class Lottos {
 
     private int numberOfLottos;
@@ -9,12 +11,16 @@ public class Lottos {
     }
 
     private int parseIntCost(String cost){
-        return Integer.parseInt(cost);
+        try {
+            return Integer.parseInt(cost);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_FORMAT.getMessage());
+        }
     }
 
     private int calculateNumberOfLottos(int cost){
         if (cost%1000!=0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WRONG_COST.getMessage());
         }
         return cost/1000;
     }

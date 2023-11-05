@@ -5,6 +5,7 @@ public class LottoMoney {
     private static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     private static final String NOT_DIVISIBLE_BY_1000_ERROR_MESSAGE = "[ERROR] 1000원 단위로 입력해 주세요.";
     private static final String NOT_POSITIVE_NUMBER_ERROR_MESSAGE = "[ERROR] 0보다 큰 숫자를 입력해 주세요.";
+    private static final int LOTTO_PRICE = 1000;
 
     private int money;
 
@@ -37,5 +38,9 @@ public class LottoMoney {
         if (money < 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR_MESSAGE);
         }
+    }
+
+    public int getLottoCount() {
+        return money / LOTTO_PRICE;
     }
 }

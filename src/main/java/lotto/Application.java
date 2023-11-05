@@ -28,6 +28,12 @@ public class Application {
         for (int i = 0; i < lottoList.size(); i++) {
             System.out.println(lottoList.get(i).toString());
         }
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winNumbers = Console.readLine();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
     }
 
 }

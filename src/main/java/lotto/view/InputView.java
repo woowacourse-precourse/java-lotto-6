@@ -26,8 +26,12 @@ public class InputView {
         return convertStringToList(userInput);
     }
 
-    public static void getUserInputForBonusNumber() {
+    public static int getUserInputForBonusNumber() {
         System.out.println(USER_INPUT_BONUS_NUMBER_MESSAGE);
+        String userInput = Console.readLine();
+        System.out.println();
+        Validation.validateIsNotNumber(userInput);
+        return convertStringToInt(userInput);
     }
 
     private static List<Integer> convertStringToList(String userInput) {

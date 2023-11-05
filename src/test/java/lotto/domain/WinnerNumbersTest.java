@@ -78,7 +78,7 @@ public class WinnerNumbersTest {
         assertThat(actual).isFalse();
     }
 
-    @DisplayName("보너스 번호를 포함하고 있는지 확인한다,")
+    @DisplayName("보너스 번호를 포함하고 있는지 확인한다.")
     @Test
     void containBonusNumber() {
         // given

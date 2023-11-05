@@ -27,4 +27,8 @@ public class IOOperation {
 
         return true;
     }
+
+    public static Integer numberOfLotto(Integer price) {
+        return price / UNIT;
+    }
 }

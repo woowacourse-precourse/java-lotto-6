@@ -37,4 +37,9 @@ public class IOOperationTest {
 
         assertThat(IOOperation.isWinningNumberNotDuplicated(winningNumbers)).isTrue();
     }
+
+    @Test
+    void 금액_입력_시_로또_개수_리턴() {
+        assertThat(IOOperation.numberOfLotto(12000)).isEqualTo(12);
+    }
 }

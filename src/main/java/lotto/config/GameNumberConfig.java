@@ -1,5 +1,7 @@
 package lotto.config;
 
+import static lotto.config.GameTextConfig.LOTTO_NUMBER_SEPARATOR;
+
 public enum GameNumberConfig {
     LOTTO_RANGE_MIN(1),
     LOTTO_RANGE_MAX(45),
@@ -14,5 +16,4 @@ public enum GameNumberConfig {
     }
 
     public int getNumber() { return this.number; }
-
 }

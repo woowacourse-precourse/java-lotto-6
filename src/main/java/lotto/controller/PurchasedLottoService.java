@@ -8,22 +8,16 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.util.RandomNumbersGenerator;
-import lotto.view.OutputView;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
-public class LottoGame {
+public class PurchasedLottoService {
 
-    public void run() {
-        PurchasedLotto purchasedLotto = createPurchasedLotto();
-        printPurchasedLotto(purchasedLotto);
-
-    }
-
-    private PurchasedLotto createPurchasedLotto() {
+    public PurchasedLotto createPurchasedLotto() {
         int lottoCount = inputPurchasedLottoCount(InputView.inputPurchasePrice());
 
         List<Lotto> lotto = new ArrayList<>();
-        for (int i=0; i<lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = RandomNumbersGenerator.generateSortedRandomNumbers();
             lotto.add(new Lotto(numbers));
         }
@@ -37,7 +31,8 @@ public class LottoGame {
 
         return purchasedLottoCount;
     }
-    private void printPurchasedLotto(PurchasedLotto purchasedLotto) {
+
+    public void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         purchasedLotto.getLotto()
                 .forEach(lotto -> OutputView.printNumbers(lotto.getLotto()));
     }

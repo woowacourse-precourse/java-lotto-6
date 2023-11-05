@@ -5,6 +5,7 @@ import static lotto.config.GameNumberConfig.LOTTO_RANGE_MAX;
 import static lotto.config.GameNumberConfig.LOTTO_RANGE_MIN;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomNumbersGenerator {
@@ -17,7 +18,7 @@ public class RandomNumbersGenerator {
                 LOTTO_RANGE_MAX.getNumber(),
                 LOTTO_NUMBER_COUNT.getNumber()
         );
-        numbers.sort(null);
+        Collections.sort(numbers);
         return numbers;
     }
 }

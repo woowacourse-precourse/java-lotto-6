@@ -22,4 +22,13 @@ public record AnswerLotto(Lotto lotto, int bonus) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
+
+    public Rank calculateRank(Lotto userLotto) {
+        int matchCount = lotto.getMatchCount(userLotto);
+        boolean matchBonus = userLotto.hasNumber(bonus);
+        if (matchBonus) {
+            matchCount += 1;
+        }
+        return Rank.findByMatchCountAndBonus(matchCount, matchBonus);
+    }
 }

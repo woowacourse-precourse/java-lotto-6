@@ -24,7 +24,7 @@ public class InputView {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_MESSAGE.getMessage());
+            throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
         }
     }
 

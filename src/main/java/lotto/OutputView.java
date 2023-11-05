@@ -12,4 +12,9 @@ public class OutputView {
         System.out.println();
         System.out.println(ticketCount + TICKET_COUNT);
     }
+
+    public static void printLottoList(Lottos lottos) {
+        lottos.getLottos().forEach(System.out::println);
+        System.out.println();
+    }
 }

@@ -21,6 +21,10 @@ public class LottoGame {
     }
 
     public void start() {
+        purchaseAmount();
+    }
+
+    private void purchaseAmount() {
         user.setPurchaseAmount(inputView.purchaseAmount());
         purchaseAmount = user.getPurchaseAmount() % 1000;
         outputView.printPurchaseAmount(purchaseAmount);

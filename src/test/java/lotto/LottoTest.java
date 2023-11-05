@@ -6,8 +6,8 @@ import java.util.List;
 import lotto.exception.WrongCommasFormatException;
 import lotto.exception.WrongTypeFormatException;
 import lotto.service.impl.ValidateServiceImpl;
-import lotto.vo.Lotto;
-import lotto.vo.WinnerNumbers;
+import lotto.domain.Lotto;
+import lotto.domain.WinnerNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

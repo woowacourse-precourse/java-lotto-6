@@ -6,10 +6,10 @@ import lotto.output.OutputView;
 public class Application {
     public static void main(String[] args) {
 
-        Lottos lottos = null;
+        System.out.println(OutputView.INPUT_COST.getMessage());
 
+        Lottos lottos = null;
         while (true) {
-            System.out.println(OutputView.INPUT_COST.getMessage());
             lottos = LottoGame.getRightCost(lottos);
             if (lottos!=null) {
                 break;

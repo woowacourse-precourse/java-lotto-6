@@ -38,4 +38,8 @@ public enum LottoPrize {
 
         throw new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다.");
     }
+
+    public Integer getPrizeMoney() {
+        return prizeMoney;
+    }
 }

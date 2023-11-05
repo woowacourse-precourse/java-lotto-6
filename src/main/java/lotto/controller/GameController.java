@@ -8,6 +8,9 @@ import lotto.validator.InputValidator;
 import lotto.view.OutputView;
 
 public class GameController {
+    private GameController() {
+    }
+
     public static void game(){
         int lottoPurchasePrice = inputLottoPurchasePrice();
     }
@@ -18,6 +21,6 @@ public class GameController {
         String lottoPurchasePrice = read();
         InputValidator.validateIsNumber(lottoPurchasePrice);
 
-        return InputUtil.parseInt(lottoPurchasePrice);
+        return InputUtil.preprocessLottoPurchasePrice(lottoPurchasePrice);
     }
 }

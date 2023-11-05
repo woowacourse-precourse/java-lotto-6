@@ -5,6 +5,9 @@ import lotto.util.InputUtil;
 
 public class InputValidator {
 
+    private InputValidator() {
+    }
+
     public static void validateIsNumber(String input) {
         try {
             InputUtil.parseInt(input);

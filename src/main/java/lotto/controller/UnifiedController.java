@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
+import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
+import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
 import static lotto.view.SystemMessage.ASK_MONEY;
@@ -33,7 +36,8 @@ public class UnifiedController {
         long numOfTickets = Register.money.getAmount() / 1000;
         printNumOfTickets(numOfTickets);
         for (int i = 0; i < numOfTickets; i++) {
-            Register.lottoTickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            Register.lottoTickets.add(
+                    new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUM_OF_NUMBERS)));
         }
         for (Lotto lotto : Register.lottoTickets) {
             List<Integer> lottoNumbers = lotto.getNumbers();

@@ -1,11 +1,13 @@
 package lotto.model;
 
+import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
+
 public enum Rank {
-    FIFTH(3, 5000, false),
-    FOURTH(4, 50000, false),
-    THIRD(5, 1500000, false),
-    SECOND(5, 30000000, true),
-    FIRST(6, 2000000000, false);
+    FIFTH(NUM_OF_NUMBERS - 3, 5000, false),
+    FOURTH(NUM_OF_NUMBERS - 2, 50000, false),
+    THIRD(NUM_OF_NUMBERS - 1, 1500000, false),
+    SECOND(NUM_OF_NUMBERS - 1, 30000000, true),
+    FIRST(NUM_OF_NUMBERS, 2000000000, false);
 
     private final int matchingNumbers;
     private final int prizeMoney;

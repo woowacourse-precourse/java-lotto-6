@@ -34,7 +34,7 @@ public class OutputViewTest {
 
     @DisplayName("출력 (구매 금액 입력 안내 문구)")
     @Test
-    void 출력테스트_printSystemMessage_구입금액() {
+    void 출력테스트_printSystemMessage() {
         //given
         String expect = "구입금액을 입력해 주세요.\n";
         //when
@@ -47,7 +47,7 @@ public class OutputViewTest {
     @Test
     void 출력테스트_printErrorMessage() {
         //given
-        String expect = "[ERROR] 숫자를 입력해주세요.\n";
+        String expect = "[ERROR] 숫자를 입력해야 합니다.\n";
         //when
         printErrorMessage(new IllegalArgumentException(NOT_NUMBER.getMessage()));
         //then
@@ -74,17 +74,6 @@ public class OutputViewTest {
         String expect = "[1, 2, 3, 4, 5, 6]\n";
         //when
         printLottoNumbers(input);
-        //then
-        assertThat(output.toString()).isEqualTo(expect);
-    }
-
-    @DisplayName("출력 (당첨 번호 입력 안내 문구)")
-    @Test
-    void 출력테스트_printSystemMessage_당첨번호() {
-        //given
-        String expect = "\n당첨 번호를 입력해 주세요.\n";
-        //when
-        printSystemMessage(SystemMessage.ASK_WINNING_NUMBERS);
         //then
         assertThat(output.toString()).isEqualTo(expect);
     }

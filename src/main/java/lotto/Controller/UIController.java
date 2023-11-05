@@ -162,7 +162,7 @@ public class UIController {
     }
 
     public static void getProfit(Integer price) {
-        double roundedProfit = LottoMachine.calculaateProfit(price);
+        double roundedProfit = LottoMachine.calculateProfit(price);
         UIView.printProfit(roundedProfit);
 
     }

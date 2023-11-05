@@ -24,7 +24,7 @@ public class LottoMachine {
         }
     }
 
-    public static double calculaateProfit(Integer price) {
+    public static double calculateProfit(Integer price) {
         double profit =
                 ((Prize.SIX.getPrice() * Prize.SIX.getCount()) + (Prize.FIVE_BONUS.getPrice()
                         * Prize.FIVE_BONUS.getCount()) + (Prize.FIVE.getPrice()

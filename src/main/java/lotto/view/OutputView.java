@@ -2,17 +2,12 @@ package lotto.view;
 
 import lotto.dto.LottoNumberResponse;
 import lotto.dto.LottoNumberResponses;
-import lotto.exception.ErrorMessage;
 import lotto.view.constants.PrintMessage;
 
 import static lotto.view.constants.PrintMessage.RESPONSE_PURCHASE_COUNT;
 
 public class OutputView {
     public static void printMessage(final PrintMessage message) {
-        println(message.getMessage());
-    }
-
-    public static void printError(final ErrorMessage message) {
         println(message.getMessage());
     }
 
@@ -29,6 +24,7 @@ public class OutputView {
                 .stream()
                 .map(LottoNumberResponse::numbers)
                 .forEach(OutputView::println);
+
         printNewLine();
     }
 

@@ -1,9 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.lottery.Lottos;
-import lotto.domain.lottery.Prize;
-import lotto.domain.lottery.PrizeMatchingResult;
-import lotto.domain.lottery.PrizeResult;
+import lotto.domain.prize.MatchingResults;
+import lotto.domain.prize.Prize;
 
 public class StatisticsController {
     private StatisticsController() {
@@ -13,7 +12,6 @@ public class StatisticsController {
             final Lottos lottos,
             final Prize prize
     ) {
-        PrizeMatchingResult lottoMatchingResult = PrizeMatchingResult.of(lottos, prize);
-        PrizeResult prizeResults = PrizeResult.from(lottoMatchingResult);
+        MatchingResults matchingResults = lottos.generatePrizeResult(prize);
     }
 }

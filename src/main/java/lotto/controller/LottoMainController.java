@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.Lottos;
-import lotto.domain.lottery.Prize;
+import lotto.domain.prize.Prize;
 
 public class LottoMainController {
     private LottoMainController() {

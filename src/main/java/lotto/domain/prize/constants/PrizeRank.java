@@ -1,4 +1,4 @@
-package lotto.domain.lottery.constants;
+package lotto.domain.prize.constants;
 
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;

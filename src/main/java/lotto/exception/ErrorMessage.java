@@ -45,7 +45,7 @@ public enum ErrorMessage {
                     "%d개의 숫자를 입력해야 합니다",
                     LottoConstraint.LOTTO_PICK_COUNT.getValue())
     );
-    
+
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
 

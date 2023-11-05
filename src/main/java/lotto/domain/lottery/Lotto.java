@@ -1,6 +1,7 @@
 package lotto.domain.lottery;
 
 import lotto.domain.checker.NumberChecker;
+import lotto.domain.prize.Prize;
 import lotto.exception.LottoException;
 
 import java.util.List;
@@ -20,6 +21,17 @@ public class Lotto extends NumberChecker {
         this.numbers = numbers;
     }
 
+    public int countPrizeNumberMatchingCount(Prize prize) {
+        return (int) numbers.stream()
+                .filter(prize::isPrizeNumber)
+                .count();
+    }
+
+    public boolean isBonusNumberMatching(Prize prize) {
+        return numbers.stream()
+                .anyMatch(prize::isBonusNumber);
+    }
+
     public boolean isAlreadyContainBonusNumber(final int number) {
         return numbers.contains(number);
     }
@@ -34,12 +46,9 @@ public class Lotto extends NumberChecker {
         return !Objects.equals(numbers.size(), LOTTO_PICK_COUNT.getValue());
     }
 
-    public int countMatchingNumberCount(Lotto lotto) {
-        List<Integer> comparableNumber = lotto.getNumbers();
 
-        return (int) numbers.stream()
-                .filter(comparableNumber::contains)
-                .count();
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {

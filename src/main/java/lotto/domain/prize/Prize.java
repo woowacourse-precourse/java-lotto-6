@@ -1,6 +1,7 @@
-package lotto.domain.lottery;
+package lotto.domain.prize;
 
 import lotto.domain.checker.NumberChecker;
+import lotto.domain.lottery.Lotto;
 import lotto.domain.parser.Parser;
 import lotto.exception.LottoException;
 
@@ -30,11 +31,20 @@ public final class Prize extends NumberChecker {
         return new Prize(prizeNumbers, bonusNumberInput);
     }
 
+    public boolean isPrizeNumber(int comparableNumber) {
+        return prizeNumbers.containNumber(comparableNumber);
+    }
+
+    public boolean isBonusNumber(int comparableNumber) {
+        return bonusNumber == comparableNumber;
+    }
+
     private void validateDuplicatedBonusNumber(final int number) {
         if (prizeNumbers.isAlreadyContainBonusNumber(number)) {
             throw LottoException.from(BONUS_NUMBER_DUPLICATED);
         }
     }
+
 
     public Lotto getPrizeNumbers() {
         return prizeNumbers;

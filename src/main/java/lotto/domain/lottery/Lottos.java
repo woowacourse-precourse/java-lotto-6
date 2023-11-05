@@ -1,5 +1,9 @@
 package lotto.domain.lottery;
 
+import lotto.domain.prize.MatchingResult;
+import lotto.domain.prize.MatchingResults;
+import lotto.domain.prize.Prize;
+
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,6 +19,13 @@ public class Lottos {
         return new Lottos(buyer);
     }
 
+    public MatchingResults generatePrizeResult(Prize prize) {
+        List<MatchingResult> results = lottoTickets.stream()
+                .map(lotto -> MatchingResult.of(lotto, prize))
+                .toList();
+        return MatchingResults.from(results);
+    }
+
     private List<Lotto> generateLottos(final int ticketCount) {
         return Stream.generate(LottoService::generateOrderedLottoNumbers)
                 .limit(ticketCount)
@@ -25,11 +36,6 @@ public class Lottos {
                 .toList();
     }
 
-    public List<Integer> calculateMatchingCount(Lotto comparableNumbers) {
-        return lottoTickets.stream()
-                .map(lotto -> lotto.countMatchingNumberCount(comparableNumbers))
-                .toList();
-    }
 
     public List<Lotto> getLottoTickets() {
         return lottoTickets;

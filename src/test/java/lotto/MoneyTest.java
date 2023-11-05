@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import constants.NumberType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class MoneyTest {
     @DisplayName("구입 금액이 로또 1장 가격으로 나누어지지 않으면 에러 발생")
     void 구입_금액은_로또_1장_가격으로_나누어_떨어져야한다(){
         //Given
-        int money = 9900;
+        int money = NumberType.LOTTO_PRICE.getValue() * 10 + (int) Math.floor(NumberType.LOTTO_PRICE.getValue() * 0.5);
 
         //When & Then
         assertThatThrownBy(() -> new Money(money)).isInstanceOf(IllegalArgumentException.class);
@@ -22,7 +23,7 @@ class MoneyTest {
     @DisplayName("구입 금액이 로또 1장 가격으로 나누어지면 정상 실행")
     void 구입_금액이_로또_1장_가격으로_나누어지면_정상_실행() {
         //Given
-        int money = 10000;
+        int money = NumberType.LOTTO_PRICE.getValue() * 10;
 
         //When & Then
         assertDoesNotThrow(() -> new Money(money));
@@ -34,7 +35,7 @@ class MoneyTest {
         //Given
         int money = 10000;
         Money moneyObject = new Money(money);
-        int expectedResult = 10000 / 1000;
+        int expectedResult = money / NumberType.LOTTO_PRICE.getValue();
 
         //When & Then
         assertThat(moneyObject.getLottoCount()).isEqualTo(expectedResult);

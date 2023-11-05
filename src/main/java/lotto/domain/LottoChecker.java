@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoChecker {
@@ -32,5 +33,13 @@ public class LottoChecker {
 
     public boolean includeBonusNumberInLottoNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public List<Integer> lottoResult(List<Integer> counts) {
+        List<Integer> result = new ArrayList<>();
+        for (Lotto.Prize prize : Lotto.Prize.values()) {
+            result.add(Collections.frequency(counts, prize.getMatchCount()));
+        }
+        return result;
     }
 }

@@ -7,5 +7,6 @@ public class Application {
         GameManager gameManager = new GameManager();
         gameManager.addCoin();
 
+        gameManager.createUserLottos();
     }
 }

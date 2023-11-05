@@ -44,4 +44,14 @@ public class AnswerLotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public Ranking calculateWinningResult(Lotto userLotto) {
+        // 당첨 번호에서 비교
+        int matchCount = userLotto.compareToAnswerLotto(lotto);
+
+        // 보너스 번호 비교
+        boolean containBonusBall = userLotto.compareToBonusNumber(bonusNumber.getBonusNumber());
+
+        return Ranking.getRanking(matchCount, containBonusBall);
+    }
 }

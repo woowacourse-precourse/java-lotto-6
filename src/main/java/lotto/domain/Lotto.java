@@ -19,4 +19,17 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int compareToAnswerLotto(Lotto answerLotto) {
+        return (int)numbers.stream()
+                .filter(number -> answerLotto.getNumbers().contains(number))
+                .count();
+    }
+
+    public boolean compareToBonusNumber(int bonusNumber) {
+        return numbers.stream()
+                .filter(number -> number == bonusNumber)
+                .findFirst()
+                .isPresent();
+    }
 }

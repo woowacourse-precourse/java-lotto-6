@@ -2,13 +2,14 @@ package lotto.controller;
 
 import lotto.domain.AnswerLotto;
 import lotto.domain.UserLotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LottoController {
 
@@ -17,6 +18,7 @@ public class LottoController {
     private final InputValidator inputValidator;
     private UserLotto userLotto;
     private AnswerLotto answerLotto;
+    private WinningResult winningResult;
 
     public LottoController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
         this.inputView = inputView;
@@ -28,6 +30,7 @@ public class LottoController {
         buyLottos();
         announceUserLotto();
         drawLotto();
+        calculateWinningResult();
     }
 
     private void buyLottos() {
@@ -52,5 +55,9 @@ public class LottoController {
         int bonusNumber = inputValidator.validateNumber(inputBonusNumber);
 
         answerLotto = new AnswerLotto(winningNumbers, bonusNumber);
+    }
+
+    private void calculateWinningResult() {
+        winningResult = userLotto.calculateWinningResult(answerLotto);
     }
 }

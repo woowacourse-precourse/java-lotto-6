@@ -33,4 +33,11 @@ public class UserLotto {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public WinningResult calculateWinningResult(AnswerLotto answerLotto) {
+        List<Ranking> rankingResult = lottos.stream()
+                .map(lotto -> answerLotto.calculateWinningResult(lotto))
+                .toList();
+        return new WinningResult(rankingResult, purchasePrice);
+    }
 }

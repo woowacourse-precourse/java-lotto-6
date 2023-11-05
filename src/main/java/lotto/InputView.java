@@ -39,4 +39,16 @@ public class InputView {
         }
         return numbers;
     }
+
+    public static int getBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

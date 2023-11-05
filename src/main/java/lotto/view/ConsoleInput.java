@@ -3,15 +3,18 @@ package lotto.view;
 import static lotto.view.constants.ConstantMessage.REQUEST_INPUT_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.utils.Parser;
 import lotto.view.constants.ConstantMessage;
 
 public class ConsoleInput {
-    public static String askAmountOfMoney() {
-        printConstantMessage(REQUEST_INPUT_PRICE);
-        return Console.readLine();
+    public static Integer readLottoAmount() {
+        String line = Console.readLine();
+        return Parser.parseAmountOfMoney(line);
     }
 
-    private static void printConstantMessage(ConstantMessage message) {
-        System.out.println(message.getMessage());
+    public static Lotto readLottoNumbers() {
+        String line = Console.readLine();
+        return Parser.parseLotto(line);
     }
 }

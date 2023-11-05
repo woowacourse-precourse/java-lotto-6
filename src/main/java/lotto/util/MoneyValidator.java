@@ -1,11 +1,10 @@
 package lotto.util;
 
+import static lotto.constant.GeneralConstant.LOTTO_PRICE;
+
 import lotto.constant.ErrorMessage;
 
 public class MoneyValidator {
-
-    private static final int LOTTO_PRICE = 1000;
-
     public static void validateMoney(int money) {
         validateNumber(money);
         validateThousand(money);

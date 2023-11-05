@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constant.GeneralConstant.ZERO;
+import static lotto.constant.GeneralConstant.THIRD_RANK;
+import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHTS;
+import static lotto.constant.GeneralConstant.SECOND_RANK_WEIGHT;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,11 +13,6 @@ import lotto.util.NumberValidator;
 
 public enum LottoCompany {
     INSTANCE;
-    private static final int ZERO = 0;
-    private static final int THIRD_RANK = 5;
-    private static final int SECOND_RANK_WEIGHT = 10;
-    private static final int PRIZE_RANK_MAX = 5;
-    private static final List<Integer> PRIZE_RANK_NUMBERS = List.of(3, 4, 5, 15, 6);
     private static List<Integer> prizeNumbers = new ArrayList<Integer>();
     private static int bonusNumber;
 
@@ -33,7 +33,7 @@ public enum LottoCompany {
             count = calculateBonusNumber(numbers, count);
         }
 
-        return PRIZE_RANK_NUMBERS.indexOf(count);
+        return PRIZE_RANK_WEIGHTS.indexOf(count);
     }
 
     private static int calculatePrizeRank(List<Integer> numbers) {

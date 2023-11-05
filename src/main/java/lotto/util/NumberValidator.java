@@ -1,14 +1,15 @@
 package lotto.util;
 
+import static lotto.constant.GeneralConstant.MAX_NUMBER;
+import static lotto.constant.GeneralConstant.MIN_NUMBER;
+import static lotto.constant.GeneralConstant.NUMBERS_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.ErrorMessage;
 
 public class NumberValidator {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int NUMBERS_SIZE = 6;
     private static Set<Integer> set;
 
     public static void validateChangeNumber(String input) {

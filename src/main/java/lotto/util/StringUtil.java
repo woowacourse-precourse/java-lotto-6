@@ -1,12 +1,12 @@
 package lotto.util;
 
+import static lotto.constant.GeneralConstant.DELIMITER;
+import static lotto.constant.GeneralConstant.DELIMITER_WITH_SPACE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtil {
-    private static final String DELIMITER = ",";
-    private static final String DELIMITER_WITH_SPACE = ", ";
-
     public static List<String> splitWithComma(String input) {
         return List.of(input.split(DELIMITER));
     }

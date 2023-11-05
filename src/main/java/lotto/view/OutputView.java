@@ -1,18 +1,16 @@
 package lotto.view;
 
+import static lotto.constant.GeneralConstant.ZERO;
+import static lotto.constant.GeneralConstant.LEFT_BRACKET;
+import static lotto.constant.GeneralConstant.RIGHT_BRACKET;
+import static lotto.constant.GeneralConstant.PRIZE_PRINT_ORDER;
+
 import java.util.List;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
 import lotto.util.StringUtil;
 
 public class OutputView {
-    private static final int ZERO = 0;
-    private static final List<String> PRIZE_PRINT_ORDER = List.of(
-            "FIFTH_PRIZE", "FOURTH_PRIZE", "THIRD_PRIZE", "SECOND_PRIZE", "FIRST_PRIZE"
-    );
-    private static final String LEFT_BRACKET = "[";
-    private static final String RIGHT_BRACKET = "]";
-
     public static void printPurchase(int number) {
         System.out.println(String.format(Message.PURCHASE_LOTTO.toString(), number));
     }

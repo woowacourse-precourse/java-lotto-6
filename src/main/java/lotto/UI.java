@@ -3,7 +3,9 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UI {
@@ -48,5 +50,35 @@ public class UI {
         String line = readLine();
         System.out.println();
         return Integer.parseInt(line);
+    }
+
+    private Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        Map<Grade, Integer> winningFrequency = new HashMap<>();
+
+        winningFrequency.put(Grade.FIRST, 0);
+        winningFrequency.put(Grade.SECOND, 0);
+        winningFrequency.put(Grade.THIRD, 0);
+        winningFrequency.put(Grade.FOURTH, 0);
+        winningFrequency.put(Grade.FIFTH, 0);
+
+        for (Lotto lotto : lottos) {
+            Grade grade = Calculator.checkWinning(lotto, lottoDrawResult);
+            Integer frequency = winningFrequency.get(grade);
+            winningFrequency.put(grade, frequency + 1);
+        }
+        return winningFrequency;
+    }
+
+    private void printWinningFrequency(Map<Grade, Integer> winningFrequency) {
+        Integer frequency = winningFrequency.get(Grade.FIFTH);
+        System.out.println("3개 일치 (5,000원) - " + frequency + "개");
+        frequency = winningFrequency.get(Grade.FOURTH);
+        System.out.println("4개 일치 (50,000원) - " + frequency + "개");
+        frequency = winningFrequency.get(Grade.THIRD);
+        System.out.println("5개 일치 (1,500,000원) - " + frequency + "개");
+        frequency = winningFrequency.get(Grade.SECOND);
+        System.out.println("5개 일치 (30,000,000원) - " + frequency + "개");
+        frequency = winningFrequency.get(Grade.FIRST);
+        System.out.println("6개 일치 (2,000,000,000원) - " + frequency + "개");
     }
 }

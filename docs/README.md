@@ -16,11 +16,7 @@
 
 # 클래스 구성
 
-(InputSystem) 입력받고 검증 
-
-(Lotto) lotto 생성, 번호 검증
-
-(Perform) 로또 당첨번호 비교, 수익률 계산, 결과 출력
+- logic 1 : 
 
 <br>
 

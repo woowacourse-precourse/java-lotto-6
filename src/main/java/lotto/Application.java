@@ -7,6 +7,7 @@ public class Application {
 
         try {
             lottery.input();
+
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }

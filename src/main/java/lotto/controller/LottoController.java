@@ -34,6 +34,14 @@ public class LottoController {
     public void run() {
         buyLotto();
         getLottoWinningAmount(); // 당첨 번호 가져오고, 서비스에 전달
+        getWinningStatistics(); // 통계 가져오는 기능 추가
+    }
+
+    /**
+     * 로또 당첨 통계 가져오기
+     */
+    private void getWinningStatistics() {
+        lottoWalletService.winningStatistics();
     }
 
     /**

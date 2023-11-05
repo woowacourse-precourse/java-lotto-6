@@ -15,6 +15,7 @@
     + [ ] 생성한 랜덤값을 화면에 표시한다.
 + [ ] 당첨 번호를 입력 받는다.
     + [ ] 당첨 번호를 콤마(,) 기준으로 검증한다.
+        + [ ] 입력 번호가 중복되지 않는지 검증한다. 중복될 경우 IllegalArgumentException을 발생시킨다.
         + [ ] 입력 번호가 1 ~ 45 사이의 숫자인지 검증한다. 이외의 범위에 해당할 경우 IllegalArgumentException을 발생시킨다.
         + [ ] 입력 번호가 총 6자리가 맞는지 검증한다. 6자리가 아닐 경우 IllegalArgumentException을 발생시킨다.
         + [ ] 각각의 번호가 숫자 형식이 맞는지 확인한다. 숫자 형식이 아닐 경우 IllegalArgumentException을 발생시킨다.

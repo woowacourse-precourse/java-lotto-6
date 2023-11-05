@@ -44,7 +44,7 @@ public class LottoGame {
     private void inputWinningLotto() {
         List<Integer> winningNumbers = ExceptionResolver.resolveInput(this::inputLottoNumbers);
         int bonusNumber = ExceptionResolver.resolveInput(this::inputBonusNumber);
-        ExceptionResolver.resolveProcess(machine -> machine.addWinningLotto(winningNumbers, bonusNumber), lottoMachine);
+        lottoMachine.addWinningLotto(winningNumbers, bonusNumber);
     }
 
     private List<Integer> inputLottoNumbers() {

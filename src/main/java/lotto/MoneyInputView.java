@@ -7,6 +7,7 @@ public class MoneyInputView {
     private String input;
     private int money;
     private static final int ONE_ISSUE_LOTTO = 1000;
+    private static final int ZERO = 0;
 
     public MoneyInputView() {
         validate();
@@ -17,6 +18,7 @@ public class MoneyInputView {
         try {
             nonZero();
             leastOneIssue();
+            nonRemainder();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validate();
@@ -34,6 +36,13 @@ public class MoneyInputView {
     private void leastOneIssue() {
         if (ONE_ISSUE_LOTTO > money) {
             throw new IllegalArgumentException("[ERROR] 최소한 1000원 이상이어야 합니다.");
+        }
+    }
+
+    private void nonRemainder() {
+        int remainder = Integer.parseInt(input) % ONE_ISSUE_LOTTO;
+        if (ZERO < remainder) {
+            throw new IllegalArgumentException("[ERROR] 나누어 떨어져야 합니다.");
         }
     }
 }

@@ -8,6 +8,9 @@ public class UserValidator {
     private static final int MAX_MONEY_RANGE = 1000000000;
     private static final int MONEY_MAX_LENGTH = 10;
     private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private  static final int MAX_LOTTO_NUMBER = 45;
+
 
     void validateMoneyLength(String money) {
         if (money.length() > MONEY_MAX_LENGTH) {
@@ -43,5 +46,13 @@ public class UserValidator {
         predictedLottoNumber = predictedLottoNumber.replaceAll("^,|,$", "");
         predictedLottoNumber = predictedLottoNumber.replaceAll(",+", ",");
         return predictedLottoNumber;
+    }
+
+    void validateWinningNumberRange(List<Integer> winningNumber) {
+        for (Integer lottoNumber : winningNumber) {
+            if (MIN_LOTTO_NUMBER > lottoNumber || MAX_LOTTO_NUMBER < lottoNumber) {
+                throw  new IllegalArgumentException();
+            }
+        }
     }
 }

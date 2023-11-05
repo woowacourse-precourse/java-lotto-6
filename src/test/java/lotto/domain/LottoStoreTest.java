@@ -1,27 +1,24 @@
 package lotto.domain;
 
+import static lotto.domain.lotto.LottoConstants.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.List;
-import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoStoreTest {
-    @DisplayName("정해진 횟수 만큼 로또를 생성 한다")
+    @DisplayName("구입 금액 만큼 로또를 생성 한다")
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5, 6})
-    void issueLottoPerAttempt(int attempt) {
-        LottoStore lottoStore = new LottoStore();
-        List<Lotto> issuedLotto = new ArrayList<>();
+    @ValueSource(ints = {3000, 4000, 5000, 6000})
+    void issueLottoPerAttempt(int amount) {
+        LottoStore lottoStore = new LottoStore(amount);
 
-        for (int i = 0; i < attempt; i++) {
+        while (lottoStore.isOpen()) {
             lottoStore.issueLotto();
-            issuedLotto = lottoStore.getIssuedLotto();
         }
 
-        assertThat(issuedLotto.size()).isEqualTo(attempt);
+        assertThat(lottoStore.getIssuedLotto().size())
+                .isEqualTo(amount / LOTTO_PRICE.getValue());
     }
 }

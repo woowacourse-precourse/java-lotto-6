@@ -6,13 +6,14 @@ import static lotto.util.Constants.ZERO;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.util.Parser;
 import lotto.util.exception.input.DuplicationNumberException;
 import lotto.util.exception.input.NumberGreaterException;
-import lotto.util.exception.input.NumbersCannotEmpty;
-import lotto.util.exception.input.NumbersCannotNegative;
-import lotto.util.exception.input.NumbersCannotNull;
-import lotto.util.exception.input.WinningNumbersLengthNotMatchException;
+import lotto.util.exception.input.NumbersEmptyException;
+import lotto.util.exception.input.NumbersNegativeException;
+import lotto.util.exception.input.NumbersNullException;
+import lotto.util.exception.input.WinningNumbersLengthMatchException;
 
 
 public class WinningNumbersValidator {
@@ -22,16 +23,20 @@ public class WinningNumbersValidator {
         validateNull(winningNumbers);
         validateEmpty(winningNumbers);
         List<String> parseWinningNumbers = Parser.parseString(winningNumbers);
+        validateMaxNumber(parseIntWinningNumbers(parseWinningNumbers)); // 먼저 최대 숫자를 검증
         numberDuplicates(parseWinningNumbers);
         lengthCheck(parseWinningNumbers);
         validateNonPositiveWinningNumber(parseWinningNumbers);
-        validateMaxNumber(parseWinningNumbers);
     }
 
-    private static void validateMaxNumber(final List<String> parseWinningNumbers) {
-        if (parseWinningNumbers.stream()
+    private static List<Integer> parseIntWinningNumbers(List<String> numbers) {
+        return numbers.stream()
                 .map(Integer::valueOf)
-                .anyMatch(num -> num > MAX_NUMBER)) {
+                .collect(Collectors.toList());
+    }
+
+    private static void validateMaxNumber(final List<Integer> parsedWinningNumbers) {
+        if (parsedWinningNumbers.stream().anyMatch(num -> num > MAX_NUMBER)) {
             throw new NumberGreaterException();
         }
     }
@@ -42,7 +47,7 @@ public class WinningNumbersValidator {
 
     private static void lengthCheck(List<String> parseWinningNumbers) {
         if (parseWinningNumbers.size() != LOTTO_LENGTH) {
-            throw new WinningNumbersLengthNotMatchException();
+            throw new WinningNumbersLengthMatchException();
         }
     }
 
@@ -55,19 +60,19 @@ public class WinningNumbersValidator {
 
     private static void validateNull(String winningNumbers) {
         if (winningNumbers == null) {
-            throw new NumbersCannotNull();
+            throw new NumbersNullException();
         }
     }
 
     private static void validateNonPositiveBonusNumber(String numbers) {
         if (Integer.parseInt(numbers) <= ZERO) {
-            throw new NumbersCannotNegative();
+            throw new NumbersNegativeException();
         }
     }
 
     private static void validateEmpty(String winningNumbers) {
         if (winningNumbers.isEmpty()) {
-            throw new NumbersCannotEmpty();
+            throw new NumbersEmptyException();
         }
     }
 }

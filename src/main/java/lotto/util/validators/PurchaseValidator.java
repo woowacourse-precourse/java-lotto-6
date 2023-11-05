@@ -3,7 +3,7 @@ package lotto.util.validators;
 import static lotto.util.Constants.THOUSAND;
 import static lotto.util.Constants.ZERO;
 
-import lotto.util.exception.input.NumbersCannotEmpty;
+import lotto.util.exception.input.NumbersEmptyException;
 import lotto.util.exception.operation.AmountDivisionException;
 import lotto.util.exception.operation.AmountLessThanZeroException;
 import lotto.util.exception.operation.AmountParseException;
@@ -20,7 +20,7 @@ public class PurchaseValidator {
 
     private static void validateEmpty(String amount) {
         if (amount.isEmpty()) {
-            throw new NumbersCannotEmpty();
+            throw new NumbersEmptyException();
         }
     }
 

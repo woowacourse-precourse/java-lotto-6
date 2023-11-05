@@ -5,9 +5,9 @@ import static lotto.util.Constants.ZERO;
 import lotto.model.WinningNumbers;
 import lotto.util.exception.input.BonusNumberNotUniqueException;
 import lotto.util.exception.input.NumberGreaterException;
-import lotto.util.exception.input.NumbersCannotEmpty;
-import lotto.util.exception.input.NumbersCannotNegative;
-import lotto.util.exception.input.NumbersCannotNull;
+import lotto.util.exception.input.NumbersEmptyException;
+import lotto.util.exception.input.NumbersNegativeException;
+import lotto.util.exception.input.NumbersNullException;
 
 public class BonusNumberValidator {
     public static void validateBonusNumber(String bonusNumbers, WinningNumbers winningNumbers) {
@@ -25,11 +25,11 @@ public class BonusNumberValidator {
 
     private static void validateNotNullAndNotEmpty(String numbers) {
         if (numbers == null) {
-            throw new NumbersCannotNull();
+            throw new NumbersNullException();
         }
 
         if (numbers.isEmpty()) {
-            throw new NumbersCannotEmpty();
+            throw new NumbersEmptyException();
         }
     }
 
@@ -42,7 +42,7 @@ public class BonusNumberValidator {
 
     private static void validateNonPositiveBonusNumber(String numbers) {
         if (Integer.parseInt(numbers) <= ZERO) {
-            throw new NumbersCannotNegative();
+            throw new NumbersNegativeException();
         }
     }
 }

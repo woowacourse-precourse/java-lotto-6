@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Errors {
+public enum ErrorMessages {
     IS_NUMBER(" 번호는 숫자여야 합니다.") {
         @Override
         public String writeErrorMessageByCase() {
@@ -48,7 +48,7 @@ public enum Errors {
 
     protected final String errorMessage;
 
-    Errors(String errorMessage) {
+    ErrorMessages(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

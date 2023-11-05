@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.constants.Constants;
-import lotto.model.Caculation;
+import lotto.model.Calculation;
 import lotto.model.LottoModel;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,8 +32,8 @@ public class LottoController {
 
     private static void displayLottoStatistics(List<Integer> result, int purchaseAmount) {
         System.out.println();
-        Caculation caculation = new Caculation(result, purchaseAmount);
-        caculation.displayStatistics();
+        Calculation calculation = new Calculation(result, purchaseAmount);
+        calculation.displayStatistics();
     }
 
     private static List<Integer> generateOneLottoTicket() {

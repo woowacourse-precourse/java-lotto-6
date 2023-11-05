@@ -4,12 +4,12 @@ import java.util.List;
 import lotto.constants.Constants;
 import lotto.view.OutputView;
 
-public class Caculation {
+public class Calculation {
     private double round = 10.0;
     private List<Integer> result;
     private int purchaseAmount;
 
-    public Caculation(List<Integer> result, int purchaseAmount) {
+    public Calculation(List<Integer> result, int purchaseAmount) {
         this.result = result;
         this.purchaseAmount = purchaseAmount;
     }

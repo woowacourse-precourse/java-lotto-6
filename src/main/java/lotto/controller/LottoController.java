@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.service.ValidateService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,13 +10,13 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final ValidateService validateService = new ValidateService();
+    private final LottoService lottoService = new LottoService();
 
     public void playGame() {
         printPurchaseMoneyMessage();
         String inputPurchaseMoney = inputPurchaseMoneyProcess();
         printBlankLine();
-
-
+        printLottoCount(inputPurchaseMoney);
     }
 
     private void printPurchaseMoneyMessage() {
@@ -35,5 +36,14 @@ public class LottoController {
 
     private void printBlankLine() {
         outputView.printBlankLine();
+    }
+
+    private void printLottoCount(String inputPurchaseMoney) {
+        int lottoCount = getLottoCount(inputPurchaseMoney);
+        outputView.printLottoCountMessage(lottoCount);
+    }
+
+    private int getLottoCount(String inputPurchaseMoney) {
+        return lottoService.getLottoCount(inputPurchaseMoney);
     }
 }

@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Payment;
+import lotto.domain.WinningLotto;
 import lotto.domain.strategy.AutoIssueStrategy;
+import lotto.domain.strategy.ManualIssuanceStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +15,8 @@ public class LottoGameController {
         Payment payment = getPayment();
         Lottos lottos = issueLottosByAuto(payment.calculatePurchasedLottoCount());
         printPurchaseHistory(payment, lottos);
+
+        WinningLotto winningLotto = issueWinningLottoByManual(getWinningLotto());
     }
 
     private Payment getPayment() {
@@ -33,24 +38,33 @@ public class LottoGameController {
         OutputView.printIssuedLottosNumbers(lottos.getLottoNumbersDto());
     }
 
-    private String getWinningLottoNumbers() {
-        OutputView.printWinningLottoNumbersGuide();
+    private WinningLotto issueWinningLottoByManual(final Lotto winningLotto) {
         try {
-            return InputView.readInput();
+            return new WinningLotto(winningLotto, getBonusNumber());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-            return getWinningLottoNumbers();
+            return issueWinningLottoByManual(winningLotto);
         }
+    }
+
+    private Lotto getWinningLotto() {
+        OutputView.printWinningLottoNumbersGuide();
+        try {
+            String winningLottoNumbers = InputView.readInput();
+            return issueLottoByManual(winningLottoNumbers);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private Lotto issueLottoByManual(final String winningLottoNumbers) {
+        return new ManualIssuanceStrategy(winningLottoNumbers).issue();
     }
 
     private int getBonusNumber() {
         OutputView.printBonusNumberGuide();
-        try {
-            return Integer.parseInt(InputView.readInput());
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return getBonusNumber();
-        }
+        return Integer.parseInt(InputView.readInput());
     }
 
 }

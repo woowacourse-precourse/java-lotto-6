@@ -58,45 +58,38 @@ public class LottoManager {
     }
 
     public void inputWinningNumbers() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        winningNumbersManager.inputWinningNumbers(winningNumbers);
-
-        Integer bonusNumber = getBonusNumber();
-        winningNumbersManager.inputBonusNumber(bonusNumber);
+        getWinningNumbers();
+        getBonusNumber();
     }
 
-    private List<Integer> getWinningNumbers() {
+    private void getWinningNumbers() {
         output.printWinningNumbersRequest();
-        List<Integer> winningNumbers = getWinningNumbersRepeatedly();
-
-        return winningNumbers;
+        getWinningNumbersRepeatedly();
     }
 
-    private List<Integer> getWinningNumbersRepeatedly() {
+    private void getWinningNumbersRepeatedly() {
         while (true) {
             try {
                 List<Integer> inputWinningNumbers = input.getWinningNumbers();
-                winningNumbersManager.validateWinningNumbers(inputWinningNumbers);
-                return inputWinningNumbers;
+                winningNumbersManager.inputWinningNumbers(inputWinningNumbers);
+                break;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
     }
 
-    private Integer getBonusNumber() {
+    private void getBonusNumber() {
         output.printBonusNumberRequest();
-        Integer bonusNumber = getBonusNumberRepeatedly();
-
-        return bonusNumber;
+        getBonusNumberRepeatedly();
     }
 
-    private Integer getBonusNumberRepeatedly() {
+    private void getBonusNumberRepeatedly() {
         while (true) {
             try {
                 Integer inputBonusNumber = input.getBonusNumbers();
-                winningNumbersManager.validateBonusNumber(inputBonusNumber);
-                return inputBonusNumber;
+                winningNumbersManager.inputBonusNumber(inputBonusNumber);
+                break;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }

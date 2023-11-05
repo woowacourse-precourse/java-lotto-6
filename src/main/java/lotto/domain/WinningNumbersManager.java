@@ -14,10 +14,11 @@ public class WinningNumbersManager {
     private int bonusNumber;
 
     void inputWinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    public void validateBonusNumber(Integer inputBonusNumber) {
+    private void validateBonusNumber(Integer inputBonusNumber) {
         validateNumberRange(inputBonusNumber);
 
         for (Integer number : winningNumbers) {
@@ -34,6 +35,7 @@ public class WinningNumbersManager {
     }
 
     public void inputBonusNumber(Integer bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -70,7 +72,7 @@ public class WinningNumbersManager {
         return winningStatus;
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers) {
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_6_REQUIRED);
         }

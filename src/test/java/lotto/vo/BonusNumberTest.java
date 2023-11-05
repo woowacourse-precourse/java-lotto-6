@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberTest {
 
@@ -21,11 +23,9 @@ class BonusNumberTest {
     }
 
     @DisplayName("유효하지 않은 값으로 BonusNumber를 생성할 경우 예외가 발생한다.")
-    @Test
-    public void testInvalidBonusNumber() {
-        // when
-        Integer invalidNumber = 50;
-
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 50})
+    public void testInvalidBonusNumber(Integer invalidNumber) {
         // then
         assertThrows(IllegalArgumentException.class, () -> new BonusNumber(invalidNumber));
     }

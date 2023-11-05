@@ -32,6 +32,7 @@ public class ApplicationContext {
     private static void inputProcess() {
         lottoBuyer.gernerateTicket();
         lottoDrawer.inputLotto();
+        lottoDrawer.inputBonus();
     }
 
     private static void outputProcess() {

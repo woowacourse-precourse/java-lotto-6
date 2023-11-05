@@ -18,10 +18,14 @@ public class LottoController {
         this.tickets.generate();
     }
 
-    public void inputLotto(final List<Integer> numbers, final int number) {
+    public void inputLotto(final List<Integer> numbers) {
         this.lotto = new Lotto(numbers);
+    }
+
+    public void inputBonus(final int number){
         this.bonus = new Bonus(number);
     }
+
 
     public void compareWinning() {
         List<List<Integer>> tickets = this.tickets.getTickets();

@@ -32,7 +32,7 @@
 
   - [x] 로또 수량을 **출력**하는 기능 - Purchase#getAmount();
 
-  - [x] 로또 번호를 **출력**하는 기능 - Purchase#getPurchasedLotto(); , Lotto#getLottoNumber();
+  - [x] 로또 번호를 **출력**하는 기능 - Purchase#printPurchasedLotto(); , Lotto#getLottoNumber();
 
   - [ ] 로또 구입 금액이 올바른지 **판단**하는 기능
 

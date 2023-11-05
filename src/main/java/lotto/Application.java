@@ -10,7 +10,7 @@ public class Application {
         Purchase purchase = new Purchase(Console.readLine());
 
         System.out.println("\n" + purchase.getAmount() + Constant.purchaseCount);
-        purchase.getPurchasedLotto();
+        purchase.printPurchasedLotto();
 
         System.out.println(Constant.winningNumber);
         WinningLotto winningLotto = new WinningLotto();

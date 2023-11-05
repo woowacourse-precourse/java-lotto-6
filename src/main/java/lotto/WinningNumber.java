@@ -3,25 +3,32 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
-public class WinningNumber {
-    private List<Integer> numbers;
-    private Integer bonusNumber;
-    private static WinningNumber instance = null;
-    private WinningNumber(List<Integer> numbers, Integer bonusNumber) {
-        this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
-    }
-    public static WinningNumber getInstance() {
-        if (instance == null) {
-            List<Integer> numbers = NumberGenerator.generateNumbers();
-            Integer bonusNumber = NumberGenerator.generateNumber(numbers);
-            instance = new WinningNumber(numbers, bonusNumber);
+public record WinningNumber(List<Integer> numbers) {
+
+    public WinningNumber {
+        validateNull(numbers);
+        validateNumbersCount(numbers.size());
+        for (Integer number : numbers) {
+            validateNumbersRange(number);
         }
-        return instance;
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber;
+    private void validateNull(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNumbersCount(int size) {
+        if (size != 6) {
+            throw new IllegalArgumentException("");
+        }
+    }
+
+    private void validateNumbersRange(Integer number) {
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException("");
+        }
     }
 
     public List<Integer> getNumbers() {

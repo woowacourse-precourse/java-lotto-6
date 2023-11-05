@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.List;
 
 public class Lotto {
-    private static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다";
-    private static final int LOTTO_LOWER_BOUND = 1;
-    private static final int LOTTO_UPPER_BOUND = 45;
+    public static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다";
+    public static final int LOTTO_LOWER_BOUND = 1;
+    public static final int LOTTO_UPPER_BOUND = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;

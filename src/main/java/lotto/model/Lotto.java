@@ -62,8 +62,8 @@ public class Lotto {
         List<Integer> randomNumbers = numberGenerator.pickNumbers();
         randomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(randomNumbers);
-        Collections.unmodifiableList(randomNumbers);
-        return randomNumbers;
+        
+        return Collections.unmodifiableList(randomNumbers);
     }
 
     public List<Integer> getNumbers() {

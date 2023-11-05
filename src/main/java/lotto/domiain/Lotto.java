@@ -27,7 +27,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
-        validateDuplicateCheck(numbers);
+        validateDuplicatedCheck(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -41,22 +41,24 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) throws IllegalArgumentException {
         for (int number : numbers) {
             if (number < MIN_RANGE || number > MAX_RANGE) {
-                throw new IllegalArgumentException(rangeException());
+                System.out.println(rangeException());
+                throw new IllegalArgumentException();
             }
         }
     }
 
-    private void validateDuplicateCheck(List<Integer> numbers) {
+    private void validateDuplicatedCheck(List<Integer> numbers) {
         Set<Integer> duplicateCheck = new HashSet<>();
         for (int number : numbers) {
             duplicateCheck.add(number);
         }
-        duplicateChecking(duplicateCheck);
+        duplicatedChecking(duplicateCheck);
     }
 
-    private void duplicateChecking(Set<Integer> duplicateCheck) {
+    private void duplicatedChecking(Set<Integer> duplicateCheck) {
         if(duplicateCheck.size()!=LOTTO_SIZE){
-            throw new IllegalArgumentException(duplicateException());
+            System.out.println(duplicatedException());
+            throw new IllegalArgumentException();
         }
     }
 

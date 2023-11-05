@@ -6,8 +6,8 @@ import java.util.List;
 
 public class OutputLottoList {
 
-    public static void myLottoList(List<Lotto> lotto, int ticketCount){
-        for (int i = 0; i < ticketCount; i++) {
+    public static void printLottoList(List<Lotto> lotto){
+        for (int i = 0; i < lotto.size(); i++) {
             System.out.println(lotto.get(i));
         }
     }

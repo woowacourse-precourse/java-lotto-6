@@ -14,7 +14,7 @@ public class LottoResult {
                 .forEach(winningStatistics -> winningResult.put(winningStatistics, 0));
     }
 
-    public void calWinningResult(WinningNumber winningNumber, List<Lotto> lottos) {
+    public void calcWinning(WinningNumber winningNumber, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             WinningStatistics winningStatistics = WinningStatistics.getWinningStatistics(lotto.getMatchLotto(winningNumber),
                     lotto.isContain(winningNumber.getBonusBall()));

@@ -3,6 +3,8 @@ package lotto.domiain;
 import lotto.View.ExceptionMessage;
 import lotto.View.InputView;
 
+import java.text.NumberFormat;
+
 import static lotto.View.ExceptionMessage.*;
 
 public class LottoAmount {

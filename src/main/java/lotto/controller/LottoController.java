@@ -5,12 +5,12 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.NumberGenerator;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     NumberGenerator numberGenerator = new NumberGenerator();
-    // private int ticketCount = 0;
 
     public void start() {
         Money money = getValidMoneyInput();
@@ -18,6 +18,7 @@ public class LottoController {
         OutputView.printTicketCount(ticketCount);
         List<Lotto> userLottos = createLotto(ticketCount);
         OutputView.printUserLottos(userLottos);
+        WinningNumbers winningNumbers = getValidWinningNumbersInput();
     }
 
     private Money getValidMoneyInput() {
@@ -30,6 +31,18 @@ public class LottoController {
             }
         }
         return money;
+    }
+
+    private WinningNumbers getValidWinningNumbersInput() {
+        WinningNumbers winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                winningNumbers = new WinningNumbers(InputView.getWinningNumbersInput());
+            } catch (IllegalArgumentException e) {
+                OutputView.printException(e);
+            }
+        }
+        return winningNumbers;
     }
 
     private int getTicketCount(Money money) {

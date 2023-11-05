@@ -4,21 +4,21 @@ import java.util.List;
 
 public class UserLotteries {
 
-    private final List<Lotto> Lotteries;
+    private final List<Lotto> lotteries;
 
     public UserLotteries(List<Lotto> lotteries) {
-        Lotteries = lotteries;
+        this.lotteries = lotteries;
     }
 
     public void sortAscendingAllLotto() {
-        this.Lotteries.forEach(Lotto::sortAscending);
+        this.lotteries.forEach(Lotto::sortAscending);
     }
 
     public int lotteriesCount() {
-        return Lotteries.size();
+        return lotteries.size();
     }
 
     public List<Lotto> getLotteries() {
-        return Lotteries;
+        return lotteries;
     }
 }

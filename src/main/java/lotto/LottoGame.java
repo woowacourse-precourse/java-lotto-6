@@ -4,13 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lottos;
 
 public class LottoGame {
-    public static boolean getRightCost() {
+
+    public static Lottos getRightCost(Lottos lottos) {
         try {
-            Lottos lottos = new Lottos(Console.readLine());
-            return true;
+            lottos = new Lottos(Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return false;
+        } finally {
+            return lottos;
         }
     }
 }

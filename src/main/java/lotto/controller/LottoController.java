@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Rank;
 import lotto.model.WinnerLotto;
 import lotto.util.converter.NumericConverter;
 import lotto.util.converter.NumericListConverter;
@@ -27,6 +29,10 @@ public class LottoController {
         int amount = getAmount();
         Lottos lottos = new Lottos(buyLotto(amount));
         WinnerLotto winnerLotto = new WinnerLotto(getWinnerLotto(),getBonusNumber());
+        HashMap<Rank,Integer> result = lottos.calculateResult(winnerLotto);
+        for(Rank r : result.keySet()){
+            System.out.println(r.toString());
+        }
     }
 
     private int getBonusNumber() {

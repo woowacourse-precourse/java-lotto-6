@@ -22,4 +22,7 @@ public enum Rank {
         this.calculateRank = calculateRank;
     }
 
+    public boolean calculateRank(int count, boolean bonus) {
+        return calculateRank.apply(count,bonus);
+    }
 }

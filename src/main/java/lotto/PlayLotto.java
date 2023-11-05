@@ -15,12 +15,17 @@ public class PlayLotto {
     private final int LOTTO_NUM_CNT = 6;
 
     Money money;
-    List<List<Integer>> lottoNumbers = new ArrayList<>();
+    Lotto lotto;
+    String[] inputLottoNumbers;
+    List<List<Integer>> userLottoNumbers = new ArrayList<>();
+    List<Integer> lottoNumbers;
+
     int lottoCnt;
 
     public void play(){
         getMoney();
         makeLotto();
+        getNumber();
     }
 
     public void getMoney(){
@@ -36,7 +41,7 @@ public class PlayLotto {
         lottoCnt = Integer.parseInt(money.amount) / 1000;
 
         for (int i=0; i<lottoCnt; i++){
-            lottoNumbers.add(getGeneratedRandomNumbers());
+            userLottoNumbers.add(getGeneratedRandomNumbers());
         }
     }
 
@@ -52,5 +57,23 @@ public class PlayLotto {
 
         Collections.sort(curNumbers);
         return curNumbers;
+    }
+
+    public void getNumber(){
+        try{
+            inputLottoNumbers = readLine().split(",");
+            changeInputFormat();
+            lotto = new Lotto(lottoNumbers);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getNumber();
+        }
+    }
+    
+    public void changeInputFormat(){
+        lottoNumbers = new ArrayList<>();
+        for (String s : inputLottoNumbers){
+            lottoNumbers.add(Integer.parseInt(s));
+        }
     }
 }

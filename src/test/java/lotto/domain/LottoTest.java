@@ -1,12 +1,21 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    @DisplayName("로또 번호의 범위가 유효하고 개수가 맞으며 중복되지 않으면 예외가 발생하지 않는다.")
+    @Test
+    void createLotto() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertDoesNotThrow(() -> new Lotto(numbers));
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -17,7 +26,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
             .isInstanceOf(IllegalArgumentException.class);
     }
@@ -26,7 +34,7 @@ class LottoTest {
     @Test
     void createLottoByInvalidRange() {
         List<Integer> numbers = List.of(0, 2, 3, 4, 5, 6);
-        
+
         assertThatThrownBy(() -> new Lotto(numbers))
             .isInstanceOf(IllegalArgumentException.class);
     }

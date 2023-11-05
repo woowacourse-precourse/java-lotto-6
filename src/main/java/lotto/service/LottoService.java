@@ -1,18 +1,22 @@
 package lotto.service;
 
 import lotto.domain.LottoPurchasePrice;
+import lotto.domain.LottoStatistics;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoResultFormatter;
+import lotto.dto.LottoStatisticsResultFormatter;
 
 public class LottoService {
 
     private final Lottos lottos;
+    private final LottoStatistics lottoStatistics;
     private WinningLotto winningLotto;
 
-    public LottoService(Lottos lottos, WinningLotto winningLotto) {
+
+    public LottoService(Lottos lottos, LottoStatistics lottoStatistics) {
         this.lottos = lottos;
-        this.winningLotto = winningLotto;
+        this.lottoStatistics = lottoStatistics;
     }
 
     public void saveLottos(LottoPurchasePrice lottoPurchasePrice) {
@@ -26,4 +30,14 @@ public class LottoService {
     public void saveWinningLotto(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
     }
+
+    public void calculateWinningStatistics() {
+        lottoStatistics.calculateLottoMatch(lottos, winningLotto);
+    }
+
+    public LottoStatisticsResultFormatter getStatistics() {
+        return new LottoStatisticsResultFormatter(lottoStatistics.getStatistics());
+    }
+
+
 }

@@ -4,7 +4,6 @@ import lotto.utils.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Paper {
     private final Lotto lotto;

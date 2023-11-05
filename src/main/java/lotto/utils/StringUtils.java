@@ -1,7 +1,5 @@
 package lotto.utils;
 
-import org.assertj.core.data.Index;
-
 import java.util.Arrays;
 import java.util.List;
 

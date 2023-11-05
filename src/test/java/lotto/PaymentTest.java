@@ -16,7 +16,7 @@ class PaymentTest {
                     Payment payment = Payment.of(999);
                 }
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("로또 구입 금액은 1000원 이상이어야 합니다.");
+                .hasMessage("[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다.");
     }
 
     @Test

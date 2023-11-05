@@ -18,7 +18,8 @@ public class ResultDetails {
 
     public void updateWinningResults(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
         lottoTicket.getLottos().stream()
-                .map(winningNumbers::findRank)
+                .map(lotto -> Rank.find(winningNumbers.countMatchingNumbers(lotto),
+                        winningNumbers.hasBonusNumber(lotto)))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .forEach((rank, count) -> resultDetails.put(rank, count.intValue()));
     }

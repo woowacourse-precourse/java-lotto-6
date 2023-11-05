@@ -2,6 +2,8 @@ package lotto.model;
 
 public class WinningNumbers {
 
+    private static final String BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안 됩니다,";
+
     private final WinningNumbersData winningNumbersData;
     private final BonusNumber bonusNumber;
 
@@ -11,13 +13,17 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank findRank(Lotto lotto) {
-        return Rank.find(winningNumbersData.countMatchingNumber(lotto), bonusNumber.isEqualToBonus(lotto));
+    public int countMatchingNumbers(Lotto lotto) {
+        return winningNumbersData.countMatchingNumber(lotto);
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber.getBonusNumber());
     }
 
     private void validateBonusNumber(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
         if (winningNumbersData.contains(bonusNumber.getBonusNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안 됩니다,");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE);
         }
     }
 }

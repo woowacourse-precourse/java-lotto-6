@@ -5,7 +5,6 @@ import lotto.constant.LottoConfig;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GenerateLotto {
     private static List<Integer> generateLottoNumbers() {
@@ -15,7 +14,7 @@ public class GenerateLotto {
     private static List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static List<Lotto> generateLottoGroup(int LottoCount) {

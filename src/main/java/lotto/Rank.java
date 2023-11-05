@@ -4,16 +4,20 @@ import java.util.EnumMap;
 import java.util.Map.Entry;
 
 public enum Rank {
-    FIFTH(5_000),
-    FOURTH(50_000),
-    THIRD(1_500_000),
-    SECOND(30_000_000),
-    FIRST(2_000_000_000),
-    NONE(0);
+    FIFTH(3, false, 5_000),
+    FOURTH(4, false, 50_000),
+    THIRD(5, false, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    FIRST(6, false, 2_000_000_000),
+    NONE(0, false, 0);
 
+    private final int matchCount;
+    private final boolean hasBonus;
     private final long prize;
 
-    Rank(int prize) {
+    Rank(int matchCount, boolean hasBonus, int prize) {
+        this.matchCount = matchCount;
+        this.hasBonus = hasBonus;
         this.prize = prize;
     }
 
@@ -48,5 +52,17 @@ public enum Rank {
             totalPrize += rankToCountEntry.getKey().prize * rankToCountEntry.getValue();
         }
         return totalPrize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean hasBonus() {
+        return hasBonus;
+    }
+
+    public long getPrize() {
+        return prize;
     }
 }

@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class OutputView {
 
@@ -20,12 +22,28 @@ public class OutputView {
         System.out.println(list);
     }
 
-    // TODO: 출력 테스트 용, 나중에 삭제하자
-    public static void main(String[] args) {
-        Lotto lotto1 = new Lotto(List.of(11, 22, 33, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(43, 32, 21, 13, 5, 6));
+    public void printWinningResult(Result winningResult) {
+        EnumMap<Rank, Integer> rankToCount = winningResult.getRankToCount();
+        double rateOfReturn = winningResult.getRateOfReturn();
 
-        OutputView outputView = new OutputView();
-        outputView.printPurchasedLottos(List.of(lotto1, lotto2));
+        StringBuilder sb = new StringBuilder();
+        for (Entry<Rank, Integer> rankIntegerEntry : rankToCount.entrySet()) {
+            int matchCount = rankIntegerEntry.getKey().getMatchCount();
+            sb.append(matchCount).append("개 일치");
+
+            boolean hasBonus = rankIntegerEntry.getKey().hasBonus();
+            if (hasBonus) {
+                sb.append(", 보너스 볼 일치");
+            }
+            long prize = rankIntegerEntry.getKey().getPrize();
+            sb.append(" (").append(prize).append("원)");
+
+            Integer value = rankIntegerEntry.getValue();
+            sb.append(" - ");
+            sb.append(value).append("개\n");
+        }
+
+        sb.append("총 수익률은 ").append(rateOfReturn).append("%입니다.");
+        System.out.println(sb);
     }
 }

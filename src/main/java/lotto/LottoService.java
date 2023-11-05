@@ -15,10 +15,14 @@ public class LottoService {
 
     private EnumMap<Rank, Integer> getRankToCount(List<Lotto> lottos, WinningNumber winningNumber) {
         EnumMap<Rank, Integer> rankToInteger = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            rankToInteger.put(rank, 0);
+        }
         for (Lotto lotto : lottos) {
             Rank rank = Rank.of(lotto, winningNumber);
-            rankToInteger.put(rank, rankToInteger.getOrDefault(rank, 0) + 1);
+            rankToInteger.put(rank, rankToInteger.get(rank) + 1);
         }
+        rankToInteger.remove(Rank.NONE);
         return rankToInteger;
     }
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoGameInputValidatorTest {
+class LottoGameInputValidatorTestView {
 
     private LottoGameInputValidator validator = new LottoGameInputValidator();
 

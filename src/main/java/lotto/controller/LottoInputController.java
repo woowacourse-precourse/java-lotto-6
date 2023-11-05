@@ -5,17 +5,14 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.dto.LottoResult;
 import lotto.util.LottoShop;
-import lotto.view.input.LottoNumberInputView;
-import lotto.view.input.LottoGameStartInput;
+import lotto.view.input.InputView;
 
 public class LottoInputController {
 
-    private final LottoGameStartInput lottoGameStartInput;
-    private final LottoNumberInputView lottoNumberInputView;
+    private final InputView inputView;
 
-    public LottoInputController() {
-        this.lottoGameStartInput = new LottoGameStartInput();
-        this.lottoNumberInputView = new LottoNumberInputView();
+    public LottoInputController(InputView inputView) {
+        this.inputView = inputView;
     }
 
     public LottoGameInfo createLottoGame() {
@@ -23,11 +20,11 @@ public class LottoInputController {
         Lottos lottos;
 
         try {
-            amount = lottoGameStartInput.requestLottoPurchaseAmount();
+            amount = inputView.requestLottoPurchaseAmount();
             lottos = LottoShop.buyLottos(amount);
         } catch (IllegalArgumentException e) {
-            lottoGameStartInput.printErrorMessage(e);
-            amount = lottoGameStartInput.requestLottoPurchaseAmount();
+            inputView.printErrorMessage(e);
+            amount = inputView.requestLottoPurchaseAmount();
             lottos = LottoShop.buyLottos(amount);
         }
         return new LottoGameInfo(amount, lottos);
@@ -42,10 +39,10 @@ public class LottoInputController {
     private Lotto requestWinningLotto() {
         Lotto lotto;
         try {
-            lotto = lottoNumberInputView.requestWinningLotto();
+            lotto = inputView.requestWinningLotto();
         } catch (IllegalArgumentException e) {
-            lottoNumberInputView.printErrorMessage(e);
-            lotto = lottoNumberInputView.requestWinningLotto();
+            inputView.printErrorMessage(e);
+            lotto = inputView.requestWinningLotto();
         }
         return lotto;
     }
@@ -53,10 +50,10 @@ public class LottoInputController {
     private int requestBonusLottoNumber(Lotto winningLotto) {
         int bonusNumber;
         try {
-            bonusNumber = lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+            bonusNumber = inputView.requestBonusLottoNumber(winningLotto);
         } catch (IllegalArgumentException e) {
-            lottoNumberInputView.printErrorMessage(e);
-            bonusNumber = lottoNumberInputView.requestBonusLottoNumber(winningLotto);
+            inputView.printErrorMessage(e);
+            bonusNumber = inputView.requestBonusLottoNumber(winningLotto);
         }
         return bonusNumber;
     }

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoNumberInputValidatorTest {
+class LottoNumberInputValidatorTestView {
 
     private LottoNumberInputValidator validator = new LottoNumberInputValidator();
 

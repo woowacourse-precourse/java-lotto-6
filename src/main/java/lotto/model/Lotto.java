@@ -20,7 +20,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return sortLottoNumber().toString();
     }
 
     // 메서드 이름이랑 내부 매직 넘버는 수정해도 되는 부분인가?
@@ -44,5 +44,11 @@ public class Lotto {
         return (int) numbers.stream()
                 .distinct()
                 .count();
+    }
+
+    private List<Integer> sortLottoNumber() {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }

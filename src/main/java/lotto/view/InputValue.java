@@ -16,6 +16,10 @@ public class InputValue {
     private static final Integer PRICE_UNIT = 1000;
     private static final String SEPARATOR = ",";
 
+    private static final Integer START_NUMBER = 1;
+
+    private static final Integer END_NUMBER = 45;
+
     public static int getPurchasePrice() {
 
         String input = removeInputSpaces();
@@ -59,10 +63,27 @@ public class InputValue {
         String input = removeInputSpaces();
 
         List<Integer> numbers = new ArrayList<>();
-        for(String number : input.split(SEPARATOR))
+        for (String number : input.split(SEPARATOR))
             numbers.add(numberCheck(number));
 
         return numbers;
+    }
+
+    public static int getBonusNumber() {
+
+        String input = removeInputSpaces();
+
+        int bonusNumber = numberCheck(input);
+
+        validateBonusNumber(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber > END_NUMBER || bonusNumber < START_NUMBER) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_RANGE.getMessage());
+        }
     }
 
 }

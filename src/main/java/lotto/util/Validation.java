@@ -16,6 +16,11 @@ public class Validation {
         validatePurchaseUnit(Integer.parseInt(input));
     }
 
+    public static void validateConditions(String input, List<String> numbers){
+        validateComma(input);
+        validateIntegerList(numbers);
+    }
+
     public static void validateLottoNumbers(List<Integer> input){
         validateDuplicate(input);
         validateListNumberInRange(input);
@@ -25,6 +30,12 @@ public class Validation {
     private static void validatePurchaseUnit(int input){
         if(!(input % LottoConfig.LOTTO_LEAST_AMOUNT.getValue() == ZERO)){
             throw new IllegalArgumentException(ValidatorConfig.PURCHASE_UNIT_ERROR.getMessage());
+        }
+    }
+
+    public static void validateIntegerList(List<String> input){
+        for(String n: input){
+            validateInteger(n);
         }
     }
 
@@ -56,6 +67,12 @@ public class Validation {
     private static void validateLength(List<Integer> input){
         if(input.size() != LottoConfig.LOTTO_LENGTH.getValue()){
             throw new IllegalArgumentException(ValidatorConfig.NUMBER_LENGTH_ERROR.getMessage());
+        }
+    }
+
+    private static void validateComma(String input){
+        if (!input.contains(COMMA)) {
+            throw new IllegalArgumentException(ValidatorConfig.COMMA_ERROR.getMessage());
         }
     }
 

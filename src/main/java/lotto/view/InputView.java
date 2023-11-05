@@ -6,6 +6,8 @@ import lotto.util.InputUtil;
 public class InputView {
 
     private static final String LOTTO_BUDGET_REQUEST_MESSAGE = "\n구입금액을 입력해 주세요.";
+    private static final String LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+
 
     public static int readAmount(){
         try{
@@ -14,6 +16,16 @@ public class InputView {
         } catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
             return readAmount();
+        }
+    }
+
+    public static List<Integer> readWinningNumbers(){
+        try{
+            System.out.println(LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE);
+            return InputUtil.readWinningNumbers();
+        }catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e);
+            return readWinningNumbers();
         }
     }
 }

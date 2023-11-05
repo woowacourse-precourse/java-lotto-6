@@ -17,7 +17,7 @@ class MoneyTest {
         assertDoesNotThrow(() -> new Money(value));
     }
 
-    @DisplayName("금액의 범위가 벗어날 경우 Money를 생성할 때 예외가 발생한다.")
+    @DisplayName("금액이 1,000 미만 100,000,000,000 초과일 경우 Money를 생성할 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(longs = {999L, 100_000_000_001L})
     void createMoneyByInvalidRange(Long input) {

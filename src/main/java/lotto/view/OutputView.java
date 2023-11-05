@@ -32,8 +32,6 @@ public class OutputView {
                 prize.fiveMatchWithBonusCount(),
                 prize.sixMatchCount()
         );
-
-        printPrizeRate(prize.prizeMoney());
     }
 
     public void printPrizeRate(double prizeRate) {

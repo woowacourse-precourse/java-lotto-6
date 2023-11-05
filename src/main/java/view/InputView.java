@@ -2,6 +2,8 @@ package view;
 
 import util.Scanner.IScanner;
 
+import static lotto.constant.ExceptionMessage.NOT_NUMBER_MESSAGE;
+
 public class InputView {
 
     private final IScanner scanner;
@@ -19,7 +21,7 @@ public class InputView {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_NUMBER_MESSAGE.getMessage());
         }
     }
 

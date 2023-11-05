@@ -22,6 +22,13 @@ public class LottoResult {
         return lottoResult;
     }
 
+    public float getProfit() {
+        int totalPurchaseAmount = totalPurchaseAmount();
+        int totalPrize = totalPrize();
+
+        return (float) totalPrize / totalPurchaseAmount * 100;
+    }
+
     private int totalPurchaseAmount() {
         int totalTickts = 0;
 

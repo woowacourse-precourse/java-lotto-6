@@ -14,9 +14,10 @@ public class LottoService {
     private static final int lottoNumberCount = 6;
 
     private List<Lotto> purchaseLotto = new ArrayList<>();
+    private Lotto winLotto;
 
     public void repeatPurchase(int lottoCount) {
-        for(int count = 0; count < lottoCount; count++) {
+        for (int count = 0; count < lottoCount; count++) {
             generateLotto();
         }
     }
@@ -34,4 +35,10 @@ public class LottoService {
         purchaseLotto.add(lotto);
     }
 
+    public void setWinLotto(List<Integer> winLottoNumbers) {
+
+        winLotto = new Lotto(winLottoNumbers);
+
+        winLotto.sortLotto();
+    }
 }

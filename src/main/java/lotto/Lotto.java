@@ -13,4 +13,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateAllRange(numbers, MIN_NUMBER, MAX_NUMBER);
+        validateNoDuplicates(numbers);
+    }
 }

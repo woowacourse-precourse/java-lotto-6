@@ -22,17 +22,18 @@ public class Lotto {
         }
 
         ArrayList<Integer> basket = new ArrayList<>();
-        for(Integer number : numbers){
-            if(basket.contains(number)){
+        for (Integer number : numbers) {
+            if (basket.contains(number)) {
                 throw new IllegalArgumentException();
             }
             basket.add(number);
         }
     }
+
     public void sortNumbers(List<Integer> numbers) {
-        try{
+        try {
             Collections.sort(numbers);
-        } catch (UnsupportedOperationException e ){
+        } catch (UnsupportedOperationException e) {
             //테스트때 사용하는 List.of 는 정렬이 불가해서 테스트시의 정렬시 예외 처리후 다음 로직 진행
         }
 
@@ -78,12 +79,24 @@ public class Lotto {
         }
         return collectBonusNumberCount;
     }
-    private static Prize getPrize(Integer collectNomalNumberCount, Integer collectBonusNumberCount) {
-        if (collectNomalNumberCount == 6) return Prize.SIX;
-        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 1) return Prize.FIVE_BONUS;
-        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 0) return Prize.FIVE;
-        if (collectNomalNumberCount == 4) return Prize.FOUR;
-        if (collectNomalNumberCount == 3) return Prize.THREE;
+
+    private static Prize getPrize(Integer collectNomalNumberCount,
+            Integer collectBonusNumberCount) {
+        if (collectNomalNumberCount == 6) {
+            return Prize.SIX;
+        }
+        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 1) {
+            return Prize.FIVE_BONUS;
+        }
+        if (collectNomalNumberCount == 5 && collectBonusNumberCount == 0) {
+            return Prize.FIVE;
+        }
+        if (collectNomalNumberCount == 4) {
+            return Prize.FOUR;
+        }
+        if (collectNomalNumberCount == 3) {
+            return Prize.THREE;
+        }
         return Prize.NONE;
     }
 }

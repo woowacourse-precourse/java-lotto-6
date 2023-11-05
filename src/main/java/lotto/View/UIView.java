@@ -6,6 +6,7 @@ import lotto.Model.Lotto;
 import lotto.Model.Prize;
 
 public class UIView {
+
     private static final String ENTER_PURCHASE_PRICE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_ANOUNCE = "개를 구매했습니다.";
     private static final String ENTER_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -20,6 +21,7 @@ public class UIView {
     private static final String SIX_CORRECT = "6개 일치 (2,000,000,000원) - ";
     private static final String PROFIT_PERCENTAGE = "총 수익률은 ";
     private static final String PERCENTAGE = "%입니다.";
+
     public static void printPurchasePriceInstruction() {
         System.out.println(ENTER_PURCHASE_PRICE);
     }
@@ -57,6 +59,6 @@ public class UIView {
     }
 
     public static void printProfit(double roundedProfit) {
-        System.out.println(PROFIT_PERCENTAGE + roundedProfit +PERCENTAGE);
+        System.out.println(PROFIT_PERCENTAGE + roundedProfit + PERCENTAGE);
     }
 }

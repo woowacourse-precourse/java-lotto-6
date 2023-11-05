@@ -99,6 +99,7 @@ public class UIController {
             throw new IllegalArgumentException("6개의 숫자만 입력 받을수 있습니다.");
         }
     }
+
     private static void numberDupCheck(ArrayList<Integer> winningNumbers, Integer number) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException("중복 숫자는 입력할 수 없습니다.");
@@ -146,6 +147,7 @@ public class UIController {
             throw new IllegalArgumentException("당첨번호와 중복되지 않는 번호 이어야 합니다.");
         }
     }
+
     public static void makeStatistics(List<Lotto> lottos, List<Integer> winningNumbers,
             Integer bonusNumber, Integer price) {
         LottoMachine.countStatistics(lottos, winningNumbers, bonusNumber);

@@ -7,9 +7,11 @@ import lotto.Model.Prize;
 
 
 public class LottoMachine {
+
     public static Integer lottoCount(Integer price) {
         return price / 1000;
     }
+
     public static List<Integer> makeRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }

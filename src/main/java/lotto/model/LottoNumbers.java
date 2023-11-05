@@ -24,26 +24,19 @@ public class LottoNumbers {
     }
 
     public List<Lotto> validateWinningLotto(String winningNumbers) {
-        String[] winningNumbersArray = winningNumbers.split(comma);
-        validateWinningLottoLength(winningNumbersArray);
-        List<Integer> winningNumbersList = convertStringToInt(winningNumbersArray);
-        winningLotto.add(new Lotto(winningNumbersList));
+        String[] userInputWinningNumbers = winningNumbers.split(comma);
+        List<Integer>  winningNumber = convertStringToInt(userInputWinningNumbers);
+        winningLotto.add(new Lotto(winningNumber));
 
         return winningLotto;
     }
 
-    private void validateWinningLottoLength(String[] winningNumbersArray) {
-        if (winningNumbersArray.length != LOTTO_SIZE) {
-            throw new IllegalArgumentException(LottoError.LOTTO_NUMBER_COUNT.getMessage());
+    private List<Integer> convertStringToInt(String[] winningNumbers) {
+        List<Integer> userInputWinningNumber = new ArrayList<>();
+        for (String winningNumber : winningNumbers) {
+            userInputWinningNumber.add(Integer.parseInt(winningNumber));
         }
-    }
-
-    private List<Integer> convertStringToInt(String[] winningNumbersArray) {
-        List<Integer> winningNumbersList = new ArrayList<>();
-        for (String winningNumber : winningNumbersArray) {
-            winningNumbersList.add(Integer.parseInt(winningNumber));
-        }
-        return winningNumbersList;
+        return userInputWinningNumber;
     }
 
 

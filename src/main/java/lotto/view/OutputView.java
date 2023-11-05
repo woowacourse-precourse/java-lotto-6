@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningStatistics;
 
 public class OutputView {
     private static final String COUNT_OF_USER_LOTTOS_MESSAGE = "\n%d개를 구매했습니다.";
@@ -25,5 +26,9 @@ public class OutputView {
 
     private static void printCountOfUserLottos(Budget budget){
         System.out.println(String.format(COUNT_OF_USER_LOTTOS_MESSAGE, budget.getCountOfLottoLines()));
+    }
+
+    public static void printWinningStaticstics(WinningStatistics winningStatistics){
+
     }
 }

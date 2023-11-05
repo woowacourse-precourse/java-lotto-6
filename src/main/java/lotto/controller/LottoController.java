@@ -20,6 +20,7 @@ public class LottoController {
         Lottos userLottos = buyLotto();
         WinningLotto winningLotto = drawLotto();
         WinningStatistics winningStatistics = makeStatistics(userLottos, winningLotto);
+        OutputView.printWinningStaticstics(winningStatistics);
     }
 
     private Lottos buyLotto(){

@@ -2,6 +2,7 @@ package lotto.io;
 
 import lotto.constant.ProgressMessage;
 import lotto.domain.Lottos;
+import lotto.domain.WinningResult;
 import lotto.formatter.OutputFormatter;
 
 public class OutputView {
@@ -33,5 +34,9 @@ public class OutputView {
 
     public void printResult() {
         System.out.println(ProgressMessage.RESULT_STATISTICS.toValue());
+    }
+
+    public void printWinningResult(final WinningResult winningResult) {
+        System.out.println(outputFormatter.formatWinningResult(winningResult));
     }
 }

@@ -17,14 +17,16 @@ public class LottoController {
     public void playGame() {
         printPurchaseMoneyMessage();
         String inputPurchaseMoney = inputPurchaseMoneyProcess();
-        printBlankLine();
         printLottoCount(inputPurchaseMoney);
         printPurchaseLottoNumbers();
+        printWinnerNumberMessage();
+        String inputWinnerNumber = inputWinnerNumberProcess();
     }
 
     private void printPurchaseLottoNumbers() {
         List<List<Integer>> purchaseLottoNumbers = lottoService.purchaseLottoNumberProcess();
         outputView.printPurchaseLottoNumbers(purchaseLottoNumbers);
+        printBlankLine();
     }
 
     private void printPurchaseMoneyMessage() {
@@ -35,6 +37,7 @@ public class LottoController {
         try {
             String inputPurchaseMoney = inputView.inputPurchaseMoney();
             validateService.validateInputPurchaseMoney(inputPurchaseMoney);
+            printBlankLine();
             return inputPurchaseMoney;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -53,5 +56,21 @@ public class LottoController {
 
     private int getLottoCount(String inputPurchaseMoney) {
         return lottoService.getLottoCount(inputPurchaseMoney);
+    }
+
+    private void printWinnerNumberMessage() {
+        outputView.printWinnerNumberMessage();
+    }
+
+    private String inputWinnerNumberProcess() {
+        try {
+            String inputWinnerNumber = inputView.inputWinnerNumber();
+            validateService.validateInputWinnerNumber(inputWinnerNumber);
+            printBlankLine();
+            return inputWinnerNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinnerNumberProcess();
+        }
     }
 }

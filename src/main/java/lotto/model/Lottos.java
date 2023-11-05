@@ -12,7 +12,15 @@ public class Lottos {
     public Lottos(PurchaseAmount purchaseAmount) {
     }
 
-    public List<Integer> generateLottoNumbers() {
+    private void generateLottos(PurchaseAmount purchaseAmount) {
+        int lottoCount = purchaseAmount.calculateLottoCount();
+
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(new Lotto(generateLottoNumbers()));
+        }
+    }
+
+    private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 GameConfig.MIN_LOTTO_NUMBER.getValue(),
                 GameConfig.MAX_LOTTO_NUMBER.getValue(),

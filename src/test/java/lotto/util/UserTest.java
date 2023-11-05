@@ -44,7 +44,7 @@ class UserTest {
     }
 
     @Test
-    void 지불금액이_1000원_단위인지_테스트(){
+    void 지불금액이_1000원_단위인지_테스트() {
         String inputAmount1 = "8000";
         String inputAmount2 = "111000";
         String inputAmount3 = "1000";
@@ -53,22 +53,50 @@ class UserTest {
         String inputAmount6 = "1100";
 
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount1);;
+            user.inputPaymentAmount(inputAmount1);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount2);;
+            user.inputPaymentAmount(inputAmount2);
         });
         Assertions.assertDoesNotThrow(() -> {
-            user.inputPaymentAmount(inputAmount3);;
+            user.inputPaymentAmount(inputAmount3);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount4);;
+            user.inputPaymentAmount(inputAmount4);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount5);;
+            user.inputPaymentAmount(inputAmount5);
         });
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            user.inputPaymentAmount(inputAmount6);;
+            user.inputPaymentAmount(inputAmount6);
+        });
+    }
+
+    @Test
+    void 지불금액이_1000_아래인지_확인하는_테스트() {
+        String inputAmount1 = "1000";
+        String inputAmount2 = "2000";
+        String inputAmount3 = "1000000";
+        String inputAmount4 = "0";
+        String inputAmount5 = "-1000";
+        String inputAmount6 = "-100000";
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount1);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount2);
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount3);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount4);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount5);
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount6);
         });
     }
 }

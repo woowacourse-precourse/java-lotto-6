@@ -1,6 +1,6 @@
 package controller;
 
-import static View.InputView.inputLottoPurchaseAmount;
+import static view.InputView.inputLottoPurchaseAmount;
 
 import domain.Amount;
 

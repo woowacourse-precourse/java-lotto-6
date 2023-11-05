@@ -7,11 +7,11 @@ public enum Rank {
     FOURTH(4, 50_000),
     FIFTH(5, 5_000);
 
-    private final int rank;
+    private final int matchCount;
     private final int reward;
 
-    Rank(int rank, int reward) {
-        this.rank = rank;
+    Rank(int matchCount, int reward) {
+        this.matchCount = matchCount;
         this.reward = reward;
     }
 }

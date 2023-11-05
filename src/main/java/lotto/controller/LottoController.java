@@ -59,7 +59,10 @@ public class LottoController {
             }
             winningNumsInput.add(Integer.parseInt(winningNum));
         }
-        Lotto lotto = new Lotto(winningNumsInput);
+        Lotto lotto = ReadWinningNum.makeWinningNumsInput(winningNumsInput);
+        if (lotto == null) {
+            return true;
+        }
         return false;
     }
 }

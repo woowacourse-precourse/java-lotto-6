@@ -27,7 +27,7 @@ public class OutputUI {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Rewards reward : rewards) {
-            System.out.printf("%s %s - %d개",reward.getNotifyMessege(),moneyEdit(reward)
+            System.out.printf("%s %s - %d개\n",reward.getNotifyMessege(),moneyEdit(reward)
                     ,resultAll.get(reward));
         }
     }

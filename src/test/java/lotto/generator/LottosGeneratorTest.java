@@ -2,7 +2,6 @@ package lotto.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 
 public class LottosGeneratorTest {
@@ -30,7 +29,7 @@ public class LottosGeneratorTest {
 		Money money = new Money(inputValue);
 		lottosGenerator.setMoney(money);
 
-		List<Lotto> lottos = lottosGenerator.generate();
+		Lottos lottos = lottosGenerator.generate();
 
 		assertEquals(lottos.size(), expect);
 	}

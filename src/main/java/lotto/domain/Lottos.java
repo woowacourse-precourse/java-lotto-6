@@ -8,7 +8,7 @@ public class Lottos {
 
 	private static final String NEW_LINE = System.lineSeparator();
 
-	private List<Lotto> lottos;
+	private final List<Lotto> lottos;
 
 	public Lottos(List<Lotto> lottos) {
 		this.lottos = lottos;
@@ -26,5 +26,9 @@ public class Lottos {
 
 	public List<Lotto> getLottos() {
 		return Collections.unmodifiableList(lottos);
+	}
+	
+	public int size() {
+		return lottos.size();
 	}
 }

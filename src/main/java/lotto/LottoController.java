@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
-    final Input input = new Input();
-    final Output output = new Output();
+    private final Input input = new Input();
+    private final Output output = new Output();
 
     public void run() {
-        LottoCost lottoCost = createLottoCost();
+        /*LottoCost lottoCost = createLottoCost();
         int lottoTicket = lottoCost.getTicket();
         output.printNumberOfPurchase(lottoTicket);
 
@@ -17,7 +17,8 @@ public class LottoController {
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         output.printRandomLottoNumbers(randomLottoNumbers);
 
-        Lotto lotto = createWinningNumber();
+        Lotto winningNumber = createWinningNumber();*/
+        LottoBonus bonusNumber = createBonusNumber();
     }
 
     private LottoCost createLottoCost() {
@@ -55,6 +56,24 @@ public class LottoController {
         return lotto;
     }
 
+    private LottoBonus createBonusNumber() {
+        LottoBonus bonusNumber = null;
+        boolean loop = true;
+
+        while (loop) {
+            String inputBonusNumber = input.bonusNumber();
+            try {
+                isNumber(inputBonusNumber);
+                bonusNumber = new LottoBonus(Integer.parseInt(inputBonusNumber));
+                loop = false;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
+    }
+
     public void isNumber(List<String> inputWinningNumbers) {
         boolean hasOnlyNum;
 
@@ -63,6 +82,14 @@ public class LottoController {
             if (!hasOnlyNum) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
             }
+        }
+    }
+
+    private void isNumber(String bonusNumber) {
+        boolean hasOnlyNum = !bonusNumber.isEmpty() && bonusNumber.chars().allMatch(Character::isDigit);
+
+        if (!hasOnlyNum) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
         }
     }
 }

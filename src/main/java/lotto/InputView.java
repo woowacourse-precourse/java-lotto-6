@@ -5,9 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import static lotto.OutputView.printRequestMoney;
 
 public class InputView {
-    public static void inputRequestMoney() {
+    public static String inputRequestMoney() {
         printRequestMoney();
-        String inputMoney = Console.readLine();
-        new Money(inputMoney);
+        return Console.readLine();
     }
 }

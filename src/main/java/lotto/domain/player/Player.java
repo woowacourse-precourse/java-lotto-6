@@ -1,8 +1,12 @@
 package lotto.domain.player;
 
 import lotto.domain.common.Money;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoMachine;
+import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lotto.LottoPrize;
 
+import java.util.EnumMap;
 import java.util.Objects;
 
 class Player {
@@ -27,5 +31,13 @@ class Player {
         if (Objects.isNull(lottoMachine)) {
             throw new IllegalArgumentException(UNKNOWN_LOTTO_MACHINE_MESSAGE);
         }
+    }
+
+    public double showEarningRate(Lotto answer, LottoNumber bonus) {
+        return money.calculateEarningRate(lotto.calculateTotalReturn(answer, bonus));
+    }
+
+    public EnumMap<LottoPrize, Integer> showStatistics(Lotto answer, LottoNumber bonus) {
+        return lotto.generateStatistics(answer, bonus);
     }
 }

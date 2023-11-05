@@ -1,16 +1,16 @@
 package lotto.domain.player;
 
 import lotto.domain.common.Money;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoFactory;
-import lotto.domain.lotto.LottoMachine;
+import lotto.domain.lotto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerTest {
@@ -27,6 +27,32 @@ class PlayerTest {
         assertThatThrownBy(() -> Player.from(Money.from(8000), null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("알 수 없는 로또 기계로 플레이어를 생성할 수 없습니다.");
+    }
+
+    @DisplayName("수익률을 조회할 수 있다.")
+    @Test
+    void showEarningRate() {
+        Player player = Player.from(Money.from(8000), LottoMachine.from(simpleFactory()));
+
+        double result = player.showEarningRate(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.from(7));
+
+        assertThat(result).isEqualTo(62.5);
+    }
+
+    @DisplayName("당첨 통계를 조회할 수 있다.")
+    @Test
+    void showStatistics() {
+        Player player = Player.from(Money.from(8000), LottoMachine.from(simpleFactory()));
+        EnumMap<LottoPrize, Integer> expected = new EnumMap<>(LottoPrize.class);
+        for (LottoPrize prize : LottoPrize.values()) {
+            expected.put(prize, 0);
+        }
+        expected.put(LottoPrize.FIFTH, 1);
+        expected.put(LottoPrize.LOSE, 7);
+
+        EnumMap<LottoPrize, Integer> result = player.showStatistics(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.from(7));
+
+        assertThat(result).isEqualTo(expected);
     }
 
 

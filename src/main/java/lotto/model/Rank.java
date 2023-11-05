@@ -12,6 +12,8 @@ public enum Rank {
     FIFTH(3, false),
     NONE(4, false);
 
+    private final static int BONUS_MATCH = 1;
+
     private final int difference;
     private final boolean containsBonusNumber;
 
@@ -34,8 +36,10 @@ public enum Rank {
     }
 
     private static boolean filter(Rank rank, int difference, boolean containsBonusNumber) {
-        return isDifferenceSame(rank, difference)
-                && isContainsBonusNumberSame(rank, containsBonusNumber);
+        if (difference == BONUS_MATCH) {
+            return rank.containsBonusNumber == containsBonusNumber;
+        }
+        return isDifferenceSame(rank, difference);
     }
 
     private static boolean isDifferenceSame(Rank rank, int difference) {

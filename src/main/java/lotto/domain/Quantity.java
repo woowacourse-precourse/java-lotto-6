@@ -11,7 +11,7 @@ public class Quantity {
     }
 
     public static Quantity of(final Money budget, final int price) {
-        return new Quantity(budget.getValue() / price);
+        return new Quantity((int) budget.getValue() / price);
     }
 
     public int getQuantity() {

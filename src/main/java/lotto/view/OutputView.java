@@ -15,6 +15,7 @@ public class OutputView {
     private static final String MSG_THIRD_PLACE = "5개 일치 (1,500,000원)";
     private static final String MSG_FOURTH_PLACE = "4개 일치 (50,000원)";
     private static final String MSG_FIFTH_PLACE = "3개 일치 (5,000원)";
+    private static final String MSG_PROFIT = "총 수익률은 %.1f입니다.";
 
     private static final String COUNT_NOUN = "개";
     private static final String NEW_LINE = "\n";
@@ -46,5 +47,9 @@ public class OutputView {
     private void printPrizeFormat(Prize prize, String message, LottoResult result) {
         long prizeCount = result.getResult().getOrDefault(prize, 0L);
         System.out.printf(message + DASH + "%d" + COUNT_NOUN + NEW_LINE, prizeCount);
+    }
+
+    public void printProfit(double roundedProfit) {
+        System.out.printf(MSG_PROFIT + NEW_LINE, roundedProfit);
     }
 }

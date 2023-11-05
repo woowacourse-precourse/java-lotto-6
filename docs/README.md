@@ -21,7 +21,7 @@
 - [x] 보유 금액 전부를 로또 구매에 사용해 LottoTicket 을 받음 - Player
 - [x] 가지고 있는 티켓 전부로 로또를 구매함 - Player
 - [x] 로또 결과를 통해 수익률 가져오기 - Player
-- [x] 수익률을 저장함 - Profit성
+- [x] 수익률을 저장함 - Profit
 - ### Lotto
 - [x] 로또에 번호가 있는지 확인 - Lotto
 - [x] 로또끼리 비교해 서로 일치하는 숫자 개수 반환 - Lotto
@@ -98,5 +98,5 @@
 - [x] 보너스 번호가 1~45의 숫자가 아님 - BonusNumber
 
 # AppConfig
-- [ ] AppConfig 를 통해 객체를 생성한다 - AppConfig
+- [x] AppConfig 를 통해 객체를 생성한다 - AppConfig
 

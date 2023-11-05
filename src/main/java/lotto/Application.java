@@ -67,5 +67,18 @@ public class Application {
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");
         }
+
+        // 4. 보너스 번호 입력
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusInput = Console.readLine();
+        int bonus;
+        try {
+            bonus = Integer.parseInt(bonusInput);
+            if(bonus <= 0 || bonus > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");
+        }
     }
 }

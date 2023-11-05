@@ -2,13 +2,22 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(final List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         checkValidation(numbers);
-        this.numbers = numbers;
+        this.numbers = makeSorted(numbers);
+    }
+
+    private List<Integer> makeSorted(List<Integer> numbers) {
+        List<Integer> sorted = new ArrayList<>(numbers);
+
+        Collections.sort(sorted);
+        return sorted;
     }
 
     private void checkValidation(List<Integer> numbers) {
@@ -31,7 +40,6 @@ public class Lotto {
         HashSet<Integer> numbersWithoutDuplication = new HashSet<>(numbers);
         return numbersWithoutDuplication.size() != numbers.size();
     }
-
 
     public boolean hasIt(int number) {
         return numbers.contains(number);

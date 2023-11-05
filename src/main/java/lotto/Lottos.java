@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -13,7 +12,7 @@ public class Lottos {
         checkPurchasingAmount(purchasingAmount);
         int time = Integer.parseInt(purchasingAmount) / 1000;
         while (this.lottos.size() < time) {
-            this.lottos.add(new Lotto(makeSorted(Randoms.pickUniqueNumbersInRange(1, 45, 6))));
+            this.lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
     }
 
@@ -24,11 +23,6 @@ public class Lottos {
 
     private boolean isValidPurchasingAmount(String purchasingAmount) {
         return purchasingAmount.matches("^[1-9]\\d*000$");
-    }
-
-    private List<Integer> makeSorted(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
     }
 
     public List<Lotto> getLottos() {

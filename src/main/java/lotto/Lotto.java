@@ -39,9 +39,9 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatch(List<Integer> user){
+    public int countMatch(Lotto user){
         int count = 0;
-        for (Integer integer : user) {
+        for (Integer integer : user.getNumbers()) {
             if (lottoContains(integer)) count++;
         }
         return count;

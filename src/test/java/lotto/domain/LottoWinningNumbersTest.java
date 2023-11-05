@@ -2,12 +2,7 @@ package lotto.domain;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.List;
-import lotto.constant.ErrorMessage;
-import lotto.service.InputService;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +19,6 @@ public class LottoWinningNumbersTest {
         lottoWinningNumbers = new LottoWinningNumbers();
         originalSystemIn = System.in;
     }
-
 
     @Test
     @DisplayName("당첨번호 생성 테스트")

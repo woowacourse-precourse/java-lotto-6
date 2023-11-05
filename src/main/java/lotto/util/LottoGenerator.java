@@ -24,7 +24,6 @@ public class LottoGenerator implements NumberGenerator{
     @Override
     public List<Integer> generateNumberList() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream().sorted().toList();
     }
 }

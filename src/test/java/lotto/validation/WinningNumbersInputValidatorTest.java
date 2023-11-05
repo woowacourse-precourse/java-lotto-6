@@ -4,6 +4,7 @@ import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.NUMBERS_COUNT_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -54,5 +55,15 @@ class WinningNumbersInputValidatorTest {
         assertThatThrownBy(() -> inputValidation.validateNumbersCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMBERS_COUNT_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "1,10,15,27,34,45"})
+    @DisplayName("당첨 번호 입력에 대해 모든 검증을 하여 예외가 발생하지 않아야 하는 테스트")
+    void testValidateWinningNumbers(String input) {
+        WinningNumbersInputValidator inputValidation = new WinningNumbersInputValidator();
+
+        assertThatCode(() -> inputValidation.validateWinningNumbers(input))
+                .doesNotThrowAnyException();
     }
 }

@@ -15,8 +15,8 @@ public final class PurchasableLottoCount {
 
     private void validate(int count) {
         if (count < MINIMUM_COUNT) {
-            String formattedExceptionMessage = String.format(MINIMUM_COUNT_EXCEPTION_FORMAT, MINIMUM_COUNT);
-            throw new IllegalArgumentException(formattedExceptionMessage);
+            String exceptionMessage = String.format(MINIMUM_COUNT_EXCEPTION_FORMAT, MINIMUM_COUNT);
+            throw new IllegalArgumentException(exceptionMessage);
         }
     }
 

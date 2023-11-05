@@ -16,11 +16,13 @@ public class Lotto {
         }
     }
 
-    public int compare(Lotto player){
+    public int matchNum(Lotto player){
         List<Integer> playerNumbers = player.numbers;
         playerNumbers.retainAll(numbers);
         return playerNumbers.size();
     }
 
-
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

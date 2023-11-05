@@ -2,9 +2,11 @@ package lotto.service;
 
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-public class LottoGenerate {
-    public static List<Integer> generate(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
+import lotto.domain.Lotto;
 
+public class LottoGenerate {
+    public static Lotto generate(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
 }

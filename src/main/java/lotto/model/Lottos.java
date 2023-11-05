@@ -16,4 +16,8 @@ public class Lottos {
     public static Lottos from(int count) {
         return new Lottos(count);
     }
+
+    public int getSize() {
+        return lottos.size();
+    }
 }

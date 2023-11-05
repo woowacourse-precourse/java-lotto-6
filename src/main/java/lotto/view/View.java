@@ -1,8 +1,10 @@
 package lotto.view;
 
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
+import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lottos;
 import lotto.view.constants.MessageType;
 
 public final class View {
@@ -11,9 +13,17 @@ public final class View {
         return Validator.validateCost(enterMessage());
     }
 
+    public static void printLottos(Lottos lottos) {
+        printlnFormat(LOTTO_COUNT_MESSAGE, lottos.getSize());
+    }
+
     /* Output View */
     private static void printlnMessage(MessageType messageType) {
         System.out.println(messageType.getMessage());
+    }
+
+    private static void printlnFormat(MessageType message, Object... args) {
+        System.out.println(String.format(message.getMessage(), args));
     }
 
     /* Input View */

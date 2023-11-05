@@ -50,8 +50,9 @@
 
 #### LottoBundle
 
-1. model에서의 검증 
-   - 갯수가 TicketNumbers와 같아야한다.
+1. model에서의 검증 ✅
+   - null이 아니여야 한다. ✅
+   - 비어있지 않아야 한다. ✅
 
 #### WinningNumbers
 

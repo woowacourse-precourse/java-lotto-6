@@ -15,6 +15,7 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
 
         this.numbers = numbers;
     }
@@ -50,6 +51,14 @@ public class Lotto {
 
         if (uniqueNumbers.size() != numbers.size()) {
             throw DUPLICATE_NUMBER.getException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                throw INVALID_RANGE.getException();
+            }
         }
     }
 }

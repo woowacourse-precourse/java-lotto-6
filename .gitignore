@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+
+### Obsidian ###
+# config dir
+.obsidian/

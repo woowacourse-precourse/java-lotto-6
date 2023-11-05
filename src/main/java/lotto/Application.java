@@ -7,10 +7,12 @@ public class Application {
 
         try {
             lottery.input();
+            lottery.draw();
+            lottery.getNumbers();
+//            lottery.bonus();
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }
-
     }
 
 }

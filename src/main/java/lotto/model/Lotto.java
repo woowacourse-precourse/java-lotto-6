@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -15,6 +15,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
     public void Bonus(int number) {
         this.bonus = number;
     }
@@ -24,6 +25,7 @@ public class Lotto {
     private int getBonus() {
         return bonus;
     }
+
 
 
 }

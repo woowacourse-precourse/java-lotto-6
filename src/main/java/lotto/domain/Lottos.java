@@ -10,6 +10,7 @@ public class Lottos {
 
 
     public Lottos(List<Lotto> lottos) {
+        validate(lottos);
         this.lottos = lottos;
     }
 

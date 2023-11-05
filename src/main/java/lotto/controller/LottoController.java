@@ -1,36 +1,46 @@
 package lotto.controller;
 
-import lotto.domain.GenerateLotto;
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseLotto;
+import lotto.domain.*;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 import java.util.List;
 
+import static lotto.view.OutputView.*;
+
 public class LottoController {
-    public static void run() {
-        try {
-            int lottoCount = getPurChaseAmount();
-            System.out.println("\n" + lottoCount + OutputView.printPurchaseLottoCount());
-            printLottoTickets(lottoCount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            run();
-        }
+    public void run() {
+        PurchaseLotto purchaseLotto = getPurChaseAmount();
+        int lottoCount = purchaseLotto.getLottoCount();
+        printPurchaseLottoCount(lottoCount);
+
+        GenerateLotto generateLotto = getLottoTickets(lottoCount);
+        printLottoTickets(generateLotto.getLottos());
+
+        WinningLotto winningLotto = getWinningLotto();
+
+        BonusLotto bonusLotto = getBonusLotto(winningLotto.getWinnerNumber());
     }
 
-    private static int getPurChaseAmount() {
-        OutputView.printInputPurchaseAmount();
-        String lottoCount = InputView.inputPurchaseAmount();
-        return PurchaseLotto.getLottoCount(lottoCount);
+    private PurchaseLotto getPurChaseAmount() {
+        printInputPurchaseAmount();
+        String amount = InputView.inputPurchaseAmount();
+        return new PurchaseLotto(amount);
     }
 
-    private static void printLottoTickets(int lottoCount) {
-        List<Lotto> lottos = GenerateLotto.generateLottoGroup(lottoCount);
+    private GenerateLotto getLottoTickets(int lottoCount) {
+       return new GenerateLotto(lottoCount);
+    }
 
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto);
-        }
+    private WinningLotto getWinningLotto(){
+        printInputWinnerNumbers();
+        String winnerNumbers = InputView.inputWinnerNumbers();
+        return new WinningLotto(winnerNumbers);
+    }
+
+    private BonusLotto getBonusLotto(List<Integer> winnerNumber){
+        printInputBonusNumber();
+        String bonusNumber = InputView.inputBonusNumbers();
+        return new BonusLotto(bonusNumber, winnerNumber);
     }
 }
+

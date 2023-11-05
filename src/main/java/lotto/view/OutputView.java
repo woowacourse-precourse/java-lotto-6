@@ -1,25 +1,33 @@
 package lotto.view;
-import static lotto.constant.ViewMessage.INPUT_PURCHASE_AMOUNT;
-import static lotto.constant.ViewMessage.PURCHASE_LOTTO_COUNT;
-import static lotto.constant.ViewMessage.INPUT_WINNING_NUMBERS;
-import static lotto.constant.ViewMessage.INPUT_BONUS_NUMBER;
+import static lotto.constant.ViewMessage.*;
 
 import lotto.constant.ViewMessage;
+import lotto.domain.Lotto;
+
+import java.util.List;
 
 public class OutputView {
     public static void printInputPurchaseAmount() {
         printlnViewMessage(INPUT_PURCHASE_AMOUNT);
     }
 
-    public static String printPurchaseLottoCount() {
-        return PURCHASE_LOTTO_COUNT.toString();
+    public static void printPurchaseLottoCount(int count) {
+        System.out.println("\n" + count + PURCHASE_LOTTO_COUNT);
+    }
+
+    public static void printLottoTickets(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     public static void printInputWinnerNumbers() {
+        System.out.println();
         printlnViewMessage(INPUT_WINNING_NUMBERS);
     }
 
     public static void printInputBonusNumber() {
+        System.out.println();
         printlnViewMessage(INPUT_BONUS_NUMBER);
     }
 

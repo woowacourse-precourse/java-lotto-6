@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String COMMA = ",";
     private static final String NUMBERS_FORMAT_REGEX = "([0-9]+,?)+";
     private static final String NUMBER_REGEX = "[0-9]+";
@@ -28,7 +25,6 @@ public class InputView {
     private static final int NUMBERS_COUNT = 6;
 
     public int receivePurchaseAmount() {
-        System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
@@ -55,10 +51,8 @@ public class InputView {
     }
 
     public String receiveWinningNumber() {
-        System.out.println(WINNING_NUMBER_MESSAGE);
         String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
-        System.out.println();
         return winningNumber;
     }
 
@@ -93,10 +87,8 @@ public class InputView {
     }
 
     public int receiveBonusNumber(String winningNumber) {
-        System.out.println(BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         validateBonusNumber(winningNumber, bonusNumber);
-        System.out.println();
         return Integer.parseInt(bonusNumber);
     }
 

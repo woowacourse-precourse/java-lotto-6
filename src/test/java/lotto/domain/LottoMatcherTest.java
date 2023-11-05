@@ -17,8 +17,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(0);
@@ -32,8 +32,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(1, 7, 8, 9, 10, 11);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(1);
@@ -47,8 +47,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(1, 2, 7, 8, 9, 10);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(2);
@@ -62,8 +62,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(3);
@@ -77,8 +77,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 7, 8);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(4);
@@ -92,8 +92,8 @@ public class LottoMatcherTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers);
-        long allCorrectCount = lottoMatcher.getCorrectWinningCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(5);
@@ -108,11 +108,11 @@ public class LottoMatcherTest {
         int bonusNumber = 6;
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
-        long allCorrectCount = lottoMatcher.getAllCorrectCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
-        Assertions.assertThat(allCorrectCount).isEqualTo(1);
+        Assertions.assertThat(allCorrectCount).isEqualTo(0);
     }
 
     @DisplayName("로또 번호 하나와 보너스 번호를 포함한 당첨 번호 간 일치하는 번호의 갯수가 1개인지 검증한다.")
@@ -124,8 +124,8 @@ public class LottoMatcherTest {
         int bonusNumber = 13;
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
-        long allCorrectCount = lottoMatcher.getAllCorrectCount();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
 
         //then
         Assertions.assertThat(allCorrectCount).isEqualTo(0);
@@ -140,12 +140,12 @@ public class LottoMatcherTest {
         int bonusNumber = 13;
 
         //when
-        LottoMatcher lottoMatcher = new LottoMatcher(userNumbers, winningNumbers, bonusNumber);
-        long allCorrectCount = lottoMatcher.getAllCorrectCount();
-        boolean correctBonus = lottoMatcher.isCorrectBonus();
+        LottoMatcher lottoMatcher = new LottoMatcher();
+        long allCorrectCount = lottoMatcher.calculateCorrectWinning(userNumbers, winningNumbers);
+        boolean correctBonus = lottoMatcher.calculateCorrectBonus(userNumbers, bonusNumber);
 
         //then
-        Assertions.assertThat(allCorrectCount).isEqualTo(2);
+        Assertions.assertThat(allCorrectCount).isEqualTo(1);
         Assertions.assertThat(correctBonus).isEqualTo(true);
     }
 

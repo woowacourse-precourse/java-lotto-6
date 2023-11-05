@@ -2,17 +2,17 @@
 
 ## 기능 요구 목록
 - [ ] 구입 금액을 입력받는다. -> getAmountOfMoney()
-- [ ] 구입 금액에 해당하는 로또를 발행한다. -> createLottery()
+- [ ] 구입 금액에 해당하는 로또를 발행한다. -> Generator#createLottery()
   - [ ] 발행한 로또 번호를 오름차순으로 정렬한다. -> sortLotteryToAsc()
-- [ ] 발행한 로또번호의 수량을 출력한다. -> showLotteryCount()
-- [ ] 발행한 로또를 출력한다. -> showLotteryNumbers()
+- [ ] 발행한 로또번호의 수량을 출력한다. -> Printer#showLotteryCount()
+- [ ] 발행한 로또를 출력한다. -> Printer#showLotteryNumbers()
 - [ ] 당첨 번호를 입력받는다. -> getWinningNumber()
 - [ ] 보너스 번호를 입력받는다. -> getBonusNumber()
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. -> compareLottery()
+- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. -> Judge#compareLottery()
   - [ ] 몇 개의 번호가 일치하는지 비교한다. -> compareWinningNumber()
   - [ ] 보너스 번호와 일치하는지 비교한다. -> compareBonusNumber()
-- [ ] 당첨 내역을 출력한다. -> showResult()
-- [ ] 수익률을 출력한다. -> showProfit()
+- [ ] 당첨 내역을 출력한다. -> Printer#showResult()
+- [ ] 수익률을 출력한다. -> Printer#showProfit()
 
 <hr/>
 

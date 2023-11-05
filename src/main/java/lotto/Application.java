@@ -21,8 +21,7 @@ public class Application {
         if (inputCoin % coinStandard != 0){
             System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
             throw new IllegalArgumentException();
-        }
-            
+        }            
     }
 
     public static void GetCoin(){
@@ -63,6 +62,7 @@ public class Application {
         }
         return lottoNum;
     }
+    
     public static void BonusNumberInput(){
         System.out.println("보너스 번호를 입력해주세요");
         bonusNumber = LottoNumberValidate(Console.readLine());

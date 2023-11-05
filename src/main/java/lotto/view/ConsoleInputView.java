@@ -28,6 +28,16 @@ public class ConsoleInputView {
         return convertToList(winningNumbers);
     }
 
+    public int readBonusNumber() {
+        try {
+            String bonusNumber = readLineWithoutGap();
+            return convertToInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            NOT_DIGIT_FORM.throwException();
+            return readBonusNumber();
+        }
+    }
+
     private String readLineWithoutGap() {
         return Console.readLine().trim();
     }

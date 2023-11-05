@@ -2,7 +2,6 @@ package lotto.validator;
 
 import lotto.constant.LottoConstants;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,10 +19,10 @@ public class InputValidator {
     }
 
     public void validateLottoDuplication(List<Integer> numbers) {
-        List<Integer> collect = numbers.stream().filter(number -> Collections.frequency(numbers, number) != 1)
+        List<Integer> collect = numbers.stream().distinct()
                 .collect(Collectors.toList());
 
-        if (collect != null) {
+        if (collect.size() != LottoConstants.LOTTO_SIZE) {
             System.out.println(ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
@@ -59,7 +58,7 @@ public class InputValidator {
 
 
     public void validateAmount(int amount) {
-        if (amount % LottoConstants.unit != 0) {
+        if (amount % LottoConstants.UNIT != 0) {
             throw new IllegalArgumentException();
         }
     }

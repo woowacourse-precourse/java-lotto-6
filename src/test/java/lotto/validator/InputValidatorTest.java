@@ -21,6 +21,9 @@ class InputValidatorTest {
     void 인풋_중복_테스트() {
         assertThatThrownBy(() -> new InputValidator().validateLottoDuplication(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatNoException().isThrownBy(() -> new InputValidator()
+                .validateLottoDuplication(List.of(1, 2, 3, 4, 5, 6)));
     }
 
     @Test

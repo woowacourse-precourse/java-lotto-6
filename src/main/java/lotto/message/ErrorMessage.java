@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.message;
 
 public enum ErrorMessage {
     ERROR_NON_EXISTENT_VALUE("[ERROR] 값이 존재하지 않습니다.\n"),

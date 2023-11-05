@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.message;
 
 public enum OutputMessage {
     OUTPUT_COUNT_OF_LOTTO_FORMAT("\n%d개를 구매했습니다."),

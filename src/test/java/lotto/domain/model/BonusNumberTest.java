@@ -1,6 +1,6 @@
 package lotto.domain.model;
 
-import lotto.enums.ErrorMessage;
+import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

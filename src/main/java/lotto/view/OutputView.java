@@ -1,10 +1,7 @@
 package lotto.view;
 
 import lotto.domain.model.Lotteries;
-import lotto.domain.model.Lotto;
-import lotto.enums.OutputMessage;
-
-import java.util.List;
+import lotto.message.OutputMessage;
 
 public final class OutputView {
 

@@ -2,7 +2,7 @@ package lotto.domain.validator;
 
 import lotto.constant.PatternConstant;
 import lotto.constant.RegularConstant;
-import lotto.enums.ErrorMessage;
+import lotto.message.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;

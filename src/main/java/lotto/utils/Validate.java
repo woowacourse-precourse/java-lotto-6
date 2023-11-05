@@ -15,4 +15,18 @@ public class Validate {
         }
     }
 
+    public static int lotteryNumber(String numberString) {
+        try {
+            int number = Integer.parseInt(numberString);
+
+            if (number < 0 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 로또 번호를 입력 하세요.");
+            }
+
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력 하세요.");
+        }
+    }
+
 }

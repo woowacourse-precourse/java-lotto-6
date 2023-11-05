@@ -20,8 +20,8 @@ public class BonusNumber {
         }
     }
 
-    public boolean isMatching(Lotto lotto) {
-        List<Integer> winningNumbers = lotto.getNumbers();
-        return winningNumbers.contains(bonusNumber);
+    public boolean isMatching(Lotto winningNumbers) {
+        List<Integer> lottoNumbers = winningNumbers.getLottoNumbers();
+        return lottoNumbers.contains(bonusNumber);
     }
 }

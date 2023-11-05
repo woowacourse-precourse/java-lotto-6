@@ -22,11 +22,11 @@ public class Buyer {
         this.lottos = lottos;
     }
 
-    public Map<String, Integer> getResult() {
+    public Map<String, String> getResult() {
         return result;
     }
 
-    public void setResult(Map<String, Integer> result) {
+    public void setResult(Map<String, String> result) {
         this.result = result;
     }
 

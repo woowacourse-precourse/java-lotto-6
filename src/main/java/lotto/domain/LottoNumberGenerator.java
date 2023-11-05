@@ -6,9 +6,9 @@ import lotto.config.LottoConfig;
 import java.util.List;
 
 public class LottoNumberGenerator {
-    private static final int SIZE = LottoConfig.SIZE.getValue();
-    private static final int RANGE_START = LottoConfig.RANGE_START.getValue();
-    private static final int RANGE_END = LottoConfig.RANGE_END.getValue();
+    private static final int SIZE = LottoConfig.SIZE.value();
+    private static final int RANGE_START = LottoConfig.RANGE_START.value();
+    private static final int RANGE_END = LottoConfig.RANGE_END.value();
 
     private LottoNumberGenerator() {
         // 인스턴스화 방지

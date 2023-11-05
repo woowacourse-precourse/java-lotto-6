@@ -5,8 +5,8 @@ import lotto.config.LottoConfig;
 import lotto.config.WinningPrize;
 
 public class WinningNumber {
-    private static final int RANGE_START = LottoConfig.RANGE_START.getValue();
-    private static final int RANGE_END = LottoConfig.RANGE_END.getValue();
+    private static final int RANGE_START = LottoConfig.RANGE_START.value();
+    private static final int RANGE_END = LottoConfig.RANGE_END.value();
 
     private final Lotto numbers;
     private final int bonus;

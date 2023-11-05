@@ -8,9 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final int SIZE = LottoConfig.SIZE.getValue();
-    private static final int RANGE_START = LottoConfig.RANGE_START.getValue();
-    private static final int RANGE_END = LottoConfig.RANGE_END.getValue();
+    private static final int SIZE = LottoConfig.SIZE.value();
+    private static final int RANGE_START = LottoConfig.RANGE_START.value();
+    private static final int RANGE_END = LottoConfig.RANGE_END.value();
     private static final int FILTER_CONDITION = 0;
 
     private final List<Integer> numbers;

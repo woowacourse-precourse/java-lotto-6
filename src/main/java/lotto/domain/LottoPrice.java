@@ -6,7 +6,7 @@ import lotto.util.Parser;
 
 public class LottoPrice {
     private static final int CORRECT_DIVISION = 0;
-    private static final int LOTTO_PRICE = LottoConfig.PRICE.getValue();
+    private static final int LOTTO_PRICE = LottoConfig.PRICE.value();
 
     private final int price;
 

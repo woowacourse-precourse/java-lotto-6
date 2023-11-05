@@ -11,9 +11,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoNumberGeneratorTest {
-    private static final int RANGE_START = LottoConfig.RANGE_START.getValue();
-    private static final int RANGE_END = LottoConfig.RANGE_END.getValue();
-    private static final int SIZE = LottoConfig.SIZE.getValue();
+    private static final int RANGE_START = LottoConfig.RANGE_START.value();
+    private static final int RANGE_END = LottoConfig.RANGE_END.value();
+    private static final int SIZE = LottoConfig.SIZE.value();
 
     @DisplayName("랜덤한 로또 번호의 개수가 6개인지 확인한다.")
     @RepeatedTest(100)

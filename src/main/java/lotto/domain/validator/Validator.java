@@ -63,15 +63,15 @@ public final class Validator {
         return valuesSeparatedByCommas.split(RegularConstant.DELIMITER);
     }
 
-    public static void validateCountOfValues(String[] splittedValues) {
-        if(splittedValues.length != 6){
+    public static void validateCountOfValues(String[] splitValues) {
+        if(splitValues.length != 6){
             throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
         }
     }
 
     public static int validateNumberInRange(int num) {
         if(num > 45 || num < 1){
-            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
         }
 
         return num;

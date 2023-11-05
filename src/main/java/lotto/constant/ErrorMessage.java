@@ -22,6 +22,7 @@ public enum ErrorMessage {
             LottoConstraint.MIN_LOTTO_NUMBER.getValue(),
             LottoConstraint.MAX_LOTTO_NUMBER.getValue()
     )),
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다."),
     ;
     private final String message;
 

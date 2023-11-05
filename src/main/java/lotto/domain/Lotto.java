@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -13,6 +14,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
     private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateRangeOfNumbers(numbers);
@@ -66,6 +70,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public static Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 }

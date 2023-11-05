@@ -1,13 +1,16 @@
 package lotto.validation;
 
+import lotto.domain.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoNumberValidation {
 
-    public void validateDuplicateLottoNumbers(List<Integer> lottoNumbers) {
+    public void validateDuplicateLottoNumbers(Lotto lotto) {
         Set<Integer> numbers = new HashSet<>();
+        List<Integer> lottoNumbers = lotto.getLottoNumbers();
 
         for (Integer number : lottoNumbers) {
             numbers.add(number);

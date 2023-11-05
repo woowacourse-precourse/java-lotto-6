@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.service.PrintUtil;
 import lotto.validation.LottoNumberValidation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,7 +47,11 @@ public class LottoNumbers {
             return true;
         }
     }
-    public void synthesizeLottoNumbers(List<Integer> lottoNumbers) {
+
+    public void synthesizeLottoNumbers(Lotto lotto) {
+        List<Integer> lottoNumbers = new ArrayList<>(lotto.getLottoNumbers());
+        Collections.sort(lottoNumbers);
+
         sb.append("[");
         for (int i = 0; i < 6; i++) {
             if (i == 5) {

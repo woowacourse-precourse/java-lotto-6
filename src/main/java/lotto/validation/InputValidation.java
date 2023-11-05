@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.domain.Lotto;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -149,7 +151,8 @@ public class InputValidation {
         }
     }
 
-    public void validateDuplicateBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
+    public void validateDuplicateBonusNumber(Lotto lotto, int bonusNumber) {
+        List<Integer> winnerNumbers = lotto.getLottoNumbers();
         if (winnerNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
         }

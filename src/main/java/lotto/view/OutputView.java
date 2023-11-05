@@ -14,7 +14,7 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    private void printEmptyLine() {
+    public void printEmptyLine() {
         System.out.println();
     }
 }

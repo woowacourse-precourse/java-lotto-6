@@ -2,9 +2,12 @@ package lotto.vo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseAmountTest {
 
@@ -21,6 +24,15 @@ class PurchaseAmountTest {
         // then
         assertEquals(result, amount);
     }
+
+    @DisplayName("유효하지 않은 값으로 PurchaseAmount를 생성할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1001, 10500, 900})
+    public void testInvalidPurchaseAmount(Integer invalidAmount) {
+        // then
+        assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(invalidAmount));
+    }
+
 
     @DisplayName("두 PurchaseAmount의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test

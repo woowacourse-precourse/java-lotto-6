@@ -1,14 +1,12 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumber {
     private List<Integer> winningNumber;
     private static final String DUPLICATE_WINNING_NUMBERS_ERROR_MESSAGE = "[ERROR] 당첨 번호에 중복된 숫자가 포함되어 있습니다.";
-    private static final String OUT_OF_RANGE_WINNING_NUMBERS_ERROR_MESSAGE = "[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다."
+    private static final String OUT_OF_RANGE_WINNING_NUMBERS_ERROR_MESSAGE = "[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.";
 
     public WinningNumber(String winningNumbers) {
         List<Integer> winningNumber = Arrays.stream(winningNumbers.split(",")).map(String::trim).map(Integer::parseInt)

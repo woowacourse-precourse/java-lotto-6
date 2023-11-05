@@ -2,13 +2,13 @@ package lotto.view;
 import java.util.List;
 
 public interface View {
-    int getPurchaseAmount();
-    int getWinningNumbers();
-    int getBonusNumber();
+    String getPurchaseAmount();
+    String getWinningNumbers();
+    String getBonusNumber();
 
-    void printAllLotto(List Lottos);
-    void printWinningDetails();
-    void printTotalReturn();
+    void printAllLotto(List lottos);
+    void printWinningDetails(List scores);
+    void printTotalReturn(float totalReturn);
 
     void printError(String errorMessage);
 }

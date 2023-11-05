@@ -1,5 +1,7 @@
 package lotto;
 
+import constants.NumberType;
+
 public class Money {
 
     private final int money;
@@ -10,15 +12,15 @@ public class Money {
     }
 
     public int getLottoCount() {
-        return money / 1000;
+        return money / NumberType.LOTTO_PRICE.getValue();
     }
 
     private void validateMoney(int money) {
         if (!checkMoney(money)) {
-            throw new IllegalArgumentException("1,000원으로 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException(NumberType.LOTTO_PRICE.getValue() + "원으로 나누어 떨어지지 않습니다.");
         }
     }
     private boolean checkMoney(int money) {
-        return money % 1000 == 0;
+        return money % NumberType.LOTTO_PRICE.getValue() == 0;
     }
 }

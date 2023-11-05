@@ -1,16 +1,16 @@
 package constants;
 
-public enum Number {
+public enum NumberType {
 
-    LOTTO_PRICE(1000);
+    LOTTO_PRICE(2);
 
     private final int value;
 
-    Number(int value) {
+    NumberType(int value) {
         this.value = value;
     }
 
-    public int getMessage() {
+    public int getValue() {
         return value;
     }
 }

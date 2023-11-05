@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +29,10 @@ public class LottoController {
         setUserLottoNumbers();
         setLottoWinningNumbers();
         setLottoBonusNumber();
+        calculateWinning();
+        calculateWinningPrice();
+        calculateWinningRate();
+        printLottoResult();
     }
 
     public void setLottoCountFromUser() throws IllegalArgumentException {
@@ -37,7 +43,7 @@ public class LottoController {
                 String userInputString = readLineFromUser();
                 int userInputInteger = convertStringToInteger(userInputString);
                 checkUserInputIsThousandUnit(userInputInteger);
-                lottoDB.setUserLottoCount(userInputInteger / UNIT);
+                lottoDB.setLottoGameCount(userInputInteger / UNIT);
                 pass = false;
             } catch (IllegalArgumentException e) {
                 lottoView.printError(e.getMessage());
@@ -46,7 +52,7 @@ public class LottoController {
     }
 
     public void setUserLottoNumbers() {
-        int numberOfLotto = lottoDB.getUserLottoCount();
+        int numberOfLotto = lottoDB.getLottoGameCount();
         lottoView.printLottoNumberAnnouncement(numberOfLotto);
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -86,6 +92,40 @@ public class LottoController {
                 lottoView.printError(e.getMessage());
             }
         } while (pass);
+    }
+
+    public void calculateWinning() {
+        int numberOfGame = lottoDB.getLottoGameCount();
+        int bonusNumber = lottoDB.getLottoBonusNumber();
+        for (int game = 0; game < numberOfGame * 6; game += 6) {
+            ArrayList<Integer> lottoNumbers = lottoDB.getOneLottoNumbers(game);
+            int winning = lotto.checkWinning(lottoNumbers, bonusNumber);
+            lottoDB.saveWinningCount(winning);
+        }
+    }
+
+    public void calculateWinningPrice() {
+        long totalPrice = 0;
+        for (int index = 0; index < 5; index++) {
+            long price = lottoDB.getGradeWinningPrice(index);
+            int winning = lottoDB.getNumberOfWinning(index);
+            totalPrice += price * winning;
+        }
+        lottoDB.setLottoTotalPrice(totalPrice);
+    }
+
+    public void calculateWinningRate() {
+        long totalPrice = lottoDB.getLottoTotalPrice();
+        float InputMoney = lottoDB.getLottoGameCount() * UNIT;
+        BigDecimal winningRate = new BigDecimal(totalPrice / InputMoney * 100);
+        BigDecimal totalWinningRate = winningRate.setScale(1, RoundingMode.HALF_UP);
+        lottoDB.setLottoTotalWinningRate(totalWinningRate);
+    }
+
+    public void printLottoResult() {
+        lottoView.totalResultAnnouncement();
+        lottoView.printEachPrice(lottoDB.getWinningCount());
+        lottoView.printWinningRate(lottoDB.getLottoTotalWinningRate());
     }
 
     public void setLotto(List<Integer> input) {

@@ -29,5 +29,18 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    // TODO: 추가 기능 구현
+    public int checkWinning(ArrayList<Integer> lottoNumbers, int bonusNumber) {
+        int correct = 0;
+        for (Integer lottoNumber : lottoNumbers) {
+            if (numbers.contains(lottoNumber)) {
+                correct += 1;
+            }
+        }
+        if (correct == 5 && numbers.contains(bonusNumber)) {
+            correct = 7;
+        }
+        return correct;
+    }
+
+
 }

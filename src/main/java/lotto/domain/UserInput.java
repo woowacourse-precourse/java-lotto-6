@@ -25,4 +25,16 @@ public class UserInput {
         return amount;
     }
 
+    public void setPrizeLotto() {
+        try{
+            String numbers = InputView.readNumbers();
+            String bonusNumber = InputView.readBonusNumber();
+            // 검증
+        } catch (IllegalArgumentException illegalArgumentException) {
+            setPrizeLotto();
+        }
+    }
+    public List<Integer> getPrizeLotto() {
+        return this.prizeLotto;
+    }
 }

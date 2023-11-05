@@ -38,7 +38,7 @@ public class User {
 
     public List<Integer> parsNumber(List<String> numbers) {
         List<Integer> winningNumber = new ArrayList<>();
-        for (String number : numbers){
+        for (String number : numbers) {
             winningNumber.add(Integer.parseInt(number));
         }
         return winningNumber;
@@ -52,7 +52,7 @@ public class User {
         return paymentAmount / 1000;
     }
 
-    public List<Integer> getWinningNumber(){
+    public List<Integer> getWinningNumber() {
         return winningNumber;
     }
 }

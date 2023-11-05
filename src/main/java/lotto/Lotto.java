@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
 import lotto.util.Exception;
 

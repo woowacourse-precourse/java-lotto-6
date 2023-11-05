@@ -13,8 +13,14 @@ public class LottoMachine {
     User user = new User();
     Computer computer = new Computer();
 
+    public void startLottoGame() {
+        buyLotto();
+        drawLottoNumber();
+        drawWinningNumber();
+    }
+
     public void buyLotto() {
-        Message.AMOUNT_INPUT.getMessage();
+        System.out.println(Message.AMOUNT_INPUT.getMessage());
         while (true) {
             try {
                 user.inputPaymentAmount();
@@ -25,13 +31,13 @@ public class LottoMachine {
         }
     }
 
-    public void drawLotto() {
+    public void drawLottoNumber() {
         for (int i = 0; i < user.getManyLottoTicket(); i++) {
-            getLotto();
+            getLottoNumber();
         }
     }
 
-    public void getLotto() {
+    public void getLottoNumber() {
         while (true) {
             try {
                 List<Integer> numbers = computer.getRandomNumber();
@@ -44,4 +50,15 @@ public class LottoMachine {
         }
     }
 
+    public void drawWinningNumber() {
+        System.out.println(Message.WINNING_NUMBERS_INPUT.getMessage());
+        while (true) {
+            try {
+                user.inputWinningNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

@@ -1,15 +1,12 @@
 package lotto.domain;
 
-import lotto.ui.InputView;
-
 public class Validator {
     private int cost;
 
-    public int validateCost(String cost) {
+    public void validateCost(String cost) {
         parseToInt(cost);
         isPositive();
         isPerThousand();
-        return this.cost / 1000;
     }
 
     private void parseToInt(String cost) {
@@ -17,8 +14,8 @@ public class Validator {
             this.cost = Integer.parseInt(cost);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println("구입 금액 숫자로 해야하는 에러");
+            throw new IllegalArgumentException();
         }
-        InputView.readCost();
     }
 
     private void isPositive() {
@@ -28,8 +25,8 @@ public class Validator {
             }
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println("음수이거나 값이 너무 작은 문제");
+            throw new IllegalArgumentException();
         }
-        InputView.readCost();
     }
 
     private void isPerThousand() {
@@ -39,8 +36,8 @@ public class Validator {
             }
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println("천원 단위로 안나눠지는 에러");
+            throw new IllegalArgumentException();
         }
-        InputView.readCost();
     }
 }
 

@@ -68,8 +68,10 @@ public class User {
      *
      * @return
      */
-    public StringBuilder showStatisticLottoResult() {
+    public StringBuilder showStatisticLottoResult(LottoTargetNumResults lottoTargetNumResults) {
+        takeTargetNumResults(lottoTargetNumResults);
         statistic = Config.statistic(lottoEnvelop, lottoTargetNumResults);
+        
         return statistic.show();
     }
 

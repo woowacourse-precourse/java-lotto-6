@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoWithBonus;
 
 public class LottoService {
-    public int compareEachLotto(LottoWithBonus userLotto, Lotto generatedRandomLotto) {
+    public static int compareEachLotto(LottoWithBonus userLotto, Lotto generatedRandomLotto) {
         return userLotto.findSameNumberCount(generatedRandomLotto);
     }
 

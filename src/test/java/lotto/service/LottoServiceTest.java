@@ -51,7 +51,7 @@ public class LottoServiceTest {
         );
         Lotto lotto = Lotto.from(generatedLotto);
 
-        int sameNumberCount = user.findSameNumberCount(lotto);
+        int sameNumberCount = LottoService.compareEachLotto(user, lotto);
 
         assertThat(sameNumberCount).isEqualTo(result);
     }

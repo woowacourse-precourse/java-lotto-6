@@ -1,9 +1,11 @@
 package lotto.domain.wrapper;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +26,16 @@ class PurchaseAmoutTest {
         assertThatThrownBy(() -> new PurchaseAmout(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.CHANGE_REMAINED.getWithPrefix());
+    }
+
+    @DisplayName("구입 금액으로 구입 가능한 로또 개수를 계산한다.")
+    @Test
+    void calculateAvailableLottoCount() {
+        // given
+        PurchaseAmout purchaseAmout = new PurchaseAmout(8000);
+        // when
+        int availableLottoCount = purchaseAmout.getAvailableLottoCount();
+        // then
+        assertThat(availableLottoCount).isEqualTo(8);
     }
 }

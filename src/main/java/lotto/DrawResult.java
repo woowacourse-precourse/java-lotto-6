@@ -33,7 +33,11 @@ public enum DrawResult {
         return NO_PRIZE;
     }
 
-    public long winnings() {
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    public long getWinnings() {
         return this.winnings;
     }
 }

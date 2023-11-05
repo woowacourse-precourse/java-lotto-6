@@ -77,9 +77,9 @@ public class LottoServiceTest {
         portfolio.add(lotto5thPlace);
         portfolio.add(lottoNoHit);
         // then
-        double expectedProfitRate = ((double) FIRST_PRIZE.winnings() + SECOND_PRIZE.winnings() +
-                THIRD_PRIZE.winnings() + FOURTH_PRIZE.winnings() +
-                FIFTH_PRIZE.winnings() + NO_PRIZE.winnings()) / 6_000 * 100;
+        double expectedProfitRate = ((double) FIRST_PRIZE.getWinnings() + SECOND_PRIZE.getWinnings() +
+                THIRD_PRIZE.getWinnings() + FOURTH_PRIZE.getWinnings() +
+                FIFTH_PRIZE.getWinnings() + NO_PRIZE.getWinnings()) / 6_000 * 100;
         assertThat(portfolio.profitRate(winningLotto, bonusNumber))
                 .isEqualTo(roundToOneDecimalPlace(expectedProfitRate));
     }
@@ -95,7 +95,7 @@ public class LottoServiceTest {
             portfolio.add(new Lotto(winningNumbers));
         }
         // then
-        double expectedProfitRate = ((double) (FIRST_PRIZE.winnings() * firstPlaceCount))
+        double expectedProfitRate = ((double) (FIRST_PRIZE.getWinnings() * firstPlaceCount))
                 / (1000 * firstPlaceCount) * 100.0;
         assertThat(portfolio.profitRate(winningLotto, bonusNumber))
                 .isEqualTo(roundToOneDecimalPlace(expectedProfitRate));

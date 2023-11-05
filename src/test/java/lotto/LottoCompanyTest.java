@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.domain.LottoCompany;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCompanyTest {
@@ -16,11 +17,14 @@ public class LottoCompanyTest {
         put("FOURTH", 1);
         put("FIFTH", 0);
     }};
+
     @BeforeEach
     void beforeEach() {
         LottoCompany.setPrizeNumbers(List.of(1, 2, 3, 4, 5, 6));
         LottoCompany.setBonusNumber(7);
     }
+
+    @DisplayName("1등 테스트")
     @Test
     void testFirstRank() {
         //given
@@ -31,6 +35,7 @@ public class LottoCompanyTest {
         assertThat(result).isEqualTo(RANK_INDEXES.get("FIRST"));
     }
 
+    @DisplayName("2등 테스트")
     @Test
     void testSecondRank() {
         //given
@@ -41,6 +46,7 @@ public class LottoCompanyTest {
         assertThat(result).isEqualTo(RANK_INDEXES.get("SECOND"));
     }
 
+    @DisplayName("3등 테스트")
     @Test
     void testThirdRank() {
         //given
@@ -51,6 +57,7 @@ public class LottoCompanyTest {
         assertThat(result).isEqualTo(RANK_INDEXES.get("THIRD"));
     }
 
+    @DisplayName("4등 테스트")
     @Test
     void testFourthHRank() {
         //given
@@ -61,6 +68,7 @@ public class LottoCompanyTest {
         assertThat(result).isEqualTo(RANK_INDEXES.get("FOURTH"));
     }
 
+    @DisplayName("5등 테스트")
     @Test
     void testFifthRank() {
         //given

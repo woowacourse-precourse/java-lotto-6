@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
@@ -20,6 +21,7 @@ public class OutputViewTest {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
+    @DisplayName("구매 출력 테스트")
     @Test
     void testPrintPurchase() {
         //given
@@ -33,8 +35,9 @@ public class OutputViewTest {
         assertEquals(expected, outputStreamCaptor.toString().trim());
     }
 
+    @DisplayName("구매 내역 출력 테스트")
     @Test
-    void testPrintLottos() {
+    void testPrintLotto() {
         //given
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(7, 8, 9, 10, 11, 12)));
         String expected =
@@ -50,6 +53,7 @@ public class OutputViewTest {
         assertEquals(expected, actual);
     }
 
+    @DisplayName("당첨 통계 테스트")
     @Test
     void testPrintPrizeStatistics() {
         // given
@@ -70,6 +74,7 @@ public class OutputViewTest {
         assertEquals(expected, actual);
     }
 
+    @DisplayName("수익률 테스트")
     @Test
     void testPrintRateOfReturn() {
         // given

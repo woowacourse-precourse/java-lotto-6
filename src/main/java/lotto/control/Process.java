@@ -9,10 +9,12 @@ import lotto.domain.user.User;
 public class Process {
     private User user;
     private LottoSeller lottoSeller;
+    private LottoHost lottoHost;
 
     public Process() {
         this.user = Config.user();
         this.lottoSeller = Config.lottoSeller();
+        this.lottoHost = Config.lottoHost();
     }
 
     /**
@@ -39,14 +41,14 @@ public class Process {
     }
 
     /**
-     * 당첨 번호를 뽑는다.
-     *
-     * @param strLine
+     * 게임 진행자가 당첨 번호를 뽑는다.
      */
-    public void pickWinNum(String strLine) {
+    public String pickWinNumber() {
         // 로또진행자가 당첨 번호를 뽑는다.
-        // 로또 진행자가 보너스 번호를 입력한다.
+        return lottoHost.pickWinNumbers();
     }
+
+    // TODO: 11/5/23  로또 진행자가 보너스 번호를 입력한다.
 
     /**
      * 당첨의 결과를 보여준다.

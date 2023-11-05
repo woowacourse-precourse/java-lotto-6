@@ -38,6 +38,9 @@ public class LottoController {
     }
 
     private int getLottoCount(int purchasePrice) {
+        if (purchasePrice % 1000 != 0){
+            throw new IllegalStateException("[ERROR] 로또의 가격이 맞지 않습니다.");
+        }
         return purchasePrice / 1000;
     }
 

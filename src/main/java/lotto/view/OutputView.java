@@ -14,5 +14,6 @@ public class OutputView {
         for (Lotto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
         }
+        System.out.println();
     }
 }

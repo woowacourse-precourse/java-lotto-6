@@ -11,9 +11,9 @@ public class PurchaseAmount {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static PurchaseAmount from(String readPurchaseAmount) {
-        validateNumeric(readPurchaseAmount);
-        int purchaseAmount = Integer.parseInt(readPurchaseAmount);
+    public static PurchaseAmount from(String inputString) {
+        validateNumeric(inputString);
+        int purchaseAmount = Integer.parseInt(inputString);
         return new PurchaseAmount(purchaseAmount);
     }
 

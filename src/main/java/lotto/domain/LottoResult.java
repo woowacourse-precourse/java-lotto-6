@@ -1,23 +1,25 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> result = new HashMap<>();
 
     public LottoResult() {
-        LottoRank[] values = LottoRank.values();
-        for (LottoRank value : values) {
-            result.put(value, 0);
-        }
+        Stream.of(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
     }
 
     public void increaseLottoRankCount(LottoRank lottoRank) {
+        int currentCount = result.get(lottoRank);
+        result.replace(lottoRank, currentCount + 1);
     }
 
     public Map<LottoRank, Integer> getResult() {
-        return new HashMap<>();
+        result.remove(LottoRank.OUT_RANK);
+        return Collections.unmodifiableMap(result);
     }
 }

@@ -9,6 +9,8 @@ public class OutputView {
     private final String prizingMessageTemplate = "%s (%s원) - %d개\n";
     private final String profitRatioMessage = "총 수익률은 %.1f%%입니다.";
     private final String buyErrorMessage = "[ERROR] 금액은 1000원 단위이며, 1장부터 구매할 수 있습니다.\n";
+    private final String prizingNumberErrorMessage = "[ERROR] 1~45까지의 중복되지 않는 수 6개를 입력해 주세요.\n[ERROR] 각 숫자는 콤마(,)로 구분해 주세요. 공백은 허용하지 않습니다.";
+    private final String bonusNumberErrorMessage = "[ERROR] 당첨 번호와 중복되지 않는 1~45까지의 숫자를 입력해 주세요.";
 
 
     public void displayBoughtTickets(List<String> tickets) {
@@ -20,6 +22,18 @@ public class OutputView {
     public void displayBuyError() {
         initializaCache();
         addToCache(buyErrorMessage);
+        print();
+    }
+
+    public void displayWinningError() {
+        initializaCache();
+        addToCache(prizingNumberErrorMessage);
+        print();
+    }
+
+    public void displayBonusError() {
+        initializaCache();
+        addToCache(bonusNumberErrorMessage);
         print();
     }
 

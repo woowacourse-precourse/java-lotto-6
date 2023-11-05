@@ -8,6 +8,8 @@ import lotto.model.money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoGameController {
     private InputView inputView;
     private OutputView outputView;
@@ -23,8 +25,7 @@ public class LottoGameController {
         printLottoAmount(game);
         generateLottoNumber(game);
         printLottoNumber(game);
-        WinningLotto winningLotto = WinningLotto.create(inputWinningLottoNumbers());
-        winningLotto.getWinningLottoNumbers();
+        WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumbers());
     }
 
     private Money inputUserMoneyAmount() {
@@ -45,7 +46,7 @@ public class LottoGameController {
         }
     }
 
-    private String inputWinningLottoNumbers() {
+    private List<Integer> inputWinningLottoNumbers() {
         outputView.printEmptyLine();
         return inputView.inputWinningLottoNumbers();
     }

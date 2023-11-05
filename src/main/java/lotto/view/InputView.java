@@ -1,10 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.EmptyInputException;
-import lotto.exception.NotDividedThousandException;
-import lotto.exception.NotNumberException;
 import lotto.validator.InputValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputView {
     private final String INPUT_MONEY_AMOUNT_MESSAGE = "구입금액을 입력해주세요.";
@@ -17,24 +17,24 @@ public class InputView {
                 String money = Console.readLine();
                 validateUserInputMoney(money);
                 return money;
-            } catch (EmptyInputException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            } catch (NotNumberException e) {
-                System.out.println(e.getMessage());
-            } catch (NotDividedThousandException e) {
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public String inputWinningLottoNumbers() {
+    public List<Integer> inputWinningLottoNumbers() {
         while (true) {
             try {
                 System.out.println(INPUT_WINNING_LOTTO_NUMBER_MESSAGE);
                 String winningLottoNumbers = Console.readLine();
                 InputValidator.validateInputIsEmpty(winningLottoNumbers);
-                return winningLottoNumbers;
-            } catch (EmptyInputException e) {
+                return splitWinningLottoNumbers(winningLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -44,5 +44,21 @@ public class InputView {
         InputValidator.validateInputIsEmpty(money);
         InputValidator.validateInputIsNumber(money);
         InputValidator.validateInputNumberIsNotDividedThousand(money);
+    }
+
+    private List<Integer> splitWinningLottoNumbers(String winningLottoNumbers) {
+        List<Integer> inputWinningLottoNumbers = new ArrayList<>();
+        for (String winningLottoNumber : winningLottoNumbers.split(",")) {
+            validateWinningLottoNumber(winningLottoNumber);
+            inputWinningLottoNumbers.add(Integer.parseInt(winningLottoNumber));
+        }
+        InputValidator.validateAmountOfWinningLottoNumber(inputWinningLottoNumbers);
+        InputValidator.validateDuplicatedWinningLottoNumber(inputWinningLottoNumbers);
+        return inputWinningLottoNumbers;
+    }
+
+    private static void validateWinningLottoNumber(String winningLottoNumber) {
+        InputValidator.validateInputIsNumber(winningLottoNumber);
+        InputValidator.validateLottoNumberIsNotInRightRange(winningLottoNumber);
     }
 }

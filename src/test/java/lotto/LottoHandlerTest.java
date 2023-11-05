@@ -149,11 +149,12 @@ class LottoHandlerTest {
     @Test
     void receiveWinningLottoByString() {
         // given
-        String receivedWinningLotto = "1,2,3,4,5,46";
+        String receivedWinningLotto = "a,2,3,4,5,46";
 
         // when // then
         assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+                .hasMessage("[ERROR] 숫자만 입력해 주세요.");
+    }
     }
 }

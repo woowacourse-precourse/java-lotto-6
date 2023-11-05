@@ -94,15 +94,6 @@ public class LottoGame {
         return result;
     }
 
-    private void printResult(GameResult result, double profitPercentage) {
-        String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(result, profitPercentage);
-        outputView.println(lottoResultMessage);
-    }
-
-    private double calculateProfitPercentage(int profit, Money money) {
-        return (double) profit / money.getAmount() * 100;
-    }
-
     private int checkMatchCount(Lotto lotto, List<LottoNumber> winningNumbers) {
         int matchCount = 0;
         for (LottoNumber winningNumber : winningNumbers) {
@@ -113,5 +104,12 @@ public class LottoGame {
         return matchCount;
     }
 
+    private void printResult(GameResult result, double profitPercentage) {
+        String lottoResultMessage = LottoMessageConverter.convertLottoResultMessage(result, profitPercentage);
+        outputView.println(lottoResultMessage);
+    }
 
+    private double calculateProfitPercentage(int profit, Money money) {
+        return (double) profit / money.getAmount() * 100;
+    }
 }

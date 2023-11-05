@@ -5,7 +5,7 @@ import lotto.util.LottoConstants;
 import java.util.List;
 
 public class WinningNumber {
-    List<Integer> numbers;
+    private List<Integer> numbers;
 
     public WinningNumber(List<Integer> numbers) {
         validate(numbers);
@@ -28,5 +28,9 @@ public class WinningNumber {
 
     private boolean hasOutOfRangeNumbers(List<Integer> numbers) {
         return numbers.stream().anyMatch(number -> number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue());
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

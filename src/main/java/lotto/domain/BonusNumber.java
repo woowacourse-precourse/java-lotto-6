@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.util.LottoConstants;
 
 public class BonusNumber {
-    Integer number;
+    private Integer number;
 
     public BonusNumber(Integer number) {
         validate(number);
@@ -18,5 +18,9 @@ public class BonusNumber {
 
     private boolean isOutOfRangeNumber(Integer number) {
         return number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue();
+    }
+
+    public Integer getNumber() {
+        return number;
     }
 }

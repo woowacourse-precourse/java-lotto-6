@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoManager {
@@ -18,14 +19,13 @@ public class LottoManager {
         return instance;
     }
 
-
     public void setWinningNumbers(List<Integer> winningNumbers) {
         validateLottoNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+        return Collections.unmodifiableList(winningNumbers);
     }
 
     public void setBonusNum(Integer bonusNum) {

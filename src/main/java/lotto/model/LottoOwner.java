@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.constant.ErrorMessage.MONEY_LESS_THAN_ZERO;
 import static lotto.constant.ErrorMessage.MONEY_WITH_REMAINDER;
 
+import lotto.dto.LottosInfo;
+
 public class LottoOwner {
     private static final long LOTTO_PRICE = 1000;
 
@@ -34,5 +36,9 @@ public class LottoOwner {
 
     private long getQuotient(long money) {
         return money / LOTTO_PRICE;
+    }
+
+    public LottosInfo getLottoInfos() {
+        return lottos.getLottosInfo();
     }
 }

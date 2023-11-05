@@ -59,4 +59,9 @@ public class Lotto {
     private boolean isNumberInCorrectRange(int lottoNumber) {
         return lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER;
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

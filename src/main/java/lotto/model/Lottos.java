@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.LottosInfo;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -16,5 +17,12 @@ public class Lottos {
             randomLottos.add(Lotto.generateRandomLottoNumbers());
         }
         return new Lottos(randomLottos);
+    }
+
+    public LottosInfo getLottosInfo() {
+        List<String> lottosText = lottos.stream()
+                .map(Lotto::toString)
+                .toList();
+        return new LottosInfo(lottosText);
     }
 }

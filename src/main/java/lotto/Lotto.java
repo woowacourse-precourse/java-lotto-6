@@ -20,9 +20,7 @@ public class Lotto {
 
     private void checkDuplicateNumber(List<Integer> numbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>();
-        for (Integer number : numbers) {
-            uniqueNumbers.add(number);
-        }
+        uniqueNumbers.addAll(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] ");
         }

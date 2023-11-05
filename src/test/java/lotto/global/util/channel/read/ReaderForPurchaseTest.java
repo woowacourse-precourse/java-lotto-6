@@ -82,7 +82,7 @@ class ReaderForPurchaseTest extends NsTest {
             runException(
                     invalidAmountInput
             );
-            assertThat(output()).contains(GlobalError.NOT_INTEGER.getErrorMessage());
+            assertThat(output()).contains(GlobalError.NOT_AVAILABLE_INTEGER.getErrorMessage());
         });
     }
     @DisplayName("너무 큰 정수값을 입력한 경우")
@@ -99,7 +99,7 @@ class ReaderForPurchaseTest extends NsTest {
                     invalidAmountInput
             );
             assertThat(output()).contains(
-                    GlobalError.IMPOSSIBLE_PARSE_LONG_VALUE.getErrorMessage()
+                    GlobalError.NOT_AVAILABLE_INTEGER.getErrorMessage()
             );
         });
     }

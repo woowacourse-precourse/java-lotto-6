@@ -7,7 +7,7 @@ public class OutputView {
     private final static String INPUT_BONUS_NUMBER_MSG = "보너스 번호를 입력해 주세요.\n";
     private final static String WINNING_STATISTICS_MSG = "당첨 통계\n" + "---\n";
     private final static String WINNING_RESULT_MSG = "%d개 일치 (%d원) - %d개";
-    private final static String TOTAL_PROFIT_RATE_MGS = "총 수익률은 %.2f%%입니다.\n";
+    private final static String TOTAL_PROFIT_RATE_MSG = "총 수익률은 %.2f%%입니다.\n";
 
     public static void printInputPurchaseAmountMsg() {
         System.out.print(INPUT_PURCHASE_AMOUNT_MSG);
@@ -45,5 +45,9 @@ public class OutputView {
     public static void printWinningResult(int matchCount, int prize, int count) {
         System.out.printf(WINNING_RESULT_MSG, matchCount, prize, count);
         System.out.println();
+    }
+
+    public static void printTotalProfitRate(double profitRate) {
+        System.out.printf(TOTAL_PROFIT_RATE_MSG, profitRate);
     }
 }

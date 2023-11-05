@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.NumberGenerator;
 
@@ -11,6 +12,10 @@ public class LottoMachine implements NumberGenerator {
     @Override
     public List<Integer> generator() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, NUMBER_OF_RANDOM_NUMBERS);
+        ascendingSortLottoNumbers(lottoNumbers);
         return lottoNumbers;
+    }
+    private void ascendingSortLottoNumbers(List<Integer> lottoNumbers){
+        Collections.sort(lottoNumbers);
     }
 }

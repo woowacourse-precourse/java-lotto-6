@@ -102,7 +102,7 @@
 ## 리팩토링에 따른 도메인 재설계
 
 ### 필요로 예상되는 도메인
-- LottoPurchase: 로또 구입 비용
+- LottoPurchaseCost: 로또 구입 비용
   - View로 입력된 원시값을 Controller를 통해 받음
   - 금액의 검증
     - 1000원 단위인지

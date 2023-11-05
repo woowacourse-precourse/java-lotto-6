@@ -12,11 +12,10 @@ public class LottoFactory {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
 
-    public static List<LottoNumber> allLottoNumbers = new ArrayList<>();
 
 
     public Lotto createRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }

@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class Money {
 
-    private Long money;
+    private long money;
 
     private Money(Long money) {
         this.money = money;

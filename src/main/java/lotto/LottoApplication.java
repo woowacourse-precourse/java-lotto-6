@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.controller.LotteryStore;
 import lotto.domain.Money;
+import lotto.domain.RateOfReturn;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
@@ -10,6 +11,7 @@ import lotto.view.ConsoleMessageView;
 import lotto.view.LottoStaticsOutputView;
 import lotto.view.MoneyInputView;
 import lotto.view.PurchasedLottoOutputView;
+import lotto.view.RateOfReturnOutputView;
 import lotto.view.WinningLottoInputView;
 
 public class LottoApplication {
@@ -35,6 +37,8 @@ public class LottoApplication {
         WinningStatistics statistics = lottoStore.calculateStatisticsWith(winningLotto);
         printFrom(statistics);
 
+        RateOfReturn rateOfReturn = RateOfReturn.from(this.money.showMoney(), statistics.showRevenue());
+        printFrom(rateOfReturn);
     }
 
     private String getMoneyFromUserInput() {
@@ -64,6 +68,10 @@ public class LottoApplication {
 
     private void printFrom(WinningStatistics winningStatistics) {
         LottoStaticsOutputView.outputFrom(winningStatistics);
+    }
+
+    private void printFrom(RateOfReturn rateOfReturn) {
+        RateOfReturnOutputView.outputRateOfReturn(rateOfReturn);
     }
     
 }

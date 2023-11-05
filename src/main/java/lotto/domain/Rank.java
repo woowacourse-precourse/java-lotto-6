@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.function.BiFunction;
 
-public enum Rank {
+public enum Rank implements Comparable<Rank> {
     FIRST(6, (count, bonus) -> count == 6, 2000000000L),
     SECOND(5, (count, bonus) -> count == 5 && bonus, 30000000L),
     THIRD(5, (count, bonus) -> count == 5, 1500000L),
@@ -38,4 +38,5 @@ public enum Rank {
     public int showMatchCount() {
         return count;
     }
+
 }

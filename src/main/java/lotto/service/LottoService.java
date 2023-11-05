@@ -6,10 +6,12 @@ import lotto.view.InputView;
 
 import java.util.*;
 
+import static lotto.view.InputView.money;
+import static lotto.view.InputView.winningNumbers;
+
 public class LottoService {
 
     public static int getAmountOfLottoTickets() {
-        int money = InputView.inputMoney();
         int amountOfLottoTickets = money / 1000;
 
         // [예외처리] 1000원으로 나누어 떨어지지 않는 경우
@@ -28,7 +30,7 @@ public class LottoService {
 
         return lottoTickets;
     }
-    public static int compareWithWinningNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
+    public static int compareWithWinningNumbers(Lotto lottoTicket) {
         List<Integer> lottoNumbers = lottoTicket.getNumbers();
         Set<Integer> findCorrectNumbers = new HashSet<>(lottoNumbers);
         int countingCorrectNumbers = 0;
@@ -38,16 +40,19 @@ public class LottoService {
                 countingCorrectNumbers++;
             }
         }
-
         return countingCorrectNumbers;
     }
-    public static void countCorrectNumbers(List<Lotto> lottoTickets, List<Integer> winningNumbers) {
+    public static void countCorrectNumbers(List<Lotto> lottoTickets) {
         List<Integer> amountOfCorrectNumbers = new ArrayList<>();
         for (Lotto lottoTicket : lottoTickets) {
             amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket, winningNumbers));
         }
     }
-    public void makeStatistics() {
+    public static void compareWithBonusNumber(int bonusNumber) {
+
+    }
+    public void makeStatistics(List<Integer> amountOfCorrectNumbers) {
+
     }
     public void getEarningRate() {
 

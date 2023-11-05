@@ -16,7 +16,23 @@ public class User {
         List<Boolean> resultByBonusNumber = findAllResultByBonusNumber(bonusNumber);
         List<Rank> resultRanks = findAllRank(resultByWinningNumbers, resultByBonusNumber);
         return resultRanks;
-    } 
+    }
+
+    private List<Integer> findAllResultByWinnungNumbers(List<Integer> lottoWinningNumbers) {
+        List<Integer> resultByWinningNumbers = new ArrayList<>();
+        for (Lotto lotto : this.userLottos) {
+            resultByWinningNumbers.add(lotto.calculateLottoResults(lottoWinningNumbers));
+        }
+        return resultByWinningNumbers;
+    }
+
+    private List<Boolean> findAllResultByBonusNumber(int bonusNumber) {
+        List<Boolean> resultByBonusNumber = new ArrayList<>();
+        for (Lotto lotto : this.userLottos) {
+            resultByBonusNumber.add(lotto.bonusNumberCheck(bonusNumber));
+        }
+        return resultByBonusNumber;
+    }
 
     private List<Rank> findAllRank(List<Integer> resultByWinningNumbers, List<Boolean> resultByBonusNumber) {
         List<Rank> resultRanks = new ArrayList<>();
@@ -29,30 +45,6 @@ public class User {
     private Rank findRank(int matchNumberCount, boolean matchBonusNumber) {
         return Rank.valueOf(matchNumberCount, matchBonusNumber);
     }
-
-    public List<Integer> findAllResultByWinnungNumbers(List<Integer> lottoWinningNumbers) {
-        List<Integer> resultByWinningNumbers = new ArrayList<>();
-        for (Lotto lotto : this.userLottos) {
-            resultByWinningNumbers.add(lotto.calculateLottoResults(lottoWinningNumbers));
-        }
-        return resultByWinningNumbers;
-    }
-
-    public List<Boolean> findAllResultByBonusNumber(int bonusNumber) {
-        List<Boolean> resultByBonusNumber = new ArrayList<>();
-        for (Lotto lotto : this.userLottos) {
-            resultByBonusNumber.add(lotto.bonusNumberCheck(bonusNumber));
-        }
-        return resultByBonusNumber;
-    }
-
-    public int TotalPrize(List<Integer> resultCount) {
-        int resultPrizes = 0;
-        for (Rank rank : Rank.values()) {
-            resultPrizes += resultCount.get(rank.ordinal()) * rank.getPrize();
-        }
-        return resultPrizes;
-    }
     
     public List<Integer> countTotalResult(List<Rank> resultRanks) {
         Integer[] arr = {0,0,0,0,0,0};
@@ -61,5 +53,13 @@ public class User {
             resultCount.set(rank.ordinal(), resultCount.get(rank.ordinal()) + 1);
         }
         return resultCount;
+    }
+
+    public int TotalPrize(List<Integer> resultCount) {
+        int resultPrizes = 0;
+        for (Rank rank : Rank.values()) {
+            resultPrizes += resultCount.get(rank.ordinal()) * rank.getPrize();
+        }
+        return resultPrizes;
     }
 }

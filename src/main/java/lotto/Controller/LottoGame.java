@@ -32,16 +32,76 @@ public class LottoGame {
         OutputView.printProfitRate(profitRate);
     }
 
-    private int findBonusNumber() {
+    private int findLottoQuantity() {
         while (true) {
             try {
-                String bonusInput = InputView.requestBonusNumber();
-                int bonusNumber = Validator.validateParseInt(bonusInput);
-                Validator.validateNumberRange(bonusNumber);
-                return bonusNumber;
+                String userInput = InputView.requestLottoPurchaseAmount();
+                int lottoQuantity = calculateLottoQuantity(Parser.parsePurchaseAmount(userInput));
+                OutputView.printPurchaseLottoAmount(lottoQuantity);
+                return lottoQuantity;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private int calculateLottoQuantity(int purchaseAmount) {
+        Validator.validateDivisibleBy1000(purchaseAmount);
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
+    private User findUser(int lottoQuantity) {
+        User user;
+        while (true) {		
+            try {
+                List<Lotto> lottos = makeLottos(lottoQuantity);
+                user = new User(lottos);
+                break;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());
             }
+        }
+        return user;
+    }
+
+    private List<Lotto> makeLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            try {
+                List<Integer> numbers = makeRandomNums();
+                lottoSort(numbers);
+                lottos.add(makeLotto(numbers));
+                OutputView.printLottoNums(Parser.parseIntToString(numbers));
+            } catch (IllegalArgumentException e) {
+                i--;
+            }
+        }
+        return lottos;
+    }
+
+    private List<Integer> makeRandomNums() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOW_NUMBER, HIGH_NUMBER, NUMBER_COUNT);
+        return numbers;
+    }
+
+    private void lottoSort(List<Integer> numbers) {
+        for (int i = 0; i < NUMBER_COUNT - 1; i++) {
+            for (int j = i + 1; j < NUMBER_COUNT; j++) {
+                minSwap(numbers, i, j);
+            }
+        }
+    }
+
+    private Lotto makeLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        return lotto;
+    }
+
+    private void minSwap(List<Integer> numbers, int i, int j) {
+        if (numbers.get(i) > numbers.get(j)) {
+            int tmp = numbers.get(i);
+            numbers.set(i, numbers.get(j));
+            numbers.set(j, tmp);
         }
     }
 
@@ -61,35 +121,17 @@ public class LottoGame {
         }
     }
 
-    private int findLottoQuantity() {
+    private int findBonusNumber() {
         while (true) {
             try {
-                String userInput = InputView.requestLottoPurchaseAmount();
-                int lottoQuantity = calculateLottoQuantity(Parser.parsePurchaseAmount(userInput));
-                OutputView.printPurchaseLottoAmount(lottoQuantity);
-                return lottoQuantity;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private User findUser(int lottoQuantity) {
-        User user;
-        while (true) {		
-            try {
-                List<Lotto> lottos = makeLottos(lottoQuantity);
-                user = new User(lottos);
-                break;
+                String bonusInput = InputView.requestBonusNumber();
+                int bonusNumber = Validator.validateParseInt(bonusInput);
+                Validator.validateNumberRange(bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
             	OutputView.printErrorMessage(e.getMessage());
             }
         }
-        return user;
-    }
-
-    private double calculateProfitRate(int lottoQuantity, int resultPrize) {
-        return resultPrize / (lottoQuantity * 10);
     }
 
     private void transmitOutput(List<Integer> resultCount) {
@@ -99,49 +141,7 @@ public class LottoGame {
         }
     }
 
-    private int calculateLottoQuantity(int purchaseAmount) {
-        Validator.validateDivisibleBy1000(purchaseAmount);
-        return purchaseAmount / LOTTO_PRICE;
-    }
-
-    private List<Integer> makeRandomNums() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOW_NUMBER, HIGH_NUMBER, NUMBER_COUNT);
-        return numbers;
-    }
-
-    private Lotto makeLotto(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
-    }
-
-    private List<Lotto> makeLottos(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            try {
-                List<Integer> numbers = makeRandomNums();
-                lottoSort(numbers);
-                lottos.add(makeLotto(numbers));
-                OutputView.printLottoNums(Parser.parseIntToString(numbers));
-            } catch (IllegalArgumentException e) {
-                i--;
-            }
-        }
-        return lottos;
-    }
-
-    private void lottoSort(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            for (int j = i + 1; j < numbers.size(); j++) {
-                minSwap(numbers, i, j);
-            }
-        }
-    }
-
-    private void minSwap(List<Integer> numbers, int i, int j) {
-        if (numbers.get(i) > numbers.get(j)) {
-            int tmp = numbers.get(i);
-            numbers.set(i, numbers.get(j));
-            numbers.set(j, tmp);
-        }
+    private double calculateProfitRate(int lottoQuantity, int resultPrize) {
+        return resultPrize / (lottoQuantity * 10);
     }
 }

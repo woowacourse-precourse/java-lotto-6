@@ -13,18 +13,18 @@ import lotto.View.OutputView;
 public class LottoGame {
 
     private static List<Lotto> lottoList;
-    private static List<Integer> winningNumbers;
+    private static Lotto winningNumbers;
     private static int bonusNumber;
 
     public static void LottoGameRun()
     {
         int purchaseAmount = CountLottoAmount.countLottoQuantity();
-        List<Lotto> lottoList = makeLottoList(CountLottoAmount.countLottoQuantity());
+        List<Lotto> lottoList = makeLottoList(purchaseAmount);
 
         OutputView.printLottoAmount();
-        OutputView.printPurchasedLottos(lottoList);
+        OutputView.printPurchasedLottoList(lottoList);
 
-        winningNumbers = InputView.inputLottoNumbers();
+        winningNumbers = new Lotto(parseLottoNumbers(InputView.inputLottoNumbers()));
         bonusNumber = InputView.inputBonusNumber();
 
 /*
@@ -56,4 +56,17 @@ public class LottoGame {
         return new Lotto(lottoNumbers);
     }
 
+    private static List<Integer> parseLottoNumbers(String input) {
+
+        List<Integer> lottoNumbers =  new ArrayList<>();;
+
+        String[] eachLottoNumbers = input.split(",");
+
+        for (String token : eachLottoNumbers) {
+            int lottoNumber = Integer.parseInt(token);
+            lottoNumbers.add(lottoNumber);
+        }
+
+        return lottoNumbers;
+    }
 }

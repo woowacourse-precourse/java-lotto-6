@@ -18,9 +18,9 @@ public class OutputView {
         System.out.println(countLottoQuantity() + LOTTO_AMOUNT_MESSAGE);
     }
 
-    public static void printPurchasedLottos(List<Lotto> lottos) {
+    public static void printPurchasedLottoList(List<Lotto> lottoList) {
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoList) {
             System.out.println(lotto);
         }
     }

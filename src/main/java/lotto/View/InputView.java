@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Domain.BonusNumberValidator;
+import lotto.Domain.Lotto;
 import lotto.Domain.LottoPurchaseAmountValidator;
 
 public class InputView {
@@ -25,28 +26,14 @@ public class InputView {
 
     }
 
-    public static List<Integer> inputLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
+    public static String inputLottoNumbers() {
 
         System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
         String input = Console.readLine();
 
-        lottoNumbers = parseLottoNumbers(input);
-
-        return lottoNumbers;
+        return input;
     }
 
-    private static List<Integer> parseLottoNumbers(String input) {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        String[] eachLottoNumbers = input.split(",");
-
-        for (String token : eachLottoNumbers) {
-            int lottoNumber = Integer.parseInt(token);
-            lottoNumbers.add(lottoNumber);
-        }
-
-        return lottoNumbers;
-    }
 
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
@@ -57,7 +44,6 @@ public class InputView {
 
         BonusNumberValidator.validateIsNumberInRange(bonusNumber);
 
-        return Integer.parseInt(input);
-
+        return bonusNumber;
     }
 }

@@ -9,7 +9,7 @@ import lotto.controller.dto.ResultResponseDto;
 public class OutputView {
 
     public static final String INPUT_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
-    public static final String PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
+    public static final String PURCHASED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
     public static final String INPUT_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public static void printPurchaseLotto(int lottoCount) {
-        System.out.printf(PURCHASED_LOTTO_COUNT_MESSAGE, lottoCount);
+        System.out.println(lottoCount + PURCHASED_LOTTO_COUNT_MESSAGE);
     }
 
     public static void printLottosValue(LottoResponseDtos lottoResponseDtos) {
@@ -30,20 +30,19 @@ public class OutputView {
 
     public static void printLottoResult(List<ResultResponseDto> resultResponseDtos) {
         System.out.println("당첨 통계\n---");
-        for (ResultResponseDto dto :
-                resultResponseDtos) {
+        for (ResultResponseDto dto : resultResponseDtos) {
             printLottoResultEachRanking(dto);
         }
     }
 
     private static void printLottoResultEachRanking(ResultResponseDto resultResponseDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(resultResponseDto.getSameNumberCount()).append("개 일치 ");
+        stringBuilder.append(resultResponseDto.getSameNumberCount()).append("개 일치");
         if (resultResponseDto.isHasBonus()) {
-            stringBuilder.append("보너스 볼 일치 ");
+            stringBuilder.append(", 보너스 볼 일치");
         }
-        stringBuilder.append("(").append(resultResponseDto.getWinnerPrice()).append(")")
-                .append(" - ").append(resultResponseDto.getTotalCount()).append(" 개");
+        stringBuilder.append(" (").append(resultResponseDto.getWinnerPriceFormatted()).append("원").append(")")
+                .append(" - ").append(resultResponseDto.getTotalCount()).append("개");
 
         System.out.println(stringBuilder.toString());
     }

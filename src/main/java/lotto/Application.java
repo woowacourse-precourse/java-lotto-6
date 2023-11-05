@@ -32,8 +32,28 @@ public class Application {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int BonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
 
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto purchasedLotto : purchasedLottos) {
+            WinningCriteria criteria = getWinningCriteria(purchasedLotto, winningNumber, bonusNumber);
+            if (criteria != null) {
+                lottoResult.addWin(criteria);
+            }
+        }
+    }
+
+    private static WinningCriteria getWinningCriteria(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
+        int matchCount = lotto.countMatches(winningNumber);
+        boolean bonus = lotto.additionalNumber(bonusNumber);
+        if (matchCount == 6) return WinningCriteria.FIRST_PLACE;
+        if (matchCount == 5 && bonus) return WinningCriteria.SECOND_PLACE;
+        if (matchCount == 5) return WinningCriteria.THIRD_PLACE;
+        if (matchCount == 4) return WinningCriteria.FOURTH_PLACE;
+        if (matchCount == 3) return WinningCriteria.FIFTH_PLACE;
+
+        return null;
     }
 }

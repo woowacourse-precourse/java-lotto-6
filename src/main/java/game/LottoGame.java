@@ -10,6 +10,7 @@ import static game.LottoRank.THIRD_RANK;
 import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
+import lotteryProfit.ProfitCalculator;
 import lottoResult.LottoResultDisplay;
 import lottoResult.UserLottoNumbers;
 import lottoTicketPurchase.LottoTicketPurchase;
@@ -26,6 +27,7 @@ public class LottoGame {
         WinningNumberInput winningNumberInput = new WinningNumberInput();
         BonusNumberInput bonusNumberInput = new BonusNumberInput();
         LottoResultDisplay lottoResultDisplay = new LottoResultDisplay();
+        ProfitCalculator profitCalculator = new ProfitCalculator();
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         // LottoTicketPurchase
@@ -63,6 +65,7 @@ public class LottoGame {
         lottoResultDisplay.getLottoSuccessCount(userLottoNumbers, winningNumberList, bonusNumber);
         lottoResultDisplay.outputLottoResult();
 
+        // LotteryProfit
         int sixSuccess = lottoResultDisplay.sixSuccess;
         int fiveSuccess = lottoResultDisplay.fiveSuccess;
         int fiveAndBonusSuccess = lottoResultDisplay.fiveAndBonusSuccess;
@@ -76,9 +79,10 @@ public class LottoGame {
         totalReward += SECOND_RANK.getReward() * fiveAndBonusSuccess;
         totalReward += FIRST_RANK.getReward() * sixSuccess;
 
-        double benefit = (double) totalReward / purchaseAmount * 100;
-
-        double result = Math.round(benefit * 100.0) / 100.0;
+        double result = profitCalculator.roundUpProfit(totalReward, purchaseAmount);
+//        double benefit = (double) totalReward / purchaseAmount * 100;
+//
+//        double result = Math.round(benefit * 100.0) / 100.0;
         System.out.printf("총 수익률은 %.1f%%입니다.", result);
     }
 }

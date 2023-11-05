@@ -2,10 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoInfo;
 import lotto.dto.LottoDto;
 import lotto.model.LottoRank;
-import lotto.vo.TicketCount;
+import lotto.vo.BuyAmount;
 
 public class OutputView {
 
@@ -58,14 +57,14 @@ public class OutputView {
         printMessage(String.format(FIRST_RANK_MESSAGE, result.getOrDefault(LottoRank.FIRST_RANK, DEFAULT_COUNT)));
     }
 
-    public void printRateOfProfit(final Map<LottoRank, Integer> result, TicketCount ticketCount) {
+    public void printRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
         double reward = result.keySet()
                 .stream()
                 .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
                 .sum();
 
-        double totalCost = (double) ticketCount.count() * LottoInfo.ONE_LOTTO_PRICE.getValue();
-        double profitRate = (reward / totalCost) * PERCENTAGE;
+        double totalBuyAmount = (double) buyAmount.amount();
+        double profitRate = (reward / totalBuyAmount) * PERCENTAGE;
 
         printMessage(String.format(PROFIT_RATE_MESSAGE, profitRate));
     }

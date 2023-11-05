@@ -9,7 +9,6 @@ import lotto.model.LottoRank;
 import lotto.util.Converter;
 import lotto.vo.BonusNumber;
 import lotto.vo.BuyAmount;
-import lotto.vo.TicketCount;
 
 public class View {
 
@@ -71,8 +70,8 @@ public class View {
         outputView.printStatistics(result);
     }
 
-    public void showRateOfProfit(final Map<LottoRank, Integer> result, final TicketCount ticketCount) {
-        outputView.printRateOfProfit(result, ticketCount);
+    public void showRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
+        outputView.printRateOfProfit(result, buyAmount);
     }
 
     private void validateBonusNumberContainsWinningNumber(final List<Integer> winningNumbers,

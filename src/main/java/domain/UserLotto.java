@@ -10,11 +10,10 @@ public class UserLotto {
 
     private int bonusNumber;
 
-    public UserLotto (String purchasedAmount){
-        if(!AmountValidator.isVerifyAmount(purchasedAmount)) {
-            throw new IllegalArgumentException();
+    public UserLotto (String purchasedAmount) throws IllegalArgumentException{
+        if(AmountValidator.isVerifyAmount(purchasedAmount)) {
+            this.amount = Integer.parseInt(purchasedAmount);
         }
-        this.amount = Integer.parseInt(purchasedAmount);
     }
 
 }

@@ -11,7 +11,7 @@ public class UserLottoTest {
 
     @DisplayName("구입 금액이 유효성 검사를 통과할 경우 구입 금액을 포함한 UserLotto 객체를 반환한다")
     @Test
-    void createUserLottoWithAmount() {
+    void createUserLottoWithAmountTest() {
         //given
         String amount = "8000";
 

@@ -44,10 +44,16 @@ public class LottoController {
     }
 
     private BonusNumber readBonusNumber() {
-        int bonusNumber = InputView.readBonusNumber();
-        if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
+        while (true) {
+            try {
+                int bonusNumber = InputView.readBonusNumber();
+                if (winningLotto.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호과 중복되지 않는 숫자를 입력해야 합니다.");
+                }
+                return new BonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return new BonusNumber(bonusNumber);
     }
 }

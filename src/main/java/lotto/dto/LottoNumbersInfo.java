@@ -11,22 +11,24 @@ public class LottoNumbersInfo {
 
     public final int bonusNumber;
 
+    private final List<Integer> winningNumbers;
     private final List<Lotto> lottos;
 
-    public LottoNumbersInfo(List<Lotto> lottos, int bonusNumber) {
+    public LottoNumbersInfo(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         LottoUtil.validateLottoNum(bonusNumber);
 
         this.bonusNumber = bonusNumber;
+        this.winningNumbers = winningNumbers;
         this.lottos = lottos;
     }
 
-    public HashMap<LottoResult, BigDecimal> getResult(List<Integer> winningNumbers) {
+    public HashMap<LottoResult, BigDecimal> getResult() {
         HashMap<LottoResult, BigDecimal> result = initResult();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCountWith(winningNumbers);
-            LottoResult lottoResult = LottoResult.of(matchCount, winningNumbers.contains(bonusNumber));
+            LottoResult lottoResult = LottoResult.of(matchCount, lotto.contains(bonusNumber));
             BigDecimal count = result.get(lottoResult).add(new BigDecimal(1));
-            result.put(lottoResult,count);
+            result.put(lottoResult, count);
         }
         return result;
     }

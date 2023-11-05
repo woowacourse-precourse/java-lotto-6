@@ -27,7 +27,7 @@ public class LottoNumbersInfoTest {
     @Test
     @DisplayName("보너스 로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
     void BonusNumberIsNotInCorrectRange() {
-        assertThatThrownBy(() -> new lotto.dto.LottoNumbersInfo(List.of(), 0))
+        assertThatThrownBy(() -> new lotto.dto.LottoNumbersInfo(List.of(), List.of(1, 2, 3, 4, 5, 6), 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
     }
@@ -35,7 +35,8 @@ public class LottoNumbersInfoTest {
     @Test
     @DisplayName("로또 결과를 생성한다.")
     void createLottoResult() {
-        LottoNumbersInfo numbersInfo = new LottoNumbersInfo(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))), 1);
+        LottoNumbersInfo numbersInfo = new LottoNumbersInfo(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
+                List.of(1, 2, 3, 4, 5, 6), 1);
         HashMap<LottoResult, BigDecimal> expected = new HashMap<>(
                 Map.of(
                         LottoResult.FIRST, BigDecimal.valueOf(1),
@@ -47,7 +48,7 @@ public class LottoNumbersInfoTest {
                 )
         );
 
-        assertThat(numbersInfo.getResult(List.of(1, 2, 3, 4, 5, 6)))
+        assertThat(numbersInfo.getResult())
                 .isEqualTo(expected);
     }
 }

@@ -14,12 +14,14 @@ public class WinningNumber {
     }
 
     private List<Integer> validateWinningNumber(List<String> numbersInput) {
+        validateSize(numbersInput);
         validateDuplicate(numbersInput);
-        return convertInteger(numbersInput);
+        List<Integer> numbers = convertInteger(numbersInput);
+        return numbers;
     }
 
-    private List<Integer> convertInteger(List<String> numbers) {
-        return numbers.stream()
+    private List<Integer> convertInteger(List<String> numbersInput) {
+        return numbersInput.stream()
                 .map(this::validateNumeric)
                 .toList();
     }
@@ -32,10 +34,16 @@ public class WinningNumber {
         }
     }
 
-    private void validateDuplicate(List<String> numbers) {
-        Set<String> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
+    private void validateDuplicate(List<String> numbersInput) {
+        Set<String> uniqueNumbers = new HashSet<>(numbersInput);
+        if (uniqueNumbers.size() != numbersInput.size()) {
             throw new IllegalArgumentException(NOT_UNIQUE.getMessage());
+        }
+    }
+
+    private void validateSize(List<String> numbersInput) {
+        if (numbersInput.size() != 6) {
+            throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
     }
 }

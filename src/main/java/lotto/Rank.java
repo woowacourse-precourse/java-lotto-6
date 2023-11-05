@@ -10,9 +10,9 @@ public enum Rank {
     FOURTH_PLACE(4,0,50000),
     FIFTH_PLACE(3,0,5000);
 
-    int hit;
-    int bonus;
-    int prizeMoney;
+    private final int hit;
+    private final int bonus;
+    private final int prizeMoney;
 
     Rank(int hit,int bonus, int prizeMoney){
         this.hit = hit;
@@ -34,7 +34,7 @@ public enum Rank {
     public String getStatus(){
         String formattedPrizeMoney = formattingNum(getPrizeMoney());
         if(bonus==1){
-            return String.format("%d개 일치,보너스 볼 일치 (%s원)",getHit(),formattedPrizeMoney);
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원)",getHit(),formattedPrizeMoney);
         }
         return String.format("%d개 일치 (%s원)",getHit(),formattedPrizeMoney);
     }

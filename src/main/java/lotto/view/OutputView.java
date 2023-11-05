@@ -21,10 +21,6 @@ public class OutputView {
         System.out.printf(addLineSeparator(PURCHASED_LOTTO_COUNT_GUIDE), payment.calculatePurchasedLottoCount());
     }
 
-    private static String addLineSeparator(final String errorMessage) {
-        return String.join("", System.lineSeparator(), errorMessage);
-    }
-
     public static void printIssuedLottosNumbers(final LottoNumbersDto lottoNumbersDto) {
         System.out.println();
         lottoNumbersDto.getLottosNumbers()
@@ -32,11 +28,15 @@ public class OutputView {
     }
 
     public static void printWinningLottoNumbersGuide() {
-        System.out.println(WINNING_LOTTO_NUMBERS_GUIDE);
+        System.out.println(addLineSeparator(WINNING_LOTTO_NUMBERS_GUIDE));
     }
 
     public static void printBonusNumberGuide() {
-        System.out.println(BONUS_NUMBER_GUIDE);
+        System.out.println(addLineSeparator(BONUS_NUMBER_GUIDE));
+    }
+
+    private static String addLineSeparator(final String guide) {
+        return String.join("", System.lineSeparator(), guide);
     }
 
 }

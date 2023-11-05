@@ -10,7 +10,7 @@ public class Money {
         this.money = money;
     }
 
-    private void validate(int userInput) {
+    private void validate(int userInput) throws IllegalArgumentException {
         if(userInput % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }

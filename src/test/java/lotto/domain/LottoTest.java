@@ -99,6 +99,36 @@ class LottoTest {
         }
     }
 
+    @Nested
+    @DisplayName("로또 번호를 포함하는지 확인하는 기능 테스트")
+    class IsContainsTest {
+        @ParameterizedTest
+        @ValueSource(ints = {1, 45, 35, 27, 16, 23})
+        @DisplayName("Lotto에 LottoNumber가 포함되는 경우")
+        void isContainsTest(int lottoNumberInput) {
+            // given
+            Lotto lotto = new Lotto(List.of(1, 45, 35, 27, 16, 23));
+            LottoNumber lottoNumber = new LottoNumber(lottoNumberInput);
+            // when
+            boolean contains = lotto.isContains(lottoNumber);
+            // then
+            Assertions.assertThat(contains).isTrue();
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {21, 24, 1, 45, 8, 4, 3, 34, 37})
+        @DisplayName("Lotto에 LottoNumber가 포함되지 않는 경우")
+        void isNotContainsTest(int lottoNumberInput) {
+            // given
+            Lotto lotto = new Lotto(List.of(22, 23, 11, 7, 5, 6));
+            LottoNumber lottoNumber = new LottoNumber(lottoNumberInput);
+            // when
+            boolean contains = lotto.isContains(lottoNumber);
+            // then
+            Assertions.assertThat(contains).isFalse();
+        }
+    }
+
     private List<Integer> createLottoNumbers(String input) {
         List<Integer> lottoNumbers = Lists.newArrayList(input.split(","))
                 .stream()

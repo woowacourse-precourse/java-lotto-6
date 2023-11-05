@@ -28,11 +28,11 @@ public class OutputView {
 
     public void matchingMessage(Map<Rank, Integer> ranks, double rateOfReturn) {
         System.out.println(Message.RESULT);
-        System.out.println(Message.RANKING_FIFTH+ "" + ranks.get(Rank.FIFTH) + "개");
-        System.out.println(Message.RANKING_FORTH+ "" + ranks.get(Rank.FORTH) + "개");
-        System.out.println(Message.RANKING_THIRD + "" + ranks.get(Rank.THIRD) + "개");
-        System.out.println(Message.RANKING_SECOND + "" + ranks.get(Rank.SECOND) + "개");
-        System.out.println(Message.RANKING_FIRST + "" + ranks.get(Rank.FIRST) + "개");
+        System.out.println(Message.RANKING_FIFTH.getMessage()+ "" + ranks.get(Rank.FIFTH) + "개");
+        System.out.println(Message.RANKING_FORTH.getMessage()+ "" + ranks.get(Rank.FORTH) + "개");
+        System.out.println(Message.RANKING_THIRD.getMessage() + "" + ranks.get(Rank.THIRD) + "개");
+        System.out.println(Message.RANKING_SECOND.getMessage() + "" + ranks.get(Rank.SECOND) + "개");
+        System.out.println(Message.RANKING_FIRST.getMessage() + "" + ranks.get(Rank.FIRST) + "개");
 
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }

@@ -104,12 +104,6 @@ class ApplicationTest extends NsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
-    }
-
     @DisplayName("보너스 번호 입력시 당첨번호와 중복되는 값 입력")
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 11, 18, 25, 39})
@@ -121,14 +115,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 금액만큼_로또생성(){
+    void 금액만큼_로또생성() {
         assertThat(
                 new GameLogic().lottoNumber(8000).size())
                 .isEqualTo(8);
     }
 
     @Test
-    void 구매한_로또와_당첨로또_비교후_맞는Rank에_횟수가_올라가는지(){
+    void 구매한_로또와_당첨로또_비교후_맞는Rank에_횟수가_올라가는지() {
         Lotto winningLotto = new Lotto(winningNumber);
         Lotto buyingLotto = new Lotto(buyingNumber);
         int matchCount = gameLogic.matchCount(winningLotto, buyingLotto, bonusNumber);
@@ -138,4 +132,10 @@ class ApplicationTest extends NsTest {
                 gameLogic.getRanks().get(Rank.THIRD)
         ).isEqualTo(1);
     }
+
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
+    }
+
 }

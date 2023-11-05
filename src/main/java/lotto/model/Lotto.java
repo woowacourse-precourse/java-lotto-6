@@ -11,7 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicateNumber(numbers);
-        this.numbers = sortLottoByASCE(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -37,8 +37,6 @@ public class Lotto {
         Collections.sort(numbers);
         return numbers;
     }
-
-
 
 }
 

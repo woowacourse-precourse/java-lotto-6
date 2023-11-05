@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +11,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        sortAscending(numbers);
         return this.numbers;
     }
 
@@ -29,9 +27,5 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void sortAscending(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
     }
 }

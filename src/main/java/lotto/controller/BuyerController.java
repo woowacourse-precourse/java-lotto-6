@@ -7,11 +7,11 @@ import lotto.view.OutputView;
 
 import static lotto.view.constants.PrintMessage.REQUEST_PURCHASE_PAYMENT;
 
-public class PaymentController {
-    private PaymentController() {
+public class BuyerController {
+    private BuyerController() {
     }
 
-    public static Buyer paymentInit() {
+    public static Buyer requestPayment() {
         OutputView.printMessage(REQUEST_PURCHASE_PAYMENT);
         return readPaymentInfo();
     }

@@ -28,4 +28,8 @@ public record Money(int amount) {
     public int getIssueAmount() {
         return amount / GameConfig.LOTTO_PRICE_UNIT;
     }
+
+    public double getProfitRates(double totalPrize) {
+        return (totalPrize / amount) * 100;
+    }
 }

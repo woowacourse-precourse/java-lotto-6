@@ -37,4 +37,14 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         numbers.forEach(LottoNumberValidator::validate);
     }
+
+    public boolean contains(LottoNumber number) {
+        return this.numbers.contains(number);
+    }
+
+    public int countMatchingNumbers(Lotto compare) {
+        return (int) compare.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
 }

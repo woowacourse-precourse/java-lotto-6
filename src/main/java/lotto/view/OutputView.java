@@ -10,5 +10,10 @@ public class OutputView {
     public void printBuyLottoMessage(int lottoCount){
         System.out.printf(RunMessage.PRINT_LOTTO_COUNT.getMessage(),lottoCount);
     }
+
+    public void printWinningNumberInputMessage(){
+        System.out.print(RunMessage.INPUT_WINNING_MESSAGE.getMessage());
+    }
+
     
 }

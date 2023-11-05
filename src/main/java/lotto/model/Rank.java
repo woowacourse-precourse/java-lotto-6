@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Rank {
     SIX(6, 2000000000),
-    FIVE_BONUS(5, 30000000),
+    FIVE_BONUS(7, 30000000),
     FIVE(5, 1500000),
     FOUR(4, 50000),
     THREE(3, 5000),

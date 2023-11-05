@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import lotto.constant.ExceptionMessage;
 import lotto.util.NumberConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +41,19 @@ class WinningNumbersTest {
         // then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("숫자 문자열이 쉼표로 시작할 때 예외를 발생시킨다.")
+    void process_StartingComma_ThrowsException() {
+        // given
+        String numbersWithStartingComma = ",1, 2, 3, 4, 5, 6";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithStartingComma))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+    }
+
 
 }
 

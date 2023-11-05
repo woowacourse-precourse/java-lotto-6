@@ -38,6 +38,6 @@ public class WinningLotto {
     }
 
     private boolean isDuplicateWinningLottoNumberAndBonusNumber(BonusNumber bonusNumber) {
-        return winningLotto.LottoContainsNumber(bonusNumber.getBonusNumber());
+        return winningLotto.isContainsLottoNumber(bonusNumber.getBonusNumber());
     }
 }

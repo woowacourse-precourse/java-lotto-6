@@ -32,4 +32,15 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public int inputBonusNumber(){
+        try {
+            String input = Console.readLine();
+
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e) {
+            System.out.println(ExceptionMessage.INVALID_BONUS_TYPE.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
 }

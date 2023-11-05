@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import lotto.model.DrawResult;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
-import lotto.model.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,9 +24,9 @@ public class LottoGameController {
         outputView.printRequestWinNumbers();
         Lotto lotto = new Lotto(inputView.inputWinNumbers());
         outputView.printRequestBonusNumber();
-        WinLotto winLotto = new WinLotto(lotto, inputView.inputInteger());
-        winLotto.validateDuplication();
-        lottoGame.calculationResult(winLotto);
+        DrawResult drawResult = new DrawResult(lotto, inputView.inputInteger());
+        drawResult.validateDuplication();
+        lottoGame.calculationResult(drawResult);
         outputView.printResult(lottoGame);
     }
 
@@ -41,5 +41,19 @@ public class LottoGameController {
             }
         }
         return lottoGame;
+    }
+
+    public DrawResult getNewWinnLotto() {
+        Lotto lotto;
+        while (true) {
+            try {
+                lotto = new Lotto(inputView.inputWinNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        outputView.printRequestBonusNumber();
+        return lotto;
     }
 }

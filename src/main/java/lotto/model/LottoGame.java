@@ -63,15 +63,15 @@ public class LottoGame {
         return this.matchs;
     }
 
-    public void calculationResult(WinLotto winLotto) {
+    public void calculationResult(DrawResult drawResult) {
         for (Lotto lotto : user.issuanceLotto()) {
-            switch (countMatch(lotto, winLotto)) {
+            switch (countMatch(lotto, drawResult)) {
                 case 3 -> updateMatch(GameMessage.THREE_MATCH.getMessage());
                 case 4 -> updateMatch(GameMessage.FOUR_MATCH.getMessage());
                 case 5 -> updateMatch(GameMessage.FIVE_MATCH.getMessage());
                 case 6 -> updateMatch(GameMessage.SIX_MATCH.getMessage());
             }
-            if (countMatch(lotto, winLotto) == 5 && lotto.getNumbers().contains(winLotto.bonusNumber())) {
+            if (countMatch(lotto, drawResult) == 5 && lotto.getNumbers().contains(drawResult.bonusNumber())) {
                 updateMatch(GameMessage.BONUS_MATCH.getMessage());
             }
         }
@@ -93,9 +93,9 @@ public class LottoGame {
         matchs.put(message, matchs.get(message) + 1);
     }
 
-    public int countMatch(Lotto lotto, WinLotto winLotto) {
+    public int countMatch(Lotto lotto, DrawResult drawResult) {
         int count = 0;
-        for (Integer number : winLotto.lotto().getNumbers()) {
+        for (Integer number : drawResult.lotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
                 count++;
             }

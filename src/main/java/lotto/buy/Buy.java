@@ -35,8 +35,7 @@ public class Buy {
     }
 
     private long MoneyInputConversion(String input) {
-        long data = TextNumberConvert.MoneyConvert(input);
-        return data;
+        return TextNumberConvert.MoneyConvert(input);
     }
 
     public void SetBuyMoney(long money) {

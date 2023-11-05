@@ -10,7 +10,7 @@ public class ErrorCheckTest {
 
     @DisplayName("입력금액의 범위 오류 테스트")
     @Test
-    void MoneyInput_범위_오류_테스트() throws Exception {
+    void MoneyInput_범위_오류_테스트(){
         String error_Range1 = "0";
         String error_Range2 = "12501252501000";
         try {
@@ -27,7 +27,7 @@ public class ErrorCheckTest {
 
     @DisplayName("입력금액이 문자 일 경우 오류 테스트")
     @Test
-    void MoneyInput_문자입력_테스트() throws Exception {
+    void MoneyInput_문자입력_테스트(){
         String error_Number = "124sdf";
         String error_Number2 = "1_234_124";
         String error_Number3 = "1234124L";
@@ -50,7 +50,7 @@ public class ErrorCheckTest {
 
     @DisplayName("입력금액의 단위 오류 테스트")
     @Test
-    void MoneyInput_단위_오류_테스트() throws Exception {
+    void MoneyInput_단위_오류_테스트(){
         String error_UnitConfirmation = "12424";
         try {
             ErrorCheck.MoneyInput(error_UnitConfirmation);

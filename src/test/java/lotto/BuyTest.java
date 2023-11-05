@@ -67,8 +67,8 @@ public class BuyTest {
         long IssuanceNumber = 2000L;
         //when
         assertTimeoutPreemptively(Duration.ofSeconds(1L),() -> {
-                        run("RequestBuyMoney","2000000");
-                    });
+            run("RequestBuyMoney", "2000000");
+        });
         //then
         assertEquals(buy.GetBuyMoney(),Money);
         assertEquals(buy.GetLottoIssuanceNumber(),IssuanceNumber);

@@ -1,10 +1,28 @@
 package lotto.validator;
 
-public class WinningNumberValidator {
-    /**
-     * 초기 검증 (빈 문자열, null 값, 구분자 맞는지 체크)
-     * */
-    public void validateWinningNumbers(String userInput){
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
+public class WinningNumberValidator {
+    public List<Integer> validateAndParse(String userInput) {
+        validateNotEmpty(userInput);
+        return validateAndSeparateIntegers(userInput);
+    }
+
+    private void validateNotEmpty(String userInput) {
+        if (userInput.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static List<Integer> validateAndSeparateIntegers(String userInput) {
+        try {
+            return Arrays.stream(userInput.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
     }
 }

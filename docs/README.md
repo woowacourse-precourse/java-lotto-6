@@ -30,7 +30,7 @@
 - [x] 구매 내역을 보여준다. - UI#printPurchases
 - [x] 당첨 번호를 입력받는다. - UI#inputWinningNumbers
 - [x] 보너스 번호를 입력받는다. - UI#inputBonusNumber
-- [ ] 당첨 통계를 보여준다. - UI#printWinningStats
+- [x] 당첨 통계를 보여준다. - UI#printWinningStats
     - [x] 당첨 번호 빈도를 보여준다. - UI#printWinningFrequency
     - [x] 수익률을 보여준다. - UI#printReturnRate
         - 소수점 둘째 자리에서 반올림 되어야 한다.

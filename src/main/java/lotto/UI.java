@@ -52,6 +52,14 @@ public class UI {
         return Integer.parseInt(line);
     }
 
+    public void printWinningStats(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Map<Grade, Integer> winningFrequency = obtainWinningFrequency(lottos, lottoDrawResult);
+        printWinningFrequency(winningFrequency);
+        printReturnRate(lottos, lottoDrawResult);
+    }
+
     private Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Map<Grade, Integer> winningFrequency = new HashMap<>();
 

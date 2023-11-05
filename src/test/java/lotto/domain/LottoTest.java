@@ -30,7 +30,7 @@ class LottoTest {
     @Test
     void 로또_발행_개수_확인() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        LottoCount lottoCount = LottoCount.from(PurchaseAmount.from(5000));
+        LottoCount lottoCount = LottoCount.from(PurchaseAmount.from("5000"));
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
         assertThat(autoLottoTickets.size()).isEqualTo(5);
     }

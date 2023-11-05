@@ -12,7 +12,7 @@ class LottoCountTest {
     void 구매금액에따른_로또개수_검증() {
         int price = 7000;
         int lottoPrice = 1000;
-        LottoCount lottoCount = LottoCount.from(PurchaseAmount.from(price));
+        LottoCount lottoCount = LottoCount.from(PurchaseAmount.from("7000"));
         assertThat(lottoCount.getLottoCount()).isEqualTo(price / lottoPrice);
     }
 

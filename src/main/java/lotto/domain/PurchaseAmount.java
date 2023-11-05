@@ -6,14 +6,14 @@ public class PurchaseAmount {
     private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
+        validatePositive(purchaseAmount);
+        validateMultipleOfLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
     public static PurchaseAmount from(String readPurchaseAmount) {
         validateNumeric(readPurchaseAmount);
         int purchaseAmount = Integer.parseInt(readPurchaseAmount);
-        validatePositive(purchaseAmount);
-        validateMultipleOfLottoPrice(purchaseAmount);
         return new PurchaseAmount(purchaseAmount);
     }
 
@@ -24,13 +24,13 @@ public class PurchaseAmount {
         }
     }
 
-    private static void validatePositive(int purchaseAmount) {
+    private void validatePositive(int purchaseAmount) {
         if (purchaseAmount < MIN_PRICE) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    private static void validateMultipleOfLottoPrice(int purchaseAmount) {
+    private void validateMultipleOfLottoPrice(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR]");
         }

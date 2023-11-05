@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoCount {
     private static final int LOTTO_PRICE = 1000;
-    private int lottoCount;
+    private final int lottoCount;
 
     private LottoCount(int lottoCount) {
         this.lottoCount = lottoCount;

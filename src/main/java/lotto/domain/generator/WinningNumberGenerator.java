@@ -11,9 +11,16 @@ public class WinningNumberGenerator {
 
     public WinningNumber run() {
         List<Integer> regularWinningNumbers = drawRegularWinningNumbers();
-        int bonusNumber  = drawBonusNumber(new ArrayList<>(regularWinningNumbers));
 
-        return new WinningNumber(regularWinningNumbers, bonusNumber);
+        try {
+            WinningNumber winningNumber = new WinningNumber(regularWinningNumbers);
+
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return this.run();
+        }
     }
 
     private List<Integer> drawRegularWinningNumbers() {
@@ -42,22 +49,4 @@ public class WinningNumberGenerator {
         }
     }
 
-    private int drawBonusNumber(List<Integer> regularWinningNumbers) {
-        String inputBonusValue = InputView.inputBonusNumber();
-
-        try {
-            Validator.validateExistValue(inputBonusValue);
-            int convertedBonusNum = Validator.validateNumericInput(inputBonusValue);
-            int bonusNumberInRange = Validator.validateNumberInRange(convertedBonusNum);
-
-            regularWinningNumbers.add(bonusNumberInRange);
-            Validator.validateDuplicateNumbers(regularWinningNumbers);
-
-            return bonusNumberInRange;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return this.drawBonusNumber(regularWinningNumbers);
-        }
-    }
 }

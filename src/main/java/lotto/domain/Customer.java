@@ -6,12 +6,11 @@ import java.util.List;
 
 import static lotto.exception.InputMoneyException.*;
 import static lotto.util.GenerateRandomList.*;
+import static lotto.util.NumberConstant.*;
 
 public class Customer {
     private final Integer MONEY;
     private final List<Lotto> buyLotto;
-    private static final Integer COUNT_START = 0;
-    private static final Integer COUNT_PLUS = 1;
 
     public Customer(String money) {
         moneyValidate(money);
@@ -21,15 +20,15 @@ public class Customer {
 
     public void buyNewLotto() {
         int goal = calculateLottoNum();
-        int count = COUNT_START;
+        int count = 0;
         while (count < goal) {
             buyLotto.add(new Lotto(createRandomList()));
-            count += COUNT_PLUS;
+            count += 1;
         }
     }
 
     public int calculateLottoNum() {
-        return this.MONEY / 1000;
+        return this.MONEY / MONEY_STANDARD;
     }
 
     public List<String> getLottoTexts() {

@@ -1,19 +1,21 @@
 package lotto.domain;
 
+import static lotto.util.NumberConstant.*;
+
 public enum Rank {
-    FIFTH(5000),
-    FOURTH(50000),
-    THIRD(1_500_000),
-    SECOND(30_000_000),
-    FIRST(2_000_000_000);
+    FIFTH(FIFTH_WINNINGS),
+    FOURTH(FOURTH_WINNINGS),
+    THIRD(THIRD_WINNINGS),
+    SECOND(SECOND_WINNINGS),
+    FIRST(FIRST_WINNINGS);
 
-    private final Integer PRIZE_MONEY;
+    private final Double PRIZE_MONEY;
 
-    Rank(Integer prizeMoney) {
+    Rank(Double prizeMoney) {
         this.PRIZE_MONEY = prizeMoney;
     }
 
-    public Integer getPrizeMoney() {
+    public Double getPrizeMoney() {
         return PRIZE_MONEY;
     }
 }

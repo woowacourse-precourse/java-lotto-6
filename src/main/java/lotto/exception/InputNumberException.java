@@ -1,13 +1,13 @@
 package lotto.exception;
 
+import lotto.util.NumberConstant;
+
 import java.util.List;
 
 import static lotto.exception.ErrorMessage.*;
+import static lotto.util.NumberConstant.*;
 
 public class InputNumberException {
-    private static final Integer MIN_NUM = 1;
-    private static final Integer MAX_NUM = 45;
-
     private InputNumberException() {
     }
 
@@ -29,7 +29,7 @@ public class InputNumberException {
     private static void numberRangeValidate(List<String> numbers) {
         long count = numbers.stream()
                 .map(Integer::valueOf)
-                .filter((Integer num) -> MIN_NUM <= num && num <= MAX_NUM)
+                .filter((Integer num) -> LOTTO_MIN <= num && num <= LOTTO_MAX)
                 .count();
 
         if (count != numbers.size()) {

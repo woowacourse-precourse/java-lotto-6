@@ -11,8 +11,8 @@ class RankTest {
     void getPrizeMoneyByRank() {
         Rank first = Rank.FIRST;
 
-        Integer money = first.getPrizeMoney();
+        Double money = first.getPrizeMoney();
 
-        assertThat(money).isEqualTo(2_000_000_000);
+        assertThat(money).isEqualTo(2_000_000_000.0);
     }
 }

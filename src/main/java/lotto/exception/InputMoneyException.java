@@ -1,12 +1,9 @@
 package lotto.exception;
 
 import static lotto.exception.ErrorMessage.*;
+import static lotto.util.NumberConstant.*;
 
 public class InputMoneyException {
-    private static final Integer MIN_MONEY = 1000;
-    private static final Integer MAX_MONEY = 100_000;
-    private static final Integer ZERO = 0;
-
     private InputMoneyException() {
     }
 
@@ -27,7 +24,7 @@ public class InputMoneyException {
     private static void moneyRangeValidate(String money) {
         int result = Integer.parseInt(money);
 
-        if (result < MIN_MONEY || result > MAX_MONEY) {
+        if (result < MONEY_STANDARD || result > MONEY_MAX) {
             throw new IllegalArgumentException(ERROR.getMessage() + MONEY_RANGE.getMessage());
         }
     }
@@ -35,7 +32,7 @@ public class InputMoneyException {
     private static void moneyUnitValidate(String money) {
         int result = Integer.parseInt(money);
 
-        if (result % MIN_MONEY != ZERO) {
+        if (result % MONEY_STANDARD != 0) {
             throw new IllegalArgumentException(ERROR.getMessage() + MONEY_UNIT.getMessage());
         }
     }

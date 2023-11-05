@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.exception.ErrorMessage.*;
+import static lotto.util.NumberConstant.*;
 
 public class LottoNumberException {
-    private static final Integer SIZE = 6;
-
     private LottoNumberException() {
     }
 
@@ -18,7 +17,7 @@ public class LottoNumberException {
     }
 
     private static void lottoSizeValidate(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR.getMessage() + LOTTO_SIZE.getMessage());
         }
     }
@@ -26,7 +25,7 @@ public class LottoNumberException {
     private static void lottoNumberDuplicateValidate(List<Integer> numbers) {
         Set<Integer> validate = new HashSet<>(numbers);
 
-        if (validate.size() != SIZE) {
+        if (validate.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR.getMessage() + LOTTO_DUPLICATE.getMessage());
         }
     }

@@ -14,7 +14,11 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers() {
         try {
-            return List.of(Console.readLine().split(COMMA_SEPARATOR)).stream()
+            String input = Console.readLine();
+            if (input.isEmpty() || input.isBlank()) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해 주세요.");
+            }
+            return List.of(input.split(COMMA_SEPARATOR)).stream()
                     .map(numberStr -> Integer.parseInt(numberStr))
                     .collect(Collectors.toList());
         } catch (NumberFormatException ex) {

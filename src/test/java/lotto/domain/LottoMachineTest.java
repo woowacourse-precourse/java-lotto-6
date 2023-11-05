@@ -66,4 +66,12 @@ class LottoMachineTest {
     public void given_5000Won_when_CalculateNumberOfTickets_then_Returns5Tickets() {
         assertEquals(5, lottoMachine.calculateNumberOfTickets(5000));
     }
+
+    @DisplayName("800원이 주어질 때, 예외가 발생한다.")
+    @Test
+    public void given_800Won_when_CalculateNumberOfTickets_then_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoMachine.calculateNumberOfTickets(800);
+        });
+    }
 }

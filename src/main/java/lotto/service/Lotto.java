@@ -27,4 +27,10 @@ public class Lotto {
         return numbers;
     }
 
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::containNumber).
+                count();
+    }
+
 }

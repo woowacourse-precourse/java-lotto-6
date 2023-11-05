@@ -14,9 +14,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateCount(numbers);
+        validateHasDuplicate(numbers);
+        validateNumberRange(numbers);
+
+        sortAscending(numbers);
+
         this.numbers = numbers;
-        sortAscending();
     }
 
     public Ranking matchWithWinLotto(WinLotto winLotto) {
@@ -48,10 +52,8 @@ public class Lotto {
     }
 
     // TODO: 접근제한자 private 변경 불가 X.
-    private void validate(List<Integer> numbers) {
-        if (!(isMatchedCount(numbers)
-                && isInNumberRange(numbers)
-                && hasNotDuplicates(numbers))) {
+    private void validateCount(List<Integer> numbers) {
+        if (!isMatchedCount(numbers)) {
             throw new IllegalArgumentException();
         }
     }
@@ -60,17 +62,29 @@ public class Lotto {
         return numbers.size() == LOTTO_NUMBERS_COUNT;
     }
 
+    private void validateNumberRange(List<Integer> numbers) {
+        if (!isInNumberRange(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private boolean isInNumberRange(List<Integer> numbers) {
         return numbers.stream()
                 .allMatch(number ->
                         (number >= MINIMUM_LOTTO_RANGE && number <= MAXIMUM_LOTTO_RANGE));
     }
 
-    private boolean hasNotDuplicates(List<Integer> numbers){
-        return numbers.size() == Set.copyOf(numbers).size();
+    private void validateHasDuplicate(List<Integer> numbers) {
+        if (hasDuplicates(numbers)) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void sortAscending() {
+    private boolean hasDuplicates(List<Integer> numbers){
+        return numbers.size() != Set.copyOf(numbers).size();
+    }
+
+    private void sortAscending(List<Integer> numbers) {
         Collections.sort(numbers);
     }
 

@@ -16,4 +16,5 @@ public class Ticket {
             throw new IllegalArgumentException();
         }
     }
+
 }

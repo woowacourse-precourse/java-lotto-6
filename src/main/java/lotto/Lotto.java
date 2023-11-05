@@ -57,6 +57,16 @@ public class Lotto {
         return numbers;
     }
 
+    int[] getNumbersCounters() {
+        int[] numbersCounters = new int[46]; // 번호 1 ~ 45, index 0은 사용 안 함
+
+        for (Integer number: numbers) {
+            numbersCounters[number]++;
+        }
+
+        return numbersCounters;
+    }
+
     @Override
     public String toString() {
         return numbers.stream().map(String::valueOf).collect(Collectors.joining(", ","[","]"));

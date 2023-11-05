@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
+    private int[] rankCounters = new int[6]; // 1등 ~ 5등, index 0은 사용 안 함 
 
     void execute() {
         int receivedAmount = getReceivedAmount();
@@ -25,6 +26,8 @@ public class LottoApplication {
         Bonus bonus = getBonusNumber();
 
         Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
+
+        compareTicketAndLottos(ticket, lottos);
     }
 
     private int getReceivedAmount() {
@@ -73,5 +76,8 @@ public class LottoApplication {
 
     private int getNumberOfLotto(int receivedAmount) {
         return receivedAmount / LOTTO_PRICE;
+    }
+
+    private void compareTicketAndLotto(Ticket ticket, List<Lotto> lottos) {
     }
 }

@@ -18,8 +18,8 @@ import lotto.record.LottoNumberRecord;
 
 public class WinningNumber {
 
-    private final List<Integer> numbers;
-    private final int bonusNumber;
+    private final List<Integer> numbers; // TODO : NumbersList 일급 컬렉션 구현
+    private final int bonusNumber; // TODO : BonusNumber로 포장한 객체 구현
 
     public WinningNumber(String numbers, String bonusNumber) {
         List<Integer> convertedNumbers = convert(numbers);

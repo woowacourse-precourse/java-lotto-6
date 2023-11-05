@@ -12,7 +12,7 @@ import java.util.List;
 import lotto.record.LottoNumberRecord;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> numbers; // TODO : NumbersList 일급 컬렉션 구현
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

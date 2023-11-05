@@ -19,7 +19,7 @@ import lotto.record.ProfitRate;
 public class WinningList {
 
 
-    private final Map<Rank, Integer> winningList;
+    private final Map<Rank, Integer> winningList; // TODO : WinningInfo 일급 컬렉션 구현
 
     public WinningList(List<LottoNumberRecord> lottoNumberRecordList, WinningNumber winningNumber) {
         winningList = new EnumMap<>(Rank.class);

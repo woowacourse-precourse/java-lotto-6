@@ -17,7 +17,7 @@ import lotto.record.AmountRecord;
 
 public class Amount {
 
-    private final long amount;
+    private final long amount; // TODO : amount를 감싸는 객체 구현
 
     public Amount(String amount) {
         validAmount(amount);

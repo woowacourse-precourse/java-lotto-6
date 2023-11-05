@@ -55,8 +55,13 @@ public class MainLottoController {
 
     private UserLotto makeUserLotto() {
         Lotto mainNumber = inputMainLottoNumber();
-        int bonusNumber = inputBonusLottoNumber(mainNumber);
-        return new UserLotto(mainNumber,bonusNumber);
+        BonusLotto bonusNumber = inputBonusLottoNumber();
+        try{
+            return new UserLotto(mainNumber,bonusNumber);
+        }catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return makeUserLotto();
+        }
     }
 
     private Lotto inputMainLottoNumber() {
@@ -67,7 +72,18 @@ public class MainLottoController {
             return inputMainLottoNumber();
         }
     }
+    private BonusLotto inputBonusLottoNumber(){
+        try {
+            return new BonusLotto(input.getBonusNumber());
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return inputBonusLottoNumber();
+        }
+    }
 
+
+
+    /*
     private int inputBonusLottoNumber(Lotto mainLotto) {
         int bonusNumber = input.getBonusNumber();
         try {
@@ -85,6 +101,8 @@ public class MainLottoController {
             throw new IllegalArgumentException("6개의 로또 번호와 중복되는 숫자입니다.");
         }
     }
+
+     */
 
 
 }

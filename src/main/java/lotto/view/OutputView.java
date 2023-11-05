@@ -13,5 +13,6 @@ public class OutputView {
 
     public void printLottoInformation(List<Lotto> lottos){
         lottos.forEach(System.out::println);
+        System.out.println();
     }
 }

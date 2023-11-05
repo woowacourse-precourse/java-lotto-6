@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinnerLotto;
 import lotto.util.converter.NumericConverter;
+import lotto.util.converter.NumericListConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +18,7 @@ public class LottoController {
     private static final int END_NUMBER = 45;
     private static final int LOTTO_LENGTH = 6;
     private static final int LOTTO_PRICE = 1000;
+    private final NumericListConverter numericListConverter = new NumericListConverter();
     private final NumericConverter numericConverter = new NumericConverter();
     private final InputView inputView = new InputView();
     private final OutputView  outputView = new OutputView();
@@ -23,7 +26,17 @@ public class LottoController {
     public void run(){
         int amount = getAmount();
         Lottos lottos = new Lottos(buyLotto(amount));
+        WinnerLotto winnerLotto = new WinnerLotto(getWinnerLotto(),getBonusNumber());
+    }
 
+    private int getBonusNumber() {
+        String input = inputView.readBonusNumber();
+        return numericConverter.convert(input);
+    }
+
+    private Lotto getWinnerLotto() {
+        String input = inputView.readWinnerLottoNumbers();
+        return new Lotto(numericListConverter.convert(input));
     }
 
     private int getAmount(){

@@ -2,12 +2,14 @@ package lotto.controller;
 
 import static lotto.util.LottoGenerator.*;
 import static lotto.view.InputView.inputPurchaseAmount;
+import static lotto.view.OutputView.*;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.util.LottoGenerator;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -19,7 +21,9 @@ public class LottoController {
 
     private Lottos purchaseLottos() {
         User user = new User(inputPurchaseAmount());
-        return lottoService.generateLottos(user.getLottoCount());
+        Lottos lottos = lottoService.generateLottos(user.getLottoCount());
+        printPurchaseResult(user.getLottoCount(),lottos);
+        return lottos;
     }
 
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.utils.InputConvertor;
 import lotto.utils.InputValidator;
 
@@ -40,6 +41,17 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getBonusInput();
+        }
+    }
+
+    public static WinningLotto getWinningInput() {
+        String winnings = getInput(WINNING_INPUT_MESSAGE);
+        try {
+            InputValidator.validateWinnings(winnings);
+            return InputConvertor.convertWinnings(winnings);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningInput();
         }
     }
 

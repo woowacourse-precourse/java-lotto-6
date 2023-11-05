@@ -8,6 +8,7 @@ import static lotto.view.ErrorMessage.printLottoDistinctNumberError;
 import static lotto.view.ErrorMessage.printLottoNumberRangeError;
 import static lotto.view.ErrorMessage.printLottoNumbersSizeError;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,15 +17,28 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        sortNumbers();
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getValue());
+    }
+
+    public int matchNumbers(Lotto winnningNumbers) {
+        return (int) numbers.stream()
+                .filter(winnningNumbers::containsNumber)
+                .count();
     }
 
     @Override
     public String toString() {
         return numbers.toString();
     }
-
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDistinctNumbers(numbers);
@@ -62,5 +76,8 @@ public class Lotto {
         }
     }
 
+    private void sortNumbers() {
+        Collections.sort(numbers);
+    }
     // TODO: 추가 기능 구현
 }

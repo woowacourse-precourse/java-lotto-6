@@ -16,6 +16,10 @@ public class Money {
         return value / LOTTO_PRICE;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     private void validate(int value) {
         if(value % LOTTO_PRICE != 0) {
             printMoneyFormatError();

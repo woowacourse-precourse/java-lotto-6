@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.policy.LottoPolicy;
+import lotto.policy.WinConditionPolicy;
 import lotto.util.LottoProvider;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -44,5 +44,31 @@ public class Controller {
 
     public int getBonusLottoNumber(Lotto winNumber) {
         return inputView.inputBonusNumber(winNumber);
+    }
+
+    public int getWinNumberCount(Lotto userLotto, Lotto winLottoNumber) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(number -> winLottoNumber.contains(number))
+                .count();
+    }
+
+    public int getBonusNumberCount(Lotto userLotto, int bonusLottoNumber) {
+        if (userLotto.contains(bonusLottoNumber)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public void makeResults(List<WinConditionPolicy> results, int winNumberCount, int bonusNumberCount) {
+        for (WinConditionPolicy winConditionPolicy : WinConditionPolicy.values()) {
+            WinConditionPolicy result = winConditionPolicy.getMatchWith(winNumberCount, bonusNumberCount);
+            addResultWhenNotNull(results, result);
+        }
+    }
+
+    private void addResultWhenNotNull(List<WinConditionPolicy> results, WinConditionPolicy result) {
+        if (results != null) {
+            results.add(result);
+        }
     }
 }

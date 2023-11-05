@@ -10,10 +10,22 @@ public enum LottoPrize {
 
     private final int money;
     private final String title;
+    private static final String link = " - ";
 
     LottoPrize(int money, String title) {
         this.money = money;
         this.title = title;
+    }
+
+    public static LottoPrize findPrize(int duplicatedCount, boolean matchBonus) {
+        if(duplicatedCount < 3) return OTHERS;
+        if(duplicatedCount == 3) return CORRECT_3_NUMBERS;
+        if(duplicatedCount == 4) return CORRECT_4_NUMBERS;
+        if(duplicatedCount == 5){
+            if(matchBonus) return CORRECT_5_NUMBERS_WITH_BONUS;
+            return CORRECT_5_NUMBERS;
+        }
+        return CORRECT_6_NUMBERS;
     }
 
     public int getMoney() {
@@ -21,7 +33,7 @@ public enum LottoPrize {
     }
 
     public String getTitle() {
-        return title;
+        return title + link;
     }
 
 }

@@ -17,8 +17,12 @@ public class WinLotto extends Lotto{
     }
 
     public LottoPrize calculatePrize(Lotto lotto, int bonusNumber){
-        //TODO 등수 계산
-        return null;
+        int duplicatedCount = 0;
+        for(int number: lotto.getNumbers()){
+            if(this.getNumbers().contains(number)) duplicatedCount++;
+        }
+
+        return LottoPrize.findPrize(duplicatedCount, (bonusNumber == this.bonusNumber));
     }
 
     public void validate(List<Integer> numbers, int bonusNumber){

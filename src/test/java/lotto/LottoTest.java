@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
 import lotto.domain.WinLotto;
 import lotto.game.Calculator;
-import lotto.game.LottoGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +44,7 @@ class LottoTest {
     void calculateProfit() {
         int profit = 5000;
         int money = 8000;
-        assertThat(Calculator.calculateProfitRate(profit, money)).isEqualTo(62.5);
+        assertThat(Calculator.calculateProfitRate(profit, money)).isEqualTo("62.5");
     }
 
 }

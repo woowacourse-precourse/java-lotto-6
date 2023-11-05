@@ -1,5 +1,6 @@
 package lotto.game;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
 import lotto.domain.WinLotto;
@@ -9,7 +10,7 @@ import lotto.util.PrintManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoGame {
+public class LottoGame{
 
     private List<Lotto> lottos = new ArrayList<>();
     private WinLotto winLotto;
@@ -34,12 +35,20 @@ public class LottoGame {
     }
 
     private void calculateResult() {
-        //TODO 결과 계산
-        //TODO 결과 출력
+        int profit = 0;
+        for(Lotto lotto : lottos){
+            LottoPrize prize = winLotto.calculatePrize(lotto, winLotto.getBonusNumber());
+            profit+= prize.getMoney();
+            prizeCount[prize.ordinal()]++;
+        }
+        String profitRate = Calculator.calculateProfitRate(profit, money);
+        PrintManager.printResult(profitRate, prizeCount);
     }
 
     private void pickLottoNumbers() {
-        for(int i = 0; i < money ; i+= 1000){
+        int count = money/1000;
+        PrintManager.printLottoCount(count);
+        for(int i = 0; i < count ; i++){
             Lotto lotto = makeLotto();
             lottos.add(lotto);
             PrintManager.printPickedLottoNumbers(lotto);
@@ -56,5 +65,4 @@ public class LottoGame {
         }
         return lotto;
     }
-
 }

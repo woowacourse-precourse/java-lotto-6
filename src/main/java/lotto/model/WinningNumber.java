@@ -1,13 +1,8 @@
 package lotto.model;
 
-import static lotto.enumerate.ConfigInteger.LOTTO_END_NUMBER;
-import static lotto.enumerate.ConfigInteger.LOTTO_START_NUMBER;
 import static lotto.enumerate.ConfigString.REPLACE_REPLACEMENT;
 import static lotto.enumerate.ConfigString.REPLACE_TARGET;
 import static lotto.enumerate.ConfigString.SPLIT_REGEX;
-import static lotto.enumerate.ErrorCode.BONUS_NUMBER_IS_NOT_INTEGER;
-import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_BONUS_DUPLICATE;
-import static lotto.enumerate.ErrorCode.LOTTO_NUMBER_UNDER_OR_OVER;
 import static lotto.enumerate.ErrorCode.WINNING_NUMBER_IS_NOT_INTEGER;
 import static lotto.util.ExceptionCodeThrow.exceptionCodeThrow;
 
@@ -29,9 +24,9 @@ public class WinningNumber {
     }
 
 
-
     private static String[] getSplit(String numbers) {
-        return numbers.replace(REPLACE_TARGET.getString(), REPLACE_REPLACEMENT.getString()).split(SPLIT_REGEX.getString());
+        return numbers.replace(REPLACE_TARGET.getString(), REPLACE_REPLACEMENT.getString())
+                .split(SPLIT_REGEX.getString());
     }
 
     private List<Integer> convert(String numbers) {

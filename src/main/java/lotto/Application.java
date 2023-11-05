@@ -36,6 +36,9 @@ public class Application {
             lottoBundle.add(new Lotto(numbers));
         }
         System.out.println(lottoBundle.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottoBundle) {
+            System.out.println(lotto.toString());
+        }
     }
 
     private List<Integer> generateNumbers() {

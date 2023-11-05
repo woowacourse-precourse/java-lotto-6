@@ -18,6 +18,13 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return String.join(", ");
+        StringBuilder sb = new StringBuilder()
+                .append("[")
+                .append(numbers.get(0));
+        for (int i = 1; i < numbers.size(); i++) {
+            sb.append(", ").append(numbers.get(i));
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

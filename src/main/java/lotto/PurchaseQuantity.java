@@ -1,7 +1,7 @@
 package lotto;
 
 public class PurchaseQuantity {
-    private static final int unit = 1000;
+    public static final int unit = 1000;
     private final int quantity;
 
     public PurchaseQuantity(int amount) {

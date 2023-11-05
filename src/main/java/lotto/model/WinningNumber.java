@@ -9,8 +9,8 @@ public class WinningNumber {
 
     private List<Integer> winningNumbers;
 
-    private WinningNumber(String winningNumbers) {
-        List<String> seperatedNumbers = split(winningNumbers);
+    private WinningNumber(String candidateWinningNumber) {
+        List<String> seperatedNumbers = split(candidateWinningNumber);
         checkOversize(seperatedNumbers);
         List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
         checkOutOfBound(candidateWinningNumbers);
@@ -18,8 +18,8 @@ public class WinningNumber {
         this.winningNumbers = candidateWinningNumbers;
     }
 
-    public static WinningNumber create(String winningNumbers) {
-        return new WinningNumber(winningNumbers);
+    public static WinningNumber create(String candidateWinningNumber) {
+        return new WinningNumber(candidateWinningNumber);
     }
 
     private List<String> split(String winningNumbers) {
@@ -43,10 +43,10 @@ public class WinningNumber {
     }
 
     private void checkOutOfBound(List<Integer> candidateWinningNumbers) {
-        candidateWinningNumbers.forEach(this::checkInrange);
+        candidateWinningNumbers.forEach(this::checkInRange);
     }
 
-    private void checkInrange(Integer lottoNumber) {
+    private void checkInRange(Integer lottoNumber) {
         if (lottoNumber < Lotto.MIN_NUMBER || lottoNumber > Lotto.MAX_NUMBER) {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
         }

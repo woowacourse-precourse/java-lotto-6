@@ -41,6 +41,12 @@ public class Game {
 
         while (!isValidBonusNumber) {
             String bonusNumber = InputView.inputBonusNumber();
+            try {
+                lottoService.validateBonusNumber(bonusNumber);
+                isValidBonusNumber = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
         }
 
     }

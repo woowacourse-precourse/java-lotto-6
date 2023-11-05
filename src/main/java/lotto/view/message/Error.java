@@ -8,7 +8,8 @@ public enum Error {
     WINNING_NUMBER_OVERSIZE("로또 당첨 번호는 6개입니다."),
     WINNING_NUMBER_NOT_INTEGER("로또 당첨 번호는 정수이어야 합니다."),
     WINNING_NUMBER_OUT_OF_BOUND("로또 당첨 번호는 1에서 45 사이의 숫자이어야 합니다."),
-    WINNING_NUMBER_DUPLICATED("로또 당첨 번호는 중복될 수 없습니다.");
+    WINNING_NUMBER_DUPLICATED("로또 당첨 번호는 중복될 수 없습니다."),
+    BONUS_NUMBER_NOT_INTEGER("보너스 번호는 정수이어야 합니다.");
 
     private final String CODE = "[ERROR] ";
     private String message;

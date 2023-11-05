@@ -11,6 +11,7 @@ import lotto.view.OutputView;
 public class Application {
     static OutputView outputView = new OutputView();
     static InputView inputView = new InputView(outputView);
+    static LottoMessageConverter messageConverter = new LottoMessageConverter();
 
     public static void main(String[] args) {
 
@@ -25,10 +26,10 @@ public class Application {
 
         // lotto 구매 기능
         LottoMachine lottoMachine = new LottoMachine();
-        LottoMessageConverter lottoMessageConverter = new LottoMessageConverter();
-        List<Lotto> lottos = lottoMachine.purchaseLottos(money);
+        List<Lotto> lottos = purchaseLottos(lottoMachine, money);
 
-        outputView.println(lottoMessageConverter.convertLottoNumberMessage(lottos));
+        outputView.println(messageConverter.convertLottoNumberMessage(lottos));
+
     }
 
     private static Money inputMoneyAmount() {
@@ -39,5 +40,9 @@ public class Application {
             outputView.printError(error);
             return inputMoneyAmount();
         }
+    }
+
+    private static List<Lotto> purchaseLottos(LottoMachine lottoMachine, Money money) {
+        return lottoMachine.purchaseLottos(money);
     }
 }

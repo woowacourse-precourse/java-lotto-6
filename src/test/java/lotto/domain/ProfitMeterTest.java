@@ -22,6 +22,9 @@ class ProfitMeterTest {
     void calculateYieldCorrectly() {
         // Given
         winnerCount.put(LottoRank.FIFTH, 10);
+        winnerCount.put(LottoRank.FOURTH, 3);
+        winnerCount.put(LottoRank.THIRD, 2);
+        winnerCount.put(LottoRank.SECOND, 2);
         winnerCount.put(LottoRank.FIRST, 1);
         long totalTickets = 3000;
         ProfitMeter profitMeter = new ProfitMeter(winnerCount, totalTickets);
@@ -30,7 +33,7 @@ class ProfitMeterTest {
         BigDecimal yield = profitMeter.calculateYield();
 
         // Then
-        assertThat(yield).isEqualTo(new BigDecimal("66668.3"));
+        assertThat(yield).isEqualTo(new BigDecimal("68773.3"));
     }
 
 }

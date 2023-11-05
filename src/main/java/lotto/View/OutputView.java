@@ -24,6 +24,9 @@ public class OutputView {
     }
 
     public static void printMatchingCounts(int[] matchingCounts, boolean hasBonus) {
+        System.out.println(WINNING_RESULT_MESSAGE);
+        System.out.println(LINE_MESSAGE);
+
         for (int i = 3; i <= 6; i++) {
             String winningResult = matchingCountResult(i, hasBonus);
             int count = matchingCounts[i];

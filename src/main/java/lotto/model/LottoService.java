@@ -10,17 +10,14 @@ import lotto.model.dto.WinningNumDTO;
 
 public class LottoService {
     private final List<Lotto> lottos;
-    private final int payment;
 
-    private LottoService(List<Lotto> lottos, int payment) {
+    private LottoService(List<Lotto> lottos) {
         this.lottos = lottos;
-        this.payment = payment;
     }
 
     public static LottoService buyLottos(PayDTO payDTO) {
         List<Lotto> lottos = create(payDTO.getNumberOfLotto());
-        int payment = payDTO.getPayment();
-        return new LottoService(lottos, payment);
+        return new LottoService(lottos);
     }
 
     private static List<Lotto> create(int numberOfLotto) {
@@ -50,6 +47,6 @@ public class LottoService {
         lottos.forEach(lotto -> {
             rankings.add(lotto.checkResult(winningNumDTO));
         });
-        return new Result(rankings, payment);
+        return new Result(rankings);
     }
 }

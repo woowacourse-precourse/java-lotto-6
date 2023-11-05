@@ -15,9 +15,4 @@ public class PayDTO {
     public int getNumberOfLotto() {
         return payment / PRICE_OF_LOTTO;
     }
-
-
-    public int getPayment() {
-        return payment;
-    }
 }

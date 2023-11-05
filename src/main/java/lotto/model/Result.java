@@ -4,12 +4,13 @@ import java.util.List;
 
 public class Result {
     private static final String UNIT = "개\n";
+    private static final int PRICE_OF_LOTTO = 1000;
     private final List<Ranking> rankings;
     private final double totalProfit;
 
-    public Result(List<Ranking> rankings, int payment) {
+    public Result(List<Ranking> rankings) {
         this.rankings = rankings;
-        this.totalProfit = calculateTotalProfit(payment);
+        this.totalProfit = calculateTotalProfit(rankings.size()*PRICE_OF_LOTTO);
     }
 
     private double calculateTotalProfit(int payment) {
@@ -17,8 +18,6 @@ public class Result {
         for (Ranking ranking : rankings) {
             profit += ranking.getProfit();
         }
-        System.out.println("profit : " + profit);
-        System.out.println("payment : " + payment);
         return (profit / payment) * 100;
     }
 

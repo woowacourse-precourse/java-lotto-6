@@ -9,7 +9,6 @@ public class Controller {
 
     public void run(){
         System.out.println(getAmountByUserInput());
-
     }
     public Controller(Service service) {
         this.service = service;

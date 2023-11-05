@@ -16,6 +16,12 @@ public class Validator {
         }
     }
 
+    public void checkMinAmount(int input) throws IllegalArgumentException {
+        if (input < THOUSAND) {
+            throw new IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해 주세요.");
+        }
+    }
+
     public void checkDividedByThousand(int amount) throws IllegalArgumentException {
         if (Math.floorMod(amount, THOUSAND) != ZERO) {
             throw new IllegalArgumentException("[ERROR] 1,000원의 단위로 입력해 주세요.");

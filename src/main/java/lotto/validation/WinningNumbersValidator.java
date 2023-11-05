@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
+import static lotto.validation.enumType.WinningNumbers.CHECK_SPLIT_COUNT;
 import static lotto.validation.enumType.WinningNumbers.COUNT_NUMBERS;
 import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.LOTTO_MAX_NUMBER;
@@ -38,7 +39,7 @@ public class WinningNumbersValidator {
 
     private boolean hasNotCommaSeparatedNumbers(String input) {
         String[] numbers = input.split(SPLIT_MESSAGE.getMessage());
-        return numbers.length < 2;
+        return numbers.length < CHECK_SPLIT_COUNT.getNumber();
     }
 
     public void validateNumberDuplication(String input) {

@@ -10,13 +10,9 @@ public class Output {
         System.out.println("\n" + lottoTicket + NUMBER_OF_PURCHAGE);
     }
 
-    public void printRandomLottoNumbers(int lottoTicket) {
-        LottoGenerate lottoGenerate = new LottoGenerate();
-
-        HashMap<Integer, List<Integer>> result = lottoGenerate.getRandomLottoResult(lottoTicket);
-
-        for (int key : result.keySet()) {
-            System.out.println(result.get(key));
+    public void printRandomLottoNumbers(HashMap<Integer, List<Integer>> randomLottoNumbers) {
+        for (int key : randomLottoNumbers.keySet()) {
+            System.out.println(randomLottoNumbers.get(key));
         }
     }
 }

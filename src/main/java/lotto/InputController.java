@@ -14,7 +14,6 @@ interface InputSupplierList {
 }
 
 public class InputController {
-    InputView inputView = new InputView(new InputValidator());
 
     public static int getValidInput(InputSupplierInt inputSupplierInt) {
         while (true) {

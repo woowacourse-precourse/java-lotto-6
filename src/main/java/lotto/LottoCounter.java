@@ -30,16 +30,16 @@ public class LottoCounter {
         }
     }
 
-    public void hitFive(List<Integer> resultList, int result, int cpuBonus, int playerBouns) {
-        if (result == IntConstants.FIVE_HIT.getValue() && cpuBonus != playerBouns) {
+    public void hitFive(List<Integer> resultList, int result) {
+        if (result == IntConstants.FIVE_HIT.getValue()) {
             int count = resultList.get(2);
             ++count;
             resultList.set(2, count);
         }
     }
 
-    public void hitFiveBonus(List<Integer> resultList, int result, int cpuBonus, int playerBouns) {
-        if (result == IntConstants.FIVE_HIT.getValue() && cpuBonus == playerBouns) {
+    public void hitFiveBonus(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
+        if (result == IntConstants.FIVE_HIT.getValue() && cpuSixNumbers.contains(playerBonus)) {
             int count = resultList.get(3);
             ++count;
             resultList.set(3, count);

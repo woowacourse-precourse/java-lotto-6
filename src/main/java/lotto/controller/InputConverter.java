@@ -29,11 +29,11 @@ public class InputConverter {
         return bonusNumber;
     }
 
-    public static void checkDigit(String input) {
+    public static int checkDigit(String input) throws IllegalArgumentException{
         try {
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            throw e;
         }
     }
 

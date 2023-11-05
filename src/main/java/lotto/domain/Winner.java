@@ -39,14 +39,6 @@ public enum Winner {
         return null;
     }
 
-    public int getSameCount() {
-        return sameCount;
-    }
-
-    public boolean isSameBonusNumber() {
-        return isSameBonusNumber;
-    }
-
     public int getWinningMoney() {
         return winningMoney;
     }

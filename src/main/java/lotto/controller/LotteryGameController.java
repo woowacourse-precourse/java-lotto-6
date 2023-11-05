@@ -38,12 +38,19 @@ public class LotteryGameController {
         requestWinningNumber();
         requestBonusNumber();
 
-        returnLotteryResult();
+        returnLotteryResult(purchaseAmount);
     }
 
-    private void returnLotteryResult() {
+    private int amountOfLottos() {
+        String tmp = inputView.returnInput();
+        return Integer.parseInt(tmp) / LOTTO_PRICE.getValue();
+    }
+
+    private void returnLotteryResult(int purchaseAmount) {
         Map<Integer, Integer> winningStats = new HashMap<>();
         computer.checkWinningLotto(purchasedLotto, winningLotto, bonusNumber, winningStats);
+        computer.calcRateOfProfit(winningStats, purchaseAmount);
+        OutputView.returnWinningStats(lotteryMessageBuilder.returnWinningLottoList(winningStats));
     }
 
     private void requestBonusNumber() {

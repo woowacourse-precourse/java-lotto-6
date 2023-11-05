@@ -4,7 +4,7 @@ import static lotto.domain.Constants.LOTTO_PRICE;
 
 public class Money {
 
-    int money;
+    private final int money;
 
     public Money(int money) {
         this.money = money;

@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoQuantity {
 
-    int quantity;
+    private int quantity;
 
     public LottoQuantity(int quantity) {
         this.quantity = quantity;

@@ -6,7 +6,7 @@ import static lotto.domain.Constants.*;
 
 public class WinningNumbers {
 
-    List<Integer> winningNumbers;
+    private final List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

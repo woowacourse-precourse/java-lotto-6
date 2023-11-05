@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.domain.enums.LottoConstants.LOTTO_SIZE;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }

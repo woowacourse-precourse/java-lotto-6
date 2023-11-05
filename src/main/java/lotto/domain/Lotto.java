@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = LottoUtils.sortAsc(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         Validation.checkLottoNumberLength(LENGTH, numbers);
         Validation.checkLottoNumberRange(START, END, numbers);

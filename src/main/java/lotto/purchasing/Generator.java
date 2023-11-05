@@ -1,4 +1,4 @@
 package lotto.purchasing;
 
-public class LottoOperator {
+public class Generator {
 }

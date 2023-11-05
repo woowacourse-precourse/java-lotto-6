@@ -7,6 +7,8 @@ public class InputException {
     private static final int ZERO = 0;
     private static final String IS_VALID_AMOUNT_MESSAGE = "로또 구입 금액은 1,000원 단위로 입력해야 합니다.";
     private static final String IS_NUMBER_IN_RANGE_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final int WINNING_NUMBER_LENGTH = 6;
+    private static final String HAS_SIX_NUMBERS_MESSAGE = "당첨 번호는 6개를 입력해야 합니다.";
 
     public static void canBeConvertedToInteger(String userInput) {
         try {
@@ -27,6 +29,12 @@ public class InputException {
         int winningNum = Integer.parseInt(userInput);
         if (winningNum < 1 || winningNum > 45) {
             throw new IllegalArgumentException(ERROR_MESSAGE + IS_NUMBER_IN_RANGE_MESSAGE);
+        }
+    }
+
+    public static void hasSixNumbers(String[] userInputs) {
+        if (userInputs.length != WINNING_NUMBER_LENGTH) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + HAS_SIX_NUMBERS_MESSAGE);
         }
     }
 }

@@ -1,23 +1,23 @@
 package lotto.parser;
 
+import static lotto.domain.LottoCondition.LOTTO_PRICE;
+import static lotto.domain.Symbols.DELIMITER;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-    private static final int LOTTO_PRICE = 1000;
-    private static final String DELIMITER = ",";
-
     private Parser() {
     }
 
     public static List<Integer> parseLotto(final String input) {
-        return Arrays.stream(input.split(DELIMITER))
+        return Arrays.stream(input.split(DELIMITER.getSymbol()))
                 .map(Integer::parseInt)
                 .toList();
     }
 
     public static int parseLottoCount(final String input) {
-        return Integer.parseInt(input) / LOTTO_PRICE;
+        return Integer.parseInt(input) / LOTTO_PRICE.getValue();
     }
 
     public static Integer parseBonusNumber(final String input) {

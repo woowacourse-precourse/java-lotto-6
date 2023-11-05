@@ -10,7 +10,7 @@ import lotto.domain.Lottos;
 
 public class OutputView {
 
-    public static void printPurchaseResult(int lottoCount, Lottos lottos){
+    public static void printPurchaseResult(int lottoCount, Lottos lottos) {
         System.out.println(lottoCount + "개를 구매했습니다.");
         printEachLotto(lottos);
     }
@@ -33,18 +33,22 @@ public class OutputView {
         printResultStartMessage();
 
         for (LottoResult lottoResultValue : LottoResult.values()) {
-            printEachLottoResult(lottoResultValue, lottoResult);
+            printEachLottoResult(lottoResultValue, lottoResult.get(lottoResultValue));
         }
     }
 
-    private static void printEachLottoResult(LottoResult lottoResultValue, Map<LottoResult, Integer> lottoResult) {
-        for (LottoResult result : lottoResult.keySet()) {
-            if(result.equals(lottoResultValue)){
-                System.out.printf("%d개 일치 (%s원) - %d개\n", result.getMatchCount()
-                        ,convertToDecimalFormat(result.getPrize()),lottoResult.get(result));
-            }
+    private static void printEachLottoResult(LottoResult lottoResultValue, int count) {
+
+        if (lottoResultValue.equals(LottoResult.SECOND)) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", lottoResultValue.getMatchCount()
+                    , convertToDecimalFormat(lottoResultValue.getPrize()), count);
+            return;
         }
+
+        System.out.printf("%d개 일치 (%s원) - %d개\n", lottoResultValue.getMatchCount()
+                , convertToDecimalFormat(lottoResultValue.getPrize()), count);
     }
+
 
     private static String convertToDecimalFormat(int prize) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
@@ -58,6 +62,6 @@ public class OutputView {
 
     public static void printRateOfReturn(int balance, long prizeAmount) {
         double rateOfReturn = (prizeAmount) / (double) balance * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다\n",rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
 }

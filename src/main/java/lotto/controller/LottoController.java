@@ -60,5 +60,8 @@ public class LottoController {
         if (!matcher.matches()) {
             throw new IllegalArgumentException("숫자만을 입력해야 합니다.");
         }
+        if (str.length() >= 10) {
+            throw new IllegalArgumentException("10억 미만의 금액을 입력바랍니다.");
+        }
     }
 }

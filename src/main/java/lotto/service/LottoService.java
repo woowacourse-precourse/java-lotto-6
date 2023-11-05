@@ -38,4 +38,17 @@ public class LottoService {
             if (winningLotto.contains(myLotto.get(j))) ;
         }
     }
+
+    public void repeatCompare() {
+
+        Lotto lotto = new Lotto(convertToLottoIntegerList("1,2,3,4,5,6"));
+        List<Integer> winningLotto = lotto.getLotto();
+        List<List<Integer>> myLotto = generateRandomLottoNumbers(8);
+
+        for (int i = 0; i < 8; i++) {
+            Integer score = 0;
+            compareMyLottoWithWinningLotto(winningLotto, myLotto.get(i));
+        }
+
+    }
 }

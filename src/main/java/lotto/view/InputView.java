@@ -14,8 +14,8 @@ public class InputView {
     private static final String INPUT_DRAWN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public InputView(PurchaseAmountValidator purchaseAmountValidator) {
-        this.purchaseAmountValidator = purchaseAmountValidator;
+    public InputView() {
+        this.purchaseAmountValidator = new PurchaseAmountValidator();
         this.lottoNumberValidator = new LottoNumberValidator();
     }
 

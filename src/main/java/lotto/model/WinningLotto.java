@@ -18,6 +18,14 @@ public class WinningLotto {
         bonus = changeInputToBonus(bonusInput);
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
     private List<Integer> changeInputToNumbers(String lottoInput) {
         return Arrays.stream(lottoInput.split(SPLIT_SENTENCE))
                 .filter(this::isPositiveNumber)

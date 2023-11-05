@@ -13,6 +13,16 @@ public class User {
         buyLottos();
     }
 
+
+    public List<LottoResult> getLottoResults(WinningLotto winningLotto) {
+        calculateLottoResults(winningLotto);
+        return lottos.stream().map(Lotto::getResult).toList();
+    }
+
+    public double getStatistics() {
+        return calculateStatistic();
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
@@ -25,5 +35,24 @@ public class User {
         }
     }
 
+    private void calculateLottoResults(WinningLotto winningLotto){
+        lottos.forEach(lotto -> lotto.calculateResult(winningLotto));
+    }
 
+    private double calculateStatistic() {
+        double earnedMoney = 0;
+        double earnedPercent;
+
+        for (Lotto lotto : lottos) {
+            if(lotto.getResult() == null){
+                continue;
+            }
+            LottoResult result = lotto.getResult();
+            earnedMoney += result.getPrize();
+        }
+
+        earnedPercent = earnedMoney * 100 / spendMoney.getMoney();
+
+        return Math.round(earnedPercent * 10) / 10.0;
+    }
 }

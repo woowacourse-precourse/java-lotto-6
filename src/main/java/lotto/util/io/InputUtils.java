@@ -11,6 +11,8 @@ import lotto.util.StringUtils;
 public class InputUtils {
 
     private static final int COUNT_OF_WINNING_NUMBER = 6;
+    private static final int LOTTO_MINIMUM_NUMBER = 1;
+    private static final int LOTTO_MAXIMUM_NUMBER = 45;
 
     public static int getPurchaseAmount() {
         String money = Console.readLine();
@@ -91,7 +93,7 @@ public class InputUtils {
     }
 
     private static boolean isNumberInRange(int number) {
-        return number >= 1 && number <= 45;
+        return number >= LOTTO_MINIMUM_NUMBER && number <= LOTTO_MAXIMUM_NUMBER;
     }
 
     private static boolean hasDuplicates(List<String> input) {

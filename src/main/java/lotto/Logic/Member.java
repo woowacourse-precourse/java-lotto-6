@@ -43,20 +43,23 @@ public class Member {
         return this.prize;
     }
 
-    public double getProfit(){
+    public String getProfit(){
         double totalPrice=0;
 
         for(int i=0;i<this.prize.size();i++){
             totalPrice+=this.prize.get(i).getWinningPrize();
         }
 
-        double profit=Math.round((totalPrice / this.price) * 100.0 * 10.0) / 10.0;
+        double percentPrice=(totalPrice / this.price) * 100;
+        double profit=Math.round(percentPrice * 10.0) / 10.0;
 
-        return profit;
+        String formattedProfit = String.format("%.1f", profit);
+
+        return formattedProfit;
     }
 
     public List<Lotto> getMemberLotto(){
-        return memberLotto;
+        return this.memberLotto;
     }
     public int getCount(){
         return this.count;

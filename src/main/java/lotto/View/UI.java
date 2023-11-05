@@ -118,7 +118,7 @@ public class UI {
     }
 
     public void profitOutput(){
-        double profit=member.getProfit();
+        String profit=member.getProfit();
         String totalProfit="총 수익률은 "+profit+"%입니다.";
 
         System.out.print(totalProfit);

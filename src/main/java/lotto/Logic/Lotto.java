@@ -1,5 +1,6 @@
 package lotto.Logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -10,14 +11,31 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validate(List<Integer> numbers) throws IllegalArgumentException{
+        if (numbers.size() != 6)
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개의 정수로 입력해야 한다");
+
+        numberValid(numbers);
+    }
+    private void numberValid(List<Integer> numbers) throws IllegalArgumentException{
+        List<Integer> checkValid=new ArrayList<>();
+
+        for (int i=0;i<numbers.size();i++){
+
+            if (numbers.get(i)<=0 || numbers.get(i)>45)
+                throw new IllegalArgumentException("[ERROR] 각 당첨 번호는 1~45 사이로 표현해야 한다");
+
+            if (checkValid.contains(numbers.get(i)))
+                throw new IllegalArgumentException("[ERROR] 각 당첨 번호는 중복되면 안된다");
+
+            checkValid.add(numbers.get(i));
         }
     }
+
     public List<Integer> getNumbers(){
         return this.numbers;
     }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("[");

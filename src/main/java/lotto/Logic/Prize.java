@@ -6,7 +6,7 @@ import java.util.List;
 public enum Prize {
     first(2000000000,6,0,0),
     second(30000000,5,1,1),
-    third(15000005,5,0,2),
+    third(1500000,5,0,2),
     fourth(50000,4,0,3),
     fifth(5000,3,0,4),
     sixth(0,0,0,5);

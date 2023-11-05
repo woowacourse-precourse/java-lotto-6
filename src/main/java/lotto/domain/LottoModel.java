@@ -59,8 +59,9 @@ public class LottoModel {
 
 
     public String computeRate(int totalEarned, int purchased) {
-        double winningRate = totalEarned / purchased;
-        return String.format("%.1f", winningRate);
+        double winningRate = (double) totalEarned / purchased * 100;
+        double roundedRate = Math.round(winningRate * 10.0) / 10.0;
+        return String.format("%.1f", roundedRate);
     }
 
     public void computeLotto(List<Lotto> published, List<Integer> winnings, int bonusNum) {

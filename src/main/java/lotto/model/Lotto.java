@@ -34,13 +34,13 @@ public class Lotto {
 
     private void validateSixNumbersCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_SIZE));
         }
     }
 
     private void validateInvalidLottoNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 수여야 합니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d~%d 사이의 수여야 합니다.", MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
         }
     }
 

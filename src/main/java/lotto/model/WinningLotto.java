@@ -58,7 +58,7 @@ public class WinningLotto {
 
     private void validateInvalidLottoNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 수여야 합니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 보너스 번호는 %d~%d 사이의 수여야 합니다.", MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
         }
     }
 }

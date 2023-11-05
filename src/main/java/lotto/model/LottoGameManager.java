@@ -11,10 +11,11 @@ public class LottoGameManager {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int PERCENTAGE = 100;
+    private static final int LOTTO_PRICE = 1000;
     private static LottoNumberComparator lottoNumberComparator;
 
     public static int calculateLottoCount(Amount amount) {
-        return amount.getAmount() / 1000;
+        return amount.getAmount() / LOTTO_PRICE;
     }
 
     public static List<Lotto> buyLotto(int lottoCount) {

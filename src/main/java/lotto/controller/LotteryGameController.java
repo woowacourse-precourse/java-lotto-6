@@ -42,8 +42,7 @@ public class LotteryGameController {
     }
 
     private int amountOfLottos() {
-        String tmp = inputView.returnInput();
-        return Integer.parseInt(tmp) / LOTTO_PRICE.getValue();
+        return Integer.parseInt(inputView.returnInput());
     }
 
     private void returnLotteryResult(int purchaseAmount) {

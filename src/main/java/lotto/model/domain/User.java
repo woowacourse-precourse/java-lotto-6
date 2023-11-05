@@ -7,7 +7,7 @@ public class User {
 
     private final int purchaseMoney;
     private final int havingLottosCount;
-    private int moneyOfReturn;
+    private long moneyOfReturn;
     private int[] lottoRanks;
 
     public User(int purchaseMoney) {
@@ -24,7 +24,7 @@ public class User {
         return this.havingLottosCount;
     }
 
-    public void increaseMoneyOfReturn(int returnMoney) {
+    public void increaseMoneyOfReturn(long returnMoney) {
         this.moneyOfReturn += returnMoney;
     }
 

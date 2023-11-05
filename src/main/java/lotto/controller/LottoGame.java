@@ -40,7 +40,7 @@ public class LottoGame {
     }
 
     private void checkLottoRewards() {
-        checkAllLottoScore();
+        determineAllLottoScore();
         printResults();
     }
 
@@ -91,19 +91,19 @@ public class LottoGame {
         }
     }
 
-    private void checkAllLottoScore() {
+    private void determineAllLottoScore() {
         for (Lotto lotto : userLotteries) {
-            resultService.checkScore(lotto);
+            resultService.deterMineScore(lotto);
         }
     }
 
     private void printResults() {
         OutputViewer.printPrefaceOfResult();
-        printLottoScoresByRanks();
+        printLottoScoresByRank();
         OutputViewer.printLastMessageWith(resultService.getProfitRatio());
     }
 
-    private void printLottoScoresByRanks() {
+    private void printLottoScoresByRank() {
         for (Rank rank : Rank.values()) {
             printScoreBy(rank);
         }

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import lotto.constants.Rank;
 
-public class LottoScoreChecker {
+public class ScoreDeterminer {
     private final WinningNumbers winningNumbers = new WinningNumbers();
 
     public void setFirstRankNumbers(List<String> inputNumbers) {

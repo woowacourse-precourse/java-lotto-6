@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.constants.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.LottoScoreChecker;
+import lotto.domain.ScoreDeterminer;
 import lotto.utils.StringChanger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoScoreCheckerTest {
+public class ScoreDeterminerTest {
     @DisplayName("1등 판별 테스트")
     @Test
     void getFirstTest() {
@@ -86,10 +86,10 @@ public class LottoScoreCheckerTest {
     private Rank getRankByComparing(String firstNumberInput, String bonusNumberInput, Lotto lotto) {
         List<String> firstNumbers = StringChanger.toTrimmedStringList(firstNumberInput);
 
-        LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
-        lottoScoreChecker.setFirstRankNumbers(firstNumbers);
-        lottoScoreChecker.setBonusNumber(bonusNumberInput);
+        ScoreDeterminer scoreDeterminer = new ScoreDeterminer();
+        scoreDeterminer.setFirstRankNumbers(firstNumbers);
+        scoreDeterminer.setBonusNumber(bonusNumberInput);
 
-        return lottoScoreChecker.getRank(lotto);
+        return scoreDeterminer.getRank(lotto);
     }
 }

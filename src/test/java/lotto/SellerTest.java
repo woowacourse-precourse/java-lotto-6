@@ -11,12 +11,12 @@ import java.util.List;
 import lotto.constants.Error;
 import lotto.constants.Number;
 import lotto.domain.Lotto;
-import lotto.domain.LottoSeller;
+import lotto.domain.Seller;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-public class LottoSellerTest {
+public class SellerTest {
     private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
     private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
 
@@ -59,10 +59,10 @@ public class LottoSellerTest {
         try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
             mock.when(() -> Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                     .thenReturn(List.of(1, 2, 3, 4, 5, 6));
-            LottoSeller lottoSeller = new LottoSeller();
-            lottoSeller.setAmount(validUserInput);
-            int validAmount = lottoSeller.getAmount();
-            List<Lotto> lotteries = lottoSeller.giveLotto();
+            Seller seller = new Seller();
+            seller.setAmount(validUserInput);
+            int validAmount = seller.getAmount();
+            List<Lotto> lotteries = seller.giveLotto();
 
             assertThat(lotteries.size()).isEqualTo(validAmount / LOTTO_PRICE);
             assertThat(lotteries.get(0).getNumbers()).isEqualTo(lotto.getNumbers());
@@ -70,8 +70,8 @@ public class LottoSellerTest {
     }
 
     private void invalidInputAmountTest(String userInput, String errorMessage) {
-        LottoSeller lottoSeller = new LottoSeller();
-        assertThatThrownBy(() -> lottoSeller.setAmount(userInput))
+        Seller seller = new Seller();
+        assertThatThrownBy(() -> seller.setAmount(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(errorMessage);
     }

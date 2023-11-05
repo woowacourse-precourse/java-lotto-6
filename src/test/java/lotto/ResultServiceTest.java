@@ -53,7 +53,7 @@ public class ResultServiceTest {
         resultService.setFirstRankNumbers(firstRankNumbersInput);
         resultService.setBonusNumber(bonusNumberInput);
         for (Lotto lotto : userLotteries) {
-            resultService.checkScore(lotto);
+            resultService.deterMineScore(lotto);
         }
 
         return resultService;

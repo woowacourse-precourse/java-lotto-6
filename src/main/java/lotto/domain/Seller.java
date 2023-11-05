@@ -7,7 +7,7 @@ import lotto.constants.Number;
 import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
-public class LottoSeller {
+public class Seller {
     private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
     private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
     private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();

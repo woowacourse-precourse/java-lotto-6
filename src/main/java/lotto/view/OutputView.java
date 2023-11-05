@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,10 +38,24 @@ public class OutputView {
 
     public static void printLottoResult(Map<LottoResult, Integer> lottoResult) {
         printResultStartMessage();
-        for (LottoResult result : lottoResult.keySet()) {
-            System.out.printf("%d개 일치 (%d원) - %d개\n", result.getMatchCount()
-                    ,result.getPrize(),lottoResult.get(result));
+
+        for (LottoResult lottoResultValue : LottoResult.values()) {
+            printEachLottoResult(lottoResultValue, lottoResult);
         }
+    }
+
+    private static void printEachLottoResult(LottoResult lottoResultValue, Map<LottoResult, Integer> lottoResult) {
+        for (LottoResult result : lottoResult.keySet()) {
+            if(result.equals(lottoResultValue)){
+                System.out.printf("%d개 일치 (%s원) - %d개\n", result.getMatchCount()
+                        ,convertToDecimalFormat(result.getPrize()),lottoResult.get(result));
+            }
+        }
+    }
+
+    private static String convertToDecimalFormat(int prize) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(prize);
     }
 
     private static void printResultStartMessage() {

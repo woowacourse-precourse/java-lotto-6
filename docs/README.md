@@ -51,7 +51,7 @@
         <td>사용자의 입력을 처리하며 비즈니스 로직을 수행하고 모델과 뷰를 연결합니다.</td>
     </tr>
     <tr>
-        <td rowspan="3">model</td>
+        <td rowspan="4">model</td>
         <td>Lotto</td>
         <td>로또, 발행된 숫자 6자리를 포함하고 있습니다.</td>
     </tr>
@@ -62,6 +62,10 @@
     <tr>
         <td>WinLotto</td>
         <td>당첨 번호 로또 객체와 보너스 번호를 가지고 있는 record입니다.</td>
+    </tr>
+    <tr>
+        <td>LottoGame</td>
+        <td>로또 게임의 정보를 관리하고 처리하는 클래스입니다.</td>
     </tr>
     <tr>
         <td rowspan="2">view</td>

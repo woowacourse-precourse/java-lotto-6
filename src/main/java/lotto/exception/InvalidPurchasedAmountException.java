@@ -1,15 +1,15 @@
-package lotto;
+package lotto.exception;
 
 public class InvalidPurchasedAmountException extends UserInvalidInputException {
     InvalidPurchasedAmountException(String message, String invalidInput) {
         super(message, invalidInput);
     }
 
-    InvalidPurchasedAmountException(String message, String invalidInput, Throwable cause) {
+    public InvalidPurchasedAmountException(String message, String invalidInput, Throwable cause) {
         super(message, invalidInput, cause);
     }
 
-    InvalidPurchasedAmountException(String message, long invalidAmount) {
+    public InvalidPurchasedAmountException(String message, long invalidAmount) {
         super(message, Long.toString(invalidAmount));
     }
 

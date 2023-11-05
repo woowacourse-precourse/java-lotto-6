@@ -1,11 +1,12 @@
 package lotto;
 
-import static lotto.StringResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InvalidPurchasedAmountException;
 
 public class InputInterface {
 

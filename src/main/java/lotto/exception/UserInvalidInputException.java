@@ -1,6 +1,6 @@
-package lotto;
+package lotto.exception;
 
-import static lotto.StringResourceProvider.ERROR_MESSAGE_TAG;
+import static lotto.resource.TextResourceProvider.ERROR_MESSAGE_TAG;
 
 public class UserInvalidInputException extends IllegalArgumentException {
 

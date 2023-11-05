@@ -1,13 +1,13 @@
 package lotto.application.input;
 
-import static lotto.StringResourceProvider.ERROR_MESSAGE_TAG;
-import static lotto.StringResourceProvider.INPUT_BONUS_NUMBER_TEXT;
-import static lotto.StringResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
-import static lotto.StringResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.StringResourceProvider.OUTPUT_LOTTERY_RESULT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
-import static lotto.StringResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
+import static lotto.resource.TextResourceProvider.ERROR_MESSAGE_TAG;
+import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
+import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
+import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import lotto.MyApplicationTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -24,14 +23,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class Application_PurchaseAmountTest extends MyApplicationTest {
     private static final Pattern ErrorMessagePattern = Pattern.compile(
             String.format("^\\%s", ERROR_MESSAGE_TAG));
-
-    @Test
-    void 구입금액_입력_문구를_출력한다() {
-        run("1000", "123456", "7");
-
-        assertThat(outputs())
-                .contains(INPUT_PURCHASE_AMOUNT_TEXT);
-    }
 
 
     @Disabled

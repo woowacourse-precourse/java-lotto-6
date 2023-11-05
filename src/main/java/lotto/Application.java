@@ -1,8 +1,8 @@
 package lotto;
 
-import static lotto.StringResourceProvider.INPUT_BONUS_NUMBER_TEXT;
-import static lotto.StringResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.StringResourceProvider.OUTPUT_LOTTERY_RESULT;
+import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
+import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
+import static lotto.resource.TextResourceProvider.OUTPUT_LOTTERY_RESULT;
 
 public class Application {
     public static void main(String[] args) {

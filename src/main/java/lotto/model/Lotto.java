@@ -15,6 +15,4 @@ public class Lotto {
         LottoNumbersValidator validator = new LottoNumbersValidator();
         validator.validate(numbers);
     }
-
-    // TODO: 추가 기능 구현
 }

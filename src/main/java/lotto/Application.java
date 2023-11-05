@@ -3,7 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Computer;
+import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.User;
@@ -32,13 +32,13 @@ public class Application {
         Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, Input.get());
 
         // 7. 당첨 내역 계산 로직
-        List<Integer> lottoResult = Computer.checkWinning(user.lottos, winningLotto, bonusNumber);
+        List<Integer> lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
 
         // 당첨금
         List<Integer> prizeMoney = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000));
 
         // 8. 수익률 계산 로직
-        Double earningRate = Computer.calculateEarningRate(lottoResult, prizeMoney, user.lottoCount);
+        Double earningRate = LottoManager.calculateEarningRate(lottoResult, prizeMoney, user.lottoCount);
 
         // 9. 당첨 결과 출력
         Output.printResult(lottoResult, earningRate);

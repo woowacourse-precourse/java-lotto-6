@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import java.util.List;
-import lotto.domain.Computer;
+import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 
 public class Output {
@@ -14,7 +14,7 @@ public class Output {
     }
 
     public static void printLottos(List<Lotto> lottos) {
-        List<Lotto> sortedLottos = Computer.sortLottos(lottos);
+        List<Lotto> sortedLottos = LottoManager.sortLottos(lottos);
         for (Lotto sortedLotto : sortedLottos) {
             System.out.println(sortedLotto.getNumbers());
 

@@ -20,6 +20,7 @@ public class Application {
 
         Output.printPurchase();
         user.purchaseLotto();
+        Output.printCount(user.lottoCount);
 
         // 4. 로또 번호 출력
         Output.printLottos(user.lottos);

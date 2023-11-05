@@ -15,6 +15,9 @@ public class Output {
     public static void printPurchase() {
         System.out.println("구입금액을 입력해 주세요.");
     }
+    public static void printCount(Integer lottoCount){
+        System.out.println(lottoCount+"개를 구매했습니다.");
+    }
 
     public static void printLottos(List<Lotto> lottos) {
         List<Lotto> sortedLottos = LottoManager.sortLottos(lottos);

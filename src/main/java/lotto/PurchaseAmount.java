@@ -8,6 +8,10 @@ public class PurchaseAmount {
         return new PurchaseAmount(purchaseAmount);
     }
 
+    public int getAmountOfPurchasedLotto() {
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
     private PurchaseAmount(int purchaseAmount) {
         validateIsDividableWithLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;

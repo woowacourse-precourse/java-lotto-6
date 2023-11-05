@@ -13,7 +13,7 @@ public class LottoComparator {
     public LottosResult compareLottoAndWinningLotto() {
         LottosResult lottosResult = new LottosResult();
         for (int i = 0; i < lottos.size(); i++) {
-            LottoScore lottoScore = winningLotto.compareToLotto(lottos.get(i));
+            LottoScore lottoScore = winningLotto.calculateLottoScore(lottos.get(i));
             if (lottoScore.getWinners() == null) {
                 continue;
             }

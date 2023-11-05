@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Money;
-import lotto.view.InputView;
+import lotto.domain.PurchasedLottos;
 import lotto.view.OutputView;
 
 public class SystemController {
@@ -15,7 +15,7 @@ public class SystemController {
 
     public void doLotto() {
         try {
-            Money.createManual();
+            PurchasedLottos.from(Money.createManual());
         } catch (Exception e) {
             OutputView.exceptionMessage(e);
             doLotto();

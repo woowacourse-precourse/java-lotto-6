@@ -19,7 +19,7 @@ public class Money {
 
     public static Money createManual() {
         OutputView.inputMoney();
-        return new Money(InputView.readLong());
+        return new Money(InputView.readMoney());
     }
 
     private void validate(long value) {

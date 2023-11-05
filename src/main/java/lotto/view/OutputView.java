@@ -10,4 +10,8 @@ public class OutputView {
     public static void inputMoney() {
         System.out.println(SystemMessage.INPUT_MONEY.getMessage());
     }
+
+    public static void inputWinningNumbers() {
+        System.out.println(SystemMessage.INPUT_WINNING_NUMBER.getMessage());
+    }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import lotto.system.ExceptionMessage;
 import lotto.system.LottoNumberConstant;
 import lotto.validator.BallValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,6 +18,11 @@ public class Lotto {
 
     public static Lotto of(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static Lotto createWinningNumbers() {
+        OutputView.inputWinningNumbers();
+        return new Lotto(InputView.readWinningNumber());
     }
 
     public static Lotto createAuto() {

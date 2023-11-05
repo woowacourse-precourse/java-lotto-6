@@ -61,7 +61,7 @@ public class LottoNumber {
     private void validateOnlyNumberAndComma(String value) {
         String removeComma = value.replace(",","");
         try {
-            Integer.parseInt(removeComma);
+            Long.parseLong(removeComma);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
         }

@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Constants;
+import lotto.utils.Utils;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +18,16 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public List<Integer> getLottosNumber(Lotto lotto){
+        return lotto.numbers;
+
+    }
+
+
+
 
     // TODO: 추가 기능 구현
+
+
+
 }

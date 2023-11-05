@@ -1,16 +1,15 @@
-package lotto.validation;
+package lotto.validator;
 
 
 import lotto.constants.Constants;
 import lotto.utils.Utils;
 
-public class InputValidation {
-    Utils utils = new Utils();
+public class InputValidator {
     private int totalMoney;
 
     public int checkAll(String money) throws IllegalArgumentException{
         checkInteger(money);
-        totalMoney = utils.makeStringToInteger(money);
+        totalMoney = Utils.makeStringToInteger(money);
         checkRemainder(totalMoney);
         return totalMoney;
 

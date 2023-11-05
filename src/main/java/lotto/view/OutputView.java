@@ -11,9 +11,17 @@ public class OutputView {
 
     public void printPurchaseLotto(User user) {
         printPurchaseLottoAmount(user.getMoney());
+        printLottoNumbers(user.getLottoNumbers());
+        System.out.println();
     }
 
     private void printPurchaseLottoAmount(int money) {
         System.out.println(money / 1000 + BUY_LOTTO_AMOUNT_MESSAGE);
+    }
+
+    private void printLottoNumbers(List<Lottos> lottos) {
+        for (Lottos lotto : lottos) {
+            System.out.println(lotto.purchaseLottoNumber());
+        }
     }
 }

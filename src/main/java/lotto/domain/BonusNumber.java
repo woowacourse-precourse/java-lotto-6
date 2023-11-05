@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.util.ExceptionMessage;
 
+import java.util.List;
+
 import static lotto.domain.LottoInfo.MAX_NUMBER;
 import static lotto.domain.LottoInfo.MIN_NUMBER;
 
@@ -26,5 +28,9 @@ public class BonusNumber {
 
     private boolean isNotInRange(Integer number) {
         return number < MIN_NUMBER.getNumberInfo() || number > MAX_NUMBER.getNumberInfo();
+    }
+
+    public boolean containsIn(List<Integer> numbers) {
+        return numbers.contains(number);
     }
 }

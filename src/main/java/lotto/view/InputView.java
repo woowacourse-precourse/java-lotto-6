@@ -32,12 +32,12 @@ public class InputView {
         }
     }
 
-    public WinningNumbers getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         try {
             System.out.println(Message.PICK_NUMBER.message);
             String input = Console.readLine();
             List<Integer> integers = TypeConvertor.stringToStringList(input);
-            return new WinningNumbers(Lotto.of(integers));
+            return Lotto.of(integers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumbers();

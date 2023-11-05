@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.dto.PurchaseResult;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,10 @@ public class LottoTickets {
                 .collect(Collectors.toList());
 
         return new LottoTickets(purchaseTickets);
+    }
+
+    public List<Lotto> getTickets() {
+        return Collections.unmodifiableList(purchaseTickets);
     }
 
     private LottoTickets(List<Lotto> purchaseTickets) {

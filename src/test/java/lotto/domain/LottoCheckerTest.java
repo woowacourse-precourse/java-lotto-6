@@ -84,22 +84,6 @@ class LottoCheckerTest {
     @DisplayName("로또 당첨 결과 테스트")
     @Test
     void lottoResult() {
-        List<Integer> counts = new ArrayList<>();
-        counts.add(3);
-        counts.add(4);
-        counts.add(3);
-        counts.add(5);
-        counts.add(10);
-        counts.add(6);
-        LottoChecker lottoChecker = new LottoChecker();
-        List<Integer> result = lottoChecker.lottoResult(counts);
-        List<Integer> expectationResult = new ArrayList<>();
-        expectationResult.add(1);
-        expectationResult.add(1);
-        expectationResult.add(1);
-        expectationResult.add(1);
-        expectationResult.add(2);
-
-        assertEquals(expectationResult, result);
+        assertEquals(List.of(1, 1, 1, 1, 2), lottoChecker.lottoResult(List.of(3, 4, 3, 5, 10, 6)));
     }
 }

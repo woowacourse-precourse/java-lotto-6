@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.Ranks;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -38,7 +39,7 @@ public class LottoController {
         }
     }
 
-    public Map<Rank, Integer> matchWinningNumber(List<Lotto> lottery, String stringWinningNumber, String stringBonusNumber) {
+    public Ranks lottoResults(List<Lotto> lottery, String stringWinningNumber, String stringBonusNumber) {
         validateWinningNumber(stringWinningNumber);
         validateBonusNumber(stringBonusNumber);
 
@@ -46,7 +47,7 @@ public class LottoController {
         List<Integer> winningNumber = Arrays.stream(stringWinningNumber.split(",")).map(s -> Integer.valueOf(s))
                 .collect(Collectors.toList());
         LottoService lottoService = new LottoService();
-        return lottoService.matchLotteryWinningNumber(
+        return lottoService.lottoResults(
                 lottery, winningNumber, bonusNumber);
     }
 

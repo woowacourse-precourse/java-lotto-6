@@ -8,6 +8,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
+import lotto.domain.Ranks;
 
 public class LottoService {
 
@@ -27,16 +28,8 @@ public class LottoService {
         return lottery;
     }
 
-    public Map<Rank, Integer> matchLotteryWinningNumber(List<Lotto> lottery, List<Integer> winningNumber, Integer bonusNumber) {
-        Map<Rank, Integer> resultCount = new HashMap<>();
-        for (Lotto lotto : lottery) {
-            Rank rank = matchLottoWinningNumber(lotto, winningNumber, bonusNumber);
-            resultCount.put(rank, resultCount.getOrDefault(rank, 0) + 1);
-        }
-        return resultCount;
+    public Ranks lottoResults(List<Lotto> lottery, List<Integer> winningNumber, Integer bonusNumber) {
+        return new Ranks(lottery, winningNumber, bonusNumber);
     }
 
-    private Rank matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
-        return Rank.valueOf(winningNumbers.size(), lotto.getNumbers().contains(bonusNumber));
-    }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.Ranks;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,9 +19,8 @@ public class Application {
 
         String winningNumber = InputView.winningNumber();
         String bonusNumber = InputView.bonusNumber();
-        Map<Rank, Integer> resultCount = lottoController.matchWinningNumber(lottery, winningNumber,
-                bonusNumber);
+        Ranks ranks = lottoController.lottoResults(lottery, winningNumber, bonusNumber);
 
-        OutputView.printLotteryResult(resultCount, purchasePrice);
+//        OutputView.printLotteryResult(resultCount, purchasePrice);
     }
 }

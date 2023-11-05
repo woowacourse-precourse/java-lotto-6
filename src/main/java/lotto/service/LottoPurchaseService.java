@@ -12,11 +12,11 @@ import java.util.List;
 import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
-public class LottoStoreService {
+public class LottoPurchaseService {
     private final LottoAutoGenerator lottoAutoGenerator;
     private final LottoManualGenerator lottoManualGenerator;
 
-    public LottoStoreService(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
+    public LottoPurchaseService(LottoAutoGenerator lottoAutoGenerator, LottoManualGenerator lottoManualGenerator) {
         this.lottoAutoGenerator = lottoAutoGenerator;
         this.lottoManualGenerator = lottoManualGenerator;
     }

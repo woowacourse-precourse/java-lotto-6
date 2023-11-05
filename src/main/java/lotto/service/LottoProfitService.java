@@ -5,7 +5,7 @@ import lotto.domain.winning.LottoWinningRanking;
 
 import java.util.EnumMap;
 
-public class LottoProfitCalculatorService {
+public class LottoProfitService {
     public double calculateProfit(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap, int lottoCount) {
         int purchaseAmount = calculatePurchaseAmount(lottoCount);
         int winningAmount = calculateWinningAmount(winningRankingCountMap);

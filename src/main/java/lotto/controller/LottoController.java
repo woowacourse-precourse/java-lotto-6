@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.controller.readPurchaseLottoModules;
 import lotto.domain.inputPurchaseAmount;
 import lotto.views.InputViews;
 import lotto.views.Exceptions;
@@ -13,47 +14,17 @@ public class LottoController {
 
     public boolean readPurchaseLotto() {
         String purchaseAmountString = InputViews.readPurchaseAmount();
-        if (isPurchaseAmountInt(purchaseAmountString)) {
+        if (readPurchaseLottoModules.isPurchaseAmountInt(purchaseAmountString)) {
             return true;
         }
 
         purchaseAmount = Integer.parseInt(purchaseAmountString);
-        if (isPurchaseAmountPositive()) {
+        if (readPurchaseLottoModules.isPurchaseAmountPositive(purchaseAmount)) {
             return true;
         }
-        if (isPurchaseAmountDivisible1000()) {
+        if (readPurchaseLottoModules.isPurchaseAmountDivisible1000(purchaseAmount)) {
             return true;
         }
         return false;
-    }
-
-    public boolean isPurchaseAmountInt(String purchaseAmountString) {
-        try {
-            inputPurchaseAmount.inputPurchaseAmountInt(purchaseAmountString);
-            return false;
-        } catch (IllegalArgumentException e) {
-            Exceptions.exceptionNotInt();
-            return true;
-        }
-    }
-
-    public boolean isPurchaseAmountPositive() {
-        try {
-            inputPurchaseAmount.inputPurchaseAmountPositive(purchaseAmount);
-            return false;
-        } catch (IllegalArgumentException e) {
-            Exceptions.execptionNotPositive();
-            return true;
-        }
-    }
-
-    public boolean isPurchaseAmountDivisible1000() {
-        try {
-            inputPurchaseAmount.inputPurchaseAmountDivisible1000(purchaseAmount);
-            return false;
-        } catch (IllegalArgumentException e) {
-            Exceptions.exceptionNotDivisible1000();
-            return true;
-        }
     }
 }

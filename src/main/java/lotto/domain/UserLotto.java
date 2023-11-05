@@ -27,8 +27,8 @@ public class UserLotto {
     }
 
     private void buyLotto() {
-        int count = InputHandler.readMoney() / Constant.MONEY_UNIT;
-        IntStream.range(0, count)
+        int lottoCount = calculateLottoNum();
+        IntStream.range(0, lottoCount)
                 .forEach(i -> userRepository.add(makeLotto()));
     }
 
@@ -39,5 +39,9 @@ public class UserLotto {
     private void printMyLotto() {
         OutputHandler.printReceipts(userRepository.size());
         userRepository.printAllLotto();
+    }
+
+    private int calculateLottoNum(){
+        return InputHandler.readMoney() / Constant.MONEY_UNIT;
     }
 }

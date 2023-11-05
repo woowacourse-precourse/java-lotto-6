@@ -7,9 +7,9 @@ import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_BE_NEGATIVE_LONG_TEXT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
 import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_MUST_BE_DIVIDE_BY_LOTTERY_PRICE_TEXT;
-import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45;
+import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45_TEXT;
 import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT;
-import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS;
+import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Set;
 import lotto.exception.InvalidPurchasedAmountException;
 import lotto.exception.InvalidWinningNumbersException;
-import lotto.exception.UserInvalidInputException;
 
 public class InputInterface {
 
@@ -75,7 +74,7 @@ public class InputInterface {
                     .collect(toList());
             if (tokens.size() != 6) {
                 throw new InvalidWinningNumbersException(
-                        WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS, tokens);
+                        WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT, tokens);
             }
             checkIfNumbersBetween(1, 45, tokens);
             checkIfNumbersIs6UniqueNumbers(tokens);
@@ -104,7 +103,7 @@ public class InputInterface {
     private static void checkIfNumbersBetween(int startInclusive, int endInclusive, List<Integer> numbers) {
         for (int number : numbers) {
             if (number < startInclusive || number > endInclusive) {
-                throw new InvalidWinningNumbersException(WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45, numbers);
+                throw new InvalidWinningNumbersException(WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45_TEXT, numbers);
             }
         }
     }
@@ -115,7 +114,7 @@ public class InputInterface {
             uniqueNumbers.add(number);
         }
         if (uniqueNumbers.size() != 6 || numbers.size() != 6) {
-            throw new InvalidWinningNumbersException(WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS, numbers);
+            throw new InvalidWinningNumbersException(WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT, numbers);
         }
     }
 }

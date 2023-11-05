@@ -1,9 +1,9 @@
 package lotto.application.input;
 
 import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45;
+import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45_TEXT;
 import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT;
-import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS;
+import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.stream.Stream;
@@ -84,7 +84,7 @@ public class Application_WinningNumbers extends Application_InputTest {
     void 각_당첨번호의_숫자는_1부터_45사이의_숫자가_아니면_에러_메시지_내용을_출력한다(String invalidInput) {
         runWithInvalidInput(invalidInput);
 
-        assertThatPrintErrorMessageWith(WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45);
+        assertThatPrintErrorMessageWith(WINNING_NUMBERS_MUST_BE_BETWEEN_1_AND_45_TEXT);
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 어플리케이션이 예외 발생 후 종료되지 않는다")
@@ -111,7 +111,7 @@ public class Application_WinningNumbers extends Application_InputTest {
     void 당첨번호가_중복되지_않는_6개의_숫자가_아니라면_에러_메시지_내용을_출력한다(String invalidInput) {
         runWithInvalidInput(invalidInput);
 
-        assertThatPrintErrorMessageWith(WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS);
+        assertThatPrintErrorMessageWith(WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT);
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 어플리케이션이 예외 발생 후 종료되지 않는다")
@@ -140,8 +140,7 @@ public class Application_WinningNumbers extends Application_InputTest {
     }
 
     private static void runWithInvalidInput(String invalidInput) {
-        run("1000", invalidInput, "1,2,3,4,5,6");
-
+        run("1000", invalidInput, "1,2,3,4,5,6", "7");
     }
 
     private static String getWinningNumbersInput() {

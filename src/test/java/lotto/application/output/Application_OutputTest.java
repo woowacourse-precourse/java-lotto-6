@@ -1,5 +1,6 @@
 package lotto.application.output;
 
+import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
 import static lotto.resource.TextResourceProvider.QUANTITY_OUTPUT_TEXT_FORMAT;
@@ -39,8 +40,16 @@ public class Application_OutputTest extends MyApplicationTest {
     @Test
     void 당첨번호_입력_문구를_출력한다(){
         runWithValidArguments();
+
         assertThat(outputs())
                 .contains(INPUT_WINNING_NUMBERS_TEXT);
+    }
+    @Test
+    void 보너스번호_입력_문구를_출력한다(){
+        runWithValidArguments();
+
+        assertThat(outputs())
+                .contains(INPUT_BONUS_NUMBER_TEXT);
     }
 
     private static void runWithValidArguments() {

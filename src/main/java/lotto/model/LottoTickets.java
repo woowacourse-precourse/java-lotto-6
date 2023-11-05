@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.exception.Constant;
+import lotto.common.Constant;
 
+/**
+ * 사용자가 발행 받은 로또
+ */
 public class LottoTickets {
 
     private final List<LottoTicket> tickets;
@@ -19,10 +22,10 @@ public class LottoTickets {
         return tickets;
     }
 
-    public static LottoTickets generateTickets(int count) {
+    public static LottoTickets generateTickets(LottoCount count) {
         List<LottoTicket> tickets = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count.getLottoCount(); i++) {
             tickets.add(new LottoTicket(getRandomTicket()));
         }
         return new LottoTickets(tickets);

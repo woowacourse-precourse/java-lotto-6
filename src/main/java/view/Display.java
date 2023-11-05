@@ -21,7 +21,7 @@ public class Display {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    private void setLottoPurchaseAmount() {
+    private void setLottoPurchaseAmount() { // 사용자 입력을 통한 구매금액 값 설정
         System.out.println(STRING_PURCHASE_AMOUNT_INPUT);
         int userPurchaseAmount = validateNumberExceptionHandler(readLine());
         validateMinimumPurchaseAmount(userPurchaseAmount);

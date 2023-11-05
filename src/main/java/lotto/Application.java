@@ -12,6 +12,6 @@ public class Application {
         NumberGenerator numberGenerator = new NumberGenerator();
         MoneyCalculator moneyCalculator = new MoneyCalculator();
         LottoSystem lottoSystem = new LottoSystem(moneyCalculator,numberGenerator,ticketScratcher,outputManager);
-        lottoSystem.tempRun();
+        lottoSystem.run();
     }
 }

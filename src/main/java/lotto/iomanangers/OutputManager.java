@@ -55,7 +55,7 @@ public class OutputManager {
     }
 
     public void printRateOfReturn(BigDecimal rateOfReturn){
-        System.out.println("총 수익률은 " + rateOfReturn + "% 입니다.");
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
 

@@ -4,7 +4,11 @@ import lotto.Lotto;
 import lotto.Model.LottoRandom;
 import lotto.View.View;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static lotto.Model.CountRank.countRank;
+
 
 public class Controller {
     View view = new View();
@@ -17,8 +21,9 @@ public class Controller {
         System.out.println(myMoney / 1000 + "개를 구매했습니다.");
 
         List listLotto = randLotto.getBuyLotto(count);
-        view.myLotto(listLotto);
-        List correctLotto= correctLotto();
+        List correctLotto = correctLotto();
+        List countList = countRank(listLotto, correctLotto);
+        String bonus = view.bonusNum(correctLotto);
 
     }
     private List<Integer> correctLotto(){

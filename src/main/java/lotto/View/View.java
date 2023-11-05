@@ -1,20 +1,16 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Model.RankOfLotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class View {
-
-    public void myLotto(List<Integer> k){
-        for(int i = 0; i < k.size(); i++){
-            System.out.println(k.get(i));
-        }
-    }
 
     public int buyMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -64,6 +60,18 @@ public class View {
             bonusNum(correctLotto);
         }
         return k;
+    }
+
+    public static void lottoResult(List countRank){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(RankOfLotto.FIFTH.printRank + Collections.frequency(countRank, "3") +"개");
+        System.out.println(RankOfLotto.FOURTH.printRank + Collections.frequency(countRank, "4") +"개");
+        System.out.println(RankOfLotto.THIRD.printRank + Collections.frequency(countRank, "5") +"개");
+        System.out.println(RankOfLotto.SECOND.printRank + Collections.frequency(countRank, "5") +"개");
+        System.out.println(RankOfLotto.FIRST.printRank + Collections.frequency(countRank, "6") +"개");
+
+//        lottoPercent();
     }
     private void bonusNumException(List correctLotto, String bonus){
         if(correctLotto.contains(Integer.parseInt(bonus))){

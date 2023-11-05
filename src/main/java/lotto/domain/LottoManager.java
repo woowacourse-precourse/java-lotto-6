@@ -59,7 +59,7 @@ public class LottoManager {
         }
     }
 
-    public void inputWinningNumbers() {
+    public void inputWinningNumbersAndBonusNumber() {
         getWinningNumbers();
         getBonusNumber();
     }

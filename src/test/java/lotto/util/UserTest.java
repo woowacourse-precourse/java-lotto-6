@@ -42,4 +42,33 @@ class UserTest {
             user.checkInvalidPaymentAmount(inputAmount6);
         });
     }
+
+    @Test
+    void 지불금액이_1000원_단위인지_테스트(){
+        String inputAmount1 = "8000";
+        String inputAmount2 = "111000";
+        String inputAmount3 = "1000";
+        String inputAmount4 = "2200";
+        String inputAmount5 = "1001";
+        String inputAmount6 = "1100";
+
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount1);;
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount2);;
+        });
+        Assertions.assertDoesNotThrow(() -> {
+            user.inputPaymentAmount(inputAmount3);;
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount4);;
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount5);;
+        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            user.inputPaymentAmount(inputAmount6);;
+        });
+    }
 }

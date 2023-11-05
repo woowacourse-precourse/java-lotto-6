@@ -1,8 +1,7 @@
 package lotto.constants;
 
 public enum ErrorMessage {
-    INVALID_NEGATIVE_PURCHASE("[ERROR] 음수는 입력할 수 없습니다."),
-    INVALID_ZERO_PURCHASE("[ERROR] 0은 입력할 수 없습니다."),
+    INVALID_ZERO_OR_NEGATIVE_PURCHASE("[ERROR] 0이나 음수는 입력할 수 없습니다."),
     INVALID_NON_NUMERIC_PURCHASE("[ERROR] 숫자를 입력해주세요."),
     INVALID_NON_NUMERIC("[ERROR] 숫자를 입력해주세요."),
     INVALID_AMOUNT_NOT_DIVISIBLE("[ERROR] 올바른 금액을 입력해주세요."),

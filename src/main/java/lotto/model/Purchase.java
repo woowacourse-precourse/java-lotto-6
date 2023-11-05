@@ -6,8 +6,15 @@ public class Purchase {
     private final int money;
 
     public Purchase(int money) {
+
         validateAmountNotDivisible(money);
         this.money = money;
+    }
+
+    private static void validateZerOrNegative(int money) {
+        if (money <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ZERO_OR_NEGATIVE_PURCHASE.getMessage());
+        }
     }
 
     private static void validateAmountNotDivisible(int money) {
@@ -15,6 +22,7 @@ public class Purchase {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
+
 
     public int getPurchase() {
         return money;

@@ -21,6 +21,9 @@ public class LottoMachine {
         int lottoCount = inputMoney.amount() / LOTTO_PRICE;
         System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> newLottos = Lotto.createLottos(lottoCount);
+        for (Lotto newLotto : newLottos) {
+            System.out.println(newLotto);
+        }
         return newLottos;
     }
 

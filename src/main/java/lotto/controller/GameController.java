@@ -16,7 +16,7 @@ public class GameController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoCount lottoCount = LottoCount.from(purchaseAmount);
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
-        outputView.displayLotto(lottoCount, autoLottoTickets);
+        outputView.displayLottoTickets(lottoCount, autoLottoTickets);
     }
 
     public PurchaseAmount getPurchaseAmount() {
@@ -25,6 +25,7 @@ public class GameController {
                 return PurchaseAmount.from(inputView.readPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }

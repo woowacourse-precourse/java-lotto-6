@@ -9,10 +9,19 @@ public class PurchaseAmount {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static PurchaseAmount from(int purchaseAmount) {
+    public static PurchaseAmount from(String readPurchaseAmount) {
+        validateNumeric(readPurchaseAmount);
+        int purchaseAmount = Integer.parseInt(readPurchaseAmount);
         validatePositive(purchaseAmount);
         validateMultipleOfLottoPrice(purchaseAmount);
         return new PurchaseAmount(purchaseAmount);
+    }
+
+    private static void validateNumeric(String purchaseAmount) {
+        if (!purchaseAmount.chars()
+                .allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 
     private static void validatePositive(int purchaseAmount) {

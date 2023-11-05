@@ -4,6 +4,7 @@ import lotto.constants.ExceptionMessages;
 import lotto.constants.LottoConstants;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -37,5 +38,13 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int calculateSameNumbers(Lotto lotto) {
+        long sameNumberCount = numbers.stream()
+                .filter(number -> lotto.getNumbers().stream()
+                        .anyMatch(Predicate.isEqual(number)))
+                .count();
+        return (int) sameNumberCount;
     }
 }

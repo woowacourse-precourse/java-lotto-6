@@ -53,9 +53,14 @@ public enum Winner {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder();
         NumberFormat format = NumberFormat.getNumberInstance(Locale.KOREA);
         String formattedNumber = format.format(winningMoney) + "원";
-        return sameCount + "개 일치 " +
-                "(" + formattedNumber + ")";
+        sb.append(sameCount + "개 일치");
+        if (isSameBonusNumber) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" (" + formattedNumber + ")");
+        return sb.toString();
     }
 }

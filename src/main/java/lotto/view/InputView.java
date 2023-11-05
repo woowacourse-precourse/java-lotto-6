@@ -27,7 +27,7 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             OutputView.printError(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -36,7 +36,7 @@ public class InputView {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
             OutputView.printError(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 

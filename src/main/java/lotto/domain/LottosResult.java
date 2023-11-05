@@ -48,7 +48,7 @@ public class LottosResult {
         StringBuilder sb = new StringBuilder();
         sb.append(WINNING_STATISTICS_INFO_MESSAGE);
         for (Map.Entry<Winner, Integer> entry : result.entrySet()) {
-            sb.append(entry.getKey().toString()).append(" - ").append(entry.getValue()).append("\n");
+            sb.append(entry.getKey().toString()).append(" - ").append(entry.getValue()).append("개\n");
         }
         sb.append(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
         return sb.toString();

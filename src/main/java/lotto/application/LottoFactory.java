@@ -33,4 +33,11 @@ public class LottoFactory {
                 .toList()
         );
     }
+
+    public Lotto createLottoByManual(List<Integer> numbers) {
+        return new Lotto(numbers.stream()
+                .map(LOTTO_NUMBER_CACHE::get)
+                .toList()
+        );
+    }
 }

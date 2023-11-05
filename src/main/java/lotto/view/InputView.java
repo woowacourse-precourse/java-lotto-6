@@ -19,7 +19,7 @@ public class InputView {
 
         int responseMoney = Integer.parseInt(money);
 
-        UnitValidator.validUnitCheck(responseMoney);
+        UnitValidator.validMoneyUnitCheck(responseMoney);
         return responseMoney;
     }
     public static List<Integer> getWinningNumberInput() {

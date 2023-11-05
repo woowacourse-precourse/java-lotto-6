@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class Lottery {
     private final int cost;
     private final int numberOfLotto;
-    private final List<List<Integer>> lotto;
+    private final List<Lotto> lotto;
 
     public Lottery(int cost)
     {
@@ -25,19 +25,20 @@ public class Lottery {
         return this.numberOfLotto;
     }
 
-    public List<List<Integer>> getLotto()
+    public List<Lotto> getLotto()
     {
         return this.lotto;
     }
 
-    private List<List<Integer>> pickLotto(int numberOfLotto)
+    private List<Lotto> pickLotto(int numberOfLotto)
     {
-        List<List<Integer>> pickedLotto = new ArrayList<>();
+        List<Lotto> pickedLotto = new ArrayList<>();
         IntStream.range(0, numberOfLotto)
                         .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
                             .map(lotto -> lotto.stream()
                             .sorted()
                             .collect(Collectors.toList()))
+                        .map(Lotto::new)
                         .collect(Collectors.toList());
         return pickedLotto;
     }

@@ -1,21 +1,17 @@
 package lotto.View;
 
 import lotto.Constant.RecordConstant;
-
-import java.util.Arrays;
+import lotto.Lotto;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class OutputView
 {
-    public void printLotto(List<List<Integer>> lotto)
+    public void printLotto(List<Lotto> lotto)
     {
         lotto.stream()
-                .map(innerList -> innerList.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", ", "[", "]")))
-                .forEach(System.out::println);
+            .map(Lotto::toString)
+            .forEach(System.out::println);
     }
 
     public void printResultRecord(List<Integer> resultRecord)

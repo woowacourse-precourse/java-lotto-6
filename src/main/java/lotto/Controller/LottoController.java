@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import lotto.Constant.LottoConstant;
 import lotto.Lottery;
+import lotto.Lotto;
 import lotto.Service.LottoService;
 import lotto.ServiceImp.LottoServiceImp;
 import lotto.View.InputView;
@@ -30,7 +31,7 @@ public class LottoController {
         outputView.printLotto(lottoService.getLotto());
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningLotteryNumber = inputView.getWinningLotteryNumber();
+        Lotto winningLotteryNumber = inputView.getWinningLotteryNumber();
         System.out.println("보너스 번호를 입력해주세요");
         int bonusWinningLotteryNumber = inputView.getBonusWinningLotteryNumber(winningLotteryNumber);
 

@@ -3,6 +3,7 @@ package lotto.ServiceImp;
 import lotto.Constant.RecordConstant;
 import lotto.Exception.OutOfRankingException;
 import lotto.Lottery;
+import lotto.Lotto;
 import lotto.Service.LottoService;
 
 import java.util.*;
@@ -23,22 +24,17 @@ public class LottoServiceImp implements LottoService {
     }
 
     @Override
-    public List<List<Integer>> getLotto()
+    public List<Lotto> getLotto()
     {
         return lottery.getLotto();
     }
 
     @Override
-    public List<Integer> getResultRecordOfLotto() {
-        return null;
-    }
-
-    @Override
-    public List<Integer> getResultRecordOfLotto(List<Integer> winningLotteryNumber, int bonusNumber)
+    public List<Integer> getResultRecordOfLotto(Lotto winningLotteryNumber, int bonusNumber)
     {
-        List<List<Integer>> lotto = getLotto();
+        List<Lotto> lotto = getLotto();
         List<Integer> resultRecord = new ArrayList<>(Collections.nCopies(RecordConstant.NUMBER_OF_RANKING, 0));
-        for(List<Integer> lo : lotto)
+        for(Lotto lo : lotto)
         {
             try
             {
@@ -53,13 +49,9 @@ public class LottoServiceImp implements LottoService {
         return resultRecord;
     }
 
-    private int getResultRecordOfEachLotto(List<Integer> lotto, List<Integer> winningLotteryNumber, int bonusNumber)
+    private int getResultRecordOfEachLotto(Lotto lotto, Lotto winningLotteryNumber, int bonusNumber)
     {
-        Set<Integer> setOfWinningLotteryNumber = new HashSet<>(winningLotteryNumber);
-
-        long overlappedSize = lotto.stream()
-                .filter(setOfWinningLotteryNumber::contains)
-                .count();
+        int overlappedSize = lotto.compare(winningLotteryNumber);
 
         if (overlappedSize == RecordConstant.NameOfRanking.SIX_MATCH.getMatchNumber())
         {

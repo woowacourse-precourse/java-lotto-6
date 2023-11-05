@@ -3,6 +3,8 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Constant.LottoConstant;
 import lotto.Exception.InvalidInputException;
+import lotto.Lotto;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -44,7 +46,7 @@ public class InputView
         }
     }
 
-    private List<Integer> getValidWinningLotteryNumber()
+    private Lotto getValidWinningLotteryNumber()
     {
         try
         {
@@ -53,24 +55,7 @@ public class InputView
                     .boxed()
                     .collect(Collectors.toList());
 
-            if (winningLotteryNumber.size() != LottoConstant.LOTTO_NUMBER_LENGTH)
-            {
-                throw new InvalidInputException("[ERROR] 당첨 번호의 길이가 6이 아닙니다.");
-            }
-
-            if (winningLotteryNumber.stream()
-                    .anyMatch(num -> num<LottoConstant.MINIMUM_NUMBER || num>LottoConstant.MAXIMUM_NUMBER))
-            {
-                throw new InvalidInputException("[ERROR] 당첨 번호는 1~45 사이어야 합니다.");
-            }
-
-            Set<Integer> winningLotteryNumberSet = new HashSet<>(winningLotteryNumber);
-            if (winningLotteryNumberSet.size() != winningLotteryNumber.size())
-            {
-                throw new InvalidInputException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다");
-            }
-
-            return winningLotteryNumber;
+            return new Lotto(winningLotteryNumber);
         }
         catch (NumberFormatException e)
         {
@@ -78,7 +63,7 @@ public class InputView
         }
     }
 
-    public List<Integer> getWinningLotteryNumber()
+    public Lotto getWinningLotteryNumber()
     {
         while (true)
         {
@@ -93,7 +78,7 @@ public class InputView
         }
     }
 
-    private int getValidBonusWinningLotteryNumber(List<Integer> winningLotteryNumber) throws InvalidInputException
+    private int getValidBonusWinningLotteryNumber(Lotto winningLotteryNumber) throws InvalidInputException
     {
         try
         {
@@ -113,7 +98,7 @@ public class InputView
         }
     }
 
-    public int getBonusWinningLotteryNumber(List<Integer> winningLotteryNumber)
+    public int getBonusWinningLotteryNumber(Lotto winningLotteryNumber)
     {
         while (true)
         {

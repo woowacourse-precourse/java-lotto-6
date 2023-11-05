@@ -2,7 +2,7 @@ package lotto.view;
 
 public enum ExceptionMessages {
 
-    STRING_TO_INTEGER("입력 값은 숫자로만 이루어져 있어야 합니다"),
+    STRING_TO_INTEGER("입력 값은 양수만 허용됩니다."),
     DUPLICATION_LIST("입력 값들은 서로 중복되지 않아야 합니다."),
     INPUT_COUNT("입력 값의 개수는 %d개 여야 합니다."),
     INPUT_MULTIPLE_NUMBER("입력 값은 %d의 배수여야 합니다."),

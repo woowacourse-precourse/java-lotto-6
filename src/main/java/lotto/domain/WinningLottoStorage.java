@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,5 +31,21 @@ public class WinningLottoStorage {
 
     public int getRank(Rank rank) {
         return rankStorage.get(rank);
+    }
+
+    public double getRateOfReturn(int purchaseAmount) {
+        return Math.round(calculateWinningAmount() / purchaseAmount * 10000.0) / 100.0;
+    }
+
+    private double calculateWinningAmount() {
+        return Arrays.stream(Rank.values())
+                .mapToDouble(this::calculateRankWinningAmount)
+                .sum();
+    }
+
+    private double calculateRankWinningAmount(Rank rank) {
+        int count = rankStorage.get(rank);
+        Long winningAmount = rank.getWinningAmount();
+        return count * winningAmount;
     }
 }

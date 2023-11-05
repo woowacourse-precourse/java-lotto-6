@@ -87,7 +87,7 @@ public class LottoGame {
 
         for (Lotto lotto : lottos) {
             int matchCount = checkMatchCount(lotto, winningNumbers);
-            if (matchCount < 3) {
+            if (matchCount < Rank.FIFTH.getMatchCount()) {
                 continue;
             }
             boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);

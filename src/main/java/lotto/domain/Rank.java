@@ -19,6 +19,10 @@ public enum Rank {
     private final String winningMessage;
 
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }

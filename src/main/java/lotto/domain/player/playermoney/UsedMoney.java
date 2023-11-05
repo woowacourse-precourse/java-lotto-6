@@ -5,7 +5,7 @@ import lotto.domain.player.LottoTicket;
 import lotto.domain.player.Profit;
 
 public class UsedMoney {
-    private final static int HUNDRED_FOR_CALCULATE_PERCENTAGE = 100;
+    private static final int LOTTO_PRICE = 1000;
     private final int usedMoney;
 
     private UsedMoney(int usedMoney) {
@@ -24,8 +24,7 @@ public class UsedMoney {
         return lottoPrizeMoney.calculateProfit(usedMoney);
     }
 
-    Profit calculateProfit(LottoResultsRepository lottoResultsRepository) {
-        double totalLottoPrizeMoney = lottoResultsRepository.getTotalLottoPrizeMoney();
-        return new Profit(((totalLottoPrizeMoney / usedMoney) * HUNDRED_FOR_CALCULATE_PERCENTAGE));
+    public LottoTicket issueLottoTicket() {
+        return new LottoTicket(usedMoney / LOTTO_PRICE);
     }
 }

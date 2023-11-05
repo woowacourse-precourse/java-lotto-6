@@ -5,7 +5,7 @@ import static lotto.view.ErrorMessage.printMoneyFormatError;
 public class Money {
 
     private static final int LOTTO_PRICE = 1000;
-    private int value;
+    private final int value;
 
     public Money(int value) {
         validate(value);

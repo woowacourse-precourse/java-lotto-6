@@ -6,7 +6,7 @@ import static lotto.view.ErrorMessage.printBonusNumberRangeError;
 
 public class BonusNumber {
 
-    private int value;
+    private final int value;
 
     public BonusNumber(int value) {
         validate(value);

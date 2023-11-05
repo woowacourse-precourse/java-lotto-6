@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.util.ExceptionEnum;
@@ -16,6 +17,13 @@ class PriceTest{
     void 구입_금액_단위_예외_처리(int price){
         assertThatThrownBy(() -> new Price(price)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionEnum.INVALID_PURCHASE_PRICE_UNIT.getMessage());
+    }
+
+    @DisplayName("구입 금액이 1000원 단위이다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 10000, 11000, 510000, 11000})
+    void 구입_금액_단위(int price){
+        assertThatNoException().isThrownBy(() -> new Price(price));
     }
 
 }

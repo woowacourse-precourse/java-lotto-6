@@ -12,6 +12,7 @@ public class OutputView {
 
     private static final String PURCHASED_LOTTO_COUNT_MESSAGE_TEMPLATE = "%s개를 구매했습니다.";
     private static final String LOTTO_RESULT_MESSAGE_TEMPLATE = "%s - %s개";
+    private static final String LOTTO_TOTAL_PROFIT_MESSAGE_TEMPLATE = "총 수익률은 %.1f%%입니다.";
     private static final String LOTTO_RESULT_MESSAGE = "당첨 통계";
     private static final String LOTTO_RESULT_LINE_MESSAGE = "---";
 
@@ -38,5 +39,8 @@ public class OutputView {
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             System.out.println(format(LOTTO_RESULT_MESSAGE_TEMPLATE, lottoPrize, lottoPrizeCountMap.get(lottoPrize)));
         }
+    }
+    public void printLottoTotalProfit(Double totalProfit) {
+        System.out.println(format(LOTTO_TOTAL_PROFIT_MESSAGE_TEMPLATE, totalProfit));
     }
 }

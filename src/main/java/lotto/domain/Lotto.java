@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -31,4 +32,10 @@ public class Lotto {
     public boolean isContainedBonus(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
+
+    // 로또 번호를 정렬하는 메서드
+    public void sortNumbers() {
+        Collections.sort(numbers);
+    }
+
 }

@@ -3,11 +3,9 @@ package lotto;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static lotto.LottoConstant.*;
+import static lotto.constant.LottoConstant.*;
 
 public class Application {
     private static LottoInputView inputView;

@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-import static lotto.LottoConstant.LOTTO_NUMBER_MAX;
-import static lotto.LottoConstant.LOTTO_NUMBER_MIN;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_MAX;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_MIN;
 
 public class LottoNumberGenerator {
     public static List<Integer> generateLottoNumbers() {

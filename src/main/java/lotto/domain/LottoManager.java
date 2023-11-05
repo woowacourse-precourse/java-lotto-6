@@ -9,18 +9,16 @@ public class LottoManager {
     private Generator generator;
     private int lottoCount;
 
-    private LottoManager(int lottoCount) {
-        this.lottoCount = lottoCount;
+    private LottoManager(Generator generator) {
+        this.generator = generator;
+    }
+
+    public static LottoManager from(Generator generator) {
+        return new LottoManager(generator);
+    }
+
+    private void buyAutoLottos(int lottoCount) {
         autoLottos = AutoLottos.from();
-        generator = new LottoGenerator();
-        buyAutoLottos();
-    }
-
-    public static LottoManager from(int money) {
-        return new LottoManager(money);
-    }
-
-    private void buyAutoLottos() {
         autoLottos.createAutoLottos(lottoCount, generator);
     }
 

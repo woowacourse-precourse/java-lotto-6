@@ -2,9 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.*;
 
+import java.util.List;
+
 public class Application {
 
     public static void game() {
+        //금액 입력 메서드 나누기
         System.out.println("구입금액을 입력해 주세요.");
         long purchaseAmount = Integer.parseInt(Console.readLine());
         //1000의 배수 인지 판단 -> 아니라면 에러 후 종료 (정상, 예외 테스트 추가)
@@ -12,10 +15,12 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
         }
 
-        //1000의 배수라면
+        //1000의 배수라면 (메서드 나누기)
         //구입한 로또의 개수 출력
-        CreateLottos(purchaseAmount / 1000);
+        System.out.println(String.format("%d개를 구매했습니다.",purchaseAmount / 1000));
         //구입한 로또의 번호 출력
+        List<Lotto> lottos = Lotto.CreateLottos(purchaseAmount / 1000);
+
         //당첨 번호 입력 받기
         //보너스 번호 입력 받기
         //로또 생성

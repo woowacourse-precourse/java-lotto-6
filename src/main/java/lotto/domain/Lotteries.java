@@ -1,23 +1,35 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.constant.NumberConstant;
+import lotto.util.RandomNumberGenerator;
 
 public class Lotteries {
 
     private final List<Lotto> lotteries;
 
-    private Lotteries(List<Integer> lottoNumbers) {
-        this.lotteries = generateLotteries(lottoNumbers);
+    private Lotteries(int purchaseCount) {
+        this.lotteries = generateLotteries(purchaseCount);
     }
 
-    public static Lotteries from(List<Integer> lottoNumbers) {
-        return new Lotteries(lottoNumbers);
+    public static Lotteries from(int purchaseCount) {
+        return new Lotteries(purchaseCount);
     }
 
-    public List<Lotto> generateLotteries(List<Integer> lottoNumbers) {
-        return lottoNumbers.stream()
-                .map(numbers -> new Lotto(lottoNumbers))
-                .collect(Collectors.toList());
+    private List<Lotto> generateLotteries(int purchaseCount) {
+        for (int i = 0; i < purchaseCount; i++) {
+            lotteries.add(new Lotto(generateLottoNumbers()));
+        }
+        return lotteries;
+    }
+
+    private List<Integer> generateLottoNumbers() {
+        List<Integer> randomNumbers =  Randoms.pickUniqueNumbersInRange(
+                NumberConstant.LOTTO_MIN_NUMBER.getNumber(),
+                NumberConstant.LOTTO_MAX_NUMBER.getNumber(),
+                NumberConstant.LOTTO_COUNT.getNumber()
+        );
+        return randomNumbers;
     }
 }

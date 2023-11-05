@@ -22,9 +22,9 @@ class PurchaseLottoTest {
         assertThat(purchaseLotto.getAmount()).isEqualTo(lottoCount);
     }
 
-    @DisplayName("구매한 로또들을 당첨 로또와 비교하여 당첨 등수를 찾는다.")
+    @DisplayName("구매한 로또들의 총 당첨 상금을 계산한다.")
     @Test
-    void findWinningRanksByWinningLotto() {
+    void calculateTotalWinningPriceByWinningLotto() {
         //given
         final List<List<Integer>> purchaseLottoNumbers = List.of(
                 List.of(1, 2, 3, 4, 5, 6),
@@ -32,17 +32,16 @@ class PurchaseLottoTest {
         );
         final List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
+        final long predicationTotalWinningPrice = Rank.FIRST.getWinningPrice() + Rank.SECOND.getWinningPrice();
 
         PurchaseLotto purchaseLotto = createPurchaseLotto(purchaseLottoNumbers);
         WinningLotto winningLotto = createWinningLottoBy(winningLottoNumbers, bonusNumber);
 
         //when
-        List<Rank> rankResults = purchaseLotto.getWinningRankResults(winningLotto);
+        long totalWinningPrice = purchaseLotto.calculateTotalWinningPrice(winningLotto);
 
         //then
-        assertThat(rankResults).containsExactly(
-                Rank.FIRST, Rank.SECOND
-        );
+        assertThat(totalWinningPrice).isEqualTo(predicationTotalWinningPrice);
     }
 
     private PurchaseLotto createPurchaseLotto(List<List<Integer>> numbers) {

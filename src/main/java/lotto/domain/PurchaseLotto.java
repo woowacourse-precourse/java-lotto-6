@@ -23,7 +23,14 @@ public class PurchaseLotto {
         return this.lottos.size();
     }
 
-    public List<Rank> getWinningRankResults(WinningLotto winningLotto) {
+    public long calculateTotalWinningPrice(WinningLotto winningLotto) {
+        List<Rank> winningRanks = getWinningRanks(winningLotto);
+        return winningRanks.stream()
+                .mapToLong(Rank::getWinningPrice)
+                .sum();
+    }
+
+    private List<Rank> getWinningRanks(WinningLotto winningLotto) {
         return this.lottos.stream()
                 .map(winningLotto::calcuateWinningRank)
                 .collect(Collectors.toList());

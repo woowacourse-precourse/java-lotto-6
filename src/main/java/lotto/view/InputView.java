@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Bonus;
 import lotto.model.Budget;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.utils.Parser;
 
 public class InputView {
@@ -20,19 +21,25 @@ public class InputView {
         }
     }
 
-    public Budget inputBudget(){
+    public Budget inputBudget() {
         System.out.println(ConsoleMessage.INPUT_BUDGET.message);
         String input = Console.readLine();
         return Parser.parseToBudget(input);
     }
 
-    public Lotto inputWinningNumbers(){
+    public WinningLotto inputWinningLotto() {
+        Lotto lotto = inputWinningNumbers();
+        Bonus bonus = inputBonusNumbers();
+        return new WinningLotto(lotto, bonus);
+    }
+
+    private Lotto inputWinningNumbers() {
         System.out.println(ConsoleMessage.INPUT_WINNING_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToLotto(input);
     }
 
-    public Bonus inputBonusNumbers(){
+    private Bonus inputBonusNumbers() {
         System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToBonus(input);

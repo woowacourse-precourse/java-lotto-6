@@ -13,14 +13,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.naming.CompositeName;
 
 public class LottoSystem {
     private List<Integer> lottoWinningNumbers;
     private int lottoBonusNumber;
 
     public LottoSystem(String lottoWinningNumber, String lottoBonusNumber) {
-
         if (isEmpty(lottoWinningNumber)) {
             lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
             if (isNumber(lottoWinningNumber) && isValidRangeNumber(lottoWinningNumber)) {
@@ -30,7 +28,6 @@ public class LottoSystem {
             }
             this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
         }
-
         if (isEmpty(lottoBonusNumber)) {
             lottoBonusNumber = lottoBonusNumber.replaceAll(" ", "");
             if (isNumber(lottoBonusNumber) && isValidRangeNumber(lottoBonusNumber)) {

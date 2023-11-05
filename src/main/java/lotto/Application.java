@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,5 +24,6 @@ public class Application {
         Map<String, Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(customer.getPurchasedLottoNumbers());
 
         OutView.printLottoWinningStatistics(lottoWinningStatistics);
+        double result = customer.calculateRateOfReturn(lottoWinningStatistics);
     }
 }

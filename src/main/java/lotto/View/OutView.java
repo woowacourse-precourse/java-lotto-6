@@ -2,7 +2,7 @@ package lotto.View;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Util.WinningStatisticsMessage;
+import lotto.Util.WinningStatistics;
 
 public class OutView {
     static final String SUCCESFULLY_PURCHASE_LOTTO_MESSAGE = "개를 구매했습니다.";
@@ -18,7 +18,7 @@ public class OutView {
     public static void printLottoWinningStatistics(Map<String, Integer> lottoWinningStatistics){
         System.out.println(LOTTO_WINNING_STATISTICS_START_MESSAGE);
         int index = 3;
-        for(WinningStatisticsMessage message : WinningStatisticsMessage.values()){
+        for(WinningStatistics message : WinningStatistics.values()){
             if(lottoWinningStatistics.get(Integer.toString(index)) == null){
                 System.out.println(message.getMessage() + "0개");
                 index++;
@@ -28,4 +28,5 @@ public class OutView {
             index++;
         }
     }
+
 }

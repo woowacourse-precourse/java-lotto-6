@@ -1,8 +1,11 @@
 package lotto.Domain;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
+import lotto.Util.WinningStatistics;
 
 public class Customer {
     private List<Lotto> purchasedLottos;
@@ -18,5 +21,18 @@ public class Customer {
             purchasedLottoNumbers.add(lotto.getNumbers());
         }
         return purchasedLottoNumbers;
+    }
+
+    public double calculateRateOfReturn(Map<String, Integer> lottoWinningStatistics){
+        double investMoney = purchasedLottos.size() * 1000;
+        double totalReward = 0;
+        int i=3;
+        for(WinningStatistics num : WinningStatistics.values()){
+            if(lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) != null){
+                totalReward += (double)lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) * num.getReward();
+            }
+        }
+        double rateOfReturn = (totalReward - investMoney)/investMoney;
+        return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }

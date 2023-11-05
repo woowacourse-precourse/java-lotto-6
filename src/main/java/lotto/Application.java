@@ -1,11 +1,11 @@
 package lotto;
 
-import lotto.service.LottoShop;
+import lotto.service.LottoMachine;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        LottoShop.buyLotto(8000);
+        LottoMachine.buyLotto(8000);
     }
 }

@@ -22,9 +22,9 @@ public class LottoGameController {
         LottoGame lottoGame = getNewLottoGame();
         outputView.printIssuanceLotto(lottoGame.getUser().issuanceLotto());
         outputView.printRequestWinNumbers();
-        Lotto lotto = new Lotto(inputView.inputWinNumbers());
+        Lotto winLotto = getWinLotto();
         outputView.printRequestBonusNumber();
-        DrawResult drawResult = new DrawResult(lotto, inputView.inputInteger());
+        DrawResult drawResult = getDrawResult(winLotto);
         drawResult.validateDuplication();
         lottoGame.calculationResult(drawResult);
         outputView.printResult(lottoGame);
@@ -43,7 +43,7 @@ public class LottoGameController {
         return lottoGame;
     }
 
-    public DrawResult getNewWinnLotto() {
+    public Lotto getWinLotto() {
         Lotto lotto;
         while (true) {
             try {
@@ -53,7 +53,33 @@ public class LottoGameController {
                 System.out.println(e.getMessage());
             }
         }
-        outputView.printRequestBonusNumber();
         return lotto;
+    }
+
+    public int getBonusNumber() {
+        int bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = inputView.inputInteger();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    public DrawResult getDrawResult(Lotto lotto) {
+        DrawResult drawResult;
+        while (true) {
+            try {
+                drawResult = new DrawResult(lotto, getBonusNumber());
+                drawResult.validateDuplication();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return drawResult;
     }
 }

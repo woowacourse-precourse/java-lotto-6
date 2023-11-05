@@ -7,6 +7,7 @@ public class LottoDB {
 
     // instance
     private final ArrayList<Integer> userLottoNumbers;
+
     private int userLottoCount;
 
     public LottoDB() {

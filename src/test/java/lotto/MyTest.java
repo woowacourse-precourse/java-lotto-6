@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,7 @@ public class MyTest extends NsTest {
     void setLottoNumbers() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("3000");
+                    run("3000", "1,2,3,4,5,6");
                     assertThat(output()).contains(
                             "3개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -49,6 +51,50 @@ public class MyTest extends NsTest {
                 List.of(3, 5, 11, 16, 32, 38),
                 List.of(7, 11, 16, 35, 36, 44)
         );
+    }
+
+    @DisplayName("로또의 당첨 번호가 6개가 아니면 에러가 발생한다.")
+    @Test
+    public void checkLottoWinningNumberError1() {
+        assertThatThrownBy(() -> {
+            ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+            lottoController = new LottoController();
+            lottoController.setLotto(numbers);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
+    @DisplayName("로또의 당첨 번호 모두가 1보다 커야한다.")
+    @Test
+    public void checkLottoWinningNumberError2() {
+        assertThatThrownBy(() -> {
+            String[] input = {"0", "1", "2", "3", "4", "5"};
+            lottoController = new LottoController();
+            lottoController.convertStringListToIntegerList(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
+    @DisplayName("로또의 당첨 번호 모두가 45보다 작아야한다.")
+    @Test
+    public void checkLottoWinningNumberError3() {
+        assertThatThrownBy(() -> {
+            String[] input = {"1", "2", "3", "4", "5", "46"};
+            lottoController = new LottoController();
+            lottoController.convertStringListToIntegerList(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
+    @DisplayName("로또의 당첨 번호가 정수로 구성되어야한다.")
+    @Test
+    public void checkLottoWinningNumberError4() {
+        assertThatThrownBy(() -> {
+            String[] input = {"a", "2", "3", "4", "5", "!"};
+            lottoController = new LottoController();
+            lottoController.convertStringListToIntegerList(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
     }
 
     public void runMain() {

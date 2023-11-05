@@ -32,7 +32,7 @@ public class LottoController {
         do {
             try {
                 lottoView.userCountInputAnnouncement();
-                String userInputString = Console.readLine();
+                String userInputString = readLineFromUser();
                 int userInputInteger = convertStringToInteger(userInputString);
                 checkUserInputIsThousandUnit(userInputInteger);
                 lottoDB.saveUserLottoCount(userInputInteger / UNIT);
@@ -58,15 +58,27 @@ public class LottoController {
         do {
             try {
                 lottoView.userInputLottoWinningNumberAnnouncement();
-                String userInputString = Console.readLine();
-                String[] userInputStringArray = userInputString.split(",");
+                String userInputString = readLineFromUser();
+                String[] userInputStringArray = splitStringByComma(userInputString);
                 List<Integer> userInputIntegerArray = convertStringListToIntegerList(userInputStringArray);
-                this.lotto = new Lotto(userInputIntegerArray);
+                setLotto(userInputIntegerArray);
                 pass = false;
             } catch (IllegalArgumentException e) {
                 lottoView.printError(e.getMessage());
             }
         } while (pass);
+    }
+
+    public void setLotto(List<Integer> input) {
+        this.lotto = new Lotto(input);
+    }
+
+    public String readLineFromUser() {
+        return Console.readLine();
+    }
+
+    public String[] splitStringByComma(String input) {
+        return input.split(",");
     }
 
     public ArrayList<Integer> convertStringListToIntegerList(String[] input) throws IllegalArgumentException {

@@ -21,10 +21,13 @@ public class LottoMachine {
     private List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(lottoNumbers));
+            lottos.add(new Lotto(generateLottoNumbers()));
         }
 
         return lottos;
+    }
+
+    private List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_AMOUNT);
     }
 }

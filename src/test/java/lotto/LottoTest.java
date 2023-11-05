@@ -71,4 +71,18 @@ class LottoTest {
         // then
         assertEquals(expectedResult, result);
     }
+
+    @DisplayName("당첨 번호에 속하는 로또 번호 개수를 카운트한다.")
+    @Test
+    void 당첨_번호에_속하는_로또_번호_개수_카운트() {
+        // given
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        int count = userLotto.countMatchedNumber(winningNumber);
+
+        // then
+        assertEquals(5, count);
+    }
 }

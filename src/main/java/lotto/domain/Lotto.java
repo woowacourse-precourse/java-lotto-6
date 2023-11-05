@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,5 +18,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int getNumbersSize() {
+        return this.numbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(this.numbers);
+    }
+
+    public boolean hasNumber(int number) {
+        return this.numbers.contains(number);
+    }
+
 }

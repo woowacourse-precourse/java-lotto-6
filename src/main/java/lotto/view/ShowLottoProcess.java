@@ -24,4 +24,10 @@ public class ShowLottoProcess {
         System.out.println(process.showLottosInformation());
         System.out.println();
     }
+
+    public void printPickWinNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        process.pickWinNumber();
+        System.out.println();
+    }
 }

@@ -1,20 +1,73 @@
 package lotto.domain;
 
+import lotto.constant.LottoConfig;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
+import static lotto.constant.ErrorMessage.*;
+
 public class WinningLotto {
-     public static List<Integer> getWinnerNumber(String inputWinnerNumber) {
-         return splitAndParseToIntegers(removeBySpace(inputWinnerNumber));
+    public static List<Integer> getWinnerNumber(String inputWinnerNumber) {
+        List<Integer> winningNumbers = parseToInteger(removeBySpace(inputWinnerNumber));
+        validate(winningNumbers);
+        return winningNumbers;
     }
 
-    private static String removeBySpace(String winnerNumbers){
-        return winnerNumbers.replaceAll("\\s*,\\s*", ",");
+    public static void validate(List<Integer> winnerNumber) {
+        validateSize(winnerNumber);
+        validateRange(winnerNumber);
+        validateDuplicate(winnerNumber);
     }
 
-    private static List<Integer> splitAndParseToIntegers(String winnerNumbers) {
-        return Stream.of(winnerNumbers.split(","))
+    private static void validateSize(List<Integer> winnerNumber) {
+        if (winnerNumber.size() != LottoConfig.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ERROR_LOTTO_SIZE.toString());
+        }
+    }
+
+    private static void validateRange(List<Integer> winnerNumber) {
+        for (Integer number : winnerNumber) {
+            if (number < LottoConfig.MIN_RANGE || number > LottoConfig.MAX_RANGE) {
+                throw new IllegalArgumentException(ERROR_LOTTO_RANGE.toString());
+            }
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> winnerNumber) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(winnerNumber);
+        if (nonDuplicateNumbers.size() != winnerNumber.size()) {
+            throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE.toString());
+        }
+    }
+
+    private static String[] splitComma(String inputWinnerNumbers){
+        return inputWinnerNumbers.split(",");
+    }
+
+    public static void validateNumber(String[] winnerNumber){
+        for (String number : winnerNumber) {
+            if (!isNumeric(number)) {
+                throw new IllegalArgumentException(ERROR_NOT_NUMBER.toString());
+            }
+        }
+    }
+
+    private static boolean isNumeric(String str) {
+        return str.matches("\\d+");
+    }
+
+    private static List<Integer> parseToInteger(String winnerNumbers) {
+        String[] winnerNumber = splitComma(winnerNumbers);
+        validateNumber(winnerNumber);
+        return Stream.of(winnerNumber)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private static String removeBySpace(String inputWinnerNumbers) {
+        return inputWinnerNumbers.replaceAll("\\s*,\\s*", ",");
     }
 }

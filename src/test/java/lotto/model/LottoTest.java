@@ -29,6 +29,21 @@ public class LottoTest {
     }
 
     @ParameterizedTest
+    @MethodSource("validSize")
+    @DisplayName("로또 개수 성공 테스트")
+    void validSizeTest(List<Integer> validSize) {
+        assertDoesNotThrow(
+                () -> new Lotto(validSize));
+    }
+
+    static Stream<Arguments> validSize() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5,6)),
+                Arguments.of(Arrays.asList(40,41,42,43,44,45))
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("invalidRange")
     @DisplayName("로또 범위 실패 테스트")
     void invalidRangeTest(List<Integer> invalidRange) {

@@ -3,6 +3,7 @@ package lotto.validation;
 import lotto.exception.LottoException;
 
 public class Validator {
+    private static final String winningNumbersFormat = "^\\d{1,2}(,\\d{1,2}){5}$"; // "1,2,23,43,45,32", 당첨 번호 정규식
 
     public static void validateLottoAmountNumeric(String input) throws LottoException {
         try {
@@ -21,8 +22,7 @@ public class Validator {
     }
 
     public static void validatedWinningNumbersFormat(String lottoNumbers) throws LottoException {
-        String regex = "^\\d{1,2}(,\\d{1,2}){5}$";
-        if (!lottoNumbers.matches(regex)) {
+        if (!lottoNumbers.matches(winningNumbersFormat)) {
             throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }

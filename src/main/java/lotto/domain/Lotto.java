@@ -1,15 +1,16 @@
 package lotto.domain;
 
-import static lotto.ErrorMessageConstants.DUPLICATE_ERROR;
-import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.ErrorMessageConstants.PICK_NUMBER_ERROR;
-import static lotto.ErrorMessageConstants.RANGE_ERROR;
+import static lotto.utils.constants.ErrorMessageConstants.DUPLICATE_ERROR;
+import static lotto.utils.constants.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.utils.constants.ErrorMessageConstants.PICK_NUMBER_ERROR;
+import static lotto.utils.constants.ErrorMessageConstants.RANGE_ERROR;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -44,4 +45,5 @@ public class Lotto {
     public boolean isMatch(int number) {
         return numbers.contains(number);
     }
+
 }

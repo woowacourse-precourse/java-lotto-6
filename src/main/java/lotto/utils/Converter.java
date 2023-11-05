@@ -24,4 +24,17 @@ public class Converter {
     public static List<String> stringToList(String inputValue){
         return new ArrayList<>(List.of(inputValue.split(",")));
     }
+
+    public static void stringToInt(List<String> numbers) {
+        numbers.stream()
+                .forEach((number) -> Integer.parseInt(number));
+    }
+
+    public static List<String> lottoToString(Lotto lotto) {
+        List<String> numbers = lotto.getNumbers()
+                .stream().map(String::valueOf)
+                .collect(Collectors.toList());
+        return numbers;
+    }
+
 }

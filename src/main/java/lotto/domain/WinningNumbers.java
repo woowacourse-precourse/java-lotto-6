@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import static lotto.ErrorMessageConstants.DUPLICATE_ERROR;
-import static lotto.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.ErrorMessageConstants.RANGE_ERROR;
+import static lotto.utils.constants.ErrorMessageConstants.DUPLICATE_ERROR;
+import static lotto.utils.constants.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.utils.constants.ErrorMessageConstants.RANGE_ERROR;
+import static lotto.utils.constants.LottoConstants.LOTTO_END_NUMBER;
+import static lotto.utils.constants.LottoConstants.LOTTO_START_NUMBER;
 
 public class WinningNumbers {
 
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
     private final Lotto mainNumbers;
     private final int bonusNumber;
 

@@ -5,5 +5,6 @@ public class Application {
         // TODO: 프로그램 구현
         LottoGame lottoGame = new LottoGame();
         lottoGame.run();
+
     }
 }

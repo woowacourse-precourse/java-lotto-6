@@ -17,7 +17,7 @@ public class InputView {
         System.out.println(PURCHASE_MESSAGE);
     }
 
-    public static String getWinningNumbers(){
+    public static String getWinningNumbers() {
         printInputWinningNumbers();
         return Console.readLine();
     }
@@ -26,7 +26,7 @@ public class InputView {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
-    public static String getBonusNumber(){
+    public static String getBonusNumber() {
         printInputBonusNumber();
         return Console.readLine();
     }

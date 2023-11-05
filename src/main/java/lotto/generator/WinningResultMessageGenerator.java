@@ -17,7 +17,7 @@ public class WinningResultMessageGenerator {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",
             "6개 일치 (2,000,000,000원) - %d개\n"
     );
-    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###.0");
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,##0.0");
     private static final String PROFIT_RATIO_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String MESSAGE_SUMMING_FORMAT = "%s%s";
 

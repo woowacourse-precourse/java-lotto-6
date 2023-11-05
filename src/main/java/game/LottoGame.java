@@ -18,13 +18,11 @@ import java.util.List;
 
 public class LottoGame {
     public void run() {
-//        List<List<Integer>> userLottoNumbers = new ArrayList<>();
-
         Converter converter = new Converter();
         // LottoTicketPurchase
         LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
         LottoTicketDisplay lottoTicketDisplay = new LottoTicketDisplay();
-        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();
+        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
 
         System.out.println();
 

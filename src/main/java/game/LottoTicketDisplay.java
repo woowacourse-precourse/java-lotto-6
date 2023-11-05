@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTicketDisplay {
-
-    // 1. 구매양을 얻는 메서드
-    // 2. 구매양 출력
-    // 3. 구매양에 따른 리스트 얻기
-    // 4. 리스트를 출력하는 기능
     public int getPurchaseQuantity(int purchaseAmount) {
         return purchaseAmount / PURCHASE_UNIT;
     }
@@ -38,5 +33,4 @@ public class LottoTicketDisplay {
         }
         return userLottoNumbers;
     }
-
 }

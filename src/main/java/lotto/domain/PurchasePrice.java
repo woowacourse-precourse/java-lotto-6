@@ -3,6 +3,10 @@ package lotto.domain;
 public class PurchasePrice {
     private int price;
 
+    public PurchasePrice(int price) {
+        this.price = price;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -10,23 +14,4 @@ public class PurchasePrice {
     private void validatePurchasePrice() {
 
     }
-
-    private boolean isOverMinPrice() {
-        return true;
-    }
-
-    private void checkOverMinPrice() {
-
-    }
-
-    private boolean isRemainderZero() {
-        return true;
-    }
-
-    private void checkRemainderZero() {
-
-    }
-
-
-
 }

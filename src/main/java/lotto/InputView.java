@@ -9,6 +9,12 @@ public class InputView {
         return rawPurchase;
     }
 
+    private static void validateNumber(String value) {
+        ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
+        Validator validator = validatorFactory.getValidator(InputView.class);
+        validator.validate(value);
+    }
+
     private static String input(String message) {
         System.out.println(message);
         return Console.readLine();

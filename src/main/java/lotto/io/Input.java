@@ -91,15 +91,16 @@ public class Input {
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         String userInput = Console.readLine();
-        validateBonusNumber(userInput);
+        validateBonusNumber(userInput, winningNumbers);
         return Integer.parseInt(userInput);
     }
 
-    private void validateBonusNumber(String userInput) {
+    private void validateBonusNumber(String userInput, List<Integer> winningNumbers) {
         validateOnlyOneNumber(userInput);
         validateBonusNumberRange(userInput);
+        validateDuplicateWithWinningNumbers(userInput, winningNumbers);
     }
 
     private void validateOnlyOneNumber(String userInput) {
@@ -114,6 +115,13 @@ public class Input {
         int bonusNumber = Integer.parseInt(userInput);
         if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 이상 45 이하로 입력해 주세요.");
+        }
+    }
+
+    private void validateDuplicateWithWinningNumbers(String userInput, List<Integer> winningNumbers) {
+        int bonusNumber = Integer.parseInt(userInput);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

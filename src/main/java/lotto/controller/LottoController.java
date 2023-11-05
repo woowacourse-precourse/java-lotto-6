@@ -22,7 +22,7 @@ public class LottoController {
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
         List<Integer> winningNumbers = generateWinningNumbers();
-        int bonusNumber = generateBonusNumber();
+        int bonusNumber = generateBonusNumber(winningNumbers);
 
         List<Integer> winningLottoCounts = getWinningLottosCount(myLottos, winningNumbers, bonusNumber);
         double profit = getLottoProfit(winningLottoCounts, money);
@@ -67,15 +67,15 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private int generateBonusNumber() {
+    private int generateBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
         System.out.println();
         try {
             output.printInputBonusNumberMessage();
-            bonusNumber = input.getBonusNumber();
+            bonusNumber = input.getBonusNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            bonusNumber = generateBonusNumber();
+            bonusNumber = generateBonusNumber(winningNumbers);
         }
         return bonusNumber;
     }

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumValidator;
-import lotto.domain.CostValidator;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumValidator;
+import lotto.domain.*;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
@@ -16,10 +13,10 @@ public class InputController {
     public InputController(InputView input) {
         this.input = input;
     }
-    public int setCost(){
+    public LottoGenerator setCost(){
         try{
             new CostValidator(input.inputCost());
-            return CostValidator.lottoCount;
+            return new LottoGenerator(CostValidator.lottoCount);
         }catch (IllegalArgumentException  e){
             throw new IllegalArgumentException();
         }

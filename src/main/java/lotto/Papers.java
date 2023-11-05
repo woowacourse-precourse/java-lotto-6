@@ -23,7 +23,7 @@ public class Papers {
     }
 
     public void printPapers(){
-        System.out.println(papers.size()+"개를 구매했습니다.");
+        System.out.println("\n"+papers.size()+"개를 구매했습니다.");
         for(Paper i : papers){
             i.printPaperNumbers();
         }

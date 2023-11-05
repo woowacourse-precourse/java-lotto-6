@@ -8,7 +8,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		ValidateInput validate = new ValidateInput();
-		LottoNumberFactory factory = new LottoNumberFactory();
 		System.out.println("구입금액을 입력해 주세요.");
 
 		int count = -1;
@@ -24,17 +23,16 @@ public class Application {
 
 		System.out.println(count+"개를 구매했습니다.");
 
-		List<Lotto> lottos = factory.makeLotto(count);
+		List<Lotto> lottos = LottoNumberFactory.makeLotto(count);
 
 		System.out.println();
 		System.out.println("당첨 번호를 입력해주세요.");
 		String winningInput = readLine();
 		List<Integer> winningNumbers = validate.validateWinningNumber(winningInput);
-
 		System.out.println();
-		System.out.println("보너스 번호를 입력하세요.");
 
-		final int bonus = validate.validateBonus(readLine());
+		System.out.println("보너스 번호를 입력하세요.");
+		final int bonus = validate.validateBonus(readLine(), winningNumbers);
 
 		List<Result> results = lottos.stream().map(lotto -> lotto.checkRank(winningNumbers, bonus)).toList();
 		int total = results.stream().mapToInt(Result::getPrize).sum();

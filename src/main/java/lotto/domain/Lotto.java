@@ -1,15 +1,16 @@
 package lotto.domain;
 
 import lotto.dto.LottoNumbers;
+import lotto.validator.LottoValidator;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Lotto {
 
     public static final int PRICE = 1_000;
+    public static final int MINIMUM_NUMBER = 1;
+    public static final int MAXIMUM_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -19,25 +20,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNumbersCount(numbers);
-        validateUniqueNumbers(numbers);
+        LottoValidator.validateLottoNumbersCount(numbers);
+        LottoValidator.validateUniqueLottoNumbers(numbers);
+        LottoValidator.validateLottoNumbersRange(numbers);
     }
 
     public LottoNumbers getNumbers() {
         return new LottoNumbers(numbers);
-    }
-
-    private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateUniqueNumbers(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
-        }
     }
 
     @Override

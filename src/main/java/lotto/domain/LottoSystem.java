@@ -9,9 +9,11 @@ import java.util.List;
 public class LottoSystem {
 
     private final Buyer buyer;
+    private final WinningLotto winningLotto;
 
-    public LottoSystem(Buyer buyer) {
+    public LottoSystem(Buyer buyer, WinningLotto winningLotto) {
         this.buyer = buyer;
+        this.winningLotto = winningLotto;
     }
 
     public void buyLotto(int purchaseAmount) {
@@ -31,5 +33,9 @@ public class LottoSystem {
                 .map(Lotto::getNumbers)
                 .toList();
         return new PurchasedLotto(purchasedLottos.size(), lottos);
+    }
+
+    public void generateWinningLotto(List<Integer> winningLottoNumbers) {
+        winningLotto.generate(winningLottoNumbers);
     }
 }

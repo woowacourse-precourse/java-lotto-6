@@ -18,7 +18,7 @@ class LottoSystemTest {
     @BeforeEach
     void setUp() {
         buyer = new Buyer();
-        lottoSystem = new LottoSystem(buyer);
+        lottoSystem = new LottoSystem(buyer, winningLotto);
     }
 
     @DisplayName("사용자가 입력한 구매 금액에 맞는 개수만큼 로또를 발행한다.")

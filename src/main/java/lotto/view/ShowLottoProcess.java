@@ -20,4 +20,8 @@ public class ShowLottoProcess {
         System.out.println(process.tellNumberLotto());
     }
 
+    public void printInformationUserLotto() {
+        System.out.println(process.showLottosInformation());
+        System.out.println();
+    }
 }

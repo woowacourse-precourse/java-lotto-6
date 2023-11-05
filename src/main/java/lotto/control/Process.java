@@ -43,7 +43,7 @@ public class Process {
     /**
      * 로또를 보여준다.
      */
-    public StringBuilder showLotto() {
+    public StringBuilder showLottosInformation() {
         return user.showLottoEnvelop();
     }
 

@@ -20,7 +20,7 @@ public enum PrintMessage {
 		this.message = message;
 	}
 
-	public String printMessage() {
+	public String getMessage() {
 		return message;
 	}
 	

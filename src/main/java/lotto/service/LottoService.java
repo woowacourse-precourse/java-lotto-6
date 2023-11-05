@@ -1,7 +1,10 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.BonusNumber;
 import lotto.Lotto;
+import lotto.configuration.BonusCount;
+import lotto.configuration.WinningLevel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,7 +59,19 @@ public class LottoService {
         }
     }
 
-    public void reportLotteryAmount() {
+    public void reportLotteryAmount(Integer matchValue) {
+        if (matchValue == 6) {
 
+        }
     }
+
+    public boolean isBonusNumberInWinningLotto(List<Integer> winningLotto) {
+        BonusNumber bonusNumber = new BonusNumber(5);
+        if (winningLotto.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

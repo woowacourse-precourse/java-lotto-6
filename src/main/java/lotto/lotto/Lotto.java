@@ -1,11 +1,12 @@
 package lotto.lotto;
 
 import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.ExceptionMessage;
+import lotto.validator.LottoNumberValidator;
 
 class Lotto {
     private final List<Integer> numbers;
@@ -29,9 +30,7 @@ class Lotto {
 
     private void validateEachNumberSize(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE);
-            }
+            LottoNumberValidator.validateNumberIsLottoNumber(number, WRONG_LOTTO_NUMBER_SIZE);
         });
     }
 

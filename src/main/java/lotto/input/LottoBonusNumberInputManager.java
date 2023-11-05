@@ -5,6 +5,7 @@ import static lotto.exception.ExceptionMessage.WRONG_BONUS_NUMBER_SIZE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.validator.LottoNumberValidator;
 
 class LottoBonusNumberInputManager {
     private LottoBonusNumberInputManager() {
@@ -33,9 +34,7 @@ class LottoBonusNumberInputManager {
     }
 
     private static void validateLottoNumberSize(int lottoNumber) {
-        if (lottoNumber < 1 || lottoNumber > 45) {
-            throw new IllegalArgumentException(WRONG_BONUS_NUMBER_SIZE);
-        }
+        LottoNumberValidator.validateNumberIsLottoNumber(lottoNumber, WRONG_BONUS_NUMBER_SIZE);
     }
 
     private static void validateDuplicateWithLottoNumber(List<Integer> lottoNumbers, int bonusNumber) {

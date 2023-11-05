@@ -1,6 +1,7 @@
 package lotto.input;
 
 import static lotto.exception.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_INPUT;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.validator.LottoNumberValidator;
 
 class LottoNumberInputManager {
     private static final Pattern numberOnly = Pattern.compile("\\d+");
@@ -61,9 +63,7 @@ class LottoNumberInputManager {
     }
 
     private static void validateLottoNumberSize(int lottoNumber) {
-        if (lottoNumber < 1 || lottoNumber > 45) {
-            throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_SIZE);
-        }
+        LottoNumberValidator.validateNumberIsLottoNumber(lottoNumber, WRONG_LOTTO_NUMBER);
     }
 
     private static List<Integer> convertToLottoNumber(List<String> parsedInput) {

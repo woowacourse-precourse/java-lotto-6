@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,6 +28,16 @@ class LottoShopTest {
         List<Lotto> buyerLotto = lottoShop.createByBuyerLotto(price);
 
         assertEquals(buyerLotto.size(), price / 1000);
+    }
+
+    @Test
+    @DisplayName("당첨 번호로 WinningLotto 생성 확인 테스트")
+    void createWinningLottoWithInputNumbers() {
+        List<Integer> inputWinningLotto = List.of(1, 2, 3, 4, 5, 6);
+
+        Lotto winningLotto = lottoShop.createByWinningLotto(inputWinningLotto);
+
+        assertThat(winningLotto).isInstanceOf(Lotto.class);
     }
 }
 

@@ -3,12 +3,14 @@ package lotto;
 import static lotto.constants.Value.FIRST_CHARACTER;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
+import static lotto.constants.Value.REMAINDER_ZERO;
 import static lotto.constants.Value.THOUSAND;
 import static lotto.constants.Error.NOT_NUMBER_ERROR;
 import static lotto.constants.Error.NOT_POSITIVE_NUMBER_ERROR;
 import static lotto.constants.Error.RANGE_ERROR;
 import static lotto.constants.Error.REMAINDER_ERROR;
 import static lotto.constants.Error.ZERO_INCLUSION_ERROR;
+import static lotto.constants.Value.ZERO;
 
 public class Validator {
 
@@ -21,7 +23,7 @@ public class Validator {
     }
 
     public static void checkThousands(Integer userInput) {
-        if ((userInput % THOUSAND.get()) != 0) {
+        if ((userInput % THOUSAND.get()) != REMAINDER_ZERO.get()) {
             throw new IllegalArgumentException(REMAINDER_ERROR.getMessage());
         }
     }
@@ -33,7 +35,7 @@ public class Validator {
     }
 
     public static void checkPositiveNumber(Integer number) {
-        if (number <= 0) {
+        if (number <= ZERO.get()) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR.getMessage());
         }
     }

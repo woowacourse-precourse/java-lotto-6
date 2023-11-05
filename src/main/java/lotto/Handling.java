@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.constants.Message.COMMA;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +21,6 @@ public class Handling {
     }
 
     public static List<String> split(String lotto) {
-        return Arrays.asList(lotto.split(","));
+        return Arrays.asList(lotto.split(COMMA.getMessage()));
     }
 }

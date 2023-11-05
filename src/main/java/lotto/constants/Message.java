@@ -8,7 +8,6 @@ public enum Message {
     RESULT("당첨 통계\n---\n"),
     Count("개"),
     EARNINGS_RATE("총 수익률은 %,.1f%%입니다.%n"),
-
     COMMA(",");
 
     private final String message;

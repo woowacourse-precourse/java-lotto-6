@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.Value.INITIAL_ZERO;
 import static lotto.constants.Value.LOTTO_SIZE;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
@@ -14,7 +15,7 @@ public class LottoGenerator {
     public static List<Lotto> createLottos(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < lottoCount; i++) {
+        for (int count = INITIAL_ZERO.get(); count < lottoCount; count++) {
             lottos.add(generateLotto());
         }
         return lottos;

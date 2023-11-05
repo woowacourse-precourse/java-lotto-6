@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Value.COUNT_ONE;
+import static lotto.constants.Value.INITIAL_ZERO;
 import static lotto.constants.Value.LOTTO_SIZE;
 
 import java.util.ArrayList;
@@ -22,10 +24,10 @@ public class LottoManager {
     }
 
     public static Integer countMatching(Lotto userLotto, Lotto winningLotto) {
-        Integer countMatching = 0;
+        Integer countMatching = INITIAL_ZERO.get();
 
-        for (int i = 0; i < LOTTO_SIZE.get(); i++) {
-            if (userLotto.getNumbers().contains(winningLotto.getNumbers().get(i))) {
+        for (int index = INITIAL_ZERO.get(); index < LOTTO_SIZE.get(); index++) {
+            if (userLotto.getNumbers().contains(winningLotto.getNumbers().get(index))) {
                 countMatching++;
             }
         }
@@ -41,7 +43,7 @@ public class LottoManager {
 
             if (countMatching >= Prize.FIFTH.getMatchingNumber()) {
                 Prize prize = Prize.rank(countMatching, userLotto.getNumbers().contains(bonusNumber));
-                lottoResult.state.replace(prize, lottoResult.state.get(prize) + 1);
+                lottoResult.state.replace(prize, lottoResult.state.get(prize) + COUNT_ONE.get());
             }
 
         }

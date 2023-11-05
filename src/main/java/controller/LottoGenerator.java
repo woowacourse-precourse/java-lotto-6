@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
@@ -12,7 +13,8 @@ public class LottoGenerator {
     }
 
     public List<Integer> createLotto(){
-
+        List<Integer> test = new ArrayList<>();
+        return test;
     }
 
 

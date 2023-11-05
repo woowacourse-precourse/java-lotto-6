@@ -7,13 +7,13 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 import static lotto.domain.Constant.MAX_LOTTOES_SIZE;
-import static lotto.domain.Message.OUTPUT_RESULT;
+import static lotto.domain.Message.*;
 
 
 public class OutputView {
 
     public static void printPurchaseLottoes(List<Lotto> lottoes){
-        System.out.println("\n"+lottoes.size()+OUTPUT_RESULT);
+        System.out.println("\n"+lottoes.size()+ OUTPUT_PURCHASE);
         for(Lotto lotto : lottoes){
             printLotto(lotto);
         }
@@ -30,6 +30,15 @@ public class OutputView {
     }
 
 
+    public static void printFinalResult(){
+        System.out.println("\n"+OUTPUT_RESULT_START);
+        System.out.println(THREE_MATCH+" "+COUNT);
+        System.out.println(FOUR_MATCH+" "+COUNT);
+        System.out.println(FIVE_MATCH+" "+COUNT);
+        System.out.println(FIVE_BONUS_MATCH+" "+COUNT);
+        System.out.println(SIX_MATCH+" "+COUNT);
+        System.out.println(RATE_OF_RETURN+" "+END);
+    }
 
 
 

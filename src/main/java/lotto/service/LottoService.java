@@ -68,14 +68,20 @@ public class LottoService {
 
         //1부터 45인지 확인
         for(String num : numbers){
-            if(validateInputUserNum(num)) continue;
+            if(validateNum(num)) continue;
         }
     }
 
 
+    public boolean validateUserBonusNum(Lotto winningNum, String bonusNum){
+        if(validateNum(bonusNum) && !winningNum.getNumbers().contains(Integer.parseInt(bonusNum))){ //숫자인지 확인
+           return true; //????
+        }
+        return false;
+    }
 
-    public boolean validateInputUserNum(String inputNum){ //숫자 하나 확인
-        String REGEX = "[1-9]+";
+    public boolean validateNum(String inputNum){ //숫자 하나 확인
+        String REGEX = "[0-9]+";
         if(inputNum.matches(REGEX) && (MIN <= Integer.parseInt(inputNum) && Integer.parseInt(inputNum) <= MAX))
             return true;
         throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45까지 입력해 주세요.");

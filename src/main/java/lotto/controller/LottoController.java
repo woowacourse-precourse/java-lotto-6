@@ -29,15 +29,16 @@ public class LottoController {
             List<Lotto> lottoes = lottoService.createLottoes(times);
             runPrintPurchaseLottoes(lottoes);
 
-            //유저의 당첨 번호, 보너스 번호
-            Lotto userLotto = runInputWinningNum();
-            Integer bonusNum = runInputBonusNum();
+            //유저의 당첨 번호, 보너스 번호 -> validation
+            Lotto userWinningNum = runInputWinningNum();
+            Integer bonusNum = runInputBonusNum(userWinningNum);
+
 
             //TODO 구매 로또랑 유저 번호랑 매칭 작업
 
 
-            //TODO 당첨 통계 출력
-
+            //TODO 당첨 통계 출력 -> 파라미터 채우기
+            runPrintFinalResult();
 
         } catch (IllegalArgumentException e){
             e.printStackTrace();
@@ -61,9 +62,9 @@ public class LottoController {
         return lotto;
     }
 
-    public int runInputBonusNum(){
+    public int runInputBonusNum(Lotto winningNum){
         String inputBonusNum = InputView.inputBonusNum();
-        if(lottoService.validateInputUserNum(inputBonusNum))
+        if(lottoService.validateUserBonusNum(winningNum, inputBonusNum))
             return Integer.parseInt(inputBonusNum);
         return 0;
     }
@@ -78,8 +79,9 @@ public class LottoController {
     public void runPrintPurchaseLottoes(List<Lotto> lottoes){
         OutputView.printPurchaseLottoes(lottoes);
     }
-    public void runOutputView(){
 
+    public void runPrintFinalResult(){
+        OutputView.printFinalResult();
     }
 
 

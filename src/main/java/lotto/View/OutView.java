@@ -8,7 +8,7 @@ public class OutView {
     public static void printPurchasedLottos(List<String> lottoNumbers) {
         System.out.println("\n" + lottoNumbers.size() + SUCCESFULLY_PURCHASE_LOTTO);
         for (String lottoNumber : lottoNumbers) {
-            System.out.println(lottoNumber);
+            System.out.println("[" + lottoNumber +"]");
         }
     }
 }

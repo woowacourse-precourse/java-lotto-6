@@ -14,8 +14,10 @@ public class Application {
         String lottoPurchaseAmount = InputView.inputLottoPurchaseAmount();
         List<Lotto> purchasedLottos = customer.buyLotto(lottoStore, lottoPurchaseAmount);
         OutView.printPurchasedLottos(customer.getPurchasedLottoNumbers());
+
         String lottoWinningNumber = InputView.inputLottoWinningNumber();
         String lottoBonusNumber = InputView.inputLottoBonusNumber();
         LottoSystem lottoSystem = new LottoSystem(lottoWinningNumber, lottoBonusNumber);
+        List<Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(customer.getPurchasedLottoNumbers());
     }
 }

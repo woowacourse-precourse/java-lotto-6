@@ -15,7 +15,7 @@ public class InputValidatorTest {
     @DisplayName("정상적인 입력을 했을 경우 true를 반환하는가?")
     @ParameterizedTest
     @CsvSource({"'1,2,3,4,5,6', true",
-                "'1,3,5,7,6,3', true"})
+                "'1,3,5,7,8,9', true"})
     void isNumberTest(String input, boolean expected){
         System.out.println(input);
         boolean real = InputValidator.isNumber(input);
@@ -25,7 +25,7 @@ public class InputValidatorTest {
 
     @DisplayName("숫자가 아닌 다른 문자를 입력했을 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"a,2,1,3,4,b", "1,3,6,2,a,h", "^,1,2,3,!,5"})
+    @ValueSource(strings = {"a,1,2,3,4,b", "1,2,3,6,a,h", "^,1,2,3,!,5"})
     void isNumberTest(String nonNumber){
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.isNumber(nonNumber);
@@ -34,7 +34,7 @@ public class InputValidatorTest {
 
     @DisplayName("숫자가 아닌 다른 문자를 입력했을 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"22,2,10,3,4!1", "1,3@,4,6,2,10;23"})
+    @ValueSource(strings = {"2,3,4,10,4!1,22,33", "1,3@,4,6,2,10;23"})
     void checkCommaDelimiter(String nonNumber){
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.checkCommaDelimiter(nonNumber);

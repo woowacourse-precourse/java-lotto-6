@@ -1,20 +1,19 @@
 package lotto;
 
+import static lotto.Controller.LOTTERY_PRICE;
+
 public class Validator {
 
     public static Boolean validationFlag = true;
 
-    public static boolean isInputEmpty(String userInput) {
+    public static void isInputEmpty(String userInput) {
         try {
             if (userInput.isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
             }
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
         }
-        return false;
     }
 
     public static boolean isNumber(String userInput) {
@@ -29,5 +28,25 @@ public class Validator {
             }
         }
         return false;
+    }
+
+    public static void isPriceUnder1000(Integer userInputNumber) {
+        try {
+            if (userInputNumber < LOTTERY_PRICE) {
+                throw new IllegalArgumentException(ErrorMessages.IS_UNDER_1000.writeErrorMessageByCase());
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void isPriceIndivisible(Integer userInputNumber) {
+        try {
+            if ((userInputNumber % LOTTERY_PRICE) != 0) {
+                throw new IllegalArgumentException(ErrorMessages.IS_INDIVISIBLE_BY_1000.writeErrorMessageByCase());
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

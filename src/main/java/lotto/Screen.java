@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,16 +26,9 @@ public class Screen {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static Lotto inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         String[] splitNumbers = Console.readLine().split(",");
-
-        try {
-            return new Lotto(convertType(splitNumbers));
-        }
-        catch (IllegalArgumentException exception) {
-            printErrorMessage(exception.getMessage());
-        }
-        return inputWinningNumbers();
+        return convertType(splitNumbers);
     }
 
     private static List<Integer> convertType(String[] numbers) {

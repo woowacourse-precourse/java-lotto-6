@@ -2,24 +2,31 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        Lottos lottos;
-        Lotto winningNumber;
-
-
         Screen.printAskingPurchasingAmountMessage();
-        lottos = makeLottos();
+        Lottos lottos = buyLottos();
         Screen.printAllLottos(lottos.getLottos());
         Screen.printAskingWinningNumbersMessage();
-        winningNumber = Screen.inputWinningNumbers();
+        Lotto winningNumber = selectLottoWinningNumber();
+
     }
 
-    private static Lottos makeLottos() {
+    private static Lottos buyLottos() {
         try {
             return new Lottos(Screen.inputPurchasingAmount());
         }
         catch (IllegalArgumentException exception) {
             Screen.printErrorMessage(exception.getMessage());
         }
-        return makeLottos();
+        return buyLottos();
+    }
+
+    private static Lotto selectLottoWinningNumber() {
+        try {
+            return new Lotto(Screen.inputWinningNumbers());
+        }
+        catch (IllegalArgumentException exception) {
+            Screen.printErrorMessage(exception.getMessage());
+        }
+        return selectLottoWinningNumber();
     }
 }

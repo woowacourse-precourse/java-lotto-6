@@ -63,4 +63,8 @@ public class CompareResults {
         }
         return prizeAmount;
     }
+
+    public static double calculateProfitRate(long totalPrizeAmount, long totalPurchaseAmount) {
+        return (double) totalPrizeAmount / totalPurchaseAmount;
+    }
 }

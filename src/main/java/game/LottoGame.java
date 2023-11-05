@@ -1,7 +1,6 @@
 package game;
 
 import static constant.ConstantMessage.BONUS_NUMBER_REQUEST_MESSAGE;
-import static constant.ConstantMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
 import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
@@ -23,11 +22,10 @@ import java.util.List;
 
 public class LottoGame {
     public void run() {
-        // LottoTicketPurchase
         Converter converter = new Converter();
-        System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
-        String purchaseAmountString = Console.readLine();
-        int purchaseAmount = converter.stringToInteger(purchaseAmountString); // 8000
+        // LottoTicketPurchase
+        LottoTicketPurchase lottoTicketPurchase = new LottoTicketPurchase();
+        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();
 
         System.out.println();
 

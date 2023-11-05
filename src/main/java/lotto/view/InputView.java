@@ -18,4 +18,9 @@ public class InputView {
         outputView.printWinningLotteryNumbersMessage();
         return Console.readLine();
     }
+
+   public String receiveBonusNumberInput() {
+        outputView.printInputBonusNumberMessage();
+        return Console.readLine();
+   }
 }

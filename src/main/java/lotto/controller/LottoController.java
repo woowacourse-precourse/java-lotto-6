@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoConstant;
 import lotto.domain.LottoNumberGenerator;
+import lotto.validator.InputBonusNumberValidator;
 import lotto.validator.InputPurchaseAmountValidator;
 import lotto.validator.InputWinningLotteryNumberValidator;
 import lotto.view.InputConverter;
@@ -21,6 +22,7 @@ public class LottoController {
     private final InputConverter converter;
     private final LottoNumberGenerator lottoNumberGenerator;
     private final InputWinningLotteryNumberValidator winningLotteryNumberValidator;
+    private final InputBonusNumberValidator bonusNumberValidator;
 
     public LottoController() {
         this.outputView = new OutputView();
@@ -30,6 +32,7 @@ public class LottoController {
         this.converter = new InputConverter();
         this.lottoNumberGenerator = new LottoNumberGenerator();
         this.winningLotteryNumberValidator = new InputWinningLotteryNumberValidator();
+        this.bonusNumberValidator = new InputBonusNumberValidator();
     }
 
     public void play() {
@@ -40,7 +43,7 @@ public class LottoController {
         outputView.printLottoNumbers(lottos);
 
         List<Integer> winningLotteryNumbers = getValidatedWinningLotteryNumbers();
-
+        int bonusNumber = getValidatedBonusNumber();
     }
 
     private int getValidatedPurchaseAmount() {
@@ -118,4 +121,22 @@ public class LottoController {
         winningLotteryNumberValidator.validateSizeAndDuplicatedNumbers(winningNumbers);
         return winningNumbers;
     }
+  
+    private int getValidatedBonusNumber() {
+        while (true) {
+            try {
+                String input = receiveBonusNumber();
+                input = trimInput(input);
+                bonusNumberValidator.validate(input);
+                return converter.convertToInteger(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printInputErrorMessage(e.getMessage());
+            }
+        }
+    }
+    
+    private String receiveBonusNumber() {
+        return inputView.receiveBonusNumberInput();
+    }
+
 }

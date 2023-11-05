@@ -11,5 +11,6 @@ public class Application {
         int cnt = display.getLottoPurchaseAmount();
         LottoCount lottoCount = new LottoCount(cnt);
         lottoCount.printLottoCount();
+        lottoCount.printLotties();
     }
 }

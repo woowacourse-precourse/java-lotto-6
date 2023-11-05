@@ -23,4 +23,14 @@ public class PrintUtil {
         System.out.println();
         System.out.println("보너스 번호를 입력해주세요.");
     }
+
+    public void printWinnerStatistics() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public void printProfit(String totalProfit) {
+        System.out.print("총 수익률은 " + totalProfit + "%입니다.");
+    }
 }

@@ -28,7 +28,7 @@ public class Result {
         System.out.printf("총 수익률은 %,.1f%%입니다.", (double) totalPrice / purchasePrice * 100);
     }
 
-    public void printMatch(Winning winning) {
+    private void printMatch(Winning winning) {
         String message = String.format(
                 "%d개 일치 (%s원) - %d개",
                 winning.getMatchNumber(),

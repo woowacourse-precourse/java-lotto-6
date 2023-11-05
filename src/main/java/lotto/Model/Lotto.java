@@ -31,7 +31,6 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
-
     }
 
     private void duplication_check(List<Integer> numbers) {

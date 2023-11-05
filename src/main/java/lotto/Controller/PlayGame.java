@@ -29,7 +29,7 @@ public class PlayGame {
         winningData.printResult(lottoAmount * 1000);
     }
 
-    public void matchResult(List<Lotto> randomLottoNumbers, int bonusNumber) {
+    private void matchResult(List<Lotto> randomLottoNumbers, int bonusNumber) {
         for (Lotto userLottoNumbers : randomLottoNumbers) {
             int[] matchNumber = winningNumbers.matchNumber(userLottoNumbers, bonusNumber);
 

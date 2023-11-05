@@ -61,11 +61,11 @@ public class LottoService {
     }
 
     private double calculateProfitRate(int resultSize, Map<Rank, Integer> winningCount) {
-        int totalSpentAmount = LOTTO_PRICE * resultSize;
+        int totalPurchaseAmount = LOTTO_PRICE * resultSize;
         int totalWinningMoney = winningCount.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
 
-        return (totalWinningMoney / (double) totalSpentAmount) * 100;
+        return (totalWinningMoney / (double) totalPurchaseAmount) * 100;
     }
 }

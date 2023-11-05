@@ -5,12 +5,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final InputView inputView = new InputView();
     public void run() {
         getLottoMoney();
     }
 
     private void getLottoMoney() {
         OutputView.printPurchaseAmount();
-        int amount = InputView.readPurchaseAmount();
+        int amount = inputView.readPurchaseAmount();
     }
 }

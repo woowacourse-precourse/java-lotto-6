@@ -59,7 +59,7 @@ class LottoParserTest {
     @ValueSource(strings = { "1,2,3,4,5,6,", "1,2,3,4,5.12" })
     void parseWinningNumbersFailTest2(String input) {
         assertThatThrownBy(()->parseWinningNumbers(input))
-                .hasMessageContaining(LOTTO_NUMBER_COUNT_ERROR.getMessage());
+                .hasMessageContaining(LOTTO_NUMBER_FORMAT_ERROR.getMessage());
     }
 
     @DisplayName("당첨 번호 중복 테스트")

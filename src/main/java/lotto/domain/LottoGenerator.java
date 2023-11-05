@@ -9,20 +9,20 @@ import java.util.Set;
 
 public class LottoGenerator {
 
-    private static final int MAX_LOTTO_NUMBERS_COUNT = 6;
+    private static final int LOTTO_NUMBERS_COUNT = 6;
 
     public static List<Lotto> generateRandomLottos(int purchaseAmount){
         List<Lotto> lottos = new ArrayList<>();
         System.out.println(purchaseAmount);
         for(int i = 0; i < purchaseAmount; ++i){
-            lottos.add(generateRandomLottoNumbers());
+            lottos.add(generateRandomLotto());
         }
         return lottos;
     }
 
-    public static Lotto generateRandomLottoNumbers(){
+    public static Lotto generateRandomLotto(){
         Set<Integer> numbers = new HashSet<>();
-        while(numbers.size() < MAX_LOTTO_NUMBERS_COUNT){
+        while(numbers.size() < LOTTO_NUMBERS_COUNT){
             numbers.add(Randoms.pickNumberInRange(1, 45));
         }
         List<Integer> lottoNumbers = new ArrayList<>(numbers);

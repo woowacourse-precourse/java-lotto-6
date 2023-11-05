@@ -62,7 +62,7 @@ class LottoSystemTest extends MethodSourceTest {
 
     @DisplayName("당첨 로또를 생성한다.")
     @Test
-    void generateWinningLotto() throws Exception {
+    void generateWinningLotto() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         lottoSystem.generateWinningLotto(numbers);

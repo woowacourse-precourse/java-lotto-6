@@ -10,7 +10,7 @@ public class BonusNumberInputValidator implements BasicValidator<String> {
     @Override
     public void validate(String input) {
         validateNumberIfNumeric(input);
-        validateNumberBetweenOneAndFortyFive(input);
+        validateNumberRange(input);
     }
 
     private void validateNumberIfNumeric(String input) {
@@ -21,7 +21,7 @@ public class BonusNumberInputValidator implements BasicValidator<String> {
         }
     }
 
-    private void validateNumberBetweenOneAndFortyFive(String input) {
+    private void validateNumberRange(String input) {
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INPUT_NOT_BETWEEN_ONE_AND_FORTY_FIVE);

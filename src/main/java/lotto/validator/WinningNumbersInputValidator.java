@@ -17,7 +17,7 @@ public class WinningNumbersInputValidator implements BasicValidator<String> {
     public void validate(String input) {
         validateAllNumbersIfNumeric(input);
         validateInputNumbersCount(input);
-        validateInputNumbersBetweenOneAndFortyFive(input);
+        validateNumbersRange(input);
         validateDuplicatedNumber(input);
     }
 
@@ -43,14 +43,14 @@ public class WinningNumbersInputValidator implements BasicValidator<String> {
         }
     }
 
-    private void validateInputNumbersBetweenOneAndFortyFive(String input) {
+    private void validateNumbersRange(String input) {
         String[] numbers = input.split(COMMA);
         for (String number : numbers) {
-            validateNumberBetweenOneAndFortyFive(number);
+            validateNumberRange(number);
         }
     }
 
-    private void validateNumberBetweenOneAndFortyFive(String input) {
+    private void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INPUT_NOT_BETWEEN_ONE_AND_FORTY_FIVE);
@@ -62,6 +62,5 @@ public class WinningNumbersInputValidator implements BasicValidator<String> {
         if (Arrays.stream(numbers).distinct().count() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INPUT_DUPLICATED);
         }
-
     }
 }

@@ -29,7 +29,9 @@ public class LottoController {
         Money money = getMoney();
         Lottos lottos = buyLottos(money, new RandomNumberGenerator());
         WinningLotto winningLotto = getWinningLotto();
-        calculateLottoResult(lottos, winningLotto, money);
+        Map<Rank, Integer> winningStatus = calculateWinningStatus(lottos, winningLotto);
+        double revenue = calculateReturnRate(winningStatus, money);
+        printResult(winningStatus, revenue);
     }
 
     private Money getMoney() {
@@ -88,11 +90,14 @@ public class LottoController {
         }
     }
 
-    private void calculateLottoResult(final Lottos lottos, final WinningLotto winningLotto, final Money money) {
+    private Map<Rank, Integer> calculateWinningStatus(final Lottos lottos, final WinningLotto winningLotto) {
         WinningResultCalculator winningResultCalculator = new WinningResultCalculator();
-        Map<Rank, Integer> winningStatus = winningResultCalculator.calculateWinningStatus(winningLotto, lottos);
-        double revenue = winningResultCalculator.getReturnRate(winningStatus, money);
-        printResult(winningStatus, revenue);
+        return winningResultCalculator.calculateWinningStatus(winningLotto, lottos);
+    }
+
+    private double calculateReturnRate(final Map<Rank, Integer> winningStatus, final Money money) {
+        WinningResultCalculator winningResultCalculator = new WinningResultCalculator();
+        return winningResultCalculator.getReturnRate(winningStatus, money);
     }
 
     private void printResult(final Map<Rank, Integer> status, final double revenue) {

@@ -7,7 +7,7 @@ import java.util.Map;
 public class WinningResultCalculator {
 
     private static final int DEFAULT_VALUE = 0;
-    private static final int ONE_VALUE = 1;
+    private static final int INCREMENT = 1;
 
     public Map<Rank, Integer> calculateWinningStatus(final WinningLotto winningLotto, final Lottos lottos) {
         Map<Rank, Integer> winningStatus = new EnumMap<>(Rank.class);
@@ -15,7 +15,7 @@ public class WinningResultCalculator {
 
         purchasedLottos.forEach(lotto -> {
             Rank rank = calculateRank(winningLotto, lotto);
-            winningStatus.put(rank, winningStatus.getOrDefault(rank, DEFAULT_VALUE) + ONE_VALUE);
+            winningStatus.put(rank, winningStatus.getOrDefault(rank, DEFAULT_VALUE) + INCREMENT);
         });
 
         return winningStatus;

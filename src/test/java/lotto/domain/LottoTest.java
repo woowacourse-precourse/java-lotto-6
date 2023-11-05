@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +25,13 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void 번호_3개_일치할_때_가격_5000원() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Ranking ranking = lotto.getRanking(List.of(1, 2, 3, 7, 8, 9), 4);
+        assertEquals("5,000", ranking.getPrize());
+    }
+
     @Test
     void 문자열_생성_테스트() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

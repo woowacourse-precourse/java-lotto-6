@@ -11,7 +11,7 @@ public final class LottoPurchaseService {
         this.lottoStore = lottoStore;
     }
 
-    public List<Lotto> buyLottos(int investmentAmount) {
+    public List<Lotto> buyLottos(long investmentAmount) {
         return lottoStore.purchaseLottos(investmentAmount);
     }
 }

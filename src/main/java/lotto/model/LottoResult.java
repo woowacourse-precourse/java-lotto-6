@@ -15,4 +15,8 @@ public class LottoResult {
                 .filter(status -> status.equals(lottoStatus))
                 .count();
     }
+    public double caculateProfitRate(){
+        for ()
+    }
+
 }

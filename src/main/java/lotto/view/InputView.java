@@ -11,14 +11,14 @@ import java.util.List;
 
 public class InputView {
 
-    public static int inputPurchaseAmount(){
+    public static int inputPurchaseAmount() throws IllegalArgumentException{
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
     }
 
-    public static List<Integer> inputLottoNumber(){
+    public static List<Integer> inputLottoNumber() throws IllegalArgumentException{
         System.out.println("당첨 번호를 입력해 주세요.");
         String lottoInput = Console.readLine();
         List<String> lottoNumbers = lottoNumberToLottoList(lottoInput);
@@ -26,7 +26,7 @@ public class InputView {
         return lottoNumberToIntegerList(lottoNumbers);
     }
 
-    public static int inputBonusNumber(){
+    public static int inputBonusNumber() throws IllegalArgumentException{
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);

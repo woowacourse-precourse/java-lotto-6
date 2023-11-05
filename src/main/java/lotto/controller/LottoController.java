@@ -18,11 +18,22 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
 
     public void play() {
-        User user = new User(inputPurchaseAmount());
+        User user = buyTicket();
         Lottos lottos = pickRandomLottos(user.getLottoCount());
         WinningLotto winningLotto = pickWinningLotto();
         long prizeAmount = checkLottoResult(lottos, winningLotto);
         OutputView.printRateOfReturn(user.getBalance(), prizeAmount);
+    }
+
+    private User buyTicket() {
+        while(true){
+            try{
+                int purchaseAmount = inputPurchaseAmount();
+                return new User(purchaseAmount);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private long checkLottoResult(Lottos lottos, WinningLotto winningLotto) {
@@ -32,9 +43,16 @@ public class LottoController {
     }
 
     private WinningLotto pickWinningLotto() {
-        Lotto lottoAnswer = new Lotto(inputLottoNumber());
-        int bonusNumber = inputBonusNumber();
-        return new WinningLotto(lottoAnswer, bonusNumber);
+        while(true){
+            try{
+                Lotto lottoAnswer = new Lotto(inputLottoNumber());
+                int bonusNumber = inputBonusNumber();
+                return new WinningLotto(lottoAnswer, bonusNumber);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
     private Lottos pickRandomLottos(int lottoCount) {

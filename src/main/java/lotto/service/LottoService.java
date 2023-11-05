@@ -42,14 +42,10 @@ public class LottoService {
     private static int checkLotto(Lotto lotto, Lotto answerLotto) {
         List<Integer> myLottoNumbers = lotto.getNumbers();
         List<Integer> answerLottoNumbers = answerLotto.getNumbers();
-        int equalCount = 0;
 
-        for (int nthIndex = 0; nthIndex < myLottoNumbers.size(); nthIndex++) {
-            if (answerLottoNumbers.contains(myLottoNumbers.get(nthIndex))) {
-                equalCount++;
-            }
-        }
-        return equalCount;
+        return (int) myLottoNumbers.stream()
+                .filter(answerLottoNumbers::contains)
+                .count();
     }
 
     public Lottos generateLottos(int lottoCount) {

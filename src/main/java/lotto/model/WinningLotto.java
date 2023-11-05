@@ -19,9 +19,9 @@ public class WinningLotto {
         }
     }
 
-    public LottoPrize compare(Lotto lotto) {
+    public LottoPrize match(Lotto lotto) {
         return LottoPrize.valueOf(
-                lotto.compare(this.lotto),
+                lotto.matchedCount(this.lotto),
                 lotto.contains(this.bonusNumber)
         );
     }

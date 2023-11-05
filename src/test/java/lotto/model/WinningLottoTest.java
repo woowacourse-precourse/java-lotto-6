@@ -46,7 +46,7 @@ public class WinningLottoTest {
         }};
 
         for (int i = 0; i < purchased.size(); i++) {
-            assertThat(winningLotto.compare(purchased.get(i)))
+            assertThat(winningLotto.match(purchased.get(i)))
                     .isEqualTo(expected.get(i));
         }
     }

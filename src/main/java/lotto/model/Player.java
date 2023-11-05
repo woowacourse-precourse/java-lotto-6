@@ -43,7 +43,7 @@ public class Player {
         }};
 
         for (Lotto lotto : lottoTickets) {
-            LottoPrize lottoPrize = winningLotto.compare(lotto);
+            LottoPrize lottoPrize = winningLotto.match(lotto);
             prizeCounter.put(lottoPrize, prizeCounter.get(lottoPrize) + 1);
         }
         return prizeCounter;

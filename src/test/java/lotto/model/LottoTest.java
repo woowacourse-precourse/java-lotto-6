@@ -41,7 +41,7 @@ public class LottoTest {
     void compare_테스트() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 30, 31));
-        assertThat(lotto1.compare(lotto2))
+        assertThat(lotto1.matchedCount(lotto2))
                 .isEqualTo(4);
     }
 }

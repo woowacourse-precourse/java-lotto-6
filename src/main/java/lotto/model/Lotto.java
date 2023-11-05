@@ -32,7 +32,7 @@ public class Lotto {    // 인스턴스 변수 추가 ㄴㄴ, 패키지 변경�
         }
     }
 
-    public int compare(Lotto lotto) {
+    public int matchedCount(Lotto lotto) {
         int count = 0;
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.contains(lotto.get(i))) {

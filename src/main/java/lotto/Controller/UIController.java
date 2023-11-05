@@ -120,7 +120,7 @@ public class UIController {
             try {
                 UIView.printBonusNumberInstruction();
                 BonusNumber = getBonusNumber();
-                // TODO : 보너스 숫자 검증
+                validateBonusNumber(winningNumbers, BonusNumber);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 번호는 숫자 여야 합니다.");
@@ -136,5 +136,12 @@ public class UIController {
         int BonusNumber;
         BonusNumber = Integer.parseInt(Console.readLine());
         return BonusNumber;
+    }
+
+    private static void validateBonusNumber(List<Integer> winningNumbers, Integer BonusNumber) {
+        if (BonusNumber < 1 || BonusNumber > 45) {
+            throw new IllegalArgumentException("1~45의 숫자만 가능합니다.");
+        }
+
     }
 }

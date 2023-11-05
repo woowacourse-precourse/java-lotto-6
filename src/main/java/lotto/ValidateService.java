@@ -6,6 +6,7 @@ public class ValidateService {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_SIZE = 6;
+    private static final int LOTTO_PRICE = 1000;
     public static void validateAuthorizedLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(
@@ -31,5 +32,9 @@ public class ValidateService {
             );
         }
     }
-
+    public static void validateProperMoney(int money){
+        if(money%LOTTO_PRICE!=0){
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_AMOUNT.errorMessage);
+        }
+    }
 }

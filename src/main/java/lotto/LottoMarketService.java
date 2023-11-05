@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static lotto.ValidateService.validateProperMoney;
+
 public class LottoMarketService {
     static private final int LOTTO_NUM_SIZE = 6;
     static private final int LOTTO_PRICE = 1000;
@@ -34,14 +36,7 @@ public class LottoMarketService {
     }
 
     public int calculateLottoCount(int money){
-        validateMoney(money);
         int lottoCount = money/LOTTO_PRICE;
         return lottoCount;
-    }
-
-    public void validateMoney(int money){
-        if(money%LOTTO_PRICE!=0){
-            throw new IllegalArgumentException(ErrorMessage.INCORRECT_AMOUNT.errorMessage);
-        }
     }
 }

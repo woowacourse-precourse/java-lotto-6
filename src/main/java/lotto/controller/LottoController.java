@@ -48,6 +48,8 @@ public class LottoController {
 
     private void lottoProcess() {
 
+        OutputValue.winLottoNumberMessage();
+
     }
 
     private void lottoEnd() {

@@ -8,6 +8,8 @@ public class OutputValue {
 
     private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
 
+    private static final String WIN_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+
 
     public static void purchaseMessage() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
@@ -25,4 +27,5 @@ public class OutputValue {
         System.out.println();
     }
 
+    public static void winLottoNumberMessage() { System.out.println(WIN_LOTTO_NUMBER_MESSAGE); }
 }

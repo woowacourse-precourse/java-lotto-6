@@ -11,8 +11,7 @@ public class UIController {
             try {
                 UIView.printPurchasePriceInstruction();
                 price = getPurchasePrice();
-
-                // TODO : validatePurchasePrice
+                validatePurchasePrice(price);
 
                 break;
             } catch (NumberFormatException e) {
@@ -27,5 +26,14 @@ public class UIController {
 
     private static int getPurchasePrice() {
         return Integer.parseInt(Console.readLine());
+    }
+
+
+    private static void validatePurchasePrice(Integer price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("1이상의 숫자만 가능합니다.");
+        }
+
+
     }
 }

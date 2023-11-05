@@ -11,6 +11,7 @@ public class WinningNumber {
         List<String> seperatedNumbers = split(winningNumbers);
         checkOversize(seperatedNumbers);
         List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
+        checkOutOfBound(candidateWinningNumbers);
     }
 
     public static WinningNumber create(String winningNumbers) {
@@ -36,4 +37,16 @@ public class WinningNumber {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_NOT_INTEGER.getMessage());
         }
     }
+
+    private void checkOutOfBound(List<Integer> candidateWinningNumbers) {
+        candidateWinningNumbers.forEach(this::checkInrange);
+    }
+
+    private void checkInrange(Integer lottoNumber) {
+        if (lottoNumber < Lotto.MIN_NUMBER || lottoNumber > Lotto.MAX_NUMBER) {
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_OUT_OF_BOUND.getMessage());
+        }
+    }
+
+
 }

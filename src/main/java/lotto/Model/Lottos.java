@@ -18,8 +18,7 @@ public class Lottos {
         return lottos;
     }
 
-    private List<Lotto> addLotto(Lotto lotto) {
+    private void addLotto(Lotto lotto) {
         lottos.add(lotto);
-        return lottos;
     }
 }

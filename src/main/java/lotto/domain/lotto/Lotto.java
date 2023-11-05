@@ -31,14 +31,16 @@ public class Lotto {
         return organizeLotto;
     }
 
-    public StringBuilder showInformation() {
+    public StringBuilder giveInformation() {
         int sizeNumbers = numbers.size();
         StringBuilder informationOfNumbers = new StringBuilder();
         int num = 0;
+        List<Integer> organizeLotto = organizeLotto();
 
         informationOfNumbers.append("[");
+
         for (int i = 0; i < sizeNumbers; i++) {
-            num = numbers.get(i);
+            num = organizeLotto.get(i);
             informationOfNumbers.append(num);
             if (i != sizeNumbers - 1) {
                 informationOfNumbers.append(", ");

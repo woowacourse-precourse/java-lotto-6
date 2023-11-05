@@ -1,10 +1,16 @@
 package lotto.validation;
 
 import static lotto.validation.enumType.WinningNumbers.CHECK_COMMA_MESSAGE;
+import static lotto.validation.enumType.WinningNumbers.DUPLICATE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.LOTTO_MAX_NUMBER;
 import static lotto.validation.enumType.WinningNumbers.LOTTO_MIN_NUMBER;
 import static lotto.validation.enumType.WinningNumbers.NUMBER_RANGE_MESSAGE;
 import static lotto.validation.enumType.WinningNumbers.SPLIT_MESSAGE;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class WinningNumbersValidator {
 
@@ -31,5 +37,17 @@ public class WinningNumbersValidator {
     private boolean hasNotCommaSeparatedNumbers(String input) {
         String[] numbers = input.split(SPLIT_MESSAGE.getMessage());
         return numbers.length < 2;
+    }
+
+    public void validateNumberDuplication(String input) {
+        List<String> numbers = stringToCollection(input);
+        Set<String> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() < numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_MESSAGE.getMessage());
+        }
+    }
+
+    private List<String> stringToCollection(String input) {
+        return Arrays.asList(input.split(SPLIT_MESSAGE.getMessage()));
     }
 }

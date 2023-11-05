@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoGame;
+import lotto.util.InputValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +20,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (!InputValidator.isCorrectCount(numbers.size()) || InputValidator.isDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_ERROR.getMessage());
         }
     }

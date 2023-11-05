@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoGame;
 import lotto.util.Calculator;
+import lotto.util.InputValidator;
 
 public class Game {
     public static int receiveAmount;
@@ -50,14 +49,13 @@ public class Game {
     }
 
     private void validateAmount(String amount) {
-        if(!isNumber(amount) || !Calculator.isMultiple(Integer.parseInt(amount), LottoGame.LOTTO_PRICE)){
+        if(!InputValidator.isNumber(amount) || !Calculator.isMultiple(Integer.parseInt(amount), LottoGame.LOTTO_PRICE)){
             throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NUMBER_ERROR.getMessage());
         }
     }
 
     private static void validWinningNubmers(List<String> enterWinningNumbers) {
-
-        if(!isCorrectCount(enterWinningNumbers.size()) || isDuplicateNumber(enterWinningNumbers)) {
+        if(!InputValidator.isCorrectCount(enterWinningNumbers.size()) || InputValidator.isDuplicateNumberForString(enterWinningNumbers)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_VALID_ERROR.getMessage());
         }
 
@@ -66,32 +64,16 @@ public class Game {
 
     private static void validWinningNubmer(List<String> winningNumbers) {
         for (var winningNumber : winningNumbers) {
-            if (!isNumber(winningNumber) || !isCorrectNumber(Integer.parseInt(winningNumber))) {
+            if (!InputValidator.isNumber(winningNumber) || !InputValidator.isCorrectNumber(Integer.parseInt(winningNumber))) {
                 throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_ERROR.getMessage());
             }
         }
     }
 
     private void validBonusNubmer(String bonusNumber) {
-        if(!isNumber(bonusNumber)
-                || !isCorrectNumber(Integer.parseInt(bonusNumber)) || winningNumbers.contains(bonusNumber)){
+        if(!InputValidator.isNumber(bonusNumber)
+                || !InputValidator.isCorrectNumber(Integer.parseInt(bonusNumber)) || winningNumbers.contains(bonusNumber)){
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_ERROR.getMessage());
         }
-    }
-
-    private static boolean isNumber(String inputValue) {
-        return inputValue.matches(LottoGame.REGEX);
-    }
-    private static boolean isCorrectCount(int length) {
-        return length == LottoGame.LOTTO_NUMBER_COUNT;
-    }
-
-    private static boolean isCorrectNumber(int winningNumber) {
-        return winningNumber >= LottoGame.LOTTO_MIN_NUMBER && winningNumber <= LottoGame.LOTTO_MAX_NUMBER;
-    }
-
-    private static boolean isDuplicateNumber(List<String> winningNumbers) {
-        Set<String> deduplicateNumbers = new HashSet<>(winningNumbers);
-        return winningNumbers.size() != deduplicateNumbers.size();
     }
 }

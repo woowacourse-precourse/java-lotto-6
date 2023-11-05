@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Game;
 import lotto.domain.Player;
-import lotto.util.ExceptionHandler;
 import lotto.view.GameInput;
 import lotto.view.GameOutput;
 

@@ -39,4 +39,19 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean isBonus(int bonus) {
+        return numbers.contains(bonus);
+    }
+
+    public int equalsNumberCount(Lotto lotto) {
+        int count = 0;
+        List<Integer> numbers = lotto.getNumbers();
+        for (Integer number : numbers) {
+            if (this.numbers.contains(number)) {
+                ++count;
+            }
+        }
+        return count;
+    }
 }

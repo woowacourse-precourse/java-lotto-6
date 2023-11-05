@@ -2,18 +2,19 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.constant.InputMessage;
 import lotto.constant.LottoNumber;
 import lotto.ui.Input;
 import lotto.ui.Output;
 
 public class Game {
-    private List<Lotto> createLottos() {
+    private final LottoMachine lottoMachine = new LottoMachine();
+
+    private List<Lotto> createLotteries() {
         while (true) {
-            Output.printMessage(InputMessage.AMOUNT.getMessage());
+            Output.printMessage(Input.AMOUNT);
             try {
                 int amount = Input.readAmount(Console.readLine());
-                return LottoMachine.issueLotto(amount / LottoNumber.PRICE.getValue());
+                return lottoMachine.issue(amount / LottoNumber.PRICE.getValue());
             } catch (IllegalArgumentException exception) {
                 Output.printMessage(exception.getMessage());
             }
@@ -22,7 +23,7 @@ public class Game {
 
     private Lotto createWinningNumber() {
         while (true) {
-            Output.printMessage(InputMessage.WINNING_NUMBER.getMessage());
+            Output.printMessage(Input.WINNING_NUMBER);
             try {
                 List<Integer> numbers = Input.readWinningNumber(Console.readLine());
                 return new Lotto(numbers);
@@ -34,7 +35,7 @@ public class Game {
 
     private int createBonus(List<Integer> winningNumber) {
         while (true) {
-            Output.printMessage(InputMessage.BONUS.getMessage());
+            Output.printMessage(Input.BONUS);
             try {
                 return Input.readBonus(Console.readLine(), winningNumber);
             } catch (IllegalArgumentException exception) {
@@ -44,9 +45,10 @@ public class Game {
     }
 
     public void start() {
-        List<Lotto> lottos = createLottos();
-        Output.printLotto(lottos);
+        List<Lotto> lotteries = createLotteries();
+        Output.printLotto(lotteries);
         Lotto winningNumber = createWinningNumber();
         int bonus = createBonus(winningNumber.getNumbers());
+        lottoMachine.draw(winningNumber, bonus, lotteries);
     }
 }

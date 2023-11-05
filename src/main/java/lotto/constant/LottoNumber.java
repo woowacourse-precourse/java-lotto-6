@@ -15,4 +15,4 @@ public enum LottoNumber {
     public int getValue() {
         return value;
     }
-};
+}

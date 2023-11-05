@@ -45,7 +45,6 @@ class InputValidationTest {
     @ParameterizedTest
     @CsvSource(value = {"0", "46"})
     void 범위에_맞지_않은_숫자가_있는_경우(int number) {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> InputValidation.checkRange(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 범위에 맞지 않은 숫자가 있습니다.");

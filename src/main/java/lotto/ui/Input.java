@@ -7,6 +7,9 @@ import lotto.domain.InputValidation;
 
 public class Input {
     public static char DELIMITER = ',';
+    public static final String AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
+    public static final String BONUS = "\n보너스 번호를 입력해 주세요.";
 
     public static int readAmount(String input) {
         int amount = InputValidation.validateNumber(input);
@@ -16,9 +19,9 @@ public class Input {
     }
 
     public static List<Integer> readWinningNumber(String input) {
-        List<Integer> numbers = new ArrayList<>();
         InputValidation.checkDelimiter(input);
         List<String> vocabulary = Arrays.asList(input.split(DELIMITER + ""));
+        List<Integer> numbers = new ArrayList<>();
         for (String word : vocabulary) {
             numbers.add(InputValidation.validateNumber(word));
         }

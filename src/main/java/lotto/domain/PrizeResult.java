@@ -2,10 +2,24 @@ package lotto.domain;
 
 import static lotto.domain.Prize.findPrize;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class PrizeResult {
+
+    public static Map<Prize, Long> getPrizeResults(Map<Prize, Long> prizeResults) {
+        return Arrays.stream(Prize.values())
+                .skip(1)
+                .collect(Collectors.toMap(
+                        prize -> prize,
+                        prize -> prizeResults.getOrDefault(prize, 0L),
+                        Long::sum,
+                        () -> new TreeMap<>(Comparator.comparing(Enum::ordinal))
+                ));
+    }
 
     public static Map<Prize, Long> calculatePrizeResults(Lottos lottos, PlayerLotto playerLotto) {
         return lottos.getLottos().stream()

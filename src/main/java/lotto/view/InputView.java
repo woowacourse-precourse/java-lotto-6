@@ -1,6 +1,10 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.vaildator.InputValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputView {
 
@@ -9,5 +13,18 @@ public class InputView {
         String userMoney = Console.readLine();
         return InputValidator.purchaseMoney(userMoney);
     }
+
+    public List<Integer> inputWinNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String winNumber = Console.readLine();
+        String[] numberStrings = winNumber.split(",");
+        List<Integer> winNumbers = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            int number = Integer.parseInt(numberString.trim());
+            winNumbers.add(number);
+        }
+        return winNumbers;
+    }
+
 
 }

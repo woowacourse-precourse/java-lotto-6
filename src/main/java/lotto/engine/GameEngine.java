@@ -1,6 +1,7 @@
 package lotto.engine;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.numbergenerator.NumberGenerator;
@@ -24,5 +25,9 @@ public class GameEngine {
             gameEngineValidator.checkLottoNumbers(lottoNumbers);
             lottos.add(new Lotto(lottoNumbers));
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

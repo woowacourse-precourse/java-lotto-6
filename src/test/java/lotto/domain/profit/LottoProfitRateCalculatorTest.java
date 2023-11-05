@@ -31,9 +31,9 @@ class LottoProfitRateCalculatorTest {
 
         // when
         LottoProfitRate result = calculator.calculate(purchaseAmount, gameResult);
-        
+
         // then
         assertThat(result.getRate()).isEqualTo(BigDecimal.valueOf(1200L));
     }
-    
+
 }

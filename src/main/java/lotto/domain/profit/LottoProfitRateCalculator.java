@@ -2,8 +2,8 @@ package lotto.domain.profit;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lotto.domain.result.LottoGameResult;
 import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.result.LottoGameResult;
 import lotto.domain.result.TotalPrizeAmount;
 
 public class LottoProfitRateCalculator {

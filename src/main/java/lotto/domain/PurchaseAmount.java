@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.utils.Parser;
 
 public class PurchaseAmount {
-    int amount;
+    private int amount;
 
     public PurchaseAmount(String amountStringValue){
         validateNullValue(amountStringValue);

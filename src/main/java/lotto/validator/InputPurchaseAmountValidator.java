@@ -1,10 +1,9 @@
 package lotto.validator;
 
+import lotto.domain.LottoConstant;
 import lotto.view.ErrorMessage;
 
 public class InputPurchaseAmountValidator {
-
-    private static final int LOTTO_PRICE_UNIT = 1000;
 
     public void validate(String input) {
         validatePurchaseAmountIsBlank(input);
@@ -34,7 +33,7 @@ public class InputPurchaseAmountValidator {
     }
 
     private void validatePurchaseAmountIsMultipleOfLottoPriceUnit(String input) {
-        if (Integer.parseInt(input) % LOTTO_PRICE_UNIT != 0) {
+        if (Integer.parseInt(input) % LottoConstant.LOTTO_PRICE_UNIT.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MUST_BE_MULTIPLE_OF_LOTTO_PRICE_UNIT.getMessage());
         }
     }

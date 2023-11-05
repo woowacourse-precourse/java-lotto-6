@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoConstant;
 import lotto.domain.LottoNumberGenerator;
 import lotto.validator.InputPurchaseAmountValidator;
 import lotto.view.InputConverter;
@@ -18,7 +19,6 @@ public class LottoController {
     private final InputPreprocessor preprocessor;
     private final InputConverter converter;
     private final LottoNumberGenerator lottoNumberGenerator;
-    private static final int LOTTO_PRICE = 1000;
 
     public LottoController() {
         this.outputView = new OutputView();
@@ -67,7 +67,7 @@ public class LottoController {
     }
 
     private int calculatePurchaseOfLottos(int purchaseAmount) {
-        return purchaseAmount / LOTTO_PRICE;
+        return purchaseAmount / LottoConstant.LOTTO_PRICE.getValue();
     }
 
     private List<Lotto> generateLottos(int lottosCount) {

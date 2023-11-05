@@ -1,6 +1,6 @@
 package lotto.application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import lotto.domain.Lotto;

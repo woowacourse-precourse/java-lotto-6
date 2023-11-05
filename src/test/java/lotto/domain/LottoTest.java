@@ -30,7 +30,7 @@ class LottoTest {
 
     private List<LottoNumber> createLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
-                .map(LottoNumber::new)
+                .map(LottoNumber::from)
                 .toList();
     }
 }

@@ -9,7 +9,7 @@
 - [x] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
 - [x] 보너스 번호와 일치하는 번호가 있는지 검사한다. - BonusNumber#isContains()
 - [x] 당첨 번호를 맞춘 개수에 맞게 등수를 정한다. - Prize#determineRank()
-- [ ] 당첨 기준에 맞게 금액을 배당한다. Prizes#distributePrize()
+- [ ] 당첨 기준에 맞게 받을 상금 수량을 증가시킨다. Prizes#increasePrizeAmount()
 - [ ] 각 등수별 상금 합계를 계산한다. Prizes#calculateTotalPrizeForRank()
 - [ ] 총 상금을 계산한다. Prizes#calculateTotalPrize()
 - [ ] 수익률을 계산한다. (수익률은 소수점 둘째 자리에서 반올림) - LottoManager#calculateProfitRate()

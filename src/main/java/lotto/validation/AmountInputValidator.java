@@ -9,7 +9,7 @@ public class AmountInputValidator {
 
     public void validateInputNumericFormat(String input) {
         if (isNotNumericFormat(input)) {
-            throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getValue());
+            throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getMessage());
         }
     }
 
@@ -20,7 +20,7 @@ public class AmountInputValidator {
     public void validatePositive(String input) {
         int amountInput = Integer.parseInt(input);
         if (isNotPositive(amountInput)) {
-            throw new IllegalArgumentException(POSITIVE_MESSAGE.getValue());
+            throw new IllegalArgumentException(POSITIVE_MESSAGE.getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ public class AmountInputValidator {
     public void validateDivisibilityBy1000(String input) {
         int amountInput = Integer.parseInt(input);
         if (isNotValueDivisibleBy1000(amountInput)) {
-            throw new IllegalArgumentException(VALUE_DIVIDE_MESSAGE.getValue());
+            throw new IllegalArgumentException(VALUE_DIVIDE_MESSAGE.getMessage());
         }
     }
 

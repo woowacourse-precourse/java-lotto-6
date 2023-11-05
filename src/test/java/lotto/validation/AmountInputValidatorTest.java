@@ -24,7 +24,7 @@ class AmountInputValidatorTest {
         // then
         assertThatThrownBy(() -> inputValidation.validateInputNumericFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getValue());
+                .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
@@ -35,7 +35,7 @@ class AmountInputValidatorTest {
 
         assertThatThrownBy(() -> inputValidation.validatePositive(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(POSITIVE_MESSAGE.getValue());
+                .hasMessageContaining(POSITIVE_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
@@ -46,6 +46,6 @@ class AmountInputValidatorTest {
 
         assertThatThrownBy(() -> inputValidation.validateDivisibilityBy1000(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(VALUE_DIVIDE_MESSAGE.getValue());
+                .hasMessageContaining(VALUE_DIVIDE_MESSAGE.getMessage());
     }
 }

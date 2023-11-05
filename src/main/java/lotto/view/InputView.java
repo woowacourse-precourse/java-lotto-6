@@ -2,8 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.util.validator.BonusNumberValidator;
 import lotto.util.validator.PurchaseLottoValidator;
 import lotto.util.Util;
+import lotto.util.validator.WinningNumberValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -15,9 +17,9 @@ public class InputView {
     public int inputPurchaseLotto() {
         try {
             System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
-            int purchase = Util.convertStringToInt(Console.readLine());
-            new PurchaseLottoValidator().validate(purchase);
-            return purchase;
+            String input = Console.readLine();
+            new PurchaseLottoValidator().validate(input);
+            return Util.convertStringToInt(input);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);
             return inputPurchaseLotto();
@@ -27,8 +29,9 @@ public class InputView {
     public List<Integer> inputWinningNumber() {
         try {
             System.out.print(Message.INPUT_WINNING_NUMBER.message);
-            List<Integer> winnings = Util.splitNumberByComma(Console.readLine());
-            return winnings;
+            String input = Console.readLine();
+            new WinningNumberValidator().validate(input);
+            return Util.splitNumberByComma(input);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);
             return inputWinningNumber();
@@ -38,8 +41,9 @@ public class InputView {
     public int inputBonusNumber() {
         try {
             System.out.print(Message.INPUT_BONUS_NUMBER.message);
-            int bonus = Util.convertStringToInt(Console.readLine());
-            return bonus;
+            String input = Console.readLine();
+            new BonusNumberValidator().validate(input);
+            return Util.convertStringToInt(input);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);
             return inputBonusNumber();

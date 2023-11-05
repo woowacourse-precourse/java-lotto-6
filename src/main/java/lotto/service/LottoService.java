@@ -4,8 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.view.InputView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LottoService {
 
@@ -29,11 +28,26 @@ public class LottoService {
 
         return lottoTickets;
     }
-    public void compareWithWinningNumbers() {
+    public static int compareWithWinningNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
+        List<Integer> lottoNumbers = lottoTicket.getNumbers();
+        Set<Integer> findCorrectNumbers = new HashSet<>(lottoNumbers);
+        int countingCorrectNumbers = 0;
 
+        for (Integer num : winningNumbers) {
+            if(findCorrectNumbers.contains(num)) {
+                countingCorrectNumbers++;
+            }
+        }
+
+        return countingCorrectNumbers;
+    }
+    public static void countCorrectNumbers(List<Lotto> lottoTickets, List<Integer> winningNumbers) {
+        List<Integer> amountOfCorrectNumbers = new ArrayList<>();
+        for (Lotto lottoTicket : lottoTickets) {
+            amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket, winningNumbers));
+        }
     }
     public void makeStatistics() {
-
     }
     public void getEarningRate() {
 

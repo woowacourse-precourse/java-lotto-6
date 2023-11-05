@@ -29,4 +29,7 @@ public enum Reward {
         return winCondition;
     }
 
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }

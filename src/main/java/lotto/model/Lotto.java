@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +11,11 @@ public class Lotto {
         validateDuplicateNumbers(numbers);
         validateRangeNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean hasNumber(Integer number) {
+        return numbers.stream()
+                .anyMatch(num -> num.equals(number));
     }
 
     @Override

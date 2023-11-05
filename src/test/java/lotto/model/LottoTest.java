@@ -1,5 +1,6 @@
 package lotto.model;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +28,27 @@ class LottoTest {
     void createLottoByNotRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또에 숫자가 들어가 있으면 true를 반환")
+    void containLottoByNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // when
+        boolean hasNumber = lotto.hasNumber(3);
+        // then
+        Assertions.assertThat(hasNumber).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또에 숫자가 없으면 false를 반환")
+    void notContainLottoByNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // when
+        boolean hasNumber = lotto.hasNumber(7);
+        // then
+        Assertions.assertThat(hasNumber).isFalse();
     }
 }

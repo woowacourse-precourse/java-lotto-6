@@ -9,11 +9,11 @@ public class Ranks {
 
     private final List<Rank> ranks;
 
-    public Ranks(List<Lotto> lottery, List<Integer> winningNumber, Integer bonusNumber) {
+    public Ranks(List<Lotto> lottery, List<Integer> winningNumber, LottoNumber bonusNumber) {
         this.ranks = makeRankResult(lottery, winningNumber, bonusNumber);
     }
 
-    private List<Rank> makeRankResult(List<Lotto> lottery, List<Integer> winningNumber, Integer bonusNumber) {
+    private List<Rank> makeRankResult(List<Lotto> lottery, List<Integer> winningNumber, LottoNumber bonusNumber) {
         List<Rank> list = new ArrayList<>();
         for (Lotto lotto : lottery) {
             Rank rank = matchLottoWinningNumber(lotto, winningNumber, bonusNumber);
@@ -23,7 +23,7 @@ public class Ranks {
     }
 
 
-    private Rank matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+    private Rank matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumbers, LottoNumber bonusNumber) {
         return Rank.valueOf(winningNumbers.size(), lotto.getNumbers().contains(bonusNumber));
     }
 

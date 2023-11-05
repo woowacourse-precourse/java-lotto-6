@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
 import lotto.domain.Ranks;
 import lotto.service.LottoService;
@@ -39,25 +40,15 @@ public class LottoController {
         }
     }
 
-    public Ranks lottoResults(List<Lotto> lottery, String stringWinningNumber, String stringBonusNumber) {
+    public Ranks lottoResults(List<Lotto> lottery, String stringWinningNumber, LottoNumber bonusNumber) {
         validateWinningNumber(stringWinningNumber);
-        validateBonusNumber(stringBonusNumber);
 
-        Integer bonusNumber = Integer.valueOf(stringBonusNumber);
         List<Integer> winningNumber = Arrays.stream(stringWinningNumber.split(","))
                 .map(s -> Integer.valueOf(s))
                 .collect(Collectors.toList());
         LottoService lottoService = new LottoService();
         return lottoService.lottoResults(
                 lottery, winningNumber, bonusNumber);
-    }
-
-    private void validateBonusNumber(String bonusNumber) {
-        try {
-            Integer.valueOf(bonusNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 숫자는 숫자를 입력해야 합니다.");
-        }
     }
 
     private void validateWinningNumber(String winningNumber) {

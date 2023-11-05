@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class LottoNumber {
     private static final Integer MAX_LOTTO_NUMBER = 45;
     private static final Integer MIN_LOTTO_NUMBER = 1;
@@ -11,6 +13,11 @@ public class LottoNumber {
     public LottoNumber(Integer lottoNumber) {
         validateRange(lottoNumber);
         this.lottoNumber = lottoNumber;
+    }
+
+    public LottoNumber(String winningNumber) {
+        // todo String을 Integer로 변환할 수 있는지 검증 로직 추가 필요
+        this.lottoNumber = Integer.valueOf(winningNumber);
     }
 
     private void validateRange(Integer intNumber) {
@@ -25,5 +32,22 @@ public class LottoNumber {
 
     public Integer getLottoNumber() {
         return lottoNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return Objects.equals(lottoNumber, that.lottoNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoNumber);
     }
 }

@@ -28,7 +28,7 @@ public class LottoService {
         return lottery;
     }
 
-    public Ranks lottoResults(List<Lotto> lottery, List<Integer> winningNumber, Integer bonusNumber) {
+    public Ranks lottoResults(List<Lotto> lottery, List<Integer> winningNumber, LottoNumber bonusNumber) {
         return new Ranks(lottery, winningNumber, bonusNumber);
     }
 

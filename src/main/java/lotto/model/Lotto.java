@@ -1,9 +1,7 @@
 package lotto.model;
 
 import lotto.utils.Constants;
-import lotto.utils.Util;
 import lotto.utils.message.ErrorMessage;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

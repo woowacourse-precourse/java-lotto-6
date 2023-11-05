@@ -8,11 +8,11 @@
 - [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
     - 로또 번호는 1~45 사이의 서로 다른 랜덤한 숫자 6개로 구성되어 있다.
 
+### WinningNumbers
+- [x] 로또 번호와 자신의 숫자를 비교해서 나온 당첨 등수를 반환한다. `Rank determineRank(Lotto)`
+
 ### LottoNumbersComparator
 - [ ] 발행한 로또 번호와 당첨 번호, 보너스 번호를 비교하여 당첨된 등수를 반환한다. `List<Rank> compareLottoNumbers(List<Lotto>, WinningNumbers)`
-
-### WinningNumbers
-- [ ] 로또 번호와 자신의 숫자를 비교해서 나온 당첨 등수를 반환한다. `Rank determineRank(Lotto)`
 
 ### LottoManager
 - [ ] 로또 번호와 당첨 번호를 비교해서 나온 결과를 당첨 내역에 추가한다. `void addRankToWinningHistory(List<Lotto> lottos, WinningNumbers winningNumbers)`

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.generator.NumberGenerator;
 
 public class Lotto {
     private static final String INVALID_SIZE_ERROR_MESSAGE = "[ERROR] 로또 숫자는 6개여야 합니다.";
@@ -21,6 +22,10 @@ public class Lotto {
         return numbers.stream()
                 .map(n -> new LottoNumber(n.toString()))
                 .collect(Collectors.toList());
+    }
+
+    public static Lotto createLotto(NumberGenerator generator) {
+        return new Lotto(generator.generate(LOTTO_SIZE));
     }
 
     private void validate(List<Integer> numbers) {

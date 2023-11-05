@@ -33,4 +33,14 @@ class LottoGameInputValidatorTestView {
                 .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
     }
 
+    @ParameterizedTest(name = "{index}: 금액이 {0}이면 예외가 발생한다.")
+    @DisplayName("Lotto의 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @ValueSource(longs = {1200, 3800200, 948300, 300})
+    public void requestLottoPurchaseAmountException(long number) {
+        // when // then
+        assertThatThrownBy(() -> validator.validateMultipleOfDenomination(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+    }
+
 }

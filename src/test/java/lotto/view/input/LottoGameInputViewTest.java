@@ -64,6 +64,18 @@ public class LottoGameInputViewTest {
         assertThat(amount).isEqualTo(98000L);
     }
 
+    @Test
+    @DisplayName("사용자에게 구입할 로또 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    public void requestLottoPurchaseAmountException() {
+        // given
+        String input = "1200";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // when // then
+        assertThatThrownBy(() -> lottoGameInputView.requestLottoPurchaseAmount())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+    }
+
     @ParameterizedTest(name = "{index}: 숫자가 아닌 입력으로 {0}이 들어오면 예외가 발생한다.")
     @DisplayName("숫자가 아닌 다른 입력이 들어오면 예외가 발생한다.")
     @ValueSource(strings = {"asda", "안녕하세요", "中國語", "ひらがな"})

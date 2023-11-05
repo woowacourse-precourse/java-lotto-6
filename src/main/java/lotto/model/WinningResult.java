@@ -1,16 +1,16 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class WinningResult {
-    private ConcurrentHashMap<Integer, Integer> winngResult = new ConcurrentHashMap<Integer, Integer>(){
+    private ConcurrentHashMap<List<String>, Integer> winngResult = new ConcurrentHashMap<List<String>, Integer>(){
         {
-            winngResult.put(3, 0);
-            winngResult.put(4, 0);
-            winngResult.put(5, 0);
-            winngResult.put(5, 0);
-            winngResult.put(6, 0);
+            winngResult.put(List.of("3"), 0);
+            winngResult.put(List.of("4"), 0);
+            winngResult.put(List.of("5"), 0);
+            winngResult.put(List.of("5", "보너스 볼"), 0);
+            winngResult.put(List.of("6"), 0);
         }
     };
 

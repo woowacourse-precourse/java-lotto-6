@@ -16,6 +16,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("로또 발행 테스트")
 public class LottoReleaseTest extends NsTest{
 
     @ParameterizedTest

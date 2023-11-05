@@ -5,13 +5,13 @@ import lotto.domain.WinningNumber;
 import lotto.validator.LottoNumberValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+@DisplayName("보너스 번호 입력 테스트")
 public class BonusNumberTest {
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class BonusNumberTest {
 
     @Test
     @DisplayName("당첨 번호와 중복되면 예외를 던지는 지 테스트")
-    void 로또_번호_범위_테스트() {
+    void 로또_번호_중복_테스트() {
         // given
         List<Integer> numbers= List.of(1,2,3,4,5,6);
         WinningNumber winningNumber = WinningNumber.create(numbers);

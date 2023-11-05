@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DisplayName("당첨 번호 입력 테스트")
 public class WinningNumberTest {
 
     @Test

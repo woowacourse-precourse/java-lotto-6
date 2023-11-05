@@ -32,6 +32,7 @@ public class PurchasedLottoService {
             try {
                 return InputPurchasePriceView.inputPurchasePrice();
             } catch (IllegalArgumentException e) {
+                OutputView.printNewLine();
                 OutputView.printMessage(e.getMessage());
             }
         } while (true);
@@ -47,12 +48,14 @@ public class PurchasedLottoService {
     private void printPurchasedLottoCount(int count) {
         String purchaseMessage = String.format(PURCHASE_MESSAGE.getMessage(), count);
 
+        OutputView.printNewLine();
         OutputView.printMessage(purchaseMessage);
     }
 
     private void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         purchasedLotto.getLotto()
                 .forEach(lotto -> OutputView.printNumbers(lotto.getLotto()));
+        OutputView.printNewLine();
     }
 
 }

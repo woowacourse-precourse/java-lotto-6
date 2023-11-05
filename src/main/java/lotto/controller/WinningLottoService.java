@@ -13,6 +13,7 @@ public class WinningLottoService {
                 List<Integer> numbers = InputWinningNumberView.inputWinningNumber();
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
+                OutputView.printNewLine();
                 OutputView.printMessage(e.getMessage());
             }
         } while (true);

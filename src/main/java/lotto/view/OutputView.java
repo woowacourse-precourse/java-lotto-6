@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printTicketQuantityMessage(Integer quantity) {
+    public void printTicketQuantityMessage(final Integer quantity) {
         System.out.println();
         String message = String.format("%s개를 구매했습니다.", quantity);
         System.out.println(message);
@@ -27,11 +27,11 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printMessage(String message) {
+    public void printMessage(final String message) {
         System.out.println(message);
     }
 
-    public void printPlayerNumbers(List<LottoDto> playerLotteries) {
+    public void printPlayerNumbers(final List<LottoDto> playerLotteries) {
         playerLotteries.stream().forEach(lottoDto -> {
             System.out.println(lottoDto.getNumbers());
         });

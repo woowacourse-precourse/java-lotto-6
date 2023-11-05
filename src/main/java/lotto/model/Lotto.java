@@ -17,12 +17,12 @@ import lotto.util.NumberGenerator;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR_MESSAGE.getMessage());
         }
@@ -37,17 +37,17 @@ public class Lotto {
         }
     }
 
-    private boolean hasDuplicateNumber(List<Integer> numbers) {
+    private boolean hasDuplicateNumber(final List<Integer> numbers) {
         Set<Integer> numberGroup = new HashSet<>(numbers);
         return numbers.size() != numberGroup.size();
     }
 
-    private boolean hasLargerThanMaxNumber(List<Integer> numbers) {
+    private boolean hasLargerThanMaxNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number > LottoInfo.LOTTO_MAX_NUMBER.getValue());
     }
 
-    private boolean hasLessThanMinNumber(List<Integer> numbers) {
+    private boolean hasLessThanMinNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < LottoInfo.LOTTO_MIN_NUMBER.getValue());
     }

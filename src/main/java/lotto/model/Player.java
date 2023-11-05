@@ -9,11 +9,11 @@ public class Player {
 
     private final List<Lotto> lotteries;
 
-    private Player(List<Lotto> lotteries) {
+    private Player(final List<Lotto> lotteries) {
         this.lotteries = lotteries;
     }
 
-    public static Player createPlayer(TicketQuantity ticketQuantity, NumberGenerator numberGenerator) {
+    public static Player createPlayer(final TicketQuantity ticketQuantity, final NumberGenerator numberGenerator) {
         List<Lotto> lotteries = new ArrayList<>();
         for (int i = 0; i < ticketQuantity.quantity(); i++) {
             lotteries.add(Lotto.createPlayerLotto(numberGenerator));

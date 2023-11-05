@@ -35,11 +35,11 @@ public class LottoGameController {
         return view.getTicketQuantity();
     }
 
-    private Player initPlayer(TicketQuantity ticketQuantity) {
+    private Player initPlayer(final TicketQuantity ticketQuantity) {
         return Player.createPlayer(ticketQuantity, new RandomNumberGenerator());
     }
 
-    private LottoGame initLottoGame(Player player) {
+    private LottoGame initLottoGame(final Player player) {
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
@@ -50,15 +50,15 @@ public class LottoGameController {
         return view.getWinningLotto();
     }
 
-    private BonusNumber initBonusNumber(List<Integer> winningNumbers) {
+    private BonusNumber initBonusNumber(final List<Integer> winningNumbers) {
         return view.getBonusNumber(winningNumbers);
     }
 
-    private void showPlayerLottoNumber(Player player) {
+    private void showPlayerLottoNumber(final Player player) {
         view.showPlayerNumbers(LottoDto.toDto(player.getLotteries()));
     }
 
-    private void showResult(TicketQuantity ticketQuantity, LottoGame lottoGame) {
+    private void showResult(final TicketQuantity ticketQuantity, final LottoGame lottoGame) {
         Map<LottoRank, Integer> result = lottoGame.calculateScore();
         view.showStatistics(result);
         view.showRateOfProfit(result, ticketQuantity);

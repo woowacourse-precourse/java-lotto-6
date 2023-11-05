@@ -11,13 +11,13 @@ public class LottoDto {
         this.numbers = numbers;
     }
 
-    public static List<LottoDto> toDto(List<Lotto> playerLotteries) {
+    public static List<LottoDto> toDto(final List<Lotto> playerLotteries) {
         return playerLotteries.stream()
                 .map(LottoDto::from)
                 .toList();
     }
 
-    private static LottoDto from(Lotto playerLotto) {
+    private static LottoDto from(final Lotto playerLotto) {
         List<Integer> playerNumbers = playerLotto.getNumbers();
         return new LottoDto(playerNumbers);
     }

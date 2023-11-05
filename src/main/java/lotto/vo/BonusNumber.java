@@ -11,7 +11,7 @@ public record BonusNumber(Integer number) {
         validateNumber(number);
     }
 
-    private void validateNumber(Integer number) {
+    private void validateNumber(final Integer number) {
         if (isLargerThanMaxNumber(number)) {
             throw new IllegalArgumentException(LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
         }
@@ -20,11 +20,11 @@ public record BonusNumber(Integer number) {
         }
     }
 
-    private boolean isLessThanMinNumber(Integer number) {
+    private boolean isLessThanMinNumber(final Integer number) {
         return number < LottoInfo.LOTTO_MIN_NUMBER.getValue();
     }
 
-    private boolean isLargerThanMaxNumber(Integer number) {
+    private boolean isLargerThanMaxNumber(final Integer number) {
         return number > LottoInfo.LOTTO_MAX_NUMBER.getValue();
     }
 }

@@ -12,7 +12,7 @@ public record PurchaseAmount(Integer amount) {
         validateAmount(amount);
     }
 
-    private void validateAmount(Integer amount) {
+    private void validateAmount(final Integer amount) {
         if (isLessThanLottoPrice(amount)) {
             throw new IllegalArgumentException(LOTTO_MIN_PRICE_ERROR_MESSAGE.getMessage());
         }
@@ -22,11 +22,11 @@ public record PurchaseAmount(Integer amount) {
         }
     }
 
-    private boolean isLessThanLottoPrice(Integer amount) {
+    private boolean isLessThanLottoPrice(final Integer amount) {
         return amount < ONE_LOTTO_PRICE.getValue();
     }
 
-    private boolean hasChange(Integer amount) {
+    private boolean hasChange(final Integer amount) {
         return (amount % ONE_LOTTO_PRICE.getValue()) != ZERO;
     }
 }

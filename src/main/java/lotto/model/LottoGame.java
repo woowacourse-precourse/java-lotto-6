@@ -35,30 +35,30 @@ public class LottoGame {
         return playerRank;
     }
 
-    private void calculateEachLotto(Map<LottoRank, Integer> playerRank,
-                                    List<Integer> winningNumbers,
-                                    Lotto playerLottery) {
+    private void calculateEachLotto(final Map<LottoRank, Integer> playerRank,
+                                    final List<Integer> winningNumbers,
+                                    final Lotto playerLottery) {
         List<Integer> playerNumbers = playerLottery.getNumbers();
         LottoRank rank = determineRank(countMatchedNumber(winningNumbers, playerNumbers),
                 containBonusNumber(bonusNumber, playerNumbers));
-        
+
         playerRank.put(rank, playerRank.getOrDefault(rank, 0) + 1);
     }
 
-    private LottoRank determineRank(Integer matchedCount, boolean hasBonus) {
+    private LottoRank determineRank(final Integer matchedCount, final boolean hasBonus) {
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> rank.getMatchedCount().equals(matchedCount) && rank.isIncludeBonus() == hasBonus)
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }
 
-    private int countMatchedNumber(List<Integer> winningNumbers, List<Integer> playerNumbers) {
+    private int countMatchedNumber(final List<Integer> winningNumbers, final List<Integer> playerNumbers) {
         return (int) playerNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private boolean containBonusNumber(BonusNumber bonusNumber, List<Integer> playerNumbers) {
+    private boolean containBonusNumber(final BonusNumber bonusNumber, final List<Integer> playerNumbers) {
         Integer number = bonusNumber.number();
 
         if (playerNumbers.contains(number)) {

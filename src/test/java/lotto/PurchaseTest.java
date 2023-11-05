@@ -13,4 +13,18 @@ public class PurchaseTest {
         assertThatThrownBy(() -> new Purchase(14500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 0이면 예외가 발생한다.")
+    @Test
+    void createPurchaseByZero() {
+        assertThatThrownBy(() -> new Purchase(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 음수면 예외가 발생한다.")
+    @Test
+    void createPurchaseByNegative() {
+        assertThatThrownBy(() -> new Purchase(-1000))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

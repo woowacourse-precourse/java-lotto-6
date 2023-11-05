@@ -6,7 +6,7 @@ public class Purchase {
     private final int money;
 
     public Purchase(int money) {
-
+        validateZerOrNegative(money);
         validateAmountNotDivisible(money);
         this.money = money;
     }

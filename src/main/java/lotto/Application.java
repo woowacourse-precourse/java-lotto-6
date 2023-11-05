@@ -19,5 +19,10 @@ public class Application {
         System.out.println("\n" + lottoManager.getNumberOfLottos() + OutputView.NUMBER_OF_LOTTOS.getMessage());
         Lottos lottos = new Lottos(lottoGame.addLottos());
         System.out.println(lottos);
+
+        System.out.println(OutputView.INPUT_LUCKY_NUMBER.getMessage());
+////        List<Integer> luckyNumbers = lottoGame.getLuckyNumber();
+////        Lotto lotto = new Lotto(luckyNumbers);
+//        Lotto lotto = new Lotto(lottoGame.getLuckyNumber());
     }
 }

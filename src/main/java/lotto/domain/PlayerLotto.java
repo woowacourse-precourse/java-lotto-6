@@ -14,11 +14,7 @@ public class PlayerLotto {
         List<Rank> results = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int containCounts = lotto.countMatchingNumbers(winningNumber);
-            boolean isMatchBonus = false;
-
-            if (containCounts == Rank.SECOND.getMatchCounts()) {
-                isMatchBonus = lotto.isContains(bonusNumber);
-            }
+            boolean isMatchBonus = lotto.isContains(bonusNumber);
 
             Rank rank = Rank.calculateRank(containCounts, isMatchBonus);
             results.add(rank);

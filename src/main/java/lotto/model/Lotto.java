@@ -22,8 +22,7 @@ public class Lotto {
     public String toString() {
         return sortLottoNumber().toString();
     }
-
-    // 메서드 이름이랑 내부 매직 넘버는 수정해도 되는 부분인가?
+    
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -31,12 +30,12 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (isLottoSizeEqualToSix(numbers)) {
+        if (isNotLottoSizeSix(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isLottoSizeEqualToSix(List<Integer> numbers) {
+    private boolean isNotLottoSizeSix(List<Integer> numbers) {
         return countUniqueLottoNumbers(numbers) != LottoConstants.LOTTO_NUMBER_SIZE;
     }
 

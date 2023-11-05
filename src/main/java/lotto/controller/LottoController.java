@@ -17,14 +17,14 @@ public class LottoController {
     public void play() {
         int purchaseAmount = generateValidMoney();
 
-        LottoTicket lottoTicket = LottoTicket.generate(purchaseAmount / 1000);
+        LottoTicket lottoTicket = LottoTicket.create(purchaseAmount / 1000);
 
         OutputView.printNumberOfLotto(purchaseAmount / 1000);
         OutputView.printLottoTicket(lottoTicket);
 
         WinningNumbers winningNumbers = createValidWinningNumbers();
 
-        resultDetails.updateWinningResults(lottoTicket, winningNumbers);
+        resultDetails.updateResultDetails(lottoTicket, winningNumbers);
 
         OutputView.printWinningStatisticsHeader();
         OutputView.printWinningStatistics(resultDetails);
@@ -38,8 +38,8 @@ public class LottoController {
                 int purchaseAmount = InputView.inputNumber();
                 MoneyValidator.validateMoney(purchaseAmount);
                 return purchaseAmount;
-            } catch (IllegalArgumentException e) {
-                OutputView.printExceptionMessage(e.getMessage());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }
@@ -52,8 +52,8 @@ public class LottoController {
 
                 BonusNumber bonusNumber = new BonusNumber(InputView.inputNumber());
                 return new WinningNumbers(winningNumbersData, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                OutputView.printExceptionMessage(e.getMessage());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }
@@ -64,8 +64,8 @@ public class LottoController {
                 OutputView.printWinningNumbersMessage();
                 List<Integer> winningNumbers = InputView.inputWinningNumbers();
                 return new WinningNumbersData(winningNumbers);
-            } catch (IllegalArgumentException e) {
-                OutputView.printExceptionMessage(e.getMessage());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printExceptionMessage(illegalArgumentException.getMessage());
             }
         }
     }

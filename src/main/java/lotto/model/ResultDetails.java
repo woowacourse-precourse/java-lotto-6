@@ -16,7 +16,7 @@ public class ResultDetails {
         initializeWinningCountsForRanks();
     }
 
-    public void updateWinningResults(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
+    public void updateResultDetails(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
         lottoTicket.getLottos().stream()
                 .map(lotto -> Rank.find(winningNumbers.countMatchingNumbers(lotto),
                         winningNumbers.hasBonusNumber(lotto)))

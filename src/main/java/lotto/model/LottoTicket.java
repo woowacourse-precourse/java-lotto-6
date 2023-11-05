@@ -12,7 +12,7 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
-    public static LottoTicket generate(int purchasedLottoNumber) {
+    public static LottoTicket create(int purchasedLottoNumber) {
         List<Lotto> lottos = IntStream.range(0, purchasedLottoNumber)
                 .mapToObj(i -> RandomNumberGenerator.generate())
                 .map(Lotto::new)

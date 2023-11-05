@@ -29,13 +29,13 @@ public class WinningNumbersData {
 
     private void validateNumberInRange(List<Integer> winningNumbers) {
         for (final Integer winningNumber : winningNumbers) {
-            if (isWinningNumberValid(winningNumber)) {
+            if (isNotValidWinningNumber(winningNumber)) {
                 throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
             }
         }
     }
 
-    private boolean isWinningNumberValid(Integer winningNumber) {
+    private boolean isNotValidWinningNumber(int winningNumber) {
         return winningNumber < LottoConstants.START_NUMBER || winningNumber > LottoConstants.END_NUMBER;
     }
 

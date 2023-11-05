@@ -16,12 +16,12 @@ public class BonusNumber {
     }
 
     private void validateNumberInRange(int bonusNumber) {
-        if (isBonusNumberValid(bonusNumber)) {
+        if (isNotValidBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isBonusNumberValid(int bonusNumber) {
+    private boolean isNotValidBonusNumber(int bonusNumber) {
         return bonusNumber < LottoConstants.START_NUMBER || bonusNumber > LottoConstants.END_NUMBER;
     }
 }

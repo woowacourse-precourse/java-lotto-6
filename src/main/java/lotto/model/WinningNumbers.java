@@ -8,7 +8,7 @@ public class WinningNumbers {
     private final BonusNumber bonusNumber;
 
     public WinningNumbers(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
-        validateBonusNumber(winningNumbersData, bonusNumber);
+        validateDuplicateBonusNumber(winningNumbersData, bonusNumber);
         this.winningNumbersData = winningNumbersData;
         this.bonusNumber = bonusNumber;
     }
@@ -21,7 +21,7 @@ public class WinningNumbers {
         return lotto.hasNumber(bonusNumber.getBonusNumber());
     }
 
-    private void validateBonusNumber(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
+    private void validateDuplicateBonusNumber(WinningNumbersData winningNumbersData, BonusNumber bonusNumber) {
         if (winningNumbersData.contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE);
         }

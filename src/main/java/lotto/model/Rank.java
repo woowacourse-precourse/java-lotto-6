@@ -8,28 +8,20 @@ public enum Rank {
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
     THIRD(5, 1_500_000),
-    SECOND(5, true, 30_000_000),
+    SECOND(5, 30_000_000),
     FIRST(6, 2_000_000_000),
     NONE(0, 0);
 
     private final int matchingNumber;
-    private final boolean bonusMatch;
     private final int reward;
 
     Rank(int matchingNumber, int reward) {
         this.matchingNumber = matchingNumber;
-        bonusMatch = false;
-        this.reward = reward;
-    }
-
-    Rank(int matchingNumber, boolean bonusMatch, int reward) {
-        this.matchingNumber = matchingNumber;
-        this.bonusMatch = bonusMatch;
         this.reward = reward;
     }
 
     public static Rank find(int matchingNumber, boolean bonusMatch) {
-        if (isEqualsToSecondRankMatchingNumber(matchingNumber, bonusMatch)) {
+        if (isSecondRank(matchingNumber, bonusMatch)) {
             return SECOND;
         }
         return Arrays.stream(Rank.values())
@@ -45,8 +37,8 @@ public enum Rank {
                 .sum();
     }
 
-    private static boolean isEqualsToSecondRankMatchingNumber(int matchingNumber, boolean bonusMatch) {
-        return matchingNumber == SECOND.matchingNumber && bonusMatch == SECOND.bonusMatch;
+    private static boolean isSecondRank(int matchingNumber, boolean bonusMatch) {
+        return matchingNumber == SECOND.matchingNumber && bonusMatch;
     }
 
     private static boolean isSameMatchingNumber(int matchingNumberOfRank, int matchingNumber) {

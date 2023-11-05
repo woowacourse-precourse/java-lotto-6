@@ -59,4 +59,12 @@ public class LottoService {
         }
         return totalPrizeAmount;
     }
+
+    public double getProfitRate() {
+        double totalPrizeAmount = 0;
+        for (LottoRank lottoRank: winningRankCount.keySet()) {
+            totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
+        }
+        return (totalPrizeAmount / (userLottos.size() * 1000)) * 100;
+    }
 }

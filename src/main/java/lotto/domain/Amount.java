@@ -5,7 +5,7 @@ public class Amount {
     private final int amount;
 
     public Amount(int amount) {
-        validateAmount(amount);
+        validate(amount);
         this.amount = amount;
     }
 
@@ -13,7 +13,7 @@ public class Amount {
         return this.amount;
     }
 
-    private void validateAmount(int amount) {
+    private void validate(int amount) {
         validateMinAmount(amount);
         validateUnit(amount);
     }

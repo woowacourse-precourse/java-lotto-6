@@ -67,6 +67,31 @@ class InputViewTest {
                 .hasMessageContaining(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
     }
 
+    @DisplayName("보너스 번호를 성공적으로 입력 받으면, 그 값을 정수형으로 반환한다.")
+    @Test
+    void readBonusNumber_Success() {
+        // given
+        System.setIn(createUserInput("7"));
+
+        // when
+        int bonusNumber = InputView.readBonusNumber();
+
+        // then
+        Assertions.assertThat(bonusNumber).isEqualTo(7);
+    }
+
+    @DisplayName("보너스 번호 입력 시 숫자가 아닌 다른 문자를 입력하면 예외가 발생한다.")
+    @Test
+    void readBonusNumber_Fail_ByNotInteger() {
+        // given
+        System.setIn(createUserInput("Not number"));
+
+        // when, then
+        Assertions.assertThatThrownBy(InputView::readBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+    }
+
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }

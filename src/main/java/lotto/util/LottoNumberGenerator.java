@@ -2,8 +2,10 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class RandomNumberGenerator {
-    public Integer generateNumber() {
-        return Randoms.
+import java.util.List;
+
+public class LottoNumberGenerator {
+    public List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

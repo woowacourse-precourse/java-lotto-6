@@ -32,11 +32,17 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public void compareMyLottoWithWinningLotto(List<Integer> winningLotto, List<Integer> myLotto) {
+    public Integer compareMyLottoWithWinningLotto(List<Integer> winningLotto, List<Integer> myLotto) {
+
+        Integer countValue = 0;
 
         for (int j = 0; j < COUNT; j++) {
-            if (winningLotto.contains(myLotto.get(j))) ;
+            if (winningLotto.contains(myLotto.get(j))) {
+                countValue++;
+            }
         }
+
+        return countValue;
     }
 
     public void repeatCompare() {
@@ -46,9 +52,11 @@ public class LottoService {
         List<List<Integer>> myLotto = generateRandomLottoNumbers(8);
 
         for (int i = 0; i < 8; i++) {
-            Integer score = 0;
             compareMyLottoWithWinningLotto(winningLotto, myLotto.get(i));
         }
+    }
+
+    public void reportLotteryAmount() {
 
     }
 }

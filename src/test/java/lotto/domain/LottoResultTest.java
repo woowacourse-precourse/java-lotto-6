@@ -13,11 +13,12 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
-    private LottoWinningNumbers lottoWinningNumbers;
+    private LottoResult lottoResult;
 
     @BeforeEach
     void setUp() {
-        lottoWinningNumbers = new LottoWinningNumbers();
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
+        lottoResult = new LottoResult(lottoWinningNumbers);
         consoleInput("1,2,3,4,5,6", "7");
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
     }
@@ -25,7 +26,6 @@ public class LottoResultTest {
     @DisplayName("당첨 갯수가 5개인지 확인")
     @Test
     void MachCountTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        LottoResult lottoResult = new LottoResult(lottoWinningNumbers);
         List<Integer> purchaseNumber = List.of(1, 2, 3, 4, 6, 9);
         Method method = lottoResult.getClass().getDeclaredMethod("getLottoMatchCount", List.class);
         method.setAccessible(true);
@@ -34,7 +34,20 @@ public class LottoResultTest {
         assertThat(matchCount).isEqualTo(5);
     }
 
+    @DisplayName("당첨번호 5개가 맞고 보너스번호가 맞으면 2등이다.")
+    @Test
+    void BonusCountTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        List<Integer> purchaseNumber = List.of(1, 2, 3, 4, 6, 7);
+        Method matchCountMethod = lottoResult.getClass().getDeclaredMethod("getLottoMatchCount", List.class);
+        matchCountMethod.setAccessible(true);
+        Method bonusCheck = lottoResult.getClass().getDeclaredMethod("bonusNumberCheck", int.class, List.class);
+        bonusCheck.setAccessible(true);
 
+        int matchCount = (int) bonusCheck.invoke(lottoResult,
+                (int) matchCountMethod.invoke(lottoResult, purchaseNumber), purchaseNumber);
+
+        assertThat(matchCount).isEqualTo(15);
+    }
 
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();

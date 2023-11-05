@@ -18,7 +18,7 @@ public class LottoResult {
     public LottoCount getLottoStatus(List<Lotto> purchaseLottoNumber) {
         for (Lotto purchaseNumber : purchaseLottoNumber) {
             List<Integer> lottoNumbers = purchaseNumber.getNumbers();
-            int matchCount = BonusNumberCheck(getLottoMatchCount(lottoNumbers), lottoNumbers);
+            int matchCount = bonusNumberCheck(getLottoMatchCount(lottoNumbers), lottoNumbers);
             lottoCount = getCount(matchCount);
         }
         outputLottoResult(lottoCount);
@@ -63,7 +63,7 @@ public class LottoResult {
                 lottoCount.getSixCount());
     }
 
-    private int BonusNumberCheck(int matchCount, List<Integer> lottoNumbers) {
+    private int bonusNumberCheck(int matchCount, List<Integer> lottoNumbers) {
         if (matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(lottoWinningNumbers.getBonusNumber())) {
             return matchCount + BONUS_CHECK_COUNT;
         }

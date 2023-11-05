@@ -38,6 +38,17 @@ public class InputExceptionValidator {
         return null;
     }
 
+    public Exception inputBonusNumberValidation(String userInput) {
+        try {
+            numberFormatValidation(userInput);
+        } catch (InputException e) {
+            System.out.println(e.getMessage());
+            return e;
+        }
+
+        return null;
+    }
+
     private void numberFormatValidation(String userInput) throws InputException {
         try {
             Integer.parseInt(userInput);

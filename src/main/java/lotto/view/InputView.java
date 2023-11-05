@@ -23,7 +23,7 @@ public class InputView {
 
     public InputInfo inputBonusNumber() {
         String userInput = Console.readLine();
-        return new InputInfo(null, userInput);
+        return new InputInfo(Validator.VALIDATOR.getInputValidator().inputBonusNumberValidation(userInput), userInput);
     }
 
     public List<String> splitUserInput(String userInput) {

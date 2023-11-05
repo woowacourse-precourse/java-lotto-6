@@ -6,6 +6,11 @@ import lotto.view.InputView;
 public class LottoController {
 
     public void start() {
-        Money money = new Money(InputView.inputBuyLottoMoney());
+        Money money = getMoney();
+    }
+
+    private Money getMoney() {
+        int money = InputView.inputBuyLottoMoney();
+        return new Money(money);
     }
 }

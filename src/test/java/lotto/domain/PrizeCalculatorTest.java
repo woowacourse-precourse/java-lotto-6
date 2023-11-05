@@ -23,8 +23,8 @@ public class PrizeCalculatorTest {
         List<Rank> ranks3 = Collections.emptyList();
 
         assertAll(() -> {
-            assertThat(prizeCalculator.calculatePrize(ranks1)).isEqualTo(2_030_555_000L);
-            assertThat(prizeCalculator.calculatePrize(ranks2)).isEqualTo(60_100_000L);
+            assertThat(prizeCalculator.calculatePrize(ranks1)).isEqualTo(2_031_555_000L);
+            assertThat(prizeCalculator.calculatePrize(ranks2)).isEqualTo(60_050_000L);
             assertThat(prizeCalculator.calculatePrize(ranks3)).isEqualTo(0L);
         });
     }

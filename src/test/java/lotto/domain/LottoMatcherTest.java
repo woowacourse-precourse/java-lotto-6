@@ -23,7 +23,7 @@ public class LottoMatcherTest {
 
         assertAll(() -> {
             assertThat(lottoMatcher.match(lotto1)).isEqualTo(Rank.FIRST);
-            assertThat(lottoMatcher.match(lotto2)).isEqualTo(Rank.THIRD);
+            assertThat(lottoMatcher.match(lotto2)).isEqualTo(Rank.FIFTH);
             assertThat(lottoMatcher.match(lotto3)).isEqualTo(Rank.NONE);
         });
     }

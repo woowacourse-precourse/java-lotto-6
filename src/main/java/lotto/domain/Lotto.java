@@ -53,4 +53,19 @@ public class Lotto {
         return matchedNumber;
     }
 
+    private void validate(String numbers) {
+        validateDuplicateNumber(numbers);
+        validateLottoSize(numbers);
+        validateNumberRange(numbers);
+    }
+
+    private void validate(String numbers) {
+        validateDuplicateNumber(numbers);
+        validateLottoSize(numbers);
+        validateNumberRange(numbers);
+    }
+
+    public void toLotto(String input) {
+
+    }
 }

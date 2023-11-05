@@ -5,7 +5,7 @@
 ## OutputView
 
 - [] 출력 기능
-  - [] 예외 출력 기능
+    - [] 예외 출력 기능
 
 ## Lotto
 
@@ -15,38 +15,38 @@
     - [x] 중복된 수가 있는지 확인
 - [x] 다른 로또와 비교하여 몇 개의 수가 당첨인지 반환하는 기능
 - [x] 6개의 수 정렬 기능
+- [x] 문자열을 받아서 lotto로 형변환 시키는 기능
+    - [ ] 
 
 ## Lottos
 
 - [x] Lotto 추가 기능
 - [x] 몇 개의 로또가 있는지 반환하는 기능
 
-
 ## LottoGenerator
+
 - [x] 금액
 - [x] 금액에 따른 로또들을 생성하고 반환
 
-## LottoComputer 
-- [] 당첨 번호
+## LottoComputer
+
+- [x] 당첨 번호
 - [] 수익률 계산
 - [] 당첨내역 계산
 
-## LottoService  
-- [] 객체 들을 알맞게 사용
+## LottoService
+
+- [x] 객체 들을 알맞게 사용
 
 ## Parser
+
 - [] 문자열을 Lotto로 형변환 시킬 수 있는지 검증하는 기능
 - [] 문자열을 Lotto로 형변환 시키고 반환하는 기능
 
 ## Constants
 
-
 사용자 입력 -> LottoService -> LottoGenerator -> Lottos -> Lotto
 -> Computer(Lottos) -> LottoService -> 화면 출력
-
-
-
-
 
 ```
 해야할 것
@@ -54,35 +54,20 @@
 로직 설계, 기능 분담, 설계 방식?, MVC, dto... 클린 코드
 ```
 
-## 준수 사항 
+## 준수 사항
 
 - [] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-  - [] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.  
+    - [] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - [] else 예약어를 쓰지 않는다.
     - [] 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
     - [] else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - [] Java Enum을 적용한다.
-- 
-- [] 도메인 로직에 단위 테스트를 구현해야 한다. 
+-
+- [] 도메인 로직에 단위 테스트를 구현해야 한다.
     - [] 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - [] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - [] 단위 테스트 작성이 익숙하지 않다면 test/java/lotto/LottoTest를 참고하여 학습한 후 테스트를 구현한다.
 - [] Lotto Class 와 Randoms Api를 사용한다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 제공 되는 Lotto 클래스,randoms,console API 사용
 
@@ -94,7 +79,7 @@ else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 
 Java Enum을 적용한다.  
 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.  
 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.  
-단위 테스트 작성이 익숙하지 않다면 test/java/lotto/LottoTest를 참고하여 학습한 후 테스트를 구현한다.  
+단위 테스트 작성이 익숙하지 않다면 test/java/lotto/LottoTest를 참고하여 학습한 후 테스트를 구현한다.
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
 

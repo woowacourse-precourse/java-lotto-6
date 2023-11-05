@@ -7,6 +7,7 @@ import lotto.domain.WinningLotto;
 import lotto.service.LottoIssueService;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
+import lotto.util.ErrorMessages;
 
 public class LottoIssueController {
     private final static int UNIT_PRICE = 1000;
@@ -30,9 +31,11 @@ public class LottoIssueController {
         WinningLotto winningLotto = null;
         while (winningLotto == null) {
             try {
+                List<Integer> lottoNumbers = input.inputNumbers();
+                Lotto lotto = new Lotto(lottoNumbers);
 
             } catch (IllegalArgumentException e) {
-
+                output.showErrorReason(e.getMessage());
             }
         }
         return winningLotto;
@@ -44,11 +47,11 @@ public class LottoIssueController {
 
     private void validateMoney(final int money) {
         if (money < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.MONEY_NOT_NEGATIVE.getMessage());
         }
 
         if (hasChange(money)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.MONEY_CANT_DIVIDE_ERROR.getMessage());
         }
     }
 

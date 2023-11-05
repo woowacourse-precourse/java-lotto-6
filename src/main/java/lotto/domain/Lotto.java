@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.util.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,11 +18,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.NOT_SIX_NUMBER_ERROR.getMessage());
         }
 
         if (isContainSameNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -31,6 +32,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.stream()

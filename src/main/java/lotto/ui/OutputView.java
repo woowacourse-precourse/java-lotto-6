@@ -4,14 +4,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
-    public void printInvalidateMoneyStatement() {
-        System.out.println("[ERROR] 1,000원 단위로 입력해주세요.");
-    }
-
-    public void printInvalidNumbers() {
-        System.out.println("[ERROR] ");
-    }
-
     public void enterYourAmount() {
         System.out.println("구입금액을 입력해주세요.");
     }
@@ -23,5 +15,9 @@ public class OutputView {
             System.out.println(lottos.get(i));
         }
         System.out.println();
+    }
+
+    public void showErrorReason(String message) {
+        System.out.println(message);
     }
 }

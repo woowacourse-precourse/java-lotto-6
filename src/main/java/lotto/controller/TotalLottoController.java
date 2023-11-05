@@ -25,7 +25,7 @@ public class TotalLottoController {
                 int money = inputView.inputMoney();
                 issueLottos = issueController.issueLottos(money);
             } catch (IllegalArgumentException e) {
-                outputView.printInvalidateMoneyStatement();
+                outputView.showErrorReason(e.getMessage());
             }
         }
         return issueLottos;

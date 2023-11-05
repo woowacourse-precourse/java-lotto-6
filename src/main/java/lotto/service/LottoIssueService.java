@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.util.ErrorMessages;
 
 public class LottoIssueService {
 
@@ -19,7 +20,7 @@ public class LottoIssueService {
 
     private void validateIssueCount(int issueCount) {
         if (issueCount <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.ISSUE_COUNT_ERROR.getMessage());
         }
     }
 

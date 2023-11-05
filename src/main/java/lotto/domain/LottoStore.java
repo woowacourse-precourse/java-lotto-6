@@ -6,22 +6,15 @@ import java.util.List;
 
 public class LottoStore {
     private static final int COUNT = 6;
-    private static final int PRICE = 1000;
 
-    private final List<Lotto> lottoes;
-    private final int totalLottoNumber;
+    private final List<Lotto> lottoes = new ArrayList<>();
 
-    public LottoStore(Amount amount) {
-        this.totalLottoNumber = amount.getAmount() / PRICE;
-        this.lottoes = publishLottoes(this.totalLottoNumber);
+    public LottoStore(int totalLottoNumber) {
+        publishLottoes(totalLottoNumber);
     }
 
     public List<Lotto> getLottoes() {
         return this.lottoes;
-    }
-
-    public int getTotalLottoNumber() {
-        return this.totalLottoNumber;
     }
 
     private Lotto publishLotto() {
@@ -33,13 +26,9 @@ public class LottoStore {
                 LottoNumberRange.MIN.getValue(), LottoNumberRange.MAX.getValue(), COUNT);
     }
 
-    private List<Lotto> publishLottoes(int totalLottoes) {
-        List<Lotto> lottoes = new ArrayList<>();
+    private void publishLottoes(int totalLottoes) {
         for (int i = 0; i < totalLottoes; i++) {
-            lottoes.add(publishLotto());
+            this.lottoes.add(publishLotto());
         }
-        return lottoes;
     }
-
-
 }

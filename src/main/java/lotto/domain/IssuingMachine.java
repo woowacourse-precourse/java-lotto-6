@@ -5,6 +5,7 @@ import java.util.List;
 
 public class IssuingMachine {
 
+    private static final int LOTTO_PRICE=1000;
     private int money;
     private List<Lotto> lottos = new ArrayList<>();
 
@@ -16,8 +17,9 @@ public class IssuingMachine {
         return new IssuingMachine(money);
     }
 
-    public int calculateCount(int money) {
-        return 0;
+    public int calculateCount() {
+        validateMoney();
+        return money/LOTTO_PRICE;
     }
 
     public Lotto createLotto() {
@@ -26,5 +28,9 @@ public class IssuingMachine {
 
     public List<Lotto> issueLotto() {
         return null;
+    }
+
+    public void validateMoney(){
+
     }
 }

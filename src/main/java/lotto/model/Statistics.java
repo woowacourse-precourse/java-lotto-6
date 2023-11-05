@@ -1,15 +1,15 @@
 package lotto.model;
 
 public class Statistics {
-    private final String valueNumber;
+    private final int valueNumber;
     private int amountOfTickets;
 
-    public Statistics(String valueNumber, int amountOfTickets) {
+    public Statistics(int valueNumber, int amountOfTickets) {
         this.valueNumber = valueNumber;
         this.amountOfTickets = amountOfTickets;
     }
 
-    public String getValueNumber() {
+    public int getValueNumber() {
         return valueNumber;
     }
     public int getAmountOfTickets() {

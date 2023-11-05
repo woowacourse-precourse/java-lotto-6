@@ -17,16 +17,16 @@ import static lotto.model.LottoPrize.FIRST_PLACE;
 import static lotto.model.LottoPrize.FIFTH_PLACE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CalculatorTest {
+class PrizeCalculatorTest {
 
     //TODO: 테스트를 위해서 이렇게 생성해도 될까?
-    private final Calculator calculator = new Calculator();
+    private final PrizeCalculator prizeCalculator = new PrizeCalculator();
 
     @DisplayName("로또 수익률 계산")
     @ParameterizedTest(name = "{displayName} prizes: {0}, expected: {1}")
     @MethodSource("totalReturnParametersProvider")
     void checkTotalReturn(List<LottoPrize> prizes, PurchaseAmount amount, String expected) {
-        Double totalReturn = calculator.calculatePrize(prizes, amount);
+        Double totalReturn = prizeCalculator.calculatePrize(prizes, amount);
         assertThat(String.format("%.1f", totalReturn * 100)).isEqualTo(expected);
     }
 

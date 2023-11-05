@@ -5,7 +5,7 @@ import lotto.model.LottoPrize;
 import lotto.model.PurchaseAmount;
 import lotto.model.Result;
 import lotto.model.WinningLotto;
-import lotto.service.Calculator;
+import lotto.service.PrizeCalculator;
 import lotto.service.LottoIssuer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -43,8 +43,8 @@ public class LottoController {
     }
 
     private Double calculate(List<LottoPrize> lottoPrizes, PurchaseAmount amount) {
-        Calculator calculator = new Calculator();
-        return calculator.calculatePrize(lottoPrizes, amount);
+        PrizeCalculator prizeCalculator = new PrizeCalculator();
+        return prizeCalculator.calculatePrize(lottoPrizes, amount);
     }
 
     private List<LottoPrize> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {

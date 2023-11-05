@@ -5,7 +5,7 @@ import lotto.model.PurchaseAmount;
 
 import java.util.List;
 
-public class Calculator {
+public class PrizeCalculator {
 
     public Double calculatePrize(List<LottoPrize> lottoPrizes, PurchaseAmount purchaseAmount) {
         return (double) sumPrize(lottoPrizes) / purchaseAmount.getAmount();

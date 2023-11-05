@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoManager;
+import lotto.domain.Lottos;
 import lotto.output.OutputView;
 
 public class Application {
@@ -15,8 +17,7 @@ public class Application {
         lottoGame.getRightCost();
 
         System.out.println("\n" + lottoManager.getNumberOfLottos() + OutputView.NUMBER_OF_LOTTOS.getMessage());
-        List<Lotto> allLottos = lottoGame.addLottos();
-        // TODO 출력형식, 정력 맞추기
-        System.out.println(allLottos);
+        Lottos lottos = new Lottos(lottoGame.addLottos());
+        System.out.println(lottos);
     }
 }

@@ -31,8 +31,7 @@ public class Player {
         return  playerWallet.calculateProfit(lottoResultsRepository);
     }
 
-    // 테스트를 위한 코드
-    int getTicketNumber() {
-        return lottoTicket.getLottoTicket();
+    public LottoBundleDto makeLottoBundleDto() {
+        return lottoBundle.makeLottoBundleDto();
     }
 }

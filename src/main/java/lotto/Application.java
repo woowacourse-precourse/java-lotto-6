@@ -33,8 +33,6 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winNumbersInput = Console.readLine();
 
-        String[] winNumbersInputSplit = winNumbersInput.split(",");
-
         //TODO : 당첨번호가 형식에 맞는지 검증
 
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -44,6 +42,7 @@ public class Application {
 
         System.out.println("당첨 통계");
         System.out.println("---");
+
         //TODO: 당첨 내역 출력
 
     }

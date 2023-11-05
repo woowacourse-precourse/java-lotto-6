@@ -9,8 +9,8 @@ public enum LottoPrize {
     THIRD_PRIZE(5, 1_500_000),
     SECOND_PRIZE(5, 30_000_000, true),
     FIRST_PRIZE(6, 2_000_000_000);
-
     public static final int ZERO_AMOUNT = 0;
+
     private final int requiredMatchingNumbers;
     private final int prizeMoney;
     private final boolean requiresBonusNumber;

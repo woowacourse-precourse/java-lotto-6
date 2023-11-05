@@ -34,7 +34,7 @@ class LottoTest {
 
     @DisplayName("view 에 전달할 로또 번호의 문자열 생성")
     @Test
-    void getSelectedNumbers() {
+    void generateStringForView() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         // when
@@ -45,7 +45,7 @@ class LottoTest {
 
     @DisplayName("[로또 결과] 당첨 번호와 동일한 수가 3개 있고, 보너스 번호는 맞지 않는 경우")
     @Test
-    void 당첨번호와_동일한수_3_보너스_false() {
+    void checkResultTest1() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
         // when
@@ -57,7 +57,7 @@ class LottoTest {
 
     @DisplayName("[로또 결과] 당첨 번호와 동일한 수가 5개, 보너스 번호가 맞을 경우")
     @Test
-    void 당첨번호와_동일한수_5_보너스_true() {
+    void checkResultTest2() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         // when

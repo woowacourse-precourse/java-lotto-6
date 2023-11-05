@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.utils.ExceptionMessage;
@@ -43,5 +44,19 @@ class AmountTest {
         assertThatThrownBy(() -> amount.calculateTotalLottoCount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_AMOUNT_DIVISION);
+    }
+
+    @Test
+    @DisplayName("로또 한장의 가격을 구하는 테스트")
+    void calculateLotto() {
+
+        // Given
+        int purchaseAmount = 10000;
+
+        // When
+        int calculatedTotalLottoCount = amount.calculateTotalLottoCount(purchaseAmount);
+
+        // Then
+        assertThat(calculatedTotalLottoCount).isEqualTo(10);
     }
 }

@@ -7,14 +7,14 @@ import static lotto.domain.constant.DomainConstant.NUMBERS_FORMAT_REGEX;
 import static lotto.domain.constant.DomainConstant.ONE_LOTTO_PRICE;
 import static lotto.domain.constant.DomainConstant.SIX;
 import static lotto.domain.constant.DomainConstant.ZERO;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.DUPLICATED_BONUS_NUMBER;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NEGATIVE_COUNT;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_EXIST_INPUT_ERROR;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_SIX_NUMBERS;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.NOT_THOUSAND_UNIT;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.OVER_RANGE;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.UNDER_THOUSAND_AMOUNT;
-import static lotto.domain.generator.LottoGenerator.LottoMakerErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.NEGATIVE_COUNT;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.NOT_EXIST_INPUT_ERROR;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.NOT_SIX_NUMBERS;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.NOT_THOUSAND_UNIT;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.OVER_RANGE;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.UNDER_THOUSAND_AMOUNT;
+import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.WINNING_NUMBERS_INVALID_FORMAT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -106,7 +106,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         }
     }
 
-    enum LottoMakerErrorMessage {
+    enum LottoGeneratorErrorMessage {
         NOT_EXIST_INPUT_ERROR("[ERROR] 입력이 존재하지 않습니다."),
         NOT_THOUSAND_UNIT("[ERROR] 금액은 1000원 단위로 입력해야 합니다."),
         UNDER_THOUSAND_AMOUNT("[ERROR] 최소 1000원의 금액을 입력해야 합니다."),
@@ -118,7 +118,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
 
         private final String errorMessage;
 
-        LottoMakerErrorMessage(String errorMessage) {
+        LottoGeneratorErrorMessage(String errorMessage) {
             this.errorMessage = errorMessage;
         }
 

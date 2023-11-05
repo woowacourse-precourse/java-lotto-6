@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,10 +16,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ErrorMessage.getDescription(ErrorMessage.SIZE);
             throw new IllegalArgumentException();
         }
 
         if (isDuplicate(numbers)) {
+            ErrorMessage.getDescription(ErrorMessage.DUPLICATE);
             throw new IllegalArgumentException();
         }
     }

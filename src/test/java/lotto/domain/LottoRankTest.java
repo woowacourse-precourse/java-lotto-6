@@ -41,5 +41,12 @@ class LottoRankTest {
         assertThat(LottoRank.FIFTH.getMatchCount()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("보너스 번호 일치 여부를 올바르게 반환하는지 확인")
+    void testIsMatchBonus() {
+        assertThat(LottoRank.SECOND.isMatchBonus()).isTrue();
+        assertThat(LottoRank.FIRST.isMatchBonus()).isFalse();
+        assertThat(LottoRank.THIRD.isMatchBonus()).isFalse();
+    }
 }
 

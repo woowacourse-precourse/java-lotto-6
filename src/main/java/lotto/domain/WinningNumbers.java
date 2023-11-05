@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Collections;
 import lotto.dto.WinningNumbersDto;
-import lotto.utils.ValidationUtil;
 import java.util.List;
 
 public class WinningNumbers {

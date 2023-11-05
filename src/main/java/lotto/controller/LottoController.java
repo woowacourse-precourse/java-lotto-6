@@ -11,15 +11,16 @@ import lotto.utils.ValidationUtil;
 
 public class LottoController {
     private final LottoService lottoService;
+    private final InputHandler inputHandler;
     private final InputView inputView;
     private final OutputView outputView;
-    private final InputHandler inputHandler;
+
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.inputHandler = new InputHandler(inputView, outputView);
+        this.inputHandler = new InputHandler(outputView);
 
     }
 
@@ -52,7 +53,9 @@ public class LottoController {
     private int inputValidatePurchaseAmount() {
         String purchaseAmountInput = inputView.inputPurchaseAmount();
         validateBasicInput(purchaseAmountInput);
+        ValidationUtil.validateOutOfRange(purchaseAmountInput);
         int purchaseAmount = ParserUtil.parseLottoNumber(purchaseAmountInput);
+        ValidationUtil.validatePurchaseAmountRange(purchaseAmount);
         ValidationUtil.validateThousandUnit(purchaseAmount);
         return purchaseAmount;
     }

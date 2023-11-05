@@ -26,7 +26,6 @@ public class LottoService {
         this.lottos = new ArrayList<>();
     }
 
-    //입력검증으로 들어오기에 검증할 필요없음
     public void purchaseLottoTickets(int purchaseAmount) {
         int numberOfLottos = purchaseAmount / LOTTO_PRICE.getNumber();
         lottos.addAll(

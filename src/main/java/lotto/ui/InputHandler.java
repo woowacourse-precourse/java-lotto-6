@@ -1,11 +1,9 @@
 package lotto.ui;
 
 public class InputHandler {
-    private final InputView inputView;
     private final OutputView outputView;
 
-    public InputHandler(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
+    public InputHandler(OutputView outputView) {
         this.outputView = outputView;
     }
 
@@ -13,6 +11,8 @@ public class InputHandler {
         while (true) {
             try {
                 return input.get();
+            } catch (NumberFormatException e) {
+                outputView.printError(e.getMessage());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

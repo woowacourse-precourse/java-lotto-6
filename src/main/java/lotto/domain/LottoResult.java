@@ -24,12 +24,12 @@ public class LottoResult {
 
     public void calculateResults(List<LottoDto> lottoDtos, WinningNumbersDto winningNumbersDto) {
         for (LottoDto lottoDto : lottoDtos) {
-            Prize prize = determinePrizeForLotto(lottoDto, winningNumbersDto);
+            Prize prize = calculatePrize(lottoDto, winningNumbersDto);
             recordPrize(prize);
         }
     }
 
-    private Prize determinePrizeForLotto(LottoDto lottoDto, WinningNumbersDto winningNumbersDto) {
+    private Prize calculatePrize(LottoDto lottoDto, WinningNumbersDto winningNumbersDto) {
         int matchCount = countMatches(lottoDto.numbers(), winningNumbersDto.winningNumbers());
         boolean hasBonus = lottoDto.numbers().contains(winningNumbersDto.bonusNumber());
         return Prize.valueOf(matchCount, hasBonus);

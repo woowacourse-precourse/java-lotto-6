@@ -11,9 +11,7 @@ public class Game {
     private WinningLotto winningLotto;
 
     public void joinPlayer() {
-        Logs.inputMoney();
         player = new Player(inputMoney());
-        Logs.newLine();
 
         player.issueLotto();
         Logs.print(player.issuedLottos());
@@ -38,8 +36,28 @@ public class Game {
     }
 
     private int inputMoney() {
-        String input = Reader.readLine().strip();
-        return Integer.parseInt(input);
+        try {
+            Logs.inputMoney();
+            String input = Reader.readLine().strip();
+            validateMoney(input);
+            Logs.newLine();
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            Logs.inputMoneyNumberFormatERROR();
+            Logs.newLine();
+            return inputMoney();
+        }
+    }
+
+    private void validateMoney(String input) {
+        try {
+            int money = Integer.parseInt(input);
+            if (money % 1_000 != 0 || money < 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> inputWinningNumbers() {

@@ -17,6 +17,10 @@ public class Logs {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void inputMoneyNumberFormatERROR() {
+        System.out.println("[ERROR] 구입금액을 1,000원 단위 양수로 입력해 주세요.");
+    }
+
     public static void newLine() {
         System.out.println();
     }

@@ -1,8 +1,10 @@
 package lotto.view;
 
 import java.math.BigDecimal;
+import java.text.Format;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -33,10 +35,6 @@ public class OutputView {
 
     public static void printWinningStaticstics(WinningStatistics winningStatistics){
         printWinningStatisticsHeader();
-        for(int i=1; i < WinningRank.values().length; i++){
-            WinningRank winningRank = WinningRank.values()[i];
-            printWinningPrize(winningRank, winningStatistics.getWinningStatistics().get(winningRank));
-        }
         printRevenueRate(winningStatistics.getRevenueRate());
     }
 

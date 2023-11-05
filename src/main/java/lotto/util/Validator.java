@@ -62,7 +62,7 @@ public class Validator {
 
     private static int checkNumberInBoundary(int realNumber) {
         if (isNotRightBoundaryNumber(realNumber)){
-            throw  new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자를 적어주세요.");
+            throw  new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         return realNumber;
     }

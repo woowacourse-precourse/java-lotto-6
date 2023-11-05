@@ -1,6 +1,8 @@
 package lotto.enums;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import static lotto.LottoConst.LOTTO_COUNT;
 import static lotto.LottoConst.LOTTO_PRICE;
@@ -32,15 +34,26 @@ public enum LottoEnum {
     }
 
     public static void printResult(int amount) {
-        DecimalFormat df = new DecimalFormat("###,###");
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(W5.winCount + "개 일치 (" + df.format(W5.reward) + "원) - " + W5.result + "개");
-        System.out.println(W4.winCount + "개 일치 (" + df.format(W4.reward) + "원) - " + W4.result + "개");
-        System.out.println(W3.winCount + "개 일치 (" + df.format(W3.reward) + "원) - " + W3.result + "개");
-        System.out.println(W2.winCount + "개 일치, 보너스 볼 일치 (" + df.format(W2.reward) + "원) - " + W2.result + "개");
-        System.out.println(W1.winCount + "개 일치 (" + df.format(W1.reward) + "원) - " + W1.result + "개");
+        printEnums();
         System.out.println("총 수익률은 " + getRewardPercent(amount) + "입니다.");
+    }
+
+    private static void printEnums() {
+        LottoEnum[] values = LottoEnum.values();
+        Arrays.sort(values, Comparator.reverseOrder());
+        for (LottoEnum value : values) {
+            System.out.println(getResultString(value));
+        }
+    }
+
+    private static String getResultString(LottoEnum value) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        if (value.equals(W2)){
+            return value.winCount + "개 일치, 보너스 볼 일치 (" + df.format(value.reward) + "원) - " + value.result + "개";
+        }
+        return value.winCount + "개 일치 (" + df.format(value.reward) + "원) - " + value.result + "개";
     }
 
     private static String getRewardPercent(int amount) {

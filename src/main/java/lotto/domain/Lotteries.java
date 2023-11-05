@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Lotteries {
@@ -45,8 +49,22 @@ public class Lotteries {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
 
+    public Map<WinningRank, Integer> makeWinningStatistics(WinningNumber winningNumber) {
+        return lottos.stream().map(Lotto::getNumbers)
+                .collect(groupingBy(numbers -> checkRank(winningNumber, numbers), summingInt(e -> 1)));
+    }
+
+    private WinningRank checkRank(WinningNumber winningNumber, List<Number> numbers) {
+        int countOfCorrect = winningNumber.countMatchingWinningNumber(numbers);
+        boolean isBonusCorrect = winningNumber.isMatchingBonusNumber(numbers);
+        return WinningRank.from(countOfCorrect, isBonusCorrect);
+    }
+
     public List<List<Integer>> getValues() {
-        return lottos.stream()
-                .map(Lotto::getValues).toList();
+        return lottos.stream().map(Lotto::getValues).toList();
+    }
+
+    public static int getLottoPrice() {
+        return LOTTO_PRICE;
     }
 }

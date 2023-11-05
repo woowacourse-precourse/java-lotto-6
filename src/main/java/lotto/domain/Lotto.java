@@ -48,6 +48,10 @@ public class Lotto {
         return (int) numbers.stream().distinct().count();
     }
 
+    public List<Number> getNumbers() {
+        return numbers;
+    }
+
     public List<Integer> getValues() {
         return numbers.stream()
                 .map(Number::getValue).toList();

@@ -16,7 +16,7 @@
     - <span style="color:orange">[예외 사항]</span> 중복된 숫자가 입력되면 exception 발생시킨다.
     - <span style="color:orange">[예외 사항]</span> 숫자가 허용된 범위에서 벗어나면 exception 발생시킨다.
     - exception이 발생하면 다시 입력을 받는다.
-- 로또 게임 생성
+-✅ 로또 게임 생성
   - 입력받은 당첨 번호와 보너스 번호를 가지는 로또 객체를 생성한다.
 - 당첨 통계 출력
   - 로또 객체와 게임 객체의 값을 비교한다.

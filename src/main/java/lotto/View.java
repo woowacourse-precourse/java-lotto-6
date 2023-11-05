@@ -45,7 +45,7 @@ public class View {
     }
 
     public String getPrintMatches(Rank rank, int matchCount) {
-        return String.format(PRINT_MATCHES, rank.getRank(), (int)rank.getPrize(), matchCount);
+        return String.format(PRINT_MATCHES, rank.getHits(), (int)rank.getPrize(), matchCount);
     }
 
     public String getPrintYieldRate(double yieldRate) {

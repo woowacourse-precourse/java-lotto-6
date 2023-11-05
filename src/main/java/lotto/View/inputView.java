@@ -20,7 +20,7 @@ public class inputView {
                 int amount = Validator.validatePurchaseAmount(input);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                input = Console.readLine();
             }
         }
     }
@@ -35,8 +35,6 @@ public class inputView {
                         .collect(Collectors.toList());
                 return list;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println(GET_INPUT_WINNING_NUMBERS_MESSAGE);
                 input = Console.readLine();
             }
         }
@@ -50,8 +48,6 @@ public class inputView {
                 int number = Validator.validateBonusNumber(input);
                 return number;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println(GET_INPUT_BONUS_NUMBER_MESSAGE);
                 input = Console.readLine();
             }
         }

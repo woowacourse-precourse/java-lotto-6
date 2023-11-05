@@ -48,6 +48,19 @@ class LottoModelTest {
         assertThat(lottoModel.initWinningTable()).isEqualTo(expect);
     }
 
+    @Test
+    void initWinningNumsTable_로또_당첨번호_테이블_생성_확인() {
+        List<Integer> winnings = Arrays.asList(1,2,3,4,5,6);
+        HashMap<Integer, Integer> expect = new HashMap<>();
+        expect.put(1, 0);
+        expect.put(2, 0);
+        expect.put(3, 0);
+        expect.put(4, 0);
+        expect.put(5, 0);
+        expect.put(6, 0);
+        assertThat(lottoModel.initWinningNumsTable(winnings)).isEqualTo(expect);
+    }
+
     static Stream<Arguments> parameterProviderPublishTicket() {
         return Stream.of(
                 arguments(Arrays.asList(5, 7, 9, 3, 1), "[1, 3, 5, 7, 9]")

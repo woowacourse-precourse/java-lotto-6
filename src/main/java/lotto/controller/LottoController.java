@@ -12,11 +12,10 @@ public class LottoController {
     }
 
     private void settingLottoGame() {
-        AmountLotto amountLotto = new AmountLotto(requestAmountLotto());
+        AmountLotto amountLotto = new AmountLotto(requestPurchaseAmountLotto());
         MyLottos myLottos = new MyLottos(amountLotto.calculateAmountLotto());
 
         OutputView.printMyLottos(amountLotto.calculateAmountLotto(), myLottos);
-
         WinningLotto winningLotto = new WinningLotto(requestWinningLotto(), requestWinningBonus());
 
         totalLottoRanking(amountLotto, myLottos, winningLotto);
@@ -31,7 +30,7 @@ public class LottoController {
         OutputView.printLottoYield(resultLotto.totalReward(amountLotto));
     }
 
-    public String requestAmountLotto() {
+    public String requestPurchaseAmountLotto() {
         return LottoUtils.requestInputWithValidator(InputView::lottoPurchaseAmountInput, LottoValidator::amountInputValidator);
     }
 

@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -90,19 +89,6 @@ public class LottoValidatorTest {
         List<Integer> lotto = new ArrayList<>();
         assertThatIllegalArgumentException().isThrownBy(() ->
                 LottoValidator.inputWinningBonusValidator(bonus)
-        );
-    }
-
-    @Order(3)
-    @ParameterizedTest
-    @ValueSource(ints = {1,
-            2,
-            3})
-    void 당첨_보너스_로또_중복_테스트(int bonus) {
-        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        assertThatIllegalArgumentException().isThrownBy(() ->
-                LottoValidator.inputWinningBonusDuplicationLottoValidator(lotto, bonus)
         );
     }
 }

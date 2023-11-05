@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class LottoUtils {
+    private static final String COMMA = ",";
     public static <T> T requestInputWithValidator(Supplier<T> inputSupplier, Function<T, T> validatorFunction) {
         try {
             T input = inputSupplier.get();
@@ -22,7 +23,7 @@ public class LottoUtils {
     public static List<Integer> convertInputToLotto(String input) {
         List<Integer> lotto = new ArrayList<Integer>();
 
-        String[] splitStr = input.split(",");
+        String[] splitStr = input.split(COMMA);
 
         Arrays.stream(splitStr).forEach(
                 l -> lotto.add(Integer.parseInt(l))

@@ -27,10 +27,7 @@ public class WinningLotto {
         return Integer.parseInt(bonus);
     }
 
-
     public RankingLotto matchLotto(Lotto myLotto) {
-        return RankingLotto.matchRank(myLotto.countMatch(this.getLotto()),  myLotto.containMatch(this.getBonus()));
+        return RankingLotto.matchRank(myLotto.countMatch(this.getLotto()), myLotto.containMatch(this.getBonus()));
     }
-
-
 }

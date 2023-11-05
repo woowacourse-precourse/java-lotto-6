@@ -27,8 +27,22 @@
 * 입출력을 담당하는 view
 ---
 ### 2번째 구현 목표
-1. purchase 검증을 위해 Purchase 클래스 생성 후 적용 
+1. Money 검증을 위해 Money 클래스 생성 후 적용 
 2. 각각의 예외처리 -> [ERROR] 적용
 3. 상금 결과를 담당하는 Prize와 PrizeResult 그리고 출력을 담당하는 OutputView 연결을 좀 더 깔끔하고 가독성있게 구현하기
 4. Outputview 의  printPrizeResult() 분리하기
 5. 1번째 구현에서는 기능 구현을 위해 하드 코딩을 신경쓰지 않았다. 하드 코딩 없애기
+
+### 2번째 구현
+1. Money 클래스 생성 
+2. Validator 패키지를 만들어서 예외 상황 관리
+3. PrizeResult 가 toString()을 통해 출력 값을 전달해서 OutputView 로 출력
+4. PrizeResult 에서 sumWinningPrize 의 값을 더해서 Rate 로 전달해 수익률 계산
+4. 하드코딩 지우기
+5. LottoTest case 추가 완료
+
+---
+### 3번째 구현 목표 
+1. PrizeResult 이 맡은 역할이 너무 많고 코드가 길다. 정리 요망
+2. TestCase 추가
+3. 좀 더 가독성있는 이름 생각해보기

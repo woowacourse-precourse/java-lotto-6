@@ -4,16 +4,19 @@ import View.Input;
 import View.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class LottoApplication {
     private static int LOTTO_PRICE = 1000;
     private int[] matchingNumbersCounter;
     private boolean bonusMatch;
-    private static final BigInteger[] WINNING_AMOUNT_BY_RANKING = {BigInteger.valueOf(0), BigInteger.valueOf(2000000000), BigInteger.valueOf(30000000), BigInteger.valueOf(1500000), BigInteger.valueOf(50000), BigInteger.valueOf(5000)};
+    private static final BigDecimal[] WINNING_AMOUNT_BY_RANKING = {BigDecimal.valueOf(0), BigDecimal.valueOf(2000000000), BigDecimal.valueOf(30000000), BigDecimal.valueOf(1500000), BigDecimal.valueOf(50000), BigDecimal.valueOf(5000)};
 
     void execute() {
         int receivedAmount = getReceivedAmount();
@@ -35,7 +38,16 @@ public class LottoApplication {
         int[] rankingCounter = getRankingCounter(results);
         Output.printWinningStatistic(rankingCounter);
 
-        BigInteger totalWinningAmount = calculateWinningAmount(rankingCounter);
+        BigDecimal totalWinningAmount = calculateTotalWinningAmount(rankingCounter);
+        BigDecimal totalProfit = BigDecimal.valueOf(receivedAmount)
+                .divide(totalWinningAmount)
+                .multiply(new BigDecimal("1000"));
+
+        totalProfit.round(new MathContext(3));
+        totalProfit.multiply(new BigDecimal("100"));
+
+        Output.printTotalProfit(String.valueOf(totalProfit));
+
     }
 
     private int getReceivedAmount() {
@@ -106,11 +118,11 @@ public class LottoApplication {
         return rankingCounter;
     }
 
-    private BigInteger calculateWinningAmount(int[] rankingCounter) {
-        BigInteger totalWinningAmount = BigInteger.ZERO;
+    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {
+        BigDecimal totalWinningAmount = BigDecimal.ZERO;
 
         for (int i=1; i<rankingCounter.length; i++) {
-            totalWinningAmount.add(BigInteger.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
+            totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
         }
 
         return totalWinningAmount;

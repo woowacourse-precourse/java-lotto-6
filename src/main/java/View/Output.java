@@ -24,4 +24,8 @@ public class Output {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankingCounter[1]);
     }
 
+    public static void printTotalProfit(String totalProfit) {
+        System.out.printf("총 수익률은 %s%%입니다.%n", totalProfit);
+    }
+
 }

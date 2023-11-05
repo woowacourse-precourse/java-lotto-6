@@ -41,8 +41,15 @@ class WinningLottoTest {
 
     @DisplayName("보너스 번호가 일치하면 참을 반환한다.")
     @Test
-    void evaluateBonusNumberIsMatched() {
+    void trueIfBonusNumberIsMatched() {
         List<Number> numbers = Numbers.createNumbersList(List.of(1, 2, 3, 7, 8, 9));
         assertTrue(winningLotto.isBonusMatched(numbers));
+    }
+
+    @DisplayName("보너스 번호가 일치하지 않으면 거짓을 반환한다.")
+    @Test
+    void falseIfBonusNumberIsMatched() {
+        List<Number> numbers = Numbers.createNumbersList(List.of(1, 2, 3, 6, 8, 9));
+        assertFalse(winningLotto.isBonusMatched(numbers));
     }
 }

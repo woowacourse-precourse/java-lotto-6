@@ -1,5 +1,6 @@
-package lotto.domain;
+package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 

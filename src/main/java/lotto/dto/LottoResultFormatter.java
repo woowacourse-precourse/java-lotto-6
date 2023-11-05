@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class LottoResultFormatter {
     private static final String NEXT_LINE = "\n";
-    private static final String DELIMITER_COMMA = ",";
+    private static final String DELIMITER_COMMA = ", ";
     private static final String LEFT_BRACKET = "[";
     private static final String RIGHT_BRACKET = "]";
     private final List<Numbers> resultLottos;

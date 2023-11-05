@@ -10,9 +10,9 @@ Model → Lotto.java
 View
 
 - InputView
-    - requestPrice()
-    - requestLottoNumber()
-    - requestLottoBonusNumber()
+    - ~~requestPrice()~~
+    - ~~requestLottoNumber()~~
+    - ~~requestLottoBonusNumber()~~
 
 - OutputView
     - printRandomNumber()

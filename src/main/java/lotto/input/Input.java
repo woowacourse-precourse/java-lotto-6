@@ -1,6 +1,10 @@
 package lotto.input;
 
+import java.util.List;
+
 public interface Input {
 
-    String read();
+    int readNumber();
+
+    List<Integer> readList();
 }

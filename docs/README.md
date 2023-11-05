@@ -36,6 +36,7 @@
   - 당첨 번호 입력
     - 당첨 번호는 1부터 45사이의 숫자여야 하므로 그 이외에 숫자가 입력되는 경우 에외 처리를 한다. (IllegalArgumentException)
     - 당첨 번호에 중복된 숫자가 있으면 예외가 발생한다. (IllegalArgumentException)
+    - 당첨 번호에 숫자 이외에 문자가 입력되는 경우 예외 처리를 한다. (IllegalArgumentException)
     - 당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다. (IllegalArgumentException)
   - 보너스 번호 입력
     - 보너스 번호는 1부터 45사이의 숫자여야 하므로 그 이외에 숫자가 입력되는 경우 에외 처리를 한다. (IllegalArgumentException)

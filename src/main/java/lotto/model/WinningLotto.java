@@ -8,18 +8,17 @@ import java.util.Set;
 
 public class WinningLotto {
 
-    private final Lotto lotto;
+    private final List<LottoNumber> lottoNumbers;
     private final LottoNumber bonusLottoNumber;
 
-    public WinningLotto(List<Integer> lottoNumbers, int bonusLottoNumber) {
+    public WinningLotto(List<LottoNumber> lottoNumbers, LottoNumber bonusLottoNumber) {
         Validation.validateWinningAndBonusNumberDuplication(lottoNumbers, bonusLottoNumber);
-        Validation.validateWinningNumberRange(bonusLottoNumber);
-        this.lotto = new Lotto(lottoNumbers);
-        this.bonusLottoNumber = new LottoNumber(bonusLottoNumber);
+        this.lottoNumbers = lottoNumbers;
+        this.bonusLottoNumber = bonusLottoNumber;
     }
 
     public Lotto getLotto() {
-        return lotto;
+        return new Lotto(lottoNumbers);
     }
 
     public LottoNumber getBonusLottoNumber() {

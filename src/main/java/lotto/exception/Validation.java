@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Validation {
 
-    public static void validateLottoSize(List<Integer> numbers) {
+    public static void validateLottoSize(List<LottoNumber> numbers) {
         if (numbers.size() != Lotto.getLottoSize()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
 
-    public static void validateLottoDuplication(List<Integer> numbers) {
+    public static void validateLottoDuplication(List<LottoNumber> numbers) {
         long count = numbers.stream().distinct().count();
 
         if (count != numbers.size()) {
@@ -28,7 +28,7 @@ public class Validation {
         }
     }
 
-    public static void validateWinningAndBonusNumberDuplication(List<Integer> lottoNumbers, int bonusNumber) {
+    public static void validateWinningAndBonusNumberDuplication(List<LottoNumber> lottoNumbers, LottoNumber bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호와 로또 보너스 번호는 서로 중복되지 않는 숫자여야 합니다.");
         }

@@ -1,6 +1,10 @@
 package lotto.application;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.domain.User;
+
+import java.util.List;
 
 public class IOService {
     private final String BEFORE_PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";
@@ -13,6 +17,14 @@ public class IOService {
     private final String ERROR_MINIMUM = "[ERROR] 구입 금액이 1000원보다 작을 수는 없습니다.";
     public void printBeforePurchaseLottoMessage() {
         System.out.println(BEFORE_PURCHASE_LOTTO_MESSAGE);
+    }
+
+    public void printLottos(User user){
+        List<Lotto> lottos = user.getLottos();
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     public void printLottoCount(int cnt) {

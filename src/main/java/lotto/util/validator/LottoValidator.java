@@ -1,12 +1,11 @@
 package lotto.util.validator;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.domain.LottoNumberRange;
+import lotto.util.enums.LottoNumberRange;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 
-public class WinningNumberValidator implements Validatable {
+public class LottoValidator implements Validatable {
     @Override
     public void validate(String input) throws IllegalArgumentException {
         List<Integer> numbers = Util.splitNumberByComma(input);

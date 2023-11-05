@@ -1,8 +1,8 @@
 package lotto.util.validator;
 
 import java.util.List;
-import lotto.domain.LottoNumberRange;
-import lotto.domain.repository.WinningNumberRepository;
+import lotto.util.enums.LottoNumberRange;
+import lotto.domain.repository.WinningLottoRepository;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 
@@ -25,7 +25,7 @@ public class BonusNumberValidator implements Validatable {
     }
 
     private void validateDuplicateWithWinningNumber(int number) {
-        List<Integer> winnings = WinningNumberRepository.findWinningNumbers();
+        List<Integer> winnings = WinningLottoRepository.findWinningNumbers();
         for (Integer winning : winnings) {
             if (isEqual(number, winning)) {
                 throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());

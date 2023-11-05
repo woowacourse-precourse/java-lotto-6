@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.util.validator.BonusNumberValidator;
 import lotto.util.validator.PurchaseLottoValidator;
 import lotto.util.Util;
-import lotto.util.validator.WinningNumberValidator;
+import lotto.util.validator.LottoValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -30,7 +30,7 @@ public class InputView {
         try {
             System.out.print(Message.INPUT_WINNING_NUMBER.message);
             String input = Console.readLine();
-            new WinningNumberValidator().validate(input);
+            new LottoValidator().validate(input);
             return Util.splitNumberByComma(input);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);

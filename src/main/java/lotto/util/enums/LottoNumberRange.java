@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.util.enums;
 
 public enum LottoNumberRange {
     MIN_LOTTO_NUMBER(1),

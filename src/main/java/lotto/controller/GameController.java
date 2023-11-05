@@ -51,6 +51,7 @@ public class GameController {
     }
 
     private void printPrizeResults(PrizeManager prizeManager) {
+        outputView.printPrizeMessageStartMessage();
         Map<Prize, Integer> prizeCounts = prizeManager.getPrizeCounts();
         for (Prize prize : Prize.values()) {
             if (prize == Prize.NO_PRIZE) {

@@ -7,6 +7,7 @@ public enum PrintingMessage {
     BUYING_MESSAGE("%d개를 구매했습니다."),
     GET_WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
     GET_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
+    PRIZE_MESSAGE_START_MESSAGE("당첨 통계\n---"),
     PRIZE_MESSAGE("%d개 일치%s(%s원) - %d개"),
     DECIMAL_FORMAT("#,###"),
     PROFIT_MESSAGE("총 수익률은 %.1f%%입니다.");

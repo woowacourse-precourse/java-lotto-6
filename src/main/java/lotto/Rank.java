@@ -3,18 +3,20 @@ package lotto;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6),
-    SECOND(5),
-    THIRD(5),
-    FOURTH(4),
-    FIFTH(3),
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
     BLANK;
 
     private int matches;
+    private int amount;
 
     Rank() {}
-    Rank(int matches) {
+    Rank(int matches, int amount) {
         this.matches = matches;
+        this.amount = amount;
     }
 
     public static Rank from(int matches, boolean bonusMatched) {
@@ -36,5 +38,9 @@ public enum Rank {
                 .filter(rank -> rank.matches == matches)
                 .findFirst()
                 .orElse(BLANK);
+    }
+
+    public int amountOf(int times) {
+        return amount * times;
     }
 }

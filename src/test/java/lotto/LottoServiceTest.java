@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 import java.util.EnumMap;
@@ -31,15 +32,36 @@ public class LottoServiceTest {
     void calculateRankList() {
         //given
         WinningNumbers winningNumbers = LottoFixture.standard();
-        List<Lotto> lottos = LottoFixture.all();
         LottoMachine mockMachine = mock(LottoMachine.class);
         RankCounter rankCounter = new RankCounter();
         LottoService lottoService = new LottoService(winningNumbers, mockMachine, rankCounter);
 
         //when
+        List<Lotto> lottos = LottoFixture.all();
         EnumMap<Rank, Integer> result = lottoService.rank(lottos);
 
         //then
         assertThat(result.values()).containsExactly(1, 1, 1, 1, 1, 3);
+    }
+
+    @DisplayName("수익률을 구한다.")
+    @Test
+    void calculateRateOfReturn() {
+        //given
+        WinningNumbers winningNumbers = LottoFixture.standard();
+        LottoMachine mockMachine = mock(LottoMachine.class);
+        List<Lotto> lottos = LottoFixture.all();
+        given(mockMachine.makeLottosWith(new Money(8_000))).willReturn(lottos);
+        RankCounter rankCounter = new RankCounter();
+        LottoService lottoService = new LottoService(winningNumbers, mockMachine, rankCounter);
+
+        EnumMap<Rank, Integer> result = lottoService.rank(lottos);
+
+        //when
+        lottoService.getLottosWith(new Money(8_000));
+        double rateOfReturn = lottoService.getRateOfReturn(result);
+
+        //then
+        assertThat(rateOfReturn).isEqualTo((double) 2031555000 / 8000);
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Number;
 
-class TestRandomNumbersGenerator implements NumbersGenerator {
+public class TestRandomNumbersGenerator implements NumbersGenerator {
 
   private static final int MIN_RANGE = 1;
   private static final int MAX_RANGE = 6;

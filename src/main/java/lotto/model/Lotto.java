@@ -6,19 +6,16 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         Collections.sort(numbers);
-        this.numbers = Collections.unmodifiableList(numbers);
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
+        this.numbers = toNumber(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -27,6 +24,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private List<Number> toNumber(List<Integer> numbers) {
+        return numbers.stream()
+            .map(Number::new)
+            .toList();
+    }
+
     private void validateOverSize(List<Integer> numbers) {
         if (numbers.size() != CONFIG_NUMBERS_SIZE) {
             throw new IllegalArgumentException("로또는 숫자 6개로 구성됩니다.");

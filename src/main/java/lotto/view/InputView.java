@@ -3,9 +3,9 @@ package lotto.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.constants.ExceptionMessage.HAS_LETTER;
 import static lotto.constants.ExceptionMessage.IS_NOT_THOUSAND_UNIT;
-import static lotto.view.constants.Notice.ASK_BONUS_NUMBER;
-import static lotto.view.constants.Notice.ASK_PURCHASE_PRICE;
-import static lotto.view.constants.Notice.ASK_WINNER_NUMBERS;
+import static lotto.constants.Notice.ASK_BONUS_NUMBER;
+import static lotto.constants.Notice.ASK_PURCHASE_PRICE;
+import static lotto.constants.Notice.ASK_WINNER_NUMBERS;
 
 public class InputView {
     public static int askPurchaseAmount() {

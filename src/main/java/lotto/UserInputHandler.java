@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.messages.LottoInputMessages.*;
 import static lotto.messages.ErrorMessages.*;
+import static lotto.messages.LottoInputMessages.*;
 
 public class UserInputHandler {
 
@@ -127,30 +127,43 @@ public class UserInputHandler {
     public int inputUserBonusNumber() {
         boolean restart = true;
         String bonusNumber = null;
+
         while (restart) {
             System.out.println(INPUT_USER_BONUS_NUMBER_MESSAGE.getMessage());
             bonusNumber = Console.readLine();
             try {
-                validateNumbers(bonusNumber);
-                isOverLengthNumber(Integer.parseInt(bonusNumber));
-                duplicateBonusNumber(Integer.parseInt(bonusNumber));
+                validateCheck(bonusNumber);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         return Integer.parseInt(bonusNumber);
     }
 
+    private void validateCheck(String bonusNumber) {
+        validateNumbers(bonusNumber);
+        isOverLengthNumber(Integer.parseInt(bonusNumber));
+        duplicateBonusNumber(Integer.parseInt(bonusNumber));
+    }
+
     private void duplicateBonusNumber(int bonusNumber) {
-        String[] userInput = winningNumbers.split(",");
+        String[] userInput = new String[0];
+        userInput = getNotNullStrings(userInput);
+
         for (String s : userInput) {
             long number = Integer.parseInt(s);
             if (number == bonusNumber) {
                 throw new IllegalArgumentException(DUPLICATE_VALUE_FOUND.getMessage());
             }
         }
+    }
+
+    private String[] getNotNullStrings(String[] userInput) {
+        if (winningNumbers != null) {
+            userInput = winningNumbers.split(",");
+        }
+        return userInput;
     }
 
 

@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.messages.ErrorMessages.*;
+import static lotto.messages.ErrorMessages.DUPLICATE_VALUE_FOUND;
+import static lotto.messages.ErrorMessages.WINNING_NUMBERS_COUNT_ERROR;
 
 public class Lotto {
     private final List<Integer> numbers;

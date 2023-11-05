@@ -30,4 +30,12 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
     }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int matchCount(Lotto otherLotto) {
+        return (int) this.numbers.stream().filter(otherLotto::containsNumber).count();
+    }
 }

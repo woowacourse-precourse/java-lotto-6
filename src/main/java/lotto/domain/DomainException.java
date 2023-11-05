@@ -8,6 +8,7 @@ enum DomainException {
     LOTTO_DUPLICATION(ERROR.message + "로또번호에 중복되는 숫자가 있습니다."),
 
     PRICE_LESS_THAN_OR_EQUAL_TO_ZERO(ERROR.message + "구입 금액이 0 이하입니다."),
+    PRICE_NOT_DIVISIBLE_BY_UNIT(ERROR.message + "구입 금액은 " + Constraint.LOTTO_PRICE.getValue() + "의 배수여야 합니다."),
     ;
 
     private final String message;

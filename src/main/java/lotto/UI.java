@@ -34,7 +34,7 @@ public class UI {
                 System.out.print(", ");
             }
         }
-        System.out.print("]");
+        System.out.println("]");
     }
 
     public static List<Integer> inputWinningNumbers() {

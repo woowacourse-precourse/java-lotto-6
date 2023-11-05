@@ -46,7 +46,7 @@ public class ValidatorTest {
 	@MethodSource("createCheckStrArrLengthMethodParameter")
 	@ParameterizedTest
 	void checkStrArrLength(String[] strArr, int wrongLength, int correctLength) {
-		assertThatThrownBy(() -> Validator.validateStrArrLength(strArr, wrongLength, message))
+		assertThatThrownBy(() -> Validator.validateSeparatedTextLength(strArr, wrongLength, message))
 				.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(message);
 	}
 
@@ -60,7 +60,7 @@ public class ValidatorTest {
 	@MethodSource("createCheckSizeMethodParameter")
 	@ParameterizedTest
 	void checkNumbersSize(List<Integer> numbers, int wrongSize, int correctSize) {
-		assertThatThrownBy(() -> Validator.validateSize(numbers, wrongSize, message))
+		assertThatThrownBy(() -> Validator.validateNumbersSize(numbers, wrongSize, message))
 				.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(message);
 	}
 

@@ -45,7 +45,7 @@ public class InputView {
 	}
 
 	private List<Integer> convertInputValuesToCollection(String[] inputValues) {
-		Validator.validateStrArrLength(inputValues, Lotto.LOTTO_SIZE,
+		Validator.validateSeparatedTextLength(inputValues, Lotto.LOTTO_SIZE,
 				ErrorMessage.INPUT_ANSWER_LOTTO_NUMBER_ERROR.getForMatMessage(Lotto.LOTTO_SIZE));
 
 		for (String inputValue : inputValues) {
@@ -67,7 +67,7 @@ public class InputView {
 	}
 
 	private void validateAnswerLottoNumbers(List<Integer> numbers, int[] numberRange) {
-		Validator.validateSize(numbers, Lotto.LOTTO_SIZE,
+		Validator.validateNumbersSize(numbers, Lotto.LOTTO_SIZE,
 				ErrorMessage.LOTTO_SIZE_ERROR.getForMatMessage(Lotto.LOTTO_SIZE));
 		Validator.validateDuplicateNumber(numbers, ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
 		Validator.validateNumbersOutOfRange(numbers, numberRange,
@@ -86,7 +86,7 @@ public class InputView {
 	}
 
 	private void validateBonusNumber(List<Integer> numbers, Integer number, int[] numberRange) {
-		Validator.validateNumbersOutOfRange(number, numberRange,
+		Validator.validateNumberOutOfRange(number, numberRange,
 				ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getForMatMessage(numberRange[0], numberRange[1]));
 		Validator.validateNumberInNumbers(numbers, number,
 				ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());

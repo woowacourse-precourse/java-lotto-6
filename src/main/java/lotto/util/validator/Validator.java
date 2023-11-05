@@ -18,22 +18,22 @@ public class Validator {
 	}
 
 	public static void validateIsEmpty(String inputValue, String message) {
-		if (isStringEmpty(inputValue)) {
+		if (isEmpty(inputValue)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
 
-	public static void validateStrArrLength(String[] inputValue, int length, String message) {
-		if (inputValue.length != length) {
+	public static void validateSeparatedTextLength(String[] separatedText, int length, String message) {
+		if (separatedText.length != length) {
 			throw new IllegalArgumentException(message);
 		}
 	}
 
-	private static boolean isStringEmpty(String str) {
+	private static boolean isEmpty(String str) {
 		return str == null || str.isBlank();
 	}
 
-	public static void validateSize(List<Integer> numbers, int size, String message) {
+	public static void validateNumbersSize(List<Integer> numbers, int size, String message) {
 		if (numbers.size() != size) {
 			throw new IllegalArgumentException(message);
 		}

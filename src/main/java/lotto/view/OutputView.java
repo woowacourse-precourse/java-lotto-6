@@ -16,11 +16,6 @@ public final class OutputView {
         return String.format(PURCHASE_QUANTITY.getMessage(), quantity);
     }
 
-    /**
-     * 로또 결과를 출력
-     * @param lottoResult key: rank_x(x= 1,2,3...), value: 당첨 횟수
-     * @return 로또 결과
-     */
     public static String lottoResult(LottoResult lottoResult) {
         StringJoiner result = new StringJoiner("\n");
 

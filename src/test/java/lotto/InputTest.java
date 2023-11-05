@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -31,5 +32,14 @@ public class InputTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> application.checkUnit(purchaseAmount))
                 .withMessage(ErrorMessage.PURCHASE_AMOUNT_UNIT);
+    }
+
+    @Test
+    void 구입_금액이_0원일_때_예외_발생() {
+        int purchaseAmount = 0;
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> application.checkZero(purchaseAmount))
+                .withMessage(ErrorMessage.PURCHASE_AMOUNT_ZERO);
     }
 }

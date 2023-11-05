@@ -27,4 +27,10 @@ public class Application {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNIT);
         }
     }
+
+    public void checkZero(int purchaseAmount) {
+        if (purchaseAmount < LottoNumbers.PURCHASE_AMOUNT_MIN) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ZERO);
+        }
+    }
 }

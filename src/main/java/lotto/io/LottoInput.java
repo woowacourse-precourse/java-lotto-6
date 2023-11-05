@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-final class LottoInput implements InputPort{
+public final class LottoInput implements InputPort{
 
     private static final String delimiter = ",";
 

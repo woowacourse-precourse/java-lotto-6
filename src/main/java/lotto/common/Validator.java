@@ -16,10 +16,18 @@ public class Validator {
 
     public static boolean isBetweenValue(List<Integer> targetList, int min, int max) {
         return targetList.stream()
-                .allMatch(number -> number >= min && number <= max);
+                .allMatch(number -> isBetween(number, min, max));
     }
 
     public static boolean isListSizeEquals(List<Integer> targetList, int size) {
         return targetList.size() == size;
+    }
+
+    public static boolean isBetween(int number, int min, int max) {
+        return number >= min && number <= max;
+    }
+
+    public static boolean isContainNumber(List<Integer> numbers, int number) {
+        return numbers.contains(number);
     }
 }

@@ -28,6 +28,10 @@ public class OutputViewService {
         System.out.println(ASK_WINNING_NUMBERS.getMessage());
     }
 
+    public static void outputBonusNumber() {
+        System.out.println(ASK_BONUS_NUMBERS.getMessage());
+    }
+
     public static void outputStatistics() {
     }
 
@@ -37,5 +41,4 @@ public class OutputViewService {
     public static void outPutErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
-
 }

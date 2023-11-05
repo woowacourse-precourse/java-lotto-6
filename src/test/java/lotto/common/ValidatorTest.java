@@ -66,4 +66,34 @@ class ValidatorTest {
         assertThat(falseResult).isFalse();
     }
 
+    @DisplayName("타겟이 범위 내에 있으면 true 를 반환한다.")
+    @Test
+    void 숫자_범위_테스트() {
+        int validTarget = 5;
+        int inValidTarget = 50;
+        int min = 1;
+        int max = 45;
+
+        boolean trueResult = Validator.isBetween(validTarget, min, max);
+        boolean falseResult = Validator.isBetween(inValidTarget, min, max);
+
+        assertThat(trueResult).isTrue();
+        assertThat(falseResult).isFalse();
+    }
+
+
+    @DisplayName("타겟이 리스트 내에 포함되어 있으면 true 를 반환한다.")
+    @Test
+    void 리스트_포함_테스트() {
+        List<Integer> validTarget = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> inValidTarget = List.of(1, 2, 3, 4, 5, 7);
+        int target = 6;
+
+        boolean trueResult = Validator.isContainNumber(validTarget, target);
+        boolean falseResult = Validator.isContainNumber(inValidTarget, target);
+
+        assertThat(trueResult).isTrue();
+        assertThat(falseResult).isFalse();
+    }
+
 }

@@ -25,17 +25,18 @@ public class InputViewService {
     }
 
     public static Lotto inputWinnigNumbers(int lottoStatNumber, int lottoEndNumber, int lottoCount) {
-        List<Integer> winnigNumbers =  ConvertStringToIntList(getInputData());
-
-        rangeValidation(winnigNumbers, lottoEndNumber, lottoStatNumber);
+        List<Integer> winnigNumbers = ConvertStringToIntList(getInputData());
+        rangeValidation(winnigNumbers, lottoStatNumber, lottoEndNumber);
         countValidation(winnigNumbers, lottoCount);
         duplicateValidation(winnigNumbers);
-
         return new Lotto(winnigNumbers);
     }
 
-    public static int inputBonusNumber() {
-        return 0;
+    public static int inputBonusNumber(List<Integer> numbers, int lottoStatNumber, int lottoEndNumber) {
+        int bonusNumber = ConvertStringToInt(getInputData());
+        betweenValidation(bonusNumber, lottoStatNumber, lottoEndNumber);
+        containValidation(bonusNumber, numbers);
+        return bonusNumber;
     }
 
     private static String getInputData() {
@@ -44,21 +45,34 @@ public class InputViewService {
         return input;
     }
 
-    private static void rangeValidation(List<Integer> winnigNumbers, int lottoStatNumber, int lottoEndNumber) {
-        if(!Validator.isBetweenValue(winnigNumbers, lottoStatNumber, lottoEndNumber)) {
+    private static void rangeValidation(List<Integer> numberList, int start, int end) {
+        if (!Validator.isBetweenValue(numberList, start, end)) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER.getLottoMessage());
         }
     }
 
-    private static void countValidation(List<Integer> winnigNumbers, int lottoCount) {
-        if(!Validator.isListSizeEquals(winnigNumbers, lottoCount)){
+    private static void countValidation(List<Integer> numberList, int count) {
+        if (!Validator.isListSizeEquals(numberList, count)) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_SIZE.getLottoMessage());
         }
     }
 
-    private static void duplicateValidation(List<Integer> winnigNumbers) {
-        if (Validator.isDuplicateValue(winnigNumbers)) {
+    private static void duplicateValidation(List<Integer> numberList) {
+        if (Validator.isDuplicateValue(numberList)) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER.getLottoMessage());
+        }
+    }
+
+    private static void betweenValidation(int bonusNumber, int start, int end) {
+        if (!Validator.isBetween(bonusNumber, start, end)) {
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER.getLottoMessage());
+
+        }
+    }
+
+    private static void containValidation(int number, List<Integer> numbers) {
+        if (Validator.isContainNumber(numbers, number)) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_BOUNUS_NUMBER.getLottoMessage());
         }
     }
 

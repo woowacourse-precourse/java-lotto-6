@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.WinLotto;
 import lotto.service.view.InputViewService;
 import lotto.service.view.OutputViewService;
 
@@ -23,11 +24,12 @@ public class LottoService {
 
         List<Lotto> purchasedLottoList = issueLottoTicket(amount);
 
-        Lotto winnigLotto = getWinnigNumbers();
+        Lotto winnigNumbers = getWinnigNumbers();
+        int bonusNumber = getBonusNumber(winnigNumbers.getNumbers());
 
-        int bonusNumber = getBonusNumber();
+        WinLotto winLotto = new WinLotto(winnigNumbers, bonusNumber);
 
-        printResult(purchasedLottoList, winnigLotto, bonusNumber);
+        printResult(purchasedLottoList, winLotto);
     }
 
     private int getAmount() {
@@ -58,11 +60,17 @@ public class LottoService {
         }
     }
 
-    private int getBonusNumber() {
-        return InputViewService.inputBonusNumber();
+    private int getBonusNumber(List<Integer> numbers) {
+        OutputViewService.outputBonusNumber();
+        try {
+            return InputViewService.inputBonusNumber(numbers, LOTTO_STAT_NUMBER, LOTTO_END_NUMBER);
+        } catch (IllegalArgumentException e) {
+            OutputViewService.outPutErrorMessage(e);
+            return getBonusNumber(numbers);
+        }
     }
 
-    private void printResult(List<Lotto> purchasedLottoList, Lotto winnigLotto, int bonusNumber) {
+    private void printResult(List<Lotto> purchasedLottoList, WinLotto winnigLotto) {
         OutputViewService.outputStatistics();
         OutputViewService.outputRateOfReturn();
     }

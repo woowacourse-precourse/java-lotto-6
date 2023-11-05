@@ -11,4 +11,8 @@ public record LotteriesDto(List<LottoDto> lottos) {
 
         return new LotteriesDto(lottoDtos);
     }
+
+    public int getSize() {
+        return lottos.size();
+    }
 }

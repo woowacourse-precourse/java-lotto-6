@@ -1,9 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Game {
+    private int AMOUNT;
     private InputView inputView;
     private OutputView outputView;
 
@@ -14,6 +16,14 @@ public class Game {
 
     public void run(){
         inputView.purchaseAmountView();
+        AMOUNT = purchaseAmountInput();
 
     }
+
+    public int purchaseAmountInput(){
+        //예외 처리 추가해야 함
+
+        return Integer.parseInt(Console.readLine());
+    }
+
 }

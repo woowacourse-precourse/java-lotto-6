@@ -88,6 +88,10 @@ public class User {
         return output;
     }
 
+    public String calculateProfitPercentage(PurchaseAmount purchaseAmount) {
+        long prize = calculatePrize();
+        return purchaseAmount.calculateProfitPercentage(prize);
+    }
 
     private long calculatePrize() {
         long prize = 0;

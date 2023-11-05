@@ -21,6 +21,7 @@ public class LottoController {
         bonusNumber = readBonusNumber();
         user.compareLottos(winningLotto, bonusNumber);
         OutputView.printResult(user.getResult());
+        OutputView.printProfitPercentage(user.calculateProfitPercentage(purchaseAmount));
     }
 
     private PurchaseAmount readPurchaseAmount() {

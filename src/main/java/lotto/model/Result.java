@@ -20,4 +20,8 @@ public enum Result {
     public String getMessage() {
         return message;
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

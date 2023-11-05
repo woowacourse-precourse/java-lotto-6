@@ -29,4 +29,8 @@ public class PurchaseAmount {
     public int divideByThousand() {
         return purchaseAmount / 1000;
     }
+
+    public String calculateProfitPercentage(long prize) {
+        return String.format("%.1f", (double) prize / purchaseAmount * 100) + "%";
+    }
 }

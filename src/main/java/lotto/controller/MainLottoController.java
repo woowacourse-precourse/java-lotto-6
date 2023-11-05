@@ -69,17 +69,22 @@ public class MainLottoController {
     }
 
     private int inputBonusLottoNumber(Lotto mainLotto) {
-        List<Integer> mainLottoNumber = mainLotto.getNumbers();
         int bonusNumber = input.getBonusNumber();
         try {
-            if (mainLottoNumber.contains(bonusNumber)) {
-                throw new IllegalArgumentException("6개의 로또 번호와 중복되는 숫자입니다.");
-            }
+            validateDuplicateBonusLotto(mainLotto,bonusNumber);
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
             return inputBonusLottoNumber(mainLotto);
         }
         return bonusNumber;
     }
+
+    private void validateDuplicateBonusLotto(Lotto mainLotto, int bonusLotto){
+        List<Integer> mainLottoNumber = mainLotto.getNumbers();
+        if(mainLottoNumber.contains(bonusLotto)){
+            throw new IllegalArgumentException("6개의 로또 번호와 중복되는 숫자입니다.");
+        }
+    }
+
 
 }

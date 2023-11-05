@@ -1,5 +1,7 @@
 package lotto.domain.model;
 
+import lotto.domain.util.ErrorMessage;
+
 public class LottoSaleSystem {
 
     private static int purchaseMoney;
@@ -12,14 +14,14 @@ public class LottoSaleSystem {
             this.purchaseMoney = purchaseMoney;
             this.purchaseCount = purchaseMoney / 1000;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
         }
     }
 
     // 구매 금액이 1000원 단위인지 검사
     private void isValidMoneyUnit(int purchaseMoney) {
         if (purchaseMoney <= 0 || purchaseMoney % 1000 > 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위의 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_UNIT.getErrorMessage());
         }
     }
 

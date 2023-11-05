@@ -5,8 +5,14 @@ import static constant.ConstantMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 import static constant.ConstantMessage.PURCHASE_QUANTITY_PRINT_MESSAGE;
 import static constant.ConstantMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 import static constant.ConstantMessage.WINNING_STATISTICS_NOTICE_MESSAGE;
+import static constant.ConstantNumber.BONUS_CRITERIA;
 import static constant.ConstantNumber.NUMBER_INITIALIZATION;
 import static constant.ConstantNumber.PURCHASE_UNIT;
+import static game.LottoRank.FIFTH_RANK;
+import static game.LottoRank.FIRST_RANK;
+import static game.LottoRank.FOURTH_RANK;
+import static game.LottoRank.SECOND_RANK;
+import static game.LottoRank.THIRD_RANK;
 
 import base.Converter;
 import camp.nextstep.edu.missionutils.Console;
@@ -80,19 +86,19 @@ public class LottoGame {
                     }
                 }
             }
-            if (score == 3) {
+            if (score == FIFTH_RANK.getMatchCount()) {
                 threeSuccess++;
             }
-            if (score == 4) {
+            if (score == FOURTH_RANK.getMatchCount()) {
                 fourSuccess++;
             }
-            if (score == 5) {
+            if (score == THIRD_RANK.getMatchCount()) {
                 fiveSuccess++;
             }
-            if (score == 5 && bonusScore == 1) {
+            if (score == SECOND_RANK.getMatchCount() && bonusScore == BONUS_CRITERIA) {
                 fiveAndBonusSuccess++;
             }
-            if (score == 6) {
+            if (score == FIRST_RANK.getMatchCount()) {
                 sixSuccess++;
             }
         }
@@ -103,12 +109,12 @@ public class LottoGame {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveAndBonusSuccess + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + sixSuccess + "개");
 
-        int totalReward = 0;
-        totalReward += 5000 * threeSuccess;
-        totalReward += 50000 * fourSuccess;
-        totalReward += 1500000 * fiveSuccess;
-        totalReward += 30000000 * fiveAndBonusSuccess;
-        totalReward += 2000000000 * sixSuccess;
+        int totalReward = NUMBER_INITIALIZATION;
+        totalReward += FIFTH_RANK.getReward() * threeSuccess;
+        totalReward += FOURTH_RANK.getReward() * fourSuccess;
+        totalReward += THIRD_RANK.getReward() * fiveSuccess;
+        totalReward += SECOND_RANK.getReward() * fiveAndBonusSuccess;
+        totalReward += FIRST_RANK.getReward() * sixSuccess;
 
         double benefit = (double) totalReward / purchaseAmount * 100;
 

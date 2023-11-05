@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import java.util.List;
 
 public class AnswerLotto {
@@ -18,7 +19,7 @@ public class AnswerLotto {
 
     private void validateLength(List<Integer> numbers) {
         if (checkLength(numbers)) {
-            throw new IllegalArgumentException("당첨번호의 길이가 6이 아닙니다");
+            throw new IllegalArgumentException(ErrorMessage.ANSWER_LOTTO_LENGTH_ERROR.getMessage());
         }
     }
 
@@ -28,7 +29,7 @@ public class AnswerLotto {
 
     private void validateDuplicateMember(List<Integer> numbers) {
         if (checkHasDuplicateMember(numbers)) {
-            throw new IllegalArgumentException("당첨번호에 중복된 숫자가 포함되어 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.ANSWER_LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
     private boolean checkHasDuplicateMember(List<Integer> numbers) {
@@ -39,7 +40,7 @@ public class AnswerLotto {
 
     private void validateAllNumberInRange(List<Integer> numbers) {
         if (checkAllNumberInRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ANSWER_LOTTO_NOT_IN_RANGE_ERROR.getMessage());
         }
     }
 

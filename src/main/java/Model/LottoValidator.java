@@ -14,20 +14,27 @@ public class LottoValidator {
         }
     }
 
-    String deleteWhiteSpace(String predictedLottoNumber) {
-        return predictedLottoNumber.replace("\\s", "");
+    String deleteWhiteSpace(String winningNumber) {
+        return winningNumber.replace("\\s", "");
     }
 
-    String correctCommas(String predictedLottoNumber) {
-        predictedLottoNumber = predictedLottoNumber.replaceAll("^,|,$", "");
-        predictedLottoNumber = predictedLottoNumber.replaceAll(",+", ",");
-        return predictedLottoNumber;
+    String correctCommas(String winningNumber) {
+        winningNumber = winningNumber.replaceAll("^,|,$", "");
+        winningNumber = winningNumber.replaceAll(",+", ",");
+        return winningNumber;
     }
 
+    void validateWinningNumberNumeric(String winningNumber) {
+        for (int winningNumberIndex  = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
+            if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
     void validateWinningNumberRange(List<Integer> winningNumber) {
         for (Integer lottoNumber : winningNumber) {
             if (MIN_LOTTO_NUMBER > lottoNumber || MAX_LOTTO_NUMBER < lottoNumber) {
-                throw  new IllegalArgumentException();
+                throw new IllegalArgumentException();
             }
         }
     }

@@ -5,10 +5,10 @@ public class PurchasePrice {
     private final int PIECE_OF_LOTTO;
     private static final int LOTTO_PRICE_EACH = 1000;
 
-    public PurchasePrice(String inputPrice){
-        isUnder1000(inputPrice);
-        isNotDivisibleBy1000(inputPrice);
-        this.PIECE_OF_LOTTO = Integer.parseInt(inputPrice) / 1000;
+    public PurchasePrice(String priceFromUser){
+        isUnder1000(priceFromUser);
+        isNotDivisibleBy1000(priceFromUser);
+        this.PIECE_OF_LOTTO = Integer.parseInt(priceFromUser) / 1000;
     }
 
     public int getCountPieceOfLotto(){

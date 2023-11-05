@@ -20,6 +20,7 @@ public class LottoChecker {
     public LottoResult checkWinningNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         int count = 0;
         boolean isBonusMatch = false;
+
         for (int i = 0; i < winningNumbers.size(); i++) {
             if (lottoNumbers.contains(winningNumbers.get(i))) {
                 count++;
@@ -28,6 +29,7 @@ public class LottoChecker {
                 isBonusMatch = true;
             }
         }
+
         return new LottoResult(count,isBonusMatch);
     }
 }

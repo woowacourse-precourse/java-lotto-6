@@ -14,6 +14,7 @@ public class PlayTest {
     private Validate validate;
     private LottoChecker lottoChecker;
     private LottoResultPrinter lottoResultPrinter;
+
     @BeforeEach
     void setValidate() {
         validate = new Validate();

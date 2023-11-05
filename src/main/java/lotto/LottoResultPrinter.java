@@ -50,6 +50,7 @@ public class LottoResultPrinter {
     public String calculateLottoProfitRate (long winningAmount, int amount) {
         double profitRate = ((double) (winningAmount) / (amount*1000)) * 100;
         double result = Math.round(profitRate * 10.0) / 10.0;
+
         return "총 수익률은 "+result+"%입니다.";
     }
 }

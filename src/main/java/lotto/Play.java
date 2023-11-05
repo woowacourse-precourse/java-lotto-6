@@ -7,6 +7,7 @@ public class Play {
     LottoChecker lottoChecker = new LottoChecker();
     InputHandler inputAmount = new InputHandler();
     LottoResultPrinter lottoResultPrinter = new LottoResultPrinter();
+
     public void play() {
         int lottoAmount = inputAmount.inputAmount(); //로또를 몇개 살지
         List<Lotto> lottos = lottoMachine.createLotto(lottoAmount); //구입한 금액만큼 로또 생성
@@ -24,6 +25,4 @@ public class Play {
         String result = lottoResultPrinter.calculateLottoProfitRate(winningAmount, lottoAmount); //수익률 결과
         System.out.println(result); //수익률 출력
     }
-
-
 }

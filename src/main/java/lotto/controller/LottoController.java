@@ -22,7 +22,7 @@ public class LottoController {
 
     private void userInputMoney() {
         OutputView.buyLottoTicket();
-        System.out.println(InputView.userInput());
+        lotto.userInputMoney(InputView.userInput());
     }
 
     private void printLottoTicket() {

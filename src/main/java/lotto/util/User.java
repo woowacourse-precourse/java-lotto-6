@@ -5,12 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class User {
     private static int paymentAmount;
-    private static int manyLottoTicket;
 
     public void inputPaymentAmount() {
         String input = Console.readLine();
         checkPaymentAmount(input);
-        howManyLottoTicket();
     }
 
     public void checkPaymentAmount(String input) {
@@ -19,14 +17,11 @@ public class User {
         Exception.checkRangePaymentAmount(paymentAmount);
     }
 
-    public void howManyLottoTicket() {
-        manyLottoTicket = paymentAmount / 1000;
-    }
-
-    public int getPaymentAmount(){
+    public int getPaymentAmount() {
         return paymentAmount;
     }
-    public int getManyLottoTicket(){
-        return manyLottoTicket;
+
+    public int getManyLottoTicket() {
+        return paymentAmount / 1000;
     }
 }

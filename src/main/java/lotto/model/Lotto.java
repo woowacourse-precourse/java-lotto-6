@@ -18,6 +18,11 @@ public class Lotto {
 
         // 2. 숫자 중복 여부 검증
         validationCheck.checkDuplicatedNum(numbers);
+
+        // 3. 숫자 범위 검증
+        for (int num : numbers) {
+            validationCheck.checkNumRange(num);
+        }
     }
 
     public boolean existNumber(int givenNumber) {

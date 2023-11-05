@@ -62,6 +62,16 @@ public class LottoModel {
         return String.format("%.1f", winningRate);
     }
 
+    public void computeLotto(List<Lotto> published, List<Integer> winnings, int bonusNum) {
+
+        for (Lotto lotto : published) {
+            bonus = false;
+            winningNumsTable = compareLotto(winnings, lotto, bonusNum);
+            int result = sumOfWinningNumsTable();
+            winningTable = makeWinningTable(result, bonus);
+        }
+
+    }
 
     public int sumOfWinningNumsTable() {
         int result = 0;

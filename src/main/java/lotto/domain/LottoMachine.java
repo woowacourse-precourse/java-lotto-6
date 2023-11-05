@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.ErrorMessage.LOTTO_PURCHASE_ERROR;
 
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.domain.creator.NumbersCreator;
 
 public class LottoMachine {
@@ -16,7 +18,7 @@ public class LottoMachine {
     public Lottos purchaseLotto(Money purchaseMoney) {
         validate(purchaseMoney);
         int lottoQuantity = purchaseMoney.calculateQuantity(LOTTO_PRICE);
-        return new Lottos();
+        return new Lottos(createLottos(lottoQuantity));
     }
 
     private static void validate(Money purchaseMoney) {
@@ -25,7 +27,9 @@ public class LottoMachine {
         }
     }
 
-    private Lotto createLotto() {
-        return Lotto.createLotto(numbersCreator);
+    private List<Lotto> createLottos(int lottoQuantity) {
+        return Stream.generate(() -> Lotto.createLotto(numbersCreator))
+                .limit(lottoQuantity)
+                .toList();
     }
 }

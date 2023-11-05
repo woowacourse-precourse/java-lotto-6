@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.model.Lotto;
 import lotto.model.LottoGame;
 
 import java.util.ArrayList;
@@ -9,10 +10,13 @@ import java.util.List;
 import static lotto.util.CalculateUtil.divideByThousands;
 import static lotto.util.GenerateLottoNumbersUtil.generateLottoNumber;
 import static lotto.util.TypeConversionUtil.StringToInt;
+import static lotto.util.TypeConversionUtil.StringToIntegerList;
 
 public class LottoService {
 
     private final LottoGame lottoGame = new LottoGame();
+
+    private List<Integer> winnerLottoNumber = new ArrayList<>();
 
     public int getLottoCount(String inputPurchaseMoney) {
         int purchaseMoney = StringToInt(inputPurchaseMoney);
@@ -25,6 +29,12 @@ public class LottoService {
         List<List<Integer>> purchaseLottoNumbers = generateLottoNumbers();
         setPurchaseLottoNumbers(purchaseLottoNumbers);
         return purchaseLottoNumbers;
+    }
+
+    public void setWinnerLottoNumbers(String inputWinnerNumber) {
+        List<Integer> winnerNumber = StringToIntegerList(inputWinnerNumber);
+        Lotto lotto = new Lotto(winnerNumber);
+        winnerLottoNumber = lotto.getNumbers();
     }
 
     private void setPurchaseLottoNumbers(List<List<Integer>> purchaseLottoNumbers) {

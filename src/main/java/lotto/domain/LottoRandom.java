@@ -2,8 +2,10 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class LottoRandom {
     private static int MIN = 1;
@@ -11,11 +13,15 @@ public class LottoRandom {
     private static int SIZE = 6;
 
     public List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < SIZE; i++) {
-            numbers.add(Randoms.pickNumberInRange(MIN, MAX));
+        Set<Integer> numbers = new TreeSet<>();
+        while (numbers.size() < SIZE) {
+            int number = Randoms.pickNumberInRange(MIN, MAX);
+            if (numbers.contains(number)) {
+                continue;
+            }
+            numbers.add(number);
         }
-        return numbers;
+        return numbers.stream().toList();
     }
 
 }

@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 import static lotto.resource.TextResourceProvider.LOTTO_NUMBERS_TEXT_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,10 +51,11 @@ public class Application_PurchasedLottery extends MyApplicationTest {
                 .filteredOn(LOTTO_NUMBERS_TEXT_FORMAT::matches)
                 .hasSizeGreaterThan(0)
                 .map(text -> convertToLottoNumbers(text))
-                .allMatch(numbers -> areInRangeOf(numbers,1, 46));
+                .allMatch(numbers -> areInRangeOf(numbers, 1, 46));
     }
 
     private static List<Integer> convertToLottoNumbers(String text) {
+
         return LOTTO_NUMBERS_TEXT_FORMAT.parse(text)
                 .stream()
                 .map(Integer::parseInt)
@@ -73,7 +75,7 @@ public class Application_PurchasedLottery extends MyApplicationTest {
     }
 
     private static boolean areUniqueSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 0) {
+        if (numbers.size() == 0) {
             return false;
         }
 

@@ -10,11 +10,21 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto copyOf(Lotto lotto) {
+        return new Lotto(lotto.getNumbers());
+    }
+
+    public static Lotto createLotto(LottoRandom random){
+        return new Lotto(random.generateNumbers());
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
 }

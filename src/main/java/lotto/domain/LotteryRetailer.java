@@ -15,17 +15,7 @@ public class LotteryRetailer {
 
     public LotteryReceipt purchase(long amount) {
         long quantity = amount / LottoOperator.LOTTO_PRICE;
-        return new LotteryReceipt(createPurchasedLotteries(quantity));
-    }
-
-    private List<PurchasedLottery> createPurchasedLotteries(long quantity) {
-        return LongStream.range(0, quantity)
-                .mapToObj(i -> new PurchasedLottery(LottoOperator.currentRound, createLotto()))
-                .collect(toList());
-    }
-
-    private Lotto createLotto() {
-        return new Lotto(random.generateNumbers());
+        return LotteryReceipt.createLotteryReceipt(quantity, random);
     }
 }
 

@@ -3,6 +3,10 @@ package lotto.domain;
 public class User {
     private long purchaseAmount;
 
+    public long getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     public void setPurchaseAmount(long purchaseAmount) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;

@@ -5,37 +5,53 @@ import lotto.domain.buyer.model.Buyer;
 
 public class BuyerService {
 
-    static final String ERROR_MSG_HEADER = "[ERROR] ";
+    static final String ERROR_MSG_HEADER = "[ERROR]";
 
     public void tryBuy(Buyer buyer) {
 
         System.out.println("구입금액을 입력해 주세요.");
-        String inputMoney = Console.readLine();
-
-        String checkResult = checkMoney(inputMoney);
+        int parsedMoney = parsingMoney(Console.readLine());
+        String checkResult = checkMoney(parsedMoney);
 
         if(checkResult.contains(ERROR_MSG_HEADER)) {
-            System.out.println(checkResult);
-            tryBuy(buyer);
-            return;
+            try {
+                throw new IllegalArgumentException();
+            } catch(IllegalArgumentException e) {
+                System.out.println(checkResult);
+                tryBuy(buyer);
+                return;
+            }
         }
 
-        buy(buyer, 0);
+        buy(buyer, parsedMoney);
     }
 
-    public String checkMoney(String inputMoney) {
-
-        //TODO 파싱한 값을 돌려주려면?
-        int parsedMoney;
+    public int parsingMoney(String inputMoney) {
 
         try {
-            parsedMoney = Integer.parseInt(inputMoney);
-        } catch (NumberFormatException e){
-            return ERROR_MSG_HEADER + "숫자만 입력이 가능합니다.";
+            int parsedMoney = Integer.parseInt(inputMoney);
+            return parsedMoney;
+        } catch (NumberFormatException e1){
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e2){
+                return -1;
+            }
+        }
+    }
+
+    public String checkMoney(int parsedMoney) {
+
+        if(parsedMoney == -1) {
+            return ERROR_MSG_HEADER + " 숫자만 입력이 가능합니다.";
         }
 
-        if(parsedMoney == 0 || parsedMoney % 1000 != 0 || parsedMoney < 0) {
-            return ERROR_MSG_HEADER + "1000단위의 숫자가 입력되어야 합니다.";
+        if(parsedMoney == 0 || parsedMoney < 0) {
+            return ERROR_MSG_HEADER + "숫자는 0보다 큰 숫자여야 합니다.";
+        }
+
+        if(parsedMoney % 1000 != 0) {
+            return ERROR_MSG_HEADER + "숫자는 1000 단위로 입력되어야 합니다.";
         }
 
         return "올바른 숫자가 입력되었습니다.";

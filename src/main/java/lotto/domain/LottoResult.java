@@ -4,19 +4,19 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final Map<Ranking, Integer> rankinInfo;
-    private final double yield;
+    private final Map<Ranking, Integer> rankingInfo;
+    private final Yield yield;
 
-    public LottoResult(Map<Ranking, Integer> rankinInfo, double yield) {
-        this.rankinInfo = rankinInfo;
+    public LottoResult(Map<Ranking, Integer> rankingInfo, Yield yield) {
+        this.rankingInfo = rankingInfo;
         this.yield = yield;
     }
 
     public int getRankingCount(Ranking ranking) {
-        return rankinInfo.getOrDefault(ranking, 0);
+        return rankingInfo.getOrDefault(ranking, 0);
     }
 
     public double getYield() {
-        return yield;
+        return yield.getValue();
     }
 }

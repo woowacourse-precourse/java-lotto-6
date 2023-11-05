@@ -3,6 +3,8 @@ package lotto.domain;
 import static lotto.constant.ExceptionMessage.NO_DUPLICATE_ERROR_MESSAGE;
 import static lotto.constant.ExceptionMessage.NO_DUPLICATE_WINNING_NUMBER_ERROR_MESSAGE;
 import static lotto.constant.ExceptionMessage.OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
@@ -58,6 +60,6 @@ public class WinningNumbers {
     }
 
     private boolean isOutOfRange(int number) {
-        return 45 < number || number < 1;
+        return MAX_NUMBER < number || number < MIN_NUMBER;
     }
 }

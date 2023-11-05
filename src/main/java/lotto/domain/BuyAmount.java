@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.DIVISION_ERROR_MESSAGE;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 public class BuyAmount {
 
@@ -12,12 +13,12 @@ public class BuyAmount {
     }
 
     public void validateAbleToDivide(long buyAmount) {
-        if (buyAmount % 1000 != 0) {
+        if (buyAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(DIVISION_ERROR_MESSAGE);
         }
     }
 
     public int getAbleToBuyCount() {
-        return (int) (buyAmount / 1000);
+        return (int) (buyAmount / LOTTO_PRICE);
     }
 }

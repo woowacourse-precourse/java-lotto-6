@@ -13,6 +13,7 @@ public class InputView {
         int number;
         try {
             number = Integer.parseInt(Console.readLine());
+            System.out.println();
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalStateException(NOT_NUMBER.getMessage());
@@ -20,6 +21,10 @@ public class InputView {
     }
 
     public List<Integer> inputWinNumbers() {
-        return new ArrayList<>(Arrays.stream(Console.readLine().split(",")).map(Integer::valueOf).toList());
+        List<Integer> winNumbers = new ArrayList<>(Arrays.stream(Console.readLine().split(","))
+                .map(Integer::valueOf)
+                .toList());
+        System.out.println();
+        return winNumbers;
     }
 }

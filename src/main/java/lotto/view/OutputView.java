@@ -20,12 +20,12 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public static void printStatistics(Map<Prize, Integer> result) {
+    public static void printStatistics(Map<Prize, Long> prizeResult) {
         System.out.println(MESSAGE_RESULT_HEADER);
-        result.forEach(OutputView::printEachStatistics);
+        prizeResult.forEach(OutputView::printEachStatistics);
     }
 
-    private static void printEachStatistics(Prize prize, int count) {
+    private static void printEachStatistics(Prize prize, Long count) {
         if (prize == Prize.SECOND_PLACE) {
             printSecondPlaceStatistics(prize, count);
             return;
@@ -33,14 +33,14 @@ public class OutputView {
         printCommonStatistics(prize, count);
     }
 
-    private static void printCommonStatistics(Prize prize, int count) {
+    private static void printCommonStatistics(Prize prize, Long count) {
         System.out.println(String.format(MESSAGE_RESULT_CONTENT,
                 prize.getMatchCount(),
                 prize.getPrizeMoney(),
                 count));
     }
 
-    private static void printSecondPlaceStatistics(Prize prize, int count) {
+    private static void printSecondPlaceStatistics(Prize prize, Long count) {
         System.out.println(String.format(MESSAGE_RESULT_CONTENT_SECOND_PLACE,
                 prize.getMatchCount(),
                 prize.getPrizeMoney(),

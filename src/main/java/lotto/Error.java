@@ -21,4 +21,17 @@ public final class Error {
             return PREFIX + text + SUFFIX;
         }
     }
+
+    public enum View {
+        NOT_NUMBER("숫자만 입력가능합니다.");
+        private final String text;
+
+        View(String text) {
+            this.text = text;
+        }
+
+        public String getText() {
+            return PREFIX + text + SUFFIX;
+        }
+    }
 }

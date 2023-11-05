@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoNumberValidator {
-    final int lottoNumberCount = 6;
-    public boolean hasDuplicateNumbers(List<Integer> numbers){
+    final static int lottoNumberCount = 6;
+    public static boolean hasDuplicateNumbers(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         return uniqueNumbers.size()==lottoNumberCount;

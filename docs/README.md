@@ -27,7 +27,7 @@
 
 #### InputValidator
 
-사용자 입력(String 타입)을 검증하는 기능을 하는 함수들을 갖고 있는 클래스입니다.
+사용자 입력(String 타입)을 검증하는 역할을 하는 클래스입니다.
 
 * 구입 금액 입력 검증
     * 정수여야 합니다.
@@ -50,7 +50,7 @@
 
 사용자로부터 입력 받은 값을 InputValidator를 이용하여 간단한 검증 기능을 수행합니다.
 
-사용자로부터 입력받은 값을 String 상태로 InputController에 전달합니다.
+사용자로부터 입력받은 값을 String 타입으로 InputController에 전달합니다.
 
 #### OutputView
 
@@ -99,7 +99,7 @@ OutputController로부터 사용자에게 적절한 화면을 출력할 것을 �
 
 #### **LottoGameService**
 
-로또 게임을 수행하는 클래스입니다.
+로또 게임의 비즈니스 로직을 수행하는 클래스입니다.
 
 로또 구매자(`Player` 객체)와 로또 판매점(`LottoShop` 객체)을 통해 로또 게임을 진행합니다.
 
@@ -119,86 +119,82 @@ OutputController를 통해 사용자에게 원하는 화면을 출력하도록 �
 
 #### InputController
 
-LottoGameController에서 사용자 입력이 필요할 때마다 InputController에게 사용자 입력을 받아올 것을 요청을 합니다.
+LottoGameController는 사용자 입력이 필요할 때마다 InputController를 통해 사용자 입력을 받아옵니다.
 
-InputController는 InputView로부터 사용자 입력을 String 타입 그대로 받아옵니다.
+InputController는 InputView로부터 사용자 입력(String)을 받아옵니다.
 
-String 타입의 사용자 입력을 InputController에서 적절한 model 객체(LottoGameController에서 요청한 model) 타입으로 변환합니다.
+String 타입의 사용자 입력을 InputController에서 적절한 model 타입(LottoGameController에서 요청한 model 타입)으로 변환합니다.
 
 LottoGameController에게 변환한 객체를 넘겨줍니다.
 
 #### OutputController
 
-LottoGameController에서 사용자에게 출력이 필요할 때마다 OutputController에게 출력할 것을 요청합니다.
-
 OutputController는 LottoGameController로부터 사용자에게 화면을 출력할 것을 요청받습니다.
 
-출력될 화면을 업데이트하는데 필요한 model 객체가 있다면 해당 model 객체를 받아옵니다.
+OutputView에서 업데이트가 될 화면(String)을 생성합니다.
 
-해당 model 객체를 사용자에게 보여질 화면 양식(String 타입)으로 변환합니다.
-
-String으로 변환된 내용을 OutputView에게 전달하여 사용자에게 보여질 화면을 업데이트하고 렌더링할 것을 요청합니다.
+OutputView에게 전달하여 사용자에게 보여질 화면을 업데이트하고 렌더링할 것을 요청합니다.
 
 ### 🧑 model
 
 #### Lotto
 
-* 인스턴스
-    * 로또 번호 리스트를 갖고 있습니다.
-        * 생성자 검증
-            * 당첨 번호 리스트의 크기는 6이어야 합니다.
-            * 1~45 사이 정수여야 합니다.
-            * 숫자가 중복되지 않아야 합니다.
-* 함수
-    * 다른 로또와 비교하여 일치하는 번호의 개수를 반환하는 함수를 갖고 있습니다.
+* 로또 번호 리스트를 갖고 있습니다.
+    * 생성자 검증
+        * 당첨 번호 리스트의 크기는 6이어야 합니다.
+        * 1~45 사이 정수여야 합니다.
+        * 숫자가 중복되지 않아야 합니다.
 
 #### LottoMachine
 
 로또 판매점에서 자동으로 로또 번호를 생성해주는 로또 기계 역할을 하는 클래스입니다.
 
-* 함수
-    * 랜덤으로 로또를 1개 생성하는 함수를 갖고 있습니다.
-        * 1~45 사이 중복 되지 않은 6개의 수를 뽑아 `Lotto` 객체를 생성합니다.
-        * `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용합니다.
-    * 랜덤으로 로또를 n개 생성해서 `List<Lotto>`를 반환하는 함수를 갖고 있습니다.
-    * 로또의 가격을 반환하는 함수를 갖고 있습니다.
+* 랜덤으로 로또를 1개 생성하는 함수를 갖고 있습니다.
+    * 1~45 사이 중복 되지 않은 6개의 수를 뽑아 `Lotto` 객체를 생성합니다.
+    * `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용합니다.
+* 랜덤으로 로또를 n개 생성해서 `List<Lotto>`를 반환하는 함수를 갖고 있습니다.
+* 로또의 가격을 확인할 수 있습니다.
 
 #### LottoShop
 
 로또 판매점 역할을 하는 클래스입니다.
 
-* 인스턴스
-    * 로또 기계(`LottoMachine`)를 갖고 있습니다.
-* 함수
-    * 받은 금액만큼 로또를 생성하여 로또 리스트를 반환하는 함수를 갖고 있습니다.
+* 로또 기계(`LottoMachine`)를 갖고 있습니다.
+* 받은 금액만큼 로또를 생성합니다.
+* 로또 가격을 확인할 수 있습니다.
 
 #### Player
 
 로또 구매자 역할을 하는 클래스입니다.
 
-* 인스턴스
-    * 초기 예산을 갖고 있습니다.
-    * 로또를 구매하는데 사용한 금액을 갖고 있습니다.
-    * 구입한 로또 리스트를 갖고 있습니다.
-    * 본인이 구입한 로또 리스트에 대한 당첨 통계 결과(`WinningStatistics`)와 수익률 정보를 갖고 있습니다.
-* 함수
-    * 로또 판매점에서 로또를 구매할 수 있습니다.
-    * 당첨 번호와 본인이 구매한 로또 리스트를 비교하여 당첨 통계를 내고 수익률을 계산할 수 있습니다.
+* 초기 예산을 갖고 있습니다.
+* 로또를 구매하는데 사용한 금액을 갖고 있습니다.
+* 구입한 로또 리스트를 갖고 있습니다.
+* 본인이 구입한 로또 리스트에 대한 당첨 통계 결과(`WinningStatistics`)와 수익률 정보를 갖고 있습니다.
+
+* 로또 판매점에서 로또를 구매할 수 있습니다.
+* 당첨 번호와 본인이 구매한 로또 리스트를 비교하여 당첨 통계를 내고 수익률을 계산할 수 있습니다.
 
 #### WinningLotto
 
-* 인스턴스
-    * 당첨 번호와 보너스 번호를 갖고 있습니다.
-        * 생성자 검증
-            * 보너스 번호와 당첨 번호 사이에 중복된 값이 없어야 합니다.
-* 함수
-    * 당첨 번호와 로또 번호와 비교하여 당첨 결과를 반환하는 함수를 갖고 있습니다.
+* 당첨 번호와 보너스 번호를 갖고 있습니다.
+    * 생성자 검증
+        * 보너스 번호와 당첨 번호 사이에 중복된 값이 없어야 합니다.
 
 #### WinningStatistics
 
-* 인스턴스
-    * 당첨 번호와 보너스 번호(WinningLotto), 구매한 로또 번호 리스트를 갖고 있습니다.
-    * 당첨 번호와 보너스 번호를 토대로 계산된 당첨 통계(당첨 개수), 수익률 정보를 갖고 있습니다.
+* 당첨 번호와 보너스 번호(WinningLotto), 구매한 로또 번호 리스트를 갖고 있습니다.
+* 당첨 번호와 보너스 번호를 토대로 계산된 당첨 통계(당첨 개수), 수익률 정보를 갖고 있습니다.
+
+### 입출력 흐름
+
+#### [입력 흐름](https://ibb.co/56GKZWR)
+
+<img src="https://i.ibb.co/80NYkD7/drawio.png">
+
+#### [출력 흐름](https://ibb.co/B3HXmvF)
+
+<img src="https://i.ibb.co/jf9cdqs/image.png">
 
 ## 전체 입출력 예시
 

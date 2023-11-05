@@ -38,7 +38,7 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        return handler.getResult(ui::getMoney);
+        return handler.getResult(() -> new Money(ui.getMoney()));
     }
 
     private Lottos purchaseLotto(Money money) {

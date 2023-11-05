@@ -24,7 +24,7 @@
           - [예외] 보너스번호가 범위에 벗어난 경우
           - [예외] 보너스번호 길이가 1이 아닌 경우
         - 당첨 내역 domain(LottoResult.java)
-        - 수익률 domain(LottoProfit.java)
+        - 
     - service
         - 로또 게임 service 
     - view

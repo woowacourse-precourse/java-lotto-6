@@ -1,12 +1,9 @@
 package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoSet;
+import lotto.domain.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -15,12 +12,6 @@ public class LottoService {
     private static int LOTTO_MIN_NUMBER = 1;
     private static int LOTTO_MAX_NUMBER = 45;
     private static int LOTTO_ENTITY_SIZE = 6;
-
-    public int calLottoNum(String buyMoney){
-        int lottoNum = Integer.parseInt(buyMoney) / MONEY_UNIT;
-
-        return lottoNum;
-    }
 
     public static List<Integer> generateLotto(){
         List<Integer> lotto = new ArrayList<>();
@@ -46,5 +37,31 @@ public class LottoService {
         return winningNumber.stream()
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
+    }
+
+    public static Map<LottoRank, Integer> generateMap(LottoSet lottoSet, LottoWinning lottoWinning, LottoBonus lottoBonus){
+        Map<LottoRank, Integer> map = new HashMap<>();
+        for(Lotto lotto : lottoSet.getLottoSet()){
+
+        }
+    }
+
+    public static LottoRank hitType(List<Integer> player, List<Integer> lotto, Integer bonus){
+        int count = player.stream().filter(lotto::contains).distinct().collect(Collectors.toList()).size();
+
+        if(count < 3) {
+            return LottoRank.MISS;
+        }if(count == 3){
+            return LottoRank.FIFTH;
+        }
+        if(count == 4){
+            return  LottoRank.FOURTH;
+        }
+        if(count == 5){
+            return  LottoRank.FOURTH;
+        }
+        if(count == 6){
+            return  LottoRank.FOURTH;
+        }
     }
 }

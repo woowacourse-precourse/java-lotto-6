@@ -6,10 +6,10 @@ import lotto.Service.LottoService;
 import java.util.List;
 
 public class InputView {
-    public static String inputBuyMoney(){
+    public static Integer inputBuyMoney(){
         System.out.println("구입 금액을 입력해 주세요.");
         String buyMoney = Console.readLine();
-        return buyMoney;
+        return Integer.parseInt(buyMoney);
     }
 
     public static List<Integer> inputLottoWinning(){

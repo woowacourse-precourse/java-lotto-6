@@ -1,28 +1,32 @@
 package lotto.domain;
 
 public class LottoBuy {
-    private String money;
-    private int lottoNum;
+    private Integer money;
+    private Integer quantity;
     private static int MONEY_UNIT = 1000;
+
     private static final String LOTTO_MONEY_UNIT_ERROR_MESSAGE = "[ERROR] 로또 구입 금액 입력은 1,000원 단위로 입력해야합니다.";
 
-    public LottoBuy(String money, int lottoNum){
+    public LottoBuy(Integer money){
         validate(money);
         this.money = money;
-        this.lottoNum = lottoNum;
     }
 
-    public String getMoney() {
+    public Integer getMoney() {
         return this.money;
     }
 
-    public int getLottoNum() {
-        return this.lottoNum;
-    }
-
-    private void validate(String money) {
-        if(Integer.parseInt(money) % MONEY_UNIT != 0){
+    private void validate(Integer money) {
+        if(money % MONEY_UNIT != 0){
             throw new IllegalArgumentException(LOTTO_MONEY_UNIT_ERROR_MESSAGE);
         }
+    }
+
+    public void calculateLottoQuantity(){
+        this.quantity = money / MONEY_UNIT;
+    }
+
+    public Integer getQuantity(){
+        return this.quantity;
     }
 }

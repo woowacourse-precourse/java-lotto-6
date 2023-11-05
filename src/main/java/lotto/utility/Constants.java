@@ -2,13 +2,13 @@ package lotto.utility;
 
 public class Constants {
     public static final Integer LOTTO_LENGTH = 6;
+    public static final Integer CHECK_BONUS_CONDITION = 5;
     public static final Integer MIN_LOTTO_NUMBER = 1;
     public static final Integer MAX_LOTTO_NUMBER = 45;
     public static final Integer LOTTO_PRICE = 1000;
     public static final String COMMA = ",";
     public static final String LINE = "-";
-    public static final String OPEN_SQUARE_BRACKET = "[";
-    public static final String CLOSE_SQUARE_BRACKET = "]";
+    public static final String COUNT_WORD = "개";
     public static final String BUY_MESSAGE_BEFORE = "구입금액을 입력해 주세요.";
     public static final String BUY_MESSAGE_AFTER = "개를 구매했습니다.";
     public static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";

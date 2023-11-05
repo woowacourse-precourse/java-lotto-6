@@ -25,4 +25,8 @@ public class Lotto {
         Collections.sort(sortedNumbers);
         return sortedNumbers;
     }
+
+    public boolean hasNumber(Integer number) {
+        return numbers.contains(number);
+    }
 }

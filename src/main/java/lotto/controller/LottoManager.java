@@ -1,12 +1,14 @@
 package lotto.controller;
-import static lotto.utility.Constants.LINE;
-
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.User;
+import lotto.utility.Rank;
 import lotto.view.UserView;
 
 public class LottoManager {
     private UserView userView;
     private User user;
+    private Rank rank;
     public LottoManager() {
         userView = new UserView();
         user = new User();
@@ -28,8 +30,8 @@ public class LottoManager {
         userView.printInputBonusNumberMessage();
         UserInput.bonusNumber();
 
-        userView.printWinningStatistic();
-
+        user.calculateWinning();
+        userView.printWinningStatistic(user);
     }
 
 

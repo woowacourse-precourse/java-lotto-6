@@ -3,6 +3,7 @@ package lotto.view;
 
 import static lotto.utility.Constants.BUY_MESSAGE_AFTER;
 import static lotto.utility.Constants.BUY_MESSAGE_BEFORE;
+import static lotto.utility.Constants.COUNT_WORD;
 import static lotto.utility.Constants.INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.utility.Constants.INPUT_WINNING_NUMBERS_MESSAGE;
 import static lotto.utility.Constants.LINE;
@@ -10,6 +11,8 @@ import static lotto.utility.Constants.WINNING_STATISTIC;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.User;
+import lotto.utility.Rank;
 
 public class UserView {
     public UserView() {}
@@ -29,11 +32,16 @@ public class UserView {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
-    public void printWinningStatistic() {
+    public void printWinningStatistic(User user) {
         System.out.println();
         System.out.println(WINNING_STATISTIC);
         System.out.println(LINE.repeat(3));
         // 당첨 통계 메시지 출력 코드 구현 예정
+        System.out.println(Rank.FIFTH.getMessage() + user.getFifthRank() + COUNT_WORD);
+        System.out.println(Rank.FOURTH.getMessage() + user.getFourthRank() + COUNT_WORD);
+        System.out.println(Rank.THIRD.getMessage() + user.getThirdRank() + COUNT_WORD);
+        System.out.println(Rank.SECOND.getMessage() + user.getSecondRank() + COUNT_WORD);
+        System.out.println(Rank.FIRST.getMessage() + user.getFirstRank() + COUNT_WORD);
     }
     public void printLottos(List<Lotto> lottos) {
         System.out.println();

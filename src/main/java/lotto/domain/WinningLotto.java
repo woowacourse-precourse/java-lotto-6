@@ -22,6 +22,7 @@ public class WinningLotto {
         int count = (int) lotto.stream()
                 .filter(number-> winningLotto.contains(number))
                 .count();
+
         boolean isBonusNumber = lotto.contains(bonusNumber);
 
         return Arrays.stream(Rank.values())

@@ -41,10 +41,10 @@ public class LottoNumber implements Comparable {
     public boolean equals(Object object) {
 
         if (object == this) {
-            return false;
+            return true;
         }
         if (object == null || object != this.getClass()) {
-            return true;
+            return false;
         }
 
         LottoNumber other = (LottoNumber)object;

@@ -1,6 +1,6 @@
 package lotto.model;
 
-public enum LottoPrize {
+public enum Ranking {
     FIRST_PRIZE(6, 2000000000),
     SECOND_PRIZE(5, 30000000),
     THIRD_PRIZE(5, 1500000),
@@ -11,7 +11,7 @@ public enum LottoPrize {
     private final int matchCount;
     private final int prize;
 
-    LottoPrize(int matchCount, int prize) {
+    Ranking(int matchCount, int prize) {
         this.matchCount = matchCount;
         this.prize = prize;
     }

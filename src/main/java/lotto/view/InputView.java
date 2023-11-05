@@ -84,6 +84,9 @@ public class InputView {
     public void validateAnswerNumberRange(List<Integer> answerNumber) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : answerNumber) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
             if (!uniqueNumbers.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
             }

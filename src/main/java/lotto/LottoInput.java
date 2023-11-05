@@ -7,6 +7,7 @@ import java.util.List;
 public class LottoInput {
 
     ExceptionCases exceptionCases = new ExceptionCases();
+    PrintInput printInput = new PrintInput();
     public int getLottoPrice() {
         PrintInput printInput = new PrintInput();
         printInput.printLottoMoney();
@@ -27,6 +28,7 @@ public class LottoInput {
                 WinningNumbers.add(Integer.parseInt(temp));
             }catch (NumberFormatException e){
                 exceptionCases.CheckFormat2();
+                printInput.printWinningLotto();
                 return getWinningNum();
             }
         }
@@ -39,6 +41,7 @@ public class LottoInput {
             i = Integer.parseInt(s);
         }catch (NumberFormatException e){
             exceptionCases.CheckFormat2();
+            printInput.printBonusLotto();
             return getBonusNum();
         }
         return CheckBonusError(i);
@@ -49,6 +52,7 @@ public class LottoInput {
             exceptionCases.CheckLastComma(s);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            printInput.printWinningLotto();
             WinningNumbers = getWinningNum();
         }
         return WinningNumbers;
@@ -58,6 +62,7 @@ public class LottoInput {
             exceptionCases.CheckNum(Bonus);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            printInput.printBonusLotto();
             Bonus = getBonusNum();
         }
         return Bonus;

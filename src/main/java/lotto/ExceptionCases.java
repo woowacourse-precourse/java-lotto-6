@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ExceptionCases {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     public boolean LottoPriceCheck(String s){
         int i;
         if( CheckBlank(s)){

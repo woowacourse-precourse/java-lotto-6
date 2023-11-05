@@ -15,7 +15,6 @@ public class PlayLotto {
         BonusNum = CheckWinningAndBonus(BonusNum);
         WinningStatics(BonusNum);
         getRateOfReturn(Chance);
-        //System.out.println(Lottos.get(7).getNumbers());
     }
     public int LottoIssue(){
         LottoInput lottoInput = new LottoInput();

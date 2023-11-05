@@ -16,6 +16,7 @@ public class LottoCompanyTest {
         put("THIRD", 2);
         put("FOURTH", 1);
         put("FIFTH", 0);
+        put("NO", -1);
     }};
 
     @BeforeEach
@@ -77,5 +78,16 @@ public class LottoCompanyTest {
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("FIFTH"));
+    }
+
+    @DisplayName("낙첨 테스트")
+    @Test
+    void testNoRank() {
+        //given
+        //when
+        int result = LottoCompany.matchPrize(List.of(1, 2, 11, 9, 10, 8));
+
+        //then
+        assertThat(result).isEqualTo(RANK_INDEXES.get("NO"));
     }
 }

@@ -9,6 +9,8 @@ public class OutputView {
     private static final String LOTTO_NUMBERS_TEXT = "[%s]\n";
     private static final String LOTTO_NUMBERS_INPUT_TEXT = "당첨 번호를 입력해 주세요.\n";
     private static final String BONUS_NUMBER_INPUT_TEXT = "보너스 번호를 입력해 주세요.\n";
+    private static final String LOTTO_RESULT_START_TEXT = "당첨 통계\n";
+    private static final String BOUNDARY = "---\n";
 
     private OutputView() {
     }
@@ -34,5 +36,10 @@ public class OutputView {
 
     public static void printBonusNumberInputText () {
         System.out.print(BONUS_NUMBER_INPUT_TEXT);
+    }
+
+    public static void printLottoResultStartText () {
+        System.out.print(LOTTO_RESULT_START_TEXT);
+        System.out.print(BOUNDARY);
     }
 }

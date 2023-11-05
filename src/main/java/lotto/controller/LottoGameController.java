@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoOwner;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,6 +35,11 @@ public class LottoGameController {
 
     private void calculateLottoResult(LottoOwner lottoOwner, WinningNumber winningNumber) {
         lottoOwner.calculateResult(winningNumber);
+        printLottoResult();
+    }
+
+    private void printLottoResult() {
+        OutputView.printLottoResultStartText();
     }
 
     private WinningNumber generateWinningNumber() {

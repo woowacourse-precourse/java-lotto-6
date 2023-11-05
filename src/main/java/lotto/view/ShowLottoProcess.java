@@ -30,4 +30,10 @@ public class ShowLottoProcess {
         process.pickWinNumber();
         System.out.println();
     }
+
+    public void printPickBonusNumbers() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        process.pickBonusNumber();
+        System.out.println();
+    }
 }

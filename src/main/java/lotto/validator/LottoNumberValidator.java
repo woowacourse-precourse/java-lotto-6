@@ -11,4 +11,13 @@ public class LottoNumberValidator {
 
         return uniqueNumbers.size()==lottoNumberCount;
     }
+
+    public static boolean validateNumberRange(List<Integer> numbers){
+        for (Integer number : numbers){
+            if(number<0 || number>45){
+                return false;
+            }
+        }
+        return true;
+    }
 }

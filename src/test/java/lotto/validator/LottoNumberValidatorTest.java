@@ -21,4 +21,21 @@ public class LottoNumberValidatorTest {
         // then
         Assertions.assertThat(uniqueNumbers.size()==6).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("모든 숫자가 1-45 사이의 값인지 확인합니다.")
+    void validateNumberRangeTest(){
+        // given
+        boolean check = true;
+        List<Integer> numbers = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
+
+        // when
+        for (Integer number : numbers){
+            if(number>45 || number<1){
+                check = false;
+            }
+        }
+
+        Assertions.assertThat(check).isEqualTo(true);
+    }
 }

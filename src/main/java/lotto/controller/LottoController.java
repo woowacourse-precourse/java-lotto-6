@@ -24,6 +24,7 @@ public class LottoController {
 
         while (readWinningNum()){
         }
+        OutputViews.endOfSection();
     }
 
     public boolean readPurchaseLotto() {
@@ -51,7 +52,7 @@ public class LottoController {
 
     public boolean readWinningNum() {
         String winningNumsNotSplit = InputViews.readWinningNum();
-        List<String> winningNums = Arrays.asList(winningNumsNotSplit.split(","));
+        List<String> winningNums = Arrays.asList(winningNumsNotSplit.replace(" ", "").split(","));
         List<Integer> winningNumsInput = new ArrayList<>();
         for (String winningNum : winningNums) {
             if (ReadWinningNum.isWinningNumTypeOfInput(winningNum)) {

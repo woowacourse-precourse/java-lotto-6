@@ -51,5 +51,13 @@ class PurchaseProcessorTest {
                 .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
     }
 
+    @DisplayName("입력 가격이 0일 경우 예외 발생")
+    @Test
+    void priceIsZero() {
+        assertThatThrownBy(() -> new PurchaseProcessor("0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+    }
+
 }
 

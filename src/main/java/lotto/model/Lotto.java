@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -12,13 +13,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> createRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static List<Integer> createRank() {
+        List<Integer> rank = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+        return rank;
     }
 
-    public List<Integer> createRank() {
-        return new ArrayList<>(6);
-    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

@@ -26,6 +26,7 @@ public class ReaderForBonus extends LottoNumberValidator implements DefaultReade
     protected boolean validate(String input) {
         try {
             checkIsBlank(input);
+            checkIsNumber(input);
             checkIsAvailableLottoNumber(input);
             return true;
         } catch (GlobalException exception) {

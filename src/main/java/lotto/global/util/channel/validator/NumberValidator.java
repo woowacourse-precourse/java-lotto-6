@@ -6,20 +6,23 @@ import lotto.global.util.channel.base.DefaultValidator;
 
 public abstract class NumberValidator extends DefaultValidator {
 
-    private static final String REGEX_CHECK_NUMERIC = "^([1-9]{0})|(\\d+)?";
-
     protected void checkIsNumber(String input) {
-        if (!input.matches(REGEX_CHECK_NUMERIC)){
-            throw new GlobalException(GlobalError.NOT_INTEGER);
-        }
         checkIsAvailableLong(input);
+        checkIsAvailableInteger(input);
     }
 
     private void checkIsAvailableLong(String input) {
         try {
             Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new GlobalException(GlobalError.IMPOSSIBLE_PARSE_LONG_VALUE);
+            throw new GlobalException(GlobalError.NOT_AVAILABLE_INTEGER);
+        }
+    }
+    private void checkIsAvailableInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new GlobalException(GlobalError.NOT_AVAILABLE_INTEGER);
         }
     }
 }

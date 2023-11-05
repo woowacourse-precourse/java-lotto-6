@@ -5,7 +5,7 @@ import lotto.global.exception.GlobalException;
 
 public abstract class LottoNumberValidator extends NumberValidator{
 
-    private static final String REGEX_NUMBER_QUANTITY = "\\d{0,2}";
+    private static final String REGEX_NUMBER_QUANTITY = "^([1-9]{0})|(\\d{0,2})?";//"\\d{0,2}";
     private static final int NUMBER_LOWER_LIMIT = 1;
     private static final int NUMBER_UPPER_LIMIT = 45;
 

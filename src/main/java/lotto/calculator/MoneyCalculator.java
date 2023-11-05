@@ -30,9 +30,9 @@ public class MoneyCalculator{
     public void calculateRateOfReturn(Integer amountQuantity){
         int investmentMoney = amountQuantity * MIN_VALUE.getAmount();
         BigDecimal findInvestmentMoney = new BigDecimal(investmentMoney);
-        BigDecimal findTotalMoney = new BigDecimal(this.totalMoney);
-        this.rateOfReturn = findTotalMoney.divide(findInvestmentMoney)
-                .multiply(BigDecimal.valueOf(100)).setScale(1,RoundingMode.HALF_UP);
+        BigDecimal totalMoney = new BigDecimal(this.totalMoney);
+        BigDecimal profit = totalMoney.subtract(findInvestmentMoney);
+        this.rateOfReturn = profit.divide(findInvestmentMoney, 1, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
     }
 
     public Integer getTotalMoney() {

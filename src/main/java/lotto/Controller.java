@@ -12,7 +12,6 @@ public class Controller {
     private List<Lotto> lottoTickets = new ArrayList<>();
     Input input = new Input();
     Output output = new Output();
-    LottoValidation lottoValidation = new LottoValidation();
     LottoChecker lottoChecker = new LottoChecker();
     Calculator calculator = new Calculator();
     LottoMachine lottoMachine = new LottoMachine();
@@ -55,19 +54,19 @@ public class Controller {
     }
 
     public void checkLotto(List<Integer> winningNumber) {
-        if (!lottoValidation.checkLottoNumberRange(winningNumber, 1, 45)) {
+        if (!lottoChecker.checkLottoNumberRange(winningNumber, 1, 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
         }
-        if (!lottoValidation.checkDuplicateLottoNumber(winningNumber)) {
+        if (!lottoChecker.checkDuplicateLottoNumber(winningNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호 입니다.");
         }
     }
 
     public void checkBonusNumber(List<Integer> winningNumber, int bonusNumber) {
-        if (!lottoValidation.checkBonusNumberRange(bonusNumber, 1, 45)) {
+        if (!lottoChecker.checkBonusNumberRange(bonusNumber, 1, 45)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
         }
-        if (!lottoValidation.checkDuplicateBonusNumber(winningNumber, bonusNumber)) {
+        if (!lottoChecker.checkDuplicateBonusNumber(winningNumber, bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호 입니다.");
         }
     }

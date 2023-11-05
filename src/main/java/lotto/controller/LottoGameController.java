@@ -8,6 +8,9 @@ import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGameController {
@@ -40,7 +43,9 @@ public class LottoGameController {
 
     private void printLottoResult() {
         OutputView.printLottoResultStartText();
-        for (Rank rank : Rank.values()) {
+        List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values()));
+        Collections.reverse(ranks);
+        for (Rank rank : ranks) {
             OutputView.printLottoResult(rank);
         }
     }

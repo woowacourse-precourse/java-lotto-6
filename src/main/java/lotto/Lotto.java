@@ -20,5 +20,17 @@ public class Lotto {
         }
     }
 
+    public String toString(){
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            sb.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
     // TODO: 추가 기능 구현
 }

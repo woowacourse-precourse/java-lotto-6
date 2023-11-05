@@ -18,10 +18,9 @@ public class Game {
 		Money pay = getPay();
 		int lottoCount = pay.calculateLottoCount();
 		List<Lotto> lottos = lottoGenerator.makeLotto(lottoCount);
-		System.out.println(lottos);
 		user.setLottos(lottos);
 
-		//OutputView.printPurchasedMessage(lottoCount, lottos);
+		OutputView.printPurchasedMessage(lottoCount, lottos);
 
 		winningInfo.setWinningNumbers();
 		winningInfo.setBonusNumber();

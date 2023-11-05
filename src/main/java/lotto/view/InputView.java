@@ -30,7 +30,7 @@ public class InputView {
 
     private static void validateBlank(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 빈 값이 입력되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 빈 값이 입력되면 안됩니다.");
         }
     }
 

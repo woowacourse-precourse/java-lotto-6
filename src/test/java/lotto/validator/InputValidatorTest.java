@@ -17,6 +17,6 @@ public class InputValidatorTest {
     @Test
     void inputEmpty() {
         assertThatThrownBy(() -> InputValidator.validate(""))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 }

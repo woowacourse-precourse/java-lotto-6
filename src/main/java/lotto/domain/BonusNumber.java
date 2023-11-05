@@ -22,7 +22,7 @@ public class BonusNumber {
             OutputView.printFrom(SystemMessage.INPUT_BONUS_NUMBER);
             try {
                 return new BonusNumber(InputView.readInt());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.exceptionMessage(e);
             }
         }

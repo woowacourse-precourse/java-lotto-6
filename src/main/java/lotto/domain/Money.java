@@ -23,7 +23,7 @@ public class Money {
             OutputView.printFrom(SystemMessage.INPUT_MONEY);
             try {
                 return new Money(InputView.readLong());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.exceptionMessage(e);
             }
         }

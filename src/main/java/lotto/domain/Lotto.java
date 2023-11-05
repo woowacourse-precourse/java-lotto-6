@@ -26,7 +26,7 @@ public class Lotto {
             OutputView.printFrom(SystemMessage.INPUT_WINNING_NUMBER);
             try {
                 return new Lotto(InputView.readIntegerList());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.exceptionMessage(e);
             }
         }

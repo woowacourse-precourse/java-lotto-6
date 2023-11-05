@@ -6,8 +6,8 @@ import lotto.system.RegexConstant;
 
 public class InputValidator {
     public static void validate(String userInput) {
-        validateNumeric(userInput);
         validateEmpty(userInput);
+        validateNumeric(userInput);
     }
 
     private static void validateNumeric(String userInput) {
@@ -18,7 +18,7 @@ public class InputValidator {
 
     private static void validateEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new IllegalArgumentException(ExceptionMessage.EMPTY.getMessage());
+            throw new IllegalStateException(ExceptionMessage.EMPTY.getMessage());
         }
     }
 }

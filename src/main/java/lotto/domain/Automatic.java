@@ -18,7 +18,7 @@ public class Automatic {
 		return lottoNumbers;
 	}
 
-	public static List<Integer> publish() {
+	private static List<Integer> publish() {
 
 		List<Integer> numbers = new ArrayList<>();
 

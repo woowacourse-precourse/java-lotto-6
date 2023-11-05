@@ -1,58 +1,34 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Rank {
 
-    private int rank1;
-    private int rank2;
-    private int rank3;
-    private int rank4;
-    private int rank5;
+    Map<Integer, Integer> rankCount = new HashMap<>();
 
     public Rank() {
-        this.rank1 = 0;
-        this.rank2 = 0;
-        this.rank3 = 0;
-        this.rank4 = 0;
-        this.rank5 = 0;
+        rankCount.put(1, 0);
+        rankCount.put(2, 0);
+        rankCount.put(3, 0);
+        rankCount.put(4, 0);
+        rankCount.put(5, 0);
     }
 
-    public void addRank(int rank) {
-        if (rank == 1) {
-            rank1++;
-            return;
+    public void addRank(int rank) throws IllegalArgumentException {
+        Integer count = rankCount.get(rank);
+        if (count != null) {
+            rankCount.put(rank, count + 1);
         }
-        if (rank == 2) {
-            rank2++;
-            return;
-        }
-        if (rank == 3) {
-            rank3++;
-            return;
-        }
-        if (rank == 4) {
-            rank4++;
-            return;
-        }
-        if (rank == 5) {
-            rank5++;
+        if (count == null) {
+            throw new IllegalArgumentException();
         }
     }
 
     public int getRank(int rank) throws IllegalArgumentException {
-        if (rank == 1) {
-            return rank1;
-        }
-        if (rank == 2) {
-            return rank2;
-        }
-        if (rank == 3) {
-            return rank3;
-        }
-        if (rank == 4) {
-            return rank4;
-        }
-        if (rank == 5) {
-            return rank5;
+        Integer count = rankCount.get(rank);
+        if (count != null) {
+            return count;
         }
         throw new IllegalArgumentException();
     }

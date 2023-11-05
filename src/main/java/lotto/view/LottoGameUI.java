@@ -9,4 +9,5 @@ public interface LottoGameUI {
     List<Integer> getAnswerNumber();
     Integer getBonusNumber();
     void printResult(List<Map.Entry<LottoResult, Integer>> results);
+    void printRevenue(double revenue);
 }

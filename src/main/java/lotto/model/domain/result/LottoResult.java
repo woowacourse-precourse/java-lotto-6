@@ -1,7 +1,6 @@
 package lotto.model.domain.result;
 
 import java.text.DecimalFormat;
-import lotto.model.domain.Lotto;
 
 public enum LottoResult {
 
@@ -17,12 +16,16 @@ public enum LottoResult {
     private static final String PRICE_FORMAT = " (%s원)";
     private static final DecimalFormat moneyFormat = new DecimalFormat("###,###");
 
-    private int price;
+    private int prize;
     private int collectCount;
 
-    LottoResult(int collectCount, int price) {
+    LottoResult(int collectCount, int prize) {
         this.collectCount = collectCount;
-        this.price = price;
+        this.prize = prize;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     @Override
@@ -37,6 +40,6 @@ public enum LottoResult {
     }
 
     private String getMoneyString() {
-        return moneyFormat.format(this.price);
+        return moneyFormat.format(this.prize);
     }
 }

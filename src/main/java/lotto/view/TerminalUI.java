@@ -37,5 +37,10 @@ public class TerminalUI implements LottoGameUI {
         }
     }
 
+    @Override
+    public void printRevenue(double revenue) {
+        Writer.printUsingFormat(PrintConst.FORMAT_REVENUE, revenue);
+    }
+
 
 }

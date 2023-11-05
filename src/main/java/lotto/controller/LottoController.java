@@ -33,6 +33,7 @@ public class LottoController {
         Lottos lottos = purchaseLotto(money);
         LottoAnswer answer = createAnswer();
         Results results = computeResult(lottos, answer);
+        computeRevenue(money, results);
     }
 
     private int getMoney() {
@@ -58,6 +59,15 @@ public class LottoController {
                 .forEach(results::addResult);
         ui.printResult(results.getResults());
         return results;
+    }
+
+    private void computeRevenue(int money, Results results){
+        long prize = results.getResults()
+                .stream()
+                .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
+                .sum();
+        double revenue = prize / (double) money;
+        ui.printRevenue(revenue);
     }
 
 

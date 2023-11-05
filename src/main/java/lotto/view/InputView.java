@@ -27,6 +27,7 @@ public class InputView {
         System.out.println(InputMessage.REQUEST_PURCHASE_PRICE.getMessage());
         purchasePrice = Console.readLine();
         purcharPriceValidator.validate(purchasePrice);
+        System.out.println();
 
         return purchasePrice;
     }

@@ -131,7 +131,7 @@
 
 ## 개발 현황
 
-1. 프로그램의 출력 기능을 구현하였다. 각 메서드들의 이름과 담당하는 기능은 아래와 같다.
+1. 프로그램의 출력 기능을 View 클래스에 구현하였다. 각 메서드들의 이름과 담당하는 기능은 아래와 같다.
    - priceInputGuideMsg: 구입금액 입력 요구 메시지
    - printLottoInfo: 발행한 로또 수량을 출력
    - printLottoNumbers: 발행한 로또들의 번호를 출력
@@ -140,7 +140,15 @@
    - hitResultTitle: 당첨 내역 제목을 출력
    - printHitResult: 당첨 내역을 출력
    - printRateOfReturn: 수익률을 출력
-2. 
+
+2. 프로그램의 입력 기능을 InputHandler 클래스에 구현하였다. 각 메서드들의 이름과 담당하는 기능은 아래와 같다.
+
+   - inputPrice: 구입 금액을 입력받는 메서드
+   - inputAnswerNumbers: 당첨 번호를 입력받는 메서드
+   - inputBonusNumber: 보너스 번호를 입력받는 메서드
+   - isAnswerHasThatNumber: 당첨 번호와 보너스 번호간의 중복을 확인하는 메서드
+
+   해당 메서드들은 입력값 검증 클래스인 InputValidator를 거친 후 예외 상황이 발생하지 않을 경우 값을 반환한다.
 
 ## 테스트 케이스
 

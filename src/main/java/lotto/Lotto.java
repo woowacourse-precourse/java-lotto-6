@@ -25,4 +25,11 @@ public class Lotto {
         }
     }
     // TODO: 추가 기능 구현
+    // 다른 Lotto 객체와의 번호 비교 기능을 추가합니다.
+    public int matchCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+    }
+
 }

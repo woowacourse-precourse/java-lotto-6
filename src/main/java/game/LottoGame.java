@@ -3,6 +3,7 @@ package game;
 import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
+import lotteryProfit.OutputResult;
 import lotteryProfit.ProfitCalculator;
 import lottoResult.LottoResultDisplay;
 import lottoResult.UserLottoNumbers;
@@ -59,10 +60,7 @@ public class LottoGame {
         lottoResultDisplay.outputLottoResult();
 
         // LotteryProfit
-        int totalReward = profitCalculator.getTotalReward(lottoResultDisplay);
-
-        double result = profitCalculator.roundUpProfit(totalReward, purchaseAmount);
-
-        System.out.printf("총 수익률은 %.1f%%입니다.", result);
+        OutputResult outputResult = new OutputResult();
+        outputResult.outputProfitResult(profitCalculator, lottoResultDisplay, purchaseAmount);
     }
 }

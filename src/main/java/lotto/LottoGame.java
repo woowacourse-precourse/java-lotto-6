@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lottos;
+import lotto.errors.ErrorMessage;
 
 public class LottoGame {
     public static boolean getRightCost() {

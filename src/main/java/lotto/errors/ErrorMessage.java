@@ -1,4 +1,4 @@
-package lotto;
+package lotto.errors;
 
 public enum ErrorMessage implements MainErrorMessage {
 

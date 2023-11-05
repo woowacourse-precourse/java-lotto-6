@@ -1,5 +1,6 @@
 package lotto;
 
+import base.Converter;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -8,10 +9,10 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        Converter converter = new Converter();
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmountString = Console.readLine();
-
-        int purchaseAmount = Integer.parseInt(purchaseAmountString); // 8000
+        int purchaseAmount = converter.stringToInteger(purchaseAmountString); // 8000
 
         System.out.println();
 
@@ -38,7 +39,7 @@ public class Application {
 
         String[] tokenString = luckyNumberString.split(",");
         for (String part : tokenString) {
-            int luckyNumber = Integer.parseInt(part);
+            int luckyNumber = converter.stringToInteger(part);
             luckyNumbers.add(luckyNumber);
         }
 
@@ -46,7 +47,7 @@ public class Application {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberWord = Console.readLine();
-        int bonusNumber = Integer.parseInt(bonusNumberWord);
+        int bonusNumber = converter.stringToInteger(bonusNumberWord);
 
         System.out.println();
 

@@ -1,8 +1,7 @@
 package lotto;
 
-import static Constant.ErrorMessage.INVALID_NUMBER_COUNT;
+import static constant.ErrorMessage.INVALID_NUMBER_COUNT;
 
-import Constant.ErrorMessage;
 import java.util.List;
 
 public class Lotto {

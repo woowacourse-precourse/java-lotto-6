@@ -1,4 +1,4 @@
-package Constant;
+package constant;
 
 public class ErrorMessage {
     private final static String SYMBOL = "[ERROR] ";

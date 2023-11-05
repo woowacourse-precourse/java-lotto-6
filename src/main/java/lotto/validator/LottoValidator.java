@@ -6,9 +6,9 @@ import lotto.domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class LottoValidator {
 
+    private static final String NUMBER_REGEX = "^[0-9]+$";
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
 
@@ -31,6 +31,18 @@ public class LottoValidator {
         }
 
         return lottoNumbers;
+    }
+
+    public static void validateNumberSeparate(String[] numbers) {
+        for (String number : numbers) {
+            validateNumbersType(number);
+        }
+    }
+
+    public static void validateNumbersType(String number){
+        if (!number.matches(NUMBER_REGEX)) {
+            throw new NumberFormatException(ErrorMessage.LOTTO_MUST_CONSIST_OF_NUMBERS);
+        }
     }
 
     public static void validateNumberOutOfRange(int lottoNumber) {

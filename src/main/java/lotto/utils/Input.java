@@ -9,11 +9,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Input {
     public static int readPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
         String userInput = readLine();
         return Validate.purchaseAmount(userInput);
     }
 
     public static Lotto readLottery() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String userInput = readLine();
         String regex = ",";
         String[] numberStrings = userInput.split(regex);
@@ -28,6 +30,7 @@ public class Input {
     }
 
     public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String userInput = readLine();
         return Validate.lotteryNumber(userInput);
     }

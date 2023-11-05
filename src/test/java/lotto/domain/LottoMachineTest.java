@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRewardCondition;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.lotto.LottosRepository;
+import lotto.domain.lotto.LottoRepository;
 import lotto.domain.lotto.WinningLotto;
 import lotto.dto.BuyingResults;
 import lotto.dto.WinningResults;
@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
 
-    LottosRepository lottosRepository;
+    LottoRepository lottoRepository;
     LottoMachine lottoMachine;
 
     @BeforeEach
     void setUp() {
-        lottosRepository = new LottosRepository();
-        lottoMachine = new LottoMachine(lottosRepository);
+        lottoRepository = new LottoRepository();
+        lottoMachine = new LottoMachine(lottoRepository);
     }
 
     @DisplayName("로또를 구매할 수 있다.")
@@ -38,7 +38,7 @@ class LottoMachineTest {
 
         // when
         lottoMachine.buyLottos(stubLottoSupplier, price);
-        Lottos lottos = lottosRepository.findUserLottos().get();
+        Lottos lottos = lottoRepository.findUserLottos().get();
         List<LottoRewardCondition> results = lottos.createCompareResults(winningLotto);
 
         // then
@@ -72,7 +72,7 @@ class LottoMachineTest {
 
         // when
         lottoMachine.addWinningLotto(lottoNumbers, bonusNumber);
-        WinningLotto winningLotto = lottosRepository.findWinningLotto().get();
+        WinningLotto winningLotto = lottoRepository.findWinningLotto().get();
         LottoRewardCondition result = winningLotto.getCompareResult(lotto);
 
         // then

@@ -6,9 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottosRepositoryTest {
+class LottoRepositoryTest {
 
-    LottosRepository lottosRepository = new LottosRepository();
+    LottoRepository lottoRepository = new LottoRepository();
 
     @DisplayName("사용자 로또 묶음을 저장할 수 있다.")
     @Test
@@ -19,8 +19,8 @@ class LottosRepositoryTest {
         Lottos lottos = new Lottos(List.of(lotto1, lotto2));
 
         // when
-        lottosRepository.saveUserLottos(lottos);
-        Lottos findLottos = lottosRepository.findUserLottos().get();
+        lottoRepository.saveUserLottos(lottos);
+        Lottos findLottos = lottoRepository.findUserLottos().get();
 
         // then
         assertThat(findLottos).isEqualTo(lottos);
@@ -35,8 +35,8 @@ class LottosRepositoryTest {
         WinningLotto winningLotto = WinningLotto.createFrom(lottoNumbers, bonusNumber);
 
         // when
-        lottosRepository.saveWinningLotto(winningLotto);
-        WinningLotto findWinningLotto = lottosRepository.findWinningLotto().get();
+        lottoRepository.saveWinningLotto(winningLotto);
+        WinningLotto findWinningLotto = lottoRepository.findWinningLotto().get();
 
         // then
         assertThat(findWinningLotto).isEqualTo(winningLotto);

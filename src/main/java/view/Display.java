@@ -8,6 +8,7 @@ public class Display {
     private static final String STRING_PURCHASE_AMOUNT_INPUT = "구매금액을 입력해주세요";
     public static final String PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE = "=[ERROR] 구매 금액이 1000원 미만입니다.";
     public static final String PURCHASE_AMOUNT_NOT_DIVIDE_ERROR_MESSAGE = "[ERROR] 구매금액이 천원 단위가 아닙니다.";
+
     private int lottoPurchaseAmount;
 
     public Display() {
@@ -24,7 +25,12 @@ public class Display {
         System.out.println(STRING_PURCHASE_AMOUNT_INPUT);
         int userPurchaseAmount = validateNumberExceptionHandler(readLine());
         validateMinimumPurchaseAmount(userPurchaseAmount);
+        validateNotDividePurchaseAmount(userPurchaseAmount);
         this.lottoPurchaseAmount = userPurchaseAmount;
+    }
+
+    public int getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
     }
 
     private void validateMinimumPurchaseAmount(int userPurchaseAmount) {

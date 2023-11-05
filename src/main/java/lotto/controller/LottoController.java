@@ -8,6 +8,7 @@ import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoResults;
+import lotto.domain.LottoResultsDTO;
 import lotto.domain.Lottos;
 import lotto.domain.LottosDTO;
 import lotto.domain.WinningNumbers;
@@ -33,12 +34,13 @@ public class LottoController {
         winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
     }
 
-    public void statistics() {
+    public LottoResultsDTO statistics() {
         List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
         Map<LottoResults, Integer> lottoStatistics = new HashMap<>();
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }
+        return new LottoResultsDTO(lottoStatistics);
     }
 
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {

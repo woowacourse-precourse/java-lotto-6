@@ -10,7 +10,12 @@ import lotto.utils.LottoConstantValue;
 
 public class LottoVendingMachine {
     private static final int START_COUNT = 0;
-    public Lottos buyLottos(PurchaseAmout purchaseAmout) {
+    private PurchaseAmout purchaseAmout;
+
+    public LottoVendingMachine(int purchaseAmout) {
+        this.purchaseAmout = new PurchaseAmout(purchaseAmout);
+    }
+    public Lottos buyLottos() {
         int lottoCount = purchaseAmout.getLottoCount();
         List<Lotto> lottos = new ArrayList<>();
         for (int count = START_COUNT; count < lottoCount; count++) {

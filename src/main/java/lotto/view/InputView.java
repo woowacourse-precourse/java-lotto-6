@@ -3,18 +3,16 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.domain.wrapper.PurchaseAmout;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstant;
 
 public class InputView {
-    public PurchaseAmout getPurchaseAmout() {
+    public int getPurchaseAmout() {
         String input = Console.readLine();
         validateNotNull(input);
         validateNotEmpty(input);
         validateParsedToInteger(input);
-        return new PurchaseAmout(Integer.parseInt(input));
+        return Integer.parseInt(input);
     }
 
     public List<Integer> getWinningNumbers() {
@@ -42,7 +40,7 @@ public class InputView {
     private void validateParsedToInteger(String input) {
         try {
             Integer.parseInt(input);
-        } catch(NumberFormatException numberFormatException) {
+        } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT.getMessage());
         }
     }

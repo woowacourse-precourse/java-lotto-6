@@ -38,7 +38,7 @@ class LottoTest {
     @ValueSource(ints = {0, 46})
     void createLottoByUnderOrOverNumber(final Integer number) {
         // given & when & then
-        assertThatThrownBy(() -> new Lotto(List.of(number, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> new Lotto(List.of(number, 2, 3, 4, 5, 6)))
                 .isInstanceOf(LottoException.class)
                 .hasMessageContaining(INVALID_LOTTO_NUMBER.getMessage());
     }

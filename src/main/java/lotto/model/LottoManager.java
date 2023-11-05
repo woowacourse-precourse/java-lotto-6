@@ -8,17 +8,18 @@ import lotto.domain.Tickets;
 import lotto.utils.validation.Validator;
 
 public class LottoManager {
+    // Fields
     private Validator validator = new Validator();
     private Tickets tickets = new Tickets();
     private int TICKET_PRICE = 1000;
 
 
+    // Features
     public void buyTickets(String string) {
         int money = validator.validateMoney(string);
         int amount = calculateTicketAmount(money);
         tickets.generateTickets(amount);
     }
-
 
     public List<String> getTickets() {
         List<String> ticketList = new ArrayList<>();
@@ -31,7 +32,7 @@ public class LottoManager {
         return ticketList;
     }
 
-    public List<Integer> getTicketPoint(String winning, String bonus) {
+    public List<Integer> getTicketPoints(String winning, String bonus) {
         List<Integer> winningNumber = parseWinningNumbersToIntegerList(winning, bonus);
         List<Integer> points = tickets.getPointsForAllTickets(winningNumber);
 
@@ -39,6 +40,8 @@ public class LottoManager {
     }
 
 
+    // Internal Implements
+    // 문자열 형식으로 받은 당첨, 보너스 번호를 정수 리스트로 변환
     private List<Integer> parseWinningNumbersToIntegerList(String winning, String bonus) {
         List<Integer> numbers = Arrays
                 .stream(winning.split(","))

@@ -3,11 +3,11 @@ package lotto.view.output;
 import lotto.utils.Templates;
 
 public class DisplayView {
+    // Fields
     StringBuilder cache = new StringBuilder();
 
-    protected DisplayView() {
-    }
 
+    // Subclass Implements
     protected void initializaCache() {
         cache.setLength(0);
     }

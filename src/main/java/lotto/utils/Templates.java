@@ -1,6 +1,7 @@
 package lotto.utils;
 
 public enum Templates {
+    // Values, Fields, Constructor
     BUY_MESSAGE("구입금액을 입력해 주세요.\n"),
     GET_PRIZING_NUMBERS_MESSAGE("\n당첨 번호를 입력해 주세요.\n"),
     GET_BONUS_NUMBER_MESSAGE("\n보너스 번호를 입력해 주세요.\n"),
@@ -19,6 +20,8 @@ public enum Templates {
     }
 
 
+    // Features
+    // Enum의 value를 호출하면 자동으로 toString 메소드를 실행하는데, 이 때 반환되는 것은 value의 이름이다. 이것을 message로 overriding
     @Override
     public String toString() {
         return message;

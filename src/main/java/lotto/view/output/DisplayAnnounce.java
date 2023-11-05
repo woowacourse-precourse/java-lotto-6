@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.utils.Templates;
 
 public class DisplayAnnounce extends DisplayView {
+    // Features
     public void displayBoughtTickets(List<String> tickets) {
         initializaCache();
         buildBoughtString(tickets);
@@ -23,6 +24,7 @@ public class DisplayAnnounce extends DisplayView {
     }
 
 
+    // Internal Implements
     private void buildBoughtString(List<String> tickets) {
         int amount = tickets.size();
         String message = Templates.BOUGHT_MESSAGE.format(amount);

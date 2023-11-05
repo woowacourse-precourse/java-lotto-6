@@ -61,7 +61,7 @@ class LottoManagerTest {
         lotto.buyTickets(MONEY);
 
         // 티켓 확인
-        List<Integer> points = lotto.getTicketPoint(winning, bonus);
+        List<Integer> points = lotto.getTicketPoints(winning, bonus);
 
         // 반환값이 예상범위 내인지 테스트
         for (int point : points) {

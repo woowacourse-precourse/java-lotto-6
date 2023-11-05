@@ -44,7 +44,7 @@ class PrizeManagerTest {
         List<Integer> expectedPrizeCounts = new ArrayList<>(List.of(1, 2, 3, 4, 5));
 
         // 기능 실행 및 실제 출력값 저장
-        List<Integer> prizeCounts = prize.getPrizeCounts();
+        List<Integer> prizeCounts = prize.getEachPrizeCounts();
 
         // 일치 여부 확인
         assertEquals(expectedPrizeCounts, prizeCounts);

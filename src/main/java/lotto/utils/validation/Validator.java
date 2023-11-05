@@ -1,6 +1,7 @@
 package lotto.utils.validation;
 
 public class Validator {
+    // Features
     public int validateMoney(String string) {
         int money = validateisNumber(string);
         validateMoneyCorrectAmount(money);
@@ -9,6 +10,7 @@ public class Validator {
     }
 
 
+    // Subclass Implements
     protected int validateisNumber(String string) {
         int money;
         try {
@@ -20,6 +22,8 @@ public class Validator {
         return money;
     }
 
+
+    // Internal Implements
     private void validateMoneyCorrectAmount(int money) {
         if (isCorrectAmount(money)) {
             throw new IllegalArgumentException();

@@ -3,6 +3,7 @@ package lotto.view.output;
 import lotto.utils.Templates;
 
 public class DisplayError extends DisplayView {
+    // Features
     public void displayBuyError() {
         initializaCache();
         addToCache(Templates.BUY_ERROR_MESSAGE);

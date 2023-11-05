@@ -5,9 +5,13 @@ import java.util.List;
 import lotto.domain.Rank;
 
 public class PrizeManager {
+    // Fields
     private List<Integer> prizes = new ArrayList<>();
     private final int TICKET_PRICE = 1000;
 
+
+    // Features
+    // 입력받은 점수 목록을 토대로 Rank로부터 상금 목록을 생성한다.
     public void calculatePrizesByPoints(List<Integer> points) {
         for (int point : points) {
             int prize = Rank.getPrizeByPoint(point);
@@ -15,7 +19,8 @@ public class PrizeManager {
         }
     }
 
-    public List<Integer> getPrizeCounts() {
+    // a-3.각 등수에 해당하는 티켓 수를 반환한다.
+    public List<Integer> getEachPrizeCounts() {
         List<Integer> counts = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         calculatePrizeCounts(counts);
 
@@ -31,6 +36,8 @@ public class PrizeManager {
         return value;
     }
 
+
+    // Internal Implements
     private int calculateTotalPrize() {
         int total = 0;
         for (int prize : prizes) {
@@ -40,6 +47,7 @@ public class PrizeManager {
         return total;
     }
 
+    // a-2.파라미터로 받은 배열에 상금 별 index의 개수(=등수별 티켓 수)를 저장한다.
     private void calculatePrizeCounts(List<Integer> counts) {
         List<Integer> indexes = getIndexOfAllPrizes();
 
@@ -51,6 +59,7 @@ public class PrizeManager {
         }
     }
 
+    // a-1.필드 변수인 상금 배열을 토대로 Rank로부터 상금 별 index로 이루어진 리스트를 반환한다.
     private List<Integer> getIndexOfAllPrizes() {
         List<Integer> indexes = new ArrayList<>();
         for (int prize : prizes) {
@@ -60,6 +69,7 @@ public class PrizeManager {
         return indexes;
     }
 
+    
     // testcode
     protected List<Integer> getPrizes() {
         return prizes;

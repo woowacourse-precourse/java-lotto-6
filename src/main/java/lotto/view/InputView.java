@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Templates;
 
 public class InputView {
+    // Fields
     StringBuilder cache = new StringBuilder();
 
+
+    // Features
     public String getUserBuyAmount() {
         initializaCache();
         addToCache(Templates.BUY_MESSAGE);
@@ -34,6 +37,7 @@ public class InputView {
     }
 
 
+    // Internal Implements
     private void initializaCache() {
         cache.setLength(0);
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    // Fields, Constructor
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +16,7 @@ public class Lotto {
     }
 
 
+    // Features
     public String toString() {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
@@ -24,11 +26,13 @@ public class Lotto {
 
     public int getPoint(List<Integer> winningNumber) {
         int point = compareWithWinningNumber(winningNumber);
-        
+
         return point;
     }
 
 
+    // Internal Implements
+    // 당첨, 보너스 번호와 비교하여 점수를 반환한다.
     private int compareWithWinningNumber(List<Integer> winningNumber) {
         int point = 0;
         for (int i = 0; i < winningNumber.size(); i++) {

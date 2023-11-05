@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tickets {
+    // Fields
     private final List<Lotto> lottos = new ArrayList<>();
 
 
+    // Features
     public void generateTickets(int amount) {
         for (int i = 0; i < amount; i++) {
             Lotto lotto = new Lotto(generateRandomNumbers());
@@ -34,6 +36,7 @@ public class Tickets {
     }
 
 
+    // Internal Implements
     private List<Integer> generateRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 

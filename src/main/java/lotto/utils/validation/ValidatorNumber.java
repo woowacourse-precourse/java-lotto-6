@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ValidatorNumber extends Validator {
+    // Fields
     protected Set<Integer> winningNumbers;
 
 
+    // Features
     public void validateWinningNumber(String winning) {
         List<Integer> numbers = validateWinningisNumber(winning);
         validateWinningNumberLength(numbers);
@@ -28,6 +30,7 @@ public class ValidatorNumber extends Validator {
     }
 
 
+    // Internal Implements
     private List<Integer> validateWinningisNumber(String winning) {
         List<Integer> numbers;
         try {

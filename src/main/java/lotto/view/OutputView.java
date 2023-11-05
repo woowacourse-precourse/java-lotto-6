@@ -10,6 +10,9 @@ public class OutputView {
 
     private static final String LINE_BREAK = System.lineSeparator();
 
+    private OutputView() {
+    }
+
     public static void requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
     }

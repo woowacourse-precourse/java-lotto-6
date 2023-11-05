@@ -25,4 +25,12 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public int readBonusNumber() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (Exception ex) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -1,11 +1,23 @@
 package lotto.domain;
 
-public class WinningNumber {
-    private final Lotto winningNumbers;
-    private final BonusNumber bonusNumber;
+import java.util.List;
 
-    public WinningNumber(Lotto winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+public class WinningNumber {
+    private final Lotto values;
+    private BonusNumber bonusNumber;
+
+    public WinningNumber(List<Integer> values) {
+        this.values = new Lotto(values);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateAlreadyPickedNumber(bonusNumber);
+        this.bonusNumber = new BonusNumber(bonusNumber);
+    }
+
+    private void validateAlreadyPickedNumber(int bonusNumber) {
+        if (values.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

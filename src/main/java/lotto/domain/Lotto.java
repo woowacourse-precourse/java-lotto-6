@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public record Lotto(List<Integer> numbers) {
+record Lotto(List<Integer> numbers) {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
-    public Lotto {
+    Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
@@ -40,5 +40,9 @@ public record Lotto(List<Integer> numbers) {
 
     public List<Integer> numbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

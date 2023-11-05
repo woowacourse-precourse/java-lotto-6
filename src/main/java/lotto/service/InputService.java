@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ErrorMessage;
 import lotto.constants.Message;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.utils.ParseUtils;
 
 import java.util.List;
@@ -40,7 +41,17 @@ public class InputService {
         return null;
     }
 
-    public List<Integer> inputWinningLottoNumbers() {
+
+    public WinningLotto inputWinningLottoNumbersAndBonusNumber() {
+        List<Integer> winningLottoNumbers = inputWinningLottoNumbers();
+        int bonusNumber = inputBonusNumber(winningLottoNumbers);
+
+        return new WinningLotto(winningLottoNumbers, bonusNumber);
+    }
+
+
+
+    private List<Integer> inputWinningLottoNumbers() {
         System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
 
         while (true) {
@@ -66,12 +77,12 @@ public class InputService {
         return null;
     }
 
-    public int inputBonusNumber() {
+    private int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
 
         while (true) {
             String inputBonusNumber = Console.readLine();
-            Integer bonusNumber = bonusNumberValidationProcess(inputBonusNumber);
+            Integer bonusNumber = bonusNumberValidationProcess(inputBonusNumber, winningNumbers);
 
             if (bonusNumber != null) {
                 return bonusNumber;
@@ -79,12 +90,11 @@ public class InputService {
         }
     }
 
-    private Integer bonusNumberValidationProcess(String inputBonusNumber) {
+    private Integer bonusNumberValidationProcess(String inputBonusNumber, List<Integer> winningNumbers) {
         try {
             int bonusNumber = parseUtils.parseStringToInt(inputBonusNumber);
-            Lotto winningLotto = lottoService.getWinningLotto();
 
-            validationService.bonusNumberValidation(bonusNumber, winningLotto);
+            validationService.bonusNumberValidation(bonusNumber, winningNumbers);
 
             return bonusNumber;
         } catch (IllegalArgumentException e) {

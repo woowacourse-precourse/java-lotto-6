@@ -2,22 +2,33 @@ package lotto.controller;
 
 import lotto.constants.Message;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.service.InputService;
+import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 
 import java.util.List;
-
 
 public class Controller {
 
     InputService inputService = new InputService();
     LottoService lottoService = new LottoService();
+    LottoResultService lottoResultService = new LottoResultService();
 
     public void run() {
         createUserLottos();
         showUserLottos();
         createWinningLotto();
-        showResult();
+        showRank();
+    }
+
+    private void showRank() {
+        System.out.println(Message.LOTTO_RESULT_MESSAGE);
+
+        List<Lotto> userLottos = lottoService.getUserLottos();
+        lottoResultService.calculateLottoResult(userLottos);
+
+        lottoResultService.showResult();
     }
 
     public void createUserLottos() {
@@ -37,15 +48,8 @@ public class Controller {
     }
 
     private void createWinningLotto() {
-        List<Integer> winningLottoNumbers = inputService.inputWinningLottoNumbers();
-        int bonusNumber = inputService.inputBonusNumber();
-
-        lottoService.setWinningLotto(winningLottoNumbers, bonusNumber);
-    }
-
-    private void showResult() {
-        System.out.println(Message.LOTTO_RESULT_MESSAGE);
-
+        WinningLotto winningLotto = inputService.inputWinningLottoNumbersAndBonusNumber();
+        lottoResultService.setWinningLotto(winningLotto);
     }
 
 }

@@ -12,11 +12,11 @@ public class ParseUtils {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_FORMAT.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
-    public Lotto parseStringToLotto(String value) {
+    public List<Integer> parseStringToIntegerList(String value) {
         String[] splitValues = value.split(",");
 
         List<Integer> numbers = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ParseUtils {
             }
         }
 
-        return new Lotto(numbers);
+        return numbers;
 
     }
 }

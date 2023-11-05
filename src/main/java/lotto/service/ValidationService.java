@@ -37,16 +37,13 @@ public class ValidationService {
         }
     }
 
-    public void bonusNumberValidation(int bonusNumber, Lotto winningLotto) {
+    public void bonusNumberValidation(int bonusNumber, List<Integer> winningNumbers) {
 
         if (bonusNumber < Value.LOTTO_START_NUMBER || bonusNumber > Value.LOTTO_END_NUMBER) {
             throw new IllegalArgumentException();
         }
 
-
-        List<Integer> winningNumber = winningLotto.getNumbers();
-
-        for (int number : winningNumber) {
+        for (int number : winningNumbers) {
             if (bonusNumber == number) {
                 throw new IllegalArgumentException();
             }

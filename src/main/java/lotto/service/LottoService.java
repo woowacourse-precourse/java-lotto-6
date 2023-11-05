@@ -1,8 +1,9 @@
 package lotto.service;
 
 import lotto.constants.Value;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
 import lotto.domain.Lotto;
-import lotto.utils.ParseUtils;
 import lotto.utils.RandomUtils;
 
 import java.util.*;
@@ -11,23 +12,9 @@ import java.util.stream.IntStream;
 
 public class LottoService {
 
-    ParseUtils parseUtils = new ParseUtils();
     RandomUtils randomUtils = new RandomUtils();
 
-    ValidationService validationService = new ValidationService();
-
     List<Lotto> userLottos = new ArrayList<>();
-
-    Lotto winningLotto;
-    int bonusNumber;
-
-    public void setBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
-    }
-
-    public void setWinningLotto(Lotto winningLotto) {
-        this.winningLotto = winningLotto;
-    }
 
     public int getUserLottoCount() {
         return userLottos.size();

@@ -23,8 +23,8 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage() +
-                            ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO +
+                            ErrorMessage.LOTTO_SIZE_ERROR);
         }
     }
 
@@ -32,16 +32,16 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage() +
-                            ErrorMessage.LOTTO_UNIQUE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO +
+                            ErrorMessage.LOTTO_UNIQUE_ERROR);
         }
     }
 
     private void rangeValidate(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage() +
-                            ErrorMessage.LOTTO_RANGE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO +
+                            ErrorMessage.LOTTO_RANGE_ERROR);
         }
     }
 }

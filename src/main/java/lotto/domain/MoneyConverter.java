@@ -15,8 +15,8 @@ public class MoneyConverter {
 
     public void patternCheck(String input, Pattern pattern) {
         if (!pattern.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.MONEY_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO
+                            + ErrorMessage.MONEY_ERROR);
         }
     }
 

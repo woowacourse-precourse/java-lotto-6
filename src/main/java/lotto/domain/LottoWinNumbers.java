@@ -27,8 +27,8 @@ public class LottoWinNumbers {
     public void rangeCheck() {
         if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_RANGE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO
+                            + ErrorMessage.LOTTO_RANGE_ERROR);
         }
     }
 
@@ -39,16 +39,16 @@ public class LottoWinNumbers {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_STRING_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO
+                            + ErrorMessage.LOTTO_STRING_ERROR);
         }
     }
 
     public void sizeCheck() {
         if (lottoWinNumbers.size() != 6) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO
+                            + ErrorMessage.LOTTO_SIZE_ERROR);
         }
     }
 
@@ -56,8 +56,8 @@ public class LottoWinNumbers {
         Set<Integer> uniqueNumbers = new HashSet<>(lottoWinNumbers);
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO.getMessage()
-                            + ErrorMessage.LOTTO_UNIQUE_ERROR.getMessage());
+                    ErrorMessage.ERROR_INFO
+                            + ErrorMessage.LOTTO_UNIQUE_ERROR);
         }
     }
 }

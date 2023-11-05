@@ -11,6 +11,7 @@ public class LottoController {
     private void issue() {
         int cost = Integer.parseInt(View.requestCost());
         Lottos lottos = Lottos.from(getCountFrom(cost));
+        View.printLottos(lottos);
     }
 
     private int getCountFrom(int cost) {

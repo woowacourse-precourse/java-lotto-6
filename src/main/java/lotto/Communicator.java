@@ -26,6 +26,10 @@ public class Communicator {
         return payment;
     }
 
+    public void printException(RuntimeException exception) {
+        printer.print(exception.getMessage());
+    }
+
     private BigDecimal getMoneyWithPrompt(String prompt) {
         printer.print(prompt);
         return getNonNullMoney();

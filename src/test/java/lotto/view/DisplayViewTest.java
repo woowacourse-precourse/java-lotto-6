@@ -6,12 +6,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import lotto.view.output.DisplayAnnounce;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class OutputViewTest {
+class DisplayViewTest {
     private PrintStream standardOut;
     private OutputStream captor;
 
@@ -37,13 +38,13 @@ class OutputViewTest {
     @Test
     void displayBoughtTicketsTest() {
         // 변수 설정
-        OutputView output = new OutputView();
+        DisplayAnnounce announce = new DisplayAnnounce();
         String ticket1 = "[1, 2, 3, 4, 5, 6]";
         String ticket2 = "[40, 41, 42, 43, 44, 45]";
         List<String> list = List.of(ticket1, ticket2);
 
         // 출력
-        output.displayBoughtTickets(list);
+        announce.displayBoughtTickets(list);
         // 출력 결과 확인
         assertTrue(output().contains(ticket1));
         assertTrue(output().contains(ticket2));

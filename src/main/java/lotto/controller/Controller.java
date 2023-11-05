@@ -5,11 +5,13 @@ import lotto.model.LottoManager;
 import lotto.model.PrizeManager;
 import lotto.utils.Validator;
 import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.output.DisplayAnnounce;
+import lotto.view.output.DisplayError;
 
 public class Controller {
     InputView input = new InputView();
-    OutputView output = new OutputView();
+    DisplayAnnounce announce = new DisplayAnnounce();
+    DisplayError error = new DisplayError();
     LottoManager lotto = new LottoManager();
     PrizeManager prize = new PrizeManager();
     Validator valid = new Validator();
@@ -31,14 +33,14 @@ public class Controller {
                 lotto.buyTickets(amount);
                 break;
             } catch (IllegalArgumentException e) {
-                output.displayBuyError();
+                error.displayBuyError();
             }
         }
     }
 
     private void buyTickets() {
         List<String> list = lotto.getTickets();
-        output.displayBoughtTickets(list);
+        announce.displayBoughtTickets(list);
     }
 
     private String getUserPrizingNumbers() {
@@ -49,7 +51,7 @@ public class Controller {
                 valid.validateWinningNumber(winning);
                 return winning;
             } catch (IllegalArgumentException e) {
-                output.displayWinningError();
+                error.displayWinningError();
             }
         }
     }
@@ -62,7 +64,7 @@ public class Controller {
                 valid.validateBonusNumber(bonus);
                 return bonus;
             } catch (IllegalArgumentException e) {
-                output.displayBonusError();
+                error.displayBonusError();
             }
         }
     }
@@ -72,10 +74,10 @@ public class Controller {
         prize.checkTicketAndAddPrizes(points);
 
         List<Integer> counts = prize.getPrizeCounts();
-        output.displayRankCounts(counts);
+        announce.displayRankCounts(counts);
 
         double profitRatio = prize.getProfitRatio();
-        output.displayProfitRatio(profitRatio);
+        announce.displayProfitRatio(profitRatio);
     }
 
 }

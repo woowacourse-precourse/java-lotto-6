@@ -16,11 +16,17 @@ import lotto.view.OutputView;
 
 public class LottoServiceImpl implements LottoService{
     private final static int INIT = 0;
+    private final static int PERCENT = 10;
 
     @Override
-    public List<List<Integer>> buyLotto() {
-        int quantity = payMoney();
+    public int payMoney() {
+        InputView inputView = new InputView();
+        Cost cost = new Cost(inputView.inputBuyingCost());
 
+        return cost.getQuantity();
+    }
+    @Override
+    public List<List<Integer>> getMyLotto(int quantity) {
         List<List<Integer>> myLottoNumbers = new MyLotto(quantity).getMyLottoNumbers();
 
         OutputView outputView = new OutputView();
@@ -54,7 +60,7 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public float getProfitability(List<Integer> result) {
+    public float getProfitability(List<Integer> result, int quantity) {
         int totalReward = 0;
         for(int i = 0; i<result.size(); i++){
             int reward = PrizeConstant.getRewardByScore(i);
@@ -62,14 +68,7 @@ public class LottoServiceImpl implements LottoService{
             totalReward += reward * count;
         }
 
-        return totalReward;
-    }
-
-    private int payMoney() {
-        InputView inputView = new InputView();
-        Cost cost = new Cost(inputView.inputBuyingCost());
-
-        return cost.getQuantity();
+       return (float)totalReward/(quantity*PERCENT);
     }
 
 }

@@ -15,6 +15,7 @@ public class Application {
     }
 
     public static int getInputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
         var input = Console.readLine();
         System.out.println("구입금액을 입력해 주세요.");
         return unsafeString2Int(input);

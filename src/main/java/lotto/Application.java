@@ -12,5 +12,6 @@ public class Application {
         controller.inputWinningNumbers();
         controller.inputBonusNumber();
         controller.outputLottoResult();
+        controller.outputRateOfReturn();
     }
 }

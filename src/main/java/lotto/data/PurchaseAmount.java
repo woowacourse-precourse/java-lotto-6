@@ -13,4 +13,7 @@ public class PurchaseAmount {
         return purchaseAmount/ Constant.LOTTO_PRICE;
     }
 
+    public int getAmount() {
+        return purchaseAmount;
+    }
 }

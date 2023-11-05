@@ -52,4 +52,8 @@ public class ConsolePrinter {
         System.out.println(String.format(Rank.FIRST.getMessage(),result.get(Rank.FIRST)));
 
     }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format(Message.RATE_OF_RETURN,rateOfReturn));
+    }
 }

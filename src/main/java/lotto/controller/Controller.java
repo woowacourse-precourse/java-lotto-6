@@ -46,6 +46,20 @@ public class Controller {
         lottoResult = Service.createLottoResult(lottoRepository,winningNumbers,bonusNumber);
         ConsolePrinter.printLottoResult(lottoResult);
 
+    }
 
+    public void outputRateOfReturn() {
+
+        double rateOfReturn = Service.calculateRateOfReturn(lottoResult,purchaseAmount);
+
+        if(rateOfReturn<=0) rateOfReturn+=100;
+        ConsolePrinter.printRateOfReturn(rateOfReturn);
+
+
+
+
+
+        //수익률은 (얻은 상금 - 투자 금액) / 투자 금액
+        // 상금 - 구입금액 / 구입금액 40000/500004/5//// 5000-8000/8000==3/8
     }
 }

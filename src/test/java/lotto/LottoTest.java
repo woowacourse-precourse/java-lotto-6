@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -32,5 +33,11 @@ class LottoTest {
     void generateLottoNumbers() {
         LottoNumbers lottoNumbers = new LottoNumbers();
         System.out.println(lottoNumbers.numbers);
+    }
+    @DisplayName("로또 구입 금액에 해당하는 만큼 로또를 발행해야 한다.")
+    @Test
+    void getPurchaseQuantityOfLotto(){
+        LottoGame lottoGame = new LottoGame();
+        assertThat(lottoGame.getPurchaseQuantityOfLotto(8400)).isEqualTo(8);
     }
 }

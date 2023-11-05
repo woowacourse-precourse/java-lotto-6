@@ -15,5 +15,6 @@ public class MessageList {
     public static final String NUMBER = "개";
     public static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
     public static final String FINISH_MESSAGE = "%입니다.";
+    public static final int PRICE_OF_ONE_LOTTO = 1000;
 
 }

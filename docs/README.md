@@ -195,4 +195,6 @@
     - [x] 로또 리스트를 형성한다 
     - [x] 생성한 로또 리스트를 Repository에 저장해야 한다 
   - 각 LottoResult의 개수를 확인한다 
-    - LottoFinalResultDTO EnumMap <Enum, 개수> 
+    - [x] LottoFinalResult - EnumMap <Enum, 개수>
+    - [x] LottoResult, 0 으로 모두 초기화해야 한다 
+    - [x] 결과에 따라서 개수를 한 개씩 추가해야 한다 

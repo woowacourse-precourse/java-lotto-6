@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class Number implements Comparable<Number> {
 
     static final int MIN_VALUE = 1;
@@ -25,6 +27,10 @@ public class Number implements Comparable<Number> {
 
     public static Number from(int value) {
         return new Number(value);
+    }
+
+    public static List<Number> getList(List<Integer> values) {
+        return values.stream().map(Number::new).toList();
     }
 
     public int getValue() {

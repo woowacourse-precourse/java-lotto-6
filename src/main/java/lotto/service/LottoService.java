@@ -68,7 +68,7 @@ public class LottoService {
     }
 
 
-    public Integer compareBonusNumberWithWinningLotto(boolean isTrue) {
+    public Integer countMatchingBonusNumbers(boolean isTrue) {
         if (isTrue) {
             return BonusCount.PLUS_ONE.getWeight();
         }

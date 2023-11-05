@@ -1,12 +1,18 @@
 package lotto.domain;
 
+import lotto.utils.ValidateUtils;
+
+import static lotto.utils.ValidateUtils.validateNumeric;
+
 public class PurchaseAmount {
     private static final int MIN_PRICE = 1000;
     private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
 
+    private ValidateUtils validateUtils = new ValidateUtils();
+
     private PurchaseAmount(int purchaseAmount) {
-        validatePositive(purchaseAmount);
+        validateUtils.validateMinimum(purchaseAmount, MIN_PRICE);
         validateMultipleOfLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
@@ -15,19 +21,6 @@ public class PurchaseAmount {
         validateNumeric(inputString);
         int purchaseAmount = Integer.parseInt(inputString);
         return new PurchaseAmount(purchaseAmount);
-    }
-
-    private static void validateNumeric(String purchaseAmount) {
-        if (!purchaseAmount.chars()
-                .allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-
-    private void validatePositive(int purchaseAmount) {
-        if (purchaseAmount < MIN_PRICE) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
     }
 
     private void validateMultipleOfLottoPrice(int purchaseAmount) {

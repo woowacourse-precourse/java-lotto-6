@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.domain.enums.LottoPrize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,10 +15,15 @@ public class GameController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoCount lottoCount = LottoCount.from(purchaseAmount);
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
-        Lotto winningLotto = getWinningLotto();
         outputView.displayLottoTickets(lottoCount, autoLottoTickets);
-        BonusNumber bonusNumber = getBonusNumber();
-        System.out.println(bonusNumber.getBonusNumber());
+
+        Lotto winningLotto = getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumber(winningLotto);
+        List<LottoPrize> allLottoPrizes = winningLotto.getAllLottoPrizes(autoLottoTickets, bonusNumber);
+
+        for (LottoPrize allLottoPrize : allLottoPrizes) {
+            System.out.println(allLottoPrize);
+        }
     }
 
     public PurchaseAmount getPurchaseAmount() {
@@ -42,11 +48,11 @@ public class GameController {
         }
     }
 
-    public BonusNumber getBonusNumber() {
+    public BonusNumber getBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                WinningNumbers winningNumbers = WinningNumbers.from(inputView.readBonusNumber());
-                return new BonusNumber(winningNumbers);
+                WinningNumbers bonusNumber = WinningNumbers.from(inputView.readBonusNumber());
+                return new BonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

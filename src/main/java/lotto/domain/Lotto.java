@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.enums.LottoPrize;
+import lotto.utils.ValidateUtils;
 
 import java.util.*;
 
@@ -11,25 +12,12 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
+    private ValidateUtils validateUtils = new ValidateUtils();
+
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateDuplicated(numbers);
+        validateUtils.validateSize(numbers, LOTTO_SIZE);
+        validateUtils.validateDuplicated(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-
-    private void validateDuplicated(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        boolean isUnique = numbers.stream().allMatch(n -> uniqueNumbers.add(n));
-
-        if (!isUnique) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
     }
 
     public static Lotto makeWinningNumbers(String inputString) {
@@ -57,25 +45,24 @@ public class Lotto {
         return lottoTickets;
     }
 
-    public List<Integer> getAllLottoRanks(List<Lotto> autoLottoTickets, Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Integer> lottoRanks = new ArrayList<>();
+    public List<LottoPrize> getAllLottoPrizes(List<Lotto> autoLottoTickets, BonusNumber bonusNumber) {
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
 
         for (Lotto autoLottoTicket : autoLottoTickets) {
-            int count = countMatchingLottoNumbers(autoLottoTicket, winningLotto);
+            int count = countMatchingLottoNumbers(autoLottoTicket);
             boolean bonusMatch = bonusNumber.lottoNumbersContainBonusNumber(autoLottoTicket.numbers);
-            LottoPrize.valueOf(count, bonusMatch);
-            lottoRanks.add(count);
+            LottoPrize lottoPrize = LottoPrize.valueOf(count, bonusMatch);
+            lottoPrizes.add(lottoPrize);
         }
-        return lottoRanks;
+        return lottoPrizes;
     }
 
-    public int countMatchingLottoNumbers(Lotto autoLottoTicket, Lotto winningLotto) {
+    public int countMatchingLottoNumbers(Lotto autoLottoTicket) {
         List<Integer> autoLottoNumbers = autoLottoTicket.numbers;
-        List<Integer> winningNumbers = winningLotto.numbers;
         int count = 0;
 
-        for (Integer winningNumber : winningNumbers) {
-            if (autoLottoNumbers.contains(winningNumber)) {
+        for (Integer number : numbers) {
+            if (autoLottoNumbers.contains(number)) {
                 count += 1;
             }
         }

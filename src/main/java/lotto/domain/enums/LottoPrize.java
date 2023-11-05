@@ -24,4 +24,12 @@ public enum LottoPrize {
         if (matchCount == 3) return FIFTH;
         return NONE;
     }
+
+    @Override
+    public String toString() {
+        return "LottoPrize{" +
+                "rank=" + rank +
+                ", prizeMoney=" + prizeMoney +
+                '}';
+    }
 }

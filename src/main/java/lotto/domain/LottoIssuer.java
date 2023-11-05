@@ -4,7 +4,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.message.ErrorMessage;
+import lotto.message.Error;
 import lotto.util.Validation;
 import lotto.view.OutputView;
 
@@ -17,10 +17,10 @@ public class LottoIssuer {
 
     public List<Lotto> buy(int price) {
         if (!hasCorrectUnit(price)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_VALUE.getMessage());
+            throw new IllegalArgumentException(Error.INVALID_PRICE_VALUE.getMessage());
         }
         if (!Validation.isPositive(price)) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PRICE_VALUE.getMessage());
+            throw new IllegalArgumentException(Error.NEGATIVE_PRICE_VALUE.getMessage());
         }
         int quantity = calculateQuantity(price);
         List<Lotto> lottos = issueLottos(quantity);

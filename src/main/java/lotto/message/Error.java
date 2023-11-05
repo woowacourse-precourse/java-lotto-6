@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum ErrorMessage {
+public enum Error {
 
     INVALID_NUMBER_FORMAT("입력은 숫자 형식 이어야 합니다."),
     INVALID_PRICE_VALUE("금액은 1000원 단위로 입력 되어야 합니다."),
@@ -14,7 +14,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    Error(String message) {
         this.message = message;
     }
 

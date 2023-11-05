@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.WinningNumber;
-import lotto.message.ErrorMessage;
+import lotto.message.Error;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -22,7 +22,7 @@ public class LottoController {
         try {
             int bonusNumber = InputView.getBonusNumber();
             if (hasDuplicate(bonusNumber, winningNumber.getNumbers())) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_EXIST.getMessage());
+                throw new IllegalArgumentException(Error.DUPLICATE_NUMBER_EXIST.getMessage());
             }
             return bonusNumber;
         } catch (IllegalArgumentException e) {

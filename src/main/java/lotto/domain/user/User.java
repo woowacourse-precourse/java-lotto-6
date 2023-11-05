@@ -36,12 +36,12 @@ public class User {
      *
      * @return
      */
-    public String payMoney() {
+    public Integer payMoney() {
         // TODO: 11/5/23 Utill로 빼기
         String money = Console.readLine();
         useMoney = Integer.valueOf(money);
 
-        return money;
+        return useMoney;
     }
 
     /**

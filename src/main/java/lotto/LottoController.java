@@ -21,37 +21,20 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printInputMoneyMessage();
-        int validLottoCount = receiveValidLottoCount();
-        lottoMachine = new LottoMachine(validLottoCount, new RandomNumberGenerator());
-        lottoMachine.makeLottos();
-
-        List <Lotto> lottos = lottoMachine.getLottos();
+        // 로또 발행
+        List <Lotto> lottos = generateLottos();
+        // 발행 로또 출력
         outputView.printLottoNumbers(parseLottoToInteger(lottos));
-
-        outputView.printInputWinningNumbersMessage();
-        List<Integer> validWinningNumbers = receiveValidWinningNumbers();
-
-        outputView.printInputBonusNumberMessage();
-        int validBonusNumber = receiveValidBonusNumber();
-
-        LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(validWinningNumbers, validBonusNumber);
-
-        Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
-        for(LottoRank lottoRank: LottoRank.values()) {
-            rankCount.put(lottoRank, 0);
-        }
-
-        for(Lotto lotto: lottos) {
-            LottoRank rank = lottoWinningChecker.getRank(lotto);
-            rankCount.put(rank, rankCount.get(rank) + 1);
-        }
-
-        outputView.printRanksCount(rankCount);
-        outputView.printRateOfProfits(validLottoCount, rankCount);
+        // 로또 당첨 판단 체크 객체 생성
+        LottoWinningChecker lottoWinningChecker = initLottoWinningChecker();
+        // 당첨 등수 맵 생성
+        Map<LottoRank, Integer> rankCount = gerResultRankCount(lottos, lottoWinningChecker);
+        // 결과 출력하기
+        showResult(rankCount);
     }
 
     private int receiveValidLottoCount() {
+        outputView.printInputMoneyMessage();
         try {
             String money = inputView.inputMoney();
             return parseMoneyToLottoCount(money);
@@ -61,7 +44,16 @@ public class LottoController {
         }
     }
 
+    private List<Lotto> generateLottos() {
+        // 검증된 금액 입력 받기
+        int lottoCount = receiveValidLottoCount();
+        lottoMachine = new LottoMachine(lottoCount, new RandomNumberGenerator());
+        lottoMachine.makeLottos();
+        return lottoMachine.getLottos();
+    }
+
     private List<Integer> receiveValidWinningNumbers() {
+        outputView.printInputWinningNumbersMessage();
         try {
             String winningNumbers = inputView.inputWinningNumber();
             return parseWinningNumbers(winningNumbers);
@@ -72,6 +64,7 @@ public class LottoController {
     }
 
     private int receiveValidBonusNumber() {
+        outputView.printInputBonusNumberMessage();
         try {
             String bonusNumber = inputView.inputBonusNumber();
             return parseBonusNumber(bonusNumber);
@@ -79,5 +72,30 @@ public class LottoController {
             System.out.println(e.getMessage());
             return receiveValidBonusNumber();
         }
+    }
+
+    private LottoWinningChecker initLottoWinningChecker() {
+        List<Integer> validWinningNumbers = receiveValidWinningNumbers();
+        int validBonusNumber = receiveValidBonusNumber();
+
+        return new LottoWinningChecker(validWinningNumbers, validBonusNumber);
+    }
+
+    private Map<LottoRank, Integer> gerResultRankCount(List <Lotto> lottos, LottoWinningChecker lottoWinningChecker) {
+        Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
+        for(LottoRank lottoRank: LottoRank.values()) {
+            rankCount.put(lottoRank, 0);
+        }
+        // 당처 등수 받기
+        for(Lotto lotto: lottos) {
+            LottoRank rank = lottoWinningChecker.getRank(lotto);
+            rankCount.put(rank, rankCount.get(rank) + 1);
+        }
+        return rankCount;
+    }
+
+    private void showResult(Map<LottoRank, Integer> rankCount) {
+        outputView.printRanksCount(rankCount);
+        outputView.printRateOfProfits(rankCount);
     }
 }

@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lotto.util.enums.LottoResult;
@@ -8,7 +10,6 @@ import lotto.util.enums.LottoResult;
 public class LottoBundle {
     private static final int DEFAULT_VALUE = 0;
     private static final int INCREMENT_VALUE = 1;
-    private static final char LINE = '\n';
 
     private final Map<Lotto, Integer> bundles;
 
@@ -16,13 +17,13 @@ public class LottoBundle {
         this.bundles = bundles;
     }
 
-    public String generateLottoTicketReport() {
-        StringBuilder builder = new StringBuilder();
+    public List<LottoDTO> generateLottoTicketReport() {
+        List<LottoDTO> lottoDTO = new ArrayList<>();
         for (Map.Entry<Lotto, Integer> entry : bundles.entrySet()) {
             Lotto lotto = entry.getKey();
-            builder.append(lotto.toString()).append(LINE);
+            lottoDTO.add(lotto.toDTO());
         }
-        return builder.toString();
+        return lottoDTO;
     }
 
     public Map<String, Integer> compareLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {

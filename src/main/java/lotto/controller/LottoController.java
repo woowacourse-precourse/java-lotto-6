@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lotto.model.BundleGenerator;
 import lotto.model.LottoBundle;
+import lotto.model.LottoDTO;
 import lotto.model.ProfitCalculator;
 import lotto.util.enums.LottoResult;
 import lotto.util.exception.parental.InputValidationException;
@@ -58,7 +60,10 @@ public class LottoController {
 
     private void generateLottoBundle() {
         lottoBundle = new LottoBundle(bundleGenerator.generateLotto());
-        OutputView.getLottoNumbers(lottoBundle.generateLottoTicketReport());
+        List<LottoDTO> lottoDTO = lottoBundle.generateLottoTicketReport();
+        for (LottoDTO dto : lottoDTO) {
+            OutputView.getLottoNumbers(dto);
+        }
     }
 
     private void setWinningNumbers() {

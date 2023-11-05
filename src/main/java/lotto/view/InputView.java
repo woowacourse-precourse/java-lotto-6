@@ -12,7 +12,7 @@ public class InputView {
     }
 
     public static void getWinningNumbers() {
-        System.out.println(ENTER_WINNING_NUMBERS);
+        System.out.println(LINE + ENTER_WINNING_NUMBERS);
     }
 
     public static void getBonusNumber() {

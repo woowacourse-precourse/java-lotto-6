@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = sortedNumbers;
     }
 
+    public LottoDTO toDTO() {
+        return new LottoDTO(numbers);
+    }
+
     public Integer countMatchingNumbers(WinningNumbers winNumbers) {
         return Math.toIntExact(numbers.stream()
                 .filter(winNumbers::contains)
@@ -24,10 +28,5 @@ public class Lotto {
 
     public boolean hasMatchedBonus(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getBonusNumber());
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.util.Constants.LINE;
 
+import lotto.model.LottoDTO;
 import lotto.model.PurchaseAmount;
 
 public class OutputView {
@@ -16,8 +17,8 @@ public class OutputView {
         System.out.println(LINE + formatPurchase(amount));
     }
 
-    public static void getLottoNumbers(String lotto) {
-        System.out.println(lotto);
+    public static void getLottoNumbers(LottoDTO lottoDTO) {
+        System.out.println(lottoDTO.getNumbers());
     }
 
     private static String formatPurchase(PurchaseAmount amount) {

@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Buyer {
 
-    private final int purchaseAmount;
-    private final List<Lotto> lottos;
+    private int purchaseAmount;
+    private final List<Lotto> lottos = new ArrayList<>();
 
-    public Buyer(int purchaseAmount, List<Lotto> lottos) {
+    public void buyLottos(int purchaseAmount, List<Lotto> lottos) {
         this.purchaseAmount = purchaseAmount;
-        this.lottos = lottos;
+        this.lottos.addAll(lottos);
     }
 }

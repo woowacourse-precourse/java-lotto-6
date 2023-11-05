@@ -1,7 +1,7 @@
-package lotto.utils;
+package lotto.domain.proxy;
 
-import lotto.domain.Lotto;
-import lotto.domain.Paper;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Paper;
 
 public interface PrizeHandler {
     void setNextPrizeHandler(PrizeHandler nextPrizeHandler);

@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.domain.proxy;
 
 import java.util.Objects;
 

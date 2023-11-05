@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.Lottery;
+import lotto.domain.lotto.Lottery;
 import lotto.utils.RandomGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

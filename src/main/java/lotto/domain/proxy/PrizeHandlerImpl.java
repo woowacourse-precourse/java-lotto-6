@@ -1,8 +1,8 @@
-package lotto.utils;
+package lotto.domain.proxy;
 
-import lotto.domain.Lottery;
-import lotto.domain.Lotto;
-import lotto.domain.Paper;
+import lotto.domain.lotto.Lottery;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Paper;
 
 import java.util.Objects;
 import java.util.StringJoiner;

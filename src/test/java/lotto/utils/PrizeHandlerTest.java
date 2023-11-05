@@ -1,7 +1,9 @@
 package lotto.utils;
 
-import lotto.domain.Lotto;
-import lotto.domain.Paper;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Paper;
+import lotto.domain.proxy.PrizeHandler;
+import lotto.domain.proxy.PrizeHandlerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

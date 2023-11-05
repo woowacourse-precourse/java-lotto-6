@@ -76,6 +76,7 @@ public class LottoWinner {
     public void matchWinnerLotto(Set<Lotto> lottos) {
         for (Lotto userLotto : lottos) {
             ScoreBoard result = userLotto.matchNumbers(this.winningNumber, this.bonusNumber);
+            this.scoreResult = new HashMap<>();
             scoreResult.put(result, scoreResult.getOrDefault(result, 0) + 1);
         }
     }

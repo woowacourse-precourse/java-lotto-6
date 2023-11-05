@@ -4,6 +4,7 @@ import lotto.exception.ExceptionMessage;
 
 public class LottoOrder {
     private final static int BASIC_LOTTO_PRICE = 1000;
+    private final static int PERCENT = 100;
     private final Long purchasePrice;
     private final PurchaseLotto purchaseLotto;
 
@@ -19,6 +20,12 @@ public class LottoOrder {
         PurchaseLotto purchaseLotto = PurchaseLotto.purchaseAutoLotto(lottoCount);
 
         return new LottoOrder(purchasePrice, purchaseLotto);
+    }
+
+    public double calculateGainRatio(WinningLotto winningLotto) {
+        long totalWinningPrice = this.purchaseLotto.calculateTotalWinningPrice(winningLotto);
+
+        return ((double) totalWinningPrice / this.purchasePrice) * PERCENT;
     }
 
     private void validatePrice(Long purchasePrice) {

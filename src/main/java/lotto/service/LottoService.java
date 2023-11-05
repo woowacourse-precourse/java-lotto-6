@@ -23,17 +23,20 @@ public class LottoService {
         Map<Integer, Integer> resultCount = new HashMap<>();
         for (Lotto lotto : lottery) {
             int rank = matchLottoWinningNumber(lotto, winningNumber, bonusNumber);
+            System.out.println(rank);
             resultCount.put(rank, resultCount.getOrDefault(rank, 0) + 1);
         }
         return resultCount;
     }
 
-    private int matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumber, Integer bonusNumber) {
+    private int matchLottoWinningNumber(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
         int result = 0;
         boolean matchBonusNumber = false;
         for (Integer lottoNumber : lotto.getNumbers()) {
-            if (lottoNumber.equals(winningNumber)) {
-               result++;
+            for (Integer winningNumber : winningNumbers) {
+                if (lottoNumber.equals(winningNumber)) {
+                    result++;
+                }
             }
             if (lottoNumber.equals(bonusNumber)) {
                 matchBonusNumber = true;

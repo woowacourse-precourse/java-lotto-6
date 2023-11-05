@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.counting;
 import static lotto.model.ErrorType.LOTTO_DUPLICATED;
 import static lotto.model.ErrorType.LOTTO_INVALID_SIZE;
 
@@ -41,5 +43,11 @@ public class Lotto {
 
     public boolean contains(final LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    public int findMatchCount(final Lotto other) {
+        return numbers.stream()
+                .filter(other::contains)
+                .collect(collectingAndThen(counting(), Long::intValue));
     }
 }

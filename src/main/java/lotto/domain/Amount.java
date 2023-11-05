@@ -22,12 +22,12 @@ public class Amount {
         return this.amount / PRICE;
     }
 
-    public String getTotalEarningsRate(long totalWinningPrize) {
+    public String calculateEarningsRate(long totalWinningPrize) {
         return roundOff(this.amount / (double) totalWinningPrize);
     }
 
-    private String roundOff(double earningRate) {
-        return String.format("%.2f", earningRate);
+    private String roundOff(double earningsRate) {
+        return String.format("%.2f", earningsRate);
     }
 
     private void validateMinAmount(int amount) {

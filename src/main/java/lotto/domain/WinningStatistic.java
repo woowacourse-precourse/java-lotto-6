@@ -16,7 +16,7 @@ public class WinningStatistic {
         return this.result;
     }
 
-    public long calculateTotalWinningPrize() {
+    public long calculateTotalPrize() {
         return result.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();

@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private int getSameCount(Lotto other, int i) {
-        if (isSameNumber(other, i)) {
+        if (numbers.contains(other.numbers.get(i))) {
             return 1;
         }
         return 0;

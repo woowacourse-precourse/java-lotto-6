@@ -8,11 +8,13 @@ public class Lotto {
 
     private List<Integer> numbers;
 
+    // 자동 숫자 추첨
     public Lotto() {
         this.numbers = issueLotto();
         validate(numbers);
     }
 
+    // 수동
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

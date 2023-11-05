@@ -15,32 +15,58 @@ public class LottoController {
 
     int paymentPrice;
     int ticketCount;
+    List<Lotto> lottos;
+
     List<Integer> winningNumbers;
     int bonusNumber;
-    List<Lotto> lottos = new ArrayList<>();
 
     public void start() throws IllegalArgumentException {
         // 구입금액 받기
-        OutputHandler.requirePaymentPrice();
-        String paymentPriceInput = InputHandler.getInput();
-        paymentPrice = Converter.pay(paymentPriceInput);
-
-        OutputHandler.printEmptyLine();
-
-        // 구입 개수 계산하기
+        paymentPrice = getPaymentPrice();
+        // 구입 개수 계산 & 로또 발행하여 출력하기
         ticketCount = getTicketCount(paymentPrice);
         OutputHandler.sayTicketCount(ticketCount);
+        lottos = issueLottos(ticketCount);
+        // 당첨 번호 받기
+        winningNumbers = getWinningNumbers();
+        // 보너스 번호 받기
+        bonusNumber = getBonusNumber();
+        // 당첨 통계 계산 & 당첨 통계, 수익률 출력
+        Rank rank = getRank(lottos);
+        showWinningDetail(rank);
+        showRateOfReturn(rank, paymentPrice);
+    }
 
-        // 구입 개수만큼 로또 발행하기
+    int getPaymentPrice() {
+        OutputHandler.requirePaymentPrice();
+        String paymentPriceInput = InputHandler.getInput();
+        int paymentPrice = Converter.pay(paymentPriceInput);
+        OutputHandler.printEmptyLine();
+        return paymentPrice;
+    }
+
+    int getTicketCount(int paymentPrice) throws IllegalArgumentException {
+        if (paymentPrice < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
+        }
+        if (paymentPrice % Number.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE);
+        }
+        return paymentPrice / Number.LOTTO_PRICE;
+    }
+
+    List<Lotto> issueLottos(int ticketCount) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto();
             lottos.add(lotto);
             OutputHandler.printLottoNumbers(lotto.getNumbers());
         }
-
         OutputHandler.printEmptyLine();
+        return lottos;
+    }
 
-        // 당첨 번호 받기
+    List<Integer> getWinningNumbers() {
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
         if (winningNumbersInput.isEmpty()) {
@@ -50,22 +76,22 @@ public class LottoController {
         if (winningNumbers.size() != Number.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS);
         }
-        this.winningNumbers = winningNumbers;
-
         OutputHandler.printEmptyLine();
+        return winningNumbers;
+    }
 
-        // 보너스 번호 받기
+    int getBonusNumber() {
         OutputHandler.requireBonusNumber();
         String bonusNumberInput = InputHandler.getInput();
         if (bonusNumberInput.isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
         }
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
-        this.bonusNumber = bonusNumber;
-
         OutputHandler.printEmptyLine();
+        return bonusNumber;
+    }
 
-        // 당첨통계 출력
+    Rank getRank(List<Lotto> lottos) {
         Rank rank = new Rank();
         for (Lotto lotto : lottos) {
             LottoMatch lottoMatch = getLottoMatch(lotto, winningNumbers, bonusNumber);
@@ -89,27 +115,20 @@ public class LottoController {
                 rank.addRank(1);
             }
         }
-        int rank1 = rank.getRank(1);
-        int rank2 = rank.getRank(2);
-        int rank3 = rank.getRank(3);
-        int rank4 = rank.getRank(4);
-        int rank5 = rank.getRank(5);
-
-        OutputHandler.printWinningDetails(rank1, rank2, rank3, rank4, rank5);
-        int winningPrice = rank1 * Number.RANK1_PRICE + rank2 * Number.RANK2_PRICE + rank3 * Number.RANK3_PRICE
-                + rank4 * Number.RANK4_PRICE + rank5 * Number.RANK5_PRICE;
-        double rateOfReturn = (double) winningPrice / paymentPrice;
-        OutputHandler.printRateOfReturn(rateOfReturn);
+        return rank;
     }
 
-    int getTicketCount(int paymentPrice) throws IllegalArgumentException {
-        if (paymentPrice < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
-        }
-        if (paymentPrice % Number.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE);
-        }
-        return paymentPrice / Number.LOTTO_PRICE;
+    void showWinningDetail(Rank rank) {
+        OutputHandler.printWinningDetails(rank.getRank(1), rank.getRank(2), rank.getRank(3), rank.getRank(4),
+                rank.getRank(5));
+    }
+
+    void showRateOfReturn(Rank rank, int paymentPrice) {
+        int winningPrice = rank.getRank(1) * Number.RANK1_PRICE + rank.getRank(2) * Number.RANK2_PRICE
+                + rank.getRank(3) * Number.RANK3_PRICE + rank.getRank(4) * Number.RANK4_PRICE
+                + rank.getRank(5) * Number.RANK5_PRICE;
+        double rateOfReturn = (double) winningPrice / paymentPrice;
+        OutputHandler.printRateOfReturn(rateOfReturn);
     }
 
     LottoMatch getLottoMatch(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
@@ -126,6 +145,4 @@ public class LottoController {
         }
         return new LottoMatch(matchCount, bonusMatch);
     }
-
-
 }

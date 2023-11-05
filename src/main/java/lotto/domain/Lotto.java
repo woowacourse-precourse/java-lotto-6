@@ -39,4 +39,20 @@ public class Lotto {
             }
         }
     }
+
+    public boolean bonusValidateBool(int bonusNum) {
+        try {
+            bonusValidate(bonusNum);
+            return false;
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+    }
+
+    public void bonusValidate(int bonusNum) {
+        if (numbers.contains(bonusNum)) {
+            Exceptions.exceptionBonusNumInWinnerNum();
+            throw new IllegalArgumentException();
+        }
+    }
 }

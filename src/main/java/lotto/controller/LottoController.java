@@ -13,6 +13,7 @@ import lotto.domain.InputWinningNum;
 public class LottoController {
     int purchaseAmount, purchaseNum;
     private static List<List<Integer>> allLotto;
+    private static Lotto lotto;
 
     public void run() {
         while (readPurchaseLotto()) {
@@ -63,7 +64,7 @@ public class LottoController {
             }
             winningNumsInput.add(Integer.parseInt(winningNum));
         }
-        Lotto lotto = ReadWinningNum.makeWinningNumsInput(winningNumsInput);
+        lotto = ReadWinningNum.makeWinningNumsInput(winningNumsInput);
         if (lotto == null) {
             return true;
         }
@@ -78,6 +79,9 @@ public class LottoController {
 
         int bonusNumInput = Integer.parseInt(bonusNum);
         if (ReadWinningNum.isBonusNumRange(bonusNumInput)) {
+            return true;
+        }
+        if (lotto.bonusValidateBool(bonusNumInput)) {
             return true;
         }
         return false;

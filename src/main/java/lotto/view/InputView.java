@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import lotto.validate.AmountValidator;
 
 public class InputView {
-    private AmountValidator amountValidator = new AmountValidator();
+    private final AmountValidator amountValidator = new AmountValidator();
 
     public int inputBuyAmount() {
         System.out.println("구입금액을 입력해 주세요.");

@@ -16,7 +16,7 @@
 - [x] 수익률을 계산한다. (수익률은 소수점 둘째 자리에서 반올림) - LottoManager#calculateProfitRate()
 
 ### 입력
-- [ ] 로또 구입 금액을 입력 받을 수 있다. - InputView#askLottoPurchaseAmount()
+- [x] 로또 구입 금액을 입력 받을 수 있다. - InputView#askPurchaseAmount()
 - [ ] 당첨 번호를 입력 받을 수 있다. - InputView#askWinnigNumbers()
 - [ ] 보너스 번호를 입력 받을 수 있다. - InputView#askBonusNumber()
     - [x] 입력 값이 양수인 숫자인지 검사한다. - InputValidator#validatePositiveNumber()

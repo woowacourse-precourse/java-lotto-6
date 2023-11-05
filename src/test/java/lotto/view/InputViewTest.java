@@ -127,6 +127,45 @@ class InputViewTest{
         assertThat(lottoNumbers.size()).isEqualTo(6);
     }
 
+    @DisplayName("보너스 숫자는 1이상 숫자를 입려해야 한다.")
+    @Test
+    void requestLottoBonusByUnderMin() {
+        assertThatThrownBy(() -> {
+            InputView inputView = new InputView();
+            String inputValue = "0";
+            systemIn(inputValue);
+            inputView.requestBonusNumber();
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_LOTTO_RANGE);
+    }
+
+    @DisplayName("보너스 숫자는 45이하 숫자를 입려해야 한다.")
+    @Test
+    void requestLottoBonusByOverMax() {
+        assertThatThrownBy(() -> {
+            InputView inputView = new InputView();
+            String inputValue = "46";
+            systemIn(inputValue);
+            inputView.requestBonusNumber();
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(INVALID_INPUT_LOTTO_RANGE);
+    }
+
+    @DisplayName("보너스 숫자는 숫자만 입력해야 한다.")
+    @Test
+    void requestLottoBonusByInvalidFormat() {
+        assertThatThrownBy(() -> {
+            InputView inputView = new InputView();
+            String inputValue = "test";
+            systemIn(inputValue);
+            inputView.requestBonusNumber();
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
+    }
+
     private void systemIn(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }

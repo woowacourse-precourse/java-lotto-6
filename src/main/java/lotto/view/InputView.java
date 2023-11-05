@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 public class InputView {
     private static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private static final String INPUT_LOTTO_NUMBER_SPLITTER = ",";
 
@@ -43,6 +44,17 @@ public class InputView {
         String inputLottoNumbers = Console.readLine().trim();
         validateLottoNumbers(inputLottoNumbers);
         return convertLottoNumbersToTreeSet(inputLottoNumbers);
+    }
+
+    public int requestBonusNumber() {
+        System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
+        String inputValue = Console.readLine().trim();
+        validateNumber(inputValue);
+
+        int bonusNumber = Integer.parseInt(inputValue);
+        validateLottoNumberRange(bonusNumber);
+
+        return bonusNumber;
     }
 
     private static void validateNumber(String inputValue) {

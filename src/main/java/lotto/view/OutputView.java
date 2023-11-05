@@ -14,6 +14,7 @@ public class OutputView {
         for (int i = 0; i < lottoDtos.size(); i++) {
             System.out.println(lottoDtos.get(i).numbers());
         }
+        printEmptyLine();
     }
 
     private static void printEmptyLine(){

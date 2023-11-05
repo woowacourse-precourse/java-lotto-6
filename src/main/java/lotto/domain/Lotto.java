@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -11,10 +12,39 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (isWrongSize(numbers)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (isWrongRange(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isWrongSize(List<Integer> numbers) {
+        return numbers.size() != 6;
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != 6;
+    }
+
+    private boolean isWrongRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> number < 1 || number > 45);
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

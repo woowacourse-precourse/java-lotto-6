@@ -13,7 +13,7 @@ public class Lotto {
 
     private void checkSize(List<Integer> numbers) {
         if (numbers.size() != Config.SIZE_OF_LOTTO) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_LENGTH_NOT_SIX.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.ERROR_SIZE_INCORRECT.getMessage());
         }
     }
 

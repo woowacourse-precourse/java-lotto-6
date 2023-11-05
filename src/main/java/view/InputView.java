@@ -12,15 +12,14 @@ public class InputView {
 
     public int getNumber() {
         String string = scanner.readLine();
-        validateNumber(string);
-        return Integer.parseInt(string);
+        return convertNumber(string);
     }
 
-    private void validateNumber(String line) {
-        for (char c : line.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                throw new IllegalArgumentException();
-            }
+    private int convertNumber(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
         }
     }
 

@@ -1,18 +1,22 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
 
   public List<Integer> createRandomLottoNumber() {
-    return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    return sortLottoNumbers(new ArrayList<>(numbers));
   }
 
-  public static void sortLottoNumbers(List<Integer> lottoNumbers) {
+  public static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
     Collections.sort(lottoNumbers);
+    return lottoNumbers;
   }
+
 
   public int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumberSet) {
     int matchedNumbers = 0;
@@ -26,25 +30,25 @@ public class LottoGame {
 
   public int setRank(List<Integer> lotto, int bonusNumber, int matchedNumbers) {
     if (matchedNumbers == 6) {
-      return 1;
+      return 0;
     }
     if (matchedNumbers == 5) {
       return matchBonusNumber(lotto, bonusNumber);
     }
     if (matchedNumbers == 4) {
-      return 4;
+      return 3;
     }
     if (matchedNumbers == 3) {
-      return 5;
+      return 4;
     }
-    return 0;
+    return 5;
   }
 
   public int matchBonusNumber(List<Integer> lotto, int bonusNumber) {
     if (lotto.contains(bonusNumber)) {
-      return 2;
+      return 1;
     }
-    return 3;
+    return 2;
   }
 
 

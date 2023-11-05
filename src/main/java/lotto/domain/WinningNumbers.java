@@ -17,4 +17,8 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
+    public boolean contains(Integer number) {
+        return winningNumbers.stream().anyMatch(winningNumber -> winningNumber.is(number));
+    }
+
 }

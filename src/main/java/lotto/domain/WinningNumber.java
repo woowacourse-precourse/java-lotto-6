@@ -17,4 +17,8 @@ public class WinningNumber {
         }
     }
 
+    public boolean is(int number) {
+        return this.number == number;
+    }
+
 }

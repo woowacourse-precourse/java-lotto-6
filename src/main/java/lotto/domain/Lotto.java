@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.LottoRank;
+
 import java.util.*;
 
 public class Lotto {
@@ -28,6 +30,12 @@ public class Lotto {
         List<Integer> list = new ArrayList<>(numbers);
         Collections.sort(list);
         return list;
+    }
+
+    public LottoRank calculate(WinningNumbers winningNumbers, WinningNumber bonusNumber) {
+        int winningCount = (int) numbers.stream().filter(winningNumbers::contains).count();
+        int bonus = (int) numbers.stream().filter(bonusNumber::is).count();
+        return LottoRank.findRank(winningCount, bonus);
     }
 
     @Override

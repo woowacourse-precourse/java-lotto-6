@@ -44,8 +44,6 @@ public class Validator {
         return targetNumbers;
     }
 
-
-
     private List<Integer> parseAndValidateNumbers(String userInput) {
         try {
             String[] numbers = userInput.split(",");

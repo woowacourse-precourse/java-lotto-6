@@ -41,7 +41,6 @@ public class Customer {
         return lottoNumbers;
     }
 
-
     public void printInfoOfLottos() {
         System.out.println(String.format(SHOW_LOTTOS_INFO_MESSAGE.toString(), this.numberOfLottos));
         for (Lotto lotto : lottos) {

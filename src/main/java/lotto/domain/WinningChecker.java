@@ -24,7 +24,6 @@ public class WinningChecker {
         return new WinningChecker();
     }
 
-
     public void checkWinning(Customer customer) {
         List<Result> results = customer.getResults();
         calculateTotalWinningAmount(results);

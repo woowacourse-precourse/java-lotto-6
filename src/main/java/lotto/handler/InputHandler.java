@@ -7,12 +7,11 @@ import java.util.List;
 
 public class InputHandler {
     private final Validator validator;
-
     public InputHandler(Validator validator) {
         this.validator = validator;
     }
 
-    public int getPayment() {
+    public int getAndValidatePayment() {
         while (true) {
             try {
                 String userInput = Console.readLine();
@@ -23,7 +22,7 @@ public class InputHandler {
         }
     }
 
-    public List<Integer> getTargetNumbers() {
+    public List<Integer> getAndTargetNumbers() {
         while (true) {
             try {
                 String userInput = Console.readLine();

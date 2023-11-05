@@ -27,7 +27,7 @@ public class LottoGameController {
 
     private Customer createCustomerAndBuyLottos() {
         System.out.println(GuideMessage.GET_PAYMENT_REQUEST_MESSAGE);
-        int payment = inputHandler.getPayment();
+        int payment = inputHandler.getAndValidatePayment();
 
         Customer customer = Customer.createCustomer(payment);
         customer.buyLottos();
@@ -38,7 +38,7 @@ public class LottoGameController {
 
     private Target createTargetNumbersAndBonusNumber() {
         System.out.println(GuideMessage.GET_TARGET_NUMBERS_REQUEST_MESSAGE);
-        List<Integer> targetNumbers = inputHandler.getTargetNumbers();
+        List<Integer> targetNumbers = inputHandler.getAndTargetNumbers();
 
         System.out.println(GuideMessage.GET_BONUS_NUMBER_REQUEST_MESSAGE);
         int bonusNumber = inputHandler.getAndValidateBonusNumber(targetNumbers);

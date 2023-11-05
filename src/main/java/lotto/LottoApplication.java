@@ -78,6 +78,6 @@ public class LottoApplication {
         return receivedAmount / LOTTO_PRICE;
     }
 
-    private void compareTicketAndLotto(Ticket ticket, List<Lotto> lottos) {
+    private void compareTicketAndLottos(Ticket ticket, List<Lotto> lottos) {
     }
 }

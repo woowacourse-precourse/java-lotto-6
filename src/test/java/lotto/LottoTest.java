@@ -34,8 +34,27 @@ class LottoTest {
 
     @DisplayName("로또를 문자열 알맞은 형태로 변환했는지 확인한다.")
     @Test
-    void lottoByString() {
+    void checkLottoByString() {
         assertThat(new Lotto(List.of(3, 43, 15, 9, 13, 6)).toString())
                 .isEqualTo("[3, 43, 15, 9, 13, 6]");
+    }
+
+    @DisplayName("로또에서 1부터 45까지 숫자가 몇 개 있는지 확인한다.")
+    @Test
+    void checkLottoNumbersByCounters() {
+        assertThat(new Lotto(List.of(3, 43, 15, 9, 13, 6)).getNumbersCounters())
+                .isEqualTo(
+                        new int[]{
+                                0, 0, 0, 1, 0, // 4
+                                0, 1, 0, 0, 1, // 9
+                                0, 0, 0, 1, 0, // 14
+                                1, 0, 0, 0, 0, // 19
+                                0, 0, 0, 0, 0, // 24
+                                0, 0, 0, 0, 0, // 29
+                                0, 0, 0, 0, 0, // 34
+                                0, 0, 0, 0, 0, // 39
+                                0, 0, 0, 1, 0, // 44
+                                0,             // 45
+                        });
     }
 }

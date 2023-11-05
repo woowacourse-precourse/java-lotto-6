@@ -8,7 +8,7 @@ public class LottoProfitCalculator {
     public static Double findLottoProfitPercentage(Map<LottoPrize, Long> winningCountPerLottoPrize,
                                                    Integer purchaseMoney) {
         Long earnMoney = lottoPrizeCount(winningCountPerLottoPrize);
-        return earnMoney / (double) purchaseMoney;
+        return (earnMoney / (double) purchaseMoney) * 100.0;
     }
 
     private static Long lottoPrizeCount(Map<LottoPrize, Long> winningCountPerLottoPrize) {

@@ -1,12 +1,8 @@
 package lotto.model;
 
-import static lotto.enumerate.ConfigInteger.FIRST_PLACE_MATCH;
-import static lotto.enumerate.ConfigInteger.FORTH_PLACE_MATCH;
 import static lotto.enumerate.ConfigInteger.LONG_ROUND_DIVIDE_NUMBER;
 import static lotto.enumerate.ConfigInteger.LONG_ROUND_NUMBER;
 import static lotto.enumerate.ConfigInteger.ONE;
-import static lotto.enumerate.ConfigInteger.SECOND_PLACE_MATCH;
-import static lotto.enumerate.ConfigInteger.THIRD_PLACE_MATCH;
 import static lotto.enumerate.ConfigInteger.ZERO;
 import static lotto.enumerate.ConfigString.WINNING_STRING_FIRST;
 
@@ -41,23 +37,8 @@ public class WinningList {
         }
     }
 
-    private static Rank getRank(int matchingNumbers, boolean hasMatchingBonusNumber) {
-        if (matchingNumbers == FIRST_PLACE_MATCH.getInt()) {
-            return Rank.FIRST_PLACE;
-        }
-        if (matchingNumbers == SECOND_PLACE_MATCH.getInt() && hasMatchingBonusNumber) {
-            return Rank.SECOND_PLACE;
-        }
-        if (matchingNumbers == SECOND_PLACE_MATCH.getInt()) {
-            return Rank.THIRD_PLACE;
-        }
-        if (matchingNumbers == THIRD_PLACE_MATCH.getInt()) {
-            return Rank.FOURTH_PLACE;
-        }
-        if (matchingNumbers == FORTH_PLACE_MATCH.getInt()) {
-            return Rank.FIFTH_PLACE;
-        }
-        return null;
+    private Rank getRank(int matchingNumbers, boolean hasMatchingBonusNumber) {
+        return Rank.match(matchingNumbers, hasMatchingBonusNumber);
     }
 
     public String printWinningListString() {

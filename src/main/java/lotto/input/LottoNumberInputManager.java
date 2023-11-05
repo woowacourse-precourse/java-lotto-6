@@ -2,6 +2,7 @@ package lotto.input;
 
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_INPUT;
 import static lotto.exception.ExceptionMessage.WRONG_LOTTO_NUMBER_SIZE;
+import static lotto.validator.LottoNumberValidator.LOTTO_NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -23,10 +24,7 @@ class LottoNumberInputManager {
 
     static List<Integer> fromString(String input) {
         List<String> parsedInput = parsedCommaSeperatedInput(input);
-        List<Integer> lottoNumbers = convertToLottoNumber(parsedInput);
-        lottoNumbers.forEach(LottoNumberInputManager::validateLottoNumberSize);
-        validateDuplicateLottoNumber(lottoNumbers);
-        return lottoNumbers;
+        return convertToLottoNumber(parsedInput);
     }
 
     private static List<String> parsedCommaSeperatedInput(String input) {
@@ -53,21 +51,25 @@ class LottoNumberInputManager {
     }
 
     private static void validateParsedInputCount(List<String> parsedInput) {
-        if (parsedInput.size() != 6) {
+        if (parsedInput.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_INPUT);
         }
     }
 
-    private static void validateLottoNumberSize(int lottoNumber) {
-        LottoNumberValidator.validateNumberIsLottoNumber(lottoNumber, WRONG_LOTTO_NUMBER_SIZE);
+    private static void validateLottoNumberSize(List<Integer> numbers) {
+        numbers.forEach(number -> LottoNumberValidator.validateNumberIsLottoNumber(number, WRONG_LOTTO_NUMBER_SIZE));
     }
 
     private static List<Integer> convertToLottoNumber(List<String> parsedInput) {
+        List<Integer> lottoNumbers;
         try {
-            return parsedInput.stream().map(Integer::parseInt).toList();
+            lottoNumbers = parsedInput.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WRONG_LOTTO_NUMBER_SIZE);
         }
+        validateLottoNumberSize(lottoNumbers);
+        validateDuplicateLottoNumber(lottoNumbers);
+        return lottoNumbers;
     }
 
     private static void validateDuplicateLottoNumber(List<Integer> lottoNumbers) {

@@ -32,4 +32,9 @@ class AnalystTest {
         assertThat(mockUpdatedPrizes.get("fourth").get(PrizeIndex.PRIZE.getNumber())).isEqualTo(50000 * 3);
         assertThat(mockUpdatedPrizes.get("fifth").get(PrizeIndex.PRIZE.getNumber())).isEqualTo(5000 * 4);
     }
+
+    @Test
+    public void returnRatioTest() {
+        assertThat(analyst.calculateReturnRatio(mockUpdatedPrizes, 1000000)).isEqualTo(203317.0);
+    }
 }

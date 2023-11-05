@@ -27,6 +27,16 @@ public class InputView {
         }
     }
 
+    public int inputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR]: 숫자를 입력 하셔야 합니다.");
+            return inputMoney();
+        }
+    }
+
     private List<Integer> stringListToIntList(List<String> stringInput) throws IllegalArgumentException{
         try {
             return stringInput.stream()

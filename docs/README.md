@@ -10,6 +10,6 @@
 - [X] 각 등수별로 Enum 만들기
 - [ ] 당첨된 액수에 따라 수익률 계산 구현
 <br> <br>
-- [ ] 돈값으로 숫자가 아닌게 들어왔을 경우 IllegalArgument Exception 처리
+- [X] 돈값으로 숫자가 아닌게 들어왔을 경우 IllegalArgument Exception 처리
 - [X] 돈값이 천원 단위로 떨어지지 않을 경우 (Illegal Argument Exeption) 처리
 - [X] 로또번호가 숫자가 아닌 다른 것이 들어왔을 경우 Illegal Argument Exception 처ㅌ

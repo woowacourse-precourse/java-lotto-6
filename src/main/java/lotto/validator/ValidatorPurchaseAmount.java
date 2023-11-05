@@ -5,6 +5,19 @@ public class ValidatorPurchaseAmount {
     public ValidatorPurchaseAmount() {
     }
 
+    public boolean processPurchaseAmountError(Purchase purchase) {
+        try {
+            validatePurchaseAmount(purchase);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public String processErrorResult() {
+        return "[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.";
+    }
+
     private void validatePurchaseAmount(Purchase purchase) {
         if (!isPurchaseAmountValid(purchase)) {
             throw new IllegalArgumentException();

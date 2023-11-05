@@ -15,12 +15,12 @@ public class LottoNumbersValidator extends InputValidator {
     }
 
     private static boolean isLottoNumberRange(int lottoNumber) {
-        return LottoGameRule.MIN_LOTTO_NUMBER.constant() <= lottoNumber
-                && LottoGameRule.MAX_LOTTO_NUMBER.constant() >= lottoNumber;
+        return LottoGameRule.MIN_LOTTO_NUMBER.getConstant() <= lottoNumber
+                && LottoGameRule.MAX_LOTTO_NUMBER.getConstant() >= lottoNumber;
     }
 
     public static void validateLottoNumbersSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != LottoGameRule.LOTTO_NUMBERS_SIZE.constant()) {
+        if (lottoNumbers.size() != LottoGameRule.LOTTO_NUMBERS_SIZE.getConstant()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.message());
         }
     }

@@ -29,7 +29,7 @@ public class LottoGameManager {
         validateCommon(userInputLottoCost);
         int lottoCost = Integer.parseInt(userInputLottoCost);
         LottoCostValidator.validateLottoCostUnit(lottoCost);
-        return lottoCost / LottoGameRule.LOTTO_COST_UNIT.constant();
+        return lottoCost / LottoGameRule.LOTTO_COST_UNIT.getConstant();
     }
 
     public String getLottoBucket() {
@@ -38,7 +38,7 @@ public class LottoGameManager {
 
     //보너스 번호 없는 당첨 로또만 만드는 메서드
     public void createWinningLotto(String userInputWinningNumbers) {
-        winningLotto = LottoCreator.createManualLotto(parsingWinningNumbers(userInputWinningNumbers));
+        winningLotto = LottoCreator.createWinningLotto(parsingWinningNumbers(userInputWinningNumbers));
     }
 
     private List<Integer> parsingWinningNumbers(String userInputWinningNumbers) {

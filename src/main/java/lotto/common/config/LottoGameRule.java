@@ -7,11 +7,11 @@ public enum LottoGameRule {
     LOTTO_COST_UNIT(1000);
     private final int constant;
 
-    LottoGameRule(Integer constant) {
+    LottoGameRule(int constant) {
         this.constant = constant;
     }
 
-    public Integer constant() {
+    public int getConstant() {
         return constant;
     }
 

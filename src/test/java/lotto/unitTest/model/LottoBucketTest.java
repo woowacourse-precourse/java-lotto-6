@@ -51,7 +51,7 @@ class LottoBucketTest {
     @Test
     void 로또_바구니에서_꺼낸_로또는_자동생성된_로또다() {
         Lotto mockLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        given(LottoCreator.createAutoLotto()).willReturn(mockLotto);
+        given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
         LottoBucket lottoBucket = new LottoBucket(1);
 
         Lotto returnedLotto = lottoBucket.getLotto(0);
@@ -62,7 +62,7 @@ class LottoBucketTest {
     @Test
     void 로또_바구니는_가지고있는_로또의_번호를_보여준다() {
         Lotto mockLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        given(LottoCreator.createAutoLotto()).willReturn(mockLotto);
+        given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
         LottoBucket lottoBucket = new LottoBucket(1);
 
         String shownLottoBucket = lottoBucket.showLottoBucket();

@@ -11,10 +11,10 @@ public class LottoCostValidator extends InputValidator {
     }
 
     private static boolean overMinLottoCost(int lottoCost) {
-        return lottoCost >= LottoGameRule.LOTTO_COST_UNIT.constant();
+        return lottoCost >= LottoGameRule.LOTTO_COST_UNIT.getConstant();
     }
 
     private static boolean isZeroRemainder(int lottoCost) {
-        return (lottoCost % LottoGameRule.LOTTO_COST_UNIT.constant()) == 0;
+        return (lottoCost % LottoGameRule.LOTTO_COST_UNIT.getConstant()) == 0;
     }
 }

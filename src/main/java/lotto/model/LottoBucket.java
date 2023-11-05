@@ -17,7 +17,7 @@ public class LottoBucket {
     private List<Lotto> createLottoBucket() {
         List<Lotto> lottoBucket = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
-            lottoBucket.add(LottoCreator.createAutoLotto());
+            lottoBucket.add(LottoCreator.createRandomLotto());
         }
         return lottoBucket;
     }

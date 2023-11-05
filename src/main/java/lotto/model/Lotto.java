@@ -21,4 +21,9 @@ public class Lotto {
         numbers.sort(Comparator.naturalOrder());
         return numbers.toString();
     }
+
+    public int countMatchOtherLotto(Lotto otherLotto) {
+        otherLotto.numbers.retainAll(numbers);
+        return otherLotto.numbers.size();
+    }
 }

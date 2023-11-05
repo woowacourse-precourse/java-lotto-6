@@ -26,15 +26,32 @@ public class LottoController {
     }
 
     private Amount getAmount() {
-        return new Amount(InputView.inputAmount());
+        try {
+            return new Amount(InputView.inputAmount());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e);
+            return getAmount();
+        }
     }
 
     private LottoNumbers getLottoNumbers() {
-        return new LottoNumbers(InputView.inputWinningNumbers());
+        try {
+            return new LottoNumbers(InputView.inputWinningNumbers());
+
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e);
+            return getLottoNumbers();
+        }
     }
 
     private int getBonusNumber() {
-        return InputView.inputBonusNumber();
+        try {
+            return InputView.inputBonusNumber();
+
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e);
+            return getBonusNumber();
+        }
     }
 
     private WinningNumbers generateWinningNumbers() {

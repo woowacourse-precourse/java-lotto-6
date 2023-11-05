@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
@@ -22,5 +23,15 @@ class WinningLottoTest {
     void createWinningLottoByContainNumber() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1,2,3,4,5,6)), new LottoNumber(2)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 당첨 번호 비교하는 기능")
+    @Test
+    void match() {
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,6)))).isEqualTo("1");
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,7)))).isEqualTo("2");
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,5,8)))).isEqualTo("3");
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,4,7,8)))).isEqualTo("4");
+        assertThat(winningLotto.match(new Lotto(List.of(1,2,3,7,8,9)))).isEqualTo("5");
     }
 }

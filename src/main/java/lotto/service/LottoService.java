@@ -13,7 +13,8 @@ public class LottoService {
         int lottoCount = amount.toInt() / PurchaseAmount.LOTTO_PRICE;
         return Lottos.from(Stream.generate(this::createLotto)
                 .limit(lottoCount)
-                .toList()) ;
+                .sorted()
+                .toList());
     }
 
     private Lotto createLotto() {

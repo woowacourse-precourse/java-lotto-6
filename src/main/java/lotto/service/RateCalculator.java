@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class RateCalculator {
     // 당첨금 계산기
@@ -12,5 +14,12 @@ public class RateCalculator {
     public static double calculateRate(int purchaseAmount, List<Integer> resultList) {
         double profitPercentage = (double) calculateWinnings(resultList) / purchaseAmount * 100;
         return Math.round(profitPercentage * 10.0) / 10.0;
+    }
+
+    public static String converseRate(int purchaseAmount, List<Integer> resultList) {
+        double winnings = RateCalculator.calculateRate(purchaseAmount, resultList);
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+        numberFormat.setMinimumFractionDigits(1);
+        return numberFormat.format(winnings);
     }
 }

@@ -33,7 +33,7 @@ public class LottoController {
         test.compareBundle(purchaseList, lotto, bonus);
         OutputValue.guidePrize(test.getResultList());
         // 여기까지? 혹은 마지막 통계까지?
-        System.out.println(RateCalculator.calculateRate(purchaseAmount, test.getResultList()));
+        OutputValue.guideRate((RateCalculator.converseRate(purchaseAmount, test.getResultList())));
     }
 
     // 구입 금액 입력

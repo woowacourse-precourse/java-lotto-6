@@ -7,7 +7,8 @@ public enum OutputMessage {
     FOUR_MATCH("4개 일치 (50,000원) - %d개"),
     FIVE_MATCH("5개 일치 (1,500,000원) - %d개"),
     SIX_MATCH("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    SEVEN_MATCH("6개 일치 (2,000,000,000원) - %d개");
+    SEVEN_MATCH("6개 일치 (2,000,000,000원) - %d개"),
+    GUIDE_RATE("총 수익률은 %s%%입니다.");
 
     public String getMessage(int quantity) {
         return String.format(message, quantity);
@@ -16,6 +17,10 @@ public enum OutputMessage {
     // 메서드 오버라이딩
     public String getMessage() {
         return message;
+    }
+
+    public String getMessage(String rate) {
+        return String.format(message, rate);
     }
 
     private final String message;

@@ -12,8 +12,12 @@ public class BonusNumber {
     }
 
     private void validate(Integer number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        if (isOutOfRangeNumber(number)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isOutOfRangeNumber(Integer number) {
+        return number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
     }
 }

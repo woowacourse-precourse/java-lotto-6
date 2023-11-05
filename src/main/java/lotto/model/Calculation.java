@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import lotto.constants.Constants;
+import lotto.constants.ResultMessage;
 import lotto.view.OutputView;
 
 public class Calculation {
@@ -23,11 +24,11 @@ public class Calculation {
 
     private double calculateSumPrize() {
         double sumPrize = 0;
-        sumPrize += Constants.SAME_3.getConstants() * result.get(0);
-        sumPrize += Constants.SAME_4.getConstants() * result.get(1);
-        sumPrize += Constants.SAME_5.getConstants() * result.get(2);
-        sumPrize += Constants.SAME_5_BONUS.getConstants() * result.get(3);
-        sumPrize += Constants.SAME_6.getConstants() * result.get(4);
+        for (ResultMessage resultMessage : ResultMessage.values()) {
+            int winningAmount = resultMessage.getWinningAmount();
+            int index = resultMessage.getIndex();
+            sumPrize += winningAmount * result.get(index);
+        }
         return sumPrize;
     }
 }

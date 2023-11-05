@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.constants.InputMessage;
 import lotto.constants.OutputMessage;
+import lotto.constants.ResultMessage;
 
 public class OutputView {
     public static void printLottoTicketCount(int count) {
@@ -17,7 +18,7 @@ public class OutputView {
     public static void printResult(List<Integer> result, double rate) {
         printResultHeader();
         for (int i = 0; i < result.size(); i++) {
-            System.out.println(String.format(OutputMessage.values()[i + 2].getMessage(), result.get(i)));
+            System.out.println(String.format(ResultMessage.values()[i].getMessage(), result.get(i)));
         }
         System.out.println(String.format(OutputMessage.PROFIT_RATE.getMessage(), rate));
     }

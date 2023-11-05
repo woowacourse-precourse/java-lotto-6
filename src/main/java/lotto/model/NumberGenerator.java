@@ -9,7 +9,6 @@ import java.util.List;
 public class NumberGenerator {
 
     public NumberGenerator() {
-        createRandomLottoNumbers();
     }
 
     public List<Integer> createRandomLottoNumbers() {

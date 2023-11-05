@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LottoValidatorTest {
 
+    private static final String DELIMITER = ",";
     private static final int LOTTO_NUMBERS_COUNT = 6;
     private static Lotto lotto;
 
@@ -56,5 +57,21 @@ public class LottoValidatorTest {
                 .stream().distinct()
                 .count())
                 .isEqualTo(LOTTO_NUMBERS_COUNT);
+    }
+
+    @Test
+    @DisplayName("로또_번호_구분_문자_테스트")
+    public void lottoNumberDelimiterTest(){
+        //given
+        String input = "1,2,3,4,5,6";
+        String[] split = input.split(DELIMITER);
+
+        //when
+
+        //then
+        for (String number : split) {
+            assertThat(number)
+                    .containsOnlyDigits();
+        }
     }
 }

@@ -14,7 +14,7 @@ public class GameController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoCount lottoCount = LottoCount.from(purchaseAmount);
         List<Lotto> autoLottoTickets = Lotto.getAutoLottoTickets(lottoCount);
-
+        Lotto winningLotto = getWinningLotto();
         outputView.displayLottoTickets(lottoCount, autoLottoTickets);
         BonusNumber bonusNumber = getBonusNumber();
         System.out.println(bonusNumber.getBonusNumber());
@@ -31,7 +31,7 @@ public class GameController {
         }
     }
 
-    public Lotto getWinningNumbers() {
+    public Lotto getWinningLotto() {
         while (true) {
             try {
                 return Lotto.makeWinningNumbers(inputView.readWinningNumbers());

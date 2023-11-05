@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.enums.LottoPrize;
 
 import java.util.*;
 
@@ -31,7 +32,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public static Lotto makeWinningNumbers(String inputString) {
         WinningNumbers winningNumbers = WinningNumbers.from(inputString);
         return new Lotto(winningNumbers.getWinningNumbers());
@@ -55,6 +55,31 @@ public class Lotto {
             lottoTickets.add(makeAutoLottoTicket());
         }
         return lottoTickets;
+    }
+
+    public List<Integer> getAllLottoRanks(List<Lotto> autoLottoTickets, Lotto winningLotto, BonusNumber bonusNumber) {
+        List<Integer> lottoRanks = new ArrayList<>();
+
+        for (Lotto autoLottoTicket : autoLottoTickets) {
+            int count = countMatchingLottoNumbers(autoLottoTicket, winningLotto);
+            boolean bonusMatch = bonusNumber.lottoNumbersContainBonusNumber(autoLottoTicket.numbers);
+            LottoPrize.valueOf(count, bonusMatch);
+            lottoRanks.add(count);
+        }
+        return lottoRanks;
+    }
+
+    public int countMatchingLottoNumbers(Lotto autoLottoTicket, Lotto winningLotto) {
+        List<Integer> autoLottoNumbers = autoLottoTicket.numbers;
+        List<Integer> winningNumbers = winningLotto.numbers;
+        int count = 0;
+
+        for (Integer winningNumber : winningNumbers) {
+            if (autoLottoNumbers.contains(winningNumber)) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     @Override

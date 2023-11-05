@@ -19,6 +19,10 @@ public class BonusNumber {
         }
     }
 
+    public boolean lottoNumbersContainBonusNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

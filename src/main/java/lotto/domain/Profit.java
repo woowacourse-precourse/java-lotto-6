@@ -5,7 +5,9 @@ import lotto.util.WinnerRank;
 public class Profit {
     private final static int HUNDRED = 100;
     public double calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
-        return 0f;
+        float moneyPrize = sumWinMoney(winResult);
+        float profit = (moneyPrize / purchasePrice.getPrice()) * HUNDRED;
+        return roundUpProfit(profit);
     }
 
     private double roundUpProfit (float profit) {
@@ -18,7 +20,6 @@ public class Profit {
             int key = winnerRank.getValue();
             moneyPrize += winResult.getWinResultValue(key) * winnerRank.getPrizeMoney();
         }
-
         return moneyPrize;
     }
 }

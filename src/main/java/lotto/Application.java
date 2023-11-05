@@ -1,7 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.config.Message;
+import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
+import lotto.domain.RandomLottoMachine;
 import lotto.exception.BelowMinimumPurchasePriceException;
 import lotto.exception.InvalidPurchasePriceFormatException;
 import lotto.exception.NonMultipleOfPriceUnitException;
@@ -16,7 +21,19 @@ public class Application {
         // TODO: 프로그램 구현
         Application application = new Application();
         int lottoCount = application.calculateLottoPurchaseCount();
-        application.printLottoPurchaseCount(lottoCount);
+        List<Lotto> lottos = application.generateLottos(lottoCount);
+        application.printPurchasedLottos(lottos);
+    }
+
+    private void printPurchasedLottos(List<Lotto> lottos) {
+        LottoResult lottoResult = LottoResult.from(lottos);
+        printLottoPurchaseCount(lottos.size());
+        printLottoResult(lottoResult);
+    }
+
+    private List<Lotto> generateLottos(int lottoCount) {
+        LottoMachine lottoMachine = new RandomLottoMachine();
+        return lottoMachine.generateLottos(lottoCount);
     }
 
     private int calculateLottoPurchaseCount() {
@@ -59,6 +76,10 @@ public class Application {
     }
 
     private void printLottoPurchaseCount(long lottoCount) {
-        System.out.printf("%d개를 구매했습니다.%n", lottoCount);
+        System.out.printf("%d개를 구매했습니다." + Message.NEW_LINE, lottoCount);
+    }
+
+    private void printLottoResult(LottoResult lottoResult) {
+        System.out.println(lottoResult.getLottoResult() + Message.NEW_LINE);
     }
 }

@@ -9,9 +9,9 @@ public class WinningChecker {
 
     private final List<Lotto> myLottos;
     private final WinningNumbers winningNumbers;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningChecker(List<Lotto> myLottos, WinningNumbers winningNumbers, int bonusNumber) {
+    public WinningChecker(List<Lotto> myLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.myLottos = myLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -33,7 +33,7 @@ public class WinningChecker {
 
     private int countMatchedBonusNumber(List<Integer> lottoNumbers, int matchedNumCount) {
         if (matchedNumCount == Rank.THIRD.getMatchedCount()) {
-            if (lottoNumbers.contains(bonusNumber)) {
+            if (bonusNumber.containBonusNumber(lottoNumbers)) {
                 return matchedNumCount + Rank.SECOND.getIdentifier();
             }
         }

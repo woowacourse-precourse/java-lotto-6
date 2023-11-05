@@ -9,7 +9,7 @@ import lotto.view.OutputView;
 import java.util.*;
 
 public class GameLogic {
-    OutputView outputView;
+    private OutputView outputView;
     private Map<Rank, Integer> ranks = new HashMap<>();
 
     public GameLogic() {

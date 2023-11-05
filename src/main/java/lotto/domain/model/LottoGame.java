@@ -14,19 +14,6 @@ public final class LottoGame {
         this.winningLotto = winningLotto;
     }
 
-    private int getMatchCount(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-        long count = numbers.stream().filter(winningLotto::contains).count();
-
-        return Long.valueOf(count).intValue();
-    }
-
-    private boolean getIsBonusMatched(Lotto lotto) {
-        LottoBonusNumber bonusNumber = winningLotto.getBonusNumber();
-
-        return lotto.contains(bonusNumber.getValue());
-    }
-
     private boolean isFiveMatched(int matchCount) { return matchCount == FIVE_COUNT; }
 
     private LottoRank getLottoRankByMatchCountAndBonusMatch(int matchCount, boolean isBonusMatched) {
@@ -38,8 +25,8 @@ public final class LottoGame {
     }
 
     private LottoRank createLottoRank(Lotto lotto) {
-        int matchCount = getMatchCount(lotto);
-        boolean isBonusMatched = getIsBonusMatched(lotto);
+        int matchCount = winningLotto.getMatchCounts(lotto);
+        boolean isBonusMatched = winningLotto.isLottoMatchedWithBonusNumber(lotto);
 
         return getLottoRankByMatchCountAndBonusMatch(matchCount, isBonusMatched);
     }

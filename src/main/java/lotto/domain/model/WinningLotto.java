@@ -1,5 +1,6 @@
 package lotto.domain.model;
 
+import java.util.List;
 import lotto.constant.IllegalArgumentExceptionType;
 
 public final class WinningLotto {
@@ -22,7 +23,20 @@ public final class WinningLotto {
         }
     }
 
-    public boolean contains(int number) {
+    private boolean contains(int number) {
         return lotto.contains(number);
+    }
+
+    public int getMatchCounts(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        long count = numbers.stream().filter(this::contains).count();
+
+        return Long.valueOf(count).intValue();
+    }
+
+    public boolean isLottoMatchedWithBonusNumber(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        int bonusValue = bonusNumber.getValue();
+        return numbers.contains(bonusValue);
     }
 }

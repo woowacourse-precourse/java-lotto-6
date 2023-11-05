@@ -26,5 +26,10 @@ public class GameController {
 
     public static void lottoInputWinningNum() {
         InputView.inputWinningNum();
+        lottoPrintBonusNumber();
+    }
+
+    public static void lottoPrintBonusNumber() {
+        OutputView.printLottoBonusNumber();
     }
 }

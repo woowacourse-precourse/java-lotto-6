@@ -16,4 +16,25 @@ public class LottoShop {
 
         return new Lotto(lottoNumbers);
     }
+
+    public void buy(Wallet wallet) {
+        while(true) {
+            try {
+                wallet.inputBuyMoney();
+
+                int buyCount = wallet.getBuyMoney() / PRICE.getValue();
+                System.out.println(BUYCOMPLETE.addString(buyCount));
+
+                List<Lotto> buyLotto = new ArrayList<>();
+                for (int i = 0; i < buyCount; i++) {
+                    Lotto lotto = randomLotto();
+                    buyLotto.add(lotto);
+                }
+                wallet.setLottos(buyLotto);
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

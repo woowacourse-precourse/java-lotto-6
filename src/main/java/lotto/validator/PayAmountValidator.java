@@ -1,27 +1,31 @@
 package lotto.validator;
 
+import static lotto.validator.constants.Criteria.*;
+import static lotto.validator.constants.ExceptionMessage.*;
+import static lotto.validator.constants.Pattern.*;
+
 public class PayAmountValidator {
-    public void validate(String purchaseAmount) {
-        isBlank(purchaseAmount);
-        isNotNumeric(purchaseAmount);
-        cannotDivideOneThousand(purchaseAmount);
+    public void validate(String payAmount) {
+        isBlank(payAmount);
+        isNotNumeric(payAmount);
+        cannotDivideOneThousand(payAmount);
     }
 
-    private void isBlank(String purchaseAmount) {
-        if (purchaseAmount == null || purchaseAmount.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액을 입력하세요. 값이 null 또는 빈 값일 수 없습니다.");
+    private void isBlank(String payAmount) {
+        if (payAmount == null || payAmount.isBlank()) {
+            throw new IllegalArgumentException(BLANK_ERROR.message());
         }
     }
 
-    private void isNotNumeric(String purchaseAmount) {
-        if (!purchaseAmount.matches("[0-9]+")) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자만 입력 가능합니다.");
+    private void isNotNumeric(String payAmount) {
+        if (!payAmount.matches(NUMERIC.pattern())) {
+            throw new IllegalArgumentException(NOT_NUMERIC_ERROR.message());
         }
     }
 
-    private void cannotDivideOneThousand(String purchaseAmount) {
-        if (!purchaseAmount.matches("[0-9]*000")) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해주세요.");
+    private void cannotDivideOneThousand(String payAmount) {
+        if (!payAmount.matches(DIVIDE_ONE_THOUSAND.pattern())) {
+            throw new IllegalArgumentException(PAY_AMOUNT_ONE_THOUSAND_UNIT_ERROR.message());
         }
     }
 }

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.exception.PaymentException;
-import lotto.exception.PaymentExceptionMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.Lotto;
 import lotto.config.LottoConfig;
+import lotto.domain.BonusNumber;
 import lotto.domain.Money;
 import lotto.domain.Quantity;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,10 +21,24 @@ public class LottoController {
     public void run() {
         Quantity totalLotteries = Quantity.of(parseIntToMoney(), LottoConfig.PRICE);
         output.printQuantityOfLotteries(totalLotteries);
+
+        Lotto winningNumbers = parseListToLotto();
+        BonusNumber bonusNumber = parseIntToBonusNumber();
+
+        WinningLotto.of(winningNumbers, bonusNumber);
+
     }
 
     private Money parseIntToMoney() {
-        return Money.from(input.printAskingBudget());
+        return new Money(input.printAskingBudget());
+    }
+
+    private Lotto parseListToLotto() {
+        return new Lotto(input.printAskingWinningNumbers());
+    }
+
+    private BonusNumber parseIntToBonusNumber() {
+        return new BonusNumber(input.printAskingBonusNumber());
     }
 
 }

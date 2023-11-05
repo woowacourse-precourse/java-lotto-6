@@ -3,7 +3,8 @@ package lotto.model;
 import lotto.utils.InputValidator;
 
 public class Money {
-    private String money;
+    private static final int LOTTO_PRICE = 1000;
+    private final String money;
 
     public Money(String money) {
         validate(money);
@@ -12,6 +13,10 @@ public class Money {
 
     private void validate(String money) {
         InputValidator.checkMoney(money);
+    }
+
+    public int calNumberOfLotto(int money) {
+        return money / LOTTO_PRICE;
     }
 
 }

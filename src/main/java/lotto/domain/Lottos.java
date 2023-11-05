@@ -12,6 +12,9 @@ public class Lottos {
         this.lottos = create(numberOfLottos);
     }
 
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
     private List<Lotto> create(int numberOfLottos) {
         List<Lotto> lottoBundle = new ArrayList<>();
         for (int count = 0; count < numberOfLottos; count++) {

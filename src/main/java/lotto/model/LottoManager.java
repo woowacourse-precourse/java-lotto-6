@@ -5,16 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Tickets;
-import lotto.utils.Validator;
+import lotto.utils.validation.Validator;
 
 public class LottoManager {
-    private Validator valid = new Validator();
+    private Validator validator = new Validator();
     private Tickets tickets = new Tickets();
     private int TICKET_PRICE = 1000;
 
 
     public void buyTickets(String string) {
-        int money = valid.validateMoney(string);
+        int money = validator.validateMoney(string);
         int amount = calculateTicketAmount(money);
         tickets.generateTickets(amount);
     }

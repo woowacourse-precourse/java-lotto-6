@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.validation;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,16 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Validator {
-    private Set<Integer> winningNumbers;
+public class ValidatorNumber extends Validator {
+    protected Set<Integer> winningNumbers;
 
-
-    public int validateMoney(String string) {
-        int money = validateisNumber(string);
-        validateMoneyCorrectAmount(money);
-
-        return money;
-    }
 
     public void validateWinningNumber(String winning) {
         List<Integer> numbers = validateWinningisNumber(winning);
@@ -34,23 +27,6 @@ public class Validator {
         validateWinningNumberDuplicated(number);
     }
 
-
-    private int validateisNumber(String string) {
-        int money;
-        try {
-            money = Integer.parseInt(string);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
-        }
-
-        return money;
-    }
-
-    private void validateMoneyCorrectAmount(int money) {
-        if (money <= 0 || money % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
-    }
 
     private List<Integer> validateWinningisNumber(String winning) {
         List<Integer> numbers;

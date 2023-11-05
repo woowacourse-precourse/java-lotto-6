@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.LottoManager;
 import lotto.model.PrizeManager;
-import lotto.utils.Validator;
+import lotto.utils.validation.ValidatorNumber;
 import lotto.view.InputView;
 import lotto.view.output.DisplayAnnounce;
 import lotto.view.output.DisplayError;
@@ -14,7 +14,7 @@ public class Controller {
     DisplayError error = new DisplayError();
     LottoManager lotto = new LottoManager();
     PrizeManager prize = new PrizeManager();
-    Validator valid = new Validator();
+    ValidatorNumber validatorNumber = new ValidatorNumber();
 
 
     public void startGame() {
@@ -48,7 +48,7 @@ public class Controller {
         while (true) {
             try {
                 winning = input.getPrizingNumbers();
-                valid.validateWinningNumber(winning);
+                validatorNumber.validateWinningNumber(winning);
                 return winning;
             } catch (IllegalArgumentException e) {
                 error.displayWinningError();
@@ -61,7 +61,7 @@ public class Controller {
         while (true) {
             try {
                 bonus = input.getBonusNumbers();
-                valid.validateBonusNumber(bonus);
+                validatorNumber.validateBonusNumber(bonus);
                 return bonus;
             } catch (IllegalArgumentException e) {
                 error.displayBonusError();

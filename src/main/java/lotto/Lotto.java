@@ -21,5 +21,12 @@ public class Lotto {
         return numbers;
     }
 
-    // lotto numbers 출력 기능 toString?
+    public static int calculateIssueCount(int purchaseAmount) {
+        final int oneLottoPrice = 1000;
+        int issueCount = 0;
+
+        issueCount = purchaseAmount / oneLottoPrice;
+
+        return issueCount;
+    }
 }

@@ -2,9 +2,9 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.GameResult;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
-import lotto.domain.UserNumbers;
 import lotto.util.comparer.impl.LottoComparer;
 import lotto.util.generator.impl.LottoGenerator;
 import lotto.view.InputView;
@@ -19,7 +19,7 @@ public class LottoGameController {
     private final LottoComparer lottoComparer;
     private final LottoGenerator lottoGenerator;
     private Lottos lottos;
-    private UserNumbers userNumbers;
+    private Lotto winningNumbers;
     private BonusNumber bonusNumber;
     private GameResult gameResult;
     private Money money;
@@ -34,6 +34,7 @@ public class LottoGameController {
     public void run() {
         initMoney();
         generateLotto();
+        inputWinningNumbers();
     }
 
     void initMoney() {
@@ -53,5 +54,15 @@ public class LottoGameController {
 
     void printLottos() {
         outputView.printLottos(lottos);
+    }
+
+    void inputWinningNumbers() {
+        try {
+            winningNumbers = new Lotto(inputView.inputWinningNumbers());
+        }
+        catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            inputWinningNumbers();
+        }
     }
 }

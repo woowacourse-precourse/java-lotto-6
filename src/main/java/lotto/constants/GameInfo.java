@@ -8,7 +8,10 @@ public enum GameInfo {
     USER_MONEY_MAX(100000),
 
     // LOTTO
-    LOTTO_PRICE(1000);
+    LOTTO_PRICE(1000),
+    LOTTO_COUNT(6),
+    LOTTO_MIN_NUMBER(1),
+    LOTTO_MAX_NUMBER(45);
 
 
     private final int price;

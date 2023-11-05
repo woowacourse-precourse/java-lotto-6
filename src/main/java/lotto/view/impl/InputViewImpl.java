@@ -13,8 +13,9 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public String inputUserNumbers() {
-        return null;
+    public String inputWinningNumbers() {
+        System.out.println(GameMessages.INPUT_LOTTO.getMessage());
+        return input();
     }
 
     @Override

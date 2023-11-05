@@ -14,7 +14,7 @@ public enum LottoMessage {
     SECOND_PLACE("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIRST_PLACE("6개 일치 (2,000,000,000원) - "),
     RATE_OF_RETURN_HEAD("총 수익률은 "),
-    RATE_OF_RETURN_TAIL("입니다.");
+    RATE_OF_RETURN_TAIL("%입니다.");
 
     private String message;
 

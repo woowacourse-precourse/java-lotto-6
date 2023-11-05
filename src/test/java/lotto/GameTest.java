@@ -82,6 +82,20 @@ public class GameTest {
         result = game.createResult(lottos, winningNumbers, bonusNumber);
         assertThat(result[4]).isEqualTo(1);
 
+    }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void calculateProfit_EqualResult_Success() {
+        Game game = new Game();
+
+        int[] result = new int[]{0, 1, 0, 0, 0, 1};
+
+        float buyAmount = 8000;
+
+        float profitRate = game.calculateProfitRate(buyAmount, result);
+
+        assertThat(profitRate).isEqualTo(250000.62f);
 
     }
 

@@ -18,4 +18,15 @@ class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.validateAmountNotNumber(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력한 당첨 번호가 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void validateAnswerNumberIsNumber() {
+        // given
+        String answerNumbers = "1,2,3,4,5,hello";
+
+        // when, then
+        assertThatThrownBy(() -> InputValidator.validateAnswerNumberIsNumber(answerNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,7 +1,10 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.util.LottoVO;
 import lotto.util.UiVO;
@@ -35,11 +38,14 @@ public class LottoServiceImpl implements LottoService {
     /**
      * 랜덤 로또 값 생성해서 반환
      *
-     * @return : 새로운 Lotto 클래스
+     * @return : 생성된 Lotto List
      */
     @Override
-    public Lotto generateLottoNumbers() {
-        return null;
+    public List<Lotto> generateLottos(int lottoCount) {
+
+        return Stream.generate(this::generateLottoNumbers)
+                .limit(lottoCount)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -120,5 +126,11 @@ public class LottoServiceImpl implements LottoService {
 
         int lottoPrice = LottoVO.getLottoPrice();
         return amount / lottoPrice;
+    }
+
+    private Lotto generateLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        return new Lotto(numbers);
     }
 }

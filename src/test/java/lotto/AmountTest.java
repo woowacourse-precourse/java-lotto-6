@@ -32,4 +32,12 @@ class AmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
+
+    @Test
+    void getAmountCash() {
+    }
+
+    @Test
+    void testToRecord() {
+    }
 }

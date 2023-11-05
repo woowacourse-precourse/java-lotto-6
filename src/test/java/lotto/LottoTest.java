@@ -38,5 +38,17 @@ class LottoTest {
         assertSimpleTest(() -> assertThat(new Lotto(new LottoNumbers(List.of(2, 4, 7, 31, 20, 8))).makeLottoNumberString())
                 .isEqualTo("[2, 4, 7, 8, 20, 31]"));
     }
+
+    @Test
+    void toRecord() {
+    }
+
+    @Test
+    void makeLottoNumberString() {
+    }
+
+    @Test
+    void buyLotto() {
+    }
     // 아래에 추가 테스트 작성 가능
 }

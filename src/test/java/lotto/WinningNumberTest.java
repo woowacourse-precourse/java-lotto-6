@@ -34,4 +34,11 @@ class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void countMatchingNumbers() {
+    }
+
+    @Test
+    void hasMatchingBonusNumber() {
+    }
 }

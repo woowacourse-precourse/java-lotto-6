@@ -18,4 +18,8 @@ class ProfitRateTest {
         assertThatThrownBy(() -> new ProfitRate(123.7, 124.00))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void printProfitRate() {
+    }
 }

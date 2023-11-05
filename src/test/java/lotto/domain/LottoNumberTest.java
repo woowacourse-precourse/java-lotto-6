@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,12 +17,12 @@ public class LottoNumberTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    static IntStream lottoNumberProvider() {
+    static IntStream ProvideLottoNumber() {
         return IntStream.rangeClosed(1, 45);
     }
 
     @ParameterizedTest
-    @MethodSource("lottoNumberProvider")
+    @MethodSource("ProvideLottoNumber")
     void 로또_번호는_1에서_45_사이의_숫자여야_한다(int lottoNumber) {
         assertThatCode(() -> LottoNumber.valueOf(lottoNumber))
                 .doesNotThrowAnyException();

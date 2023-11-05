@@ -2,14 +2,18 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Error;
+import lotto.constants.Number;
 import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
 public class WinningNumbers {
-    private static final int LOTTO_NUMBER_START = 1;
-    private static final int LOTTO_NUMBER_END = 45;
+    private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
+    private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
+    private static final int NOTHING = 0;
+    private static final String NO_LOTTO = Error.NO_LOTTO.getMessage();
     private Lotto firstRankLotto;
-    private int bonusNumber = 0;
+    private int bonusNumber = NOTHING;
 
     public void setFirstRankLotto(List<String> inputNumbers) {
         firstRankLotto = new Lotto(stringToNumbers(inputNumbers));
@@ -20,7 +24,12 @@ public class WinningNumbers {
     }
 
     public Lotto getFirstRankLotto() {
-        return new Lotto(new ArrayList<>(firstRankLotto.showNumbers()));
+        try {
+            return new Lotto(new ArrayList<>(firstRankLotto.getNumbers()));
+        } catch (NullPointerException e) {
+            System.out.println(NO_LOTTO);
+        }
+        return new Lotto(new ArrayList<>());
     }
 
     public int getBonusNumber() {
@@ -44,7 +53,7 @@ public class WinningNumbers {
     }
 
     private void validateWinningNumbers(int bonusNumber) {
-        List<Integer> winningNumbers = firstRankLotto.showNumbers();
+        List<Integer> winningNumbers = firstRankLotto.getNumbers();
         winningNumbers.add(bonusNumber);
         Validator.validateUniqueNumbersInRange(winningNumbers, LOTTO_NUMBER_START, LOTTO_NUMBER_END);
     }

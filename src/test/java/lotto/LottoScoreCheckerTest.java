@@ -3,44 +3,93 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.constants.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoScoreChecker;
-import lotto.domain.Rank;
+import lotto.utils.StringChanger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoScoreCheckerTest {
-    @DisplayName("1등 로또와 비교하여 맞춘 갯수 확인")
+    @DisplayName("1등 판별 테스트")
     @Test
-    void checkMatchingFirstNumbers() {
-        String firstNumbers = "1,2,3,4,5,6";
-        LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
-        lottoScoreChecker.setFirstNumbers(firstNumbers);
+    void getFirstTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lottoScoreChecker.compareToFirstRankNumber(lotto)).isEqualTo(6);
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.SIX_MATCH);
     }
 
-    @DisplayName("보너스 번호와 비교하여 있는지 확인")
+    @DisplayName("2등 판별 테스트")
     @Test
-    void checkMatchingBonusNumber() {
-        String firstNumbers = "1,2,3,4,5,6";
-        LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
-        lottoScoreChecker.setFirstNumbers(firstNumbers);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        String bonusNumbers = "7";
-        lottoScoreChecker.setBonusNumber(bonusNumbers);
-        assertThat(lottoScoreChecker.compareToBonusNumber(lotto)).isEqualTo(true);
-    }
-
-    @DisplayName("getRankTest")
-    @Test
-    void getRankTest() {
-        String firstNumbers = "1,2,3,4,5,6";
-        LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
-        lottoScoreChecker.setFirstNumbers(firstNumbers);
+    void getSecondTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 6, 7));
-        String bonusNumbers = "7";
-        lottoScoreChecker.setBonusNumber(bonusNumbers);
-        assertThat(lottoScoreChecker.getRank(lotto)).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
+    }
+
+    @DisplayName("3등 판별 테스트")
+    @Test
+    void getThirdTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.FIVE_MATCH);
+    }
+
+    @DisplayName("4등 판별 테스트")
+    @Test
+    void getFourthTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 45));
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.FOUR_MATCH);
+    }
+
+    @DisplayName("5등 판별 테스트")
+    @Test
+    void getFifthTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.THREE_MATCH);
+    }
+
+    @DisplayName("등수 없음 판별 테스트")
+    @Test
+    void getNoRankTest() {
+        String firstNumbersInput = "1,2,3,4,5,6";
+        String bonusNumberInput = "7";
+        Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 38));
+
+        Rank rank = getRank(firstNumbersInput, bonusNumberInput, lotto);
+
+        assertThat(rank).isEqualTo(Rank.NO_RANK);
+    }
+
+    private Rank getRank(String firstNumberInput, String bonusNumberInput, Lotto lotto) {
+        List<String> firstNumbers = StringChanger.stringToTrimmedStringList(firstNumberInput);
+
+        LottoScoreChecker lottoScoreChecker = new LottoScoreChecker();
+        lottoScoreChecker.setFirstRankNumbers(firstNumbers);
+        lottoScoreChecker.setBonusNumber(bonusNumberInput);
+
+        return lottoScoreChecker.getRank(lotto);
     }
 }

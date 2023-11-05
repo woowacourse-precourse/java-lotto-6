@@ -3,16 +3,19 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Number;
+import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
 public class LottoSeller {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_NUMBER_START = 1;
-    private static final int LOTTO_NUMBER_END = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
+    private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
+    private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
+    private static final int LOTTO_NUMBER_COUNT = Number.FIXED_LOTTO_NUMBERS_COUNT.getNumber();
+    private static final int NOTHING = 0;
 
     private final List<Lotto> lottos = new ArrayList<>();
-    private int amount;
+    private int amount = NOTHING;
 
     public int getAmount(String userInput) {
         checkAmount(userInput);
@@ -32,9 +35,8 @@ public class LottoSeller {
     }
 
     private void checkAmount(String userInput) {
-        int amount;
         Validator.validateStringIsNumber(userInput);
-        amount = Integer.parseInt(userInput);
+        int amount = StringChanger.stringToInteger(userInput);
         Validator.validateNotLessThanNumber(amount, LOTTO_PRICE);
         Validator.validateDivisor(amount, LOTTO_PRICE);
         this.amount = amount;

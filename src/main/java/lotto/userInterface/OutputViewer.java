@@ -1,7 +1,7 @@
 package lotto.userInterface;
 
+import lotto.constants.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
 
 public class OutputViewer {
     private OutputViewer() {
@@ -16,7 +16,7 @@ public class OutputViewer {
     }
 
     public static void printPurchasedLotto(Lotto lotto) {
-        System.out.println(lotto.showNumbers());
+        System.out.println(lotto.getNumbers());
     }
 
     public static void printRequestWinningNumberMessage() {
@@ -27,7 +27,7 @@ public class OutputViewer {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void printTitleOfResult() {
+    public static void printPrefaceOfResult() {
         System.out.println("당첨 통계\n---");
     }
 
@@ -38,10 +38,9 @@ public class OutputViewer {
             return;
         }
         if (rank == Rank.FIVE_AND_BONUS_MATCH) {
-            System.out.println(matchedCount + "개 일치, 보너스 볼 일치 "
-                    + "(" + amount + ") - " + rankCount + "개");
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", matchedCount, amount, rankCount);
         }
-        System.out.println(matchedCount + "개 일치 " + "(" + amount + ") - " + rankCount + "개");
+        System.out.printf("%d개 일치 (%s) - %d개\n", matchedCount, amount, rankCount);
     }
 
     public static void printProfitRatio(double profitRatio) {

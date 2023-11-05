@@ -3,17 +3,24 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.constants.Error;
+import lotto.constants.Number;
+import lotto.constants.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoScoreChecker;
 import lotto.domain.LottoSeller;
-import lotto.domain.Rank;
 import lotto.userInterface.InputViewer;
 import lotto.userInterface.OutputViewer;
 import lotto.utils.StringChanger;
 
 public class LottoGame {
-    private static final int LOTTO_PRICE = 1000;
-    private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
+    private static final int NOTHING = 0;
+    private static final int TO_RATIO = 100;
+    private static final int COUNT_ONE = 1;
+    private static final String INVALID_AMOUNT = Error.INVALID_AMOUNT.getMessage();
+    private static final String INVALID_FIRST_NUMBERS = Error.INVALID_FIRST_NUMBERS.getMessage();
+    private static final String INVALID_BONUS_NUMBER = Error.INVALID_BONUS_NUMBER.getMessage();
     private LottoSeller lottoSeller;
     private LottoScoreChecker lottoScoreChecker;
     private List<Lotto> userLottos;
@@ -28,10 +35,10 @@ public class LottoGame {
         userLottos = new ArrayList<>();
         lottoScoreChecker = new LottoScoreChecker();
         rankCounts = new HashMap<>();
-        userAmount = 0;
-        countOfLottos = 0;
-        winnigs = 0;
-        profitRatio = 0.0;
+        userAmount = NOTHING;
+        countOfLottos = NOTHING;
+        winnigs = NOTHING;
+        profitRatio = NOTHING;
     }
 
     public void run() {
@@ -65,7 +72,7 @@ public class LottoGame {
                 userAmount = lottoSeller.getAmount(userInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_MESSAGE + LOTTO_PRICE + "로 나누어지는 수만 입력하세요.");
+                System.out.println(INVALID_AMOUNT);
             }
         }
     }
@@ -86,10 +93,11 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputViewer.requestWinningNumberInput();
-                lottoScoreChecker.setFirstNumbers(userInput);
+                List<String> inputNumbers = StringChanger.stringToTrimmedStringList(userInput);
+                lottoScoreChecker.setFirstRankNumbers(inputNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_MESSAGE);
+                System.out.println(INVALID_FIRST_NUMBERS);
             }
         }
     }
@@ -98,10 +106,11 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputViewer.requestBonusNumberInput();
+                userInput = StringChanger.trimString(userInput);
                 lottoScoreChecker.setBonusNumber(userInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_MESSAGE);
+                System.out.println(INVALID_BONUS_NUMBER);
             }
         }
     }
@@ -116,10 +125,10 @@ public class LottoGame {
 
     private void countRanks(int rank) {
         if (!rankCounts.containsKey(rank)) {
-            rankCounts.put(rank, 1);
+            rankCounts.put(rank, COUNT_ONE);
             return;
         }
-        rankCounts.put(rank, rankCounts.get(rank) + 1);
+        rankCounts.put(rank, rankCounts.get(rank) + COUNT_ONE);
     }
 
     private void sumWinnings(long amount) {
@@ -127,11 +136,11 @@ public class LottoGame {
     }
 
     private void calculateProfit() {
-        profitRatio = (double) winnigs / userAmount * 100;
+        profitRatio = (double) winnigs / userAmount * TO_RATIO;
     }
 
     private void printLottoScore() {
-        OutputViewer.printTitleOfResult();
+        OutputViewer.printPrefaceOfResult();
         for (Rank rank : Rank.values()) {
             printScoreBy(rank);
         }
@@ -144,6 +153,6 @@ public class LottoGame {
             OutputViewer.printLottoResult(rank, rankCounts.get(rankNumber));
             return;
         }
-        OutputViewer.printLottoResult(rank, 0);
+        OutputViewer.printLottoResult(rank, NOTHING);
     }
 }

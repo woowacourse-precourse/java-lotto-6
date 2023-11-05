@@ -1,9 +1,10 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.constants.Error;
 
 public class Validator {
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR]";
+    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
 
     private Validator() {
     }

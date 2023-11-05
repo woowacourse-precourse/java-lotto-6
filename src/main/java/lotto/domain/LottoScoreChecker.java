@@ -1,18 +1,16 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.utils.StringChanger;
+import lotto.constants.Rank;
 
 public class LottoScoreChecker {
     private final WinningNumbers winningNumbers = new WinningNumbers();
 
-    public void setFirstNumbers(String userInput) {
-        List<String> inputNumbers = StringChanger.stringToTrimmedStringList(userInput);
+    public void setFirstRankNumbers(List<String> inputNumbers) {
         winningNumbers.setFirstRankLotto(inputNumbers);
     }
 
     public void setBonusNumber(String userInput) {
-        userInput = StringChanger.trimString(userInput);
         winningNumbers.setBonusNumber(userInput);
     }
 
@@ -27,13 +25,13 @@ public class LottoScoreChecker {
     }
 
     public int compareToFirstRankNumber(Lotto lotto) {
-        List<Integer> numbers = lotto.showNumbers();
-        List<Integer> firstNumbers = winningNumbers.getFirstRankLotto().showNumbers();
-        return numbers.stream().filter(firstNumbers::contains).toList().size();
+        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> firstRankNumbers = winningNumbers.getFirstRankLotto().getNumbers();
+        return numbers.stream().filter(firstRankNumbers::contains).toList().size();
     }
 
     public boolean compareToBonusNumber(Lotto lotto) {
-        List<Integer> numbers = lotto.showNumbers();
+        List<Integer> numbers = lotto.getNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();
         return numbers.contains(bonusNumber);
     }

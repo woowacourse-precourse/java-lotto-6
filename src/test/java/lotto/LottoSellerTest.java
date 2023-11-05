@@ -8,6 +8,8 @@ import static org.mockito.Mockito.mockStatic;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.Error;
+import lotto.constants.Number;
 import lotto.domain.Lotto;
 import lotto.domain.LottoSeller;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class LottoSellerTest {
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR]";
-    private static final int LOTTO_PRICE = 1000;
+    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
+    private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
 
     @DisplayName("입력한 구매 금액이 숫자가 아니면 예외가 발생한다.")
     @Test
@@ -43,16 +45,17 @@ public class LottoSellerTest {
     @Test
     void giveLottosValidCountToUser() {
         String validUserInput = "1000";
-        int validAmount;
-        LottoSeller lottoSeller = new LottoSeller();
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
         try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
             mock.when(() -> Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                     .thenReturn(List.of(1, 2, 3, 4, 5, 6));
-            validAmount = lottoSeller.getAmount(validUserInput);
+            LottoSeller lottoSeller = new LottoSeller();
+            int validAmount = lottoSeller.getAmount(validUserInput);
             List<Lotto> lottos = lottoSeller.giveLotto();
+
             assertThat(lottos.size()).isEqualTo(validAmount / LOTTO_PRICE);
-            assertThat(lottos.get(0).showNumbers()).isEqualTo(lotto.showNumbers());
+            assertThat(lottos.get(0).getNumbers()).isEqualTo(lotto.getNumbers());
         }
     }
 

@@ -24,28 +24,28 @@ public class WinningNumbersTest {
     @Test
     void inputBonusNotNumber() {
         String invalidBonusInput = "a";
-        bonusNumberTest(invalidBonusInput);
+        invalidBonusNumberTest(invalidBonusInput);
     }
 
     @DisplayName("보너스 번호 입력이 중복되면 예외를 발생시킨다.")
     @Test
     void inputBonusDuplicated() {
         String invalidBonusInput = "1";
-        bonusNumberTest(invalidBonusInput);
+        invalidBonusNumberTest(invalidBonusInput);
     }
 
     @DisplayName("보너스 번호 입력이 범위를 벗어나면 예외를 발생시킨다.")
     @Test
     void inputBonusOutOfRange() {
         String invalidBonusInput = "46";
-        bonusNumberTest(invalidBonusInput);
+        invalidBonusNumberTest(invalidBonusInput);
     }
 
-    private void bonusNumberTest(String bonusInput) {
+    private void invalidBonusNumberTest(String invalidBonusInput) {
         WinningNumbers winningNumbers = new WinningNumbers();
         String userInput = "1, 2, 3, 4, 5, 6 ";
         makeWinningLotto(winningNumbers, userInput);
-        assertThatThrownBy(() -> winningNumbers.setBonusNumber(bonusInput))
+        assertThatThrownBy(() -> winningNumbers.setBonusNumber(invalidBonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

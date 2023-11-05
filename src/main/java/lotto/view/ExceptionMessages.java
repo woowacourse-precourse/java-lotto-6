@@ -17,6 +17,10 @@ public enum ExceptionMessages {
         this.exceptionMessage = ERROR_TAG + exceptionMessage;
     }
 
+    public String getMessage() {
+        return exceptionMessage;
+    }
+
     public void throwException() {
         throw new IllegalArgumentException(exceptionMessage);
     }

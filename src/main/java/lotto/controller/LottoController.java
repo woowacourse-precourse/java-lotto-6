@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.utils.Utils;
+import lotto.view.ExceptionMessages;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,7 +24,18 @@ public class LottoController {
     }
 
     public void run() {
-        beforeStart();
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                beforeStart();
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void beforeStart() {

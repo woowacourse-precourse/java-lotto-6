@@ -39,7 +39,7 @@ public class MyTest extends NsTest {
     void setLottoNumbers() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("3000", "1,2,3,4,5,6");
+                    run("3000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(
                             "3개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -91,6 +91,17 @@ public class MyTest extends NsTest {
     public void checkLottoWinningNumberError4() {
         assertThatThrownBy(() -> {
             String[] input = {"a", "2", "3", "4", "5", "!"};
+            lottoController = new LottoController();
+            lottoController.convertStringListToIntegerList(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
+    @DisplayName("로또의 당첨 번호가 서로 중복되지 않은 값이여야한다.")
+    @Test
+    public void checkLottoWinningNumberError5() {
+        assertThatThrownBy(() -> {
+            String[] input = {"1", "1", "3", "4", "5", "6"};
             lottoController = new LottoController();
             lottoController.convertStringListToIntegerList(input);
         })

@@ -119,11 +119,11 @@ OutputController를 통해 사용자에게 원하는 화면을 출력하도록 �
 
 #### InputController
 
-LottoGameController에서 사용자 입력이 필요할 때마다 InputController에게 사용자 입력을 받을 것을 요청을 합니다.
+LottoGameController에서 사용자 입력이 필요할 때마다 InputController에게 사용자 입력을 받아올 것을 요청을 합니다.
 
-InputController는 InputView로부터 사용자 입력을 String 상태로 받아옵니다.
+InputController는 InputView로부터 사용자 입력을 String 타입 그대로 받아옵니다.
 
-String 상태의 사용자 입력을 InputController에서 적절한 model 객체(LottoGameController에서 요청한 model)로 변환합니다.
+String 타입의 사용자 입력을 InputController에서 적절한 model 객체(LottoGameController에서 요청한 model) 타입으로 변환합니다.
 
 LottoGameController에게 변환한 객체를 넘겨줍니다.
 
@@ -135,7 +135,7 @@ OutputController는 LottoGameController로부터 사용자에게 화면을 출�
 
 출력될 화면을 업데이트하는데 필요한 model 객체가 있다면 해당 model 객체를 받아옵니다.
 
-해당 model 객체를 사용자에게 보여질 화면 양식으로 변환합니다.
+해당 model 객체를 사용자에게 보여질 화면 양식(String 타입)으로 변환합니다.
 
 String으로 변환된 내용을 OutputView에게 전달하여 사용자에게 보여질 화면을 업데이트하고 렌더링할 것을 요청합니다.
 
@@ -178,7 +178,7 @@ String으로 변환된 내용을 OutputView에게 전달하여 사용자에게 �
 
 * 인스턴스
     * 초기 예산을 갖고 있습니다.
-    * 로또를 구매하는데 사용한 금액의 양을 갖고 있습니다.
+    * 로또를 구매하는데 사용한 금액을 갖고 있습니다.
     * 구입한 로또 리스트를 갖고 있습니다.
     * 본인이 구입한 로또 리스트에 대한 당첨 통계 결과(`WinningStatistics`)와 수익률 정보를 갖고 있습니다.
 * 함수

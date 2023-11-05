@@ -59,20 +59,11 @@ public class LottoService {
         }
     }
 
-    public boolean isBonusNumberInWinningLotto(List<Integer> winningLotto) {
+    public Integer countMatchingBonusNumbers(List<Integer> winningLotto) {
         BonusNumber bonusNumber = new BonusNumber(5);
         if (winningLotto.contains(bonusNumber)) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public Integer countMatchingBonusNumbers(boolean isTrue) {
-        if (isTrue) {
             return BonusCount.PLUS_ONE.getWeight();
         }
         return BonusCount.PLUS_ZERO.getWeight();
     }
-
 }

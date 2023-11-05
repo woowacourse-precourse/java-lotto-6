@@ -26,5 +26,12 @@ class LottoMachineTest {
         assertEquals(winningNumbers, lottoMachine.getWinningNumbers());
     }
 
+    @DisplayName("보너스 번호를 세팅하고 가져오는 기능 테스트")
+    @Test
+    public void given_setBonusNum_when_GetBonusNum_then_returnSetBonusNum() {
+        int bonusNum = 25;
+        lottoMachine.setBonusNum(bonusNum);
 
+        assertEquals(bonusNum, lottoMachine.getBonusNum());
+    }
 }

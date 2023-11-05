@@ -1,10 +1,16 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class WinningLottoStorage {
 
     private Map<Rank, Integer> rankStorage;
+
+    public WinningLottoStorage() {
+        rankStorage = new HashMap<>();
+        initRankStorage();
+    }
 
     private void initRankStorage() {
         rankStorage.put(Rank.CORRECT_ZERO, 0);

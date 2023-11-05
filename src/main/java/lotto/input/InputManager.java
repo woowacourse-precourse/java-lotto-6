@@ -1,11 +1,11 @@
 package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.data.BonusNumber;
 import lotto.data.PurchaseAmount;
 import lotto.data.WinningNumbers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputManager {
@@ -46,4 +46,18 @@ public class InputManager {
     }
 
 
+    public static BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        String input;
+        while (true) {
+            try {
+                input = Console.readLine();
+                InputValidator.checkBonusNumber(input,winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return new BonusNumber(Integer.parseInt(input));
+    }
 }

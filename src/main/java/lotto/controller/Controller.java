@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.data.BonusNumber;
 import lotto.data.LottoRepository;
 import lotto.data.PurchaseAmount;
 import lotto.data.WinningNumbers;
@@ -12,6 +13,7 @@ public class Controller {
     PurchaseAmount purchaseAmount;
     LottoRepository lottoRepository;
     WinningNumbers winningNumbers;
+    BonusNumber bonusNumber;
 
     public void inputPurchaseAmount(){
 
@@ -33,5 +35,11 @@ public class Controller {
         ConsolePrinter.printRequestWinningNumbers();
         winningNumbers = InputManager.inputWinningNumbers();
 
+    }
+
+    public void inputBonusNumber() {
+
+        ConsolePrinter.printRequestBonusNumber();
+        bonusNumber = InputManager.inputBonusNumber(winningNumbers);
     }
 }

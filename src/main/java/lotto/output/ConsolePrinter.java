@@ -32,4 +32,9 @@ public class ConsolePrinter {
         System.out.println();
         System.out.println(Message.INPUT_WINNING_NUMBERS);
     }
+
+    public static void printRequestBonusNumber() {
+        System.out.println();
+        System.out.println(Message.INPUT_BONUS_NUMBER);
+    }
 }

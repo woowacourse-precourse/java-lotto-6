@@ -13,7 +13,7 @@ public class LottoResult {
 
     private static final double PERCENT = 100.0;
     private static final double ROUNDING_SCALE = 10.0;
-    private List<LottoPrize> lottoPrizes;
+    private final List<LottoPrize> lottoPrizes;
 
     private LottoResult(List<LottoPrize> lottoPrizes) {
         this.lottoPrizes = lottoPrizes;

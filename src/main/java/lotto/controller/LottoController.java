@@ -4,7 +4,6 @@ import lotto.domain.LottoPack;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
-import util.NumberGenerator.INumberGenerator;
 import util.NumberGenerator.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -57,13 +56,11 @@ public class LottoController {
 
     private Money getMoney() {
         outputView.printGetMoney();
-        int number = inputView.getNumber();
-        return new Money(number);
+        return new Money(inputView.getNumber());
     }
 
     private LottoPack getLottoPack(Money money) {
-        INumberGenerator numberGenerator = new NumberGenerator();
-        return new LottoPack(money.count(), numberGenerator);
+        return new LottoPack(money.count(), new NumberGenerator());
     }
 
     private WinningNumbers getWinningNumbers() {

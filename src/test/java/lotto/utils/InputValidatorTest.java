@@ -3,6 +3,9 @@ package lotto.utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,5 +58,24 @@ public class InputValidatorTest {
         int expectedResult = 5000;
 
         assertThat(inputValidator.convertInputToPaymentAmount(testString)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("입력값 로또 번호 변환 테스트 - 4개의 쉼표 데이터 - 오류")
+    @Test
+    void convertWrongSeparatorInputTest() {
+        String testString = "1,2,3,4,5";
+
+        assertThatThrownBy(() -> inputValidator.convertInputToLottoNumbers(testString))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구분자는 쉼표(,)를 사용해주세요.");
+    }
+
+    @DisplayName("입력값 로또 번호 변환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void convertInputToLottoNumbersTest() {
+        String testString = "1,2,3,4,5,6";
+        List<Integer> expectedResult = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThat(inputValidator.convertInputToLottoNumbers(testString)).isEqualTo(expectedResult);
     }
 }

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class LottoStoreTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "9900000"})
-    @DisplayName("[정상처리]")
+    @DisplayName("[정상처리] 구입 금액에 해당하는 로또를 발행한다.")
     void 로또_발행_정상처리(String purchaseAmount) {
         Amount amount = new Amount(purchaseAmount);
         LottoStore lottoStore = new LottoStore(() -> Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -25,7 +25,7 @@ public class LottoStoreTest {
     }
 
     @Test
-    @DisplayName("[정상처리] 1장 번호 비교")
+    @DisplayName("[정상처리] 1장의 로또를 발행하고 번호를 비교한다.")
     void 로또_발행_1장_번호비교_정상처리() {
         Amount amount = new Amount("1000");
         LottoStore lottoStore = new LottoStore(() -> List.of(1, 2, 3, 4, 5, 6));

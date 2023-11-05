@@ -7,6 +7,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum LottoResult {
+    ZERO(0, 0),
+    ONE(1, 0),
+    TWO(2, 0),
     THREE(3, 5000),
     FOUR(4, 50000),
     FIVE(5, 1500000),
@@ -17,12 +20,12 @@ public enum LottoResult {
     private final int sameNumberCount;
     private final int winningAmount;
 
-    private static Map<Integer, Integer> lottoResultMap = Collections.unmodifiableMap(
+    private static Map<Integer, LottoResult> lottoResultMap = Collections.unmodifiableMap(
             Arrays.stream(values())
-                    .collect(Collectors.toMap(LottoResult::getSameNumberCount, LottoResult::getWinningAmount))
+                    .collect(Collectors.toMap(LottoResult::getSameNumberCount, Function.identity()))
     );
 
-    private static int findLottoResultBySameNumberCount(int sameNumberCount) {
+    public static LottoResult findLottoResultBySameNumberCount(int sameNumberCount) {
         return lottoResultMap.get(sameNumberCount);
     }
 

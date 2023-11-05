@@ -9,11 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    private static List<Integer> winningNumbers;
     private Integer purchaseAmount;
     private Integer purchaseLottoNumber;
     private List<Lotto> lottos;
     public User() {
         lottos = new ArrayList<>();
+    }
+
+    public static void setWinningNumbers(List<Integer> winningNumbers) {
+        User.winningNumbers = winningNumbers;
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        return User.winningNumbers;
     }
 
     public Integer getPurchaseAmount() {

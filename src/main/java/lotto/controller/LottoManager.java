@@ -1,4 +1,6 @@
 package lotto.controller;
+import static lotto.utility.Constants.LINE;
+
 import lotto.model.User;
 import lotto.view.UserView;
 
@@ -19,6 +21,14 @@ public class LottoManager {
 
         user.setLottos();
         userView.printLottos(user.getLottos());
+
+        userView.printInputWinningNumbersMessage();
+        UserInput.winningNumbers();
+
+        userView.printInputBonusNumberMessage();
+        UserInput.bonusNumber();
+
+        userView.printWinningStatistic();
 
     }
 

@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import lotto.Service.LottoMachine;
 import java.util.List;
 import lotto.Model.Lotto;
@@ -45,7 +46,11 @@ public class UIController {
 
     public static List<Lotto> makeLotto(Integer price) {
         int lottoCount = LottoMachine.lottoCount(price);
-        // TODO : 난수추출 , 로또 생성
-        return null;
+        ArrayList<Lotto> lottos = new ArrayList<Lotto>();
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> randomNumbers = LottoMachine.makeRandomNumbers();
+            lottos.add(new Lotto(randomNumbers));
+        }
+        return lottos;
     }
 }

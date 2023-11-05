@@ -5,10 +5,13 @@ import lotto.domain.LottoResult;
 import lotto.domain.LottoWithBonus;
 
 public class LottoService {
+    public static final int SPECIAL_CASE = 5;
+    public static final int SPECIAL_RESULT = 7;
+
     public static LottoResult compareLottoWithBonus(LottoWithBonus userLotto, Lotto generatedRandomLotto) {
         int sameNumberCount = compareEachLotto(userLotto, generatedRandomLotto);
-        if ( sameNumberCount == 5 && isBonusInLotto(userLotto, generatedRandomLotto)) {
-            sameNumberCount = 7;
+        if ( sameNumberCount == SPECIAL_CASE && isBonusInLotto(userLotto, generatedRandomLotto)) {
+            sameNumberCount = SPECIAL_RESULT;
         }
         return LottoResult.findLottoResultBySameNumberCount(sameNumberCount);
     }

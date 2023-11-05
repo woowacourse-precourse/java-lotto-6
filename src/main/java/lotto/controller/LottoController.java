@@ -50,6 +50,12 @@ public class LottoController {
         outputView.printEachLottoNumbers(lottoResponses);
     }
 
+    private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {
+        return lottos.stream()
+                .map(lotto -> LottoResponse.from(lotto.getNumbers()))
+                .toList();
+    }
+
     public LottoCompanyService createLottoCompanyService(final List<Lotto> lottos) {
         return createInstance(LottoCompanyService.class, () -> {
             GoalNumbers goalNumbers = createGoalNumbers();
@@ -90,12 +96,6 @@ public class LottoController {
             outputView.printExceptionMessage(exception.getMessage());
         }
         return created;
-    }
-
-    private List<LottoResponse> convertLottoResponses(final List<Lotto> lottos) {
-        return lottos.stream()
-                .map(lotto -> LottoResponse.from(lotto.getNumbers()))
-                .toList();
     }
 
     private void addPrizeMoney(final InvestorService investorService, final List<PrizeResult> results) {

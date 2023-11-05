@@ -6,42 +6,47 @@ import lotto.util.message.WinningStatisticsMessage;
 
 public class OutputView {
 
-	private static final OutputViewPrinter PRINTER = new OutputViewPrinter();
 	private static final String NEWLINE = "\n";
+	
+	private final OutputViewPrinter printer;
+	
+	public OutputView() {
+		this.printer = new OutputViewPrinter();;
+	}
 
 	public void printInputMoneyMessage() {
-		PRINTER.printLine(ProgressMessage.INPUT_MONEY.getMessage());
+		printer.printLine(ProgressMessage.INPUT_MONEY.getMessage());
 	}
 
 	public void printBuyedLottoNumberMessage(int buyedCount) {
-		PRINTER.printLine(NEWLINE + ProgressMessage.BUYED_LOTTO_NUMBER.getForMatMessage(buyedCount));
+		printer.printLine(NEWLINE + ProgressMessage.BUYED_LOTTO_NUMBER.getForMatMessage(buyedCount));
 	}
 
 	public void printLottoNumbers(String message) {
-		PRINTER.printLine(message);
+		printer.printLine(message);
 	}
 
 	public void printInputAnswerLottoNumberMessage() {
-		PRINTER.printLine(NEWLINE + ProgressMessage.INPUT_ANSWER_LOTTO_NUMBER.getMessage());
+		printer.printLine(NEWLINE + ProgressMessage.INPUT_ANSWER_LOTTO_NUMBER.getMessage());
 	}
 
 	public void printInputBonusNumberMessage() {
-		PRINTER.printLine(NEWLINE + ProgressMessage.INPUT_BONUS_NUMBER.getMessage());
+		printer.printLine(NEWLINE + ProgressMessage.INPUT_BONUS_NUMBER.getMessage());
 	}
 
 	public void printWinningStatisticsTopMessage() {
-		PRINTER.printLine(NEWLINE + WinningStatisticsMessage.TOP.getMessage());
+		printer.printLine(NEWLINE + WinningStatisticsMessage.TOP.getMessage());
 	}
 
 	public void printWinningStatisticsMessage(String message) {
-		PRINTER.printLine(message);
+		printer.printLine(message);
 	}
 
 	public void printTotalReturn(double totalReturn) {
-		PRINTER.printLine(WinningStatisticsMessage.TOTAL_RETURN.getForMatMessage(totalReturn));
+		printer.printLine(WinningStatisticsMessage.TOTAL_RETURN.getForMatMessage(totalReturn));
 	}
 	
 	public void printErrorMessage(Exception exception) {
-		PRINTER.printLine(exception.getMessage());
+		printer.printLine(exception.getMessage());
 	}
 }

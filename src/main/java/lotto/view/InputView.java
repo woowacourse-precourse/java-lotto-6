@@ -9,12 +9,17 @@ import lotto.util.message.ErrorMessage;
 import lotto.util.validator.Validator;
 
 public class InputView {
-
-	private static final InputViewReader READER = new InputViewReader();
+	
 	private static final String DELIMITER = ",";
 
+	private final InputViewReader reader;
+	
+	public InputView() {
+		reader =  new InputViewReader();
+	}
+
 	public int inputMoney() {
-		String inputValue = READER.readLine();
+		String inputValue = reader.readLine();
 
 		validateInputMoney(inputValue);
 
@@ -22,7 +27,7 @@ public class InputView {
 	}
 
 	public List<Integer> inputAnswerLottoNumbers() {
-		String inputValue = READER.readLine();
+		String inputValue = reader.readLine();
 		String[] inputValues = inputValue.split(DELIMITER);
 
 		List<Integer> numbers = convertInputValuesToCollection(inputValues);
@@ -33,7 +38,7 @@ public class InputView {
 	}
 
 	public int inputBonusNumber(List<Integer> numbers) {
-		String inputValue = READER.readLine();
+		String inputValue = reader.readLine();
 
 		validateInputBonusNumber(numbers, inputValue);
 

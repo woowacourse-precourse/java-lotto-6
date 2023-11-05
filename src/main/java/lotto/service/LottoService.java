@@ -18,13 +18,19 @@ import lotto.util.message.WinningStatisticsMessage;
 
 public class LottoService {
 
-	private static final LottosGenerator LOTTOS_GENERATOR = new LottosGenerator();
-	private static final LottoCalculator LOTTO_CALCULATOR = new LottoCalculator();
-	private static final String NEW_LINE = System.lineSeparator();
+	private final String NEW_LINE = System.lineSeparator();
+
+	private final LottosGenerator lottosGenerator;
+	private final LottoCalculator lottoCalculator;
+
+	public LottoService() {
+		this.lottosGenerator = new LottosGenerator();
+		this.lottoCalculator = new LottoCalculator();
+	}
 
 	public Lottos createLottos(Money money) {
-		LOTTOS_GENERATOR.setMoney(money);
-		return new Lottos(LOTTOS_GENERATOR.generate());
+		lottosGenerator.setMoney(money);
+		return lottosGenerator.generate();
 	}
 
 	public AnswerLotto createAnswerLotto(List<Integer> numbers, int bonusNumber) {
@@ -33,11 +39,11 @@ public class LottoService {
 
 	public int calculateLottoPriceSum(Lottos lottos, AnswerLotto answerLotto) {
 		EnumMap<LottoRank, Integer> lottoRankCounter = countLottoRank(lottos, answerLotto);
-		return LOTTO_CALCULATOR.calculateSum(lottoRankCounter);
+		return lottoCalculator.calculateSum(lottoRankCounter);
 	}
 
 	public double calculateTotalReturn(int money, int priceSum) {
-		return LOTTO_CALCULATOR.calculateTotalReturn(money, priceSum);
+		return lottoCalculator.calculateTotalReturn(money, priceSum);
 	}
 
 	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {

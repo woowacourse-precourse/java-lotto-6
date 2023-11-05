@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.InputException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,12 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    private void sortNumbers(final List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private void validateSize(final List<Integer> numbers) {

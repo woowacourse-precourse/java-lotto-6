@@ -18,6 +18,25 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatch(PlayerLotto playerLotto) {
+        return (int) this.numbers.stream()
+                .filter(playerLotto::matchesLottoNumber)
+                .count();
+    }
+
+    public boolean countBonusMatch(PlayerLotto playerLotto) {
+        return numbers.stream()
+                .anyMatch(playerLotto::matchesBonusNumber);
+    }
+
+    private boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     private void validateLotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);

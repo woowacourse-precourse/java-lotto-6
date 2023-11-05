@@ -16,6 +16,16 @@ public class PlayerLotto {
         validateBonusNumber(playerLotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public boolean matchesLottoNumber(int lottoNumber) {
+        return lotto.getNumbers()
+                .contains(lottoNumber);
+    }
+
+    public boolean matchesBonusNumber(int bonusNumber) {
+        return this.bonusNumber.equals(bonusNumber);
+    }
+
     private void validateBonusNumber(List<Integer> playerLotto, Integer bonusNumber) {
         validateBonusRange(bonusNumber);
         validateDuplicateBonus(playerLotto, bonusNumber);
